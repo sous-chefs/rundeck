@@ -1,0 +1,72 @@
+{
+  "install_dir": "d:\\wrs",
+  "loader_pass": "Bijoux1",
+  "loader_acct": "wtLoader",
+  "cassandra_report_column": "F_Report",
+  "installlog_dir": "d:\\logs",
+  "cassandra_snmp_comm": "StagingRO",
+  "cassandra_hosts": [
+    {
+      "name": "scass01.staging.dmz"
+    },
+    {
+      "name": "scass02.staging.dmz"
+    },
+    {
+      "name": "scass03.staging.dmz"
+    },
+    {
+      "name": "scass04.staging.dmz"
+    }
+  ],
+  "ui_user": "STAGINGDMZ\\wtUI",
+  "install_acct": "wtInstaller",
+  "system_pass": "Bijoux1",
+  "cassandra_snmp_port": "",
+  "schedulerdb_host": "fusagedb01",
+  "sched_host": "fmasterdb01",
+  "cache_hosts": [
+    {
+      "name": "xcache01.staging.dmz",
+      "port": "11211"
+    },
+    {
+      "name": "xcache02.staging.dmz",
+      "port": "11211"
+    }
+  ],
+  "id": "F",
+  "cassandra_meta_column": "F_Meta",
+  "loader_user": "STAGINGDMZ\\wtLoader",
+  "system_acct": "wtSystem",
+  "velocitycache_hosts": [
+    {
+      "name": "fdxweb01.staging.dmz",
+      "port": "22233"
+    },
+    {
+      "name": "fdxweb02.staging.dmz",
+      "port": "22233"
+    }
+  ],
+  "master_host": "fmasterdb01",
+  "system_user": "STAGINGDMZ\\wtSystem",
+  "ui_pass": "Bijoux1",
+  "install_user": "STAGINGDMZ\\wtInstaller",
+  "ui_acct": "wtUI",
+  "cassandra_thrift_port": "",
+  "dx": {
+    "cacheenabled": "True",
+    "app_settings_section": {
+      "streamingServiceRoot": "https://fdx.webtrends.com/StreamingServices_v3/"
+    },
+    "cachename": "F_DX",
+    "brandedaccountid": "20578,20663",
+    "website_name": "DX",
+    "website_port": "80",
+    "endpoint_address": "net.tcp://fsearch.staging.dmz:8096/SearchService/Search"
+  },
+  "usage_host": "fusagedb01",
+  "install_pass": "Bijoux1",
+  "rta_host": "frta01.staging.dmz"
+}
