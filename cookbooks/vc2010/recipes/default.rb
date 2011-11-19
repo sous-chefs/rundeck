@@ -1,6 +1,6 @@
 #
 # Author:: David Dvorak (<david.dvorak@webtrends.com>)
-# Cookbook Name:: vcredist2010
+# Cookbook Name:: vc2010
 # Recipe:: default
 #
 # Copyright 2011, Webtrends Inc.
