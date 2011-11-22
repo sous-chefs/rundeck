@@ -62,7 +62,6 @@ dir_list = node['webtrends']['dx']['dx_dir']
 cfg_cmds = node['webtrends']['dx']['cfg_cmd']
 legacy_app_pools = node['webtrends']['dx']['legacy_app_pool']
 app_pools = node['webtrends']['dx']['app_pool']
-msi_path = node['webtrends']['msi_path']
 
 directory msi_path do
 	action [:create]
@@ -73,12 +72,12 @@ directory logdir do
 	action :create
 end
 
-remote_file "#{msi_path}\\#{dx_msi}" do
+remote_file "#{Chef::Config[:file_cache_path]}\\#{dx_msi}" do
 	source dx_msi_url
 	action :nothing
 end
 
-remote_file "#{msi_path}\\#{common_msi}" do
+remote_file "#{Chef::Config[:file_cache_path]}\\#{common_msi}" do
 	source common_msi_url
 	action :nothing
 end
@@ -87,20 +86,20 @@ http_request "HEAD #{base_url}" do
   message ""
   url base_url
   action :head
-  if File.exists?("#{msi_path}\\#{dx_msi}")
-    headers "If-Modified-Since" => File.mtime("#{msi_path}\\#{dx_msi}").httpdate
+  if File.exists?("#{Chef::Config[:file_cache_path]}\\#{dx_msi}")
+    headers "If-Modified-Since" => File.mtime("#{Chef::Config[:file_cache_path]}\\#{dx_msi}").httpdate
   end
-  notifies :create, resources(:remote_file => "#{msi_path}\\#{dx_msi}"), :immediately
+  notifies :create, resources(:remote_file => "#{Chef::Config[:file_cache_path]}\\#{dx_msi}"), :immediately
 end
 
 http_request "HEAD #{base_url}" do
   message ""
   url base_url
   action :head
-  if File.exists?("#{msi_path}\\#{common_msi}")
-    headers "If-Modified-Since" => File.mtime("#{msi_path}\\#{common_msi}").httpdate
+  if File.exists?("#{Chef::Config[:file_cache_path]}\\#{common_msi}")
+    headers "If-Modified-Since" => File.mtime("#{Chef::Config[:file_cache_path]}\\#{common_msi}").httpdate
   end
-  notifies :create, resources(:remote_file => "#{msi_path}\\#{common_msi}"), :immediately
+  notifies :create, resources(:remote_file => "#{Chef::Config[:file_cache_path]}\\#{common_msi}"), :immediately
 end
 
 windows_registry 'HKLM\Software\WebTrends Corporation' do
@@ -172,13 +171,13 @@ windows_firewall 'OEM_DXWS' do
 end
 
 windows_package "CommonLib" do
-	source "#{msi_path}\\#{common_msi}"
+	source "#{Chef::Config[:file_cache_path]}\\#{common_msi}"
 	options "/l*v \"#{logdir}\\#{common_msi}-Install.log\" INSTALLDIR=\"#{installdir}\" SQL_SERVER_NAME=\"#{master_host}\" WTMASTER=\"wtMaster\"  WTSCHED=\"wt_Sched\""
 	action :install
 end
 
 windows_package "DXInstall" do
-	source "#{msi_path}\\#{dx_msi}"
+	source "#{Chef::Config[:file_cache_path]}\\#{dx_msi}"
 	options "/l*v \"#{logdir}\\#{dx_msi}-Install.log\" INSTALLDIR=\"#{installdir}\" WEBSITE_NAME=\"DX\" MASTER_HOST=\"#{master_host}\" WEBSITE_PORT=\"80\" APP_POOL_ACCT=\"#{app_user}\" APP_POOL_PASS=\"#{app_pass}\" CACHEENABLED=\"True\" CACHENAME=\"#{cache_name}\" CACHE_HOSTS=\"#{cache_hosts}\" CASSANDRA_HOSTNAME=\"#{cass_hosts}\" CASSANDRA_SNMP_COMM=\"#{cass_snmp}\" CASSANDRA_REPORT_FAMILY=\"#{cass_report_family}\" CASSANDRA_METADATA_FAMILY=\"#{cass_metadata_family}\" APP_SETTINGS_SECTION=\"#{app_settings}\" ENDPOINT_ADDRESS=#{endpoint} LOG_DIR=#{logdir}"
 	action :install
 end
