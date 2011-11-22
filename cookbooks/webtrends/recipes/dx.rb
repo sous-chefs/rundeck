@@ -14,7 +14,6 @@
 #######################################################################################
 #TODO                                                                                 #
 #Split the app_settings, cass_hosts, and cache_hosts into JSON parsed from data bags  #
-#Add c++ prerequsite to the recipe                                                    #
 #Copy DX for versions <V3 and creates sites in iis                                    #
 #Fix DX v3 installer to not install multiple times                                    #
 #Add ability to parse through the iis config for a specific value                     #

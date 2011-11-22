@@ -15,6 +15,7 @@
       "logdir": "d:\\logs",
       "msi_path": "d:\\installs",
       "common_msi": "WebTrendsCommonLib.msi",
+	  "pod": "dev",
       "installdir": "d:\\wrs"
     }
   }
