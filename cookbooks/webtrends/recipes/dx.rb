@@ -62,11 +62,6 @@ cfg_cmds = node['webtrends']['dx']['cfg_cmd']
 legacy_app_pools = node['webtrends']['dx']['legacy_app_pool']
 app_pools = node['webtrends']['dx']['app_pool']
 
-directory msi_path do
-	action [:create]
-	recursive true
-end
-
 directory logdir do
 	action :create
 end
