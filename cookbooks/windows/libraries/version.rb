@@ -144,9 +144,9 @@ module Windows
       "Windows Server 2008 R2" => {:major => 6, :minor => 1, :callable => lambda{ @product_type != VER_NT_WORKSTATION }},
       "Windows Server 2008" => {:major => 6, :minor => 0, :callable => lambda{ @product_type != VER_NT_WORKSTATION }},
       "Windows Vista" => {:major => 6, :minor => 0, :callable => lambda{ @product_type == VER_NT_WORKSTATION }},
-      "Windows Server 2003 R2" => {:major => 5, :minor => 2, :callable => lambda{ sm_serverr2 != 0 }},
+      "Windows Server 2003 R2" => {:major => 5, :minor => 2, :callable => lambda{ Win32API.new('user32', 'GetSystemMetrics', 'I', 'I').call(SM_SERVERR2) != 0 }},
       "Windows Home Server" => {:major => 5, :minor => 2, :callable => lambda{  (@product_suite & VER_SUITE_WH_SERVER) == VER_SUITE_WH_SERVER }},
-      "Windows Server 2003" => {:major => 5, :minor => 2, :callable => lambda{ sm_serverr2 == 0 }},
+      "Windows Server 2003" => {:major => 5, :minor => 2, :callable => lambda{ Win32API.new('user32', 'GetSystemMetrics', 'I', 'I').call(SM_SERVERR2) == 0 }},
       "Windows XP" => {:major => 5, :minor => 1},
       "Windows 2000" => {:major => 5, :minor => 0}
     }
@@ -173,7 +173,11 @@ module Windows
     # Server Type checks
     %w{ core full datacenter }.each do |m|
       define_method("server_#{m}?") do
+        if @sku
         !(SKU[@sku][:name] =~ /#{m}/i).nil?
+        else
+          false
+        end
       end
     end
 
@@ -188,7 +192,13 @@ module Windows
     def get_os_info
       cols = %w{ Version ProductType OSProductSuite OperatingSystemSKU ServicePackMajorVersion ServicePackMinorVersion }
       os_info = WMI::Win32_OperatingSystem.find(:first)
-      cols.map{|c| os_info.send(c) }
+      cols.map do |c|
+        begin
+          os_info.send(c)
+        rescue # OperatingSystemSKU doesn't exist in all versions of Windows
+          nil
+        end
+      end
     end
   end
 end
