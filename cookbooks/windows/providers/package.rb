@@ -120,7 +120,7 @@ def install_package(name,version)
   Chef::Log.debug("Processing #{@new_resource} as a #{installer_type} installer.")
   install_args = [cached_file(@new_resource.source, @new_resource.checksum), expand_options(unattended_installation_flags), expand_options(@new_resource.options)]
   Chef::Log.info("Starting installation...this could take awhile.")
-  shell_out!(sprintf(install_command_template, *install_args), {:returns => [0,42]})
+  shell_out!(sprintf(install_command_template, *install_args), {:returns => [0,42,127]})
 end
 
 def remove_package(name, version)
@@ -135,7 +135,7 @@ def remove_package(name, version)
     end
   end
   Chef::Log.info("Removing #{@new_resource} with uninstall command '#{uninstall_command}'")
-  shell_out!(uninstall_command, {:returns => [0,42]})
+  shell_out!(uninstall_command, {:returns => [0,42,127]})
 end
 
 private
@@ -189,8 +189,6 @@ def installed_packages
     installed_packages.merge!(extract_installed_packages_from_key(Win32::Registry::HKEY_LOCAL_MACHINE, (Win32::Registry::Constants::KEY_READ | 0x0200))) #rescue nil
     # Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall
     installed_packages.merge!(extract_installed_packages_from_key(Win32::Registry::HKEY_CURRENT_USER)) #rescue nil
-    # require 'pp'
-    # pp installed_packages
     installed_packages
   end
 end
@@ -201,15 +199,17 @@ def extract_installed_packages_from_key(hkey = Win32::Registry::HKEY_LOCAL_MACHI
   begin
     Win32::Registry.open(hkey, uninstall_subkey, desired) do |reg|
       reg.each_key do |key, wtime|
-        k = reg.open(key)
+        begin
+          k = reg.open(key, desired)
         display_name = k["DisplayName"] rescue nil
         version = k["DisplayVersion"] rescue "NO VERSION"
         uninstall_string = k["UninstallString"] rescue nil
-
         if display_name
           packages[display_name] = {:name => display_name,
                                     :version => version,
                                     :uninstall_string => uninstall_string}
+          end
+        rescue Win32::Registry::Error
         end
       end
     end
