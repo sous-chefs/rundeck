@@ -6,18 +6,10 @@
   "cassandra_report_column": "F_Report",
   "ui_user": "STAGINGDMZ\\wtUI",
   "cassandra_hosts": [
-    {
-      "name": "scass01.staging.dmz"
-    },
-    {
-      "name": "scass02.staging.dmz"
-    },
-    {
-      "name": "scass03.staging.dmz"
-    },
-    {
-      "name": "scass04.staging.dmz"
-    }
+    "scass01.staging.dmz",
+    "scass02.staging.dmz",
+    "scass03.staging.dmz",
+    "scass04.staging.dmz"
   ],
   "cassandra_snmp_comm": "StagingRO",
   "system_pass": "Bijoux1",
