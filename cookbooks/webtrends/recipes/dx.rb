@@ -11,7 +11,6 @@
 
 #######################################################################################
 #TODO                                                                                 #
-#Split the app_settings, cass_hosts, and cache_hosts into JSON parsed from data bags  #
 #Copy DX for versions <V3 and creates sites in iis                                    #
 #Add ability to parse through the iis config for a specific value                     #
 #######################################################################################
@@ -117,11 +116,17 @@ dir_list.each do |dir|
 	end
 end
 
+iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\"/commit:apphost" do
+	action :config
+	node.set['webtrends']['dx']['deflate_configured'] = "true"
+	not_if {node['webtrends']['dx']['deflate_configured']}
+end
+
 cfg_cmds.each do |cmd|	
 	iis_config "#{cmd}" do
 		action :config
 	end
-end
+end	
 
 iis_site 'Default Web Site' do
 	action [:stop, :delete]
