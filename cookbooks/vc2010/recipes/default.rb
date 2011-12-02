@@ -8,6 +8,14 @@
 # All rights reserved - Do Not Redistribute
 #
 
+common = data_bag_item('global','common')
+baserepo_url = common['baserepo_url']
+
+unless baserepo_url.nil? || baserepo_url.empty?
+	node.default['vc2010x86']['url'] = "#{baserepo_url}/repo/windows/vc2010/vcredist_x86.exe"
+	node.default['vc2010x64']['url'] = "#{baserepo_url}/repo/windows/vc2010/vcredist_x64.exe"
+end
+
 file_x86 = ::File.basename(node['vc2010x86']['url'])
 file_x64 = ::File.basename(node['vc2010x64']['url'])
 
