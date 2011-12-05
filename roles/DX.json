@@ -8,7 +8,7 @@
   "run_list": [
     "recipe[vc2010]",
     "role[IIS]",
-    "recipe[webtrends::dx]"
+    "recipe[dx]"
   ],
   "description": "Install DX. ",
   "chef_type": "role",
