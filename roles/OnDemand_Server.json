@@ -6,7 +6,9 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[windows]"
+    "recipe[ondemand_server::windows_server]",
+    "recipe[ondemand_server::ubuntu_server]",
+    "recipe[ondemand_server::centos_server]"
   ],
   "description": "",
   "chef_type": "role",
