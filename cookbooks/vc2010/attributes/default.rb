@@ -6,9 +6,10 @@
 # Copyright 2011, Webtrends Inc.
 #
 
-# Microsoft Visual C++ 2010 Redistributable Packages
-default['vc2010x86']['url'] = 'http://sops01.staging.dmz/repo/windows/vc2010/vcredist_x86.exe'
-default['vc2010x86']['checksum'] = 'b88228d5fef4b6dc019d69d4471f23ec'
+# Microsoft Visual C++ 2010  x86 Redistributable
+default['vc2010x86']['productname'] = 'Microsoft Visual C++ 2010  x86 Redistributable - 10.0.30319'
+default['vc2010x86']['url'] = 'http://download.microsoft.com/download/5/B/C/5BC5DBB3-652D-4DCE-B14A-475AB85EEF6E/vcredist_x86.exe'
 
-default['vc2010x64']['url'] = 'http://sops01.staging.dmz/repo/windows/vc2010/vcredist_x64.exe'
-default['vc2010x64']['checksum'] = '630d75210b325a280c3352f879297ed5'
+# Microsoft Visual C++ 2010  x64 Redistributable
+default['vc2010x64']['productname'] = 'Microsoft Visual C++ 2010  x64 Redistributable - 10.0.30319'
+default['vc2010x64']['url'] = 'http://download.microsoft.com/download/3/2/2/3224B87F-CFA0-4E70-BDA3-3DE650EFEBA5/vcredist_x64.exe'
