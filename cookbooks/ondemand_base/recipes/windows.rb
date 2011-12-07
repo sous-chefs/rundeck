@@ -36,3 +36,12 @@ end
 windows_registry 'HKLM\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters' do
   values 'DisabledComponents' => "0xffffffff"
 end
+
+#Auto reboot on system crashes, log the crash to the event log, and create a crash dump
+windows_registry 'HKLM\SYSTEM\CurrentControlSet\Control\CrashControl'
+  values 'AutoReboot' => "3"
+  values 'LogEvent' => "3"
+  values 'CrashDumpEnabled' => "3"
+end
+
+
