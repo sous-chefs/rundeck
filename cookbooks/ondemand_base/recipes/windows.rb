@@ -44,4 +44,17 @@ windows_registry 'HKLM\SYSTEM\CurrentControlSet\Control\CrashControl'
   values 'CrashDumpEnabled' => "3"
 end
 
+#Set the size of the system event log to 64MB
+windows_registry 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\System'
+  values 'MaxSize' => "65536"
+end
 
+#Set the size of the application event log to 64MB
+windows_registry 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application'
+  values 'MaxSize' => "65536"
+end
+
+#Set the size of the security event log to 64MB
+windows_registry 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Security'
+  values 'MaxSize' => "65536"
+end
