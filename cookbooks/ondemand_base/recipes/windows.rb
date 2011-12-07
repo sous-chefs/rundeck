@@ -5,7 +5,7 @@ windows_feature "SNMP-Service"
   action :install
 end
 
-#Install Powershell feature
+#Install Powershell ISE feature
 windows_feature "PowerShell-ISE"
   action :install
 end
@@ -32,6 +32,7 @@ execute powercfg do
 	action :run
 end
 
+#Set boot menu timeout to 5 seconds
 execute bootmenutimeout do
 	command "bcdedit /timeout 5"
 	action: run
