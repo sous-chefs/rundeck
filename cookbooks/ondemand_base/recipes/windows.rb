@@ -74,4 +74,18 @@ end
 windows_registry 'HKLM\System\CurrentControlSet\Control\Terminal Server'
   values 'fDenyTSConnections' => "0"
   values 'MinEncryptionLevel' =>  "3"
-  
+end
+
+#Set time zone
+windows_registry 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation'
+  values 'Bias' => "00000000"
+  values 'DaylightBias' => "00000000"
+  values 'DaylightName' => "@tzres.dll,-262"
+  values 'DaylightStart' => "00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00"
+  values 'StandardBias' => "00000000"
+  values 'StandardName' => "@tzres.dll,-262"
+  values 'StandardStart' => "00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00"
+  values 'TimeZoneKeyName' => "GMT Standard Time"
+  values 'DynamicDaylightTimeDisabled' => "00000001"
+  values 'ActiveTimeBias' => "00000000"
+end
