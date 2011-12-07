@@ -32,6 +32,11 @@ execute powercfg do
 	action :run
 end
 
+execute bootmenutimeout do
+	command "bcdedit /timeout 5"
+	action: run
+end
+
 #Turn off IPv6
 windows_registry 'HKLM\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters' do
   values 'DisabledComponents' => "0xffffffff"
@@ -58,3 +63,15 @@ end
 windows_registry 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Security'
   values 'MaxSize' => "65536"
 end
+
+#Set the organization name and owner name
+windows_registry 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
+  values 'RegisteredOrganization' => "Webtrends Inc."
+  values 'RegisteredOwner' => "Webtrends Inc."
+end
+
+#Enable Remote Desktop Services
+windows_registry 'HKLM\System\CurrentControlSet\Control\Terminal Server'
+  values 'fDenyTSConnections' => "0"
+  values 'MinEncryptionLevel' =>  "3"
+  
