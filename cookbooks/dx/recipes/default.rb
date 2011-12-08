@@ -118,8 +118,16 @@ end
 
 iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\"/commit:apphost" do
 	action :config
-	node.set['webtrends']['dx']['deflate_configured'] = "true"
-	not_if {node['webtrends']['dx']['deflate_configured']}
+	notifies :create, "ruby_block[deflate_flag]", :immediately
+	not_if {node.attribute?("deflate_configure")}
+end
+
+ruby_block "deflate_flag" do
+	block do
+		node.set['deflate_configured']
+		node.save
+	end
+	action :nothing
 end
 
 cfg_cmds.each do |cmd|	
