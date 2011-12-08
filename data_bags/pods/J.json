@@ -1,0 +1,62 @@
+{
+  "loader_acct": "wtLoader",
+  "loader_pass": "Bijoux1",
+  "install_dir": "d:\\wrs",
+  "installlog_dir": "d:\\logs",
+  "cassandra_report_column": "J_Report",
+  "ui_user": "WTENGLAB\\wtUI",
+  "cassandra_hosts": [
+    "scass01.staging.dmz",
+    "scass02.staging.dmz",
+    "scass03.staging.dmz",
+    "scass04.staging.dmz"
+  ],
+  "cassandra_snmp_comm": "StagingRO",
+  "system_pass": "Bijoux1",
+  "install_acct": "wtInstaller",
+  "wrsread_group": "WTENGLAB\\J.WRS.Read",
+  "cassandra_snmp_port": "",
+  "system_acct": "wtSystem",
+  "loader_user": "WTENGLAB\\wtLoader",
+  "cassandra_meta_column": "J_Meta",
+  "id": "J",
+  "cache_hosts": [
+    {
+      "name": "xcache01.staging.dmz",
+      "port": "11211"
+    },
+    {
+      "name": "xcache02.staging.dmz",
+      "port": "11211"
+    }
+  ],
+  "sched_host": "jmasterdb01",
+  "schedulerdb_host": "jusagedb01",
+  "velocitycache_hosts": [
+    {
+      "name": "jdxweb01.staging.dmz",
+      "port": "22233"
+    }
+  ],
+  "system_user": "WTENGLAB\\wtSystem",
+  "master_host": "jmasterdb01",
+  "wrsmodify_group": "WTENGLAB\\J.WRS.Modify",
+  "ui_acct": "wtUI",
+  "install_user": "WTENGLAB\\wtInstaller",
+  "ui_pass": "Bijoux1",
+  "dx": {
+    "app_settings_section": {
+      "streamingServiceRoot": "https://jdx.englab.webtrends.corp/StreamingServices_v3/"
+    },
+    "cacheenabled": "True",
+    "brandedaccountid": "20578,20663",
+    "cachename": "J_DX",
+    "website_name": "DX",
+    "website_port": "80",
+    "endpoint_address": "net.tcp://jsearch.englab.webtrends.corp:8096/SearchService/Search"
+  },
+  "cassandra_thrift_port": "",
+  "rta_host": "jrta01.englab.webtrends.corp",
+  "install_pass": "Bijoux1",
+  "usage_host": "jusagedb01"
+}
