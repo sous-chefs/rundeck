@@ -1,0 +1,23 @@
+{
+  "name": "OnDemand",
+  "default_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[ondemand_base::windows]",
+    "recipe[ondemand_base::ubuntu]",
+    "recipe[ondemand_base::centos]"
+  ],
+  "description": "",
+  "chef_type": "role",
+  "override_attributes": {
+    "webtrends": {
+      "logdir": "d:\\logs",
+      "common_msi": "WebTrendsCommonLib.msi",
+	  "pod": "dev",
+      "installdir": "d:\\wrs"
+    }
+  }
+}
