@@ -1,4 +1,4 @@
-name 'Roadrunner'
+name 'wt_roadrunner'
 maintainer       "Kendrick"
 maintainer_email "kendrick.martin@webtrends.com"
 license          "All rights reserved"
