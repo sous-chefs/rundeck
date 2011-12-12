@@ -1,4 +1,4 @@
-name 'DX'
+name 'wt_dx'
 maintainer       "Webtrends"
 maintainer_email "kendrick.martin@webtrends.com"
 license          "All rights reserved"
