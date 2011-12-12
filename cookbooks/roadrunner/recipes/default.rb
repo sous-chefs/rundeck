@@ -18,7 +18,7 @@ build_url = data_bag_item('buildURLs', 'latest')
 pod = node['webtrends']['pod']
 pods = data_bag_item('pods', pod)
 master_host = pods['master_host']
-service_acct = pods['system_acct']
+service_acct = pods['system_user']
 service_pass = pods['system_pass']
 
 rr_msi_url = build_url['url']
@@ -29,7 +29,7 @@ install_cmd = "#{installdir}\\installutil.exe /INSTALLDIR=#{installdir} /MASTER_
 install_cmd << " /SERVICEACCT=#{service_acct} /SERVICEPASS=#{service_pass} "
 install_cmd << "#{installdir}\\Webtrends.RoadRunner.Service.exe"
 
-gac_cmd = "#{installdir}\\gacutil.exe /f #{installdir}\\Webtrends.RoadRunner.SSISPackageRunner.dll"
+gac_cmd = "#{installdir}\\gacutil.exe /i #{installdir}\\Webtrends.RoadRunner.SSISPackageRunner.dll"
 windows_feature "NetFx3" do
 	action :install
 end
@@ -43,6 +43,8 @@ windows_zipfile "#{installdir}" do
 	source "#{rr_msi_url}"
 	action :unzip
 	notifies :create, "ruby_block[install_flag]", :immediately
+	notifies :create, "execute[gac]", :immediately
+	notifies :create, "execute[install]", :immediately
 	not_if {node.attribute?("rr_installed")}
 end
 
@@ -57,11 +59,15 @@ end
 execute "gac" do
 	command gac_cmd
 	cwd installdir
-	action :run
+	action :nothing
 end
 
 execute "install" do
 	command install_cmd
 	cwd installdir
-	action :run
+	action :nothing
+end
+
+service "Webtrends.RoadRunner.Service" do
+	action :start
 end
