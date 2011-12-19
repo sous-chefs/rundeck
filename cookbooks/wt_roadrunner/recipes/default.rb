@@ -43,8 +43,8 @@ windows_zipfile "#{installdir}" do
 	source "#{rr_msi_url}"
 	action :unzip
 	notifies :create, "ruby_block[install_flag]", :immediately
-	notifies :create, "execute[gac]", :immediately
-	notifies :create, "execute[install]", :immediately
+	notifies :run, "execute[gac]", :immediately
+	notifies :run, "execute[install]", :immediately
 	not_if {node.attribute?("rr_installed")}
 end
 
@@ -68,6 +68,6 @@ execute "install" do
 	action :nothing
 end
 
-service "Webtrends.RoadRunner.Service" do
+service "WebtrendsRoadRunnerService" do
 	action :start
 end
