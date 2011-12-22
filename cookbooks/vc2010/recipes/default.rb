@@ -8,8 +8,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "vc2010::vc2010x86"
-
 if node['kernel']['machine'] =~ /x86_64/
+	include_recipe "vc2010::vc2010x86"
 	include_recipe "vc2010::vc2010x64"
+else
+	include_recipe "vc2010::vc2010x86"
 end
