@@ -51,6 +51,10 @@ dx_msi_url = build_url['url']
 dx_msi_url << "dx/"
 dx_msi_url << dx_msi
 
+v11_url = build_url['url']
+v11_url << "dx//DX_11"
+v11_url << "v1_1.zip"
+
 
 build_url = data_bag_item('buildURLs', 'latest')
 common_msi_url = build_url['url']
@@ -77,6 +81,11 @@ end
 remote_file "#{Chef::Config[:file_cache_path]}\\#{common_msi}" do
 	source common_msi_url
 	action :nothing
+end
+
+windows_zipfile "#{installdir}\\Data Extraction API\v1_1" do
+	source "#{v11_msi_url}"
+	action :unzip	
 end
 
 http_request "HEAD #{base_url}" do
