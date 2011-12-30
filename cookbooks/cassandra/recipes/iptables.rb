@@ -1,8 +1,10 @@
 #
-# Cookbook Name:: bluepill
-# Recipe:: default
+# Cookbook Name::       cassandra
+# Description::         Automatically configure iptables rules for cassandra.
+# Recipe::              iptables
+# Author::              Benjamin Black (<b@b3k.us>)
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2010, Benjamin Black
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,17 +19,8 @@
 # limitations under the License.
 #
 
-gem_package "i18n"
-gem_package "bluepill"
+include_recipe "iptables"
 
-[
-  node["bluepill"]["conf_dir"],
-  node["bluepill"]["pid_dir"],
-  node["bluepill"]["state_dir"]
-].each do |dir|
-  directory dir do
-    recursive true
-    owner "root"
-    group node["bluepill"]["group"]
-  end
+iptables_rule "10cassandra" do
+  source "iptables.erb"
 end
