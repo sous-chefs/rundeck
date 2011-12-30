@@ -1,5 +1,5 @@
 {
-  "name": "DX",
+  "name": "memcached",
   "default_attributes": {
   },
   "json_class": "Chef::Role",
