@@ -8,7 +8,9 @@
   "run_list": [
     "recipe[vc2010]",
     "role[IIS]",
-    "recipe[wt_dx]"
+    "recipe[wt_dx]",
+    "recipe[wt_dx::v11]",
+    "recipe[wt_dx::v2]"
   ],
   "description": "Install DX. ",
   "chef_type": "role",
@@ -29,22 +31,31 @@
           "/section:system.webServer/httpErrors /errorMode:DetailedLocalOnly",
           "/section:system.webServer/httpLogging /SelectiveLogging:LogAll"
         ],
-        "dx_dir": [
-          "OEM Data Extraction API\\v2_2",
-          "Data Extraction API\\v1_1",
-          "Data Extraction API\\v2",
-          "Data Extraction API\\v2_1",
-          "Data Extraction API\\v3"
-        ],
-        "dx_msi": "WebtrendsDataExtractionAPI.msi",
-        "legacy_app_pool": [
-          "Webtrends_WebServices_v1_1",
-          "Webtrends_WebServices_v2",
-          "Webtrends_WebServices_v2_1"
-        ],
-        "app_pool": [
-          "Webtrends_WebServices_v2_2"
-        ]
+        "v1_1": {
+          "dir": "\\Data Extraction API\\v1_1",
+          "file_name": "v1_1.zip",
+          "app_pool": "Webtrends_WebServices_v1_1"
+        },
+        "v2_1": {
+          "dir": "\\Data Extraction API\\v2_1",
+          "file_name": "v2_1.zip",
+          "app_pool": "Webtrends_WebServices_v2_1"
+        },
+        "v2": {
+          "dir": "\\Data Extraction API\\v2",
+          "file_name": "v2.zip",
+          "app_pool": "Webtrends_WebServices_v2"
+        },
+        "v2_2": {
+          "dir": "\\OEM Data Extraction API\\v2_2",
+          "file_name": "v2_2.zip",
+          "app_pool": "Webtrends_WebServices_v2_2"
+        },
+        "v3": {
+          "dir": "\\Data Extraction API\\v3",
+          "file_name": "WebtrendsDataExtractionAPI.msi",
+          "app_pool": "Webtrends_WebServices_v3"
+        }
       }
     }
   }
