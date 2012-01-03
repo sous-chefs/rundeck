@@ -43,69 +43,24 @@ c_hosts.each {|x| cache_hosts << x.to_json + ", "} #This still leaves one extra 
 cache_hosts = "{#{cache_hosts}"
 cache_hosts[-1] = "}" #Final } is replacing the last , in the string
 
-common_msi = node['webtrends']['common_msi']
-dx_msi = node['webtrends']['dx']['dx_msi']
+#common_msi = node['webtrends']['common_msi']
+#dx_msi = node['webtrends']['dx']['dx_msi']
 buildURLs = data_bag("buildURLs")
 build_url = data_bag_item('buildURLs', 'latest')
-dx_msi_url = build_url['url']
-dx_msi_url << "dx/"
-dx_msi_url << dx_msi
+#dx_msi_url = build_url['url']
+#dx_msi_url << "dx/"
+#dx_msi_url << dx_msi
 
-v11_url = build_url['url']
-v11_url << "dx//DX_11"
-v11_url << "v1_1.zip"
+#common_msi_url = build_url['url']
+#common_msi_url << common_msi
 
-
-build_url = data_bag_item('buildURLs', 'latest')
-common_msi_url = build_url['url']
-common_msi_url << common_msi
-build_url = data_bag_item('buildURLs', 'latest')
-base_url = build_url['url']
 app_user = pod_data['ui_acct']
 app_pass = pod_data['ui_pass'] 
 
-dir_list = node['webtrends']['dx']['dx_dir']
 cfg_cmds = node['webtrends']['dx']['cfg_cmd']
-legacy_app_pools = node['webtrends']['dx']['legacy_app_pool']
-app_pools = node['webtrends']['dx']['app_pool']
 
 directory logdir do
 	action :create
-end
-
-remote_file "#{Chef::Config[:file_cache_path]}\\#{dx_msi}" do
-	source dx_msi_url
-	action :nothing
-end
-
-remote_file "#{Chef::Config[:file_cache_path]}\\#{common_msi}" do
-	source common_msi_url
-	action :nothing
-end
-
-windows_zipfile "#{installdir}\\Data Extraction API\v1_1" do
-	source "#{v11_msi_url}"
-	action :unzip	
-end
-
-http_request "HEAD #{base_url}" do
-  message ""
-  url base_url
-  action :head
-  if File.exists?("#{Chef::Config[:file_cache_path]}\\#{dx_msi}")
-    headers "If-Modified-Since" => File.mtime("#{Chef::Config[:file_cache_path]}\\#{dx_msi}").httpdate
-  end
-  notifies :create, resources(:remote_file => "#{Chef::Config[:file_cache_path]}\\#{dx_msi}"), :immediately
-end
-
-http_request "HEAD #{base_url}" do
-  message ""
-  url base_url
-  action :head
-  if File.exists?("#{Chef::Config[:file_cache_path]}\\#{common_msi}")
-    headers "If-Modified-Since" => File.mtime("#{Chef::Config[:file_cache_path]}\\#{common_msi}").httpdate
-  end
-  notifies :create, resources(:remote_file => "#{Chef::Config[:file_cache_path]}\\#{common_msi}"), :immediately
 end
 
 windows_registry 'HKLM\Software\WebTrends Corporation' do
@@ -118,17 +73,10 @@ windows_registry 'HKLM\SOFTWARE\Wow6432Node\WebTrends Corporation' do
 	action [:create]
 end
 
-dir_list.each do |dir|
-	directory "D:\\wrs\\#{dir}" do
-		action [:create]
-		recursive true
-	end
-end
-
-iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\"/commit:apphost" do
+iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
 	action :config
 	notifies :create, "ruby_block[deflate_flag]", :immediately
-	not_if {node.attribute?("deflate_configure")}
+	not_if {node.attribute?("deflate_configured")}
 end
 
 ruby_block "deflate_flag" do
@@ -156,28 +104,6 @@ iis_site 'DX' do
 	action [:add,:start]
 end
 
-legacy_app_pools.each do |pool|
-	iis_pool "#{pool}" do
-		thirty_two_bit :true
-		action [:add, :config]
-	end
-	cmd = pool + "-section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_32bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']\""
-	iis_config cmd do
-		:config
-	end
-end
-
-app_pools.each do |pool|
-	iis_pool "#{pool}" do	
-		pipeline_mode :Integrated
-		action [:add, :config]
-	end
-	cmd = pool + "-section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_32bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']\""
-	iis_config cmd do
-		:config
-	end
-end
-
 windows_firewall 'DXWS' do
 	protocol "TCP"
 	port 80
@@ -189,35 +115,3 @@ windows_firewall 'OEM_DXWS' do
 	port 81
 	action [:open_port]
 end
-
-windows_package "CommonLib" do
-	source "#{Chef::Config[:file_cache_path]}\\#{common_msi}"
-	options "/l*v \"#{logdir}\\#{common_msi}-Install.log\" INSTALLDIR=\"#{installdir}\" SQL_SERVER_NAME=\"#{master_host}\" WTMASTER=\"wtMaster\"  WTSCHED=\"wt_Sched\""
-	action :install
-end
-
-windows_package "DXInstall" do
-	source "#{Chef::Config[:file_cache_path]}\\#{dx_msi}"
-	options "/l*v \"#{logdir}\\#{dx_msi}-Install.log\" INSTALLDIR=\"#{installdir}\" WEBSITE_NAME=\"DX\" MASTER_HOST=\"#{master_host}\" WEBSITE_PORT=\"80\" APP_POOL_ACCT=\"#{app_user}\" APP_POOL_PASS=\"#{app_pass}\" CACHEENABLED=\"True\" CACHENAME=\"#{cache_name}\" CACHE_HOSTS=\"#{cache_hosts}\" CASSANDRA_HOSTNAME=\"#{cass_hosts}\" CASSANDRA_SNMP_COMM=\"#{cass_snmp}\" CASSANDRA_REPORT_FAMILY=\"#{cass_report_family}\" CASSANDRA_METADATA_FAMILY=\"#{cass_metadata_family}\" APP_SETTINGS_SECTION=\"#{app_settings}\" ENDPOINT_ADDRESS=#{endpoint} LOG_DIR=#{logdir}"
-	action :install
-end
-
-execute "icacls" do
-	command "icacls \"#{installdir}\\Data Extraction API\" /grant:r IUSR:(oi)(ci)(rx)"
-	action :run
-end
-
-execute "icacls" do
-	command "icacls \"#{installdir}\\OEM Data Extraction API\" /grant:r IUSR:(oi)(ci)(rx)"
-	action :run
-end
-
-execute "aspnet_regiis" do
-	command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis -i -enable"
-	action :run
-end
-
-execute "ServiceModelReg" do
-	command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\ServiceModelReg.exe -r"
-	action :run
-end	
