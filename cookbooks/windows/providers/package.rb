@@ -28,7 +28,7 @@ require 'chef/mixin/language'
 include Chef::Mixin::ShellOut
 include Windows::Helper
 
-# the logic in all action methods mirror that of 
+# the logic in all action methods mirror that of
 # the Chef::Provider::Package which will make
 # refactoring into core chef easy
 
@@ -86,8 +86,8 @@ def expand_options(options)
   options ? " #{options}" : ""
 end
 
-# these methods are the required overrides of 
-# a provider that extends from Chef::Provider::Package 
+# these methods are the required overrides of
+# a provider that extends from Chef::Provider::Package
 # so refactoring into core Chef should be easy
 
 def load_current_resource
@@ -163,7 +163,7 @@ def unattended_installation_flags
   case installer_type
   when :msi
     "/qb /i"
-  when :installshield 
+  when :installshield
     "/s /sms"
   when :nsis
     "/S /NCRC"
@@ -201,13 +201,13 @@ def extract_installed_packages_from_key(hkey = Win32::Registry::HKEY_LOCAL_MACHI
       reg.each_key do |key, wtime|
         begin
           k = reg.open(key, desired)
-        display_name = k["DisplayName"] rescue nil
-        version = k["DisplayVersion"] rescue "NO VERSION"
-        uninstall_string = k["UninstallString"] rescue nil
-        if display_name
-          packages[display_name] = {:name => display_name,
-                                    :version => version,
-                                    :uninstall_string => uninstall_string}
+          display_name = k["DisplayName"] rescue nil
+          version = k["DisplayVersion"] rescue "NO VERSION"
+          uninstall_string = k["UninstallString"] rescue nil
+          if display_name
+            packages[display_name] = {:name => display_name,
+                                      :version => version,
+                                      :uninstall_string => uninstall_string}
           end
         rescue Win32::Registry::Error
         end
