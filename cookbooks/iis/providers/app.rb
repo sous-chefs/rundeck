@@ -23,17 +23,16 @@ require 'chef/mixin/shell_out'
 include Chef::Mixin::ShellOut
 include Windows::Helper
 
-action :add do
-  unless @current_resource.exists
-	cmd = "#{appcmd} add app /site.name:\"#{@new_resource.site_name}\""
+action :add do  
+	unless @current_resource.exists
+	cmd = "#{appcmd} add app /site.name:\"#{@new_resource.app_name}\""
 	cmd << " /path:#{@new_resource.path}"
 	cmd << " /applicationPool:#{@new_resource.application_pool}"
-	cmd << " /physicalPath:#{@new_resource.physical_path}"
+	cmd << " /physicalPath:/"#{@new_resource.physical_path}/""
 	Chef::Log.debug(cmd)
 	shell_out!(cmd)
-	@new_resource.updated_by_last_action(true)
-	Chef::Log.info("App created")
-  else
+	Chef::Log.info("App created")  
+	else
     Chef::Log.debug("#{@new_resource} app already exists - nothing to do")
   end
 end
@@ -51,17 +50,19 @@ end
 def load_current_resource
   @current_resource = Chef::Resource::IisApp.new(@new_resource.name)
   @current_resource.app_name(@new_resource.app_name)
+  @current_resource.path(@new_resource.path)
+  @current_resource.application_pool(@new_resource.application_pool)
   cmd = shell_out("#{appcmd} list app")
   # APPPOOL "MyAppName" (applicationPool:MyAppPool)
   Chef::Log.debug("#{@new_resource} list app command output: #{cmd.stdout}")
-  result = cmd.stdout.match(/^APP\s\"#{@new_resource.app_name}#{@new_resource.path}.*/) if cmd.stderr.empty?
-  Chef::Log.debug("#{@new_resource} current_resource match output: #{result}")
-  if result    
+  #result = cmd.stdout.match(/^APP\s\"#{@new_resource.app_name}#{@new_resource.path}\"/) if cmd.stderr.empty?
+  result = cmd.stdout.match(/^APP\s\"#{@new_resource.app_name}#{@new_resource.path}\"\s\(applicationPool\:#{@new_resource.application_pool}\)/) if cmd.stderr.empty?
+         Chef::Log.debug("Running regex")
+  Chef::Log.debug("#{@new_resource} current_resource match output:#{result}")
+  if result  
     @current_resource.exists = true    
-    @current_resource.running = (result[4] =~ /Started/) ? true : false
   else
     @current_resource.exists = false
-    @current_resource.running = false
   end
 end
 

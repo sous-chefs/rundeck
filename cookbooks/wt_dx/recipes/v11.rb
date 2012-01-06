@@ -25,6 +25,7 @@ iis_app "DX" do
 	path "/v1_1"
 	application_pool "#{app_pool}"
 	physical_path "#{installdir}"
+	action :add
 end
 
 ruby_block "v1cfg_flag" do
