@@ -25,23 +25,23 @@ include Chef::Mixin::ShellOut
 include Windows::Helper
 
 action :open_port do
-	unless @current_portopening.exists
-		Chef::Log.debug("Opening Fireawll port  #{@new_resource.rule_name}")
-		cmd = "#{firewallcmd} set portopening protocol=#{@new_resource.protocol} "
-		cmd << "port=#{@new_resource.port} name=#{@new_resource.rule_name}"
-		shell_out!(cmd)
-		Chef::Log.info("#{@new_resource.rule_name} firewall port opened")
-	else
-		Chef::Log.info("#{@new_resource.rule_name} Port already open")
-	end
+        unless @current_portopening.exists
+                Chef::Log.debug("Opening Fireawll port  #{@new_resource.rule_name}")
+                cmd = "#{firewallcmd} set portopening protocol=#{@new_resource.protocol} "
+                cmd << "port=#{@new_resource.port} name=#{@new_resource.rule_name}"
+                shell_out!(cmd)
+                Chef::Log.info("#{@new_resource.rule_name} firewall port opened")
+        else
+                Chef::Log.info("#{@new_resource.rule_name} Port already open")
+        end
 end
 
 def load_current_resource
-	@current_portopening = Chef::Resource::WindowsFirewall.new(@new_resource.name)
-	@current_portopening.rule_name(@new_resource.rule_name)
-	cmd = shell_out("#{firewallcmd} show portopening")
-	Chef::Log.debug("#{@new_resource} show portopening command output: #{cmd.stdout}")
-	result = cmd.stdout.match(/^#{new_resource.port}\s*#{new_resource.protocol}.*#{new_resource.rule_name}/) if cmd.stderr.empty?
+        @current_portopening = Chef::Resource::WindowsFirewall.new(@new_resource.name)
+        @current_portopening.rule_name(@new_resource.rule_name)
+        cmd = shell_out("#{firewallcmd} show portopening")
+        Chef::Log.debug("#{@new_resource} show portopening command output: #{cmd.stdout}")
+        result = cmd.stdout.match(/^#{new_resource.port}\s*#{new_resource.protocol}.*#{new_resource.rule_name}/) if cmd.stderr.empty?
   Chef::Log.debug("#{@new_resource} current_portopening match output: #{result}")
   if result    
     @current_portopening.exists = true  
@@ -56,3 +56,4 @@ def firewallcmd
     "netsh firewall"
   end
 end
+

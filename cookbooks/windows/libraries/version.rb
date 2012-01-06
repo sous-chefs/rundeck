@@ -65,10 +65,10 @@ module Windows
     VER_NT_SERVER = 0x0000003
     # The operating system is Windows 7, Windows Vista, Windows XP Professional, Windows XP Home Edition, or Windows 2000 Professional.
     VER_NT_WORKSTATION = 0x0000001
-    
+
     # GetSystemMetrics
     # The build number if the system is Windows Server 2003 R2; otherwise, 0.
-    SM_SERVERR2 = 89 
+    SM_SERVERR2 = 89
 
     # http://msdn.microsoft.com/en-us/library/ms724358(v=vs.85).aspx
     # this is what it sounds like...when kittens die
@@ -174,7 +174,7 @@ module Windows
     %w{ core full datacenter }.each do |m|
       define_method("server_#{m}?") do
         if @sku
-        !(SKU[@sku][:name] =~ /#{m}/i).nil?
+          !(SKU[@sku][:name] =~ /#{m}/i).nil?
         else
           false
         end
@@ -187,7 +187,7 @@ module Windows
     def sm_serverr2
       @sm_serverr2 ||= Win32API.new('user32', 'GetSystemMetrics', 'I', 'I').call(SM_SERVERR2)
     end
-    
+
     # query WMI Win32_OperatingSystem for required OS info
     def get_os_info
       cols = %w{ Version ProductType OSProductSuite OperatingSystemSKU ServicePackMajorVersion ServicePackMinorVersion }

@@ -73,12 +73,6 @@ windows_registry 'HKLM\SOFTWARE\Wow6432Node\WebTrends Corporation' do
 	action [:create]
 end
 
-iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
-	action :config
-	notifies :create, "ruby_block[deflate_flag]", :immediately
-	not_if {node.attribute?("deflate_configured")}
-end
-
 ruby_block "deflate_flag" do
 	block do
 		node.set['deflate_configured']
@@ -86,6 +80,13 @@ ruby_block "deflate_flag" do
 	end
 	action :nothing
 end
+
+iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
+	action :config
+	notifies :create, "ruby_block[deflate_flag]", :immediately
+	not_if {node.attribute?("deflate_configured")}
+end
+
 
 cfg_cmds.each do |cmd|	
 	iis_config "#{cmd}" do

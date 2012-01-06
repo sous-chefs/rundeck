@@ -26,3 +26,4 @@ attribute :rule_name, :kind_of => String, :name_attribute => true
 attribute :port, :kind_of => Integer
 attribute :protocol, :kind_of => String
 attr_accessor :exists
+

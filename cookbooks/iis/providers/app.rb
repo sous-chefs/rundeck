@@ -54,7 +54,7 @@ def load_current_resource
   cmd = shell_out("#{appcmd} list app")
   # APPPOOL "MyAppName" (applicationPool:MyAppPool)
   Chef::Log.debug("#{@new_resource} list app command output: #{cmd.stdout}")
-  result = cmd.stdout.match(/^APP\s\"#{@new_resource.app_name}.*/) if cmd.stderr.empty?
+  result = cmd.stdout.match(/^APP\s\"#{@new_resource.app_name}#{@new_resource.path}.*/) if cmd.stderr.empty?
   Chef::Log.debug("#{@new_resource} current_resource match output: #{result}")
   if result    
     @current_resource.exists = true    
