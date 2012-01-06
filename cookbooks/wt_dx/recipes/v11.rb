@@ -15,13 +15,6 @@ app_pool = node['webtrends']['dx']['v1_1']['app_pool']
 install_url << node['webtrends']['dx']['v1_1']['file_name']
 installdir << node['webtrends']['dx']['v1_1']['dir']
 
-
-windows_zipfile "#{installdir}" do
-	source "#{install_url}"
-	action :unzip	
-	not_if {::File.exists?("#{installdir}\\app.config")}
-end
-
 template "#{installdir}\\web.config" do
 	source "webConfigv1.erb"
 	variables(
