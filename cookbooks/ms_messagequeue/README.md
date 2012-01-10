@@ -1,7 +1,7 @@
 Description
 ===========
 
-This cookbook installs the Microsoft Message Queue service
+This cookbook installs the Microsoft Message Queueing service
 
 Requirements
 ============
