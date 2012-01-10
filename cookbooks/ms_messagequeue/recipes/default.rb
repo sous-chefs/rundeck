@@ -4,10 +4,10 @@
 #
 # Copyright 2012, Webtrends Inc.
 #
-# All rights reserved - Do Not Redistribute
+# All rights reserved
 #
 
 #Install MSMQ server
-	windows_feature "MSMQ-Server" do
-	   action :install
-	end
+windows_feature "MSMQ-Server" do
+   action :install
+end
