@@ -1,5 +1,7 @@
 = DESCRIPTION:
 
+Applies base OS setup for Ubuntu, Windows, and CentOS systems
+
 = REQUIREMENTS:
 
 = ATTRIBUTES:
