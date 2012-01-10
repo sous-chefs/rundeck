@@ -1,5 +1,5 @@
 {
-  "name": "OnDemand",
+  "name": "ondemand_server",
   "default_attributes": {
   },
   "json_class": "Chef::Role",
