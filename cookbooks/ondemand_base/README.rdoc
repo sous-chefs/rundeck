@@ -1,8 +1,12 @@
 = DESCRIPTION:
 
+Applies base OS setup for Ubuntu, Windows, and CentOS systems
+
 = REQUIREMENTS:
 
 = ATTRIBUTES:
 
 = USAGE:
+
+The ondemand_server role should include each of the 3 recipes in its runlist.
 
