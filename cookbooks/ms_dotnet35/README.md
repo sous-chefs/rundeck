@@ -1,0 +1,26 @@
+Description
+===========
+
+This cookbook installs the Microsoft .NET 3.5 on Windows 2008 R1/R2
+
+Requirements
+============
+
+Platform
+--------
+
+* Windows Vista
+* Windows 7
+* Windows Server 2008 (R1, R2)
+
+
+Attributes
+==========
+
+Usage
+=====
+
+Include the default recipe on a node's runlist to ensure that .NET 3.5 is installed on the system
+
+
+
