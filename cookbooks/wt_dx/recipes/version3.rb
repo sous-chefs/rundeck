@@ -38,14 +38,13 @@ template "#{installdir}#{installdir_v3}\\Web Services\\Web.config" do
 end
 
 iis_pool "#{streamingservices_pool}" do
-	thirty_two_bit :true
 	pipeline_mode :Integrated
   action [:add, :config]
 end
 
 iis_pool "#{webservices_pool}" do
-	thirty_two_bit :true
 	pipeline_mode :Integrated
+	runtime_version "4.0"
   action [:add, :config]
 end
 
@@ -69,28 +68,4 @@ ruby_block "v3cfg_flag" do
 		node.save
 	end
 	action :nothing
-end
-
-iis_config "\"DX/v3\" -section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_64bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']\"" do
-	action :config	
-	notifies :create, "ruby_block[v3cfg_flag]" #Running delayed notification so multiple run-once commands get run
-	not_if {node.attribute?("dxv3_configured")}
-end
-
-iis_config "\"DX/v3\" -section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_32bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']" do
-	action :config	
-	notifies :create, "ruby_block[v3cfg_flag]" #Running delayed notification so multiple run-once commands get run
-	not_if {node.attribute?("dxv3_configured")}
-end
-
-iis_config "\"DX/StreamingServices_v3\" -section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_64bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']\"" do
-	action :config	
-	notifies :create, "ruby_block[v3cfg_flag]" #Running delayed notification so multiple run-once commands get run
-	not_if {node.attribute?("dxv3_configured")}
-end
-
-iis_config "\"DX/StreamingServices_v3\" -section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_32bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']" do
-	action :config	
-	notifies :create, "ruby_block[v3cfg_flag]" #Running delayed notification so multiple run-once commands get run
-	not_if {node.attribute?("dxv3_configured")}
 end
