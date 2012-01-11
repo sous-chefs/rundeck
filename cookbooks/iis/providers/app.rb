@@ -28,7 +28,7 @@ action :add do
 	cmd = "#{appcmd} add app /site.name:\"#{@new_resource.app_name}\""
 	cmd << " /path:#{@new_resource.path}"
 	cmd << " /applicationPool:#{@new_resource.application_pool}"
-	cmd << " /physicalPath:/"#{@new_resource.physical_path}/""
+	cmd << " /physicalPath:\"#{@new_resource.physical_path}\""
 	Chef::Log.debug(cmd)
 	shell_out!(cmd)
 	Chef::Log.info("App created")  
