@@ -1,5 +1,6 @@
 {
   "id": "F",
+  "repository_base_url": "http://sops01.staging.dmz/repo/",
   "loader_acct": "wtLoader",
   "loader_pass": "Bijoux1",
   "install_dir": "d:\\wrs",
