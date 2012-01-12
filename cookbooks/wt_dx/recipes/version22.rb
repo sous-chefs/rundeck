@@ -1,5 +1,5 @@
 pod = node['webtrends']['pod']
-pod_data = data_bag_item('pods', pod)
+pod_data = data_bag_item('common', pod)
 c_hosts = pod_data['cache_hosts']
 
 
