@@ -1,6 +1,6 @@
 pod = node['webtrends']['pod']
 
-pod_data = data_bag_item('pods', pod)
+pod_data = data_bag_item('common', pod)
 dx_data = data_bag_item('dx', pod)
 
 endpoint = dx_data['endpoint_address']
