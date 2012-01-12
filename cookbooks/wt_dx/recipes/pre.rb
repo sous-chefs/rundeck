@@ -8,17 +8,6 @@
 # All rights reserved - Do Not Redistribute
 # This recipe installs the needed components to full setup/configure DX.
 
-
-#######################################################################################
-#TODO                                                                                 #
-#Copy DX for versions <V3 and creates sites in iis                                    #
-#Add ability to parse through the iis config for a specific value                     #
-#######################################################################################
-
-pod = node['webtrends']['pod']
-
-pod_data = data_bag_item('pods', pod)
-
 installdir = node['webtrends']['installdir']
 logdir = node['webtrends']['logdir']
 cfg_cmds = node['webtrends']['dx']['cfg_cmd']
