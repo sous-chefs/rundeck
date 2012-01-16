@@ -6,4 +6,4 @@ description      "Installs/Configures Roadrunner service"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.0.18"
 supports         "windows"
-depends          "windows", ">= 1.2.6"
+depends          "iis", ">= 1.0.12"
