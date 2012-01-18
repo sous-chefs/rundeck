@@ -18,7 +18,7 @@
 #
 
 packages = case node[:platform]
-  when "centos","redhat","fedora","scientific"
+  when "centos","redhat","fedora"
     %w{openssh-clients openssh}
   when "arch"
     %w{openssh}
@@ -32,7 +32,7 @@ end
 
 service "ssh" do
   case node[:platform]
-  when "centos","redhat","fedora","arch","scientific"
+  when "centos","redhat","fedora","arch"
     service_name "sshd"
   else
     service_name "ssh"
@@ -46,7 +46,6 @@ service "ssh" do
     "centos" => { "default" => [ :restart, :reload, :status ] },
     "redhat" => { "default" => [ :restart, :reload, :status ] },
     "fedora" => { "default" => [ :restart, :reload, :status ] },
-    "scientific" => { "default" => [ :restart, :reload, :status ] },
     "arch" => { "default" => [ :restart ] },
     "default" => { "default" => [:restart, :reload ] }
   )
