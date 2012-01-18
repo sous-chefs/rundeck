@@ -6,7 +6,6 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[ondemand_base::windows]",
     "recipe[ondemand_base::ubuntu]",
     "recipe[ondemand_base::centos]"
   ],
@@ -18,6 +17,11 @@
       "common_msi": "WebTrendsCommonLib.msi",
 	  "pod": "dev",
       "installdir": "d:\\wrs"
+    },
+    "ntp": {
+      "servers": [
+        "time.webtrends.corp"
+      ]
     }
   }
 }
