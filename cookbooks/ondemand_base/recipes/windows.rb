@@ -2,7 +2,6 @@
 if platform?("windows") 
 
 	#This recipe needs providers included in the Windows cookbook
-	include_recipe "windows::default"
       
 	#Turn off hibernation
 	execute "powercfg-hibernation" do
