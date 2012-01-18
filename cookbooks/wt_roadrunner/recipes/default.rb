@@ -11,33 +11,34 @@
 include_recipe "windows"
 
 installdir = "#{node['webtrends']['installdir']}\\RoadRunner"
-app_pool = "#{node['webtrends']['roadrunner']['app_pool']
 zip_file = node['webtrends']['roadrunner']['zip_file']
 buildURLs = data_bag("buildURLs")
 build_url = data_bag_item('buildURLs', 'latest')
 
-pod = node['webtrends']['pod']
-pods = data_bag_item('common', pod)
+pod = pod = node.chef_environment
+pod_data = data_bag_item('common', pod)
 master_host = pods['master_host']
 
-
-rr_msi_url = build_url['url']
-rr_msi_url << "roadrunner/"
-rr_msi_url << zip_file
+rr_msi_url = "#{build_url['url']}roadrunner/#{zip_file}"
 
 gac_cmd = "#{installdir}\\gacutil.exe /i #{installdir}\\Webtrends.RoadRunner.SSISPackageRunner.dll"
+sc_cmd "%WINDIR%\System32\sc.exe WebtrendsRoadRunnerService binPath= #{installdir}\\Webtrends.RoadRunner.Service.exe"
+
 windows_feature "NetFx3" do
 	action :install
-end
-
-iis_site 'Default Web Site' do
-	action [:stop, :delete]
 end
 
 windows_zipfile "#{installdir}" do
 	source "#{rr_msi_url}"
 	action :unzip	
 	not_if {::File.exists?("#{installdir}\\log4net.xml")}
+end
+
+template "#{installdir}\\Webtrends.RoadRunner.Service.exe.config" do
+	source "RRServiceConfig.erb"
+	variables(		
+		:master_host => pod_data['master_host']
+	)
 end
 
 ruby_block "install_flag" do
@@ -51,25 +52,17 @@ end
 execute "gac" do
 	command gac_cmd
 	cwd installdir
-	action :nothing
+	not_if { node[:rr_installed]}
 end
 
-iis_pool "RoadRunner"
-	pipeline_mode "Intergrated"
-	runtime_version "4.0"
-	action [:add, config]
+execute "sc" do
+	command sc_cmd
+	cwd installdir
+	not_if { node[:rr_installed]}
 end
 
-iis_site 'RoadRunner' do
-	protocol :http
-    port 80
-    path "#{installdir}"
-	action [:add,:start]
+service "WebtrendsRoadRunnerSerice" do
+	action :start
 end
+	
 
-iis_app "DX" do
-	path "/RoadRunner"
-	application_pool "#{app_pool}"
-	physical_path "#{installdir}"
-	action :add
-end
