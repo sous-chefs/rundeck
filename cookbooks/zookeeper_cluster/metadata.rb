@@ -8,8 +8,6 @@ description      "Installs/Configures zookeeper"
 
 depends          "java"
 depends          "apt"
-depends          "mountable_volumes"
-depends          "provides_service"
 
 recipe           "zookeeper::client",                  "Installs Zookeeper client libraries"
 recipe           "zookeeper::default",                 "Base configuration for zookeeper"
