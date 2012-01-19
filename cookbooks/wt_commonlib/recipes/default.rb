@@ -1,5 +1,5 @@
 logdir = node['webtrends']['logdir']
-installdir = node['webtrends']['msi_installdir']
+installdir = node['webtrends']['installdir']
 pod = node['webtrends']['pod']
 pod_data = data_bag_item('common', pod)
 master_host = pod_data['master_host']
@@ -8,7 +8,9 @@ build_url = buildURLs['url']
 common_msi = node['webtrends']['common_msi']
 common_msi_url = node['webtrends']['common_msi_url']
 
-
+directory logdir do
+	action :create
+end
 
 remote_file "#{Chef::Config[:file_cache_path]}\\#{common_msi}" do
         source "#{build_url}#{common_msi_url}"

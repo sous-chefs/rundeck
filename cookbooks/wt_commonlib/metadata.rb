@@ -1,8 +1,8 @@
-name 'wt_dx'
+name 'wt_commonlib'
 maintainer       "Webtrends"
 maintainer_email "kendrick.martin@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures CommonLib"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "0.0.6"
+version          "0.0.8"
 supports         "windows"
