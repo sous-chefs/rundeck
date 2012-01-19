@@ -1,0 +1,6 @@
+{
+  "id": "bobo",
+    "groups": "sysadmin",
+    "uid": 2001,
+    "shell": "\/bin\/bash"
+}
