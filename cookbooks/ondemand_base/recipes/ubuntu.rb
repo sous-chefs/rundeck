@@ -16,7 +16,7 @@ include_recipe "networking_basic"
 
 
 # Install useful tools
-%w{ lsof mtr strace iotop }.each do |pkg|
+%w{ mtr strace iotop }.each do |pkg|
   package pkg
 end
 
