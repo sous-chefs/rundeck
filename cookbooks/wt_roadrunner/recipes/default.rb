@@ -13,19 +13,25 @@ include_recipe "windows"
 installdir = "#{node['webtrends']['installdir']}\\RoadRunner"
 zip_file = node['webtrends']['roadrunner']['zip_file']
 buildURLs = data_bag("buildURLs")
-build_url = data_bag_item('buildURLs', 'latest')
+build_url = node['webtrends']['roadrunner']['url']
+base_url = node['base_url']
+url_extensions = node['url_extensions']
 
-pod = pod = node.chef_environment
+pod = node.chef_environment
 pod_data = data_bag_item('common', pod)
-master_host = pods['master_host']
+master_host = pod_data['master_host']
 
-rr_msi_url = "#{build_url['url']}roadrunner/#{zip_file}"
+rr_msi_url = "#{build_url}/#{zip_file}"
 
 gac_cmd = "#{installdir}\\gacutil.exe /i #{installdir}\\Webtrends.RoadRunner.SSISPackageRunner.dll"
-sc_cmd "%WINDIR%\System32\sc.exe WebtrendsRoadRunnerService binPath= #{installdir}\\Webtrends.RoadRunner.Service.exe"
+sc_cmd = "\"%WINDIR%\\System32\\sc.exe create WebtrendsRoadRunnerService binPath= #{installdir}\\Webtrends.RoadRunner.Service.exe\""
 
 windows_feature "NetFx3" do
 	action :install
+end
+
+http_request "TestingConnection" do
+  url "#{base_url}#{url_extensions}"
 end
 
 windows_zipfile "#{installdir}" do
@@ -61,7 +67,7 @@ execute "sc" do
 	not_if { node[:rr_installed]}
 end
 
-service "WebtrendsRoadRunnerSerice" do
+service "WebtrendsRoadRunnerService" do
 	action :start
 end
 	
