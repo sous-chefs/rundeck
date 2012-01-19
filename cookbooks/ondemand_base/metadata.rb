@@ -10,4 +10,7 @@ depends		 "openssh"
 depends		 "sudo"
 depends		 "vim"
 depends		 "man"
+depends		 "ad-likewise"
+depends		 "users"
+depends		 "networking_basic"
 
