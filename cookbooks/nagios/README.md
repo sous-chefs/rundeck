@@ -3,24 +3,6 @@ Description
 
 Installs and configures Nagios 3 for a server and for clients using Chef search capabilities.
 
-Changes
-=======
-
-## v1.0.4:
-
-* [COOK-838] - Add HTTPS Option to Nagios Cookbook
-
-## v1.0.2:
-
-* [COOK-636] - Nagios server recipe attempts to start too soon
-* [COOK-815] - Nagios Config Changes Kill Nagios If Config Goes Bad
-
-## v1.0.0:
-
-* Use Chef 0.10's `node.chef_environment` instead of `node['app_environment']`.
-* source installation support on both client and server sides
-* initial RHEL/CentOS/Fedora support
-
 Requirements
 ============
 
@@ -49,7 +31,6 @@ Cookbooks
 * apache2
 * build-essential
 * php
-
 
 Attributes
 ==========
@@ -192,6 +173,13 @@ server\_source
 
 Installs the Nagios server libraries from source. Default for Red Hat / CentOS / Fedora systems as native packages of Nagios 3 are not available in the default repositories.
 
+pagerduty
+--------------
+
+Installs and configures pagerduty plugin for nagios.  You need to set a `node['nagios']['pagerduty_key']` attribute on your server for this to work.  This can be set through environments so that you can use different API keys for servers in production vs staging for instance.
+
+This recipe was written based on the [Nagios Integration Guide](http://www.pagerduty.com/docs/guides/nagios-integration-guide) from PagerDuty which explains how to get an API key for your nagios server.
+
 Data Bags
 =========
 
@@ -259,6 +247,39 @@ The library included with the cookbook provides some helper methods used in temp
 * nagios_interval - calculates interval based on interval length and a given number of seconds.
 * nagios_attr - retrieves a nagios attribute from the node.
 
+Resources/Providers
+===================
+
+The nrpecheck LWRP provides an easy way to add and remove NRPE checks from within a cookbook.
+
+# Actions
+
+- :add: creates a NRPE configuration file and restart the NRPE process. Default action.
+- :remove: removes the configuration file and restart the NRPE process
+
+# Attribute Parameters
+
+- command_name: name attribute.  The name of the check.  You'll need to reference this in your commands.cfg template
+- warning_condition: String that you will pass to the command with the -w flag
+- critical_condition: String that you will pass to the command with the -c flag
+- command: The actual command to execute (including the path). If this is not specified, this will use `node['nagios']['plugin_dir']/command_name` as the path to the command.
+- parameters: Any additional parameters you wish to pass to the plugin.
+
+# Examples
+
+    # Use LWRP to define check_load
+    nagios_nrpecheck "check_load" do
+      command "#{node['nagios']['plugin_dir']}/check_load"
+      warning_condition node['nagios']['checks']['load']['warning']
+      critical_condition node['nagios']['checks']['load']['critical']
+      action :add
+    end
+
+    # Remove the check_load definition
+    nagios_nrpecheck "check_load" do
+      action :remove
+    end
+
 Usage
 =====
 
@@ -286,6 +307,33 @@ The searches used are confined to the node's `chef_environment`. If you do not u
     description "Systems in the Production Environment"
 
     % knife environment from file production.rb
+
+
+Changes/Roadmap
+===============
+
+## v1.2.0:
+
+* [COOK-837] - Adding a Recipe for PagerDuty integration
+* [COOK-868] - use node, not @node in template
+* [COOK-869] - corrected NRPE PID path
+* [COOK-907] - LWRP for defining NRPE checks
+* [COOK-917] - changes to `mod_auth_openid` module
+
+## v1.0.4:
+
+* [COOK-838] - Add HTTPS Option to Nagios Cookbook
+
+## v1.0.2:
+
+* [COOK-636] - Nagios server recipe attempts to start too soon
+* [COOK-815] - Nagios Config Changes Kill Nagios If Config Goes Bad
+
+## v1.0.0:
+
+* Use Chef 0.10's `node.chef_environment` instead of `node['app_environment']`.
+* source installation support on both client and server sides
+* initial RHEL/CentOS/Fedora support
 
 License and Author
 ==================
