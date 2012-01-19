@@ -13,4 +13,4 @@ depends		 "man"
 depends		 "ad-likewise"
 depends		 "users"
 depends		 "networking_basic"
-
+depends		 "users"

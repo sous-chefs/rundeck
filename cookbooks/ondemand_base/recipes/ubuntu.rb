@@ -3,9 +3,10 @@ if platform?("ubuntu")
 
 #Base recipes necessary for a functioning system
 include_recipe "ubuntu"
+include_recipe "users::sysadmins"
+#include_recipe "sudo"
 include_recipe "apt"
 #include_recipe "ad-likewise"
-#include_recipe "sudo"
 include_recipe "openssh"
 include_recipe "ntp"
 
