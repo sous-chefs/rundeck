@@ -1,7 +1,5 @@
 #Make sure that this recipe only runs on Windows systems
 if platform?("windows") 
-
-	#This recipe needs providers included in the Windows cookbook
       
 	#Turn off hibernation
 	execute "powercfg-hibernation" do
