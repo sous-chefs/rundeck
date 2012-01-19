@@ -1,4 +1,4 @@
-pod = node['webtrends']['pod']
+pod = pod = node.chef_environment
 pod_data = data_bag_item('common', pod)
 c_hosts = pod_data['cache_hosts']
 
@@ -38,12 +38,12 @@ end
 
 iis_config "\"DX/v2\" -section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_64bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']\"" do
 	action :config	
-	notifies :create, "ruby_block[v1cfg_flag]" #Running delayed notification so multiple run-once commands get run
+	notifies :create, "ruby_block[v2cfg_flag]" #Running delayed notification so multiple run-once commands get run
 	not_if {node.attribute?("dxv2_configured")}
 end
 
 iis_config "\"DX/v2\" -section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_32bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']" do
 	action :config	
-	notifies :create, "ruby_block[v1cfg_flag]" #Running delayed notification so multiple run-once commands get run
+	notifies :create, "ruby_block[v2cfg_flag]" #Running delayed notification so multiple run-once commands get run
 	not_if {node.attribute?("dxv2_configured")}
 end

@@ -1,4 +1,4 @@
-pod = node['webtrends']['pod']
+pod = pod = node.chef_environment
 
 pod_data = data_bag_item('common', pod)
 dx_data = data_bag_item('dx', pod)
