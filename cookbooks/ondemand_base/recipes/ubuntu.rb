@@ -15,7 +15,7 @@ include_recipe "man"
 
 
 # Install useful tools
-%w{ manpages man-db lsof mtr strace iotop }.each do |pkg|
+%w{ lsof mtr strace iotop }.each do |pkg|
   package pkg
 end
 
