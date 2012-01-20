@@ -17,5 +17,5 @@ when "windows"
         action :install
     end
 else
-  Chef::Log.warn('Notepad Plus Plus can only be installed on the Windows platform.')
+  Chef::Log.warn('Notepad++ can only be installed on the Windows platform.')
 end
