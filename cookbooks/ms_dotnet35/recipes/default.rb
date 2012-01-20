@@ -28,10 +28,3 @@ when "windows"
 else
   Chef::Log.warn('Microsoft .NET 3.5 can only be installed on the Windows platform.')
 end
-
-
-
-
-windows_feature "NetFx3" do
-  action :install
-end
