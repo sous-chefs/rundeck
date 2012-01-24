@@ -25,9 +25,9 @@ package "ruby-shadow"
 auth_config = data_bag_item('authorization', "ondemand")
 
 # set root password from authorization databag
-#user "root" do
-#  password auth_config['root_password']
-#end
+user "root" do
+  password auth_config['root_password']
+end
 
 # add non-root user from authorization databag
 if auth_config['alternate_user']
