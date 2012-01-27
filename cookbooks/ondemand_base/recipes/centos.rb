@@ -13,10 +13,15 @@ include_recipe "vim"
 include_recipe "man"
 include_recipe "networking_basic"
 
-
 # Install useful tools
 %w{ mtr strace iotop }.each do |pkg|
   package pkg
+end
+
+# Disable iptables firewall
+service "iptables" do
+  action :stop
+  action :disable
 end
 
 # Used for password string generation
