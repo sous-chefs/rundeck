@@ -19,18 +19,28 @@
 #
 
 # Make sure we dont have any existing authentication plugins installed.
-[
- "nscd",
- "winbind",
-].each do |pack|
-  package (pack) { action :purge }
+
+if platform?("redhat", "centos")
+
 end
 
+if platform?("ubuntu")
 
-package "likewise-open5"
+  [
+   "nscd",
+   "winbind",
+  ].each do |pack|
+    package (pack) { action :purge }
+  end
+
+  package "likewise-open5" do
+    action :install
+  end
+
+end
 
 execute "initialize-likewise" do
-  command "domainjoin-cli join #{@node[:authorization][:ad_likewise][:primary_domain]} #{@node[:authorization][:ad_likewise][:auth_domain_user]} \"#{@node[:authorization][:ad_likewise][:auth_domain_password]}\""
+  command "domainjoin-cli join #{node[:authorization][:ad_likewise][:primary_domain]} #{node[:authorization][:ad_likewise][:auth_domain_user]} \"#{node[:authorization][:ad_likewise][:auth_domain_password]}\""
   not_if "lw-get-current-domain"
 end
 
