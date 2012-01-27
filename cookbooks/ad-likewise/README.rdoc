@@ -1,6 +1,6 @@
 = DESCRIPTION:
 
-Installs & configures Likewise Open5 with active directory
+Installs & configures Likewise Open5 with Microsoft Active Directory
 
 = REQUIREMENTS:
 
