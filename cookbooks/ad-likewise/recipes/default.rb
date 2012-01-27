@@ -18,14 +18,28 @@
 # limitations under the License.
 #
 
-# Make sure we dont have any existing authentication plugins installed.
-
 if platform?("redhat", "centos")
+
+  # Make sure we dont have any existing authentication plugins installed.
+  [
+   "nscd",
+   "samba-winbind-devel",
+   "samba-winbind-clients",   
+   "samba-winbind",
+  ].each do |pack|
+    package (pack) { action :purge }
+  end
+
+  #Install the likewise package needed for authentication
+  package "likewise-open" do
+    action :install
+  end
 
 end
 
 if platform?("ubuntu")
 
+  # Make sure we dont have any existing authentication plugins installed.
   [
    "nscd",
    "winbind",
@@ -33,11 +47,18 @@ if platform?("ubuntu")
     package (pack) { action :purge }
   end
 
+  #Install the likewise package needed for authentication
   package "likewise-open5" do
     action :install
   end
-
 end
+
+#   sudoers "linux-admins" do
+#     group admin_group
+#   end
+#end
+
+if platform?("ubuntu")
 
 execute "initialize-likewise" do
   command "domainjoin-cli join #{node[:authorization][:ad_likewise][:primary_domain]} #{node[:authorization][:ad_likewise][:auth_domain_user]} \"#{node[:authorization][:ad_likewise][:auth_domain_password]}\""
@@ -50,35 +71,29 @@ execute "pam-auth-update" do
   subscribes :run, resources(:execute => "initialize-likewise")
 end
 
-@node[:authorization][:ad_likewise][:linux_admins].each do |admin_group|
-   sudoers "linux-admins" do
-    group admin_group
+  template "/etc/likewise-open5/lsassd.conf" do
+    source "lsassd.conf.erb"
+    mode "0644"
+    variables(
+      :ad_membership_required => node[:authorization][:ad_likewise][:membership_required]
+    )
+  end
+
+  service "lsassd" do
+    supports :restart => true, :status => true
+    action [ :enable, :start ]
+    subscribes :restart, resources(:template => "/etc/likewise-open5/lsassd.conf")
+  end
+
+  service "netlogond" do
+    supports :restart => true, :status => true
+    action [ :enable, :start ]
+    subscribes :restart, resources(:template => "/etc/likewise-open5/lsassd.conf")
+  end
+
+  service "dcerpcd" do
+    supports :restart => true, :status => true
+    action [ :enable, :start ]
+    subscribes :restart, resources(:template => "/etc/likewise-open5/lsassd.conf")
   end
 end
-
-template "/etc/likewise-open5/lsassd.conf" do
-  source "lsassd.conf.erb"
-  mode "0644"
-  variables(
-    :ad_membership_required => node[:authorization][:ad_likewise][:membership_required]
-  )
-end
-
-service "lsassd" do
-  supports :restart => true, :status => true
-  action [ :enable, :start ]
-  subscribes :restart, resources(:template => "/etc/likewise-open5/lsassd.conf")
-end
-
-service "netlogond" do
-  supports :restart => true, :status => true
-  action [ :enable, :start ]
-  subscribes :restart, resources(:template => "/etc/likewise-open5/lsassd.conf")
-end
-
-service "dcerpcd" do
-  supports :restart => true, :status => true
-  action [ :enable, :start ]
-  subscribes :restart, resources(:template => "/etc/likewise-open5/lsassd.conf")
-end
-
