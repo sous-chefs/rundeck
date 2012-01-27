@@ -9,4 +9,4 @@ supports	 "ubuntu"
 supports	 "centos"
 supports	 "rhel"
 depends          "sudo"
-
+depends		 "selinux"

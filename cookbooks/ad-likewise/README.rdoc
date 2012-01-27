@@ -1,10 +1,11 @@
 = DESCRIPTION:
 
-Installs & configures Likewise Open5 with Microsoft Active Directory
+Installs & configures Likewise Open with Microsoft Active Directory
 
 = REQUIREMENTS:
 
-Debian or Ubuntu preferred.
+* Debian or Ubuntu 10.04
+* RHEL or CentOS 6.X
 
 = ATTRIBUTES:
 
