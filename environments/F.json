@@ -6,6 +6,9 @@
     },
     "vc2010x64": {
       "url": "http://sops01.staging.dmz/repo/windows/vc2010/vcredist_x64.exe"
+    },
+    "memcached": {
+      "memory": "4096"
     }
   },
   "json_class": "Chef::Environment",
