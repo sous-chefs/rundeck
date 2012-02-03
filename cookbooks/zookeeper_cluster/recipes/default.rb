@@ -19,29 +19,12 @@
 # limitations under the License.
 #
 
-include_recipe "java::sun"
 include_recipe "apt"
-include_recipe "mountable_volumes"
+include_recipe "volumes"
+include_recipe "metachef"
+include_recipe "java" ; complain_if_not_sun_java(:cassandra)
 
-#
-# Add Cloudera Apt Repo
-#
-
-# Get the archive key for cloudera package repo
-execute "curl -s http://archive.cloudera.com/debian/archive.key | apt-key add -" do
-  not_if "apt-key export 'Cloudera Apt Repository' | grep 'BEGIN PGP PUBLIC KEY'"
-  notifies :run, "execute[apt-get update]"
-end
-
-# Add cloudera package repo
-apt_repository 'cloudera' do
-  uri             'http://archive.cloudera.com/debian'
-  distro        = node[:lsb][:codename]
-  distribution    "#{distro}-#{node[:hadoop][:cdh_version]}"
-  components      ['contrib']
-  key             "http://archive.cloudera.com/debian/archive.key"
-  action          :add
-end
+include_recipe "hadoop_cluster::add_cloudera_repo"
 
 #
 # Install package
@@ -50,66 +33,9 @@ end
 package "hadoop-zookeeper"
 
 #
-# User and Groups
-#
-
-group 'zookeeper' do gid 305 ; action [:create] ; end
-user 'zookeeper' do
-  comment    'Hadoop Zookeeper Daemon'
-  uid        305
-  group      node[:groups]['zookeeper' ][:gid]
-  home       "/var/zookeeper"
-  shell      "/bin/false"
-  password   nil
-  supports   :manage_home => true
-  action     [:create, :manage]
-end
-
-#
 # Configuration files
 #
 
-directory node[:zookeeper][:data_dir] do
-  owner      "zookeeper"
-  group      "zookeeper"
-  mode       "0755"
-  action     :create
-  recursive  true
-end
-
-directory node[:zookeeper][:log_dir] do
-  owner      "zookeeper"
-  group      "zookeeper"
-  mode       "0755"
-  action     :create
-  recursive  true
-end
-
-#
-# Config files
-#
-zookeeper_server_ips =  all_provider_private_ips("#{node[:zookeeper][:cluster_name]}-zookeeper").sort
-myid = zookeeper_server_ips.find_index( private_ip_of node )
-template_variables = {
-  :zookeeper_server_ips   => zookeeper_server_ips,
-  :myid                   => myid,
-  :zookeeper_data_dir     => node[:zookeeper][:data_dir],
-  :zookeeper_max_client_connections => node[:zookeeper][:max_client_connections],
-}
-Chef::Log.debug template_variables.inspect
-
-%w[ zoo.cfg log4j.properties].each do |conf_file|
-  template "/etc/zookeeper/#{conf_file}" do
-    variables(template_variables)
-    owner    "root"
-    mode     "0644"
-    source   "#{conf_file}.erb"
-  end
-end
-
-template "/var/zookeeper/myid" do
- owner "zookeeper"
- mode "0644"
- variables(template_variables)
- source "myid.erb"
+standard_dirs('zookeeper.server') do
+  directories   :conf_dir, :log_dir
 end
