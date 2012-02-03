@@ -29,7 +29,7 @@ end
 ruby_block "deflate_flag" do
 	Chef::Log.info("i am in deflate_flag") 
 	block do
-		node.set['deflate_configured']
+		node.default['deflate'] = "configured"
 		node.save
 	end
 	action :nothing
@@ -38,7 +38,7 @@ end
 iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
 	action :config
 	notifies :create, "ruby_block[deflate_flag]", :immediately
-	not_if {node.attribute?("deflate_configured")}
+	not_if {node.attribute?("deflate")}
 end
 
 

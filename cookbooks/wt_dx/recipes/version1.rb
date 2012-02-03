@@ -27,24 +27,3 @@ iis_app "DX" do
 	physical_path "#{installdir}#{installdir_v1}"
 	action :add
 end
-
-ruby_block "v1cfg_flag" do
-	block do
-		node.set['dxv1_configured']
-		node.save
-	end
-	action :nothing
-end
-
-iis_config "\"DX/v1_1\" -section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_64bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']\"" do
-	action :config	
-	notifies :create, "ruby_block[v1cfg_flag]" #Running delayed notification so multiple run-once commands get run
-	not_if {node.attribute?("dxv1_configured")}
-end
-
-iis_config "DX/v1_1\" -section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_32bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']" do
-	action :config	
-	notifies :create, "ruby_block[v1cfg_flag]" #Running delayed notification so multiple run-once commands get run
-	not_if {node.attribute?("dxv1_configured")}
-end
-
