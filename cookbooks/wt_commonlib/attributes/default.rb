@@ -1,0 +1,1 @@
+default['webtrends']['commonlib']['commonlib_msi'] = "WebtrendsCommonLib.msi"

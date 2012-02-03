@@ -31,6 +31,6 @@ end
 
 windows_package "CommonLib" do
         source "#{Chef::Config[:file_cache_path]}\\#{msi_name}"
-        options "/l*v \"#{logdir}\\#{msi_name}-Install.log\" INSTALLDIR=\"#{installdir}\" SQL_SERVER_NAME=\"#{master_host}\" WTMASTER=\"wtMaster\"  WTSCHED=\"wt_Sched\""
-        action :install
+        options "/l*v \"#{logdir}\\#{msi_name}-Uninstall.log\""
+        action :remove
 end
