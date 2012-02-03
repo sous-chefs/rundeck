@@ -97,3 +97,9 @@ end
     subscribes :restart, resources(:template => "/etc/likewise-open5/lsassd.conf")
   end
 end
+
+if platform?("centos","redhat")
+  execute "initialize-likewise" do
+    command "domainjoin-cli join #{node[:authorization][:ad_likewise][:primary_domain]} #{node[:authorization][:ad_likewise][:auth_domain_user]} \"#{node[:authorization][:ad_likewise][:auth_domain_password]}\""
+  end
+end
