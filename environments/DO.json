@@ -1,18 +1,24 @@
 {
   "name": "DO",
-  "default_attributes": {
-    "vc2010x86": {
-      "url": "http://sops01.staging.dmz/repo/windows/vc2010/vcredist_x86.exe"
-    },
-    "vc2010x64": {
-      "url": "http://sops01.staging.dmz/repo/windows/vc2010/vcredist_x64.exe"
-    }
-  },
-  "json_class": "Chef::Environment",
   "description": "DO Pod",
   "cookbook_versions": {
   },
-  "override_attributes": {
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+    "webtrends": {
+      "logdir": "D:\\logs",
+      "archive_server": "http://pdxmartink01.webtrends.corp/",
+      "installdir": "d:\\wrs",
+      "install_server": "http://pdxteamcitys01.webtrends.corp/"
+    },
+    "vc2010x86": {
+      "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+    },
+    "vc2010x64": {
+      "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+    }
   },
-  "chef_type": "environment"
+  "override_attributes": {
+  }
 }
