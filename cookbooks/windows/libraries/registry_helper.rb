@@ -1,7 +1,7 @@
 #
 # Author:: Doug MacEachern (<dougm@vmware.com>)
 # Author:: Seth Chisamore (<schisamo@opscode.com>)
-# Author:: Paul Morton (<pmorton@biaprotect.com>)
+# Author:: Paul Morotn (<pmorton@biaprotect.com>)
 # Cookbook Name:: windows
 # Provider:: registry
 #
@@ -83,18 +83,17 @@ module Windows
       end
     end
 
-    def set_value(mode,path,values,type=nil)
+    def set_value(mode,path,values)
       hive, reg_path, hive_name, root_key, hive_loaded = get_reg_path_info(path)
       key_name = reg_path.join("\\")
 
-      Chef::Log.debug("Creating #{path}")
+      Chef::Log.debug("Creating #{path})")
 
       if !key_exists?(path,true)
         create_key(path)
       end
 
       hive.send(mode, key_name, Win32::Registry::KEY_ALL_ACCESS | @@native_registry_constant) do |reg|
-        changed_something = false
         values.each do |k,val|
           key = "#{k}" #wtf. avoid "can't modify frozen string" in win32/registry.rb
           cur_val = nil
@@ -105,18 +104,13 @@ module Windows
           end
           if cur_val != val
             Chef::Log.debug("setting #{key}=#{val}")
-            if type.nil?
-              reg[key] = val
-            else
-              reg[key, Win32::Registry::REG_BINARY] = val
-            end
+            reg[key] = val
 
             ensure_hive_unloaded(hive_loaded)
 
-            changed_something = true
+            return true
           end
         end
-        return changed_something
       end
       return false
     end
@@ -185,12 +179,12 @@ module Windows
         Chef::Log.debug("Hive #{hive}")
 
         hive.open(key, Win32::Registry::KEY_READ | @@native_registry_constant) do | reg |
-          begin
+          begin 
             rtn_value = reg[value]
             return true
           rescue
             return false
-          ensure
+          ensure 
             ensure_hive_unloaded(hive_loaded)
           end
         end
@@ -218,7 +212,7 @@ module Windows
         return true
       rescue
         return false
-      ensure
+      ensure 
         ensure_hive_unloaded(hive_loaded)
       end
     end
@@ -235,7 +229,7 @@ module Windows
     end
 
     def resolve_user_to_sid(username)
-      begin
+      begin 
         sid = WMI::Win32_UserAccount.find(:first, :conditions => {:name => username}).sid
         Chef::Log.debug("Resolved user SID to #{sid}")
         return sid
@@ -284,7 +278,7 @@ module Windows
     def load_user_hive(hive,reg_path,user_hive)
       Chef::Log.debug("Reg Path #{reg_path}")
       # See if the hive is loaded. Logged in users will have a key that is named their SID
-      # if the user has specified the a path by SID and the user is logged in, this function
+      # if the user has specified the a path by SID and the user is logged in, this function 
       # should not be executed.
       if is_user_hive?(hive) && !key_exists?("HKU\\#{user_hive}")
         Chef::Log.debug("The user is not logged in and has not been specified by SID")
