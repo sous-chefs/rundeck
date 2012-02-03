@@ -1,12 +1,12 @@
 #
-# Cookbook Name:: webtrends
-# Recipe:: dx
-# Author: Kendrick Martin
+# Cookbook Name:: wt_dx
+# Recipe:: pre
+# Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
 #
 # Copyright 2011, Webtrends
 #
 # All rights reserved - Do Not Redistribute
-# This recipe installs the needed components to full setup/configure DX.
+# This recipe sets up the base configuration for DX
 
 installdir = node['webtrends']['installdir']
 logdir = node['webtrends']['logdir']
@@ -27,6 +27,7 @@ windows_registry 'HKLM\SOFTWARE\Wow6432Node\WebTrends Corporation' do
 end
 
 ruby_block "deflate_flag" do
+	Chef::Log.info("i am in deflate_flag") 
 	block do
 		node.set['deflate_configured']
 		node.save
