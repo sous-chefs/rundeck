@@ -1,10 +1,10 @@
 #
 # Cookbook Name::       cassandra
-# Description::         Base configuration for cassandra
-# Recipe::              default
-# Author::              Benjamin Black (<b@b3k.us>)
+# Description::         Bintools
+# Recipe::              bintools
+# Author::              Benjamin Black
 #
-# Copyright 2010, Benjamin Black
+# Copyright 2011, Benjamin Black
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,24 +19,8 @@
 # limitations under the License.
 #
 
-# == Recipes
-
-include_recipe "metachef"
-include_recipe "volumes"
-include_recipe "java" ; complain_if_not_sun_java(:cassandra)
-include_recipe "thrift"
-
-# == Packages
-
-# == Users
-
-daemon_user(:cassandra) do
-  create_group  false
-end
-
-# == Directories
-
-standard_dirs('cassandra') do
-  directories   [:conf_dir, :log_dir, :lib_dir, :pid_dir, :data_dirs, :commitlog_dir, :saved_caches_dir]
-  group         'root'
+template "/etc/profile.d/cassandra_tools.sh" do
+  source "cassandra_tools.sh.erb"
+  owner "root"
+  mode 0644
 end
