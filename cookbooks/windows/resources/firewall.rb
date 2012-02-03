@@ -1,9 +1,10 @@
 #
-# Author:: Seth Chisamore (<schisamo@opscode.com>)
 # Cookbook Name:: windows
-# Recipe:: default
+# Provider:: firewall 
+# Author: Kendrick Martin
 #
-# Copyright:: 2011, Opscode, Inc.
+# Copyright 2011, Webtrends
+#
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,17 +19,11 @@
 # limitations under the License.
 #
 
-# gems with precompiled binaries
-  %w{ win32-api win32-service }.each do |win_gem|
-    gem_package win_gem do
-      options '--platform=mswin32'
-      action :install
-    end
-   end
 
-   # the rest
-   %w{ windows-api windows-pr win32-dir win32-event win32-mutex }.each do |win_gem|
-     gem_package win_gem do
-       action :install
-     end
-   end
+actions :open_port
+
+attribute :rule_name, :kind_of => String, :name_attribute => true
+attribute :port, :kind_of => Integer
+attribute :protocol, :kind_of => String
+attr_accessor :exists
+
