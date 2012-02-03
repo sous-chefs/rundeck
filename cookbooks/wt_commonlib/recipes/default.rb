@@ -29,7 +29,7 @@ http_request "HEAD #{archive_url}" do
 end
 
 
-windows_package "CommonLib" do
+windows_package "WebTrends Common Lib" do
         source "#{Chef::Config[:file_cache_path]}\\#{msi_name}"
         options "/l*v \"#{logdir}\\#{msi_name}-Install.log\" INSTALLDIR=\"#{installdir}\" SQL_SERVER_NAME=\"#{master_host}\" WTMASTER=\"wtMaster\"  WTSCHED=\"wt_Sched\""
         action :install
