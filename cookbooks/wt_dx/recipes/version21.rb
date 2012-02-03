@@ -27,23 +27,3 @@ iis_app "DX" do
 	physical_path "#{installdir}#{installdir_v21}"
 	action :add
 end
-
-ruby_block "v21cfg_flag" do
-	block do
-		node.set['dxv21_configured']
-		node.save
-	end
-	action :nothing
-end
-
-iis_config "\"DX/v2_1\" -section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_64bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']\"" do
-	action :config	
-	notifies :create, "ruby_block[v21cfg_flag]" #Running delayed notification so multiple run-once commands get run
-	not_if {node.attribute?("dxv21_configured")}
-end
-
-iis_config "\"DX/v2_1\" -section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_32bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']" do
-	action :config	
-	notifies :create, "ruby_block[v21cfg_flag]" #Running delayed notification so multiple run-once commands get run
-	not_if {node.attribute?("dxv21_configured")}
-end

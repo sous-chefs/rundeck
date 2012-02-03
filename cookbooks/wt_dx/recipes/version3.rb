@@ -61,11 +61,3 @@ iis_app "DX" do
 	physical_path "#{installdir}#{installdir_v3}\\Web Services"
 	action :add
 end
-
-ruby_block "v3cfg_flag" do
-	block do
-		node.set['dxv3_configured']
-		node.save
-	end
-	action :nothing
-end
