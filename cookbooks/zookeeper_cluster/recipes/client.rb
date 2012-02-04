@@ -1,6 +1,6 @@
 #
 # Cookbook Name::       zookeeper
-# Description::         Client
+# Description::         Installs Zookeeper client libraries
 # Recipe::              client
 # Author::              Chris Howe - Infochimps, Inc
 #
@@ -20,3 +20,9 @@
 #
 
 include_recipe "zookeeper::default"
+
+# Stuff the Zookeeper jars into the classpath
+node[:hadoop][:extra_classpaths][:zookeeper] = "#{node[:zookeeper][:home_dir]}/zookeeper.jar" if node[:hadoop] and node[:hadoop][:extra_classpaths]
+
+include_recipe 'zookeeper::config_files'
+
