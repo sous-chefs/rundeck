@@ -1,65 +1,42 @@
 #
-# Cookbook Name:: cassandra
-# Recipe:: default
+# Cookbook Name::       cassandra
+# Description::         Base configuration for cassandra
+# Recipe::              default
+# Author::              Benjamin Black (<b@b3k.us>)
 #
-# Copyright 2011, DataStax
+# Copyright 2010, Benjamin Black
 #
-# Apache License
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 #
 
-###################################################
-# 
-# Public Variable Declarations
-# 
-###################################################
+# == Recipes
 
-# Stop Cassandra if it is running.
-# Different for Debian due to service package.
-if node[:platform] == "debian"
-  service "cassandra" do
-    action :stop
-    ignore_failure true
-  end
-else
-  service "cassandra" do
-    action :stop
-  end
+include_recipe "metachef"
+include_recipe "volumes"
+include_recipe "java" ; complain_if_not_sun_java(:cassandra)
+include_recipe "thrift"
+
+# == Packages
+
+# == Users
+
+daemon_user(:cassandra) do
+  create_group  false
 end
 
-# Only for debug purposes
-OPTIONAL_INSTALL = true
+# == Directories
 
-
-
-
-
-include_recipe "cassandra::setup_repos"
-
-
-include_recipe "cassandra::required_packages"
-
-
-if OPTIONAL_INSTALL
-  include_recipe "cassandra::optional_packages"
+standard_dirs('cassandra') do
+  directories   [:conf_dir, :log_dir, :lib_dir, :pid_dir, :data_dirs, :commitlog_dir, :saved_caches_dir]
+  group         'root'
 end
-
-
-include_recipe "cassandra::install"
-
-
-# include_recipe "cassandra::raid"
-
-
-include_recipe "cassandra::additional_settings"
-
-
-include_recipe "cassandra::token_generation"
-
-
-include_recipe "cassandra::create_seed_list"
-
-
-include_recipe "cassandra::write_configs"
-
-
-include_recipe "cassandra::restart_service"

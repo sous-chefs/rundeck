@@ -1,0 +1,1227 @@
+{
+  "name": "hadoop_cluster",
+  "description": "Hadoop: distributed massive-scale data processing framework. Store and analyze terabyte-scale datasets with ease",
+  "long_description": "# hadoop_cluster chef cookbook\n\nHadoop: distributed massive-scale data processing framework. Store and analyze terabyte-scale datasets with ease\n\n## Overview\n\nThe hadoop_cluster cookbook lets you spin up hadoop clusters of arbitrary size, makes it easy to configure and tune them, and opens up powerful new ways to reduce your compute bill. \n\nThis cookbook installs Apache hadoop using the [Cloudera hadoop distribution (CDH)](http://archive.cloudera.com/docs/), and it plays well with the infochimps cookbooks for HBase, Flume, ElasticSearch, Zookeeper, Ganglia and Zabbix.\n\n### Cluster instantiation\n\nInstantiating a cluster from thin air requires\n* start the master, with all the `:run_state`s set to 'stop'\n* running `/etc/hadoop/conf/bootstrap_hadoop_namenode.sh`, which is now fairly robust and re-runnable. It should start the namenode on its own.\n* set `run_state`s to 'start', run `knife cluster sync` and then `knife cluster kick` the master.\n* launch the jobbtracker, workers, etc.\n\n### Tunables\n\nFor more details on the so, so many config variables, see\n\n* [Core Hadoop params](http://archive.cloudera.com/cdh/3/hadoop/hdfs-default.html) \n* [HDFS params](http://archive.cloudera.com/cdh/3/hadoop/hdfs-default.html) \n* [Map-Reduce params](http://archive.cloudera.com/cdh/3/hadoop/hdfs-default.html) \n\n### Advanced Cluster-Fu for the impatient cheapskate\n\n#### Stop-start clusters\n\nIf you have a persistent HDFS, you can shut down the cluster with `knife cluster stop` at the end of your workday, and restart it in less time than it takes to get your morning coffee.  Typical time from typing \"knife cluster launch science-worker\" until the node reports in the jobtracker is <= 6 minutes on launch -- faster than that on start.\n\nStopped nodes don't cost you anything in compute, though you do continue to pay for the storage on their attached drives. See [the example science cluster](example/clusters/science.rb) for the setup we use. \n\n#### Reshapable clusters\n\nThe hadoop cluster definition we use at infochimps for production runs uses its HDFS ONLY a scratch pad - anything we want to keep goes into S3.\n\nThis lets us do stupid, dangerous, awesome things like:\n\n* spin up a few dozen c1.xlarge CPU-intensive machines, parse a ton of data,\n  store it back into S3.\n* blow all the workers away and reformat the namenode with the `/etc/hadoop/conf/nuke_hdfs_from_orbit_its_the_only_way_to_be_sure.sh.erb` shell script.\n* spin up a cluster of m2.2xlarge memory-intensive machines to group and filter it, storing final results into S3.\n* shut the entire cluster down before anyone in accounting notices.\n\n#### Tasktracker-only workers\n\nWho says your workers should also be datanodes? Sure, \"bring the compute to the data\" is the way the *robots* want you to do it, but a tasktracker-only node on an idle cluster is one you can kill with no repercussions.\n\nThis lets you blow up the size of your cluster and not have to wait later for nodes to decommission. Non-local map tasks obviously run slower-than-optimal, but we'd rather have sub-optimal robots than sub-optimal data scientists.\n\n### Author:\n      \nAuthor:: Joshua Timberman (<joshua@opscode.com>), Flip Kromer (<flip@infochimps.org>), much code taken from Tom White (<tom@cloudera.com>)'s hadoop-ec2 scripts and Robert Berger (http://blog.ibd.com)'s blog posts.\n\nCopyright:: 2009, Opscode, Inc; 2010, 2011 Infochimps, In\n\n## Recipes \n\n* `add_cloudera_repo`        - Add Cloudera repo to package manager\n* `cluster_conf`             - Configure cluster\n* `datanode`                 - Installs Hadoop Datanode service\n* `default`                  - Base configuration for hadoop_cluster\n* `doc`                      - Installs Hadoop documentation\n* `fake_topology`            - Pretend that groups of machines are on different racks so you can execute them without guilt\n* `hdfs_fuse`                - Installs Hadoop HDFS Fuse service (regular filesystem access to HDFS files)\n* `jobtracker`               - Installs Hadoop Jobtracker service\n* `namenode`                 - Installs Hadoop Namenode service\n* `secondarynn`              - Installs Hadoop Secondary Namenode service\n* `simple_dashboard`         - Simple Dashboard\n* `tasktracker`              - Installs Hadoop Tasktracker service\n* `wait_on_hdfs_safemode`    - Wait on HDFS Safemode -- insert between cookbooks to ensure HDFS is available\n\n## Integration\n\nSupports platforms: debian and ubuntu\n\nCookbook dependencies:\n\n* java\n* apt\n* runit\n* volumes\n* tuning\n* metachef\n* dashpot\n\n\n## Attributes\n\n* `[:cluster_size]`                   - Number of machines in the cluster (default: \"5\")\n  - Number of machines in the cluster. This is used to size things like handler counts, etc.\n* `[:apt][:cloudera][:force_distro]`  - Override the distro name apt uses to look up repos (default: \"maverick\")\n  - Typically, leave this blank. However if (as is the case in Nov 2011) you are on natty but Cloudera's repo only has packages up to maverick, use this to override.\n* `[:apt][:cloudera][:release_name]`  - Release identifier (eg cdh3u2) of the cloudera repo to use. See also hadoop/deb_version (default: \"cdh3u2\")\n* `[:hadoop][:handle]`                - Version prefix for the daemons and other components (default: \"hadoop-0.20\")\n  - Cloudera distros have a prefix most (but not all) things with. This helps isolate the times they say 'hadoop-0.20' vs. 'hadoop'\n* `[:hadoop][:deb_version]`           - Apt revision identifier (eg 0.20.2+923.142-1~maverick-cdh3) of the specific cloudera apt to use. See also apt/release_name (default: \"0.20.2+923.142-1~maverick-cdh3\")\n* `[:hadoop][:dfs_replication]`       - Default HDFS replication factor (default: \"3\")\n  - HDFS blocks are by default reproduced to this many machines.\n* `[:hadoop][:reducer_parallel_copies]` -  (default: \"10\")\n* `[:hadoop][:compress_output]`       -  (default: \"false\")\n* `[:hadoop][:compress_output_type]`  -  (default: \"BLOCK\")\n* `[:hadoop][:compress_output_codec]` -  (default: \"org.apache.hadoop.io.compress.DefaultCodec\")\n* `[:hadoop][:compress_mapout]`       -  (default: \"true\")\n* `[:hadoop][:compress_mapout_codec]` -  (default: \"org.apache.hadoop.io.compress.DefaultCodec\")\n* `[:hadoop][:log_retention_hours]`   -  (default: \"24\")\n  - See [Hadoop Log Location and Retention](http://www.cloudera.com/blog/2010/11/hadoop-log-location-and-retention) for more.\n* `[:hadoop][:java_heap_size_max]`    -  (default: \"1000\")\n  - uses /etc/default/hadoop-0.20 to set the hadoop daemon's java_heap_size_max\n* `[:hadoop][:min_split_size]`        -  (default: \"134217728\")\n  - You may wish to set the following to the same as your HDFS block size, esp if\n    you're seeing issues with s3:// turning 1TB files into 30_000+ map tasks\n* `[:hadoop][:s3_block_size]`         - fs.s3n.block.size (default: \"134217728\")\n  - Block size to use when reading files using the native S3 filesystem (s3n: URIs).\n* `[:hadoop][:hdfs_block_size]`       - dfs.block.size (default: \"134217728\")\n  - The default block size for new files\n* `[:hadoop][:max_map_tasks]`         -  (default: \"3\")\n* `[:hadoop][:max_reduce_tasks]`      -  (default: \"2\")\n* `[:hadoop][:java_child_opts]`       -  (default: \"-Xmx2432m -Xss128k -XX:+UseCompressedOops -XX:MaxNewSize=200m -server\")\n* `[:hadoop][:java_child_ulimit]`     -  (default: \"7471104\")\n* `[:hadoop][:io_sort_factor]`        -  (default: \"25\")\n* `[:hadoop][:io_sort_mb]`            -  (default: \"250\")\n* `[:hadoop][:extra_classpaths]`      - \n  - Other recipes can add to this under their own special key, for instance\n    node[:hadoop][:extra_classpaths][:hbase] = '/usr/lib/hbase/hbase.jar:/usr/lib/hbase/lib/zookeeper.jar:/usr/lib/hbase/conf'\n* `[:hadoop][:home_dir]`              -  (default: \"/usr/lib/hadoop\")\n* `[:hadoop][:conf_dir]`              -  (default: \"/etc/hadoop/conf\")\n* `[:hadoop][:pid_dir]`               -  (default: \"/var/run/hadoop\")\n* `[:hadoop][:log_dir]`               - \n* `[:hadoop][:tmp_dir]`               - \n* `[:hadoop][:user]`                  -  (default: \"hdfs\")\n* `[:hadoop][:define_topology]`       - \n  - define a rack topology? if false (default), all nodes are in the same 'rack'.\n* `[:hadoop][:jobtracker][:handler_count]` -  (default: \"40\")\n* `[:hadoop][:jobtracker][:run_state]` -  (default: \"stop\")\n* `[:hadoop][:jobtracker][:java_heap_size_max]` - \n* `[:hadoop][:jobtracker][:system_hdfsdir]` -  (default: \"/hadoop/mapred/system\")\n* `[:hadoop][:jobtracker][:staging_hdfsdir]` -  (default: \"/hadoop/mapred/system\")\n* `[:hadoop][:jobtracker][:port]`     -  (default: \"8021\")\n* `[:hadoop][:jobtracker][:dash_port]` -  (default: \"50030\")\n* `[:hadoop][:jobtracker][:user]`     -  (default: \"mapred\")\n* `[:hadoop][:jobtracker][:jmx_dash_port]` -  (default: \"8008\")\n* `[:hadoop][:namenode][:handler_count]` -  (default: \"40\")\n* `[:hadoop][:namenode][:run_state]`  -  (default: \"stop\")\n  - What states to set for services.\n    You want to bring the big daemons up deliberately on initial start.\n    Override in your cluster definition when things are stable.\n* `[:hadoop][:namenode][:java_heap_size_max]` - \n* `[:hadoop][:namenode][:port]`       -  (default: \"8020\")\n* `[:hadoop][:namenode][:dash_port]`  -  (default: \"50070\")\n* `[:hadoop][:namenode][:user]`       -  (default: \"hdfs\")\n* `[:hadoop][:namenode][:data_dirs]`  - \n  - These are handled by volumes, which imprints them on the node.\n    If you set an explicit value it will be used and no discovery is done.\n    Chef Attr                    Owner           Permissions  Path                                     Hadoop Attribute\n    [:namenode   ][:data_dir]    hdfs:hadoop     drwx------   {persistent_vols}/hadoop/hdfs/name       dfs.name.dir\n    [:sec..node  ][:data_dir]    hdfs:hadoop     drwxr-xr-x   {persistent_vols}/hadoop/hdfs/secondary  fs.checkpoint.dir\n    [:datanode   ][:data_dir]    hdfs:hadoop     drwxr-xr-x   {persistent_vols}/hadoop/hdfs/data       dfs.data.dir\n    [:tasktracker][:scratch_dir] mapred:hadoop   drwxr-xr-x   {scratch_vols   }/hadoop/hdfs/name       mapred.local.dir\n    [:jobtracker ][:system_hdfsdir]  mapred:hadoop   drwxr-xr-x   {!!HDFS!!       }/hadoop/mapred/system   mapred.system.dir\n    [:jobtracker ][:staging_hdfsdir] mapred:hadoop   drwxr-xr-x   {!!HDFS!!       }/hadoop/mapred/staging  mapred.system.dir\n    Important: In CDH3, the mapred.system.dir directory must be located inside a directory that is owned by mapred. For example, if mapred.system.dir is specified as /mapred/system, then /mapred must be owned by mapred. Don't, for example, specify /mrsystem as mapred.system.dir because you don't want / owned by mapred.\n* `[:hadoop][:namenode][:jmx_dash_port]` -  (default: \"8004\")\n* `[:hadoop][:datanode][:handler_count]` -  (default: \"8\")\n* `[:hadoop][:datanode][:run_state]`  -  (default: \"start\")\n  - You can just kick off the worker daemons, they'll retry. On a full-cluster\n    stop/start (or any other time the main daemons' ip address changes) however\n    you will need to converge chef and then restart them all.\n* `[:hadoop][:datanode][:java_heap_size_max]` - \n* `[:hadoop][:datanode][:port]`       -  (default: \"50010\")\n* `[:hadoop][:datanode][:ipc_port]`   -  (default: \"50020\")\n* `[:hadoop][:datanode][:dash_port]`  -  (default: \"50075\")\n* `[:hadoop][:datanode][:user]`       -  (default: \"hdfs\")\n* `[:hadoop][:datanode][:data_dirs]`  - \n* `[:hadoop][:datanode][:jmx_dash_port]` -  (default: \"8006\")\n* `[:hadoop][:tasktracker][:http_threads]` -  (default: \"32\")\n* `[:hadoop][:tasktracker][:run_state]` -  (default: \"start\")\n* `[:hadoop][:tasktracker][:java_heap_size_max]` - \n* `[:hadoop][:tasktracker][:dash_port]` -  (default: \"50060\")\n* `[:hadoop][:tasktracker][:user]`    -  (default: \"mapred\")\n* `[:hadoop][:tasktracker][:scratch_dirs]` - \n* `[:hadoop][:tasktracker][:jmx_dash_port]` -  (default: \"8009\")\n* `[:hadoop][:secondarynn][:run_state]` -  (default: \"stop\")\n* `[:hadoop][:secondarynn][:java_heap_size_max]` - \n* `[:hadoop][:secondarynn][:dash_port]` -  (default: \"50090\")\n* `[:hadoop][:secondarynn][:user]`    -  (default: \"hdfs\")\n* `[:hadoop][:secondarynn][:data_dirs]` - \n* `[:hadoop][:secondarynn][:jmx_dash_port]` -  (default: \"8005\")\n* `[:hadoop][:hdfs_fuse][:run_state]` -  (default: \"stop\")\n* `[:hadoop][:balancer][:run_state]`  -  (default: \"stop\")\n* `[:hadoop][:balancer][:jmx_dash_port]` -  (default: \"8007\")\n* `[:hadoop][:balancer][:max_bandwidth]` -  (default: \"1048576\")\n  - bytes per second -- 1MB/s by default\n* `[:groups][:hadoop][:gid]`          -  (default: \"300\")\n* `[:groups][:supergroup][:gid]`      -  (default: \"301\")\n* `[:groups][:hdfs][:gid]`            -  (default: \"302\")\n* `[:groups][:mapred][:gid]`          -  (default: \"303\")\n* `[:java][:java_home]`               -  (default: \"/usr/lib/jvm/java-6-sun/jre\")\n* `[:users][:hdfs][:uid]`             -  (default: \"302\")\n* `[:users][:mapred][:uid]`           -  (default: \"303\")\n* `[:tuning][:ulimit][:hdfs]`         - \n* `[:tuning][:ulimit][:mapred]`       - \n\n## License and Author\n\nAuthor::                Philip (flip) Kromer - Infochimps, Inc (<coders@infochimps.com>)\nCopyright::             2011, Philip (flip) Kromer - Infochimps, Inc\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n\n> readme generated by [cluster_chef](http://github.com/infochimps/cluster_chef)'s cookbook_munger\n",
+  "maintainer": "Philip (flip) Kromer - Infochimps, Inc",
+  "maintainer_email": "coders@infochimps.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "debian": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
+  },
+  "dependencies": {
+    "java": ">= 0.0.0",
+    "apt": ">= 0.0.0",
+    "runit": ">= 0.0.0",
+    "volumes": ">= 0.0.0",
+    "tuning": ">= 0.0.0",
+    "metachef": ">= 0.0.0",
+    "dashpot": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+    "cluster_size": {
+      "display_name": "Number of machines in the cluster",
+      "description": "Number of machines in the cluster. This is used to size things like handler counts, etc.",
+      "default": "5",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "apt/cloudera/force_distro": {
+      "display_name": "Override the distro name apt uses to look up repos",
+      "description": "Typically, leave this blank. However if (as is the case in Nov 2011) you are on natty but Cloudera's repo only has packages up to maverick, use this to override.",
+      "default": "maverick",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "apt/cloudera/release_name": {
+      "display_name": "Release identifier (eg cdh3u2) of the cloudera repo to use. See also hadoop/deb_version",
+      "description": "Release identifier (eg cdh3u2) of the cloudera repo to use. See also hadoop/deb_version",
+      "default": "cdh3u2",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/handle": {
+      "display_name": "Version prefix for the daemons and other components",
+      "description": "Cloudera distros have a prefix most (but not all) things with. This helps isolate the times they say 'hadoop-0.20' vs. 'hadoop'",
+      "default": "hadoop-0.20",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/deb_version": {
+      "display_name": "Apt revision identifier (eg 0.20.2+923.142-1~maverick-cdh3) of the specific cloudera apt to use. See also apt/release_name",
+      "description": "Apt revision identifier (eg 0.20.2+923.142-1~maverick-cdh3) of the specific cloudera apt to use. See also apt/release_name",
+      "default": "0.20.2+923.142-1~maverick-cdh3",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/dfs_replication": {
+      "display_name": "Default HDFS replication factor",
+      "description": "HDFS blocks are by default reproduced to this many machines.",
+      "default": "3",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/reducer_parallel_copies": {
+      "display_name": "",
+      "description": "",
+      "default": "10",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/compress_output": {
+      "display_name": "",
+      "description": "",
+      "default": "false",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/compress_output_type": {
+      "display_name": "",
+      "description": "",
+      "default": "BLOCK",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/compress_output_codec": {
+      "display_name": "",
+      "description": "",
+      "default": "org.apache.hadoop.io.compress.DefaultCodec",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/compress_mapout": {
+      "display_name": "",
+      "description": "",
+      "default": "true",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/compress_mapout_codec": {
+      "display_name": "",
+      "description": "",
+      "default": "org.apache.hadoop.io.compress.DefaultCodec",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/log_retention_hours": {
+      "display_name": "",
+      "description": "See [Hadoop Log Location and Retention](http://www.cloudera.com/blog/2010/11/hadoop-log-location-and-retention) for more.",
+      "default": "24",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/java_heap_size_max": {
+      "display_name": "",
+      "description": "uses /etc/default/hadoop-0.20 to set the hadoop daemon's java_heap_size_max",
+      "default": "1000",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/min_split_size": {
+      "display_name": "",
+      "description": "You may wish to set the following to the same as your HDFS block size, esp if\nyou're seeing issues with s3:// turning 1TB files into 30_000+ map tasks",
+      "default": "134217728",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/s3_block_size": {
+      "display_name": "fs.s3n.block.size",
+      "description": "Block size to use when reading files using the native S3 filesystem (s3n: URIs).",
+      "default": "134217728",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/hdfs_block_size": {
+      "display_name": "dfs.block.size",
+      "description": "The default block size for new files",
+      "default": "134217728",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/max_map_tasks": {
+      "display_name": "",
+      "description": "",
+      "default": "3",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/max_reduce_tasks": {
+      "display_name": "",
+      "description": "",
+      "default": "2",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/java_child_opts": {
+      "display_name": "",
+      "description": "",
+      "default": "-Xmx2432m -Xss128k -XX:+UseCompressedOops -XX:MaxNewSize=200m -server",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/java_child_ulimit": {
+      "display_name": "",
+      "description": "",
+      "default": "7471104",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/io_sort_factor": {
+      "display_name": "",
+      "description": "",
+      "default": "25",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/io_sort_mb": {
+      "display_name": "",
+      "description": "",
+      "default": "250",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/extra_classpaths": {
+      "display_name": "",
+      "description": "Other recipes can add to this under their own special key, for instance\nnode[:hadoop][:extra_classpaths][:hbase] = '/usr/lib/hbase/hbase.jar:/usr/lib/hbase/lib/zookeeper.jar:/usr/lib/hbase/conf'",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/home_dir": {
+      "display_name": "",
+      "description": "",
+      "default": "/usr/lib/hadoop",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/conf_dir": {
+      "display_name": "",
+      "description": "",
+      "default": "/etc/hadoop/conf",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/pid_dir": {
+      "display_name": "",
+      "description": "",
+      "default": "/var/run/hadoop",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/log_dir": {
+      "display_name": "",
+      "description": "",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/tmp_dir": {
+      "display_name": "",
+      "description": "",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/user": {
+      "display_name": "",
+      "description": "",
+      "default": "hdfs",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/define_topology": {
+      "display_name": "",
+      "description": "define a rack topology? if false (default), all nodes are in the same 'rack'.",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/jobtracker/handler_count": {
+      "display_name": "",
+      "description": "",
+      "default": "40",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/jobtracker/run_state": {
+      "display_name": "",
+      "description": "",
+      "default": "stop",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/jobtracker/java_heap_size_max": {
+      "display_name": "",
+      "description": "",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/jobtracker/system_hdfsdir": {
+      "display_name": "",
+      "description": "",
+      "default": "/hadoop/mapred/system",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/jobtracker/staging_hdfsdir": {
+      "display_name": "",
+      "description": "",
+      "default": "/hadoop/mapred/system",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/jobtracker/port": {
+      "display_name": "",
+      "description": "",
+      "default": "8021",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/jobtracker/dash_port": {
+      "display_name": "",
+      "description": "",
+      "default": "50030",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/jobtracker/user": {
+      "display_name": "",
+      "description": "",
+      "default": "mapred",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/jobtracker/jmx_dash_port": {
+      "display_name": "",
+      "description": "",
+      "default": "8008",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/namenode/handler_count": {
+      "display_name": "",
+      "description": "",
+      "default": "40",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/namenode/run_state": {
+      "display_name": "",
+      "description": "What states to set for services.\nYou want to bring the big daemons up deliberately on initial start.\nOverride in your cluster definition when things are stable.",
+      "default": "stop",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/namenode/java_heap_size_max": {
+      "display_name": "",
+      "description": "",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/namenode/port": {
+      "display_name": "",
+      "description": "",
+      "default": "8020",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/namenode/dash_port": {
+      "display_name": "",
+      "description": "",
+      "default": "50070",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/namenode/user": {
+      "display_name": "",
+      "description": "",
+      "default": "hdfs",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/namenode/data_dirs": {
+      "display_name": "",
+      "description": "These are handled by volumes, which imprints them on the node.\nIf you set an explicit value it will be used and no discovery is done.\nChef Attr                    Owner           Permissions  Path                                     Hadoop Attribute\n[:namenode   ][:data_dir]    hdfs:hadoop     drwx------   {persistent_vols}/hadoop/hdfs/name       dfs.name.dir\n[:sec..node  ][:data_dir]    hdfs:hadoop     drwxr-xr-x   {persistent_vols}/hadoop/hdfs/secondary  fs.checkpoint.dir\n[:datanode   ][:data_dir]    hdfs:hadoop     drwxr-xr-x   {persistent_vols}/hadoop/hdfs/data       dfs.data.dir\n[:tasktracker][:scratch_dir] mapred:hadoop   drwxr-xr-x   {scratch_vols   }/hadoop/hdfs/name       mapred.local.dir\n[:jobtracker ][:system_hdfsdir]  mapred:hadoop   drwxr-xr-x   {!!HDFS!!       }/hadoop/mapred/system   mapred.system.dir\n[:jobtracker ][:staging_hdfsdir] mapred:hadoop   drwxr-xr-x   {!!HDFS!!       }/hadoop/mapred/staging  mapred.system.dir\nImportant: In CDH3, the mapred.system.dir directory must be located inside a directory that is owned by mapred. For example, if mapred.system.dir is specified as /mapred/system, then /mapred must be owned by mapred. Don't, for example, specify /mrsystem as mapred.system.dir because you don't want / owned by mapred.",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/namenode/jmx_dash_port": {
+      "display_name": "",
+      "description": "",
+      "default": "8004",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/datanode/handler_count": {
+      "display_name": "",
+      "description": "",
+      "default": "8",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/datanode/run_state": {
+      "display_name": "",
+      "description": "You can just kick off the worker daemons, they'll retry. On a full-cluster\nstop/start (or any other time the main daemons' ip address changes) however\nyou will need to converge chef and then restart them all.",
+      "type": "array",
+      "default": "start",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/datanode/java_heap_size_max": {
+      "display_name": "",
+      "description": "",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/datanode/port": {
+      "display_name": "",
+      "description": "",
+      "default": "50010",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/datanode/ipc_port": {
+      "display_name": "",
+      "description": "",
+      "default": "50020",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/datanode/dash_port": {
+      "display_name": "",
+      "description": "",
+      "default": "50075",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/datanode/user": {
+      "display_name": "",
+      "description": "",
+      "default": "hdfs",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/datanode/data_dirs": {
+      "display_name": "",
+      "description": "",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/datanode/jmx_dash_port": {
+      "display_name": "",
+      "description": "",
+      "default": "8006",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/tasktracker/http_threads": {
+      "display_name": "",
+      "description": "",
+      "default": "32",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/tasktracker/run_state": {
+      "display_name": "",
+      "description": "",
+      "type": "array",
+      "default": "start",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/tasktracker/java_heap_size_max": {
+      "display_name": "",
+      "description": "",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/tasktracker/dash_port": {
+      "display_name": "",
+      "description": "",
+      "default": "50060",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/tasktracker/user": {
+      "display_name": "",
+      "description": "",
+      "default": "mapred",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/tasktracker/scratch_dirs": {
+      "display_name": "",
+      "description": "",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/tasktracker/jmx_dash_port": {
+      "display_name": "",
+      "description": "",
+      "default": "8009",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/secondarynn/run_state": {
+      "display_name": "",
+      "description": "",
+      "default": "stop",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/secondarynn/java_heap_size_max": {
+      "display_name": "",
+      "description": "",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/secondarynn/dash_port": {
+      "display_name": "",
+      "description": "",
+      "default": "50090",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/secondarynn/user": {
+      "display_name": "",
+      "description": "",
+      "default": "hdfs",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/secondarynn/data_dirs": {
+      "display_name": "",
+      "description": "",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/secondarynn/jmx_dash_port": {
+      "display_name": "",
+      "description": "",
+      "default": "8005",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/hdfs_fuse/run_state": {
+      "display_name": "",
+      "description": "",
+      "default": "stop",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/balancer/run_state": {
+      "display_name": "",
+      "description": "",
+      "default": "stop",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/balancer/jmx_dash_port": {
+      "display_name": "",
+      "description": "",
+      "default": "8007",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "hadoop/balancer/max_bandwidth": {
+      "display_name": "",
+      "description": "bytes per second -- 1MB/s by default",
+      "default": "1048576",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "groups/hadoop/gid": {
+      "display_name": "",
+      "description": "",
+      "default": "300",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "groups/supergroup/gid": {
+      "display_name": "",
+      "description": "",
+      "default": "301",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "groups/hdfs/gid": {
+      "display_name": "",
+      "description": "",
+      "default": "302",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "groups/mapred/gid": {
+      "display_name": "",
+      "description": "",
+      "default": "303",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "java/java_home": {
+      "display_name": "",
+      "description": "",
+      "default": "/usr/lib/jvm/java-6-sun/jre",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "users/hdfs/uid": {
+      "display_name": "",
+      "description": "",
+      "default": "302",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "users/mapred/uid": {
+      "display_name": "",
+      "description": "",
+      "default": "303",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "tuning/ulimit/hdfs": {
+      "display_name": "",
+      "description": "",
+      "type": "hash",
+      "default": {
+        "nofile": {
+          "both": 32768
+        },
+        "nproc": {
+          "both": 50000
+        }
+      },
+      "choice": [
+
+      ],
+      "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "tuning/ulimit/mapred": {
+      "display_name": "",
+      "description": "",
+      "type": "hash",
+      "default": {
+        "nofile": {
+          "both": 32768
+        },
+        "nproc": {
+          "both": 50000
+        }
+      },
+      "choice": [
+
+      ],
+      "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "hadoop_cluster::default": "Base configuration for hadoop_cluster",
+    "hadoop_cluster::add_cloudera_repo": "Add Cloudera repo to package manager",
+    "hadoop_cluster::cluster_conf": "Configure cluster",
+    "hadoop_cluster::datanode": "Installs Hadoop Datanode service",
+    "hadoop_cluster::secondarynn": "Installs Hadoop Secondary Namenode service",
+    "hadoop_cluster::tasktracker": "Installs Hadoop Tasktracker service",
+    "hadoop_cluster::jobtracker": "Installs Hadoop Jobtracker service",
+    "hadoop_cluster::namenode": "Installs Hadoop Namenode service",
+    "hadoop_cluster::doc": "Installs Hadoop documentation",
+    "hadoop_cluster::hdfs_fuse": "Installs Hadoop HDFS Fuse service (regular filesystem access to HDFS files)",
+    "hadoop_cluster::wait_on_hdfs_safemode": "Wait on HDFS Safemode -- insert between cookbooks to ensure HDFS is available",
+    "hadoop_cluster::simple_dashboard": "Simple Dashboard",
+    "hadoop_cluster::fake_topology": "Pretend that groups of machines are on different racks so you can execute them without guilt"
+  },
+  "version": "3.0.5"
+}

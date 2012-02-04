@@ -33,6 +33,11 @@
           "bobo"
         ],
         "passwordless": true
+      },
+      "ad_likewise": {
+       "auth_domain_user": "Admin",
+       "auth_domain_password": "Bijoux01",
+       "primary_domain": "DEVOPS.DMZ"
       }
     }
   }
