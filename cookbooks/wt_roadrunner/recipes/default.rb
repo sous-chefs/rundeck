@@ -59,7 +59,7 @@ end
 template "#{installdir}\\log4net.config" do
 	source "log4net.erb"
 	variables(		
-		:logdir => node['webtrends']['logdir']
+		:logdir => "#{node['webtrends']['installdir']}\\logs"
 	)
 end
 

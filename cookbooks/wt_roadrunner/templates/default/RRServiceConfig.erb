@@ -5,8 +5,8 @@
 		<add key="packageListPoolSize" value="10"/>
 		<add key="enablePerfmon" value="true"/>
 	</appSettings>
-	<connectionStrings>
-		<add name="wtMasterConnection" connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Provider=SQLNCLI10.1;Integrated Security=SSPI;Application Name=SSIS-GpuMain-Main;Auto Translate=False;"/>
+	<connectionStrings>		
+		<add name="wtMasterConnection" connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Integrated Security=SSPI;Application Name=SSIS-GpuMain-Main;" providerName="System.Data.SqlClient"/>
 	</connectionStrings>
   <system.diagnostics>
     <sources>
