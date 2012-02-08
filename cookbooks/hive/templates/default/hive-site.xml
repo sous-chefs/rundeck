@@ -1,0 +1,34 @@
+<configuration>
+
+<property>
+  <name>javax.jdo.option.ConnectionURL</name>
+  <value>jdbc:mysql://<%= @hivemeta %>/hive?createDatabaseIfNotExist=true</value>
+  <description>JDBC connect string for a JDBC metastore</description>
+</property>
+
+<property>
+  <name>javax.jdo.option.ConnectionDriverName</name>
+  <value>com.mysql.jdbc.Driver</value>
+  <description>Driver class name for a MYSQL metastore</description>
+</property>
+
+<property>
+  <name>javax.jdo.option.ConnectionUserName</name>
+  <value>root</value>
+  <description>username to use against metastore database</description>
+</property>
+
+<property>
+  <name>javax.jdo.option.ConnectionPassword</name>
+  <value>a5H7qw</value>
+  <description>password to use against metastore database</description>
+</property>
+
+<property>
+  <name>hive.map.aggr.hash.percentmemory</name>
+  <value>0.25</value>
+  <description>Portion of total memory to be used by map-side grup aggregation hash table</description>
+</property>
+
+
+</configuration>
