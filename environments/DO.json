@@ -19,7 +19,7 @@
       "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
     },
     "memcached": {
-      "memory": "4096"
+      "memory": "2048"
     }
   },
   "override_attributes": {
