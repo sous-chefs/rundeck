@@ -7,8 +7,5 @@
     "recipe[hadoop::jobtracker]"
   ],
   "override_attributes": {
-    "java": {
-      "install_flavor": "sun"
-    }
   }
 }
