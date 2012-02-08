@@ -17,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-default['java']['install_flavor'] = "openjdk"
+default['java']['install_flavor'] = "sun"
 
 case platform
 when "centos","redhat","fedora"
