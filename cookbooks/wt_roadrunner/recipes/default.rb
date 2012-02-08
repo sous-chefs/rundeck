@@ -12,7 +12,6 @@ include_recipe "windows"
 
 installdir = "#{node['webtrends']['installdir']}\\RoadRunner"
 zip_file = node['webtrends']['roadrunner']['zip_file']
-buildURLs = data_bag("buildURLs")
 build_url = node['webtrends']['roadrunner']['url']
 base_url = node['base_url']
 url_extensions = node['url_extensions']
@@ -32,10 +31,6 @@ netsh_cmd = "netsh http add urlacl url=http://+:8097/ user=#{user}"
 
 windows_feature "NetFx3" do
 	action :install
-end
-
-http_request "TestingConnection" do
-  url "#{base_url}#{url_extensions}"
 end
 
 directory "#{installdir}" do
