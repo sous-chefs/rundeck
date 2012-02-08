@@ -1,0 +1,14 @@
+{
+  "name": "hivemeta",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Hive meta server for hadoop",
+  "run_list": [
+	"recipe[mysql::server]"
+  ],
+  "override_attributes": {
+    "mysql": {
+      "server_root_password":"a5H7qw"
+    }
+  }
+}
