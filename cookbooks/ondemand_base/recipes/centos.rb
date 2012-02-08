@@ -4,7 +4,8 @@ if platform?("centos")
 #Base recipes necessary for a functioning system
 include_recipe "selinux::permissive"
 include_recipe "sudo"
-include_recipe "ad-likewise"
+# this recipe doesn't work -ddvorak
+# include_recipe "ad-likewise"
 include_recipe "openssh"
 include_recipe "ntp"
 
