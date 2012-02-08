@@ -1,6 +1,6 @@
 {
   "name": "DO",
-  "description": "DO Pod",
+  "description": "DevOps Pod",
   "cookbook_versions": {
   },
   "json_class": "Chef::Environment",
