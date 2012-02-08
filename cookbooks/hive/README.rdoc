@@ -1,0 +1,12 @@
+= DESCRIPTION:
+Installs hive 0.8.0
+
+= REQUIREMENTS:
+
+* java
+* hadoop
+
+= ATTRIBUTES:
+
+= USAGE:
+

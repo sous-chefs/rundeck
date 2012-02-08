@@ -1,0 +1,12 @@
+#! /bin/sh
+#
+# Created by configure
+
+LIBS='-lssl -lrt -lpthread ' \
+'./configure' \
+'--disable-option-checking' \
+'--prefix=/usr/local' \
+'--without-python' \
+'--cache-file=/dev/null' \
+'--srcdir=.' \
+"$@"
