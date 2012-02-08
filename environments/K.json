@@ -1,5 +1,5 @@
 {
-  "name": "F",
+  "name": "K",
   "default_attributes": {
     "vc2010x86": {
       "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
@@ -12,7 +12,7 @@
     }
   },
   "json_class": "Chef::Environment",
-  "description": "F Pod",
+  "description": "K Pod",
   "cookbook_versions": {
   },
   "override_attributes": {
