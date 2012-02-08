@@ -24,7 +24,7 @@ end
 package "libshadow-ruby1.8"
 
 #Pull authorization data from the authorization data bag
-auth_config = data_bag_item('authorization', "ondemand")
+auth_config = data_bag_item('authorization', node.chef_environment)
 
 # set root password from authorization databag
 #user "root" do
