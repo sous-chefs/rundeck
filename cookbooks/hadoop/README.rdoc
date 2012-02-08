@@ -1,0 +1,11 @@
+= DESCRIPTION:
+Installs hadoop 0.20.205.0
+
+= REQUIREMENTS:
+
+* java
+
+= ATTRIBUTES:
+
+= USAGE:
+
