@@ -9,8 +9,5 @@
     "recipe[hive]"
   ],
   "override_attributes": {
-    "java": {
-      "install_flavor": "sun"
-    }
   }
 }

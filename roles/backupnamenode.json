@@ -7,8 +7,5 @@
     "recipe[hadoop::backupnamenode]"
   ],
   "override_attributes": {
-    "java": {
-      "install_flavor": "sun"
-    }
   }
 }
