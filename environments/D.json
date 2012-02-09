@@ -7,6 +7,54 @@
     "vc2010x64": {
       "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
     },
+    "wt_dx": {
+      "app_settings_section": {
+        "streamingServiceRoot": "https://ddx.webtrends.com/StreamingServices_v3/"
+      },
+      "cacheenabled": "True",
+      "brandedaccountid": "20578,20663",
+      "cachename": "D_DX",
+      "website_name": "DX",
+      "website_port": "80",
+      "endpoint_address": "net.tcp://dsearch.staging.dmz:8096/SearchService/Search"
+    },
+    "wt_common": {
+      "install_dir": "d:\\wrs",
+      "cassandra_report_column": "D_Report",
+      "installlog_dir": "d:\\logs",
+      "cassandra_snmp_comm": "StagingRO",
+      "cassandra_hosts": [
+        "scass01.staging.dmz",
+        "scass02.staging.dmz",
+        "scass03.staging.dmz"
+      ],
+      "wrsread_group": "STAGINGDMZ\\D.WRS.Read",
+      "cassandra_snmp_port": "",
+      "schedulerdb_host": "dusagedb01",
+      "sched_host": "dmasterdb01",
+      "cache_hosts": [
+        {
+          "name": "xcache01.staging.dmz",
+          "port": "11211"
+        },
+        {
+          "name": "xcache02.staging.dmz",
+          "port": "11211"
+        }
+      ],
+      "cassandra_meta_column": "D_Meta",
+      "velocitycache_hosts": [
+        {
+          "name": "ddxweb01.staging.dmz",
+          "port": "22233"
+        }
+      ],
+      "wrsmodify_group": "STAGINGDMZ\\D.WRS.Modify",
+      "master_host": "dmasterdb01",
+      "cassandra_thrift_port": "",
+      "usage_host": "dusagedb01",
+      "rta_host": "drta01.staging.dmz"
+    },
     "memcached": {
       "memory": "2048"
     }

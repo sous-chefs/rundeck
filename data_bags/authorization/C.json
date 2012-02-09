@@ -5,7 +5,9 @@
     "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/",
     "linux_admins": [
       "STAGINGDMZ\\\\domain-admins",
-      "domain-admins"
+      "domain-admins",
+		"STAGINGDMZ\\\\c.admins",
+		"c.admins"
     ],
     "auth_domain_user": "VMwareJoinDomain",
   "wt_common": {
