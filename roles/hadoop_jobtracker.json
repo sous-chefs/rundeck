@@ -1,5 +1,5 @@
 {
-  "name": "jobtracker",
+  "name": "hadoop_jobtracker",
   "chef_type": "role",
   "json_class": "Chef::Role",
   "description": "Hadoop JobTracker",
