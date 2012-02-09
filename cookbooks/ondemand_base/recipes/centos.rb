@@ -1,6 +1,16 @@
 #Make sure that this recipe only runs on ubuntu systems
 if platform?("centos")
 
+#Save the node to prevent empty run lists on failures
+unless Chef::Config[:solo] do
+  ruby_block "save node data" do
+    block do
+      node.save
+    end
+    action :create
+  end
+end
+
 #Base recipes necessary for a functioning system
 include_recipe "selinux::permissive"
 include_recipe "sudo"
