@@ -1,6 +1,12 @@
 {
   "name": "D",
   "default_attributes": {
+    "webtrends": {
+      "logdir": "D:\\logs",
+      "archive_server": "http://pdxmartink01.webtrends.corp/",
+      "installdir": "d:\\wrs",
+      "install_server": "http://pdxteamcitys01.webtrends.corp/"
+    },
     "vc2010x86": {
       "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
     },
