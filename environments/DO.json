@@ -1,10 +1,5 @@
 {
   "name": "DO",
-  "description": "DevOps Pod",
-  "cookbook_versions": {
-  },
-  "json_class": "Chef::Environment",
-  "chef_type": "environment",
   "default_attributes": {
     "webtrends": {
       "logdir": "D:\\logs",
@@ -18,10 +13,61 @@
     "vc2010x64": {
       "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
     },
+    "wt_common": {
+      "install_dir": "d:\\wrs",
+      "installlog_dir": "d:\\logs",
+      "cassandra_report_column": "DO_Report",
+      "cassandra_hosts": [
+        "cass01.devops.dmz"
+      ],
+      "cassandra_snmp_comm": "StagingRO",
+      "wrsread_group": "DEVOPS\\DO.WRS.Read",
+      "cassandra_snmp_port": "",
+      "cassandra_meta_column": "DO_Meta",
+      "cache_hosts": [
+        {
+          "name": "xcache01.staging.dmz",
+          "port": "11211"
+        },
+        {
+          "name": "xcache02.staging.dmz",
+          "port": "11211"
+        }
+      ],
+      "sched_host": "masterdb01",
+      "schedulerdb_host": "masterdb01",
+      "velocitycache_hosts": [
+        {
+          "name": "dxweb01.devops.dmz",
+          "port": "22233"
+        }
+      ],
+      "master_host": "masterdb01",
+      "wrsmodify_group": "DEVOPS\\DO.WRS.Modify",
+      "cassandra_thrift_port": "",
+      "rta_host": "rta01.devops.dmz",
+      "usage_host": "masterdb01"
+    },
+    "wt_dx": {
+      "app_settings_section": {
+        "streamingServiceRoot": "http://dx.devops.dmz/StreamingServices_v3/"
+      },
+      "cacheenabled": "True",
+      "brandedaccountid": "20578,20663",
+      "cachename": "DO_DX",
+      "website_name": "DX",
+      "website_port": "80",
+      "endpoint_address": "net.tcp://search.devops.dmz:8096/SearchService/Search"
+    },
     "memcached": {
-      "memory": "2048"
+      "memory": "4096"
     }
   },
+  "json_class": "Chef::Environment",
+  "description": "DevOps Pod",
+  "cookbook_versions": {
+  },
   "override_attributes": {
-  }
+  },
+  "chef_type": "environment"
 }
