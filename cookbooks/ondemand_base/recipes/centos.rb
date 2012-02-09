@@ -2,7 +2,7 @@
 if platform?("centos")
 
 #Save the node to prevent empty run lists on failures
-unless Chef::Config[:solo] do
+unless Chef::Config[:solo]
   ruby_block "save node data" do
     block do
       node.save
