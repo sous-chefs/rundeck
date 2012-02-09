@@ -1,5 +1,5 @@
 {
-  "name": "backupnamenode",
+  "name": "hadoop_backupnamenode",
   "chef_type": "role",
   "json_class": "Chef::Role",
   "description": "Hadoop BackupNameNode",
