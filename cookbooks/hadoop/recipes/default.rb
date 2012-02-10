@@ -1,16 +1,16 @@
 
 
-hadoop_namenode = search(:node, "role:namenode")
+hadoop_namenode = search(:node, "role:hadoop_namenode")
 hadoop_namenode = hadoop_namenode.length == 1 ? hadoop_namenode.first[:fqdn] : "localhost"
 
-hadoop_backupnamenode = search(:node, "role:backupnamenode")
+hadoop_backupnamenode = search(:node, "role:hadoop_backupnamenode")
 hadoop_backupnamenode = hadoop_backupnamenode.length == 1 ? hadoop_backupnamenode.first[:fqdn] : "localhost"
 
-hadoop_jobtracker = search(:node, "role:jobtracker")
+hadoop_jobtracker = search(:node, "role:hadoop_jobtracker")
 hadoop_jobtracker = hadoop_jobtracker.length == 1 ? hadoop_jobtracker.first[:fqdn] : "localhost"
 
 hadoop_datanodes = Array.new
-search(:node, "role:datanode").each do |n|
+search(:node, "role:hadoop_datanode").each do |n|
     hadoop_datanodes << n[:fqdn]
 end
 

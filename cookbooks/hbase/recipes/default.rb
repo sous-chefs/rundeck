@@ -1,13 +1,13 @@
 
 
-hadoop_namenode = search(:node, "role:namenode")
+hadoop_namenode = search(:node, "role:hadoop_namenode")
 hadoop_namenode = hadoop_namenode.length == 1 ? hadoop_namenode.first[:fqdn] : "localhost"
 
-hmaster = search(:node, "role:hmaster")
+hmaster = search(:node, "role:hadoop_namenode")
 hmaster = hmaster.length == 1 ? hmaster.first[:fqdn] : "localhost"
 
 regionservers = Array.new
-search(:node, "role:datanode").each do |n|
+search(:node, "role:hadoop_datanode").each do |n|
   regionservers << n[:fqdn]
 end
 
