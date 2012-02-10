@@ -24,7 +24,6 @@ include_recipe "vim"
 include_recipe "man"
 include_recipe "networking_basic"
 
-
 # Install useful tools
 %w{ mtr strace iotop }.each do |pkg|
   package pkg
@@ -39,6 +38,7 @@ auth_config = data_bag_item('authorization', node.chef_environment)
 # set root password from authorization databag
 user "root" do
   password auth_config['root_password']
+  shell "/bin/bash"
 end
 
 # add non-root user from authorization databag
@@ -48,6 +48,7 @@ if auth_config['alternate_user']
     if auth_config['alternate_uid']
       uid auth_config['alternate_uid']
     end
+    shell "/bin/bash"
   not_if "grep #{auth_config['alternate_user']} /etc/passwd"
   end
 end
