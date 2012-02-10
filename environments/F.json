@@ -60,7 +60,7 @@
       "rta_host": "frta01.staging.dmz"
     },
     "memcached": {
-      "memory": "4096"
+      "memory": "2048"
     }
   },
   "json_class": "Chef::Environment",
