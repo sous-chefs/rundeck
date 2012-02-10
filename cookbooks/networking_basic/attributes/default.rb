@@ -33,7 +33,6 @@ default[:redhat][:install_list] = [
   'iproute',
   'iputils',
   'nc',
-  'tcptraceroute',
   'tcputils',
   'tcpdump',
   'elinks',
