@@ -10,7 +10,7 @@
 
 case node['platform']
 when "windows"
-    windows_package "Firefox" do
+    windows_package "Mozilla Firefox 10.0 (x86 en-US)" do
         source node['firefox']['http_url']
         installer_type :custom
         options "-ms"
