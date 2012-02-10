@@ -10,7 +10,7 @@
 
 case node['platform']
 when "windows"
-    windows_package "Notepad Plus Plus" do
+    windows_package "Notepad++" do
         source node['notepadplusplus']['http_url']
         installer_type :custom
         options "/S"
