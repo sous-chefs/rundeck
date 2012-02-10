@@ -7,8 +7,60 @@
     "vc2010x64": {
       "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
     },
+    "wt_dx": {
+      "app_settings_section": {
+        "streamingServiceRoot": "https://fdx.webtrends.com/StreamingServices_v3/"
+      },
+      "cacheenabled": "True",
+      "brandedaccountid": "20578,20663",
+      "cachename": "F_DX",
+      "website_name": "DX",
+      "website_port": "80",
+      "endpoint_address": "net.tcp://fsearch.staging.dmz:8096/SearchService/Search"
+    },
+    "wt_common": {
+      "install_dir": "d:\\wrs",
+      "cassandra_report_column": "F_Report",
+      "installlog_dir": "d:\\logs",
+      "cassandra_snmp_comm": "StagingRO",
+      "cassandra_hosts": [
+        "scass01.staging.dmz",
+        "scass02.staging.dmz",
+        "scass03.staging.dmz"
+      ],
+      "wrsread_group": "STAGINGDMZ\\F.WRS.Read",
+      "cassandra_snmp_port": "",
+      "schedulerdb_host": "fusagedb01",
+      "sched_host": "fmasterdb01",
+      "cache_hosts": [
+        {
+          "name": "xcache01.staging.dmz",
+          "port": "11211"
+        },
+        {
+          "name": "xcache02.staging.dmz",
+          "port": "11211"
+        }
+      ],
+      "cassandra_meta_column": "F_Meta",
+      "velocitycache_hosts": [
+        {
+          "name": "fdxweb01.staging.dmz",
+          "port": "22233"
+        },
+        {
+          "name": "fdxweb02.staging.dmz",
+          "port": "22233"
+        }
+      ],
+      "wrsmodify_group": "STAGINGDMZ\\F.WRS.Modify",
+      "master_host": "fmasterdb01",
+      "cassandra_thrift_port": "",
+      "usage_host": "fusagedb01",
+      "rta_host": "frta01.staging.dmz"
+    },
     "memcached": {
-      "memory": "2048"
+      "memory": "4096"
     }
   },
   "json_class": "Chef::Environment",

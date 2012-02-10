@@ -1,31 +1,33 @@
 {
   "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/",
   "alternate_uid": "2001",
-  "primary_domain": "devops.dmz",
+  "primary_domain": "englab.webtrends.corp",
   "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/",
   "linux_admins": [
-    "DEVOPS\\\\domain-admins",
-    "domain-admins"
+    "WTENGLAB\\\\domain-admins",
+    "domain-admins",
+    "WTENGLAB\\\\j.admins",
+    "j.admins"
   ],
   "auth_domain_user": "VMwareJoinDomain",
   "wt_common": {
     "loader_acct": "wtLoader",
     "loader_pass": "Bijoux1",
-    "ui_user": "DEVOPS\\wtUI",
+    "ui_user": "WTENGLAB\\wtUI",
     "install_acct": "wtInstaller",
     "system_pass": "Bijoux1",
-    "loader_user": "DEVOPS\\wtLoader",
+    "loader_user": "WTENGLAB\\wtLoader",
     "system_acct": "wtSystem",
-    "system_user": "DEVOPS\\wtSystem",
-    "install_user": "DEVOPS\\wtInstaller",
+    "system_user": "WTENGLAB\\wtSystem",
+    "install_user": "WTENGLAB\\wtInstaller",
     "ui_acct": "wtUI",
     "ui_pass": "Bijoux1",
     "install_pass": "Bijoux1"
   },
-  "id": "DO",
+  "id": "J",
   "alternate_user": "bobo",
   "membership_required": [
 
   ],
-  "auth_domain_password": "dm7m7ErsvdH0JzUUnA0L"
+  "auth_domain_password": "H1DvoOXRrG"
 }
