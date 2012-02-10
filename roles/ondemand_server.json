@@ -32,7 +32,7 @@
         "users": [
           "bobo"
         ],
-        "passwordless": true
+        "passwordless": false
       },
       "ad_likewise": {
        "auth_domain_user": "Admin",
