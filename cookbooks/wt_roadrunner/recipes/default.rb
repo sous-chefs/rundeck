@@ -13,8 +13,6 @@ include_recipe "windows"
 installdir = "#{node['webtrends']['installdir']}\\RoadRunner"
 zip_file = node['webtrends']['roadrunner']['zip_file']
 build_url = node['webtrends']['roadrunner']['url']
-base_url = node['base_url']
-url_extensions = node['url_extensions']
 
 pod = node.chef_environment
 pod_data = data_bag_item('common', pod)
@@ -29,9 +27,9 @@ gac_cmd = "#{installdir}\\gacutil.exe /i #{installdir}\\Webtrends.RoadRunner.SSI
 sc_cmd = "\"%WINDIR%\\System32\\sc.exe create WebtrendsRoadRunnerService binPath= #{installdir}\\Webtrends.RoadRunner.Service.exe obj= #{user} password= #{password}\""
 netsh_cmd = "netsh http add urlacl url=http://+:8097/ user=#{user}"
 
-windows_feature "NetFx3" do
-	action :install
-end
+#windows_feature "NetFx3" do
+#	action :install
+#end
 
 directory "#{installdir}" do
 	recursive true
@@ -58,14 +56,6 @@ template "#{installdir}\\log4net.config" do
 	)
 end
 
-ruby_block "install_flag" do
-	block do
-		node.set['rr_installed']
-		node.save
-	end
-	action :nothing
-end
-
 execute "gac" do
 	command gac_cmd
 	cwd installdir
@@ -87,5 +77,11 @@ end
 service "WebtrendsRoadRunnerService" do
 	action :start
 end
-	
 
+ruby_block "install_flag" do
+	block do
+		node.set['rr_installed']
+		node.save
+	end
+	action :create
+end
