@@ -6,7 +6,8 @@
   "run_list": [
     "recipe[hadoop::datanode]",
     "recipe[hbase::regionserver]",
-    "recipe[hive]"
+    "recipe[hive]",
+    "recipe[wt_heatmap::import]"
   ],
   "override_attributes": {
   }
