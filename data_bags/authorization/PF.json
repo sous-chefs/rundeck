@@ -1,28 +1,30 @@
 {
   "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/",
   "alternate_uid": "2001",
-  "primary_domain": "devops.dmz",
+  "primary_domain": "staging.dmz",
   "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/",
   "linux_admins": [
-    "DEVOPS\\\\domain-admins",
-    "domain-admins"
+    "STAGINGDMZ\\\\domain-admins",
+    "domain-admins",
+    "STAGINGDMZ\\\\pf.admins",
+    "pf.admins"
   ],
   "auth_domain_user": "VMwareJoinDomain",
   "wt_common": {
     "loader_acct": "wtLoader",
     "loader_pass": "Bijoux1",
-    "ui_user": "DEVOPS\\wtUI",
+    "ui_user": "STAGINGDMZ\\wtUI",
     "install_acct": "wtInstaller",
     "system_pass": "Bijoux1",
-    "loader_user": "DEVOPS\\wtLoader",
+    "loader_user": "STAGINGDMZ\\wtLoader",
     "system_acct": "wtSystem",
-    "system_user": "DEVOPS\\wtSystem",
-    "install_user": "DEVOPS\\wtInstaller",
+    "system_user": "STAGINGDMZ\\wtSystem",
+    "install_user": "STAGINGDMZ\\wtInstaller",
     "ui_acct": "wtUI",
     "ui_pass": "Bijoux1",
     "install_pass": "Bijoux1"
   },
-  "id": "DO",
+  "id": "PF",
   "alternate_user": "bobo",
   "membership_required": [
 

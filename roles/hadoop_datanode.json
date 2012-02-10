@@ -1,5 +1,5 @@
 {
-  "name": "datanode",
+  "name": "hadoop_datanode",
   "chef_type": "role",
   "json_class": "Chef::Role",
   "description": "Hadoop DataNode",
@@ -9,8 +9,5 @@
     "recipe[hive]"
   ],
   "override_attributes": {
-    "java": {
-      "install_flavor": "sun"
-    }
   }
 }
