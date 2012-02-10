@@ -37,4 +37,4 @@ export HIVE_CONF_DIR="$HIVE_CONF_DIR:/etc/hadoop:/usr/local/hbase/conf"
 # Folder containing extra ibraries required for hive compilation/execution can be controlled by:
 #export HIVE_AUX_JARS_PATH=
 
-export HADOOP_OPTS="$HADOOP_OPTS --auxpath /usr/local/hive/lib/hbase-0.92.0.jar,/usr/local/hive/lib/zookeeper-3.3.1.jar,/usr/local/hive/lib/hive-hbase-handler-0.8.0.jar -hiveconf hbase.zookeeper.quorum=vnamenode01.staging.dmz"
+export HADOOP_OPTS="$HADOOP_OPTS --auxpath /usr/local/hive/lib/hbase-0.92.0.jar,/usr/local/hive/lib/zookeeper-3.3.1.jar,/usr/local/hive/lib/hive-hbase-handler-0.8.1.jar -hiveconf hbase.zookeeper.quorum=vnamenode01.staging.dmz"
