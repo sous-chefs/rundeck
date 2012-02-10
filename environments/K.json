@@ -7,6 +7,54 @@
     "vc2010x64": {
       "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
     },
+    "wt_dx": {
+      "app_settings_section": {
+        "streamingServiceRoot": "https://kdx.englab.webtrends.corp/StreamingServices_v3/"
+      },
+      "cacheenabled": "True",
+      "brandedaccountid": "20578,20663",
+      "cachename": "K_DX",
+      "website_name": "DX",
+      "website_port": "80",
+      "endpoint_address": "net.tcp://ksearch.englab.webtrends.corp:8096/SearchService/Search"
+    },
+    "wt_common": {
+      "install_dir": "d:\\wrs",
+      "cassandra_report_column": "K_Report",
+      "installlog_dir": "d:\\logs",
+      "cassandra_snmp_comm": "StagingRO",
+      "cassandra_hosts": [
+        "scass01.staging.dmz",
+        "scass02.staging.dmz",
+        "scass03.staging.dmz"
+      ],
+      "wrsread_group": "WTENGLAB\\K.WRS.Read",
+      "cassandra_snmp_port": "",
+      "schedulerdb_host": "kusagedb01",
+      "sched_host": "kmasterdb01",
+      "cache_hosts": [
+        {
+          "name": "xcache01.staging.dmz",
+          "port": "11211"
+        },
+        {
+          "name": "xcache02.staging.dmz",
+          "port": "11211"
+        }
+      ],
+      "cassandra_meta_column": "K_Meta",
+      "velocitycache_hosts": [
+        {
+          "name": "kdxweb01.englab.webtrends.corp",
+          "port": "22233"
+        }
+      ],
+      "wrsmodify_group": "WTENGLAB\\K.WRS.Modify",
+      "master_host": "kmasterdb01",
+      "cassandra_thrift_port": "",
+      "usage_host": "kusagedb01",
+      "rta_host": "krta01.englab.webtrends.corp"
+    },
     "memcached": {
       "memory": "2048"
     }

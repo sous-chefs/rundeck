@@ -8,6 +8,20 @@
       "domain-admins"
     ],
     "auth_domain_user": "VMwareJoinDomain",
+  "wt_common": {
+    "loader_acct": "wtLoader",
+    "loader_pass": "Bijoux1",
+    "ui_user": "STAGINGDMZ\\wtUI",
+    "install_acct": "wtInstaller",
+    "system_pass": "Bijoux1",
+    "loader_user": "STAGINGDMZ\\wtLoader",
+    "system_acct": "wtSystem",
+    "system_user": "STAGINGDMZ\\wtSystem",
+    "install_user": "STAGINGDMZ\\wtInstaller",
+    "ui_acct": "wtUI",
+    "ui_pass": "Bijoux1",
+    "install_pass": "Bijoux1"
+  },
     "id": "_default",
     "alternate_user": "bobo",
     "membership_required": [

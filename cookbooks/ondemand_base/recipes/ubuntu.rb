@@ -1,6 +1,16 @@
 #Make sure that this recipe only runs on ubuntu systems
 if platform?("ubuntu")
 
+#Save the node to prevent empty run lists on failures
+unless Chef::Config[:solo]
+  ruby_block "save node data" do
+    block do
+      node.save
+    end
+    action :create
+  end
+end
+
 #Base recipes necessary for a functioning system
 include_recipe "ubuntu"
 include_recipe "sudo"
