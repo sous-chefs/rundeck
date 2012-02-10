@@ -18,6 +18,7 @@ include_recipe "sudo"
 # include_recipe "ad-likewise"
 include_recipe "openssh"
 include_recipe "ntp"
+include_recipe "yum"
 
 #User experience and tools recipes
 include_recipe "vim"
