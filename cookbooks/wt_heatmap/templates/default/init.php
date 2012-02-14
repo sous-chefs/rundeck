@@ -38,7 +38,7 @@ function hadoop_query($qry)
 
 	$begin_time = time();
 
-	$cmd = "cd /usr/local/hive/bin/ && /usr/local/hive/bin/hive --auxpath /usr/local/hive/lib/hbase-0.92.0.jar,/usr/local/hive/lib/zookeeper-3.3.1.jar,/usr/local/hive/lib/hive-hbase-handler-0.8.0.jar -hiveconf hbase.zookeeper.quorum=<%=node[webtrends][heatmaps][zookeeper]%> -e \"" . str_replace("\"","\\\"",$qry) . "\" 2>&1";
+	$cmd = "cd /usr/local/hive/bin/ && /usr/local/hive/bin/hive --auxpath <%= node[:hive][:path]%>/hbase-<%= node[:hbase][:version]%>.jar,/usr/local/hive/lib/zookeeper-3.3.1.jar,<%= node[:hive][:path]%>/hive-hbase-handler-<%= node[:hive][:version]%>.jar -hiveconf hbase.zookeeper.quorum=<% @zookeeper.quorum> -e \"" . str_replace("\"","\\\"",$qry) . "\" 2>&1";
 
 	print "$cmd\n\n";
 
