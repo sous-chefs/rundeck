@@ -18,7 +18,7 @@ $result["n"] = 0;
 
 
 
-$key_prefix = $_GET["page"];
+$key_prefix = "$_GET[accountid];".$_GET["page"];
 
 $start = "$key_prefix;$_GET[startd]";
 $stop = "$key_prefix;$_GET[stopd]";

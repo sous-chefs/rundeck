@@ -14,7 +14,7 @@ $blk_end = max((int)(($_GET["top"]+$stride)/100),0);
 for ($i=$blk_begin;$i<=$blk_end;++$i)
 	$columns[] = "blk:$i";
 
-$key_prefix = $_GET["page"];
+$key_prefix = "$_GET[accountid];".$_GET["page"];
 $start = "$key_prefix;$_GET[startd]";
 $stop = "$key_prefix;$_GET[stopd]";
 

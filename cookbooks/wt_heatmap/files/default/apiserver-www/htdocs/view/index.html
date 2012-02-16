@@ -33,6 +33,7 @@ $(document).ready(function ()
 			, dot: dot
 			, filter: filter
 			, w: w
+			, accountid: $("#accountid").val()
 		}, function (data) {
 			$("#view-button").val("Fetching..");
 			var y_max = data["y_max"]; // how tall the heatmap is
@@ -70,6 +71,7 @@ $(document).ready(function ()
 									+"&stopd="+$("#stopd").val()
 									+"&top="+(cnt*stride)
 									+"&i="+cnt
+									+"&accountid="+$("#accountid").val()
 									+"&page="+escape(page);
 
 					// stick in heatmap_img_cache so if they re-request a heatmap they already looked at, we already have the images for it
@@ -134,6 +136,7 @@ $(document).ready(function ()
 		<ul>
 			<li>Start Date:  <input type="text" id="startd" value="2012-02-01" /></li>
 			<li>Stop Date:  <input type="text" id="stopd" value="2012-02-02" /></li>
+			<li>Account ID: <input type="text" id="accountid" value="21542" /></il>
 			<li>
 				size:
 				<select id="size">
