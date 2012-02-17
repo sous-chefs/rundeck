@@ -32,9 +32,7 @@ ad_config = data_bag_item('authorization', node[:authorization][:ad_auth][:ad_ne
 
 execute "initialize-likewise" do
   command "/usr/bin/domainjoin-cli join #{ad_config['primary_domain']} #{ad_config['auth_domain_user']} \"#{ad_config['auth_domain_password']}\""
-#  only_if "test -n ""`lw-get-status | awk '/Status:.+Unknown/' | tee`"""
-  only_if "which lw-get-current-domain"
-  not_if "lw-get-current-domain"
+  only_if "/opt/likewise/bin/lw-get-status |grep -q Status.*Unknown"
 end
 
 ad_config['linux_admins'].each do |admin_group|
