@@ -1,0 +1,48 @@
+default[:authorization] = {}
+default[:authorization][:ad_likewise] = {}
+default[:authorization][:ad_likewise][:ad_network] = ""
+
+if authorization.ad_likewise.ad_network == ""
+  if attribute?("ipaddress") 
+    case ipaddress 
+      when /10\.0\.0\./,/10\.0\.1\./,/10\.0\.10\./
+        set[:authorization][:ad_likewise][:ad_network] = "prod"
+      when /10\.20\.24\./,/10\.20\.25\./,/10\.20\.26\./,/10\.20\.27\./
+        set[:authorization][:ad_likewise][:ad_network] = "optlab"
+      when /10\.20\.40\./,/10\.20\.50\./
+        set[:authorization][:ad_likewise][:ad_network] = "wks"
+    end
+  elsif attribute?("domain")
+    case domain
+      when "optlab.webtrends.corp"
+        set[:authorization][:ad_likewise][:ad_network] = "optlab"
+    end
+  end
+end
+
+case authorization.ad_likewise.ad_network
+  when "prod"
+    set[:authorization][:ad_likewise][:auth_domain_user] = "puppet"
+    set[:authorization][:ad_likewise][:auth_domain_password] = "sn00kums!"
+    set[:authorization][:ad_likewise][:primary_domain] = "PROD.WIDEMILE.COM"
+    default[:authorization][:ad_likewise][:linux_admins] = [ "WMPROD\\\\domain-admins" ]
+    default[:authorization][:ad_likewise][:membership_required] = []
+  when "optlab"
+    set[:authorization][:ad_likewise][:auth_domain_user] = "ldap-bind"
+    set[:authorization][:ad_likewise][:auth_domain_password] = "sn00kums!"
+    set[:authorization][:ad_likewise][:primary_domain] = "OPTLAB.WEBTRENDS.CORP"
+    default[:authorization][:ad_likewise][:linux_admins] = [ "domain-admins", "linux-admins" ]
+    default[:authorization][:ad_likewise][:membership_required] = [ "domain-admins", "linux-users" ]
+  when "wks"
+    set[:authorization][:ad_likewise][:auth_domain_user] = "winbind"
+    set[:authorization][:ad_likewise][:auth_domain_password] = "P1eas3Jo1nM3"
+    set[:authorization][:ad_likewise][:primary_domain] = "WEBTRENDS.CORP"
+    default[:authorization][:ad_likewise][:linux_admins] = [ "domain-admins", "sea-linux-admins" ]
+    default[:authorization][:ad_likewise][:membership_required] = [ "sealinuxusers" ]
+  else
+    set[:authorization][:ad_likewise][:auth_domain_user] = "winbind"
+    set[:authorization][:ad_likewise][:auth_domain_password] = "P1eas3Jo1nM3"
+    set[:authorization][:ad_likewise][:primary_domain] = "WEBTRENDS.CORP"
+    default[:authorization][:ad_likewise][:linux_admins] = [ "domain-admins", "sea-linux-admins" ]
+    default[:authorization][:ad_likewise][:membership_required] = [ "sea-linux-admins" ]
+end
