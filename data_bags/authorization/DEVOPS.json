@@ -2,5 +2,9 @@
      "id": "DEVOPS",
      "auth_domain_password": "dm8m7ErsvdH0JzUUnA0L",
      "auth_domain_user": "VMwareJoinDomain",
-     "primary_domain": "devops.dmz"
+     "primary_domain": "devops.dmz",
+     "linux_admins": [
+       "DEVOPS\\\\domain-admins",
+       "domain-admins"
+  ]
    }
