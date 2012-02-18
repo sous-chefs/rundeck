@@ -42,25 +42,25 @@ end
 #end
 
 execute "load-reg" do
-  command "/usr/bin/lwregshell import /etc/likewise-open/lsassd.reg"
+  command "/opt/likewise/bin/lwregshell import /etc/likewise-open/lsassd.reg"
   action :nothing
 end
 
 execute "likewise-config-reload" do
-  command "/usr/bin/lw-refresh-configuration"
+  command "/opt/likewise/bin/lw-refresh-configuration"
   action :nothing
   subscribes :run, resources(:execute => "load-reg"), :immediately
 end
 
 execute "clear-cache" do
-  command "/usr/bin/lw-ad-cache --delete-all"
+  command "/opt/likewise/bin/lw-ad-cache --delete-all"
   ignore_failure true
   action :nothing
   subscribes :run, resources(:execute => "likewise-config-reload"), :immediately
 end
 
 ### Services (not always started?)
-service "lsassd" do
+service "likewise" do
   supports :restart => true, :status => true
   action [ :enable, :start ]
   notifies :run, resources(:execute => "clear-cache"), :immediately
@@ -75,13 +75,16 @@ for lwservice in [ "eventlogd", "lwiod", "lwregd", "netlogond"  ] do
 end
 
 ### CONFIGS
-template "/etc/likewise-open/lsassd.reg" do
-  source "lsassd.reg.erb"
-  mode "0644"
-  variables(
-    :ad_membership_required => ad_config['membership_required']
-  )
-  notifies :run, resources(:execute => "load-reg"), :immediately
+
+if platform?("centos,redhat,fedora")
+  template "/etc/likewise-open/lsassd.reg" do
+    source "lsassd.reg.erb"
+    mode "0644"
+    variables(
+      :ad_membership_required => ad_config['membership_required']
+    )
+    notifies :run, resources(:execute => "load-reg"), :immediately
+  end
 end
 
 cookbook_file "nsswitch.conf" do
