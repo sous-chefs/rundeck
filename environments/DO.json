@@ -1,6 +1,11 @@
 {
   "name": "DO",
   "default_attributes": {
+    "authorization": {
+      "ad_auth": {
+        "ad_network": "DEVOPS"
+      }
+    },      
     "webtrends": {
       "logdir": "D:\\logs",
       "archive_server": "http://pdxmartink01.webtrends.corp/",
