@@ -14,8 +14,7 @@ end
 #Base recipes necessary for a functioning system
 include_recipe "selinux::permissive"
 include_recipe "sudo"
-# this recipe doesn't work -ddvorak
-# include_recipe "ad-likewise"
+include_recipe "ad-auth"
 include_recipe "openssh"
 include_recipe "ntp"
 include_recipe "yum"
