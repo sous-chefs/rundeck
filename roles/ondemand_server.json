@@ -18,26 +18,9 @@
 	  "pod": "dev",
       "installdir": "d:\\wrs"
     },
-    "ntp": {
-      "servers": [
-        "time.webtrends.corp"
-      ]
-    },
-    "authorization": {
-      "sudo": {
-        "groups": [
-          "domain-admins",
-          "DEVOPS\\\\domain-admins"
-        ],
-        "users": [
-          "bobo"
-        ],
-        "passwordless": false
-      },
-      "ad_likewise": {
-       "auth_domain_user": "Admin",
-       "auth_domain_password": "Bijoux01",
-       "primary_domain": "DEVOPS.DMZ"
+      "java": {
+       "install_flavor": "oracle",
+       "jdk_version": "6"
       }
     }
   }
