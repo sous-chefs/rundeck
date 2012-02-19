@@ -4,7 +4,17 @@
     "authorization": {
       "ad_auth": {
         "ad_network": "DEVOPS"
-      }
+      },
+     "sudo": {
+       "groups": [
+         "domain-admins",
+         "DEVOPS\\\\domain-admins"
+       ],
+       "users": [
+        "bobo"
+       ],
+       "passwordless": false
+     }
     },      
     "webtrends": {
       "logdir": "D:\\logs",
@@ -71,18 +81,6 @@
       "servers": [
         "time.webtrends.corp"
       ]
-    },
-    "authorization": {
-      "sudo": {
-        "groups": [
-          "domain-admins",
-          "DEVOPS\\\\domain-admins"
-        ],
-        "users": [
-          "bobo"
-        ],
-        "passwordless": false
-      }
     },
     "java": {
       "install_flavor": "oracle",
