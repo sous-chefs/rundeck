@@ -1,29 +1,45 @@
-= DESCRIPTION:
+Description
+===========
 
-Installs memcached and provides a define to set up an instance of memcache via runit.
+Installs memcached and provides a define to set up an instance of
+memcache via runit.
 
-= REQUIREMENTS:
+Changes
+=======
 
-== Platform:
+## v1.0.0:
 
-Tested on Ubuntu 8.10-9.10. Uses the memcached init script by default. A runit service can be set up for instances using the included define.
+* [COOK-706] - Additional info in README
+* [COOK-828] - Package for RHEL systems
 
-== Cookbooks:
+## v0.10.4:
 
-Opscode cookbooks, http://github.com/opscode/cookbooks/tree/master:
+* Current released version
+
+Requirements
+============
+
+Tested on Ubuntu 8.10-9.10. Uses the memcached init script by default.
+A runit service can be set up for instances using the
+`memcache_instance` definition.
+
+## Cookbooks:
 
 * runit
 
-= ATTRIBUTES: 
+Attributes
+==========
 
-The following are node attributes passed to the template for the runit service.
+The following are node attributes passed to the template for the runit
+service.
 
-* memcached[:memory] - maximum memory for memcached instances.
-* memcached[:user] - user to run memcached as.
-* memcached[:port] - port for memcached to listen on.
-* memcached[:listen] - IP address for memcached to listen on.
+* `memcached[:memory]` - maximum memory for memcached instances.
+* `memcached[:user]` - user to run memcached as.
+* `memcached[:port]` - port for memcached to listen on.
+* `memcached[:listen]` - IP address for memcached to listen on.
 
-= USAGE:
+Usage
+=====
 
 Simply set the attributes and it will configure the /etc/memcached.conf file. If you want to use multiple memcached instances, you'll need to modify the recipe to disable the startup script and the template in the default recipe.
 
@@ -31,7 +47,10 @@ Use the define, memcached_instance, to set up a runit service for the named memc
 
   memcached_instance "myproj" 
 
-= LICENSE and AUTHOR:
+The recipe also reads in whether to start up memcached from a /etc/default/memcached "ENABLE_MEMCACHED" setting, which is "yes" by default.
+
+License and Author
+==================
 
 Author:: Joshua Timberman (<joshua@opscode.com>)
 Author:: Joshua Sierles (<joshua@37signals.com>)
