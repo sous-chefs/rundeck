@@ -66,6 +66,23 @@
     },
     "memcached": {
       "memory": "2048"
+    },
+    "ntp": {
+      "servers": [
+        "time.webtrends.corp"
+      ]
+    },
+    "authorization": {
+      "sudo": {
+        "groups": [
+          "domain-admins",
+          "DEVOPS\\\\domain-admins"
+        ],
+        "users": [
+          "bobo"
+        ],
+        "passwordless": false
+      }
     }
   },
   "json_class": "Chef::Environment",
