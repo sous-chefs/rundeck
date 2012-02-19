@@ -17,11 +17,6 @@
       "common_msi": "WebTrendsCommonLib.msi",
 	  "pod": "dev",
       "installdir": "d:\\wrs"
-    },
-      "java": {
-       "install_flavor": "oracle",
-       "jdk_version": "6"
-      }
     }
   }
 }

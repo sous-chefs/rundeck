@@ -83,6 +83,10 @@
         ],
         "passwordless": false
       }
+    },
+    "java": {
+      "install_flavor": "oracle",
+      "jdk_version": "6"
     }
   },
   "json_class": "Chef::Environment",
