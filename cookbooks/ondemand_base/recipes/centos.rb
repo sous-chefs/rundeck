@@ -18,6 +18,7 @@ include_recipe "ad-auth"
 include_recipe "openssh"
 include_recipe "ntp"
 include_recipe "yum"
+include_recipe "nagios::client"
 
 #User experience and tools recipes
 include_recipe "vim"
