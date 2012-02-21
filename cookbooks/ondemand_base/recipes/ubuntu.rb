@@ -15,9 +15,9 @@ end
 include_recipe "ubuntu"
 include_recipe "sudo"
 include_recipe "apt"
-#include_recipe "ad-likewise"
 include_recipe "openssh"
 include_recipe "ntp"
+include_recipe "nagios::client"
 
 #User experience and tools recipes
 include_recipe "vim"
