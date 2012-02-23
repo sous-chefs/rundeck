@@ -13,11 +13,12 @@ end
 
 #Base recipes necessary for a functioning system
 include_recipe "selinux::permissive"
+include_recipe "yum"
+include_recipe "yum::epel"
 include_recipe "sudo"
 include_recipe "ad-auth"
 include_recipe "openssh"
 include_recipe "ntp"
-include_recipe "yum"
 #include_recipe "nagios::client"
 
 #User experience and tools recipes
