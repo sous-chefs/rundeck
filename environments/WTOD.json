@@ -1,6 +1,21 @@
 {
   "name": "WTOD",
   "default_attributes": {
+    "authorization": {
+      "ad_auth": {
+        "ad_network": "DEVOPS"
+      },
+     "sudo": {
+       "groups": [
+         "domain-admins",
+         "STAGINGDMZ\\\\domain-admins"
+       ],
+       "users": [
+        "bobo"
+       ],
+       "passwordless": false
+     }
+    },      
     "vc2010x86": {
       "url": "http://<REPLACE>/repo/windows/ms_vc2010/vcredist_x86.exe"
     },
@@ -59,6 +74,15 @@
     },
     "memcached": {
       "memory": "2048"
+    },
+    "ntp": {
+      "servers": [
+        "time.webtrends.corp"
+      ]
+    },
+    "java": {
+      "install_flavor": "oracle",
+      "jdk_version": "6"
     }
   },
   "json_class": "Chef::Environment",
