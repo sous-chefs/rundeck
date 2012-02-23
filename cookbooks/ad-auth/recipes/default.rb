@@ -41,9 +41,17 @@ end
 #  end
 #end
 
-execute "load-reg" do
-  command "/opt/likewise/bin/lwregshell import /etc/likewise-open/lsassd.reg"
-  action :nothing
+### Load the registry file when notified
+if platform?("centos","redhat","fedora")
+  execute "load-reg" do
+    command "/opt/likewise/bin/lwregshell import /etc/likewise/lsassd.reg"
+    action :nothing
+  end
+else
+  execute "load-reg" do
+    command "/opt/likewise/bin/lwregshell import /etc/likewise-open/lsassd.reg"
+    action :nothing
+  end
 end
 
 execute "likewise-config-reload" do
@@ -59,7 +67,7 @@ execute "clear-cache" do
   subscribes :run, resources(:execute => "likewise-config-reload"), :immediately
 end
 
-### Services (not always started?)
+# Services (not always started?)
 service "likewise" do
   supports :restart => true, :status => true
   action [ :enable, :start ]
@@ -74,9 +82,17 @@ for lwservice in [ "eventlogd", "lwiod", "lwregd", "netlogond"  ] do
   end
 end
 
-### CONFIGS
-
-if platform?("centos,redhat,fedora")
+### Build the registry file
+if platform?("centos","redhat","fedora")
+  template "/etc/likewise/lsassd.reg" do
+    source "lsassd.reg.erb"
+    mode "0644"
+    variables(
+      :ad_membership_required => ad_config['membership_required']
+    )
+    notifies :run, resources(:execute => "load-reg"), :immediately
+  end
+else
   template "/etc/likewise-open/lsassd.reg" do
     source "lsassd.reg.erb"
     mode "0644"
@@ -87,6 +103,8 @@ if platform?("centos,redhat,fedora")
   end
 end
 
+
+# Create a new nsswitch that doesn't include zeroconf settings
 cookbook_file "nsswitch.conf" do
   source "nsswitch.conf"
   path "/etc/nsswitch.conf"
