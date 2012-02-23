@@ -1,0 +1,13 @@
+{
+  "primary_domain": "staging.dmz",
+  "auth_domain_user": "<REPLACE>",
+  "linux_admins": [
+    "stagingdmz\\\\domain-admins",
+    "domain-admins"
+  ],
+  "id": "STAGING",
+  "membership_required": [
+
+  ],
+  "auth_domain_password": "<REPLACE>"
+}
