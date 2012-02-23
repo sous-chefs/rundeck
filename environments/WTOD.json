@@ -3,15 +3,15 @@
   "default_attributes": {
     "authorization": {
       "ad_auth": {
-        "ad_network": "DEVOPS"
+        "ad_network": "NETIQDMZ"
       },
      "sudo": {
        "groups": [
          "domain-admins",
-         "STAGINGDMZ\\\\domain-admins"
+         "NETIQDMZ\\\\domain-admins"
        ],
        "users": [
-        "bobo"
+        "shaggy"
        ],
        "passwordless": false
      }
@@ -39,7 +39,7 @@
       "installlog_dir": "d:\\logs",
       "cassandra_snmp_comm": "<REPLACE>",
       "cassandra_hosts": [
-        "<REPLACE>"
+        "cas.netiq.dmz"
       ],
       "wrsread_group": "<REPLACE>",
       "cassandra_snmp_port": "",
@@ -47,37 +47,48 @@
       "sched_host": "<REPLACE>",
       "cache_hosts": [
         {
-          "name": "<REPLACE>",
+          "name": "pdxcache01v.netiq.dmz",
           "port": "11211"
         },
         {
-          "name": "<REPLACE>",
+          "name": "pdxcache02v.netiq.dmz",
+          "port": "11211"
+        },
+	{
+          "name": "pdxcache03v.netiq.dmz",
           "port": "11211"
         }
       ],
       "cassandra_meta_column": "01_Meta",
       "velocitycache_hosts": [
         {
-          "name": "<REPLACE>",
+          "name": "pdxvcache01v.netiq.dmz",
           "port": "22233"
         },
         {
-          "name": "<REPLACE>",
+          "name": "pdxvcache02v.netiq.dmz",
+          "port": "22233"
+        },
+	{
+          "name": "pdxvcache03v.netiq.dmz",
           "port": "22233"
         }
       ],
       "wrsmodify_group": "<REPLACE>",
-      "master_host": "<REPLACE>",
+      "master_host": "pdxmaster01.netiq.dmz",
       "cassandra_thrift_port": "<REPLACE>",
-      "usage_host": "<REPLACE>",
-      "rta_host": "<REPLACE>"
+      "usage_host": "pdxusagedb01v",
+      "rta_host": "pdxrta01.netiq.dmz"
     },
     "memcached": {
       "memory": "2048"
     },
     "ntp": {
       "servers": [
-        "time.webtrends.corp"
+        "ntp.pdx.netiq.dmz",
+	"ntp.las.netiq.dmz",
+	"ntp.iad.netiq.dmz",
+	"ntp.ams.netiq.dmz"
       ]
     },
     "java": {
