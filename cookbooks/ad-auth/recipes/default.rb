@@ -1,9 +1,10 @@
 #
-# Author:: Bryan McLellan <btm@loftninjas.org>
-# Cookbook Name:: ad-likewise
+# Author:: Tim Smith <tim.smith@webtrends.com>, Peter Crossley <peter.crossley@webtrends.com>
+# Cookbook Name:: ad-auth
 # Recipe:: default
 #
-# Copyright 2010, Bryan McLellan
+# Based on the ad-likewise cookbook: Copyright 2010, Bryan McLellan
+# Copyright 2012, Tim Smith and Peter Crossly
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
