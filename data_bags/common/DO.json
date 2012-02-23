@@ -5,7 +5,7 @@
   "loader_pass": "Bijoux1",
   "install_dir": "d:\\wrs",
   "installlog_dir": "d:\\logs",
-  "cassand1a_report_column": "DO_Report",
+  "cassandra_report_column": "DO_Report",
   "ui_user": "DEVOPS\\wtUI",
   "cassandra_hosts": [
     "cass01.devops.dmz"
