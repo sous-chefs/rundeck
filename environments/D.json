@@ -1,6 +1,21 @@
 {
   "name": "D",
   "default_attributes": {
+    "authorization": {
+      "ad_auth": {
+        "ad_network": "DEVOPS"
+      },
+     "sudo": {
+       "groups": [
+         "domain-admins",
+         "STAGINGDMZ\\\\domain-admins"
+       ],
+       "users": [
+        "bobo"
+       ],
+       "passwordless": false
+     }
+    },      
     "webtrends": {
       "logdir": "D:\\logs",
       "archive_server": "http://pdxmartink01.webtrends.corp/",
@@ -63,6 +78,15 @@
     },
     "memcached": {
       "memory": "2048"
+    },
+    "ntp": {
+      "servers": [
+        "time.webtrends.corp"
+      ]
+    },
+    "java": {
+      "install_flavor": "oracle",
+      "jdk_version": "6"
     }
   },
   "json_class": "Chef::Environment",
