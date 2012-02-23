@@ -3,7 +3,7 @@
   "default_attributes": {
     "authorization": {
       "ad_auth": {
-        "ad_network": "DEVOPS"
+        "ad_network": "NETIQDMZ"
       },
      "sudo": {
        "groups": [
@@ -11,7 +11,7 @@
          "NETIQDMZ\\\\domain-admins"
        ],
        "users": [
-        "bobo"
+        "shaggy"
        ],
        "passwordless": false
      }
@@ -39,7 +39,7 @@
       "installlog_dir": "d:\\logs",
       "cassandra_snmp_comm": "<REPLACE>",
       "cassandra_hosts": [
-        "<REPLACE>"
+        "02cas.netiq.dmz"
       ],
       "wrsread_group": "<REPLACE>",
       "cassandra_snmp_port": "",
@@ -47,37 +47,48 @@
       "sched_host": "<REPLACE>",
       "cache_hosts": [
         {
-          "name": "<REPLACE>",
+          "name": "pdx02cache01v.netiq.dmz",
           "port": "11211"
         },
         {
-          "name": "<REPLACE>",
+          "name": "pdx02cache02v.netiq.dmz",
+          "port": "11211"
+        },
+	{
+          "name": "pdx02cache03v.netiq.dmz",
           "port": "11211"
         }
       ],
       "cassandra_meta_column": "02_Meta",
       "velocitycache_hosts": [
         {
-          "name": "<REPLACE>",
+          "name": "pdx02vcache01v.netiq.dmz",
           "port": "22233"
         },
         {
-          "name": "<REPLACE>",
+          "name": "pdx02vcache02v.netiq.dmz",
+          "port": "22233"
+        },
+	{
+          "name": "pdx02vcache03v.netiq.dmz",
           "port": "22233"
         }
       ],
       "wrsmodify_group": "<REPLACE>",
-      "master_host": "<REPLACE>",
+      "master_host": "pdx02master02.netiq.dmz",
       "cassandra_thrift_port": "<REPLACE>",
-      "usage_host": "<REPLACE>",
-      "rta_host": "<REPLACE>"
+      "usage_host": "pdx02master02.netiq.dmz",
+      "rta_host": "pdx02rta01.netiq.dmz"
     },
     "memcached": {
       "memory": "2048"
     },
     "ntp": {
       "servers": [
-        "time.webtrends.corp"
+        "ntp.pdx.netiq.dmz",
+	"ntp.las.netiq.dmz",
+	"ntp.iad.netiq.dmz",
+	"ntp.ams.netiq.dmz"
       ]
     },
     "java": {
