@@ -3,7 +3,7 @@
   "default_attributes": {
     "authorization": {
       "ad_auth": {
-        "ad_network": "DEVOPS"
+        "ad_network": "STAGINGDMZ"
       },
      "sudo": {
        "groups": [
