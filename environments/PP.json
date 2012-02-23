@@ -17,10 +17,10 @@
      }
     },      
     "vc2010x86": {
-      "url": "http://<REPLACE>/repo/windows/ms_vc2010/vcredist_x86.exe"
+      "url": "http://repo.netiq.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
     },
     "vc2010x64": {
-      "url": "http://<REPLACE>/repo/windows/ms_vc2010/vcredist_x64.exe"
+      "url": "http://repo.netiq.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
     },
     "wt_dx": {
       "app_settings_section": {
@@ -37,14 +37,14 @@
       "install_dir": "d:\\wrs",
       "cassandra_report_column": "01_Report",
       "installlog_dir": "d:\\logs",
-      "cassandra_snmp_comm": "<REPLACE>",
+      "cassandra_snmp_comm": "wtlive",
       "cassandra_hosts": [
         "cas.beta.dmz"
       ],
       "wrsread_group": "<REPLACE>",
-      "cassandra_snmp_port": "",
-      "schedulerdb_host": "<REPLACE>",
-      "sched_host": "<REPLACE>",
+      "cassandra_snmp_port": "1161",
+      "schedulerdb_host": "<lasppmaster01.beta.dmz",
+      "sched_host": "lasppmaster01.beta.dmz",
       "cache_hosts": [
         {
           "name": "lasppcache01v.beta.dmz",
@@ -75,10 +75,10 @@
         }
       ],
       "wrsmodify_group": "<REPLACE>",
-      "master_host": "<REPLACE>",
-      "cassandra_thrift_port": "<REPLACE>",
-      "usage_host": "<REPLACE>",
-      "rta_host": "lasrta01v.beta.dmz"
+      "master_host": "lasppmaster01.beta.dmz",
+      "cassandra_thrift_port": "9160",
+      "usage_host": "lasppmaster01.beta.dmz",
+      "rta_host": "laspprta01v.beta.dmz"
     },
     "memcached": {
       "memory": "2048"
