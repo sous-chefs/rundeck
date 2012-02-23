@@ -57,7 +57,6 @@ if auth_config['alternate_user']
       uid auth_config['alternate_uid']
     end
     shell "/bin/bash"
-  not_if "grep #{auth_config['alternate_user']} /etc/passwd"
   end
 end
 
