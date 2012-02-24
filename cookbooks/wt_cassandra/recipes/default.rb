@@ -8,9 +8,13 @@
 # All rights reserved - Do Not Redistribute
 #
 
-yum_repository "wtlab" do
-	name "wtlab"
-	description "Webtrends Lab"
-	url "http://sops01.staging.dmz/repo/centos/wtlab"
+yum_repository node['wt_yum']['repo'] do
+	name node['wt_yum']['name']
+	description node['wt_yum']['description']
+	url node['wt_yum']['url']
 	action :add
+end
+
+package "apache-cassandra1" do
+	action :install
 end
