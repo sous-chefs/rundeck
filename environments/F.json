@@ -37,6 +37,15 @@
                 "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
+        "wt_base": {
+            "yum": [
+                {
+                    "description": "Webtrends Lab Repo", 
+                    "name": "wtlab", 
+                    "url": "http://sops01.staging.dmz/repo/centos/wtlab"
+                }
+            ]
+        }, 
         "wt_common": {
             "cache_hosts": [
                 {
@@ -88,13 +97,7 @@
             "endpoint_address": "net.tcp://fsearch.staging.dmz:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
-        },
-		"wt_yum": {
-			"repo": "wtlab",
-			"name": "wtlab",
-			"description": "Webtrends Lab Repo",
-			"url": "http://sops01.staging.dmz/repo/centos/wtlab"
-		}
+        }
     }, 
     "description": "F Pod", 
     "json_class": "Chef::Environment", 
