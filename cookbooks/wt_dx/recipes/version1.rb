@@ -1,10 +1,10 @@
 c_hosts = node['wt_common']['cache_hosts']
 
 #Recipe specific
-cfg_cmds = node['wt_dx']['v1']['cfg_cmd']
-app_pool = node['wt_dx']['v1']['app_pool']
+cfg_cmds = node['wt_dx']['v1_1']['cfg_cmd']
+app_pool = node['wt_dx']['v1_1']['app_pool']
 installdir = node['wt_common']['installdir']
-installdir_v1 = node['wt_dx']['v1']['dir']
+installdir_v1 = node['wt_dx']['v1_1']['dir']
 
 template "#{installdir}#{installdir_v1}\\web.config" do
 	source "webConfigv1.erb"
