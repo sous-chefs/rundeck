@@ -37,12 +37,6 @@
                 "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
-        "vc2010x64": {
-            "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-        }, 
-        "vc2010x86": {
-            "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-        }, 
         "webtrends": {
             "archive_server": "http://pdxmartink01.webtrends.corp/", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
