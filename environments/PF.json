@@ -37,12 +37,6 @@
                 "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
-        "vc2010x64": {
-            "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-        }, 
-        "vc2010x86": {
-            "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-        }, 
         "wt_common": {
             "cache_hosts": [
                 {
