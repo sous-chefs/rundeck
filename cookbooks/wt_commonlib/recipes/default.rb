@@ -1,13 +1,11 @@
-logdir = node['webtrends']['logdir']
-installdir = node['webtrends']['installdir']
-archive_url = node['webtrends']['archive_server']
+logdir = node['wt_common']['logdir']
+installdir = node['wt_common']['installdir']
+archive_url = node['wt_common']['archive_server']
 
-pod = node.chef_environment
-pod_data = data_bag_item('common', pod)
-master_host = pod_data['master_host']
+master_host = node['wt_common']['master_host']
 
-common_install_url = node['webtrends']['commonlib']['common_install_url']
-msi_name = node['webtrends']['commonlib']['commonlib_msi']
+common_install_url = node['wt_commonlib']['common_install_url']
+msi_name = node['wt_commonlib']['commonlib_msi']
 
 directory logdir do
 	action :create
