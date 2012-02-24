@@ -6,7 +6,7 @@
   },
   "override_attributes": {
       "wt_commonlib": {
-        "common_install_url": "/CommonLib/WebtrendsCommonLib.msi"
+        "common_install_url": "CommonLib/WebtrendsCommonLib.msi"
       }
   },
   "chef_type": "role",

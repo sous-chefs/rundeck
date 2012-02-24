@@ -12,11 +12,5 @@
   "description": "",
   "chef_type": "role",
   "override_attributes": {
-    "webtrends": {
-      "logdir": "d:\\logs",
-      "common_msi": "WebTrendsCommonLib.msi",
-	  "pod": "dev",
-      "installdir": "d:\\wrs"
-    }
   }
 }

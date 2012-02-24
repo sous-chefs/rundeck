@@ -24,7 +24,7 @@
     },
     "wt_common": {
        "logdir": "d:\\logs",
-      "archive_server": "http://sops01.staging.dmz/",
+      "archive_server": "http://sops01.staging.dmz/repo/webtrends/",
       "installdir": "d:\\wrs",
       "install_server": "http://pdxteamcitys01.webtrends.corp/",
       "cassandra_report_column": "DO_Report",
