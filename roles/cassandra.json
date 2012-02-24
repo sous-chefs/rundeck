@@ -1,11 +1,12 @@
 {
-  "name": "wt_cassandra",
+  "name": "cassandra",
   "default_attributes": {
   },
   "json_class": "Chef::Role",
   "env_run_lists": {
   },
   "run_list": [
+	"recipe[wt_base::yumrepo]",
     "recipe[wt_cassandra]",
     "recipe[java]"
   ],
