@@ -1,5 +1,5 @@
 {
-  "name": "RoadRunner",
+  "name": "wt_roadrunner",
   "description": "Installs the RoadRunner service",
   "json_class": "Chef::Role",
   "default_attributes": {
