@@ -84,7 +84,13 @@
             "endpoint_address": "net.tcp://asearch.staging.dmz:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
-        }
+        },
+		"wt_yum": {
+			"repo": "wtlab",
+			"name": "wtlab",
+			"description": "Webtrends Lab Repo",
+			"url": "http://sops01.staging.dmz/repo/centos/wtlab"
+		}
     }, 
     "description": "A Pod", 
     "json_class": "Chef::Environment", 
