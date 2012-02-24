@@ -7,5 +7,4 @@ version          "0.0.1"
 
 supports	"centos", ">= 6.0"
 
-depends		"wt_base"
 depends		"java"
