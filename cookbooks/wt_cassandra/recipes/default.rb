@@ -8,3 +8,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
+yum_repository "wtlab" do
+	name "wtlab"
+	description "Webtrends Lab"
+	url "http://sops01.staging.dmz/repo/centos/wtlab"
+	action :add
+end
