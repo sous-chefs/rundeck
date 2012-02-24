@@ -3,15 +3,13 @@
   "description": "",
   "json_class": "Chef::Role",
   "default_attributes": {
-    "webtrends": {
-      "dx": {
+      "wt_dx": {
         "v2_2_url": "dx/v2_2.zip",
         "v1_url": "dx/v1_1.zip",
         "v3_url": "guestAuth/repository/download/bt23/.lastFinished/v3.zip",
         "v2_url": "dx/v2.zip",
         "v2_1_url": "dx/v2_1.zip"
       }
-    }
   },
   "override_attributes": {
   },

@@ -15,12 +15,6 @@
        ],
        "passwordless": false
      }
-    },      
-    "webtrends": {
-      "logdir": "D:\\logs",
-      "archive_server": "http://pdxmartink01.webtrends.corp/",
-      "installdir": "d:\\wrs",
-      "install_server": "http://pdxteamcitys01.webtrends.corp/"
     },
     "vc2010x86": {
       "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
@@ -29,8 +23,10 @@
       "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
     },
     "wt_common": {
-      "install_dir": "d:\\wrs",
-      "installlog_dir": "d:\\logs",
+       "logdir": "d:\\logs",
+      "archive_server": "http://sops01.staging.dmz/",
+      "installdir": "d:\\wrs",
+      "install_server": "http://pdxteamcitys01.webtrends.corp/",
       "cassandra_report_column": "DO_Report",
       "cassandra_hosts": [
         "cass01.devops.dmz"
