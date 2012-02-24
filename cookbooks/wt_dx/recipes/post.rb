@@ -1,4 +1,4 @@
-installdir = node['webtrends']['installdir']
+installdir = node['wt_common']['installdir']
 
 execute "icacls" do
         command "icacls \"#{installdir}\\Data Extraction API\" /grant:r IUSR:(oi)(ci)(rx)"
