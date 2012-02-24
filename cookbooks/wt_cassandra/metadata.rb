@@ -7,3 +7,4 @@ version          "0.0.1"
 supports         "centos"
 
 depends			"yum"
+depends			"java"
