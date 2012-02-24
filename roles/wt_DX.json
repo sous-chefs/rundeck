@@ -16,7 +16,7 @@
   "chef_type": "role",
   "run_list": [
     "role[IIS]",
-    "role[commonlib]",
+    "role[wt_commonlib]",
     "recipe[ms_dotnet35]",
     "recipe[vc2010]",
     "recipe[wt_dx::pre]",
