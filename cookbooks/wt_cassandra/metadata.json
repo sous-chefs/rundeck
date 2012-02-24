@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+  },
+  "name": "wt_cassandra",
+  "maintainer_email": "david.dvorak@webtrends.com",
+  "attributes": {
+  },
+  "license": "All rights reserved",
+  "suggestions": {
+  },
+  "platforms": {
+    "centos": ">= 0.0.0"
+  },
+  "maintainer": "Webtrends Inc.",
+  "long_description": "= DESCRIPTION:\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\n\n= USAGE:\n\n",
+  "version": "0.0.1",
+  "recommendations": {
+  },
+  "recipes": {
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "Installs Cassandra",
+  "providing": {
+  }
+}
