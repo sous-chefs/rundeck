@@ -50,7 +50,6 @@ if auth_config['alternate_user']
     end
     shell "/bin/bash"
     supports :manage_home => true
-  not_if "grep #{auth_config['alternate_user']} /etc/passwd"
   end
 end
 
