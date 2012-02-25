@@ -7,8 +7,8 @@
   },
   "run_list": [
 	"recipe[wt_base::yumrepo]",
-    "recipe[wt_cassandra]",
-    "recipe[java]"
+    "recipe[java]",
+    "recipe[wt_cassandra]"
   ],
   "description": "",
   "chef_type": "role",
