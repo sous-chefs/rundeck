@@ -57,6 +57,7 @@ if auth_config['alternate_user']
       uid auth_config['alternate_uid']
     end
     shell "/bin/bash"
+    supports :manage_home => true
   end
 end
 
