@@ -32,6 +32,6 @@ iis_app "DX" do
 	action :add
 end
 
-iis_config auth do
+iis_config auth_cmd do
 	action :config
 end
