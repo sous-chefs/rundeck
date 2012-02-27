@@ -8,9 +8,9 @@
 # All rights reserved - Do Not Redistribute
 # This recipe sets up the base configuration for DX
 
-installdir = node['webtrends']['installdir']
-logdir = node['webtrends']['logdir']
-cfg_cmds = node['webtrends']['dx']['cfg_cmd']
+installdir = node['wt_common']['installdir']
+logdir = node['wt_common']['logdir']
+cfg_cmds = node['wt_dx']['cfg_cmd']
 
 directory logdir do
 	action :create

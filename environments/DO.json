@@ -37,12 +37,6 @@
                 "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
-        "webtrends": {
-            "archive_server": "http://pdxmartink01.webtrends.corp/", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "installdir": "d:\\wrs", 
-            "logdir": "D:\\logs"
-        }, 
         "wt_base": {
             "apt": [
                 {
@@ -62,7 +56,11 @@
                 }
             ]
         }, 
-        "wt_common": {
+        "wt_common": {        		
+       			"logdir": "d:\\logs",
+      			"archive_server": "http://sops01.staging.dmz/repo/webtrends/",
+      			"installdir": "d:\\wrs",
+      			"install_server": "http://pdxteamcitys01.webtrends.corp/",
             "cache_hosts": [
                 {
                     "name": "xcache01.staging.dmz", 
