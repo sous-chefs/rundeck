@@ -38,11 +38,21 @@
             }
         }, 
         "wt_base": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution": "wtlab", 
+                    "name": "wtlab", 
+                    "url": "http://sops01.staging.dmz/repo/apt"
+                }
+            ], 
             "yum": [
                 {
                     "description": "Webtrends Lab Repo", 
                     "name": "wtlab", 
-                    "url": "http://sops01.staging.dmz/repo/centos/wtlab"
+                    "url": "http://sops01.staging.dmz/repo/yum/wtlab"
                 }
             ]
         }, 
