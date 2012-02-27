@@ -13,8 +13,8 @@ pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
 ui_user = user_data['wt_common']['ui_user']
 ui_password = user_data['wt_common']['ui_pass']
-streamingauth_cmd = "/section:applicationPools /[name='#{streamingservices_pool}'].processModel.identityType:SpecificUser /[name='#{streamingservices_pool}'].processModel.userName:#{ui_user} /[name='#{app_pool}'].processModel.password:#{ui_password}"
-webauth_cmd = "/section:applicationPools /[name='#{webservices_pool}'].processModel.identityType:SpecificUser /[name='#{webservices_pool}'].processModel.userName:#{ui_user} /[name='#{app_pool}'].processModel.password:#{ui_password}"
+streamingauth_cmd = "/section:applicationPools /[name='#{streamingservices_pool}'].processModel.identityType:SpecificUser /[name='#{streamingservices_pool}'].processModel.userName:#{ui_user} /[name='#{streamingservices_pool}'].processModel.password:#{ui_password}"
+webauth_cmd = "/section:applicationPools /[name='#{webservices_pool}'].processModel.identityType:SpecificUser /[name='#{webservices_pool}'].processModel.userName:#{ui_user} /[name='#{webservices_pool}'].processModel.password:#{ui_password}"
 
 
 template "#{installdir}#{installdir_v3}\\StreamingServices\\Web.config" do
