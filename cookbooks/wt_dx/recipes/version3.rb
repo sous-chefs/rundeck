@@ -9,6 +9,14 @@ webservices_pool = node['wt_dx']['v3']['webservices']['app_pool']
 installdir = node['wt_common']['installdir']
 installdir_v3 = node['wt_dx']['v3']['dir']
 
+pod = node.chef_environment
+user_data = data_bag_item('authorization', pod)
+ui_user = user_data['wt_common']['ui_user']
+ui_password = user_data['wt_common']['ui_pass']
+streamingauth_cmd = "/section:applicationPools /[name='#{streamingservices_pool}'].processModel.identityType:SpecificUser /[name='#{streamingservices_pool}'].processModel.userName:#{ui_user} /[name='#{app_pool}'].processModel.password:#{ui_password}"
+webauth_cmd = "/section:applicationPools /[name='#{webservices_pool}'].processModel.identityType:SpecificUser /[name='#{webservices_pool}'].processModel.userName:#{ui_user} /[name='#{app_pool}'].processModel.password:#{ui_password}"
+
+
 template "#{installdir}#{installdir_v3}\\StreamingServices\\Web.config" do
 	source "webConfigv3Streaming.erb"
 	variables(
@@ -55,4 +63,12 @@ iis_app "DX" do
 	application_pool "#{webservices_pool}"
 	physical_path "#{installdir}#{installdir_v3}\\Web Services"
 	action :add
+end
+
+iis_config streamingauth_cmd do
+	action :config
+end
+
+iis_config webauth_cmd do
+	action :config
 end
