@@ -1,93 +1,104 @@
 {
-  "name": "DO",
-  "default_attributes": {
-    "authorization": {
-      "ad_auth": {
-        "ad_network": "DEVOPS"
-      },
-     "sudo": {
-       "groups": [
-         "domain-admins",
-         "DEVOPS\\\\domain-admins"
-       ],
-       "users": [
-        "bobo"
-       ],
-       "passwordless": false
-     }
-    },
-    "vc2010x86": {
-      "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-    },
-    "vc2010x64": {
-      "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-    },
-    "wt_common": {
-       "logdir": "d:\\logs",
-      "archive_server": "http://sops01.staging.dmz/repo/webtrends/",
-      "installdir": "d:\\wrs",
-      "install_server": "http://pdxteamcitys01.webtrends.corp/",
-      "cassandra_report_column": "DO_Report",
-      "cassandra_hosts": [
-        "cass01.devops.dmz"
-      ],
-      "cassandra_snmp_comm": "StagingRO",
-      "wrsread_group": "DEVOPS\\DO.WRS.Read",
-      "cassandra_snmp_port": "",
-      "cassandra_meta_column": "DO_Meta",
-      "cache_hosts": [
-        {
-          "name": "xcache01.staging.dmz",
-          "port": "11211"
-        },
-        {
-          "name": "xcache02.staging.dmz",
-          "port": "11211"
+    "chef_type": "environment", 
+    "cookbook_versions": {}, 
+    "default_attributes": {
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "DEVOPS"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins", 
+                    "DEVOPS\\\\domain-admins"
+                ], 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        }, 
+        "memcached": {
+            "memory": "2048"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "wt_base": {
+            "yum": [
+                {
+                    "description": "Webtrends Lab Repo", 
+                    "name": "wtlab", 
+                    "url": "http://sops01.staging.dmz/repo/centos/wtlab"
+                }
+            ]
+        }, 
+        "wt_common": {        		
+       			"logdir": "d:\\logs",
+      			"archive_server": "http://sops01.staging.dmz/repo/webtrends/",
+      			"installdir": "d:\\wrs",
+      			"install_server": "http://pdxteamcitys01.webtrends.corp/",
+            "cache_hosts": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "cassandra_hosts": [
+                "cass01.devops.dmz"
+            ], 
+            "cassandra_meta_column": "DO_Meta", 
+            "cassandra_report_column": "DO_Report", 
+            "cassandra_snmp_comm": "StagingRO", 
+            "cassandra_snmp_port": "", 
+            "cassandra_thrift_port": "", 
+            "install_dir": "d:\\wrs", 
+            "installlog_dir": "d:\\logs", 
+            "master_host": "masterdb01", 
+            "rta_host": "rta01.devops.dmz", 
+            "sched_host": "masterdb01", 
+            "schedulerdb_host": "masterdb01", 
+            "usage_host": "masterdb01", 
+            "velocitycache_hosts": [
+                {
+                    "name": "dxweb01.devops.dmz", 
+                    "port": "22233"
+                }
+            ], 
+            "wrsmodify_group": "DEVOPS\\DO.WRS.Modify", 
+            "wrsread_group": "DEVOPS\\DO.WRS.Read"
+        }, 
+        "wt_dx": {
+            "app_settings_section": {
+                "streamingServiceRoot": "http://dx.devops.dmz/StreamingServices_v3/"
+            }, 
+            "brandedaccountid": "20578,20663", 
+            "cacheenabled": "True", 
+            "cachename": "DO_DX", 
+            "endpoint_address": "net.tcp://search.devops.dmz:8096/SearchService/Search", 
+            "website_name": "DX", 
+            "website_port": "80"
         }
-      ],
-      "sched_host": "masterdb01",
-      "schedulerdb_host": "masterdb01",
-      "velocitycache_hosts": [
-        {
-          "name": "dxweb01.devops.dmz",
-          "port": "22233"
-        }
-      ],
-      "master_host": "masterdb01",
-      "wrsmodify_group": "DEVOPS\\DO.WRS.Modify",
-      "cassandra_thrift_port": "",
-      "rta_host": "rta01.devops.dmz",
-      "usage_host": "masterdb01"
-    },
-    "wt_dx": {
-      "app_settings_section": {
-        "streamingServiceRoot": "http://dx.devops.dmz/StreamingServices_v3/"
-      },
-      "cacheenabled": "True",
-      "brandedaccountid": "20578,20663",
-      "cachename": "DO_DX",
-      "website_name": "DX",
-      "website_port": "80",
-      "endpoint_address": "net.tcp://search.devops.dmz:8096/SearchService/Search"
-    },
-    "memcached": {
-      "memory": "2048"
-    },
-    "ntp": {
-      "servers": [
-        "time.webtrends.corp"
-      ]
-    },
-    "java": {
-      "install_flavor": "oracle",
-      "jdk_version": "6"
-    }
-  },
-  "json_class": "Chef::Environment",
-  "description": "DevOps Pod",
-  "cookbook_versions": {
-  },
-  "override_attributes": {
-  },
-  "chef_type": "environment"
+    }, 
+    "description": "DevOps Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "DO", 
+    "override_attributes": {}
 }
