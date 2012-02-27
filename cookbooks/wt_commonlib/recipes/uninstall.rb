@@ -1,4 +1,5 @@
 logdir = node['wt_common']['logdir']
+msi_name = node['wt_commonlib']['commonlib_msi']
 
 directory logdir do
 	action :create
