@@ -1,4 +1,4 @@
-installdir = node['webtrends']['installdir']
+installdir = node['wt_common']['installdir']
 
 directory "#{installdir}" do
   recursive true
