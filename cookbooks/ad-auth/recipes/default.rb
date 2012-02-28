@@ -45,16 +45,9 @@ end
 #end
 
 # Load the registry file that provides all likewise configuration options
-if platform?("centos","redhat","fedora")
-  execute "load-reg" do
-    command "/opt/likewise/bin/lwregshell import /etc/likewise/lsassd.reg"
-    action :nothing
-  end
-else
-  execute "load-reg" do
-    command "/opt/likewise/bin/lwregshell import /etc/likewise-open/lsassd.reg"
-    action :nothing
-  end
+execute "load-reg" do
+  command "/opt/likewise/bin/lwregshell import /etc/likewise/lsassd.reg"
+  action :nothing
 end
 
 # Reload the config to pull in any changes we've made
@@ -88,26 +81,14 @@ for lwservice in [ "eventlogd", "lwiod", "lwregd", "netlogond"  ] do
 end
 
 # Build the registry file that contains likewise config options
-if platform?("centos","redhat","fedora")
-  template "/etc/likewise/lsassd.reg" do
-    source "lsassd.reg.erb"
-    mode "0644"
-    variables(
-      :ad_membership_required => ad_config['membership_required']
-    )
-    notifies :run, resources(:execute => "load-reg"), :immediately
-  end
-else
-  template "/etc/likewise-open/lsassd.reg" do
-    source "lsassd.reg.erb"
-    mode "0644"
-    variables(
-      :ad_membership_required => ad_config['membership_required']
-    )
-    notifies :run, resources(:execute => "load-reg"), :immediately
-  end
+template "/etc/likewise/lsassd.reg" do
+  source "lsassd.reg.erb"
+  mode "0644"
+  variables(
+    :ad_membership_required => ad_config['membership_required']
+  )
+  notifies :run, resources(:execute => "load-reg"), :immediately
 end
-
 
 # Create a new nsswitch that doesn't include zeroconf settings
 cookbook_file "nsswitch.conf" do
@@ -117,5 +98,3 @@ cookbook_file "nsswitch.conf" do
   group "root"
   mode 0644
 end
-
-
