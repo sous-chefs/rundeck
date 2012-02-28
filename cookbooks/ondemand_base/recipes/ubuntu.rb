@@ -53,4 +53,7 @@ if auth_config['alternate_user']
   end
 end
 
+#Now that the local user is created attach the system to AD
+include_recipe "ad-auth"
+
 end
