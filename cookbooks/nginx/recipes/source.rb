@@ -22,10 +22,6 @@
 
 include_recipe "build-essential"
 
-unless platform?("centos","redhat","fedora")
-  include_recipe "runit"
-end
-
 packages = value_for_platform(
     ["centos","redhat","fedora"] => {'default' => ['pcre-devel', 'openssl-devel']},
     "default" => ['libpcre3', 'libpcre3-dev', 'libssl-dev']
@@ -62,6 +58,13 @@ bash "compile_nginx_source" do
     make && make install
   EOH
   creates node[:nginx][:src_binary]
+  notifies :restart, "service[nginx]"
+end
+
+user node[:nginx][:user] do
+  system true
+  shell "/bin/false"
+  home "/var/www"
 end
 
 directory node[:nginx][:log_dir] do
@@ -76,11 +79,39 @@ directory node[:nginx][:dir] do
   mode "0755"
 end
 
-unless platform?("centos","redhat","fedora")
+case node[:nginx][:init_style]
+when "runit"
+  include_recipe "runit"
+
   runit_service "nginx"
 
   service "nginx" do
-    subscribes :restart, resources(:bash => "compile_nginx_source")
+    supports :status => true, :restart => true, :reload => true
+    reload_command "[[ -f #{node[:nginx][:pid]} ]] && kill -HUP `cat #{node[:nginx][:pid]}` || true"
+  end
+when "bluepill"
+  include_recipe "bluepill"
+
+  template "#{node['bluepill']['conf_dir']}/nginx.pill" do
+    source "nginx.pill.erb"
+    mode 0644
+    variables(
+      :working_dir => node[:nginx][:install_path],
+      :src_binary => node[:nginx][:src_binary],
+      :nginx_dir => node[:nginx][:dir],
+      :log_dir => node[:nginx][:log_dir],
+      :pid => node[:nginx][:pid]
+    )
+  end
+
+  bluepill_service "nginx" do
+    action [ :enable, :load ]
+  end
+
+  service "nginx" do
+    supports :status => true, :restart => true, :reload => true
+    reload_command "[[ -f #{node[:nginx][:pid]} ]] && kill -HUP `cat #{node[:nginx][:pid]}` || true"
+    action :nothing
   end
 else
   #install init db script
@@ -103,10 +134,8 @@ else
   service "nginx" do
     supports :status => true, :restart => true, :reload => true
     action :enable
-    subscribes :restart, resources(:bash => "compile_nginx_source")
   end
 end
-
 
 %w{ sites-available sites-enabled conf.d }.each do |dir|
   directory "#{node[:nginx][:dir]}/#{dir}" do
@@ -131,7 +160,7 @@ template "nginx.conf" do
   owner "root"
   group "root"
   mode "0644"
-  notifies :restart, resources(:service => "nginx"), :immediately
+  notifies :reload, resources(:service => "nginx"), :immediately
 end
 
 cookbook_file "#{node[:nginx][:dir]}/mime.types" do
@@ -139,5 +168,5 @@ cookbook_file "#{node[:nginx][:dir]}/mime.types" do
   owner "root"
   group "root"
   mode "0644"
-  notifies :restart, resources(:service => "nginx"), :immediately
+  notifies :reload, resources(:service => "nginx"), :immediately
 end
