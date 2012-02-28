@@ -41,9 +41,9 @@
             "apt": [
                 {
                     "components": [
-                        "main"
+                        "wtlab"
                     ], 
-                    "distribution": "wtlab", 
+                    "distribution": "lucid", 
                     "name": "wtlab", 
                     "url": "http://sops01.staging.dmz/repo/apt"
                 }
@@ -56,11 +56,8 @@
                 }
             ]
         }, 
-        "wt_common": {        		
-       			"logdir": "d:\\logs",
-      			"archive_server": "http://sops01.staging.dmz/repo/webtrends/",
-      			"installdir": "d:\\wrs",
-      			"install_server": "http://pdxteamcitys01.webtrends.corp/",
+        "wt_common": {
+            "archive_server": "http://sops01.staging.dmz/repo/webtrends/", 
             "cache_hosts": [
                 {
                     "name": "xcache01.staging.dmz", 
@@ -80,7 +77,10 @@
             "cassandra_snmp_port": "", 
             "cassandra_thrift_port": "", 
             "install_dir": "d:\\wrs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "installdir": "d:\\wrs", 
             "installlog_dir": "d:\\logs", 
+            "logdir": "d:\\logs", 
             "master_host": "masterdb01", 
             "rta_host": "rta01.devops.dmz", 
             "sched_host": "masterdb01", 
