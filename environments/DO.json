@@ -55,7 +55,7 @@
                     "url": "http://sops01.staging.dmz/repo/yum/wtlab"
                 }
             ]
-        }, 
+        },
         "wt_base": {
             "apt": [
                 {
