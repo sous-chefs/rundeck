@@ -18,6 +18,18 @@ include_recipe "yum::epel"
 include_recipe "sudo"
 include_recipe "openssh"
 include_recipe "ntp"
+
+#Add the Webtrends Yum repo
+node['ondemand_server']['yum'].each do |yumrepo|
+	yum_repository yumrepo['name'] do
+		repo_name yumrepo['name']
+		description yumrepo['description']
+		url yumrepo['url']
+		action :add
+	end
+end
+
+#Monitoring
 #include_recipe "nagios::client"
 
 #User experience and tools recipes
