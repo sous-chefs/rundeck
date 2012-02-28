@@ -16,7 +16,6 @@ include_recipe "selinux::permissive"
 include_recipe "yum"
 include_recipe "yum::epel"
 include_recipe "sudo"
-include_recipe "ad-auth"
 include_recipe "openssh"
 include_recipe "ntp"
 #include_recipe "nagios::client"
@@ -60,5 +59,8 @@ if auth_config['alternate_user']
     supports :manage_home => true
   end
 end
+
+#Now that the local user is created attach the system to AD
+include_recipe "ad-auth"
 
 end
