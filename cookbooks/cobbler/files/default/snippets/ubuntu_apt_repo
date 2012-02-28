@@ -1,0 +1,11 @@
+#if "optlab" in $system_name.lower()
+d-i     apt-setup/local0/repository string http://apt.optlab.webtrends.corp/webtrends $os_version webtrends widemile 
+d-i     apt-setup/local0/key string http://apt.optlab.webtrends.corp/webtrends/repo.key
+#elif "staging" in $system_name.lower()
+d-i     apt-setup/local0/repository string http://apt.optlab.webtrends.corp/webtrends $os_version webtrends widemile 
+d-i     apt-setup/local0/key string http://apt.optlab.webtrends.corp/webtrends/repo.key
+#else
+d-i     apt-setup/local0/repository string http://apt.optimize.dmz $os_version webtrends
+d-i     apt-setup/local0/key string http://apt.optimize.dmz/repo.key
+#end if
+
