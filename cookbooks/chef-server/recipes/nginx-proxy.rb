@@ -1,7 +1,7 @@
 #
-# Author:: Joshua Timberman <joshua@opscode.com>
+# Author:: Jamie Winsor <jamie@vialstudios.com>
 # Cookbook Name:: chef-server
-# Recipe:: apache-proxy
+# Recipe:: nginx-proxy
 #
 # Copyright 2009-2011, Opscode, Inc
 #
@@ -17,26 +17,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include_recipe "nginx::source"
+
 root_group = value_for_platform(
   "openbsd" => { "default" => "wheel" },
   "freebsd" => { "default" => "wheel" },
   "default" => "root"
 )
-
-node['apache']['listen_ports'] << "443" unless node['apache']['listen_ports'].include?("443")
-if node['chef_server']['webui_enabled']
-  node['apache']['listen_ports'] << "444" unless node['apache']['listen_ports'].include?("444")
-end
-
-include_recipe "apache2"
-include_recipe "apache2::mod_ssl"
-include_recipe "apache2::mod_proxy"
-include_recipe "apache2::mod_proxy_http"
-include_recipe "apache2::mod_proxy_balancer"
-include_recipe "apache2::mod_rewrite"
-include_recipe "apache2::mod_headers"
-include_recipe "apache2::mod_expires"
-include_recipe "apache2::mod_deflate"
 
 directory "/etc/chef/certificates" do
   owner "chef"
@@ -55,13 +42,20 @@ bash "Create SSL Certificates" do
   not_if { ::File.exists?("/etc/chef/certificates/chef-server-proxy.pem") }
 end
 
-web_app "chef-server-proxy" do
-  template "chef_server.conf.erb"
-  api_server_name node['chef_server']['proxy']['api_server_name']
-  api_server_aliases node['chef_server']['proxy']['api_aliases']
-  api_port node['chef_server']['proxy']['api_port']
-  webui_server_name node['chef_server']['proxy']['webui_server_name']
-  webui_server_aliases node['chef_server']['proxy']['webui_aliases']
-  webui_port node['chef_server']['proxy']['webui_port']
-  log_dir node['apache']['log_dir']
+template "#{node[:nginx][:dir]}/sites-available/chef_server_proxy.conf" do
+  source "chef_server.nginx.conf.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+  notifies :restart, "service[nginx]"
+  variables(
+    :api_server_name => node['chef_server']['proxy']['api_server_name'],
+    :api_aliases => node['chef_server']['proxy']['api_aliases'],
+    :api_port => node['chef_server']['proxy']['api_port'],
+    :webui_server_name => node['chef_server']['proxy']['webui_server_name'],
+    :webui_aliases => node['chef_server']['proxy']['webui_aliases'],
+    :webui_port => node['chef_server']['proxy']['webui_port']
+  )
 end
+
+nginx_site "chef_server_proxy.conf"
