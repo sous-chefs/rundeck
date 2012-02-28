@@ -41,17 +41,17 @@
             "apt": [
                 {
                     "components": [
-                        "wtlab"
+                        "main"
                     ], 
                     "distribution": "lucid", 
-                    "name": "wtlab", 
+                    "name": "main", 
                     "url": "http://sops01.staging.dmz/repo/apt"
                 }
             ], 
             "yum": [
                 {
                     "description": "Webtrends Lab Repo", 
-                    "name": "wtlab", 
+                    "name": "main", 
                     "url": "http://sops01.staging.dmz/repo/yum/wtlab"
                 }
             ]
