@@ -9,4 +9,5 @@ supports	"ubuntu", ">= 10.04"
 supports	"centos", ">= 6.0"
 supports	"windows"
 
+depends		"apt"
 depends		"yum"
