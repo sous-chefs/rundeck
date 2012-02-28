@@ -1,0 +1,46 @@
+# bootstrap chef
+
+#set run_list = $getVar('run_list','')
+#set environment = $getVar('environment','')
+
+# set the clock
+ntpdate pool.ntp.org
+
+# setup rbel repo
+rpm -Uvh http://rbel.frameos.org/rbel6
+
+# install chef
+yum -y --nogpgcheck install rubygem-chef
+chkconfig chef-client on
+
+# fetch validation.pem
+wget -O /etc/chef/validation.pem http://$http_server/validation.pem
+
+# create client.rb
+cat > /etc/chef/client.rb << EOF
+log_level        :info
+log_location     STDOUT
+chef_server_url  "$chef_server"
+validation_client_name 'chef-validator'
+EOF
+
+# generate first run json
+runlist=$run_list
+realrunlist=\$(for item in \${runlist//,/ }; do echo -n "\"${item}\","; done | sed 's/,$//')
+echo "{ \"run_list\": [ $realrunlist ] }" > /etc/chef/first-boot.json
+
+# set chef environment if running chef 0.10+ and environment is specified
+if [[ ! `chef-client --version` =~ 0\.9\.* && -n "$environment" ]] ; then
+  chef_environment="-E $environment"
+fi
+
+# run chef for the first time
+chef-client ${chef_environment} -j /etc/chef/first-boot.json
+
+# run chef for the first time
+chef-client -j /etc/chef/first-boot.json
+
+# cleanup
+chmod 600 /etc/chef/validation.pem 
+rm /etc/chef/first-boot.json
+

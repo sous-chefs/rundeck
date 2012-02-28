@@ -1,0 +1,107 @@
+#
+# Cookbook Name:: cobbler
+# Recipe:: default
+#
+# Copyright 2011, Webtrends
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+%w{ cobbler cobbler-web isc-dhcp-server }.each do |pkg|
+  package pkg
+end
+
+template "/etc/cobbler/settings" do
+  source "settings.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  variables(
+    :server => node['ipaddress'],
+    :next_server => node['ipaddress'],
+    :manage_dhcp => node['cobbler']['manage_dhcp'],
+    :pxe_just_once => node['cobbler']['pxe_just_once']
+   )
+  notifies :restart, "service[cobbler]"
+end
+
+template "/etc/cobbler/dhcp.template" do
+  source "dhcp.template.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  variables(
+    :subnets => node['cobbler']['subnets']
+  )
+  notifies :run, "execute[cobbler sync]"
+end
+
+# fetch kickstarts and snippets
+%w{ kickstarts snippets installer }.each do |dir|
+  remote_directory "/var/lib/cobbler/#{dir}" do
+    source dir
+    files_owner "root"
+    files_group "root"
+    notifies :run, "execute[cobbler sync]"
+  end
+end
+
+# fetch distros and profiles
+%w{ config/distros.d config/profiles.d }.each do |dir|
+  remote_directory "/var/lib/cobbler/#{dir}" do
+    source dir
+    files_owner "root"
+    files_group "root"
+    notifies :restart, "service[cobbler]"
+  end
+end
+
+# for local auth
+template "/etc/cobbler/users.digest" do
+  source "users.digest.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  notifies :restart, "service[cobbler]"  
+end
+
+# grab pxelinux.0
+file "/var/lib/tftpboot/pxelinux.0" do
+  content IO.read("/usr/lib/syslinux/pxelinux.0") rescue nil
+end
+
+# make validation.pem available
+link "/var/www/validation.pem" do
+  to Chef::Config[:validation_key]
+end
+
+# firstboot script
+%w{ firstboot.sh firstbootrc.sh }.each do |file|
+  cookbook_file "/var/www/#{file}" do
+    source file
+    owner "root"
+    group "root"
+    mode 0755
+  end
+end
+
+execute "cobbler sync" do
+  action :nothing
+  command "/usr/bin/cobbler sync"
+  ignore_failure true
+end
+
+service "cobbler" do
+  action [:start, :enable]
+  supports :status => true
+end
