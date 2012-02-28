@@ -41,9 +41,9 @@
             "apt": [
                 {
                     "components": [
-                        "main"
+                        "wtlab"
                     ], 
-                    "distribution": "wtlab", 
+                    "distribution": "lucid", 
                     "name": "wtlab", 
                     "url": "http://sops01.staging.dmz/repo/apt"
                 }
