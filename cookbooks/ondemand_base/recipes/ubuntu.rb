@@ -11,6 +11,9 @@ unless Chef::Config[:solo]
   end
 end
 
+#Set chef-client to run on a regular schedule (30 mins)
+include_recipe "chef-client"
+
 #Base recipes necessary for a functioning system
 include_recipe "ubuntu"
 include_recipe "sudo"
