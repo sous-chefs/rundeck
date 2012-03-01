@@ -51,7 +51,7 @@
             "yum": [
                 {
                     "description": "Webtrends Lab Repo", 
-                    "name": "main", 
+                    "name": "webtrends", 
                     "url": "http://sops01.staging.dmz/repo/yum/wtlab"
                 }
             ]
