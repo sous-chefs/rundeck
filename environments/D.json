@@ -36,7 +36,26 @@
             "x86": {
                 "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
-        }, 
+        },
+        "ondemand_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution": "lucid", 
+                    "name": "main", 
+                    "url": "http://sops01.staging.dmz/repo/apt"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Lab Repo", 
+                    "name": "webtrends", 
+                    "url": "http://sops01.staging.dmz/repo/yum/wtlab"
+                }
+            ]
+        },
         "webtrends": {
             "archive_server": "http://pdxmartink01.webtrends.corp/", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
