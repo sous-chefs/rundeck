@@ -18,7 +18,7 @@ end
 
 ruby_block "install_flag" do
 	block do
-		node.delete[:rr_installed]
+		node.delete('rr_installed')
 		node.save
 	end
 	action :create
