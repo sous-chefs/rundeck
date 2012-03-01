@@ -88,3 +88,10 @@ directory "#{oem_dir}" do
   recursive true
   action :delete
 end
+
+ruby_block "update_node_version" do
+  block do      
+    node.set['wt_dx']['build_version'] = nil
+    node.save
+  end
+end

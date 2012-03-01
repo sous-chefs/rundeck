@@ -48,3 +48,17 @@ windows_zipfile "#{installdir}#{v3_installdir}" do
   action :unzip	
   not_if {::File.exists?("#{installdir}#{v3_installdir}\\StreamingServices\\log4net.config")}
 end
+
+ruby_block "update_node_version" do
+  block do  
+    require "net/http"
+    require "uri"
+    uri = URI.parse("http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt23/.lastFinished/buildnum.txt")
+    response = Net::HTTP.get(uri)
+    node.set['wt_dx']['build_version'] = response
+    node.save
+  end
+end
+
+  
+
