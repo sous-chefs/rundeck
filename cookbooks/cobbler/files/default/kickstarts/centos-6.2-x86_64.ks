@@ -33,8 +33,9 @@ timezone --utc Etc/UTC
 install
 # Clear the Master Boot Record
 zerombr
-# Allow anaconda to partition the system as needed
-autopart
+
+# Partitioning
+$SNIPPET('centos_partitioning')
 
 %pre
 $SNIPPET('log_ks_pre')
