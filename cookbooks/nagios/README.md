@@ -183,6 +183,9 @@ This recipe was written based on the [Nagios Integration Guide](http://www.pager
 Data Bags
 =========
 
+Users
+-------------
+
 Create a `users` data bag that will contain the users that will be able to log into the Nagios webui. Each user can use htauth with a specified password, or an openid. Users that should be able to log in should be in the sysadmin group. Example user data bag item:
 
     {
@@ -206,6 +209,19 @@ The openid must have the http:// and trailing /. The htpasswd must be the hashed
     nagiosadmin:{SHA}oCagzV4lMZyS7jl2Z0WlmLxEkt4=
 
 For example use the `{SHA}oCagzV4lMZyS7jl2Z0WlmLxEkt4=` value in the data bag.
+
+Services
+-------------
+
+Create a nagios\_services data bag that will contain definitions for services to be monitored.  This allows you to add monitoring rules without mucking about in the services and commands templates.  Each service will be named based on the id of the data bag and the command will be named withe the same id prepended with "check\_".  Just make sure the id in your data bag doesn't conflict with a service or command already defined in the templates.
+
+Here's an example of a service check for sshd that you could apply to all hostgroups:
+
+    {
+    "id": "ssh",
+    "hostgroup_name": "all",
+    "command_line": "$USER1$/check_ssh $HOSTADDRESS$"
+    }
 
 Roles
 =====
@@ -307,33 +323,6 @@ The searches used are confined to the node's `chef_environment`. If you do not u
     description "Systems in the Production Environment"
 
     % knife environment from file production.rb
-
-
-Changes/Roadmap
-===============
-
-## v1.2.0:
-
-* [COOK-837] - Adding a Recipe for PagerDuty integration
-* [COOK-868] - use node, not @node in template
-* [COOK-869] - corrected NRPE PID path
-* [COOK-907] - LWRP for defining NRPE checks
-* [COOK-917] - changes to `mod_auth_openid` module
-
-## v1.0.4:
-
-* [COOK-838] - Add HTTPS Option to Nagios Cookbook
-
-## v1.0.2:
-
-* [COOK-636] - Nagios server recipe attempts to start too soon
-* [COOK-815] - Nagios Config Changes Kill Nagios If Config Goes Bad
-
-## v1.0.0:
-
-* Use Chef 0.10's `node.chef_environment` instead of `node['app_environment']`.
-* source installation support on both client and server sides
-* initial RHEL/CentOS/Fedora support
 
 License and Author
 ==================
