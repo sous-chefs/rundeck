@@ -10,7 +10,7 @@
 
 include_recipe "windows"
 
-installdir = "#{node['wt_common']['installdir']}\\RoadRunner"
+installdir = "#{node['wt_common']['install_dir']}\\RoadRunner"
 zip_file = node['wt_roadrunner']['zip_file']
 install_url = node['wt_common']['install_server']
 build_url = node['wt_roadrunner']['url']
@@ -22,6 +22,9 @@ user = user_data['wt_common']['loader_user']
 password = user_data['wt_common']['loader_pass']
 
 rr_url = "#{install_url}#{build_url}#{zip_file}"
+
+Chef::Log.info "RR URL: #{rr_url}"
+Chef::Log.info "RR DIR: #{installdir}"
 
 gac_cmd = "#{installdir}\\gacutil.exe /i #{installdir}\\Webtrends.RoadRunner.SSISPackageRunner.dll"
 sc_cmd = "\"%WINDIR%\\System32\\sc.exe create WebtrendsRoadRunnerService binPath= #{installdir}\\Webtrends.RoadRunner.Service.exe obj= #{user} password= #{password}\""
@@ -48,7 +51,7 @@ end
 template "#{installdir}\\log4net.config" do
 	source "log4net.erb"
 	variables(		
-		:logdir => "#{node['wt_common']['installdir']}\\logs"
+		:logdir => "#{node['wt_common']['install_dir']}\\logs"
 	)
 end
 
