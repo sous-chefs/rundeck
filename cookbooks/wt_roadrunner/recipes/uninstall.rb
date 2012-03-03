@@ -16,6 +16,12 @@ execute "netsh" do
 	ignore_failure true
 end
 
+# delete install folder
+directory "#{node['wt_common']['install_dir']}\\RoadRunner" do
+	recursive true
+	action :delete
+end
+
 ruby_block "install_flag" do
 	block do
 		node.delete('rr_installed')
