@@ -22,6 +22,17 @@ include_recipe "openssh"
 include_recipe "ntp"
 #include_recipe "nagios::client"
 
+# Setup the Webtrends apt repo
+node['ondemand_server']['apt'].each do |aptrepo|
+       apt_repository aptrepo['name'] do
+               repo_name aptrepo['name']
+               distribution aptrepo['distribution']
+               uri aptrepo['url']
+               components aptrepo['components']
+               action :add
+       end
+end
+
 #User experience and tools recipes
 include_recipe "vim"
 include_recipe "man"
