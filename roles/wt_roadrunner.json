@@ -3,18 +3,8 @@
   "description": "Installs the RoadRunner service",
   "json_class": "Chef::Role",
   "default_attributes": {
-    "webtrends": {
-      "roadrunner": {
-        "url": "http://teamcity.webtrends.corp/repository/download/bt28/.lastSuccessful"
-      }
-    }
   },
   "override_attributes": {
-    "webtrends": {
-      "roadrunner": {
-        "zip_file": "RoadRunner.zip"
-      }
-    }
   },
   "chef_type": "role",
   "run_list": [
