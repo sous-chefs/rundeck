@@ -55,7 +55,7 @@ ruby_block "update_node_version" do
     require "uri"
     uri = URI.parse("http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt23/.lastFinished/buildnum.txt")
     response = Net::HTTP.get(uri)
-    node.set['wt_dx']['build_version'] = response
+    node.set['dx_version'] = response
     node.save
   end
 end
