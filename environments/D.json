@@ -58,12 +58,6 @@
                 }
             ]
         },
-        "webtrends": {
-            "archive_server": "http://pdxmartink01.webtrends.corp/", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "installdir": "d:\\wrs", 
-            "logdir": "D:\\logs"
-        }, 
         "wt_base": {
             "apt": [
                 {
