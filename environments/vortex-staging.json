@@ -1,0 +1,12 @@
+{
+  "name": "heatmap-staging",
+  "json_class": "Chef::Environment",
+  "description": "Webtrends Heatmap Staging Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+    "java": {
+        "install_flavor": "oracle", 
+        "jdk_version": "6"
+    }
+  }
+}
