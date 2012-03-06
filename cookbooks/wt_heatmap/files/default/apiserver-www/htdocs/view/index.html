@@ -6,10 +6,14 @@
 $(document).ready(function ()
 {
 	var heatmap_img_cache = {};
+	$("#pages").change(function ()
+	{
+		$("#key").val($("#pages").val());
+	});
 	
 	$("#view-button").click(function ()
 	{
-		var page = $("#pages").val(); // page we want to heat heatmap for, currently use a URI
+		var page = $("#key").val(); // page we want to heat heatmap for, currently use a URI
 		if (page == "")
 		{
 			alert("Choose a page");
@@ -170,7 +174,9 @@ $(document).ready(function ()
 					<option value="webtrends.com;7e5749e49898bb4d0b817901fc10908729e6987a">(webtrends.com;7e5749e49898bb4d0b817901fc10908729e6987a) /support/</option>
 					<option value="webtrends.com;a984620d9e657930155c1acdf5a17bed8a748580">(webtrends.com;a984620d9e657930155c1acdf5a17bed8a748580) /solutions/social/</option>
 					<option value="webtrends.com;ed35ac52f159a1406dbfc1ecd3092acebf5503ff">(webtrends.com;ed35ac52f159a1406dbfc1ecd3092acebf5503ff) /solutions/mobile/</option>
+					<option value="www.motorcycle-superstore.com;3e41d3537254d4ca451b3c8120c2b200ec93d05f">(www.motorcycle-superstore.com;3e41d3537254d4ca451b3c8120c2b200ec93d05f) motorcycle-usa test-log.  account-id: 20408</option>
 				</select>
+				<br/><input type="text" id="key" value="" style="width: 600px;" />
 			</li>
 			<li>
 				<input id="view-button" type="button" value="Render" />
