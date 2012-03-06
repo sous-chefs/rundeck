@@ -1,0 +1,55 @@
+DESC=kafka
+DAEMON=<%= node["kafka"]["home_dir"] %>/bin/kafka-server-start.sh
+PIDFILE=kafka.pid
+
+test -x $DAEMON || exit 0
+
+set -e
+
+start_server() {
+  echo -n "Starting $DESC... "
+  /usr/share/sbin/start-stop-daemon --start --make-pidfile --pidfile $PIDFILE --startas $DAEMON -- "<%= node["kafka"]["home_dir"] %>/config/server.properties"
+  echo "done."
+}
+
+stop_server() {
+  echo -n "Stopping $DESC... "
+  /usr/share/sbin/start-stop-daemon --stop --pidfile $PIDFILE --exec $DAEMON $DAEMON -- "<%= node["kafka"]["home_dir"] %>/config/server.properties"
+  echo "done."
+}
+
+status_server() {
+  if [ "`ps -A -o command | grep [k]afka`" != "" ]; then
+    exit 0
+  else
+    exit 1
+  fi
+}
+
+rh_status_q() {
+  status_server >/dev/null 2>&1
+}
+
+case "$1" in
+start)
+  start_server
+  ;;
+stop)
+  stop_server
+  ;;
+restart)
+  stop_server
+  sleep 3
+  start_server
+  ;;
+status)
+  status_server
+  ;;
+*)
+  N=/etc/init.d/$NAME
+	echo "Usage: $N {start|stop|restart|status}" >&2
+  exit 1
+  ;;
+esac
+
+exit 0
