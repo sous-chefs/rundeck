@@ -43,6 +43,13 @@
                 }
             ]
         }, 
+        "resolver": {
+          "nameservers": [
+            "10.164.0.11",
+            "10.164.0.12"
+          ],
+          "search": "staging.dmz"
+        },
         "vc2010": {
             "x64": {
                 "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
