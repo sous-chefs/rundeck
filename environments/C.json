@@ -1,13 +1,6 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {}, 
-    "override_attributes": {
-       "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }
-    },
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -31,14 +24,6 @@
         "memcached": {
             "memory": "2048"
         }, 
-        "vc2010": {
-            "x64": {
-                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-            }, 
-            "x86": {
-                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-            }
-        },
         "ondemand_server": {
             "apt": [
                 {
@@ -52,12 +37,20 @@
             ], 
             "yum": [
                 {
-                    "description": "Webtrends Repo",
+                    "description": "Webtrends Repo", 
                     "name": "webtrends", 
                     "url": "http://sops01.staging.dmz/repo/yum/wtlab"
                 }
             ]
-        },
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
         "wt_base": {
             "apt": [
                 {
@@ -100,6 +93,7 @@
             "cassandra_thrift_port": "", 
             "install_dir": "d:\\wrs", 
             "installlog_dir": "d:\\logs", 
+			"install_server":"http://pdxteamcitys01.webtrends.corp/",
             "master_host": "cmasterdb01", 
             "rta_host": "crta01.staging.dmz", 
             "sched_host": "cmasterdb01", 
@@ -128,5 +122,12 @@
     }, 
     "description": "C Pod", 
     "json_class": "Chef::Environment", 
-    "name": "C"
+    "name": "C", 
+    "override_attributes": {
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }
+    }
 }

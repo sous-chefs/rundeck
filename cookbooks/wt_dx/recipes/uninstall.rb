@@ -91,7 +91,7 @@ end
 
 ruby_block "update_node_version" do
   block do      
-    node.set['wt_dx']['build_version'] = nil
+    node.delete(['dx_version'])
     node.save
   end
 end
