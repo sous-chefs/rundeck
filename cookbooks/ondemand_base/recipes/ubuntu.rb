@@ -20,6 +20,7 @@ include_recipe "sudo"
 include_recipe "apt"
 include_recipe "openssh"
 include_recipe "ntp"
+include_recipe "resolver"
 #include_recipe "nagios::client"
 
 # Setup the Webtrends apt repo

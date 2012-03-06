@@ -43,6 +43,12 @@
                 }
             ]
         }, 
+        "resolver": {
+          "nameservers": [
+            "192.168.2.107"
+          ],
+          "search": "devops.dmz"
+        },
         "vc2010": {
             "x64": {
                 "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
