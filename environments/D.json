@@ -1,13 +1,6 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {}, 
-    "override_attributes": {
-       "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }
-    },
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -31,14 +24,6 @@
         "memcached": {
             "memory": "2048"
         }, 
-        "vc2010": {
-            "x64": {
-                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-            }, 
-            "x86": {
-                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-            }
-        },
         "ondemand_server": {
             "apt": [
                 {
@@ -52,17 +37,19 @@
             ], 
             "yum": [
                 {
-                    "description": "Webtrends Repo",
+                    "description": "Webtrends Repo", 
                     "name": "webtrends", 
                     "url": "http://sops01.staging.dmz/repo/yum/wtlab"
                 }
             ]
-        },
-        "webtrends": {
-            "archive_server": "http://pdxmartink01.webtrends.corp/", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "installdir": "d:\\wrs", 
-            "logdir": "D:\\logs"
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
         }, 
         "wt_base": {
             "apt": [
@@ -105,7 +92,8 @@
             "cassandra_snmp_port": "", 
             "cassandra_thrift_port": "", 
             "install_dir": "d:\\wrs", 
-            "installlog_dir": "d:\\logs", 
+            "installlog_dir": "d:\\logs",
+			"install_server":"http://pdxteamcitys01.webtrends.corp/",
             "master_host": "dmasterdb01", 
             "rta_host": "drta01.staging.dmz", 
             "sched_host": "dmasterdb01", 
@@ -134,5 +122,12 @@
     }, 
     "description": "D Pod", 
     "json_class": "Chef::Environment", 
-    "name": "D"
+    "name": "D", 
+    "override_attributes": {
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }
+    }
 }
