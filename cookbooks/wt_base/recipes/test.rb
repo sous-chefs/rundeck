@@ -16,7 +16,7 @@ end
 
 wt_base_icacls "d:\\wrs" do
 	action :remove
-	user "STAGINGDMZ\\wt"
+	user "STAGINGDMZ\\wtLoader"
 end 
 
 wt_base_icacls "d:\\wrs" do
