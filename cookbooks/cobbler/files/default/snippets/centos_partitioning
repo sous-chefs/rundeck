@@ -1,5 +1,5 @@
-part /boot --size=512
-part pv.1 --size=1 --grow
+part /boot --size=512 --ondisk=sda
+part pv.1 --size=1 --grow --ondisk=sda
 volgroup vg_root --pesize=16384 pv.1
 logvol swap --fstype swap --name=swap --vgname=vg_root --size=4096
 logvol / --name=root --vgname=vg_root --size=1 --grow
