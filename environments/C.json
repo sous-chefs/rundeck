@@ -93,6 +93,7 @@
             "cassandra_thrift_port": "", 
             "install_dir": "d:\\wrs", 
             "installlog_dir": "d:\\logs", 
+			"install_server":"http://pdxteamcitys01.webtrends.corp/",
             "master_host": "cmasterdb01", 
             "rta_host": "crta01.staging.dmz", 
             "sched_host": "cmasterdb01", 
