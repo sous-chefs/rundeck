@@ -11,7 +11,7 @@
 include_recipe "windows"
 
 # source build
-build_url = node['wt_common']['install_server'] + node['wt_roadrunner']['url'] + node['wt_roadrunner']['zip_file']
+build_url = "#{node['wt_common']['install_server']}#{node['wt_roadrunner']['url']}#{node['wt_roadrunner']['zip_file']}"
 
 # destinations
 install_dir = "#{node['wt_common']['install_dir']}\\RoadRunner"
@@ -25,7 +25,6 @@ svcpass = auth_data['wt_common']['loader_pass']
 # get parameters
 master_host = node['wt_common']['master_host']
 
-# 
 Chef::Log.info "Source URL: #{build_url}"
 
 gac_cmd = "#{install_dir}\\gacutil.exe /i \"#{install_dir}\\Webtrends.RoadRunner.SSISPackageRunner.dll\""
@@ -82,8 +81,7 @@ end
 
 execute "sc" do
 	command sc_cmd
-	cwd install_dir
-	not_if { node[:rr_installed]}
+	cwd install_dir	
 end
 
 execute "netsh" do
@@ -94,12 +92,4 @@ end
 
 service "WebtrendsRoadRunnerService" do
 	action :start
-end
-
-ruby_block "install_flag" do
-	block do
-		node.set['rr_installed']
-		node.save
-	end
-	action :create
 end
