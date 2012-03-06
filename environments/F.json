@@ -1,13 +1,6 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {}, 
-    "override_attributes": {
-       "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }
-    },
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -31,14 +24,6 @@
         "memcached": {
             "memory": "2048"
         }, 
-        "vc2010": {
-            "x64": {
-                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-            }, 
-            "x86": {
-                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-            }
-        },
         "ondemand_server": {
             "apt": [
                 {
@@ -52,12 +37,27 @@
             ], 
             "yum": [
                 {
-                    "description": "Webtrends Repo",
+                    "description": "Webtrends Repo", 
                     "name": "webtrends", 
                     "url": "http://sops01.staging.dmz/repo/yum/wtlab"
                 }
             ]
+        }, 
+        "resolver": {
+          "nameservers": [
+            "10.164.0.11",
+            "10.164.0.12"
+          ],
+          "search": "staging.dmz"
         },
+        "vc2010": {
+            "x64": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
         "wt_base": {
             "apt": [
                 {
@@ -132,5 +132,12 @@
     }, 
     "description": "F Pod", 
     "json_class": "Chef::Environment", 
-    "name": "F" 
+    "name": "F", 
+    "override_attributes": {
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }
+    }
 }
