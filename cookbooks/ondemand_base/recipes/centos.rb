@@ -21,6 +21,7 @@ include_recipe "yum::epel"
 include_recipe "sudo"
 include_recipe "openssh"
 include_recipe "ntp"
+include_recipe "resolver"
 
 #Add the Webtrends Yum repo
 node['ondemand_server']['yum'].each do |yumrepo|
