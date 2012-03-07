@@ -5,8 +5,14 @@
   "chef_type": "environment",
   "default_attributes": {
     "java": {
-        "install_flavor": "oracle", 
-        "jdk_version": "6"
+      "install_flavor": "oracle", 
+      "jdk_version": "6"
+    }, "hive": {
+      "metastore": {
+        "connector": "mysql",
+        "dbuser": "root",
+        "dbpass": "a5H7qw"
+      }
     }
   }
 }
