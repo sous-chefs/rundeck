@@ -1,0 +1,11 @@
+{
+  "name": "zookeeper",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Zookeeper",
+  "run_list": [
+    "recipe[zookeeper]"
+  ],
+  "override_attributes": {
+  }
+}
