@@ -1,4 +1,5 @@
 
+include_recipe "java"
 
 hadoop_namenode = search(:node, "role:hadoop_namenode")
 hadoop_namenode = hadoop_namenode.length == 1 ? hadoop_namenode.first[:fqdn] : "localhost"
