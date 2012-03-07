@@ -2,25 +2,25 @@
 
 <property>
   <name>javax.jdo.option.ConnectionURL</name>
-  <value>jdbc:mysql://<%= @hivemeta %>/hive?createDatabaseIfNotExist=true</value>
+  <value>jdbc:<%= @metastore_prefix %>://<%= @hivemeta %>/hive?createDatabaseIfNotExist=true</value>
   <description>JDBC connect string for a JDBC metastore</description>
 </property>
 
 <property>
   <name>javax.jdo.option.ConnectionDriverName</name>
-  <value>com.mysql.jdbc.Driver</value>
-  <description>Driver class name for a MYSQL metastore</description>
+  <value><%= @metastore_driver %></value>
+  <description>Driver class name for metastore</description>
 </property>
 
 <property>
   <name>javax.jdo.option.ConnectionUserName</name>
-  <value>root</value>
+  <value><%= @dbuser %></value>
   <description>username to use against metastore database</description>
 </property>
 
 <property>
   <name>javax.jdo.option.ConnectionPassword</name>
-  <value>a5H7qw</value>
+  <value><%= @dbpass %></value>
   <description>password to use against metastore database</description>
 </property>
 
