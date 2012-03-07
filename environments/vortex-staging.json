@@ -1,18 +1,140 @@
 {
-  "name": "heatmap-staging",
-  "json_class": "Chef::Environment",
-  "description": "Webtrends Heatmap Staging Environment",
-  "chef_type": "environment",
-  "default_attributes": {
-    "java": {
-      "install_flavor": "oracle", 
-      "jdk_version": "6"
-    }, "hive": {
-      "metastore": {
-        "connector": "mysql",
-        "dbuser": "root",
-        "dbpass": "a5H7qw"
-      }
+    "chef_type": "environment", 
+    "cookbook_versions": {}, 
+    "default_attributes": {
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "STAGINGDMZ"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins", 
+                    "STAGINGDMZ\\\\domain-admins"
+                ], 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        },
+        "hive": {
+          "metastore": {
+            "connector": "mysql",
+            "dbuser": "root",
+            "dbpass": "a5H7qw"
+          }
+        }, 
+        "memcached": {
+            "memory": "2048"
+        }, 
+        "ondemand_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution": "lucid", 
+                    "name": "main", 
+                    "url": "http://sops01.staging.dmz/repo/apt"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "webtrends", 
+                    "url": "http://sops01.staging.dmz/repo/yum/wtlab"
+                }
+            ]
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "wt_base": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution": "lucid", 
+                    "name": "main", 
+                    "url": "http://sops01.staging.dmz/repo/apt"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Lab Repo", 
+                    "name": "main", 
+                    "url": "http://sops01.staging.dmz/repo/yum/wtlab"
+                }
+            ]
+        }, 
+        "wt_common": {
+            "cache_hosts": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "cassandra_hosts": [
+                "scass01.staging.dmz", 
+                "scass02.staging.dmz", 
+                "scass03.staging.dmz"
+            ], 
+            "cassandra_meta_column": "C_Meta", 
+            "cassandra_report_column": "C_Report", 
+            "cassandra_snmp_comm": "StagingRO", 
+            "cassandra_snmp_port": "", 
+            "cassandra_thrift_port": "", 
+            "install_dir": "d:\\wrs", 
+            "installlog_dir": "d:\\logs", 
+			"install_server":"http://pdxteamcitys01.webtrends.corp/",
+            "master_host": "cmasterdb01", 
+            "rta_host": "crta01.staging.dmz", 
+            "sched_host": "cmasterdb01", 
+            "schedulerdb_host": "cusagedb01", 
+            "usage_host": "cusagedb01", 
+            "velocitycache_hosts": [
+                {
+                    "name": "cdxweb01.staging.dmz", 
+                    "port": "22233"
+                }
+            ], 
+            "wrsmodify_group": "STAGINGDMZ\\C.WRS.Modify", 
+            "wrsread_group": "STAGINGDMZ\\C.WRS.Read"
+        }, 
+        "wt_dx": {
+            "app_settings_section": {
+                "streamingServiceRoot": "https://cdx.webtrends.com/StreamingServices_v3/"
+            }, 
+            "brandedaccountid": "20578,20663", 
+            "cacheenabled": "True", 
+            "cachename": "C_DX", 
+            "endpoint_address": "net.tcp://csearch.staging.dmz:8096/SearchService/Search", 
+            "website_name": "DX", 
+            "website_port": "80"
+        }
+    }, 
+    "description": "Webtrends Heatmap Staging Environment", 
+    "json_class": "Chef::Environment", 
+    "name": "heatmap-staging", 
+    "override_attributes": {
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }
     }
-  }
 }
