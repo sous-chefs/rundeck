@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "apache2": ">= 0.0.0"
+  },
+  "name": "apache",
+  "maintainer_email": "YOUR_EMAIL",
+  "attributes": {
+  },
+  "license": "All rights reserved",
+  "suggestions": {
+  },
+  "platforms": {
+    "gentoo": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
+  },
+  "maintainer": "YOUR_COMPANY_NAME",
+  "long_description": "Description\n===========\nvarious apache server related resource provides (LWRP)\n\n* `apache_fastcgi` - configure fastcgi server via apache name based virtual host, now only `external` mode available\n\nPlatfroms\n=========\n\n* gentoo\n* ubuntu\n   \nRequirements\n============\n\n* apache2 cookbook - https://github.com/opscode/cookbooks/tree/master/apache2\n\nResource Attributes\n===================\n\n* obligatory \n    * `socket` - a socket to which fast cgi external server is binded\n    * `server_name` - name of virtual host \n* optional\n    * `server_alias` - Array, a list of server aliases, default value is  `[]`\n    * `timeout` - Integer, a time to wait for fast cgi server response, in seconds, default value `180`\n    * `access_log` - a path to apache access log file\n    * `error_log` - a path to apache error log file\n    * `start_service` - true|false, whether to try to restart apache when configuring is done, default value `true`    \n* optional for ssl mode\n    * `ssl` - true|false, make virtual host ssl enabled, default value false\n    * `ssl_cipher_suite`\n    * `ssl_certificate_file`\n    * `ssl_certificate_key_file`\n\n \nUsage\n=====\n\n    apache_fastcgi 'myserver' do \n     action 'install'\n     socket '/var/run/fast-cgi-server/socket'\n     server_name 'host.myserver.com'\n    end\n\n\nLinks\n=====\n\n * http://httpd.apache.org/docs/1.3/vhosts/\n * http://www.fastcgi.com/drupal/node/25\n\nToDo\n====\n\n * test ssl mode for ubuntu\n * add more platforms support \n * add more tests\n * add wiki and howtos\n \n \n \n \n ",
+  "version": "0.0.4",
+  "recommendations": {
+  },
+  "recipes": {
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "various apache server related resource provides (LWRP)",
+  "providing": {
+  }
+}
