@@ -38,8 +38,8 @@ export HADOOP_LOG_DIR=/var/log/hadoop/$USER
 export HADOOP_SECURE_DN_LOG_DIR=/var/log/hadoop/hdfs
 
 # The directory where pid files are stored. /tmp by default.
-export HADOOP_PID_DIR=/var/log/hadoop
-export HADOOP_SECURE_DN_PID_DIR=/var/log/hadoop
+export HADOOP_PID_DIR=/var/run/hadoop
+export HADOOP_SECURE_DN_PID_DIR=/var/run/hadoop
 
 # A string representing this instance of hadoop. $USER by default.
 export HADOOP_IDENT_STRING=$USER
