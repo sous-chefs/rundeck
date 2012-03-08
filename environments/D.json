@@ -20,6 +20,13 @@
         "java": {
             "install_flavor": "oracle", 
             "jdk_version": "6"
+        },
+        "hive": {
+          "metastore": {
+            "connector": "sqlserver",
+            "dbuser": "sa",
+            "dbpass": "cad890"
+          }
         }, 
         "memcached": {
             "memory": "2048"
