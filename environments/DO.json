@@ -32,7 +32,8 @@
                     ], 
                     "distribution": "lucid", 
                     "name": "main", 
-                    "url": "http://sops01.staging.dmz/repo/apt"
+                    "url": "http://sops01.staging.dmz/repo/apt",
+		    "key": "http://sops01.staging.dmz/repo/apt/repo.gpg.key"
                 }
             ], 
             "yum": [
@@ -135,6 +136,9 @@
             "servers": [
                 "time.webtrends.corp"
             ]
+        },
+        "postfix": {
+          "relayhost": "pdxengmta01.staging.dmz"
         }
     }
 }
