@@ -136,6 +136,9 @@
             "servers": [
                 "time.webtrends.corp"
             ]
+        },
+        "postfix": {
+          "relayhost": "lasnms01v.netiq.dmz"
         }
     }
 }
