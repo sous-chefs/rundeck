@@ -1,0 +1,13 @@
+{
+  "name": "nagios-xi",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Nagios-XI server",
+  "run_list": [
+	"recipe[postfix]"
+        "recipe[nagios-xi]
+  ],
+  "override_attributes": {
+    }
+  }
+}
