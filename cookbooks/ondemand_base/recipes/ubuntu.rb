@@ -69,6 +69,12 @@ if auth_config['alternate_user']
   end
 end
 
+#Hack to allow ad-likewise to install with its evil package that refuses to be signed
+execute "allowUnauthenticatedDebs" do
+  command "apt-get install likewise-open -o Apt::Get::AllowUnauthenticated=true"
+  action :run
+end
+
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
 
