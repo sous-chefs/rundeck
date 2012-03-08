@@ -6,15 +6,9 @@
   "maintainer_email": "cookbooks@opscode.com",
   "license": "Apache 2.0",
   "platforms": {
-    "ubuntu": [
-
-    ],
-    "debian": [
-
-    ],
-    "gentoo": [
-
-    ]
+    "ubuntu": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "gentoo": ">= 0.0.0"
   },
   "dependencies": {
   },
@@ -104,5 +98,5 @@
   "recipes": {
     "runit": "Installs and configures runit"
   },
-  "version": "0.14.2"
+  "version": "0.15.0"
 }
