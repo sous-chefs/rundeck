@@ -25,6 +25,14 @@ svcpass = auth_data['wt_common']['loader_pass']
 # get parameters
 master_host = node['wt_common']['master_host']
 
+# determine root drive of install_dir - ENG390500
+if (install_dir =~ /^(\w:)\\.*$/)
+	install_dir_drive = $1
+else
+	raise Chef::Exceptions::AttributeNotFound,
+		"could not determine install_dir_drive, please verify value of install_dir: #{install_dir}"
+end
+
 Chef::Log.info "Source URL: #{build_url}"
 
 gac_cmd = "#{install_dir}\\gacutil.exe /i \"#{install_dir}\\Webtrends.RoadRunner.SSISPackageRunner.dll\""
@@ -36,7 +44,7 @@ directory "#{install_dir}" do
 	action :create
 end
 
-wt_base_icacls "#{install_dir}" do
+wt_base_icacls "#{install_dir_drive}" do
 	action :grant
 	user svcuser 
 	perm :read
