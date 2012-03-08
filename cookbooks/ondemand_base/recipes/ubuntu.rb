@@ -25,13 +25,14 @@ include_recipe "resolver"
 
 # Setup the Webtrends apt repo
 node['ondemand_server']['apt'].each do |aptrepo|
-       apt_repository aptrepo['name'] do
-               repo_name aptrepo['name']
-               distribution aptrepo['distribution']
-               uri aptrepo['url']
-               components aptrepo['components']
-               action :add
-       end
+	apt_repository aptrepo['name'] do
+		repo_name aptrepo['name']
+		distribution aptrepo['distribution']
+		uri aptrepo['url']
+		components aptrepo['components']
+		key aptrepo['key']
+		action :add
+	end
 end
 
 #User experience and tools recipes
@@ -66,6 +67,12 @@ if auth_config['alternate_user']
     shell "/bin/bash"
     supports :manage_home => true
   end
+end
+
+#Hack to allow ad-likewise to install with its evil package that refuses to be signed
+execute "allowUnauthenticatedDebs" do
+  command "apt-get install likewise-open=6.1.0-2 -y -o Apt::Get::AllowUnauthenticated=true"
+  action :run
 end
 
 #Now that the local user is created attach the system to AD
