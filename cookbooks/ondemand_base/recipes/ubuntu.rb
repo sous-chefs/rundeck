@@ -71,7 +71,7 @@ end
 
 #Hack to allow ad-likewise to install with its evil package that refuses to be signed
 execute "allowUnauthenticatedDebs" do
-  command "apt-get install likewise-open -o Apt::Get::AllowUnauthenticated=true"
+  command "apt-get install likewise-open=6.1.0-2 -y -o Apt::Get::AllowUnauthenticated=true"
   action :run
 end
 
