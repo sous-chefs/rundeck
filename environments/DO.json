@@ -138,7 +138,7 @@
             ]
         },
         "postfix": {
-          "relayhost": "lasnms01v.netiq.dmz"
+          "relayhost": "pdxengmta01.staging.dmz"
         }
     }
 }
