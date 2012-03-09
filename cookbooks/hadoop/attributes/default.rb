@@ -8,6 +8,9 @@ default[:hadoop][:install_stage_dir] = "/usr/local/share/hadoop"
 # see: http://hadoop.apache.org/common/docs/current/hdfs-default.html
 default[:hadoop][:dfs][:block_size] = 64
 default[:hadoop][:dfs][:name_dir] = "/var/lib/hadoop/hdfs/namenode"
+default[:hadoop][:dfs][:data_dir] = "/data/hadoop/hdfs/datanode"
+
+
 default[:hadoop][:dfs][:datanode_handler_count] = 3
 default[:hadoop][:dfs][:namenode_handler_count] = 10
 default[:hadoop][:dfs][:namenode_du_reserved] = 0
