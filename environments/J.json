@@ -138,5 +138,5 @@
     }, 
     "description": "J Pod", 
     "json_class": "Chef::Environment", 
-    "name": "J", 
+    "name": "J"
 }
