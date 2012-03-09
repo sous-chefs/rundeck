@@ -139,5 +139,5 @@
     }, 
     "description": "Webtrends Heatmap Staging Environment", 
     "json_class": "Chef::Environment", 
-    "name": "heatmap-staging", 
+    "name": "heatmap-staging"
 }

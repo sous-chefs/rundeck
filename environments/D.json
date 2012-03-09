@@ -146,5 +146,5 @@
     }, 
     "description": "D Pod", 
     "json_class": "Chef::Environment", 
-    "name": "D", 
+    "name": "D"
 }
