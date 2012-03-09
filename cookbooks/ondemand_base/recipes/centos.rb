@@ -17,6 +17,9 @@ if node.chef_environment == "_default"
   exit(true)
 end
 
+#Fix the host file
+include_recipe "hosts"
+
 #Set chef-client to run on a regular schedule (30 mins)
 include_recipe "chef-client"
 
