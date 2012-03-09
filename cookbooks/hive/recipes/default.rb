@@ -4,7 +4,6 @@ hivemeta = hivemeta.length == 1 ? hivemeta.first[:fqdn] : "localhost"
 
 include_recipe "hadoop"
 
-
 # determine metastore jdbc properties
 metastore_prefix = "none"
 metastore_driver = "none"
@@ -17,6 +16,9 @@ end
 if node[:hive][:metastore][:connector] == "sqlserver"
   metastore_prefix = "sqlserver"
   metastore_driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+  if node[:wt_common][:usage_host] != nil
+    hivemeta = node[:wt_common][:usage_host]
+  end
 end
 
 
@@ -86,6 +88,5 @@ end
 link "/usr/local/hive/lib/hbase-0.92.0.jar" do
   to "/usr/local/hbase/hbase-0.92.0.jar"
 end
-
 
 

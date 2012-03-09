@@ -1,4 +1,4 @@
-#Make sure that this recipe only runs on ubuntu systems
+#Make sure that this recipe only runs on ubuntu systemso
 if platform?("ubuntu")
 
 #Save the node to prevent empty run lists on failures
@@ -9,6 +9,12 @@ unless Chef::Config[:solo]
     end
     action :create
   end
+end
+
+#Make sure someone didn't set the _default environment
+if node.chef_environment == "_default" 
+  Chef::Log.info("Set a Chef environment.  We dont want to use _default")
+  exit(true)
 end
 
 #Set chef-client to run on a regular schedule (30 mins)
