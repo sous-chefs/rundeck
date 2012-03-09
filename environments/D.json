@@ -1,30 +1,6 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {}, 
-    "override_attributes": {
-       "java": {
-            "install_flavor": "oracle", 
-            "jdk_version": "6"
-        },
-       "memcached": {
-            "memory": "1024"
-       }, 
-       "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        },
-        "postfix": {
-          "relayhost": "pdxengmta01.staging.dmz"
-        },
-        "resolver": {
-          "nameservers": [
-            "10.164.0.11",
-            "10.164.0.12"
-          ],
-          "search": "staging.dmz"
-        }
-    },
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -42,12 +18,12 @@
             }
         }, 
         "hive": {
-          "metastore": {
-            "connector": "sqlserver",
-            "dbuser": "sa",
-            "dbpass": "cad890"
-          }
-        },
+            "metastore": {
+                "connector": "sqlserver", 
+                "dbpass": "cad890", 
+                "dbuser": "sa"
+            }
+        }, 
         "ondemand_server": {
             "apt": [
                 {
@@ -116,8 +92,8 @@
             "cassandra_snmp_port": "", 
             "cassandra_thrift_port": "", 
             "install_dir": "d:\\wrs", 
-            "installlog_dir": "d:\\logs",
-			"install_server":"http://pdxteamcitys01.webtrends.corp/",
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "installlog_dir": "d:\\logs", 
             "master_host": "dmasterdb01", 
             "rta_host": "drta01.staging.dmz", 
             "sched_host": "dmasterdb01", 
@@ -147,4 +123,28 @@
     "description": "D Pod", 
     "json_class": "Chef::Environment", 
     "name": "D", 
+    "override_attributes": {
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        }, 
+        "memcached": {
+            "memory": "1024"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.staging.dmz"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz"
+        }
+    }
 }
