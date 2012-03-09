@@ -17,13 +17,6 @@
                 ]
             }
         }, 
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk_version": "6"
-        }, 
-        "memcached": {
-            "memory": "2048"
-        }, 
         "ondemand_server": {
             "apt": [
                 {
@@ -31,9 +24,9 @@
                         "main"
                     ], 
                     "distribution": "lucid", 
+                    "key": "http://sops01.staging.dmz/repo/apt/repo.gpg.key", 
                     "name": "main", 
-                    "url": "http://sops01.staging.dmz/repo/apt",
-		    "key": "http://sops01.staging.dmz/repo/apt/repo.gpg.key"
+                    "url": "http://sops01.staging.dmz/repo/apt"
                 }
             ], 
             "yum": [
@@ -44,12 +37,6 @@
                 }
             ]
         }, 
-        "resolver": {
-          "nameservers": [
-            "192.168.2.107"
-          ],
-          "search": "devops.dmz"
-        },
         "vc2010": {
             "x64": {
                 "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
@@ -132,13 +119,26 @@
     "json_class": "Chef::Environment", 
     "name": "DO", 
     "override_attributes": {
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        }, 
+        "memcached": {
+            "memory": "1024"
+        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
             ]
-        },
+        }, 
         "postfix": {
-          "relayhost": "pdxengmta01.staging.dmz"
+            "relayhost": "pdxengmta01.staging.dmz"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "192.168.2.100"
+            ], 
+            "search": "devops.dmz"
         }
     }
 }
