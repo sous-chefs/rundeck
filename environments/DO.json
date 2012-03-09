@@ -1,6 +1,29 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {}, 
+    "override_attributes": {
+       "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        },
+       "memcached": {
+            "memory": "1024"
+       }, 
+       "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        },
+        "postfix": {
+          "relayhost": "pdxengmta01.staging.dmz"
+        },
+        "resolver": {
+          "nameservers": [
+            "192.168.2.107"
+          ],
+          "search": "devops.dmz"
+        }
+    },
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -16,13 +39,6 @@
                     "bobo"
                 ]
             }
-        }, 
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk_version": "6"
-        }, 
-        "memcached": {
-            "memory": "2048"
         }, 
         "ondemand_server": {
             "apt": [
@@ -43,12 +59,6 @@
                     "url": "http://sops01.staging.dmz/repo/yum/wtlab"
                 }
             ]
-        }, 
-        "resolver": {
-          "nameservers": [
-            "192.168.2.107"
-          ],
-          "search": "devops.dmz"
         },
         "vc2010": {
             "x64": {
@@ -131,14 +141,4 @@
     "description": "DevOps Pod", 
     "json_class": "Chef::Environment", 
     "name": "DO", 
-    "override_attributes": {
-        "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        },
-        "postfix": {
-          "relayhost": "pdxengmta01.staging.dmz"
-        }
-    }
 }
