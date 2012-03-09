@@ -1,30 +1,6 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {}, 
-    "override_attributes": {
-       "java": {
-            "install_flavor": "oracle", 
-            "jdk_version": "6"
-        },
-       "memcached": {
-            "memory": "1024"
-       }, 
-       "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        },
-        "postfix": {
-          "relayhost": "pdxengmta01.staging.dmz"
-        },
-        "resolver": {
-          "nameservers": [
-            "10.164.0.11",
-            "10.164.0.12"
-          ],
-          "search": "staging.dmz"
-        }
-    },
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -138,5 +114,29 @@
     }, 
     "description": "J Pod", 
     "json_class": "Chef::Environment", 
-    "name": "J"
+    "name": "J", 
+    "override_attributes": {
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        }, 
+        "memcached": {
+            "memory": "1024"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.staging.dmz"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz"
+        }
+    }
 }
