@@ -17,13 +17,6 @@
                 ]
             }
         }, 
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk_version": "6"
-        }, 
-        "memcached": {
-            "memory": "2048"
-        }, 
         "ondemand_server": {
             "apt": [
                 {
@@ -43,13 +36,6 @@
                 }
             ]
         }, 
-        "resolver": {
-          "nameservers": [
-            "10.164.0.11",
-            "10.164.0.12"
-          ],
-          "search": "staging.dmz"
-        },
         "vc2010": {
             "x64": {
                 "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
@@ -134,10 +120,27 @@
     "json_class": "Chef::Environment", 
     "name": "F", 
     "override_attributes": {
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        }, 
+        "memcached": {
+            "memory": "1024"
+        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
             ]
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.staging.dmz"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz"
         }
     }
 }
