@@ -1,6 +1,30 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {}, 
+    "override_attributes": {
+       "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        },
+       "memcached": {
+            "memory": "1024"
+       }, 
+       "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        },
+        "postfix": {
+          "relayhost": "pdxengmta01.staging.dmz"
+        },
+        "resolver": {
+          "nameservers": [
+            "10.164.0.11",
+            "10.164.0.12"
+          ],
+          "search": "staging.dmz"
+        }
+    },
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -17,13 +41,13 @@
                 ]
             }
         }, 
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk_version": "6"
-        }, 
-        "memcached": {
-            "memory": "2048"
-        }, 
+        "hive": {
+          "metastore": {
+            "connector": "sqlserver",
+            "dbuser": "sa",
+            "dbpass": "cad890"
+          }
+        },
         "ondemand_server": {
             "apt": [
                 {
@@ -123,11 +147,4 @@
     "description": "D Pod", 
     "json_class": "Chef::Environment", 
     "name": "D", 
-    "override_attributes": {
-        "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }
-    }
 }
