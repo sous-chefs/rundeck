@@ -5,8 +5,8 @@
     "stagingdmz\\\\domain-admins",
     "domain-admins"
   ],
-  "id": "STAGING",
-  "membership_required": [
+  "id": "STAGINGDMZ",
+  "membership_required": [ "stagingdmz\\\\domain-admins", "stagingdmz\\\\stage-admins"
 
   ],
   "auth_domain_password": "dm7m7ErsvdH0JzUUnA0L"
