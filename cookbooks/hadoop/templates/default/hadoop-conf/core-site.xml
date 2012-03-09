@@ -23,7 +23,7 @@ literal string "local" or a host:port for NDFS.
 
 <property>
 <name>fs.trash.interval</name>
-<value>360</value>
+<value><%= node[:hadoop][:core][:fs_trash_interval] %></value>
 <description>Number of minutes between trash checkpoints.
 If zero, the trash feature is disabled.
 </description>
@@ -75,6 +75,16 @@ Enable authorization for different protocols.
 <property>
 <name>hadoop.http.filter.initializers</name>
 <value>org.apache.hadoop.http.lib.StaticUserWebFilter</value>
+</property>
+
+<property>
+<name>io.file.buffer.size</name>
+<value><%= node[:hadoop][:core][:io_file_buffer_size] %></value>
+</property>
+
+<property>
+<name>fs.checkpoint.dir</name>
+<value><%= node[:hadoop][:core][:fs_checkpoint_dir] %></value>
 </property>
 
 </configuration>
