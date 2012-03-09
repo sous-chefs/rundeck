@@ -17,7 +17,7 @@ directories, for redundancy. </description>
 
 <property>
 <name>dfs.data.dir</name>
-<value>/data/hadoop/hdfs/datanode</value>
+<value><%= node[:hadoop][:dfs][:data_dir] %></value>
 <description>Determines where on the local filesystem an DFS data node
 should store its blocks. If this is a comma-delimited
 list of directories, then data will be stored in all named
