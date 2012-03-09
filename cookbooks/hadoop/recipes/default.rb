@@ -94,4 +94,11 @@ end
   end
 end
 
-
+# increase the file limits for the hadoop user
+file "/etc/security/limits.d/123hadoop.conf" do
+  owner "root"
+  group "root"
+  mode "0644"
+  content "hadoop  -       nofile  32768"
+  action :create
+end
