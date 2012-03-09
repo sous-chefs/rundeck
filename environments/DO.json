@@ -136,7 +136,7 @@
         }, 
         "resolver": {
             "nameservers": [
-                "192.168.2.107"
+                "192.168.2.100"
             ], 
             "search": "devops.dmz"
         }
