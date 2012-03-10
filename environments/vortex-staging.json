@@ -146,7 +146,7 @@
                 "data_dir": "/data/hadoop/hdfs/datanode",
                 "datanode_handler_count": 3,
                 "namenode_handler_count": 10,
-                "namenode_du_reserved": 0,
+                "datanode_du_reserved": 0,
                 "replication": 3,
                 "permissions": "true",
                 "datanode_max_xcievers": 4096
