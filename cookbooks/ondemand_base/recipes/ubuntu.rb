@@ -1,4 +1,4 @@
-#Make sure that this recipe only runs on ubuntu systemso
+#/nagiake sure that this recipe only runs on ubuntu systemso
 if platform?("ubuntu")
 
 #Save the node to prevent empty run lists on failures
@@ -33,7 +33,7 @@ include_recipe "resolver"
 node['ondemand_server']['apt'].each do |aptrepo|
 	apt_repository aptrepo['name'] do
 		repo_name aptrepo['name']
-		distribution aptrepo['distribution']
+		distribution "#{node[:lsb][:codename]}"
 		uri aptrepo['url']
 		components aptrepo['components']
 		key aptrepo['key']
