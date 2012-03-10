@@ -111,6 +111,42 @@
             "endpoint_address": "net.tcp://csearch.staging.dmz:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
+        },
+        "hadoop": {
+            "dfs": {
+                "block_size": 64,
+                "name_dir": "/var/lib/hadoop/hdfs/namenode",
+                "data_dir": "/data/hadoop/hdfs/datanode",
+                "datanode_handler_count": 3,
+                "namenode_handler_count": 10,
+                "namenode_du_reserved": 0,
+                "replication": 3,
+                "permissions": "true",
+                "datanode_max_xcievers": 4096
+            },
+            "mapred": {
+              "child_java_opts": "-server -Xmx640m -Djava.net.preferIPv4Stack=true",
+              "job_tracker_handler_count": 10,
+              "reduce_tasks": 1,
+              "local_dir": "${hadoop.tmp.dir}/mapred/local",
+              "tasktracker_map_tasks_maximum": 2,
+              "tasktracker_reduce_tasks_maximum": 2,
+              "child_ulimit": 8388608,
+              "map_tasks_speculative_execution": "false",
+              "reduce_tasks_speculative_execution": "false",
+              "job_reuse_jvm_num_tasks": 1,
+              "io_sort_factor": 10,
+              "io_sort_mb": 100
+            },
+            "core": {
+              "io_file_buffer_size": 4096,
+              "fs_checkpoint_dir": "${hadoop.tmp.dir}/dfs/namesecondary",
+              "fs_trash_interval": 360
+            },
+            "env": {
+              "java_net_preferIPv4Stack": "true",
+              "HADOOP_OPTS": ""
+            }
         }
     }, 
     "description": "Webtrends Heatmap Staging Environment", 
