@@ -139,6 +139,13 @@
             ], 
             "search": "staging.dmz"
         },
+        "hive": {
+            "metastore": {
+                "connector": "mysql",
+                "dbuser": "root",
+                "dbpass": "a5H7qw"
+            }
+        },
         "hadoop": {
             "dfs": {
                 "block_size": 67108864,
