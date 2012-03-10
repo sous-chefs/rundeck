@@ -56,6 +56,14 @@ end
   end
 end
 
+# template the centos_chef snippet to add the ntp server
+template "/var/lib/cobbler/snippets/centos_chef" do
+  source "centos_chef.erb"
+  mode 0644
+  owner "root"
+  group "root"
+end
+
 # fetch distros and profiles
 %w{ config/distros.d config/profiles.d }.each do |dir|
   remote_directory "/var/lib/cobbler/#{dir}" do
