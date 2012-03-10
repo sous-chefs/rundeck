@@ -114,7 +114,7 @@
         },
         "hadoop": {
             "dfs": {
-                "block_size": 64,
+                "block_size": 67108864,
                 "name_dir": "/var/lib/hadoop/hdfs/namenode",
                 "data_dir": "/data/hadoop/hdfs/datanode",
                 "datanode_handler_count": 3,
