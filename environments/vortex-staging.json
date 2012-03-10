@@ -111,6 +111,33 @@
             "endpoint_address": "net.tcp://csearch.staging.dmz:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
+        }
+    }, 
+    "description": "Webtrends Heatmap Staging Environment", 
+    "json_class": "Chef::Environment", 
+    "name": "heatmap-staging", 
+    "override_attributes": {
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        }, 
+        "memcached": {
+            "memory": "1024"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.staging.dmz"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz"
         },
         "hadoop": {
             "dfs": {
@@ -147,33 +174,6 @@
               "java_net_preferIPv4Stack": "true",
               "HADOOP_OPTS": ""
             }
-        }
-    }, 
-    "description": "Webtrends Heatmap Staging Environment", 
-    "json_class": "Chef::Environment", 
-    "name": "heatmap-staging", 
-    "override_attributes": {
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk_version": "6"
-        }, 
-        "memcached": {
-            "memory": "1024"
-        }, 
-        "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }, 
-        "postfix": {
-            "relayhost": "pdxengmta01.staging.dmz"
-        }, 
-        "resolver": {
-            "nameservers": [
-                "10.164.0.11", 
-                "10.164.0.12"
-            ], 
-            "search": "staging.dmz"
         }
     }
 }
