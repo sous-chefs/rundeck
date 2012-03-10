@@ -173,7 +173,7 @@
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-            "search": "netiq.dmz"
+            "search": "staging.dmz"
         }
     }
 }
