@@ -269,7 +269,7 @@ excluded.
 
 <property>
 <name>dfs.datanode.du.reserved</name>
-<value><%= node[:hadoop][:dfs][:namenode_du_reserved] %></value>
+<value><%= node[:hadoop][:dfs][:datanode_du_reserved] %></value>
 <description>Reserved space in bytes per volume. Always leave this much space free for non dfs use.</description>
 <final>true</final>
 </property>
