@@ -131,6 +131,10 @@
         "memcached": {
             "memory": "1024"
         }, 
+        "nagios": {
+	    "multi_environment_monitoring": "true",
+            "server_role": "nagios_xi"
+        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
