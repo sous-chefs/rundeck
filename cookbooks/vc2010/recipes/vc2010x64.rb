@@ -8,10 +8,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
-windows_package node['vc2010x64']['productname'] do
-	source node['vc2010x64']['url']
+windows_package node['vc2010']['x64']['productname'] do
+	source node['vc2010']['x64']['url']
 	options "/passive"
 	installer_type :custom
 	action :install
-	Chef::Log.info "Source: [#{node['vc2010x64']['productname']}] #{node['vc2010x64']['url']}"
+	Chef::Log.info "Source: [#{node['vc2010']['x64']['productname']}] #{node['vc2010']['x64']['url']}"
 end

@@ -36,7 +36,7 @@ that we do not leave VMs around for later jobs.
 
 <property>
 <name>mapred.local.dir</name>
-<value>/var/lib/hadoop/mapred</value>
+<value><%= node[:hadoop][:mapred][:local_dir] %></value>
 <final>true</final>
 </property>
 
@@ -47,14 +47,14 @@ that we do not leave VMs around for later jobs.
 
 <property>
 <name>mapred.map.tasks.speculative.execution</name>
-<value>false</value>
+<value><%= node[:hadoop][:mapred][:map_tasks_speculative_execution] %></value>
 <description>If true, then multiple instances of some map tasks
 may be executed in parallel.</description>
 </property>
 
 <property>
 <name>mapred.reduce.tasks.speculative.execution</name>
-<value>false</value>
+<value><%= node[:hadoop][:mapred][:reduce_tasks_speculative_execution] %></value>
 <description>If true, then multiple instances of some reduce tasks
 may be executed in parallel.</description>
 </property>
@@ -84,12 +84,12 @@ should they be compressed? Should be one of NONE, RECORD or BLOCK.
 
 <property>
 <name>mapred.child.java.opts</name>
-<value>-server -Xmx640m -Djava.net.preferIPv4Stack=true</value>
+<value><%= node[:hadoop][:mapred][:child_java_opts] %></value>
 </property>
 
 <property>
 <name>mapred.child.ulimit</name>
-<value>8388608</value>
+<value><%= node[:hadoop][:mapred][:child_ulimit] %></value>
 </property>
 
 <property>
@@ -335,4 +335,61 @@ The value of -1 indicates that this feature is turned off iff
 mapred.cluster.reduce.memory.mb is also turned off (-1).
 </description>
 </property>
+
+
+
+<property>
+<name>mapred.job.tracker.handler.count</name>
+<value><%= node[:hadoop][:mapred][:job_tracker_handler_count] %></value>
+<description>The number of server threads for the JobTracker. This should be roughly 4% of the number of tasktracker nodes.
+</description>
+</property>
+
+<property>
+<name>mapred.reduce.tasks</name>
+<value><%= node[:hadoop][:mapred][:reduce_tasks] %></value>
+<description>The default number of reduce tasks per job. Typically set to 99% of the cluster's reduce capacity, so that if a node fails the reduces can still be executed in a single wave. Ignored when mapred.job.tracker is "local".
+</description>
+</property>
+
+<property>
+<name>mapred.tasktracker.map.tasks.maximum</name>
+<value><%= node[:hadoop][:mapred][:tasktracker_map_tasks_maximum] %></value>
+<description>The maximum number of map tasks that will be run simultaneously by a task tracker.
+</description>
+</property>
+
+<property>
+<name>mapred.tasktracker.reduce.tasks.maximum</name>
+<value><%= node[:hadoop][:mapred][:tasktracker_map_tasks_maximum] %></value>
+<description>The maximum number of reduce tasks that will be run simultaneously by a task tracker.
+</description>
+</property>
+
+<property>
+<name>mapred.job.reuse.jvm.num.tasks</name>
+<value><%= node[:hadoop][:mapred][:job_reuse_jvm_num_tasks] %></value>
+<description>How many tasks to run per jvm. If set to -1, there is no limit.
+</description>
+</property>
+
+<property>
+<name>io.sort.factor</name>
+<value><%= node[:hadoop][:mapred][:io_sort_factor] %></value>
+<description>The number of streams to merge at once while sorting files. This determines the number of open file handles.
+</description>
+</property>
+
+<property>
+<name>io.sort.mb</name>
+<value><%= node[:hadoop][:mapred][:io_sort_mb] %></value>
+<description>The total amount of buffer memory to use while sorting files, in megabytes. By default, gives each merge stream 1MB, which should minimize seeks.
+</description>
+</property>
+
+
+
 </configuration>
+
+
+

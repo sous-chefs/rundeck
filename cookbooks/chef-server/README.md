@@ -56,6 +56,12 @@ The Chef Server will work on a variety of platforms, however a Ubuntu or Debian 
 
 The `chef-server::default` recipe will work on any platform running the Chef Server, as it only compacts the CouchDB / views.
 
+See:
+
+* http://wiki.opscode.com/display/chef/Installing+Chef+Server+using+Chef+Solo
+
+Note that CentOS 5 is known to not work due to issues with Ruby.
+
 Cookbooks
 ---------
 
@@ -210,6 +216,36 @@ js\_expire\_hours
 
 Sets expiration time for JavaScript in the WebUI.
 
+api\_server\_name
+-----------------
+
+VirtualHost server name for the API.
+
+api\_port
+---------
+
+Port for the API's HTTPS proxy.
+
+api\_aliases
+------------
+
+VirtualHost server aliases for the API.
+
+webui\_server\_name
+-----------------
+
+VirtualHost server name for the webui.
+
+webui\_port
+---------
+
+Port for the WebUI HTTPS proxy.
+
+webui\_aliases
+------------
+
+VirtualHost server alaises for the webui.
+
 RECIPES AND USAGE
 =================
 
@@ -237,7 +273,7 @@ Use this recipe to "bootstrap" a system to become a Chef Server. This recipe doe
 * Creates a `chef` user.
 * Installs CouchDB from package or source depending on the platform.
 * Installs Java for the `chef-solr` search engine.
-* Installs RabbitMQ with the `chef-server::rabbitmq` recipe in the rabbitmq cookbook for the chef-expander consumer.
+* Installs RabbitMQ with the `chef-server::rabbitmq` recipe for the chef-expander consumer.
 * Installs Gecode with the `gecode` cookbook. On Debian/Ubuntu, Opscode's APT repository will be used. On other platforms, Gecode will be installed from source, which can take a long time.
 * Installs all the Server-related RubyGems.
 * Creates the server configuration file `/etc/chef/server.rb` based on the configuration passed via JSON.
@@ -293,13 +329,21 @@ Runit and daemontools "run" scripts for the services configured when `node['chef
 
 Bluepill "pill" files for the services configured when `node['chef_server']['init_style']` is "bluepill".
 
+Changes
+=======
+
+## v0.99.12:
+
+* [COOK-757] - compact all the views
+* [COOK-969] - `server_name` and `server_aliases` as configurable attributes on `chef_server::nginx-proxy` and `chef_server::apache-proxy`
+
 LICENSE AND AUTHORS
 ===================
 
 * Author: Joshua Timberman <joshua@opscode.com>
 * Author: Joshua Sierles <joshua@37signals.com>
 
-* Copyright 2008-2011, Opscode, Inc
+* Copyright 2008-2012, Opscode, Inc
 * Copyright 2009, 37signals
 
 Licensed under the Apache License, Version 2.0 (the "License");

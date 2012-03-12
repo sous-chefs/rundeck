@@ -26,7 +26,7 @@
     <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_col %>" MetaDataColumnFamily="<%= @metadata_col %>" SnmpCommunity="<%= @snmp_comm %>" SnmpPort="1161" ThriftPort="9160">
         <Nodes>
     <% @cassandra_hosts.each do |host| -%>
-	  	<add address="<%= host %>"/>
+	  	<add Hostname="<%= host %>"/>
 	  <% end -%>
         </Nodes>
     </CassandraCluster>

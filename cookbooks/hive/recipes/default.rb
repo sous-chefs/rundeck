@@ -1,9 +1,19 @@
 
-#
-hivemeta = search(:node, "role:hivemeta")
-hivemeta = hivemeta.length == 1 ? hivemeta.first[:fqdn] : "localhost"
-
 include_recipe "hadoop"
+
+# determine metastore jdbc properties
+metastore_prefix = "none"
+metastore_driver = "none"
+
+if node[:hive][:metastore][:connector] == "mysql"
+  metastore_prefix = "mysql"
+  metastore_driver = "com.mysql.jdbc.Driver"
+end
+
+if node[:hive][:metastore][:connector] == "sqlserver"
+  metastore_prefix = "sqlserver"
+  metastore_driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+end
 
 
 # download hive
@@ -30,11 +40,14 @@ link "/usr/local/hive" do
 end
 
 
-cookbook_file "/usr/local/hive/lib/mysql-connector-java.jar" do
-  source "mysql-connector-java.jar"
-  owner "hadoop"
-  group "hadoop"
-  mode 0644
+# jdbc connectors
+%w[mysql-connector-java.jar sqljdbc4.jar].each do |jar|
+  cookbook_file "/usr/local/hive/lib/#{jar}" do
+    source "#{jar}"
+    owner "hadoop"
+    group "hadoop"
+    mode 0644
+  end
 end
 
 
@@ -44,7 +57,10 @@ end
     source "#{template_file}"
     mode 0755
     variables(
-      :hivemeta => hivemeta
+      :metastore_prefix => metastore_prefix,
+      :metastore_driver => metastore_driver,
+      :dbuser => node[:hive][:metastore][:dbuser],
+      :dbpass => node[:hive][:metastore][:dbpass]
     )
   end
 
@@ -65,6 +81,5 @@ end
 link "/usr/local/hive/lib/hbase-0.92.0.jar" do
   to "/usr/local/hbase/hbase-0.92.0.jar"
 end
-
 
 
