@@ -79,42 +79,43 @@
                 "scass02.staging.dmz", 
                 "scass03.staging.dmz"
             ], 
-            "cassandra_meta_column": "K_Meta", 
-            "cassandra_report_column": "K_Report", 
+            "cassandra_meta_column": "C_Meta", 
+            "cassandra_report_column": "C_Report", 
             "cassandra_snmp_comm": "StagingRO", 
             "cassandra_snmp_port": "", 
             "cassandra_thrift_port": "", 
             "install_dir": "d:\\wrs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "installlog_dir": "d:\\logs", 
-            "master_host": "kmasterdb01", 
-            "rta_host": "krta01.englab.webtrends.corp", 
-            "sched_host": "kmasterdb01", 
-            "schedulerdb_host": "kusagedb01", 
-            "usage_host": "kusagedb01", 
+            "master_host": "cmasterdb01", 
+            "rta_host": "crta01.staging.dmz", 
+            "sched_host": "cmasterdb01", 
+            "schedulerdb_host": "cusagedb01", 
+            "usage_host": "cusagedb01", 
             "velocitycache_hosts": [
                 {
-                    "name": "kdxweb01.englab.webtrends.corp", 
+                    "name": "cdxweb01.staging.dmz", 
                     "port": "22233"
                 }
             ], 
-            "wrsmodify_group": "WTENGLAB\\K.WRS.Modify", 
-            "wrsread_group": "WTENGLAB\\K.WRS.Read"
+            "wrsmodify_group": "STAGINGDMZ\\C.WRS.Modify", 
+            "wrsread_group": "STAGINGDMZ\\C.WRS.Read"
         }, 
         "wt_dx": {
             "app_settings_section": {
-                "streamingServiceRoot": "https://kdx.englab.webtrends.corp/StreamingServices_v3/"
+                "streamingServiceRoot": "https://cdx.webtrends.com/StreamingServices_v3/"
             }, 
             "brandedaccountid": "20578,20663", 
             "cacheenabled": "True", 
-            "cachename": "K_DX", 
-            "endpoint_address": "net.tcp://ksearch.englab.webtrends.corp:8096/SearchService/Search", 
+            "cachename": "C_DX", 
+            "endpoint_address": "net.tcp://csearch.staging.dmz:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
         }
     }, 
-    "description": "K Pod", 
+    "description": "Webtrends Heatmap Staging Environment", 
     "json_class": "Chef::Environment", 
-    "name": "K", 
+    "name": "heatmap-staging", 
     "override_attributes": {
         "java": {
             "install_flavor": "oracle", 
@@ -141,6 +142,50 @@
                 "10.164.0.12"
             ], 
             "search": "staging.dmz"
+        },
+        "hive": {
+            "metastore": {
+                "connection_url": "jdbc:mysql://vmeta01.staging.dmz/hive?createDatabaseIfNotExist=true",
+                "connector": "mysql",
+                "dbuser": "root",
+                "dbpass": "a5H7qw"
+            }
+        },
+        "hadoop": {
+            "dfs": {
+                "block_size": 67108864,
+                "name_dir": "/var/lib/hadoop/hdfs/namenode",
+                "data_dir": "/data/hadoop/hdfs/datanode",
+                "datanode_handler_count": 3,
+                "namenode_handler_count": 10,
+                "datanode_du_reserved": 0,
+                "replication": 3,
+                "permissions": "true",
+                "datanode_max_xcievers": 4096
+            },
+            "mapred": {
+              "child_java_opts": "-server -Xmx640m -Djava.net.preferIPv4Stack=true",
+              "job_tracker_handler_count": 10,
+              "reduce_tasks": 1,
+              "local_dir": "${hadoop.tmp.dir}/mapred/local",
+              "tasktracker_map_tasks_maximum": 2,
+              "tasktracker_reduce_tasks_maximum": 2,
+              "child_ulimit": 8388608,
+              "map_tasks_speculative_execution": "false",
+              "reduce_tasks_speculative_execution": "false",
+              "job_reuse_jvm_num_tasks": 1,
+              "io_sort_factor": 10,
+              "io_sort_mb": 100
+            },
+            "core": {
+              "io_file_buffer_size": 4096,
+              "fs_checkpoint_dir": "${hadoop.tmp.dir}/dfs/namesecondary",
+              "fs_trash_interval": 360
+            },
+            "env": {
+              "java_net_preferIPv4Stack": "true",
+              "HADOOP_OPTS": ""
+            }
         }
     }
 }

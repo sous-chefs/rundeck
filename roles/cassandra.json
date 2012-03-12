@@ -1,13 +1,13 @@
 {
-  "name": "ondemand_server",
+  "name": "cassandra",
   "default_attributes": {
   },
   "json_class": "Chef::Role",
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[ondemand_base::ubuntu]",
-    "recipe[ondemand_base::centos]"
+    "recipe[java]",
+    "recipe[wt_cassandra]"
   ],
   "description": "",
   "chef_type": "role",
