@@ -6,5 +6,5 @@
 # Copyright 2012, Webtrends Inc.
 #
 
-default['webtrends']['roadrunner']['zip_file'] = "RoadRunner.zip"
-default['webtrends']['roadrunner']['url'] = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt28/.lastSuccessful"
+default['wt_roadrunner']['zip_file'] = "RoadRunner.zip"
+default['wt_roadrunner']['url'] = "guestAuth/repository/download/bt67/.lastSuccessful/"

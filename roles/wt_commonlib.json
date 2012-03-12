@@ -5,11 +5,9 @@
   "default_attributes": {
   },
   "override_attributes": {
-    "webtrends": {
-      "commonlib": {
-        "common_install_url": "/CommonLib/WebtrendsCommonLib.msi"
+      "wt_commonlib": {
+        "common_install_url": "CommonLib/WebtrendsCommonLib.msi"
       }
-    }
   },
   "chef_type": "role",
   "run_list": [

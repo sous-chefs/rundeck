@@ -7,7 +7,7 @@
 
 <property>
 <name>dfs.name.dir</name>
-<value>/var/lib/hadoop/hdfs/namenode</value>
+<value><%= node[:hadoop][:dfs][:name_dir] %></value>
 <description>Determines where on the local filesystem the DFS name node
 should store the name table. If this is a comma-delimited list
 of directories then the name table is replicated in all of the
@@ -17,7 +17,7 @@ directories, for redundancy. </description>
 
 <property>
 <name>dfs.data.dir</name>
-<value>/data/hadoop/hdfs/datanode</value>
+<value><%= node[:hadoop][:dfs][:data_dir] %></value>
 <description>Determines where on the local filesystem an DFS data node
 should store its blocks. If this is a comma-delimited
 list of directories, then data will be stored in all named
@@ -244,4 +244,61 @@ excluded.
 <value>true</value>
 <description>Enable or disable append. Defaults to false</description>
 </property>
+
+<property>
+<name>dfs.block.size</name>
+<value><%= node[:hadoop][:dfs][:block_size] %></value>
+<description>The default block size for new files.</description>
+<final>true</final>
+</property>
+
+
+<property>
+<name>dfs.datanode.handler.count</name>
+<value><%= node[:hadoop][:dfs][:datanode_handler_count] %></value>
+<description>The number of server threads for the namenode.</description>
+<final>true</final>
+</property>
+
+<property>
+<name>dfs.namenode.handler.count</name>
+<value><%= node[:hadoop][:dfs][:namenode_handler_count] %></value>
+<description>The number of server threads for the namenode.</description>
+<final>true</final>
+</property>
+
+<property>
+<name>dfs.datanode.du.reserved</name>
+<value><%= node[:hadoop][:dfs][:datanode_du_reserved] %></value>
+<description>Reserved space in bytes per volume. Always leave this much space free for non dfs use.</description>
+<final>true</final>
+</property>
+
+<property>
+<name>dfs.replication</name>
+<value><%= node[:hadoop][:dfs][:replication] %></value>
+<description>Default block replication. The actual number of replications can be specified when the file is created. The default is used if replication is not specified in create time.</description>
+<final>true</final>
+</property>
+
+<property>
+<name>dfs.permissions</name>
+<value><%= node[:hadoop][:dfs][:permissions] %></value>
+<description>If "true", enable permission checking in HDFS. If "false", permission checking is turned off, but all other behavior is unchanged. Switching from one parameter value to the other does not change the mode, owner or group of files or directories.</description>
+<final>true</final>
+</property>
+
+<property>
+<name>dfs.datanode.max.xcievers</name>
+<value><%= node[:hadoop][:dfs][:datanode_max_xcievers] %></value>
+<description>n/a</description>
+<final>true</final>
+</property>
+
+
 </configuration>
+
+
+
+
+

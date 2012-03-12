@@ -10,78 +10,94 @@
 
 include_recipe "windows"
 
-installdir = "#{node['webtrends']['installdir']}\\RoadRunner"
-zip_file = node['webtrends']['roadrunner']['zip_file']
-build_url = node['webtrends']['roadrunner']['url']
+# source build
+build_url = "#{node['wt_common']['install_server']}#{node['wt_roadrunner']['url']}#{node['wt_roadrunner']['zip_file']}"
 
-pod = node.chef_environment
-pod_data = data_bag_item('common', pod)
-master_host = pod_data['master_host']
-user = pod_data['loader_user']
-password = pod_data['loader_pass']
+# destinations
+install_dir = "#{node['wt_common']['install_dir']}\\RoadRunner"
+log_dir     = "#{node['wt_common']['install_dir']}\\logs"
 
+# get data bag items 
+auth_data = data_bag_item('authorization', node.chef_environment)
+svcuser = auth_data['wt_common']['loader_user']
+svcpass = auth_data['wt_common']['loader_pass']
 
-rr_url = "#{build_url}/#{zip_file}"
+# get parameters
+master_host = node['wt_common']['master_host']
 
-gac_cmd = "#{installdir}\\gacutil.exe /i #{installdir}\\Webtrends.RoadRunner.SSISPackageRunner.dll"
-sc_cmd = "\"%WINDIR%\\System32\\sc.exe create WebtrendsRoadRunnerService binPath= #{installdir}\\Webtrends.RoadRunner.Service.exe obj= #{user} password= #{password}\""
-netsh_cmd = "netsh http add urlacl url=http://+:8097/ user=#{user}"
+# determine root drive of install_dir - ENG390500
+if (install_dir =~ /^(\w:)\\.*$/)
+	install_dir_drive = $1
+else
+	raise Chef::Exceptions::AttributeNotFound,
+		"could not determine install_dir_drive, please verify value of install_dir: #{install_dir}"
+end
 
-#windows_feature "NetFx3" do
-#	action :install
-#end
+Chef::Log.info "Source URL: #{build_url}"
 
-directory "#{installdir}" do
+gac_cmd = "#{install_dir}\\gacutil.exe /i \"#{install_dir}\\Webtrends.RoadRunner.SSISPackageRunner.dll\""
+sc_cmd = "\"%WINDIR%\\System32\\sc.exe create WebtrendsRoadRunnerService binPath= #{install_dir}\\Webtrends.RoadRunner.Service.exe obj= #{svcuser} password= #{svcpass} start= auto\""
+netsh_cmd = "netsh http add urlacl url=http://+:8097/ user=\"#{svcuser}\""
+
+directory "#{install_dir}" do
 	recursive true
 	action :create
 end
 
-windows_zipfile "#{installdir}" do
-	source "#{rr_url}"
-	action :unzip	
-	not_if {::File.exists?("#{installdir}\\Webtrends.RoadRunner.Service.exe")}
+wt_base_icacls "#{install_dir_drive}" do
+	action :grant
+	user svcuser 
+	perm :read
 end
 
-template "#{installdir}\\Webtrends.RoadRunner.Service.exe.config" do
+directory "#{log_dir}" do
+	recursive true
+	action :create
+end
+
+wt_base_icacls "#{log_dir}" do
+	action :grant
+	user svcuser 
+	perm :modify
+end
+
+windows_zipfile "#{install_dir}" do
+	source "#{build_url}"
+	action :unzip	
+	not_if {::File.exists?("#{install_dir}\\Webtrends.RoadRunner.Service.exe")}
+end
+
+template "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config" do
 	source "RRServiceConfig.erb"
 	variables(		
-		:master_host => pod_data['master_host']
+		:master_host => master_host
 	)
 end
 
-template "#{installdir}\\log4net.config" do
+template "#{install_dir}\\log4net.config" do
 	source "log4net.erb"
 	variables(		
-		:logdir => "#{node['webtrends']['installdir']}\\logs"
+		:logdir => log_dir
 	)
 end
 
 execute "gac" do
 	command gac_cmd
-	cwd installdir
+	cwd install_dir
 	not_if { node[:rr_configured]}
 end
 
 execute "sc" do
 	command sc_cmd
-	cwd installdir
-	not_if { node[:rr_installed]}
+	cwd install_dir	
 end
 
 execute "netsh" do
 	command netsh_cmd
-	cwd installdir
+	cwd install_dir
 	not_if { node[:rr_configured]}
 end
 
 service "WebtrendsRoadRunnerService" do
 	action :start
-end
-
-ruby_block "install_flag" do
-	block do
-		node.set['rr_installed']
-		node.save
-	end
-	action :create
 end
