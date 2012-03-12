@@ -6,7 +6,6 @@
   "env_run_lists": {
   },
   "run_list": [
-	"recipe[wt_base::yumrepo]",
     "recipe[java]",
     "recipe[wt_cassandra]"
   ],
