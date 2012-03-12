@@ -1,0 +1,3 @@
+#if $getVar("proxy","") != ""
+d-i	mirror/http/proxy	string	$proxy
+#end if

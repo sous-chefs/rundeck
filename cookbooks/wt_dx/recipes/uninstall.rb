@@ -1,11 +1,11 @@
-v1pool = node['webtrends']['dx']['v1_1']['app_pool']
-v2pool = node['webtrends']['dx']['v2']['app_pool']
-v21pool = node['webtrends']['dx']['v2_1']['app_pool']
-v22pool = node['webtrends']['dx']['v2_2']['app_pool']
-streamingservices_pool = node['webtrends']['dx']['v3']['streamingservices']['app_pool']
-webservices_pool = node['webtrends']['dx']['v3']['webservices']['app_pool']
-dx_dir = "#{node['webtrends']['installdir']}\\Data Extraction API"
-oem_dir = "#{node['webtrends']['installdir']}\\OEM Data Extraction API"
+v1pool = node['wt_dx']['v1_1']['app_pool']
+v2pool = node['wt_dx']['v2']['app_pool']
+v21pool = node['wt_dx']['v2_1']['app_pool']
+v22pool = node['wt_dx']['v2_2']['app_pool']
+streamingservices_pool = node['wt_dx']['v3']['streamingservices']['app_pool']
+webservices_pool = node['wt_dx']['v3']['webservices']['app_pool']
+dx_dir = "#{node['wt_common']['installdir']}\\Data Extraction API"
+oem_dir = "#{node['wt_common']['installdir']}\\OEM Data Extraction API"
 
 iis_app "DX" do
 	path "/v1_1"
@@ -87,4 +87,11 @@ end
 directory "#{oem_dir}" do
   recursive true
   action :delete
+end
+
+ruby_block "update_node_version" do
+  block do      
+    node.delete(['dx_version'])
+    node.save
+  end
 end

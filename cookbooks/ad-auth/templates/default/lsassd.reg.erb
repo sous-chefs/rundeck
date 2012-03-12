@@ -7,3 +7,7 @@
 "AssumeDefaultDomain"=dword:00000001
 "NssGroupMembersQueryCacheOnly"=dword:00000001
 "RequireMembershipOf"=sza:"<%= @ad_membership_required.join(',') %>"
+"LoginShellTemplate"="/bin/bash"
+
+[HKEY_THIS_MACHINE\Services\lsass\Parameters\Providers\ActiveDirectory]
+"LoginShellTemplate"="/bin/bash"

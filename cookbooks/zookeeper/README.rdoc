@@ -1,0 +1,11 @@
+= DESCRIPTION:
+Installs Zookeeper
+
+= REQUIREMENTS:
+
+* java
+
+= ATTRIBUTES:
+
+= USAGE:
+

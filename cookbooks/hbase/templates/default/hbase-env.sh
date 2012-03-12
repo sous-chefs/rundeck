@@ -22,7 +22,7 @@
 # Set environment variables here.
 
 # The java implementation to use.  Java 1.6 required.
-export JAVA_HOME=/usr/lib/jvm/jre
+export JAVA_HOME=/usr/lib/jvm/jdk1.6.0_30/jre
 
 # Extra Java CLASSPATH elements.  Optional.
 # export HBASE_CLASSPATH=
@@ -66,7 +66,7 @@ export HBASE_OPTS="-ea -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode"
 # export HBASE_NICENESS=10
 
 # The directory where pid files are stored. /tmp by default.
-# export HBASE_PID_DIR=/var/hadoop/pids
+export HBASE_PID_DIR=/var/run/hadoop
 
 # Seconds to sleep between slave commands.  Unset by default.  This
 # can be useful in large clusters, where, e.g., slave rsyncs can
@@ -74,4 +74,4 @@ export HBASE_OPTS="-ea -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode"
 # export HBASE_SLAVE_SLEEP=0.1
 
 # Tell HBase whether it should manage it's own instance of Zookeeper or not.
-# export HBASE_MANAGES_ZK=true
+export HBASE_MANAGES_ZK=true

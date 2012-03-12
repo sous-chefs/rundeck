@@ -1,4 +1,4 @@
-#Make sure that this recipe only runs on ubuntu systems
+#/nagiake sure that this recipe only runs on ubuntu systemso
 if platform?("ubuntu")
 
 #Save the node to prevent empty run lists on failures
@@ -11,13 +11,35 @@ unless Chef::Config[:solo]
   end
 end
 
+#Make sure someone didn't set the _default environment
+if node.chef_environment == "_default" 
+  Chef::Log.info("Set a Chef environment.  We dont want to use _default")
+  exit(true)
+end
+
+#Set chef-client to run on a regular schedule (30 mins)
+include_recipe "chef-client"
+
 #Base recipes necessary for a functioning system
 include_recipe "ubuntu"
 include_recipe "sudo"
 include_recipe "apt"
-#include_recipe "ad-likewise"
 include_recipe "openssh"
 include_recipe "ntp"
+include_recipe "resolver"
+#include_recipe "nagios::client"
+
+# Setup the Webtrends apt repo
+node['ondemand_server']['apt'].each do |aptrepo|
+	apt_repository aptrepo['name'] do
+		repo_name aptrepo['name']
+		distribution "#{node[:lsb][:codename]}"
+		uri aptrepo['url']
+		components aptrepo['components']
+		key aptrepo['key']
+		action :add
+	end
+end
 
 #User experience and tools recipes
 include_recipe "vim"
@@ -49,8 +71,17 @@ if auth_config['alternate_user']
       uid auth_config['alternate_uid']
     end
     shell "/bin/bash"
-  not_if "grep #{auth_config['alternate_user']} /etc/passwd"
+    supports :manage_home => true
   end
 end
+
+#Hack to allow ad-likewise to install with its evil package that refuses to be signed
+execute "allowUnauthenticatedDebs" do
+  command "apt-get install likewise-open=6.1.0-2 -y -o Apt::Get::AllowUnauthenticated=true"
+  action :run
+end
+
+#Now that the local user is created attach the system to AD
+include_recipe "ad-auth"
 
 end

@@ -2,7 +2,6 @@
   "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/",
   "alternate_uid": "2001",
   "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/",
-  ],
   "wt_common": {
     "loader_acct": "wtLoader",
     "loader_pass": "Bijoux1",
@@ -18,8 +17,5 @@
     "install_pass": "Bijoux1"
   },
   "id": "DO",
-  "alternate_user": "bobo",
-  "membership_required": [
-
-  ],
+  "alternate_user": "bobo"
 }
