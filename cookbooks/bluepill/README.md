@@ -3,18 +3,6 @@ Description
 
 Installs bluepill RubyGem and configures it to manage services. Also includes a LWRP.
 
-Changes
-=======
-
-### v0.3.0:
-
-* [COOK-867] - enable bluepill service on RHEL family
-* [COOK-550] - add freebsd support
-
-### v0.2.2:
-
-* Fixes COOK-524, COOK-632
-
 Requirements
 ============
 
@@ -46,9 +34,9 @@ This cookbook contains an LWRP, `bluepill_service`. This can be used with the no
       action [:enable, :load, :start]
     end
 
-The load action should probably always be specified, to ensure that if bluepill isn't running already it gets started. The 
+The load action should probably always be specified, to ensure that if bluepill isn't running already it gets started. The
 
-The recipe using the service must contain a template resource for the pill and it must be named `my_app.pill.erb`, where `my_app` is the service name passed to the bluepill service resource. 
+The recipe using the service must contain a template resource for the pill and it must be named `my_app.pill.erb`, where `my_app` is the service name passed to the bluepill service resource.
 
 Usage
 =====
@@ -71,7 +59,7 @@ Example pill template resource and .erb file:
     end
 
 See bluepill's documentation for more information on creating pill templates.
-    
+
 License and Author
 ==================
 

@@ -11,13 +11,39 @@ unless Chef::Config[:solo]
   end
 end
 
+#Make sure someone didn't set the _default environment
+if node.chef_environment == "_default"
+  Chef::Log.info("Set a Chef environment.  We dont want to use _default")
+  exit(true)
+end
+
+#Fix the host file
+include_recipe "hosts"
+
+#Set chef-client to run on a regular schedule (30 mins)
+include_recipe "chef-client"
+
 #Base recipes necessary for a functioning system
 include_recipe "selinux::permissive"
+include_recipe "yum"
+include_recipe "yum::epel"
 include_recipe "sudo"
-include_recipe "ad-auth"
 include_recipe "openssh"
 include_recipe "ntp"
-include_recipe "yum"
+include_recipe "resolver"
+
+#Add the Webtrends Yum repo
+node['ondemand_server']['yum'].each do |yumrepo|
+	yum_repository yumrepo['name'] do
+		repo_name yumrepo['name']
+		description yumrepo['description']
+		url yumrepo['url']
+		action :add
+	end
+end
+
+#Monitoring
+#include_recipe "nagios::client"
 
 #User experience and tools recipes
 include_recipe "vim"
@@ -55,8 +81,11 @@ if auth_config['alternate_user']
       uid auth_config['alternate_uid']
     end
     shell "/bin/bash"
-  not_if "grep #{auth_config['alternate_user']} /etc/passwd"
+    supports :manage_home => true
   end
 end
+
+#Now that the local user is created attach the system to AD
+include_recipe "ad-auth"
 
 end

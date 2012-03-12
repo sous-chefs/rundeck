@@ -1,69 +1,146 @@
 {
-  "name": "K",
-  "default_attributes": {
-    "vc2010x86": {
-      "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-    },
-    "vc2010x64": {
-      "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-    },
-    "wt_dx": {
-      "app_settings_section": {
-        "streamingServiceRoot": "https://kdx.englab.webtrends.corp/StreamingServices_v3/"
-      },
-      "cacheenabled": "True",
-      "brandedaccountid": "20578,20663",
-      "cachename": "K_DX",
-      "website_name": "DX",
-      "website_port": "80",
-      "endpoint_address": "net.tcp://ksearch.englab.webtrends.corp:8096/SearchService/Search"
-    },
-    "wt_common": {
-      "install_dir": "d:\\wrs",
-      "cassandra_report_column": "K_Report",
-      "installlog_dir": "d:\\logs",
-      "cassandra_snmp_comm": "StagingRO",
-      "cassandra_hosts": [
-        "scass01.staging.dmz",
-        "scass02.staging.dmz",
-        "scass03.staging.dmz"
-      ],
-      "wrsread_group": "WTENGLAB\\K.WRS.Read",
-      "cassandra_snmp_port": "",
-      "schedulerdb_host": "kusagedb01",
-      "sched_host": "kmasterdb01",
-      "cache_hosts": [
-        {
-          "name": "xcache01.staging.dmz",
-          "port": "11211"
-        },
-        {
-          "name": "xcache02.staging.dmz",
-          "port": "11211"
+    "chef_type": "environment", 
+    "cookbook_versions": {}, 
+    "default_attributes": {
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "STAGINGDMZ"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins", 
+                    "STAGINGDMZ\\\\domain-admins"
+                ], 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
+        "ondemand_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution": "lucid", 
+                    "name": "main", 
+                    "url": "http://sops01.staging.dmz/repo/apt"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "webtrends", 
+                    "url": "http://sops01.staging.dmz/repo/yum/wtlab"
+                }
+            ]
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "wt_base": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution": "lucid", 
+                    "name": "main", 
+                    "url": "http://sops01.staging.dmz/repo/apt"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Lab Repo", 
+                    "name": "main", 
+                    "url": "http://sops01.staging.dmz/repo/yum/wtlab"
+                }
+            ]
+        }, 
+        "wt_common": {
+            "cache_hosts": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "cassandra_hosts": [
+                "scass01.staging.dmz", 
+                "scass02.staging.dmz", 
+                "scass03.staging.dmz"
+            ], 
+            "cassandra_meta_column": "K_Meta", 
+            "cassandra_report_column": "K_Report", 
+            "cassandra_snmp_comm": "StagingRO", 
+            "cassandra_snmp_port": "", 
+            "cassandra_thrift_port": "", 
+            "install_dir": "d:\\wrs", 
+            "installlog_dir": "d:\\logs", 
+            "master_host": "kmasterdb01", 
+            "rta_host": "krta01.englab.webtrends.corp", 
+            "sched_host": "kmasterdb01", 
+            "schedulerdb_host": "kusagedb01", 
+            "usage_host": "kusagedb01", 
+            "velocitycache_hosts": [
+                {
+                    "name": "kdxweb01.englab.webtrends.corp", 
+                    "port": "22233"
+                }
+            ], 
+            "wrsmodify_group": "WTENGLAB\\K.WRS.Modify", 
+            "wrsread_group": "WTENGLAB\\K.WRS.Read"
+        }, 
+        "wt_dx": {
+            "app_settings_section": {
+                "streamingServiceRoot": "https://kdx.englab.webtrends.corp/StreamingServices_v3/"
+            }, 
+            "brandedaccountid": "20578,20663", 
+            "cacheenabled": "True", 
+            "cachename": "K_DX", 
+            "endpoint_address": "net.tcp://ksearch.englab.webtrends.corp:8096/SearchService/Search", 
+            "website_name": "DX", 
+            "website_port": "80"
         }
-      ],
-      "cassandra_meta_column": "K_Meta",
-      "velocitycache_hosts": [
-        {
-          "name": "kdxweb01.englab.webtrends.corp",
-          "port": "22233"
+    }, 
+    "description": "K Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "K", 
+    "override_attributes": {
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        }, 
+        "memcached": {
+            "memory": "1024"
+        }, 
+        "nagios": {
+	    "multi_environment_monitoring": "true",
+            "server_role": "nagios_xi"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.staging.dmz"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz"
         }
-      ],
-      "wrsmodify_group": "WTENGLAB\\K.WRS.Modify",
-      "master_host": "kmasterdb01",
-      "cassandra_thrift_port": "",
-      "usage_host": "kusagedb01",
-      "rta_host": "krta01.englab.webtrends.corp"
-    },
-    "memcached": {
-      "memory": "2048"
     }
-  },
-  "json_class": "Chef::Environment",
-  "description": "K Pod",
-  "cookbook_versions": {
-  },
-  "override_attributes": {
-  },
-  "chef_type": "environment"
 }

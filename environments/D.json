@@ -1,75 +1,154 @@
 {
-  "name": "D",
-  "default_attributes": {
-    "webtrends": {
-      "logdir": "D:\\logs",
-      "archive_server": "http://pdxmartink01.webtrends.corp/",
-      "installdir": "d:\\wrs",
-      "install_server": "http://pdxteamcitys01.webtrends.corp/"
-    },
-    "vc2010x86": {
-      "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-    },
-    "vc2010x64": {
-      "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-    },
-    "wt_dx": {
-      "app_settings_section": {
-        "streamingServiceRoot": "https://ddx.webtrends.com/StreamingServices_v3/"
-      },
-      "cacheenabled": "True",
-      "brandedaccountid": "20578,20663",
-      "cachename": "D_DX",
-      "website_name": "DX",
-      "website_port": "80",
-      "endpoint_address": "net.tcp://dsearch.staging.dmz:8096/SearchService/Search"
-    },
-    "wt_common": {
-      "install_dir": "d:\\wrs",
-      "cassandra_report_column": "D_Report",
-      "installlog_dir": "d:\\logs",
-      "cassandra_snmp_comm": "StagingRO",
-      "cassandra_hosts": [
-        "scass01.staging.dmz",
-        "scass02.staging.dmz",
-        "scass03.staging.dmz"
-      ],
-      "wrsread_group": "STAGINGDMZ\\D.WRS.Read",
-      "cassandra_snmp_port": "",
-      "schedulerdb_host": "dusagedb01",
-      "sched_host": "dmasterdb01",
-      "cache_hosts": [
-        {
-          "name": "xcache01.staging.dmz",
-          "port": "11211"
-        },
-        {
-          "name": "xcache02.staging.dmz",
-          "port": "11211"
+    "chef_type": "environment", 
+    "cookbook_versions": {}, 
+    "default_attributes": {
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "STAGINGDMZ"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins", 
+                    "STAGINGDMZ\\\\domain-admins"
+                ], 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
+        "hive": {
+            "metastore": {
+                "connector": "sqlserver", 
+                "dbpass": "cad890", 
+                "dbuser": "sa"
+            }
+        }, 
+        "ondemand_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution": "lucid", 
+                    "name": "main", 
+                    "url": "http://sops01.staging.dmz/repo/apt"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "webtrends", 
+                    "url": "http://sops01.staging.dmz/repo/yum/wtlab"
+                }
+            ]
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "wt_base": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution": "lucid", 
+                    "name": "main", 
+                    "url": "http://sops01.staging.dmz/repo/apt"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Lab Repo", 
+                    "name": "main", 
+                    "url": "http://sops01.staging.dmz/repo/yum/wtlab"
+                }
+            ]
+        }, 
+        "wt_common": {
+            "cache_hosts": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "cassandra_hosts": [
+                "scass01.staging.dmz", 
+                "scass02.staging.dmz", 
+                "scass03.staging.dmz"
+            ], 
+            "cassandra_meta_column": "D_Meta", 
+            "cassandra_report_column": "D_Report", 
+            "cassandra_snmp_comm": "StagingRO", 
+            "cassandra_snmp_port": "", 
+            "cassandra_thrift_port": "", 
+            "install_dir": "d:\\wrs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "installlog_dir": "d:\\logs", 
+            "master_host": "dmasterdb01", 
+            "rta_host": "drta01.staging.dmz", 
+            "sched_host": "dmasterdb01", 
+            "schedulerdb_host": "dusagedb01", 
+            "usage_host": "dusagedb01", 
+            "velocitycache_hosts": [
+                {
+                    "name": "ddxweb01.staging.dmz", 
+                    "port": "22233"
+                }
+            ], 
+            "wrsmodify_group": "STAGINGDMZ\\D.WRS.Modify", 
+            "wrsread_group": "STAGINGDMZ\\D.WRS.Read"
+        }, 
+        "wt_dx": {
+            "app_settings_section": {
+                "streamingServiceRoot": "https://ddx.webtrends.com/StreamingServices_v3/"
+            }, 
+            "brandedaccountid": "20578,20663", 
+            "cacheenabled": "True", 
+            "cachename": "D_DX", 
+            "endpoint_address": "net.tcp://dsearch.staging.dmz:8096/SearchService/Search", 
+            "website_name": "DX", 
+            "website_port": "80"
         }
-      ],
-      "cassandra_meta_column": "D_Meta",
-      "velocitycache_hosts": [
-        {
-          "name": "ddxweb01.staging.dmz",
-          "port": "22233"
+    }, 
+    "description": "D Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "D", 
+    "override_attributes": {
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        }, 
+        "memcached": {
+            "memory": "1024"
+        }, 
+        "nagios": {
+	    "multi_environment_monitoring": "true",
+            "server_role": "nagios_xi"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.staging.dmz"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz"
         }
-      ],
-      "wrsmodify_group": "STAGINGDMZ\\D.WRS.Modify",
-      "master_host": "dmasterdb01",
-      "cassandra_thrift_port": "",
-      "usage_host": "dusagedb01",
-      "rta_host": "drta01.staging.dmz"
-    },
-    "memcached": {
-      "memory": "2048"
     }
-  },
-  "json_class": "Chef::Environment",
-  "description": "D Pod",
-  "cookbook_versions": {
-  },
-  "override_attributes": {
-  },
-  "chef_type": "environment"
 }

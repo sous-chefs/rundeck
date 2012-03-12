@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "build-essential": ">= 0.0.0",
-    "runit": ">= 0.0.0"
+    "runit": ">= 0.0.0",
+    "bluepill": ">= 0.0.0"
   },
   "recommendations": {
   },
@@ -250,5 +251,5 @@
     "nginx": "Installs nginx package and sets up configuration with Debian apache style with sites-enabled/sites-available",
     "nginx::source": "Installs nginx from source and sets up configuration with Debian apache style with sites-enabled/sites-available"
   },
-  "version": "0.99.2"
+  "version": "0.100.2"
 }
