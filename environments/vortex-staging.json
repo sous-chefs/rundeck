@@ -151,7 +151,6 @@
             }
         },
         "hadoop": {
-            "version": "1.0.0",
             "dfs": {
                 "block_size": 67108864,
                 "name_dir": "/var/lib/hadoop/hdfs/namenode",
