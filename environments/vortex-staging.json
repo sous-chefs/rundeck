@@ -145,6 +145,7 @@
         },
         "hive": {
             "metastore": {
+                "connection_url": "jdbc:mysql://vmeta01.staging.dmz/hive?createDatabaseIfNotExist=true",
                 "connector": "mysql",
                 "dbuser": "root",
                 "dbpass": "a5H7qw"
