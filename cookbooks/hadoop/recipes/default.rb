@@ -18,17 +18,17 @@
 #
 include_recipe "java"
 
-hadoop_namenode = search(:node, "role:hadoop_namenode")
+hadoop_namenode = search(:node, "role:hadoop_namenode AND chef_environment:#{node.chef_environment}")
 hadoop_namenode = hadoop_namenode.length == 1 ? hadoop_namenode.first[:fqdn] : "localhost"
 
-hadoop_backupnamenode = search(:node, "role:hadoop_backupnamenode")
+hadoop_backupnamenode = search(:node, "role:hadoop_backupnamenode AND chef_environment:#{node.chef_environment}")
 hadoop_backupnamenode = hadoop_backupnamenode.length == 1 ? hadoop_backupnamenode.first[:fqdn] : "localhost"
 
-hadoop_jobtracker = search(:node, "role:hadoop_jobtracker")
+hadoop_jobtracker = search(:node, "role:hadoop_jobtracker AND chef_environment:#{node.chef_environment}")
 hadoop_jobtracker = hadoop_jobtracker.length == 1 ? hadoop_jobtracker.first[:fqdn] : "localhost"
 
 hadoop_datanodes = Array.new
-search(:node, "role:hadoop_datanode").each do |n|
+search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment}").each do |n|
     hadoop_datanodes << n[:fqdn]
 end
 
