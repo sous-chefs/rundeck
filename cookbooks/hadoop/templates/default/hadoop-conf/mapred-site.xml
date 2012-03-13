@@ -30,7 +30,7 @@ that we do not leave VMs around for later jobs.
 
 <property>
 <name>mapred.job.tracker.http.address</name>
-<value>0.0.0.0:50030</value>
+<value><%= @jobtracker %>:50030</value>
 <final>true</final>
 </property>
 
