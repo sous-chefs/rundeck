@@ -29,7 +29,7 @@ export JAVA_HOME=/usr/lib/jvm/jdk1.6.0_30/jre
 export HBASE_CLASSPATH="$HADOOP_CLASSPATH:$HBASE_CLASSPATH:/usr/share/hadoop/hadoop-core*.jar:/usr/share/hadoop/lib/*.jar"
 
 # The maximum amount of heap to use, in MB. Default is 1000.
-export HBASE_HEAPSIZE=2000
+export HBASE_HEAPSIZE=<%= node[:hbase][:env][:HBASE_HEAPSIZE] %>
 
 # Extra Java runtime options.
 # Below are what we set by default.  May only work with SUN JVM.
@@ -74,4 +74,4 @@ export HBASE_PID_DIR=/var/run/hadoop
 # export HBASE_SLAVE_SLEEP=0.1
 
 # Tell HBase whether it should manage it's own instance of Zookeeper or not.
-export HBASE_MANAGES_ZK=true
+export HBASE_MANAGES_ZK=<%= node[:hbase][:env][:HBASE_MANAGES_ZK] %>
