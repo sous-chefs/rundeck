@@ -1,0 +1,7 @@
+{
+  "id": "heatmap-staging",
+  "hive": {
+    "dbuser": "root",
+    "dbpass": "a5H7qw"
+  }
+}
