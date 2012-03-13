@@ -1,0 +1,12 @@
+{
+  "name": "wt_datacollection_server",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Data collection server",
+  "run_list": [
+    "recipe[nginx]",
+    "recipe[jetty]",
+  ],
+  "override_attributes": {
+  }
+}
