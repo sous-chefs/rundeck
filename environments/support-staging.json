@@ -47,7 +47,7 @@
     }, 
     "description": "Staging Support Servers", 
     "json_class": "Chef::Environment", 
-    "name": "support", 
+    "name": "support-staging", 
     "override_attributes": {
         "ntp": {
             "servers": [
