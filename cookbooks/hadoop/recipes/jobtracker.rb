@@ -24,7 +24,7 @@ directory "/var/lib/hadoop/mapred" do
   owner "hadoop"
   group "hadoop"
   mode "0700"
-  recursive "true"
+  recursive true
   action :create
 end
 
