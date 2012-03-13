@@ -23,25 +23,25 @@
                     "components": [
                         "main"
                     ], 
-                    "distribution": "lucid", 
+                    "key": "http://repo.staging.dmz/repo/apt/repo.gpg.key", 
                     "name": "main", 
-                    "url": "http://sops01.staging.dmz/repo/apt"
+                    "url": "http://repo.staging.dmz/repo/apt"
                 }
             ], 
             "yum": [
                 {
                     "description": "Webtrends Repo", 
                     "name": "webtrends", 
-                    "url": "http://sops01.staging.dmz/repo/yum/wtlab"
+                    "url": "http://repo.staging.dmz/repo/yum/wtlab"
                 }
             ]
         }, 
         "vc2010": {
             "x64": {
-                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
             }, 
             "x86": {
-                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
         "wt_base": {
@@ -52,14 +52,14 @@
                     ], 
                     "distribution": "lucid", 
                     "name": "main", 
-                    "url": "http://sops01.staging.dmz/repo/apt"
+                    "url": "http://repo.staging.dmz/repo/apt"
                 }
             ], 
             "yum": [
                 {
                     "description": "Webtrends Lab Repo", 
                     "name": "main", 
-                    "url": "http://sops01.staging.dmz/repo/yum/wtlab"
+                    "url": "http://repo.staging.dmz/repo/yum/wtlab"
                 }
             ]
         }, 
@@ -117,6 +117,49 @@
     "json_class": "Chef::Environment", 
     "name": "heatmap-staging", 
     "override_attributes": {
+        "hadoop": {
+            "core": {
+                "fs_checkpoint_dir": "${hadoop.tmp.dir}/dfs/namesecondary", 
+                "fs_trash_interval": 360, 
+                "io_file_buffer_size": 4096
+            }, 
+            "dfs": {
+                "block_size": 67108864, 
+                "data_dir": "/data/hadoop/hdfs/datanode", 
+                "datanode_du_reserved": 0, 
+                "datanode_handler_count": 3, 
+                "datanode_max_xcievers": 4096, 
+                "name_dir": "/var/lib/hadoop/hdfs/namenode", 
+                "namenode_handler_count": 10, 
+                "permissions": "true", 
+                "replication": 3
+            }, 
+            "env": {
+                "HADOOP_HEAPSIZE": 1000,
+                "HADOOP_OPTS": "", 
+                "java_net_preferIPv4Stack": "true"
+            }, 
+            "mapred": {
+                "child_java_opts": "-server -Xmx640m -Djava.net.preferIPv4Stack=true", 
+                "child_ulimit": 8388608, 
+                "io_sort_factor": 10, 
+                "io_sort_mb": 100, 
+                "job_reuse_jvm_num_tasks": 1, 
+                "job_tracker_handler_count": 10, 
+                "local_dir": "${hadoop.tmp.dir}/mapred/local", 
+                "map_tasks_speculative_execution": "false", 
+                "reduce_tasks": 1, 
+                "reduce_tasks_speculative_execution": "false", 
+                "tasktracker_map_tasks_maximum": 2, 
+                "tasktracker_reduce_tasks_maximum": 2
+            }
+        }, 
+        "hive": {
+            "metastore": {
+                "connection_url": "jdbc:mysql://vmeta01.staging.dmz/hive?createDatabaseIfNotExist=true", 
+                "connector": "mysql"
+            }
+        }, 
         "java": {
             "install_flavor": "oracle", 
             "jdk_version": "6"
@@ -125,7 +168,7 @@
             "memory": "1024"
         }, 
         "nagios": {
-	    "multi_environment_monitoring": "true",
+            "multi_environment_monitoring": "true", 
             "server_role": "nagios_xi"
         }, 
         "ntp": {
@@ -134,58 +177,14 @@
             ]
         }, 
         "postfix": {
-            "relayhost": "pdxengmta01.staging.dmz"
+            "relayhost": "pdxengmta01.webtrends.corp"
         }, 
         "resolver": {
             "nameservers": [
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-            "search": "staging.dmz"
-        },
-        "hive": {
-            "metastore": {
-                "connection_url": "jdbc:mysql://vmeta01.staging.dmz/hive?createDatabaseIfNotExist=true",
-                "connector": "mysql",
-                "dbuser": "root",
-                "dbpass": "a5H7qw"
-            }
-        },
-        "hadoop": {
-            "dfs": {
-                "block_size": 67108864,
-                "name_dir": "/var/lib/hadoop/hdfs/namenode",
-                "data_dir": "/data/hadoop/hdfs/datanode",
-                "datanode_handler_count": 3,
-                "namenode_handler_count": 10,
-                "datanode_du_reserved": 0,
-                "replication": 3,
-                "permissions": "true",
-                "datanode_max_xcievers": 4096
-            },
-            "mapred": {
-              "child_java_opts": "-server -Xmx640m -Djava.net.preferIPv4Stack=true",
-              "job_tracker_handler_count": 10,
-              "reduce_tasks": 1,
-              "local_dir": "${hadoop.tmp.dir}/mapred/local",
-              "tasktracker_map_tasks_maximum": 2,
-              "tasktracker_reduce_tasks_maximum": 2,
-              "child_ulimit": 8388608,
-              "map_tasks_speculative_execution": "false",
-              "reduce_tasks_speculative_execution": "false",
-              "job_reuse_jvm_num_tasks": 1,
-              "io_sort_factor": 10,
-              "io_sort_mb": 100
-            },
-            "core": {
-              "io_file_buffer_size": 4096,
-              "fs_checkpoint_dir": "${hadoop.tmp.dir}/dfs/namesecondary",
-              "fs_trash_interval": 360
-            },
-            "env": {
-              "java_net_preferIPv4Stack": "true",
-              "HADOOP_OPTS": ""
-            }
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }
     }
 }

@@ -18,17 +18,17 @@
 #
 include_recipe "java"
 
-hadoop_namenode = search(:node, "role:hadoop_namenode")
+hadoop_namenode = search(:node, "role:hadoop_namenode AND chef_environment:#{node.chef_environment}")
 hadoop_namenode = hadoop_namenode.length == 1 ? hadoop_namenode.first[:fqdn] : "localhost"
 
-hadoop_backupnamenode = search(:node, "role:hadoop_backupnamenode")
+hadoop_backupnamenode = search(:node, "role:hadoop_backupnamenode AND chef_environment:#{node.chef_environment}")
 hadoop_backupnamenode = hadoop_backupnamenode.length == 1 ? hadoop_backupnamenode.first[:fqdn] : "localhost"
 
-hadoop_jobtracker = search(:node, "role:hadoop_jobtracker")
+hadoop_jobtracker = search(:node, "role:hadoop_jobtracker AND chef_environment:#{node.chef_environment}")
 hadoop_jobtracker = hadoop_jobtracker.length == 1 ? hadoop_jobtracker.first[:fqdn] : "localhost"
 
 hadoop_datanodes = Array.new
-search(:node, "role:hadoop_datanode").each do |n|
+search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment}").each do |n|
     hadoop_datanodes << n[:fqdn]
 end
 
@@ -50,7 +50,7 @@ cookbook_file "/home/hadoop/.bashrc" do
   source "bashrc"
   owner "hadoop"
   group "hadoop"
-  mode 0644
+  mode "0644"
 end
 
 # setup ssh
@@ -93,7 +93,7 @@ end
 %w[core-site.xml fair-scheduler.xml hadoop-env.sh hadoop-policy.xml hdfs-site.xml mapred-site.xml masters slaves taskcontroller.cfg].each do |template_file|
   template "/etc/hadoop/#{template_file}" do
     source "hadoop-conf/#{template_file}"
-    mode 0755
+    mode "0755"
     variables(
       :namenode => hadoop_namenode,
       :jobtracker => hadoop_jobtracker,
