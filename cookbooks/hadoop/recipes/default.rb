@@ -50,7 +50,7 @@ cookbook_file "/home/hadoop/.bashrc" do
   source "bashrc"
   owner "hadoop"
   group "hadoop"
-  mode 0644
+  mode "0644"
 end
 
 # setup ssh
@@ -93,7 +93,7 @@ end
 %w[core-site.xml fair-scheduler.xml hadoop-env.sh hadoop-policy.xml hdfs-site.xml mapred-site.xml masters slaves taskcontroller.cfg].each do |template_file|
   template "/etc/hadoop/#{template_file}" do
     source "hadoop-conf/#{template_file}"
-    mode 0755
+    mode "0755"
     variables(
       :namenode => hadoop_namenode,
       :jobtracker => hadoop_jobtracker,
