@@ -50,6 +50,7 @@ end
   end
 end
 
+auth_config = data_bag_item('authorization', "#{node.chef_environment}")
 
 # templates
 %w[hive-site.xml hive-env.sh hive-exec-log4j.properties hive-log4j.properties].each do |template_file|
@@ -57,10 +58,9 @@ end
     source "#{template_file}"
     mode 0755
     variables(
-      :metastore_prefix => metastore_prefix,
       :metastore_driver => metastore_driver,
-      :dbuser => node[:hive][:metastore][:dbuser],
-      :dbpass => node[:hive][:metastore][:dbpass]
+      :dbuser => auth_config["hive"]["dbuser"],
+      :dbpass => auth_config["hive"]["dbpass"]
     )
   end
 
