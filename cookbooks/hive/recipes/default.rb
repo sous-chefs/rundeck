@@ -1,7 +1,4 @@
 
-hivemeta = search(:node, "role:hivemeta")
-hivemeta = hivemeta.length == 1 ? hivemeta.first[:fqdn] : "localhost"
-
 include_recipe "hadoop"
 
 # determine metastore jdbc properties
@@ -16,9 +13,6 @@ end
 if node[:hive][:metastore][:connector] == "sqlserver"
   metastore_prefix = "sqlserver"
   metastore_driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
-  if node[:wt_common][:usage_host] != nil
-    hivemeta = node[:wt_common][:usage_host]
-  end
 end
 
 
@@ -56,6 +50,7 @@ end
   end
 end
 
+auth_config = data_bag_item('authorization', "#{node.chef_environment}")
 
 # templates
 %w[hive-site.xml hive-env.sh hive-exec-log4j.properties hive-log4j.properties].each do |template_file|
@@ -63,11 +58,9 @@ end
     source "#{template_file}"
     mode 0755
     variables(
-      :hivemeta => hivemeta,
-      :metastore_prefix => metastore_prefix,
       :metastore_driver => metastore_driver,
-      :dbuser => node[:hive][:metastore][:dbuser],
-      :dbpass => node[:hive][:metastore][:dbpass]
+      :dbuser => auth_config["hive"]["dbuser"],
+      :dbpass => auth_config["hive"]["dbpass"]
     )
   end
 
