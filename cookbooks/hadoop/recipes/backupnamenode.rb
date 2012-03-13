@@ -19,5 +19,10 @@
 
 include_recipe "hadoop"
 
-
-
+directory "/var/lib/hadoop/hdfs/namenode/current" do
+	owner "hadoop"
+	group "hadoop"
+	mode "0755"
+	recursive true
+	action :create
+end
