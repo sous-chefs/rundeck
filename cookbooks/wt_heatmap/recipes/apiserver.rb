@@ -24,7 +24,7 @@ end
 
 
 thriftservers = Array.new
-search(:node, "role:hadoop_datanode").each do |n|
+search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment}").each do |n|
     thriftservers << n[:fqdn]
 end
 
