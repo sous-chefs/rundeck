@@ -155,14 +155,8 @@
         }, 
         "hive": {
             "metastore": {
-<<<<<<< HEAD
-                "connector": "mysql", 
-                "dbpass": "a5H7qw", 
-                "dbuser": "root"
-=======
                 "connection_url": "jdbc:mysql://vmeta01.staging.dmz/hive?createDatabaseIfNotExist=true", 
                 "connector": "mysql"
->>>>>>> d6b0c8cd4d098e3291aa647f07c88589aa8cf1a8
             }
         }, 
         "java": {
@@ -189,11 +183,7 @@
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-<<<<<<< HEAD
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
-=======
-            "search": "staging.dmz"
->>>>>>> d6b0c8cd4d098e3291aa647f07c88589aa8cf1a8
         }
     }
 }
