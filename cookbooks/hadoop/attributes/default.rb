@@ -41,6 +41,7 @@ default[:hadoop][:core][:fs_trash_interval] = 360
 
 
 # hadoop-env.sh
+default[:hadoop][:env][:HADOOP_HEAPSIZE] = 1000
 default[:hadoop][:env][:java_net_preferIPv4Stack] = "true"
 default[:hadoop][:env][:HADOOP_OPTS] = ""
 
