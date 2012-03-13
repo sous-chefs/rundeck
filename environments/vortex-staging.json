@@ -135,7 +135,7 @@
                 "replication": 3
             }, 
             "env": {
-                "HADOOP_HEAPSIZE": 1000,
+                "HADOOP_HEAPSIZE": 1000, 
                 "HADOOP_OPTS": "", 
                 "java_net_preferIPv4Stack": "true"
             }, 
