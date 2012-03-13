@@ -23,26 +23,25 @@
                     "components": [
                         "main"
                     ], 
-                    "distribution": "lucid", 
-                    "key": "http://sops01.staging.dmz/repo/apt/repo.gpg.key", 
+                    "key": "http://repo.staging.dmz/repo/apt/repo.gpg.key", 
                     "name": "main", 
-                    "url": "http://sops01.staging.dmz/repo/apt"
+                    "url": "http://repo.staging.dmz/repo/apt"
                 }
             ], 
             "yum": [
                 {
                     "description": "Webtrends Repo", 
                     "name": "webtrends", 
-                    "url": "http://sops01.staging.dmz/repo/yum/wtlab"
+                    "url": "http://repo.staging.dmz/repo/yum/wtlab"
                 }
             ]
         }, 
         "vc2010": {
             "x64": {
-                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
             }, 
             "x86": {
-                "url": "http://sops01.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
         "wt_base": {
@@ -53,19 +52,19 @@
                     ], 
                     "distribution": "lucid", 
                     "name": "main", 
-                    "url": "http://sops01.staging.dmz/repo/apt"
+                    "url": "http://repo.staging.dmz/repo/apt"
                 }
             ], 
             "yum": [
                 {
                     "description": "Webtrends Lab Repo", 
                     "name": "main", 
-                    "url": "http://sops01.staging.dmz/repo/yum/wtlab"
+                    "url": "http://repo.staging.dmz/repo/yum/wtlab"
                 }
             ]
         }, 
         "wt_common": {
-            "archive_server": "http://sops01.staging.dmz/repo/webtrends/", 
+            "archive_server": "http://repo.staging.dmz/repo/webtrends/", 
             "cache_hosts": [
                 {
                     "name": "xcache01.staging.dmz", 
@@ -86,9 +85,7 @@
             "cassandra_thrift_port": "", 
             "install_dir": "d:\\wrs", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "installdir": "d:\\wrs", 
             "installlog_dir": "d:\\logs", 
-            "logdir": "d:\\logs", 
             "master_host": "masterdb01", 
             "rta_host": "rta01.devops.dmz", 
             "sched_host": "masterdb01", 
@@ -127,7 +124,7 @@
             "memory": "1024"
         }, 
         "nagios": {
-	    "multi_environment_monitoring": "true",
+            "multi_environment_monitoring": "true", 
             "server_role": "nagios_xi"
         }, 
         "ntp": {
@@ -136,7 +133,7 @@
             ]
         }, 
         "postfix": {
-            "relayhost": "pdxengmta01.staging.dmz"
+            "relayhost": "pdxengmta01.webtrends.corp"
         }, 
         "resolver": {
             "nameservers": [
