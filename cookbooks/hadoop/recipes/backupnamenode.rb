@@ -24,6 +24,7 @@ directory node[:hadoop][:core][:fs_checkpoint_dir] do
 	owner "hadoop"
 	group "hadoop"
 	mode "0755"
+	recursive true
 	action :create
 end
 
