@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system-management-homepage>
+<admin-group>domain-admins</admin-group>
+<operator-group></operator-group>
+<user-group></user-group>
+<allow-default-os-admin>True</allow-default-os-admin>
+<anonymous-access>False</anonymous-access>
+<localaccess-enabled>False</localaccess-enabled>
+<localaccess-type>Anonymous</localaccess-type>
+<multihomed></multihomed>
+<trustmode>TrustByCert</trustmode>
+<xenamelist></xenamelist>
+<rotate-logs-size>5</rotate-logs-size>
+<ip-restricted-logins>False</ip-restricted-logins>
+<ip-restricted-include></ip-restricted-include>
+<ip-restricted-exclude></ip-restricted-exclude>
+<ip-binding>False</ip-binding>
+<ip-binding-list></ip-binding-list>
+<port2301>true</port2301>
+<box-order>Name</box-order>
+<box-item-order>Name</box-item-order>
+<session-timeout>15</session-timeout>
+<ui-timeout>20</ui-timeout>
+<httpd-error-log>False</httpd-error-log>
+<log-level>error</log-level>
+</system-management-homepage>
+
