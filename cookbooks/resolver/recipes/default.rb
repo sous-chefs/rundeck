@@ -19,9 +19,14 @@
 # = Requires
 # * node[:resolver][:nameservers]
 
-template "/etc/resolv.conf" do
-  source "resolv.conf.erb"
-  owner "root"
-  group "root"
-  mode 0644
+if node[:resolver][:nameservers] == [ "" ]
+  Chef::Log.info("nameservers attribute not set for the resolver cookbook.  Exiting so we don't break name resolution on the node")
+  exit(true)
+else
+  template "/etc/resolv.conf" do
+    source "resolv.conf.erb"
+    owner "root"
+    group "root"
+    mode 0644
+  end
 end
