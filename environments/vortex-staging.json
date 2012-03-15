@@ -153,7 +153,15 @@
                 "tasktracker_map_tasks_maximum": 2, 
                 "tasktracker_reduce_tasks_maximum": 2
             }
-        }, 
+        },
+        "zookeeper": {
+            "tickTime": 2000,
+            "initLimit": 10,
+            "syncLimit": 5,
+            "clientPort": 2181,
+            "dataDir": "/var/run/zookeeper",
+            "quorum": ["vzookeeper01.staging.dmz","vzookeeper02.staging.dmz","vzookeeper03.staging.dmz"]
+        },
         "hbase": {
             "env": {
                 "HBASE_HEAPSIZE": 1000, 
