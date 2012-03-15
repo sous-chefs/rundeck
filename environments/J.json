@@ -142,6 +142,11 @@
                 "10.61.65.252"
             ], 
             "search": "englab.webtrends.corp webtrends.corp staging.dmz"
+        }, 
+        "snmp": {
+            "community": "DevOps", 
+            "full_systemview": "true", 
+            "syscontact": "trent.white@webtrends.com"
         }
     }
 }

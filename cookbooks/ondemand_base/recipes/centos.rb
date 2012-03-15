@@ -88,4 +88,7 @@ end
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
 
+#Setup monitoring
+include_recipe "snmp"
+
 end
