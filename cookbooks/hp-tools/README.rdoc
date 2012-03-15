@@ -1,0 +1,24 @@
+Description
+===========
+
+This cookbook installs the HP Management tools including the HP System Management Homepage
+
+Requirements
+============
+SNMP cookbook with a configured trap server
+
+Platform
+--------
+
+* RHEL / CentOS
+
+
+Attributes
+==========
+
+Usage
+=====
+
+Include the default recipe on a node's runlist
+
+
