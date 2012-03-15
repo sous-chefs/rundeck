@@ -35,6 +35,5 @@ Usage
 
 A role that makes use of this cookbook is recommended to have in following runlist:
 
-1. wt_base::yumrepo - for configuring a repo which contains apache-cassandra1 package
-2. java - for installing Oracle Java
-3. wt_cassandra
+1. java - for installing Oracle Java
+2. wt_cassandra
