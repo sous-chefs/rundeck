@@ -58,6 +58,9 @@
                 "time.webtrends.corp"
             ]
         }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
         "resolver": {
             "nameservers": [
                 "10.164.0.11", 
@@ -68,8 +71,6 @@
 	"snmp": {
 	   "community": "DevOps",
 	   "full_systemview": "true",
-	   "trapsinks": [
-	   ],
            "syscontact": "trent.white@webtrends.com"
         }
     }
