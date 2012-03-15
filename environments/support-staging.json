@@ -49,6 +49,10 @@
     "json_class": "Chef::Environment", 
     "name": "support-staging", 
     "override_attributes": {
+        "nagios": {
+            "multi_environment_monitoring": "true", 
+            "server_role": "nagios_xi"
+        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
@@ -60,6 +64,13 @@
                 "10.164.0.12"
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }
+	"snmp": {
+	   "community": "DevOps",
+	   "full_systemview": "true",
+	   "trapsinks": [
+	   ],
+           "syscontact": "trent.white@webtrends.com"
         }
     }
 }
