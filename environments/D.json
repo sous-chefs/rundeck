@@ -17,13 +17,6 @@
                 ]
             }
         }, 
-        "hive": {
-            "metastore": {
-                "connector": "sqlserver", 
-                "dbpass": "cad890", 
-                "dbuser": "sa"
-            }
-        }, 
         "ondemand_server": {
             "apt": [
                 {
