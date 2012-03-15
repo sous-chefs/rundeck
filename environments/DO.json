@@ -44,25 +44,6 @@
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
-        "wt_base": {
-            "apt": [
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "distribution": "lucid", 
-                    "name": "main", 
-                    "url": "http://repo.staging.dmz/repo/apt"
-                }
-            ], 
-            "yum": [
-                {
-                    "description": "Webtrends Lab Repo", 
-                    "name": "main", 
-                    "url": "http://repo.staging.dmz/repo/yum/wtlab"
-                }
-            ]
-        }, 
         "wt_common": {
             "archive_server": "http://repo.staging.dmz/repo/webtrends/", 
             "cache_hosts": [
@@ -140,6 +121,11 @@
                 "192.168.2.100"
             ], 
             "search": "devops.dmz"
+        }, 
+        "snmp": {
+            "community": "DevOps", 
+            "full_systemview": "true", 
+            "syscontact": "trent.white@webtrends.com"
         }
     }
 }
