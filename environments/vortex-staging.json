@@ -153,17 +153,17 @@
                 "tasktracker_map_tasks_maximum": 2, 
                 "tasktracker_reduce_tasks_maximum": 2
             }
-        },
+        }, 
         "hbase": {
             "env": {
-                "HBASE_HEAPSIZE": 1000,
+                "HBASE_HEAPSIZE": 1000, 
                 "HBASE_MANAGES_ZK": "true"
-            },
+            }, 
             "site": {
-                "zookeeper_clientport": 2181,
+                "zookeeper_clientport": 2181, 
                 "zookeeper_quorum": "vnamenode01.staging.dmz"
             }
-        },
+        }, 
         "hive": {
             "metastore": {
                 "connection_url": "jdbc:mysql://vmeta01.staging.dmz/hive?createDatabaseIfNotExist=true", 
@@ -195,11 +195,11 @@
                 "10.164.0.12"
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
-        },
-	"snmp": {
-	   "community": "DevOps",
-	   "full_systemview": "true",
-           "syscontact": "trent.white@webtrends.com"
+        }, 
+        "snmp": {
+            "community": "DevOps", 
+            "full_systemview": "true", 
+            "syscontact": "trent.white@webtrends.com"
         }
     }
 }
