@@ -1,0 +1,1 @@
+<%= node[:zookeeper][:quorum].index(node[:fqdn])+1 %>
