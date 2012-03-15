@@ -143,5 +143,12 @@
             ], 
             "search": "englab.webtrends.corp webtrends.corp staging.dmz"
         }
+	"snmp": {
+	   "community": "DevOps",
+	   "full_systemview": "true",
+	   "trapsinks": [
+	   ],
+           "syscontact": "trent.white@webtrends.com"
+       }
     }
 }
