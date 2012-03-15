@@ -3,7 +3,7 @@
 directory "/home/hadoop/log-drop" do
   owner "hadoop"
   group "hadoop"
-  mode "0744"
+  mode "0755"
 end
 
 # script to import data into hive
