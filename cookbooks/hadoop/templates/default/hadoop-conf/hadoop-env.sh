@@ -6,7 +6,7 @@
 # remote nodes.
 
 # The java implementation to use.
-export JAVA_HOME=/usr/lib/jvm/jdk1.6.0_30/jre
+export JAVA_HOME=/usr/lib/jvm/java/jre
 export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-"/etc/hadoop"}
 
 # The maximum amount of heap to use, in MB. Default is 1000.
@@ -32,7 +32,7 @@ export HADOOP_CLIENT_OPTS="-Xmx128m $HADOOP_CLIENT_OPTS"
 export HADOOP_SECURE_DN_USER=
 
 # Where log files are stored. $HADOOP_HOME/logs by default.
-export HADOOP_LOG_DIR=/var/log/hadoop/$USER
+export HADOOP_LOG_DIR=/var/log/hadoop/
 
 # Where log files are stored in the secure data environment.
 export HADOOP_SECURE_DN_LOG_DIR=/var/log/hadoop/hdfs
