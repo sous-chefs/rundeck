@@ -1,4 +1,4 @@
-#/nagiake sure that this recipe only runs on ubuntu systemso
+#Make sure that this recipe only runs on ubuntu systems
 if platform?("ubuntu")
 
 #Save the node to prevent empty run lists on failures
@@ -27,7 +27,6 @@ include_recipe "apt"
 include_recipe "openssh"
 include_recipe "ntp"
 include_recipe "resolver"
-#include_recipe "nagios::client"
 
 # Setup the Webtrends apt repo
 node['ondemand_server']['apt'].each do |aptrepo|
@@ -40,6 +39,16 @@ node['ondemand_server']['apt'].each do |aptrepo|
 		action :add
 	end
 end
+#Setup NRPE to run sudo w/o a password
+file "/etc/sudoers.d/nrpe" do
+  owner "root"
+  group "root"
+  mode "0440"
+  content "nagios       ALL=NOPASSWD: ALL"
+  action :create
+end
+
+#include_recipe "nagios::client"
 
 #User experience and tools recipes
 include_recipe "vim"
