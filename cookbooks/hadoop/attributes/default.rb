@@ -37,7 +37,9 @@ default[:hadoop][:mapred][:io_sort_mb] = 100
 # see: http://hadoop.apache.org/common/docs/current/core-default.html
 default[:hadoop][:core][:io_file_buffer_size] = 4096
 default[:hadoop][:core][:fs_checkpoint_dir] = "/var/lib/hadoop/hdfs/backupnamenode"
+default[:hadoop][:core][:fs_checkpoint_period] = 3600
 default[:hadoop][:core][:fs_trash_interval] = 360
+
 
 
 # hadoop-env.sh
