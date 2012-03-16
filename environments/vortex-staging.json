@@ -146,11 +146,11 @@
         "hbase": {
             "env": {
                 "HBASE_HEAPSIZE": 1000, 
-                "HBASE_MANAGES_ZK": "true"
+                "HBASE_MANAGES_ZK": "false"
             }, 
             "site": {
                 "zookeeper_clientport": 2181, 
-                "zookeeper_quorum": "vnamenode01.staging.dmz"
+                "zookeeper_quorum": "vzookeeper01.staging.dmz,vzookeeper02.staging.dmz,vzookeeper02.staging.dmz"
             }
         }, 
         "hive": {
