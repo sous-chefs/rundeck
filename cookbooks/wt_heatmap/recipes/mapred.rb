@@ -13,6 +13,13 @@ template "/etc/zookeeper" do
   )
 end
 
+template "/etc/config_distrib" do
+  source "config_distrib"
+  owner "hadoop"
+  group "hadoop"
+  mode 0755
+end
+
 remote_directory "/usr/local/mapred" do
   source "mapred"
   owner "hadoop"
