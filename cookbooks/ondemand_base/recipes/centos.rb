@@ -43,6 +43,14 @@ node['ondemand_server']['yum'].each do |yumrepo|
 end
 
 #Monitoring
+file "/etc/sudoers.d/nrpe" do
+  owner "root"
+  group "root"
+  mode "0440"
+  content "nrpe       ALL=NOPASSWD: ALL"
+  action :create
+end
+
 #include_recipe "nagios::client"
 
 #User experience and tools recipes
