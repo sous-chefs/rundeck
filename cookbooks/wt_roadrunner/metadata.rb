@@ -4,7 +4,7 @@ maintainer_email "kendrick.martin@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures Roadrunner service"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "10.3"
+version          "0.10.3"
 
 supports         "windows"
 
