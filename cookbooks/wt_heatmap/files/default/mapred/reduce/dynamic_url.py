@@ -45,19 +45,27 @@ def sha1(str):
 
 # body ##########################################################################
 
-conn = httplib.HTTPConnection("vcd01.staging.dmz:8097")
+
+# pull config distributor url from argv[1]
+config_distrib = sys.argv[1]
+sys.stderr.write("Config Distributor: %s\n" % (config_distrib))
+
+# rest/json request
+conn = httplib.HTTPConnection(config_distrib)
 conn.request("GET", "/Config/dcsid2account")
 response = conn.getresponse()
 if response.status != 200:
 	sys.stderr.write("Bad http request status: %i %s\n" % (response.status, response.reason))
 	exit(-1)
 
+# parse dcsid -> account-id mappings
 try:
 	account_ids = json.loads(response.read())
 except Exception, e:
 	sys.stderr.write("Unable to parse json from http result\n")
 	raise
 
+# start sucking on the data
 while True:
 	try:
 		line = sys.stdin.readline()
