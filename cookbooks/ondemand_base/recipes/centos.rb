@@ -42,7 +42,7 @@ node['ondemand_server']['yum'].each do |yumrepo|
 	end
 end
 
-#Monitoring
+#Setup NRPE to run sudo w/o a password
 file "/etc/sudoers.d/nrpe" do
   owner "root"
   group "root"
@@ -96,7 +96,7 @@ end
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
 
-#Setup monitoring
+#Allow for hardware monitoring (CentOS only goes on hardware systems)
 include_recipe "snmp"
 
 end
