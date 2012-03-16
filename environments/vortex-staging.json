@@ -98,6 +98,9 @@
     "json_class": "Chef::Environment", 
     "name": "heatmap-staging", 
     "override_attributes": {
+        "wt_heatmap": {
+             "config_distrib": "vcd01.staging.dmz:8097"
+         },
         "hadoop": {
             "core": {
                 "fs_checkpoint_dir": "${hadoop.tmp.dir}/dfs/namesecondary", 
