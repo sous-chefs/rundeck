@@ -1,7 +1,7 @@
 Description
 ===========
 
-This cookbook installs the Microsoft .NET Framework 3.5 on Windows 2008 R1/R2
+This cookbook installs the Microsoft .NET Framework 3.5 on Windows Vista, 7, and 2008 R1/R2
 
 Requirements
 ============
