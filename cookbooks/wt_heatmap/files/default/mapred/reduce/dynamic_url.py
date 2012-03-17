@@ -26,7 +26,9 @@
 import sys
 import hashlib
 import httplib
-import simplejson as json
+
+import cjson
+
 
 # functions #####################################################################
 
@@ -58,7 +60,7 @@ if response.status != 200:
 
 # parse dcsid -> account-id mappings
 try:
-	account_ids = json.loads(response.read())
+	account_ids = cjson.decode(response.read())
 except Exception, e:
 	sys.stderr.write("Unable to parse json from http result\n")
 	raise
@@ -71,31 +73,33 @@ while True:
 			break
 
 		# get parameters (workflow #1)
-		params = dict(zip(["json","ds","hr"],line.rstrip("\n").split("\t")))
-		obj = json.loads(params["json"])
+		params = line.rstrip("\n").split("\t") # "json","ds","hr"
+		tmp = cjson.decode(params[0])
 
 		# convert WT.blah params to WT_blah
-		obj = dict((k.replace('.','_'), obj[k]) for k in obj)
+		obj = {
+			"WT_hm_w": tmp["WT.hm_w"]
+			, "WT_hm_h": tmp["WT.hm_h"]
+			, "WT_hm_x": tmp["WT.hm_x"]
+			, "WT_hm_y": tmp["WT.hm_y"]
+			, "ds": params[1]
+			, "hr": params[2]
+		}
 		
 		# only continue if we know the account-id for the dcs-id
-		if not(obj["dcs-id"] in account_ids):
+		if not(tmp["dcs-id"] in account_ids):
 			continue
-			
-		# makes it easy to watch these fields (workflow #2)
-		obj["ds"] = params["ds"]
-		obj["hr"] = params["hr"]
 
 		# determine page hash (workflow #3)
-		page_ident = obj["cs-uri-stem"]
-		if "WT_hm_url" in obj:
-			page_ident += "?" + obj["WT_hm_url"]
+		page_ident = tmp["cs-uri-stem"]
+		if "WT.hm_url" in tmp:
+			page_ident += "?" + tmp["WT.hm_url"]
 
-		obj["page_ident"] = page_ident
-		obj["account-id"] = account_ids[obj["dcs-id"]]
-		obj["page_key"] = str(obj["account-id"]) + ";" + obj["cs-host"] + ";" + sha1(page_ident)
+		account_id = account_ids[tmp["dcs-id"]]
+		obj["page_key"] = str(account_id) + ";" + tmp["cs-host"] + ";" + sha1(page_ident)
 		
 		# emit (workflow #4)
-		sys.stdout.write("%s\n" % (json.dumps(obj)))
+		sys.stdout.write("%s\n" % (cjson.encode(obj)))
 
 	except Exception, e:
 		sys.stderr.write("error: %s on line %s\n" % (e, line))

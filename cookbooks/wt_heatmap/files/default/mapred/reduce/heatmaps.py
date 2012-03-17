@@ -20,7 +20,7 @@
 #   that is summarized and blocked, aka ready to be inserted
 
 import sys
-import simplejson as json
+import cjson
 
 
 max_clicks_per_block = 0
@@ -64,7 +64,7 @@ try:
 		if not line:
 			break
 
-		obj = json.loads(line)
+		obj = cjson.decode(line)
 
 		try: # because some WT_hm_ fields are null, just ignore them and continue
 			# determine block id
