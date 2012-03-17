@@ -26,9 +26,7 @@
 import sys
 import hashlib
 import httplib
-
-try: import simplejson as json
-except ImportError: import json
+import simplejson as json
 
 # functions #####################################################################
 
