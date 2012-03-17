@@ -1,7 +1,7 @@
 Description
 ===========
 
-This cookbook installs the Microsoft .NET 4 Framework
+This cookbook installs the Microsoft .NET Framework 4.0
 
 Requirements
 ============
@@ -21,5 +21,5 @@ Attributes
 Usage
 =====
 
-Include the default recipe on a node's runlist to ensure that .NET 4 is installed on the system
+Include the default recipe on a node's runlist to ensure that .NET Framework 4.0 is installed on the system
 

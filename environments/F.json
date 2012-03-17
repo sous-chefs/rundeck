@@ -108,6 +108,9 @@
         }, 
         "memcached": {
             "memory": "1024"
+        },
+        "ms_dotnet4":{
+            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
         "nagios": {
             "multi_environment_monitoring": "true", 

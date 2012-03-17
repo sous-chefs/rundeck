@@ -45,7 +45,6 @@
             }
         }, 
         "wt_common": {
-            "archive_server": "http://repo.staging.dmz/repo/webtrends/", 
             "cache_hosts": [
                 {
                     "name": "xcache01.staging.dmz", 
@@ -103,6 +102,9 @@
         }, 
         "memcached": {
             "memory": "1024"
+        },
+        "ms_dotnet4":{
+            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
         "nagios": {
             "multi_environment_monitoring": "true", 

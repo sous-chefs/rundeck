@@ -37,7 +37,8 @@ Chef::Log.info "Source URL: #{build_url}"
 
 gac_cmd = "#{install_dir}\\gacutil.exe /i \"#{install_dir}\\Webtrends.RoadRunner.SSISPackageRunner.dll\""
 sc_cmd = "\"%WINDIR%\\System32\\sc.exe create WebtrendsRoadRunnerService binPath= #{install_dir}\\Webtrends.RoadRunner.Service.exe obj= #{svcuser} password= #{svcpass} start= auto\""
-netsh_cmd = "netsh http add urlacl url=http://+:8097/ user=\"#{svcuser}\""
+urlacl_cmd = "netsh http add urlacl url=http://+:8097/ user=\"#{svcuser}\""
+firewall_cmd="netsh advfirewall firewall add rule name=\"Webtrends RoadRunner port 8097\" dir=in action=allow protocol=TCP localport=8097"
 
 directory "#{install_dir}" do
 	recursive true
@@ -92,8 +93,14 @@ execute "sc" do
 	cwd install_dir	
 end
 
-execute "netsh" do
-	command netsh_cmd
+execute "netsh_urlacl" do
+	command urlacl_cmd
+	cwd install_dir
+	not_if { node[:rr_configured]}
+end
+
+execute "netsh_firewall" do
+	command firewall_cmd
 	cwd install_dir
 	not_if { node[:rr_configured]}
 end
