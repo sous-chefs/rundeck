@@ -1,7 +1,7 @@
 Description
 ===========
 
-This cookbook installs Firefox 10.0
+This cookbook installs Firefox 11.0
 
 Requirements
 ============
@@ -22,6 +22,6 @@ Attributes
 Usage
 =====
 
-Include the default recipe on a node's runlist to ensure that Firefox 10.0 is installed
+Include the default recipe on a node's runlist to ensure that Firefox 11.0 is installed
 
 
