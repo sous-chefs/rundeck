@@ -18,6 +18,10 @@
 #
 include_recipe "java"
 
+package "python-simplejson" do
+  action :install
+end
+
 hadoop_namenode = search(:node, "role:hadoop_namenode AND chef_environment:#{node.chef_environment}")
 hadoop_namenode = hadoop_namenode.length == 1 ? hadoop_namenode.first[:fqdn] : "localhost"
 

@@ -20,9 +20,7 @@
 #   that is summarized and blocked, aka ready to be inserted
 
 import sys
-
-try: import simplejson as json
-except ImportError: import json
+import simplejson as json
 
 
 max_clicks_per_block = 0
