@@ -39,7 +39,7 @@ fi
 # -- query ----------------------------------------------------------
 
 query=$(cat <<HIVEQL
-add FILE /usr/local/mapred/reduce/dynamic_url.py;
+add FILE /usr/local/mapred/reduce/dynamic_url_noconfig.py;
 add FILE /usr/local/mapred/reduce/heatmaps.py;
 FROM
 (
@@ -55,7 +55,7 @@ FROM
       WHERE
         ds >= '$begin_date'
         AND ds <= '$end_date'
-    ) q1 SELECT TRANSFORM (json, ds, hr) USING 'python dynamic_url.py $(cat /etc/config_distrib)' AS json
+    ) q1 SELECT TRANSFORM (json, ds, hr) USING 'python dynamic_url_noconfig.py $(cat /etc/config_distrib)' AS json
       DISTRIBUTE BY
         get_json_object(json, '$.page_key')
         , get_json_object(json, '$.ds')
