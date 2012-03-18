@@ -20,6 +20,13 @@ template "/etc/config_distrib" do
   mode 0755
 end
 
+template "/etc/heatmap_reducers" do
+  source "heatmap_reducers"
+  owner "hadoop"
+  group "hadoop"
+  mode 0755
+end
+
 remote_directory "/usr/local/mapred" do
   source "mapred"
   owner "hadoop"

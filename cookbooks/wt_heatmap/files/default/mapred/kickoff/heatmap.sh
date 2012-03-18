@@ -39,6 +39,7 @@ fi
 # -- query ----------------------------------------------------------
 
 query=$(cat <<HIVEQL
+set mapred.reduce.tasks=$(cat /etc/heatmap_reducers);
 add FILE /usr/local/mapred/reduce/dynamic_url.py;
 add FILE /usr/local/mapred/reduce/heatmaps.py;
 FROM
