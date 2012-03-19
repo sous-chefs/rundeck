@@ -1,0 +1,6 @@
+#managed with Chef
+acl chef_network src <%= @network %>
+http_access allow chef_network
+refresh_pattern deb$ 1577846 100% 1577846
+cache_dir ufs /var/spool/squid 15000 2 8
+maximum_object_size 1024000 KB
