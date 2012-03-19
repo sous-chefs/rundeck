@@ -1,33 +1,31 @@
 {
-  "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/",
-  "alternate_uid": "2001",
-  "primary_domain": "englab.webtrends.corp",
-  "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/",
-  "linux_admins": [
-    "WTENGLAB\\\\domain-admins",
-    "domain-admins",
-    "WTENGLAB\\\\j.admins",
-    "j.admins"
-  ],
-  "auth_domain_user": "VMwareJoinDomain",
-  "wt_common": {
-    "loader_acct": "wtLoader",
-    "loader_pass": "Bijoux1",
-    "ui_user": "WTENGLAB\\wtUI",
-    "install_acct": "wtInstaller",
-    "system_pass": "Bijoux1",
-    "loader_user": "WTENGLAB\\wtLoader",
-    "system_acct": "wtSystem",
-    "system_user": "WTENGLAB\\wtSystem",
-    "install_user": "WTENGLAB\\wtInstaller",
-    "ui_acct": "wtUI",
-    "ui_pass": "Bijoux1",
-    "install_pass": "Bijoux1"
-  },
-  "id": "J",
-  "alternate_user": "bobo",
-  "membership_required": [
-
-  ],
-  "auth_domain_password": "H1DvoOXRrG"
+    "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "alternate_uid": "2001", 
+    "alternate_user": "bobo", 
+    "auth_domain_password": "H1DvoOXRrG", 
+    "auth_domain_user": "VMwareJoinDomain", 
+    "id": "J", 
+    "linux_admins": [
+        "WTENGLAB\\\\domain-admins", 
+        "domain-admins", 
+        "WTENGLAB\\\\j.admins", 
+        "j.admins"
+    ], 
+    "membership_required": [], 
+    "primary_domain": "englab.webtrends.corp", 
+    "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "wt_common": {
+        "install_acct": "wtInstaller", 
+        "install_pass": "Bijoux1", 
+        "install_user": "WTENGLAB\\wtInstaller", 
+        "loader_acct": "wtLoader", 
+        "loader_pass": "Bijoux1", 
+        "loader_user": "WTENGLAB\\wtLoader", 
+        "system_acct": "wtSystem", 
+        "system_pass": "Bijoux1", 
+        "system_user": "WTENGLAB\\wtSystem", 
+        "ui_acct": "wtUI", 
+        "ui_pass": "Bijoux1", 
+        "ui_user": "WTENGLAB\\wtUI"
+    }
 }
