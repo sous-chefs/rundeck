@@ -1,0 +1,16 @@
+{
+  "name": "wt_roadrunner",
+  "description": "Installs the RoadRunner service",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[vc2010]",
+    "recipe[wt_roadrunner]"
+  ],
+  "env_run_lists": {
+  }
+}

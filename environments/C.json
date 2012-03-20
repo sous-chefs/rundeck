@@ -60,47 +60,43 @@
                 "scass02.staging.dmz", 
                 "scass03.staging.dmz"
             ], 
-            "cassandra_meta_column": "F_Meta", 
-            "cassandra_report_column": "F_Report", 
+            "cassandra_meta_column": "C_Meta", 
+            "cassandra_report_column": "C_Report", 
             "cassandra_snmp_comm": "StagingRO", 
             "cassandra_snmp_port": "", 
             "cassandra_thrift_port": "", 
             "install_dir": "d:\\wrs", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "installlog_dir": "d:\\logs", 
-            "master_host": "fmasterdb01", 
-            "rta_host": "frta01.staging.dmz", 
-            "sched_host": "fmasterdb01", 
-            "schedulerdb_host": "fusagedb01", 
-            "usage_host": "fusagedb01", 
+            "master_host": "cmasterdb01", 
+            "rta_host": "crta01.staging.dmz", 
+            "sched_host": "cmasterdb01", 
+            "schedulerdb_host": "cusagedb01", 
+            "usage_host": "cusagedb01", 
             "velocitycache_hosts": [
                 {
-                    "name": "fdxweb01.staging.dmz", 
-                    "port": "22233"
-                }, 
-                {
-                    "name": "fdxweb02.staging.dmz", 
+                    "name": "cdxweb01.staging.dmz", 
                     "port": "22233"
                 }
             ], 
-            "wrsmodify_group": "STAGINGDMZ\\F.WRS.Modify", 
-            "wrsread_group": "STAGINGDMZ\\F.WRS.Read"
+            "wrsmodify_group": "STAGINGDMZ\\C.WRS.Modify", 
+            "wrsread_group": "STAGINGDMZ\\C.WRS.Read"
         }, 
         "wt_dx": {
             "app_settings_section": {
-                "streamingServiceRoot": "https://fdx.webtrends.com/StreamingServices_v3/"
+                "streamingServiceRoot": "https://cdx.webtrends.com/StreamingServices_v3/"
             }, 
             "brandedaccountid": "20578,20663", 
             "cacheenabled": "True", 
-            "cachename": "F_DX", 
-            "endpoint_address": "net.tcp://fsearch.staging.dmz:8096/SearchService/Search", 
+            "cachename": "C_DX", 
+            "endpoint_address": "net.tcp://csearch.staging.dmz:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
         }
     }, 
-    "description": "F Pod", 
+    "description": "C Pod", 
     "json_class": "Chef::Environment", 
-    "name": "F", 
+    "name": "C", 
     "override_attributes": {
         "java": {
             "install_flavor": "oracle", 

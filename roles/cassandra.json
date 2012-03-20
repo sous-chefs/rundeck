@@ -1,17 +1,15 @@
 {
-  "name": "J",
+  "name": "cassandra",
   "default_attributes": {
-    "webtrends": {
-      "pod": "J"
-    }
   },
   "json_class": "Chef::Role",
   "env_run_lists": {
   },
   "run_list": [
-
+    "recipe[java]",
+    "recipe[wt_cassandra]"
   ],
-  "description": "J Pod",
+  "description": "",
   "chef_type": "role",
   "override_attributes": {
   }

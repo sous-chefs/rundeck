@@ -1,0 +1,11 @@
+{
+  "name": "hadoop_backupnamenode",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Hadoop BackupNameNode",
+  "run_list": [
+    "recipe[hadoop::backupnamenode]"
+  ],
+  "override_attributes": {
+  }
+}

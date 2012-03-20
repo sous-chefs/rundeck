@@ -9,3 +9,6 @@
 
 # subversion
 */.svn/*
+
+# MacOS X
+.DS_Store

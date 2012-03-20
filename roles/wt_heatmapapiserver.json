@@ -1,0 +1,11 @@
+{
+  "name": "heatmapapiserver",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Heatmap API Server",
+  "run_list": [
+    "recipe[php5-fcgi]",
+    "recipe[wt_heatmap::apiserver]",
+    "recipe[thrift-hbase-php5]"
+  ]
+}
