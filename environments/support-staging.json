@@ -23,9 +23,9 @@
                     "components": [
                         "main"
                     ], 
-                    "key": "http://repo.staging.dmz/repo/apt/repo.gpg.key", 
-                    "name": "main", 
-                    "url": "http://repo.staging.dmz/repo/apt"
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
                 }
             ], 
             "yum": [
@@ -49,6 +49,19 @@
     "json_class": "Chef::Environment", 
     "name": "support-staging", 
     "override_attributes": {
+        "cobbler": {
+            "manage_dhcp": 1, 
+            "pxe_just_once": 1, 
+            "subnets": {
+                "10.164.0.0": {
+                    "netmask": "255.255.0.0"
+                }
+            }
+        }, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        }, 
         "nagios": {
             "multi_environment_monitoring": "true", 
             "server_role": "nagios_xi"
