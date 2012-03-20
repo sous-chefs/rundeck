@@ -1,0 +1,14 @@
+{
+  "name": "hadoop_namenode",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Hadoop NameNode",
+  "run_list": [
+    "recipe[hadoop::namenode]",
+    "recipe[hbase::hmaster]",
+    "recipe[hive]",
+    "recipe[wt_heatmap::mapred]"
+  ],
+  "override_attributes": {
+  }
+}

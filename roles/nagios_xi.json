@@ -1,0 +1,16 @@
+{
+  "run_list": [
+   "recipe[nagios-xi]"
+  ],
+  "json_class": "Chef::Role",
+  "description": "",
+  "override_attributes": {
+  },
+  "env_run_lists": {
+  },
+  "name": "nagios_xi",
+  "chef_type": "role",
+  "default_attributes": {
+  }
+}
+

@@ -116,5 +116,5 @@ def appcmd
 end
 
 def site_identifier
-  @new_resource.host_header || @new_resource.pool_name 
+  @new_resource.pool_name 
 end

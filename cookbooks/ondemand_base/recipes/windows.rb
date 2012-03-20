@@ -1,6 +1,16 @@
 #Make sure that this recipe only runs on Windows systems
 if platform?("windows") 
       
+#Save the node to prevent empty run lists on failures
+unless Chef::Config[:solo]
+  ruby_block "save node data" do
+    block do
+      node.save
+    end
+    action :create
+  end
+end
+
 	#Turn off hibernation
 	execute "powercfg-hibernation" do
 	  command "powercfg.exe /h off"

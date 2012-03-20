@@ -1,16 +1,16 @@
 #
-# Cookbook Name:: webtrends
-# Recipe:: dx
-# Author: Kendrick Martin
+# Cookbook Name:: wt_dx
+# Recipe:: pre
+# Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
 #
 # Copyright 2011, Webtrends
 #
 # All rights reserved - Do Not Redistribute
-# This recipe installs the needed components to full setup/configure DX.
+# This recipe sets up the base configuration for DX
 
-installdir = node['webtrends']['installdir']
-logdir = node['webtrends']['logdir']
-cfg_cmds = node['webtrends']['dx']['cfg_cmd']
+installdir = node['wt_common']['installdir']
+logdir = node['wt_common']['logdir']
+cfg_cmds = node['wt_dx']['cfg_cmd']
 
 directory logdir do
 	action :create
@@ -27,8 +27,9 @@ windows_registry 'HKLM\SOFTWARE\Wow6432Node\WebTrends Corporation' do
 end
 
 ruby_block "deflate_flag" do
+	Chef::Log.info("i am in deflate_flag") 
 	block do
-		node.set['deflate_configured']
+		node.default['deflate'] = "configured"
 		node.save
 	end
 	action :nothing
@@ -37,7 +38,7 @@ end
 iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
 	action :config
 	notifies :create, "ruby_block[deflate_flag]", :immediately
-	not_if {node.attribute?("deflate_configured")}
+	not_if {node.attribute?("deflate")}
 end
 
 

@@ -1,0 +1,32 @@
+{
+    "platforms": {
+      "ubuntu": [
+
+      ]
+    },
+    "version": "1.0.0",
+    "suggestions": {
+    },
+    "license": "Apache 2.0",
+    "conflicting": {
+    },
+    "providing": {
+    },
+    "description": "Install and configure the collectd monitoring daemon",
+    "recipes": {
+    },
+    "maintainer": "Noan Kantrowitz",
+    "replacing": {
+    },
+    "attributes": {
+    },
+    "maintainer_email": "nkantrowitz@crypticstudios.com",
+    "name": "collectd",
+    "groupings": {
+    },
+    "dependencies": {
+    },
+    "long_description": "= DESCRIPTION:\n\nConfigure and install the collectd[http://collectd.org/] monitoring daemon.\n\n= REQUIREMENTS:\n\nThis cookbook has only been tested on Ubuntu 10.04.\n\nTo use the collectd_web recipe you need the apache2[https://github.com/opscode/cookbooks/tree/master/apache2] cookbook.\n\nThe collectd_plugins cookbook is not required, but provides many common plugin definitions for easy reuse.\n\n= ATTRIBUTES:\n\n* collectd.basedir - Base folder for collectd output data.\n* collectd.plugin_dir - Base folder to find plugins.\n* collectd.types_db - Array of files to read graph type information from.\n* collectd.interval - Time period in seconds to wait between data reads.\n\n* collectd.collectd_web.path - Location to install collectd_web to. Defaults to /srv/collectd_web.\n* collectd.collectd_web.hostname - Server name to use for collectd_web Apache site.\n\n= USAGE:\n\nThree main recipes are provided:\n* collectd - Install a standalone daemon.\n* collectd::client - Install collectd and configure it to send data to a server.\n* collectd::server - Install collectd and configure it to recieve data from clients.\n\nThe client recipe will use the search index to automatically locate the server hosts, so no manual configuration is required.\n\n== Defines:\n\nSeveral defines are provided to simplfy configuring plugins\n\n=== collectd_plugin:\n\nThe +collectd_plugin+ define configures and enables standard collect plugins. Example:\n    \n    collectd_plugin \"interface\" do\n      options :interface=>\"lo\", :ignore_selected=>true\n    end\n\nThe options hash is converted to collectd-style settings automatically. Any symbol key will be converted to camel-case. In the above example :ignore_selected will be output as the\nkey \"IgnoreSelected\". If the key is already a string, this conversion is skipped. If the value is an array, it will be output as a separate line for each element.\n\n=== collectd_python_plugin:\n\nThe +collectd_python_plugin+ define configures and enables Python plugins using the collectd-python plugin. Example:\n    \n    collectd_python_plugin \"redis\" do\n      options :host=>servers, :verbose=>true\n    end\n\nOptions are interpreted in the same way as with +collectd_plugin+. This define will not deploy the plugin script as well, so be sure to setup a cookbook_file resource\nor other mechanism to handle distribution. Example:\n\n    cookbook_file File.join(node[:collectd][:plugin_dir], \"redis.py\") do\n      owner \"root\"\n      group \"root\"\n      mode \"644\"\n    end\n\n== Web frontend:\n\nThe +collectd::collectd_web+ recipe will automatically deploy the collectd_web[https://github.com/httpdss/collectd-web] frontend using Apache. The \napache2[https://github.com/opscode/cookbooks/tree/master/apache2] cookbook is required for this and is *not* included automatically as this is an optional\ncomponent, so be sure to configure the node with the correct recipes.\n\n= LICENSE & AUTHOR:\n\nAuthor:: Noah Kantrowitz (<nkantrowitz@crypticstudios.com>)\nCopyright:: 2010, Atari, Inc\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
+    "recommendations": {
+    }
+  }

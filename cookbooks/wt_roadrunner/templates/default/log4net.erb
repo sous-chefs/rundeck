@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log4net>
+  <appender name="BufferingForwardingAppender" type="log4net.Appender.BufferingForwardingAppender" >
+    <bufferSize value="10"/>
+    <appender-ref ref="LogFileAppender" />
+  </appender>
+
+  <appender name="LogFileAppender" type="log4net.Appender.RollingFileAppender" >
+    <file type="log4net.Util.PatternString" value="<%= @logdir %>\RoadRunner-%property{log4net:HostName}" />
+    <appendToFile value="true" />
+    <datePattern value="-yyyyMMdd.'log'" />
+    <rollingStyle value="Composite" />
+    <maxSizeRollBackups value="1" />
+    <maximumFileSize value="100MB" />
+    <param name="StaticLogFileName" value="false" />
+    <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+    <layout type="log4net.Layout.PatternLayout">
+      <header value="-Start-&#13;&#10;" />
+      <footer value="-End-&#13;&#10;" />
+      <conversionPattern value="%date [%thread] %-5level %logger - %message%newline" />
+    </layout>
+  </appender>
+
+  <appender name="EventLogAppender" type="log4net.Appender.EventLogAppender" applicationName="Webtrends RoadRunner Service" >
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%date %-5level %logger - %message%newline" />
+    </layout>
+    <mapping>
+      <level value="ERROR" />
+      <eventLogEntryType value="Error" />
+    </mapping>
+  </appender>
+  
+  <!-- Root Appender for debugging-->
+  <appender name="ColoredConsoleAppender" type="log4net.Appender.ColoredConsoleAppender">
+    <mapping>
+      <level value="ERROR" />
+      <foreColor value="White" />
+      <backColor value="Red, HighIntensity" />
+    </mapping>
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%date [%thread] %-5level %logger [%property{NDC}] - %message%newline" />
+    </layout>
+  </appender>
+ 
+
+  <root>
+    <level value="ALL" />    
+    <appender-ref ref="EventLogAppender" />
+    <appender-ref ref="LogFileAppender" />
+    <appender-ref ref="ColoredConsoleAppender" />
+  </root>
+</log4net>

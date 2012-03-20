@@ -3,14 +3,6 @@ Description
 
 Installs nginx from package OR source code and sets up configuration handling similar to Debian's Apache2 scripts.
 
-Changes
-=======
-
-## v0.99.2:
-
-* [COOK-809] - attribute to disable access logging
-* [COOK-772] - update nginx download source location
-
 Requirements
 ============
 
@@ -41,6 +33,7 @@ All node attributes are set under the `nginx` namespace.
 * `worker_processes` - number of workers to spawn.
 * `worker_connections` - number of connections per worker.
 * `server_names_hash_bucket_size`
+* `url` - URL where to download the nginx source tarball
 
 The following attributes are set at the 'normal' node level via the `nginx::source` recipe.
 
