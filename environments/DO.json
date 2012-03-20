@@ -1,18 +1,133 @@
 {
-  "name": "DO",
-  "default_attributes": {
-    "vc2010x86": {
-      "url": "http://sops01.staging.dmz/repo/windows/vc2010/vcredist_x86.exe"
-    },
-    "vc2010x64": {
-      "url": "http://sops01.staging.dmz/repo/windows/vc2010/vcredist_x64.exe"
+    "chef_type": "environment", 
+    "cookbook_versions": {}, 
+    "default_attributes": {
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "DEVOPS"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins", 
+                    "DEVOPS\\\\domain-admins"
+                ], 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
+        "ondemand_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "key": "http://repo.staging.dmz/repo/apt/repo.gpg.key", 
+                    "name": "main", 
+                    "url": "http://repo.staging.dmz/repo/apt"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "webtrends", 
+                    "url": "http://repo.staging.dmz/repo/yum/wtlab"
+                }
+            ]
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "wt_common": {
+            "cache_hosts": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "cassandra_hosts": [
+                "cass01.devops.dmz"
+            ], 
+            "cassandra_meta_column": "DO_Meta", 
+            "cassandra_report_column": "DO_Report", 
+            "cassandra_snmp_comm": "StagingRO", 
+            "cassandra_snmp_port": "", 
+            "cassandra_thrift_port": "", 
+            "install_dir": "d:\\wrs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "installlog_dir": "d:\\logs", 
+            "master_host": "masterdb01", 
+            "rta_host": "rta01.devops.dmz", 
+            "sched_host": "masterdb01", 
+            "schedulerdb_host": "masterdb01", 
+            "usage_host": "masterdb01", 
+            "velocitycache_hosts": [
+                {
+                    "name": "dxweb01.devops.dmz", 
+                    "port": "22233"
+                }
+            ], 
+            "wrsmodify_group": "DEVOPS\\DO.WRS.Modify", 
+            "wrsread_group": "DEVOPS\\DO.WRS.Read"
+        }, 
+        "wt_dx": {
+            "app_settings_section": {
+                "streamingServiceRoot": "http://dx.devops.dmz/StreamingServices_v3/"
+            }, 
+            "brandedaccountid": "20578,20663", 
+            "cacheenabled": "True", 
+            "cachename": "DO_DX", 
+            "endpoint_address": "net.tcp://search.devops.dmz:8096/SearchService/Search", 
+            "website_name": "DX", 
+            "website_port": "80"
+        }
+    }, 
+    "description": "DevOps Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "DO", 
+    "override_attributes": {
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        }, 
+        "memcached": {
+            "memory": "1024"
+        },
+        "ms_dotnet4":{
+            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
+        }, 
+        "nagios": {
+            "multi_environment_monitoring": "true", 
+            "server_role": "nagios_xi"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "192.168.2.100"
+            ], 
+            "search": "devops.dmz"
+        }, 
+        "snmp": {
+            "community": "DevOps", 
+            "full_systemview": "true", 
+            "syscontact": "trent.white@webtrends.com"
+        }
     }
-  },
-  "json_class": "Chef::Environment",
-  "description": "DO Pod",
-  "cookbook_versions": {
-  },
-  "override_attributes": {
-  },
-  "chef_type": "environment"
 }

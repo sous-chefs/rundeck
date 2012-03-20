@@ -1,0 +1,3 @@
+<% @regionservers.each do |address| -%>
+<%= address %>
+<% end -%>

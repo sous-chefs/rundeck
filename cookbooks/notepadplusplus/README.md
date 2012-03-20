@@ -22,7 +22,7 @@ Attributes
 Usage
 =====
 
-Include the default recipe on a node's runlist to ensure that Notepad++ is created
+Include the default recipe on a node's runlist to ensure that Notepad++ is installed
 
 
 

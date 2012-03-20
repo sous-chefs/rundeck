@@ -1,0 +1,7 @@
+d-i     preseed/early_command   string killall.sh; netcfg
+d-i     netcfg/get_nameservers  string $name_servers[0]
+d-i     netcfg/get_ipaddress    string $ip_address_eth0
+d-i     netcfg/get_netmask      string $subnet_eth0
+d-i     netcfg/get_gateway      string $gateway
+d-i     netcfg/confirm_static   boolean true
+d-i     netcfg/disable_dhcp boolean true

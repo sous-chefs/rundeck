@@ -26,7 +26,7 @@
     <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_col %>" MetaDataColumnFamily="<%= @metadata_col %>" SnmpCommunity="<%= @snmp_comm %>" SnmpPort="1161" ThriftPort="9160">
         <Nodes>
     <% @cassandra_hosts.each do |host| -%>
-	  	<add address="<%= host %>"/>
+	  	<add Hostname="<%= host %>"/>
 	  <% end -%>
         </Nodes>
     </CassandraCluster>
@@ -98,5 +98,10 @@
             </behaviorExtensions>
         </extensions>
     </system.serviceModel>
-    
+    <system.webServer>
+        <handlers>
+            <add name="svc-ISAPI-2.0_32bit" path="*.SVC" verb="*" modules="IsapiModule" scriptProcessor="C:\Windows\Microsoft.NET\Framework\v2.0.50727\aspnet_isapi.dll" resourceType="Unspecified" preCondition="classicMode,runtimeVersionv2.0,bitness32" />
+      			<add name="svc-ISAPI-2.0_64bit" path="*.SVC" verb="*" modules="IsapiModule" scriptProcessor="C:\Windows\Microsoft.NET\Framework64\v2.0.50727\aspnet_isapi.dll" resourceType="Unspecified" preCondition="classicMode,runtimeVersionv2.0,bitness64" />          
+      </handlers>
+    </system.webServer>
 </configuration>

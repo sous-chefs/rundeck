@@ -21,6 +21,7 @@ The following platforms are supported by this cookbook, meaning that the recipes
 * ArchLinux
 * FreeBSD
 * Mac OS X
+* Mac OS X Server
 
 Opscode Cookbooks
 -----------------
@@ -47,6 +48,10 @@ Attributes
 * `node["chef_client"]["run_path"]` - Directory location where chef-client should write the PID file. Default based on platform, falls back to "/var/run".
 * `node["chef_client"]["cache_path"]` - Directory location for `Chef::Config[:file_cache_path]` where chef-client will cache various files. Default is based on platform, falls back to "/var/chef/cache".
 * `node["chef_client"]["backup_path"]` - Directory location for `Chef::Config[:file_backup_path]` where chef-client will backup templates and cookbook files. Default is based on platform, falls back to "/var/chef/backup".
+* node["chef_client"]["cron"]["minute"] - The hour that chef-client will run as a cron task, only applicable if the you set "cron" as the "init_style"
+* node["chef_client"]["cron"]["hour"] - The hour that chef-client will run as a cron task, only applicable if the you set "cron" as the "init_style"
+
+
 
 Recipes
 =======
@@ -78,12 +83,24 @@ default
 
 Includes the `chef-client::service` recipe by default.
 
-`delete_validation`
--------------------
+delete_validation
+-----------------
 
 Use this recipe to delete the validation certificate (default `/etc/chef/validation.pem`) when using a `chef-client` after the client has been validated and authorized to connect to the server.
 
 Beware if using this on your Chef Server. First copy the validation.pem certificate file to another location, such as your knife configuration directory (`~/.chef`) or [Chef Repository](http://wiki.opscode.com/display/chef/Chef+Repository).
+
+cron
+----
+
+Use this recipe to run chef-client as a cron job rather than as a
+service. The cron job runs after random delay that is between 0 and 90
+seconds to ensure that the chef-clients don't attempt to connect to
+the chef-server at the exact same time. You should set
+node["chef_client"]["init_style"] = "none" when you use this mode but
+it is not required.
+
+
 
 USAGE
 =====
@@ -136,6 +153,7 @@ The alternate init styles available are:
 * runit
 * bluepill
 * daemontools
+* none -- should be specified if you are running chef-client as cron job
 
 For usage, see below.
 
@@ -227,31 +245,6 @@ Configuration for the client, lands in directory specified by `node["chef_client
 Runit and Daemontools run script for chef-client service and logs.
 
 Logs will be located in the `node["chef_client"]["log_dir"]`.
-
-Changes/Roadmap
-===============
-
-## Future
-
-* windows platform support
-
-## 1.0.4:
-
-* [COOK-670] - Added Solaris service-installation support for chef-client cookbook.
-* [COOK-781] - chef-client service recipe fails with chef 0.9.x
-
-## 1.0.2:
-
-* [CHEF-2491] init scripts should implement reload
-
-## 1.0.0:
-
-* [COOK-204] chef::client pid template doesn't match package expectations
-* [COOK-491] service config/defaults should not be pulled from Chef gem
-* [COOK-525] Tell bluepill to daemonize chef-client command
-* [COOK-554] Typo in backup_path
-* [COOK-609] chef-client cookbook fails if init_type is set to upstart and chef is installed from deb
-* [COOK-635] Allow configuration of path to chef-client binary in init script
 
 License and Author
 ==================

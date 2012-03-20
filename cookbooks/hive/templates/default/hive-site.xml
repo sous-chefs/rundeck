@@ -1,0 +1,34 @@
+<configuration>
+
+<property>
+  <name>javax.jdo.option.ConnectionURL</name>
+  <value><%= node[:hive][:metastore][:connection_url] %></value>
+  <description>JDBC connect string for a JDBC metastore</description>
+</property>
+
+<property>
+  <name>javax.jdo.option.ConnectionDriverName</name>
+  <value><%= @metastore_driver %></value>
+  <description>Driver class name for metastore</description>
+</property>
+
+<property>
+  <name>javax.jdo.option.ConnectionUserName</name>
+  <value><%= @dbuser %></value>
+  <description>username to use against metastore database</description>
+</property>
+
+<property>
+  <name>javax.jdo.option.ConnectionPassword</name>
+  <value><%= @dbpass %></value>
+  <description>password to use against metastore database</description>
+</property>
+
+<property>
+  <name>hive.map.aggr.hash.percentmemory</name>
+  <value>0.25</value>
+  <description>Portion of total memory to be used by map-side grup aggregation hash table</description>
+</property>
+
+
+</configuration>

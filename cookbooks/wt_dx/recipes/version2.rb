@@ -1,13 +1,17 @@
-pod = pod = node.chef_environment
-pod_data = data_bag_item('common', pod)
-c_hosts = pod_data['cache_hosts']
+c_hosts = node['wt_common']['cache_hosts']
 
 
 #Recipe specific
-cfg_cmds = node['webtrends']['dx']['v2']['cfg_cmd']
-app_pool = node['webtrends']['dx']['v2']['app_pool']
-installdir = node['webtrends']['installdir']
-installdir_v2 = node['webtrends']['dx']['v2']['dir']
+cfg_cmds = node['wt_dx']['v2']['cfg_cmd']
+app_pool = node['wt_dx']['v2']['app_pool']
+installdir = node['wt_common']['installdir']
+installdir_v2 = node['wt_dx']['v2']['dir']
+
+pod = node.chef_environment
+user_data = data_bag_item('authorization', pod)
+ui_user = user_data['wt_common']['ui_user']
+ui_password = user_data['wt_common']['ui_pass']
+auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{ui_user} /[name='#{app_pool}'].processModel.password:#{ui_password}"
 
 template "#{installdir}#{installdir_v2}\\web.config" do
 	source "webConfigv2.erb"
@@ -28,22 +32,6 @@ iis_app "DX" do
 	action :add
 end
 
-ruby_block "v2cfg_flag" do
-	block do
-		node.set['dxv2_configured']
-		node.save
-	end
-	action :nothing
-end
-
-iis_config "\"DX/v2\" -section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_64bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']\"" do
-	action :config	
-	notifies :create, "ruby_block[v2cfg_flag]" #Running delayed notification so multiple run-once commands get run
-	not_if {node.attribute?("dxv2_configured")}
-end
-
-iis_config "\"DX/v2\" -section:system.webServer/handlers /+\"[name='svc-ISAPI-2.0_32bit',path='*.SVC',verb='*',modules='IsapiModule',scriptProcessor='C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\aspnet_isapi.dll']" do
-	action :config	
-	notifies :create, "ruby_block[v2cfg_flag]" #Running delayed notification so multiple run-once commands get run
-	not_if {node.attribute?("dxv2_configured")}
+iis_config auth_cmd do
+	action :config
 end

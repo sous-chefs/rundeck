@@ -1,0 +1,12 @@
+= DESCRIPTION:
+Installs hbase 0.92.0
+
+= REQUIREMENTS:
+
+* java
+* hadoop
+
+= ATTRIBUTES:
+
+= USAGE:
+

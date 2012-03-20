@@ -1,0 +1,14 @@
+{
+  "name": "hadoop_datanode",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Hadoop DataNode",
+  "run_list": [
+    "recipe[hadoop::datanode]",
+    "recipe[hbase::regionserver]",
+    "recipe[hive]",
+    "recipe[wt_heatmap::import]"
+  ],
+  "override_attributes": {
+  }
+}
