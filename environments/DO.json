@@ -23,9 +23,9 @@
                     "components": [
                         "main"
                     ], 
-                    "key": "http://repo.staging.dmz/repo/apt/repo.gpg.key", 
-                    "name": "main", 
-                    "url": "http://repo.staging.dmz/repo/apt"
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
                 }
             ], 
             "yum": [
@@ -102,8 +102,8 @@
         }, 
         "memcached": {
             "memory": "1024"
-        },
-        "ms_dotnet4":{
+        }, 
+        "ms_dotnet4": {
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
         "nagios": {
