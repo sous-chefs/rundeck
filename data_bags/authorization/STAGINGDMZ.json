@@ -1,0 +1,14 @@
+{
+    "auth_domain_password": "dm7m7ErsvdH0JzUUnA0L", 
+    "auth_domain_user": "VMwareJoinDomain", 
+    "id": "STAGINGDMZ", 
+    "linux_admins": [
+        "stagingdmz\\\\domain-admins", 
+        "domain-admins"
+    ], 
+    "membership_required": [
+        "stagingdmz\\\\domain-admins", 
+        "stagingdmz\\\\stage-admins"
+    ], 
+    "primary_domain": "staging.dmz"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "wt_messaging_server",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Messaging server that acts primarliy as a broker",
+  "run_list": [
+    "recipe[kafka]"
+  ],
+  "override_attributes": {
+  }
+}

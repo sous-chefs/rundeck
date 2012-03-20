@@ -1,0 +1,12 @@
+= DESCRIPTION:
+Installs kafka 0.7.0
+
+= REQUIREMENTS:
+
+* java
+* zookeeper
+
+= ATTRIBUTES:
+
+= USAGE:
+

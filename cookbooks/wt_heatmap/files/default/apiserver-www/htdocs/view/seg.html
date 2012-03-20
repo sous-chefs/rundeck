@@ -1,0 +1,375 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+$(document).ready(function ()
+{
+	$("body").keydown(function () {
+		if (event.which == 72)
+			$("#overlay").hide();
+	});
+	$("body").keyup(function () {
+		if (event.which == 72)
+			$("#overlay").show();
+	});
+	
+	var heatmap_img_cache = {};
+	var last_view_url = "";
+	
+	$("#view-button").click(function ()
+	{
+		if ($("#pages").val() == "")
+		{
+			alert("Choose a page");
+			return;
+		}
+		
+		
+		var view_url = "http://webtrends.com"+$("#pages").val();
+		
+		if (view_url != last_view_url)
+		{
+			last_view_url = view_url;
+			$("#heatmap_container iframe").attr("src",view_url);
+		}
+		
+		var dcsuri = "";
+		var seg_type = "";
+		if ($("#viewed").val() == "")
+		{
+			if (!$("#exited").attr("checked"))
+			{
+				dcsuri = $("#pages").val();
+			} else
+			{
+				dcsuri = "http://webtrends.com" + $("#pages").val();
+				seg_type = "exit";
+			}
+			
+		} else
+		{
+			seg_type = "seg";
+			dcsuri = "http://webtrends.com" + $("#pages").val() + ";" + "http://webtrends.com" + $("#viewed").val();
+		}
+		
+		
+		
+		$("#view-button").val("Requesting..");
+		var dot = $("#size").val();
+		var filter = $("#filter").val();
+		
+		
+		var iframe = $("#heatmap_container iframe");
+		var w = iframe.width();
+		var h = iframe.height();
+		$.getJSON("http://ec2-50-17-67-19.compute-1.amazonaws.com/heatmap_compute.php?callback=?"
+		, {
+			dcsid: $("#dcsid").val()
+			, dcsuri: dcsuri
+			, rep: "month"
+			, report_type: seg_type
+			, w: w
+			, h: h
+			, top: 0
+			, dot: dot
+			, filter: filter
+		}, function (data) {
+			$("#view-button").val("Fetching..");
+			var y_max = data["y_max"];
+			if (y_max < 400)
+				y_max = 400;
+			else
+				y_max += 175;
+							
+			$("#heatmap_container iframe").animate({
+				height: y_max
+			}, 1000, function ()
+			{
+				$("#view-button").val("Render");
+				var stride = 200;
+				var buf="";
+
+				var cnt=0;
+				var t_h = y_max;
+				while (t_h > 0)
+				{
+					var h = stride;
+					if (t_h - h < 0)
+						h = t_h;
+
+					var img_src = "http://ec2-50-17-67-19.compute-1.amazonaws.com/gen_heatmap.php?w="+w
+									+"&h="+h+"&dcsid="+data["dcsid"]+"&dot="+dot
+									+"&filter="+filter+"&coef="+data["coef"]
+									+"&rep="+data["rep"]+"&top="+ (cnt*stride)
+									+"&startd="+escape(data["start_date"])
+									+"&stopd="+escape(data["stop_date"])
+									+"&i="+cnt+"&dcsuri="+escape(dcsuri)
+									+"&report_type="+seg_type;
+
+					heatmap_img_cache[img_src] = new Image();
+					heatmap_img_cache[img_src].src = img_src;
+
+					buf += "<img style=\"position: absolute; top: "+ (cnt*stride) +"px; padding: 0px; margin: 0px;\" src=\"" + img_src + "\" width=\"" + w + "\" height=\"" + h + "\" />";
+					t_h -= h;
+					++cnt;
+				}
+				
+				$("#overlay").html(buf);
+				$("#overlay").show();
+			});
+		});
+	});
+});
+
+</script>
+<style type="text/css">
+
+* {
+	font-family: sans-serif;
+	font-size: 10pt;
+}
+
+#header {
+	background-color: #000;
+	color: #fff;
+}
+
+#header ul {
+	padding: 4px;
+	list-style: none;
+}
+
+#header input[type="text"] {
+	border: 0px;
+	padding: 4px;
+}
+
+#heatmap_container {
+	padding: 5px;
+	background-color: 000;
+}
+
+#heatmap_container iframe {
+	width: 100%;
+	height: 500px;
+	border: 0px;
+}
+
+#overlay {
+	position: absolute;
+}
+
+</style>
+</head>
+<body>
+<div id="header">
+	<form>
+		<ul>
+			<li>
+				dcsid: <input type="text" id="dcsid" value="dcsytt9nhvz5bdenehov7gy13_1u4w" />
+			</li>
+			<li>
+				size:
+				<select id="size">
+					<option>90</option>
+					<option>80</option>
+					<option selected="selected">70</option>
+					<option>60</option>
+					<option>50</option>
+					<option>40</option>
+					<option>30</option>
+					<option>20</option>
+					<option>10</option>
+				</select>
+			</li>
+			<li>
+				filter:
+				<select id="filter">
+					<option>infrared</option>
+					<option>warmth</option>
+					<option>focus</option>
+					<option>highlight</option>
+				</select>
+			</li>
+			<li>
+				page:
+				<select id="pages">
+					<option value=""> - Choose - </option>
+					<option>/</option>
+					<option>/products/analytics/</option>
+					<option>/support/software-center/</option>
+					<option>/solutions/web/</option>
+					<option>/support/</option>
+					<option>/solutions/social/</option>
+					<option>/search/</option>
+					<option>/expertise/guides/</option>
+					<option>/about-us/contact-us/</option>
+					<option>/products/analytics/social/</option>
+					<option>/products/</option>
+					<option>/about-us/management-team/</option>
+					<option>/products/analytics/website/</option>
+					<option>/about-us/press-room/</option>
+					<option>/about-us/company-info/</option>
+					<option>/products/analytics/mobile/</option>
+					<option>/about-us/careers/</option>
+					<option>/products/integrations/sharepoint/</option>
+					<option>/solutions/</option>
+					<option>/products/ads/</option>
+					<option>/solutions/mobile/</option>
+					<option>/products/optimize/</option>
+					<option>/about-us/</option>
+					<option>/expertise/training/</option>
+					<option>/expertise/events/</option>
+					<option>/products/analytics/advanced/</option>
+					<option>/solutions/optimization/</option>
+					<option>/support/contact-support/</option>
+					<option>/expertise/</option>
+					<option>/expertise/webinars/</option>
+					<option>/expertise/customer-stories/</option>
+					<option>/support/online-support/</option>
+					<option>/products/implementation/</option>
+					<option>/privacy-policy/</option>
+					<option>/products/optimize/expertise/</option>
+					<option>/partners/global-resellers/</option>
+					<option>/Products/Optimize/</option>
+					<option>/products/smo/</option>
+					<option>/products/optimize/testing/</option>
+					<option>/search.aspx</option>
+					<option>/2011/09/webtrends-named-preferred-analytics-solution-for-microsoft-sharepoint-2010/</option>
+					<option>/products/analytics/integrations/</option>
+					<option>/products/dmo/</option>
+					<option>/about-us/customers/</option>
+					<option>/products/segments/</option>
+					<option>/Products/Analytics/</option>
+					<option>/partners/</option>
+					<option>/partners/technology-partners/</option>
+					<option>/Products/Ads/Facebook/</option>
+					<option>/about-us/press-room/awards/</option>
+					<option>/products/experts-on-retainer/</option>
+					<option>/security-statement/</option>
+					<option>/2011/10/webtrends-releases-first-of-its-kind-facebook-scoring-system-to-evaluate-performance-of-posts/</option>
+					<option>/Worldwide/Germany.aspx</option>
+					<option>/redirect.asp</option>
+					<option>/Education/Whitepapers/FacebookMarketingWhatWorks</option>
+					<option>/Education/Glossary</option>
+					<option>/expertise/training/certified-professional-programs/</option>
+					<option>/support/support-plans/</option>
+					<option>/about-us/press-room/media-library/</option>
+					<option>/terms-of-subscription-service/</option>
+					<option>/products/integrations/</option>
+					<option>/support.asp</option>
+					<option>/Products/Apps</option>
+					<option>/2011/10/alex-yoder-named-winner-of-the-2011-innovator-award-for-social-media/</option>
+					<option>/2011/11/metric-driven-mobile-marketing/</option>
+					<option>/2011/10/webtrends-on-demand-for-sharepoint-grows-siemens-engagement-readership/</option>
+					<option>/C:/Users/Justin/Desktop/Other Folders/UBC Marketing Certificate/WA-2 Web Analytics for Site Optimization/WebTrends/WebTrends/webtrends.com/index.html</option>
+					<option>/Education/UserGroups.aspx</option>
+					<option>/Support/DCS/Documentation.aspx</option>
+					<option>/privacy_policy.htm</option>
+					<option>/products/dmo/our-clients/</option>
+					<option>/support.aspx</option>
+					<option>/2011/09/andre-boisvert-joins-webtrends-board-of-directors/</option>
+					<option>/aboutwebtrends.aspx</option>
+					<option>/2011/09/webtrends-announces-availability-of-new-price-shattering-social-suite-2/</option>
+				</select>
+			</li>
+			<li>
+				visited:
+				<select id="viewed">
+					<option value=""> - Choose - </option>
+					<option>/</option>
+					<option>/products/analytics/</option>
+					<option>/support/software-center/</option>
+					<option>/solutions/web/</option>
+					<option>/support/</option>
+					<option>/solutions/social/</option>
+					<option>/search/</option>
+					<option>/expertise/guides/</option>
+					<option>/about-us/contact-us/</option>
+					<option>/products/analytics/social/</option>
+					<option>/products/</option>
+					<option>/about-us/management-team/</option>
+					<option>/products/analytics/website/</option>
+					<option>/about-us/press-room/</option>
+					<option>/about-us/company-info/</option>
+					<option>/products/analytics/mobile/</option>
+					<option>/about-us/careers/</option>
+					<option>/products/integrations/sharepoint/</option>
+					<option>/solutions/</option>
+					<option>/products/ads/</option>
+					<option>/solutions/mobile/</option>
+					<option>/products/optimize/</option>
+					<option>/about-us/</option>
+					<option>/expertise/training/</option>
+					<option>/expertise/events/</option>
+					<option>/products/analytics/advanced/</option>
+					<option>/solutions/optimization/</option>
+					<option>/support/contact-support/</option>
+					<option>/expertise/</option>
+					<option>/expertise/webinars/</option>
+					<option>/expertise/customer-stories/</option>
+					<option>/support/online-support/</option>
+					<option>/products/implementation/</option>
+					<option>/privacy-policy/</option>
+					<option>/products/optimize/expertise/</option>
+					<option>/partners/global-resellers/</option>
+					<option>/Products/Optimize/</option>
+					<option>/products/smo/</option>
+					<option>/products/optimize/testing/</option>
+					<option>/search.aspx</option>
+					<option>/2011/09/webtrends-named-preferred-analytics-solution-for-microsoft-sharepoint-2010/</option>
+					<option>/products/analytics/integrations/</option>
+					<option>/products/dmo/</option>
+					<option>/about-us/customers/</option>
+					<option>/products/segments/</option>
+					<option>/Products/Analytics/</option>
+					<option>/partners/</option>
+					<option>/partners/technology-partners/</option>
+					<option>/Products/Ads/Facebook/</option>
+					<option>/about-us/press-room/awards/</option>
+					<option>/products/experts-on-retainer/</option>
+					<option>/security-statement/</option>
+					<option>/2011/10/webtrends-releases-first-of-its-kind-facebook-scoring-system-to-evaluate-performance-of-posts/</option>
+					<option>/Worldwide/Germany.aspx</option>
+					<option>/redirect.asp</option>
+					<option>/Education/Whitepapers/FacebookMarketingWhatWorks</option>
+					<option>/Education/Glossary</option>
+					<option>/expertise/training/certified-professional-programs/</option>
+					<option>/support/support-plans/</option>
+					<option>/about-us/press-room/media-library/</option>
+					<option>/terms-of-subscription-service/</option>
+					<option>/products/integrations/</option>
+					<option>/support.asp</option>
+					<option>/Products/Apps</option>
+					<option>/2011/10/alex-yoder-named-winner-of-the-2011-innovator-award-for-social-media/</option>
+					<option>/2011/11/metric-driven-mobile-marketing/</option>
+					<option>/2011/10/webtrends-on-demand-for-sharepoint-grows-siemens-engagement-readership/</option>
+					<option>/C:/Users/Justin/Desktop/Other Folders/UBC Marketing Certificate/WA-2 Web Analytics for Site Optimization/WebTrends/WebTrends/webtrends.com/index.html</option>
+					<option>/Education/UserGroups.aspx</option>
+					<option>/Support/DCS/Documentation.aspx</option>
+					<option>/privacy_policy.htm</option>
+					<option>/products/dmo/our-clients/</option>
+					<option>/support.aspx</option>
+					<option>/2011/09/andre-boisvert-joins-webtrends-board-of-directors/</option>
+					<option>/aboutwebtrends.aspx</option>
+					<option>/2011/09/webtrends-announces-availability-of-new-price-shattering-social-suite-2/</option>
+				</select>
+			</li>
+			<li>
+				exited:
+					<input type="checkbox" id="exited" />
+			</li>
+			<li>
+				<input id="view-button" type="button" value="Render" />
+			</il>
+		</ul>
+	</form>
+</div>
+<div id="heatmap_container">
+	<div id="overlay">
+	</div>
+	<iframe></iframe>
+</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+{
+    "chef_type": "environment", 
+    "cookbook_versions": {}, 
+    "default_attributes": {
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "STAGINGDMZ"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins", 
+                    "STAGINGDMZ\\\\domain-admins"
+                ], 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
+        "ondemand_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "key": "http://repo.staging.dmz/repo/apt/repo.gpg.key", 
+                    "name": "main", 
+                    "url": "http://repo.staging.dmz/repo/apt"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "webtrends", 
+                    "url": "http://repo.staging.dmz/repo/yum/wtlab"
+                }
+            ]
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "wt_common": {
+            "cache_hosts": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "cassandra_hosts": [
+                "scass01.staging.dmz", 
+                "scass02.staging.dmz", 
+                "scass03.staging.dmz"
+            ], 
+            "cassandra_meta_column": "PF_Meta", 
+            "cassandra_report_column": "PF_Report", 
+            "cassandra_snmp_comm": "StagingRO", 
+            "cassandra_snmp_port": "", 
+            "cassandra_thrift_port": "", 
+            "install_dir": "d:\\wrs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "installlog_dir": "d:\\logs", 
+            "master_host": "pfmasterdb01", 
+            "rta_host": "pfrta01.staging.dmz", 
+            "sched_host": "pfmasterdb01", 
+            "schedulerdb_host": "pfusagedb01", 
+            "usage_host": "pfusagedb01", 
+            "velocitycache_hosts": [
+                {
+                    "name": "pfdxweb01.staging.dmz", 
+                    "port": "22233"
+                }, 
+                {
+                    "name": "pfdxweb02.staging.dmz", 
+                    "port": "22233"
+                }
+            ], 
+            "wrsmodify_group": "STAGINGDMZ\\PF.WRS.Modify", 
+            "wrsread_group": "STAGINGDMZ\\PF.WRS.Read"
+        }, 
+        "wt_dx": {
+            "app_settings_section": {
+                "streamingServiceRoot": "https://pfdx.webtrends.com/StreamingServices_v3/"
+            }, 
+            "brandedaccountid": "20578,20663", 
+            "cacheenabled": "True", 
+            "cachename": "PF_DX", 
+            "endpoint_address": "net.tcp://pfsearch.staging.dmz:8096/SearchService/Search", 
+            "website_name": "DX", 
+            "website_port": "80"
+        }
+    }, 
+    "description": "PF Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "PF", 
+    "override_attributes": {
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        }, 
+        "memcached": {
+            "memory": "1024"
+        },
+        "ms_dotnet4":{
+            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
+        }, 
+        "nagios": {
+            "multi_environment_monitoring": "true", 
+            "server_role": "nagios_xi"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "englab.webtrends.corp webtrends.corp staging.dmz"
+        }, 
+        "snmp": {
+            "community": "DevOps", 
+            "full_systemview": "true", 
+            "syscontact": "trent.white@webtrends.com"
+        }
+    }
+}

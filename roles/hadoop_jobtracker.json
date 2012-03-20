@@ -1,0 +1,11 @@
+{
+  "name": "hadoop_jobtracker",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Hadoop JobTracker",
+  "run_list": [
+    "recipe[hadoop::jobtracker]"
+  ],
+  "override_attributes": {
+  }
+}
