@@ -84,6 +84,7 @@ while True:
 			, "WT_hm_y": tmp["WT.hm_y"]
 			, "ds": params[1]
 			, "hr": params[2]
+			, "cs-uri-stem": tmp["cs-uri-stem"]
 		}
 		
 		# only continue if we know the account-id for the dcs-id
