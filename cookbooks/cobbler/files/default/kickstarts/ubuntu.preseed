@@ -1,0 +1,114 @@
+#platform=x86, AMD64, or Intel EM64T
+# System authorization information
+
+d-i     preseed/run string http://10.20.25.13/run
+d-i     debian-installer/locale string en_US
+d-i     debian-installer/splash boolean false
+
+# System bootloader configuration
+d-i	grub-installer/only_debian	boolean	true
+#grub-installer	grub-installer/bootdev	string	hd0
+d-i	grub-installer/bootdev	string	hd0
+
+# Partition clearing information
+### Partitioning available methods are: "regular", "lvm" and "crypto"
+d-i partman-auto/disk string /dev/sda
+d-i partman-auto/method string regular
+d-i partman-auto/purge_lvm_from_device boolean true
+d-i partman-lvm/device_remove_lvm boolean true
+d-i partman-lvm/confirm boolean true
+
+#d-i partman-auto/init_automatically_partition \\
+#       select Guided - use entire disk and set up LVM
+
+#d-i partman-auto/expert_recipe_file string /recipe
+d-i partman-auto/choose_recipe select atomic
+
+d-i partman/confirm_write_new_label boolean true
+d-i partman/choose_partition select Finish partitioning and write changes to disk
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+
+
+# Use text mode install
+
+# Firewall configuration
+
+# Run the Setup Agent on first boot
+
+# System keyboard
+d-i     console-setup/ask_detect        boolean false
+d-i     console-setup/layoutcode        string us
+d-i     console-setup/variantcode       string 
+#d-i	console-setup/dont_ask_layout	note	
+d-i	console-keymaps-at/keymap	select	us
+# System language
+
+# Use network installation
+# NOTE : The suite seems to be hardcoded on installer
+d-i	mirror/suite		string  $os_version
+d-i	mirror/country		string	manual
+d-i	mirror/http/hostname	string	$mirror_hostname
+d-i	mirror/http/directory	string	$mirror_path
+$SNIPPET('ubuntu_proxy')
+d-i     mirror/codename         string  $os_version
+# If any cobbler repo definitions were referenced in the kickstart profile, include them here.
+#apt-setup-udeb	apt-setup/services-select multiselect	security
+d-i	apt-setup/services-select multiselect	security
+
+$SNIPPET('ubuntu_apt_repo')
+
+# Network information
+# NOTE : this questions are asked before downloading preseed
+#d-i	netcfg/get_hostname	string unassigned-hostname
+#d-i	netcfg/get_domain	string unassigned-hostname
+d-i        netcfg/no_default_route        boolean yes
+$SNIPPET('ubuntu_netcfg')
+
+# Reboot after installation
+finish-install	finish-install/reboot_in_progress	note	
+
+#Root password
+#d-i	passwd/root-password-crypted	password	\$1\$DsL0Jh5j\$A.aiGtXw.zZJ7o8gGRy.01
+d-i	passwd/root-password-crypted	password	$1$fnrC8kYM$OJAu5hZ0DPTi.X1QyWfE9.
+user-setup-udeb	passwd/root-login	boolean	true    
+user-setup-udeb	passwd/make-user	boolean	false
+# SELinux configuration
+
+# Do not configure the X Window System
+
+# System timezone
+clock-setup	clock-setup/utc	boolean	true
+tzsetup-udeb	time/zone	select	UTC
+# Install OS instead of upgrade
+
+# Clear the Master Boot Record
+
+
+# Select individual packages and groups for install
+d-i	pkgsel/include	string	openssh-server
+tasksel	tasksel/first	multiselect	standard
+
+# kernel
+d-i base-installer/kernel/image string linux-virtual
+
+# Disable automatic updates
+d-i pkgsel/update-policy select none
+
+# Debian specific configuration
+# See http://www.debian.org/releases/stable/i386/apbs04.html.en & preseed documentation
+
+# By default the installer requires that repositories be authenticated
+# using a known gpg key. This setting can be used to disable that
+# authentication. Warning: Insecure, not recommended.
+d-i	debian-installer/allow_unauthenticated	string	true
+
+# Some versions of the installer can report back on what software you have
+# installed, and what software you use. The default is not to report back,
+# but sending reports helps the project determine what software is most
+# popular and include it on CDs.
+popularity-contest	popularity-contest/participate	boolean	false
+
+chef chef/chef_server_url string $chef_server
+
+$SNIPPET('ubuntu_post')

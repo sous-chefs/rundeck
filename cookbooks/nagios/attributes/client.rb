@@ -34,8 +34,10 @@ else
   set['nagios']['nrpe']['pidfile'] = '/var/run/nrpe.pid'
 end
 
-set['nagios']['nrpe']['home']       = "/usr/lib/nagios"
-set['nagios']['nrpe']['conf_dir']   = "/etc/nagios"
+set['nagios']['nrpe']['home']              = "/usr/lib/nagios"
+set['nagios']['nrpe']['conf_dir']          = "/etc/nagios"
+set['nagios']['nrpe']['dont_blame_nrpe']   = "0"
+set['nagios']['nrpe']['command_timeout']   = "60"
 
 # for plugin from source installation
 default['nagios']['plugins']['url']      = 'http://prdownloads.sourceforge.net/sourceforge/nagiosplug'
@@ -54,3 +56,4 @@ default['nagios']['checks']['load']['warning']    = "15,10,5"
 default['nagios']['checks']['smtp_host'] = String.new
 
 default['nagios']['server_role'] = "monitoring"
+default['nagios']['multi_environment_monitoring'] = "false"

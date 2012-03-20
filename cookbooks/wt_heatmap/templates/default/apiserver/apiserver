@@ -1,0 +1,18 @@
+server {
+	listen   80;
+	server_name  <%= node[:hostname] %>;
+
+	root	/var/www/htdocs;
+
+	location / {
+		index		index.html index.htm;
+		try_files $uri $uri/ $uri.php;
+	}
+
+	location ~ \.php$ {
+		include /etc/nginx/fastcgi_params;
+		fastcgi_pass unix:/var/run/php-fastcgi/php-fastcgi.socket;
+		fastcgi_index index.php;
+		fastcgi_param SCRIPT_FILENAME /var/www/htdocs/$fastcgi_script_name;
+	}
+}

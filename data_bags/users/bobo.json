@@ -1,7 +1,0 @@
-{
-  "id": "bobo",
-    "ssh_keys": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA32kiAaSWBb6EfLvaMmKTzC75Jf1kK1/UrRe/oqeA5wPBpWJg2ekCbScYMlX7dsTqwGznGQ9dDviAh+rXezrTvRWi9hkV9aLwdRw5UeyT6t99C/oPcKTLobmwnN1KccGb9ZCTrPFCN0+7s1m/QovOMp+KUakf8qeKyMDDfqNb8nIzNMwG1oUx+RU2AuVT1nB2D9QTbS5eEVIQTe6Wk1UWnl9LGKRPAqJO6qq6jQyEKfTEa3DfdXFWlWkraCdaphiMRWPI8xXqwJiLUBqs60yp3zSfIPy/z6H1g3UA8+16M282iKpCJHuFYFzZfXQ3PXhYAwHiiWc/CpJD0ebdKQOsOQ== root@chefclient02"
-    "groups": "sysadmin",
-    "uid": 2001,
-    "shell": "\/bin\/bash"
-}

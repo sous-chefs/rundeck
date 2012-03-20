@@ -8,14 +8,13 @@
 #
 # Code based off the PowerShell cookbook by Seth Chisamore
 
-case node['platform']
-when "windows"
-    windows_package "Notepad Plus Plus" do
+if platform?("windows")
+    windows_package "Notepad++" do
         source node['notepadplusplus']['http_url']
         installer_type :custom
         options "/S"
         action :install
     end
 else
-  Chef::Log.warn('Notepad Plus Plus can only be installed on the Windows platform.')
+  Chef::Log.warn('Notepad++ can only be installed on the Windows platform.')
 end
