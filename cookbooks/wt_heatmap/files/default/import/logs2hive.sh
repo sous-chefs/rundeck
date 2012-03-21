@@ -25,6 +25,16 @@ do
 	DS=$(echo $LOG | sed 's/^[^-]*-\(....\)-\(..\)-\(..\).*$/\1-\2-\3/')
 	HR=$(echo $LOG | sed 's/^[^-]*-....-..-..-\(..\).*$/\1/')
 	
+	# check for existence of file in hive
+	# required because of this issue: https://issues.apache.org/jira/browse/HIVE-2889
+	if [ "$(hadoop dfs -ls /user/hive/warehouse/logs/ds=$DS/hr=$HR/$LOG | grep bz2$ | wc -l)" -gt "0" ]
+	then
+		logger -s "hive error: log already in hive/hdfs: $LOG .. removing local copy: $QUEUE/$LOG"
+		rm $QUEUE/$LOG
+		continue
+	fi
+	
+	# load file into hive
 	QRY="LOAD DATA LOCAL INPATH '$QUEUE/$LOG' INTO TABLE logs PARTITION(ds='$DS', hr='$HR')"
 	/usr/local/hive/bin/hive -e "$QRY"
 	if [ "$?" != "0" ]
