@@ -8,8 +8,8 @@
             }, 
             "sudo": {
                 "groups": [
-                    "domain-admins", 
-                    "STAGINGDMZ\\\\domain-admins"
+                    "STAGINGDMZ\\\\domain-admins", 
+                    "STAGINGDMZ\\\\c.admins"
                 ], 
                 "passwordless": false, 
                 "users": [
