@@ -6,7 +6,7 @@
 "SpaceReplacement"="-"
 "AssumeDefaultDomain"=dword:00000001
 "NssGroupMembersQueryCacheOnly"=dword:00000001
-"RequireMembershipOf"=sza:"<%= @ad_membership_required.join(',') %>"
+"RequireMembershipOf"=sza:<% @ad_membership_required.each do |group| -%>"<%= group %>" <% end -%>
 "LoginShellTemplate"="/bin/bash"
 
 [HKEY_THIS_MACHINE\Services\lsass\Parameters\Providers\ActiveDirectory]
