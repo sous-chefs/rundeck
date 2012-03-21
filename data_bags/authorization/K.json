@@ -2,17 +2,7 @@
     "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "alternate_uid": "2001", 
     "alternate_user": "bobo", 
-    "auth_domain_password": "H1DvoOXRrG", 
-    "auth_domain_user": "VMwareJoinDomain", 
     "id": "K", 
-    "linux_admins": [
-        "WTENGLAB\\\\domain-admins", 
-        "domain-admins", 
-        "WTENGLAB\\\\k.admins", 
-        "k.admins"
-    ], 
-    "membership_required": [], 
-    "primary_domain": "englab.webtrends.corp", 
     "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "wt_common": {
         "install_acct": "wtInstaller", 
