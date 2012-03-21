@@ -4,12 +4,12 @@
     "default_attributes": {
         "authorization": {
             "ad_auth": {
-                "ad_network": "STAGINGDMZ"
+                "ad_network": "WTENGLAB"
             }, 
             "sudo": {
                 "groups": [
-                    "domain-admins", 
-                    "STAGINGDMZ\\\\domain-admins"
+                    "WTENGLAB\\\\domain-admins", 
+                    "WTENGLAB\\\\k.admins"
                 ], 
                 "passwordless": false, 
                 "users": [
