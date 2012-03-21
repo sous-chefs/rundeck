@@ -2,17 +2,7 @@
     "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "alternate_uid": "2001", 
     "alternate_user": "bobo", 
-    "auth_domain_password": "dm7m7ErsvdH0JzUUnA0L", 
-    "auth_domain_user": "VMwareJoinDomain", 
     "id": "D", 
-    "linux_admins": [
-        "STAGINGDMZ\\\\domain-admins", 
-        "domain-admins", 
-        "STAGINGDMZ\\\\d.admins", 
-        "d.admins"
-    ], 
-    "membership_required": [], 
-    "primary_domain": "staging.dmz", 
     "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "wt_common": {
         "install_acct": "wtInstaller", 
