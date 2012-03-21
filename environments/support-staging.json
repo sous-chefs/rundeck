@@ -31,8 +31,8 @@
             "yum": [
                 {
                     "description": "Webtrends Repo", 
-                    "name": "webtrends", 
-                    "url": "http://repo.staging.dmz/repo/yum/wtlab"
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
                 }
             ]
         }, 
