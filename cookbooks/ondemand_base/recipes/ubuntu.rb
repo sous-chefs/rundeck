@@ -55,7 +55,13 @@ include_recipe "resolver"
 node['ondemand_server']['apt'].each do |aptrepo|
 	apt_repository aptrepo['name'] do
 		repo_name aptrepo['name']
-		distribution "#{node[:lsb][:codename]}"
+		if aptrepo.has_key? "distribution"
+			distribution aptrepo['distribution']
+		elsif aptrepo.has_key? "distribution_suffix"
+			distribution node[:lsb][:codename] + aptrepo['distribution_suffix']
+		else 
+			distribution node[:lsb][:codename]
+		end
 		uri aptrepo['url']
 		components aptrepo['components']
 		key aptrepo['key']
