@@ -1,0 +1,4 @@
+#!/bin/sh
+exec 2>&1
+exec \
+	chpst -u <%=@options[:user]%> chef-rundeck -c <%=@options[:chef_config]%> -f <%=@options[:project_config]%> -w <%=@options[:chef_webui_url]%>
