@@ -6,8 +6,12 @@
   "env_run_lists": {
   },
   "run_list": [
+<<<<<<< HEAD
 "recipe[java]",
 "recipe[postfix]"
+=======
+"recipe[java]"
+>>>>>>> 1769d03... Add a new role for rundeck
   ],
   "description": "",
   "chef_type": "role",
