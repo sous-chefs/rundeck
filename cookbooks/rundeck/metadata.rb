@@ -1,5 +1,5 @@
-maintainer       "YOUR_COMPANY_NAME"
-maintainer_email "YOUR_EMAIL"
+maintainer       "Webtrends"
+maintainer_email "hostedops@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures rundeck"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
