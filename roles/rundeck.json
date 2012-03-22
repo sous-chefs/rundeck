@@ -6,7 +6,8 @@
   "env_run_lists": {
   },
   "run_list": [
-"recipe[java]"
+"recipe[java]",
+"recipe[postfix]"
   ],
   "description": "",
   "chef_type": "role",
