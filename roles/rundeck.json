@@ -6,17 +6,9 @@
   "env_run_lists": {
   },
   "run_list": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-"recipe[java]",
-"recipe[postfix]"
-=======
-"recipe[java]"
->>>>>>> 1769d03... Add a new role for rundeck
-=======
-"recipe[java]",
-"recipe[postfix]"
->>>>>>> bd2b49d... Add postfix to the rundeck role
+    "recipe[java]",
+    "recipe[postfix]",
+    "recipe[rundeck::server]"
   ],
   "description": "",
   "chef_type": "role",

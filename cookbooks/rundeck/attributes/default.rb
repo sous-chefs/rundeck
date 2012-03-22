@@ -1,7 +1,6 @@
 default[:rundeck] = {}
 default[:rundeck][:configdir] = "/etc/rundeck"
 default[:rundeck][:basedir] = "/var/rundeck"
-default[:rundeck][:deb] = "rundeck-1.3.0-2.deb"
 default[:rundeck][:user] = "rundeck"
 default[:rundeck][:user_home] = "/home/rundeck"
 default[:rundeck][:chef_config] = "/etc/chef/rundeck.rb"
