@@ -55,7 +55,7 @@ include_recipe "ntp"
 include_recipe "resolver"
 
 #Add the Webtrends Yum repo
-node['ondemand_server']['yum'].each do |yumrepo|
+node['ondemand_base']['yum'].each do |yumrepo|
 	yum_repository yumrepo['name'] do
 		repo_name yumrepo['name']
 		description yumrepo['description']
