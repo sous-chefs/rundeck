@@ -1,0 +1,10 @@
+#!/bin/sh
+ulimit -n 10240
+# Source function library
+. <%=@options[:rundeck][:configdir]%>/profile
+
+RUNDECKD="${RDECK_JVM} -cp ${BOOTSTRAP_CP}:<%=@options[:rundeck][:configdir]%> com.dtolabs.rundeck.RunServer <%=@options[:rundeck][:configdir]%> 4440"
+
+exec 2>&1
+exec \
+	chpst -u rundeck java $RUNDECKD
