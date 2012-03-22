@@ -52,7 +52,7 @@ include_recipe "ntp"
 include_recipe "resolver"
 
 # Setup the Webtrends apt repo
-node['ondemand_server']['apt'].each do |aptrepo|
+node['ondemand_base']['apt'].each do |aptrepo|
 	apt_repository aptrepo['name'] do
 		repo_name aptrepo['name']
 		if aptrepo.has_key? "distribution"
