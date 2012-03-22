@@ -17,7 +17,7 @@
                 ]
             }
         }, 
-        "ondemand_server": {
+        "ondemand_base": {
             "apt": [
                 {
                     "components": [
