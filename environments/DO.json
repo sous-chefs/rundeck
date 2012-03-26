@@ -103,6 +103,10 @@
 		"wt_platformscheduler": {
 			"agent_msi": "WebTrends VDM Scheduler Agent.msi",
 			"url":"guestAuth/repository/download/bt54/.lastSuccessful/"
+		},
+		"wt_dbmaint": {
+			"index_file": "VDMIndex.zip",
+			"url":"guestAuth/repository/download/bt63/.lastSuccessful/"
 		}
     }, 
     "description": "DevOps Pod", 
