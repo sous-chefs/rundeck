@@ -1,0 +1,6 @@
+description:  D pod servers
+hostname:     ipaddress
+id:           preprod
+pattern:      environment:D
+username:     rundeck
+

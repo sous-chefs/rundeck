@@ -40,7 +40,10 @@ cookbook_file "#{node[:rundeck][:user_home]}/.ssh/authorized_keys" do
   source "rundeck.pub"
 end
 
-sudoers "rundeck-admin" do
- user node[:rundeck][:user]
- rights "ALL = NOPASSWD: ALL"
+file "/etc/sudoers.d/rundeck" do
+  owner "root"
+  group "root"
+  mode "0440"
+  content "rundeck    ALL = NOPASSWD: ALL"
+  action :create
 end
