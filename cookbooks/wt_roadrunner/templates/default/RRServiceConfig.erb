@@ -10,8 +10,7 @@
 	</connectionStrings>
   <system.diagnostics>
     <sources>
-      <source name="System.ServiceModel" switchValue="Warning,ActivityTracing"
-       propagateActivity="true">
+      <source propagateActivity="true" name="System.ServiceModel" switchValue="Off,ActivityTracing">
         <listeners>
           <add type="System.Diagnostics.DefaultTraceListener" name="Default">
             <filter type="" />
@@ -34,11 +33,11 @@
     </sources>
     <sharedListeners>
       <add initializeData="..\\logs\app_tracelog.svclog" type="System.Diagnostics.XmlWriterTraceListener, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-       name="ServiceModelTraceListener" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack">
+        name="ServiceModelTraceListener" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack">
         <filter type="" />
       </add>
       <add initializeData="..\\logs\app_messages.svclog" type="System.Diagnostics.XmlWriterTraceListener, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-       name="ServiceModelMessageLoggingListener" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack">
+        name="ServiceModelMessageLoggingListener" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack">
         <filter type="" />
       </add>
     </sharedListeners>
@@ -47,8 +46,8 @@
 	<system.serviceModel>
 		
 		<diagnostics performanceCounters="Off">
-   <messageLogging logMalformedMessages="true" logMessagesAtServiceLevel="true"
-    logMessagesAtTransportLevel="true" />
+   <messageLogging logMalformedMessages="false" logMessagesAtServiceLevel="false"
+    logMessagesAtTransportLevel="false" />
   </diagnostics>
   <bindings>			
 			<webHttpBinding>

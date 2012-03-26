@@ -1,0 +1,25 @@
+{
+  "name": "rundeck",
+  "default_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+<<<<<<< HEAD
+<<<<<<< HEAD
+"recipe[java]",
+"recipe[postfix]"
+=======
+"recipe[java]"
+>>>>>>> 1769d03... Add a new role for rundeck
+=======
+"recipe[java]",
+"recipe[postfix]"
+>>>>>>> bd2b49d... Add postfix to the rundeck role
+  ],
+  "description": "",
+  "chef_type": "role",
+  "override_attributes": {
+  }
+}
