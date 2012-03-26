@@ -6,7 +6,7 @@
 # Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
-# This recipe installs the needed components to full setup/configure the RoadRunner service
+# This recipe installs VDM Scheduler Agent
 
 # source build
 msi_name = node['wt_platformscheduler']['agent_msi']
@@ -42,8 +42,8 @@ windows_package "Webtrends VDM Scheduler Agent" do
         action :install
 end
 
-# wt_base_icacls "#{log_dir}" do
-	# action :grant
-	# user svcuser 
-	# perm :modify
-# end
+wt_base_icacls "#{install_dir}" do
+	action :grant
+	user svcuser
+	perm :full
+end
