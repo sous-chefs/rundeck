@@ -27,13 +27,20 @@ include Windows::Helper
 action :open_port do
         unless @current_portopening.exists
                 Chef::Log.debug("Opening Fireawll port  #{@new_resource.rule_name}")
-                cmd = "#{firewallcmd} set portopening protocol=#{@new_resource.protocol} "
+                cmd = "#{firewallcmd} firewall set portopening protocol=#{@new_resource.protocol}"
                 cmd << "port=#{@new_resource.port} name=#{@new_resource.rule_name}"
                 shell_out!(cmd)
                 Chef::Log.info("#{@new_resource.rule_name} firewall port opened")
         else
                 Chef::Log.info("#{@new_resource.rule_name} Port already open")
         end
+end
+
+action :enable do
+	Chef::Log.info("Enabling fireall rule #{@new_resource.rule_name}")
+	cmd = "#{firewallcmd} advfirewall firewall set rule name=\"#{@new_resource.rule_name}\" new enable=yes"
+	Chef::Log.debug("Executing #{cmd}")
+	shell_out!(cmd)
 end
 
 def load_current_resource
@@ -53,7 +60,8 @@ end
 private
 def firewallcmd
   @firewall ||= begin
-    "netsh firewall"
+    "netsh"
   end
 end
+
 
