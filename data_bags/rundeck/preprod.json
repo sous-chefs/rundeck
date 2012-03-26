@@ -1,0 +1,6 @@
+description:  Preprod servers managed by Hosted Ops
+hostname:     ipaddress
+id:           preprod
+pattern:      environment:PP-LAS OR PP-PDX
+username:     rundeck
+
