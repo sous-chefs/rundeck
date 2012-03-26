@@ -88,8 +88,8 @@ $estimated_height = count($safe_vbuckets) > 0 ? max(array_keys($safe_vbuckets)) 
 
 
 $_GET["h"] = $result["y_max"];
-//if ($_GET["h"] > 1200)
-//	$_GET["h"] = 1200;
+if ($_GET["h"] > 2000)
+	$_GET["h"] = 2000;
 
 
 if ($debug)

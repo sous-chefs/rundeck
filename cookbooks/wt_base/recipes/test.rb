@@ -8,18 +8,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
-wt_base_icacls "d:\\wrs" do
-	action :grant
-	user "STAGINGDMZ\\wtSystem"
-	perm :read
+if not platform?("ubuntu")
+	log "dvorak - this not is ubuntu"
+	return
+else
+	log "dvorakd, this is ubuntu"
 end
 
-wt_base_icacls "d:\\wrs" do
-	action :remove
-	user "STAGINGDMZ\\wtLoader"
-end 
-
-wt_base_icacls "d:\\wrs" do
-	action :run
-	options "d:\\wrs /deny STAGINGDMZ\\wtUI:(D)"
-end
+log "don't log this message"

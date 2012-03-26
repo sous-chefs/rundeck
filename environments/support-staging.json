@@ -8,8 +8,8 @@
             }, 
             "sudo": {
                 "groups": [
-                    "domain-admins", 
-                    "STAGINGDMZ\\\\domain-admins"
+                    "STAGINGDMZ\\\\domain-admins", 
+                    "STAGINGDMZ\\\\stage-admins"
                 ], 
                 "passwordless": false, 
                 "users": [
@@ -17,22 +17,31 @@
                 ]
             }
         }, 
-        "ondemand_server": {
+        "ondemand_base": {
             "apt": [
                 {
                     "components": [
                         "main"
                     ], 
-                    "key": "http://repo.staging.dmz/repo/apt/repo.gpg.key", 
-                    "name": "main", 
-                    "url": "http://repo.staging.dmz/repo/apt"
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
+                }, 
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution_suffix": "-0.10", 
+                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
+                    "name": "wtlab-opscode", 
+                    "url": "http://repo.staging.dmz/repo/apt/opscode"
                 }
             ], 
             "yum": [
                 {
                     "description": "Webtrends Repo", 
-                    "name": "webtrends", 
-                    "url": "http://repo.staging.dmz/repo/yum/wtlab"
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
                 }
             ]
         }, 
@@ -49,6 +58,19 @@
     "json_class": "Chef::Environment", 
     "name": "support-staging", 
     "override_attributes": {
+        "cobbler": {
+            "manage_dhcp": 1, 
+            "pxe_just_once": 1, 
+            "subnets": {
+                "10.164.0.0": {
+                    "netmask": "255.255.0.0"
+                }
+            }
+        }, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": "6"
+        }, 
         "nagios": {
             "multi_environment_monitoring": "true", 
             "server_role": "nagios_xi"
