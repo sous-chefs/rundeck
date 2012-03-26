@@ -1,39 +1,67 @@
-#/nagiake sure that this recipe only runs on ubuntu systemso
-if platform?("ubuntu")
+#
+# Author:: Tim Smith(<tim.smith@webtrends.com>)
+# Cookbook Name:: ondemand_base
+# Recipe:: ubuntu
+#
+# Copyright 2012, Webtrends Inc.
+#
+# All rights reserved - Do Not Redistribute
+#
+
+#Make sure that this recipe only runs on ubuntu systems
+if not platform?("ubuntu")
+	Chef::Log.info("Platform Ubuntu required.")
+	return
+end
 
 #Save the node to prevent empty run lists on failures
 unless Chef::Config[:solo]
-  ruby_block "save node data" do
-    block do
-      node.save
-    end
-    action :create
-  end
+	ruby_block "save node data" do
+		block do
+			node.save
+		end
+		action :create
+	end
 end
 
 #Make sure someone didn't set the _default environment
 if node.chef_environment == "_default" 
-  Chef::Log.info("Set a Chef environment.  We dont want to use _default")
-  exit(true)
+	Chef::Log.info("Set a Chef environment. We don't want to use _default")
+	exit(true)
 end
 
 #Set chef-client to run on a regular schedule (30 mins)
 include_recipe "chef-client"
 
-#Base recipes necessary for a functioning system
+# configures /etc/apt/sources.list
 include_recipe "ubuntu"
+
+# configures /etc/sudoers
 include_recipe "sudo"
+
+# updates apt cache
 include_recipe "apt"
+
+# installs and enables sshd service
 include_recipe "openssh"
+
+# installs, configures and enables ntp
 include_recipe "ntp"
+
+# configures /etc/resolv.conf
 include_recipe "resolver"
-#include_recipe "nagios::client"
 
 # Setup the Webtrends apt repo
-node['ondemand_server']['apt'].each do |aptrepo|
+node['ondemand_base']['apt'].each do |aptrepo|
 	apt_repository aptrepo['name'] do
 		repo_name aptrepo['name']
-		distribution "#{node[:lsb][:codename]}"
+		if aptrepo.has_key? "distribution"
+			distribution aptrepo['distribution']
+		elsif aptrepo.has_key? "distribution_suffix"
+			distribution node[:lsb][:codename] + aptrepo['distribution_suffix']
+		else 
+			distribution node[:lsb][:codename]
+		end
 		uri aptrepo['url']
 		components aptrepo['components']
 		key aptrepo['key']
@@ -41,14 +69,31 @@ node['ondemand_server']['apt'].each do |aptrepo|
 	end
 end
 
+#Setup NRPE to run sudo w/o a password
+file "/etc/sudoers.d/nrpe" do
+	owner "root"
+	group "root"
+	mode "0440"
+	content "nagios	ALL=NOPASSWD: ALL"
+	action :create
+end
+
+#include_recipe "nagios::client"
+
 #User experience and tools recipes
+
+# installs vim
 include_recipe "vim"
+
+# installs man pages
 include_recipe "man"
+
+# installs various network tools
 include_recipe "networking_basic"
 
-# Install useful tools
+# install useful tools
 %w{ mtr strace iotop }.each do |pkg|
-  package pkg
+	package pkg
 end
 
 # Used for password string generation
@@ -59,29 +104,28 @@ auth_config = data_bag_item('authorization', node.chef_environment)
 
 # set root password from authorization databag
 user "root" do
-  password auth_config['root_password']
-  shell "/bin/bash"
+	password auth_config['root_password']
+	shell "/bin/bash"
 end
 
 # add non-root user from authorization databag
 if auth_config['alternate_user']
-  user auth_config['alternate_user'] do
-    password auth_config['alternate_pass']
-    if auth_config['alternate_uid']
-      uid auth_config['alternate_uid']
-    end
-    shell "/bin/bash"
-    supports :manage_home => true
-  end
+	user auth_config['alternate_user'] do
+		password auth_config['alternate_pass']
+		if auth_config['alternate_uid']
+			uid auth_config['alternate_uid']
+		end
+		shell "/bin/bash"
+		supports :manage_home => true
+	end
 end
 
 #Hack to allow ad-likewise to install with its evil package that refuses to be signed
 execute "allowUnauthenticatedDebs" do
-  command "apt-get install likewise-open=6.1.0-2 -y -o Apt::Get::AllowUnauthenticated=true"
-  action :run
+	command "apt-get install likewise-open=6.1.0-2 -y -o Apt::Get::AllowUnauthenticated=true"
+	action :run
 end
 
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
 
-end

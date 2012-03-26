@@ -1,0 +1,1 @@
+<%= node[:wt_heatmap][:config_distrib] %>

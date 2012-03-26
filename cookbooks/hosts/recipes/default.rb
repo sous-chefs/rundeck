@@ -7,9 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
-template "/etc/hosts" do
-  source "hosts.erb"
-  mode 0644
-  owner "root"
-  group "root"
+if platform?("centos","rhel","scientific")
+  template "/etc/hosts" do
+    source "hosts.erb"
+    mode 0644
+    owner "root"
+    group "root"
+  end
 end

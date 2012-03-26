@@ -18,6 +18,14 @@
 #
 include_recipe "java"
 
+package "python-simplejson" do
+  action :install
+end
+
+package "python-cjson" do
+  action :install
+end
+
 hadoop_namenode = search(:node, "role:hadoop_namenode AND chef_environment:#{node.chef_environment}")
 hadoop_namenode = hadoop_namenode.length == 1 ? hadoop_namenode.first[:fqdn] : "localhost"
 
@@ -29,7 +37,7 @@ hadoop_jobtracker = hadoop_jobtracker.length == 1 ? hadoop_jobtracker.first[:fqd
 
 hadoop_datanodes = Array.new
 search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment}").each do |n|
-    hadoop_datanodes << n[:fqdn]
+  hadoop_datanodes << n[:fqdn]
 end
 
 
