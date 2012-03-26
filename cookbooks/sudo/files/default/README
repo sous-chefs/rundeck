@@ -1,5 +1,5 @@
 #
-# The sudoers file include the following includedir line:
+# The sudoers file includes the following includedir line:
 #
 #  #includedir /etc/sudoers.d
 #

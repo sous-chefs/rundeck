@@ -26,19 +26,8 @@ include_recipe "apache2::mod_ssl"
 include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
 
-
-
-cookbook_file "/tmp/#{node[:rundeck][:deb]}" do
-  source node[:rundeck][:deb]
-  owner node[:rundeck][:user]
-  group node[:rundeck][:user]
-  mode "0644"
-end
-
-package "#{node[:rundeck][:deb]}" do
+package "rundeck" do
   action :install
-  source "/tmp/#{node[:rundeck][:deb]}"
-  provider Chef::Provider::Package::Dpkg
 end
 
 
