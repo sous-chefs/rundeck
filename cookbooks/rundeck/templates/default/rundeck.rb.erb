@@ -1,0 +1,8 @@
+log_level                :info
+log_location             STDOUT
+node_name                'rundeck'
+client_key               '/etc/chef/rundeck.pem'
+validation_client_name   'chef-validator'
+validation_key           '/etc/chef/validation.pem'
+chef_server_url          '<%=@rundeck[:chef_url]%>'  
+cache_type               'BasicFile'

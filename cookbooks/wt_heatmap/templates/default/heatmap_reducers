@@ -1,0 +1,1 @@
+<%= node[:wt_heatmap][:heatmap_reducers] %>

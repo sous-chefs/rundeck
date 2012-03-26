@@ -87,4 +87,9 @@ Enable authorization for different protocols.
 <value><%= node[:hadoop][:core][:fs_checkpoint_dir] %></value>
 </property>
 
+<property>
+<name>fs.checkpoint.period</name>
+<value><%= node[:hadoop][:core][:fs_checkpoint_period] %></value>
+</property>
+
 </configuration>
