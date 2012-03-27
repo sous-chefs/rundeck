@@ -1,0 +1,16 @@
+{
+  "name": "wt_indexmaint",
+  "description": "",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[wt_platformscheduler::agent]",
+    "recipe[wt_dbmaint::index]"
+  ],
+  "env_run_lists": {
+  }
+}
