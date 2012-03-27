@@ -119,7 +119,10 @@
         }, 
         "nagios": {
             "multi_environment_monitoring": "true", 
-            "server_role": "nagios_xi"
+            "server_role": "nagios_xi",
+            "nrpe":{
+	        "dont_blame_nrpe": "1"
+            }
         }, 
         "ntp": {
             "servers": [
