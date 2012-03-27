@@ -78,9 +78,10 @@ file "/etc/sudoers.d/nrpe" do
 	action :create
 end
 
-#include_recipe "nagios::client"
+include_recipe "nagios::client"
 
-#User experience and tools recipes
+# Sets up runeck private keys
+include_recipe "rundeck"
 
 # installs vim
 include_recipe "vim"

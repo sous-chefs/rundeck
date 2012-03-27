@@ -54,6 +54,8 @@ include_recipe "ntp"
 # configures /etc/resolv.conf
 include_recipe "resolver"
 
+# Sets up runeck private keys
+include_recipe "rundeck"
 #Add the Webtrends Yum repo
 node['ondemand_base']['yum'].each do |yumrepo|
 	yum_repository yumrepo['name'] do
