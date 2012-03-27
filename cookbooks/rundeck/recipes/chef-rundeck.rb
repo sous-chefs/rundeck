@@ -38,14 +38,14 @@ file node[:rundeck][:project_config] do
   notifies :restart, "service[chef-rundeck]"
 end
 
-cookbook_file "/tmp/chef-rundeck-0.2.0.gem" do
-  source "chef-rundeck-0.2.0.gem"
+cookbook_file "/tmp/chef-rundeck-0.2.1.gem" do
+  source "chef-rundeck-0.2.1.gem"
   mode "0644"
 end
 
 gem_package "chef-rundeck" do
   action :install
-  source "/tmp/chef-rundeck-0.2.0.gem"
+  source "/tmp/chef-rundeck-0.2.1.gem"
 end
 
 gem_package "sinatra"
