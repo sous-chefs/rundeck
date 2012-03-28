@@ -96,12 +96,14 @@ while True:
 		if "WT.hm_url" in tmp:
 			page_ident += "?" + tmp["WT.hm_url"]
 
+		# there may be multiple account-ids
 		account_id = account_ids[tmp["dcs-id"]]
-		obj["page_key"] = str(account_id) + ";" + tmp["cs-host"] + ";" + sha1(page_ident)
-		
-		# emit (workflow #4)
-		sys.stdout.write("%s\n" % (cjson.encode(obj)))
+		for aid in account_id:
+			obj["page_key"] = str(aid) + ";" + tmp["cs-host"] + ";" + sha1(page_ident)
 
+			# emit (workflow #4)
+			sys.stdout.write("%s\n" % (cjson.encode(obj)))
+		
 	except Exception, e:
 		sys.stderr.write("error: %s on line %s\n" % (e, line))
 
