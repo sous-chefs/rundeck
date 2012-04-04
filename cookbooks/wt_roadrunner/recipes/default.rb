@@ -57,7 +57,7 @@ end
 # set permissions for the log readers group to have read access to the install directory
 wt_base_icacls "#{install_dir}" do
 	action :grant
-	user wrsread_group 
+	user node['wt_common']['wrsread_group'] 
 	perm :read
 end
 
