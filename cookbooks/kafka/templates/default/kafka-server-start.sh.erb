@@ -16,35 +16,10 @@
 
 if [ $# -lt 1 ];
 then
-  echo "USAGE: $0 classname [opts]"
-  exit 1
+	echo "USAGE: $0 server.properties [consumer.properties producer.properties]"
+	exit 1
 fi
 
-base_dir=$(dirname $0)/..
+export JMX_PORT=${JMX_PORT:-9999}
 
-for file in $base_dir/*.jar;
-do
-  CLASSPATH=$CLASSPATH:$file
-done
-
-for file in $base_dir/lib/*.jar;
-do
-	CLASSPATH=$CLASSPATH:$file
-done
-
-if [ -z "$KAFKA_JMX_OPTS" ]; then
-  KAFKA_JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false  -Dcom.sun.management.jmxremote.ssl=false "
-fi
-if [ -z "$KAFKA_OPTS" ]; then
-  KAFKA_OPTS="-Xmx512M -server -Dlog4j.configuration=file:$base_dir/config/log4j.properties"
-fi
-if [  $JMX_PORT ]; then
-  KAFKA_JMX_OPTS="$KAFKA_JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
-fi
-if [ -z "$JAVA_HOME" ]; then
-  JAVA="java"
-else
-  JAVA="$JAVA_HOME/bin/java"
-fi
-
-$JAVA $KAFKA_OPTS $KAFKA_JMX_OPTS -cp $CLASSPATH $@
+$(dirname $0)/kafka-run-class.sh kafka.Kafka $@
