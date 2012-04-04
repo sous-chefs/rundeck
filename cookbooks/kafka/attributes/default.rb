@@ -51,5 +51,3 @@ default[:users]['kafka'][:uid]      = 350
 default[:users]['kafka'][:gid]      = 350
 
 
-
-
