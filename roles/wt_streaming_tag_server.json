@@ -1,8 +1,8 @@
 {
-  "name": "wt_datacollection_server",
+  "name": "wt_streaming_tag_server",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Data collection server",
+  "description": "Streaming Tag Server",
   "run_list": [
     "recipe[nginx]",
     "recipe[jetty]",
