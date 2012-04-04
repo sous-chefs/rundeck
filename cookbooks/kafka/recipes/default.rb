@@ -19,7 +19,6 @@
 
 # == Recipes
 include_recipe "java"
-include_recipe "runit"
 
 # == Users
 
@@ -55,10 +54,10 @@ end
 
 # Extract it
 execute 	"extract-kafka" do
-  command 	"tar -zxf /usr/local/src/kafka-#{node[:kafka][:version]}.tar.gz"
-  creates 	"kafka-#{node[:kafka][:version]}"
+  command	"tar -zxf /usr/local/src/kafka-#{node[:kafka][:version]}.tar.gz"
+  creates	"kafka-#{node[:kafka][:version]}"
   cwd 		"#{node[:kafka][:stage_dir]}"
-  user 		"root"
+  user		"root"
   group 	"root"
 end
 
@@ -82,10 +81,10 @@ kafka_dirs = [
 # Create all other directories, if needed
 kafka_dirs.each do |dir|
 	directory dir do
-	mode 	"0755"
+	mode 		"0744"
 	action 	:create
-	owner 	"root"
-	group 	"root"
+	owner		"#{node[:kafka][:user]}"
+	group 	"#{node[:kafka][:group]}"
 	not_if { ::File.exists?(dir) }
 	end
 end
@@ -104,35 +103,36 @@ while i < zookeeper_pairs.size do
   i += 1
 end
 
-directory('/etc/sv/kafka/env'){ owner 'root' ; action :create ; recursive true }
-runit_service "kafka"
-
 # templates
-template "#{home_dir}/bin/kafka-run-class.sh" do
-	source	"kafka-run-class.sh.erb"
-	owner	"root"
-	group   "root"
+%w[kafka-server-start.sh kafka-run-class.sh sv-kafka-run sv-kafka-log-run].each do |template_file|
+  template "#{home_dir}/bin/#{template_file}" do
+	source	"#{template_file}.erb"
+	mode 		"0755"
 	variables({
 		:kafka => node[:kafka],
 		:zookeeper_pairs => zookeeper_pairs
 	})
+	end
 end
 
 %w[server.properties consumer.properties producer.properties zookeeper.properties log4j.properties].each do |template_file|
   template "#{home_dir}/config/#{template_file}" do
 	source	"#{template_file}.erb"
-	owner	"root"
-	group   "root"
-	variables({
+	mode 		"0755"
+	owner		"root"
+	variables({ 
 		:kafka => node[:kafka],
 		:zookeeper_pairs => zookeeper_pairs
 	})
-	notifies      :restart, "service[kafka]", :delayed
+#	notifies      :restart, "service[kafka]", :delayed
   end
 end
 
-service "kafka" do
-	action :start
-end
+include_recipe "runit"
+runit_service "kafka"
 
-
+#service "kafka" do
+#  action [ :enable, :start ]
+#  running true
+#  supports :status => true, :restart => true
+#end
