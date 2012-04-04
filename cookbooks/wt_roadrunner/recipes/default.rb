@@ -39,23 +39,41 @@ gac_cmd = "#{install_dir}\\gacutil.exe /i \"#{install_dir}\\Webtrends.RoadRunner
 sc_cmd = "\"%WINDIR%\\System32\\sc.exe create WebtrendsRoadRunnerService binPath= #{install_dir}\\Webtrends.RoadRunner.Service.exe obj= #{svcuser} password= #{svcpass} start= auto\""
 urlacl_cmd = "netsh http add urlacl url=http://+:8097/ user=\"#{svcuser}\""
 firewall_cmd="netsh advfirewall firewall add rule name=\"Webtrends RoadRunner port 8097\" dir=in action=allow protocol=TCP localport=8097"
+share_cmd="net share wrs=#{install_dir_drive}\\#{install_dir} /grant:EVERYONE,FULL /remark:\"Set from the install batch file\""
 
+# create the install directory
 directory "#{install_dir}" do
 	recursive true
 	action :create
 end
 
+# set permissions for the service user to have read access to the install drive
 wt_base_icacls "#{install_dir_drive}" do
 	action :grant
 	user svcuser 
 	perm :read
 end
 
+# set permissions for the log readers group to have read access to the install directory
+wt_base_icacls "#{install_dir}" do
+	action :grant
+	user wrsread_group 
+	perm :read
+end
+
+# set permissions for the log readers group to have read access to the install directory
+execute "share_install_dir" do
+	command share_cmd
+	cwd install_dir_drive
+end
+
+# create the log directory
 directory "#{log_dir}" do
 	recursive true
 	action :create
 end
 
+# allow the service account to modify files in the log directory
 wt_base_icacls "#{log_dir}" do
 	action :grant
 	user svcuser 
