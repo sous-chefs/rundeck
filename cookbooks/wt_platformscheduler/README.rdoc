@@ -1,10 +1,11 @@
 = DESCRIPTION:
 
-Installs the configures the Webtrends Roadrunner service for VDM GPU acceleration
+Installs the configures the Webtrends Platform Scheduler service
 
 = REQUIREMENTS:
 
 Windows cookbook
+Webtrends Base cookbook
 
 = ATTRIBUTES:
 
@@ -12,5 +13,5 @@ Uses attributes for the master DB hostname and the DB name
 
 = USAGE:
 
-Apply the wt_roadrunner role and apply a valid environment with wt_common attributes
+Apply the wt_platformschedulerrole and apply a valid environment with wt_common attributes
 
