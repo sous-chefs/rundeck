@@ -5,7 +5,7 @@
   "description": "Streaming Tag Server",
   "run_list": [
     "recipe[nginx]",
-    "recipe[jetty]",
+    "recipe[jetty]"
   ],
   "override_attributes": {
   }
