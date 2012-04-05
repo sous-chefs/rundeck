@@ -61,7 +61,7 @@ wt_base_icacls "#{install_dir}" do
 	perm :read
 end
 
-# set permissions for the log readers group to have read access to the install directory
+# share the install directory
 execute "share_install_dir" do
 	command share_cmd
 	cwd install_dir_drive
