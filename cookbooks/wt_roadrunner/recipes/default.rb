@@ -118,7 +118,7 @@ ruby_block "create_service" do
         Service::AUTO_START, Service::ERROR_NORMAL, '#{install_dir}\\Webtrends.RoadRunner.Service.exe',
         '#{svcuser}', '#{svcpass}', 'Webtrends Roadrunner'
       )
-	end
+	  end
   end
   action :create
 end
