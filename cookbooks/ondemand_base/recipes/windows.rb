@@ -8,15 +8,13 @@
 # All rights reserved - Do Not Redistribute
 #
 
-
-domain_to_join = node['authorization']['ad_auth']['ad_network']
-auth_data = data_bag_item('authorization', domain_to_join)
-
 #Make sure that this recipe only runs on Windows systems
 if not platform?("windows")
 	Chef::Log.info("Platform Windows required.")
 	return
 end
+domain_to_join = node['authorization']['ad_auth']['ad_network']
+auth_data = data_bag_item('authorization', domain_to_join)
 
 include_recipe "windows::reboot_handler"
 #Save the node to prevent empty run lists on failures
