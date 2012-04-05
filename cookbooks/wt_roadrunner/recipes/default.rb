@@ -9,6 +9,8 @@
 # This recipe installs the needed components to full setup/configure the RoadRunner service
 
 include_recipe "windows"
+require "win32/service"
+include Win32
 
 # source build
 build_url = "#{node['wt_common']['install_server']}#{node['wt_roadrunner']['url']}#{node['wt_roadrunner']['zip_file']}"
@@ -111,15 +113,10 @@ ruby_block "create_service" do
   block do
     if !Service.exists?(wt_roadrunner)
 	  # create the service since it doesn't exist
-      Service.create('wt_roadrunner', nil,
-        :service_type       => Service::WIN32_OWN_PROCESS,
-        :description        => 'Webtrends Roadrunner service for GPU acceleration of VDM SQL queries'
-        :start_type         => Service::AUTO_START,
-        :error_control      => Service::ERROR_NORMAL,
-        :binary_path_name   => '#{install_dir}\\Webtrends.RoadRunner.Service.exe',
-        :service_start_name => '#{svcuser}',
-        :password           => '#{svcpass}',
-        :display_name       => 'Webtrends Roadrunner',
+      Service.create('wt_roadrunner', nil, Service::WIN32_OWN_PROCESS,
+	'Webtrends Roadrunner service for GPU acceleration of VDM SQL queries',
+        Service::AUTO_START, Service::ERROR_NORMAL, '#{install_dir}\\Webtrends.RoadRunner.Service.exe',
+        '#{svcuser}', '#{svcpass}', 'Webtrends Roadrunner'
       )
 	end
   end
