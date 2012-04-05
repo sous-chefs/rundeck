@@ -36,7 +36,6 @@ end
 Chef::Log.info "Source URL: #{build_url}"
 
 gac_cmd = "#{install_dir}\\gacutil.exe /i \"#{install_dir}\\Webtrends.RoadRunner.SSISPackageRunner.dll\""
-sc_cmd = "\"%WINDIR%\\System32\\sc.exe create WebtrendsRoadRunnerService binPath= #{install_dir}\\Webtrends.RoadRunner.Service.exe obj= #{svcuser} password= #{svcpass} start= auto\""
 urlacl_cmd = "netsh http add urlacl url=http://+:8097/ user=\"#{svcuser}\""
 firewall_cmd="netsh advfirewall firewall add rule name=\"Webtrends RoadRunner port 8097\" dir=in action=allow protocol=TCP localport=8097"
 share_cmd="net share wrs=#{install_dir} /grant:EVERYONE,FULL /remark:\"Set from the install batch file\""
@@ -80,6 +79,7 @@ wt_base_icacls "#{log_dir}" do
 	perm :modify
 end
 
+# unzip the file unless the applications is already installed
 windows_zipfile "#{install_dir}" do
 	source "#{build_url}"
 	action :unzip	
@@ -106,23 +106,40 @@ execute "gac" do
 	not_if { node[:rr_configured]}
 end
 
-execute "sc" do
-	command sc_cmd
-	cwd install_dir	
+# ruby code block to create the Windows service
+ruby_block "create_service" do
+  block do
+    if !Service.exists?(wt_roadrunner)
+	  # create the service since it doesn't exist
+      Service.create('wt_roadrunner', nil,
+        :service_type       => Service::WIN32_OWN_PROCESS,
+        :description        => 'Webtrends Roadrunner service for GPU acceleration of VDM SQL queries'
+        :start_type         => Service::AUTO_START,
+        :error_control      => Service::ERROR_NORMAL,
+        :binary_path_name   => '#{install_dir}\\Webtrends.RoadRunner.Service.exe',
+        :service_start_name => '#{svcuser}',
+        :password           => '#{svcpass}',
+        :display_name       => 'Webtrends Roadrunner',
+      )
+	end
+  end
+  action :create
 end
 
+#Set the ACL up to allow http traffic on port 8097
 execute "netsh_urlacl" do
 	command urlacl_cmd
 	cwd install_dir
 	not_if { node[:rr_configured]}
 end
 
+# Set the firewall to allow traffic into the system on port 8097
 execute "netsh_firewall" do
 	command firewall_cmd
 	cwd install_dir
 	not_if { node[:rr_configured]}
 end
 
-service "WebtrendsRoadRunnerService" do
+service "wt_roadrunner" do
 	action :start
 end
