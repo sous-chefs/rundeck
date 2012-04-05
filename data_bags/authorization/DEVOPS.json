@@ -1,0 +1,10 @@
+{
+    "auth_domain_password": "Bijoux01", 
+    "auth_domain_user": "Admin", 
+    "id": "DEVOPS", 
+    "membership_required": [
+        "devopsdmz\\\\domain-admins", 
+        "devopzdmz\\\\stage-admins"
+    ], 
+    "primary_domain": "devops.dmz"
+}
