@@ -1,16 +1,17 @@
 {
   "name": "ondemand_server",
+  "description": "",
+  "json_class": "Chef::Role",
   "default_attributes": {
   },
-  "json_class": "Chef::Role",
-  "env_run_lists": {
+  "override_attributes": {
   },
+  "chef_type": "role",
   "run_list": [
+    "recipe[ondemand_base::windows]",
     "recipe[ondemand_base::ubuntu]",
     "recipe[ondemand_base::centos]"
   ],
-  "description": "",
-  "chef_type": "role",
-  "override_attributes": {
+  "env_run_lists": {
   }
 }
