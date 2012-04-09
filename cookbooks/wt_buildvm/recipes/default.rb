@@ -20,11 +20,11 @@ include_recipe "ruby"
 include_recipe "rbvmomi"
 include_recipe "build-essential"
 
-%w{ unixodbc-dev freetds-dev freetds-bin }.each do |pkg|
+%w{ unixodbc-dev freetds-dev freetds-bin ec2-api-tools }.each do |pkg|
   package pkg
 end
 
-%w{ ruby-odbc dbd-odbc dbi }.each do |gem|
+%w{ ruby-odbc dbd-odbc dbi aws}.each do |gem|
   gem_package gem
 end
 
