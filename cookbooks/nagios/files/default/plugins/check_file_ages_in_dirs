@@ -1,0 +1,370 @@
+#! /bin/bash
+#
+# File ages in a directory plugin for Nagios.
+# Written by Chad Phillips (chad@apartmentlines.com)
+# Last Modified: 2012-04-02
+# Josh Behrends - Added -e flag to be able to filter on file extensions - 04/02/2012
+
+PROGPATH=`dirname $0`
+REVISION=`echo '$Revision: 1 $' | sed -e 's/[^0-9.]//g'`
+
+. $PROGPATH/utils.sh
+
+print_usage() {
+    echo "
+Usage: check_file_ages_in_dirs --dirs | -d <directories> [-e <file extension>] [-w <max_age>] [-c <max_age>] [-W <num_files>] [-C <num_files>] [-t <time_unit>] [-V] [--check-dirs] [--base-dir <directory>]
+Usage: check_file_ages_in_dirs --help | -h
+
+Description:
+
+This plugin pulls all files in each specified directory, and checks their
+created time against the current time.  If the maximum age of any file is
+exceeded, a warning/critical message is returned as appropriate.
+
+This is useful for examining backup directories for freshness.
+
+Tested to work on Linux/FreeBSD/OS X.
+
+The following arguments are accepted:
+
+  --dirs | -d     A space separated list of directories to examine.  Each
+                  directory will be checked for the age of all files in the
+                  directory.
+
+  -e              (Optional) Filter on a file extension. (Example -e \".txt\") 
+			      Defaults to all files.		  
+		
+  -w              (Optional) Generate a warning message if any created file is
+                  older than this value.  Defaults to 26 hours.
+
+  -c              (Optional) Generate a critical message if any created file is
+                  older than this value.  Defaults to 52 hours.
+
+  -W              (Optional) If set, a warning message will be returned if the
+                  specified directory doesn't exist, or there are less than the
+                  number of specified files in the specified directory.
+
+  -C              (Optional) If set, a critical message will be returned if the
+                  specified directory doesn't exist,or there are less than the
+                  number of specified files in the specified directory.
+
+  -t              (Optional) The time unit used for the -w and -c values.  Must
+                  be one of: seconds, minutes, hours, days.  Defaults to hours.
+
+  -V              (Optional) Output verbose information about all checked
+                  files.  Default is only to print verbose information for
+                  files with non-OK states.
+
+  --check-dirs    (Optional) If set, directories inside the specified directory
+                  will also be checked for their creation time. Note that this
+                  check is not recursive.  Without this option, only real files
+                  inside the specified directory will be checked.
+
+  --base-dir      (Optional) If set, this path will be prepended to all
+                  checked directories.
+
+  --help | -h     Print this help and exit.
+
+Examples:
+
+Generate a warning if any file in /backups is more than 26 hours old,
+and a critical if it's more than 52 hours old...
+
+  check_file_ages_in_dirs -d \"/backups\"
+
+Generate a warning if any file in /var/foo or /var/bar is more than one week
+old, a critical if it's more than two weeks old, or a critical if there are
+less than 3 files in either directory.
+
+  check_file_ages_in_dirs -d \"/var/foo /var/bar\" -w 7 -c 14 -t days -C 3
+
+Caveats:
+
+Although multiple directories can be specified, only one set of
+warning/critical times can be supplied.
+
+Linux doesn't seem to have an easy way to check file/directory creation time,
+so file/directory last modification time is used instead.
+"
+}
+
+print_help() {
+    print_usage
+    echo "File ages in a directory plugin for Nagios."
+    echo ""
+}
+
+# Sets the exit status for the plugin.  This is done in such a way that the
+# status can only go in one direction: OK -> WARNING -> CRITICAL.
+set_exit_status() {
+        new_status=$1
+        # Nothing needs to be done if the state is already critical, so exclude
+        # that case.
+        case $exitstatus
+        in
+                $STATE_WARNING)
+                        # Only upgrade from warning to critical.
+                        if [ "$new_status" = "$STATE_CRITICAL" ]; then
+                                exitstatus=$new_status;
+                        fi
+                ;;
+                $STATE_OK)
+                        # Always update state if current state is OK.
+                        exitstatus=$new_status;
+                ;;
+        esac
+}
+
+# Make sure the correct number of command line
+# arguments have been supplied
+if [ $# -lt 1 ]; then
+    print_usage
+    exit $STATE_UNKNOWN
+fi
+
+# Defaults.
+exitstatus=$STATE_OK
+warning=26
+critical=52
+time_unit=hours
+verbose=
+num_warning=0
+num_critical=0
+check_dirs=
+base_dir=
+ext=
+
+# Grab the command line arguments.
+while test -n "$1"; do
+    case "$1" in
+        --help)
+            print_help
+            exit $STATE_OK
+            ;;
+        -h)
+            print_help
+            exit $STATE_OK
+            ;;
+        --dirs)
+            dirs=$2
+            shift
+            ;;
+        -d)
+            dirs=$2
+            shift
+            ;;
+        -e)
+            ext='\'$2'$'
+            shift
+            ;;
+        -w)
+            warning=$2
+            shift
+            ;;
+        -c)
+            critical=$2
+            shift
+            ;;
+                -W)
+                        num_warning=$2
+                        shift
+            ;;
+                -C)
+                        num_critical=$2
+                        shift
+            ;;
+        -t)
+            time_unit=$2
+            shift
+            ;;
+                -V)
+                        verbose=1
+            ;;
+        --check-dirs)
+            check_dirs=1
+            ;;
+                --base-dir)
+                base_dir=$2
+                        shift
+                        ;;
+        -x)
+            exitstatus=$2
+            shift
+            ;;
+        --exitstatus)
+            exitstatus=$2
+            shift
+            ;;
+        *)
+            echo "Unknown argument: $1"
+            print_usage
+            exit $STATE_UNKNOWN
+            ;;
+    esac
+    shift
+done
+
+if [ ! "$dirs" ]; then
+        echo "No directories provided."
+        exit $STATE_UNKNOWN
+fi
+
+if [ `echo "$warning" | grep [^0-9]` ] || [ ! "$warning" ]; then
+        echo "Warning value must be a number."
+        exit $STATE_UNKNOWN
+fi
+
+if [ `echo "$critical" | grep [^0-9]` ] || [ ! "$critical" ]; then
+        echo "Critical value must be a number."
+        exit $STATE_UNKNOWN
+fi
+
+if [ "$num_warning" != "0" ] && [ `echo "$num_warning" | grep [^0-9]` ]; then
+        echo "Warning value for number of files must be a number."
+        exit $STATE_UNKNOWN
+fi
+
+if [ "$num_critical" != "0" ] && [ `echo "$num_critical" | grep [^0-9]` ]; then
+        echo "Critical value for number of files must be a number."
+        exit $STATE_UNKNOWN
+fi
+
+if [ ! `echo "$time_unit" | grep "seconds\|minutes\|hours\|days"` ]; then
+        echo "Time unit must be one of: seconds, minutes, hours, days."
+        exit $STATE_UNKNOWN
+fi
+
+if [ "$warning" -ge "$critical" ]; then
+        echo "Critical time must be greater than warning time."
+        exit $STATE_UNKNOWN
+fi
+
+if [ "$num_critical" -ge "$num_warning" ] && [ "$num_critical" != "0" ]; then
+        echo "Critical number of files must be less than warning number of files."
+        exit $STATE_UNKNOWN
+fi
+
+case $time_unit
+in
+        days)
+                multiplier=86400;
+                abbreviation="days";
+        ;;
+        hours)
+                multiplier=3600;
+                abbreviation="hrs";
+        ;;
+        minutes)
+                multiplier=60;
+                abbreviation="mins";
+        ;;
+        *)
+                multiplier=1
+                abbreviation="secs";
+        ;;
+esac
+
+# Starting values.
+DIR_COUNT=0
+OUTPUT=
+CURRENT_TIME=`date +%s`
+OS_DISTRO=`uname -s`
+
+# Loop through each provided directory.
+for dir in $dirs
+do
+        FILE_COUNT=0
+        let "DIR_COUNT += 1" > /dev/null
+
+        # Check if dir exists.
+        full_path=${base_dir}${dir}
+        if [ -d "$full_path" ]; then
+                file_list=`ls -t $full_path | grep "$ext"`
+                # Cycle through files, looking for checkable files.
+                for next_file in $file_list
+                do
+                        check_file=
+                        next_filepath=$full_path/$next_file
+                        if [ "$check_dirs" ]; then
+                                # Check if it's a file or directory.
+                                if [ -f "$next_filepath" ] || [ -d "$next_filepath" ]; then
+                                        check_file=1
+                                fi
+                        else
+                                # Check if it's a file.
+                                if [ -f "$next_filepath" ]; then
+                                        check_file=1
+                                fi
+                        fi
+                        if [ "$check_file" ]; then
+                                # stat doesn't work the same on Linux and FreeBSD/Darwin, so
+                                # make adjustments here.
+                                if [ "$OS_DISTRO" = "Linux" ]; then
+                                        st_ctime=`stat --printf=%Y ${next_filepath}`
+                                else
+                                        eval $(stat -s ${next_filepath})
+                                fi
+                                let "FILE_COUNT += 1" > /dev/null
+                                let "FILE_AGE = $CURRENT_TIME - $st_ctime" > /dev/null
+                                let "FILE_AGE_UNITS = $FILE_AGE / $multiplier" > /dev/null
+                                let "MAX_WARN_AGE = $warning * $multiplier" > /dev/null
+                                let "MAX_CRIT_AGE = $critical * $multiplier" > /dev/null
+                                if [ $FILE_AGE -gt $MAX_CRIT_AGE ]; then
+                                        OUTPUT="$OUTPUT ${dir}/${next_file}: ${FILE_AGE_UNITS}${abbreviation}"
+                                        set_exit_status $STATE_CRITICAL
+                                elif [ $FILE_AGE -gt $MAX_WARN_AGE ]; then
+                                        OUTPUT="$OUTPUT ${dir}/${next_file}: ${FILE_AGE_UNITS}${abbreviation}"
+                                        set_exit_status $STATE_WARNING
+                                else
+                                        if [ "$verbose" ]; then
+                                                OUTPUT="$OUTPUT ${dir}/${next_file}: ${FILE_AGE_UNITS}${abbreviation}"
+                                        fi
+                                fi
+                        fi
+                done
+                # Check here to see if enough files got tested in the directory.
+                if [ "$FILE_COUNT" -lt "$num_critical" ]; then
+                        set_exit_status $STATE_CRITICAL
+                        OUTPUT="$OUTPUT ${dir}: Less than $num_critical files"
+                elif [ "$FILE_COUNT" -lt "$num_warning" ]; then
+                        set_exit_status $STATE_WARNING
+                        OUTPUT="$OUTPUT ${dir}: Less than $num_warning files"
+                else
+                        OUTPUT="$OUTPUT ${dir}: $FILE_COUNT files"
+                fi
+        else
+                if [ "$num_critical" ]; then
+                        set_exit_status $STATE_CRITICAL
+                elif [ "$num_warning" ]; then
+                        set_exit_status $STATE_WARNING
+                fi
+                OUTPUT="$OUTPUT ${dir}: Does not exist"
+        fi
+done
+
+case $exitstatus
+in
+        $STATE_CRITICAL)
+                exit_message="CRITICAL";
+        ;;
+        $STATE_WARNING)
+                exit_message="WARNING";
+        ;;
+        $STATE_OK)
+                exit_message="OK";
+        ;;
+        *)
+                exitstatus=$STATE_UNKNOWN;
+                exit_message="UNKNOWN";
+        ;;
+esac
+
+exit_message="${exit_message}: ${DIR_COUNT}dir(s)"
+
+if [ "$OUTPUT" ]; then
+        exit_message="${exit_message} --${OUTPUT}"
+fi
+
+echo "$exit_message"
+exit $exitstatus
+
