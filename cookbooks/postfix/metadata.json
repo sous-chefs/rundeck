@@ -7,7 +7,11 @@
   "license": "Apache 2.0",
   "platforms": {
     "ubuntu": ">= 0.0.0",
-    "debian": ">= 0.0.0"
+    "debian": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "amazon": ">= 0.0.0",
+    "scientific": ">= 0.0.0"
   },
   "dependencies": {
   },
@@ -30,6 +34,20 @@
 
       ],
       "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "postfix/aliases": {
+      "display_name": "Postfix mail aliases",
+      "description": "Hash of mail aliases for /etc/aliases",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
       "required": "optional",
       "recipes": [
 
@@ -222,7 +240,8 @@
   },
   "recipes": {
     "postfix": "Installs and configures postfix",
-    "postfix::sasl_auth": "Set up postfix to auth to a server with sasl"
+    "postfix::sasl_auth": "Set up postfix to auth to a server with sasl",
+    "postfix::aliases": "Manages /etc/aliases"
   },
-  "version": "0.8.4"
+  "version": "1.0.0"
 }
