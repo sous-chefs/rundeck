@@ -31,6 +31,7 @@ directory "#{log_dir}" do
   owner "root"
   group "root"
   mode "0755"
+  recursive true
   action :create
 end
 
@@ -38,6 +39,7 @@ directory "#{install_dir}/#{name}/bin" do
   owner "root"
   group "root"
   mode "0755"
+  recursive true
   action :create
 end
 
@@ -57,4 +59,3 @@ execute "delete_install_source" do
   group "root"
   run "rm -f /tmp/#{tarball}"
 end
-
