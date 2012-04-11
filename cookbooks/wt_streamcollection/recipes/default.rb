@@ -51,3 +51,10 @@ end
 runit_service "#{name}" do
   action :start
 end
+
+execute "delete_install_source" do
+  user "root"
+  group "root"
+  run "rm -f /tmp/#{tarball}"
+end
+
