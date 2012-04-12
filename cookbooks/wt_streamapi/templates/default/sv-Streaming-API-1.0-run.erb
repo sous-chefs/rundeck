@@ -1,0 +1,4 @@
+#!/bin/sh
+
+exec 2>&1
+exec <%= node[:install_dir] %>/<%= node[:name] %>/bin/<%= node[:name] %> start

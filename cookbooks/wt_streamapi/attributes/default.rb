@@ -1,0 +1,8 @@
+default[:name]         = "Streaming-API-1.0"
+default[:user]         = "nobody"
+default[:group]        = "nogroup"
+default[:tarball]      = "#{default[:name]}-bin.tar.gz"
+default[:log_dir]      = "/var/log/#{default[:name]}"
+default[:java_home]    = "/usr/lib/jvm/jre"
+default[:install_dir]  = "/opt"
+default[:download_url] = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/.lastSuccessful/#{default[:name]}-bin.tar.gz"
