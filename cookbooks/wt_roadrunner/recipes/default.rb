@@ -16,8 +16,8 @@ include Win32
 build_url = "#{node['wt_common']['install_server']}#{node['wt_roadrunner']['url']}#{node['wt_roadrunner']['zip_file']}"
 
 # destinations
-install_dir = "#{node['wt_common']['install_dir']}\\RoadRunner"
-log_dir     = "#{node['wt_common']['install_dir']}\\logs"
+install_dir = "#{node['wt_common']['install_dir_windows']}\\RoadRunner"
+log_dir     = "#{node['wt_common']['install_dir_windows']}\\logs"
 
 # get data bag items 
 auth_data = data_bag_item('authorization', node.chef_environment)
