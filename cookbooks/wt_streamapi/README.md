@@ -1,13 +1,11 @@
 = DESCRIPTION:
-Installs kafka 0.7.0
+Installs Streaming API Server
 
 = REQUIREMENTS:
 
 * java
 * runit
-* zookeeper
 
 = ATTRIBUTES:
 
 = USAGE:
-
