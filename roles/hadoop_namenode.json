@@ -7,7 +7,7 @@
     "recipe[hadoop::namenode]",
     "recipe[hbase::hmaster]",
     "recipe[hive]",
-    "recipe[wt_heatmap::mapred]"
+    "recipe[wt_heatmaps::mapred]"
   ],
   "override_attributes": {
   }
