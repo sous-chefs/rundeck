@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_sapi
+# Cookbook Name:: wt_streamingapi
 # Recipe:: default
 #
 # Copyright 2012, Webtrends
@@ -7,13 +7,29 @@
 # All rights reserved - Do Not Redistribute
 #
 
-name         = node[:name]
 user         = node[:user]
 group        = node[:group]
 tarball      = node[:tarball]
-log_dir      = node[:log_dir]
-install_dir  = node[:install_dir]
+log_dir      = "#{node['wt_common']['log_dir_linux']}/streamingapi"
+install_dir  = "#{node['wt_common']['install_dir_linux']}/streamingapi"
 download_url = node[:download_url]
+
+
+directory "#{log_dir}" do
+    owner "root"
+    group "root"
+    mode "0755"
+    recursive true
+    action :create
+end
+
+directory "#{install_dir}/bin" do
+    owner "root"
+    group "root"
+    mode "0755"
+    recursive true
+    action :create
+end
 
 remote_file "/tmp/#{tarball}" do
   source download_url
@@ -27,27 +43,20 @@ execute "tar" do
   command "tar zxf /tmp/#{tarball}"
 end
 
-directory "#{log_dir}" do
-  owner "root"
-  group "root"
-  mode "0755"
-  action :create
+
+template "#{install_dir}/bin/streamingapi" do
+    source "streamingapi.erb"
+    owner "root"
+    group "root"
+    mode  "0755"
 end
 
-directory "#{install_dir}/#{name}/bin" do
-  owner "root"
-  group "root"
-  mode "0755"
-  action :create
+runit_service "streamingapi" do
+    action :start
 end
 
-template "#{install_dir}/#{name}/bin/#{name}" do
-  source "#{name}.erb"
-  owner "root"
-  group "root"
-  mode  "0755"
-end
-
-runit_service "#{name}" do
-  action :start
+execute "delete_install_source" do
+    user "root"
+    group "root"
+    run "rm -f /tmp/#{tarball}"
 end
