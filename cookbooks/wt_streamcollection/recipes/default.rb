@@ -12,7 +12,7 @@ user         = node[:user]
 group        = node[:group]
 tarball      = node[:tarball]
 log_dir      = node[:log_dir]
-install_dir  = node[:install_dir]
+install_dir = "#{node['wt_common']['install_dir_linux']}"
 download_url = node[:download_url]
 
 
