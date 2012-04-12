@@ -5,7 +5,7 @@
   "description": "Heatmap API Server",
   "run_list": [
     "recipe[php5-fcgi]",
-    "recipe[wt_heatmap::apiserver]",
+    "recipe[wt_heatmaps::apiserver]",
     "recipe[thrift-hbase-php5]"
   ]
 }
