@@ -1,5 +1,5 @@
 = DESCRIPTION:
-Installs Streaming API Server
+Installs Streaming API Service
 
 = REQUIREMENTS:
 
