@@ -11,14 +11,13 @@
 # define commands
 share_cmd="net share wrs=#{install_dir} /grant:EVERYONE,FULL /remark:\"Set from the install batch file\""
 
-
 # source build
 msi_name = node['wt_platformscheduler']['agent_msi']
 build_url = "#{node['wt_common']['install_server']}#{node['wt_platformscheduler']['url']}Webtrends+VDM+Scheduler+Agent.msi"
 
 # destinations
-install_dir = "#{node['wt_common']['install_dir']}\\common\\agent"
-log_dir     = "#{node['wt_common']['installlog_dir']}"
+install_dir = "#{node['wt_common']['install_dir_windows']}\\common\\agent"
+log_dir     = "#{node['wt_common']['installlog_dir_windows']}"
 
 # get data bag items 
 auth_data = data_bag_item('authorization', node.chef_environment)
