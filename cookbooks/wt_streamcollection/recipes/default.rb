@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_scs
+# Cookbook Name:: wt_streamingcollection
 # Recipe:: default
 #
 # Copyright 2012, Webtrends
@@ -7,12 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
-name         = node[:name]
 user         = node[:user]
 group        = node[:group]
 tarball      = node[:tarball]
-log_dir      = node[:log_dir]
-install_dir = "#{node['wt_common']['install_dir_linux']}"
+log_dir      = "#{node['wt_common']['log_dir_linux']}/streamingcollection"
+install_dir  = "#{node['wt_common']['install_dir_linux']}/streamingcollection"
 download_url = node[:download_url]
 
 
@@ -24,7 +23,7 @@ directory "#{log_dir}" do
   action :create
 end
 
-directory "#{install_dir}/#{name}/bin" do
+directory "#{install_dir}/bin" do
   owner "root"
   group "root"
   mode "0755"
@@ -44,14 +43,14 @@ execute "tar" do
   command "tar zxf /tmp/#{tarball}"
 end
 
-template "#{install_dir}/#{name}/bin/#{name}" do
-  source "#{name}.erb"
+template "#{install_dir}/bin/streamingcollection" do
+  source "streamingcollectionservice.erb"
   owner "root"
   group "root"
   mode  "0755"
 end
 
-runit_service "#{name}" do
+runit_service "streamingcollection" do
   action :start
 end
 
