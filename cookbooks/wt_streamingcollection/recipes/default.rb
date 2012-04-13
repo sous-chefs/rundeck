@@ -57,5 +57,6 @@ end
 execute "delete_install_source" do
   user "root"
   group "root"
-  run "rm -f /tmp/#{tarball}"
+  execute "rm -f /tmp/#{tarball}"
+  action :run
 end
