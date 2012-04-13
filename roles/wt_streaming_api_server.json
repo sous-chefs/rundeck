@@ -1,0 +1,15 @@
+{
+  "name": "wt_streaming_api_server",
+  "default_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[wt_streamingapi]"
+  ],
+  "description": "Streaming API Server",
+  "chef_type": "role",
+  "override_attributes": {
+  }
+}
