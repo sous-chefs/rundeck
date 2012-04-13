@@ -1,0 +1,17 @@
+{
+  "name": "wt_labstation",
+  "description": "Installs basic tools for a workstation in a lab environment.",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[notepadplusplus]",
+    "recipe[firefox]",
+    "recipe[7-zip]"
+  ],
+  "env_run_lists": {
+  }
+}
