@@ -1,3 +1,13 @@
+#
+# Cookbook Name:: wt_dx
+# Recipe:: version2
+# Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
+#
+# Copyright 2012, Webtrends
+#
+# All rights reserved - Do Not Redistribute
+# This recipe sets DX 3.0
+
 endpoint = node['wt_dx']['endpoint_address']
 cass_hosts = node['wt_common']['cassandra_hosts'].map {|x| "Name:" + x}
 cass_hosts = "{#{cass_hosts.to_json}}"
@@ -28,7 +38,7 @@ end
 template "#{installdir}#{installdir_v3}\\Web Services\\Web.config" do
 	source "webConfigv3Web.erb"
 	variables(
-		:cache_hosts => node['wt_common']['cache_hosts'],
+		:cache_hosts => cache_hosts = search(:node, "chef_environment:#{node.chef_environment} AND recipes:memcached"),
 		:cassandra_hosts => node['wt_common']['cassandra_hosts'],
 		:master_host => node['wt_common']['master_host'],
 		:report_col => node['wt_common']['cassandra_report_column'],
