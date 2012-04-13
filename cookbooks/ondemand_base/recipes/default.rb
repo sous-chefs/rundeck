@@ -8,13 +8,13 @@
 #
 
 if platform?("centos", "redhat")
-	include_recipe "centos"
+	include_recipe "ondemand_base::centos"
 end
 
 if platform?("debian", "ubuntu")
-	include_recipe "ubuntu"
+	include_recipe "ondemand_base::ubuntu"
 end
 
 if platform?("mswin", "mingw32", "windows")
-	include_recipe "windows"
+	include_recipe "ondemand_base::windows"
 end
