@@ -1,4 +1,14 @@
-installdir = node['wt_common']['installdir']
+#
+# Cookbook Name:: wt_dx
+# Recipe:: post
+# Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
+#
+# Copyright 2012, Webtrends
+#
+# All rights reserved - Do Not Redistribute
+# This recipe performs post install actions on a DX system
+
+installdir = node['wt_common']['installdir_windows']
 
 execute "icacls" do
         command "icacls \"#{installdir}\\Data Extraction API\" /grant:r IUSR:(oi)(ci)(rx)"
