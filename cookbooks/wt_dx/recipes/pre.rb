@@ -3,16 +3,16 @@
 # Recipe:: pre
 # Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
 #
-# Copyright 2011, Webtrends
+# Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
 # This recipe sets up the base configuration for DX
 
-installdir = node['wt_common']['installdir']
-logdir = node['wt_common']['logdir']
+installdir = node['wt_common']['installdir_windows']
+install_logdir = node['wt_common']['install_logdir_windows']
 cfg_cmds = node['wt_dx']['cfg_cmd']
 
-directory logdir do
+directory install_logdir do
 	action :create
 end
 
@@ -40,7 +40,6 @@ iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='Tr
 	notifies :create, "ruby_block[deflate_flag]", :immediately
 	not_if {node.attribute?("deflate")}
 end
-
 
 cfg_cmds.each do |cmd|	
 	iis_config "#{cmd}" do
