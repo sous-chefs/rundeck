@@ -1,4 +1,14 @@
-installdir = node['wt_common']['installdir']
+#
+# Cookbook Name:: wt_dx
+# Recipe:: zip_retrieve
+# Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
+#
+# Copyright 2012, Webtrends
+#
+# All rights reserved - Do Not Redistribute
+# This recipe retrieves the builds for DX
+
+installdir = node['wt_common']['installdir_windows']
 archive_url = node['wt_common']['archive_server']
 install_url = node['wt_common']['install_server']
 
