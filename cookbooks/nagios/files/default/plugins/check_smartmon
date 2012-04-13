@@ -1,0 +1,617 @@
+#!/usr/bin/perl -w
+# $Id$
+# check_smartmon - nagios plugin to check smartctl output
+#   by Matthew Wall
+#	http://lancet.mit.edu/mwall/projects/nagios/plugins.html
+#   based loosely on check_smart_attributes 0.9 by Francesc Guasch
+#
+# Copyright (c) 2010-2011 Matthew Wall, all rights reserved
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+#
+# Revision History
+#  0.4 - detect missing smartctl
+#        detect missing/misconfigured utils.pm
+#  0.3 - make return codes consistent
+#  0.2 - report lifetime min/max values for temperature
+#  0.1 - initial implementation
+#      - query individual attributes
+#      - indicate raw or normalized values
+#
+#
+# How to use this plugin
+#
+# smartctl reports two classes of values: raw and normalized.  In some cases
+# you will want to trigger notifications or indicate warning/critical state
+# based on the normalized values, other times based on the raw values.
+#
+# When invoked with no arguments, the default behavior is to check the
+# normalized pre-fail attributes (equivalent to specifying --attr prefail).
+#
+# This plugin reports information in three ways: status, info, perfdata
+# The status is one of 'OK', 'UNKNOWN', 'WARNING', or 'CRITICAL'.
+# The info is a short string with the monitored drives, or a longer string
+# with the drives and attributes for each drive in human-readable form.  It 
+# can include HTML markup if desired.  The perfdata contains not only the
+# attribute values, but also the warning and critical levels for each.
+#
+# When multiple drives are specified, the status is the worst of all drives.
+#
+# smartctl requires root permissions.  When running this script as a non-root
+# user such as nagios, ensure it is run with sudo.
+#
+# Use this in the nrpe configuration file (nrpe_local.cfg or /etc/nrpe.cfg):
+#   command[check_smartmon]=sudo /usr/lib/nagios/plugins/check_smartmon
+# and this in the sudoers file (/etc/sudoers):
+#   nagios ALL=(ALL) NOPASSWD:/usr/lib/nagios/plugins/check_smartmon
+#
+#
+# Sample Output
+#
+# check_smartmon
+# OK - /dev/hda
+#
+# check_smartmon --drive /dev/hda --drive /dev/hdb:sat
+# WARNING - /dev/hda OK; /dev/hdb WARNING
+#
+# check_smartmon --attr-raw Temperature_Celsius
+# OK - /dev/hda | Temperature_Celsius=35;;;
+#
+# check_smartmon --attr-raw Temperature_Celsius,40,45
+# OK - /dev/hda | Temperature_Celsius=38;40,45;;
+#
+# check_smartmon --attr-raw Spin_Retry_Count --attr-raw Seek_Error_Rate,20,80
+# WARNING - /dev/hda | Spin_Retry_Count=35;;; Seek_Error_Rate=50;20;80
+#
+#
+# Examples
+#
+# Monitor normalized values of all attributes.  Indicate warning state when
+# any old-age attribute exceeds threshold, indicate critical state when any
+# pre-fail attribute exceeds threshold.
+#
+# check_smartmon --attr all
+#
+#
+# Monitor raw values of all attributes.  This will simply report the raw 
+# values; no warning or critical levels are defined.
+#
+# check_smartmon --attr-raw all
+#
+#
+# Indicate warning and critical states when the number of bad sectors reaches
+# a certain level.  If any sector is bad, send a warning.  If 10 or more are
+# bad, consider it critical.
+#
+# check_smartmon --attr-raw Current_Pending_Sector,1,10
+#
+#
+# Track the drive temperature, useful for graphing temperature trends.
+#
+# check_smartmon --attr-raw Temperature_Celsius,40,45
+#
+#
+# Track temperature and bad sectors using raw values.
+#
+# check_smartmon --attr-raw Temperature_Celsius,40,45 --attr-raw Current_Pending_Sector,1,10
+#
+#
+# Track read error rate and throughput performance using manufacturer's
+# normalized thresholds.
+#
+# check_smartmon --attr Raw_Read_Error_Rate --attr Throughput_Performance
+#
+# 
+# Monitor all prefail attributes, display info with html formatting.
+#
+# check_smartmon --attr prefail --verbose --use-html
+
+use strict;
+
+# look for nagios utils.pm in the standard location.  if that fails, try to
+# find it in other places.  this is to support the installation of plugins
+# in directories other than the nagios libexec folder.
+BEGIN {
+    my $rc = eval "require utils;";
+    if ($@) {
+	my $d = q();
+	foreach my $dir ('/usr/lib/nagios/plugins',
+			 '/usr/lib64/nagios/plugins',
+			 '/usr/local/nagios/libexec',
+			 '/opt/nagios/libexec',
+			 '/opt/nagios-plugins/libexec') {
+	    if ( -f "$dir/utils.pm" ) {
+		$d = $dir;
+		last;
+	    }
+	}
+	if ($d ne q()) {
+	    $rc = eval "require \"$d/utils.pm\";";
+	    if ($@) {
+		print "UNKNOWN - cannot load utils.pm (part of nagios plugins)\n";
+		exit 3;
+	    }
+	} else {
+	    print "UNKNOWN - cannot find utils.pm (part of nagios plugins)\n";
+	    exit 3;
+	}
+    }
+    eval "utils->import(qw(%ERRORS &print_revision &support &usage));";
+}
+
+my $VERSION = "0.3";
+my $SMARTCTL = "/usr/sbin/smartctl";
+$SMARTCTL = "/usr/local/sbin/smartctl" unless -x $SMARTCTL;
+my $MOUNT = "/bin/mount";
+$MOUNT = "/sbin/mount" unless -x $MOUNT;
+my $SUDO = "/usr/bin/sudo";
+my $DEBUG_FILE = "/tmp/smartctl_output";
+my $DEBUG=0;
+my $WARN_COLOR = "yellow";
+my $CRIT_COLOR = "red";
+
+# if not running as root, use sudo since smartctl needs root permissions
+my $USESUDO = $ENV{USER} ne 'root' ? 1 : 0;
+
+# specify a list of drives to query
+my @DRIVE=();
+
+# specify specific, pre-fail, old-age, or all attributes
+my @ATTR=();
+my $USEPREFAIL=0;
+my $USEOLDAGE=0;
+my @ATTRRAW=();
+my $USEPREFAILRAW=0;
+my $USEOLDAGERAW=0;
+
+# if verbose is enabled, the normalized values will be emitted in the status
+my $VERBOSE=0;
+
+# if html is enabled, the status section will be marked up with html
+my $USEHTML=0;
+
+my ($PROGNAME) = $0 =~ m#.*/(.*)#;
+
+sub print_usage() {
+    print "Usage: $PROGNAME [--help] [--debug] [--version] [--verbose]\n"
+        ." [--sudo] [--use-html]\n"
+        ." [--attr (all | prefail | oldage)]\n"
+        ." [--attr ATTR1[,warn,crit] [--attr ATTR2[,warn,crit] [...]]]\n"
+        ." [--attr-raw (all | prefail | oldage)]\n"
+        ." [--attr-raw ATTR1[,warn,crit] [--attr-raw ATTR2[,w,c] [...]]]\n"
+        ." [--drive=/dev/hda[:type] [--drive=/dev/hdc[:type] [...]]]\n";
+}
+
+while($ARGV[0]) {
+    my $arg = shift;
+    if($arg eq "--debug") {
+        $DEBUG = 1;
+    } elsif($arg eq "--verbose") {
+        $VERBOSE = 1;
+    } elsif($arg eq "--sudo") {
+        $USESUDO = 1;
+    } elsif($arg eq "--no-sudo") {
+        $USESUDO = 0;
+    } elsif($arg eq "--use-html") {
+        $USEHTML = 1;
+    } elsif($arg eq "--drive") {
+        push @DRIVE, shift;
+    } elsif($arg eq "--attr") {
+        if($arg eq "all" || $arg eq "prefail" || $arg eq "oldage") {
+            $USEPREFAIL = ($arg eq "prefail" || $arg eq "all");
+            $USEOLDAGE = ($arg eq "oldage" || $arg eq "all");
+        } else {
+            push @ATTR, shift;
+        }
+    } elsif($arg eq "--attr-raw") {
+        if($arg eq "all" || $arg eq "prefail" || $arg eq "oldage") {
+            $USEPREFAILRAW = ($arg eq "prefail" || $arg eq "all");
+            $USEOLDAGERAW = ($arg eq "oldage" || $arg eq "all");
+        } else {
+            push @ATTRRAW, shift;
+        }
+    } elsif($arg eq "--version") {
+        print_revision($PROGNAME,"$VERSION");
+        exit $ERRORS{OK};
+    } else {
+        if($arg eq "--help") {
+            print_revision($PROGNAME,"$VERSION");
+            print "Copyright (c) 2010-2011 Matthew Wall
+
+    Check SMART attributes for the specified disk(s)
+
+";
+            print_usage();
+            exit $ERRORS{OK};
+        } else {
+            print "unrecognized argument: $arg\n\n";
+            print_usage();
+            exit $ERRORS{UNKNOWN};
+        }
+    }
+}
+
+if(! -x $SMARTCTL) {
+    print "UNKNOWN - cannot find smartctl\n";
+    exit $ERRORS{UNKNOWN};
+}
+
+if(! -x $MOUNT) {
+    print "UNKNOWN - cannot find mount\n";
+    exit $ERRORS{UNKNOWN};
+}
+
+if(scalar(@ATTR) == 0 && scalar(@ATTRRAW) == 0
+   && !$USEPREFAIL && !$USEOLDAGE
+   && !$USEPREFAILRAW && !$USEOLDAGERAW) {
+    $USEPREFAIL = 1;
+}
+
+my @DRIVE_FIXED = ();
+foreach my $drive (@DRIVE) {
+    push @DRIVE_FIXED, split(",",$drive);
+}
+@DRIVE = @DRIVE_FIXED;
+my %drive = map { $_ => 1} @DRIVE;
+@DRIVE = keys %drive;
+
+if(scalar(@DRIVE) == 0) {
+    @DRIVE = detect_mounted_drives();
+    print "detected drives: ".join(",",@DRIVE)."\n" if $DEBUG;
+}
+
+my %DRIVEDATA;
+foreach my $drive (@DRIVE) {
+    print "checking $drive\n" if $DEBUG;
+    next if ! $drive || $drive eq "";
+    my $type = "";
+    if ($drive =~ /([^:]+):(.*)/) {
+        $drive = $1;
+        $type = $2;
+    }
+    my %x = run_smartctl($drive, $type);
+    $DRIVEDATA{$drive} = \%x;
+}
+
+
+# nagios perfdata format is:
+# label=value[UOM];[warn];[crit];[min];[max]
+# UOM is one of nothing, s, %, B, c
+
+# FIXME: we have no delimiter in the perfdata between drives
+
+my $codestr = 'OK';
+my $infostr = "";
+my $perfstr = "";
+foreach my $drive (@DRIVE) {
+    my %d = %{$DRIVEDATA{$drive}};
+    my $code = $d{code};
+    my $msg = "";
+    $msg = $d{msg} if $d{msg};
+    my %data;
+    %data = %{$d{data}} if $d{data};
+    my $prf = "";
+
+    foreach my $name (sort keys %data) {
+        my $warn = "";
+        my $crit = "";
+        my $ok = 0;
+        for (my $idx = $#ATTR; $idx >= 0; --$idx ) {
+            my($n,$w,$c) = split(',', $ATTR[$idx]);
+            if ($n eq $name) {
+                # ignore warn/crit values for normalized attributes.
+                # use values from the drive itself.
+                print "warn and crit values ignored for $n\n"
+                    if ($w ne "" || $c ne "") && $DEBUG;
+                $ok = 1;
+                @ATTR = splice(@ATTR, $idx, 1);
+                last;
+            }
+        }
+
+        my %attrdata = %{$data{$name}};
+        my $type = $attrdata{type};
+        if (! $ok) {
+            $ok = (($type =~ /pre-fail/i && $USEPREFAIL)
+                   || ($type =~ /old_age/i && $USEOLDAGE));
+        }
+
+        if($ok) {
+            my $value = $attrdata{value};
+            my $worstval = $attrdata{worst_value};
+            my $failed = $attrdata{when_failed};
+            my $thresh = $attrdata{thresh};
+            my $color = "";
+
+            # according to the smartctl man pages, a normalized value less than
+            # or equal to the threshold indicates a failure.  we consider
+            # old_age failures to be warnings and pre-fail failures to be
+            # critical.  the normalized values are in the range 1 to 254.
+            if ($failed ne '-' || $value <= $thresh ) {
+                if ($type =~ /pre-fail/i) {
+                    $code = 'CRITICAL';
+                    $color = $CRIT_COLOR;
+                    $crit = $thresh;
+                } else {
+                    $code = 'WARNING' unless $code eq 'CRITICAL';
+                    $color = $WARN_COLOR;
+                    $warn = $thresh;
+                }
+            }
+
+            if ($VERBOSE || $code eq 'WARNING' || $code eq 'CRITICAL') {
+                $value = cleanvar($value);
+                $worstval = cleanvar($worstval);
+                $thresh = cleanvar($thresh);
+                $msg .= ($USEHTML ? "<br>" : ", ") if $msg ne "";
+                $msg .= "<font color=\"red\">" if $color ne "" && $USEHTML;
+                $msg .= "$name=$value,$worstval,$thresh";
+                $msg .= " ($failed)" if $failed ne '-';
+                $msg .= "</font>" if $color ne "" && $USEHTML;
+            }
+
+            $prf .= ' ' if $prf ne "";
+            $prf .= $name . '=' . $value . ';' . $warn . ';' . $crit . ';;';
+        }
+    }
+
+    foreach my $name (sort keys %data) {
+        my $warn = "";
+        my $crit = "";
+        my $ok = 0;
+        for (my $idx = $#ATTRRAW; $idx >= 0; --$idx) {
+            my($n,$w,$c) = split(',', $ATTRRAW[$idx]);
+            if ($n eq $name) {
+                $warn = $w if $w;
+                $crit = $c if $c;
+                $ok = 1;
+                @ATTRRAW = splice(@ATTRRAW, $idx, 1);
+                last;
+            }
+        }
+
+        my %attrdata = %{$data{$name}};
+        my $type = $attrdata{type};
+        if (! $ok) {
+            $ok = (($type =~ /pre-fail/i && $USEPREFAILRAW)
+                   || ($type =~ /old_age/i && $USEOLDAGERAW));
+        }
+
+        if($ok) {
+            my $rvalue = $attrdata{raw_value};
+            my $failed = $attrdata{when_failed};
+            my $color = "";
+
+            if ($failed ne '-') {
+                $code = 'CRITICAL';
+                $color = $CRIT_COLOR;
+            } elsif ($crit ne "" && $rvalue >= $crit) {
+                $code = 'CRITICAL';
+                $color = $CRIT_COLOR;
+            } elsif($warn ne "" && $rvalue >= $warn
+                    && $code ne 'CRITICAL') {
+                $code = 'WARNING';
+                $color = $WARN_COLOR;
+            }
+
+            if ($VERBOSE || $code eq 'WARNING' || $code eq 'CRITICAL') {
+                my $minval = ($attrdata{minval} ? $attrdata{minval} : "");
+                my $maxval = ($attrdata{maxval} ? $attrdata{maxval} : "");
+                $rvalue = cleanvar($rvalue);
+                $msg .= ($USEHTML ? "<br>" : ", ") if $msg ne "";
+                $msg .= "<font color=\"$color\">" if $color ne "" && $USEHTML;
+                $msg .= "${name}_raw=$rvalue";
+                $msg .= ",$minval,$maxval" if $minval ne "" || $maxval ne "";
+                $msg .= "</font>" if $color ne "" && $USEHTML;
+            }
+
+            $prf .= ' ' if $prf ne "";
+            $prf .= "${name}_raw=$rvalue;" . $warn . ';' . $crit . ';;';
+        }
+    }
+    
+    if ($code eq 'CRITICAL') {
+        $codestr = $code;
+    } elsif ($code eq 'WARNING'
+             && $code ne 'CRITICAL') {
+        $codestr = $code;
+    } elsif ($code eq 'UNKNOWN'
+             && $code ne 'CRITICAL' && $code ne 'WARNING') {
+        $codestr = $code;
+    }
+
+    $infostr .= ($USEHTML ? "<br>" : "; ") if $infostr ne "";
+    if($msg =~ /$drive/) {
+        $infostr .= $msg;
+    } else {
+        $infostr .= $drive;
+        $infostr .= ' ' . $code if (scalar(@DRIVE) > 1);
+        $infostr .= ' ' . $msg if $msg ne "";
+    }
+
+    if ($prf ne "") {
+        $perfstr .= ' ' if $perfstr ne "";
+        $perfstr .= $prf;
+    }
+}
+
+if($DEBUG) {
+    if(scalar(@ATTR) > 0) {
+        foreach my $n (@ATTR) {
+            print "unknown attribute $n\n";
+        }
+    }
+    if(scalar(@ATTRRAW) > 0) {
+        foreach my $n (@ATTRRAW) {
+            print "unknown raw attribute $n\n";
+        }
+    }
+}
+
+print "$codestr"
+    . ($infostr ne "" ? " - $infostr" : "")
+    . ($perfstr ne "" ? " | $perfstr" : "")
+    . "\n";
+exit $ERRORS{$codestr};
+
+
+
+
+
+
+
+# strip leading zeros.  do not remove them all.
+sub cleanvar {
+    my($x) = @_;
+    $x =~ s/^0+//;
+    $x = "0" if $x eq "";
+    return $x;
+}
+
+# use mount to guess what devices are attached.
+sub detect_mounted_drives {
+    my %drives;
+    
+    open CMD, $MOUNT."|" or return ();
+    while(<CMD>) {
+        chomp;
+        if(m%^(/dev/[sh]d\w)\d*\s+%) {
+            $drives{$1} = 1;
+        }
+    }
+    close CMD;
+    
+    return keys(%drives);
+}
+
+# this is what we get for each drive:
+#   ( drive => "/dev/hda",
+#     code => 'OK' | 'UNKNOWN',
+#     msg => 'status message',
+#     data => ( 'Temperature_Celsius', ( type => 'Old_age',
+#                                        value => 100,
+#                                        thresh => 050,
+#                                        raw_value => 35 ),
+#               'Load_Cycle_Count', ( type => 'Old_age',
+#                                     value => 100,
+#                                     thresh => 058,
+#                                     raw_value => 421639 ),
+#              )
+#   )
+sub run_smartctl {
+    my($drive, $type) = @_;
+
+    my $tstr = ($type ne "" ? ' -d ' . $type : '');
+    my $cmd = "$SMARTCTL$tstr -A $drive";
+    print "$cmd\n" if $DEBUG;
+    
+    my $sudo = "";
+    if ($USESUDO) {
+        if ( ! -x $SUDO ) {
+            return ( drive => $drive,
+                     msg => "sudo is not installed",
+                     code => 'UNKNOWN' );
+        }
+        $sudo = "$SUDO -n ";
+    } elsif ($ENV{USER} ne 'root') {
+        return ( drive => $drive,
+                 msg => "root privileges are required to run smartctl",
+                 code => 'UNKNOWN' );
+    }
+
+    open CMD ,"$sudo$cmd 2>&1|" or 
+        return ( drive => $drive,
+                 code => 'UNKNOWN',
+                 msg => $! );
+
+    open DALOG, ">$DEBUG_FILE" or 
+        close CMD && 
+        return ( drive => $drive,
+                 code => 'UNKNOWN',
+                 msg => "$! $DEBUG_FILE" )
+        if $DEBUG;
+    
+    print "smartctl output is in $DEBUG_FILE\n" if $DEBUG;
+
+    my $found_start_tag = 0;
+    my $errmsg = "";
+    while (<CMD>) {
+        print DALOG if $DEBUG;
+        if(/^ID#\s*ATTRIBUTE_NAME\s*FLAG/) {
+           $found_start_tag = 1;
+           last;
+       }
+        if(/command not found/) {
+            chomp;
+            $errmsg = "Command error: $_";
+            last;
+        }
+        if(/open device: .* failed/) {
+            chomp;
+            $errmsg = "$_";
+            last;
+        }
+        if(/\[this device: CD\/DVD\]/) {
+            $errmsg = "Device is a CD/DVD drive.";
+            last;
+        }
+        if(/^Smartctl: Device Read Identity Failed \(not an ATA\/ATAPI device\)/) {
+            $errmsg = "Device does not exist.";
+            last;
+        }
+    }
+    
+    if($errmsg eq "" && !$found_start_tag) {
+        $errmsg = "Parse error, no param start tag found!";
+    }
+
+    if($errmsg ne "") {
+        close DALOG if $DEBUG;
+        close CMD;
+        return ( drive => $drive,
+                 code => 'UNKNOWN',
+                 msg => $errmsg );
+    }
+
+    my %data;
+    while (<CMD>) {
+        print DALOG if $DEBUG;
+        my @data = split;
+        my ($name,$value,$worstval,$thresh,$type,$failed,$rval) =
+            @data[1,3,4,5,6,8,9];
+        next unless $failed;
+        if(m%Lifetime Min/Max ([\d]+)/([\d]+)%) {
+            $data{$name} = { type => $type,
+                             value => $value,
+                             worst_value => $worstval,
+                             thresh => $thresh,
+                             raw_value => $rval,
+                             when_failed => $failed,
+                             minval => $1,
+                             maxval => $2 };
+        } else {
+            $data{$name} = { type => $type,
+                             value => $value,
+                             worst_value => $worstval,
+                             thresh => $thresh,
+                             raw_value => $rval,
+                             when_failed => $failed };
+        }
+    }
+
+    close DALOG if $DEBUG;
+    close CMD;
+
+    return ( drive => $drive,
+             code => 'OK',
+             data => \%data );
+}
