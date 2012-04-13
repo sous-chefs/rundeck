@@ -8,7 +8,7 @@ Windows cookbook
 
 = ATTRIBUTES:
 
-Uses attributes for the master DB hostname and the DB name
+Uses attributes for the master DB hostname and the DB name from the wt_common
 
 = USAGE:
 

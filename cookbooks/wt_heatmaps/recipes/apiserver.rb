@@ -1,4 +1,13 @@
+#
+# Cookbook Name:: wt_heatmaps
+# Recipe:: apiserver
+#
+# Copyright 2012, Webtrends
+#
+# All rights reserved - Do Not Redistribute
+#
 
+#Install nginx
 include_recipe "nginx"
 
 =begin
@@ -39,9 +48,7 @@ template "/var/lib/php5/thriftservers.php" do
   )
 end
 
-
 # setup webserver
-
 
 template "#{node[:nginx][:dir]}/sites-available/apiserver" do
   source "apiserver/apiserver"
@@ -50,7 +57,6 @@ template "#{node[:nginx][:dir]}/sites-available/apiserver" do
   mode "0644"
   notifies :restart, resources(:service => "nginx")
 end
-
 
 remote_directory "/var/www" do
   source "apiserver-www"
@@ -70,5 +76,3 @@ nginx_site "apiserver" do
   enable true
   notifies :restart, resources("service[nginx]","service[php-fastcgi]")
 end
-
-
