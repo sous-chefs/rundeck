@@ -17,7 +17,8 @@
 # limitations under the License.
 
 # zookeeper 
-default[:kafka][:zookeeper_role] = 'zookeeper_server'
+default[:kafka][:zookeeper_recipe] = "zookeeper"
+default[:kafka][:zookeeper_client_port] = 2181
 
 # Install
 default[:kafka][:version]           = "0.7.0"

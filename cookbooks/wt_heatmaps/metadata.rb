@@ -6,7 +6,7 @@ long_description  IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version           "0.10.3"
 depends           "nginx"
 
-recipe "apiserver", "Installs heatmap apiserver"
-recipe "mapred", "Installs heatmap mapreduce scripts"
+recipe "apiserver", "Installs heatmaps apiserver"
+recipe "mapred", "Installs heatmaps mapreduce scripts"
 
 

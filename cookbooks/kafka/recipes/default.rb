@@ -1,7 +1,7 @@
 #
-# Cookbook Name::		kafka
-# Description::         Base configuration for Kafka
-# Recipe::				default
+# Cookbook Name::	kafka
+# Description::     Base configuration for Kafka
+# Recipe::			default
 #
 # Copyright 2012, Webtrends, Inc.
 #
@@ -19,6 +19,7 @@
 
 # == Recipes
 include_recipe "java"
+include_recipe "runit"
 
 # == Users
 
@@ -63,7 +64,7 @@ end
 
 # link the extracted bits
 link home_dir do
-	to 		"#{node[:kafka][:stage_dir]}"
+	to          "#{node[:kafka][:stage_dir]}"
 	action    	:create
 	link_type 	:symbolic
 	owner 		"#{node[:kafka][:user]}"
@@ -80,26 +81,27 @@ kafka_dirs = [
 
 # Create all other directories, if needed
 kafka_dirs.each do |dir|
-	directory dir do
-	mode 		"0744"
-	action 	:create
-	owner		"#{node[:kafka][:user]}"
-	group 	"#{node[:kafka][:group]}"
-	not_if { ::File.exists?(dir) }
-	end
+        directory dir do
+        mode        "0744"
+        action      :create
+        owner       "#{node[:kafka][:user]}"
+        group       "#{node[:kafka][:group]}"
+        recursive   true
+    end
 end
 
 # grab the zookeeper nodes that are currently available
 zookeeper_pairs = Array.new
 if not Chef::Config.solo
-	search(:node, "role:#{node[:kafka][:zookeeper_role]}").each do |n|
+    search(:node, "recipe:#{node[:kafka][:zookeeper_recipe]} AND chef_environment:#{node.chef_environment}").each do |n|
 		zookeeper_pairs << n[:fqdn]
 	end
 end
 
+# append the zookeeper client port (defaults to 2181)
 i = 0
 while i < zookeeper_pairs.size do
-  zookeeper_pairs[i] = zookeeper_pairs[i].concat(":2181")
+  zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{node[:kafka][:zookeeper_client_port]}")
   i += 1
 end
 
@@ -109,30 +111,21 @@ end
 	source	"#{template_file}.erb"
 	mode 		"0755"
 	variables({
-		:kafka => node[:kafka],
-		:zookeeper_pairs => zookeeper_pairs
+		:kafka => node[:kafka]
 	})
 	end
 end
 
 %w[server.properties consumer.properties producer.properties zookeeper.properties log4j.properties].each do |template_file|
   template "#{home_dir}/config/#{template_file}" do
-	source	"#{template_file}.erb"
-	mode 		"0755"
-	owner		"root"
-	variables({ 
-		:kafka => node[:kafka],
-		:zookeeper_pairs => zookeeper_pairs
-	})
-#	notifies      :restart, "service[kafka]", :delayed
-  end
+        source	"#{template_file}.erb"
+        mode 		"0755"
+        owner		"root"
+        variables({ 
+            :kafka => node[:kafka],
+            :zookeeper_pairs => zookeeper_pairs
+        })
+    end
 end
 
-include_recipe "runit"
 runit_service "kafka"
-
-#service "kafka" do
-#  action [ :enable, :start ]
-#  running true
-#  supports :status => true, :restart => true
-#end

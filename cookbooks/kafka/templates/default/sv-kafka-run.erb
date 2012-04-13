@@ -1,3 +1,4 @@
+# This file created by Chef from template. Do not hand edit this file
 #!/bin/sh
 exec 2>&1
 exec sudo <%= node["kafka"]["home_dir"] %>/bin/kafka-server-start.sh <%= node["kafka"]["home_dir"] %>/config/server.properties | sudo tee <%= node["kafka"]["log_dir"] %>/startup.log

@@ -45,7 +45,12 @@ attribute "kafka/version",
   :description => "The Kafka version to pull and use",
   :default => "0.7.0"
   
-attribute "kafka/zookeeper_role",
-  :display_name => "Zookeeper Role",
-  :description => "The role named used to locate the Zookeeper nodes",
-  :default => "zookeeper_server"
+attribute "kafka/zookeeper_recipe",
+  :display_name => "Zookeeper Recipe",
+  :description => "The recipe used to locate the Zookeeper nodes",
+  :default => "zookeeper"
+
+attribute "kafka/zookeeper_client_port",
+  :display_name => "Zookeeper Client port",
+  :description => "The client port used to access each Zookeeper server",
+  :default => "2181"
