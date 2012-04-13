@@ -8,9 +8,7 @@
   },
   "chef_type": "role",
   "run_list": [
-    "recipe[ondemand_base::windows]",
-    "recipe[ondemand_base::ubuntu]",
-    "recipe[ondemand_base::centos]"
+    "recipe[ondemand_base]"
   ],
   "env_run_lists": {
   }
