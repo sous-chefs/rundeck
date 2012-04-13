@@ -37,7 +37,7 @@ action :remove do
 end
 
 action :run do
-	Chef::Log.debug("icacls remove #{@new_resource.path} => #{@new_resource.user}")
+	Chef::Log.debug("icacls run #{@new_resource.options}")
 	if @new_resource.options == nil
 		raise Chef::Exceptions::AttributeNotFound, "options need to be provided"
 	end
