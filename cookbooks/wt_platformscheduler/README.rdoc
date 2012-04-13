@@ -4,8 +4,8 @@ Installs the configures the Webtrends Platform Scheduler service
 
 = REQUIREMENTS:
 
-Windows cookbook
-Webtrends Base cookbook
+* Windows cookbook
+* Webtrends Base cookbook (wt_base)
 
 = ATTRIBUTES:
 
@@ -13,5 +13,5 @@ Uses attributes for the master DB hostname and the DB name
 
 = USAGE:
 
-Apply the wt_platformschedulerrole and apply a valid environment with wt_common attributes
+Apply the wt_platformscheduler role and apply a valid environment with wt_common attributes
 

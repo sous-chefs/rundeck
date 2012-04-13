@@ -8,7 +8,7 @@
 # This recipe installs the needed components to full setup/configure the RoadRunner service
 
 # destinations
-install_dir = "#{node['wt_common']['install_dir']}\\RoadRunner"
+install_dir = "#{node['wt_common']['install_dir_windows']}\\RoadRunner"
 
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
