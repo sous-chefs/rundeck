@@ -89,6 +89,10 @@
             "wrsmodify_group": "DEVOPS\\DO.WRS.Modify", 
             "wrsread_group": "DEVOPS\\DO.WRS.Read"
         }, 
+        "wt_dbmaint": {
+            "index_file": "VDMIndex.zip", 
+            "url": "guestAuth/repository/download/bt63/.lastSuccessful/"
+        }, 
         "wt_dx": {
             "app_settings_section": {
                 "streamingServiceRoot": "http://dx.devops.dmz/StreamingServices_v3/"
@@ -99,15 +103,11 @@
             "endpoint_address": "net.tcp://search.devops.dmz:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
-        },
-		"wt_platformscheduler": {
-			"agent_msi": "WebTrends VDM Scheduler Agent.msi",
-			"url":"guestAuth/repository/download/bt54/.lastSuccessful/"
-		},
-		"wt_dbmaint": {
-			"index_file": "VDMIndex.zip",
-			"url":"guestAuth/repository/download/bt63/.lastSuccessful/"
-		}
+        }, 
+        "wt_platformscheduler": {
+            "agent_msi": "WebTrends VDM Scheduler Agent.msi", 
+            "url": "guestAuth/repository/download/bt54/.lastSuccessful/"
+        }
     }, 
     "description": "DevOps Pod", 
     "json_class": "Chef::Environment", 
