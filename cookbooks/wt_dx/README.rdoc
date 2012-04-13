@@ -1,6 +1,12 @@
 = DESCRIPTION:
 
+Installs the Webtrends Data Extraction API Service
+
 = REQUIREMENTS:
+
+* Windows cookbook
+* IIS Cookbook
+* wt_commonlib cookbook
 
 = ATTRIBUTES:
 

@@ -1,4 +1,15 @@
-c_hosts = node['wt_common']['cache_hosts']
+#
+# Cookbook Name:: wt_dx
+# Recipe:: version21
+# Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
+#
+# Copyright 2012, Webtrends
+#
+# All rights reserved - Do Not Redistribute
+# This recipe sets DX 2.1
+
+# Find all memcached nodes in the same environment with search
+c_hosts = cache_hosts = search(:node, "chef_environment:#{node.chef_environment} AND recipes:memcached")
 
 #Recipe specific
 cfg_cmds = node['wt_dx']['v2_1']['cfg_cmd']
