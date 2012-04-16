@@ -1,7 +1,7 @@
 {
   "name": "thrift",
   "description": "Installs thrift from source",
-  "long_description": "Description\n===========\n\nInstalls Thrift from source.\n\nChanges\n=======\n\nRequirements\n============\n\n## Platform\n\n* Ubuntu 11.10\n\n(Ubuntu 10.04 was tested but thrift would not compile cleanly)\n\n## Cookbooks\n\nOpscode cookbooks:\n\n* build-essential\n* java\n* boost\n\nUsage\n=====\n\nInclude the Thrift recipe to install Thrift from source on your systems.\n\n  include_recipe \"thrift\"\n\nChanges\n=======\n\n## v1.0.0:\n\n* [COOK-904] - install version 0.8, requires Ubuntu 11.10\n\nLicense and Author\n==================\n\nAuthor:: Joshua Timberman (<joshua@opscode.com>)\nCopyright:: 2009-2011, Opscode, Inc.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
+  "long_description": "Description\n====\n\nInstalls Thrift from source.\n\nRequirements\n====\n\n## Platform\n\nOnly tested on Ubuntu 10.04.\n\n## Cookbooks\n\nOpscode cookbooks:\n\n* build-essential\n* java\n* subversion\n* boost\n\nUsage\n====\n\nInclude the Thrift recipe to install Thrift from source on your systems.\n\n  include_recipe \"thrift\"\n\nLicense and Author\n====\n\nAuthor:: Joshua Timberman (<joshua@opscode.com>)\nCopyright:: 2009-2011, Opscode, Inc.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
   "maintainer": "Opscode, Inc.",
   "maintainer_email": "cookbooks@opscode.com",
   "license": "Apache 2.0",
@@ -30,5 +30,5 @@
   "recipes": {
     "thrift": "Installs thrift from source"
   },
-  "version": "1.0.0"
+  "version": "0.99.0"
 }
