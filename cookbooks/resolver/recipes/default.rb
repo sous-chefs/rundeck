@@ -19,9 +19,10 @@
 # = Requires
 # * node[:resolver][:nameservers]
 
-if node[:resolver][:nameservers][0].empty?
-  Chef::Log.info("nameservers attribute not set for the resolver cookbook.  Exiting so we don't break name resolution on the node")
-  exit(true)
+if node['resolver']['nameservers'].empty? || node['resolver']['nameservers'][0].empty?
+  Chef::Log.warn("#{cookbook_name}::#{recipe_name} requires that attribute ['resolver']['nameservers'] is set.")
+  Chef::Log.info("#{cookbook_name}::#{recipe_name} will exit to prevent a potential breaking change in /etc/resolv.conf.")
+  return
 else
   template "/etc/resolv.conf" do
     source "resolv.conf.erb"

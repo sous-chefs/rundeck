@@ -1,9 +1,9 @@
 maintainer        "Opscode, Inc."
 maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
-description       "Configures /etc/resolv.conf"
+description       "Configures /etc/resolv.conf via attributes"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "0.8.2"
+version           "1.0.2"
 
 recipe "resolver", "Configures /etc/resolv.conf via attributes"
 
@@ -25,5 +25,10 @@ attribute "resolver/nameservers",
   :display_name => "Resolver Nameservers",
   :description => "Default nameservers",
   :type => "array",
-  :default => [""]
+  :default => []
 
+attribute "resolver/options",
+  :display_name => "Resolver Options",
+  :description => "Default resolver options",
+  :type => "hash",
+  :default => {}
