@@ -1,4 +1,7 @@
-search <%= node[:resolver][:search] %>
-<% node[:resolver][:nameservers].each do |nameserver| -%>
+search <%= node['resolver']['search'] %>
+<% node['resolver']['nameservers'].each do |nameserver| -%>
 nameserver <%= nameserver %>
+<% end %>
+<% unless node['resolver']['options'].empty? -%>
+options <%= node['resolver']['options'].map { |opt, val| val ? "#{opt}:#{val}" : opt }.sort.join(" ") %>
 <% end -%>
