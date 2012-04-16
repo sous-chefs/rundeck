@@ -1,3 +1,8 @@
+## v1.0.4:
+
+* [COOK-1106] - fix chkconfig loader for CentOS 5
+* [COOK-1107] - use integer for GID instead of string
+
 ## v1.0.2:
 
 * [COOK-1043] - Bluepill cookbook fails on OS X because it tries to
