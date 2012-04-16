@@ -3,11 +3,11 @@ maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
 description       "Installs and configures ntp as a client or server"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "1.1.0"
+version           "1.1.6"
 
 recipe "ntp", "Installs and configures ntp either as a server or client"
 
-%w{ ubuntu debian redhat centos fedora scientific }.each do |os|
+%w{ ubuntu debian redhat centos fedora scientific freebsd }.each do |os|
   supports os
 end
 
@@ -43,3 +43,13 @@ attribute "ntp/restrictions",
   :description => "Array of restriction lines to apply to NTP servers",
   :type => "array",
   :default => []
+
+attribute "ntp/driftfile",
+  :display_name => "NTP Driftfile",
+  :description => "Location of the NTP driftfile",
+  :default => "/var/lib/ntp/ntp.drift"
+
+attribute "ntp/statsdir",
+  :display_name => "NTP Statsdir",
+  :description => "Location of the NTP statsdir",
+  :default => "/var/log/ntpstats/"
