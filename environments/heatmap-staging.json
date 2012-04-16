@@ -61,7 +61,7 @@
             "install_log_dir_windows": "d:\\logs",
             "install_log_dir_linux": "/var/log/webtrends/install" ,
             "log_dir_windows": "",
-            "log_dir_linux": "/var/log/webtrends/",
+            "log_dir_linux": "/var/log/webtrends/"
         }
     }, 
     "description": "Webtrends Heatmap Staging Environment", 
