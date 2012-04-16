@@ -152,7 +152,7 @@
         }, 
         "zookeeper": {
             "clientPort": 2181, 
-            "dataDir": "/var/run/zookeeper", 
+            "dataDir": "/var/lib/zookeeper", 
             "initLimit": 10, 
             "quorum": [
                 "vzookeeper01.staging.dmz", 
