@@ -1,19 +1,14 @@
 Description
-===========
+====
 
 Installs Thrift from source.
 
-Changes
-=======
-
 Requirements
-============
+====
 
 ## Platform
 
-* Ubuntu 11.10
-
-(Ubuntu 10.04 was tested but thrift would not compile cleanly)
+Only tested on Ubuntu 10.04.
 
 ## Cookbooks
 
@@ -21,24 +16,18 @@ Opscode cookbooks:
 
 * build-essential
 * java
+* subversion
 * boost
 
 Usage
-=====
+====
 
 Include the Thrift recipe to install Thrift from source on your systems.
 
   include_recipe "thrift"
 
-Changes
-=======
-
-## v1.0.0:
-
-* [COOK-904] - install version 0.8, requires Ubuntu 11.10
-
 License and Author
-==================
+====
 
 Author:: Joshua Timberman (<joshua@opscode.com>)
 Copyright:: 2009-2011, Opscode, Inc.
