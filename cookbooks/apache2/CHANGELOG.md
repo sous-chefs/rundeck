@@ -1,5 +1,16 @@
+## v1.1.6:
+
+FreeBSD users: This release requires the `freebsd` cookbook. See README.md.
+
+* [COOK-1025] - freebsd support in mod_php5 recipe
+
+## v1.1.4:
+
+* [COOK-1100] - support amazon linux
+
 ## v1.1.2:
 
+* [COOK-996] - apache2::mod_php5 can cause PHP and module API mismatches
 * [COOK-1083] - return string for v_f_p and use correct value for
   default
 
