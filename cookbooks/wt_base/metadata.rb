@@ -7,7 +7,8 @@ version          "0.10.3"
 
 supports	"ubuntu", ">= 10.04"
 supports	"centos", ">= 6.0"
-supports	"windows"
+supports	"windows", ">= 6.1"
 
 depends		"apt"
 depends		"yum"
+depends		"windows"
