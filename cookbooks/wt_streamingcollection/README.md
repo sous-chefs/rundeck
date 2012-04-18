@@ -1,12 +1,15 @@
-Description
-===========
+= DESCRIPTION:
+Installs Streaming Collection Service
 
-Requirements
-============
+= REQUIREMENTS:
+* java
+* runit
 
-Attributes
-==========
+= ATTRIBUTES:
+* user: The user to run the service under
+* group: The group to run the service under
+* tarball: The tarball containing the system build
+* java_home: The location of the JRE on the system
+* download_url: The fullpath, including the tarball, to the system build
 
-Usage
-=====
-
+= USAGE:
