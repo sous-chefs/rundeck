@@ -31,7 +31,7 @@ for conf in `ls $HOME_DIR/conf/*`; do
 done
 
 # Create the JSVC command line.
-CMD="$EXEC -home <%=@java_home%> -cp $CP -user $USER -outfile $LOG_OUT -errfile $LOG_ERR -pidfile $LOG_PID"
+CMD="$EXEC -home <%=@java_home%> -cp $CP -user $USER -outfile $LOG_OUT -errfile $LOG_ERR -pidfile $LOG_PID" -Dlog_dir=<%=@log_dir%>
 
 # Check what the caller wants.
 case "$1" in
@@ -69,7 +69,7 @@ case "$1" in
             cd $HOME_DIR
             `$CMD -stop $MAIN`
             `$CMD $MAIN`
-        else
+        else 
             echo "Service not running? File $LOG_PID not found."
             exit 1
         fi

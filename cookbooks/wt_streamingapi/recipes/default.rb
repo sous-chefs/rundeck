@@ -19,31 +19,30 @@ execute "install-java" do
     action :run
 end
 
-user         = node[:user]
-group        = node[:group]
-tarball      = node[:tarball]
-log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingapi")
-install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingapi")
+log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "streamingapi")
+install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "streamingapi")
+tarball     = node[:tarball]
 download_url = node[:download_url]
-java_home = "/usr/lib/jvm/java-7-oracle/jre"
+java_home   = node[:java_home]
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
+log "Java home: #{java_home}"
 
 directory "#{log_dir}" do
-    owner "root"
-    group "root"
-    mode "0755"
+    owner   "#{node[:user]}"
+    group   "#{node[:group]}"
+    mode    "0755"
     recursive true
     action :create
 end
-
+ 
 directory "#{install_dir}/bin" do
-    owner "root"
-    group "root"
-    mode "0755"
-    recursive true
-    action :create
+   owner "root"
+   group "root"
+   mode "0755"
+   recursive true
+   action :create
 end
 
 remote_file "/tmp/#{tarball}" do
@@ -59,44 +58,32 @@ execute "tar" do
 end
 
 #templates
-%w[log4j.properties].each do | template_file|
+%w[streamingapi.sh].each do | template_file|
+template "#{install_dir}/bin/#{template_file}" do
+    source  "#{template_file}.erb"
+    owner "root"
+    group "root"
+    mode  "0755"
+    variables({
+        :log_dir => log_dir,
+        :install_dir => install_dir,
+        :java_home => java_home
+    })
+    end
+end
+
+%w[streaming.properties].each do | template_file|
   template "#{install_dir}/conf/#{template_file}" do
 	source	"#{template_file}.erb"
 	owner "root"
     group "root"
     mode  "0755"
     variables({
-        :log_dir => log_dir,
-		:install_dir => install_dir,
-        :java_home => java_home
-	})
-	end
+        :authentication_url => node[:authentication_url],
+        :install_dir => install_dir,
+    })
+	end 
 end 
-
-%w[streamingapi.sh sv-streamingapi-run].each do | template_file|
-  template "#{install_dir}/bin/#{template_file}" do
-	source	"#{template_file}.erb"
-	owner "root"
-    group "root"
-    mode  "0755"
-    variables({
-      :log_dir => log_dir,
-			:install_dir => install_dir,
-      :java_home => java_home
-	})
-	end
-end 
-
-runit_service "streamingapi" do
-    action :start
-end
-
-#execute "start_service" do
-#    user "root"
-#    group "root"
-#    command "#{install_dir}/bin/streamingapi.sh start"
-#    action :run
-#end
 
 execute "delete_install_source" do
     user "root"
@@ -104,3 +91,13 @@ execute "delete_install_source" do
     command "rm -f /tmp/#{tarball}"
     action :run
 end
+
+runit_service "streamingapi" do
+    options({
+        :log_dir => log_dir,
+        :install_dir => install_dir,
+        :java_home => java_home
+      }) 
+end 
+
+

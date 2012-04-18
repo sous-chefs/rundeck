@@ -1,5 +1,5 @@
 default[:user]         = "nobody"
 default[:group]        = "nogroup"
-default[:tarball]      = "streamingcollection-bin.tar.gz"
-default[:java_home]    = "/usr/lib/jvm/jre"
+default[:java_home]    = "/usr/lib/jvm/default-java/jre"
 default[:download_url] = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/.lastSuccessful/streamingcollection-bin.tar.gz"
+default[:tarball]      = "streamingcollection-bin.tar.gz"

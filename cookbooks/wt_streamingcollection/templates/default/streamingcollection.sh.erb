@@ -1,15 +1,13 @@
 #!/bin/sh
 
 # Setup basic path information.
-EXEC=/usr/bin/jsvc
+EXEC=/usr/bin/jsvc 
 MAIN=com.webtrends.streaming.StreamCollectionServer
-
 USER="<%= node[:user] %>"
-LOG_PID="<%= node[:log_dir] %>/streaming-collection.pid"
-LOG_OUT="<%= node[:log_dir] %>/streaming-collection.out"
-LOG_ERR="<%= node[:log_dir] %>/streaming-collection.err"
-JAVA_HOME="<%= node[:java_home] %>"
-HOME_DIR="<%= node[:install_dir] %>/<%= node[:name] %>"
+LOG_PID="<%=File.join(@log_dir,"streamingcollection.pid")%>"
+LOG_OUT="<%=File.join(@log_dir,"streamingcollection")%>"
+LOG_ERR="<%=File.join(@log_dir,"sstreamingcollection")%>"
+HOME_DIR="<%=@install_dir%>"
 
 # Setup classpath, initially empty.
 CP=""
@@ -33,13 +31,14 @@ for conf in `ls $HOME_DIR/conf/*`; do
 done
 
 # Create the JSVC command line.
-CMD="$EXEC -home $JAVA_HOME -cp $CP -user $USER -outfile $LOG_OUT -errfile $LOG_ERR -pidfile $LOG_PID"
+CMD="$EXEC -home <%=@java_home%> -cp $CP -user $USER -outfile $LOG_OUT -errfile $LOG_ERR -pidfile $LOG_PID" -Dlog_dir=<%=@log_dir%>
 
-# Chack what the caller wants.
+# Check what the caller wants.
 case "$1" in
     start)
         if [ ! -f "$LOG_PID" ]; then
             cd $HOME_DIR
+            echo $CMD $MAIN
             `$CMD $MAIN`
         else 
             echo "Service already running! File $LOG_PID exists!"
@@ -70,7 +69,7 @@ case "$1" in
             cd $HOME_DIR
             `$CMD -stop $MAIN`
             `$CMD $MAIN`
-        else
+        else 
             echo "Service not running? File $LOG_PID not found."
             exit 1
         fi

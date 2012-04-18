@@ -1,4 +1,3 @@
 #!/bin/sh
-
-exec 2>&1
-exec <%= node[:install_dir] %>/<%= node[:name] %>/bin/<%= node[:name] %> start
+exec 2>&1 
+exec <%=@options[:install_dir]%>/bin/streamingcollection.sh start

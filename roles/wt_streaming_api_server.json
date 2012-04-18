@@ -9,7 +9,5 @@
     "recipe[wt_streamingapi]"
   ],
   "description": "Streaming API Server",
-  "chef_type": "role",
-  "override_attributes": {
-  }
+  "chef_type": "role"
 }
