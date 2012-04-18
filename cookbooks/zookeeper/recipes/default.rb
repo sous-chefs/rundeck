@@ -62,6 +62,8 @@ end
   template "/usr/local/zookeeper/conf/#{template_file}" do
     source "#{template_file}"
     mode 0755
+    owner "zookeeper"
+    group "zookeeper"
   end
 end
 
@@ -80,5 +82,19 @@ template "#{node[:zookeeper][:dataDir]}/myid" do
   mode 0755
 end
 
+# snapshotDir
+directory "#{node[:zookeeper][:snapshotDir]}" do
+  owner "zookeeper"
+  group "zookeeper"
+  mode "0744"
+end
+
+# snapshot roller
+template "/etc/cron.daily/zkRollSnapshot.sh" do
+  source "zkRollSnapshot.sh"
+  owner "zookeeper"
+  group "zookeeper"
+  mode 0544
+end
 
 
