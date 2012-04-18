@@ -163,6 +163,8 @@
         "zookeeper": {
             "clientPort": 2181, 
             "dataDir": "/var/lib/zookeeper", 
+            "snapshotDir": "/var/lib/zookeeper/snapshots", 
+            "snapshotNum": 3,
             "initLimit": 10, 
             "quorum": [
                 "vzookeeper01.staging.dmz", 
