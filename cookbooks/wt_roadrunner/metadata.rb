@@ -4,6 +4,6 @@ maintainer_email "kendrick.martin@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures Roadrunner GPU acceleration service"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "0.10.4"
+version          "0.10.45"
 supports         "windows"
 depends          "wt_base"
