@@ -10,6 +10,10 @@
 log_dir      = "#{node['wt_common']['log_dir_linux']}/streamingcollection"
 install_dir  = "#{node['wt_common']['install_dir_linux']}/streamingcollection"
 
+runit_service "streamingcollection" do
+    action :disable
+end
+
 service "streamingcollection" do
   action [:stop, :disable]
 end

@@ -10,6 +10,11 @@
 log_dir      = "#{node['wt_common']['log_dir_linux']}/streamingapi"
 install_dir  = "#{node['wt_common']['install_dir_linux']}/streamingapi"
 
+
+runit_service "streamingapi" do
+    action :disable
+end 
+
 service "streamingapi" do
   action [:stop, :disable]
 end
