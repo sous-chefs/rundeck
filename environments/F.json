@@ -65,9 +65,7 @@
                 }
             ], 
             "cassandra_hosts": [
-                "scass01.staging.dmz", 
-                "scass02.staging.dmz", 
-                "scass03.staging.dmz"
+                "cassandra.staging.dmz"
             ], 
             "cassandra_meta_column": "F_Meta", 
             "cassandra_report_column": "F_Report", 
