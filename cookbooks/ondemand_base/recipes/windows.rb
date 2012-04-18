@@ -13,10 +13,7 @@ if not platform?("windows")
 	Chef::Log.info("Platform Windows required.")
 	return
 end
-domain_to_join = node['authorization']['ad_auth']['ad_network']
-auth_data = data_bag_item('authorization', domain_to_join)
 
-include_recipe "windows::reboot_handler"
 #Save the node to prevent empty run lists on failures
 unless Chef::Config[:solo]
 	ruby_block "save node data" do
@@ -25,6 +22,30 @@ unless Chef::Config[:solo]
 		end
 		action :create
 	end
+end
+
+include_recipe "windows::reboot_handler" #Needed to handle reboots
+
+domain_to_join = node['authorization']['ad_auth']['ad_network']
+auth_data = data_bag_item('authorization', domain_to_join)
+
+log "Are you joined to domain? #{node['kernel']['cs_info']['part_of_domain']} Current domain is #{node['kernel']['cs_info']['domain']}"
+
+windows_reboot 60 do
+  reason 'Chef Reboot'
+  action :nothing
+end
+
+execute "join domain" do
+  command "NETDOM join /Domain:#{domain_to_join} /userD:#{auth_data['auth_domain_user']} /passwordD:#{auth_data['auth_domain_password']} #{node['hostname']}"
+  not_if {node['kernel']['cs_info']['part_of_domain']}
+  notifies :request, "windows_reboot[60]"
+end
+
+#DisableUAC
+windows_registry 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' do
+  values 'EnableLUA' => 0
+  notifies :request, "windows_reboot[60]"
 end
 
 #Turn off hibernation
@@ -42,22 +63,4 @@ end
 #Install the working version of rubyzip gem
 gem_package("rubyzip") do
   options("-v 0.9.5")
-end
-
-log "Are you joined to domain? #{node['kernel']['cs_info']['part_of_domain']} Current domain is #{node['kernel']['cs_info']['domain']}"
-
-execute "join domain" do
-  command "NETDOM join /Domain:#{domain_to_join} /userD:#{auth_data['auth_domain_user']} /passwordD:#{auth_data['auth_domain_password']} #{node['hostname']}"
-  not_if {node['kernel']['cs_info']['part_of_domain']}
-  notifies :request, "windows_reboot[60]"
-end
-
-windows_registry 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' do
-  values 'EnableLUA' => 0
-  notifies :request, "windows_reboot[60]"
-end
-
-windows_reboot 60 do
-  reason 'Chef Reboot'
-  action :nothing
 end
