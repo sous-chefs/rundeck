@@ -7,4 +7,4 @@
 #
 
 default['wt_roadrunner']['zip_file'] = "RoadRunner.zip"
-default['wt_roadrunner']['url'] = "guestAuth/repository/download/bt67/.lastSuccessful/"
+default['wt_roadrunner']['build_url'] = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt67/.lastSuccessful/"
