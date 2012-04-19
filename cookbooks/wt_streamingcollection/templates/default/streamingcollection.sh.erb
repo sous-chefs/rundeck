@@ -2,11 +2,11 @@
 
 # Setup basic path information.
 EXEC=/usr/bin/jsvc 
-MAIN=com.webtrends.streaming.StreamCollectionServer
+MAIN=com.webtrends.streaming.CollectionDaemon
 USER="<%= node[:user] %>"
 LOG_PID="<%=File.join(@log_dir,"streamingcollection.pid")%>"
-LOG_OUT="<%=File.join(@log_dir,"streamingcollection")%>"
-LOG_ERR="<%=File.join(@log_dir,"sstreamingcollection")%>"
+LOG_OUT="<%=File.join(@log_dir,"streamingcollection.out")%>"
+LOG_ERR="<%=File.join(@log_dir,"streamingcollection.err")%>"
 HOME_DIR="<%=@install_dir%>"
 
 # Setup classpath, initially empty.
@@ -31,7 +31,7 @@ for conf in `ls $HOME_DIR/conf/*`; do
 done
 
 # Create the JSVC command line.
-CMD="$EXEC -home <%=@java_home%> -cp $CP -user $USER -outfile $LOG_OUT -errfile $LOG_ERR -pidfile $LOG_PID" -Dlog_dir=<%=@log_dir%>
+CMD="$EXEC -home <%=@java_home%> -cp $CP -user $USER -outfile $LOG_OUT -errfile $LOG_ERR -pidfile $LOG_PID -Dlog_dir=<%=@log_dir%>"
 
 # Check what the caller wants.
 case "$1" in
