@@ -27,19 +27,19 @@ remote_directory "/home/zookeeper/.ssh" do
 end
 
 # create the install dir
-directory "#{node[:zookeeper][:install_stage_dir]}" do
+directory "#{node[:zookeeper][:installDir]}" do
   owner "zookeeper"
   group "zookeeper"
   mode "0744"
 end
 
 # download zookeeper
-remote_file "#{node[:zookeeper][:install_stage_dir]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz" do
+remote_file "#{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz" do
   source "http://mirror.uoregon.edu/apache/zookeeper/zookeeper-#{node[:zookeeper][:version]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz"
   owner "zookeeper"
   group "zookeeper"
   mode "0744"
-  not_if "test -f #{node[:zookeeper][:install_stage_dir]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz"
+  not_if "test -f #{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz"
 end
 
 
@@ -47,14 +47,14 @@ end
 execute "extract-zookeeper" do
   command "tar -zxf zookeeper-#{node[:zookeeper][:version]}.tar.gz"
   creates "zookeeper-#{node[:zookeeper][:version]}"
-  cwd "#{node[:zookeeper][:install_stage_dir]}"
+  cwd "#{node[:zookeeper][:installDir]}"
   user "zookeeper"
   group "zookeeper"
 end
 
 
 link "/usr/local/zookeeper" do
-  to "#{node[:zookeeper][:install_stage_dir]}/zookeeper-#{node[:zookeeper][:version]}"
+  to "#{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:version]}"
 end
 
 # manage configs
