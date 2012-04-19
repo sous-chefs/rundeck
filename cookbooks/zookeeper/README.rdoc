@@ -2,8 +2,7 @@
 Installs Zookeeper
 
 = REQUIREMENTS:
-
-* java
+* Java cookbook version >= 1.5
 
 = ATTRIBUTES:
 
