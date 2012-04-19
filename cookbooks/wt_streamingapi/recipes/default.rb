@@ -98,6 +98,4 @@ runit_service "streamingapi" do
         :install_dir => install_dir,
         :java_home => java_home
       }) 
-end 
-
-
+end
