@@ -23,10 +23,27 @@ user "zookeeper" do
   supports :manage_home => true
 end
 
-# create the install dir
+# create the install directory
 directory "#{node[:zookeeper][:installDir]}" do
   owner "zookeeper"
   group "zookeeper"
+  recursive true
+  mode "0744"
+end
+
+# create the data directory
+directory "#{node[:zookeeper][:dataDir]}" do
+  owner "zookeeper"
+  group "zookeeper"
+  recursive true
+  mode "0744"
+end
+
+# create the snapshot directory
+directory "#{node[:zookeeper][:snapshotDir]}" do
+  owner "zookeeper"
+  group "zookeeper"
+  recursive true
   mode "0744"
 end
 
@@ -39,7 +56,6 @@ remote_file "#{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:vers
   not_if "test -f #{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz"
 end
 
-
 # extract it
 execute "extract-zookeeper" do
   command "tar -zxf zookeeper-#{node[:zookeeper][:version]}.tar.gz"
@@ -48,7 +64,6 @@ execute "extract-zookeeper" do
   user "zookeeper"
   group "zookeeper"
 end
-
 
 link "/usr/local/zookeeper" do
   to "#{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:version]}"
@@ -64,26 +79,12 @@ end
   end
 end
 
-# dataDir
-directory "#{node[:zookeeper][:dataDir]}" do
-  owner "zookeeper"
-  group "zookeeper"
-  mode "0744"
-end
-
 # myid
 template "#{node[:zookeeper][:dataDir]}/myid" do
   source "myid"
   owner "zookeeper"
   group "zookeeper"
   mode 0755
-end
-
-# snapshotDir
-directory "#{node[:zookeeper][:snapshotDir]}" do
-  owner "zookeeper"
-  group "zookeeper"
-  mode "0744"
 end
 
 # snapshot roller
@@ -93,5 +94,3 @@ template "/etc/cron.daily/zkRollSnapshot.sh" do
   group "zookeeper"
   mode 0544
 end
-
-
