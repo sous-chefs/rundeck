@@ -1,6 +1,14 @@
+#
+# Cookbook Name:: zookeeper
+# Recipe:: default
+# Author:: sean mcnamara
+#
+# Copyright 2012, Webtrends
+#
+# All rights reserved - Do Not Redistribute
+# This recipe installs the needed components to prepare machine for db_index exe
 
 include_recipe "java"
-
 
 # setup zookeeper group
 group "zookeeper" do
@@ -13,17 +21,6 @@ user "zookeeper" do
   home "/home/zookeeper"
   shell "/bin/bash"
   supports :manage_home => true
-end
-
-# setup ssh
-remote_directory "/home/zookeeper/.ssh" do
-  source "ssh"
-  owner "zookeeper"
-  group "zookeeper"
-  files_owner "zookeeper"
-  files_group "zookeeper"
-  files_mode "0600"
-  mode "0700"
 end
 
 # create the install dir
