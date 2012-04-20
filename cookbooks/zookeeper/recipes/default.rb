@@ -77,6 +77,9 @@ end
     mode 0755
     owner "zookeeper"
     group "zookeeper"
+    variables({
+    	:servers => search(:node, "recipes:zookeeper AND chef_environment:#{node.chef_environment}")
+    })
   end
 end
 
@@ -95,5 +98,3 @@ template "/etc/cron.daily/zkRollSnapshot.sh" do
   group "zookeeper"
   mode 0544
 end
-
-runit_service "zookeeper"
