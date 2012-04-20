@@ -58,7 +58,7 @@ end
 
 # extract it
 execute "extract-zookeeper" do
-  command "tar -zxf zookeeper-#{node[:zookeeper][:version]}.tar.gz"
+  command "tar -zxf #{Chef::Config[:file_cache_path]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz"
   creates "zookeeper-#{node[:zookeeper][:version]}"
   cwd "#{node[:zookeeper][:installDir]}"
   user "zookeeper"
