@@ -160,6 +160,9 @@
             "config_distrib": "vcd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
+        "wt_streamingcollection": {
+            "port":80
+        },
         "zookeeper": {
             "clientPort": 2181, 
             "dataDir": "/var/lib/zookeeper", 
