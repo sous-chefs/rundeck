@@ -1,4 +1,5 @@
 default[:zookeeper][:version] = "3.3.4"
+default[:zookeeper][:sourceURL] = "http://mirror.uoregon.edu/apache/zookeeper/zookeeper-#{node[:zookeeper][:version]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz"
 
 default[:zookeeper][:installDir] = "/opt/zookeeper"
 default[:zookeeper][:logDir] = '/var/log/zookeeper'
