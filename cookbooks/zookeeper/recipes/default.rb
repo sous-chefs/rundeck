@@ -49,7 +49,7 @@ end
 
 # download zookeeper
 remote_file "#{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz" do
-  source "http://mirror.uoregon.edu/apache/zookeeper/zookeeper-#{node[:zookeeper][:version]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz"
+  source "#{default[:zookeeper][:sourceURL]}"
   owner "zookeeper"
   group "zookeeper"
   mode "0744"
