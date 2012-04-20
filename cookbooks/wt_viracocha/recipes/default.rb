@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: buildvm
+# Cookbook Name:: viracocha
 # Recipe:: default
 #
 # Copyright 2012, Webtrends
