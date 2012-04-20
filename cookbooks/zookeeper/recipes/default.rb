@@ -48,7 +48,7 @@ directory "#{node[:zookeeper][:snapshotDir]}" do
 end
 
 # download zookeeper
-remote_file "#{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz" do
+remote_file "#{Chef::Config[:file_cache_path]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz" do
   source "#{default[:zookeeper][:sourceURL]}"
   owner "zookeeper"
   group "zookeeper"
