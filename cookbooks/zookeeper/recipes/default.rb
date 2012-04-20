@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: zookeeper
 # Recipe:: default
-# Author:: sean mcnamara
+# Author:: sean.mcnamara@webtrends.com / tim.smith@webtrends.com
 #
 # Copyright 2012, Webtrends
 #
@@ -53,7 +53,7 @@ remote_file "#{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:vers
   owner "zookeeper"
   group "zookeeper"
   mode "0744"
-  not_if "test -f #{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz"
+  action :create_if_missing
 end
 
 # extract it
