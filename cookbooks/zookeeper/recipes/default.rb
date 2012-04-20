@@ -9,6 +9,7 @@
 # This recipe installs the needed components to prepare machine for db_index exe
 
 include_recipe "java"
+include_recipe "runit"
 
 # setup zookeeper group
 group "zookeeper" do
@@ -94,3 +95,5 @@ template "/etc/cron.daily/zkRollSnapshot.sh" do
   group "zookeeper"
   mode 0544
 end
+
+runit_service "zookeeper"
