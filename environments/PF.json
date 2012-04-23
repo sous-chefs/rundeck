@@ -104,10 +104,10 @@
     "override_attributes": {
         "java": {
             "install_flavor": "oracle", 
-            "jdk_version": "6"
+            "jdk_version": "6",
 	    "jdk": {
                 "6": {
-                    "x86_64: {
+                    "x86_64": {
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
                     }
 	        }
