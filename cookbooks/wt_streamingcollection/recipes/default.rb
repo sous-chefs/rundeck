@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "runit"
+
 log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingcollection")
 install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingcollection")
 
@@ -17,11 +19,14 @@ download_url = node[:download_url]
 
 zk_host      = node['zookeeper']['quorum'][0]
 zk_port      = node['zookeeper']['clientPort']
-zk_connect   = "#{zk_host}:#{zk_port}"
 
-log "Install dir: #{install_dir}"
-log "Java home: #{java_home}"
-log "Log dir: #{log_dir}"
+
+execute "install-java" do
+  user "root"
+  group "root"
+  command "sudo add-apt-repository ppa:webupd8team/java;sudo apt-get update;sudo apt-get install oracle-java7-installer"
+  action :run
+end
 
 directory "#{log_dir}" do
   owner   "#{node[:user]}"
@@ -79,7 +84,7 @@ template "#{install_dir}/conf/kafka.properties" do
   group   "root"
   mode    "0644"
   variables({
-              :zk_connect => zk_connect
+              :zk_connect => "#{zk_host}:#{zk_port}"
             })
 end
 
@@ -98,4 +103,12 @@ execute "delete_install_source" do
     group "root"
     command "rm -f /tmp/#{tarball}"
     action :run
+end
+
+runit_service "streamingcollection" do
+  options({
+            :log_dir => log_dir,
+            :install_dir => install_dir,
+            :java_home => java_home
+          })
 end
