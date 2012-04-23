@@ -54,27 +54,20 @@
             }
         }, 
         "wt_common": {
-            "cache_hosts": [
-                {
-                    "name": "xcache01.staging.dmz", 
-                    "port": "11211"
-                }, 
-                {
-                    "name": "xcache02.staging.dmz", 
-                    "port": "11211"
-                }
-            ], 
-            "cassandra_hosts": [
-                "cassandra.staging.dmz"
-            ], 
+            "cassandra_host": "cas.staging.dmz",
             "cassandra_meta_column": "F_Meta", 
             "cassandra_report_column": "F_Report", 
             "cassandra_snmp_comm": "StagingRO", 
             "cassandra_snmp_port": "", 
             "cassandra_thrift_port": "", 
-            "install_dir": "d:\\wrs", 
+            "config_dir_linux": "/etc/webtrends/",
+            "install_dir_windows": "d:\\wrs",
+            "install_dir_linux": "/opt/webtrends/",
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "installlog_dir": "d:\\logs", 
+            "install_log_dir_windows": "d:\\logs",
+            "install_log_dir_linux": "/var/log/webtrends/install" ,
+            "log_dir_windows": "",
+            "log_dir_linux": "/var/log/webtrends/",
             "master_host": "fmasterdb01", 
             "rta_host": "frta01.staging.dmz", 
             "sched_host": "fmasterdb01", 
@@ -112,6 +105,13 @@
         "java": {
             "install_flavor": "oracle", 
             "jdk_version": "6"
+	    "jdk": {
+                "6": {
+                    "x86_64: {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
+                    }
+	        }
+	    }
         }, 
         "memcached": {
             "memory": "1024"
@@ -121,7 +121,10 @@
         }, 
         "nagios": {
             "multi_environment_monitoring": "true", 
-            "server_role": "nagios_xi"
+            "server_role": "nagios_xi",
+            "nrpe":{
+	        "dont_blame_nrpe": "1"
+            }
         }, 
         "ntp": {
             "servers": [
