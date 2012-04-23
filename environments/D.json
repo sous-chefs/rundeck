@@ -92,6 +92,9 @@
             "endpoint_address": "net.tcp://dsearch.staging.dmz:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
+        }, 
+        "wt_roadrunner": {
+            "url": "path/to/zip/here"
         }
     }, 
     "description": "D Pod", 
@@ -100,10 +103,10 @@
     "override_attributes": {
         "java": {
             "install_flavor": "oracle", 
-            "jdk_version": "6"
+            "jdk_version": "6",
 	    "jdk": {
                 "6": {
-                    "x86_64: {
+                    "x86_64": {
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
                     }
 	        }
