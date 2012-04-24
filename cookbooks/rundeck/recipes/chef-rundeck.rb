@@ -2,7 +2,7 @@
 # Cookbook Name:: rundeck
 # Recipe:i: chef-rundeck 
 #
-# Copyright 2011, Peter Crossley
+# Copyright 2012, Peter Crossley
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
