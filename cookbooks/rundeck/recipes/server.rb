@@ -2,7 +2,7 @@
 # Cookbook Name:: rundeck
 # Recipe::server
 #
-# Copyright 2011, Peter Crossley
+# Copyright 2012, Peter Crossley
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,8 +26,10 @@ include_recipe "apache2::mod_ssl"
 include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
 
+# install rundeck with a force-yes to avoid errors as the package is not signed
 package "rundeck" do
   action :install
+  options "--force-yes"
 end
 
 
