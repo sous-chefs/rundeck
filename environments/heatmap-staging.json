@@ -52,16 +52,16 @@
             "x86": {
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
-        },
+        }, 
         "wt_common": {
-            "config_dir_linux": "/etc/webtrends/",
-            "install_dir_windows": "d:\\wrs",
-            "install_dir_linux": "/opt/webtrends/",
+            "config_dir_linux": "/etc/webtrends/", 
+            "install_dir_linux": "/opt/webtrends/", 
+            "install_dir_windows": "d:\\wrs", 
+            "install_log_dir_linux": "/var/log/webtrends/install", 
+            "install_log_dir_windows": "d:\\logs", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "install_log_dir_windows": "d:\\logs",
-            "install_log_dir_linux": "/var/log/webtrends/install" ,
-            "log_dir_windows": "",
-            "log_dir_linux": "/var/log/webtrends/"
+            "log_dir_linux": "/var/log/webtrends/", 
+            "log_dir_windows": ""
         }
     }, 
     "description": "Webtrends Heatmap Staging Environment", 
@@ -124,14 +124,14 @@
         }, 
         "java": {
             "install_flavor": "oracle", 
-            "jdk_version": "6",
-	    "jdk": {
+            "jdk": {
                 "6": {
                     "x86_64": {
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
                     }
-	        }
-	    }
+                }
+            }, 
+            "jdk_version": "6"
         }, 
         "memcached": {
             "memory": "1024"
@@ -141,10 +141,10 @@
         }, 
         "nagios": {
             "multi_environment_monitoring": "true", 
-            "server_role": "nagios_xi",
-            "nrpe":{
-	        "dont_blame_nrpe": "1"
-            }
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server_role": "nagios_xi"
         }, 
         "ntp": {
             "servers": [
@@ -171,21 +171,21 @@
             "heatmap_reducers": -1
         }, 
         "wt_streamingcollection": {
-            "port":80
-        },
+            "port": 80
+        }, 
         "zookeeper": {
             "clientPort": 2181, 
             "dataDir": "/var/lib/zookeeper", 
-            "snapshotDir": "/var/lib/zookeeper/snapshots", 
-            "snapshotNum": 3,
             "initLimit": 10, 
             "quorum": [
                 "vzookeeper01.staging.dmz", 
                 "vzookeeper02.staging.dmz", 
-                "vzookeeper03.staging.dmz",
-                "vzookeeper04.staging.dmz",
+                "vzookeeper03.staging.dmz", 
+                "vzookeeper04.staging.dmz", 
                 "vzookeeper05.staging.dmz"
             ], 
+            "snapshotDir": "/var/lib/zookeeper/snapshots", 
+            "snapshotNum": 3, 
             "syncLimit": 5, 
             "tickTime": 2000
         }
