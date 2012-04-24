@@ -71,7 +71,7 @@ end
 file "/etc/sudoers.d/nrpe" do
   owner "root"
   group "root"
-  mode "0440"
+  mode 00440
   content "nrpe       ALL=NOPASSWD: ALL"
   action :create
 end
