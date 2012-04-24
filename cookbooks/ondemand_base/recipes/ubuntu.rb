@@ -73,7 +73,7 @@ end
 file "/etc/sudoers.d/nrpe" do
 	owner "root"
 	group "root"
-	mode "0440"
+	mode 00440
 	content "nagios	ALL=NOPASSWD: ALL"
 	action :create
 end
