@@ -124,7 +124,14 @@
         }, 
         "java": {
             "install_flavor": "oracle", 
-            "jdk_version": "6"
+            "jdk_version": "6",
+	    "jdk": {
+                "6": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
+                    }
+	        }
+	    }
         }, 
         "memcached": {
             "memory": "1024"
@@ -134,7 +141,10 @@
         }, 
         "nagios": {
             "multi_environment_monitoring": "true", 
-            "server_role": "nagios_xi"
+            "server_role": "nagios_xi",
+            "nrpe":{
+	        "dont_blame_nrpe": "1"
+            }
         }, 
         "ntp": {
             "servers": [
