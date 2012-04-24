@@ -130,3 +130,6 @@ end
 
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
+
+#Install VMware tools if no version is present
+include_recipe "vmware-tools"
