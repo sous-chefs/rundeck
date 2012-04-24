@@ -54,20 +54,20 @@
             }
         }, 
         "wt_common": {
-            "cassandra_host": "cas.staging.dmz",
+            "cassandra_host": "cassandra.staging.dmz", 
             "cassandra_meta_column": "D_Meta", 
             "cassandra_report_column": "D_Report", 
             "cassandra_snmp_comm": "StagingRO", 
             "cassandra_snmp_port": "", 
             "cassandra_thrift_port": "", 
-            "config_dir_linux": "/etc/webtrends/",
-            "install_dir_windows": "d:\\wrs",
-            "install_dir_linux": "/opt/webtrends/",
+            "config_dir_linux": "/etc/webtrends/", 
+            "install_dir_linux": "/opt/webtrends/", 
+            "install_dir_windows": "d:\\wrs", 
+            "install_log_dir_linux": "/var/log/webtrends/install", 
+            "install_log_dir_windows": "d:\\logs", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "install_log_dir_windows": "d:\\logs",
-            "install_log_dir_linux": "/var/log/webtrends/install" ,
-            "log_dir_windows": "",
-            "log_dir_linux": "/var/log/webtrends/",
+            "log_dir_linux": "/var/log/webtrends/", 
+            "log_dir_windows": "", 
             "master_host": "dmasterdb01", 
             "rta_host": "drta01.staging.dmz", 
             "sched_host": "dmasterdb01", 
@@ -101,16 +101,21 @@
     "json_class": "Chef::Environment", 
     "name": "D", 
     "override_attributes": {
+        "esx": {
+            "checksum": "a495c580eee4b94d92b213e8189c4ec2", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.3.12-493255.tar.gz"
+        }, 
         "java": {
             "install_flavor": "oracle", 
-            "jdk_version": "6",
-	    "jdk": {
+            "jdk": {
                 "6": {
                     "x86_64": {
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
                     }
-	        }
-	    }
+                }
+            }, 
+            "jdk_version": "6"
         }, 
         "memcached": {
             "memory": "1024"
@@ -120,10 +125,10 @@
         }, 
         "nagios": {
             "multi_environment_monitoring": "true", 
-            "server_role": "nagios_xi",
-            "nrpe":{
-	        "dont_blame_nrpe": "1"
-            }
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server_role": "nagios_xi"
         }, 
         "ntp": {
             "servers": [
@@ -144,11 +149,6 @@
             "community": "DevOps", 
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
-       },
-       "esx": {
-           "repo": "http://repo.staging.dmz/repo/linux/vmware",
-           "tarball": "VMwareTools-8.3.12-493255.tar.gz",
-           "checksum": "a495c580eee4b94d92b213e8189c4ec2"
-       }
+        }
     }
 }
