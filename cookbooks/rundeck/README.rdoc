@@ -1,6 +1,11 @@
 = DESCRIPTION:
+Installs and configures a Rundeck server with Chef integration
 
 = REQUIREMENTS:
+* Java
+* Apache2
+* Sudo
+* Runit
 
 = ATTRIBUTES:
 
