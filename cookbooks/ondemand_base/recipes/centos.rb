@@ -130,3 +130,6 @@ include_recipe "ad-auth"
 #Allow for hardware monitoring (CentOS only goes on hardware systems)
 include_recipe "snmp"
 
+#Install VMware tools if no version is present
+include_recipe "vmware-tools"
+
