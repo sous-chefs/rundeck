@@ -8,7 +8,6 @@
 # All rights reserved - Do Not Redistribute
 # This recipe uninstalls all DX versions
 
-v11pool = node['wt_dx']['v1_1']['app_pool']
 v2pool = node['wt_dx']['v2']['app_pool']
 v21pool = node['wt_dx']['v2_1']['app_pool']
 v22pool = node['wt_dx']['v2_2']['app_pool']
@@ -16,16 +15,6 @@ streamingservices_pool = node['wt_dx']['v3']['streamingservices']['app_pool']
 webservices_pool = node['wt_dx']['v3']['webservices']['app_pool']
 dx_dir = "#{node['wt_common']['installdir']}\\Data Extraction API"
 oem_dir = "#{node['wt_common']['installdir']}\\OEM Data Extraction API"
-
-iis_app "DX" do
-	path "/v1_1"
-	application_pool "#{v11pool}"
-	action :delete
-end
-
-iis_pool "#{v11pool}" do
-  action [:stop, :delete]
-end
 
 iis_app "DX" do
 	path "/v2"
