@@ -55,7 +55,7 @@ cookbook_file "/home/hadoop/.bashrc" do
   source "bashrc"
   owner "hadoop"
   group "hadoop"
-  mode "0644"
+  mode 00644
 end
 
 # setup ssh
@@ -65,39 +65,28 @@ remote_directory "/home/hadoop/.ssh" do
   group "hadoop"
   files_owner "hadoop"
   files_group "hadoop"
-  files_mode "0600"
-  mode "0700"
+  files_mode 00600
+  mode 00700
 end
 
 # create the install dir
-directory "#{node[:hadoop][:install_stage_dir]}" do
+directory node[:hadoop][:install_stage_dir] do
   owner "hadoop"
   group "hadoop"
   mode 00744
   recursive true
 end
 
-# download rpm
-remote_file "#{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.amd64.rpm" do
-  source "http://mirror.uoregon.edu/apache/hadoop/common/hadoop-#{node[:hadoop][:version]}/hadoop-#{node[:hadoop][:version]}-1.amd64.rpm"
-  owner "hadoop"
-  group "hadoop"
-  mode "0744"
-  not_if "test -f #{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.amd64.rpm"
-end
-
-# install rpm
+# install the hadoop rpm from our repo
 package "hadoop-#{node[:hadoop][:version]}-1.amd64" do
   action :install
-  source "#{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.amd64.rpm"
-  provider Chef::Provider::Package::Rpm
 end
 
 # manage hadoop configs
 %w[core-site.xml fair-scheduler.xml hadoop-env.sh hadoop-policy.xml hdfs-site.xml mapred-site.xml masters slaves taskcontroller.cfg].each do |template_file|
   template "/etc/hadoop/#{template_file}" do
     source "hadoop-conf/#{template_file}"
-    mode "0755"
+    mode 00755
     variables(
       :namenode => hadoop_namenode,
       :jobtracker => hadoop_jobtracker,
@@ -118,7 +107,7 @@ end
 file "/etc/security/limits.d/123hadoop.conf" do
   owner "root"
   group "root"
-  mode "0644"
+  mode 00644
   content "hadoop  -       nofile  32768"
   action :create
 end
