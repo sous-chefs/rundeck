@@ -1,5 +1,4 @@
-
 # location of the config distributor
-default[:wt_heatmap][:config_distrib] = "none"
-default[:wt_heatmap][:heatmap_reducers] = -1
+default['wt_heatmap']['config_distrib'] = ""
+default['wt_heatmap']['heatmap_reducers'] = -1
 

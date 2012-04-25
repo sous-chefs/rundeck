@@ -17,14 +17,12 @@
 # limitations under the License.
 #
 
-
 include_recipe "hadoop"
 
 directory "/var/lib/hadoop/mapred" do
   owner "hadoop"
   group "hadoop"
-  mode "0700"
+  mode 00700
   recursive true
   action :create
 end
-

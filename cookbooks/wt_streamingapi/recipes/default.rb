@@ -72,7 +72,7 @@ template "#{install_dir}/bin/#{template_file}" do
     end
 end
 
-%w[streaming.properties].each do | template_file|
+%w[streaming.properties netty.properties].each do | template_file|
   template "#{install_dir}/conf/#{template_file}" do
 	source	"#{template_file}.erb"
 	owner "root"
@@ -81,6 +81,7 @@ end
     variables({
         :authentication_url => node[:authentication_url],
         :install_dir => install_dir,
+        :port => node[:port]
     })
 	end 
 end 
