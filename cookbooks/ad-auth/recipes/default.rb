@@ -27,7 +27,15 @@
 end
 
 package "psmisc"
-package "likewise-open"
+
+#Install likewise-open and use --force-yes to avoid issues with unsigned packages on Ubuntu
+package "likewise-open" do
+	action :install
+	version "6.1.0-2"
+	if node.platform == "ubuntu"
+		options "--force-yes"
+	end
+end
 
 # Pull the necessary creds from the appropriate authorization databag depending on the ad_network attribute
 ad_config = data_bag_item('authorization', node[:authorization][:ad_auth][:ad_network])
