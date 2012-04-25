@@ -19,6 +19,11 @@
 
 # Restart hp-snmp-agents later. it is buggy and has issues with its own libraries when started on package installation
 
+#Exit the recipe if the sda drive doesn't have a vendor of HP.  This appears to be the only way to find HP hardware
+if node[:block_device][:sda][:vendor] != "HP" do
+	return
+end
+
 include_recipe snmp
 
 service "hp-snmp-agents" do
@@ -46,7 +51,7 @@ cookbook_file "/opt/hp/hpsmh/conf/smhpd.xml" do
   source "smhpd.xml"
   owner "root"
   group "root"
-  mode 0644
+  mode 00644
   notifies :restart, resources(:service => "hpsmhd")
 end
 
@@ -54,7 +59,7 @@ cookbook_file "/etc/snmp/snmpd.conf" do
   source "snmpd.conf"
   owner "root"
   group "root"
-  mode 0644
+  mode 00644
   notifies :restart, resources(:service => "snmpd")
 end
 
