@@ -12,9 +12,6 @@ installdir = node['wt_common']['installdir_windows']
 archive_url = node['wt_common']['archive_server']
 install_url = node['wt_common']['install_server']
 
-v1_install_url = node['wt_dx']['v1_url']
-v1_installdir = node['wt_dx']['v1_1']['dir']
-
 v2_install_url = node['wt_dx']['v2_url']
 v2_installdir = node['wt_dx']['v2']['dir']
 
