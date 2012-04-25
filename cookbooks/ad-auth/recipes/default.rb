@@ -83,7 +83,7 @@ end
 # Build the registry file that contains likewise config options
 template "/etc/likewise/lsassd.reg" do
   source "lsassd.reg.erb"
-  mode "0644"
+  mode 00644
   variables(
     :ad_membership_required => ad_config['membership_required']
   )
@@ -96,5 +96,5 @@ cookbook_file "nsswitch.conf" do
   path "/etc/nsswitch.conf"
   owner "root"
   group "root"
-  mode 0644
+  mode 00644
 end
