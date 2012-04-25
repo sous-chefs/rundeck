@@ -1,5 +1,5 @@
 = DESCRIPTION:
-Installs heatmaps
+Installs Webtrends heatmaps
 
 = REQUIREMENTS:
 
