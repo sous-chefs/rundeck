@@ -1,14 +1,13 @@
-logdir = node['wt_common']['logdir']
-installdir = node['wt_common']['installdir']
+logdir = node['wt_common']['log_dir_windows']
+installdir = node['wt_common']['install_dir_windows']
 archive_url = node['wt_common']['archive_server']
-
 master_host = node['wt_common']['master_host']
-
 common_install_url = node['wt_commonlib']['common_install_url']
 msi_name = node['wt_commonlib']['commonlib_msi']
 
 directory logdir do
 	action :create
+	recursive true
 end
 
 remote_file "#{Chef::Config[:file_cache_path]}\\#{msi_name}" do
@@ -25,7 +24,6 @@ http_request "HEAD #{archive_url}" do
   end
   notifies :create, resources(:remote_file => "#{Chef::Config[:file_cache_path]}\\#{msi_name}"), :immediately
 end
-
 
 windows_package "WebTrends Common Lib" do
         source "#{Chef::Config[:file_cache_path]}\\#{msi_name}"
