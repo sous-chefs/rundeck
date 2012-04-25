@@ -109,8 +109,8 @@ end
 
 # set perms on hadoop startup scripts since the rpm has them wrong
 %w[start-dfs.sh stop-dfs.sh start-mapred.sh stop-mapred.sh slaves.sh].each do |file_name|
-  execute "fix perms on #{file_name}" do
-    command "chmod 0555 /usr/sbin/#{file_name}"
+  file "/usr/sbin/#{file_name}" do
+    mode 00555
   end
 end
 
