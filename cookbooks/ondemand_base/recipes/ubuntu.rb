@@ -73,7 +73,7 @@ end
 file "/etc/sudoers.d/nrpe" do
 	owner "root"
 	group "root"
-	mode "0440"
+	mode 00440
 	content "nagios	ALL=NOPASSWD: ALL"
 	action :create
 end
@@ -121,12 +121,8 @@ if auth_config['alternate_user']
 	end
 end
 
-#Install likewise-open with a force-yes so it ignores the fact that the package isn't signed
-package "likewise-open" do
-  options "--force-yes"
-  version "6.1.0-2"
-  action :install
-end
-
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
+
+#Install VMware tools if no version is present
+include_recipe "vmware-tools"
