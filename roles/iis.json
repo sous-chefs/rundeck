@@ -1,5 +1,5 @@
 {
-  "name": "IIS",
+  "name": "iis",
   "default_attributes": {
     "iis": {
       "accept_eula": true
