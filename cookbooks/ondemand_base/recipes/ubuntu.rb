@@ -121,13 +121,6 @@ if auth_config['alternate_user']
 	end
 end
 
-#Install likewise-open with a force-yes so it ignores the fact that the package isn't signed
-package "likewise-open" do
-  options "--force-yes"
-  version "6.1.0-2"
-  action :install
-end
-
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
 
