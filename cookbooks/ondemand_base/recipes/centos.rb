@@ -56,6 +56,7 @@ include_recipe "resolver"
 
 # Sets up runeck private keys
 include_recipe "rundeck"
+
 #Add the Webtrends Yum repo
 node['ondemand_base']['yum'].each do |yumrepo|
 	yum_repository yumrepo['name'] do
@@ -70,7 +71,7 @@ end
 file "/etc/sudoers.d/nrpe" do
   owner "root"
   group "root"
-  mode "0440"
+  mode 00440
   content "nrpe       ALL=NOPASSWD: ALL"
   action :create
 end
@@ -128,4 +129,7 @@ include_recipe "ad-auth"
 
 #Allow for hardware monitoring (CentOS only goes on hardware systems)
 include_recipe "snmp"
+
+#Install VMware tools if no version is present
+include_recipe "vmware-tools"
 
