@@ -54,20 +54,20 @@
             }
         }, 
         "wt_common": {
-            "cassandra_host": "cas.staging.dmz",
+            "cassandra_host": "cassandra.staging.dmz", 
             "cassandra_meta_column": "F_Meta", 
             "cassandra_report_column": "F_Report", 
             "cassandra_snmp_comm": "StagingRO", 
             "cassandra_snmp_port": "", 
             "cassandra_thrift_port": "", 
-            "config_dir_linux": "/etc/webtrends/",
-            "install_dir_windows": "d:\\wrs",
-            "install_dir_linux": "/opt/webtrends/",
+            "config_dir_linux": "/etc/webtrends/", 
+            "install_dir_linux": "/opt/webtrends/", 
+            "install_dir_windows": "d:\\wrs", 
+            "install_log_dir_linux": "/var/log/webtrends/install", 
+            "install_log_dir_windows": "d:\\logs", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "install_log_dir_windows": "d:\\logs",
-            "install_log_dir_linux": "/var/log/webtrends/install" ,
-            "log_dir_windows": "",
-            "log_dir_linux": "/var/log/webtrends/",
+            "log_dir_linux": "/var/log/webtrends/", 
+            "log_dir_windows": "", 
             "master_host": "fmasterdb01", 
             "rta_host": "frta01.staging.dmz", 
             "sched_host": "fmasterdb01", 
@@ -104,14 +104,14 @@
     "override_attributes": {
         "java": {
             "install_flavor": "oracle", 
-            "jdk_version": "6",
-	    "jdk": {
+            "jdk": {
                 "6": {
                     "x86_64": {
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
                     }
-	        }
-	    }
+                }
+            }, 
+            "jdk_version": "6"
         }, 
         "memcached": {
             "memory": "1024"
@@ -121,10 +121,10 @@
         }, 
         "nagios": {
             "multi_environment_monitoring": "true", 
-            "server_role": "nagios_xi",
-            "nrpe":{
-	        "dont_blame_nrpe": "1"
-            }
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server_role": "nagios_xi"
         }, 
         "ntp": {
             "servers": [
