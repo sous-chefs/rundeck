@@ -1,3 +1,13 @@
+#
+# Cookbook Name:: wt_commonlib
+# Recipe:: default
+# Author:: Kendrick Martin
+#
+# Copyright 2012, Webtrends
+#
+# All rights reserved - Do Not Redistribute
+# This recipe installs the needed components to prepare machine for db_index exe
+
 logdir = node['wt_common']['log_dir_windows']
 installdir = node['wt_common']['install_dir_windows']
 archive_url = node['wt_common']['archive_server']
