@@ -27,7 +27,15 @@
 end
 
 package "psmisc"
-package "likewise-open"
+
+#Install likewise-open and use --force-yes to avoid issues with unsigned packages on Ubuntu
+package "likewise-open" do
+	action :install
+	version "6.1.0-2"
+	if node.platform == "ubuntu"
+		options "--force-yes"
+	end
+end
 
 # Pull the necessary creds from the appropriate authorization databag depending on the ad_network attribute
 ad_config = data_bag_item('authorization', node[:authorization][:ad_auth][:ad_network])
@@ -83,7 +91,7 @@ end
 # Build the registry file that contains likewise config options
 template "/etc/likewise/lsassd.reg" do
   source "lsassd.reg.erb"
-  mode "0644"
+  mode 00644
   variables(
     :ad_membership_required => ad_config['membership_required']
   )
@@ -96,5 +104,5 @@ cookbook_file "nsswitch.conf" do
   path "/etc/nsswitch.conf"
   owner "root"
   group "root"
-  mode 0644
+  mode 00644
 end
