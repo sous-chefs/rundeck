@@ -18,12 +18,10 @@
 #
 include_recipe "java"
 
-package "python-simplejson" do
-  action :install
-end
-
-package "python-cjson" do
-  action :install
+%w[python-simplejson python-cjson"].each do |pkg|
+  package pkg do
+    action :install
+  end
 end
 
 hadoop_namenode = search(:node, "role:hadoop_namenode AND chef_environment:#{node.chef_environment}")
@@ -39,7 +37,6 @@ hadoop_datanodes = Array.new
 search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment}").each do |n|
   hadoop_datanodes << n[:fqdn]
 end
-
 
 # setup hadoop group
 group "hadoop" do
@@ -76,7 +73,8 @@ end
 directory "#{node[:hadoop][:install_stage_dir]}" do
   owner "hadoop"
   group "hadoop"
-  mode "0744"
+  mode 00744
+  recursive true
 end
 
 # download rpm
@@ -88,14 +86,12 @@ remote_file "#{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:versio
   not_if "test -f #{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.amd64.rpm"
 end
 
-
 # install rpm
 package "hadoop-#{node[:hadoop][:version]}-1.amd64" do
   action :install
   source "#{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.amd64.rpm"
   provider Chef::Provider::Package::Rpm
 end
-
 
 # manage hadoop configs
 %w[core-site.xml fair-scheduler.xml hadoop-env.sh hadoop-policy.xml hdfs-site.xml mapred-site.xml masters slaves taskcontroller.cfg].each do |template_file|
@@ -110,7 +106,6 @@ end
     )
   end
 end
-
 
 # set perms on hadoop startup scripts since the rpm has them wrong
 %w[start-dfs.sh stop-dfs.sh start-mapred.sh stop-mapred.sh slaves.sh].each do |file_name|
