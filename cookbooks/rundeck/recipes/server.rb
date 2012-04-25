@@ -83,6 +83,11 @@ service "rundeck" do
   action :start
 end
 
+apache_site "000-default" do
+  enable false
+  notifies :reload, resources(:service => "apache2")
+end
+
 
 # load up the apache conf
 template "apache-config" do
