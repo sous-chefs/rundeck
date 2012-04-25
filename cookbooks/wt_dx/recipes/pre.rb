@@ -56,13 +56,13 @@ iis_site 'OEM_DX' do
 end
 
 
-windows_firewall 'DXWS' do
+wt_base_firewall 'DXWS' do
 	protocol "TCP"
 	port 80
 	action [:open_port]
 end
 
-windows_firewall 'OEM_DXWS' do
+wt_base_firewall 'OEM_DXWS' do
 	protocol "TCP"
 	port 81
 	action [:open_port]
