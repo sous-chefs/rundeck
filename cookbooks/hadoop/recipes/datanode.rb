@@ -28,6 +28,6 @@ there will be multiple drives and thus multiple data dirs on each drive.
   directory "#{dir}" do
     owner "hadoop"
     group "hadoop"
-    mode "0700"
+    mode 00700
   end
 end
