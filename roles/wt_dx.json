@@ -1,5 +1,5 @@
 {
-  "name": "wt_DX",
+  "name": "wt_dx",
   "description": "",
   "json_class": "Chef::Role",
   "default_attributes": {
@@ -15,7 +15,7 @@
   },
   "chef_type": "role",
   "run_list": [
-    "role[IIS]",
+    "role[iis]",
     "role[wt_commonlib]",
     "recipe[ms_dotnet35]",
     "recipe[vc2010]",
