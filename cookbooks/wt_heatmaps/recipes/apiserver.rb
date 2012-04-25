@@ -10,33 +10,14 @@
 #Install nginx
 include_recipe "nginx"
 
-=begin
-
-we need a deb repo
-
-
-# install heatmap deb
-cookbook_file "/usr/local/share/heatmaps_0.0.1_amd64.deb" do
-  source "heatmaps_0.0.1_amd64.deb"
-  owner "root"
-  group "root"
-  mode 0644
+package "heatmaps_#{node['wt_heatmaps']['heatmaps_version']}_amd64.deb" do
+	action :install
 end
-
-Execute "install-heatmaps" do
-  command "dpkg -i /usr/local/share/heatmaps_0.0.1_amd64.deb"
-  action :run
-  not_if "dpkg --list | grep heatmap"
-end
-
-=end
-
 
 thriftservers = Array.new
 search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment}").each do |n|
     thriftservers << n[:fqdn]
 end
-
 
 template "/var/lib/php5/thriftservers.php" do
   source "apiserver/thriftservers.php"
@@ -49,7 +30,6 @@ template "/var/lib/php5/thriftservers.php" do
 end
 
 # setup webserver
-
 template "#{node[:nginx][:dir]}/sites-available/apiserver" do
   source "apiserver/apiserver"
   owner "root"

@@ -8,22 +8,12 @@
 # All rights reserved - Do Not Redistribute
 # This recipe sets up the base configuration for DX
 
-installdir = node['wt_common']['installdir_windows']
+installdir = node['wt_common']['install_dir_windows']
 install_logdir = node['wt_common']['install_logdir_windows']
 cfg_cmds = node['wt_dx']['cfg_cmd']
 
 directory install_logdir do
 	action :create
-end
-
-windows_registry 'HKLM\Software\WebTrends Corporation' do
-	values 'isHosted' => 1, 'IsHostedAdToggle' => 1
-	action [:create]
-end
-
-windows_registry 'HKLM\SOFTWARE\Wow6432Node\WebTrends Corporation' do
-	values 'isHosted' => 1, 'IsHostedAdToggle' => 1
-	action [:create]
 end
 
 ruby_block "deflate_flag" do
