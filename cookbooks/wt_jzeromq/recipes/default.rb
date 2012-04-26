@@ -8,7 +8,7 @@
 #
 
 include_recipe "wt_zeromq"
-include_recipe "java::oracle"
+include_recipe "java"
 
 node[:wt_jzeromq][:build_pkgs].each do |pkg|
   package pkg do
