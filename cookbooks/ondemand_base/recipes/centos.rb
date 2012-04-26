@@ -76,7 +76,7 @@ file "/etc/sudoers.d/nrpe" do
   action :create
 end
 
-#include_recipe "nagios::client"
+include_recipe "nagios::client"
 
 #User experience and tools recipes
 
