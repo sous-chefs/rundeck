@@ -18,11 +18,21 @@
 # limitations under the License.
 #
 
-%w{
-  nagios-nrpe-server
-  nagios-plugins
-  nagios-plugins-basic
-  nagios-plugins-standard
-}.each do |pkg|
-  package pkg
+case platform
+when "centos" "redhat" "fedora" "amazon" "scientific"
+  %w{
+    nrpe
+    nagios-plugins
+  }.each do |pkg|
+    package pkg
+  end
+else
+  %w{
+    nagios-nrpe-server
+    nagios-plugins
+    nagios-plugins-basic
+    nagios-plugins-standard
+  }.each do |pkg|
+    package pkg
+  end
 end
