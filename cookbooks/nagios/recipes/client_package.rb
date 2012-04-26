@@ -18,8 +18,7 @@
 # limitations under the License.
 #
 
-case platform
-when "centos" "redhat" "fedora" "amazon" "scientific"
+if platform?("centos" "redhat" "fedora" "amazon" "scientific")
   %w{
     nrpe
     nagios-plugins
