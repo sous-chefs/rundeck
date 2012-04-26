@@ -9,6 +9,13 @@
 
 include_recipe "wt_jzeromq"
 
+node[:wt_storm][:build_pkgs].each do |pkg|
+  package pkg do
+    action :install
+    provider Chef::Provider::Package::Apt
+  end
+end
+
 cookbook_file "/tmp/storm-#{node[:wt_storm][:version]}.tar.gz" do
   source "storm-#{node[:wt_storm][:version]}.tar.gz"
   mode   0644
