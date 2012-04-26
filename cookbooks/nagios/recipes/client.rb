@@ -66,6 +66,14 @@ template "#{node['nagios']['nrpe']['conf_dir']}/nrpe.cfg" do
 end
 
 service "nagios-nrpe-server" do
+  case node[:platform]
+   when "centos", "redhat", "fedora", "scientific", "amazon"
+     if node['nagios']['client']['install_method'] == "package"
+       service_name "nrpe"
+     end
+   else
+     service_name "nagios-nrpe-server"
+  end
   action [:start, :enable]
   supports :restart => true, :reload => true
 end
