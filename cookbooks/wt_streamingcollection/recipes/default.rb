@@ -12,14 +12,19 @@ include_recipe "runit"
 log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingcollection")
 install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingcollection")
 
-port         = node['wt_streamingcollection']['port']
-tarball      = node[:tarball]
-java_home    = node[:java_home]
-download_url = node[:download_url]
+port         = node[:wt_streamingcollection][:port]
+tarball      = node[:wt_streamingcollection][:tarball]
+java_home    = node[:wt_streamingcollection][:java_home]
+download_url = node[:wt_streamingcollection][:download_url]
+dcsid_url = node[:wt_configdistrib][:dcsid_url]
+user = node[:wt_streamingcollection][:user]
+group = node[:wt_streamingcollection][:group]
 
 zk_host      = node['zookeeper']['quorum'][0]
 zk_port      = node['zookeeper']['clientPort']
 
+graphite_server = node[:graphite][:server]
+graphite_port = node[:graphite][:port]
 
 execute "install-java" do
   user "root"
@@ -29,8 +34,8 @@ execute "install-java" do
 end
 
 directory "#{log_dir}" do
-  owner   "#{node[:user]}"
-  group   "#{node[:group]}"
+  owner   user
+  group   group
   mode    "0755"
   recursive true
   action :create
@@ -64,7 +69,8 @@ template "#{install_dir}/bin/streamingcollection.sh" do
     variables({
                 :log_dir => log_dir,
                 :install_dir => install_dir,
-                :java_home => java_home
+                :java_home => java_home,
+		:user => user
               })
 end
 
@@ -94,8 +100,10 @@ template "#{install_dir}/conf/config.properties" do
   group   "root"
   mode    "0644"
   variables({
-              :server_url => "file://#{install_dir}/conf/dcsid.whitelist"
-            })
+    :server_url => dcsid_url,
+    :graphite_server => graphite_server,
+    :graphite_port => graphite_port
+  })
 end
 
 execute "delete_install_source" do
