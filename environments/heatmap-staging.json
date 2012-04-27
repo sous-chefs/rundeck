@@ -173,6 +173,10 @@
         "wt_streamingcollection": {
             "port": 80
         }, 
+        "wt_streamingapi": {
+            "port": 8080,
+            "authentication_url": "http://10.164.14.22/camservice"
+        },
         "zookeeper": {
             "clientPort": 2181, 
             "dataDir": "/var/lib/zookeeper", 
