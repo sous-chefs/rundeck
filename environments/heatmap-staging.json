@@ -175,10 +175,10 @@
             "heatmap_reducers": -1
         }, 
         "wt_streamingcollection": {
-            "port": 8080,
+            "port": 8080
         }, 
         "wt_streamingapi": {
-            "port": 8080,
+            "port": 8080
         },
         "wt_camservice": { 
             "url": "http://vdx01/camservice"
