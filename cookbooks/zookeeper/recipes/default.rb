@@ -78,7 +78,7 @@ end
     owner "zookeeper"
     group "zookeeper"
     variables({
-    	:servers => search(:node, "recipes:zookeeper AND chef_environment:#{node.chef_environment}")
+    	:quorum => node[:zookeeper][:quorum]
     })
   end
 end
