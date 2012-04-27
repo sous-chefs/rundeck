@@ -21,17 +21,23 @@ end
 
 log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "streamingapi")
 install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "streamingapi")
-tarball     = node[:tarball]
-download_url = node[:download_url]
-java_home   = node[:java_home]
+tarball     = node[:wt_streamingapi][:tarball]
+download_url = node[:wt_streamingapi][:download_url]
+java_home   = node[:wt_streamingapi][:java_home]
+port = node[:wt_streamingapi][:port]
+cam_url = node[:wt_camservice][:url]
+user = node[:wt_streamingapi][:user]
+group = node[:wt_streamingapi][:group]
+graphite_server = node[:graphite][:server]
+graphite_port = node[:graphite][:port]
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
 
 directory "#{log_dir}" do
-    owner   "#{node[:user]}"
-    group   "#{node[:group]}"
+    owner   user
+    group   group
     mode    "0755"
     recursive true
     action :create
@@ -67,7 +73,8 @@ template "#{install_dir}/bin/#{template_file}" do
     variables({
         :log_dir => log_dir,
         :install_dir => install_dir,
-        :java_home => java_home
+        :java_home => java_home,
+        :user => user
     })
     end
 end
@@ -76,12 +83,14 @@ end
   template "#{install_dir}/conf/#{template_file}" do
 	source	"#{template_file}.erb"
 	owner "root"
-    group "root"
-    mode  "0755"
-    variables({
-        :authentication_url => node[:authentication_url],
+	group "root"
+	mode  "0644"
+	variables({
+        :cam_url => cam_url,
         :install_dir => install_dir,
-        :port => node[:port]
+        :port => port,
+	:graphite_server => graphite_server,
+        :graphite_port => graphite_port
     })
 	end 
 end 
