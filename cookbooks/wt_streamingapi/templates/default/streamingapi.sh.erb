@@ -3,7 +3,7 @@
 # Setup basic path information.
 EXEC=/usr/bin/jsvc 
 MAIN=com.webtrends.streaming.websocket.StreamingAPIDaemon
-USER="<%= node[:user] %>"
+USER="<%= @user %>"
 LOG_PID="<%=File.join(@log_dir,"streaming-api.pid")%>"
 LOG_OUT="<%=File.join(@log_dir,"streaming-api.out")%>"
 LOG_ERR="<%=File.join(@log_dir,"streaming-api.err")%>"

@@ -3,7 +3,7 @@
 # Setup basic path information.
 EXEC=/usr/bin/jsvc 
 MAIN=com.webtrends.streaming.CollectionDaemon
-USER="<%= node[:user] %>"
+USER="<%= @user %>"
 LOG_PID="<%=File.join(@log_dir,"streamingcollection.pid")%>"
 LOG_OUT="<%=File.join(@log_dir,"streamingcollection.out")%>"
 LOG_ERR="<%=File.join(@log_dir,"streamingcollection.err")%>"
