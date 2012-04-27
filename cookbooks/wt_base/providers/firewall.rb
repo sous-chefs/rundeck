@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: windows
+# Cookbook Name:: wt_base
 # Provider:: firewall 
 # Author: Kendrick Martin
 #

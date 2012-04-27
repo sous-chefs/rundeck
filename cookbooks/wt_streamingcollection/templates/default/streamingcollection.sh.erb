@@ -21,6 +21,19 @@ for jar in `ls $HOME_DIR/lib/*`; do
     fi
 done
 
+# Add the JMX options.
+if [ -z "$JMX_OPTS"]; then
+    JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false "
+fi
+
+# Add the JMX port.
+if [ -z "$JMX_PORT" ]; then
+    JMX_PORT="9999"
+fi
+
+# Add JMX options and port together.
+JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
+
 # Add all configuration files to the classpath.
 for conf in `ls $HOME_DIR/conf/*`; do
     if [ "" = "$CP" ]; then
@@ -31,7 +44,7 @@ for conf in `ls $HOME_DIR/conf/*`; do
 done
 
 # Create the JSVC command line.
-CMD="$EXEC -home <%=@java_home%> -cp $CP -user $USER -outfile $LOG_OUT -errfile $LOG_ERR -pidfile $LOG_PID -Dcom.webtrends.log.dir=<%=@log_dir%>"
+CMD="$EXEC -home <%=@java_home%> -cp $CP -user $USER -outfile $LOG_OUT -errfile $LOG_ERR -pidfile $LOG_PID -Dcom.webtrends.log.dir=<%=@log_dir%> $JMX_OPTS"
 
 # Check what the caller wants.
 case "$1" in
