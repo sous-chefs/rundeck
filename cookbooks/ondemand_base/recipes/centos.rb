@@ -68,12 +68,16 @@ node['ondemand_base']['yum'].each do |yumrepo|
 end
 
 #Setup NRPE to run sudo w/o a password
-file "/etc/sudoers.d/nrpe" do
+file "/etc/sudoers.d/nagios" do
   owner "root"
   group "root"
   mode 00440
   content "nrpe       ALL=NOPASSWD: ALL"
   action :create
+end
+
+file "/etc/sudoers.d/nrpe" do 
+  action :delete
 end
 
 include_recipe "nagios::client"
