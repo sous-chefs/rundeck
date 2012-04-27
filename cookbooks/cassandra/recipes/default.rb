@@ -1,6 +1,6 @@
 #
 # Author:: David Dvorak (<david.dvorak@webtrends.com>)
-# Cookbook Name:: wt_cassandra
+# Cookbook Name:: cassandra
 # Recipe:: default
 #
 # Copyright 2012, Webtrends Inc.
@@ -8,7 +8,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-build_uri = node['wt_cassandra']['build_uri']
+build_uri = node['cassandra']['build_uri']
 if (build_uri =~ /\/([^\/]*)$/)
 	rpmfile = $1
 end
@@ -34,4 +34,3 @@ file "apache-cassandra1" do
 	path "#{Chef::Config[:file_cache_path]}/#{rpmfile}"
 	action :delete
 end
-
