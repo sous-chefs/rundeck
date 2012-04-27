@@ -166,16 +166,25 @@
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
         }, 
+        "graphite": {
+            "server": "sgraph01.staging.dmz",
+            "port": 2003
+        },
         "wt_heatmap": {
             "config_distrib": "vcd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
         "wt_streamingcollection": {
-            "port": 80
+            "port": 8080,
         }, 
         "wt_streamingapi": {
             "port": 8080,
-            "authentication_url": "http://10.164.14.22/camservice"
+        },
+        "wt_camservice": { 
+            "url": "http://vdx01/camservice"
+        },
+        "wt_configdistrib": { 
+            "dcsid_url": "http://vcd01:8097/config/dcsid2account"
         },
         "zookeeper": {
             "clientPort": 2181, 
