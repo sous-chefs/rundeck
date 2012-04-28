@@ -5,6 +5,8 @@ Applies base OS setup for Ubuntu, Windows, and CentOS systems
 
 Changelog:
 
+1.4 (currently in development):
+
 1.3:
 * Installs vmware-tools
 * Installs and configures NRPE including configuration of nrpe.cfg and installation of plugins
