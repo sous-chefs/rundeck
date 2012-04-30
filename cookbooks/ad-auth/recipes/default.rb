@@ -36,7 +36,7 @@ package "likewise-open" do
 		version "6.1.0-2"
 	end
 	if node.platform == "centos"
-		version "6.1.0"
+		version "6.1.0-2.UNKNOWN.8780"
 	end
 end
 
