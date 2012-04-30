@@ -31,9 +31,12 @@ package "psmisc"
 #Install likewise-open and use --force-yes to avoid issues with unsigned packages on Ubuntu
 package "likewise-open" do
 	action :install
-	version "6.1.0-2"
 	if node.platform == "ubuntu"
 		options "--force-yes"
+		version "6.1.0-2"
+	end
+	if node.platform == "centos"
+		version "6.1.0"
 	end
 end
 
