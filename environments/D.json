@@ -127,8 +127,12 @@
             "multi_environment_monitoring": "true", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
-            }, 
-            "server_role": "nagios_xi"
+            },
+            "client": {
+                "install_method": "package"
+            },
+            "server_role": "nagios_xi",
+            
         }, 
         "ntp": {
             "servers": [
@@ -149,6 +153,11 @@
             "community": "DevOps", 
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
-        }
+       },
+       "esx": {
+           "repo": "http://repo.staging.dmz/repo/linux/vmware",
+           "tarball": "VMwareTools-8.6.5-652272.tar.gz",
+           "checksum": "6127d1fbd6fcf6cda7d06c8fd4720405"
+       }
     }
 }
