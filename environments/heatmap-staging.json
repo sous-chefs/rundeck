@@ -143,7 +143,10 @@
             "multi_environment_monitoring": "true", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
-            }, 
+            },
+            "client": {
+                "install_method": "package"
+            },
             "server_role": "nagios_xi"
         }, 
         "ntp": {
@@ -201,6 +204,11 @@
             "snapshotNum": 3, 
             "syncLimit": 5, 
             "tickTime": 2000
-        }
+       },
+       "esx": {
+           "repo": "http://repo.staging.dmz/repo/linux/vmware",
+           "tarball": "VMwareTools-8.6.5-652272.tar.gz",
+           "checksum": "6127d1fbd6fcf6cda7d06c8fd4720405"
+       }
     }
 }
