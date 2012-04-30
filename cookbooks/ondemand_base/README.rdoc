@@ -2,6 +2,10 @@
 
 Applies base OS setup for Ubuntu, Windows, and CentOS systems
 
+Todo:
+* Set chef-client to run under runit
+* Include the delete-validation recipe with chef-client to delete the validation.pem file
+* Include dell-tools on Dell systems
 
 Changelog:
 
