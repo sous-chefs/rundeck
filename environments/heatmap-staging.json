@@ -204,6 +204,11 @@
             "snapshotNum": 3, 
             "syncLimit": 5, 
             "tickTime": 2000
-        }
+       },
+       "esx": {
+           "repo": "http://repo.staging.dmz/repo/linux/vmware",
+           "tarball": "VMwareTools-8.6.5-652272.tar.gz",
+           "checksum": "a495c580eee4b94d92b213e8189c4ec2"
+       }
     }
 }
