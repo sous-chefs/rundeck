@@ -87,7 +87,7 @@
                 "replication": 3
             }, 
             "env": {
-                "HADOOP_HEAPSIZE": 1000, 
+                "HADOOP_HEAPSIZE": 4000, 
                 "HADOOP_OPTS": "", 
                 "java_net_preferIPv4Stack": "true"
             }, 
@@ -108,7 +108,7 @@
         }, 
         "hbase": {
             "env": {
-                "HBASE_HEAPSIZE": 1000, 
+                "HBASE_HEAPSIZE": 4000, 
                 "HBASE_MANAGES_ZK": "false"
             }, 
             "site": {
