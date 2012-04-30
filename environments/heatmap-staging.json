@@ -208,7 +208,7 @@
        "esx": {
            "repo": "http://repo.staging.dmz/repo/linux/vmware",
            "tarball": "VMwareTools-8.6.5-652272.tar.gz",
-           "checksum": "a495c580eee4b94d92b213e8189c4ec2"
+           "checksum": "6127d1fbd6fcf6cda7d06c8fd4720405"
        }
     }
 }
