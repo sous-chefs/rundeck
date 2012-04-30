@@ -143,7 +143,10 @@
             "multi_environment_monitoring": "true", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
-            }, 
+            },
+            "client": {
+                "install_method": "package"
+            },
             "server_role": "nagios_xi"
         }, 
         "ntp": {
