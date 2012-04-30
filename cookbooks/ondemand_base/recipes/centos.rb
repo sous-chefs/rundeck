@@ -10,7 +10,7 @@
 
 #Make sure that this recipe only runs on ubuntu systems
 if not platform?("centos")
-	Chef::Log.info("Platform CentOS required.")
+	Chef::Log.info("CentOS required for the CentOS recipe.")
 	return
 end
 
