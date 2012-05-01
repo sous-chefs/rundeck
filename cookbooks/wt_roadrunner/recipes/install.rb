@@ -33,51 +33,10 @@ share_cmd="net share wrs=#{install_dir} /grant:EVERYONE,FULL /remark:\"Set from 
 
 log("Source URL: #{build_url}") { level :info}
 
-# determine root drive of install_dir - ENG390500
-if (install_dir =~ /^(\w:)\\.*$/)
-	install_dir_drive = $1
-else
-	raise Chef::Exceptions::AttributeNotFound,
-		"could not determine install_dir_drive, please verify value of install_dir: #{install_dir}"
-end
-
-# create the install directory
-directory "#{install_dir}" do
-	recursive true
-	action :create
-end
-
-# set permissions for the service user to have read access to the install drive
-wt_base_icacls "#{install_dir_drive}" do
-	action :grant
-	user svcuser 
-	perm :read
-end
-
-# set permissions for the log readers group to have read access to the install directory
-wt_base_icacls "#{install_dir}" do
-	action :grant
-	user node['wt_common']['wrsread_group'] 
-	perm :read
-end
-
-# create the log directory
-directory "#{log_dir}" do
-	recursive true
-	action :create
-end
-
 # unzip the install package
 windows_zipfile "#{install_dir}" do
 	source "#{build_url}"
 	action :unzip	
-end
-
-# allow the service account to modify files in the log directory
-wt_base_icacls "#{log_dir}" do
-	action :grant
-	user svcuser 
-	perm :modify
 end
 
 template "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config" do
@@ -96,8 +55,7 @@ end
 
 execute "gac" do
 	command gac_cmd
-	cwd install_dir
-	not_if { node[:rr_configured]}
+	cwd install_dir	
 end
 
 # ruby code block to create the Windows service
@@ -119,15 +77,13 @@ end
 #Set the ACL up to allow http traffic on port 8097
 execute "netsh_urlacl" do
 	command urlacl_cmd
-	cwd install_dir
-	not_if { node[:rr_configured]}
+	cwd install_dir	
 end
 
 # Set the firewall to allow traffic into the system on port 8097
 execute "netsh_firewall" do
 	command firewall_cmd
 	cwd install_dir
-	not_if { node[:rr_configured]}
 end
 
 # share the install directory
