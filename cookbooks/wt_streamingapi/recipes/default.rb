@@ -79,7 +79,7 @@ template "#{install_dir}/bin/#{template_file}" do
     end
 end
 
-%w[streaming.properties netty.properties].each do | template_file|
+%w[monitoring.properties streaming.properties netty.properties].each do | template_file|
   template "#{install_dir}/conf/#{template_file}" do
 	source	"#{template_file}.erb"
 	owner "root"

@@ -1,26 +1,39 @@
 #!/bin/sh
 
 # Setup basic path information.
-EXEC=/usr/bin/jsvc 
-MAIN=com.webtrends.streaming.websocket.StreamingAPIDaemon
+JSVC=/usr/bin/jsvc
+JAVA_HOME=<%=@java_home%>
+APP_PATH=<%=@install_dir%>
+APP_NAME=streamingapi
+PID_FILE="<%=File.join(@log_dir,"streaming-api.pid")%>"
+LOG_FILE="<%=File.join(@log_dir,"streaming-api.out")%>"
+
+# Implements the jsvc Daemon interface.
+MAIN_CLASS=com.webtrends.streaming.websocket.StreamingAPIDaemon
 USER="<%= @user %>"
-LOG_PID="<%=File.join(@log_dir,"streaming-api.pid")%>"
-LOG_OUT="<%=File.join(@log_dir,"streaming-api.out")%>"
-LOG_ERR="<%=File.join(@log_dir,"streaming-api.err")%>"
-HOME_DIR="<%=@install_dir%>"
 
 # Setup classpath, initially empty.
-CP=""
+CLASSPATH=""
 
 # Add all .jar files to the classpath.
-for jar in `ls $HOME_DIR/lib/*`; do
-    if [ "" = "$CP" ]; then
-        CP=$jar 
+for jar in `ls $APP_PATH/lib/*`; do
+    if [ "" = "$CLASSPATH" ]; then
+        CLASSPATH=$jar 
     else
-        CP=$CP:$jar
+        CLASSPATH=$CLASSPATH:$jar
     fi
 done
 
+# Add all configuration files to the classpath.
+#for conf in `ls $APP_PATH/conf/*`; do
+#    if [ "" = "$CLASSPATH" ]; then
+#        CLASSPATH=$conf
+#    else
+#        CLASSPATH:$conf
+#    fi 
+#done
+
+# Setup JMX options
 if [ -z "$JMX_OPTS" ]; then
     JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false "
 fi
@@ -30,61 +43,81 @@ fi
 
 JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
 
-# Add all configuration files to the classpath.
-for conf in `ls $HOME_DIR/conf/*`; do
-    if [ "" = "$CP" ]; then
-        CP=$conf
-    else
-        CP=$CP:$conf
-    fi 
-done
+# Setup the java properties
+JAVA_PROPS="$JAVA_PROPS -Dcom.webtrends.log.dir=<%=@log_dir%> "
 
-# Create the JSVC command line.
-CMD="$EXEC -home <%=@java_home%> -cp $CP -user $USER -outfile $LOG_OUT -errfile $LOG_ERR -pidfile $LOG_PID -Dcom.webtrends.log.dir=<%=@log_dir%> $JMX_OPTS"
- 
-# Check what the caller wants.
+# Setup the JSVC args
+JSVC_ARGS="-home $JAVA_HOME \
+-wait 20 \
+-pidfile $PID_FILE \
+-procname jsvc-$APP_NAME \
+-user $USER \
+-jvm server
+-outfile $LOG_FILE \
+-errfile &1"
+
+#
+# Stop/Start
+#
+
+STOP_COMMAND="$JSVC $JSVC_ARGS -stop $MAIN_CLASS"
+START_COMMAND="$JSVC $JSVC_ARGS -cp $CLASSPATH $JAVA_PROPS $JMX_OPTS $MAIN_CLASS"
+
+cd $APP_PATH || exit 1
+
 case "$1" in
     start)
-        if [ ! -f "$LOG_PID" ]; then
-            cd $HOME_DIR
-            echo $CMD $MAIN
-            `$CMD $MAIN`
-        else 
-            echo "Service already running! File $LOG_PID exists!"
-        fi
-        ;;
+      if [ -e "$PID_FILE" ]; then
+          echo "Pidfile already exists, not starting."
+          exit 1
+      else
+          echo "Starting $APP_NAME daemon..."
+          $START_COMMAND
+          EXIT_CODE=$?
+          if [ "$EXIT_CODE" != 0 ]; then
+        echo "Daemon exited with status: $EXIT_CODE. Check pidfile and log"
+          fi
+      fi
+      ;;
     stop)
-        if [ -f "$LOG_PID" ]; then
-            cd $HOME_DIR
-            `$CMD -stop $MAIN`
-        else
-            echo "Service not running? File $LOG_PID not exist."
-        fi 
-        ;;
-    status)
-        # Status is found via actual running processes, rather than
-        # trusting the PID log file.
-        FOUND=`ps -ef |grep $MAIN |grep -v grep`
-        if [ "" = "$FOUND" ]; then
-            echo "Not running"
-            exit 1
-        else
-            echo "Running"
-            exit 0
-        fi
-        ;;
+      if [ -e "$PID_FILE" ]; then
+          echo "Stopping $APP_NAME daemon..."
+          $STOP_COMMAND
+      else
+          echo "No pid file, not stopping."
+          exit 1
+      fi
+      ;;
     restart)
-        if [ -f "$LOG_PID" ]; then
-            cd $HOME_DIR
-            `$CMD -stop $MAIN`
-            `$CMD $MAIN`
-        else 
-            echo "Service not running? File $LOG_PID not found."
-            exit 1
-        fi
-        ;;
+      if [ -e "$PID_FILE" ]; then
+          echo "Stopping $APP_NAME daemon..."
+          $STOP_COMMAND
+      fi
+      if [ -e "$PID_FILE" ]; then
+          echo "Pidfile still present, $APP_NAME hasn't stopped"
+          exit 1
+      else
+          $START_COMMAND
+          EXIT_CODE=$?
+          if [ "$EXIT_CODE" != 0 ]; then
+        echo "Daemon exited with status: $EXIT_CODE. Check pidfile and log"
+          fi
+      fi
+      ;;
+    status)
+      if [ "$PID_FILE" ]; then
+          PID=`cat $PID_FILE`
+          OUTPUT=`ps $PID | egrep "^$PID "`
+          if [ ${#OUTPUT} -gt 0 ]; then
+        echo "Service running with pid: $PID"
+          else
+        echo "Pidfile present, but process not running"
+          fi
+      else
+          echo "No pidfile present"
+      fi
+      ;;
     *)
-        echo "usage: daemon {start|stop|status|restart}" >&2
-        exit 1
-        ;;
+      echo "Unrecognised command. Usage streamingapi [ start | stop | restart ]"
+      ;;
 esac
