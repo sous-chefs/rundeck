@@ -1,0 +1,115 @@
+#!/bin/sh
+
+# Setup basic path information.
+JSVC=/usr/bin/jsvc
+JAVA_HOME=<%=@java_home%>
+APP_PATH=<%=@install_dir%>
+APP_NAME=realtimeapi
+PID_FILE="<%=File.join(@log_dir,"realtime-api.pid")%>"
+LOG_FILE="<%=File.join(@log_dir,"realtime-api.out")%>"
+CONFIG_PATH=$APP_PATH/conf
+
+# Implements the jsvc Daemon interface.
+MAIN_CLASS=com.webtrends.realtime.server.RealtimeApiDaemon
+USER="<%= @user %>"
+
+# Setup classpath, initially empty.
+CLASSPATH=""
+
+# Add all .jar files to the classpath.
+for jar in `ls $APP_PATH/lib/*`; do
+    if [ "" = "$CLASSPATH" ]; then
+        CLASSPATH=$jar 
+    else
+        CLASSPATH=$CLASSPATH:$jar
+    fi
+done
+
+# Setup JMX options
+if [ -z "$JMX_OPTS" ]; then
+    JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false "
+fi
+if [ -z "$JMX_PORT" ]; then
+    JMX_PORT="9998"
+fi
+
+JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
+
+# Setup the java properties
+JAVA_PROPS="$JAVA_PROPS -Dcom.webtrends.log.dir=<%=@log_dir%> "
+
+# Setup the JSVC args
+JSVC_ARGS="-home $JAVA_HOME \
+-wait 20 \
+-pidfile $PID_FILE \
+-procname jsvc-$APP_NAME \
+-user $USER \
+-jvm server
+-outfile $LOG_FILE \
+-errfile &1"
+
+#
+# Stop/Start
+#
+
+STOP_COMMAND="$JSVC $JSVC_ARGS -stop $MAIN_CLASS"
+START_COMMAND="$JSVC $JSVC_ARGS -cp $CLASSPATH $JAVA_PROPS $JMX_OPTS $MAIN_CLASS $CONFIG_PATH"
+
+cd $APP_PATH || exit 1
+
+case "$1" in
+    start)
+      if [ -e "$PID_FILE" ]; then
+          echo "Pidfile already exists, not starting."
+          exit 1
+      else
+          echo "Starting $APP_NAME daemon..."
+          $START_COMMAND
+          EXIT_CODE=$?
+          if [ "$EXIT_CODE" != 0 ]; then
+        echo "Daemon exited with status: $EXIT_CODE. Check pidfile and log"
+          fi
+      fi
+      ;;
+    stop)
+      if [ -e "$PID_FILE" ]; then
+          echo "Stopping $APP_NAME daemon..."
+          $STOP_COMMAND
+      else
+          echo "No pid file, not stopping."
+          exit 1
+      fi
+      ;;
+    restart)
+      if [ -e "$PID_FILE" ]; then
+          echo "Stopping $APP_NAME daemon..."
+          $STOP_COMMAND
+      fi
+      if [ -e "$PID_FILE" ]; then
+          echo "Pidfile still present, $APP_NAME hasn't stopped"
+          exit 1
+      else
+          $START_COMMAND
+          EXIT_CODE=$?
+          if [ "$EXIT_CODE" != 0 ]; then
+        echo "Daemon exited with status: $EXIT_CODE. Check pidfile and log"
+          fi
+      fi
+      ;;
+    status)
+      if [ "$PID_FILE" ]; then
+          PID=`cat $PID_FILE`
+          OUTPUT=`ps $PID | egrep "^$PID "`
+          if [ ${#OUTPUT} -gt 0 ]; then
+        echo "Service running with pid: $PID"
+          else
+        echo "Pidfile present, but process not running"
+          fi
+      else
+          echo "No pidfile present"
+      fi
+      ;;
+    *)
+      echo "Unrecognised command. Usage realtimeapi [ start | stop | restart ]"
+      ;;
+esac

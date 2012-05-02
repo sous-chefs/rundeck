@@ -10,7 +10,7 @@
 
 #Make sure that this recipe only runs on ubuntu systems
 if not platform?("ubuntu")
-	Chef::Log.info("Platform Ubuntu required.")
+	Chef::Log.info("Ubuntu required for the Ubuntu recipe.")
 	return
 end
 

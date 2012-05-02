@@ -10,7 +10,7 @@
 
 #Make sure that this recipe only runs on Windows systems
 if not platform?("windows")
-	Chef::Log.info("Platform Windows required.")
+	Chef::Log.info("Windows required for the Windows recipe.")
 	return
 end
 

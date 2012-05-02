@@ -2,8 +2,10 @@
 d-i     apt-setup/local0/repository string http://apt.optlab.webtrends.corp/webtrends $os_version webtrends widemile 
 d-i     apt-setup/local0/key string http://apt.optlab.webtrends.corp/webtrends/repo.key
 #elif "staging.dmz" in $system_name.lower()
-d-i     apt-setup/local0/repository string http://apt.optlab.webtrends.corp/webtrends $os_version webtrends widemile 
-d-i     apt-setup/local0/key string http://apt.optlab.webtrends.corp/webtrends/repo.key
+d-i     apt-setup/local0/repository string http://repo.staging.dmz/repo/apt/webtrends $os_version main
+d-i     apt-setup/local0/key string http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key
+d-i     apt-setup/local0/repository string http://repo.staging.dmz/repo/apt/opscode $os_version-0.10 main
+d-i     apt-setup/local0/key string http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key
 #elif "netiq.dmz" in $system_name.lower()
 d-i     apt-setup/local0/repository string http://repo.netiq.dmz/ubuntu $os_version main 
 d-i     apt-setup/local0/key string http://repo.netiq.dmz/ubuntu/repo.gpg.key
