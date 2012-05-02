@@ -4,6 +4,7 @@
   "json_class": "Chef::Role",
   "description": "Heatmap API Server",
   "run_list": [
+    "recipe[nginx]",
     "recipe[php5-fcgi]",
     "recipe[wt_heatmaps::apiserver]",
     "recipe[thrift-hbase-php5]"
