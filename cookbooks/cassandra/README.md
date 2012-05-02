@@ -19,7 +19,7 @@ Cookbooks
 Attributes
 ==========
 
-* `node['wt_cassandra']['build_uri']` - fallback location of apache-cassandra1 rpm file.
+* `node['cassandra']['build_uri']` - fallback location of apache-cassandra1 rpm file.
 
 This attribute is not appart of wt_cassandra cookbook, but it's important.
 
@@ -36,4 +36,4 @@ Usage
 A role that makes use of this cookbook is recommended to have in following runlist:
 
 1. java - for installing Oracle Java
-2. wt_cassandra
+2. cassandra

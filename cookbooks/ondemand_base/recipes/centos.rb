@@ -10,7 +10,7 @@
 
 #Make sure that this recipe only runs on ubuntu systems
 if not platform?("centos")
-	Chef::Log.info("Platform CentOS required.")
+	Chef::Log.info("CentOS required for the CentOS recipe.")
 	return
 end
 
@@ -82,8 +82,6 @@ end
 
 include_recipe "nagios::client"
 
-#User experience and tools recipes
-
 # installs vim
 include_recipe "vim"
 
@@ -102,6 +100,11 @@ end
 service "iptables" do
 	action :stop
 	action :disable
+end
+
+#fprintd crashes every time someone tries to sudo.  Uninstall it
+%w{ fprintd libfprint }.each do |pkg|
+	package pkg
 end
 
 # Used for password string generation

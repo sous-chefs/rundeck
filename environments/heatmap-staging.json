@@ -1,6 +1,12 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {}, 
+    "cookbook_versions": {
+      "wt_heatmaps": "= 0.10.3",
+      "zookeeper": "= 1.0.0",
+      "hadoop": "= 1.0.0",
+      "hbase": "= 1.0.0",
+      "hive": "= 1.0.0"
+	}, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -87,7 +93,7 @@
                 "replication": 3
             }, 
             "env": {
-                "HADOOP_HEAPSIZE": 1000, 
+                "HADOOP_HEAPSIZE": 4000, 
                 "HADOOP_OPTS": "", 
                 "java_net_preferIPv4Stack": "true"
             }, 
@@ -108,7 +114,7 @@
         }, 
         "hbase": {
             "env": {
-                "HBASE_HEAPSIZE": 1000, 
+                "HBASE_HEAPSIZE": 4000, 
                 "HBASE_MANAGES_ZK": "false"
             }, 
             "site": {
@@ -143,7 +149,10 @@
             "multi_environment_monitoring": "true", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
-            }, 
+            },
+            "client": {
+                "install_method": "package"
+            },
             "server_role": "nagios_xi"
         }, 
         "ntp": {
@@ -180,6 +189,9 @@
         "wt_streamingapi": {
             "port": 8080
         },
+        "wt_realtimeapi": {
+            "port": 8082
+        },
         "wt_camservice": { 
             "url": "http://vdx01/camservice"
         },
@@ -201,6 +213,11 @@
             "snapshotNum": 3, 
             "syncLimit": 5, 
             "tickTime": 2000
-        }
+       },
+       "esx": {
+           "repo": "http://repo.staging.dmz/repo/linux/vmware",
+           "tarball": "VMwareTools-8.6.5-652272.tar.gz",
+           "checksum": "6127d1fbd6fcf6cda7d06c8fd4720405"
+       }
     }
 }
