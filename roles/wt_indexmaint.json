@@ -1,6 +1,6 @@
 {
   "name": "wt_indexmaint",
-  "description": "",
+  "description": "Webtrends VDM Index Maintenance Server",
   "json_class": "Chef::Role",
   "default_attributes": {
   },

@@ -1,6 +1,6 @@
 {
   "name": "ondemand_server",
-  "description": "",
+  "description": "On Demand Server",
   "json_class": "Chef::Role",
   "default_attributes": {
   },

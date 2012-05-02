@@ -28,26 +28,26 @@ end
 directory "/etc/collectd" do
   owner "root"
   group "root"
-  mode "755"
+  mode  00755
 end
 
 directory "/etc/collectd/plugins" do
   owner "root"
   group "root"
-  mode "755"
+  mode 00755
 end
 
 directory node[:collectd][:base_dir] do
   owner "root"
   group "root"
-  mode "755"
+  mode 00755
   recursive true
 end
 
 directory node[:collectd][:plugin_dir] do
   owner "root"
   group "root"
-  mode "755"
+  mode 00755
   recursive true
 end
 
@@ -56,7 +56,7 @@ end
     source "#{file}.conf.erb"
     owner "root"
     group "root"
-    mode "644"
+    mode 00644
     notifies :restart, resources(:service => "collectd")
   end
 end

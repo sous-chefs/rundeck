@@ -26,15 +26,17 @@ case node['platform']
 when "ubuntu","debian"
   set['nagios']['client']['install_method'] = 'package'
   set['nagios']['nrpe']['pidfile'] = '/var/run/nagios/nrpe.pid'
+  set['nagios']['nrpe']['home']              = "/usr/lib/nagios"
 when "redhat","centos","fedora","scientific"
   set['nagios']['client']['install_method'] = 'source'
   set['nagios']['nrpe']['pidfile'] = '/var/run/nrpe.pid'
+  set['nagios']['nrpe']['home']              = "/usr/lib64/nagios"
 else
   set['nagios']['client']['install_method'] = 'source'
   set['nagios']['nrpe']['pidfile'] = '/var/run/nrpe.pid'
+  set['nagios']['nrpe']['home']              = "/usr/lib/nagios"
 end
 
-set['nagios']['nrpe']['home']              = "/usr/lib/nagios"
 set['nagios']['nrpe']['conf_dir']          = "/etc/nagios"
 set['nagios']['nrpe']['dont_blame_nrpe']   = "0"
 set['nagios']['nrpe']['command_timeout']   = "60"
