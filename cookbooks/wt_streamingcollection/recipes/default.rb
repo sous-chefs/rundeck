@@ -36,7 +36,7 @@ end
 directory "#{log_dir}" do
   owner   user
   group   group
-  mode    "0755"
+  mode    00755
   recursive true
   action :create
 end
@@ -44,14 +44,14 @@ end
 directory "#{install_dir}/bin" do
   owner "root"
   group "root"
-  mode "0755"
+  mode 00755
   recursive true
   action :create
 end
 
 remote_file "/tmp/#{tarball}" do
   source download_url
-  mode "0644"
+  mode 00644
 end
 
 execute "tar" do
@@ -66,39 +66,39 @@ template "#{install_dir}/bin/streamingcollection.sh" do
   owner "root"
   group "root"
   mode  "0755"
-    variables({
-                :log_dir => log_dir,
-                :install_dir => install_dir,
-                :java_home => java_home,
-		:user => user
-              })
+  variables({
+    :log_dir => log_dir,
+    :install_dir => install_dir,
+    :java_home => java_home,
+    :user => user
+  })
 end
 
 template "#{install_dir}/conf/netty.properties" do
   source  "netty.properties.erb"
   owner   "root"
   group   "root"
-  mode    "0644"
+  mode    00644
   variables({
-              :port => port
-            })
+    :port => port
+  })
 end
 
 template "#{install_dir}/conf/kafka.properties" do
   source  "kafka.properties.erb"
   owner   "root"
   group   "root"
-  mode    "0644"
+  mode    00644
   variables({
-              :zk_connect => "#{zk_host}:#{zk_port}"
-            })
+    :zk_connect => "#{zk_host}:#{zk_port}"
+  })
 end
 
 template "#{install_dir}/conf/config.properties" do
   source  "config.properties.erb"
   owner   "root"
   group   "root"
-  mode    "0644"
+  mode    00644
   variables({
     :server_url => dcsid_url,
     :graphite_server => graphite_server,
@@ -115,8 +115,8 @@ end
 
 runit_service "streamingcollection" do
   options({
-            :log_dir => log_dir,
-            :install_dir => install_dir,
-            :java_home => java_home
-          })
+    :log_dir => log_dir,
+    :install_dir => install_dir,
+    :java_home => java_home
+  })
 end

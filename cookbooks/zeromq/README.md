@@ -1,5 +1,6 @@
 Description
 ===========
+Installs and configures ZeroMQ
 
 Requirements
 ============

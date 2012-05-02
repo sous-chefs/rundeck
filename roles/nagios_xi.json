@@ -3,7 +3,7 @@
    "recipe[nagios-xi]"
   ],
   "json_class": "Chef::Role",
-  "description": "",
+  "description": "Nagios XI Server",
   "override_attributes": {
   },
   "env_run_lists": {
