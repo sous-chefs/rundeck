@@ -8,6 +8,6 @@
   "run_list": [
     "recipe[wt_streamingapi]"
   ],
-  "description": "Streaming API Server",
+  "description": "Webtrends Streaming API Server",
   "chef_type": "role"
 }

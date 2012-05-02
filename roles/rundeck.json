@@ -10,7 +10,7 @@
     "recipe[postfix]",
     "recipe[rundeck::server]"
   ],
-  "description": "",
+  "description": "Rundeck",
   "chef_type": "role",
   "override_attributes": {
   }
