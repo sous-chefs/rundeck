@@ -7,6 +7,7 @@ APP_PATH=<%=@install_dir%>
 APP_NAME=realtimeapi
 PID_FILE="<%=File.join(@log_dir,"realtime-api.pid")%>"
 LOG_FILE="<%=File.join(@log_dir,"realtime-api.out")%>"
+CONFIG_PATH=$APP_PATH/conf
 
 # Implements the jsvc Daemon interface.
 MAIN_CLASS=com.webtrends.realtime.server.RealtimeApiDaemon
@@ -24,21 +25,12 @@ for jar in `ls $APP_PATH/lib/*`; do
     fi
 done
 
-# Add all configuration files to the classpath.
-#for conf in `ls $APP_PATH/conf/*`; do
-#    if [ "" = "$CLASSPATH" ]; then
-#        CLASSPATH=$conf
-#    else
-#        CLASSPATH:$conf
-#    fi 
-#done
-
 # Setup JMX options
 if [ -z "$JMX_OPTS" ]; then
     JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false "
 fi
 if [ -z "$JMX_PORT" ]; then
-    JMX_PORT="9999"
+    JMX_PORT="9998"
 fi
 
 JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
@@ -61,7 +53,7 @@ JSVC_ARGS="-home $JAVA_HOME \
 #
 
 STOP_COMMAND="$JSVC $JSVC_ARGS -stop $MAIN_CLASS"
-START_COMMAND="$JSVC $JSVC_ARGS -cp $CLASSPATH $JAVA_PROPS $JMX_OPTS $MAIN_CLASS"
+START_COMMAND="$JSVC $JSVC_ARGS -cp $CLASSPATH $JAVA_PROPS $JMX_OPTS $MAIN_CLASS $CONFIG_PATH"
 
 cd $APP_PATH || exit 1
 
