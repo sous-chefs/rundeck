@@ -104,7 +104,8 @@ if ENV["deploy_build"] == "true" then
   end
 
  powershell "create service" do
- 	code <<-EOH
+   environment({'serviceName' => #{	
+   code <<-EOH
  		$computer = gc env:computername
  		$class = "Win32_Service"
   	$method = "Create"
