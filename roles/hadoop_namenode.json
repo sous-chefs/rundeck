@@ -2,7 +2,7 @@
   "name": "hadoop_namenode",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Hadoop NameNode",
+  "description": "Hadoop Primary NameNode",
   "run_list": [
     "recipe[hadoop::namenode]",
     "recipe[hbase::hmaster]",
