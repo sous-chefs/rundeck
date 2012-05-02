@@ -12,7 +12,7 @@
     "recipe[iis]",
     "recipe[iis::mod_urlrewrite]"
   ],
-  "description": "A machine that is running IIS. ",
+  "description": "Microsoft IIS",
   "chef_type": "role",
   "override_attributes": {
   }

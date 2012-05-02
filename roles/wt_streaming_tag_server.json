@@ -2,7 +2,7 @@
   "name": "wt_streaming_tag_server",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Streaming Tag Server",
+  "description": "Webtrends Streaming Tag Server",
   "run_list": [
     "recipe[nginx]",
     "recipe[jetty]"

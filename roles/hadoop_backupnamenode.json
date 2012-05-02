@@ -2,7 +2,7 @@
   "name": "hadoop_backupnamenode",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Hadoop BackupNameNode",
+  "description": "Hadoop Backup NameNode",
   "run_list": [
     "recipe[hadoop::backupnamenode]"
   ],
