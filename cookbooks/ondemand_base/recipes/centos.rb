@@ -10,7 +10,7 @@
 
 #Make sure that this recipe only runs on ubuntu systems
 if not platform?("centos")
-	Chef::Log.info("Platform CentOS required.")
+	Chef::Log.info("CentOS required for the CentOS recipe.")
 	return
 end
 
@@ -68,17 +68,19 @@ node['ondemand_base']['yum'].each do |yumrepo|
 end
 
 #Setup NRPE to run sudo w/o a password
-file "/etc/sudoers.d/nrpe" do
+file "/etc/sudoers.d/nagios" do
   owner "root"
   group "root"
   mode 00440
-  content "nrpe       ALL=NOPASSWD: ALL"
+  content "nagios       ALL=NOPASSWD: ALL"
   action :create
 end
 
-include_recipe "nagios::client"
+file "/etc/sudoers.d/nrpe" do 
+  action :delete
+end
 
-#User experience and tools recipes
+include_recipe "nagios::client"
 
 # installs vim
 include_recipe "vim"
@@ -98,6 +100,11 @@ end
 service "iptables" do
 	action :stop
 	action :disable
+end
+
+#fprintd crashes every time someone tries to sudo.  Uninstall it
+%w{ fprintd libfprint }.each do |pkg|
+	package pkg
 end
 
 # Used for password string generation

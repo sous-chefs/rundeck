@@ -18,7 +18,7 @@
 #
 include_recipe "java"
 
-%w[python-simplejson python-cjson"].each do |pkg|
+%w[python-simplejson python-cjson].each do |pkg|
   package pkg do
     action :install
   end
@@ -78,8 +78,9 @@ directory node[:hadoop][:install_stage_dir] do
 end
 
 # install the hadoop rpm from our repo
-package "hadoop-#{node[:hadoop][:version]}-1.amd64" do
+package "hadoop" do
   action :install
+  version "1.0.0-1"
 end
 
 # manage hadoop configs
