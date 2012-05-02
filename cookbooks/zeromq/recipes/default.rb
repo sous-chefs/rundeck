@@ -16,7 +16,7 @@
 end
 
 remote_file "#{Chef::Config[:file_cache_path]}/zeromq-#{node[:][:version]}.tar.gz" do
-  source "#{node[:zeromq][:source_url]}/zeromq-#{node[:zeromq][:version]}.tar.gz"
+  source "#{node[:zeromq][:download_url]}/zeromq-#{node[:zeromq][:version]}.tar.gz"
   mode 00644
 end
 
