@@ -15,11 +15,9 @@
   end
 end
 
-cookbook_file "#{Chef::Config[:file_cache_path]}/zeromq-#{node[:][:version]}.tar.gz" do
-  source "zeromq-#{node[:zeromq][:version]}.tar.gz"
-  mode   00644
-  owner  "root"
-  group  "root"
+remote_file "#{Chef::Config[:file_cache_path]}/zeromq-#{node[:][:version]}.tar.gz" do
+  source "#{node[:zeromq][:source_url]}/zeromq-#{node[:zeromq][:version]}.tar.gz"
+  mode 00644
 end
 
 execute "tar" do
