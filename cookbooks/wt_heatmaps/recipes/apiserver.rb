@@ -7,9 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-#Install nginx
-include_recipe "nginx"
-
 package "heatmaps_#{node['wt_heatmaps']['heatmaps_version']}_amd64.deb" do
 	action :install
 end
