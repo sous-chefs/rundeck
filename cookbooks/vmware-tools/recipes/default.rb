@@ -30,6 +30,7 @@ if node['virtualization']['system'] == 'vmware'
     source "#{node['esx']['repo']}/#{node['esx']['tarball']}"
     checksum "#{node['esx']['checksum']}"
     mode "0644"
+    only_if "test ! -d /usr/lib/vmware-tools"
   end
 
   # install vmware-tools

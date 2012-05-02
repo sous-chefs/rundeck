@@ -20,7 +20,7 @@
 # Restart hp-snmp-agents later. it is buggy and has issues with its own libraries when started on package installation
 
 #Exit the recipe if the sda drive doesn't have a vendor of HP.  This appears to be the only way to find HP hardware
-if node[:block_device][:sda][:vendor] != "HP" do
+if node[:block_device][:sda][:vendor] != "HP" then
 	return
 end
 
