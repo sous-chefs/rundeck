@@ -1,6 +1,6 @@
 {
   "name": "wt_roadrunner",
-  "description": "Installs the RoadRunner service",
+  "description": "Webtrends RoadRunner service",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
