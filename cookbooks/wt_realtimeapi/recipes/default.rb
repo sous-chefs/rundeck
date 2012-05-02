@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_streamingapi
+# Cookbook Name:: wt_realtimeapi
 # Recipe:: default
 #
 # Copyright 2012, Webtrends
@@ -19,15 +19,15 @@ execute "install-java" do
     action :run
 end
 
-log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "streamingapi")
-install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "streamingapi")
-tarball     = node[:wt_streamingapi][:tarball]
-download_url = node[:wt_streamingapi][:download_url]
-java_home   = node[:wt_streamingapi][:java_home]
-port = node[:wt_streamingapi][:port]
+log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "realtimeapi")
+install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "realtimeapi")
+tarball     = node[:wt_realtimeapi][:tarball]
+download_url = node[:wt_realtimeapi][:download_url]
+java_home   = node[:wt_realtimeapi][:java_home]
+port = node[:wt_realtimeapi][:port]
 cam_url = node[:wt_camservice][:url]
-user = node[:wt_streamingapi][:user]
-group = node[:wt_streamingapi][:group]
+user = node[:wt_realtimeapi][:user]
+group = node[:wt_realtimeapi][:group]
 graphite_server = node[:graphite][:server]
 graphite_port = node[:graphite][:port]
 
@@ -64,7 +64,7 @@ execute "tar" do
 end
 
 #templates
-%w[streamingapi.sh].each do | template_file|
+%w[realtimeapi.sh].each do | template_file|
 template "#{install_dir}/bin/#{template_file}" do
     source  "#{template_file}.erb"
     owner "root"
@@ -79,7 +79,7 @@ template "#{install_dir}/bin/#{template_file}" do
     end
 end
 
-%w[monitoring.properties streaming.properties netty.properties].each do | template_file|
+%w[config.properties netty.properties].each do | template_file|
   template "#{install_dir}/conf/#{template_file}" do
 	source	"#{template_file}.erb"
 	owner "root"
@@ -102,7 +102,7 @@ execute "delete_install_source" do
     action :run
 end
 
-runit_service "streamingapi" do
+runit_service "realtimeapi" do
     options({
         :log_dir => log_dir,
         :install_dir => install_dir,

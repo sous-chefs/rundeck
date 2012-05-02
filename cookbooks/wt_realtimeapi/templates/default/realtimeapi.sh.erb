@@ -4,13 +4,13 @@
 JSVC=/usr/bin/jsvc
 JAVA_HOME=<%=@java_home%>
 APP_PATH=<%=@install_dir%>
-APP_NAME=streamingapi
-PID_FILE="<%=File.join(@log_dir,"streaming-api.pid")%>"
-LOG_FILE="<%=File.join(@log_dir,"streaming-api.out")%>"
+APP_NAME=realtimeapi
+PID_FILE="<%=File.join(@log_dir,"realtime-api.pid")%>"
+LOG_FILE="<%=File.join(@log_dir,"realtime-api.out")%>"
 CONFIG_PATH=$APP_PATH/conf
 
 # Implements the jsvc Daemon interface.
-MAIN_CLASS=com.webtrends.streaming.websocket.StreamingAPIDaemon
+MAIN_CLASS=com.webtrends.realtime.server.RealtimeApiDaemon
 USER="<%= @user %>"
 
 # Setup classpath, initially empty.
@@ -30,7 +30,7 @@ if [ -z "$JMX_OPTS" ]; then
     JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false "
 fi
 if [ -z "$JMX_PORT" ]; then
-    JMX_PORT="9999"
+    JMX_PORT="9998"
 fi
 
 JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
@@ -110,6 +110,6 @@ case "$1" in
       fi
       ;;
     *)
-      echo "Unrecognised command. Usage streamingapi [ start | stop | restart ]"
+      echo "Unrecognised command. Usage realtimeapi [ start | stop | restart ]"
       ;;
 esac
