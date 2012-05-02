@@ -9,7 +9,7 @@
             "sudo": {
                 "groups": [
                     "STAGINGDMZ\\\\domain-admins", 
-                    "STAGINGDMZ\\\\d.admins"
+                    "STAGINGDMZ\\\\b.admins"
                 ], 
                 "passwordless": false, 
                 "users": [
@@ -52,60 +52,12 @@
             "x86": {
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
-        }, 
-        "wt_common": {
-            "cassandra_host": "cassandra.staging.dmz", 
-            "cassandra_meta_column": "D_Meta", 
-            "cassandra_report_column": "D_Report", 
-            "cassandra_snmp_comm": "StagingRO", 
-            "cassandra_snmp_port": "", 
-            "cassandra_thrift_port": "", 
-            "config_dir_linux": "/etc/webtrends/", 
-            "install_dir_linux": "/opt/webtrends/", 
-            "install_dir_windows": "d:\\wrs", 
-            "install_log_dir_linux": "/var/log/webtrends/install", 
-            "install_log_dir_windows": "d:\\logs", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "log_dir_linux": "/var/log/webtrends/", 
-            "log_dir_windows": "", 
-            "master_host": "dmasterdb01", 
-            "rta_host": "drta01.staging.dmz", 
-            "sched_host": "dmasterdb01", 
-            "schedulerdb_host": "dusagedb01", 
-            "usage_host": "dusagedb01", 
-            "velocitycache_hosts": [
-                {
-                    "name": "ddxweb01.staging.dmz", 
-                    "port": "22233"
-                }
-            ], 
-            "wrsmodify_group": "STAGINGDMZ\\D.WRS.Modify", 
-            "wrsread_group": "STAGINGDMZ\\D.WRS.Read"
-        }, 
-        "wt_dx": {
-            "app_settings_section": {
-                "streamingServiceRoot": "https://ddx.webtrends.com/StreamingServices_v3/"
-            }, 
-            "brandedaccountid": "20578,20663", 
-            "cacheenabled": "True", 
-            "cachename": "D_DX", 
-            "endpoint_address": "net.tcp://dsearch.staging.dmz:8096/SearchService/Search", 
-            "website_name": "DX", 
-            "website_port": "80"
-        }, 
-        "wt_roadrunner": {
-            "url": "path/to/zip/here"
         }
     }, 
-    "description": "D Pod", 
+    "description": "B Pod", 
     "json_class": "Chef::Environment", 
-    "name": "D", 
+    "name": "B", 
     "override_attributes": {
-        "esx": {
-            "checksum": "a495c580eee4b94d92b213e8189c4ec2", 
-            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.3.12-493255.tar.gz"
-        }, 
         "java": {
             "install_flavor": "oracle", 
             "jdk": {
@@ -117,22 +69,12 @@
             }, 
             "jdk_version": "6"
         }, 
-        "memcached": {
-            "memory": "1024"
-        }, 
-        "ms_dotnet4": {
-            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
-        }, 
         "nagios": {
             "multi_environment_monitoring": "true", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
-            },
-            "client": {
-                "install_method": "package"
-            },
-            "server_role": "nagios_xi",
-            
+            }, 
+            "server_role": "nagios_xi"
         }, 
         "ntp": {
             "servers": [
@@ -153,11 +95,6 @@
             "community": "DevOps", 
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
-       },
-       "esx": {
-           "repo": "http://repo.staging.dmz/repo/linux/vmware",
-           "tarball": "VMwareTools-8.6.5-652272.tar.gz",
-           "checksum": "6127d1fbd6fcf6cda7d06c8fd4720405"
-       }
+        }
     }
 }

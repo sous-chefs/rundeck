@@ -1,13 +1,13 @@
 {
-  "name": "wt_streaming_api_server",
+  "name": "wt_realtime_api_server",
   "default_attributes": {
   },
   "json_class": "Chef::Role",
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[wt_streamingapi]"
+    "recipe[wt_realtimeapi]"
   ],
-  "description": "Webtrends Streaming API Server",
+  "description": "Webtrends Realtime API Server",
   "chef_type": "role"
 }
