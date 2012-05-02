@@ -15,7 +15,7 @@
   end
 end
 
-cookbook_file "/tmp/zeromq-#{node[:][:version]}.tar.gz" do
+cookbook_file "#{Chef::Config[:file_cache_path]}/zeromq-#{node[:][:version]}.tar.gz" do
   source "zeromq-#{node[:zeromq][:version]}.tar.gz"
   mode   00644
   owner  "root"
@@ -25,36 +25,36 @@ end
 execute "tar" do
   user    "root"
   group   "root"
-  cwd     "/tmp"
-  command "tar zxf /tmp/zeromq-#{node[:zeromq][:version]}.tar.gz"
+  cwd     "#{Chef::Config[:file_cache_path]}"
+  command "tar zxf #{Chef::Config[:file_cache_path]}/zeromq-#{node[:zeromq][:version]}.tar.gz"
 end
 
 execute "configure" do
   user    "root"
   group   "root"
-  cwd     "/tmp/zeromq-#{node[:zeromq][:version]}"
+  cwd     "#{Chef::Config[:file_cache_path]}/zeromq-#{node[:zeromq][:version]}"
   command "./configure"
 end
 
 execute "make" do
   user    "root"
   group   "root"
-  cwd     "/tmp/zeromq-#{node[:zeromq][:version]}"
+  cwd     "#{Chef::Config[:file_cache_path]}/zeromq-#{node[:zeromq][:version]}"
   command "make"
 end
 
 execute "make-install" do
   user    "root"
   group   "root"
-  cwd     "/tmp/zeromq-#{node[:zeromq][:version]}"
+  cwd     "#{Chef::Config[:file_cache_path]}/zeromq-#{node[:zeromq][:version]}"
   command "make install"
 end
 
-directory "/tmp/zeromq-#{node[:zeromq][:version]}" do
+directory "#{Chef::Config[:file_cache_path]}/zeromq-#{node[:zeromq][:version]}" do
   action :delete
   recursive true
 end
 
-file "/tmp/zeromq-#{node[:zeromq][:version]}.tar.gz" do
+file "#{Chef::Config[:file_cache_path]}/zeromq-#{node[:zeromq][:version]}.tar.gz" do
   action :delete
 end
