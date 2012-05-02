@@ -1,6 +1,12 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {}, 
+    "cookbook_versions": {
+      "wt_heatmaps": "= 0.10.3",
+      "zookeeper": "= 1.0.0",
+      "hadoop": "= 1.0.0",
+      "hbase": "= 1.0.0",
+      "hive": "= 1.0.0"
+	}, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -87,7 +93,7 @@
                 "replication": 3
             }, 
             "env": {
-                "HADOOP_HEAPSIZE": 1000, 
+                "HADOOP_HEAPSIZE": 4000, 
                 "HADOOP_OPTS": "", 
                 "java_net_preferIPv4Stack": "true"
             }, 
@@ -108,7 +114,7 @@
         }, 
         "hbase": {
             "env": {
-                "HBASE_HEAPSIZE": 1000, 
+                "HBASE_HEAPSIZE": 4000, 
                 "HBASE_MANAGES_ZK": "false"
             }, 
             "site": {
