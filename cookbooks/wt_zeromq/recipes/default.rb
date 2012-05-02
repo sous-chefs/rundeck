@@ -10,13 +10,12 @@
 node[:wt_zeromq][:build_pkgs].each do |pkg|
   package pkg do
     action :install
-    provider Chef::Provider::Package::Apt
   end
 end
 
 cookbook_file "/tmp/zeromq-#{node[:wt_zeromq][:version]}.tar.gz" do
   source "zeromq-#{node[:wt_zeromq][:version]}.tar.gz"
-  mode   0644
+  mode   00644
   owner  "root"
   group  "root"
 end
