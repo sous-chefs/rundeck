@@ -9,7 +9,7 @@
     "recipe[java]",
     "recipe[cassandra]"
   ],
-  "description": "",
+  "description": "Apache Cassandra",
   "chef_type": "role",
   "override_attributes": {
   }
