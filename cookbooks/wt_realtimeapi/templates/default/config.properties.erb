@@ -1,0 +1,11 @@
+# This is the base url for the CAM service
+webtrends.streaming.authentication.baseUrl = <%=@cam_url%>
+# This is the url to the REST service for getting a token's detailed information
+webtrends.streaming.authentication.tokenDetail =  %%baseUrl%%/cam/auth/%%access_token%%
+# This is the url to the REST service for getting a token's detailed account information
+webtrends.streaming.authentication.accountDetail = %%baseUrl%%/cam/auth/%%access_token%%/account
+
+# graphite server and port
+# graphite server and port
+graphite.server = <%= @graphite_server %>
+graphite.port = <%= @graphite_port %>
