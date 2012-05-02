@@ -1,5 +1,6 @@
 {
   "name": "heatmapapiserver",
+  "description": "Webtrends Heatmaps API Server",
   "chef_type": "role",
   "json_class": "Chef::Role",
   "description": "Heatmap API Server",

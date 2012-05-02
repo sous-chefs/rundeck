@@ -1,6 +1,6 @@
 {
   "name": "wt_commonlib",
-  "description": "",
+  "description": "Webtrends Commonlib",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
