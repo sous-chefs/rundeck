@@ -6,4 +6,4 @@ description      "Installs/Configures Webtrends Platform Scheduler"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "0.10.4"
 depends          "wt_base"
-depends 		 "windows"
+depends          "windows"
