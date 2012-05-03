@@ -11,7 +11,18 @@
         "authorization": {
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
+            },
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
+                    }
+                }
             }, 
+            "jdk_version": "6"
+        },
             "sudo": {
                 "groups": [
                     "domain-admins", 
@@ -127,17 +138,6 @@
                 "connection_url": "jdbc:mysql://vmeta01.staging.dmz/hive?createDatabaseIfNotExist=true", 
                 "connector": "mysql"
             }
-        }, 
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk": {
-                "6": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
-                    }
-                }
-            }, 
-            "jdk_version": "6"
         }, 
         "memcached": {
             "memory": "1024"
