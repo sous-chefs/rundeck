@@ -8,28 +8,20 @@
 #
 
 # == Recipes
-#include_recipe "java"
 include_recipe "runit"
-
-# Install java 
-execute "install-java" do
-    user "root"
-    group "root"
-    command "sudo add-apt-repository ppa:webupd8team/java;sudo apt-get update;sudo apt-get install oracle-java7-installer"
-    action :run
-end
 
 log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "streamingapi")
 install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "streamingapi")
 tarball     = node[:wt_streamingapi][:tarball]
 download_url = node[:wt_streamingapi][:download_url]
-java_home   = node[:wt_streamingapi][:java_home]
+java_home   = node[:java][:java_home]
 port = node[:wt_streamingapi][:port]
 cam_url = node[:wt_camservice][:url]
 user = node[:wt_streamingapi][:user]
 group = node[:wt_streamingapi][:group]
 graphite_server = node[:graphite][:server]
 graphite_port = node[:graphite][:port]
+metric_prefix = node[:graphite][:metric_prefix]
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -89,8 +81,9 @@ end
         :cam_url => cam_url,
         :install_dir => install_dir,
         :port => port,
-	:graphite_server => graphite_server,
-        :graphite_port => graphite_port
+        :graphite_server => graphite_server,
+        :graphite_port => graphite_port,
+        :metric_prefix => metric_prefix
     })
 	end 
 end 

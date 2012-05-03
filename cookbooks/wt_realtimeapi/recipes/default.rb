@@ -8,22 +8,13 @@
 #
 
 # == Recipes
-#include_recipe "java"
 include_recipe "runit"
-
-# Install java 
-execute "install-java" do
-    user "root"
-    group "root"
-    command "sudo add-apt-repository ppa:webupd8team/java;sudo apt-get update;sudo apt-get install oracle-java7-installer"
-    action :run
-end
 
 log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "realtimeapi")
 install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "realtimeapi")
 tarball     = node[:wt_realtimeapi][:tarball]
 download_url = node[:wt_realtimeapi][:download_url]
-java_home   = node[:wt_realtimeapi][:java_home]
+java_home   = node[:java][:java_home]
 port = node[:wt_realtimeapi][:port]
 cam_url = node[:wt_camservice][:url]
 user = node[:wt_realtimeapi][:user]
