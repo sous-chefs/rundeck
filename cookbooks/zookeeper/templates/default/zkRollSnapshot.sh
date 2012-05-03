@@ -8,6 +8,6 @@ fi
 
 source /home/zookeeper/.profile
 
-/opt/zookeeper/zookeeper-<%= node[:zookeeper][:version] %>/bin/zkCleanup.sh  <%= node[:zookeeper][:dataDir] %> <%= node[:zookeeper][:snapshotDir] %> <%= node[:zookeeper][:snapshotNum] %>
+<%= node[:zookeeper][:installDir] %>/zookeeper-<%= node[:zookeeper][:version] %>/bin/zkCleanup.sh  <%= node[:zookeeper][:dataDir] %> <%= node[:zookeeper][:snapshotDir] %> <%= node[:zookeeper][:snapshotNum] %>
 
 exit 0
