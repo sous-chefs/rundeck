@@ -5,7 +5,7 @@
 # Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
-# This recipe installs the needed components to full setup/configure the RoadRunner service
+# This recipe uninstalls existing RoadRunner installs.
 
 # destinations
 install_dir = "#{node['wt_common']['install_dir_windows']}\\RoadRunner"
@@ -19,7 +19,7 @@ if (install_dir =~ /^(\w:)\\.*$/)
 	install_dir_drive = $1
 end
 
-sc_cmd = "\"%WINDIR%\\System32\\sc.exe delete WebtrendsRoadRunnerService"
+sc_cmd = "\"%WINDIR%\\System32\\sc.exe delete \"#{node['wt_roadrunner']['service_name']}\""
 netsh_cmd = "netsh http delete urlacl url=http://+:8097/"
 
 service "WebtrendsRoadRunnerService" do
@@ -47,13 +47,4 @@ end
 wt_base_icacls install_dir_drive do
 	action :remove
 	user svcuser
-end
-
-ruby_block "install_flag" do
-	block do
-		node.delete('rr_installed')
-		node.save
-	end
-	action :create
-	ignore_failure true
 end

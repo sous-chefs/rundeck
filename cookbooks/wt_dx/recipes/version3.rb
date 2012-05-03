@@ -16,7 +16,7 @@ cass_hosts = "{#{cass_hosts.to_json}}"
 cfg_cmds = node['wt_dx']['v3']['cfg_cmd']
 streamingservices_pool = node['wt_dx']['v3']['streamingservices']['app_pool']
 webservices_pool = node['wt_dx']['v3']['webservices']['app_pool']
-installdir = node['wt_common']['installdir']
+installdir = node['wt_common']['installdir_windows']
 installdir_v3 = node['wt_dx']['v3']['dir']
 
 pod = node.chef_environment
