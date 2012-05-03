@@ -13,10 +13,15 @@
                     "x86_64": {
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
                     }
+                },
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar"
+                    }
                 }
             }, 
             "jdk_version": "6"
-        }, 
+        },
             "sudo": {
                 "groups": [
                     "STAGINGDMZ\\\\domain-admins", 
