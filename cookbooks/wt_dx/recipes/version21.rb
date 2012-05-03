@@ -14,7 +14,7 @@ c_hosts = cache_hosts = search(:node, "chef_environment:#{node.chef_environment}
 #Recipe specific
 cfg_cmds = node['wt_dx']['v2_1']['cfg_cmd']
 app_pool = node['wt_dx']['v2_1']['app_pool']
-installdir = node['wt_common']['installdir']
+installdir = node['wt_common']['installdir_windows']
 installdir_v21 = node['wt_dx']['v2_1']['dir']
 
 pod = node.chef_environment
