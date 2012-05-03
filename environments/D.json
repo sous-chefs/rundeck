@@ -5,7 +5,23 @@
         "authorization": {
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
+            },
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
+                    }
+                },
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar"
+                    }
+                }
             }, 
+            "jdk_version": "6"
+        },
             "sudo": {
                 "groups": [
                     "STAGINGDMZ\\\\domain-admins", 
@@ -105,17 +121,6 @@
             "checksum": "a495c580eee4b94d92b213e8189c4ec2", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.3.12-493255.tar.gz"
-        }, 
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk": {
-                "6": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
-                    }
-                }
-            }, 
-            "jdk_version": "6"
         }, 
         "memcached": {
             "memory": "1024"

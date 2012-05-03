@@ -4,5 +4,4 @@ license          "All rights reserved"
 description      "Installs ZeroMQ"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "1.0.10"
-
-depends "java"
+depends          "java"
