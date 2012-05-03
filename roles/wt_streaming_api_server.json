@@ -2,10 +2,18 @@
   "name": "wt_streaming_api_server",
   "default_attributes": {
   },
+  "override_attributes": {
+      "java" : {
+        "install_flavor": "oracle",
+        "jdk_version": "7"
+      }
+  },
   "json_class": "Chef::Role",
   "env_run_lists": {
   },
   "run_list": [
+    "recipe[ondemand_base]",
+    "recipe[java]",
     "recipe[wt_streamingapi]"
   ],
   "description": "Webtrends Streaming API Server",
