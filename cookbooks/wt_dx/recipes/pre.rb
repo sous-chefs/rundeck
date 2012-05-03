@@ -55,7 +55,6 @@ iis_site 'OEM_DX' do
 	action [:add,:start]
 end
 
-
 wt_base_firewall 'DXWS' do
 	protocol "TCP"
 	port 80
