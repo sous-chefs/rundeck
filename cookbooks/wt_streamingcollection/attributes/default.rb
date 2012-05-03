@@ -1,6 +1,5 @@
 default[:wt_streamingcollection][:user]         = "nobody"
 default[:wt_streamingcollection][:group]        = "nogroup"
-default[:wt_streamingcollection][:java_home]    = "/usr/lib/jvm/java-7-oracle/jre"
 default[:wt_streamingcollection][:download_url] = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/.lastSuccessful/streamingcollection-bin.tar.gz"
 default[:wt_streamingcollection][:tarball]      = "streamingcollection-bin.tar.gz"
 default[:wt_streamingcollection][:port]         = "8080"
