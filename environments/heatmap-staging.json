@@ -177,7 +177,8 @@
         }, 
         "graphite": {
             "server": "sgraph01.staging.dmz",
-            "port": 2003
+            "port": 2003,
+            "metric_prefix": "internal.vpod.servers"
         },
         "wt_heatmap": {
             "config_distrib": "vcd01.staging.dmz:8097", 
