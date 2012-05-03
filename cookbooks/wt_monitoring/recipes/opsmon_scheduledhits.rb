@@ -10,6 +10,10 @@
 # We use this test data to confirm that data processing is functioning as expected.
 #
 
+package "curl" do
+ action :install
+end
+
 cron "opsmon01_scheduledhits" do
   minute "*/5"
   command "/usr/bin/curl -d type=v -d domainID=265528 -d testID=265891 -d runID=265893 -d systemUID=$(date \"+%s\") http://ots.optimize.webtrends.com/ots/ots/json-ping-3.1"
