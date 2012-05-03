@@ -60,7 +60,7 @@ end
 # extract it
 execute "extract-zookeeper" do
   command "tar -zxf #{Chef::Config[:file_cache_path]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz"
-  creates "zookeeper-#{node[:zookeeper][:version]}"
+  creates "#{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:version]}"
   cwd "#{node[:zookeeper][:installDir]}"
   user "zookeeper"
   group "zookeeper"
@@ -92,9 +92,15 @@ template "#{node[:zookeeper][:dataDir]}/myid" do
 end
 
 # snapshot roller
-template "/etc/cron.daily/zkRollSnapshot.sh" do
+template "/etc/cron.hourly/zkRollSnapshot.sh" do
   source "zkRollSnapshot.sh"
   owner "zookeeper"
   group "zookeeper"
   mode 0544
+end
+
+# We no longer use cron.daily for this, however older versions of this cookbook
+# do. So we'll delete it.
+file "/etc/cron.daily/zkRollSnapshot.sh" do
+  action :delete
 end
