@@ -14,7 +14,7 @@ install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streaming
 
 port         = node[:wt_streamingcollection][:port]
 tarball      = node[:wt_streamingcollection][:tarball]
-java_home    = node[:wt_streamingcollection][:java_home]
+java_home    = node[:java][:java_home]
 download_url = node[:wt_streamingcollection][:download_url]
 dcsid_url = node[:wt_configdistrib][:dcsid_url]
 user = node[:wt_streamingcollection][:user]
@@ -25,13 +25,6 @@ zk_port      = node['zookeeper']['clientPort']
 
 graphite_server = node[:graphite][:server]
 graphite_port = node[:graphite][:port]
-
-execute "install-java" do
-  user "root"
-  group "root"
-  command "sudo add-apt-repository ppa:webupd8team/java;sudo apt-get update;sudo apt-get install oracle-java7-installer"
-  action :run
-end
 
 directory "#{log_dir}" do
   owner   user
