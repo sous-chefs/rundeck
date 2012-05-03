@@ -5,7 +5,23 @@
         "authorization": {
             "ad_auth": {
                 "ad_network": "DEVOPS"
+            },
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
+                    }
+                },
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar"
+                    }
+                }
             }, 
+            "jdk_version": "6"
+        },
             "sudo": {
                 "groups": [
                     "domain-admins", 
@@ -106,17 +122,6 @@
     "json_class": "Chef::Environment", 
     "name": "DO", 
     "override_attributes": {
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk": {
-                "6": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
-                    }
-                }
-            }, 
-            "jdk_version": "6"
-        }, 
         "memcached": {
             "memory": "1024"
         }, 
