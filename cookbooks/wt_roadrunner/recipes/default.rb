@@ -20,18 +20,18 @@ build_url = "#{node['wt_roadrunner']['build_url']}#{node['wt_roadrunner']['zip_f
 master_host = node['wt_common']['master_host']
 
 # destinations
-install_dir = "#{node['wt_common']['install_dir_windows']}\\RoadRunner"
-log_dir     = "#{node['wt_common']['install_dir_windows']}\\logs"
+install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_roadrunner']['install_dir']}"
+log_dir     = "#{node['wt_common']['install_dir_windows']}#{node['wt_roadrunner']['log_dir']}"
 
 # get data bag items 
 auth_data = data_bag_item('authorization', node.chef_environment)
 svcuser = auth_data['wt_common']['loader_user']
 svcpass = auth_data['wt_common']['loader_pass']
 
-rr_port = 8097
+$rr_port = 8097
 gac_cmd = "#{install_dir}\\gacutil.exe /i \"#{install_dir}\\Webtrends.RoadRunner.SSISPackageRunner.dll\""
-urlacl_cmd = "netsh http add urlacl url=http://+:#{rr_port}/ user=\"#{svcuser}\""
-firewall_cmd="netsh advfirewall firewall add rule name=\"Webtrends RoadRunner port #{rr_port}\" dir=in action=allow protocol=TCP localport=#{rr_port}"
+urlacl_cmd = "netsh http add urlacl url=http://+:#{$rr_port}/ user=\"#{svcuser}\""
+firewall_cmd="netsh advfirewall firewall add rule name=\"Webtrends RoadRunner port #{$rr_port}\" dir=in action=allow protocol=TCP localport=#{$rr_port}"
 share_cmd="net share wrs=#{install_dir} /grant:EVERYONE,FULL /remark:\"Set from the chef run\""
 
 # determine root drive of install_dir - ENG390500
@@ -104,25 +104,26 @@ if ENV["deploy_build"] == "true" then
   end
 
  powershell "create service" do
-   environment({'serviceName' => #{	
+   environment({'serviceName' => node['wt_roadrunner']['service_name'], 'install_dir' => install_dir, 'user' => svcuser, 'pass' => svcpass})	
    code <<-EOH
  		$computer = gc env:computername
  		$class = "Win32_Service"
   	$method = "Create"
 		$mc = [wmiclass]"\\\\$computer\\ROOT\\CIMV2:$class"
+		$servicePath = $env:install_dir + "\\Webtrends.RoadRunner.Service.exe"
 		$inparams = $mc.PSBase.GetMethodParameters($method)
 		$inparams.DesktopInteract = $false
-		$inparams.DisplayName = "My Service"
+		$inparams.DisplayName = $env:serviceName
 		$inparams.ErrorControl = 0
 		$inparams.LoadOrderGroup = $null
 		$inparams.LoadOrderGroupDependencies = $null
-		$inparams.Name = "Webtrends Roadrunner"
-		$inparams.PathName = "D:\\wrs\RoadRunner\\Webtrends.RoadRunner.Service.exe"
+		$inparams.Name = $env:serviceName
+		$inparams.PathName = $servicePath
 		$inparams.ServiceDependencies = $null
 		$inparams.ServiceType = 16
 		$inparams.StartMode = "Automatic"
-		$inparams.StartName = $null # will start as localsystem builtin if null
-		$inparams.StartPassword = $null
+		$inparams.StartName = $env:svcuser
+		$inparams.StartPassword = $env:svcpass
 
 		$result = $mc.PSBase.InvokeMethod($method,$inparams,$null)
 		$result | Format-List
@@ -145,6 +146,7 @@ if ENV["deploy_build"] == "true" then
   execute "share_install_dir" do
   	command share_cmd
   	cwd install_dir_drive
+  	ignore_failure true
   end
 end
 
