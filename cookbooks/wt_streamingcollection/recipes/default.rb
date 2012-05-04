@@ -25,6 +25,11 @@ zk_port      = node['zookeeper']['clientPort']
 
 graphite_server = node[:graphite][:server]
 graphite_port = node[:graphite][:port]
+metric_prefix = node[:graphite][:metric_prefix]
+
+log "Install dir: #{install_dir}"
+log "Log dir: #{log_dir}"
+log "Java home: #{java_home}"
 
 directory "#{log_dir}" do
   owner   user
@@ -67,16 +72,6 @@ template "#{install_dir}/bin/streamingcollection.sh" do
   })
 end
 
-template "#{install_dir}/conf/netty.properties" do
-  source  "netty.properties.erb"
-  owner   "root"
-  group   "root"
-  mode    00644
-  variables({
-    :port => port
-  })
-end
-
 template "#{install_dir}/conf/kafka.properties" do
   source  "kafka.properties.erb"
   owner   "root"
@@ -87,17 +82,23 @@ template "#{install_dir}/conf/kafka.properties" do
   })
 end
 
-template "#{install_dir}/conf/config.properties" do
-  source  "config.properties.erb"
-  owner   "root"
-  group   "root"
-  mode    00644
-  variables({
-    :server_url => dcsid_url,
-    :graphite_server => graphite_server,
-    :graphite_port => graphite_port
-  })
+%w[monitoring.properties config.properties netty.properties].each do | template_file|
+  template "#{install_dir}/conf/#{template_file}" do
+	source	"#{template_file}.erb"
+	owner "root"
+	group "root"
+	mode  "0644"
+	variables({
+        :server_url => dcsid_url,
+        :install_dir => install_dir,
+        :port => port,
+        :graphite_server => graphite_server,
+        :graphite_port => graphite_port,
+        :metric_prefix => metric_prefix
+    })
+	end 
 end
+
 
 execute "delete_install_source" do
     user "root"
