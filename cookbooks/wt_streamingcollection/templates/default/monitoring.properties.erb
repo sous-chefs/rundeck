@@ -1,0 +1,15 @@
+# are we monitoring at all
+monitoring.enabled = true
+# should we publish to jmx
+monitoring.jmx.enabled = true
+# is graphite monitoring enabled
+monitoring.graphite.enabled = true
+# graphite host name
+monitoring.graphite.host = <%= @graphite_server %>
+# graphite port
+monitoring.graphite.port = <%= @graphite_port %>
+# the interval to flush graphite data
+monitoring.graphite.interval = 1
+# the prefix to append metrics being sent to graphite
+monitoring.metric.prefix = <%= @metric_prefix %>
+
