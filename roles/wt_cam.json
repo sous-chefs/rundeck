@@ -1,0 +1,16 @@
+{
+  "name": "wt_cam",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "role[iis]",
+    "recipe[wt_cam]"
+  ],
+  "description": "Webtrends Common Account Management service",
+  "chef_type": "role"
+}
