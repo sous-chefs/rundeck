@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!-- Config file for the NetAcuity Server -->
+<!-- Generally you should not change anything in -->
+<!-- this file unless you know what you are doing -->
+<!-- or have been directed to do so by Digital    -->
+<!-- Envoy Technical Support.  You should really  -->
+<!-- use the web interface of the Server to       -->
+<!-- change configuration variables stored here   -->
+<!-- instead of manually editing this file.       -->
+<CONFIGFILE>
+   <PARAMETER name="SERVER_NAME" value="<%=node[:hostname]%>"/>
+   <PARAMETER name="ADMIN_EMAIL" value="<%=@config['admin_email']%>"/>
+   <PARAMETER name="SMTP_SERVER" value="<%=@config['smtp_server']%>"/>
+   <PARAMETER name="LOG_LEVEL" value="INFO"/>
+   <PARAMETER name="SERVER_VERSION" value="<%= @version %>"/>
+   <PARAMETER name="MUS_HOSTNAME" value="mus.digitalenvoy.net"/>
+   <PARAMETER name="UPDATE_SERVER_HOSTNAME" value="http://us.digitalenvoy.net"/>
+   <% if @config['netacuity']['use_proxy'] then %>
+   <PARAMETER name="USE_MUS_PROXY" value="YES"/>
+   <PARAMETER name="MUS_PROXY_ADDRESS" value="<%=@config['netacuity']['proxy_address']%>"/>
+   <PARAMETER name="MUS_PROXY_PORT" value="<%=@config['netacuity']['proxy_port']%>"/>
+   <PARAMETER name="USE_US_PROXY" value="YES"/>
+   <PARAMETER name="US_PROXY_ADDRESS" value="<%=@config['netacuity']['proxy_address']%>"/>
+   <PARAMETER name="US_PROXY_PORT" value="<%=@config['netacuity']['proxy_port']%>"/>
+   <% end %>
+   <PARAMETER name="INCLUDE_HTTP_HEADER" value="YES"/>
+  <PARAMETER name="SYSLOG_LEVEL" value="INFO"/>
+
+  <PARAMETER name="UPGRADE_ALLOW" value="DBONLY"/>
+
+  <PARAMETER name="EMAIL_ON_NEW_LICENSE" value="YES"/>
+
+  <PARAMETER name="EMAIL_ON_DB_UPGRADE" value="YES"/>
+
+  <PARAMETER name="SAVE_IPS" value="NO"/>
+</CONFIGFILE>
