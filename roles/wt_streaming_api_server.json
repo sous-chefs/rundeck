@@ -12,7 +12,6 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[ondemand_base]",
     "recipe[java]",
     "recipe[wt_streamingapi]"
   ],
