@@ -17,43 +17,33 @@
 # limitations under the License.
 #
 
-bags = data_bag('wop_server')
-if !bags.include?(node[:wop_server][:env]) then
-  Chef::Log.warn("wop-server: no databag configuration found for env: #{node[:wop_server][:env]}")
-  return
-end
-wop_config = data_bag_item('wop_server', node[:wop_server][:env])
-
-# netacuity.cfg contains the version number and needs to match 
-# the version installed. If there's a version set in the databag
-# use that otherwise take the defaults set here.
-if wop_config['netacuity']['version'].nil?
-  case node['kernel']['machine']
-    when "i686"
-    netacuity_version = "500" # 5.0
-    when "x86_64"
-    netacuity_version = "460" # 4.6
-  end
-  else
-  netacuity_version = wop_config['netacuity']['version']
+# create the install directory
+directory node['wt_netacuity']['install_dir'] do
+  owner "root"
+  group "root"
+  mode "0755"
+  recursive true
+  action :create
 end
 
-directory "/opt/NetAcuity"
+# pull the remote file only if we create the directory
+remote_file "/tmp/NetAcuity_#{node['wt_netacuity']['version']}.tgz" do
+  source "#{node['wt_netacuity']['download_url']}/NetAcuity_#{node['wt_netacuity']['version']}.tgz"
+  mode "0644"
+  subscribes :create, resources(:directory => node['wt_netacuity']['install_dir']), :immediately
+end
 
-cookbook_file "/opt/NetAcuity/NetAcuity.tgz" do
-  source "NetAcuity_#{node[:kernel][:machine]}.tgz"
+# run the tar only if the new file is pulled down
+execute "tar" do
+  user  "root"
+  group "root" 
+  cwd node['wt_netacuity']['install_dir']
+  command "tar zxf /tmp/#{tarball}"
   action :nothing
-  subscribes :create, resources(:directory => "/opt/NetAcuity"), :immediately
+  subscribes :run, resources(:remote_file => "/tmp/NetAcuity_#{node['wt_netacuity']['version']}.tgz"), :immediately
 end
 
-
-execute "unpack" do
-  command "tar xvfz NetAcuity.tgz"
-  cwd "/opt/NetAcuity"
-  action :nothing
-  subscribes :run, resources(:cookbook_file => "/opt/NetAcuity/NetAcuity.tgz"), :immediately
-end
-
+# delete the gzip
 execute "cleanup" do
   command "rm NetAcuity.tgz"
   cwd "/opt/NetAcuity"
@@ -67,7 +57,7 @@ cookbook_file "netacuity-init" do
   source "netacuity.init"
   owner "root"
   group "root"
-  mode "0744"
+  mode 00744
 end
 
 service "netacuity" do
@@ -79,11 +69,7 @@ service "netacuity" do
 end
 
 template "netacuity-config" do
-  path "/opt/NetAcuity/server/netacuity.cfg"
-  source "netacuity/netacuity.cfg.erb"
-  variables(
-            :config => wop_config,
-            :version => netacuity_version
-            )
+  path "#node['wt_netacuity']['install_dir']/server/netacuity.cfg"
+  source "netacuity.cfg.erb"
   notifies :restart, resources(:service => "netacuity")
 end
