@@ -1,0 +1,45 @@
+#!/bin/sh
+export NA_HOME='/opt/NetAcuity'
+NABIN=$NA_HOME'/server/netacuity_server'
+if [ ! -f $NABIN ]
+then
+  exit
+fi
+
+CMD="$1"
+
+do_start() {
+ pidof netacuity_server >/dev/null && exit
+  if [ -f $NA_HOME/server/netacuity.pid ]; then
+    rm $NA_HOME/server/netacuity.pid
+  fi
+  cur=`pwd`
+  cd $NA_HOME/server
+  ./start_server
+  cd $cur
+}
+
+do_stop() {
+ cur=`pwd`
+  cd $NA_HOME/server
+  ./shutdown_server
+  sleep 6
+  cd $cur
+}
+
+case "$CMD" in
+'start')
+  do_start
+  ;;
+'stop')
+  do_stop
+  ;;
+'restart') 
+  do_stop
+  do_start
+  ;;
+*)
+  echo "Usage: netacuity { start | stop | restart }"
+  ;;
+esac
+
