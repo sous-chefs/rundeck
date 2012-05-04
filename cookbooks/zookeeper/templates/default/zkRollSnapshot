@@ -6,6 +6,8 @@ then
 	COMMAND="sudo -u zookeeper java"
 fi
 
+logger -s "zkRollSnapshot"
+
 source /home/zookeeper/.profile
 
 <%= node[:zookeeper][:installDir] %>/zookeeper-<%= node[:zookeeper][:version] %>/bin/zkCleanup.sh  <%= node[:zookeeper][:dataDir] %> <%= node[:zookeeper][:snapshotDir] %> <%= node[:zookeeper][:snapshotNum] %>
