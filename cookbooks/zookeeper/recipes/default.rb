@@ -92,11 +92,11 @@ template "#{node[:zookeeper][:dataDir]}/myid" do
 end
 
 # snapshot roller
-template "/etc/cron.hourly/zkRollSnapshot.sh" do
-  source "zkRollSnapshot.sh"
+template "/etc/cron.hourly/zkRollSnapshot" do
+  source "zkRollSnapshot"
   owner "zookeeper"
   group "zookeeper"
-  mode 0544
+  mode 0555
 end
 
 # We no longer use cron.daily for this, however older versions of this cookbook
