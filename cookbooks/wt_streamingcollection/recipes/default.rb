@@ -7,18 +7,19 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# include runit recipe so a service can be defined later
 include_recipe "runit"
 
 log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingcollection")
 install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingcollection")
 
-port         = node[:wt_streamingcollection][:port]
-tarball      = node[:wt_streamingcollection][:tarball]
-java_home    = node[:java][:java_home]
-download_url = node[:wt_streamingcollection][:download_url]
-dcsid_url = node[:wt_configdistrib][:dcsid_url]
-user = node[:wt_streamingcollection][:user]
-group = node[:wt_streamingcollection][:group]
+port         = node['wt_streamingcollection']['port']
+tarball      = node['wt_streamingcollection']['tarball']
+java_home    = node['java']['java_home']
+download_url = node['wt_streamingcollection']['download_url']
+dcsid_url = node['wt_configdistrib']['dcsid_url']
+user = node['wt_streamingcollection']['user']
+group = node['wt_streamingcollection']['group']
 
 zk_host      = node['zookeeper']['quorum'][0]
 zk_port      = node['zookeeper']['clientPort']
@@ -31,6 +32,7 @@ log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
 
+# create the log directory
 directory "#{log_dir}" do
   owner   user
   group   group
@@ -39,6 +41,7 @@ directory "#{log_dir}" do
   action :create
 end
 
+# create the install directory
 directory "#{install_dir}/bin" do
   owner "root"
   group "root"
@@ -47,23 +50,25 @@ directory "#{install_dir}/bin" do
   action :create
 end
 
-remote_file "/tmp/#{tarball}" do
+# download the application tarball
+remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
   source download_url
   mode 00644
 end
 
+# uncompress the application tarball into the install directory
 execute "tar" do
   user  "root"
   group "root" 
   cwd install_dir
-  command "tar zxf /tmp/#{tarball}"
+  command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
 
 template "#{install_dir}/bin/streamingcollection.sh" do
   source  "streamingcollection.sh.erb"
   owner "root"
   group "root"
-  mode  "0755"
+  mode  00755
   variables({
     :log_dir => log_dir,
     :install_dir => install_dir,
@@ -87,7 +92,7 @@ end
 	source	"#{template_file}.erb"
 	owner "root"
 	group "root"
-	mode  "0644"
+	mode  00644
 	variables({
         :server_url => dcsid_url,
         :install_dir => install_dir,
@@ -99,14 +104,15 @@ end
 	end 
 end
 
-
+# delete the application tarball
 execute "delete_install_source" do
     user "root"
     group "root"
-    command "rm -f /tmp/#{tarball}"
+    command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
     action :run
 end
 
+# create a runit service
 runit_service "streamingcollection" do
   options({
     :log_dir => log_dir,
