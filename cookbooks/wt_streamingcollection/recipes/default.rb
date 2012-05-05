@@ -24,9 +24,9 @@ group = node['wt_streamingcollection']['group']
 zk_host      = node['zookeeper']['quorum'][0]
 zk_port      = node['zookeeper']['clientPort']
 
-graphite_server = node[:graphite][:server]
-graphite_port = node[:graphite][:port]
-metric_prefix = node[:graphite][:metric_prefix]
+graphite_server = node['graphite']['server']
+graphite_port = node['graphite']['port']
+metric_prefix = node['graphite']['metric_prefix']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
