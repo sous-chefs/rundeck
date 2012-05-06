@@ -2,7 +2,4 @@
 # git clone https://github.com/nathanmarz/jzmq.git
 # Cookbook is pinned to a specific commit needed for Storm.
 default[:jzeromq][:version] = "dd3327d620"
-
-# Packages which need to be installed on the system
-# to allow for compilation of JZMQ.
-default[:jzeromq][:build_pkgs] = ["build-essential","uuid-dev","autogen","pkg-config","libtool", "autoconf", "automake"]
+default[:jzeromq][:download_url] = ""
