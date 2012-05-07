@@ -1,0 +1,16 @@
+{
+  "name": "wt_static_tag_host",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[apache2]",
+    "recipe[wt_static_tag_host]"
+  ],
+  "description": "Webtrends Static Tag Host Service",
+  "chef_type": "role"
+}
