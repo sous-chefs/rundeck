@@ -17,6 +17,5 @@
   ],
   "description": "Webtrends Streaming Collection Server",
   "chef_type": "role",
-  "override_attributes": {
-  }
+  
 }

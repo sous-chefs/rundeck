@@ -117,6 +117,7 @@ runit_service "streamingcollection" do
   options({
     :log_dir => log_dir,
     :install_dir => install_dir,
-    :java_home => java_home
+    :java_home => java_home,
+    :user => user
   })
 end
