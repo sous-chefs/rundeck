@@ -53,7 +53,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/zookeeper-#{node[:zookeeper][:ver
   source "#{node[:zookeeper][:sourceURL]}"
   owner "zookeeper"
   group "zookeeper"
-  mode "0744"
+  mode 00744
   action :create_if_missing
 end
 
@@ -66,13 +66,14 @@ execute "extract-zookeeper" do
   group "zookeeper"
 end
 
-link "/usr/local/zookeeper" do
+# create a link from the specific version to a generic zookeeper folder
+link "#{node[:zookeeper][:installDir]}/current" do
   to "#{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:version]}"
 end
 
 # manage configs
 %w[configuration.xsl log4j.properties zoo.cfg].each do |template_file|
-  template "/usr/local/zookeeper/conf/#{template_file}" do
+  template "#{node[:zookeeper][:installDir]}/zookeeper/conf/#{template_file}" do
     source "#{template_file}"
     mode 00755
     owner "zookeeper"
@@ -91,16 +92,10 @@ template "#{node[:zookeeper][:dataDir]}/myid" do
   mode 00755
 end
 
-# snapshot roller
+# setup snapshot roller cron job
 template "/etc/cron.hourly/zkRollSnapshot" do
   source "zkRollSnapshot"
   owner "zookeeper"
   group "zookeeper"
   mode 00555
-end
-
-# We no longer use cron.daily for this, however older versions of this cookbook
-# do. So we'll delete it.
-file "/etc/cron.daily/zkRollSnapshot.sh" do
-  action :delete
 end
