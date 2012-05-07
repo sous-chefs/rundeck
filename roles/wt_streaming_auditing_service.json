@@ -1,0 +1,10 @@
+{
+  "name": "wt_streaming_auditing_service",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Webtrends streaming auditing service",
+  "run_list": [
+  ],
+  "override_attributes": {
+  }
+}
