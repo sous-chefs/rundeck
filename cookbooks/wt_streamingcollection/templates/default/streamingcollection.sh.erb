@@ -45,7 +45,7 @@ done
 CMD="$JAVA_HOME/bin/java -cp $CP -Dcom.webtrends.log.dir=<%=@log_dir%> $JMX_OPTS"
 
 # Find current PID if any.
-FOUND_PID=`ps -ef |grep $MAIN |grep -v grep |awk {print $2}'`
+FOUND_PID=`ps -ef |grep $MAIN |grep -v grep |awk '{print $2}'`
 
 # Check what the caller wants.
 case "$1" in
@@ -53,7 +53,10 @@ case "$1" in
         if [ "" = "$FOUND_PID" ]; then
             cd   $HOME_DIR
             echo $CMD $MAIN
-            exec $CMD $MAIN >$LOG_OUT 2>$LOG_ERR &
+            # For compatibility with runit we cannot backgroud 
+            # ourselves with a '&' at the end, though we do
+            # need to exec.
+            exec $CMD $MAIN >$LOG_OUT 2>$LOG_ERR
         else 
             echo "Service already running!"
             exit 1
@@ -61,16 +64,18 @@ case "$1" in
         ;;
     stop)
         if [ "" = "$FOUND_PID" ]; then
-            echo "Service not running? File $LOG_PID not exist."
+            echo "Service not running, nothing to stop."
             exit 1
         else
             kill $FOUND_PID
-            sleep 2
-            FOUND_PID=`ps -ef |grep $MAIN |grep -v grep |awk {print $2}'`
+            sleep 4
+            # Find PID again to see if we need to use kill -9 termination.
+            FOUND_PID=`ps -ef |grep $MAIN |grep -v grep |awk '{print $2}'`
             if [ "" != "$FOUND_PID" ]; then
-                echo "Sending kill -9 to process."
+                echo "Using kill did not work, sending kill -9 to process."
                 kill -9 $FOUND_PID
             fi
+            exit 0
         fi 
         ;;
     status)
