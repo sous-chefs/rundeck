@@ -11,7 +11,7 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
                     }
                 },
                 "7": {
