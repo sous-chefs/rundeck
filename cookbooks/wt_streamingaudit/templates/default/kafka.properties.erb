@@ -1,0 +1,16 @@
+#broker.list=0:10.164.14.15:9092
+serializer.class=kafka.serializer.StringEncoder
+
+# zk connection string
+# comma separated host:port pairs, each corresponding to a zk
+# server. e.g. "127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002"
+zk.connect=<%= @zookeeper_pairs.join(",") %>
+
+# timeout in ms for connecting to zookeeper
+zk.connectiontimeout.ms=1000000
+
+#consumer group id
+groupid=auditor-group
+
+#consumer timeout
+consumer.timeout.ms=5000
