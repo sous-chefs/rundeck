@@ -39,9 +39,6 @@ include_recipe "ubuntu"
 # configures /etc/sudoers
 include_recipe "sudo"
 
-# updates apt cache
-include_recipe "apt"
-
 # installs and enables sshd service
 include_recipe "openssh"
 
@@ -68,6 +65,9 @@ node['ondemand_base']['apt'].each do |aptrepo|
 		action :add
 	end
 end
+
+# updates apt cache
+include_recipe "apt"
 
 #Setup NRPE to run sudo w/o a password
 file "/etc/sudoers.d/nrpe" do
