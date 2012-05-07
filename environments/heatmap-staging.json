@@ -8,7 +8,7 @@
       "hive": "= 1.0.0",
       "wt_streamingapi": "= 0.0.5",
       "wt_realtimeapi": "= 0.0.5",
-      "wt_streamingcollection": "= 0.0.5"
+      "wt_streamingcollection": "= 0.0.7"
 	}, 
     "default_attributes": {
         "authorization": {
