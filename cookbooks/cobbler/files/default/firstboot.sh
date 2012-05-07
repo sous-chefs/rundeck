@@ -16,9 +16,20 @@ if [[ ! `chef-client --version` =~ 0\.9\.* && -n "$environment" ]] ; then
   chef_environment="-E $environment"
 fi
 
-# run chef
 /etc/init.d/chef-client stop
+
+# run chef for the first time and set environment
+if [[ `expr length "$environment"` -eq 1 ]]; then
+  echo "{ \"run_list\": [ \"recipe[wt_base::set_environment]\" ] }" > /etc/chef/set-environment.json
+  CHEF_ENVIRONMENT=$environment chef-client -j /etc/chef/set-environment.json
+  rm /etc/chef/set-environment.json
+else
+  chef-client ${chef_environment} -j /etc/chef/first-boot.json
+fi
+
+# run chef for the first time after setting environment
 chef-client ${chef_environment} -j /etc/chef/first-boot.json
+
 /etc/init.d/chef-client restart
 
 # cleanup
