@@ -23,7 +23,7 @@ end
 
 template "/etc/cobbler/settings" do
   source "settings.erb"
-  mode 0644
+  mode 00644
   owner "root"
   group "root"
   variables(
@@ -37,7 +37,7 @@ end
 
 template "/etc/cobbler/dhcp.template" do
   source "dhcp.template.erb"
-  mode 0644
+  mode 00644
   owner "root"
   group "root"
   variables(
@@ -59,7 +59,7 @@ end
 # template the centos_chef snippet to add the ntp server
 template "/var/lib/cobbler/snippets/centos_chef" do
   source "centos_chef.erb"
-  mode 0644
+  mode 00644
   owner "root"
   group "root"
 end
@@ -77,7 +77,7 @@ end
 # for local auth
 template "/etc/cobbler/users.digest" do
   source "users.digest.erb"
-  mode 0644
+  mode 00644
   owner "root"
   group "root"
   notifies :restart, "service[cobbler]"  
@@ -99,7 +99,7 @@ end
     source file
     owner "root"
     group "root"
-    mode 0755
+    mode 00755
   end
 end
 
