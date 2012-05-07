@@ -64,8 +64,8 @@ execute "tar" do
   command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
 
-template "#{install_dir}/bin/streamingcollection.sh" do
-  source  "streamingcollection.sh.erb"
+template "#{install_dir}/bin/service-control" do
+  source  "service-control.erb"
   owner "root"
   group "root"
   mode  00755
@@ -73,7 +73,8 @@ template "#{install_dir}/bin/streamingcollection.sh" do
     :log_dir => log_dir,
     :install_dir => install_dir,
     :java_home => java_home,
-    :user => user
+    :user => user,
+    :java_class => "com.webtrends.streaming.CollectionDaemon"
   })
 end
 
