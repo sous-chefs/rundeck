@@ -19,6 +19,7 @@ download_url = node['wt_streamingaudit']['download_url']
 listener_threads = node['wt_streamingaudit']['listener_threads']
 user = node['wt_streamingaudit']['user']
 group = node['wt_streamingaudit']['group']
+zookeeper_port = [:zookeeper][:clientPort]
 
 graphite_server = node['graphite']['server']
 graphite_port = node['graphite']['port']
@@ -78,7 +79,7 @@ end
 # grab the zookeeper nodes that are currently available
 zookeeper_pairs = Array.new
 if not Chef::Config.solo
-    search(:node, "recipe:#{node[:kafka][:zookeeper_recipe]} AND chef_environment:#{node.chef_environment}").each do |n|
+    search(:node, "recipe:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
 		zookeeper_pairs << n[:fqdn]
 	end
 end
@@ -86,7 +87,7 @@ end
 # append the zookeeper client port (defaults to 2181)
 i = 0
 while i < zookeeper_pairs.size do
-  zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{node[:kafka][:zookeeper_client_port]}")
+  zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
   i += 1
 end
 
