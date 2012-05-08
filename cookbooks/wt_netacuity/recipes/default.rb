@@ -49,7 +49,7 @@ execute "cleanup" do
   cwd "/opt/NetAcuity"
   action :nothing
   only_if do File.exists?("/opt/NetAcuity/NetAcuity.tgz") end
-  subscribes :run, resources(:execute => "unpack")
+  subscribes :run, resources(:execute => "tar")
 end
 
 cookbook_file "netacuity-init" do
