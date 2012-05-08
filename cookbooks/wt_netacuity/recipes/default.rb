@@ -38,7 +38,7 @@ execute "tar" do
   user  "root"
   group "root" 
   cwd node['wt_netacuity']['install_dir']
-  command "tar zxf /tmp/#{tarball}"
+  command "tar zxf /tmp/NetAcuity_#{node['wt_netacuity']['version']}.tgz"
   action :nothing
   subscribes :run, resources(:remote_file => "/tmp/NetAcuity_#{node['wt_netacuity']['version']}.tgz"), :immediately
 end
