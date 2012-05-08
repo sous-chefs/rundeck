@@ -2,6 +2,10 @@
 
 * Unknown
 
+## 0.0.7
+* Moved off of JSVC
+* runit scripts updated to allow for nono-JSVC start
+
 ## 0.0.6
 * Fix file mode declarations (best practice)
 * Use the chef defined temp directory not /tmp (best practice)
