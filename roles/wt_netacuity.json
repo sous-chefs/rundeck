@@ -1,0 +1,15 @@
+{
+  "name": "wt_netacuity",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[wt_netacuity]"
+  ],
+  "description": "NetAcuity Geo Lookup Service",
+  "chef_type": "role"
+}
