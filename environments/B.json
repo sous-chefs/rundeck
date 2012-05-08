@@ -6,6 +6,22 @@
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
             }, 
+            "java": {
+                "install_flavor": "oracle", 
+                "jdk": {
+                    "6": {
+                        "x86_64": {
+                            "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
+                        }
+                    }, 
+                    "7": {
+                        "x86_64": {
+                            "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar"
+                        }
+                    }
+                }, 
+                "jdk_version": "6"
+            }, 
             "sudo": {
                 "groups": [
                     "STAGINGDMZ\\\\domain-admins", 
@@ -58,18 +74,21 @@
     "json_class": "Chef::Environment", 
     "name": "B", 
     "override_attributes": {
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk": {
-                "6": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
-                    }
-                }
-            }, 
-            "jdk_version": "6"
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
+        "memcached": {
+            "memory": "1024"
+        }, 
+        "ms_dotnet4": {
+            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
         "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
             "multi_environment_monitoring": "true", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
