@@ -70,7 +70,8 @@ template "#{install_dir}/bin/service-control" do
         :install_dir => install_dir,
         :java_home => java_home,
         :user => user,
-        :java_class => "com.webtrends.streaming.websocket.StreamingAPIDaemon"
+        :java_class => "com.webtrends.streaming.websocket.StreamingAPIDaemon",
+        :java_jmx_port => 9999
     })
 end
 
