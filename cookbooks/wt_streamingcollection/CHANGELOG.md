@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.9
+* Changed kafka properties to use zookeeper nodes taken from the nodes that use zookeeper recipe
+
 ## 0.0.6
 * Fix file mode declarations (best practice)
 * Use the chef defined temp directory not /tmp (best practice)

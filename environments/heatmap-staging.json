@@ -5,9 +5,10 @@
         "hbase": "= 1.0.0", 
         "hive": "= 1.0.0", 
         "wt_heatmaps": "= 0.10.3", 
-        "wt_realtimeapi": "= 0.0.5", 
-        "wt_streamingapi": "= 0.0.5", 
-        "wt_streamingcollection": "= 0.0.7", 
+        "wt_realtimeapi": "= 0.0.7", 
+        "wt_streamingapi": "= 0.0.7", 
+        "wt_streamingcollection": "= 0.0.9", 
+        "wt_streamingaudit": "= 0.0.1", 
         "zookeeper": "= 1.0.0"
     }, 
     "default_attributes": {
@@ -203,13 +204,16 @@
             "heatmap_reducers": -1
         }, 
         "wt_realtimeapi": {
-            "port": 8082
+            "port": 8082,
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/13956:id/realtimeapi-bin.tar.gz"
         }, 
         "wt_streamingapi": {
-            "port": 8080
+            "port": 8080,
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/13991:id/streamingapi-bin.tar.gz"
         }, 
         "wt_streamingcollection": {
-            "port": 8080
+            "port": 8080,
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/13989:id/streamingcollection-bin.tar.gz"
         }, 
         "wt_streaming_audit": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/13969:id/streamingaudit-bin.tar.gz"
