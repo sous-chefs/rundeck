@@ -1,7 +1,11 @@
 {
+    "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "alternate_uid": "2001", 
+    "alternate_user": "bobo", 
     "hive": {
         "dbpass": "a5H7qw", 
         "dbuser": "root"
     }, 
-    "id": "heatmap-staging"
+    "id": "heatmap-staging", 
+    "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/"
 }

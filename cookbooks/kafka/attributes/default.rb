@@ -24,7 +24,7 @@ default[:kafka][:zookeeper_client_port] = 2181
 default[:kafka][:version]           = "0.7.0"
 
 case platform
-when "centos","redhat","fedora"
+when "centos","redhat","fedora", "scientific", "amazon"
 	set[:kafka][:user] = 'kafka'
 	set[:kafka][:group] = 'nogroup'
 	set[:kafka][:home_dir] = "/usr/share/kafka"
