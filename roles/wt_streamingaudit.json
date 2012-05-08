@@ -1,5 +1,5 @@
 {
-  "name": "wt_streaming_collection_server",
+  "name": "wt_streamingaudit",
   "default_attributes": {
   },
   "override_attributes": {
@@ -13,9 +13,8 @@
   },
   "run_list": [
     "recipe[java]",
-    "recipe[wt_streamingcollection]"
+    "recipe[wt_streamingaudit]"
   ],
-  "description": "Webtrends Streaming Collection Server",
-  "chef_type": "role",
-  
+  "description": "Webtrends Streaming Audit Service",
+  "chef_type": "role"
 }
