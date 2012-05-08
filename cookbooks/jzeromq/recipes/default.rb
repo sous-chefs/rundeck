@@ -10,60 +10,57 @@
 include_recipe "zeromq"
 include_recipe "java"
 
-node[:jzeromq][:build_pkgs].each do |pkg|
+%w{build-essential uuid-dev autogen pkg-config libtool autoconf automake}.each do |pkg|
   package pkg do
     action :install
-    provider Chef::Provider::Package::Apt
   end
 end
 
-cookbook_file "/tmp/jzeromq-#{node[:jzeromq][:version]}.tar.gz" do
-  source "jzeromq-#{node[:jzeromq][:version]}.tar.gz"
-  mode   0644
-  owner  "root"
-  group  "root"
+remote_file "#{Chef::Config[:file_cache_path]}/jzeromq-#{node[:jzeromq][:version]}.tar.gz" do
+  source "#{node[:jzeromq][:download_url]}/jzeromq-#{node[:jzeromq][:version]}.tar.gz"
+  mode 00644
 end
 
 execute "tar" do
   user    "root"
   group   "root"
-  cwd     "/tmp"
-  command "tar zxf /tmp/jzeromq-#{node[:jzeromq][:version]}.tar.gz"
+  cwd     "#{Chef::Config[:file_cache_path]}"
+  command "tar zxf #{Chef::Config[:file_cache_path]}/jzeromq-#{node[:jzeromq][:version]}.tar.gz"
 end
 
 execute "autogen" do
   user    "root"
   group   "root"
-  cwd     "/tmp/jzeromq-#{node[:jzeromq][:version]}"
+  cwd     "#{Chef::Config[:file_cache_path]}/jzeromq-#{node[:jzeromq][:version]}"
   command "./autogen.sh"
 end
 
 execute "configure" do
   user    "root"
   group   "root"
-  cwd     "/tmp/jzeromq-#{node[:jzeromq][:version]}"
+  cwd     "#{Chef::Config[:file_cache_path]}/jzeromq-#{node[:jzeromq][:version]}"
   command "./configure"
 end
 
 execute "make" do
   user    "root"
   group   "root"
-  cwd     "/tmp/jzeromq-#{node[:jzeromq][:version]}"
+  cwd     "#{Chef::Config[:file_cache_path]}/jzeromq-#{node[:jzeromq][:version]}"
   command "make"
 end
 
 execute "make-install" do
   user    "root"
   group   "root"
-  cwd     "/tmp/jzeromq-#{node[:jzeromq][:version]}"
+  cwd     "#{Chef::Config[:file_cache_path]}/jzeromq-#{node[:jzeromq][:version]}"
   command "make install"
 end
 
-directory "/tmp/jzeromq-#{node[:jzeromq][:version]}" do
+directory "#{Chef::Config[:file_cache_path]}/jzeromq-#{node[:jzeromq][:version]}" do
   action :delete
   recursive true
 end
 
-file "/tmp/jzeromq-#{node[:jzeromq][:version]}.tar.gz" do
+file "#{Chef::Config[:file_cache_path]}/jzeromq-#{node[:jzeromq][:version]}.tar.gz" do
   action :delete
 end

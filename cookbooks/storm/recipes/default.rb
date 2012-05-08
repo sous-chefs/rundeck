@@ -16,29 +16,30 @@ include_recipe "jzeromq"
   end
 end
 
-cookbook_file "/tmp/storm-#{node[:wt_storm][:version]}.tar.gz" do
-  source "storm-#{node[:storm][:version]}.tar.gz"
-  mode   0644
-  owner  "root"
-  group  "root"
-end
-
-execute "tar" do
-  user    "root"
-  group   "root"
-  cwd     "/tmp"
-  command "tar zxvf /tmp/storm-#{node[:storm][:version]}.tar.gz"
-end
-
-directory "#{node[:storm][:install_dir]}" do
+# create the install directory
+directory "#{node['storm']['install_dir']}" do
   action :create
   recursive true
 end
 
-execute "install" do
-  user    "root"
-  group   "root"
-  cwd     "/tmp/storm-#{node[:storm][:version]}"
-  command "mv /tmp/storm-#{node[:storm][:version]} #{node[:storm][:install_dir]}"
+# create the log directory
+directory "#{node['storm']['log_dir']}" do
+  action :create
+  recursive true
 end
 
+# fetch the storm application tarball from the cookbook
+cookbook_file "#{Chef::Config[:file_cache_path]}/storm-#{node['storm']['version']}.tar.gz" do
+  source "storm-#{node['storm']['version']}.tar.gz"
+  mode   00644
+  owner  "root"
+  group  "root"
+end
+
+# uncompress the application tarball into the install directory
+execute "tar" do
+  user    "root"
+  group   "root"
+  cwd     "#{node['storm']['install_dir']}"
+  command "tar zxvf #{Chef::Config[:file_cache_path]}/storm-#{node['storm']['version']}.tar.gz"
+end

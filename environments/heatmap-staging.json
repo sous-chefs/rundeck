@@ -1,24 +1,25 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-      "wt_heatmaps": "= 0.10.3",
-      "zookeeper": "= 1.0.0",
-      "hadoop": "= 1.0.0",
-      "hbase": "= 1.0.0",
-      "hive": "= 1.0.0",
-      "wt_streamingapi": "= 0.0.5",
-      "wt_realtimeapi": "= 0.0.5",
-      "wt_streamingcollection": "= 0.0.5"
-	}, 
+        "hadoop": "= 1.0.0", 
+        "hbase": "= 1.0.0", 
+        "hive": "= 1.0.0", 
+        "wt_heatmaps": "= 0.10.3", 
+        "wt_realtimeapi": "= 0.0.7", 
+        "wt_streamingapi": "= 0.0.7", 
+        "wt_streamingcollection": "= 0.0.10", 
+        "wt_streamingaudit": "= 0.0.2", 
+        "zookeeper": "= 1.0.0"
+    }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
-            },
+            }, 
             "sudo": {
                 "groups": [
-                    "domain-admins", 
-                    "STAGINGDMZ\\\\domain-admins"
+                    "STAGINGDMZ\\\\domain-admins", 
+                    "STAGINGDMZ\\\\stage-admins"
                 ], 
                 "passwordless": false, 
                 "users": [
@@ -77,6 +78,16 @@
     "json_class": "Chef::Environment", 
     "name": "heatmap-staging", 
     "override_attributes": {
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
+        "graphite": {
+            "metric_prefix": "staging.vpod.servers", 
+            "port": 2003, 
+            "server": "sgraph01.staging.dmz"
+        }, 
         "hadoop": {
             "core": {
                 "fs_checkpoint_dir": "${hadoop.tmp.dir}/dfs/namesecondary", 
@@ -130,22 +141,22 @@
                 "connection_url": "jdbc:mysql://vmeta01.staging.dmz/hive?createDatabaseIfNotExist=true", 
                 "connector": "mysql"
             }
-        },
+        }, 
         "java": {
             "install_flavor": "oracle", 
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
                     }
-                },
+                }, 
                 "7": {
                     "x86_64": {
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
                     }
                 }
             }
-        },
+        }, 
         "memcached": {
             "memory": "1024"
         }, 
@@ -153,13 +164,13 @@
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
         "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
             "multi_environment_monitoring": "true", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
-            },
-            "client": {
-                "install_method": "package"
-            },
+            }, 
             "server_role": "nagios_xi"
         }, 
         "ntp": {
@@ -182,29 +193,30 @@
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
         }, 
-        "graphite": {
-            "server": "sgraph01.staging.dmz",
-            "port": 2003,
-            "metric_prefix": "staging.vpod.servers"
-        },
+        "wt_camservice": {
+            "url": "http://vdx01/camservice"
+        }, 
+        "wt_configdistrib": {
+            "dcsid_url": "http://vcd01:8097/config/dcsid2account"
+        }, 
         "wt_heatmap": {
             "config_distrib": "vcd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
-        "wt_streamingcollection": {
-            "port": 8080
+        "wt_realtimeapi": {
+            "port": 8082,
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/13956:id/realtimeapi-bin.tar.gz"
         }, 
         "wt_streamingapi": {
-            "port": 8080
-        },
-        "wt_realtimeapi": {
-            "port": 8082
-        },
-        "wt_camservice": { 
-            "url": "http://vdx01/camservice"
-        },
-        "wt_configdistrib": { 
-            "dcsid_url": "http://vcd01:8097/config/dcsid2account"
+            "port": 8080,
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/13991:id/streamingapi-bin.tar.gz"
+        }, 
+        "wt_streamingcollection": {
+            "port": 8080,
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/13989:id/streamingcollection-bin.tar.gz"
+        }, 
+        "wt_streaming_audit": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/13969:id/streamingaudit-bin.tar.gz"
         },
         "zookeeper": {
             "clientPort": 2181, 
@@ -221,11 +233,6 @@
             "snapshotNum": 3, 
             "syncLimit": 5, 
             "tickTime": 2000
-       },
-       "esx": {
-           "repo": "http://repo.staging.dmz/repo/linux/vmware",
-           "tarball": "VMwareTools-8.6.5-652272.tar.gz",
-           "checksum": "6127d1fbd6fcf6cda7d06c8fd4720405"
-       }
+        }
     }
 }

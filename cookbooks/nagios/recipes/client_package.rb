@@ -25,6 +25,14 @@ if platform?("centos", "redhat", "fedora", "amazon", "scientific")
   }.each do |pkg|
     package pkg
   end
+  
+  user node['nagios']['user'] do
+    system true
+  end
+
+  group node['nagios']['group'] do
+    members [ node['nagios']['user'] ]
+  end
 else
   %w{
     nagios-nrpe-server
