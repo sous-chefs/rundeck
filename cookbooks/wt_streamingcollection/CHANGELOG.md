@@ -2,6 +2,10 @@
 
 * Unknown
 
+## 0.0.10
+* Searches for zookeeper were made using nodes that apply the zookeeper recipe. In our environment we
+* apply a zookeeper role instead tso the search was changed to look for the role
+
 ## 0.0.9
 * Changed kafka properties to use zookeeper nodes taken from the nodes that use zookeeper recipe
 

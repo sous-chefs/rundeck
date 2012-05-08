@@ -81,7 +81,7 @@ end
 # grab the zookeeper nodes that are currently available
 zookeeper_pairs = Array.new
 if not Chef::Config.solo
-    search(:node, "recipe:zookeeper").each do |n|
+    search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
 		zookeeper_pairs << n[:fqdn]
 	end
 end
