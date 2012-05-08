@@ -21,7 +21,7 @@ dcsid_url = node['wt_configdistrib']['dcsid_url']
 user = node['wt_streamingcollection']['user']
 group = node['wt_streamingcollection']['group']
 
-zookeeper_port = [:zookeeper][:clientPort]
+zookeeper_port = ['zookeeper']['clientPort']
 
 graphite_server = node['graphite']['server']
 graphite_port = node['graphite']['port']
