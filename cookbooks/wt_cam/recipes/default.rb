@@ -22,6 +22,15 @@ url = "#{node['wt_cam']['url']}#{node['wt_cam']['zip_file']}"
 
 pod = node.chef_environment
 
+iis_site 'Default Web Site' do
+	action [:stop, :delete]
+end
+
+directory install_dir do
+	recursive true
+	action :create
+end
+
 iis_site 'CAM' do
     protocol :http
     port 80
