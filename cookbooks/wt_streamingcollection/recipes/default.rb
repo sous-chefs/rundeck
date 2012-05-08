@@ -21,8 +21,7 @@ dcsid_url = node['wt_configdistrib']['dcsid_url']
 user = node['wt_streamingcollection']['user']
 group = node['wt_streamingcollection']['group']
 
-zk_host      = node['zookeeper']['quorum'][0]
-zk_port      = node['zookeeper']['clientPort']
+zookeeper_port = [:zookeeper][:clientPort]
 
 graphite_server = node['graphite']['server']
 graphite_port = node['graphite']['port']
@@ -78,13 +77,28 @@ template "#{install_dir}/bin/service-control" do
   })
 end
 
+# grab the zookeeper nodes that are currently available
+zookeeper_pairs = Array.new
+if not Chef::Config.solo
+    search(:node, "recipe:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+		zookeeper_pairs << n[:fqdn]
+	end
+end
+
+# append the zookeeper client port (defaults to 2181)
+i = 0
+while i < zookeeper_pairs.size do
+  zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
+  i += 1
+end
+
 template "#{install_dir}/conf/kafka.properties" do
   source  "kafka.properties.erb"
   owner   "root"
   group   "root"
   mode    00644
   variables({
-    :zk_connect => "#{zk_host}:#{zk_port}"
+    :zookeeper_pairs => zookeeper_pairs
   })
 end
 
