@@ -29,7 +29,7 @@ directory "#{node[:zookeeper][:installDir]}" do
   owner "zookeeper"
   group "zookeeper"
   recursive true
-  mode "0744"
+  mode 00744
 end
 
 # create the data directory
@@ -37,7 +37,7 @@ directory "#{node[:zookeeper][:dataDir]}" do
   owner "zookeeper"
   group "zookeeper"
   recursive true
-  mode "0744"
+  mode 00744
 end
 
 # create the snapshot directory
@@ -45,7 +45,7 @@ directory "#{node[:zookeeper][:snapshotDir]}" do
   owner "zookeeper"
   group "zookeeper"
   recursive true
-  mode "0744"
+  mode 00744
 end
 
 # download zookeeper
@@ -53,7 +53,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/zookeeper-#{node[:zookeeper][:ver
   source "#{node[:zookeeper][:sourceURL]}"
   owner "zookeeper"
   group "zookeeper"
-  mode "0744"
+  mode 00744
   action :create_if_missing
 end
 
@@ -66,15 +66,16 @@ execute "extract-zookeeper" do
   group "zookeeper"
 end
 
-link "/usr/local/zookeeper" do
+# create a link from the specific version to a generic zookeeper folder
+link "#{node[:zookeeper][:installDir]}/current" do
   to "#{node[:zookeeper][:installDir]}/zookeeper-#{node[:zookeeper][:version]}"
 end
 
 # manage configs
 %w[configuration.xsl log4j.properties zoo.cfg].each do |template_file|
-  template "/usr/local/zookeeper/conf/#{template_file}" do
+  template "#{node[:zookeeper][:installDir]}/zookeeper/conf/#{template_file}" do
     source "#{template_file}"
-    mode 0755
+    mode 00755
     owner "zookeeper"
     group "zookeeper"
     variables({
@@ -88,19 +89,13 @@ template "#{node[:zookeeper][:dataDir]}/myid" do
   source "myid"
   owner "zookeeper"
   group "zookeeper"
-  mode 0755
+  mode 00755
 end
 
-# snapshot roller
-template "/etc/cron.hourly/zkRollSnapshot.sh" do
-  source "zkRollSnapshot.sh"
+# setup snapshot roller cron job
+template "/etc/cron.hourly/zkRollSnapshot" do
+  source "zkRollSnapshot"
   owner "zookeeper"
   group "zookeeper"
-  mode 0544
-end
-
-# We no longer use cron.daily for this, however older versions of this cookbook
-# do. So we'll delete it.
-file "/etc/cron.daily/zkRollSnapshot.sh" do
-  action :delete
+  mode 00555
 end

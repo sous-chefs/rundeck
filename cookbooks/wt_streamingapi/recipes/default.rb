@@ -12,63 +12,67 @@ include_recipe "runit"
 
 log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "streamingapi")
 install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "streamingapi")
-tarball     = node[:wt_streamingapi][:tarball]
-download_url = node[:wt_streamingapi][:download_url]
-java_home   = node[:java][:java_home]
-port = node[:wt_streamingapi][:port]
-cam_url = node[:wt_camservice][:url]
-user = node[:wt_streamingapi][:user]
-group = node[:wt_streamingapi][:group]
-graphite_server = node[:graphite][:server]
-graphite_port = node[:graphite][:port]
-metric_prefix = node[:graphite][:metric_prefix]
+tarball     = node['wt_streamingapi']['tarball']
+download_url = node['wt_streamingapi']['download_url']
+java_home   = node['java']['java_home']
+port = node['wt_streamingapi']['port']
+cam_url = node['wt_camservice']['url']
+user = node['wt_streamingapi']['user']
+group = node['wt_streamingapi']['group']
+graphite_server = node['graphite']['server']
+graphite_port = node['graphite']['port']
+metric_prefix = node['graphite']['metric_prefix']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
 
+# create the log directory
 directory "#{log_dir}" do
     owner   user
     group   group
-    mode    "0755"
+    mode    00755
     recursive true
     action :create
 end
  
+# create the install directory
 directory "#{install_dir}/bin" do
    owner "root"
    group "root"
-   mode "0755"
+   mode 00755
    recursive true
    action :create
 end
 
-remote_file "/tmp/#{tarball}" do
+# download the application tarball
+remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
   source download_url
-  mode "0644"
+  mode 00644
 end
 
+# uncompress the application tarbarll into the install dir
 execute "tar" do
   user  "root"
   group "root" 
   cwd install_dir
-  command "tar zxf /tmp/#{tarball}"
+  command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
 
 #templates
-%w[streamingapi.sh].each do | template_file|
-template "#{install_dir}/bin/#{template_file}" do
-    source  "#{template_file}.erb"
+template "#{install_dir}/bin/service-control" do
+    source  "service-control.erb"
     owner "root"
     group "root"
-    mode  "0755"
+    mode  00755
     variables({
         :log_dir => log_dir,
         :install_dir => install_dir,
         :java_home => java_home,
-        :user => user
+        :user => user,
+        :java_class => "com.webtrends.streaming.websocket.StreamingAPIDaemon",
+        :java_jmx_port => 9999
     })
-    end
 end
 
 %w[monitoring.properties streaming.properties netty.properties].each do | template_file|
@@ -76,7 +80,7 @@ end
 	source	"#{template_file}.erb"
 	owner "root"
 	group "root"
-	mode  "0644"
+	mode  00644
 	variables({
         :cam_url => cam_url,
         :install_dir => install_dir,
@@ -88,17 +92,20 @@ end
 	end 
 end 
 
+# delete the install tar ball
 execute "delete_install_source" do
     user "root"
     group "root"
-    command "rm -f /tmp/#{tarball}"
+    command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
     action :run
 end
 
+# create the runit service
 runit_service "streamingapi" do
     options({
         :log_dir => log_dir,
         :install_dir => install_dir,
-        :java_home => java_home
+        :java_home => java_home,
+        :user => user
       }) 
 end
