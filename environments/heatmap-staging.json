@@ -211,6 +211,9 @@
         "wt_streamingcollection": {
             "port": 8080
         }, 
+        "wt_streaming_audit": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/13969:id/streamingaudit-bin.tar.gz"
+        },
         "zookeeper": {
             "clientPort": 2181, 
             "dataDir": "/var/lib/zookeeper", 
