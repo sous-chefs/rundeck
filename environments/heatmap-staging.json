@@ -213,7 +213,7 @@
         }, 
         "wt_streamingcollection": {
             "port": 8080,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/13989:id/streamingcollection-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/14040:id/streamingcollection-bin.tar.gz"
         }, 
         "wt_streaming_audit": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/13969:id/streamingaudit-bin.tar.gz"
