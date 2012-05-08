@@ -21,15 +21,15 @@
 directory node['wt_netacuity']['install_dir'] do
   owner "root"
   group "root"
-  mode "0755"
+  mode 00755
   recursive true
   action :create
 end
 
 # pull the remote file only if we create the directory
-remote_file "/tmp/NetAcuity_#{node['wt_netacuity']['version']}.tgz" do
+remote_file "#{Chef::Config[:file_cache_path]}/NetAcuity_#{node['wt_netacuity']['version']}.tgz" do
   source "#{node['wt_netacuity']['download_url']}/NetAcuity_#{node['wt_netacuity']['version']}.tgz"
-  mode "0644"
+  mode 00644
   subscribes :create, resources(:directory => node['wt_netacuity']['install_dir']), :immediately
 end
 
@@ -38,20 +38,20 @@ execute "tar" do
   user  "root"
   group "root" 
   cwd node['wt_netacuity']['install_dir']
-  command "tar zxf /tmp/NetAcuity_#{node['wt_netacuity']['version']}.tgz"
+  command "tar zxf #{Chef::Config[:file_cache_path]}/NetAcuity_#{node['wt_netacuity']['version']}.tgz"
   action :nothing
-  subscribes :run, resources(:remote_file => "/tmp/NetAcuity_#{node['wt_netacuity']['version']}.tgz"), :immediately
+  subscribes :run, resources(:remote_file => "#{Chef::Config[:file_cache_path]}/NetAcuity_#{node['wt_netacuity']['version']}.tgz"), :immediately
 end
 
-# delete the gzip
+# delete the netacuity tarball
 execute "cleanup" do
-  command "rm NetAcuity.tgz"
-  cwd "/opt/NetAcuity"
+  command "rm #{Chef::Config[:file_cache_path]}/NetAcuity_#{node['wt_netacuity']['version']}.tgz"
   action :nothing
-  only_if do File.exists?("/opt/NetAcuity/NetAcuity.tgz") end
+  only_if do File.exists?("#{Chef::Config[:file_cache_path]}/NetAcuity_#{node['wt_netacuity']['version']}.tgz") end
   subscribes :run, resources(:execute => "tar")
 end
 
+# create the init script from a template
 cookbook_file "netacuity-init" do
   path "/etc/init.d/netacuity"
   source "netacuity.init"
