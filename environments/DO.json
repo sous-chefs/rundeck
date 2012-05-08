@@ -6,22 +6,6 @@
             "ad_auth": {
                 "ad_network": "DEVOPS"
             },
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk": {
-                "6": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
-                    }
-                },
-                "7": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar"
-                    }
-                }
-            }, 
-            "jdk_version": "6"
-        },
             "sudo": {
                 "groups": [
                     "domain-admins", 
@@ -122,6 +106,21 @@
     "json_class": "Chef::Environment", 
     "name": "DO", 
     "override_attributes": {
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                    }
+                },
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                    }
+                }
+            }
+        },
         "memcached": {
             "memory": "1024"
         }, 
@@ -132,7 +131,10 @@
             "multi_environment_monitoring": "true", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
-            }, 
+            },
+            "client": {
+                "install_method": "package"
+            },
             "server_role": "nagios_xi"
         }, 
         "ntp": {
