@@ -26,7 +26,7 @@ fi
 
 # Add the JMX port.
 if [ -z "$JMX_PORT" ]; then
-    JMX_PORT="9999"
+    JMX_PORT="<%=@java_jmx_port%>"
 fi
 
 # Add JMX options and port together.
