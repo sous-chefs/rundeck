@@ -72,7 +72,6 @@ template "#{install_dir}/bin/service-control" do
         :user => user,
         :java_class => "com.webtrends.streaming.websocket.StreamingAPIDaemon"
     })
-    end
 end
 
 %w[monitoring.properties streaming.properties netty.properties].each do | template_file|
