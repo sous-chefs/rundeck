@@ -58,10 +58,9 @@ execute "tar" do
   command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
 
-# templates
-%w[realtimeapi.sh].each do | template_file|
-template "#{install_dir}/bin/#{template_file}" do
-    source  "#{template_file}.erb"
+#templates
+template "#{install_dir}/bin/service-control" do
+    source  "service-control.erb"
     owner "root"
     group "root"
     mode  00755
@@ -69,10 +68,11 @@ template "#{install_dir}/bin/#{template_file}" do
         :log_dir => log_dir,
         :install_dir => install_dir,
         :java_home => java_home,
-        :user => user
+        :user => user,
+        :java_class => "com.webtrends.realtime.server.RealtimeAPIDaemon"
     })
-    end
 end
+
 
 %w[config.properties netty.properties].each do | template_file|
   template "#{install_dir}/conf/#{template_file}" do
@@ -103,6 +103,7 @@ runit_service "realtimeapi" do
     options({
         :log_dir => log_dir,
         :install_dir => install_dir,
-        :java_home => java_home
+        :java_home => java_home,
+        :user => user
       }) 
 end
