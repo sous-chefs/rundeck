@@ -15,7 +15,7 @@
    <PARAMETER name="SERVER_VERSION" value="<%= @version %>"/>
    <PARAMETER name="MUS_HOSTNAME" value="mus.digitalenvoy.net"/>
    <PARAMETER name="UPDATE_SERVER_HOSTNAME" value="http://us.digitalenvoy.net"/>
-   <% if @config['netacuity']['use_proxy'] then %>
+   <% if node['netacuity']['use_proxy'] then %>
    <PARAMETER name="USE_MUS_PROXY" value="YES"/>
    <PARAMETER name="MUS_PROXY_ADDRESS" value="<%=@config['netacuity']['proxy_address']%>"/>
    <PARAMETER name="MUS_PROXY_PORT" value="<%=@config['netacuity']['proxy_port']%>"/>
