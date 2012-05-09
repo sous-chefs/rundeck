@@ -28,6 +28,12 @@ end
 
 package "psmisc"
 
+# Run apt-get update if the package has never been installed on Ubuntu due to caches
+execute "update_apt" do
+  command "apt-get update"
+  action :run
+  only_if { (! File.exists?("/opt/likewise")) & (node.platform == "ubuntu") } 
+
 #Install likewise-open and use --force-yes to avoid issues with unsigned packages on Ubuntu
 package "likewise-open" do
 	action :install
