@@ -1,5 +1,5 @@
 #!/bin/sh
-export NA_HOME='/opt/NetAcuity'
+export NA_HOME='<%=node['wt_netacuity']['install_dir']%>'
 NABIN=$NA_HOME'/server/netacuity_server'
 if [ ! -f $NABIN ]
 then
