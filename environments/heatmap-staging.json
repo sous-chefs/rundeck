@@ -172,7 +172,7 @@
                 "dont_blame_nrpe": "1"
             }, 
             "server_role": "nagios_xi"
-        }, 
+        },        
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
@@ -203,6 +203,10 @@
             "config_distrib": "vcd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
+        "wt_netacuity": {
+            "version": "4.6",
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/"
+        },
         "wt_realtimeapi": {
             "port": 8082,
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/13956:id/realtimeapi-bin.tar.gz"
