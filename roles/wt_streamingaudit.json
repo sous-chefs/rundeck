@@ -1,5 +1,5 @@
 {
-  "name": "wt_streaming_audit_service",
+  "name": "wt_streamingaudit",
   "default_attributes": {
   },
   "override_attributes": {
@@ -15,6 +15,6 @@
     "recipe[java]",
     "recipe[wt_streamingaudit]"
   ],
-  "description": "Webtrends Streaming Audit Server",
+  "description": "Webtrends Streaming Audit Service",
   "chef_type": "role"
 }
