@@ -28,7 +28,7 @@ end
 
 # pull the remote file only if we create the directory
 remote_file "#{Chef::Config[:file_cache_path]}/NetAcuity_#{node['wt_netacuity']['version']}.tgz" do
-  source "#{node['wt_netacuity']['download_url']}/NetAcuity_#{node['wt_netacuity']['version']}.tgz"
+  source "#{node['wt_netacuity']['download_url']}/NetAcuity_#{node['wt_netacuity']['version']}_#{node['kernel']['machine']}.tgz"
   mode 00644
   subscribes :create, resources(:directory => node['wt_netacuity']['install_dir']), :immediately
 end
