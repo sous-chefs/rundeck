@@ -64,6 +64,7 @@
             }
         }, 
         "wt_common": {
+            "admin_email": "Eng.TestEnvironment@webtrends.corp",
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
@@ -71,7 +72,8 @@
             "install_log_dir_windows": "d:\\logs", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "log_dir_linux": "/var/log/webtrends/", 
-            "log_dir_windows": ""
+            "log_dir_windows": "",
+            "smtp_server": "pdxengmta01.webtrends.corp"
         }
     }, 
     "description": "Webtrends Heatmap Staging Environment", 
