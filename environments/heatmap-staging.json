@@ -208,6 +208,7 @@
         "wt_netacuity": {
             "version": "4.6",
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/"
+            "use_proxy": false,
         },
         "wt_realtimeapi": {
             "port": 8082,
