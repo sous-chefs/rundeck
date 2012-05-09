@@ -28,7 +28,7 @@ end
 
 # pull the remote file only if we create the directory
 remote_file "#{Chef::Config[:file_cache_path]}/NetAcuity_#{node['wt_netacuity']['version']}.tgz" do
-  source "#{node['wt_netacuity']['download_url']}/NetAcuity_#{node['wt_netacuity']['version']}.tgz"
+  source "#{node['wt_netacuity']['download_url']}/NetAcuity_#{node['wt_netacuity']['version']}_#{node['kernel']['machine']}.tgz"
   mode 00644
   subscribes :create, resources(:directory => node['wt_netacuity']['install_dir']), :immediately
 end
@@ -52,9 +52,9 @@ execute "cleanup" do
 end
 
 # create the init script from a template
-cookbook_file "netacuity-init" do
+template "netacuity-init" do
   path "/etc/init.d/netacuity"
-  source "netacuity.init"
+  source "netacuity.init.erb"
   owner "root"
   group "root"
   mode 00744
@@ -68,8 +68,9 @@ service "netacuity" do
   action [ :enable, :start ]
 end
 
+# create the config file from a template
 template "netacuity-config" do
-  path "#node['wt_netacuity']['install_dir']/server/netacuity.cfg"
+  path "#{node['wt_netacuity']['install_dir']}/server/netacuity.cfg"
   source "netacuity.cfg.erb"
   notifies :restart, resources(:service => "netacuity")
 end
