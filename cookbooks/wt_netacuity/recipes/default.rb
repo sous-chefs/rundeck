@@ -55,7 +55,6 @@ end
 template "netacuity-init" do
   path "/etc/init.d/netacuity"
   source "netacuity.init.erb"
-  notifies :restart, resources(:service => "netacuity")
   owner "root"
   group "root"
   mode 00744
