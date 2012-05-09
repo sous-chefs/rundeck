@@ -52,9 +52,10 @@ execute "cleanup" do
 end
 
 # create the init script from a template
-cookbook_file "netacuity-init" do
+template "netacuity-init" do
   path "/etc/init.d/netacuity"
-  source "netacuity.init"
+  source "netacuity.init.erb"
+  notifies :restart, resources(:service => "netacuity")
   owner "root"
   group "root"
   mode 00744
@@ -68,6 +69,7 @@ service "netacuity" do
   action [ :enable, :start ]
 end
 
+# create the config file from a template
 template "netacuity-config" do
   path "#{node['wt_netacuity']['install_dir']}/server/netacuity.cfg"
   source "netacuity.cfg.erb"
