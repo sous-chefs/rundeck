@@ -6,13 +6,13 @@
 # You should also read /usr/share/doc/collectd/README.Debian.plugins before
 # enabling any more plugins.
 
-Hostname "<%= @node[:fqdn] %>"
-FQDNLookup true
+Hostname "<%= @node[:hostname] %>"
+FQDNLookup false
 BaseDir "<%= @node[:collectd][:base_dir] %>"
 PluginDir "<%= @node[:collectd][:plugin_dir] %>"
 TypesDB "<%= @node[:collectd][:types_db].join('", "') %>"
 Interval <%= @node[:collectd][:interval] %>
 ReadThreads <%= @node[:collectd][:read_threads] %>
 
-Include "/etc/collectd/plugins/*.conf"
-Include "/etc/collectd/thresholds.conf"
+Include "<%= @node[:collectd][:plugin_conf_dir] %>/*.conf"
+Include "<%= @node[:collectd][:conf_dir] %>/thresholds.conf"
