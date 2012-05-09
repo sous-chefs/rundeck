@@ -44,19 +44,25 @@ if ENV["deploy_build"] == "true" then
     action :unzip	
   end
   
-  template "#{install_dir}\\web.config" do
-  	source "webConfig.erb"  	
+  template "#{install_dir}\\Webtrends.CamWeb.UI\\web.config" do
+  	source "webConfig.erb"  
+	variables(
+  		:db_server => "(local)",
+  		:user_id => "sa",
+  		:password => "password"
+  	)	
   end
   
   iis_pool app_pool do
-  	thirty_two_bit :false
-  action [:add, :config]
+	pipeline_mode :Integrated
+  	runtime_version "4.0"
+	action [:add, :config]
   end
   
   iis_app "CAM" do
   	path "/CamService"
   	application_pool app_pool
-  	physical_path install_dir
+  	physical_path "#{install_dir}\\Webtrends.CamWeb.UI"
   	action :add
   end  
 end
