@@ -33,6 +33,7 @@ execute "update_apt" do
   command "apt-get update"
   action :run
   only_if { (! File.exists?("/opt/likewise")) & (node.platform == "ubuntu") } 
+end
 
 #Install likewise-open and use --force-yes to avoid issues with unsigned packages on Ubuntu
 package "likewise-open" do
