@@ -15,13 +15,13 @@
    <PARAMETER name="SERVER_VERSION" value="<%= @version %>"/>
    <PARAMETER name="MUS_HOSTNAME" value="mus.digitalenvoy.net"/>
    <PARAMETER name="UPDATE_SERVER_HOSTNAME" value="http://us.digitalenvoy.net"/>
-   <% if node['netacuity']['use_proxy'] then %>
+   <% if node['wt_netacuity']['use_proxy'] then %>
    <PARAMETER name="USE_MUS_PROXY" value="YES"/>
-   <PARAMETER name="MUS_PROXY_ADDRESS" value="<%=node['netacuity']['proxy_address']%>"/>
-   <PARAMETER name="MUS_PROXY_PORT" value="<%=node['netacuity']['proxy_port']%>"/>
+   <PARAMETER name="MUS_PROXY_ADDRESS" value="<%=node['wt_netacuity']['proxy_address']%>"/>
+   <PARAMETER name="MUS_PROXY_PORT" value="<%=node['wt_netacuity']['proxy_port']%>"/>
    <PARAMETER name="USE_US_PROXY" value="YES"/>
-   <PARAMETER name="US_PROXY_ADDRESS" value="<%=node['netacuity']['proxy_address']%>"/>
-   <PARAMETER name="US_PROXY_PORT" value="<%=node['netacuity']['proxy_port']%>"/>
+   <PARAMETER name="US_PROXY_ADDRESS" value="<%=node['wt_netacuity']['proxy_address']%>"/>
+   <PARAMETER name="US_PROXY_PORT" value="<%=node['wt_netacuity']['proxy_port']%>"/>
    <% end %>
    <PARAMETER name="INCLUDE_HTTP_HEADER" value="YES"/>
   <PARAMETER name="SYSLOG_LEVEL" value="INFO"/>
