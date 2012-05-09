@@ -69,7 +69,7 @@ service "netacuity" do
 end
 
 template "netacuity-config" do
-  path "#node['wt_netacuity']['install_dir']/server/netacuity.cfg"
+  path "#{node['wt_netacuity']['install_dir']}/server/netacuity.cfg"
   source "netacuity.cfg.erb"
   notifies :restart, resources(:service => "netacuity")
 end
