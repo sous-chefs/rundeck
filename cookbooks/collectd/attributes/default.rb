@@ -19,9 +19,10 @@
 
 default[:collectd][:base_dir] = "/var/lib/collectd"
 default[:collectd][:plugin_dir] = "/usr/lib/collectd"
-default[:collectd][:plugin_conf_dir] = "/etc/collectd/plugins/"
+default[:collectd][:conf_dir] = "/etc/collectd"
+default[:collectd][:plugin_conf_dir] = "/etc/collectd/plugins"
 default[:collectd][:types_db] = ["/usr/share/collectd/types.db"]
-default[:collectd][:interval] = 10
+default[:collectd][:interval] = 300
 default[:collectd][:read_threads] = 5
 
 default[:collectd][:collectd_web][:path] = "/srv/collectd_web"
