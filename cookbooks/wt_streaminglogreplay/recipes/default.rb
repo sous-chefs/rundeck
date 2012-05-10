@@ -34,8 +34,17 @@ directory "#{log_dir}" do
   action :create
 end
 
-# create the install directory
+# create the bin directory
 directory "#{install_dir}/bin" do
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
+end
+
+# create the conf directory
+directory "#{install_dir}/conf" do
   owner "root"
   group "root"
   mode 00755
