@@ -9,6 +9,7 @@
         "wt_streamingapi": "= 0.0.7", 
         "wt_streamingcollection": "= 0.0.10", 
         "wt_streamingaudit": "= 0.0.2", 
+        "wt_streaminglogreplay": "= 0.0.1",
         "zookeeper": "= 1.0.0"
     }, 
     "default_attributes": {
@@ -212,7 +213,7 @@
         },
         "wt_realtimeapi": {
             "port": 8082,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/13956:id/realtimeapi-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/14108:id/realtimeapi-bin.tar.gz"
         }, 
         "wt_streamingapi": {
             "port": 8080,
@@ -224,6 +225,9 @@
         }, 
         "wt_streaming_audit": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/13969:id/streamingaudit-bin.tar.gz"
+        },
+        "wt_streaminglogreplay": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/14143:id/streaminglogreplay-bin.tar.gz"
         },
         "zookeeper": {
             "clientPort": 2181, 
