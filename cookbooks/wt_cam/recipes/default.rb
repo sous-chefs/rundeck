@@ -1,15 +1,16 @@
 #
 # Cookbook Name:: wt_cam
-# Recipe:: pre
+# Recipe:: default
 # Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
 #
 # Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
-# This recipe sets up the base configuration for DX
+# This recipe installs the CAM IIS app
 
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then 
+  include_recipe "ms_dotnet4::resetiis"
   include_recipe "wt_cam::uninstall" 
 end
 
@@ -43,12 +44,7 @@ iis_site 'CAM' do
 	action [:add,:start]
 end
 
-if ENV["deploy_build"] == "true" then 
-  execute "aspnet_regiis" do
-    command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis -i -enable"
-    action :run
-  end
-
+if ENV["deploy_build"] == "true" then
   windows_zipfile install_dir do
     source install_url
     action :unzip	
