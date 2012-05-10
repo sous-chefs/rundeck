@@ -21,10 +21,6 @@ group = node['wt_streaminglogreplay']['group']
 
 zookeeper_port = node['zookeeper']['clientPort']
 
-graphite_server = node['graphite']['server']
-graphite_port = node['graphite']['port']
-metric_prefix = node['graphite']['metric_prefix']
-
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -38,8 +34,17 @@ directory "#{log_dir}" do
   action :create
 end
 
-# create the install directory
+# create the bin directory
 directory "#{install_dir}/bin" do
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
+end
+
+# create the conf directory
+directory "#{install_dir}/conf" do
   owner "root"
   group "root"
   mode 00755
@@ -99,23 +104,6 @@ template "#{install_dir}/conf/kafka.properties" do
   variables({
     :zookeeper_pairs => zookeeper_pairs
   })
-end
-
-%w[monitoring.properties config.properties netty.properties].each do | template_file|
-  template "#{install_dir}/conf/#{template_file}" do
-	source	"#{template_file}.erb"
-	owner "root"
-	group "root"
-	mode  00644
-	variables({
-        :server_url => dcsid_url,
-        :install_dir => install_dir,
-        :port => port,
-        :graphite_server => graphite_server,
-        :graphite_port => graphite_port,
-        :metric_prefix => metric_prefix
-    })
-	end 
 end
 
 # delete the application tarball
