@@ -48,7 +48,7 @@ module WtBase
 			else
 				raise Chef::Exceptions::FileNotFound, "relative paths are not support, source => #{source}"
 			end
-			log "get_build: using location #{source}"
+			log "get_build: using source location #{source}"
 
 			# confirm existence
 			unless (source =~ /^https?:\/\//)
@@ -59,7 +59,6 @@ module WtBase
 
 			# store attribute
 			cb_config['installed_from'] = source
-			
 
 			# drop location
 			if non_target_zip
@@ -165,13 +164,71 @@ module WtBase
 		end
 
 		def deploy_mode?
-			case ENV['DEPLOY']
+			case ENV['DEPLOY'] or ENV['deploy_build']
 				when /false/i, 0, nil
 					log "deploy mode disabled"
 					false
 				else
 					log "deploy mode enabled"
 					true
+			end
+		end
+
+		# this currently does not work in windows
+		# a child process cannot change a parent's environment
+		def disable_deploy_mode
+			log "disabling deploy mode"
+			ENV['DEPLOY'] = nil
+			ENV['deploy_build'] = nil
+		end
+
+		# grant share/file system access to "log" readers
+		def share_wrs
+			return unless node.platform == "windows"
+			log "sharing wrs"
+			wt_base_netshare "wrs" do
+				action :grant
+				path wt_config['install_dir_windows']
+				user "Everyone"
+				perm :full
+				remark "shared by chef"
+				returns [0, 2]
+			end
+			unless wt_config['wrsread_group'].nil?
+				wt_base_icacls wt_config['install_dir_windows'] do
+					action :grant
+					user wt_config['wrsread_group']
+					perm :read
+				end
+			end
+			unless wt_config['wrsmodify_group'].nil?
+				wt_base_icacls wt_config['install_dir_windows'] do
+					action :grant
+					user wt_config['wrsmodify_group']
+					perm :modify
+				end
+			end
+		end
+
+		# unshare wrs folder
+		def unshare_wrs
+			return unless node.platform == "windows"
+			log "unsharing wrs"
+			wt_base_netshare "wrs" do
+				action :remove
+				returns [0, 2]
+			end
+			unless wt_config['wrsread_group'].nil?
+				wt_base_icacls wt_config['install_dir_windows'] do
+					action :remove
+					user wt_config['wrsread_group']
+				end
+			end
+			unless wt_config['wrsmodify_group'].nil?
+				wt_base_icacls wt_config['install_dir_windows'] do
+					action :remove
+					user wt_config['wrsmodify_group']
+				end
 			end
 		end
 	

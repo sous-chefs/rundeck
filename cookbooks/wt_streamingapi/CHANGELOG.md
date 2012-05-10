@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.8
+* Moved monitoring attributes to wt_monitoring
+
 ## 0.0.7
 * Moved off of JSVC
 * runit scripts updated to allow for nono-JSVC start
