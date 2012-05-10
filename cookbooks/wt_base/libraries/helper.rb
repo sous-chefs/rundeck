@@ -48,7 +48,7 @@ module WtBase
 			else
 				raise Chef::Exceptions::FileNotFound, "relative paths are not support, source => #{source}"
 			end
-			log "get_build: using location #{source}"
+			log "get_build: using source location #{source}"
 
 			# confirm existence
 			unless (source =~ /^https?:\/\//)
@@ -59,7 +59,6 @@ module WtBase
 
 			# store attribute
 			cb_config['installed_from'] = source
-			
 
 			# drop location
 			if non_target_zip
