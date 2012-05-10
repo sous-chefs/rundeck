@@ -11,7 +11,7 @@
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then 
   include_recipe "wt_dx::uninstall" 
-
+end
 
 #Properties
 install_dir = node['wt_common']['install_dir_windows']
