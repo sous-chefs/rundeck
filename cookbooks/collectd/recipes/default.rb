@@ -28,6 +28,16 @@ package "collectd" do
   action [:install]
 end
 
+#If this is a RH based distro then install the collectd-java plugin since it's installed by default in ubuntu.
+if platform?("centos","redhat","fedora","suse")
+  package "collectd-java" do
+    package_name "collectd-java"
+    action [:install]
+  end
+else
+  # do nothing
+end
+
 service "collectd" do
   supports :restart => true, :status => true
 end
@@ -37,11 +47,13 @@ ruby_block "edit init script" do
     case node[:platform]
     when "centos","redhat","fedora","suse"
       rc = Chef::Util::FileEdit.new("/etc/rc.d/init.d/collectd")
+      rc.search_file_replace_line("CONFIG=", "CONFIG=#{node[:collectd][:conf_dir]}/collectd.conf")
+      rc.write_file
     when "debian","ubuntu"
       rc = Chef::Util::FileEdit.new("/etc/init.d/collectd")
+      rc.search_file_replace_line("CONFIGFILE=", "CONFIGFILE=#{node[:collectd][:conf_dir]}/collectd.conf")
+      rc.write_file
     end
-    rc.search_file_replace_line("CONFIGFILE=", "CONFIGFILE=#{node[:collectd][:conf_dir]}/collectd.conf")
-    rc.write_file
   end
 end
 
