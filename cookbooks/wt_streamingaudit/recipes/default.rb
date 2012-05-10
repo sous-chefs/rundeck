@@ -74,7 +74,6 @@ template "#{install_dir}/bin/service-control" do
         :java_class => "com.webtrends.streaming.auditor.AuditorDaemon",
         :java_jmx_port => 9999
     })
-    end
 end
 
 # grab the zookeeper nodes that are currently available
