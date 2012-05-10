@@ -5,8 +5,8 @@
   "description": "Hadoop DataNode",
   "run_list": [
     "recipe[hadoop::datanode]",
-    "recipe[hbase::regionserver]",
-    "recipe[hive]",
+    "role[hbase_regionserver]",
+    "role[hive]",
     "recipe[wt_heatmaps::import]"
   ],
   "override_attributes": {
