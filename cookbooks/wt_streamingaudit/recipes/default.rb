@@ -21,10 +21,6 @@ user = node['wt_streamingaudit']['user']
 group = node['wt_streamingaudit']['group']
 zookeeper_port = [:zookeeper][:clientPort]
 
-graphite_server = node['graphite']['server']
-graphite_port = node['graphite']['port']
-metric_prefix = node['graphite']['metric_prefix']
-
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -109,9 +105,7 @@ end
 	mode  00644
 	variables({
         :listener_threads => listener_threads,
-        :graphite_server => graphite_server,
-        :graphite_port => graphite_port,
-        :metric_prefix => metric_prefix
+        :wt_monitoring => node[:wt_monitoring]
     })
 	end 
 end
