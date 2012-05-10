@@ -1,15 +1,15 @@
 # are we monitoring at all
-monitoring.enabled = true
+monitoring.enabled = <%= node[:wt_monitoring][:monitoring_enabled] %>
 # should we publish to jmx
-monitoring.jmx.enabled = true
+monitoring.jmx.enabled = <%= node[:wt_monitoring][:jmx_enabled] %>
 # is graphite monitoring enabled
-monitoring.graphite.enabled = true
+monitoring.graphite.enabled = <%= node[:wt_monitoring][:graphite_enabled] %>
 # graphite host name
-monitoring.graphite.host = <%= @graphite_server %>
+monitoring.graphite.host = <%= node[:wt_monitoring][:graphite_server] %>
 # graphite port
-monitoring.graphite.port = <%= @graphite_port %>
+monitoring.graphite.port = <%= node[:wt_monitoring][:graphite_port] %>
 # the interval to flush graphite data
-monitoring.graphite.interval = 1
+monitoring.graphite.interval = <%= node[:wt_monitoring][:graphite_flush_interval] %>
 # the prefix to append metrics being sent to graphite
-monitoring.metric.prefix = <%= @metric_prefix %>
+monitoring.metric.prefix = <%= node[:wt_monitoring][:metric_prefix] %>
 
