@@ -18,7 +18,7 @@
 #
 
 define :collectd_plugin, :options => {}, :template => nil, :cookbook => nil do
-  template "/etc/collectd/plugins/#{params[:name]}.conf" do
+  template "#{node[:collectd][:plugin_conf_dir]}#{params[:name]}.conf" do
     owner "root"
     group "root"
     mode "644"
@@ -36,7 +36,7 @@ end
 
 define :collectd_python_plugin, :options => {}, :module => nil, :path => nil do
   begin
-    t = resources(:template => "/etc/collectd/plugins/python.conf")
+    t = resources(:template => "#{node[:collectd][:plugin_conf_dir]}/python.conf")
   rescue ArgumentError
     collectd_plugin "python" do
       options :paths=>[node[:collectd][:plugin_dir]], :modules=>{}
