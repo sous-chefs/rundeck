@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_streamingcollection
+# Cookbook Name:: wt_streaminglogreplay
 # Recipe:: default
 #
 # Copyright 2012, Webtrends
@@ -10,16 +10,14 @@
 # include runit recipe so a service can be defined later
 include_recipe "runit"
 
-log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingcollection")
-install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingcollection")
+log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streaminglogreplay")
+install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streaminglogreplay")
 
-port         = node['wt_streamingcollection']['port']
-tarball      = node['wt_streamingcollection']['tarball']
+tarball      = node['wt_streaminglogreplay']['tarball']
 java_home    = node['java']['java_home']
-download_url = node['wt_streamingcollection']['download_url']
-dcsid_url = node['wt_configdistrib']['dcsid_url']
-user = node['wt_streamingcollection']['user']
-group = node['wt_streamingcollection']['group']
+download_url = node['wt_streaminglogreplay']['download_url']
+user = node['wt_streaminglogreplay']['user']
+group = node['wt_streaminglogreplay']['group']
 
 zookeeper_port = node['zookeeper']['clientPort']
 
@@ -69,7 +67,7 @@ template "#{install_dir}/bin/service-control" do
     :install_dir => install_dir,
     :java_home => java_home,
     :user => user,
-    :java_class => "com.webtrends.streaming.CollectionDaemon",
+    :java_class => "com.webtrends.streaming.LogReplayer",
     :java_jmx_port => 9999
   })
 end
@@ -99,21 +97,6 @@ template "#{install_dir}/conf/kafka.properties" do
   })
 end
 
-%w[monitoring.properties config.properties netty.properties].each do | template_file|
-  template "#{install_dir}/conf/#{template_file}" do
-	source	"#{template_file}.erb"
-	owner "root"
-	group "root"
-	mode  00644
-	variables({
-        :server_url => dcsid_url,
-        :install_dir => install_dir,
-        :port => port,
-        :wt_monitoring => node[:wt_monitoring]
-    })
-	end 
-end
-
 # delete the application tarball
 execute "delete_install_source" do
     user "root"
@@ -123,7 +106,7 @@ execute "delete_install_source" do
 end
 
 # create a runit service
-runit_service "streamingcollection" do
+runit_service "streaminglogreplay" do
   options({
     :log_dir => log_dir,
     :install_dir => install_dir,

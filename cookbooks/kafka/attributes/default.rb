@@ -16,39 +16,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# zookeeper 
-default[:kafka][:zookeeper_recipe] = "zookeeper"
-default[:kafka][:zookeeper_client_port] = 2181
-
 # Install
-default[:kafka][:version]           = "0.7.0"
+default[:kafka][:version] = "0.7.0"
+default[:kafka][:download_url] = ""
 
-case platform
-when "centos","redhat","fedora", "scientific", "amazon"
-	set[:kafka][:user] = 'kafka'
-	set[:kafka][:group] = 'nogroup'
-	set[:kafka][:home_dir] = "/usr/share/kafka"
-	set[:kafka][:data_dir] = "/usr/share/kafka/kafka-logs"
-	set[:kafka][:stage_dir] = "/usr/local/share/kafka"
-	set[:kafka][:log_dir] = "/var/log/kafka"
-when "debian","ubuntu"
-	set[:kafka][:user] = 'kafka'
-	set[:kafka][:group] = 'nogroup'
-	set[:kafka][:home_dir] = "/usr/share/kafka"
-	set[:kafka][:data_dir] = "/usr/share/kafka/kafka-logs"
-	set[:kafka][:stage_dir] = "/usr/local/share/kafka"
-	set[:kafka][:log_dir] = "/var/log/kafka"
-else
-	set[:kafka][:user] = 'kafka'
-	set[:kafka][:group] = 'nogroup'
-	set[:kafka][:home_dir] = "/usr/share/kafka"
-	set[:kafka][:data_dir] = "/usr/share/kafka/kafka-logs"
-	set[:kafka][:stage_dir] = "/usr/local/share/kafka"
-	set[:kafka][:log_dir] = "/var/log/kafka"
-end
+default[:kafka][:install_dir] = "/opt/kafka"
+default[:kafka][:data_dir] = "/var/kafka"
+default[:kafka][:log_dir] = "/var/log/kafka"
 
-# Directories, hosts and ports        # =
-default[:users]['kafka'][:uid]      = 350
-default[:users]['kafka'][:gid]      = 350
+default[:kafka][:broker_id] = 0
+default[:kafka][:broker_host_name] = ""
+default[:kafka][:port] = 9092
+default[:kafka][:threads] = ""
+default[:kafka][:log_flush_interval] = 10000
+default[:kafka][:log_flush_time_interval] = 1000
+default[:kafka][:log_flush_scheduler_time_interval] = 1000
+default[:kafka][:log_retention_hours] = 168
+
 
 
