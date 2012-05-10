@@ -4,3 +4,6 @@ license          "All rights reserved"
 description      "Installs/Configures CAM IIS site"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.10.4"
+supports 	"windows"
+depends		"iis"
+depends		"windows"
