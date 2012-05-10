@@ -21,7 +21,6 @@ iis_pool "#{app_pool}" do
   action [:stop, :delete]
 end
 
-
 iis_site 'CAM' do
 	action [:stop, :delete]
 end
