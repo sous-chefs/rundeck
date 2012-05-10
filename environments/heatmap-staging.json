@@ -166,6 +166,8 @@
             }
         }, 
         "kafka": {
+            "broker_id": "1",
+            "broker_host_name": "vstreaming07.staging.dmz",
             "threads": "8",
             "log_flush_time_interval": "500",
             "log_flush_scheduler_time_interval": "500",
@@ -225,25 +227,20 @@
             "version": "4.6"
         }, 
         "wt_realtimeapi": {
-<<<<<<< HEAD
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/14108:id/realtimeapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/14213:id/realtimeapi-bin.tar.gz", 
             "port": 8082
         }, 
         "wt_streaming_audit": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/13969:id/streamingaudit-bin.tar.gz"
-=======
             "port": 8082,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/14204:id/realtimeapi-bin.tar.gz"
->>>>>>> origin
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/14108:id/realtimeapi-bin.tar.gz"
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/13991:id/streamingapi-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/14261:id/streamingapi-bin.tar.gz",
             "port": 8080
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/14040:id/streamingcollection-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/14216:id/streamingcollection-bin.tar.gz",
             "port": 8080
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/13969:id/streamingaudit-bin.tar.gz"
         }, 
         "wt_streaminglogreplay": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/14143:id/streaminglogreplay-bin.tar.gz"
