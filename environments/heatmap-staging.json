@@ -4,11 +4,12 @@
         "hadoop": "= 1.0.0", 
         "hbase": "= 1.0.0", 
         "hive": "= 1.0.0", 
+        "kafka": "= 1.0.1",
         "wt_heatmaps": "= 0.10.3", 
-        "wt_realtimeapi": "= 0.0.7", 
-        "wt_streamingapi": "= 0.0.7", 
-        "wt_streamingcollection": "= 0.0.10", 
-        "wt_streamingaudit": "= 0.0.2", 
+        "wt_realtimeapi": "= 0.0.8", 
+        "wt_streamingapi": "= 0.0.8", 
+        "wt_streamingcollection": "= 0.0.11", 
+        "wt_streamingaudit": "= 0.0.3", 
         "wt_streaminglogreplay": "= 0.0.1",
         "zookeeper": "= 1.0.0"
     }, 
@@ -65,7 +66,7 @@
             }
         }, 
         "wt_common": {
-            "admin_email": "Eng.TestEnvironment@webtrends.corp",
+            "admin_email": "Eng.TestEnvironment@webtrends.corp", 
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
@@ -73,8 +74,17 @@
             "install_log_dir_windows": "d:\\logs", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "log_dir_linux": "/var/log/webtrends/", 
-            "log_dir_windows": "",
+            "log_dir_windows": "", 
             "smtp_server": "pdxengmta01.webtrends.corp"
+        },
+        "wt_monitoring": {
+            "monitoring_enabled" : "true",
+            "jmx_enabled" : "true",
+            "graphite_enabled" : "true",
+            "graphite_server" : "sgraph01.staging.dmz",
+            "graphite_port" : 2003, 
+            "graphite_flush_interval" : "1",
+            "metric_prefix": "staging.vpod.servers"
         }
     }, 
     "description": "Webtrends Heatmap Staging Environment", 
@@ -85,11 +95,6 @@
             "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
-        }, 
-        "graphite": {
-            "metric_prefix": "staging.vpod.servers", 
-            "port": 2003, 
-            "server": "sgraph01.staging.dmz"
         }, 
         "hadoop": {
             "core": {
@@ -183,7 +188,7 @@
                 "dont_blame_nrpe": "1"
             }, 
             "server_role": "nagios_xi"
-        },        
+        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
@@ -215,28 +220,34 @@
             "heatmap_reducers": -1
         }, 
         "wt_netacuity": {
-            "version": "4.6",
-            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/",
-            "use_proxy": false
-        },
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/", 
+            "use_proxy": false, 
+            "version": "4.6"
+        }, 
         "wt_realtimeapi": {
-            "port": 8082,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/14108:id/realtimeapi-bin.tar.gz"
-        }, 
-        "wt_streamingapi": {
-            "port": 8080,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/13991:id/streamingapi-bin.tar.gz"
-        }, 
-        "wt_streamingcollection": {
-            "port": 8080,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/14040:id/streamingcollection-bin.tar.gz"
+<<<<<<< HEAD
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/14108:id/realtimeapi-bin.tar.gz", 
+            "port": 8082
         }, 
         "wt_streaming_audit": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/13969:id/streamingaudit-bin.tar.gz"
-        },
+=======
+            "port": 8082,
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/14204:id/realtimeapi-bin.tar.gz"
+>>>>>>> origin
+        }, 
+        "wt_streamingapi": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/13991:id/streamingapi-bin.tar.gz"
+            "port": 8080
+        }, 
+        "wt_streamingcollection": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/14040:id/streamingcollection-bin.tar.gz"
+            "port": 8080
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/13969:id/streamingaudit-bin.tar.gz"
+        }, 
         "wt_streaminglogreplay": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/14143:id/streaminglogreplay-bin.tar.gz"
-        },
+        }, 
         "zookeeper": {
             "clientPort": 2181, 
             "dataDir": "/var/lib/zookeeper", 
