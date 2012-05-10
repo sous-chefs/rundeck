@@ -73,7 +73,7 @@ end
 
 # manage configs
 %w[configuration.xsl log4j.properties zoo.cfg].each do |template_file|
-  template "#{node[:zookeeper][:installDir]}/zookeeper/conf/#{template_file}" do
+  template "#{node[:zookeeper][:installDir]}/current/conf/#{template_file}" do
     source "#{template_file}"
     mode 00755
     owner "zookeeper"

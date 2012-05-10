@@ -16,28 +16,29 @@ end
 
 #Properties
 install_dir = node['wt_common']['install_dir_windows']
-install_logdir = node['wt_common']['install_logdir_windows']
+install_logdir = node['wt_common']['install_log_dir_windows']
 cfg_cmds = node['wt_dx']['cfg_cmd']
 pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
 ui_user = user_data['wt_common']['ui_user']
 ui_password = user_data['wt_common']['ui_pass']
 endpoint = node['wt_dx']['endpoint_address']
-cass_hosts = node['wt_common']['cassandra_hosts'].map {|x| "Name:" + x}
-cass_hosts = "{#{cass_hosts.to_json}}"
-c_hosts = cache_hosts = search(:node, "chef_environment:#{node.chef_environment} AND recipes:memcached")
+#cass_hosts = node['wt_common']['cassandra_hosts'].map {|x| "Name:" + x}
+#cass_hosts = "{#{cass_hosts.to_json}}"
+#c_hosts = search(:node, "chef_environment:#{node.chef_environment} AND recipes:memcached")
+c_hosts = "test"
 
 #v21 Properties
 cfg_cmds_v21 = node['wt_dx']['v2_1']['cfg_cmd']
 app_pool_v21 = node['wt_dx']['v2_1']['app_pool']
-install_dir_v21 = "#{node['wt_common']['installdir_windows']}#{node['wt_dx']['v21']['dir']}"
+install_dir_v21 = "#{node['wt_common']['install_dir_windows']}#{node['wt_dx']['v2_1']['dir']}"
 auth_cmd_v21 = "/section:applicationPools /[name='#{app_pool_v21}'].processModel.identityType:SpecificUser /[name='#{app_pool_v21}'].processModel.userName:#{ui_user} /[name='#{app_pool_v21}'].processModel.password:#{ui_password}"
 
 #v3 Properties
 cfg_cmds_v3 = node['wt_dx']['v3']['cfg_cmd']
 streamingservices_pool = node['wt_dx']['v3']['streamingservices']['app_pool']
 webservices_pool = node['wt_dx']['v3']['webservices']['app_pool']
-install_dir_v3 = "#{node['wt_common']['installdir_windows']}#{node['wt_dx']['v3']['dir']}"
+install_dir_v3 = "#{node['wt_common']['install_dir_windows']}#{node['wt_dx']['v3']['dir']}"
 streamingauth_cmd = "/section:applicationPools /[name='#{streamingservices_pool}'].processModel.identityType:SpecificUser /[name='#{streamingservices_pool}'].processModel.userName:#{ui_user} /[name='#{streamingservices_pool}'].processModel.password:#{ui_password}"
 webauth_cmd = "/section:applicationPools /[name='#{webservices_pool}'].processModel.identityType:SpecificUser /[name='#{webservices_pool}'].processModel.userName:#{ui_user} /[name='#{webservices_pool}'].processModel.password:#{ui_password}"
 
@@ -72,14 +73,14 @@ end
 iis_site 'DX' do
 	protocol :http
     port 80
-    path "#{installdir}\\Data Extraction API"
+    path "#{node['wt_common']['install_dir_windows']}\\Data Extraction API"
 	action [:add,:start]
 end
 
 iis_site 'OEM_DX' do
 	protocol :http
     port 81
-    path "#{installdir}\\OEM Data Extraction API"
+    path "#{node['wt_common']['install_dir_windows']}\\OEM Data Extraction API"
 	action [:add,:start]
 end
 
