@@ -5,8 +5,8 @@
     "id": "DO", 
     "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "wt_common": {
-		"camdb_pass": "Bijoux01",
-		"camdb_user": "wtCam",
+        "camdb_pass": "Bijoux01", 
+        "camdb_user": "wtCam", 
         "install_acct": "wtInstaller", 
         "install_pass": "Bijoux1", 
         "install_user": "DEVOPS\\wtInstaller", 
