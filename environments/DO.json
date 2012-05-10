@@ -5,7 +5,7 @@
         "authorization": {
             "ad_auth": {
                 "ad_network": "DEVOPS"
-            },
+            }, 
             "sudo": {
                 "groups": [
                     "domain-admins", 
@@ -113,14 +113,14 @@
                     "x86_64": {
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
                     }
-                },
+                }, 
                 "7": {
                     "x86_64": {
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
                     }
                 }
             }
-        },
+        }, 
         "memcached": {
             "memory": "1024"
         }, 
@@ -128,13 +128,13 @@
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
         "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
             "multi_environment_monitoring": "true", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
-            },
-            "client": {
-                "install_method": "package"
-            },
+            }, 
             "server_role": "nagios_xi"
         }, 
         "ntp": {
