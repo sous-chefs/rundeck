@@ -5,7 +5,7 @@
         "authorization": {
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
-            },
+            }, 
             "sudo": {
                 "groups": [
                     "STAGINGDMZ\\\\domain-admins", 
@@ -102,10 +102,10 @@
     "name": "D", 
     "override_attributes": {
         "esx": {
-            "checksum": "a495c580eee4b94d92b213e8189c4ec2", 
+            "checksum": "6127d1fbd6fcf6cda7d06c8fd4720405", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.3.12-493255.tar.gz"
-        },
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
         "java": {
             "install_flavor": "oracle", 
             "jdk": {
@@ -113,14 +113,14 @@
                     "x86_64": {
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
                     }
-                },
+                }, 
                 "7": {
                     "x86_64": {
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
                     }
                 }
             }
-        },
+        }, 
         "memcached": {
             "memory": "1024"
         }, 
@@ -128,15 +128,14 @@
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
         "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
             "multi_environment_monitoring": "true", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
-            },
-            "client": {
-                "install_method": "package"
-            },
-            "server_role": "nagios_xi",
-            
+            }, 
+            "server_role": "nagios_xi"
         }, 
         "ntp": {
             "servers": [
@@ -157,11 +156,6 @@
             "community": "DevOps", 
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
-       },
-       "esx": {
-           "repo": "http://repo.staging.dmz/repo/linux/vmware",
-           "tarball": "VMwareTools-8.6.5-652272.tar.gz",
-           "checksum": "6127d1fbd6fcf6cda7d06c8fd4720405"
-       }
+        }
     }
 }
