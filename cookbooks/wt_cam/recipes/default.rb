@@ -44,6 +44,11 @@ iis_site 'CAM' do
 end
 
 if ENV["deploy_build"] == "true" then 
+  execute "aspnet_regiis" do
+    command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis -i -enable"
+    action :run
+  end
+
   windows_zipfile install_dir do
     source install_url
     action :unzip	
