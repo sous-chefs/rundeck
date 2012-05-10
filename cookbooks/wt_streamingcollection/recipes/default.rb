@@ -23,10 +23,6 @@ group = node['wt_streamingcollection']['group']
 
 zookeeper_port = node['zookeeper']['clientPort']
 
-graphite_server = node['graphite']['server']
-graphite_port = node['graphite']['port']
-metric_prefix = node['graphite']['metric_prefix']
-
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -113,9 +109,7 @@ end
         :server_url => dcsid_url,
         :install_dir => install_dir,
         :port => port,
-        :graphite_server => graphite_server,
-        :graphite_port => graphite_port,
-        :metric_prefix => metric_prefix
+        :wt_monitoring => node[:wt_monitoring]
     })
 	end 
 end
