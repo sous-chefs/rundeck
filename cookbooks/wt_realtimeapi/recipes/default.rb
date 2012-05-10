@@ -19,8 +19,6 @@ port = node['wt_realtimeapi']['port']
 cam_url = node['wt_camservice']['url']
 user = node['wt_realtimeapi']['user']
 group = node['wt_realtimeapi']['group']
-graphite_server = node['graphite']['server']
-graphite_port = node['graphite']['port']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -75,7 +73,7 @@ template "#{install_dir}/bin/service-control" do
 end
 
 
-%w[config.properties netty.properties].each do | template_file|
+%w[monitoring.properties config.properties netty.properties].each do | template_file|
   template "#{install_dir}/conf/#{template_file}" do
 	source	"#{template_file}.erb"
 	owner "root"
@@ -85,8 +83,7 @@ end
         :cam_url => cam_url,
         :install_dir => install_dir,
         :port => port,
-	:graphite_server => graphite_server,
-        :graphite_port => graphite_port
+        :wt_monitoring => node[:wt_monitoring]
     })
 	end 
 end 

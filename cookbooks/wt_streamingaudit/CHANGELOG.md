@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.3
+* Moved monitoring attributes to wt_monitoring
+
 ## 0.0.2:
 * Searches for zookeeper were made using nodes that apply the zookeeper recipe. In our environment we
 * apply a zookeeper role instead tso the search was changed to look for the role
