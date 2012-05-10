@@ -97,23 +97,6 @@ template "#{install_dir}/conf/kafka.properties" do
   })
 end
 
-%w[monitoring.properties config.properties netty.properties].each do | template_file|
-  template "#{install_dir}/conf/#{template_file}" do
-	source	"#{template_file}.erb"
-	owner "root"
-	group "root"
-	mode  00644
-	variables({
-        :server_url => dcsid_url,
-        :install_dir => install_dir,
-        :port => port,
-        :graphite_server => graphite_server,
-        :graphite_port => graphite_port,
-        :metric_prefix => metric_prefix
-    })
-	end 
-end
-
 # delete the application tarball
 execute "delete_install_source" do
     user "root"
