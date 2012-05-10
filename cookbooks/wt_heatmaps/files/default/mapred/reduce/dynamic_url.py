@@ -85,6 +85,8 @@ while True:
 			, "ds": params[1]
 			, "hr": params[2]
 			, "cs-uri-stem": tmp["cs-uri-stem"]
+			, "dcs-id": tmp["dcs-id"]
+			, "cs-host": tmp["cs-host"]
 		}
 		
 		# only continue if we know the account-id for the dcs-id
@@ -99,6 +101,7 @@ while True:
 		# there may be multiple account-ids
 		account_id = account_ids[tmp["dcs-id"]]
 		for aid in account_id:
+			obj["account-id"] = str(aid)
 			obj["page_key"] = str(aid) + ";" + tmp["cs-host"] + ";" + sha1(page_ident)
 
 			# emit (workflow #4)
