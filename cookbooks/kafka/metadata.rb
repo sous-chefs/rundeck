@@ -3,7 +3,7 @@ maintainer_email  "ivan.vonnagy@webtrends.com"
 license           "Apache 2.0"
 description       "Sets up Kafka"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version           "1.0.0"
+version           "1.0.1"
 
 depends	"java"
 depends	"runit"
@@ -15,6 +15,11 @@ recipe	"kafka::default",		"Base configuration for kafka"
   supports os
 end
 
+attribute "kafka/version",
+  :display_name => "Kafka Version",
+  :description => "The Kafka version to pull and use",
+  :default => "0.7.0"
+
 attribute "kafka/home_dir",
   :display_name => "Kafka Home Directory",
   :description => "Location for Kafka to be located.",
@@ -25,32 +30,47 @@ attribute "kafka/data_dir",
   :description => "Location for Kafka logs.",
   :default => "/usr/share/kafka/kafka-logs"
 
-attribute "kafka/stage_dir",
-  :display_name => "Kafka Stage Directory",
-  :description => "Location for Kafka to be un-packaged before locating. The attribute is OS specific",
-  :default => "/usr/local/share/kafka"
-
 attribute "kafka/log_dir",
   :display_name => "Kafka log4j Directory",
-  :description => "Location for Kafka log4j logs.",
+  :description => ";.",
   :default => "/var/log/kafka"
 
-attribute "kafka/user",
-  :display_name          => "kafka",
-  :description           => "The kafka user",
-  :default               => "kafka"
+attribute "kafka/broker_id",
+  :display_name => "Kafka Broker Id",
+  :description => "The id of the broker. This must be set to a unique integer for each broker.",
+  :default => "0"
+ 
+attribute "kafka/broker_host_name",
+  :display_name => "Kafka Host Name",
+  :description => "Hostname the broker will advertise to consumers. If not set, kafka will use the value returned from InetAddress.getLocalHost().",
+  :default => ""
 
-attribute "kafka/version",
-  :display_name => "Kafka Version",
-  :description => "The Kafka version to pull and use",
-  :default => "0.7.0"
-  
-attribute "kafka/zookeeper_recipe",
-  :display_name => "Zookeeper Recipe",
-  :description => "The recipe used to locate the Zookeeper nodes",
-  :default => "zookeeper"
+attribute "kafka/port",
+  :display_name => "Kafka Port",
+  :description => "The port the socket server listens on.",
+  :default => "9092"
 
-attribute "kafka/zookeeper_client_port",
-  :display_name => "Zookeeper Client port",
-  :description => "The client port used to access each Zookeeper server",
-  :default => "2181"
+attribute "kafka/threads",
+  :display_name => "Kafka Threads",
+  :description => "The number of processor threads the socket server uses for receiving and answering requests. If not set, defaults to the number of cores on the machine.",
+  :default => ""
+
+attribute "kafka/log_flush_interval",
+  :display_name => "Kafka Flush Interval",
+  :description => "The number of messages to accept before forcing a flush of data to disk.",
+  :default => "10000"
+
+attribute "kafka/log_flush_time_interval",
+  :display_name => "Kafka Flush Time Interval",
+  :description => "The maximum amount of time (ms) a message can sit in a log before we force a flush.",
+  :default => "1000"
+
+attribute "kafka/log_flush_scheduler_time_interval",
+  :display_name => "Kafka Flush Scheduler Time Interval",
+  :description => "The interval (in ms) at which logs are checked to see if they need to be flushed to disk.",
+  :default => "1000"
+
+attribute "kafka/log_retention_hours",
+  :display_name => "Kafka Log Retention Hours",
+  :description => "The minimum age of a log file to be eligible for deletion",
+  :default => "168"

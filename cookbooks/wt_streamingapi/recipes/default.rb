@@ -19,9 +19,6 @@ port = node['wt_streamingapi']['port']
 cam_url = node['wt_camservice']['url']
 user = node['wt_streamingapi']['user']
 group = node['wt_streamingapi']['group']
-graphite_server = node['graphite']['server']
-graphite_port = node['graphite']['port']
-metric_prefix = node['graphite']['metric_prefix']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -85,9 +82,7 @@ end
         :cam_url => cam_url,
         :install_dir => install_dir,
         :port => port,
-        :graphite_server => graphite_server,
-        :graphite_port => graphite_port,
-        :metric_prefix => metric_prefix
+        :wt_monitoring => node[:wt_monitoring]
     })
 	end 
 end 
