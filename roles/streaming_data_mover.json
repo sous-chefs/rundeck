@@ -11,6 +11,5 @@
     "recipe[kafka]"
   ],
   "description": "This is the Kafka message broker",
-  "chef_type": "role",
-  
+  "chef_type": "role"
 }
