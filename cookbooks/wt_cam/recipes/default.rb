@@ -10,7 +10,7 @@
 
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then 
-  #include_recipe "wt_cam::uninstall" 
+  include_recipe "wt_cam::uninstall" 
 end
 
 
@@ -19,6 +19,11 @@ install_dir = "#{node['wt_common']['install_dir_windows']}\\CAM"
 install_logdir = node['wt_common']['install_log_dir_windows']
 app_pool = node['wt_cam']['app_pool']
 install_url = "#{node['wt_cam']['url']}#{node['wt_cam']['zip_file']}"
+db_server = node['wt_cam']['database']
+pod = node.chef_environment
+user_data = data_bag_item('authorization', pod)
+user = user_data['wt_common']['camdb_user']
+password = user_data['wt_common']['camdb_pass']
 
 pod = node.chef_environment
 
@@ -39,6 +44,11 @@ iis_site 'CAM' do
 end
 
 if ENV["deploy_build"] == "true" then 
+  execute "aspnet_regiis" do
+    command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis -i -enable"
+    action :run
+  end
+
   windows_zipfile install_dir do
     source install_url
     action :unzip	
@@ -47,9 +57,9 @@ if ENV["deploy_build"] == "true" then
   template "#{install_dir}\\Webtrends.CamWeb.UI\\web.config" do
   	source "webConfig.erb"  
 	variables(
-  		:db_server => "(local)",
-  		:user_id => "sa",
-  		:password => "password"
+  		:db_server => node['wt_cam']['db_server'],
+  		:user_id => user_data['wt_common']['camdb_user'],
+  		:password => user_data['wt_common']['camdb_pass']
   	)	
   end
   

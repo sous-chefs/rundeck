@@ -6,13 +6,12 @@
 # Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
+#
 # This recipe installs the needed components to full setup/configure the RoadRunner service
+#
 
+include_recipe "wt_roadrunner::uninstall" if deploy_mode?
 
-log "Deploy build is #{ENV["deploy_build"]}"
-if ENV["deploy_build"] == "true" then 
-include_recipe "wt_roadrunner::uninstall" 
-end
 # source build
 build_url = "#{node['wt_roadrunner']['build_url']}#{node['wt_roadrunner']['zip_file']}"
 
@@ -32,7 +31,6 @@ $rr_port = 8097
 gac_cmd = "#{install_dir}\\gacutil.exe /i \"#{install_dir}\\Webtrends.RoadRunner.SSISPackageRunner.dll\""
 urlacl_cmd = "netsh http add urlacl url=http://+:#{$rr_port}/ user=\"#{svcuser}\""
 firewall_cmd="netsh advfirewall firewall add rule name=\"Webtrends RoadRunner port #{$rr_port}\" dir=in action=allow protocol=TCP localport=#{$rr_port}"
-share_cmd="net share wrs=#{install_dir} /grant:EVERYONE,FULL /remark:\"Set from the chef run\""
 
 # determine root drive of install_dir - ENG390500
 if (install_dir =~ /^(\w:)\\.*$/)
@@ -48,17 +46,10 @@ directory "#{install_dir}" do
 	action :create
 end
 
-# set permissions for the service user to have read access to the install drive
+# set permissions for the service user to have read access to the install drive - ENG390500
 wt_base_icacls "#{install_dir_drive}" do
 	action :grant
 	user svcuser 
-	perm :read
-end
-
-# set permissions for the log readers group to have read access to the install directory
-wt_base_icacls "#{install_dir}" do
-	action :grant
-	user node['wt_common']['wrsread_group'] 
 	perm :read
 end
 
@@ -75,41 +66,45 @@ wt_base_icacls "#{log_dir}" do
 	perm :modify
 end
 
-if ENV["deploy_build"] == "true" then 
-	ENV["deploy_build"] = "false"
-  log("Source URL: #{build_url}") { level :info}
-  # unzip the install package
-  windows_zipfile "#{install_dir}" do
-  	source "#{build_url}"
-  	action :unzip	
-  end
+if deploy_mode?
 
-  template "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config" do
+	ENV['deploy_build'] = 'false'
+	# log("Source URL: #{build_url}") { level :info}
+	this_zipfile = get_build node['wt_roadrunner']['zip_file']
+
+	# unzip the install package
+	windows_zipfile "#{install_dir}" do
+		source "#{this_zipfile}"
+		action :unzip	
+	end
+
+	template "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config" do
 	  source "RRServiceConfig.erb"
 	  variables(		
 		  :master_host => master_host
 	  )
-  end
+	end
 
-  template "#{install_dir}\\log4net.config" do
+	template "#{install_dir}\\log4net.config" do
 	  source "log4net.erb"
 	  variables(		
 	  	:logdir => log_dir
 	  )
-  end
+	end
 
-  execute "gac" do
+	execute "gac" do
 	  command gac_cmd
 	  cwd install_dir	
-  end
+	end
 
- powershell "create service" do
-   environment({'serviceName' => node['wt_roadrunner']['service_name'], 'install_dir' => install_dir, 'user' => svcuser, 'pass' => svcpass})	
-   code <<-EOH
- 		$computer = gc env:computername
+	powershell "create service" do
+		environment({'serviceName' => node['wt_roadrunner']['service_name'], 'install_dir' => install_dir, 'svcuser' => svcuser, 'svcpass' => svcpass})	
+		code <<-EOH
+ 		# $computer = gc env:computername
  		$class = "Win32_Service"
-  	$method = "Create"
-		$mc = [wmiclass]"\\\\$computer\\ROOT\\CIMV2:$class"
+		$method = "Create"
+		# $mc = [wmiclass]"\\\\$computer\\ROOT\\CIMV2:$class"
+		$mc = [wmiclass]"\\\\.\\ROOT\\CIMV2:$class"
 		$servicePath = $env:install_dir + "\\Webtrends.RoadRunner.Service.exe"
 		$inparams = $mc.PSBase.GetMethodParameters($method)
 		$inparams.DesktopInteract = $false
@@ -127,30 +122,26 @@ if ENV["deploy_build"] == "true" then
 
 		$result = $mc.PSBase.InvokeMethod($method,$inparams,$null)
 		$result | Format-List
- 	EOH
- end
+		EOH
+	end
 
-  #Set the ACL up to allow http traffic on port 8097
-  execute "netsh_urlacl" do
-  	command urlacl_cmd
-  	cwd install_dir	
-  end
+	#Set the ACL up to allow http traffic on port 8097
+	execute "netsh_urlacl" do
+		command urlacl_cmd
+		cwd install_dir	
+	end
 
-  # Set the firewall to allow traffic into the system on port 8097
-  execute "netsh_firewall" do
-  	command firewall_cmd
-  	cwd install_dir
-  end
+	# Set the firewall to allow traffic into the system on port 8097
+	execute "netsh_firewall" do
+		command firewall_cmd
+		cwd install_dir
+	end
 
-  # share the install directory
-  execute "share_install_dir" do
-  	command share_cmd
-  	cwd install_dir_drive
-  	ignore_failure true
-  end
+	share_wrs
 end
 
-service "wt_roadrunner" do
+service node['wt_roadrunner']['service_name'] do
 	action :start
 	ignore_failure true
 end
+
