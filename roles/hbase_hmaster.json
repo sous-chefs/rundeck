@@ -1,0 +1,11 @@
+{
+  "name": "hbase_hmaster",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Hbase Hmaster Server",
+  "run_list": [
+    "recipe[hbase::hmaster]",
+  ],
+  "override_attributes": {
+  }
+}
