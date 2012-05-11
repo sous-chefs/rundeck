@@ -9,6 +9,7 @@
 
 package "heatmaps" do
   version "#{node['wt_heatmaps']['heatmaps_version']}"
+  options "--force-yes"
 	action :install
 end
 
