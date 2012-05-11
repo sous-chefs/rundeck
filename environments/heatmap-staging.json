@@ -232,7 +232,7 @@
         }, 
         "wt_streaming_audit": {
             "port": 8082,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/14108:id/realtimeapi-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14108:id/realtimeapi-bin.tar.gz"
         }, 
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/14261:id/streamingapi-bin.tar.gz",
