@@ -6,7 +6,8 @@
   "run_list": [
     "recipe[hadoop::namenode]",
     "role[hive]",
-    "role[hbase_hmaster]"
+    "role[hbase_hmaster]",
+    "role[wt_heatmaps_mapreduce]"
   ],
   "override_attributes": {
   }
