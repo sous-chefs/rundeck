@@ -166,8 +166,6 @@
             }
         }, 
         "kafka": {
-            "broker_id": "1",
-            "broker_host_name": "vstreaming07.staging.dmz",
             "threads": "8",
             "log_flush_time_interval": "500",
             "log_flush_scheduler_time_interval": "500",
