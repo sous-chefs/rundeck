@@ -16,6 +16,5 @@
     "recipe[wt_streaminglogreplay]"
   ],
   "description": "Webtrends Streaming LogReplay",
-  "chef_type": "role",
-  
+  "chef_type": "role"  
 }
