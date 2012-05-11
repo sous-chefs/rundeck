@@ -1,6 +1,11 @@
 ## Future
-
 * Unknown
+
+## 1.0.2
+* Set default broker_id to nil and if not set will use the ip address without the '.'
+* Set the default broker_host_name to nil and if not set will use the server hostname
+* Fixed log4j.properties problems
+
 
 ## 1.0.1
 
