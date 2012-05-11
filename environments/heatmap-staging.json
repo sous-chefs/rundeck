@@ -217,7 +217,7 @@
         "wt_configdistrib": {
             "dcsid_url": "http://vcd01:8097/config/dcsid2account"
         }, 
-        "wt_heatmap": {
+        "wt_heatmaps": {
             "config_distrib": "vcd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
