@@ -7,5 +7,6 @@ version           "0.10.4"
 
 recipe "apiserver", "Installs heatmaps apiserver"
 recipe "mapred", "Installs heatmaps mapreduce scripts"
+recipe "import", "Installs...."
 
 
