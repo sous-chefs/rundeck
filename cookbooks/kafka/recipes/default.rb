@@ -118,9 +118,9 @@ end
 %w[server.properties consumer.properties producer.properties zookeeper.properties log4j.properties].each do |template_file|
   template "#{install_dir}/config/#{template_file}" do
         source	"#{template_file}.erb"
-        owner "root"
-        group "root"
-        mode  00644
+        owner user
+        group group
+        mode  00755
         variables({ 
             :kafka => node[:kafka],
             :zookeeper_pairs => zookeeper_pairs,
