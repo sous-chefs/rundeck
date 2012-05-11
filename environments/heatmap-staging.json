@@ -4,7 +4,7 @@
         "hadoop": "= 1.0.0", 
         "hbase": "= 1.0.0", 
         "hive": "= 1.0.0", 
-        "kafka": "= 1.0.2",
+        "kafka": "= 1.0.3",
         "wt_heatmaps": "= 0.10.3", 
         "wt_realtimeapi": "= 0.0.8", 
         "wt_streamingapi": "= 0.0.8", 
