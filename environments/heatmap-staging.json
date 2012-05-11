@@ -215,7 +215,7 @@
         "wt_configdistrib": {
             "dcsid_url": "http://vcd01:8097/config/dcsid2account"
         }, 
-        "wt_heatmap": {
+        "wt_heatmaps": {
             "config_distrib": "vcd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
@@ -229,8 +229,8 @@
             "port": 8082
         }, 
         "wt_streaming_audit": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14244:id/streamingauditor-bin.tar.gz"
             "port": 8082,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14108:id/realtimeapi-bin.tar.gz"
         }, 
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/14261:id/streamingapi-bin.tar.gz",
