@@ -1,5 +1,5 @@
 {
-  "name": "wt_streaming_collection_server",
+  "name": "wt_streaming_logreplay",
   "default_attributes": {
   },
   "override_attributes": {
@@ -13,8 +13,8 @@
   },
   "run_list": [
     "recipe[java]",
-    "recipe[wt_streamingcollection]"
+    "recipe[wt_streaminglogreplay]"
   ],
-  "description": "Webtrends Streaming Collection Server",
+  "description": "Webtrends Streaming LogReplay",
   "chef_type": "role"  
 }
