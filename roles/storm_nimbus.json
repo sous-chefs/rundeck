@@ -1,10 +1,10 @@
 {
-  "name": "hbase_hmaster",
+  "name": "storm_nimbus",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Hbase Hmaster Server",
+  "description": "Storm Nimbus",
   "run_list": [
-    "recipe[hbase::hmaster]"
+    "recipe[storm::nimbus]"
   ],
   "override_attributes": {
   }

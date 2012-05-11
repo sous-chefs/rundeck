@@ -4,7 +4,7 @@
   "json_class": "Chef::Role",
   "description": "Hbase Region Server",
   "run_list": [
-    "recipe[hbase::regionserver]",
+    "recipe[hbase::regionserver]"
   ],
   "override_attributes": {
   }

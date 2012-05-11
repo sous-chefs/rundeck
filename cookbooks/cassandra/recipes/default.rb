@@ -61,3 +61,12 @@ user "root"
   fi
   EOH
 end
+
+#Create collectd plugin for cassandra
+template "#{node[:collectd][:plugin_conf_dir]}/#{file}.conf" do
+  source "collectd_cassandra.conf.erb"
+  owner "root"
+  group "root"
+  mode 00644
+  notifies :restart, resources(:service => "collectd")
+end

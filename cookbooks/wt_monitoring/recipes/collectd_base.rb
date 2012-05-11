@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: wt_monitoring
-# Recipe:: opsmon_scheduledhits
+# Recipe:: collectd_base
 #
 # Copyright 2012, Webtrends
 #
