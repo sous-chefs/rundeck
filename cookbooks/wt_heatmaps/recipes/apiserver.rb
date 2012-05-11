@@ -7,7 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-package "heatmaps_#{node['wt_heatmaps']['heatmaps_version']}_amd64.deb" do
+package "heatmaps" do
+  version "#{node['wt_heatmaps']['heatmaps_version']}"
 	action :install
 end
 
