@@ -7,7 +7,7 @@
     "recipe[hadoop::datanode]",
     "role[hbase_regionserver]",
     "role[hive]",
-    "recipe[wt_heatmaps::import]"
+    "role[wt_heatmaps_import]"
   ],
   "override_attributes": {
   }
