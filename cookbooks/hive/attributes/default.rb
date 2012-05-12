@@ -16,5 +16,3 @@ default[:hive][:metastore][:connection_url] = ""
 default[:hive][:metastore][:connector] = "mysql"
 default[:hive][:metastore][:dbuser] = "root"
 default[:hive][:metastore][:dbpass] = ""
-
-
