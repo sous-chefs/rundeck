@@ -63,7 +63,7 @@ user "root"
 end
 
 #Create collectd plugin for cassandra
-template "#{node[:collectd][:plugin_conf_dir]}/#{file}.conf" do
+template "#{node[:collectd][:plugin_conf_dir]}/collectd_cassandra.conf" do
   source "collectd_cassandra.conf.erb"
   owner "root"
   group "root"
