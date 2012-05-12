@@ -30,7 +30,7 @@ end
 
 # download hive
 remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-  source download_url
+  source "#{download_url}#{tarball}"
   mode 00644
   not_if "test -f #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
