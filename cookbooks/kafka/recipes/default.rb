@@ -54,7 +54,7 @@ end
 # create the install directory
 install_dir = node[:kafka][:install_dir]
 
-directory "#{install_dir}" do
+directory "#{install_dir}/bin" do
   owner "root"
   group "root"
   mode 00755
@@ -93,7 +93,7 @@ end
 execute "tar" do
   user  "root"
   group "root" 
-  creates "#{node[:kafka][:installDir]}/bin"
+  creates "#{node[:kafka][:installDir]}"
   cwd install_dir
   command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
