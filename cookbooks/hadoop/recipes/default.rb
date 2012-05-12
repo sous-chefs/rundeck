@@ -24,7 +24,7 @@ include_recipe "java"
   end
 end
 
-hadoop_namenode = search(:node, "role:hadoop_namenode AND chef_environment:#{node.chef_environment}")
+hadoop_namenode = search(:node, "role:hadoop_primarynamenode AND chef_environment:#{node.chef_environment}")
 hadoop_namenode = hadoop_namenode.length == 1 ? hadoop_namenode.first[:fqdn] : "localhost"
 
 hadoop_backupnamenode = search(:node, "role:hadoop_backupnamenode AND chef_environment:#{node.chef_environment}")
