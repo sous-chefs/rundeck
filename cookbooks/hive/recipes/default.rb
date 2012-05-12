@@ -1,5 +1,18 @@
+#
+# Cookbook Name:: hive
+# Recipe:: default
+# Author:: Sean McNamara(<sean.mcnamara@webtrends.com>)
+#
+# Copyright 2012, Webtrends
+#
+# All rights reserved - Do Not Redistribute
+# This recipe installs the CAM IIS app
 
 include_recipe "hadoop"
+
+# define easier to use variables
+tarball     = node['hive']['tarball']
+download_url = node['hive']['download_url']
 
 # determine metastore jdbc properties
 metastore_prefix = "none"
@@ -15,20 +28,16 @@ if node[:hive][:metastore][:connector] == "sqlserver"
   metastore_driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
 end
 
-
 # download hive
-remote_file "#{node[:hadoop][:install_stage_dir]}/hive-#{node[:hive][:version]}-bin.tar.gz" do
-  source "http://mirror.uoregon.edu/apache/hive/hive-#{node[:hive][:version]}/hive-#{node[:hive][:version]}-bin.tar.gz"
-  owner "hadoop"
-  group "hadoop"
-  mode "0744"
-  not_if "test -f #{node[:hadoop][:install_stage_dir]}/hive-#{node[:hive][:version]}-bin.tar.gz"
+remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+  source download_url
+  mode 00644
+  not_if "test -f #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
-
 
 # extract it
 execute "extract-hive" do
-  command "tar -zxf hive-#{node[:hive][:version]}-bin.tar.gz"
+  command "tar -zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
   creates "hive-#{node[:hbase][:version]}"
   cwd "#{node[:hadoop][:install_stage_dir]}"
   user "hadoop"
@@ -46,17 +55,18 @@ end
     source "#{jar}"
     owner "hadoop"
     group "hadoop"
-    mode 0644
+    mode 00644
   end
 end
 
+# load the databag to get the hive meta db authentication
 auth_config = data_bag_item('authorization', "#{node.chef_environment}")
 
-# templates
+# create config files and the startup script from template
 %w[hive-site.xml hive-env.sh hive-exec-log4j.properties hive-log4j.properties].each do |template_file|
   template "/usr/local/hive/conf/#{template_file}" do
     source "#{template_file}"
-    mode 0755
+    mode 00755
     variables(
       :metastore_driver => metastore_driver,
       :dbuser => auth_config["hive"]["dbuser"],
@@ -81,5 +91,3 @@ end
 link "/usr/local/hive/lib/hbase-0.92.0.jar" do
   to "/usr/local/hbase/hbase-0.92.0.jar"
 end
-
-
