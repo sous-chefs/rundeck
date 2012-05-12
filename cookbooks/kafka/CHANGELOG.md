@@ -1,5 +1,7 @@
 ## Future
 * Unknown
+## 1.0.4
+* Fixed the creation the bin dir. 
 
 ## 1.0.3
 * Added logic to prevent kafka from being nuked each time Chef is run. A manual delete of the kafka install folder will trigger a re-deploy.
