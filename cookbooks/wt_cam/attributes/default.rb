@@ -3,7 +3,7 @@
 # Cookbook Name:: wt_cam
 # Attribute:: default
 #
-# Copyright 2011, Webtrends Inc.
+# Copyright 2012, Webtrends Inc.
 #
 
 
