@@ -77,11 +77,31 @@ directory node[:hadoop][:install_stage_dir] do
   recursive true
 end
 
+
+# Due to poor packaging we can't install hadoop from the repo.  Hadoop team fail
 # install the hadoop rpm from our repo
-package "hadoop" do
-  action :install
-  version "1.0.0-1"
+#package "hadoop" do
+#  action :install
+#  version "1.0.0-1"
+#end
+
+# download rpm
+remote_file "#{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.amd64.rpm" do
+ source "http://mirror.uoregon.edu/apache/hadoop/common/hadoop-#{node[:hadoop][:version]}/hadoop-#{node[:hadoop][:version]}-1.amd64.rpm"
+ owner "hadoop"
+ group "hadoop"
+ mode "0744"
+ not_if "test -f #{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.amd64.rpm"
 end
+ 
+ 
+# install rpm
+package "hadoop-#{node[:hadoop][:version]}-1.amd64" do
+ action :install
+ source "#{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.amd64.rpm"
+ provider Chef::Provider::Package::Rpm
+end
+
 
 # manage hadoop configs
 %w[core-site.xml fair-scheduler.xml hadoop-env.sh hadoop-policy.xml hdfs-site.xml mapred-site.xml masters slaves taskcontroller.cfg].each do |template_file|
