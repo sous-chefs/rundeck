@@ -12,6 +12,7 @@
 %{unzip zeromq jzmq}.each do |pkg|
   package pkg do
     action :install
+    options "--force-yes"
   end
 end
 
@@ -36,4 +37,4 @@ execute "tar" do
   creates "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
   cwd     "#{node['storm']['install_dir']}"
   command "tar zxvf #{Chef::Config[:file_cache_path]}/storm-#{node['storm']['version']}.tar.gz"
-end
+end 
