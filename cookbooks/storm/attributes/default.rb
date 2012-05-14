@@ -7,7 +7,8 @@
 #
 
 # installation attributes
-default['storm']['version'] = "0.7.1"
+default['storm']['download_url'] = ""
+default['storm']['tarball'] = ""
 default['storm']['install_dir'] = "/opt/storm"
 
 # general storm attributes
@@ -36,9 +37,9 @@ default['storm']['ui_port'] = 8080
 default['storm']['ui_childopts'] = "-Xmx768m"
 
 # drpc attributes
-default['storm']['drpc_port'] = drpc.port: 3772
-default['storm']['drpc_ivocations_port'] = drpc.invocations.port: 3773
-default['storm']['drpc_request_timeout_secs'] = drpc.request.timeout.secs: 600
+default['storm']['drpc_port'] = 3772
+default['storm']['drpc_ivocations_port'] = 3773
+default['storm']['drpc_request_timeout_secs'] = 600
 
 # transactional options
 default['storm']['transactional_zookeeper_root'] = "/transactional"
@@ -46,7 +47,7 @@ default['storm']['transactional_zookeeper_servers'] = "null"
 default['storm']['transactional_zookeeper_port'] = "null"
 
 # supervisor options
-default['storm']['supervisor_childopts'] = supervisor.childopts: "-Xmx1024m"
+default['storm']['supervisor_childopts'] = "-Xmx1024m"
 default['storm']['supervisor_worker_start_timeout_secs'] = 120
 default['storm']['supervisor_worker_timeout_secs'] = 30
 default['storm']['supervisor_monitor_frequency_secs'] = 3
