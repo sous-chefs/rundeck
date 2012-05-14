@@ -16,6 +16,7 @@ tarball     = node['wt_streamingapi']['tarball']
 download_url = node['wt_streamingapi']['download_url']
 java_home   = node['java']['java_home']
 port = node['wt_streamingapi']['port']
+java_opts = node['wt_streamingapi']['java_opts']
 cam_url = node['wt_camservice']['url']
 user = node['wt_streamingapi']['user']
 group = node['wt_streamingapi']['group']
@@ -68,7 +69,8 @@ template "#{install_dir}/bin/service-control" do
         :java_home => java_home,
         :user => user,
         :java_class => "com.webtrends.streaming.websocket.StreamingAPIDaemon",
-        :java_jmx_port => 9999
+        :java_jmx_port => 9999,
+        :java_opts => java_opts
     })
 end
 
