@@ -22,7 +22,9 @@
 # Set environment variables here.
 
 # The java implementation to use.  Java 1.6 required.
-export JAVA_HOME=/usr/lib/jvm/jdk1.6.0_30/jre
+
+#Smith: Commenting this out since we apply it via the JAVA cookbook
+#export JAVA_HOME=/usr/lib/jvm/jdk1.6.0_30/jre
 
 # Extra Java CLASSPATH elements.  Optional.
 # export HBASE_CLASSPATH=
