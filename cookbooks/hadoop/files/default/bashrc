@@ -106,8 +106,5 @@ fi
 export HADOOP_CONF_DIR=/etc/hadoop
 export HADOOP_CLASSPATH=/usr/share/hadoop
 
-# Set JAVA_HOME (we will also configure JAVA_HOME directly for Hadoop later on)
-#export JAVA_HOME=/usr/lib/jvm/java-6-sun
-export JAVA_HOME=/usr/lib/jvm/java/jre
 
 
