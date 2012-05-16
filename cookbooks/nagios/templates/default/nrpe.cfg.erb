@@ -46,3 +46,5 @@ command[wt_check_cassandra_ring]=<%= node['nagios']['plugin_dir'] %>/cassandra_r
 command[wt_check_smart_disks]=sudo <%= node['nagios']['plugin_dir'] %>/check_smartmon $ARG1$
 command[wt_check_mailq]=sudo <%= node['nagios']['plugin_dir'] %>/check_mailq $ARG1$
 command[wt_check_squid]=sudo <%= node['nagios']['plugin_dir'] %>/check_squid -u http://www.google.com -p localhost -l 8000 -e 200 $ARG1$
+command[wt_check_jmx]=<%= node['nagios']['plugin_dir'] %>/check_jmx $ARG1$
+command[wt_check_graphite_data]=<%= node['nagios']['plugin_dir'] %>/check_graphite_data $ARG1$
