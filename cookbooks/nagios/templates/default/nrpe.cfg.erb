@@ -45,3 +45,5 @@ command[wt_check_log]=sudo <%= node['nagios']['plugin_dir'] %>/check_log $ARG1$
 command[wt_check_cassandra_ring]=<%= node['nagios']['plugin_dir'] %>/cassandra_ring $ARG1$
 command[wt_check_smart_disks]=sudo <%= node['nagios']['plugin_dir'] %>/check_smartmon $ARG1$
 command[wt_check_mailq]=sudo <%= node['nagios']['plugin_dir'] %>/check_mailq $ARG1$
+command[wt_check_jmx]=<%= node['nagios']['plugin_dir'] %>/check_jmx $ARG1$
+command[wt_check_graphite_data]=<%= node['nagios']['plugin_dir'] %>/check_graphite_data $ARG1$
