@@ -80,6 +80,7 @@
         "wt_monitoring": {
             "monitoring_enabled" : "true",
             "jmx_enabled" : "true",
+            "jmx_port": 9999,
             "graphite_enabled" : "true",
             "graphite_server" : "sgraph01.staging.dmz",
             "graphite_port" : 2003, 
@@ -226,27 +227,21 @@
         }, 
         "wt_realtimeapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/14638:id/realtimeapi-bin.tar.gz", 
-            "port": 8082,
-            "jmx_port": 9998
+            "port": 8082
         }, 
         "wt_streaming_audit": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14244:id/streamingauditor-bin.tar.gz",
-            "port": 8082,
-            "jmx_port": 9999
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14244:id/streamingauditor-bin.tar.gz"
         }, 
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/14659:id/streamingapi-bin.tar.gz",
-            "port": 8080,
-            "jmx_port": 9999
+            "port": 8080
         }, 
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/14216:id/streamingcollection-bin.tar.gz",
-            "port": 8080,
-            "jmx_port": 9999
+            "port": 8080
         }, 
         "wt_streaminglogreplayer": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/14753:id/streaminglogreplayer-bin.tar.gz",
-            "jmx_port": 9999
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/14753:id/streaminglogreplayer-bin.tar.gz"
         }, 
         "zookeeper": {
             "clientPort": 2181, 
