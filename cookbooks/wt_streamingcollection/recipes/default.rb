@@ -71,7 +71,7 @@ template "#{install_dir}/bin/service-control" do
     :java_home => java_home,
     :user => user,
     :java_class => "com.webtrends.streaming.CollectionDaemon",
-    :java_jmx_port => node['wt_streamingcollection']['jmx_port'],
+    :java_jmx_port => node['wt_monitoring']['jmx_port'],
     :java_opts => java_opts
   })
 end
