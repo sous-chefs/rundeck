@@ -6,6 +6,7 @@ LOG_OUT="<%=File.join(@log_dir,"process.out")%>"
 LOG_ERR="<%=File.join(@log_dir,"process.err")%>"
 HOME_DIR="<%=@install_dir%>"
 JAVA_HOME="<%=@java_home%>"
+JAVA_OPTS="<%=@java_opts%>"
 
 # Setup classpath, initially empty.
 CP=""
@@ -42,7 +43,7 @@ for conf in `ls $HOME_DIR/conf/*`; do
 done
 
 # Create the JSVC command line.
-CMD="$JAVA_HOME/bin/java -cp $CP -Dcom.webtrends.log.dir=<%=@log_dir%> $JMX_OPTS"
+CMD="$JAVA_HOME/bin/java -cp $CP -Dcom.webtrends.log.dir=<%=@log_dir%> $JAVA_OPTS $JMX_OPTS"
 
 # Find current PID if any.
 FOUND_PID=`ps -ef |grep $MAIN |grep -v grep |awk '{print $2}'`
