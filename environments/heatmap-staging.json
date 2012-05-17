@@ -6,11 +6,11 @@
         "hive": "= 1.0.0", 
         "kafka": "= 1.0.3",
         "wt_heatmaps": "= 0.10.3", 
-        "wt_realtimeapi": "= 0.0.8", 
-        "wt_streamingapi": "= 0.0.8", 
-        "wt_streamingcollection": "= 0.0.11", 
-        "wt_streamingaudit": "= 0.0.3", 
-        "wt_streaminglogreplay": "= 0.0.1",
+        "wt_realtimeapi": "= 0.0.9", 
+        "wt_streamingapi": "= 0.0.10", 
+        "wt_streamingcollection": "= 0.0.12", 
+        "wt_streamingaudit": "= 0.0.4", 
+        "wt_streaminglogreplayer": "= 0.0.2",
         "zookeeper": "= 1.0.0"
     }, 
     "default_attributes": {
@@ -226,22 +226,27 @@
         }, 
         "wt_realtimeapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/14638:id/realtimeapi-bin.tar.gz", 
-            "port": 8082
+            "port": 8082,
+            "jmx_port": 9998
         }, 
         "wt_streaming_audit": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14244:id/streamingauditor-bin.tar.gz",
-            "port": 8082
+            "port": 8082,
+            "jmx_port": 9999
         }, 
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/14659:id/streamingapi-bin.tar.gz",
-            "port": 8080
+            "port": 8080,
+            "jmx_port": 9999
         }, 
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/14216:id/streamingcollection-bin.tar.gz",
-            "port": 8080
+            "port": 8080,
+            "jmx_port": 9999
         }, 
-        "wt_streaminglogreplay": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/14143:id/streaminglogreplay-bin.tar.gz"
+        "wt_streaminglogreplayer": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/14753:id/streaminglogreplayer-bin.tar.gz",
+            "jmx_port": 9999
         }, 
         "zookeeper": {
             "clientPort": 2181, 
