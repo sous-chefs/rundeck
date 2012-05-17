@@ -1,5 +1,5 @@
 {
-  "name": "wt_streaming_logreplay",
+  "name": "wt_streaming_logreplayer",
   "default_attributes": {
   },
   "override_attributes": {
@@ -13,8 +13,8 @@
   },
   "run_list": [
     "recipe[java]",
-    "recipe[wt_streaminglogreplay]"
+    "recipe[wt_streaminglogreplayer]"
   ],
-  "description": "Webtrends Streaming LogReplay",
+  "description": "Webtrends Streaming LogReplayer",
   "chef_type": "role"  
 }
