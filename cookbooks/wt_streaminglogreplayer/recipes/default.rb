@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_streaminglogreplay
+# Cookbook Name:: wt_streaminglogreplayer
 # Recipe:: default
 #
 # Copyright 2012, Webtrends
@@ -10,15 +10,15 @@
 # include runit recipe so a service can be defined later
 include_recipe "runit"
 
-log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streaminglogreplay")
-install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streaminglogreplay")
+log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streaminglogreplayer")
+install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streaminglogreplayer")
 
-tarball      = node['wt_streaminglogreplay']['tarball']
 java_home    = node['java']['java_home']
-download_url = node['wt_streaminglogreplay']['download_url']
-user = node['wt_streaminglogreplay']['user']
-group = node['wt_streaminglogreplay']['group']
-
+download_url = node['wt_streaminglogreplayer']['download_url']
+user = node['wt_streaminglogreplayer']['user']
+group = node['wt_streaminglogreplayer']['group']
+java_opts = node['wt_streaminglogreplayer']['java_opts']
+tarball = "streaminglogreplayer-bin.tar.gz"
 zookeeper_port = node['zookeeper']['clientPort']
 
 log "Install dir: #{install_dir}"
@@ -58,7 +58,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
   mode 00644
 end
 
-# uncompress the application tarball into the install directory
+# uncompress the application tarbarll into the install dir
 execute "tar" do
   user  "root"
   group "root" 
@@ -77,7 +77,8 @@ template "#{install_dir}/bin/service-control" do
     :java_home => java_home,
     :user => user,
     :java_class => "com.webtrends.streaming.LogReplayer",
-    :java_jmx_port => 9999
+    :java_jmx_port => node['wt_streaminglogreplayer']['jmx_port'],
+    :java_opts => java_opts
   })
 end
 
@@ -96,14 +97,17 @@ while i < zookeeper_pairs.size do
   i += 1
 end
 
-template "#{install_dir}/conf/kafka.properties" do
-  source  "kafka.properties.erb"
-  owner   "root"
-  group   "root"
-  mode    00644
-  variables({
-    :zookeeper_pairs => zookeeper_pairs
-  })
+%w[producer.properties logconvertor.properties].each do |template_file|
+  template "#{install_dir}/config/#{template_file}" do
+        source	"#{template_file}.erb"
+        owner user
+        group group
+        mode  00755
+        variables({ 
+            :wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
+            :zookeeper_pairs => zookeeper_pairs
+        })
+    end
 end
 
 # delete the application tarball
@@ -115,7 +119,7 @@ execute "delete_install_source" do
 end
 
 # create a runit service
-runit_service "streaminglogreplay" do
+runit_service "streaminglogreplayer" do
   options({
     :log_dir => log_dir,
     :install_dir => install_dir,

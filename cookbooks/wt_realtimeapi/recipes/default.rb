@@ -12,13 +12,14 @@ include_recipe "runit"
 
 log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "realtimeapi")
 install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "realtimeapi")
-tarball     = node['wt_realtimeapi']['tarball']
+tarball     = "realtimeapi-bin.tar.gz"
 download_url = node['wt_realtimeapi']['download_url']
 java_home   = node['java']['java_home']
 port = node['wt_realtimeapi']['port']
 cam_url = node['wt_camservice']['url']
 user = node['wt_realtimeapi']['user']
 group = node['wt_realtimeapi']['group']
+java_opts = node['wt_realtimeapi']['java_opts']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -68,7 +69,8 @@ template "#{install_dir}/bin/service-control" do
         :java_home => java_home,
         :user => user,
         :java_class => "com.webtrends.realtime.server.RealtimeApiDaemon",
-        :java_jmx_port => 9998
+        :java_jmx_port => node['wt_realtimeapi']['jmx_port'],
+        :java_opts => java_opts
     })
 end
 
