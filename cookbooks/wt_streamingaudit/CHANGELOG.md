@@ -5,7 +5,7 @@
 ## 0.0.4
 * Removed 'tarball' attribute as it is included in the download_url
 * Externalized the java options 'java_opts'
-* Externalized the java options 'jmx_port'
+* Externalized the java options 'jmx_port' to [:wt_monitoring][:jmx_port]
 
 ## 0.0.3
 * Moved monitoring attributes to wt_monitoring

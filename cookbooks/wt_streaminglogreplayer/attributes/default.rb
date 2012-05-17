@@ -7,4 +7,4 @@ default['wt_streaminglogreplayer']['log_extension']   = ".gz"
 default['wt_streaminglogreplayer']['log_dir']         = "/ifr"
 default['wt_streaminglogreplayer']['kafka_topic']     = "rawHits"
 default['wt_streaminglogreplayer']['java_opts']       = "-Xms1024m -Djava.net.preferIPv4Stack=true"
-default['wt_streaminglogreplayer']['jmx_port']        = "9998"
+

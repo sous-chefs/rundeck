@@ -11,6 +11,6 @@ Installs Streaming Collection Service
 * java_home: The location of the JRE on the system
 * download_url: The fullpath, including the tarball, to the system build
 * java_opts - Options to start java (e.g. "-Xms2048m -Djava.net.preferIPv4Stack=true")
-* jmx_port - The jmx port to expose
+
 
 = USAGE:

@@ -77,7 +77,7 @@ template "#{install_dir}/bin/service-control" do
     :java_home => java_home,
     :user => user,
     :java_class => "com.webtrends.streaming.LogReplayer",
-    :java_jmx_port => node['wt_streaminglogreplayer']['jmx_port'],
+    :java_jmx_port => node['wt_monitoring']['jmx_port'],
     :java_opts => java_opts
   })
 end
