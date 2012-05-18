@@ -69,7 +69,8 @@ template "#{install_dir}/bin/service-control" do
         :java_home => java_home,
         :user => user,
         :java_class => "com.webtrends.realtime.server.RealtimeApiDaemon",
-        :java_jmx_port => node['wt_monitoring']['jmx_port'],
+        # node['wt_monitoring']['jmx_port']
+        :java_jmx_port => 9998,
         :java_opts => java_opts
     })
 end
