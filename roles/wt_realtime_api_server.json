@@ -6,9 +6,6 @@
       "java" : {
         "install_flavor": "oracle",
         "jdk_version": "7"
-      },
-      "wt_monitoring": {
-          "jmx_port": 9998
       }
   },
   "json_class": "Chef::Role",
