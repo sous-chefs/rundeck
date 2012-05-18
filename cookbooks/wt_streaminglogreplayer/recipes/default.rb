@@ -97,7 +97,7 @@ while i < zookeeper_pairs.size do
   i += 1
 end
 
-%w[producer.properties logconverter.properties].each do |template_file|
+%w[monitoring.properties producer.properties logconverter.properties].each do |template_file|
   template "#{install_dir}/conf/#{template_file}" do
         source	"#{template_file}.erb"
         owner user
@@ -105,7 +105,8 @@ end
         mode  00755
         variables({ 
             :wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
-            :zookeeper_pairs => zookeeper_pairs
+            :zookeeper_pairs => zookeeper_pairs,
+            :wt_monitoring => node[:wt_monitoring]
         })
     end
 end
