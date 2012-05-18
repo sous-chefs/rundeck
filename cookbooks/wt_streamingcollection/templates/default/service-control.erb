@@ -33,15 +33,6 @@ fi
 # Add JMX options and port together.
 JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
 
-# Add all configuration files to the classpath.
-for conf in `ls $HOME_DIR/conf/*`; do
-    if [ "" = "$CP" ]; then
-        CP=$conf
-    else
-        CP=$CP:$conf
-    fi 
-done
-
 # Create the JSVC command line.
 CMD="$JAVA_HOME/bin/java -cp $CP -Dcom.webtrends.log.dir=<%=@log_dir%> $JAVA_OPTS $JMX_OPTS"
 

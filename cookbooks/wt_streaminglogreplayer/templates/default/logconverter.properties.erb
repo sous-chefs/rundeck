@@ -6,3 +6,5 @@ inputLogDir=<%=node[:wt_streaminglogreplayer][:log_dir]%>
 inputLogExtension=<%=node[:wt_streaminglogreplayer][:log_extension]%>
 # Kafka topic to push to for each hit.
 kafkaTopic=<%=node[:wt_streaminglogreplayer][:kafka_topic]%>
+# Should the logs be deleted when they have been completed
+deleteLogs=<%=node[:wt_streaminglogreplayer][:delete_logs]%>
