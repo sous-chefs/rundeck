@@ -79,11 +79,22 @@ end
     owner "zookeeper"
     group "zookeeper"
     variables({
-    	:quorum => node[:zookeeper][:quorum]
+      :quorum => node[:zookeeper][:quorum]
     })
   end
 end
 
+# start script
+template "#{node[:zookeeper][:installDir]}/current/bin/zkServer.sh" do
+  source "zkServer.sh"
+  mode 00755
+  owner "zookeeper"
+  group "zookeeper"
+  variables({
+    :java_jmx_port => 10201
+  })
+end
+  
 # myid
 template "#{node[:zookeeper][:dataDir]}/myid" do
   source "myid"
