@@ -4,6 +4,9 @@
 
 * Unknown
 
+## 1.0.3:
+* Adding jmx to zookeeper
+
 ## 1.0.2:
 * Write the templates out to the correct directory so the recipe works
 
