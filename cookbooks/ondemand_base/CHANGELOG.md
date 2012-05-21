@@ -5,8 +5,13 @@
 * Include dell-tools on Dell systems
 * Include hp-tools on HP systems
 
-## 10.4 (IP):
-
+## 10.4:
+ * Install collectd with the Webtrends base plugins
+ * Disable fprintd (finger print authentication) on CentOS boxes.  It crashes every time a user runs sudo
+ * Better error logs when a recipe run on the wrong platform
+ * Include the apt repo after webtrends repo is added so the cache gets cleared correctly on Ubuntu
+ * Remove the hack to install likewise-open package in the Ubuntu recipe
+ 
 ## 10.3:
 * Installs vmware-tools
 * Installs and configures NRPE including configuration of nrpe.cfg and installation of plugins
