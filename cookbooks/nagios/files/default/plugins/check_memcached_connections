@@ -54,8 +54,11 @@ shift $(($OPTIND - 1))
 [ -z $WARNING ] && help
 [ -z $CRITICAL ] && help
 
+#Find the location of the memcached-tool binary.
+memcachedtool_bin=$(find /usr/ -name memcached-tool)
+
 #Get the current number of connections to memcached
-current_connections=$(/usr/bin/memcached-tool 127.0.0.1:11211 stats |awk '/curr_connections/ {printf "%1.0f",$2}')
+current_connections=$($memcachedtool_bin 127.0.0.1:11211 stats |awk '/curr_connections/ {printf "%1.0f",$2}')
 
 # Normal status
 if [ $current_connections -lt $WARNING ] ; then
