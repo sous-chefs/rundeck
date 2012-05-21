@@ -106,53 +106,6 @@ LoadPlugin java
 		</Value>
 	</MBean>
 
-	#WT Cassandra CF Polling
-	<MBean "zookeeper-cf-Webtrends">
-		ObjectName "org.apache.cassandra.db:type=ColumnFamilies,keyspace=Webtrends,columnfamily=*"
-		InstancePrefix "CAS-"
-		InstanceFrom "columnfamily"
-		<Value>
-			Type "gauge"
-			InstancePrefix "ReadCount"
-			Attribute "ReadCount"
-		</Value>
-                <Value>
-                        Type "gauge"
-                        InstancePrefix "WriteCount"
-                        Attribute "WriteCount"
-                </Value>
-                <Value>
-                        Type "gauge"
-                        InstancePrefix "PendingTasks"
-                        Attribute "PendingTasks"
-                </Value>
-		<Value>
-			Type "gauge"
-			InstancePrefix "TotalWriteLatencyMicros"
-			Attribute "TotalWriteLatencyMicros"
-		</Value>
-		<Value>
-			Type "gauge"
-			InstancePrefix "TotalReadLatencyMicros"
-			Attribute "TotalReadLatencyMicros"
-		</Value>
-		<Value>
-			Type "gauge"
-			InstancePrefix "LiveDiskSpaceUsed"
-			Attribute "LiveDiskSpaceUsed"
-		</Value>			
-	</MBean>
-	#WT Cassandra Cache Polling
-	<MBean "zookeeper-cache-Webtrends">
-		ObjectName "org.apache.cassandra.db:type=Caches,keyspace=Webtrends,cache=*"
-		InstancePrefix "CAS-"
-		InstanceFrom "cache"
-		<Value>
-			Type "gauge"
-			InstancePrefix "RecentHitRate"
-			Attribute "RecentHitRate"
-		</Value>
-	</MBean>
 	#####################
 	# Connection blocks #
 	#####################
@@ -164,8 +117,6 @@ LoadPlugin java
 		Collect "memory_nonheap"
 		Collect "java_threads"
 		Collect "garbage_collector"
-		Collect "zookeeper-cf-Webtrends"
-		Collect "zookeeper-cache-Webtrends"
 	</Connection>
 	</Plugin>
 </Plugin>

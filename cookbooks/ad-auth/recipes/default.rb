@@ -35,7 +35,7 @@ execute "update_apt" do
   only_if { (! File.exists?("/opt/likewise")) & (node.platform == "ubuntu") } 
 end
 
-#Install likewise-open and use --force-yes to avoid issues with unsigned packages on Ubuntu
+# You will need to add likewise-open 6.1 to a local repo from http://www.beyondtrust.com/Products/PowerBroker-Identity-Services-Open-Edition/
 package "likewise-open" do
 	action :install
 	if node.platform == "ubuntu"
