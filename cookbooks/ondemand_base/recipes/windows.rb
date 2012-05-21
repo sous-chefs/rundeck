@@ -24,24 +24,6 @@ unless Chef::Config[:solo]
 	end
 end
 
-include_recipe "windows::reboot_handler" #Needed to handle reboots
-
-domain_to_join = node['authorization']['ad_auth']['ad_network']
-auth_data = data_bag_item('authorization', domain_to_join)
-
-log "Are you joined to domain? #{node['kernel']['cs_info']['part_of_domain']} Current domain is #{node['kernel']['cs_info']['domain']}"
-
-windows_reboot 60 do
-  reason 'Chef Reboot'
-  action :nothing
-end
-
-execute "join domain" do
-  command "NETDOM join /Domain:#{domain_to_join} /userD:#{auth_data['auth_domain_user']} /passwordD:#{auth_data['auth_domain_password']} #{node['hostname']}"
-  not_if {node['kernel']['cs_info']['part_of_domain']}
-  notifies :request, "windows_reboot[60]"
-end
-
 #DisableUAC
 windows_registry 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' do
   values 'EnableLUA' => 0
