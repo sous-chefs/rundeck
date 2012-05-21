@@ -11,7 +11,7 @@
         "wt_streamingcollection": "= 0.0.12", 
         "wt_streamingaudit": "= 0.0.4", 
         "wt_streaminglogreplayer": "= 0.0.2",
-        "zookeeper": "= 1.0.0"
+        "zookeeper": "= 1.0.3"
     }, 
     "default_attributes": {
         "authorization": {
