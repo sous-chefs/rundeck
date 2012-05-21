@@ -76,10 +76,6 @@ file "/etc/sudoers.d/nagios" do
   action :create
 end
 
-file "/etc/sudoers.d/nrpe" do 
-  action :delete
-end
-
 include_recipe "nagios::client"
 
 # installs vim
