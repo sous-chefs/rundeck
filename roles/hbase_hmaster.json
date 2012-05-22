@@ -1,10 +1,10 @@
 {
-  "name": "hadoop_jobtracker",
+  "name": "hbase_hmaster",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Hadoop JobTracker",
+  "description": "Hbase Hmaster Server",
   "run_list": [
-    "recipe[hadoop::jobtracker]"
+    "recipe[hbase::hmaster]"
   ],
   "override_attributes": {
   }

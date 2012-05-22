@@ -1,10 +1,10 @@
 {
-  "name": "hadoop_jobtracker",
+  "name": "hbase_regionserver",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Hadoop JobTracker",
+  "description": "Hbase Region Server",
   "run_list": [
-    "recipe[hadoop::jobtracker]"
+    "recipe[hbase::regionserver]"
   ],
   "override_attributes": {
   }

@@ -1,10 +1,10 @@
 {
-  "name": "hadoop_jobtracker",
+  "name": "storm_nimbus",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Hadoop JobTracker",
+  "description": "Storm Nimbus",
   "run_list": [
-    "recipe[hadoop::jobtracker]"
+    "recipe[storm::nimbus]"
   ],
   "override_attributes": {
   }

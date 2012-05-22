@@ -1,10 +1,10 @@
 {
-  "name": "hadoop_jobtracker",
+  "name": "storm_supervisor",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Hadoop JobTracker",
+  "description": "Storm Supervisor",
   "run_list": [
-    "recipe[hadoop::jobtracker]"
+    "recipe[storm::supervisor]"
   ],
   "override_attributes": {
   }
