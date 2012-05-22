@@ -92,6 +92,9 @@
             "endpoint_address": "net.tcp://asearch.staging.dmz:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
+        }, 
+        "wt_roadrunner": {
+            "build_url": "\\\\sstore02.staging.dmz\\install\\ReleasedBuilds\\10.3.0\\10.3HF bundle build\\RoadRunner_10.3_10.3.0.11_artifacts.zip"
         }
     }, 
     "description": "A Pod", 
