@@ -76,7 +76,10 @@ file "/etc/sudoers.d/nagios" do
   action :create
 end
 
-include_recipe "nagios::client"
+# install nagios from package only
+if node['nagios']['client']['install_method'] == "package"
+	include_recipe "nagios::client"
+end
 
 # installs vim
 include_recipe "vim"
