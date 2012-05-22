@@ -8,9 +8,10 @@ Installs Realtime API Service
 = ATTRIBUTES:
 * user: The user to run the service under
 * group: The group to run the service under
-* tarball: The tarball containing the system build
 * java_home: The location of the JRE on the system
 * download_url: The fullpath, including the tarball, to the system build
 * port - The port to run on
+* java_opts - Options to start java (e.g. "-Xms2048m -Djava.net.preferIPv4Stack=true")
+
 
 = USAGE:

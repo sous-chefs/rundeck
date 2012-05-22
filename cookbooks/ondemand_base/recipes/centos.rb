@@ -76,10 +76,6 @@ file "/etc/sudoers.d/nagios" do
   action :create
 end
 
-file "/etc/sudoers.d/nrpe" do 
-  action :delete
-end
-
 include_recipe "nagios::client"
 
 # installs vim
@@ -140,3 +136,8 @@ include_recipe "snmp"
 #Install VMware tools if no version is present
 include_recipe "vmware-tools"
 
+#Install collectd - system statistics collection daemon
+include_recipe "collectd"
+
+#Install collectd plugins for WT base OS monitoring
+include_recipe "wt_monitoring::collectd_base"

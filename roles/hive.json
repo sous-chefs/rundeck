@@ -1,0 +1,11 @@
+{
+  "name": "hive",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Hive Server",
+  "run_list": [
+    "recipe[hive::default]"
+  ],
+  "override_attributes": {
+  }
+}

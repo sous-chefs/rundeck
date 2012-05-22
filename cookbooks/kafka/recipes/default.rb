@@ -25,6 +25,17 @@ java_home   = node['java']['java_home']
 user = "kafka"
 group = "kafka"
 
+if node[:kafka][:broker_id].nil? || node[:kafka][:broker_id].empty?
+    node[:kafka][:broker_id] = node[:ipaddress].gsub(".","")
+end
+
+if node[:kafka][:broker_host_name].nil? || node[:kafka][:broker_host_name].empty?
+    node[:kafka][:broker_host_name] = node[:fqdn]
+end
+
+log "Broker id: #{node[:kafka][:broker_id]}"
+log "Broker name: #{node[:kafka][:broker_host_name]}"
+
 # == Users
 
 # setup kafka group
@@ -76,11 +87,13 @@ download_file = "#{node[:kafka][:download_url]}/#{tarball}"
 remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
     source download_file
     mode 00644
+    action :create_if_missing
 end
 
 execute "tar" do
   user  "root"
   group "root" 
+  creates "#{node[:kafka][:installDir]}"
   cwd install_dir
   command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
@@ -118,9 +131,9 @@ end
 %w[server.properties consumer.properties producer.properties zookeeper.properties log4j.properties].each do |template_file|
   template "#{install_dir}/config/#{template_file}" do
         source	"#{template_file}.erb"
-        owner "root"
-        group "root"
-        mode  00644
+        owner user
+        group group
+        mode  00755
         variables({ 
             :kafka => node[:kafka],
             :zookeeper_pairs => zookeeper_pairs,

@@ -7,23 +7,17 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "jzeromq"
 
-# install dependency packages for the build
-%{unzip}.each do |pkg|
+# install dependency packages
+%{unzip zeromq jzmq}.each do |pkg|
   package pkg do
     action :install
+    options "--force-yes"
   end
 end
 
 # create the install directory
 directory "#{node['storm']['install_dir']}" do
-  action :create
-  recursive true
-end
-
-# create the log directory
-directory "#{node['storm']['log_dir']}" do
   action :create
   recursive true
 end
@@ -40,6 +34,7 @@ end
 execute "tar" do
   user    "root"
   group   "root"
+  creates "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
   cwd     "#{node['storm']['install_dir']}"
   command "tar zxvf #{Chef::Config[:file_cache_path]}/storm-#{node['storm']['version']}.tar.gz"
-end
+end 

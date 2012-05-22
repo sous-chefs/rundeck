@@ -3,8 +3,7 @@ maintainer_email  "ivan.vonnagy@webtrends.com"
 license           "Apache 2.0"
 description       "Sets up Kafka"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version           "1.0.1"
-
+version           "1.0.4"
 depends	"java"
 depends	"runit"
 depends	"zookeeper"
@@ -37,12 +36,12 @@ attribute "kafka/log_dir",
 
 attribute "kafka/broker_id",
   :display_name => "Kafka Broker Id",
-  :description => "The id of the broker. This must be set to a unique integer for each broker.",
-  :default => "0"
+  :description => "The id of the broker. This must be set to a unique integer for each broker. If not set, it defaults to the machine's ip address without the '.'.",
+  :default => ""
  
 attribute "kafka/broker_host_name",
   :display_name => "Kafka Host Name",
-  :description => "Hostname the broker will advertise to consumers. If not set, kafka will use the value returned from InetAddress.getLocalHost().",
+  :description => "Hostname the broker will advertise to consumers. If not set, kafka will use the host name for the server being deployed to.",
   :default => ""
 
 attribute "kafka/port",
