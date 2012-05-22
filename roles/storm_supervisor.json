@@ -1,0 +1,11 @@
+{
+  "name": "storm_supervisor",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Storm Supervisor",
+  "run_list": [
+    "recipe[storm::supervisor]"
+  ],
+  "override_attributes": {
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "wt_heatmaps_mapreduce",
+  "description": "Webtrends Heatmaps Map Reduce",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[wt_heatmaps::mapred]"
+  ]
+}

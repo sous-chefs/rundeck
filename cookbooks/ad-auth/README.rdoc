@@ -1,8 +1,19 @@
 = DESCRIPTION:
 
+This cookbook provides authentication against a Microsoft Active Directory domain on Linux systems
+
 = REQUIREMENTS:
+* Ubuntu 10.04
+* Centos/RHEL 5/6
+* sudo cookbook
+* Likewise-open 6.1.0-2 from the Powerbroker Open site
 
 = ATTRIBUTES: 
+* ad_network: This is the Active Directory domain you want the system to join.  This is used to fetch a databag of the same name containing authentication details
 
 = USAGE:
 
+Start by extracting the Likewise-open deb from the shell script installer.  
+* Download the installer from http://www.beyondtrust.com/Products/PowerBroker-Identity-Services-Open-Edition/Evaluation/
+* Run the installer to start the extraction process and then terminate the process
+* Extract the .deb or .rpm file from the temporary directory and place this in a local repository

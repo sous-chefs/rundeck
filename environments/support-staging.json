@@ -78,8 +78,7 @@
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
                     }
                 }
-            }, 
-            "jdk_version": "6"
+            }
         }, 
         "nagios": {
             "multi_environment_monitoring": "true", 

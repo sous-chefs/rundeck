@@ -79,11 +79,22 @@ end
     owner "zookeeper"
     group "zookeeper"
     variables({
-    	:quorum => node[:zookeeper][:quorum]
+      :quorum => node[:zookeeper][:quorum]
     })
   end
 end
 
+# start script
+template "#{node[:zookeeper][:installDir]}/current/bin/zkServer.sh" do
+  source "zkServer.sh"
+  mode 00755
+  owner "zookeeper"
+  group "zookeeper"
+  variables({
+    :java_jmx_port => 10201
+  })
+end
+  
 # myid
 template "#{node[:zookeeper][:dataDir]}/myid" do
   source "myid"
@@ -98,4 +109,15 @@ template "/etc/cron.hourly/zkRollSnapshot" do
   owner "zookeeper"
   group "zookeeper"
   mode 00555
+end
+
+#Create collectd plugin for zookeeper if collectd has been applied.
+if node.attribute?("collectd")
+  template "#{node[:collectd][:plugin_conf_dir]}/collectd_zookeeper.conf" do
+    source "collectd_zookeeper.conf.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
+  end
 end

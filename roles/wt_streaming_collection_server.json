@@ -16,6 +16,5 @@
     "recipe[wt_streamingcollection]"
   ],
   "description": "Webtrends Streaming Collection Server",
-  "chef_type": "role",
-  
+  "chef_type": "role"  
 }
