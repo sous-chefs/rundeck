@@ -12,15 +12,14 @@ include_recipe "runit"
 
 log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "realtimeapi")
 install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "realtimeapi")
-tarball     = node['wt_realtimeapi']['tarball']
+tarball     = "realtimeapi-bin.tar.gz"
 download_url = node['wt_realtimeapi']['download_url']
 java_home   = node['java']['java_home']
 port = node['wt_realtimeapi']['port']
 cam_url = node['wt_camservice']['url']
 user = node['wt_realtimeapi']['user']
 group = node['wt_realtimeapi']['group']
-graphite_server = node['graphite']['server']
-graphite_port = node['graphite']['port']
+java_opts = node['wt_realtimeapi']['java_opts']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -70,12 +69,14 @@ template "#{install_dir}/bin/service-control" do
         :java_home => java_home,
         :user => user,
         :java_class => "com.webtrends.realtime.server.RealtimeApiDaemon",
-        :java_jmx_port => 9998
+        # node['wt_monitoring']['jmx_port']
+        :java_jmx_port => 9998,
+        :java_opts => java_opts
     })
 end
 
 
-%w[config.properties netty.properties].each do | template_file|
+%w[monitoring.properties config.properties netty.properties].each do | template_file|
   template "#{install_dir}/conf/#{template_file}" do
 	source	"#{template_file}.erb"
 	owner "root"
@@ -85,8 +86,7 @@ end
         :cam_url => cam_url,
         :install_dir => install_dir,
         :port => port,
-	:graphite_server => graphite_server,
-        :graphite_port => graphite_port
+        :wt_monitoring => node[:wt_monitoring]
     })
 	end 
 end 

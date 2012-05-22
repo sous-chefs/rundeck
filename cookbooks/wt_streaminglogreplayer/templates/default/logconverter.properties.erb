@@ -1,0 +1,10 @@
+# The dcsids to include hits from, all others will be dropped.
+dcsidWhiteList=<%=node[:wt_streaminglogreplayer][:dcsid_whitelist]%>
+# Firectory where log files will be searched.
+inputLogDir=<%=node[:wt_streaminglogreplayer][:log_dir]%>
+# File extension to look for, others will be ignored. 
+inputLogExtension=<%=node[:wt_streaminglogreplayer][:log_extension]%>
+# Kafka topic to push to for each hit.
+kafkaTopic=<%=node[:wt_streaminglogreplayer][:kafka_topic]%>
+# Should the logs be deleted when they have been completed
+deleteLogs=<%=node[:wt_streaminglogreplayer][:delete_logs]%>

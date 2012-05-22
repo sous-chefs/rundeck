@@ -1,0 +1,9 @@
+{
+  "name": "wt_heatmaps_import",
+  "description": "Webtrends Heatmaps Import",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[wt_heatmaps::import]"
+  ]
+}

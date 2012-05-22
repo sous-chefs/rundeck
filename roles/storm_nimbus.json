@@ -1,0 +1,11 @@
+{
+  "name": "storm_nimbus",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Storm Nimbus",
+  "run_list": [
+    "recipe[storm::nimbus]"
+  ],
+  "override_attributes": {
+  }
+}

@@ -14,5 +14,12 @@ TypesDB "<%= @node[:collectd][:types_db].join('", "') %>"
 Interval <%= @node[:collectd][:interval] %>
 ReadThreads <%= @node[:collectd][:read_threads] %>
 
+#loading the syslog plugin by default to log any errors or issues with the service
+LoadPlugin syslog
+
+<Plugin syslog>
+	LogLevel info
+</Plugin>
+
 Include "<%= @node[:collectd][:plugin_conf_dir] %>/*.conf"
 Include "<%= @node[:collectd][:conf_dir] %>/thresholds.conf"

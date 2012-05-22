@@ -21,7 +21,6 @@ cookbook_file "/usr/local/bin/logs2hive.sh" do
   owner "hadoop"
   group "hadoop"
   mode 00500
-  recursive true
 end
 
 cron "logs2hivecron" do

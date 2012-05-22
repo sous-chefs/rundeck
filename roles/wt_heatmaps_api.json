@@ -1,0 +1,13 @@
+{
+  "name": "wt_heatmaps_api",
+  "description": "Webtrends Heatmaps API Service",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Heatmaps API Service",
+  "run_list": [
+    "recipe[nginx]",
+    "recipe[php5-fcgi]",
+    "recipe[wt_heatmaps::apiserver]",
+    "recipe[thrift-hbase-php5]"
+  ]
+}

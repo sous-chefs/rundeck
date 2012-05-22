@@ -9,7 +9,7 @@
   },
   "run_list": [
     "recipe[ms_dotnet4]",
-	"role[iis]",	
+    "role[iis]",	
     "recipe[wt_cam]"
   ],
   "description": "Webtrends Common Account Management service",
