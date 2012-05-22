@@ -42,7 +42,7 @@ fi
 JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
 
 if [ -z "$KAFKA_OPTS" ]; then
-  KAFKA_OPTS="-Xmx512M -server -Dlog4j.configuration=file:$HOME_DIR/config/log4j.properties"
+  KAFKA_OPTS="-Xmx512M -server -Djava.net.preferIPv4Stack=true -Dlog4j.configuration=file:$HOME_DIR/config/log4j.properties"
 fi
 
 if [ -z "$JAVA_HOME" ]; then

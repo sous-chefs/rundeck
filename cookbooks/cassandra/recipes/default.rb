@@ -8,31 +8,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
-build_uri = node['cassandra']['build_uri']
-if (build_uri =~ /\/([^\/]*)$/)
-	rpmfile = $1
-end
-
+# Install the package.
 package "apache-cassandra1" do
-	action :install
-	ignore_failure true
-end
-
-remote_file "#{Chef::Config[:file_cache_path]}/#{rpmfile}" do
-	source build_uri
-	not_if "rpm -qa | egrep -q apache-cassandra1"
-	notifies :install, "rpm_package[apache-cassandra1]", :immediately
-end
-
-rpm_package "apache-cassandra1" do
-	source "#{Chef::Config[:file_cache_path]}/#{rpmfile}"
-	only_if {::File.exists?("#{Chef::Config[:file_cache_path]}/#{rpmfile}")}
-	action :nothing
-end
-
-file "apache-cassandra1" do
-	path "#{Chef::Config[:file_cache_path]}/#{rpmfile}"
-	action :delete
+  action :install
+  version node['cassandra']['version']
 end
 
 # Drop the JNA Jar.
@@ -60,4 +39,15 @@ user "root"
     chmod 755 /usr/share/cassandra/lib/mx4j-tools.jar
   fi
   EOH
+end
+
+#Create collectd plugin for cassandra if collectd has been applied.
+if node.attribute?("collectd")
+  template "#{node[:collectd][:plugin_conf_dir]}/collectd_cassandra.conf" do
+    source "collectd_cassandra.conf.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
+  end
 end

@@ -13,17 +13,14 @@ include_recipe "runit"
 log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingaudit")
 install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingaudit")
 
-tarball      = node['wt_streamingaudit']['tarball']
+tarball      = "streamingaudit-bin.tar.gz"
 java_home    = node['java']['java_home']
 download_url = node['wt_streamingaudit']['download_url']
 listener_threads = node['wt_streamingaudit']['listener_threads']
 user = node['wt_streamingaudit']['user']
 group = node['wt_streamingaudit']['group']
+java_opts = node['wt_streamingaudit']['java_opts']
 zookeeper_port = [:zookeeper][:clientPort]
-
-graphite_server = node['graphite']['server']
-graphite_port = node['graphite']['port']
-metric_prefix = node['graphite']['metric_prefix']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -72,7 +69,8 @@ template "#{install_dir}/bin/service-control" do
         :java_home => java_home,
         :user => user,
         :java_class => "com.webtrends.streaming.auditor.AuditorDaemon",
-        :java_jmx_port => 9999
+        :java_jmx_port => node['wt_monitoring']['jmx_port'],
+        :java_opts => java_opts
     })
 end
 
@@ -109,9 +107,7 @@ end
 	mode  00644
 	variables({
         :listener_threads => listener_threads,
-        :graphite_server => graphite_server,
-        :graphite_port => graphite_port,
-        :metric_prefix => metric_prefix
+        :wt_monitoring => node[:wt_monitoring]
     })
 	end 
 end

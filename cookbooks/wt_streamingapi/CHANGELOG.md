@@ -2,6 +2,14 @@
 
 * Unknown
 
+## 0.0.9
+* Removed 'tarball' attribute as it is included in the download_url
+* Externalized the java options 'java_opts'
+* Externalized the java options 'jmx_port' to [:wt_monitoring][:jmx_port]
+
+## 0.0.8
+* Moved monitoring attributes to wt_monitoring
+
 ## 0.0.7
 * Moved off of JSVC
 * runit scripts updated to allow for nono-JSVC start

@@ -25,10 +25,10 @@ brokerid=<%=node["kafka"]["broker_id"]%>
 # Hostname the broker will advertise to consumers. If not set, kafka will use the value returned
 # from InetAddress.getLocalHost().  If there are multiple interfaces getLocalHost
 # may not be what you want.
-<% if node["kafka"]["broker_host_name"].length > 0 %>
-hostname=<%=node["kafka"]["broker_host_name"]%>
-<% else %>
+<% if node[:kafka][:broker_host_name].nil? || node[:kafka][:broker_host_name].empty? %>
 #hostname
+<% else %>
+hostname=<%=node[:kafka][:broker_host_name]%>
 <% end %>
 
 ############################# Socket Server Settings #############################
@@ -38,10 +38,10 @@ port=<%=node["kafka"]["port"]%>
 
 # The number of processor threads the socket server uses for receiving and answering requests. 
 # Defaults to the number of cores on the machine
-<% if node["kafka"]["threads"].length > 0 %>
-num.threads=<%=node["kafka"]["threads"]%>
-<% else %>
+<% if (node[:kafka][:threads].nil? || node[:kafka][:threads].empty?) %>
 #num.threads
+<% else %>
+num.threads=<%=node[:kafka][:threads]%>
 <% end %>
 
 # The send buffer (SO_SNDBUF) used by the socket server

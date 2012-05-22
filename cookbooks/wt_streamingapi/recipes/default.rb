@@ -12,16 +12,14 @@ include_recipe "runit"
 
 log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "streamingapi")
 install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "streamingapi")
-tarball     = node['wt_streamingapi']['tarball']
+tarball     = "streamingapi-bin.tar.gz"
 download_url = node['wt_streamingapi']['download_url']
 java_home   = node['java']['java_home']
 port = node['wt_streamingapi']['port']
+java_opts = node['wt_streamingapi']['java_opts']
 cam_url = node['wt_camservice']['url']
 user = node['wt_streamingapi']['user']
 group = node['wt_streamingapi']['group']
-graphite_server = node['graphite']['server']
-graphite_port = node['graphite']['port']
-metric_prefix = node['graphite']['metric_prefix']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -71,7 +69,8 @@ template "#{install_dir}/bin/service-control" do
         :java_home => java_home,
         :user => user,
         :java_class => "com.webtrends.streaming.websocket.StreamingAPIDaemon",
-        :java_jmx_port => 9999
+        :java_jmx_port => node['wt_monitoring']['jmx_port'],
+        :java_opts => java_opts
     })
 end
 
@@ -85,9 +84,7 @@ end
         :cam_url => cam_url,
         :install_dir => install_dir,
         :port => port,
-        :graphite_server => graphite_server,
-        :graphite_port => graphite_port,
-        :metric_prefix => metric_prefix
+        :wt_monitoring => node[:wt_monitoring]
     })
 	end 
 end 
