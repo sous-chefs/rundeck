@@ -612,6 +612,13 @@ acl localnet src 10.0.0.0/8	# RFC1918 possible internal network
 acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
 acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
 #
+<% node.ssl_ports.each do |ssl_ports| -%>
+acl SSL_ports port <%= ssl_ports %>
+<% end -%>
+<% node.safe_ports.each do |safe_ports| -%>
+acl Safe_ports port <%= safe_ports %>
+<% end -%>
+
 acl SSL_ports port 443		# https
 acl SSL_ports port 563		# snews
 acl SSL_ports port 873		# rsync
