@@ -21,7 +21,8 @@
 
 import sys
 import cjson
-
+import codecs
+sys.stdout = codecs.getwriter('utf8')(sys.stdout)
 
 max_clicks_per_block = 0
 vblock_stride = 100
