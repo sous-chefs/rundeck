@@ -17,10 +17,10 @@
 # limitations under the License.
 #
 
-hadoop_namenode = search(:node, "role:hadoop_namenode AND chef_environment:#{node.chef_environment}")
+hadoop_namenode = search(:node, "role:hadoop_primarynamenode AND chef_environment:#{node.chef_environment}")
 hadoop_namenode = hadoop_namenode.length == 1 ? hadoop_namenode.first[:fqdn] : "localhost"
 
-hmaster = search(:node, "role:hadoop_namenode AND chef_environment:#{node.chef_environment}")
+hmaster = search(:node, "role:hadoop_primarynamenode AND chef_environment:#{node.chef_environment}")
 hmaster = hmaster.length == 1 ? hmaster.first[:fqdn] : "localhost"
 
 regionservers = Array.new
