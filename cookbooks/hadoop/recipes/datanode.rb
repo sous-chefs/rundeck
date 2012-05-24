@@ -32,3 +32,14 @@ there will be multiple drives and thus multiple data dirs on each drive.
     recursive true
   end
 end
+
+#Create collectd plugin for hadoop datanode if collectd has been applied.
+if node.attribute?("collectd")
+  template "#{node[:collectd][:plugin_conf_dir]}/collectd_hadoop_DataNode.conf" do
+    source "collectd_hadoop_DataNode.conf.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
+  end
+end
