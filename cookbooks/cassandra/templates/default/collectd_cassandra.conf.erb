@@ -112,27 +112,27 @@ LoadPlugin java
 		InstancePrefix "CAS-"
 		InstanceFrom "columnfamily"
 		<Value>
-			Type "gauge"
+			Type "counter"
 			InstancePrefix "ReadCount"
 			Attribute "ReadCount"
 		</Value>
-                <Value>
-                        Type "gauge"
-                        InstancePrefix "WriteCount"
-                        Attribute "WriteCount"
-                </Value>
-                <Value>
-                        Type "gauge"
-                        InstancePrefix "PendingTasks"
-                        Attribute "PendingTasks"
-                </Value>
-		<Value>
+        <Value>
+            Type "counter"
+            InstancePrefix "WriteCount"
+            Attribute "WriteCount"
+        </Value>
+        <Value>
 			Type "gauge"
+			InstancePrefix "PendingTasks"
+			Attribute "PendingTasks"
+        </Value>
+		<Value>
+			Type "counter"
 			InstancePrefix "TotalWriteLatencyMicros"
 			Attribute "TotalWriteLatencyMicros"
 		</Value>
 		<Value>
-			Type "gauge"
+			Type "counter"
 			InstancePrefix "TotalReadLatencyMicros"
 			Attribute "TotalReadLatencyMicros"
 		</Value>
