@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+  ServerAdmin     <%= node['multi_repo']['sysadmin_email'] %>
+  ServerName      <%= node['fqdn'] %>
+  DocumentRoot    <%= @docroot %>
+  CustomLog       <%= node['apache']['log_dir'] %>/multi_repo_access.log combined
+  ErrorLog        <%= node['apache']['log_dir'] %>/multi_repo_error.log
+  <Directory />
+    Options Indexes
+  </Directory>
+</VirtualHost>
