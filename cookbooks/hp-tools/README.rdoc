@@ -5,7 +5,7 @@ This cookbook installs the HP Management tools including the HP System Managemen
 
 Requirements
 ============
-SNMP cookbook with a configured trap server
+SNMP cookbook with a configured trap server to send hardware events to
 
 Platform
 --------
