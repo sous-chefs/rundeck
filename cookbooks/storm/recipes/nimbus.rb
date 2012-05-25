@@ -9,4 +9,29 @@
 
 include_recipe "storm"
 
-# do nimbus specific bits go here
+install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
+
+%w{nimbus stormui}.each do |daemon|
+  # control file
+  template "#{install_dir}/bin/#{daemon}-control" do
+    source  "#{daemon}-control"
+    owner "root"
+    group "root"
+    mode  00755
+    variables({
+      :install_dir => install_dir,
+      :log_dir => node['storm']['logdir']
+    })
+  end
+  
+  # runit service
+  runit_service daemon do
+    options({
+      :install_dir => install_dir,
+      :log_dir => node['storm']['logdir'],
+      :user => "storm"
+    }) 
+  end
+end
+
+
