@@ -26,3 +26,14 @@ directory "/var/lib/hadoop/hdfs/namenode/current" do
 	recursive true
 	action :create
 end
+
+#Create collectd plugin for hadoop name node if collectd has been applied.
+if node.attribute?("collectd")
+  template "#{node[:collectd][:plugin_conf_dir]}/collectd_hadoop_NameNode.conf" do
+    source "collectd_hadoop_NameNode.conf.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
+  end
+end
