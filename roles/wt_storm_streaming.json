@@ -1,0 +1,16 @@
+{
+  "name": "wt_storm_streaming",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Storm Streaming Cluster",
+  "run_list": [
+  ],
+  "override_attributes": {
+    "storm": {
+      "cluster_role": "wt_storm_streaming",
+      "zookeeper": {
+        "root": "/seans-storm"
+      }
+    }
+  }
+}
