@@ -20,7 +20,7 @@ install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}
     mode  00755
     variables({
       :install_dir => install_dir,
-      :log_dir => node['storm']['logdir']
+      :log_dir => node['storm']['log_dir']
     })
   end
   
@@ -28,7 +28,7 @@ install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}
   runit_service daemon do
     options({
       :install_dir => install_dir,
-      :log_dir => node['storm']['logdir'],
+      :log_dir => node['storm']['log_dir'],
       :user => "storm"
     }) 
   end
