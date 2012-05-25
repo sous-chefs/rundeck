@@ -1,0 +1,42 @@
+########### These MUST be filled in for a storm configuration
+# storm.zookeeper.servers:
+#     - "server1"
+#     - "server2"
+# 
+# nimbus.host: "nimbus"
+# 
+# 
+# ##### These may optionally be filled in:
+#    
+## List of custom serializations
+# topology.kryo.register:
+#     - org.mycompany.MyType
+#     - org.mycompany.MyType2: org.mycompany.MyType2Serializer
+#
+## Locations of the drpc servers
+# drpc.servers:
+#     - "server1"
+#     - "server2"
+
+
+nimbus.host: <%= @nimbus[:fqdn] %>
+
+storm.local.dir: "<%= node[:storm][:localdir] %>"
+
+supervisor.slots.ports:
+<% for i in 0..(node[:storm][:supervisor][:workers]-1) -%>
+    - <%= 6700+i -%>
+
+<% end -%>
+
+storm.zookeeper.servers:
+<% @zookeeper_quorum.each do |address| -%>
+    - "<%= address[:fqdn] %>"
+<% end -%>
+storm.zookeeper.port: 2181
+storm.zookeeper.root: "<%= node[:storm][:zookeeper][:root] %>"
+storm.zookeeper.session.timeout: 20000
+storm.zookeeper.retry.times: 5
+storm.zookeeper.retry.interval: 1000
+storm.cluster.mode: "distributed" # can be distributed or local
+storm.local.mode.zmq: false
