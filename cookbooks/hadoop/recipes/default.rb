@@ -86,19 +86,19 @@ end
 #end
 
 # download rpm
-remote_file "#{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.amd64.rpm" do
- source "http://mirror.uoregon.edu/apache/hadoop/common/hadoop-#{node[:hadoop][:version]}/hadoop-#{node[:hadoop][:version]}-1.amd64.rpm"
+remote_file "#{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.x86_64.rpm" do
+ source "http://mirror.uoregon.edu/apache/hadoop/common/hadoop-#{node[:hadoop][:version]}/hadoop-#{node[:hadoop][:version]}-1.x86_64.rpm"
  owner "hadoop"
  group "hadoop"
  mode "0744"
- not_if "test -f #{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.amd64.rpm"
+ not_if "test -f #{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.x86_64.rpm"
 end
  
  
 # install rpm
-package "hadoop-#{node[:hadoop][:version]}-1.amd64" do
+package "hadoop-#{node[:hadoop][:version]}-1.x86_64" do
  action :install
- source "#{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.amd64.rpm"
+ source "#{node[:hadoop][:install_stage_dir]}/hadoop-#{node[:hadoop][:version]}.x86_64.rpm"
  provider Chef::Provider::Package::Rpm
 end
 
