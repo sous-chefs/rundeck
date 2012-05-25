@@ -20,9 +20,11 @@ service "streamingapi" do
 end
 
 directory "#{log_dir}" do
+  recursive true
   action :delete
 end
 
 directory "#{install_dir}" do
+  recursive true
   action :delete
 end
