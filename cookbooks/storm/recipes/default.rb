@@ -36,7 +36,7 @@ user "storm" do
 end
 
 # setup directories
-%w{install_dir localdir logdir}.each do |name|
+%w{install_dir local_dir log_dir}.each do |name|
   directory node['storm'][name] do
     owner "storm"
     group "storm"
