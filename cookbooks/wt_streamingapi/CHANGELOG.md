@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.10
+* Added gate keeper for deploy using the deploy_build environment variable
+
 ## 0.0.9
 * Removed 'tarball' attribute as it is included in the download_url
 * Externalized the java options 'java_opts'
