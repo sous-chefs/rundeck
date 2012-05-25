@@ -19,7 +19,7 @@ export HADOOP_OPTS="-Djava.net.preferIPv4Stack=<%= node[:hadoop][:env][:java_net
 # Command specific options appended to HADOOP_OPTS when specified
 export HADOOP_NAMENODE_OPTS="-Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT $HADOOP_NAMENODE_OPTS -Dcom.sun.management.jmxremote.port=8004 <%= node[:hadoop][:env][:HADOOP_OPTS] %>"
 HADOOP_JOBTRACKER_OPTS="-Dhadoop.security.logger=INFO,DRFAS -Dmapred.audit.logger=INFO,MRAUDIT -Dhadoop.mapreduce.jobsummary.logger=INFO,JSA $HADOOP_JOBTRACKER_OPTS -Dcom.sun.management.jmxremote.port=8008 <%= node[:hadoop][:env][:HADOOP_OPTS] %>"
-HADOOP_TASKTRACKER_OPTS="-Dhadoop.security.logger=ERROR,console -Dmapred.audit.logger=ERROR,console $HADOOP_TASKTRACKER_OPTS <%= node[:hadoop][:env][:HADOOP_OPTS] %>"
+HADOOP_TASKTRACKER_OPTS="-Dhadoop.security.logger=ERROR,console -Dcom.sun.management.jmxremote.port=8007 -Dmapred.audit.logger=ERROR,console $HADOOP_TASKTRACKER_OPTS <%= node[:hadoop][:env][:HADOOP_OPTS] %>"
 HADOOP_DATANODE_OPTS="-Dhadoop.security.logger=ERROR,DRFAS $HADOOP_DATANODE_OPTS -Dcom.sun.management.jmxremote.port=8006 <%= node[:hadoop][:env][:HADOOP_OPTS] %>"
 
 export HADOOP_SECONDARYNAMENODE_OPTS="-Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT $HADOOP_SECONDARYNAMENODE_OPTS  -Dcom.sun.management.jmxremote.port=8005 <%= node[:hadoop][:env][:HADOOP_OPTS] %>"
