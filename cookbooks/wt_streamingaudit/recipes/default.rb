@@ -27,7 +27,7 @@ else
     user = node['wt_streamingaudit']['user']
     group = node['wt_streamingaudit']['group']
     java_opts = node['wt_streamingaudit']['java_opts']
-    zookeeper_port = [:zookeeper][:clientPort]
+    zookeeper_port = node[:zookeeper][:clientPort]
 
     log "Install dir: #{install_dir}"
     log "Log dir: #{log_dir}"
