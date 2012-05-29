@@ -1,16 +1,20 @@
-abort("usage: knife exec update-id.knife $TEAMCITYPROJECT $BUILDID") unless ARGV[3]
+abort("usage: knife exec update-id.knife $POD $TEAMCITYPROJECT $BUILDID") unless ARGV[4]
 
-project_name = ARGV[2].to_s
-new_id = ARGV[3].to_s
+pod = ARGV[2].to_s
+project_name = ARGV[3].to_s
+new_id = ARGV[4].to_s
 
+puts pod
 puts project_name
 puts new_id
 
-build_id = data_bag_item('build-ids', project_name)
+builds = data_bag_item('wt_builds', pod)
 
-puts "Updating build id from #{build_id['build-id']} to #{new_id}"
 
-build_id['build-id'] = new_id
-build_id.save
+
+puts "Updating build id from #{builds[project_name]} to #{new_id}"
+
+builds[project_name] = new_id
+builds.save
 
 exit 0
