@@ -1,0 +1,16 @@
+abort("usage: knife exec update-id.knife $TEAMCITYPROJECT $BUILDID") unless ARGV[3]
+
+project_name = ARGV[2].to_s
+new_id = ARGV[3].to_s
+
+puts project_name
+puts new_id
+
+build_id = data_bag_item('build-ids', project_name)
+
+puts "Updating build id from #{build_id['build-id']} to #{new_id}"
+
+build_id['build-id'] = new_id
+build_id.save
+
+exit 0
