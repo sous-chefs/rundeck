@@ -1,0 +1,216 @@
+{
+    "chef_type": "environment", 
+    "cookbook_versions": {}, 
+    "default_attributes": {
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "STAGINGDMZ"
+            }, 
+            "sudo": {
+                "groups": [
+                    "STAGINGDMZ\\\\domain-admins", 
+                    "STAGINGDMZ\\\\h.admins"
+                ], 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
+        "ondemand_base": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
+                }, 
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution_suffix": "-0.10", 
+                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
+                    "name": "wtlab-opscode", 
+                    "url": "http://repo.staging.dmz/repo/apt/opscode"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
+                }
+            ]
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "config_dir_linux": "/etc/webtrends/", 
+            "install_dir_linux": "/opt/webtrends/", 
+            "install_dir_windows": "d:\\wrs", 
+            "install_log_dir_linux": "/var/log/webtrends/install", 
+            "install_log_dir_windows": "d:\\logs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "log_dir_linux": "/var/log/webtrends/", 
+            "log_dir_windows": "", 
+            "smtp_server": "pdxengmta01.webtrends.corp"
+        }, 
+        "wt_monitoring": {
+            "graphite_enabled": "true", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "staging.vpod.servers", 
+            "monitoring_enabled": "true"
+        }
+    }, 
+    "description": "H Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "H", 
+    "override_attributes": {
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
+        "hadoop": {
+            "core": {
+                "fs_checkpoint_dir": "${hadoop.tmp.dir}/dfs/namesecondary", 
+                "fs_checkpoint_period": 3600, 
+                "fs_trash_interval": 360, 
+                "io_file_buffer_size": 4096
+            }, 
+            "dfs": {
+                "block_size": 67108864, 
+                "data_dir": "/data/hadoop/hdfs/datanode", 
+                "datanode_du_reserved": 0, 
+                "datanode_handler_count": 3, 
+                "datanode_max_xcievers": 4096, 
+                "name_dir": "/var/lib/hadoop/hdfs/namenode", 
+                "namenode_handler_count": 10, 
+                "permissions": "true", 
+                "replication": 3
+            }, 
+            "env": {
+                "HADOOP_HEAPSIZE": 4000, 
+                "HADOOP_OPTS": "", 
+                "java_net_preferIPv4Stack": "true"
+            }, 
+            "mapred": {
+                "child_java_opts": "-server -Xmx640m -Djava.net.preferIPv4Stack=true", 
+                "child_ulimit": 8388608, 
+                "io_sort_factor": 10, 
+                "io_sort_mb": 100, 
+                "job_reuse_jvm_num_tasks": 1, 
+                "job_tracker_handler_count": 10, 
+                "local_dir": "${hadoop.tmp.dir}/mapred/local", 
+                "map_tasks_speculative_execution": "false", 
+                "reduce_tasks": 1, 
+                "reduce_tasks_speculative_execution": "false", 
+                "tasktracker_map_tasks_maximum": 2, 
+                "tasktracker_reduce_tasks_maximum": 2
+            }
+        }, 
+        "hbase": {
+            "env": {
+                "HBASE_HEAPSIZE": 4000, 
+                "HBASE_MANAGES_ZK": "false"
+            }, 
+            "site": {
+                "zookeeper_clientport": 2181, 
+                "zookeeper_quorum": "hzoo01.staging.dmz,hzoo02.staging.dmz,hzoo03.staging.dmz"
+            }
+        }, 
+        "hive": {
+            "metastore": {
+                "connection_url": "", 
+                "connector": ""
+            }
+        }, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                    }
+                }, 
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                    }
+                }
+            }
+        }, 
+        "kafka": {
+            "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
+            "log_flush_scheduler_time_interval": "500", 
+            "log_flush_time_interval": "500", 
+            "log_retention_hours": "2", 
+            "threads": "8", 
+            "version": "0.7.0"
+        }, 
+        "memcached": {
+            "memory": "1024"
+        }, 
+        "ms_dotnet4": {
+            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
+        }, 
+        "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
+            "multi_environment_monitoring": "true", 
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server_role": "nagios_xi"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
+        "snmp": {
+            "community": "DevOps", 
+            "full_systemview": "true", 
+            "syscontact": "trent.white@webtrends.com"
+        }, 
+        "zookeeper": {
+            "clientPort": 2181, 
+            "dataDir": "/var/lib/zookeeper", 
+            "initLimit": 10, 
+            "quorum": [
+                "hzoo01.staging.dmz", 
+                "hzoo02.staging.dmz", 
+                "hzoo03.staging.dmz"
+            ], 
+            "snapshotDir": "/var/lib/zookeeper/snapshots", 
+            "snapshotNum": 3, 
+            "syncLimit": 5, 
+            "tickTime": 2000
+        }
+    }
+}
