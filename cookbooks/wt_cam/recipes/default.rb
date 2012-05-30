@@ -19,7 +19,7 @@ end
 install_dir = "#{node['wt_common']['install_dir_windows']}\\CAM"
 install_logdir = node['wt_common']['install_log_dir_windows']
 app_pool = node['wt_cam']['app_pool']
-install_url = "#{node['wt_cam']['url']}#{node['wt_cam']['zip_file']}"
+install_url = "#{node['wt_cam']['download_url']}#{node['wt_cam']['zip_file']}"
 db_server = node['wt_cam']['database']
 pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
