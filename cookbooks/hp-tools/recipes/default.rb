@@ -24,35 +24,51 @@ if node[:block_device][:sda][:vendor] != "HP" then
 	return
 end
 
-#include the SNMP recipe, which is needed to send hardware event traps
 include_recipe snmp
 
 service "hp-snmp-agents" do
   action :nothing
 end
 
-%w{hp-health, hpacucli, cpqacuxe}.each do |pkg|
-  package pkg
-end
-
+package "hp-health"
+package "hpacucli"
+package "cpqacuxe"
 package "hp-snmp-agents" do
   notifies :restart, resources(:service => "hp-snmp-agents")
 end
-
-%w{hp-smh-templates, hpsmh}.each do |pkg|
-  package pkg
-end
+package "hp-smh-templates"
+package "hpsmh"
 
 service "hpsmhd" do
   action [ :start, :enable ]
 end
 
-template "/opt/hp/hpsmh/conf/smhpd.xml" do
-  source "smhpd.xml.erb"
+service "snmpd" do
+  action [ :start, :enable ]
+end
+
+cookbook_file "/opt/hp/hpsmh/conf/smhpd.xml" do
+  source "smhpd.xml"
   owner "root"
   group "root"
   mode 00644
   notifies :restart, resources(:service => "hpsmhd")
+end
+
+cookbook_file "/etc/snmp/snmpd.conf" do
+  source "snmpd.conf"
+  owner "root"
+  group "root"
+  mode 00644
+  notifies :restart, resources(:service => "snmpd")
+end
+
+cookbook_file "/etc/default/snmpd" do
+  source "snmpd.default"
+  owner "root"
+  group "root"
+  mode 0644
+  notifies :restart, resources(:service => "snmpd")
 end
 
 sudoers "hpsmh-snmptrap" do
