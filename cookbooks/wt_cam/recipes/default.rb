@@ -8,8 +8,7 @@
 # All rights reserved - Do Not Redistribute
 # This recipe installs the CAM IIS app
 
-log "Deploy build is #{ENV["deploy_build"]}"
-if ENV["deploy_build"] == "true" then 
+if deploy_mode?
   include_recipe "ms_dotnet4::resetiis"
   include_recipe "wt_cam::uninstall" 
 end
@@ -44,7 +43,13 @@ iis_site 'CAM' do
 	action [:add,:start]
 end
 
-if ENV["deploy_build"] == "true" then
+wt_base_icacls install_dir do
+	action :grant
+	user "IUSR"
+	perm :read
+end
+
+if deploy_mode?
   windows_zipfile install_dir do
     source install_url
     action :unzip	
