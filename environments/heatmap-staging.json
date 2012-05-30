@@ -210,8 +210,8 @@
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
         }, 
-        "wt_camservice": {
-            "url": "http://vdx01/camservice"
+        "wt_cam": {
+            "cam_server_url": "http://vdx01/camservice"
         }, 
         "wt_configdistrib": {
             "dcsid_url": "http://vcd01:8097/config/dcsid2account"
