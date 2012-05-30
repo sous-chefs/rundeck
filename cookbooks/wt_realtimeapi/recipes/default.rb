@@ -23,7 +23,7 @@ else
     download_url = node['wt_realtimeapi']['download_url']
     java_home   = node['java']['java_home']
     port = node['wt_realtimeapi']['port']
-    cam_url = node['wt_camservice']['url']
+    cam_url = search(:node, "role:wt_cam AND chef_environment:#{node.chef_environment}")
     user = node['wt_realtimeapi']['user']
     group = node['wt_realtimeapi']['group']
     java_opts = node['wt_realtimeapi']['java_opts']
@@ -90,7 +90,7 @@ else
         group "root"
         mode  00644
         variables({
-            :cam_url => cam_url,
+            :cam_url => "#{cam_url[0][:fqdn]}",
             :install_dir => install_dir,
             :port => port,
             :wt_monitoring => node[:wt_monitoring]
