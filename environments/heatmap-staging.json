@@ -66,7 +66,7 @@
             }
         }, 
         "wt_common": {
-            "admin_email": "Eng.TestEnvironment@webtrends.corp", 
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
