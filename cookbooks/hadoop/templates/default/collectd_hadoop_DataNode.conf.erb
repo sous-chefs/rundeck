@@ -105,7 +105,6 @@ LoadPlugin java
                         Attribute "LoadedClassCount"
                 </Value>
         </MBean>
-
         #WT Hadoop Data Node Metrics
         <MBean "data_node">
                 ObjectName "Hadoop:service=DataNode,name=DataNode"
@@ -137,9 +136,31 @@ LoadPlugin java
                         Attribute "blocks_written"
                 </Value>
         </MBean>
+        #WT Hadoop TaskTracker Metrics
+        <MBean "task_tracker">
+                ObjectName "Hadoop:service=TaskTracker,name=TaskTrackerMetrics"
+                #InstancePrefix ""
+                InstanceFrom "name"
+                <Value>
+                        Type "gauge"
+                        InstancePrefix "maps_running"
+                        Attribute "maps_running"
+                </Value>
+                <Value>
+                        Type "gauge"
+                        InstancePrefix "reduces_running"
+                        Attribute "reduces_running"
+                </Value>
+                <Value>
+                        Type "counter"
+                        InstancePrefix "tasks_completed"
+                        Attribute "tasks_completed"
+                </Value>
+        </MBean>		
         #####################
         # Connection blocks #
         #####################
+		#DataNode Connection
         <Connection>
                 Host "<%= @node[:hostname] %>"
                 ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:8006/jmxrmi"
@@ -150,5 +171,11 @@ LoadPlugin java
                 Collect "garbage_collector"
                 Collect "data_node"
         </Connection>
+		#TaskTracker Connection
+        <Connection>
+                Host "<%= @node[:hostname] %>"
+                ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:8007/jmxrmi"
+                Collect "task_tracker"
+        </Connection>		
         </Plugin>
 </Plugin>
