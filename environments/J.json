@@ -54,6 +54,7 @@
             }
         }, 
         "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "cassandra_host": "cassandra.staging.dmz", 
             "cassandra_meta_column": "J_Meta", 
             "cassandra_report_column": "J_Report", 
@@ -72,6 +73,7 @@
             "rta_host": "jrta01.englab.webtrends.corp", 
             "sched_host": "jmasterdb01", 
             "schedulerdb_host": "jusagedb01", 
+            "smtp_server": "pdxengmta01.webtrends.corp", 
             "usage_host": "jusagedb01", 
             "velocitycache_hosts": [
                 {
@@ -92,6 +94,16 @@
             "endpoint_address": "net.tcp://jsearch.englab.webtrends.corp:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
+        }, 
+        "wt_monitoring": {
+            "graphite_enabled": "true", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "englab.jpod.servers", 
+            "monitoring_enabled": "true"
         }
     }, 
     "description": "J Pod", 
@@ -103,7 +115,12 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                    }
+                }, 
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
                     }
                 }
             }, 
@@ -116,6 +133,9 @@
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
         "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
             "multi_environment_monitoring": "true", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
@@ -141,6 +161,9 @@
             "community": "DevOps", 
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
+        }, 
+        "wt_camservice": {
+            "url": "http://jcam01.englab.webtrends.corp/camservice"
         }
     }
 }
