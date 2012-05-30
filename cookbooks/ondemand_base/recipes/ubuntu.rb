@@ -30,25 +30,7 @@ if node.chef_environment == "_default"
 	exit(true)
 end
 
-#Set chef-client to run on a regular schedule (30 mins)
-include_recipe "chef-client"
-
-# configures /etc/apt/sources.list
-include_recipe "ubuntu"
-
-# configures /etc/sudoers
-include_recipe "sudo"
-
-# installs and enables sshd service
-include_recipe "openssh"
-
-# installs, configures and enables ntp
-include_recipe "ntp"
-
-# configures /etc/resolv.conf
-include_recipe "resolver"
-
-# Setup the Webtrends apt repo
+# Setup the Webtrends apt repo.  This has to be the first thing that happens
 node['ondemand_base']['apt'].each do |aptrepo|
 	apt_repository aptrepo['name'] do
 		repo_name aptrepo['name']
@@ -68,6 +50,24 @@ end
 
 # updates apt cache
 include_recipe "apt"
+
+#Set chef-client to run on a regular schedule (30 mins)
+include_recipe "chef-client"
+
+# configures /etc/apt/sources.list
+include_recipe "ubuntu"
+
+# configures /etc/sudoers
+include_recipe "sudo"
+
+# installs and enables sshd service
+include_recipe "openssh"
+
+# installs, configures and enables ntp
+include_recipe "ntp"
+
+# configures /etc/resolv.conf
+include_recipe "resolver"
 
 #Setup NRPE to run sudo w/o a password
 file "/etc/sudoers.d/nrpe" do

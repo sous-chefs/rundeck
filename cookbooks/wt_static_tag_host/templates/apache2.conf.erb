@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+  ServerAdmin     <%= node['wt_common']['admin_email'] %>
+  ServerName      <%= node['fqdn'] %>
+  DocumentRoot    <%= @docroot %>
+  CustomLog       <%= node['apache']['log_dir'] %>/static_tag_host_access.log combined
+  ErrorLog        <%= node['apache']['log_dir'] %>/static_tag_host_error.log
+  <Directory />
+    Options Indexes
+  </Directory>
+</VirtualHost>
