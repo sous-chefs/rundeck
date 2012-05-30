@@ -72,7 +72,7 @@
             "graphite_server": "sgraph01.staging.dmz", 
             "jmx_enabled": "true", 
             "jmx_port": 9999, 
-            "metric_prefix": "staging.vpod.servers", 
+            "metric_prefix": "staging.hpod.servers", 
             "monitoring_enabled": "true"
         }
     }, 
