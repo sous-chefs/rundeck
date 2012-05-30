@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.12
+* Due to a search bug with windows nodes (which CAM is) use a hardcoded cam url attribute
+
 ## 0.0.11
 * Search for a CAM node instead of using a bad attribute
 
