@@ -84,7 +84,7 @@ package "hadoop" do
 end
 
 # manage hadoop configs
-%w[core-site.xml fair-scheduler.xml hadoop-env.sh hadoop-policy.xml hdfs-site.xml mapred-site.xml masters slaves taskcontroller.cfg].each do |template_file|
+%w[core-site.xml log4j.properties fair-scheduler.xml hadoop-env.sh hadoop-policy.xml hdfs-site.xml mapred-site.xml masters slaves taskcontroller.cfg].each do |template_file|
   template "/etc/hadoop/#{template_file}" do
     source "hadoop-conf/#{template_file}"
     mode 00755
