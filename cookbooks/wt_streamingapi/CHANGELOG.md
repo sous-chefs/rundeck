@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.11
+* Search for a CAM node instead of using a bad attribute
+
 ## 0.0.10
 * Added gate keeper for deploy using the deploy_build environment variable
 
