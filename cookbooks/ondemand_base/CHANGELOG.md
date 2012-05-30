@@ -7,6 +7,7 @@
 
 ## 1.5
  * Add code to join the domain to the Windows cookbook
+ * Setup our repo and apt first on Ubuntu so we have an updated package list before installing packages
 
 ## 1.4:
  * Install collectd with the Webtrends base plugins
