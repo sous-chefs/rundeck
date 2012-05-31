@@ -3,6 +3,7 @@
   "default_attributes": {
   },
   "override_attributes": {
+    :apache => {:listen_ports => 80} 
   },
   "json_class": "Chef::Role",
   "env_run_lists": {
