@@ -33,6 +33,8 @@ user "storm" do
   comment "Storm user"
   gid "storm"
   shell "/sbin/nologin"
+  home "/home/storm"
+  supports :manage_home => true
 end
 
 # setup directories
@@ -65,7 +67,7 @@ execute "tar" do
 end
 
 # storm.yaml
-template "/opt/storm/storm-#{node['storm']['version']}/conf/storm.yaml" do
+template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
   source "storm.yaml"
   mode 00644
   variables(
@@ -73,6 +75,5 @@ template "/opt/storm/storm-#{node['storm']['version']}/conf/storm.yaml" do
     :zookeeper_quorum => zookeeper_quorum
   )
 end
-
 
 
