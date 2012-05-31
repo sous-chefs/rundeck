@@ -46,3 +46,11 @@ else
 		end
 
 end
+
+#Create a .htaccess file in /var/www to redirect people to www.webtrends.com in the absence of a index.html file
+cookbook_file "/var/www/.htaccess" do
+  source "htaccess"
+  mode 0644
+  owner "root"
+  group "root"
+end
