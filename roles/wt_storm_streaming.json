@@ -4,6 +4,7 @@
   "json_class": "Chef::Role",
   "description": "Storm Streaming Cluster",
   "run_list": [
+    "recipe[wt_storm::streaming_deploy]"
   ],
   "override_attributes": {
     "storm": {
