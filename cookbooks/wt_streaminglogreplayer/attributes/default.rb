@@ -4,7 +4,8 @@ default['wt_streaminglogreplayer']['download_url'] = "http://teamcity.webtrends.
 
 default['wt_streaminglogreplayer']['dcsid_whitelist'] = ""
 default['wt_streaminglogreplayer']['log_extension']   = ".gz"
-default['wt_streaminglogreplayer']['log_dir']         = "/ifr"
+default['wt_streaminglogreplayer']['log_share_mount'] = ""
+default['wt_streaminglogreplayer']['share_mount_dir'] = "/srv/logsharedir"
 default['wt_streaminglogreplayer']['kafka_topic']     = "rawHits"
 default['wt_streaminglogreplayer']['delete_logs']     = "true"
 default['wt_streaminglogreplayer']['java_opts']       = "-Xms1024m -Djava.net.preferIPv4Stack=true"
