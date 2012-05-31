@@ -79,8 +79,10 @@ file "/etc/sudoers.d/nrpe" do
 end
 
 # install nagios from package only
-if node['nagios']['client']['install_method'] == "package"
+if node['nagios']['client']['install_method'] == "package" and node['nagios']['client']['skip_install'] !~ /^true$/i
 	include_recipe "nagios::client"
+else
+	log "skipping nagios::client"
 end
 
 # Sets up runeck private keys
