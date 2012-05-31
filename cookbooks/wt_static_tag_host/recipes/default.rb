@@ -17,6 +17,9 @@
 # limitations under the License.
 #
 
+#Enable the server status page
+include_recipe "apache2::mod_status"
+
 # disable the default apache site
 apache_site "000-default" do
   enable false
