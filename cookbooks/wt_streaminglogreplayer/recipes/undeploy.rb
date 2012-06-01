@@ -15,8 +15,15 @@ runit_service "streaminglogreplayer" do
     action :disable
 end 
 
+# try to stop the service, but allow a failure without printing the error
 service "streaminglogreplayer" do
   action [:stop, :disable]
+  returns [0,1]
+end
+
+# force stop the service incase the stop failed
+service "streaminglogreplayer" do
+  action [:force-stop, :disable]
 end
 
 directory "#{log_dir}" do
