@@ -8,6 +8,7 @@
 #
 
 # Install packages needed to manage repos
+package "nfs-common"
 package "reprepro"
 package "createrepo"
 
