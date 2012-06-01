@@ -64,7 +64,7 @@
             "monitoring_enabled": "true"
         }, 
         "yum": {
-            "epel_release": "6-6"
+            "epel_release": "6-7"
         }
     }, 
     "description": "Staging Support Servers", 
@@ -79,6 +79,11 @@
                     "netmask": "255.255.0.0"
                 }
             }
+        }, 
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
         "java": {
             "install_flavor": "oracle", 
