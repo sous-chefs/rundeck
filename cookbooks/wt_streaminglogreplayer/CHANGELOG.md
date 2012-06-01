@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.6
+* Added auditing properties
+
 ## 0.0.5
 * Don't run as root
 
