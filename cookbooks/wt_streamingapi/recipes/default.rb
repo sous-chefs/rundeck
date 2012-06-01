@@ -24,7 +24,9 @@ else
     java_home   = node['java']['java_home']
     port = node['wt_streamingapi']['port']
     java_opts = node['wt_streamingapi']['java_opts']
-    cam_url = search(:node, "role:wt_cam AND chef_environment:#{node.chef_environment}")
+    cam_url = node['wt_cam']['cam_server_url']
+# This is disabled until we can work out windows node search issues     
+#    cam_url = search(:node, "role:wt_cam AND chef_environment:#{node.chef_environment}")
     user = node['wt_streamingapi']['user']
     group = node['wt_streamingapi']['group']
 
@@ -88,7 +90,7 @@ else
         group "root"
         mode  00644
         variables({
-            :cam_url => "#{cam_url[0][:fqdn]}",
+            :cam_url => cam_url,
             :install_dir => install_dir,
             :port => port,
             :wt_monitoring => node[:wt_monitoring]
