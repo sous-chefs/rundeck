@@ -5,6 +5,6 @@
   CustomLog       <%= node['apache']['log_dir'] %>/static_tag_host_access.log combined
   ErrorLog        <%= node['apache']['log_dir'] %>/static_tag_host_error.log
   <Directory />
-    Options Indexes
+    Options -Indexes
   </Directory>
 </VirtualHost>

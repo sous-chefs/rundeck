@@ -77,8 +77,10 @@ file "/etc/sudoers.d/nagios" do
 end
 
 # install nagios from package only
-if node['nagios']['client']['install_method'] == "package"
+if node['nagios']['client']['install_method'] == "package" and node['nagios']['client']['skip_install'] !~ /^true$/i
 	include_recipe "nagios::client"
+else
+	log "skipping nagios::client"
 end
 
 # installs vim
