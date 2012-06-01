@@ -22,7 +22,7 @@ else
     java_home    = node['java']['java_home']
     download_url = node['wt_streamingcollection']['download_url']
     dcsid_url = node['wt_configdistrib']['dcsid_url']
-    user = node['wt_streamingcollection']['user']
+    cam_dcsid_url = node['wt_cam']['cam_server_url']
     group = node['wt_streamingcollection']['group']
     java_opts = node['wt_streamingcollection']['java_opts']
 
@@ -113,6 +113,7 @@ else
         mode  00644
         variables({
             :server_url => dcsid_url,
+            :cam_url => cam_dcsid_url,
             :install_dir => install_dir,
             :port => port,
             :zookeeper_pairs => zookeeper_pairs,
