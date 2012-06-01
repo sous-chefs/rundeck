@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.5
+* Don't run as root
+
 ## 0.0.4
 * Modified the cookbook to mount a NFS volume from an attribute and to pull logs from that mount
 
