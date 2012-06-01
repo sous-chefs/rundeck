@@ -66,7 +66,7 @@
             }
         }, 
         "wt_common": {
-            "admin_email": "Eng.TestEnvironment@webtrends.corp", 
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
@@ -209,6 +209,9 @@
             "community": "DevOps", 
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
+        }, 
+        "wt_cam": {
+            "cam_server_url": "http://vdx01/camservice"
         }, 
         "wt_configdistrib": {
             "dcsid_url": "http://vcd01:8097/config/dcsid2account"
