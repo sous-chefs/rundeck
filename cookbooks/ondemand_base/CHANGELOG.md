@@ -9,6 +9,7 @@
  * Add code to join the domain to the Windows cookbook
  * Setup our repo and apt first on Ubuntu so we have an updated package list before installing packages
  * skip running nagios::client recipe if node['nagios']['client']['skip_install'] is set to true
+ * Add a webtrends user/group on Ubuntu/Centos with a uid/guid of 2002 for our product to run under
 
 ## 1.4:
  * Install collectd with the Webtrends base plugins
