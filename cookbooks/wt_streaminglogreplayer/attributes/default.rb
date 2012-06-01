@@ -1,5 +1,5 @@
-default['wt_streaminglogreplayer']['user']         = "nobody" 
-default['wt_streaminglogreplayer']['group']        = "nogroup"
+default['wt_streaminglogreplayer']['user']         = "webtrends" 
+default['wt_streaminglogreplayer']['group']        = "webtrends"
 default['wt_streaminglogreplayer']['download_url'] = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/.lastSuccessful/streaminglogreplayer-bin.tar.gz"
 
 default['wt_streaminglogreplayer']['dcsid_whitelist'] = ""
