@@ -1,5 +1,5 @@
 
-default[:hbase][:version] = "0.92.0"
+default[:hbase][:version] = "0.94.0"
 
 
 
