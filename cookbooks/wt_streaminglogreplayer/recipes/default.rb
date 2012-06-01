@@ -10,6 +10,9 @@
 # include runit so we can create a runit service
 include_recipe "runit"
 
+# install package for mounting nfs volumes
+package "nfs-common"
+
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] != "true" then 
     log "The deploy_build value is not set or is false so exit here"
@@ -124,6 +127,22 @@ else
         group "root"
         command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
         action :run
+    end
+
+    # create the share mount dir
+    directory "#{node['wt_streaminglogreplayer']['share_mount_dir']}" do
+      action :create
+      owner   user
+      group   group
+      mode    00755
+    end
+
+    # mount the NFS mount and add to /etc/fstab
+    mount "#{node['wt_streaminglogreplayer']['share_mount_dir']}" do
+      device "#{node['wt_streaminglogreplayer']['log_share_mount']}"
+      fstype "nfs"
+      options "rw"
+      action [:mount, :enable]
     end
 
     # create a runit service

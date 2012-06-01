@@ -2,6 +2,12 @@
 
 * Unknown
 
+## 0.0.5
+* Don't run as root
+
+## 0.0.4
+* Modified the cookbook to mount a NFS volume from an attribute and to pull logs from that mount
+
 ## 0.0.3
 * Added gate keeper for deploy using the deploy_build environment variable
 
