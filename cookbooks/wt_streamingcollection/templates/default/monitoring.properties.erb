@@ -13,3 +13,13 @@ monitoring.graphite.interval = <%= node[:wt_monitoring][:graphite_flush_interval
 # the prefix to append metrics being sent to graphite
 monitoring.metric.prefix = <%= node[:wt_monitoring][:metric_prefix] %>
 
+# Zookeeper connection info (use this or audit.broker.list)
+audit.zk.connect=<%= @zookeeper_pairs.join(",") %>
+# Kafka broker connection info (use this or audit.zk.connect)
+#audit.broker.list=
+# The kafka producer type (defaults to async)
+audit.producer.type=async
+# The time span (in minutes) between each audit flush (defaults to 10)
+audit.bucket.timespan=<%= node[:wt_monitoring][:audit_bucket_timespan] %>
+# The topic used for auditing (defaults to stream-audit)
+audit.topic=<%= node[:wt_monitoring][:audit_topic] %>
