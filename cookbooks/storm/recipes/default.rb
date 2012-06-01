@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
+
 include_recipe "runit"
 include_recipe "java"
 
@@ -32,7 +33,9 @@ end
 user "storm" do
   comment "Storm user"
   gid "storm"
-  shell "/sbin/nologin"
+  shell "/bin/bash"
+  home "/home/storm"
+  supports :manage_home => true
 end
 
 # setup directories
@@ -47,8 +50,8 @@ end
 
 # fetch the storm application tarball from the cookbook
 cookbook_file "#{Chef::Config[:file_cache_path]}/storm-#{node['storm']['version']}.tar.gz" do
-  owner "storm"
-  group "storm"
+  owner  "storm"
+  group  "storm"
   source "storm-#{node['storm']['version']}.tar.gz"
   mode   00644
   owner  "root"
@@ -65,7 +68,7 @@ execute "tar" do
 end
 
 # storm.yaml
-template "/opt/storm/storm-#{node['storm']['version']}/conf/storm.yaml" do
+template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
   source "storm.yaml"
   mode 00644
   variables(
@@ -74,5 +77,14 @@ template "/opt/storm/storm-#{node['storm']['version']}/conf/storm.yaml" do
   )
 end
 
-
+# sets up storm users profile
+template "/home/storm/.profile" do
+  owner  "storm"
+  group  "storm"
+  source "profile"
+  mode   00644
+  variables(
+    :storm_dir => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
+  )
+end
 
