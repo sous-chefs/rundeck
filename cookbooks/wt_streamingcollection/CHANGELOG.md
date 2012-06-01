@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.14
+* Added auditing properties
+
 ## 0.0.13
 * Added gate keeper for deploy using the deploy_build environment variable
 

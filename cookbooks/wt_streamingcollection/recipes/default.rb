@@ -115,6 +115,7 @@ else
             :server_url => dcsid_url,
             :install_dir => install_dir,
             :port => port,
+            :zookeeper_pairs => zookeeper_pairs,
             :wt_monitoring => node[:wt_monitoring]
         })
         end 
