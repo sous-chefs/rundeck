@@ -174,12 +174,19 @@ module WtBase
 			end
 		end
 
-		# this currently does not work in windows
+		# this currently does not work in unix
 		# a child process cannot change a parent's environment
 		def disable_deploy_mode
+			return unless node.platform == "windows"
 			log "disabling deploy mode"
-			ENV['DEPLOY'] = nil
-			ENV['deploy_build'] = nil
+			env "deploy_build" do
+				value "false"
+				action :modify
+			end
+			env "DEPLOY" do
+				value "false"
+				action :modify
+			end
 		end
 
 		# grant share/file system access to "log" readers
