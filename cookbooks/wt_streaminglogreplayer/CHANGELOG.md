@@ -2,6 +2,9 @@
 
 * Unknown
 
+# 0.0.7
+* Change default user/group to webtrends/webtrends
+
 ## 0.0.6
 * Added auditing properties
 
