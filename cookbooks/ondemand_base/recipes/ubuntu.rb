@@ -129,7 +129,6 @@ end
 # create the webtrends service account and group
 group "webtrends" do
   gid 2002
-  comment "Webtrends local service account group"
 end
 
 user "webtrends" do
