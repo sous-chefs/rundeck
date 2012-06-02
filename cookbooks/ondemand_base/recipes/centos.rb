@@ -134,11 +134,11 @@ end
 
 # create the webtrends service account and group
 group "webtrends" do
-  gid 2003
+  gid 1993
 end
 
 user "webtrends" do
-  uid 2003
+  uid 1993
   gid "webtrends"
   shell "/bin/false"
   comment "Webtrends local service account"
