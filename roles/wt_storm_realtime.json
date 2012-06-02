@@ -1,14 +1,14 @@
 {
-  "name": "wt_storm_streaming",
+  "name": "wt_storm_realtime",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Storm Streaming Cluster",
+  "description": "Storm Realtime Cluster",
   "run_list": [
-    "recipe[wt_storm::streaming_deploy]"
+    "recipe[wt_storm::realtime_deploy]"
   ],
   "override_attributes": {
     "storm": {
-      "cluster_role": "wt_storm_streaming",
+      "cluster_role": "wt_storm_realtime",
       "zookeeper": {
         "root": "/seans-storm"
       },
