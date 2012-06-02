@@ -10,11 +10,11 @@
     "storm": {
       "cluster_role": "wt_storm_realtime",
       "zookeeper": {
-        "root": "/seans-storm"
+        "root": "/storm-realtine"
       },
       "transactional": {
         "zookeeper": {
-          "root": "/seans-transactional"
+          "root": "/storm-realtime-transactional"
         }
       }
     }
