@@ -1,0 +1,22 @@
+{
+  "name": "wt_storm_realtime",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Storm Realtime Cluster",
+  "run_list": [
+    "recipe[wt_storm::realtime_deploy]"
+  ],
+  "override_attributes": {
+    "storm": {
+      "cluster_role": "wt_storm_realtime",
+      "zookeeper": {
+        "root": "/storm-realtine"
+      },
+      "transactional": {
+        "zookeeper": {
+          "root": "/storm-realtime-transactional"
+        }
+      }
+    }
+  }
+}
