@@ -213,7 +213,8 @@
             "syscontact": "trent.white@webtrends.com"
         }, 
         "wt_cam": {
-            "cam_server_url": "http://vdx01/camservice"
+            "cam_server_url": "http://vdx01/camservice",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt122/15622:id/CAM.zip"
         }, 
         "wt_configdistrib": {
             "dcsid_url": "http://vcd01:8097/config/dcsid2account"
@@ -235,7 +236,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14244:id/streamingauditor-bin.tar.gz"
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/15627:id/streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/15663:id/streamingapi-bin.tar.gz",
             "port": 8080
         }, 
         "wt_streamingcollection": {
