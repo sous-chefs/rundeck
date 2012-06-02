@@ -2,9 +2,12 @@
 
 * Unknown
 
-## 0.0.7
+## 0.0.8
 * Added environment override for finding zookeeper nodes. The attribute is zookeeper_env and defaults to "", which means it
 * will search in the local environment.
+
+# 0.0.7
+* Change default user/group to webtrends/webtrends
 
 ## 0.0.6
 * Added auditing properties
