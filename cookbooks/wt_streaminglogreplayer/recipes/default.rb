@@ -31,6 +31,12 @@ else
     tarball = "streaminglogreplayer-bin.tar.gz"
     zookeeper_port = node['zookeeper']['clientPort']
 
+    # get the correct environment for the zookeeper nodes
+    zookeeper_env = "#{node.chef_environment}"
+    unless node[:wt_streaminglogreplayer][:zookeeper_env].nil? || node[:wt_streaminglogreplayer][:zookeeper_env].empty?
+        zookeeper_env = node['wt_streaminglogreplayer']['zookeeper_env']
+    end
+
     log "Install dir: #{install_dir}"
     log "Log dir: #{log_dir}"
     log "Java home: #{java_home}"
@@ -95,7 +101,7 @@ else
     # grab the zookeeper nodes that are currently available
     zookeeper_pairs = Array.new
     if not Chef::Config.solo
-        search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+        search(:node, "role:zookeeper AND chef_environment:#{zookeeper_env}").each do |n|
             zookeeper_pairs << n[:fqdn]
         end
     end
