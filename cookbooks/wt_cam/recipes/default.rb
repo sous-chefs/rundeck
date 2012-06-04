@@ -57,8 +57,8 @@ if deploy_mode?
   	source "webConfig.erb"  
 	variables(
   		:db_server => node['wt_cam']['db_server'],
-  		:user_id => user_data['wt_common']['camdb_user'],
-  		:password => user_data['wt_common']['camdb_pass']
+  		:user_id => user_data['wt_common']['system_user'],
+  		:password => user_data['wt_common']['system_pass']
   	)	
   end
   
