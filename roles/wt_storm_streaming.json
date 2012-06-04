@@ -4,16 +4,17 @@
   "json_class": "Chef::Role",
   "description": "Storm Streaming Cluster",
   "run_list": [
+    "recipe[wt_storm::streaming_deploy]"
   ],
   "override_attributes": {
     "storm": {
       "cluster_role": "wt_storm_streaming",
       "zookeeper": {
-        "root": "/seans-storm"
+        "root": "/storm-streaming"
       },
       "transactional": {
         "zookeeper": {
-          "root": "/seans-transactional"
+          "root": "/storm-streaming-transactional"
         }
       }
     }
