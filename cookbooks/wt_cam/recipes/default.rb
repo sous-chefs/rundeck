@@ -43,7 +43,7 @@ end
 
 wt_base_icacls install_dir do
 	action :grant
-	user user_data['wt_common']['cam_user']
+	user user_data['wt_common']['system_user']
 	perm :read
 end
 
