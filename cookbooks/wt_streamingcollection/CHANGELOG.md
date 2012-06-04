@@ -2,6 +2,12 @@
 
 * Unknown
 
+## 0.0.15
+*  Adding a property for the CAM url, so that we can do DCSID lookups from the cam as well as the dcsid2account service.
+
+## 0.0.14
+* Added auditing properties
+
 ## 0.0.13
 * Added gate keeper for deploy using the deploy_build environment variable
 

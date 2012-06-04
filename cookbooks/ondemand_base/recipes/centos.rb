@@ -132,6 +132,19 @@ if auth_config['alternate_user']
 	end
 end
 
+# create the webtrends service account and group
+group "webtrends" do
+  gid 1993
+end
+
+user "webtrends" do
+  uid 1993
+  gid "webtrends"
+  shell "/bin/false"
+  comment "Webtrends local service account"
+  password "*"
+end
+
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
 
