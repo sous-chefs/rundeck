@@ -41,6 +41,7 @@ command[wt_check_memcached_conns]=<%= node['nagios']['plugin_dir'] %>/check_memc
 command[wt_check_jps]=<%= node['nagios']['plugin_dir'] %>/check_jps_procs $ARG1$
 command[wt_check_file_age]=sudo <%= node['nagios']['plugin_dir'] %>/check_file_age $ARG1$
 command[wt_check_file_ages_in_dirs]=sudo <%= node['nagios']['plugin_dir'] %>/check_file_ages_in_dirs $ARG1$
+command[wt_check_file_size]=sudo <%= node['nagios']['plugin_dir'] %>/check_file_size $ARG1$
 command[wt_check_log]=sudo <%= node['nagios']['plugin_dir'] %>/check_log $ARG1$
 command[wt_check_cassandra_ring]=<%= node['nagios']['plugin_dir'] %>/cassandra_ring $ARG1$
 command[wt_check_smart_disks]=sudo <%= node['nagios']['plugin_dir'] %>/check_smartmon $ARG1$
