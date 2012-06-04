@@ -16,6 +16,10 @@ webservices_pool = node['wt_dx']['v3']['webservices']['app_pool']
 dx_dir = "#{node['wt_common']['installdir']}\\Data Extraction API"
 oem_dir = "#{node['wt_common']['installdir']}\\OEM Data Extraction API"
 
+iis_config "/section:httpCompression /-\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
+	action :config
+  end
+
 iis_app "DX" do
 	path "/v2"
 	application_pool "#{v2pool}"
@@ -86,11 +90,4 @@ end
 directory "#{oem_dir}" do
   recursive true
   action :delete
-end
-
-ruby_block "update_node_version" do
-  block do      
-    node.delete(['dx_version'])
-    node.save
-  end
 end
