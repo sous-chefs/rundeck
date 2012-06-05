@@ -30,7 +30,8 @@ build_doc.elements.each('//buildType') do |type|
 	btID = type.attributes["id"]
 end
 
-url = "http://teamcity.webtrends.corp/repository/download/#{btID}:id/#{build_id}/#{node['wt_search']['artifact']}"
+url = "http://teamcity.webtrends.corp/guestAuth/repository/download/#{btID}/#{build_id}:id/#{node['wt_search']['artifact']}"
+log url
 
 # get parameters
 master_host = node['wt_common']['master_host']
