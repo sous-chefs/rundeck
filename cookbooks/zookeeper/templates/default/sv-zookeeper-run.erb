@@ -1,0 +1,5 @@
+#!/bin/bash
+
+exec 2>&1
+ 
+<%= node[:runit][:chpst_bin] %> -u zookeeper <%= node[:zookeeper][:install_dir] %>/current/bin/zkServer.sh start
