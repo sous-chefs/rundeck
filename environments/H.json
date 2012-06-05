@@ -9,7 +9,9 @@
             "sudo": {
                 "groups": [
                     "STAGINGDMZ\\\\domain-admins", 
-                    "STAGINGDMZ\\\\h.admins"
+                    "domain-admins", 
+                    "STAGINGDMZ\\\\h.admins", 
+                    "h.admins"
                 ], 
                 "passwordless": false, 
                 "users": [
@@ -90,14 +92,14 @@
         }, 
         "hadoop": {
             "core": {
-                "fs_checkpoint_dir": "${hadoop.tmp.dir}/dfs/namesecondary", 
-                "fs_checkpoint_period": 3600, 
+                "fs_checkpoint_dir": "/var/lib/hadoop/hdfs/backupnamenode", 
+                "fs_checkpoint_period": 900, 
                 "fs_trash_interval": 360, 
                 "io_file_buffer_size": 4096
             }, 
             "dfs": {
                 "block_size": 67108864, 
-                "data_dir": "/data/hadoop/hdfs/datanode", 
+                "data_dir": "/mnt/hdfs/hdfs01/data01/hdfs", 
                 "datanode_du_reserved": 0, 
                 "datanode_handler_count": 3, 
                 "datanode_max_xcievers": 4096, 
@@ -107,7 +109,7 @@
                 "replication": 3
             }, 
             "env": {
-                "HADOOP_HEAPSIZE": 4000, 
+                "HADOOP_HEAPSIZE": 2000, 
                 "HADOOP_OPTS": "", 
                 "java_net_preferIPv4Stack": "true"
             }, 
@@ -118,7 +120,7 @@
                 "io_sort_mb": 100, 
                 "job_reuse_jvm_num_tasks": 1, 
                 "job_tracker_handler_count": 10, 
-                "local_dir": "${hadoop.tmp.dir}/mapred/local", 
+                "local_dir": "/mnt/hdfs/hdfs01/data01/mapred", 
                 "map_tasks_speculative_execution": "false", 
                 "reduce_tasks": 1, 
                 "reduce_tasks_speculative_execution": "false", 
@@ -138,8 +140,8 @@
         }, 
         "hive": {
             "metastore": {
-                "connection_url": "", 
-                "connector": ""
+                "connection_url": "jdbc:sqlserver://jusagedb01.englab.webtrends.corp;databaseName=hivemeta", 
+                "connector": "sqlserver"
             }
         }, 
         "java": {
@@ -203,14 +205,13 @@
         }, 
         "zookeeper": {
             "clientPort": 2181, 
-            "dataDir": "/var/lib/zookeeper", 
             "initLimit": 10, 
             "quorum": [
                 "hzoo01.staging.dmz", 
                 "hzoo02.staging.dmz", 
-                "hzoo03.staging.dmz"
+                "hzoo03.staging.dmz", 
+                "hzoo04.staging.dmz"
             ], 
-            "snapshotDir": "/var/lib/zookeeper/snapshots", 
             "snapshotNum": 3, 
             "syncLimit": 5, 
             "tickTime": 2000
