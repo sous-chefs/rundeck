@@ -85,7 +85,7 @@ if deploy_mode?
   ##################################
   # DX V2_1
   ##################################
-  windows_zipfile "#{installdir}#{v21_installdir}" do
+  windows_zipfile install_dir_v21 do
     source "#{archive_url}#{v21_install_url}"
     action :unzip	
   end
@@ -97,15 +97,15 @@ if deploy_mode?
   	)
   end
   
-  iis_pool "#{app_pool_v21}" do
+  iis_pool app_pool_v21 do
   	thirty_two_bit :true
   action [:add, :config]
   end
   
   iis_app "DX" do
   	path "/v2_1"
-  	application_pool "#{app_pool_v21}"
-  	physical_path "#{install_dir_v21}"
+  	application_pool app_pool_v21
+  	physical_path install_dir_v21
   	action :add
   end
   
@@ -195,7 +195,7 @@ if deploy_mode?
   #DX 2.2 just uses the DX 3.0 installation
   iis_app "OEM_DX" do
   	path "/v2_2"
-  	application_pool "#{app_pool_v3}"
+  	application_pool streamingservices_pool
   	physical_path "#{install_dir_v3}"
   	action :add
   end
@@ -203,9 +203,9 @@ end
 
 #Post Install
 
-wt_base_icacls node['wt_common']['installdir_windows'] do
+wt_base_icacls "#{node['wt_common']['installdir_windows']}\\Data Extraction API" do
 	action :grant
-	user "#{node['wt_common']['installdir_windows']}\\Data Extraction API"
+	user user_data['wt_common']['ui_user']
 	perm :read
 end
 
