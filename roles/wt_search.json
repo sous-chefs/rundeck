@@ -1,0 +1,17 @@
+{
+  "name": "wt_search",
+  "description": "",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[ms_dotnet4]",
+    "recipe[ms_messagequeue]",
+    "recipe[wt_search]"
+  ],
+  "env_run_lists": {
+  }
+}
