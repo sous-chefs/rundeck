@@ -12,11 +12,11 @@
 require 'rest_client'
 require 'rexml/document'
 require 'json'
-#include_recipe "wt_search::uninstall" if deploy_mode?
+include_recipe "wt_search::uninstall" if deploy_mode?
 
 # source build
 project_name = "Search"
-pod = "CIPod"
+pod = chef.environment
 
 build_data = data_bag_item('wt_builds', pod)
 build_id = build_data[project_name]
@@ -30,7 +30,7 @@ build_doc.elements.each('//buildType') do |type|
 	btID = type.attributes["id"]
 end
 
-url = "http://teamcity.webtrends.corp/guestAuth/repository/download/#{btID}/#{build_id}:id/#{node['wt_search']['artifact']}"
+install_url = "http://teamcity.webtrends.corp/guestAuth/repository/download/#{btID}/#{build_id}:id/#{node['wt_search']['artifact']}"
 log url
 
 # get parameters
@@ -58,6 +58,12 @@ directory install_dir do
 	action :create
 end
 
+directory "#{node['wt_common']['install_dir_windows']}#{node['wt_search']['log_dir']}" do
+	recursive true
+	action :create
+end
+
+
 # set permissions for the service user to have read access to the install drive - ENG390500
 wt_base_icacls install_dir_drive do
 	action :grant
@@ -71,6 +77,25 @@ if deploy_mode?
 	windows_zipfile install_dir do
 		source url
 		action :unzip	
+	end
+	
+	template "#{install_dir}\\Webtrends.Search.Service.exe.config" do
+	  source "searchConfig.erb"
+	  variables(		
+		  :master_host => node['wt_common']['master_host'],
+		  :report_column => node['wt_common']['cassandra_report_column'],
+		  :metadata_column => node['wt_common']['cassandra_meta_column']
+	  )
+	end
+	
+	template "#{install_dir}\\Webtrends.Search.Bulkload.exe.config" do
+	  source "bulkloadConfig.erb"
+	  variables(		
+		  :master_host => node['wt_common']['master_host'],
+		  :report_column => node['wt_common']['cassandra_report_column'],
+		  :thrift_port => node['wt_common']['cassandra_thrift_port'],
+		  :metadata_column => node['wt_common']['cassandra_meta_column']
+	  )
 	end
 
 	powershell "create service" do

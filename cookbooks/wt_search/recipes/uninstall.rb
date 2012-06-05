@@ -1,14 +1,14 @@
-# Cookbook Name:: roadrunner
+# Cookbook Name:: wt_search
 # Recipe:: uninstall
 # Author:: Kendrick Martin
 #
 # Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
-# This recipe uninstalls existing RoadRunner installs.
+# This recipe uninstalls existing Search Service installs
 
 # destinations
-install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_roadrunner']['install_dir']}"
+install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_search']['install_dir']}"
 
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
@@ -19,10 +19,9 @@ if (install_dir =~ /^(\w:)\\.*$/)
 	install_dir_drive = $1
 end
 
-sc_cmd = "\"%WINDIR%\\System32\\sc.exe delete \"#{node['wt_roadrunner']['service_name']}\""
-netsh_cmd = "netsh http delete urlacl url=http://+:8097/"
+sc_cmd = "\"%WINDIR%\\System32\\sc.exe delete \"#{node['wt_search']['service_name']}\""
 
-service node['wt_roadrunner']['service_name'] do
+service node['wt_search']['service_name'] do
 	action :stop
 	ignore_failure true
 end
@@ -34,12 +33,7 @@ end
 
 # delete service with old service name
 execute "sc" do
-	command "\"%WINDIR%\\System32\\sc.exe delete \"WebtrendsRoadRunnerService\""
-	ignore_failure true
-end
-
-execute "netsh" do
-	command netsh_cmd
+	command "\"%WINDIR%\\System32\\sc.exe delete \"Webtrends Search Service\""
 	ignore_failure true
 end
 
@@ -54,11 +48,3 @@ wt_base_icacls install_dir_drive do
 	action :remove
 	user svcuser
 end
-
-# remove firewall rule
-execute "netsh" do
-	command "netsh advfirewall firewall delete rule name=\"Webtrends RoadRunner port 8097\""
-	ignore_failure true
-end
-
-unshare_wrs
