@@ -16,9 +16,8 @@ include_recipe "wt_search::uninstall" if deploy_mode?
 
 # source build
 project_name = "Search"
-pod = chef.environment
 
-build_data = data_bag_item('wt_builds', pod)
+build_data = data_bag_item('wt_builds', node.chef_environment)
 build_id = build_data[project_name]
 
 base_url = 'http://teamcity.webtrends.corp/guestAuth/app/rest/builds/' + build_id
@@ -31,7 +30,7 @@ build_doc.elements.each('//buildType') do |type|
 end
 
 install_url = "http://teamcity.webtrends.corp/guestAuth/repository/download/#{btID}/#{build_id}:id/#{node['wt_search']['artifact']}"
-log url
+log install_url
 
 # get parameters
 master_host = node['wt_common']['master_host']
@@ -75,7 +74,7 @@ if deploy_mode?
 
 	# unzip the install package
 	windows_zipfile install_dir do
-		source url
+		source install_url
 		action :unzip	
 	end
 	
