@@ -82,6 +82,7 @@ if deploy_mode?
 	  source "searchConfig.erb"
 	  variables(		
 		  :master_host => node['wt_common']['master_host'],
+		  :cass_host => node['wt_common']['cassandra_host'],
 		  :report_column => node['wt_common']['cassandra_report_column'],
 		  :metadata_column => node['wt_common']['cassandra_meta_column']
 	  )
@@ -91,6 +92,7 @@ if deploy_mode?
 	  source "bulkloadConfig.erb"
 	  variables(		
 		  :master_host => node['wt_common']['master_host'],
+		  :cass_host => node['wt_common']['cassandra_host'],
 		  :report_column => node['wt_common']['cassandra_report_column'],
 		  :thrift_port => node['wt_common']['cassandra_thrift_port'],
 		  :metadata_column => node['wt_common']['cassandra_meta_column']
