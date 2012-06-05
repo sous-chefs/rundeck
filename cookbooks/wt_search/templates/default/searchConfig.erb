@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="serviceBus" type="Webtrends.ServiceBus.Configuration.ServiceBusConfiguration, Webtrends.ServiceBus" />
+    <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core" />
+  </configSections>
+  <system.diagnostics>
+    <sources>
+      <source name="System.ServiceModel.MessageLogging" switchValue="Warning, ActivityTracing">
+        <listeners>
+          <add type="System.Diagnostics.DefaultTraceListener" name="Default">
+            <filter type="" />
+          </add>
+          <add name="ServiceModelMessageLoggingListener">
+            <filter type="" />
+          </add>
+        </listeners>
+      </source>
+      <source propagateActivity="true" name="System.ServiceModel" switchValue="Off, ActivityTracing">
+        <listeners>
+          <add type="System.Diagnostics.DefaultTraceListener" name="Default">
+            <filter type="" />
+          </add>
+          <add name="ServiceModelTraceListener">
+            <filter type="" />
+          </add>
+        </listeners>
+      </source>
+    </sources>
+    <sharedListeners>
+      <add initializeData="..\\logs\\app_messages.svclog" type="System.Diagnostics.XmlWriterTraceListener, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="ServiceModelMessageLoggingListener" traceOutputOptions="Timestamp">
+        <filter type="" />
+      </add>
+      <add initializeData="..\\logs\\app_tracelog.svclog" type="System.Diagnostics.XmlWriterTraceListener, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" name="ServiceModelTraceListener" traceOutputOptions="Timestamp">
+        <filter type="" />
+      </add>
+    </sharedListeners>
+    <trace autoflush="true" />
+  </system.diagnostics>
+  <appSettings>
+    <add key="baseIndexDir" value="indexes" />
+  </appSettings>  
+  <connectionStrings>
+    <add name="wtMasterConnection" connectionString="Data Source=pfmasterdb01;Initial Catalog=wtMaster;Integrated Security=False;User Id=sa;Password=cad890;" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <serviceBus>
+    <endpoints>
+      <endpoint endpointIdentifier="searchsmain@localhost" binding="mainBinding" name="Webtrends Search Service" description="" 
+                returnAddress="searchsmain@localhost" monitorServiceAddress="discover" 
+                maxMessageRetryCount="3" statusReportInterval="00:00:30" statusReportGracePeriod="00:01:00" 
+                numberOfWorkerThreads="4" maxRetries="4" incomingMessageLoggingLevel="None" outgoingMessageLoggingLevel="None" sendOnly="false">
+        <profiler enabled="true" profilePipelineComponents="true" pipelineDirection="Both" />
+        <registeredMessages>
+          <message messageType="Webtrends.DynamicProxy2.Search.IndexSpaceGroupMessage, Webtrends.DynamicProxy2.Search" enabled="true" local="false" />
+          <message messageType="Webtrends.DynamicProxy2.Search.IndexSpaceMessage, Webtrends.DynamicProxy2.Search" enabled="true" local="false" />
+          <message messageType="Webtrends.DynamicProxy2.Search.IndexCampaignMessage, Webtrends.DynamicProxy2.Search" enabled="true" local="false" />
+          <message messageType="Webtrends.DynamicProxy2.Search.UpdateSpaceProfilesMessage, Webtrends.DynamicProxy2.Search" enabled="true" local="false" />
+          <message messageType="Webtrends.DynamicProxy2.Search.RemoveSpaceObjectFromIndexMessage, Webtrends.DynamicProxy2.Search" enabled="true" local="false" />
+          <message messageType="Webtrends.Search.RefreshUserFiltersMessage, Webtrends.Search" enabled="true" local="false" />
+        </registeredMessages>
+        <subscribedMessages>
+          <message messageType="Webtrends.Search.Common.Management.RefreshIndexMessage, Webtrends.Search.Common" enabled="true" local="false" />
+        </subscribedMessages>
+        <messageAssemblies>
+          <assembly name="Webtrends.DynamicProxy2.Search" destinationAddress="searchsmain" />
+          <assembly name="Webtrends.Search" destinationAddress="searchsmain" />
+        </messageAssemblies>
+        <messageHandlerAssemblies>
+          <assembly name="Webtrends.Search.Service" />
+        </messageHandlerAssemblies>
+        <statusProbes>
+          <probe name="Available Memory" unitOfMeasurement="" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Memory" />
+              <add name="Counter" value="Available MBytes" />
+              <add name="Instance" value="" />
+            </properties>
+          </probe>
+          <probe name="Avg. Processor Time" unitOfMeasurement="%" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Processor" />
+              <add name="Counter" value="% Processor Time" />
+              <add name="Instance" value="_Total" />
+            </properties>
+          </probe>
+          <probe name="Messages in Queue" unitOfMeasurement="" canAggregate="true" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="MSMQ Queue" />
+              <add name="Counter" value="Messages in Queue" />
+              <!-- The term 'localhost' will be converted to the machine name -->
+              <add name="Instance" value="localhost\private$\searchmain" />
+            </properties>
+          </probe>
+          <probe name="Avg. Processor Time (process)" unitOfMeasurement="%" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Process" />
+              <add name="Counter" value="% Processor Time" />
+              <add name="Instance" value="Webtrends.ExternalData.RetrievalService" />
+            </properties>
+          </probe>
+          <probe name="Private Bytes (process)" unitOfMeasurement="" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Process" />
+              <add name="Counter" value="Private Bytes" />
+              <add name="Instance" value="Webtrends.ExternalData.RetrievalService" />
+            </properties>
+          </probe>
+          <probe name="Virtual Bytes (process)" unitOfMeasurement="" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Process" />
+              <add name="Counter" value="Virtual Bytes" />
+              <add name="Instance" value="Webtrends.Search.Service" />
+            </properties>
+          </probe>
+        </statusProbes>
+      </endpoint>
+    </endpoints>
+    <bindings>
+      <msmqBinding name="mainBinding" purgeOnStartup="false" isTransactional="true" transactionTimeout="00:02:00" isolationLevel="Serializable" />
+    </bindings>
+  </serviceBus>
+  <system.serviceModel>
+    <diagnostics performanceCounters="ServiceOnly">
+      <messageLogging logMalformedMessages="false" logMessagesAtServiceLevel="false" logMessagesAtTransportLevel="false" />
+    </diagnostics>
+    <bindings>
+      <netTcpBinding>
+        <binding name="searchServiceNetTcpBinding" closeTimeout="00:30:00" openTimeout="00:30:00" receiveTimeout="00:30:00" sendTimeout="00:30:00" transferMode="StreamedResponse" maxBufferSize="2147483647" maxConnections="1000" maxReceivedMessageSize="2147483647" portSharingEnabled="false">
+          <readerQuotas maxDepth="2147483647" maxStringContentLength="2147483647" maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647" />
+          <security mode="None">
+            <transport clientCredentialType="None" protectionLevel="None" />
+            <message clientCredentialType="None" />
+          </security>
+        </binding>
+      </netTcpBinding>
+      <webHttpBinding>
+        <binding name="RESTWebBinding" maxBufferSize="65536" maxReceivedMessageSize="65536" />
+      </webHttpBinding>
+    </bindings>
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="protoEndpointBehavior">
+          <protobuf />
+        </behavior>
+      </endpointBehaviors>
+      <serviceBehaviors>
+        <behavior name="serviceBehavior">
+          <serviceMetadata httpGetEnabled="false" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <extensions>
+      <behaviorExtensions>
+        <add name="protobuf" type="ProtoBuf.ServiceModel.ProtoBehaviorExtension, protobuf-net" />
+      </behaviorExtensions>
+    </extensions>
+    <services>
+      <service name="Webtrends.Search.Service.Search" behaviorConfiguration="serviceBehavior">
+        <endpoint address="net.tcp://localhost:8096/Search/Service" behaviorConfiguration="protoEndpointBehavior" binding="netTcpBinding" bindingConfiguration="searchServiceNetTcpBinding" name="TcpBinding" contract="Webtrends.Search.Service.ISearch" />
+      </service>
+      <service name="Webtrends.Search.Service.RESTSearchService">
+        <endpoint address="http://localhost:8097/Search/" binding="webHttpBinding" bindingConfiguration="RESTWebBinding" contract="Webtrends.Search.Service.IRESTSearchService" />
+      </service>
+    </services>
+  </system.serviceModel>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
+  </startup>
+ 
+</configuration>
