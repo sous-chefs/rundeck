@@ -8,9 +8,7 @@
 # All rights reserved - Do Not Redistribute
 # This recipe uninstalls all DX versions
 
-v2pool = node['wt_dx']['v2']['app_pool']
 v21pool = node['wt_dx']['v2_1']['app_pool']
-v22pool = node['wt_dx']['v2_2']['app_pool']
 streamingservices_pool = node['wt_dx']['v3']['streamingservices']['app_pool']
 webservices_pool = node['wt_dx']['v3']['webservices']['app_pool']
 dx_dir = "#{node['wt_common']['installdir']}\\Data Extraction API"
@@ -22,12 +20,8 @@ iis_config "/section:httpCompression /-\"[name='deflate',doStaticCompression='Tr
 
 iis_app "DX" do
 	path "/v2"
-	application_pool "#{v2pool}"
+	application_pool "#{v21pool}"
 	action :delete
-end
-
-iis_pool "#{v2pool}" do
-  action [:stop, :delete]
 end
 
 iis_app "DX" do
@@ -42,13 +36,10 @@ end
 
 iis_app "OEM_DX" do
 	path "/v2_2"
-	application_pool "#{v22pool}"
+	application_pool streamingservices_pool
 	action :delete
 end
 
-iis_pool "#{v22pool}" do
-  action [:stop, :delete]
-end
 
 iis_app "DX" do
 	path "/StreamingServices_v3"
