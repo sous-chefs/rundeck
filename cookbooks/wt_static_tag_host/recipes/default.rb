@@ -34,13 +34,10 @@ else
 		source "apache2.conf.erb"
 		mode 00644
 		variables(:docroot => "/var/www")
-		if ::File.symlink?("#{node['apache']['dir']}/sites-enabled/static_tag_host.conf")
-			notifies :reload, resources(:service => "apache2")
-		end
 	end
 	
-	#Enable the apache site
-	apache_site "static_tag_host" do
+    #Enable the apache site
+    apache_site "static_tag_host.conf" do
       enable true
     end
 
