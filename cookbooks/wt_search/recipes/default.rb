@@ -9,7 +9,9 @@
 #
 # This recipe installs the needed components to full setup/configure the Search service
 #
-
+require 'rest_client'
+require 'rexml/document'
+require 'json'
 #include_recipe "wt_search::uninstall" if deploy_mode?
 
 # source build
@@ -19,6 +21,8 @@ pod = "CIPod"
 build_data = data_bag_item('wt_builds', pod)
 build_id = build_data[project_name]
 
+base_url = 'http://teamcity.webtrends.corp/guestAuth/app/rest/builds/' + build_id
+
 response = RestClient.get base_url
 btID = nil
 build_doc = REXML::Document.new(response.body)
@@ -26,7 +30,7 @@ build_doc.elements.each('//buildType') do |type|
 	btID = type.attributes["id"]
 end
 
-url = "http://teamcity/repository/download/#{btID}:id/#{build_id}/#{node['wt_search']['artifact']}"
+url = "http://teamcity.webtrends.corp/repository/download/#{btID}:id/#{build_id}/#{node['wt_search']['artifact']}"
 
 # get parameters
 master_host = node['wt_common']['master_host']
