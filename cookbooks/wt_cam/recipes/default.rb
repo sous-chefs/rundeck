@@ -21,7 +21,7 @@ app_pool = node['wt_cam']['app_pool']
 db_server = node['wt_cam']['database']
 pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
-auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['system_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['system_password']}"
+auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['system_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['system_pass']}"
 
 pod = node.chef_environment
 
