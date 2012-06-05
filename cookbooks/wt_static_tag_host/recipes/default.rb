@@ -50,3 +50,14 @@ cookbook_file "/var/www/.htaccess" do
   owner "root"
   group "root"
 end
+
+#Create collectd plugin for apache if collectd has been applied.
+if node.attribute?("collectd")
+  template "#{node[:collectd][:plugin_conf_dir]}/collectd_apache2_static-tag.conf" do
+    source "collectd_apache2_static-tag.conf.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
+  end
+end
