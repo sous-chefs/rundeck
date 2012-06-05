@@ -209,8 +209,7 @@
             "quorum": [
                 "hzoo01.staging.dmz", 
                 "hzoo02.staging.dmz", 
-                "hzoo03.staging.dmz", 
-                "hzoo04.staging.dmz"
+                "hzoo03.staging.dmz"
             ], 
             "snapshotNum": 3, 
             "syncLimit": 5, 
