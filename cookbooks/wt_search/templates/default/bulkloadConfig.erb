@@ -1,16 +1,21 @@
 <?xml version="1.0"?>
 <configuration>
   <configSections>
+      <section name="cacheConfiguration" type="Webtrends.Cache.Configuration.CacheConfigurationSection, Webtrends.Cache2, Version=10.4.0.522, Culture=neutral, PublicKeyToken=null" />
       <section name="serviceBus" type="Webtrends.ServiceBus.Configuration.ServiceBusConfiguration, Webtrends.ServiceBus"/>
     <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core"/>
     <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
   </configSections> 
+  <cacheConfiguration enabled="false" region="" />
   <connectionStrings>
-    <add name="wtMasterConnection" connectionString="Data Source=e2masterdb01;Initial Catalog=wtMaster;Integrated Security=True;" providerName="System.Data.SqlClient"/>
+    <add name="wtMasterConnection" connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Integrated Security=SSPI;Application Name=;Connect Timeout=30;"
+      providerName="System.Data.SqlClient" />
   </connectionStrings>
-  <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="E2_Report" MetaDataColumnFamily="E2_Meta" UseLegacy="false" ThriftPort="9160">
+  <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>"
+    MetaDataColumnFamily="<%= @metadata_column %>" ThriftPort="<%= @thrift_port %>" UseLegacy="false">
     <Nodes>
-      <add Hostname="e1rds01.englab.webtrends.corp"/>
+      <clear />
+      <add Hostname="<%= @cass_host %>" />
     </Nodes>
   </CassandraCluster>
   <serviceBus>
@@ -43,8 +48,8 @@
       <param name="StaticLogFileName" value="false" />
       <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
       <layout type="log4net.Layout.PatternLayout">
-        <header value="-Start-&#13;&#10;" />
-        <footer value="-End-&#13;&#10;" />
+        <header value="-Start-&#xD;&#xA;" />
+        <footer value="-End-&#xD;&#xA;" />
         <conversionPattern value="%date %-5level %logger - %message%newline" />
       </layout>
     </appender>

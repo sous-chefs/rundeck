@@ -1,9 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <configSections>
+    <section name="cacheConfiguration" type="Webtrends.Cache.Configuration.CacheConfigurationSection, Webtrends.Cache2, Version=10.4.0.522, Culture=neutral, PublicKeyToken=null" />
     <section name="serviceBus" type="Webtrends.ServiceBus.Configuration.ServiceBusConfiguration, Webtrends.ServiceBus" />
     <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core" />
   </configSections>
+  <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>"
+    MetaDataColumnFamily="<%= @metadata_column %>" UseLegacy="false">
+    <Nodes>
+      <clear />
+      <add Hostname="<%= @cass_host %>" />
+    </Nodes>
+  </CassandraCluster>
+  <cacheConfiguration enabled="false" region="" />
   <system.diagnostics>
     <sources>
       <source name="System.ServiceModel.MessageLogging" switchValue="Warning, ActivityTracing">
@@ -41,13 +50,14 @@
     <add key="baseIndexDir" value="indexes" />
   </appSettings>  
   <connectionStrings>
-    <add name="wtMasterConnection" connectionString="Data Source=pfmasterdb01;Initial Catalog=wtMaster;Integrated Security=False;User Id=sa;Password=cad890;" providerName="System.Data.SqlClient" />
+    <add name="wtMasterConnection" connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Integrated Security=SSPI;Application Name=;Connect Timeout=30;"
+      providerName="System.Data.SqlClient" />
   </connectionStrings>
   <serviceBus>
     <endpoints>
-      <endpoint endpointIdentifier="searchsmain@localhost" binding="mainBinding" name="Webtrends Search Service" description="" 
-                returnAddress="searchsmain@localhost" monitorServiceAddress="discover" 
-                maxMessageRetryCount="3" statusReportInterval="00:00:30" statusReportGracePeriod="00:01:00" 
+      <endpoint endpointIdentifier="searchsmain@localhost" binding="mainBinding" name="Webtrends Search Service" description=""
+                returnAddress="searchsmain@localhost" monitorServiceAddress="discover"
+                maxMessageRetryCount="3" statusReportInterval="00:00:30" statusReportGracePeriod="00:01:00"
                 numberOfWorkerThreads="4" maxRetries="4" incomingMessageLoggingLevel="None" outgoingMessageLoggingLevel="None" sendOnly="false">
         <profiler enabled="true" profilePipelineComponents="true" pipelineDirection="Both" />
         <registeredMessages>
