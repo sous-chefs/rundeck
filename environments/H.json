@@ -205,15 +205,21 @@
         }, 
         "zookeeper": {
             "clientPort": 2181, 
+            "client_port": 2181, 
             "initLimit": 10, 
+            "init_limit": 10, 
             "quorum": [
                 "hzoo01.staging.dmz", 
                 "hzoo02.staging.dmz", 
-                "hzoo03.staging.dmz"
+                "hzoo03.staging.dmz", 
+                "hzoo04.staging.dmz"
             ], 
             "snapshotNum": 3, 
+            "snapshot_num": 3, 
             "syncLimit": 5, 
-            "tickTime": 2000
+            "sync_limit": 5, 
+            "tickTime": 2000, 
+            "tick_time": 2000
         }
     }
 }
