@@ -231,18 +231,18 @@
             "version": "4.6"
         }, 
         "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/15652:id/realtimeapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/15955:id/realtimeapi-bin.tar.gz", 
             "port": 8082
         }, 
         "wt_streaming_audit": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14244:id/streamingauditor-bin.tar.gz"
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/15944:id/streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/15948:id/streamingapi-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/15950:id/streamingcollection-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/15954:id/streamingcollection-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streaminglogreplayer": {
