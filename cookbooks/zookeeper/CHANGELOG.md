@@ -5,6 +5,7 @@
 * configured log dir to be /var/log/zookeeper
 * removed home directory and shell for zookeeper user
 * setup service to start up using runit
+* attribute names have changed
 
 ## 1.0.3:
 * Adding jmx to zookeeper
