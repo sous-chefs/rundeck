@@ -31,14 +31,14 @@ execute "sc" do
 	ignore_failure true
 end
 
-# delete service with old service name
-execute "sc" do
-	command "\"%WINDIR%\\System32\\sc.exe delete \"Webtrends Search Service\""
-	ignore_failure true
-end
-
 # delete install folder
 directory install_dir do
+	recursive true
+	action :delete
+end
+
+# delete log folder
+directory "#{node['wt_common']['install_dir_windows']}#{node['wt_search']['log_dir']}" do
 	recursive true
 	action :delete
 end
