@@ -15,10 +15,9 @@ require 'json'
 include_recipe "wt_search::uninstall" if deploy_mode?
 
 # source build
-project_name = "Search"
 
 build_data = data_bag_item('wt_builds', node.chef_environment)
-build_id = build_data[project_name]
+build_id = build_data[node['wt_search']['tc_proj'] ]
 
 base_url = 'http://teamcity.webtrends.corp/guestAuth/app/rest/builds/' + build_id
 
@@ -100,14 +99,14 @@ if deploy_mode?
 	end
 
 	powershell "create service" do
-		environment({'serviceName' => node['wt_search']['service_name'], 'install_dir' => install_dir, 'svcuser' => svcuser, 'svcpass' => svcpass})	
+		environment({'serviceName' => node['wt_search']['service_name'], 'serviceBinary' => node['wt_search']['service_binary'], 'install_dir' => install_dir, 'svcuser' => svcuser, 'svcpass' => svcpass})	
 		code <<-EOH
  		# $computer = gc env:computername
  		$class = "Win32_Service"
 		$method = "Create"
 		# $mc = [wmiclass]"\\\\$computer\\ROOT\\CIMV2:$class"
 		$mc = [wmiclass]"\\\\.\\ROOT\\CIMV2:$class"
-		$servicePath = $env:install_dir + "\\Webtrends.Search.Service.exe"
+		$servicePath = $env:install_dir + "\\$env:serviceBinary"
 		$inparams = $mc.PSBase.GetMethodParameters($method)
 		$inparams.DesktopInteract = $false
 		$inparams.DisplayName = $env:serviceName
