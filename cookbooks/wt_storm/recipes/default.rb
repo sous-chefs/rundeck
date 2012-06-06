@@ -46,8 +46,6 @@ jsp-api-2.1-6.1.14.jar
 jsr107cache-1.1.jar
 kafka-0.7.0.jar
 libthrift-0.7.0.jar
-logback-classic-0.9.28.jar
-logback-core-0.9.28.jar
 netty-3.3.0.Final.jar
 plexus-utils-1.5.6.jar
 protobuf-java-2.4.0a.jar
