@@ -22,8 +22,8 @@
                 "groups": [
                     "STAGINGDMZ\\\\domain-admins", 
                     "domain-admins", 
-                    "STAGINGDMZ\\\\v.admins",
-                    "v.admins",
+                    "STAGINGDMZ\\\\v.admins", 
+                    "v.admins"
                 ], 
                 "passwordless": false, 
                 "users": [
