@@ -22,7 +22,7 @@
                 "groups": [
                     "STAGINGDMZ\\\\domain-admins", 
                     "domain-admins", 
-                    "STAGINGDMZ\\\\v.admins",
+                    "STAGINGDMZ\\\\v.admins", 
                     "v.admins"
                 ], 
                 "passwordless": false, 
