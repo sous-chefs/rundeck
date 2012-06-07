@@ -24,6 +24,7 @@ else
     java_home   = node['java']['java_home']
     port = node['wt_realtimeapi']['port']
     cam_url = node['wt_cam']['cam_server_url']
+	zookeeper_quorum = node['hbase']['site']['zookeeper_quorum']
 # This is disabled until we can work out windows node search issues     
 #    cam_url = search(:node, "role:wt_cam AND chef_environment:#{node.chef_environment}")
     user = node['wt_realtimeapi']['user']
@@ -85,7 +86,7 @@ else
     end
 
 
-    %w[monitoring.properties config.properties netty.properties].each do | template_file|
+    %w[monitoring.properties config.properties netty.properties hbase.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
         source	"#{template_file}.erb"
         owner "root"
@@ -95,6 +96,7 @@ else
             :cam_url => cam_url,
             :install_dir => install_dir,
             :port => port,
+		    :zookeeper_quorum => zookeeper_quorum,
             :wt_monitoring => node[:wt_monitoring]
         })
         end 
