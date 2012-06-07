@@ -10,7 +10,7 @@
     "storm": {
       "cluster_role": "wt_storm_realtime",
       "zookeeper": {
-        "root": "/storm-realtine"
+        "root": "/storm-realtime"
       },
       "transactional": {
         "zookeeper": {

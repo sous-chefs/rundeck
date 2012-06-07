@@ -47,7 +47,7 @@ zmq.linger.millis: <%= node[:storm][:zmq][:longer_millis] %>
 
 
 ### nimbus.* configs are for the master
-nimbus.host: <%= @nimbus[:fqdn] %>
+nimbus.host: "<%= @nimbus[:fqdn] %>"
 nimbus.thrift.port: <%= node[:storm][:nimbus][:thrift_port] %>
 nimbus.childopts: "<%= node[:storm][:nimbus][:childopts] %>"
 nimbus.task.timeout.secs: <%= node[:storm][:nimbus][:task_timeout_secs] %>
