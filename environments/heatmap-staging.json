@@ -6,7 +6,7 @@
         "hive": "= 1.0.1", 
         "kafka": "= 1.0.3", 
         "wt_heatmaps": "= 0.10.4", 
-        "wt_realtimeapi": "= 0.0.12", 
+        "wt_realtimeapi": "= 0.0.13", 
         "wt_streamingapi": "= 0.0.12", 
         "wt_streamingaudit": "= 0.0.5", 
         "wt_streamingcollection": "= 0.0.14", 
@@ -231,7 +231,7 @@
             "version": "4.6"
         }, 
         "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/15955:id/realtimeapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/16108:id/realtimeapi-bin.tar.gz", 
             "port": 8082
         }, 
         "wt_streaming_audit": {
