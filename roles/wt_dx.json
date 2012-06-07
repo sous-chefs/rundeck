@@ -18,13 +18,7 @@
     "role[wt_commonlib]",
     "recipe[ms_dotnet35]",
     "recipe[vc2010]",
-    "recipe[wt_dx::pre]",
-    "recipe[wt_dx::zip_retrieve]",
-    "recipe[wt_dx::version2]",
-    "recipe[wt_dx::version21]",
-    "recipe[wt_dx::version22]",
-    "recipe[wt_dx::version3]",
-    "recipe[wt_dx::post]"
+    "recipe[wt_dx]"
   ],
   "env_run_lists": {
   }

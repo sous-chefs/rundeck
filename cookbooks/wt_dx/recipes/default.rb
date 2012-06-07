@@ -8,9 +8,12 @@
 # All rights reserved - Do Not Redistribute
 # This recipe sets up the base configuration for DX
 
-log "Deploy build is #{ENV["deploy_build"]}"
-if ENV["deploy_build"] == "true" then 
+if deploy_mode? 
   include_recipe "wt_dx::uninstall" 
+  include_recipe "ms_dotnet4::resetiis"
+  iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
+	action :config
+  end
 end
 
 #Properties
@@ -22,9 +25,6 @@ user_data = data_bag_item('authorization', pod)
 ui_user = user_data['wt_common']['ui_user']
 ui_password = user_data['wt_common']['ui_pass']
 endpoint = node['wt_dx']['endpoint_address']
-#cass_hosts = node['wt_common']['cassandra_hosts'].map {|x| "Name:" + x}
-#cass_hosts = "{#{cass_hosts.to_json}}"
-#c_hosts = search(:node, "chef_environment:#{node.chef_environment} AND recipes:memcached")
 c_hosts = "test"
 
 #v21 Properties
@@ -43,20 +43,6 @@ webauth_cmd = "/section:applicationPools /[name='#{webservices_pool}'].processMo
 
 directory install_logdir do
 	action :create
-end
-
-ruby_block "deflate_flag" do 
-	block do
-		node.default['deflate'] = "configured"
-		node.save
-	end
-	action :nothing
-end
-
-iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
-	action :config
-	notifies :create, "ruby_block[deflate_flag]", :immediately
-	not_if {node.attribute?("deflate")}
 end
 
 cfg_cmds.each do |cmd|	
@@ -95,11 +81,11 @@ wt_base_firewall 'OEM_DXWS' do
 	action [:open_port]
 end
 
-if ENV["deploy_build"] == "true" then 
+if deploy_mode?
   ##################################
   # DX V2_1
   ##################################
-  windows_zipfile "#{installdir}#{v21_installdir}" do
+  windows_zipfile install_dir_v21 do
     source "#{archive_url}#{v21_install_url}"
     action :unzip	
   end
@@ -111,15 +97,15 @@ if ENV["deploy_build"] == "true" then
   	)
   end
   
-  iis_pool "#{app_pool_v21}" do
+  iis_pool app_pool_v21 do
   	thirty_two_bit :true
   action [:add, :config]
   end
   
   iis_app "DX" do
   	path "/v2_1"
-  	application_pool "#{app_pool_v21}"
-  	physical_path "#{install_dir_v21}"
+  	application_pool app_pool_v21
+  	physical_path install_dir_v21
   	action :add
   end
   
@@ -209,7 +195,7 @@ if ENV["deploy_build"] == "true" then
   #DX 2.2 just uses the DX 3.0 installation
   iis_app "OEM_DX" do
   	path "/v2_2"
-  	application_pool "#{app_pool_v3}"
+  	application_pool streamingservices_pool
   	physical_path "#{install_dir_v3}"
   	action :add
   end
@@ -217,19 +203,16 @@ end
 
 #Post Install
 
-execute "icacls" do
-        command "icacls \"#{node['wt_common']['installdir_windows']}\\Data Extraction API\" /grant:r IUSR:(oi)(ci)(rx)"
-        action :run
+wt_base_icacls "#{node['wt_common']['installdir_windows']}\\Data Extraction API" do
+	action :grant
+	user user_data['wt_common']['ui_user']
+	perm :read
 end
 
-execute "icacls" do
-        command "icacls \"#{node['wt_common']['installdir_windows']}\\OEM Data Extraction API\" /grant:r IUSR:(oi)(ci)(rx)"
-        action :run
-end
-
-execute "aspnet_regiis" do
-        command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis -i -enable"
-        action :run
+wt_base_icacls node['wt_common']['installdir_windows'] do
+	action :grant
+	user "#{node['wt_common']['installdir_windows']}\\OEM Data Extraction API"
+	perm :read
 end
 
 execute "ServiceModelReg" do

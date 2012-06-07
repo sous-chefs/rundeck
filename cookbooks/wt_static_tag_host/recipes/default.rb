@@ -34,13 +34,10 @@ else
 		source "apache2.conf.erb"
 		mode 00644
 		variables(:docroot => "/var/www")
-		if ::File.symlink?("#{node['apache']['dir']}/sites-enabled/static_tag_host.conf")
-			notifies :reload, resources(:service => "apache2")
-		end
 	end
 	
-	#Enable the apache site
-	apache_site "static_tag_host" do
+    #Enable the apache site
+    apache_site "static_tag_host.conf" do
       enable true
     end
 
@@ -52,4 +49,15 @@ cookbook_file "/var/www/.htaccess" do
   mode 0644
   owner "root"
   group "root"
+end
+
+#Create collectd plugin for apache if collectd has been applied.
+if node.attribute?("collectd")
+  template "#{node[:collectd][:plugin_conf_dir]}/collectd_apache2_static-tag.conf" do
+    source "collectd_apache2_static-tag.conf.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
+  end
 end
