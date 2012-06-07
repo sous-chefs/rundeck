@@ -63,7 +63,7 @@ zkclient-0.1.jar
     source "#{node['wt_storm']['download_url']}/#{jar}"
     owner "storm"
     group "storm"
-    mode "0744"
+    mode "0644"
   end
 end
 
