@@ -1,8 +1,11 @@
 ## Future
-* Remove the home directory and shell for the Zookeeper user (requires roller script changes)
-* Setup Runit service
 
-* Unknown
+## 1.0.4:
+* moved conf files to /etc/zookeeper
+* configured log dir to be /var/log/zookeeper
+* removed home directory and shell for zookeeper user
+* setup service to start up using runit
+* attribute names have changed
 
 ## 1.0.3:
 * Adding jmx to zookeeper
