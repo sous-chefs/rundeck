@@ -2,7 +2,7 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "hadoop": "= 1.0.3", 
-        "hbase": "= 1.0.3", 
+        "hbase": "= 1.0.2", 
         "hive": "= 1.0.1", 
         "kafka": "= 1.0.3", 
         "wt_heatmaps": "= 0.10.4", 
