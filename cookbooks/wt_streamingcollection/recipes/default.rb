@@ -23,6 +23,7 @@ else
     download_url = node['wt_streamingcollection']['download_url']
     dcsid_url = node['wt_configdistrib']['dcsid_url']
     cam_dcsid_url = node['wt_cam']['cam_server_url']
+    user = node['wt_streamingcollection']['user']
     group = node['wt_streamingcollection']['group']
     java_opts = node['wt_streamingcollection']['java_opts']
 
