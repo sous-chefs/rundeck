@@ -47,6 +47,17 @@ remote_directory "/var/www" do
   mode "0744"
 end
 
+#Create collectd plugin for nginx if collectd has been applied.
+if node.attribute?("collectd")
+  cookbook_file "#{node[:collectd][:plugin_conf_dir]}/nginx.conf" do
+    source "nginx.conf"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
+  end
+end
+
 nginx_site "default" do
   enable false
 end
