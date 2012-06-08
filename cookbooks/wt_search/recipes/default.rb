@@ -12,25 +12,27 @@
 require 'rest_client'
 require 'rexml/document'
 require 'json'
-include_recipe "wt_search::uninstall" if deploy_mode?
 
-# source build
+if deploy_mode?
+	include_recipe "wt_search::uninstall" 
 
-build_data = data_bag_item('wt_builds', node.chef_environment)
-build_id = build_data[node['wt_search']['tc_proj'] ]
+	# source build
 
-base_url = 'http://teamcity.webtrends.corp/guestAuth/app/rest/builds/' + build_id
+	build_data = data_bag_item('wt_builds', node.chef_environment)
+	build_id = build_data[node['wt_search']['tc_proj'] ]
 
-response = RestClient.get base_url
-btID = nil
-build_doc = REXML::Document.new(response.body)
-build_doc.elements.each('//buildType') do |type|
-	btID = type.attributes["id"]
+	base_url = 'http://teamcity.webtrends.corp/guestAuth/app/rest/builds/' + build_id
+
+	response = RestClient.get base_url
+	btID = nil
+	build_doc = REXML::Document.new(response.body)
+	build_doc.elements.each('//buildType') do |type|
+		btID = type.attributes["id"]
+	end
+
+	install_url = "http://teamcity.webtrends.corp/guestAuth/repository/download/#{btID}/#{build_id}:id/#{node['wt_search']['artifact']}"
+	log install_url
 end
-
-install_url = "http://teamcity.webtrends.corp/guestAuth/repository/download/#{btID}/#{build_id}:id/#{node['wt_search']['artifact']}"
-log install_url
-
 # get parameters
 master_host = node['wt_common']['master_host']
 

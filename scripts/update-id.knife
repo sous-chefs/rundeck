@@ -3,18 +3,33 @@ abort("usage: knife exec update-id.knife $POD $TEAMCITYPROJECT $BUILDID") unless
 pod = ARGV[2].to_s
 project_name = ARGV[3].to_s
 new_id = ARGV[4].to_s
+upload_scm = true if ARGV[5].to_s == "upload"
 
 puts pod
 puts project_name
 puts new_id
+puts upload_scm
 
-builds = data_bag_item('wt_builds', pod)
+build_data = data_bag_item('wt_builds', pod)	 
 
+puts "Updating build id from #{build_data[project_name]} to #{new_id}"
 
+build_data[project_name] = new_id
+build_data.save
 
-puts "Updating build id from #{builds[project_name]} to #{new_id}"
-
-builds[project_name] = new_id
-builds.save
+if upload_scm then
+	puts "Cleaning existing directory"
+	#`rm -rf ./chef-repo`
+	`rmdir /s /q chef-repo`
+	puts "Checking out source...."
+	`git clone http://git.webtrends.corp/git/chef-repo.git`
+	puts "Exporting dbag from server...."
+	`knife data bag show wt_builds #{pod} > chef-repo\\roles\\#{pod}.json -Fj`
+	puts "Commit source...."
+	`git add -A`
+	`git commit chef-repo -m 'automessage time'`
+	puts "Pushing to git..."
+	puts "git push chef-repo"
+end
 
 exit 0
