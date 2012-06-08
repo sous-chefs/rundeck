@@ -2,7 +2,10 @@
 
 * Run under runit
 
-## 1.0.0 (IP):
+## 1.0.1:
+* Attempt to fix the gating
+
+## 1.0.0:
 
 * Initial transfer from Optimize
 * Allow installing to any directory
