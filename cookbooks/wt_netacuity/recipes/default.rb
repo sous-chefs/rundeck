@@ -30,7 +30,7 @@ end
 remote_file "#{Chef::Config[:file_cache_path]}/NetAcuity_#{node['wt_netacuity']['version']}.tgz" do
   source "#{node['wt_netacuity']['download_url']}/NetAcuity_#{node['wt_netacuity']['version']}_#{node['kernel']['machine']}.tgz"
   mode 00644
-  subscribes :create, resources(:directory => node['wt_netacuity']['install_dir']), :immediately
+  not_if {File.exists?("#{node['wt_netacuity']['install_dir']}/server")}
 end
 
 # run the tar only if the new file is pulled down
