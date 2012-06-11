@@ -75,7 +75,7 @@ when "init"
 
   service "chef-client" do
     supports :status => true, :restart => true
-    action [:enable, :start]
+    action :enable
   end
 
 when "smf"
