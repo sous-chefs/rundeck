@@ -28,6 +28,7 @@ package "collectd" do
   action [:install]
 end
 
+#WT custom modification to the base recipe:
 #If this is a RH based distro then install the collectd-java plugin since it's installed by default in ubuntu.
 if platform?("centos","redhat","fedora","suse")
   # WT's collectd-java RPM requires that libjvm.so is accessable. So we need to setup a symlink if this file exists. 
@@ -45,14 +46,18 @@ else
   # do nothing
 end
 
-# WT's collectd-java RPM requires that libjvm.so is accessable. So we need to setup a symlink if this file exists. 
-if File.exists?("/usr/lib/jvm/java/jre/lib/amd64/server/libjvm.so")
-  # Create a symbolic link to libjvm.so so the collectd java/jmx plugin works properly.
-  link "/usr/lib64/libjvm.so" do
-    to "/usr/lib/jvm/java/jre/lib/amd64/server/libjvm.so"
-  end
+#WT custom modification to the base recipe:
+# WT's collectd custom DEB requires that libjvm.so is accessable. So we need to setup a symlink if this file exists. 
+if platform?("debian","ubuntu")
+	if File.exists?("/usr/lib/jvm/default-java/jre/lib/amd64/server/libjvm.so")
+	  # Create a symbolic link to libjvm.so so the collectd java/jmx plugin works properly.
+	  link "/usr/lib64/libjvm.so" do
+		to "/usr/lib/jvm/default-java/jre/lib/amd64/server/libjvm.so"
+	  end
+	end
+else
+  # do nothing
 end
-
 
 service "collectd" do
   supports :restart => true, :status => true
