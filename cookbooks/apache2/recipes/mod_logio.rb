@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: apache2
-# Recipe:: python 
+# Recipe:: logio 
 #
 # Copyright 2008-2009, Opscode, Inc.
 #
@@ -17,16 +17,8 @@
 # limitations under the License.
 #
 
-case node['platform']
-  when "debian", "ubuntu"
-    package "libapache2-mod-python" do
-      action :install
-    end
-  when "redhat", "centos", "scientific", "fedora", "amazon"
-    package "mod_python" do
-      action :install
-      notifies :run, resources(:execute => "generate-module-list"), :immediately
-    end
+if platform?("redhat", "centos", "scientific", "fedora", "suse", "arch", "freebsd", "amazon")
+  apache_module "logio"
+else
+  include_recipe "apache2"
 end
-
-apache_module "python"
