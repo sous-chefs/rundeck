@@ -79,10 +79,9 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4
     mode  "00644"
     variables({
     })
-    end
+end
 
 # storm looks for storm.yaml in ~/.storm/storm.yaml
-
 link "/home/storm/.storm" do
   to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
 end
