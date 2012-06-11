@@ -78,14 +78,3 @@ when "karmic"
     notifies :restart, resources(:service => "memcached"), :immediately
   end
 end
-
-#Create collectd plugin for memcached if collectd has been applied.
-if node.attribute?("collectd")
-  template "#{node[:collectd][:plugin_conf_dir]}/collectd_memcached.conf" do
-    source "collectd_memcached.conf.erb"
-    owner "root"
-    group "root"
-    mode 00644
-    notifies :restart, resources(:service => "collectd")
-  end
-end
