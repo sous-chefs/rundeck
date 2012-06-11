@@ -60,7 +60,7 @@
             "cassandra_report_column": "J_Report", 
             "cassandra_snmp_comm": "StagingRO", 
             "cassandra_snmp_port": "", 
-            "cassandra_thrift_port": "", 
+            "cassandra_thrift_port": "9160", 
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 

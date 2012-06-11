@@ -53,3 +53,8 @@ end
 gem_package("rubyzip") do
   options("-v 0.9.5")
 end
+
+#copy a deploy file that can be called to execuate a deploy via rundeck
+cookbook_file "#{node['chef_client']['conf_dir']}\\deploy.bat" do
+  source "deploy.bat"
+end

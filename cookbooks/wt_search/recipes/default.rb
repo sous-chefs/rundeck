@@ -99,6 +99,17 @@ if deploy_mode?
 		  :metadata_column => node['wt_common']['cassandra_meta_column']
 	  )
 	end
+	
+	template "#{install_dir}\\LocalStateRetriever.exe.config" do
+	  source "localStateRetrieverConfig.erb"
+	  variables(		
+		  :master_host => node['wt_common']['master_host'],
+		  :cass_host => node['wt_common']['cassandra_host'],
+		  :report_column => node['wt_common']['cassandra_report_column'],
+		  :thrift_port => node['wt_common']['cassandra_thrift_port'],
+		  :metadata_column => node['wt_common']['cassandra_meta_column']
+	  )
+	end
 
 	powershell "create service" do
 		environment({'serviceName' => node['wt_search']['service_name'], 'serviceBinary' => node['wt_search']['service_binary'], 'install_dir' => install_dir, 'svcuser' => svcuser, 'svcpass' => svcpass})	
