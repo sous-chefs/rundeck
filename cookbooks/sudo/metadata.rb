@@ -2,7 +2,7 @@ maintainer        "Opscode, Inc."
 maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
 description       "Installs sudo and configures /etc/sudoers"
-version           "1.0.0"
+version           "1.1.0"
 
 recipe "sudo", "Installs sudo and configures /etc/sudoers"
 
@@ -15,25 +15,31 @@ attribute "authorization",
   :description => "Hash of Authorization attributes",
   :type => "hash"
 
-attribute "authorization/sudoers",
+attribute "authorization/sudo",
   :display_name => "Authorization Sudoers",
-  :description => "Hash of Authorization/Sudoers attributes",
+  :description => "Hash of Authorization/Sudo attributes",
   :type => "hash"
 
-attribute "authorization/sudoers/users",
+attribute "authorization/sudo/users",
   :display_name => "Sudo Users",
   :description => "Users who are allowed sudo ALL",
   :type => "array",
   :default => ""
 
-attribute "authorization/sudoers/groups",
+attribute "authorization/sudo/groups",
   :display_name => "Sudo Groups",
   :description => "Groups who are allowed sudo ALL",
   :type => "array",
   :default => ""
 
-attribute "authorization/sudoers/passwordless",
+attribute "authorization/sudo/passwordless",
   :display_name => "Passwordless Sudo",
   :description => "",
+  :type => "string",
+  :default => "false"
+
+attribute "authorization/sudo/include_sudoers_d",
+  :display_name => "Include sudoers.d",
+  :description => "Whether to create the sudoers.d includedir",
   :type => "string",
   :default => "false"
