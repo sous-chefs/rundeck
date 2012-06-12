@@ -17,10 +17,8 @@ if deploy_mode?
 	include_recipe "wt_search::uninstall" 
 
 	# source build
-
 	build_data = data_bag_item('wt_builds', node.chef_environment)
 	build_id = build_data[node['wt_search']['tc_proj'] ]
-
 	base_url = 'http://teamcity.webtrends.corp/guestAuth/app/rest/builds/' + build_id
 
 	response = RestClient.get base_url
@@ -29,7 +27,6 @@ if deploy_mode?
 	build_doc.elements.each('//buildType') do |type|
 		btID = type.attributes["id"]
 	end
-
 	install_url = "http://teamcity.webtrends.corp/guestAuth/repository/download/#{btID}/#{build_id}:id/#{node['wt_search']['artifact']}"
 	log install_url
 end
@@ -41,8 +38,8 @@ install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_search']['i
 
 # get data bag items 
 auth_data = data_bag_item('authorization', node.chef_environment)
-svcuser = auth_data['wt_common']['loader_user']
-svcpass = auth_data['wt_common']['loader_pass']
+svcuser = auth_data['wt_common']['system_user']
+svcpass = auth_data['wt_common']['system_pass']
 
 # determine root drive of install_dir - ENG390500
 if (install_dir =~ /^(\w:)\\.*$/)
@@ -91,6 +88,17 @@ if deploy_mode?
 	
 	template "#{install_dir}\\Webtrends.Search.Bulkload.exe.config" do
 	  source "bulkloadConfig.erb"
+	  variables(		
+		  :master_host => node['wt_common']['master_host'],
+		  :cass_host => node['wt_common']['cassandra_host'],
+		  :report_column => node['wt_common']['cassandra_report_column'],
+		  :thrift_port => node['wt_common']['cassandra_thrift_port'],
+		  :metadata_column => node['wt_common']['cassandra_meta_column']
+	  )
+	end
+	
+	template "#{install_dir}\\LocalStateRetriever.exe.config" do
+	  source "localStateRetrieverConfig.erb"
 	  variables(		
 		  :master_host => node['wt_common']['master_host'],
 		  :cass_host => node['wt_common']['cassandra_host'],
