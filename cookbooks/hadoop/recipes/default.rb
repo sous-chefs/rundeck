@@ -18,7 +18,7 @@
 #
 include_recipe "java"
 
-%w[python-simplejson python-cjson].each do |pkg|
+%w[snappy-devel python-simplejson python-cjson].each do |pkg|
   package pkg do
     action :install
   end

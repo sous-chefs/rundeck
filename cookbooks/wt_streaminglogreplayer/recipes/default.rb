@@ -165,3 +165,14 @@ if ENV["deploy_build"] == "true" then
     })
     end
 end
+
+#Create collectd plugin for streaminglogreplayer JMX objects if collectd has been applied.
+if node.attribute?("collectd")
+  template "#{node[:collectd][:plugin_conf_dir]}/collectd_kafka-producer.conf" do
+    source "collectd_kafka-producer.conf.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
+  end
+end
