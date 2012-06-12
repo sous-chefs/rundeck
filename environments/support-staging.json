@@ -11,6 +11,7 @@
                     "STAGINGDMZ\\\\domain-admins", 
                     "STAGINGDMZ\\\\stage-admins"
                 ], 
+                "include_sudoers_d": true,
                 "passwordless": false, 
                 "users": [
                     "bobo"
