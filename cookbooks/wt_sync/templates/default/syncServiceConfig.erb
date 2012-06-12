@@ -18,11 +18,11 @@
         <defaultSettings timeout="00:05:00"/>
     </system.transactions>
     
-  <cacheConfiguration enabled="true" region="<% @cache_region %>" lifespan="00:15:00"
+  <cacheConfiguration enabled="true" region="<%= @cache_region %>" lifespan="00:15:00"
     protocol="Binary">
     <servers>
       <clear />
-	  <% @cache_servers.each do |cache| -%>
+	  <% @cache_hosts.each do |cache| -%>
 	  <add address="<%= cache['name']%>" port="<%= cache['port'] %>" />
 	  <% end -%>
     </servers>
