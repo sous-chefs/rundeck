@@ -159,3 +159,14 @@ runit_service "kafka" do
         :user => user
       }) 
 end
+
+#Create collectd plugin for kafka JMX objects if collectd has been applied.
+if node.attribute?("collectd")
+  template "#{node[:collectd][:plugin_conf_dir]}/collectd_kafka-broker.conf" do
+    source "collectd_kafka-broker.conf.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
+  end
+end
