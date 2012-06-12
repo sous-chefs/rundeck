@@ -1,0 +1,28 @@
+abort("To copy build-ids from $POD1 to $POD 2 usage: knife exec id-copy.knife $POD1 $POD2 $TEAMCITYPROJECT(if left blank all are copied)") unless ARGV[3]
+
+starting_pod = ARGV[2].to_s
+ending_pod = ARGV[3].to_s
+
+if ARGV[4] == nil
+	project = 'all'
+else
+	project = ARGV[4].to_s
+end
+
+puts "Copying #{project} from #{starting_pod} to #{ending_pod}"
+
+starting_ids = data_bag_item('wt_builds', starting_pod)
+ending_ids = data_bag_item('wt_builds', ending_pod)
+
+if project == 'all'
+  starting_ids.each do |id|
+    ending_ids[id] = starting_ids[id]
+  end
+  ending_ids.save
+  exit 0
+end
+
+ending_ids[project] = starting_ids[project]
+ending_ids.save
+
+exit 0
