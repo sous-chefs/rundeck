@@ -78,9 +78,16 @@ zkclient-0.1.jar
   end
 end
 
+template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4j/storm.log.properties" do
+    source  "storm.log.properties.erb"
+    owner "storm"
+    group "storm"
+    mode  "00644"
+    variables({
+    })
+end
 
 # storm looks for storm.yaml in ~/.storm/storm.yaml
-
 link "/home/storm/.storm" do
   to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
 end
