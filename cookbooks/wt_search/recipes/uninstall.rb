@@ -31,6 +31,13 @@ execute "sc" do
 	ignore_failure true
 end
 
+ruby_block "wait" do
+	block do
+		sleep(30)
+	end
+	action :create
+end
+
 # delete install folder
 directory install_dir do
 	recursive true
