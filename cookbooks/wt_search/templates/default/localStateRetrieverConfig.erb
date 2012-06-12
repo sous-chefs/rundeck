@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="serviceBus" type="Webtrends.ServiceBus.Configuration.ServiceBusConfiguration, Webtrends.ServiceBus" />
+    <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core" />
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
+  </configSections>
+  <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>"
+    MetaDataColumnFamily="<%= @metadata_column %>" UseLegacy="false">
+    <Nodes>
+      <clear />
+      <add Hostname="<%= @cass_host %>" />
+    </Nodes>
+  </CassandraCluster>
+  <connectionStrings>
+    <add name="wtMasterConnection" connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Integrated Security=SSPI;Application Name=;Connect Timeout=30;"
+      providerName="System.Data.SqlClient" />
+  </connectionStrings>  
+  <serviceBus>
+    <endpoints>
+      <endpoint endpointIdentifier="searchlocalmain@localhost" binding="mainBinding" name="Webtrends - Local State Retriever" description="" returnAddress="searchlocalmain@localhost" monitorServiceAddress="" distributorAddress="" poisonMessageAddress="" maxMessageRetryCount="3" statusReportInterval="00:00:30" statusReportGracePeriod="00:01:00" numberOfWorkerThreads="2" maxRetries="4" incomingMessageLoggingLevel="None" outgoingMessageLoggingLevel="None" sendOnly="true">
+        <profiler enabled="false" profilePipelineComponents="false" pipelineDirection="Send" />
+        <registeredMessages />
+        <messageAssemblies />
+        <messageHandlerAssemblies />
+        <statusProbes />
+      </endpoint>
+    </endpoints>
+    <bindings>
+      <msmqBinding name="mainBinding" purgeOnStartup="false" isTransactional="true" transactionTimeout="00:02:00" isolationLevel="Serializable" />
+    </bindings>
+  </serviceBus>
+  <log4net>
+    <!-- Root Appender for debugging-->
+    <appender name="ColoredConsoleAppender" type="log4net.Appender.ColoredConsoleAppender">
+      <mapping>
+        <level value="ERROR" />
+        <foreColor value="White" />
+        <backColor value="Red, HighIntensity" />
+      </mapping>
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%date %-5level %logger - %message%newline" />
+      </layout>
+    </appender>
+    <appender name="BufferingForwardingAppender" type="log4net.Appender.BufferingForwardingAppender">
+      <bufferSize value="10" />
+      <appender-ref ref="LogFileAppender" />
+    </appender>
+    <appender name="LogFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file type="log4net.Util.PatternString" value="LocalStateRetriever-%property{log4net:HostName}" />
+      <appendToFile value="true" />
+      <datePattern value="-yyyyMMdd.'log'" />
+      <rollingStyle value="Composite" />
+      <maxSizeRollBackups value="1" />
+      <maximumFileSize value="100MB" />
+      <param name="StaticLogFileName" value="false" />
+      <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+      <layout type="log4net.Layout.PatternLayout">
+        <header value="-Start-&#xD;&#xA;" />
+        <footer value="-End-&#xD;&#xA;" />
+        <conversionPattern value="%date [%thread] %-5level %logger - %message%newline" />
+      </layout>
+    </appender>
+    <!-- Setup the root category, add the appenders and set the default level -->
+    <root>
+      <level value="ALL" />
+      <appender-ref ref="LogFileAppender" />
+      <appender-ref ref="ColoredConsoleAppender" />
+    </root>
+  </log4net>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
+  </startup>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Autofac" publicKeyToken="17863af14b0044da" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.5.2.830" newVersion="2.5.2.830" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Castle.Core" publicKeyToken="407dd0808d44fbdc" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.5.1.0" newVersion="2.5.1.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>
