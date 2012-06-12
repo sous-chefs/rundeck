@@ -2,6 +2,10 @@
 
 * Unknown
 
+## 0.0.9
+* Added the attribute kafka_broker_list which allows a broker address to be used in lieu of finding zookeeper nodes. If setting the value it should look like '0:lasbkr.netiq.dmz:9092'
+* and can be a comma delimited list of brokers. This defaults to nil so zookeeper will be the default.
+
 ## 0.0.8
 * Added environment override for finding zookeeper nodes. The attribute is zookeeper_env and defaults to "", which means it
 * will search in the local environment.
