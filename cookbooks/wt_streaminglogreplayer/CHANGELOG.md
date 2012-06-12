@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.9
+* Added a plugin template for collectd that gets applied in the default recipe.
+
 ## 0.0.8
 * Added environment override for finding zookeeper nodes. The attribute is zookeeper_env and defaults to "", which means it
 * will search in the local environment.
