@@ -19,6 +19,10 @@ if deploy_mode?
 	# source build
 	build_data = data_bag_item('wt_builds', node.chef_environment)
 	build_id = build_data[node['wt_sync']['tc_proj'] ]
+	if build_id == nil
+		raise Chef::Exceptions::AttributeNotFound,
+		"could not find build id: #{install_dir}"
+	end
 	base_url = 'http://teamcity.webtrends.corp/guestAuth/app/rest/builds/' + build_id
 
 	response = RestClient.get base_url
@@ -91,7 +95,8 @@ if deploy_mode?
 		  :report_column => node['wt_common']['cassandra_report_column'],
 		  :thrift_port => node['wt_common']['cassandra_thrift_port'],
 		  :metadata_column => node['wt_common']['cassandra_meta_column'],
-		  :cache_hosts => node['wt_common']['cache_host']
+		  :cache_hosts => node['wt_common']['cache_host'],
+		  :cache_region => node['wt_common']['cache_region']
 	  )
 	end
 
