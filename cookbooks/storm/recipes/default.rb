@@ -48,14 +48,13 @@ end
   end
 end
 
-# fetch the storm application tarball from the cookbook
-cookbook_file "#{Chef::Config[:file_cache_path]}/storm-#{node['storm']['version']}.tar.gz" do
+# download storm
+remote_file "#{Chef::Config[:file_cache_path]}/storm-#{node[:storm][:version]}.tar.gz" do
+  source "#{node[:storm][:download_url]}/storm-#{node[:storm][:version]}.tar.gz"
   owner  "storm"
   group  "storm"
-  source "storm-#{node['storm']['version']}.tar.gz"
-  mode   00644
-  owner  "root"
-  group  "root"
+  mode   00744
+  not_if "test -f #{Chef::Config[:file_cache_path]}/storm-#{node[:storm][:version]}.tar.gz"
 end
 
 # uncompress the application tarball into the install directory

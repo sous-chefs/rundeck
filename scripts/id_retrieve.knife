@@ -1,0 +1,28 @@
+require 'rest_client'
+require 'rexml/document'
+require 'json'
+
+abort("usage: knife exec update-id.knife $POD $TEAMCITYPROJECT") unless ARGV[3]
+
+project_name = ARGV[3].to_s
+pod = ARGV[2].to_s
+
+build_data = data_bag_item('wt_builds', pod)
+build_id = build_data[project_name]
+
+base_url = 'http://teamcity/guestAuth/app/rest/builds/' + build_id
+
+
+response = RestClient.get base_url
+btID = nil
+build_doc = REXML::Document.new(response.body)
+#puts build_doc
+build_doc.elements.each('//buildType') do |type|
+	btID = type.attributes["id"]
+	#puts btID
+end
+
+url = "http://teamcity/repository/download/#{btID}:id/#{build_id}/streamingapi.jar"
+puts url
+
+exit 0
