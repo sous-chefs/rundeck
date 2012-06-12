@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="serviceBus" type="Webtrends.ServiceBus.Configuration.ServiceBusConfiguration, Webtrends.ServiceBus"/>
+    <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core"/>
+    <section name="cacheConfiguration" type="Webtrends.Cache.Configuration.CacheConfigurationSection, Webtrends.Cache2" />
+  </configSections>
+
+    <appSettings>
+        <add key="initialThumbnailRetrieve" value="false"/>
+        <add key="checkAnalytics10Block" value="false"/>
+        <add key="checkBlackListForUserFilter" value="false"/>
+        <add key="blackListForUserFilter" value=""/>
+    </appSettings>
+    
+    <!-- This is the default transaction timeout -->
+    <system.transactions>
+        <defaultSettings timeout="00:05:00"/>
+    </system.transactions>
+    
+  <cacheConfiguration enabled="true" region="<%= @cache_region %>" lifespan="00:15:00"
+    protocol="Binary">
+    <servers>
+      <clear />
+	  <% @cache_hosts.each do |cache| -%>
+	  <add address="<%= cache['name']%>" port="<%= cache['port'] %>" />
+	  <% end -%>
+    </servers>
+    <socketPool minPoolSize="2" maxPoolSize="100" connectionTimeout="00:00:10"
+      receiveTimeout="00:00:05" deadTimeout="00:02:00" />
+  </cacheConfiguration>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+  </startup>
+  <!-- ServiceBus endpoint -->
+  <serviceBus>
+    <endpoints>
+      <!-- TODO: change monitor to serviceBusMonitoring-->
+      <endpoint endpointIdentifier="syncQueue@localhost" name="Webtrends Sync Service" binding="mainBinding"
+                returnAddress="syncQueue@localhost" poisonMessageAddress=""
+                maxMessageRetryCount="2" retryHandling="Drop" numberOfWorkerThreads="1"
+                statusReportInterval="00:00:30" statusReportGracePeriod="00:01:00"
+                monitorServiceAddress="discover"
+                incomingMessageLoggingLevel="None" outgoingMessageLoggingLevel="None" sendOnly="false">
+
+        <profiler enabled="true" profilePipelineComponents="true" pipelineDirection="Both"/>
+
+        <!-- Register to handle the following messages -->
+        <registeredMessages>
+          <message messageType="Webtrends.Sync.Messages.ObjectChangeMessage, Webtrends.Sync" enabled="true"/>
+        </registeredMessages>
+
+        <messageHandlerAssemblies>
+          <assembly name="Webtrends.SyncService"/>
+        </messageHandlerAssemblies>
+
+        <statusProbes>
+          <probe name="Available Memory" unitOfMeasurement="mb" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Memory"/>
+              <add name="Counter" value="Available MBytes"/>
+              <add name="Instance" value=""/>
+            </properties>
+          </probe>
+          <probe name="Avg. Processor Time" unitOfMeasurement="%" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Processor"/>
+              <add name="Counter" value="% Processor Time"/>
+              <add name="Instance" value="_Total"/>
+            </properties>
+          </probe>
+          <probe name="Messages in Queue" unitOfMeasurement="messages" canAggregate="true" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="MSMQ Queue"/>
+              <add name="Counter" value="Messages in Queue"/>
+              <!-- The term 'localhost' will be converted to the machine name -->
+              <add name="Instance" value="localhost\private$\servicebusmain"/>
+            </properties>
+          </probe>
+          <probe name="Avg. Processor Time (process)" unitOfMeasurement="%" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Process"/>
+              <add name="Counter" value="% Processor Time"/>
+              <add name="Instance" value="Webtrends.MessagingService"/>
+            </properties>
+          </probe>
+          <probe name="Private Bytes (process)" unitOfMeasurement="bytes" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Process"/>
+              <add name="Counter" value="Private Bytes"/>
+              <add name="Instance" value="Webtrends.MessagingService"/>
+            </properties>
+          </probe>
+          <probe name="Virtual Bytes (process)" unitOfMeasurement="bytes" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Process"/>
+              <add name="Counter" value="Virtual Bytes"/>
+              <add name="Instance" value="Webtrends.MessagingService"/>
+            </properties>
+          </probe>
+        </statusProbes>
+
+      </endpoint>
+    </endpoints>
+    <!-- Bindings -->
+    <bindings>
+      <msmqBinding name="mainBinding" purgeOnStartup="false" isTransactional="true" transactionTimeout="02:00:00" isolationLevel="ReadUncommitted"/>
+    </bindings>
+  </serviceBus>
+  <connectionStrings>
+    <add name="wtMasterConnection" connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Integrated Security=True;Connect Timeout=300"
+      providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>"
+    MetaDataColumnFamily="<%= @metadata_column %>" ThriftPort="<%= @thrift_port %>" UseLegacy="false">
+    <Nodes>
+      <clear />
+      <add Hostname="<%= @cass_host %>" />
+    </Nodes>
+  </CassandraCluster>
+</configuration>
