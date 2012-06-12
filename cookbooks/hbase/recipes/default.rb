@@ -55,8 +55,8 @@ link "/usr/local/hbase" do
 end
 
 
-# remove old hadoop core file, we run hadoop 1.0.3 currently  
-file "/usr/local/hbase/lib/hadoop-core-1.0.2.jar" do
+# remove old hadoop core file, we run 0.20.205.0
+file "/usr/local/hbase/lib/hadoop-core-0.20-append-r1056497.jar" do
   action :delete
 end
 

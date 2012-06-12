@@ -2,6 +2,9 @@
 
 * Run under runit
 
+## 1.0.2:
+* Use NetAcuity 5.0 by default.  There's no reason to pin to 4.6 as was required in Optimize
+
 ## 1.0.1:
 * Attempt to fix the gating
 
