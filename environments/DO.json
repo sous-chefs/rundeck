@@ -55,6 +55,16 @@
             }
         }, 
         "wt_common": {
+			"cache_host": [
+				{
+					"name": "xcache01.staging.dmz",
+					"port": "11211"
+				},
+				{
+					"name": "xcache02.staging.dmz",
+					"port": "11211"
+				}
+			],
             "cassandra_host": "cass01.devops.dmz", 
             "cassandra_meta_column": "DO_Meta", 
             "cassandra_report_column": "DO_Report", 
