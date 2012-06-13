@@ -19,7 +19,7 @@
 
 # gate the installation of net_acuity unless we are in deploy mode
 if deploy_mode?
-	include_recipe "wt_netacuity::uninstall"
+	include_recipe "wt_netacuity::undeploy"
 
 		# create the install directory
 		directory node['wt_netacuity']['install_dir'] do
