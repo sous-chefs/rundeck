@@ -53,11 +53,6 @@ if platform?("debian","ubuntu")
     to "/usr/lib/jvm/default-java/jre/lib/amd64/server/libjvm.so"
 	only_if "test -f /usr/lib/jvm/default-java/jre/lib/amd64/server/libjvm.so"
   end
-  #This is only temporary and is only in place to remove the previous symlink we setup.
-  link "/usr/lib64/libjvm.so" do
-    action :delete
-    only_if "test -L /usr/lib64/libjvm.so"
-  end
 else
   # do nothing
 end
