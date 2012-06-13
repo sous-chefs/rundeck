@@ -12,7 +12,7 @@
    <PARAMETER name="ADMIN_EMAIL" value="<%=node['wt_common']['admin_email']%>"/>
    <PARAMETER name="SMTP_SERVER" value="<%=node['wt_common']['smtp_server']%>"/>
    <PARAMETER name="LOG_LEVEL" value="INFO"/>
-   <PARAMETER name="SERVER_VERSION" value="<%= @version %>"/>
+   <PARAMETER name="SERVER_VERSION" value="<%=node['wt_netacuity']['version']%>"/>
    <PARAMETER name="MUS_HOSTNAME" value="mus.digitalenvoy.net"/>
    <PARAMETER name="UPDATE_SERVER_HOSTNAME" value="http://us.digitalenvoy.net"/>
    <% if node['wt_netacuity']['use_proxy'] then %>
