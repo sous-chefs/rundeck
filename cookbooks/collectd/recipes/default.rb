@@ -32,11 +32,10 @@ end
 #If this is a RH based distro then install the collectd-java plugin since it's installed by default in ubuntu.
 if platform?("centos","redhat","fedora","suse")
   # WT's collectd-java RPM requires that libjvm.so is accessable. So we need to setup a symlink if this file exists. 
-  if File.exists?("/usr/lib/jvm/java/jre/lib/amd64/server/libjvm.so")
-    # Create a symbolic link to libjvm.so so the collectd java/jmx plugin works properly.
-    link "/usr/lib64/libjvm.so" do
-      to "/usr/lib/jvm/java/jre/lib/amd64/server/libjvm.so"
-    end
+  # Create a symbolic link to libjvm.so so the collectd java/jmx plugin works properly.
+  link "/usr/lib64/libjvm.so" do
+    to "/usr/lib/jvm/java/jre/lib/amd64/server/libjvm.so"
+	only_if "test -f /usr/lib/jvm/java/jre/lib/amd64/server/libjvm.so"
   end
   package "collectd-java" do
     package_name "collectd-java"
@@ -49,12 +48,16 @@ end
 #WT custom modification to the base recipe:
 # WT's collectd custom DEB requires that libjvm.so is accessable. So we need to setup a symlink if this file exists. 
 if platform?("debian","ubuntu")
-	if File.exists?("/usr/lib/jvm/default-java/jre/lib/amd64/server/libjvm.so")
-	  # Create a symbolic link to libjvm.so so the collectd java/jmx plugin works properly.
-	  link "/usr/lib64/libjvm.so" do
-		to "/usr/lib/jvm/default-java/jre/lib/amd64/server/libjvm.so"
-	  end
-	end
+  # Create a symbolic link to libjvm.so so the collectd java/jmx plugin works properly.
+  link "/usr/lib/libjvm.so" do
+    to "/usr/lib/jvm/default-java/jre/lib/amd64/server/libjvm.so"
+	only_if "test -f /usr/lib/jvm/default-java/jre/lib/amd64/server/libjvm.so"
+  end
+  #This is only temporary and is only in place to remove the previous symlink we setup.
+  link "/usr/lib64/libjvm.so" do
+    action :delete
+    only_if "test -L /usr/lib64/libjvm.so"
+  end
 else
   # do nothing
 end
