@@ -30,7 +30,6 @@ user = node['wt_streaminglogreplayer']['user']
 group = node['wt_streaminglogreplayer']['group']
 java_opts = node['wt_streaminglogreplayer']['java_opts']
 tarball = "streaminglogreplayer-bin.tar.gz"
-zookeeper_port = node['zookeeper']['clientPort']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -79,40 +78,46 @@ mount "#{node['wt_streaminglogreplayer']['share_mount_dir']}" do
     action [:mount, :enable]
 end
 
-# get the correct environment for the zookeeper nodes
-zookeeper_env = "#{node.chef_environment}"
-unless node[:wt_streaminglogreplayer][:zookeeper_env].nil? || node[:wt_streaminglogreplayer][:zookeeper_env].empty?
-    zookeeper_env = node['wt_streaminglogreplayer']['zookeeper_env']
-end
+def processTemplates (install_dir, node)
 
-# grab the zookeeper nodes that are currently available
-zookeeper_pairs = Array.new
-if not Chef::Config.solo
-    search(:node, "role:zookeeper AND chef_environment:#{zookeeper_env}").each do |n|
-        zookeeper_pairs << n[:fqdn]
+    log "Updating the template files"
+    # get the correct environment for the zookeeper nodes
+    zookeeper_port = node['zookeeper']['clientPort']
+    zookeeper_env = "#{node.chef_environment}"
+    unless node[:wt_streaminglogreplayer][:zookeeper_env].nil? || node[:wt_streaminglogreplayer][:zookeeper_env].empty?
+        zookeeper_env = node['wt_streaminglogreplayer']['zookeeper_env']
+    end
+
+    # grab the zookeeper nodes that are currently available
+    zookeeper_pairs = Array.new
+    if not Chef::Config.solo
+        search(:node, "role:zookeeper AND chef_environment:#{zookeeper_env}").each do |n|
+            zookeeper_pairs << n[:fqdn]
+        end
+    end
+
+    # append the zookeeper client port (defaults to 2181)
+    i = 0
+    while i < zookeeper_pairs.size do
+    zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
+    i += 1
+    end
+
+    %w[monitoring.properties producer.properties logconverter.properties].each do |template_file|
+    template "#{install_dir}/conf/#{template_file}" do
+            source	"#{template_file}.erb"
+            owner user
+            group group
+            mode  00755
+            variables({ 
+                :wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
+                :zookeeper_pairs => zookeeper_pairs,
+                :wt_monitoring => node[:wt_monitoring]
+            })
+        end
     end
 end
 
-# append the zookeeper client port (defaults to 2181)
-i = 0
-while i < zookeeper_pairs.size do
-zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
-i += 1
-end
-
-%w[monitoring.properties producer.properties logconverter.properties].each do |template_file|
-template "#{install_dir}/conf/#{template_file}" do
-        source	"#{template_file}.erb"
-        owner user
-        group group
-        mode  00755
-        variables({ 
-            :wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
-            :zookeeper_pairs => zookeeper_pairs,
-            :wt_monitoring => node[:wt_monitoring]
-        })
-    end
-end
 
 if ENV["deploy_build"] == "true" then 
     log "The deploy_build value is true so we will grab the tar ball and install"
@@ -147,6 +152,8 @@ if ENV["deploy_build"] == "true" then
         })
     end
 
+    processTemplates(install_dir, node)
+
     # delete the application tarball
     execute "delete_install_source" do
         user "root"
@@ -164,7 +171,11 @@ if ENV["deploy_build"] == "true" then
         :user => user
     })
     end
+else
+    processTemplates(install_dir, node)
 end
+
+
 
 #Create collectd plugin for streaminglogreplayer JMX objects if collectd has been applied.
 if node.attribute?("collectd")

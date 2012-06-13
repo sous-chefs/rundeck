@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.17
+* Added support for deploying changes to attributes that write to templates without having to re-deploy all the bits.
+
 ## 0.0.16
 * Added template to create a collectd plugin to collect kafka JMX counters.
 
