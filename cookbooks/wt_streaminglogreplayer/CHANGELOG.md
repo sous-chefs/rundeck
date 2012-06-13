@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.11
+* Added support for deploying changes to attributes that write to templates without having to re-deploy all the bits.
+
 ## 0.0.10
 * Added the attribute kafka_broker_list which allows a broker address to be used in lieu of finding zookeeper nodes. If setting the value it should look like '0:lasbkr.netiq.dmz:9092'
 ## 0.0.9
