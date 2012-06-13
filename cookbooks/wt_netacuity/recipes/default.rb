@@ -93,7 +93,7 @@ template "netacuity-passwd" do
   path "#{node['wt_netacuity']['install_dir']}/server/netacuity.passwd"
   source "netacuity.passwd.erb"
   variables(
-    :admin_password = admin_password
+    :admin_password => admin_password
   )
   notifies :restart, resources(:service => "netacuity")
   not_if {File.exists?("#{node['wt_netacuity']['install_dir']}/server")}
