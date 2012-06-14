@@ -1,6 +1,14 @@
 ## Future
 
 * Run under runit
+* Pass the license file in somehow (databag?)
+
+## 1.0.4
+* Wrap the recipe in a deploy flag since this recipe will never leave webtrends
+* Template the password file from the authorization data bag
+
+## 1.0.3
+* Fix passing the version attribute into the template
 
 ## 1.0.2:
 * Use NetAcuity 5.0 by default.  There's no reason to pin to 4.6 as was required in Optimize

@@ -12,10 +12,19 @@ install_dir  = "#{node['wt_common']['install_dir_linux']}/streamingaudit"
 
 runit_service "streamingaudit" do
     action :disable
-end
+    run_restart false
+end 
 
+# try to stop the service, but allow a failure without printing the error
 service "streamingaudit" do
   action [:stop, :disable]
+  ignore_failure true
+end
+
+# force stop the service in case the stop failed
+service "streamingaudit" do
+  action [:stop]
+  stop_command "force-stop"
 end
 
 directory "#{log_dir}" do
