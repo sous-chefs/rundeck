@@ -1,5 +1,8 @@
 ## Future
 * Unknown
+## 1.0.5
+* Added template to create a collectd plugin for kafka JMX objects. 
+
 ## 1.0.4
 * Fixed the creation the bin dir. 
 
