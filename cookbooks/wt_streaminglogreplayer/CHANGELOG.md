@@ -2,6 +2,14 @@
 
 * Unknown
 
+## 0.0.11
+* Added support for deploying changes to attributes that write to templates without having to re-deploy all the bits.
+
+## 0.0.10
+* Added the attribute kafka_broker_list which allows a broker address to be used in lieu of finding zookeeper nodes. If setting the value it should look like '0:lasbkr.netiq.dmz:9092'
+## 0.0.9
+* Added a plugin template for collectd that gets applied in the default recipe.
+
 ## 0.0.8
 * Added environment override for finding zookeeper nodes. The attribute is zookeeper_env and defaults to "", which means it
 * will search in the local environment.

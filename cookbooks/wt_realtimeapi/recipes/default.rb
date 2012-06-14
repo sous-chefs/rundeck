@@ -11,47 +11,73 @@
 include_recipe "runit"
 
 log "Deploy build is #{ENV["deploy_build"]}"
-if ENV["deploy_build"] != "true" then
-    log "The deploy_build value is not set or is false so exit here"
-else
+if ENV["deploy_build"] == "true" then 
     log "The deploy_build value is true so un-deploy first"
     include_recipe "wt_realtimeapi::undeploy"
+else
+    log "The deploy_build value is not set or is false so we will only update the configuration"
+end
 
-    log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "realtimeapi")
-    install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "realtimeapi")
-    tarball     = "realtimeapi-bin.tar.gz"
-    download_url = node['wt_realtimeapi']['download_url']
-    java_home   = node['java']['java_home']
-    port = node['wt_realtimeapi']['port']
-    cam_url = node['wt_cam']['cam_server_url']
-	zookeeper_quorum = node['hbase']['site']['zookeeper_quorum']
+ 
+log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "realtimeapi")
+install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "realtimeapi")
+tarball     = "realtimeapi-bin.tar.gz"
+download_url = node['wt_realtimeapi']['download_url']
+java_home   = node['java']['java_home']
+
 # This is disabled until we can work out windows node search issues     
 #    cam_url = search(:node, "role:wt_cam AND chef_environment:#{node.chef_environment}")
-    user = node['wt_realtimeapi']['user']
-    group = node['wt_realtimeapi']['group']
-    java_opts = node['wt_realtimeapi']['java_opts']
+user = node['wt_realtimeapi']['user']
+group = node['wt_realtimeapi']['group']
+java_opts = node['wt_realtimeapi']['java_opts']
 
-    log "Install dir: #{install_dir}"
-    log "Log dir: #{log_dir}"
-    log "Java home: #{java_home}"
+log "Install dir: #{install_dir}"
+log "Log dir: #{log_dir}"
+log "Java home: #{java_home}"
 
-    # create the log dir
-    directory "#{log_dir}" do
-        owner   user
-        group   group
-        mode    00755
-        recursive true
-        action :create
-    end
-
-    # create the install dir 
-    directory "#{install_dir}/bin" do
-    owner "root"
-    group "root"
-    mode 00755
+# create the log dir
+directory "#{log_dir}" do
+    owner   user
+    group   group
+    mode    00755
     recursive true
     action :create
-    end
+end
+
+# create the install dir 
+directory "#{install_dir}/bin" do
+owner "root"
+group "root"
+mode 00755
+recursive true
+action :create
+end
+
+def processTemplates (install_dir, node)
+    log "Updating the template files"
+    zookeeper_quorum = node['hbase']['site']['zookeeper_quorum']
+    port = node['wt_realtimeapi']['port']
+    cam_url = node['wt_cam']['cam_server_url']
+
+    %w[monitoring.properties config.properties netty.properties hbase.properties].each do | template_file|
+    template "#{install_dir}/conf/#{template_file}" do
+        source	"#{template_file}.erb"
+        owner "root"
+        group "root"
+        mode  00644
+        variables({
+            :cam_url => cam_url,
+            :install_dir => install_dir,
+            :port => port,
+		    :zookeeper_quorum => zookeeper_quorum,
+            :wt_monitoring => node[:wt_monitoring]
+        })
+        end 
+    end 
+end
+
+if ENV["deploy_build"] == "true" then 
+    log "The deploy_build value is true so we will grab the tar ball and install"
 
     # grab the source file
     remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
@@ -85,23 +111,8 @@ else
         })
     end
 
-
-    %w[monitoring.properties config.properties netty.properties hbase.properties].each do | template_file|
-    template "#{install_dir}/conf/#{template_file}" do
-        source	"#{template_file}.erb"
-        owner "root"
-        group "root"
-        mode  00644
-        variables({
-            :cam_url => cam_url,
-            :install_dir => install_dir,
-            :port => port,
-		    :zookeeper_quorum => zookeeper_quorum,
-            :wt_monitoring => node[:wt_monitoring]
-        })
-        end 
-    end 
-
+    processTemplates(install_dir, node)
+    
     # delete the source file
     execute "delete_install_source" do
         user "root"
@@ -119,4 +130,6 @@ else
             :user => user
         }) 
     end
+else
+    processTemplates(install_dir, node)
 end
