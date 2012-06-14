@@ -68,6 +68,7 @@ regexp-1.3.jar
 scala-library-2.8.0.jar
 snappy-java-1.0.3.2.jar
 stax-api-1.0.1.jar
+storm-kafka-0.7.2-snaptmp8.jar
 user-agent-utils-1.2.4.jar
 webtrends.hbase.jar
 webtrends.core.jar
