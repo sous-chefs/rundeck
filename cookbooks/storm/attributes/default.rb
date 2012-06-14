@@ -82,9 +82,8 @@ default['storm']['drpc']['request_timeout_secs'] = 600
 
 
 # transactional attributes
-default['storm']['transactional']['zookeeper']['root'] = "/transactional"
-default['storm']['transactional']['zookeeper']['servers'] = "null"
-default['storm']['transactional']['zookeeper']['port'] = "null"
+default['storm']['transactional']['zookeeper']['root'] = "/storm-transactional"
+default['storm']['transactional']['zookeeper']['port'] = 2181
 
 
 # topology attributes
