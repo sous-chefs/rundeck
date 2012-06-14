@@ -10,7 +10,7 @@
 default['storm']['cluster_role'] = ""
 
 # installation attributes
-default['storm']['version'] = "0.7.2"
+default['storm']['version'] = "0.7.3"
 default['storm']['download_url'] = "http://repo.staging.dmz/repo/linux/storm"
 default['storm']['install_dir'] = "/opt/storm"
 default['storm']['log_dir'] = "/var/log/storm"
@@ -82,9 +82,8 @@ default['storm']['drpc']['request_timeout_secs'] = 600
 
 
 # transactional attributes
-default['storm']['transactional']['zookeeper']['root'] = "/transactional"
-default['storm']['transactional']['zookeeper']['servers'] = "null"
-default['storm']['transactional']['zookeeper']['port'] = "null"
+default['storm']['transactional']['zookeeper']['root'] = "/storm-transactional"
+default['storm']['transactional']['zookeeper']['port'] = 2181
 
 
 # topology attributes
