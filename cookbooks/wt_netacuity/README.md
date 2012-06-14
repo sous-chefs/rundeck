@@ -14,6 +14,6 @@ Installs NetAcuity Server preloaded with a Webtrends license key (thus the wt_ne
 
 = USAGE:
 Add wt_netacuity role to a node to apply this cookbook.  Make sure you specify at least
-the following attributes: version, download_url.  You will also need a wt_netacuity section
+the following attributes: version and download_url.  You will also need a wt_netacuity section
 in the authorization data bag for your environment that includes "admin_password".  You
-can use the default of TIM_NEEDS_TO_ADD_THIS
+can use the default staging password hashed, which is SHvWHezZSc7
