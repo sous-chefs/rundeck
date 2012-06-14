@@ -1,7 +1,7 @@
 Description
 ===========
 
-Installs and configures Microsoft Internet Information Services (IIS) 7.
+Installs and configures Microsoft Internet Information Services (IIS) 7.0/7.5
 
 Requirements
 ============
@@ -9,9 +9,7 @@ Requirements
 Platform
 --------
 
-* Windows XP
 * Windows Vista
-* Windows Server 2003 R2
 * Windows 7
 * Windows Server 2008 (R1, R2)
 
@@ -25,7 +23,6 @@ Attributes
 ==========
 
 * `node['iis']['accept_eula']` - indicate that you accept the terms of the end user license. default is 'false'
-
 * `node['iis']['home']` - IIS main home directory. default is `%WINDIR%\System32\inetsrv`
 * `node['iis']['conf_dir']` - location where main IIS configs lives. default is `%WINDIR%\System32\inetsrv\config`
 * `node['iis']['pubroot']` - . default is `%SYSTEMDRIVE%\inetpub`
@@ -36,8 +33,8 @@ Attributes
 Resource/Provider
 =================
 
-`iis_site`
-----------
+iis\_site
+---------
 
 Allows easy management of IIS virtual sites (ie vhosts).
 
@@ -85,7 +82,7 @@ Allows easy management of IIS virtual sites (ie vhosts).
       host_header "testfu.opscode.com"
       action [:add,:start]
     end
-	
+
 `iis_config`
 
 Runs a config command on your IIS instance.
@@ -107,18 +104,17 @@ end
 
 #Loads an array of commands from the node
 cfg_cmds = node['iis']['cfg_cmd']
-cfg_cmds.each do |cmd|  
+cfg_cmds.each do |cmd|
     iis_config "#{cmd}" do
         action :config
     end
 end
 
-
-`iis_pool`
-
+iis\_pool
+---------
 Creates an application pool in IIS.
 
-###Actions
+### Actions
 
 - :add: - add a new application pool
 - :delete: - delete an existing application pool
@@ -126,46 +122,48 @@ Creates an application pool in IIS.
 - :stop: - stop a application pool
 - :restart: - restart a application pool
 
-###Attribute Parameters
+### Attribute Parameters
 
 - pool_name: name attribute. Specifies the name of the pool to create.
 - runtime_version: specifies what .NET version of the runtime to use.
 - pipeline_mode: specifies what pipeline mode to create the pool with
 
-###Example
+### Example
 
-#creates a new app pool
-iis_pool 'myAppPool_v1_1' do
-    runtime_version "2.0"   
-    pipeline_mode "Classic"
-    action :add
-end
+     #creates a new app pool
+     iis_pool 'myAppPool_v1_1' do
+         runtime_version "2.0"
+         pipeline_mode "Classic"
+         action :add
+     end
 
-`iis_app`
+
+iis\_app
+--------
 
 Creates an application in IIS.
 
-###Actions
+### Actions
 
 - :add: - add a new application pool
 - :delete: - delete an existing application pool
 
-###Attribute Parameters
+### Attribute Parameters
 
 - app_name: name attribute. The name of the site to add this app to
 - path: The virtual path for this application
 - applicationPool: The pool this application belongs to
 - physicalPath: The physical path where this app resides.
 
-###Example
+### Example
 
-#creates a new app
-iis_app "myApp" do
-	path "/v1_1"
-	application_pool "myAppPool_v1_1"
-	physical_path "#{node['iis']['docroot']}/testfu/v1_1"
-	action :add
-end
+	#creates a new app
+	iis_app "myApp" do
+		path "/v1_1"
+		application_pool "myAppPool_v1_1"
+		physical_path "#{node['iis']['docroot']}/testfu/v1_1"
+		action :add
+	end
 
 Usage
 =====
@@ -190,7 +188,7 @@ Installing any of the IIS or any of it's modules requires you to explicitly indi
 default
 -------
 
-Installs and configures IIS 7 using the Recommended Configuration, which includes the following modules/extensions:
+Installs and configures IIS 7.0/7.5 using the recommended configuration, which includes the following modules/extensions:
 
 * Static Content
 * Default Document
@@ -225,25 +223,6 @@ This cookbook also contains recipes for installing individual IIS modules (exten
 * `mod_security` - installs URL Authorization (Authorizes client access to the URLs that comprise a Web application), Request Filtering (configures rules to block selected client requests) and IP Security (allows or denies content access based on IP address or domain name) support.
 * `mod_tracing` -  installs support for tracing ASP.NET applications and failed requests.
 * `mod_urlrewrite` - installs support for url rewrite rules using rule templates, rewrite maps, .NET providers.
-
-Changes/Roadmap
-===============
-
-## Future
-
-* `:modify` action for iis_site
-* resource/provider for managing IIS applications and application pools
-* resource/provider for managing IIS virtual directories
-* IIS 6.0 support
-
-## 1.0.2:
-
-* Ruby 1.9 compat fixes
-* ensure carriage returns are removed before applying regex
-
-## 1.0.0:
-
-* [COOK-718] initial release
 
 License and Author
 ==================
