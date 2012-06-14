@@ -17,8 +17,6 @@
 # limitations under the License.
 #
 
-
-
 user node[:rundeck][:user] do
   system true
   shell "/bin/bash"
@@ -29,13 +27,13 @@ directory "#{node[:rundeck][:user_home]}/.ssh" do
   owner node[:rundeck][:user]
   group node[:rundeck][:user]
   recursive true
-  mode "0700"
+  mode 00700
 end
 
 cookbook_file "#{node[:rundeck][:user_home]}/.ssh/authorized_keys" do
   owner node[:rundeck][:user]
   group node[:rundeck][:user]
-  mode "0600"
+  mode 00600
   backup false
   source "rundeck.pub"
 end
@@ -43,7 +41,7 @@ end
 file "/etc/sudoers.d/rundeck" do
   owner "root"
   group "root"
-  mode "0440"
+  mode 00440
   content "rundeck    ALL = NOPASSWD: ALL"
   action :create
 end
