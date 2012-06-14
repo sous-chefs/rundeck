@@ -1,10 +1,8 @@
-
-
-
+### base
 java.library.path: "<%= node[:storm][:java_lib_path] %>"
 storm.local.dir: "<%= node[:storm][:local_dir] %>"
 storm.local.mode.zmq: <%= node[:storm][:local_mode_zmq] %>
-storm.cluster.mode: "<%= node[:storm][:cluster_mode] %>" # can be distributed or local
+storm.cluster.mode: "<%= node[:storm][:cluster_mode] %>"
 
 
 
@@ -75,8 +73,11 @@ drpc.request.timeout.secs: <%= node[:storm][:drpc][:request_timeout_secs] %>
 
 
 ### transactional.* configs
+transactional.zookeeper.servers:
+<% @zookeeper_quorum.each do |address| -%>
+    - "<%= address[:fqdn] %>"
+<% end -%>
 transactional.zookeeper.root: "<%= node[:storm][:transactional][:zookeeper][:root] %>"
-transactional.zookeeper.servers: <%= node[:storm][:transactional][:zookeeper][:servers] %>
 transactional.zookeeper.port: <%= node[:storm][:transactional][:zookeeper][:port] %>
 
 
