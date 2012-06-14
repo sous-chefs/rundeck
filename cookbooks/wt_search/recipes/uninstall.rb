@@ -12,7 +12,7 @@ install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_search']['i
 
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
-svcuser = auth_data['wt_common']['loader_user']
+svcuser = auth_data['wt_common']['system_user']
 
 # determine root drive of install_dir - ENG390500
 if (install_dir =~ /^(\w:)\\.*$/)
@@ -29,6 +29,13 @@ end
 execute "sc" do
 	command sc_cmd
 	ignore_failure true
+end
+
+ruby_block "wait" do
+	block do
+		sleep(30)
+	end
+	action :create
 end
 
 # delete install folder

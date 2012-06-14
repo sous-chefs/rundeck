@@ -11,46 +11,70 @@
 include_recipe "runit"
 
 log "Deploy build is #{ENV["deploy_build"]}"
-if ENV["deploy_build"] != "true" then
-    log "The deploy_build value is not set or is false so exit here"
-else
+if ENV["deploy_build"] == "true" then 
     log "The deploy_build value is true so un-deploy first"
     include_recipe "wt_streamingapi::undeploy"
+else
+    log "The deploy_build value is not set or is false so we will only update the configuration"
+end
 
-    log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "streamingapi")
-    install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "streamingapi")
-    tarball     = "streamingapi-bin.tar.gz"
-    download_url = node['wt_streamingapi']['download_url']
-    java_home   = node['java']['java_home']
-    port = node['wt_streamingapi']['port']
-    java_opts = node['wt_streamingapi']['java_opts']
-    cam_url = node['wt_cam']['cam_server_url']
+
+log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "streamingapi")
+install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "streamingapi")
+tarball     = "streamingapi-bin.tar.gz"
+download_url = node['wt_streamingapi']['download_url']
+java_home   = node['java']['java_home']
+java_opts = node['wt_streamingapi']['java_opts']
 # This is disabled until we can work out windows node search issues     
 #    cam_url = search(:node, "role:wt_cam AND chef_environment:#{node.chef_environment}")
-    user = node['wt_streamingapi']['user']
-    group = node['wt_streamingapi']['group']
+user = node['wt_streamingapi']['user']
+group = node['wt_streamingapi']['group']
 
-    log "Install dir: #{install_dir}"
-    log "Log dir: #{log_dir}"
-    log "Java home: #{java_home}"
+log "Install dir: #{install_dir}"
+log "Log dir: #{log_dir}"
+log "Java home: #{java_home}"
 
-    # create the log directory
-    directory "#{log_dir}" do
-        owner   user
-        group   group
-        mode    00755
-        recursive true
-        action :create
-    end
-
-    # create the install directory
-    directory "#{install_dir}/bin" do
-    owner "root"
-    group "root"
-    mode 00755
+# create the log directory
+directory "#{log_dir}" do
+    owner   user
+    group   group
+    mode    00755
     recursive true
     action :create
-    end
+end
+
+# create the install directory
+directory "#{install_dir}/bin" do
+owner "root"
+group "root"
+mode 00755
+recursive true
+action :create
+end
+
+def processTemplates (install_dir, node)
+    log "Updating the template files"
+    cam_url = node['wt_cam']['cam_server_url']
+    port = node['wt_streamingapi']['port']
+
+    %w[monitoring.properties streaming.properties netty.properties].each do | template_file|
+    template "#{install_dir}/conf/#{template_file}" do
+        source	"#{template_file}.erb"
+        owner "root"
+        group "root"
+        mode  00644
+        variables({
+            :cam_url => cam_url,
+            :install_dir => install_dir,
+            :port => port,
+            :wt_monitoring => node[:wt_monitoring]
+        })
+        end 
+    end 
+end
+
+if ENV["deploy_build"] == "true" then 
+    log "The deploy_build value is true so we will grab the tar ball and install"
 
     # download the application tarball
     remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
@@ -83,20 +107,7 @@ else
         })
     end
 
-    %w[monitoring.properties streaming.properties netty.properties].each do | template_file|
-    template "#{install_dir}/conf/#{template_file}" do
-        source	"#{template_file}.erb"
-        owner "root"
-        group "root"
-        mode  00644
-        variables({
-            :cam_url => cam_url,
-            :install_dir => install_dir,
-            :port => port,
-            :wt_monitoring => node[:wt_monitoring]
-        })
-        end 
-    end 
+    processTemplates(install_dir, node)
 
     # delete the install tar ball
     execute "delete_install_source" do
@@ -115,4 +126,7 @@ else
             :user => user
         }) 
     end
+else
+    processTemplates(install_dir, node)
 end
+

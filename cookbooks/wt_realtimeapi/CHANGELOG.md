@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.13
+* Added support for deploying changes to attributes that write to templates without having to re-deploy all the bits.
+
 ## 0.0.12
 * Due to a search bug with windows nodes (which CAM is) use a hardcoded cam url attribute
 
