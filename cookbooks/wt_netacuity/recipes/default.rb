@@ -73,7 +73,6 @@ service "netacuity" do
   pattern "netacuity_server"
   supports :status => false, :restart => true, :reload => false
   action [ :enable, :start ]
-  not_if {File.exists?("#{node['wt_netacuity']['install_dir']}/server")}
 end
 
 # create the config file from a template
@@ -81,7 +80,7 @@ template "netacuity-config" do
   path "#{node['wt_netacuity']['install_dir']}/server/netacuity.cfg"
   source "netacuity.cfg.erb"
   notifies :restart, resources(:service => "netacuity")
-  not_if {File.exists?("#{node['wt_netacuity']['install_dir']}/server")}
+  ignore_failure true
 end
 
 # grab the admin password from the data bag
@@ -96,5 +95,5 @@ template "netacuity-passwd" do
     :admin_password => admin_password
   )
   notifies :restart, resources(:service => "netacuity")
-  not_if {File.exists?("#{node['wt_netacuity']['install_dir']}/server")}
+  ignore_failure true
 end
