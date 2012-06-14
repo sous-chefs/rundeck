@@ -41,7 +41,7 @@ commons-net-1.4.1.jar
 concurrentlinkedhashmap-lru-1.2.jar
 groovy-all-1.7.6.jar
 gson-2.1.jar
-guice-3.0.jars
+guice-3.0.jar
 hadoop-core-1.0.0.jar
 hamcrest-core-1.1.jar
 hbase-0.92.0.jar
@@ -50,7 +50,7 @@ jackson-core-asl-1.9.3.jar
 jackson-jaxrs-1.5.5.jar
 jackson-mapper-asl-1.9.3.jar
 jackson-xc-1.5.5.jar
-java.inject.jar
+javax.inject.jar
 jdom-1.1.jar
 jersey-core-1.4.jar
 jersey-json-1.4.jar
