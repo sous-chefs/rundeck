@@ -41,6 +41,7 @@ commons-net-1.4.1.jar
 concurrentlinkedhashmap-lru-1.2.jar
 groovy-all-1.7.6.jar
 gson-2.1.jar
+guice-3.0.jar
 hadoop-core-1.0.0.jar
 hamcrest-core-1.1.jar
 hbase-0.92.0.jar
@@ -49,6 +50,7 @@ jackson-core-asl-1.9.3.jar
 jackson-jaxrs-1.5.5.jar
 jackson-mapper-asl-1.9.3.jar
 jackson-xc-1.5.5.jar
+javax.inject.jar
 jdom-1.1.jar
 jersey-core-1.4.jar
 jersey-json-1.4.jar
@@ -66,7 +68,14 @@ regexp-1.3.jar
 scala-library-2.8.0.jar
 snappy-java-1.0.3.2.jar
 stax-api-1.0.1.jar
+storm-kafka-0.7.2-snaptmp8.jar
 user-agent-utils-1.2.4.jar
+webtrends.hbase.jar
+webtrends.core.jar
+webtrends.monitoring.jar
+webtrends.authentication.jar
+webtrends.auditing.serialization.jar
+webtrends.auditing.jar
 xmlenc-0.52.jar
 zkclient-0.1.jar
 }.each do |jar|
