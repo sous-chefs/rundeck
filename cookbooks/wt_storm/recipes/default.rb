@@ -8,23 +8,9 @@ include_recipe "storm"
 # May make sense to move this into realtime_deploy.rb and streaming_deploy.rb
 # if the jar dependencies for each storm cluster diverge.
 
-# These jars were in the list but absent in the this repo:
-# http://repo.staging.dmz/repo/linux/storm/jars/
-# They should only be added in once they are in the repo
-# so the cookbook will still work.
-
-# commons-lang-2.6.jar
-# ehcache-core-2.4.3.jar
-# guice-3.0.jar
-# javax.inject.jar
-# jsr107cache-1.1.jar
-# webtrends.auditing.jar
-# webtrends.auditing.serialization.jar
-# webtrends.authentication.jar
-# webtrends.core.jar
-# webtrends.hbase.jar
-# webtrends.monitoring.jar
-# wurfl-1.4.0.1.jar
+# Before adding a jar here make sure it's in the repo (i.e.-
+# http://repo.staging.dmz/repo/linux/storm/jars/), otherwise the run
+# of chef-client will fail
 
 %w{
 activation-1.1.jar
@@ -41,7 +27,7 @@ commons-net-1.4.1.jar
 concurrentlinkedhashmap-lru-1.2.jar
 groovy-all-1.7.6.jar
 gson-2.1.jar
-guice-3.0.jars
+guice-3.0.jar
 hadoop-core-1.0.0.jar
 hamcrest-core-1.1.jar
 hbase-0.92.0.jar
@@ -50,7 +36,7 @@ jackson-core-asl-1.9.3.jar
 jackson-jaxrs-1.5.5.jar
 jackson-mapper-asl-1.9.3.jar
 jackson-xc-1.5.5.jar
-java.inject.jar
+javax.inject.jar
 jdom-1.1.jar
 jersey-core-1.4.jar
 jersey-json-1.4.jar
@@ -68,6 +54,7 @@ regexp-1.3.jar
 scala-library-2.8.0.jar
 snappy-java-1.0.3.2.jar
 stax-api-1.0.1.jar
+storm-kafka-0.7.2-snaptmp8.jar
 user-agent-utils-1.2.4.jar
 webtrends.hbase.jar
 webtrends.core.jar
