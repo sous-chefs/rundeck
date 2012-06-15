@@ -8,23 +8,9 @@ include_recipe "storm"
 # May make sense to move this into realtime_deploy.rb and streaming_deploy.rb
 # if the jar dependencies for each storm cluster diverge.
 
-# These jars were in the list but absent in the this repo:
-# http://repo.staging.dmz/repo/linux/storm/jars/
-# They should only be added in once they are in the repo
-# so the cookbook will still work.
-
-# commons-lang-2.6.jar
-# ehcache-core-2.4.3.jar
-# guice-3.0.jar
-# javax.inject.jar
-# jsr107cache-1.1.jar
-# webtrends.auditing.jar
-# webtrends.auditing.serialization.jar
-# webtrends.authentication.jar
-# webtrends.core.jar
-# webtrends.hbase.jar
-# webtrends.monitoring.jar
-# wurfl-1.4.0.1.jar
+# Before adding a jar here make sure it's in the repo (i.e.-
+# http://repo.staging.dmz/repo/linux/storm/jars/), otherwise the run
+# of chef-client will fail
 
 %w{
 activation-1.1.jar
