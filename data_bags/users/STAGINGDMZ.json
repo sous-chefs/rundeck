@@ -5,5 +5,5 @@
 	"nagios": {
 		"pager": "8005551212@txt.att.net",
 		"email": "trent.white@webtrends.com"
-	},
+	}
 }
