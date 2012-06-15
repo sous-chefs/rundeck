@@ -26,7 +26,8 @@ include_recipe "apache2::mod_ssl"
 include_recipe "apache2::mod_rewrite"
 include_recipe "nagios::client"
 
-sysadmins = search(:users, 'groups:#{node['nagios']['users_databag_group']})
+group = "#{node['nagios']['users_databag_group']}"
+sysadmins = search(:users, 'groups:#{group}')
 
 nodes = search(:node, "hostname:[* TO *] AND chef_environment:#{node.chef_environment}")
 
