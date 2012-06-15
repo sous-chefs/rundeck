@@ -23,3 +23,8 @@ audit.producer.type=async
 audit.bucket.timespan=<%= node[:wt_monitoring][:audit_bucket_timespan] %>
 # The topic used for auditing (defaults to stream-audit)
 audit.topic=<%= node[:wt_monitoring][:audit_topic] %>
+
+# Are health checks enabled
+healthcheck.enabled=true
+# This is for future use for having health checks bound to an alternative port
+healthcheck.port=9000
