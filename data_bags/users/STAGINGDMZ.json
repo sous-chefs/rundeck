@@ -1,0 +1,10 @@
+{
+	"id": "admin",
+	"groups": [ "staging" ],
+	"uid": 2001,
+	"shell": "\/bin\/bash",
+	"nagios": {
+		"pager": "8005551212@txt.att.net",
+		"email": "trent.white@webtrends.com"
+	},
+}
