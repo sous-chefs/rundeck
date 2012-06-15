@@ -58,6 +58,17 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+			"cache_host": [
+			{
+				"name": "xcache01.staging.dmz",
+				"port": "11211"
+			},
+			{
+				"name": "xcache02.staging.dmz",
+				"port": "11211"
+			}
+			],
+			"cache_region": "H_A10",
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
