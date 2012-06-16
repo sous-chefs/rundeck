@@ -183,8 +183,8 @@ nagios_conf "contacts" do
 end
 
 nagios_conf "hostgroups" do
-  variables (
-    :roles => role_list
+  variables(
+    :roles => role_list,
     :environments => environment_list
     )
 end
