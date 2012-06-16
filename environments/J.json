@@ -55,7 +55,18 @@
             }
         }, 
         "wt_common": {
-            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "admin_email": "Eng-TestEnvironment@webtrends.corp",
+			"cache_host": [
+			{
+				"name": "xcache01.staging.dmz",
+				"port": "11211"
+			},
+			{
+				"name": "xcache02.staging.dmz",
+				"port": "11211"
+			}
+			],
+			"cache_region": "J_A10",
             "cassandra_host": "cassandra.staging.dmz", 
             "cassandra_meta_column": "J_Meta", 
             "cassandra_report_column": "J_Report", 
