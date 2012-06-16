@@ -17,3 +17,8 @@ default[:rundeck][:ldap][:binddn] = "CN=winbind,ou=serviceaccountsOLD,ou=WebTren
 default[:rundeck][:ldap][:bindpwd] = "P1eas3Jo1nM3"
 default[:rundeck][:ldap][:userbasedn] = "ou=WebTrendsUsers,dc=webtrends,dc=corp"
 default[:rundeck][:ldap][:rolebasedn] = "ou=Security,ou=Groups,dc=webtrends,dc=corp"
+
+#The ssh key is going to be pulled from a databag named authorization, but you can choose
+#what databag item to use.  Default is the chef environment, but you can change this to
+#anything you want
+default[:rundeck][:ssh][:databag_item] = "node.chef_environment"
