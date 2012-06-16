@@ -29,7 +29,11 @@ include_recipe "nagios::client"
 group = "#{node['nagios']['users_databag_group']}"
 sysadmins = search(:users, "groups:#{group}")
 
-nodes = search(:node, "hostname:[* TO *] AND chef_environment:#{node.chef_environment}")
+if node['nagios']['multi_environment_monitoring'] == "true"
+	nodes = search(:node, "hostname:[* TO *]")
+else
+	nodes = search(:node, "hostname:[* TO *] AND chef_environment:#{node.chef_environment}")
+end
 
 begin
   services = search(:nagios_services, '*:*')
