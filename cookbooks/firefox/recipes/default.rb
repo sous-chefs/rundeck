@@ -9,7 +9,7 @@
 # Code based off the PowerShell cookbook by Seth Chisamore
 
 if platform?("windows")
-    windows_package "Mozilla Firefox 11.0 (x86 en-US)" do
+    windows_package "Mozilla Firefox 13.0 (x86 en-US)" do
         source node['firefox']['http_url']
         installer_type :custom
         options "-ms"
