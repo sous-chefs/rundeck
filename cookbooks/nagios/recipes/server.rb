@@ -66,12 +66,15 @@ search(:role, "*:*") do |r|
   end
 end
 
-environment_list = Array.new
-search(:environment, "*:*") do |e|
-  role_list << e.name
-  search(:node, "chef_environment:#{e.name}") do |n|
-    service_hosts[e.name] = n['hostname']
-  end
+# if using multi environment monitoring then grab the list of environments
+if node['nagios']['multi_environment_monitoring'] == "true"
+	environment_list = Array.new
+	search(:environment, "*:*") do |e|
+		role_list << e.name
+		search(:node, "chef_environment:#{e.name}") do |n|
+			service_hosts[e.name] = n['hostname']
+		end
+	end
 end
 
 if node['public_domain']
