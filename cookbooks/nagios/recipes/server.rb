@@ -61,13 +61,12 @@ role_list = Array.new
 service_hosts= Hash.new
 search(:role, "*:*") do |r|
   role_list << r.name
-  search(:node, "role:#{r.name} AND chef_environment:#{node.chef_environment}") do |n|
+  search(:node, "role:#{r.name}") do |n|
     service_hosts[r.name] = n['hostname']
   end
 end
 
 environment_list = Array.new
-service_hosts= Hash.new
 search(:environment, "*:*") do |e|
   role_list << e.name
   search(:node, "chef_environment:#{e.name}") do |n|
