@@ -13,4 +13,10 @@ define hostgroup {
   alias <%= r %>
 }
 
+<% @environments.each do |e| -%>
+define hostgroup {
+  hostgroup_name <%= e %>
+  alias <%= e %>
+}
+
 <% end -%>
