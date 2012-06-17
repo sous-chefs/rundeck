@@ -28,32 +28,31 @@ search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment
   regionservers << n[:fqdn]
 end
 
+# hbase requires hadoop to be installed
 include_recipe "hadoop"
 
-# download hbase
-remote_file "#{node[:hadoop][:install_stage_dir]}/hbase-#{node[:hbase][:version]}.tar.gz" do
+# download hbase tar.gz
+remote_file "#{node[:hadoop][:install_dir]}/hbase-#{node[:hbase][:version]}.tar.gz" do
   source "http://mirror.uoregon.edu/apache/hbase/hbase-#{node[:hbase][:version]}/hbase-#{node[:hbase][:version]}.tar.gz"
   owner "hadoop"
   group "hadoop"
   mode "0744"
-  not_if "test -f #{node[:hadoop][:install_stage_dir]}/hbase-#{node[:hbase][:version]}.tar.gz"
+  not_if "test -f #{node[:hadoop][:install_dir]}/hbase-#{node[:hbase][:version]}.tar.gz"
 end
 
-
-# extract it
+# extract the tar.gz
 execute "extract-hbase" do
   command "tar -zxf hbase-#{node[:hbase][:version]}.tar.gz"
   creates "hbase-#{node[:hbase][:version]}"
-  cwd "#{node[:hadoop][:install_stage_dir]}"
+  cwd "#{node[:hadoop][:install_dir]}"
   user "hadoop"
   group "hadoop"
 end
 
-
+# link from the specific version of hbase to a generic path
 link "/usr/local/hbase" do
-  to "#{node[:hadoop][:install_stage_dir]}/hbase-#{node[:hbase][:version]}"
+  to "#{node[:hadoop][:install_dir]}/hbase-#{node[:hbase][:version]}"
 end
-
 
 # remove old hadoop core file, we run 0.20.205.0
 file "/usr/local/hbase/lib/hadoop-core-0.20-append-r1056497.jar" do
@@ -77,4 +76,3 @@ end
     )
   end
 end
-
