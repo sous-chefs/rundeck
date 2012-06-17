@@ -1,7 +1,11 @@
+#
+# Cookbook Name:: hbase
+# Attribute:: default
+#
+# Copyright 2012, Webtrends Inc.
+#
 
 default[:hbase][:version] = "0.92.0"
-
-
 
 # hbase-env.sh
 default[:hbase][:env][:HBASE_HEAPSIZE] = 1000
