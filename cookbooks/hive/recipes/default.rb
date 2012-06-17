@@ -39,13 +39,13 @@ end
 execute "extract-hive" do
   command "tar -zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
   creates "hive-#{node[:hbase][:version]}"
-  cwd "#{node[:hadoop][:install_stage_dir]}"
+  cwd "#{node[:hadoop][:install_dir]}"
   user "hadoop"
   group "hadoop"
 end
 
 link "/usr/local/hive" do
-  to "#{node[:hadoop][:install_stage_dir]}/hive-#{node[:hive][:version]}-bin"
+  to "#{node[:hadoop][:install_dir]}/hive-#{node[:hive][:version]}-bin"
 end
 
 
