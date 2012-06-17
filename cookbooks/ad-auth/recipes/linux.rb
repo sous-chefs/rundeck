@@ -56,12 +56,6 @@ execute "initialize-likewise" do
   only_if "/opt/likewise/bin/lw-get-status | grep -q Status.*Unknown"
 end
 
-#ad_config['linux_admins'].each do |admin_group|
-#    sudoers "linux-admins" do
-#    group admin_group
-#  end
-#end
-
 # Load the registry file that provides all likewise configuration options
 execute "load-reg" do
   command "/opt/likewise/bin/lwregshell import /etc/likewise/lsassd.reg"

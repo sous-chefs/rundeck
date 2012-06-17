@@ -30,21 +30,13 @@ end
 
 package "psmisc"
 
-# Run apt-get update if the package has never been installed on Ubuntu due to caches
-execute "update_apt" do
-	command "apt-get update"
-	action :run
-	only_if { (! File.exists?("#{config_dir}")) }
-end
-
 # install ubuntu package
 package "likewise-open" do
 	action :install
-	options "--force-yes"
 end
 
 # Pull the necessary creds from the appropriate authorization databag depending on the ad_network attribute
-ad_config = data_bag_item('authorization', node[:authorization][:ad_auth][:ad_network])
+ad_config = data_bag_item('authorization', node['authorization']['ad_auth']['ad_network'])
 
 # Join the primary_domain if we aren't a member already
 execute "initialize-likewise" do
