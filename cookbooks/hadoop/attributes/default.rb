@@ -1,4 +1,9 @@
-
+#
+# Cookbook Name:: hadoop
+# Attribute:: default
+#
+# Copyright 2012, Webtrends Inc.
+#
 
 default[:hadoop][:version] = "1.0.3"
 default[:hadoop][:install_stage_dir] = "/usr/local/share/hadoop"
