@@ -22,7 +22,7 @@ template "/var/lib/php5/thriftservers.php" do
   source "apiserver/thriftservers.php"
   owner "www-data"
   group "www-data"
-  mode "0744"
+  mode 00744
   variables(
     :thriftservers => thriftservers
   )
@@ -33,7 +33,7 @@ template "#{node[:nginx][:dir]}/sites-available/apiserver" do
   source "apiserver/apiserver"
   owner "root"
   group "root"
-  mode "0644"
+  mode 00644
   notifies :restart, resources(:service => "nginx")
 end
 
@@ -43,8 +43,8 @@ remote_directory "/var/www" do
   group "www-data"
   files_owner "www-data"
   files_group "www-data"
-  files_mode "0744"
-  mode "0744"
+  files_mode 00744
+  mode 00744
 end
 
 #Create collectd plugin for nginx if collectd has been applied.

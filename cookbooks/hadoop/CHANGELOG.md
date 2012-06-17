@@ -3,6 +3,10 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+## 1.0.3
+* Change the install_stage_dir attribute to be install_dir
+* Add additional comments and fix formatting
+
 ## 1.0.2:
 * Expose JMX metrics
 * Include Collectd plugins for JMX metrics
