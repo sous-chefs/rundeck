@@ -1,6 +1,9 @@
 ## Future
 
-* Rewrite
+* Install in a more sane directory
+
+## 1.0.2
+* Use the install_dir variable for hadoop not install_stage_dir
 
 ## 1.0.1:
 * Download Hive from a URL that is an attribute
