@@ -1,8 +1,7 @@
 = DESCRIPTION:
-Installs hadoop 1.0.0
+Installs hadoop 1.0.3
 
 = REQUIREMENTS:
-
 * java
 
 = ATTRIBUTES:
