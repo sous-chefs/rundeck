@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 include_recipe "java"
 
 %w[snappy-devel python-simplejson python-cjson].each do |pkg|
@@ -39,8 +40,7 @@ search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment
 end
 
 # setup hadoop group
-group "hadoop" do
-end
+group "hadoop"
 
 # setup hadoop user
 user "hadoop" do
@@ -51,6 +51,7 @@ user "hadoop" do
   supports :manage_home => true
 end
 
+# create the bashrc file for the hadoop user
 cookbook_file "/home/hadoop/.bashrc" do
   source "bashrc"
   owner "hadoop"
@@ -58,7 +59,7 @@ cookbook_file "/home/hadoop/.bashrc" do
   mode 00644
 end
 
-# setup ssh
+# setup ssh keys so we can use the easy cluster start/stop scripts
 remote_directory "/home/hadoop/.ssh" do
   source "ssh"
   owner "hadoop"
@@ -70,7 +71,7 @@ remote_directory "/home/hadoop/.ssh" do
 end
 
 # create the install dir
-directory node[:hadoop][:install_stage_dir] do
+directory node[:hadoop][:install_dir] do
   owner "hadoop"
   group "hadoop"
   mode 00744
