@@ -30,14 +30,12 @@ directory "#{node[:rundeck][:user_home]}/.ssh" do
   mode 00700
 end
 
-ssh_data = data_bag_item('authorization', node.chef_environment)
-
-file "#{node[:rundeck][:user_home]}/.ssh/authorized_keys" do
+cookbook_file "#{node[:rundeck][:user_home]}/.ssh/authorized_keys" do
   owner node[:rundeck][:user]
   group node[:rundeck][:user]
   mode 00600
   backup false
-  content "#{ssh_data[public_ssh_key]}"
+  source "rundeck.pub"
 end
 
 file "/etc/sudoers.d/rundeck" do
