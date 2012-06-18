@@ -11,7 +11,7 @@
                     "WTENGLAB\\\\domain-admins", 
                     "WTENGLAB\\\\k.admins"
                 ], 
-                "include_sudoers_d": true,
+                "include_sudoers_d": true, 
                 "passwordless": false, 
                 "users": [
                     "bobo"
@@ -55,17 +55,17 @@
             }
         }, 
         "wt_common": {
-			"cache_host": [
-			{
-				"name": "xcache01.staging.dmz",
-				"port": "11211"
-			},
-			{
-				"name": "xcache02.staging.dmz",
-				"port": "11211"
-			}
-			],
-			"cache_region": "K_A10",
+            "cache_host": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "cache_region": "K_A10", 
             "cassandra_host": "cassandra.staging.dmz", 
             "cassandra_meta_column": "K_Meta", 
             "cassandra_report_column": "K_Report", 
