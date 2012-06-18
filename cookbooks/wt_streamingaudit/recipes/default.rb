@@ -11,75 +11,50 @@
 include_recipe "runit"
 
 log "Deploy build is #{ENV["deploy_build"]}"
-if ENV["deploy_build"] != "true" then
-    log "The deploy_build value is not set or is false so exit here"
-else
+if ENV["deploy_build"] == "true" then 
     log "The deploy_build value is true so un-deploy first"
     include_recipe "wt_streamingaudit::undeploy"
+else
+    log "The deploy_build value is not set or is false so we will only update the configuration"
+end
 
-    log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingaudit")
-    install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingaudit")
+log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingaudit")
+install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingaudit")
 
-    tarball      = "streamingaudit-bin.tar.gz"
-    java_home    = node['java']['java_home']
-    download_url = node['wt_streamingaudit']['download_url']
-    listener_threads = node['wt_streamingaudit']['listener_threads']
-    user = node['wt_streamingaudit']['user']
-    group = node['wt_streamingaudit']['group']
-    java_opts = node['wt_streamingaudit']['java_opts']
+tarball      = "streamingaudit-bin.tar.gz"
+java_home    = node['java']['java_home']
+download_url = node['wt_streamingaudit']['download_url']
+user = node['wt_streamingaudit']['user']
+group = node['wt_streamingaudit']['group']
+java_opts = node['wt_streamingaudit']['java_opts']
+
+log "Install dir: #{install_dir}"
+log "Log dir: #{log_dir}"
+log "Java home: #{java_home}"
+
+# create the log directory
+directory "#{log_dir}" do
+owner   user
+group   group
+mode    00755
+recursive true
+action :create
+end
+
+# create the install directory
+directory "#{install_dir}/bin" do
+owner "root"
+group "root"
+mode 00755
+recursive true
+action :create
+end
+
+
+def processTemplates (install_dir, node)
+    log "Updating the template files"
     zookeeper_port = node[:zookeeper][:clientPort]
-
-    log "Install dir: #{install_dir}"
-    log "Log dir: #{log_dir}"
-    log "Java home: #{java_home}"
-
-    # create the log directory
-    directory "#{log_dir}" do
-    owner   user
-    group   group
-    mode    00755
-    recursive true
-    action :create
-    end
-
-    # create the install directory
-    directory "#{install_dir}/bin" do
-    owner "root"
-    group "root"
-    mode 00755
-    recursive true
-    action :create
-    end
-
-    # download the application tarball
-    remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-    source download_url
-    mode 00644
-    end
-
-    # uncompress the application tarball into the install directory
-    execute "tar" do
-    user  "root"
-    group "root" 
-    cwd install_dir
-    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-    end
-
-    template "#{install_dir}/bin/service-control" do
-        source  "service-control.erb"
-        owner "root"
-        group "root"
-        mode  00755
-        variables({
-            :log_dir => log_dir,
-            :install_dir => install_dir,
-            :java_home => java_home,
-            :user => user,
-            :java_class => "com.webtrends.streaming.auditor.AuditorDaemon",
-            :java_jmx_port => node['wt_monitoring']['jmx_port'],
-            :java_opts => java_opts
-        })
-    end
+    listener_threads = node['wt_streamingaudit']['listener_threads']
 
     # grab the zookeeper nodes that are currently available
     zookeeper_pairs = Array.new
@@ -118,6 +93,42 @@ else
         })
         end 
     end
+end
+
+if ENV["deploy_build"] == "true" then 
+    log "The deploy_build value is true so we will grab the tar ball and install"
+
+    # download the application tarball
+    remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+    source download_url
+    mode 00644
+    end
+
+    # uncompress the application tarball into the install directory
+    execute "tar" do
+    user  "root"
+    group "root" 
+    cwd install_dir
+    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+    end
+
+    template "#{install_dir}/bin/service-control" do
+        source  "service-control.erb"
+        owner "root"
+        group "root"
+        mode  00755
+        variables({
+            :log_dir => log_dir,
+            :install_dir => install_dir,
+            :java_home => java_home,
+            :user => user,
+            :java_class => "com.webtrends.streaming.auditor.AuditorDaemon",
+            :java_jmx_port => node['wt_monitoring']['jmx_port'],
+            :java_opts => java_opts
+        })
+    end
+
+    processTemplates(install_dir, node)
 
     # delete the application tarball
     execute "delete_install_source" do
@@ -136,4 +147,6 @@ else
         :user => user
     })
     end
+else
+    processTemplates(install_dir, node)
 end
