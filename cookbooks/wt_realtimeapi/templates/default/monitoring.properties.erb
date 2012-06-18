@@ -14,6 +14,6 @@ monitoring.graphite.interval = <%= node[:wt_monitoring][:graphite_flush_interval
 monitoring.metric.prefix = <%= node[:wt_monitoring][:metric_prefix] %>
 
 # Are health checks enabled
-healthcheck.enabled=true
+healthcheck.enabled=<%= node[:wt_monitoring][:healthcheck_enabled] %>
 # This is for future use for having health checks bound to an alternative port
-healthcheck.port=9001
+healthcheck.port=<%= node[:wt_monitoring][:healthcheck_port] %>
