@@ -232,7 +232,7 @@
             "version": "4.6"
         }, 
         "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/17423:id/realtimeapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/17595:id/realtimeapi-bin.tar.gz", 
             "port": 8082
         }, 
         "wt_streaming_audit": {
