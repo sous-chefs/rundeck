@@ -2,6 +2,10 @@
 
 * Unknown
 
+## 0.0.12
+* Externalized the healthcheck options 'healthcheck_enabled' to [:wt_monitoring][:healthcheck_enabled]
+* Externalized the healthcheck options 'healthcheck_port' to [:wt_monitoring][:healthcheck_port]
+
 ## 0.0.11
 * Added support for deploying changes to attributes that write to templates without having to re-deploy all the bits.
 
