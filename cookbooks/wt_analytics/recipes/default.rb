@@ -63,6 +63,9 @@ if deploy_mode?
       action [:add, :config]
     end
 	
+	search_server = search(:node, "chef_environment:#{node.chef_environment} AND role:wt_search")
+	search_host = "#{search_server[0][:fqdn]}"
+	
 	template "#{install_dir}\\web.config" do
 	  source "webConfig.erb"
 	   variables(		
@@ -72,7 +75,7 @@ if deploy_mode?
 		  :thrift_port => node['wt_common']['cassandra_thrift_port'],
 		  :metadata_column => node['wt_common']['cassandra_meta_column'],
 		  :cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached"),
-		  :search_host => search(:node, "chef_environment:#{node.chef_environment} AND role:wt_search"),
+		  :search_host => search_host,
 		  :cache_region => node['wt_common']['cache_region']
 	  )
 	end
