@@ -20,9 +20,7 @@
             }, 
             "sudo": {
                 "groups": [
-                    "STAGINGDMZ\\\\domain-admins", 
                     "domain-admins", 
-                    "STAGINGDMZ\\\\v.admins", 
                     "v.admins"
                 ], 
                 "include_sudoers_d": true, 
