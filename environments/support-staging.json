@@ -8,9 +8,7 @@
             }, 
             "sudo": {
                 "groups": [
-                    "STAGINGDMZ\\\\domain-admins", 
                     "domain-admins", 
-                    "STAGINGDMZ\\\\stage-admins", 
                     "stage-admins"
                 ], 
                 "include_sudoers_d": true, 
@@ -161,7 +159,7 @@
         }, 
         "hive": {
             "metastore": {
-                "connection_url": "jdbc:sqlserver://shivedb01.staging.dmz;databaseName=hivemeta", 
+                "connection_url": "jdbc:sqlserver://shivemeta01.staging.dmz;databaseName=hivemeta", 
                 "connector": "sqlserver"
             }
         }, 
