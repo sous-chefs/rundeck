@@ -35,6 +35,12 @@ pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
 ui_user = user_data['wt_common']['ui_user']
 ui_password = user_data['wt_common']['ui_pass']
+app_pool = node['wt_analytics']['app_pool']
+auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{ui_user} /[name='#{app_pool}'].processModel.password:#{ui_password}"
+
+directory install_dir do
+	action :create
+end
 
 directory install_logdir do
 	action :create
@@ -51,13 +57,19 @@ iis_site 'Analytics' do
 	action [:add,:start]
 end
 
+wt_base_icacls install_dir do
+	action :grant
+	user user_data['wt_common']['ui_user']
+	perm :read
+end
+
 if deploy_mode?
 	windows_zipfile install_dir do
 		source install_url
 		action :unzip
 	end
 	
-	iis_pool node['wt_analytics']['app_pool'] do
+	iis_pool app_pool do
   	  pipeline_mode :Integrated
   	  runtime_version "4.0"
       action [:add, :config]
@@ -79,4 +91,8 @@ if deploy_mode?
 		  :cache_region => node['wt_common']['cache_region']
 	  )
 	end
+	
+	iis_config auth_cmd do
+  	action :config
+  end
 end
