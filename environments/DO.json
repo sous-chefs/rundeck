@@ -8,8 +8,7 @@
             }, 
             "sudo": {
                 "groups": [
-                    "domain-admins", 
-                    "DEVOPS\\\\domain-admins"
+                    "domain-admins"
                 ], 
                 "include_sudoers_d": true, 
                 "passwordless": false, 
