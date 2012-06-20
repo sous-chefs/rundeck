@@ -24,6 +24,12 @@ unless Chef::Config[:solo]
 	end
 end
 
+#Make sure someone didn't set the _default environment
+if node.chef_environment == "_default" 
+	Chef::Log.info("Set a Chef environment. We don't want to use _default")
+	exit(true)
+end
+
 include_recipe "windows::reboot_handler" #Needed to handle reboots
 
 windows_reboot 60 do
