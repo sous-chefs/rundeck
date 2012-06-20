@@ -25,6 +25,7 @@ commons-httpclient-3.1.jar
 commons-math-2.1.jar
 commons-net-1.4.1.jar
 concurrentlinkedhashmap-lru-1.2.jar
+fastutil-6.4.4.jar
 groovy-all-1.7.6.jar
 gson-2.1.jar
 guice-3.0.jar
@@ -36,6 +37,7 @@ jackson-core-asl-1.9.3.jar
 jackson-jaxrs-1.5.5.jar
 jackson-mapper-asl-1.9.3.jar
 jackson-xc-1.5.5.jar
+JavaEWAH-0.5.0.jar
 javax.inject.jar
 jdom-1.1.jar
 jersey-core-1.4.jar

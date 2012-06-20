@@ -25,6 +25,6 @@ audit.bucket.timespan=<%= node[:wt_monitoring][:audit_bucket_timespan] %>
 audit.topic=<%= node[:wt_monitoring][:audit_topic] %>
 
 # Are health checks enabled
-healthcheck.enabled=true
+healthcheck.enabled=<%= node[:wt_monitoring][:healthcheck_enabled] %>
 # This is for future use for having health checks bound to an alternative port
-healthcheck.port=9000
+healthcheck.port=<%= node[:wt_monitoring][:healthcheck_port] %>
