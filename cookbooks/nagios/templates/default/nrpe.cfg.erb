@@ -15,6 +15,8 @@ command[check_load]=<%= node['nagios']['plugin_dir'] %>/check_load -w 15,10,5 -c
 command[check_hda1]=<%= node['nagios']['plugin_dir'] %>/check_disk -w 20% -c 10% -p /dev/hda1
 command[check_zombie_procs]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 5 -c 10 -s Z
 command[check_total_procs]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 150 -c 200
+command[check_chef_client]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 1:2 -c 1:2 -C chef-client
+command[check_nginx]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 2:3 -c 1:5 -C nginx
 
 
 # The following examples allow user-supplied arguments and can
