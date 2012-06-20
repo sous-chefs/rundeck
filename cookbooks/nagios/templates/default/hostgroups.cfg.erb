@@ -23,7 +23,7 @@ define hostgroup {
 
 <% @os.each do |o| -%>
 define hostgroup {
-	hostgroup_name <%= o %>
-	alias <%= o %>
+  hostgroup_name <%= o %>
+  alias <%= o %>
 }
 <% end -%>
