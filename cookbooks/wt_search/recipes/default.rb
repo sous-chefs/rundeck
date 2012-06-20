@@ -68,6 +68,12 @@ wt_base_icacls install_dir_drive do
 	perm :read
 end
 
+wt_base_icacls node['wt_common']['install_dir_windows'] do
+	action :grant
+	user svcuser 
+	perm :write
+end
+
 if deploy_mode?
 
 	# unzip the install package
