@@ -19,5 +19,13 @@ define hostgroup {
   hostgroup_name <%= e %>
   alias <%= e %>
 }
+<% end -%>
 
+<% if node['nagios']['multi_os_monitoring'] == true -%>
+<% @os.each do |o| -%>
+define hostgroup {
+	hostgroup_name <%= o %>
+	alias <%= o %>
+}
+<% end -%>
 <% end -%>
