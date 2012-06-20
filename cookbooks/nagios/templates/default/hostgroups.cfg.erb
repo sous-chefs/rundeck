@@ -21,11 +21,9 @@ define hostgroup {
 }
 <% end -%>
 
-<% if os.any? -%>
 <% @os.each do |o| -%>
 define hostgroup {
 	hostgroup_name <%= o %>
 	alias <%= o %>
 }
-<% end -%>
 <% end -%>
