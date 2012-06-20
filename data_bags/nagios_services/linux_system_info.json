@@ -1,5 +1,5 @@
 {
 "id": "system_info",
-"hostgroup_name": "all",
+"hostgroup_name": "linux",
 "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_system_info"
 }
