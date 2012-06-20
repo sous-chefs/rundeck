@@ -29,10 +29,21 @@ include_recipe "nagios::client"
 group = "#{node['nagios']['users_databag_group']}"
 sysadmins = search(:users, "groups:#{group}")
 
+# search for nodes in all environments if multi_environment_monitoring is enabled
 if node['nagios']['multi_environment_monitoring'] == "true"
 	nodes = search(:node, "hostname:[* TO *]")
 else
 	nodes = search(:node, "hostname:[* TO *] AND chef_environment:#{node.chef_environment}")
+end
+
+# if multi_os_monitoring is enabled then find all unique platforms to create hostgroups
+os_list = Array.new
+if node['nagios']['multi_os_monitoring'] == "true"
+  search(:node, "hostname:[* TO *]") do |n|
+    if !os_list.include?(n.os)
+      os_list << n.os
+    end
+  end
 end
 
 begin
@@ -191,7 +202,8 @@ end
 nagios_conf "hostgroups" do
   variables(
     :roles => role_list,
-    :environments => environment_list
+    :environments => environment_list,
+    :os => os_list
     )
 end
 
