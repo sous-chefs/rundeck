@@ -18,40 +18,32 @@ define service {
     use                 default-service
 }
 
-# Uncomment if you're using Munin
-#define service {
-#    service_description Munin Client
-#    hostgroup_name      all
-#    check_command       check_tcp!4949
-#    use                 default-service
-#}
-
 # default checks for all hosts
 
 define service {
     service_description Chef Client
-    hostgroup_name     all
+    hostgroup_name     linux
     check_command      check_chef_client
     use                default-service
 }
 
 define service {
     service_description Free Space All Disks
-    hostgroup_name      all
+    hostgroup_name      linux
     check_command       check_all_disks
     use                 default-service
 }
 
 define service {
     service_description Load Average
-    hostgroup_name      all
+    hostgroup_name      linux
     check_command       check_load
     use                 default-service
 }
 
 define service {
     service_description SSH
-    hostgroup_name      all
+    hostgroup_name      linux
     check_command       check_ssh
     use                 default-service
 }
