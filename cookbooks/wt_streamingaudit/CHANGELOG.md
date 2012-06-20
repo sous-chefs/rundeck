@@ -2,6 +2,10 @@
 
 * Unknown
 
+## 0.0.6
+* Externalized the healthcheck options 'healthcheck_enabled' to [:wt_monitoring][:healthcheck_enabled]
+* Externalized the healthcheck options 'healthcheck_port' to [:wt_monitoring][:healthcheck_port]
+
 ## 0.0.5
 * Added gate keeper for deploy using the deploy_build environment variable
 

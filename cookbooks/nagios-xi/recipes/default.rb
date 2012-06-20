@@ -8,10 +8,13 @@
 #
 
 #Install the prereqs for Nagios XI
-package "procmail" do
-  action :install
-end
 
-package "php-ldap" do
-  action :install
+if node.platform == "centos" 
+
+	["php-ldap" "procmail" ].each do |svc|
+		package pkg do 
+			action :install
+		end
+	end
+
 end

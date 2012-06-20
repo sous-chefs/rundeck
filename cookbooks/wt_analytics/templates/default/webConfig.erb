@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="cacheConfiguration" type="Webtrends.Cache.Configuration.CacheConfigurationSection, Webtrends.Cache2" />
+    <sectionGroup name="elmah">
+      <section name="security" requirePermission="false" type="Elmah.SecuritySectionHandler, Elmah" />
+      <section name="errorLog" requirePermission="false" type="Elmah.ErrorLogSectionHandler, Elmah" />
+      <section name="errorMail" requirePermission="false" type="Elmah.ErrorMailSectionHandler, Elmah" />
+      <section name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah" />
+    </sectionGroup>
+    <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core" />
+    <section name="serviceBus" type="Webtrends.ServiceBus.Configuration.ServiceBusConfiguration, Webtrends.ServiceBus" />
+    <sectionGroup name="insight">
+      <section name="accessControl" requirePermission="false" type="WebTrends.UI.Reporting.Config.AccessControlSection, WebTrends.UI.Reporting" />
+      <section name="external" requirePermission="false" type="WebTrends.UI.Reporting.Config.ExternalSection, WebTrends.UI.Reporting" />
+      <section name="reportAccess" requirePermission="false" type="WebTrends.UI.Reporting.Config.ReportAccessSection, WebTrends.UI.Reporting" />
+      <section name="HTBAccess" requirePermission="false" type="WebTrends.UI.Reporting.Config.HTBAccessSection, WebTrends.UI.Reporting" />
+      <section name="tagging" requirePermission="false" type="WebTrends.UI.Reporting.Config.TaggingSection, WebTrends.UI.Reporting" />
+    </sectionGroup>
+  </configSections>
+
+  <!-- Start Cache settings -->
+  <cacheConfiguration enabled="true" region="<%= @cache_region %>" lifespan="00:15:00"
+    protocol="Binary">
+    <servers>
+      <clear />
+	  <% @cache_hosts.each do |cache| -%>
+	  <add address="<%= cache['name']%>" port="11211" />
+	  <% end -%>
+    </servers>
+  </cacheConfiguration>
+  <!-- End Cache settings -->
+
+  <!-- Start ServiceBus endpoint -->
+  <serviceBus>
+    <endpoints>
+      <endpoint endpointIdentifier="serviceBusUIMain@localhost" name="Webtrends Insight UI" binding="mainBinding" returnAddress="serviceBusUIMain@localhost" poisonMessageAddress="serviceBusUIError@localhost" maxMessageRetryCount="3" numberOfWorkerThreads="12" maxRetries="4" statusReportInterval="00:00:30" statusReportGracePeriod="00:01:00" monitorServiceAddress="" incomingMessageLoggingLevel="None" outgoingMessageLoggingLevel="None" sendOnly="false">
+
+        <profiler enabled="true" profilePipelineComponents="true" pipelineDirection="Both" />
+
+        <!-- Register to handle the following messages -->
+        <registeredMessages>
+        </registeredMessages>
+
+        <!-- Register the message handlers -->
+        <messageHandlerAssemblies>
+          <assembly name="Webtrends.ServiceBus" />
+          <assembly name="WebTrends.UI.Reporting" />
+        </messageHandlerAssemblies>
+
+        <statusProbes>
+          <probe name="Available Memory" unitOfMeasurement="mb" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Memory" />
+              <add name="Counter" value="Available MBytes" />
+              <add name="Instance" value="" />
+            </properties>
+          </probe>
+          <probe name="Avg. Processor Time" unitOfMeasurement="%" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Processor" />
+              <add name="Counter" value="% Processor Time" />
+              <add name="Instance" value="_Total" />
+            </properties>
+          </probe>
+          <probe name="Messages in Queue" unitOfMeasurement="messages" canAggregate="true" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="MSMQ Queue" />
+              <add name="Counter" value="Messages in Queue" />
+              <!-- The term 'localhost' will be converted to the machine name -->
+              <add name="Instance" value="localhost\private$\servicebusmain" />
+            </properties>
+          </probe>
+          <probe name="Private Bytes (process)" unitOfMeasurement="bytes" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Process" />
+              <add name="Counter" value="Private Bytes" />
+              <add name="Instance" value="w3wp" />
+            </properties>
+          </probe>
+          <probe name="Virtual Bytes (process)" unitOfMeasurement="bytes" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Process" />
+              <add name="Counter" value="Virtual Bytes" />
+              <add name="Instance" value="w3wp" />
+            </properties>
+          </probe>
+
+          <probe name="Application Restarts" unitOfMeasurement="restarts" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="ASP.NET" />
+              <add name="Counter" value="Application Restarts" />
+              <add name="Instance" value="" />
+            </properties>
+          </probe>
+          <probe name="Requests Queued" unitOfMeasurement="requests" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="ASP.NET" />
+              <add name="Counter" value="Requests Queued" />
+              <add name="Instance" value="" />
+            </properties>
+          </probe>
+          <probe name="Worker Process Restarts" unitOfMeasurement="restarts" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="ASP.NET" />
+              <add name="Counter" value="Worker Process Restarts" />
+              <add name="Instance" value="" />
+            </properties>
+          </probe>
+
+          <probe name="Errors" unitOfMeasurement="errors" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="ASP.NET Applications" />
+              <add name="Counter" value="Errors Total" />
+              <add name="Instance" value="__Total__" />
+            </properties>
+          </probe>
+          <probe name="Requests / Sec" unitOfMeasurement="requests" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="ASP.NET Applications" />
+              <add name="Counter" value="Requests/Sec" />
+              <add name="Instance" value="__Total__" />
+            </properties>
+          </probe>
+        </statusProbes>
+
+      </endpoint>
+    </endpoints>
+    <bindings>
+      <msmqBinding name="mainBinding" purgeOnStartup="false" isTransactional="true" transactionTimeout="00:02:00" isolationLevel="Serializable" />
+    </bindings>
+  </serviceBus>
+  <!-- End ServiceBus endpoint -->
+
+  <!-- ELMAH config -->
+  <elmah>
+    <security allowRemoteAccess="1" />
+    <errorLog type="Elmah.XmlFileErrorLog, Elmah" logPath="~/App_Data/elmah" />
+    <errorFilter>
+      <test>
+        <equal binding="HttpStatusCode" value="404" type="Int32" />
+      </test>
+    </errorFilter>
+  </elmah>
+  <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>"
+    MetaDataColumnFamily="<%= @metadata_column %>" ThriftPort="<%= @thrift_port %>" UseLegacy="false">
+    <Nodes>
+      <clear />
+      <add Hostname="<%= @cass_host %>" />
+    </Nodes>
+  </CassandraCluster>
+  <insight>
+    <accessControl configSource="cfg\accessControl.config" />
+    <external configSource="cfg\external.config" />
+    <reportAccess configSource="cfg\reportAccess.config" />
+    <HTBAccess configSource="cfg\HTBAccess.config" />
+    <tagging configSource="cfg\tagging.config" />
+  </insight>
+  <appSettings>
+    <!-- This is the path to the log4net config file -->
+    <add key="log4net.Config" value="log4net.config" />
+    <!-- For the ServiceBus architecture is this installation managed. If this is not defined
+    then it will default to false. This should be defined and set to false for development machines. -->
+    <add key="ServiceBusManaged" value="true" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="RestBaseUri" value="https://ws.webtrends.com/v3" />
+    <add key="reportActivityLog" value="true" />
+    <add key="threshold.compact" value="200" />
+    <add key="threshold.mini" value="300" />
+    <add key="threshold.pagesize.thumbailview" value="21" />
+    <add key="threshold.pagesize.listview" value="100" />
+    <add key="ondemand.base.domain" value="ondemand.webtrends.com" />
+    <add key="fb_redirector_dcsid" value="dcsi89ir010000c9z6cv65km9_6e2g" />
+    <!-- production -->
+    <add key="fb_app_clientid" value="103645866351316" />
+    <add key="fb_app_clientsecret" value="f856805656c4b27bef04dc49641dbd58" />
+    <!-- test -->
+    <!--
+    <add key="fb_app_clientid" value="119772538146833"/>
+    <add key="fb_app_clientsecret" value="3622dee4341c3ab15076ce92caa0a71c"/>
+    -->
+    <add key="beta" value="false" />
+    <add key="GetSatisfaction" value="s3.amazonaws.com/getsatisfaction.com/" />
+    <add key="GetSatisfactionCompany" value="webtrends" />
+    <add key="BetaGetSatisfactionCompany" value="webtrendssbx" />
+    <add key="BulkReportRequest" value="true" />
+    <!-- This is the Twitter Consumer Key for our application -->
+    <add key="twitterConsumerKey" value="Ow5N85kjYl6NVMkdwCYsw" />
+    <!-- This is the Twitter Consumer Secret for our application -->
+    <add key="twitterConsumerSecret" value="cRxUlQIUbud8uQZmjxEIm80kzHka0jFPZfsrvG3Ugo" />
+    <!-- This is the Twitter access token for our application -->
+    <add key="twitterAppAccessToken" value="71357888-nrJcbFR1GQUcQlc7HSPZQNGaS6DUCMAHJYsks" />
+    <!-- This is the Twitter token secret for our application -->
+    <add key="twitterAppTokenSecret" value="HY9o52ZwbNMFCtOpPC6welD6JHaThkqmxMp8H5kqc" />
+    <add key="Branding" value="Webtrends" />
+    <!--Blackberry-->
+    <add key="BrandedAccountId" value="0" />
+    <!--BB = 20578-->
+    <!-- See SpacesController.cs for uses -->
+    <add key="client_side_validation_status" value="on" />
+    <add key="PrivacyPolicy" value="http://www.webtrends.com/AboutWebtrends/PrivacyPolicy.aspx" />
+    <add key="MobileOtherLink" value="http://product.webtrends.com/dcapi/index.html" />    
+
+    <!-- Third party connection public encryption keys -->
+    <add key="iOSPublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
+    <add key="FaceBookPublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
+    <add key="AndroidPublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
+    
+    <add key="TagBuilderDownloadUrl" value="https://tagbuilder.webtrends.com/" />
+    <add key="TagBuilderUrlTemplate" value="https://tagbuilder.webtrends.com/{0}/{1}{2}" />
+    <add key="TagBuilderDomain" value="statse.webtrendslive.com" />
+    <add key="TagBuilderDomainMobile" value="dc.webtrends.com/v1" />
+    <!-- Help Link -->
+    <add key="helpLink" value="http://help.webtrends.com/{0}/analytics10/" />
+    <add key="SecurityStatementLink" value="http://www.webtrends.com/AboutWebtrends/SecurityStatement" />
+    <add key="ReleaseNotesLink" value="http://releasenotes.webtrends.com/on-demand/category/analytics/analytics-10/" />
+    
+    <!-- UserActivityTracking-->
+    <add key="trackchangehistory" value="true" />
+    <add key="trackreportactivity" value="true" />
+
+    <!-- TODO: replace once proxy is available -->
+    <add key="heatmapserviceurl" value="<%= @hmapi_host %>" />
+  </appSettings>
+
+  <system.serviceModel>
+    <bindings>
+      <netTcpBinding>
+        <binding name="TcpBinding" closeTimeout="00:01:00" openTimeout="00:01:00" receiveTimeout="00:30:00" sendTimeout="00:01:00" transactionFlow="false" transferMode="Streamed" transactionProtocol="OleTransactions" hostNameComparisonMode="StrongWildcard" listenBacklog="10" maxBufferPoolSize="524288" maxBufferSize="2147483647" maxConnections="1000" maxReceivedMessageSize="2147483647">
+          <readerQuotas maxDepth="2147483647" maxStringContentLength="8192" maxArrayLength="2147483647" maxBytesPerRead="4096" maxNameTableCharCount="16384" />
+          <reliableSession ordered="true" inactivityTimeout="01:00:00" enabled="false" />
+          <security mode="None">
+            <transport clientCredentialType="None" protectionLevel="EncryptAndSign" />
+            <message clientCredentialType="None" />
+          </security>
+        </binding>
+      </netTcpBinding>
+    </bindings>
+    <client>
+      <endpoint address="net.tcp://<%= @search_host %>:8096/Search/Service" binding="netTcpBinding" bindingConfiguration="TcpBinding" contract="SearchService.ISearch" name="TcpBinding" behaviorConfiguration="ServiceBehavior" />
+    </client>
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="ServiceBehavior">
+          <protobuf />
+        </behavior>
+      </endpointBehaviors>
+    </behaviors>
+    <extensions>
+      <behaviorExtensions>
+       <add name="protobuf" type="ProtoBuf.ServiceModel.ProtoBehaviorExtension, protobuf-net, Version=2.0.0.480, Culture=neutral, PublicKeyToken=257b51d87d2e4d67" />
+      </behaviorExtensions>
+    </extensions>
+  </system.serviceModel>
+
+  <!-- Binding redirect for MVC1,MVC2 to MVC3 -->
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Autofac" publicKeyToken="17863af14b0044da" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.5.2.830" newVersion="2.5.2.830" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.ServiceModel" publicKeyToken="b77a5c561934e089" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.3.0" newVersion="4.0.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.ServiceModel.Web" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Castle.Core" publicKeyToken="407dd0808d44fbdc" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <system.web>
+    <!-- NO sessions -->
+    <sessionState mode="Off" />
+    <!-- 
+            Set compilation debug="true" to insert debugging 
+            symbols into the compiled page. Because this 
+            affects performance, set this value to true only 
+            during development.
+    -->
+    <compilation targetFramework="4.0">
+      <assemblies>
+        <add assembly="System.Web.Abstractions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Web.Routing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Data.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089" />
+        <add assembly="Webtrends.Web.Mvc" />
+      </assemblies>
+    </compilation>
+    <!--
+            The <authentication> section enables configuration 
+            of the security authentication mode used by 
+            ASP.NET to identify an incoming user. 
+    -->
+    <authentication mode="Forms">
+      <forms loginUrl="logon" timeout="2880" defaultUrl="analytics/spaces" protection="All" name="WTAnalyticsAuth" />
+    </authentication>
+    
+    <!--
+            The <customErrors> section enables configuration 
+            of what to do if/when an unhandled error occurs 
+            during the execution of a request. Specifically, 
+            it enables developers to configure html error pages 
+            to be displayed in place of a error stack trace.
+
+        <customErrors mode="RemoteOnly" defaultRedirect="GenericErrorPage.htm">
+            <error statusCode="403" redirect="NoAccess.htm"/>
+            <error statusCode="404" redirect="FileNotFound.htm"/>
+        </customErrors>
+    -->
+    <!-- 
+    TODO: Convert to 404 pages that can be used with ResponseRewrite mode so we do not always
+    redirect to /error/notfound?aspxpath=X 
+    -->
+    <customErrors mode="RemoteOnly" defaultRedirect="/error/unknown">
+      <error statusCode="404" redirect="/error/notfound" />
+      <error statusCode="403" redirect="/error/forbidden" />
+    </customErrors>
+    <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID">
+      <namespaces>
+        <add namespace="System.Web.Helpers" />
+        <add namespace="System.Web.Mvc" />
+        <add namespace="System.Web.Mvc.Ajax" />
+        <add namespace="System.Web.Mvc.Html" />
+        <add namespace="System.Web.Routing" />
+        <add namespace="System.Web.WebPages" />
+        <add namespace="System.Linq" />
+        <add namespace="WebTrends.UI.Reporting.Helpers" />
+        <add namespace="Webtrends.Web.Mvc.Helpers" />
+        <add namespace="Webtrends.Extensions" />
+      </namespaces>
+    </pages>
+
+    <!-- 
+    Configure validation and decryption key for forms-authentication tickets.
+    -->
+    <machineKey decryption="AES" decryptionKey="F6FEAA06E0DE032A738619B2C28D4B07B17720219F651A1F" validationKey="713B4EBC86BB2B4BCE7986125B78E5AAA2B6D57DFD08383DDD865AE5D2FDD4AA76715C16D20A9DE78496231505DB5A2D38BDA54BB9EF3F4E6CDF729450B9F856" />
+    
+    <httpHandlers>
+      <add verb="*" path="*.mvc" validate="false" type="System.Web.Mvc.MvcHttpHandler, System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      <add verb="POST,GET,HEAD" path="admin/elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah" />
+      <add verb="GET,HEAD" path="*.jslang" validate="false" type="Webtrends.Web.JavascriptLocalizationHandler, Webtrends.Web" />
+    </httpHandlers>
+    <httpModules>
+      <add name="ErrorLog" type="Elmah.ErrorLogModule, Elmah" />
+      <add name="ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" />
+      <add name="UrlRoutingModule" type="System.Web.Routing.UrlRoutingModule, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <add name="Webtrends.Branding" type="Webtrends.UI.Branding.BrandModule, Webtrends.UI.Branding, Version=1.0.0.0, Culture=neutral" />
+    </httpModules>
+  </system.web>
+  <!-- 
+        The system.webServer section is required for running ASP.NET AJAX under Internet
+        Information Services 7.0.  It is not necessary for previous version of IIS.
+  -->
+  <connectionStrings>
+      <add connectionString="server=<%= @master_host %>;Trusted_connection=yes;Timeout=15" name="wtMasterconnection" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <system.webServer>
+    <urlCompression doStaticCompression="true" doDynamicCompression="true" />
+    <validation validateIntegratedModeConfiguration="false" />
+    <staticContent>
+      <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="1.00:00:00" />
+      <mimeMap fileExtension=".woff" mimeType="font/x-woff" />
+    </staticContent>
+    <modules runAllManagedModulesForAllRequests="true">
+      <remove name="Elmah.ErrorLog" />
+      <remove name="Elmah.ErrorFilter" />
+      <remove name="Webtrends.Branding" />
+      <add name="Elmah.ErrorLog" type="Elmah.ErrorLogModule, Elmah" preCondition="managedHandler" />
+      <add name="Elmah.ErrorFilter" type="Elmah.ErrorFilterModule, Elmah" preCondition="managedHandler" />
+      <add name="Webtrends.Branding" type="Webtrends.UI.Branding.BrandModule, Webtrends.UI.Branding" />
+    </modules>
+    <handlers>
+      <remove name="MvcHttpHandler" />
+      <remove name="UrlRoutingHandler" />
+      <remove name="JsLanguages" />
+      <add name="MvcHttpHandler" preCondition="integratedMode" verb="*" path="*.mvc" type="System.Web.Mvc.MvcHttpHandler, System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      <add name="Elmah" verb="POST,GET,HEAD" path="admin/elmah.axd" type="Elmah.ErrorLogPageFactory, Elmah" preCondition="integratedMode" />
+      <add name="JsLanguages" verb="GET,HEAD" path="*.jslang" type="Webtrends.Web.JavascriptLocalizationHandler, Webtrends.Web" preCondition="integratedMode" />
+    </handlers>
+    <httpErrors errorMode="Custom" existingResponse="PassThrough">
+      <error path="/error/notfound" responseMode="ExecuteURL" statusCode="404" subStatusCode="8" />
+    </httpErrors>
+  </system.webServer>
+  <system.net>
+    <defaultProxy enabled="false">
+      <proxy proxyaddress="http://127.0.0.1:8888" />
+      <bypasslist />
+    </defaultProxy>
+  </system.net>
+</configuration>
