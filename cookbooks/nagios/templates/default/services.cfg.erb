@@ -27,13 +27,13 @@ define service {
 #}
 
 # default checks for all hosts
-# Uncomment if you're running chef-client as a daemon
-#define service {
-#    service_description Chef Client
-#    hostgroup_name     base
-#    check_command      check_chef_client
-#    use                default-service
-#}
+
+define service {
+    service_description Chef Client
+    hostgroup_name     all
+    check_command      check_chef_client
+    use                default-service
+}
 
 define service {
     service_description Free Space All Disks
@@ -50,23 +50,9 @@ define service {
 }
 
 define service {
-    service_description Free Memory
-    hostgroup_name      all
-    check_command       check_mem
-    use                 default-service
-}
-
-define service {
     service_description SSH
     hostgroup_name      all
     check_command       check_ssh
-    use                 default-service
-}
-
-define service {
-    service_description Processes
-    hostgroup_name      all
-    check_command       check_local_procs
     use                 default-service
 }
 
