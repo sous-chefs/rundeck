@@ -151,7 +151,7 @@ end
 
 # fix perms and ownership
 execute "chmod" do
-	command "chmod -R 644 #{install_dir} && find #{install_dir} -type d -exec chmod 755 {} \\;"
+	command "find #{install_dir} -name bin -prune -o -type f -exec chmod 644 {} \\; && find #{install_dir} -type d -exec chmod 755 {} \\;"
 	action :run
 end
 execute "chown" do
