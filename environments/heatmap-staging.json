@@ -91,6 +91,9 @@
             "jmx_port": 9999, 
             "metric_prefix": "staging.vpod.servers", 
             "monitoring_enabled": "true"
+        }, 
+        "yum": {
+            "epel_release": "6-7"
         }
     }, 
     "description": "Webtrends Heatmap Staging Environment", 
