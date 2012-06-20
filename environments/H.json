@@ -8,12 +8,10 @@
             }, 
             "sudo": {
                 "groups": [
-                    "STAGINGDMZ\\\\domain-admins", 
                     "domain-admins", 
-                    "STAGINGDMZ\\\\h.admins", 
                     "h.admins"
                 ], 
-                "include_sudoers_d": true,
+                "include_sudoers_d": true, 
                 "passwordless": false, 
                 "users": [
                     "bobo"
@@ -58,17 +56,17 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-			"cache_host": [
-			{
-				"name": "xcache01.staging.dmz",
-				"port": "11211"
-			},
-			{
-				"name": "xcache02.staging.dmz",
-				"port": "11211"
-			}
-			],
-			"cache_region": "H_A10",
+            "cache_host": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "cache_region": "H_A10", 
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
@@ -148,7 +146,8 @@
             "site": {
                 "zookeeper_clientport": 2181, 
                 "zookeeper_quorum": "hzoo01.staging.dmz,hzoo02.staging.dmz,hzoo03.staging.dmz"
-            }
+            }, 
+            "version": "0.94.0"
         }, 
         "hive": {
             "metastore": {
@@ -223,8 +222,7 @@
             "quorum": [
                 "hzoo01.staging.dmz", 
                 "hzoo02.staging.dmz", 
-                "hzoo03.staging.dmz", 
-                "hzoo04.staging.dmz"
+                "hzoo03.staging.dmz"
             ], 
             "snapshotNum": 3, 
             "snapshot_num": 3, 
