@@ -53,7 +53,7 @@ def processTemplates (install_dir, node)
     log "Updating the template files"
     dcsid_url = node['wt_configdistrib']['dcsid_url']
     cam_dcsid_url = node['wt_cam']['cam_server_url']
-    zookeeper_port = node['zookeeper']['clientPort']
+    zookeeper_port = node['zookeeper']['client_port']
     port = node['wt_streamingcollection']['port']
 
     # grab the zookeeper nodes that are currently available
@@ -63,6 +63,13 @@ def processTemplates (install_dir, node)
             zookeeper_pairs << n[:fqdn]
         end
     end
+
+	# fall back to attribs if search doesn't come up with any zookeeper roles
+	if zookeeper_pairs.count == 0
+		node[:zookeeper][:quorum].each do |i|
+			zookeeper_pairs << i
+		end
+	end
 
     # append the zookeeper client port (defaults to 2181)
     i = 0
