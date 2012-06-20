@@ -21,7 +21,7 @@ define hostgroup {
 }
 <% end -%>
 
-<% if node['nagios']['multi_os_monitoring'] == true -%>
+<% if os.any? -%>
 <% @os.each do |o| -%>
 define hostgroup {
 	hostgroup_name <%= o %>
