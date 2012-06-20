@@ -93,7 +93,7 @@ end
 execute "tar" do
   user  "root"
   group "root" 
-  creates "#{node[:kafka][:installDir]}"
+  creates install_dir
   cwd install_dir
   command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
@@ -121,10 +121,17 @@ if not Chef::Config.solo
 	end
 end
 
+# fall back to attribs if search doesn't come up with any zookeeper roles
+if zookeeper_pairs.count == 0
+	node[:zookeeper][:quorum].each do |i|
+		zookeeper_pairs << i
+	end
+end
+
 # append the zookeeper client port (defaults to 2181)
 i = 0
 while i < zookeeper_pairs.size do
-  zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{node[:zookeeper][:clientPort]}")
+  zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{node[:zookeeper][:client_port]}")
   i += 1
 end
 
@@ -137,9 +144,23 @@ end
         variables({ 
             :kafka => node[:kafka],
             :zookeeper_pairs => zookeeper_pairs,
-            :client_port => node[:zookeeper][:clientPort]
+            :client_port => node[:zookeeper][:client_port]
         })
     end
+end
+
+# fix perms and ownership
+execute "chmod" do
+	command "find #{install_dir} -name bin -prune -o -type f -exec chmod 644 {} \\; && find #{install_dir} -type d -exec chmod 755 {} \\;"
+	action :run
+end
+execute "chown" do
+	command "chown -R root:root #{install_dir}"
+	action :run
+end
+execute "chmod" do
+	command "chmod -R 755 #{install_dir}/bin"
+	action :run
 end
 
 # delete the application tarball

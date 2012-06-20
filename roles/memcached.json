@@ -1,0 +1,15 @@
+{
+  "name": "memcached",
+  "default_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[memcached::default]"
+  ],
+  "description": "Memcached",
+  "chef_type": "role",
+  "override_attributes": {
+  }
+}
