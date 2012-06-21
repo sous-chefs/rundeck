@@ -21,11 +21,23 @@ end
 
 # search
 storm_nimbus = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first
-zookeeper_quorum = search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}")
+
+# search for zookeeper servers
+zookeeper_quorum = Array.new
+search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+	zookeeper_quorum << n[:fqdn]
+end
+
+# fall back to attribs if search doesn't come up with any zookeeper roles
+if zookeeper_quorum.count == 0
+	node['zookeeper']['quorum'].each do |i|
+		zookeeper_quorum << i
+	end
+end
 
 install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
 
-# setup zookeeper group
+# setup storm group
 group "storm" do
 end
 

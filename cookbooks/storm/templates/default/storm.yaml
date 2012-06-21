@@ -8,8 +8,8 @@ storm.cluster.mode: "<%= node[:storm][:cluster_mode] %>"
 
 ### zookeeper.*
 storm.zookeeper.servers:
-<% @zookeeper_quorum.each do |address| -%>
-    - "<%= address[:fqdn] %>"
+<% @zookeeper_quorum.each do |host| -%>
+    - "<%= host %>"
 <% end -%>
 storm.zookeeper.port: <%= node[:storm][:zookeeper][:port] %>
 storm.zookeeper.root: "<%= node[:storm][:zookeeper][:root] %>"
