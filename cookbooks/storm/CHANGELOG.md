@@ -1,5 +1,8 @@
 ## Future
 
+## 1.0.12
+* added fallback method of getting zookeeper servers from attributes
+
 ## 1.0.10
 * storm 0.7.2 as default
 * storm pulled from internal repo now, no longer stored as a cookbook file
