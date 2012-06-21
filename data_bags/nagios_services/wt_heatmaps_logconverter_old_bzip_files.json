@@ -1,0 +1,5 @@
+{
+"id": "wt_heatmaps_logconverter_old_bzip_files",
+"hostgroup_name": "wt_heatmaps_logconverter",
+"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_file_ages_in_dirs -a '-d /heatmap-logprocessing/hmifr/bziplogs -w 10 -c 15 -t minutes -e '.bz2''"
+}
