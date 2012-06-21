@@ -24,14 +24,18 @@ class DimensionHourTable(HBaseTable):
 
 	def create(self):
 		return """
-		{NAME => 'uc',  VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'},  
-		{NAME => 'ul',  VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'},
-		{NAME => 'nuc', VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'},
-		{NAME => 'nul', VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'},
 		{NAME => 'md',  VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'}
+		{NAME => 'ml',  VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'}
+		{NAME => 'mc',  VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'}
 		"""
 
 	def validate(self, schema):
+		if not("'ml'" in schema):
+			self.alter("{NAME => 'ml',  VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'}")
+		
+		if not("'mc'" in schema):
+			self.alter("{NAME => 'mc',  VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'}")
+
 		return True
 
 

@@ -72,7 +72,7 @@ role_list = Array.new
 service_hosts= Hash.new
 search(:role, "*:*") do |r|
   role_list << r.name
-  search(:node, "role:#{r.name}") do |n|
+  search(:node, "roles:#{r.name}") do |n|
     service_hosts[r.name] = n['hostname']
   end
 end
