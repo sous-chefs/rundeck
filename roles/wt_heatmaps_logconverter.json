@@ -1,0 +1,9 @@
+{
+  "name": "wt_heatmaps_logcoverter",
+  "description": "Webtrends Heatmaps Log Converter",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[java]"
+  ]
+}
