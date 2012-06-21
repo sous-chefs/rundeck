@@ -2,16 +2,16 @@ maintainer        "Opscode, Inc."
 maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
 description       "Installs and configures nginx"
-version           "0.101.2"
+version           "0.101.6"
 
 recipe "nginx", "Installs nginx package and sets up configuration with Debian apache style with sites-enabled/sites-available"
 recipe "nginx::source", "Installs nginx from source and sets up configuration with Debian apache style with sites-enabled/sites-available"
 
-%w{ ubuntu debian centos redhat fedora }.each do |os|
+%w{ ubuntu debian centos redhat amazon scientific oracle fedora }.each do |os|
   supports os
 end
 
-%w{ build-essential runit bluepill }.each do |cb|
+%w{ build-essential runit bluepill yum }.each do |cb|
   depends cb
 end
 
