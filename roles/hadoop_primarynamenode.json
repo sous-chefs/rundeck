@@ -8,7 +8,7 @@
     "role[hive]",
     "role[hbase_hmaster]",
     "role[wt_heatmaps_mapreduce]",
-    "recipe[wt_podenv::namenode]"
+    "recipe[wt_realtime_hadoop::schema]"
   ],
   "override_attributes": {
   }
