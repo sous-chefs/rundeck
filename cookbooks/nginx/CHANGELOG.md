@@ -1,3 +1,16 @@
+## v0.101.6:
+
+Erroneous cookbook upload due to timeout.
+
+Version #'s are cheap.
+
+## v0.101.4:
+
+* [COOK-1280] - Improve RHEL family support and fix ohai_plugins
+ recipe bug
+* [COOK-1194] - allow installation method via attribute
+* [COOK-458] - fix duplicate nginx processes
+
 ## v0.101.2:
 
 * [COOK-1211] - include the default attributes explicitly so version
