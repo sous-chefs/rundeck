@@ -82,7 +82,7 @@ def processTemplates (install_dir, node, user, group)
 
     log "Updating the template files"
     # get the correct environment for the zookeeper nodes
-    zookeeper_port = node['zookeeper']['clientPort']
+    zookeeper_port = node['zookeeper']['client_port']
     zookeeper_env = "#{node.chef_environment}"
     unless node[:wt_streaminglogreplayer][:zookeeper_env].nil? || node[:wt_streaminglogreplayer][:zookeeper_env].empty?
         zookeeper_env = node['wt_streaminglogreplayer']['zookeeper_env']
@@ -95,6 +95,13 @@ def processTemplates (install_dir, node, user, group)
             zookeeper_pairs << n[:fqdn]
         end
     end
+
+	# fall back to attribs if search doesn't come up with any zookeeper roles
+	if zookeeper_pairs.count == 0
+		node[:zookeeper][:quorum].each do |i|
+			zookeeper_pairs << i
+		end
+	end
 
     # append the zookeeper client port (defaults to 2181)
     i = 0
@@ -174,8 +181,6 @@ if ENV["deploy_build"] == "true" then
 else
     processTemplates(install_dir, node, user, group)
 end
-
-
 
 #Create collectd plugin for streaminglogreplayer JMX objects if collectd has been applied.
 if node.attribute?("collectd")
