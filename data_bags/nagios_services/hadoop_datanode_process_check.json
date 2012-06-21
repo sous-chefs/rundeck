@@ -1,0 +1,5 @@
+{
+"id": "hadoop_datanode_process_check",
+"hostgroup_name": "hadoop_datanode",
+"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jps -a 'ThriftServer TaskTracker HRegionServer DataNode'"
+}
