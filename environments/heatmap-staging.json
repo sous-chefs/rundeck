@@ -105,13 +105,10 @@
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
-        "wt_podenv": {
+        "wt_realtime_hadoop": {
             "datacenter": "pdx",
             "pod": "V",
             "environment": "heatmap-staging",
-            "managed_environments": [{
-                "pdx": ["V","H","I"]
-            }]
         }, 
         "hadoop": {
             "core": {
