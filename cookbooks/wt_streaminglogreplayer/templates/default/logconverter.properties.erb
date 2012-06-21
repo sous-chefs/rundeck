@@ -8,3 +8,5 @@ inputLogExtension=<%=node[:wt_streaminglogreplayer][:log_extension]%>
 kafkaTopic=<%=node[:wt_streaminglogreplayer][:kafka_topic]%>
 # Should the logs be deleted when they have been completed
 deleteLogs=<%=node[:wt_streaminglogreplayer][:delete_logs]%>
+# How many minutes to wait before a local_lock file is considered to be "lost" and thus put back in the process
+lock_check_period=<%=node[:wt_streaminglogreplayer][:lock_check_period]%>
