@@ -71,7 +71,7 @@ end
 wt_base_icacls node['wt_common']['install_dir_windows'] do
 	action :grant
 	user svcuser 
-	perm :write
+	perm :modify
 end
 
 if deploy_mode?
