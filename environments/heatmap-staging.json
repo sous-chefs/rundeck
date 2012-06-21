@@ -105,14 +105,6 @@
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
-        "wt_podenv": {
-            "datacenter": "pdx",
-            "pod": "V",
-            "environment": "heatmap-staging",
-            "managed_environments": [{
-                "pdx": ["V","H","I"]
-            }]
-        }, 
         "hadoop": {
             "core": {
                 "fs_checkpoint_dir": "${hadoop.tmp.dir}/dfs/namesecondary", 
@@ -241,6 +233,20 @@
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/", 
             "use_proxy": false, 
             "version": "4.6"
+        }, 
+        "wt_podenv": {
+            "datacenter": "pdx", 
+            "environment": "heatmap-staging", 
+            "managed_environments": [
+                {
+                    "pdx": [
+                        "V", 
+                        "H", 
+                        "I"
+                    ]
+                }
+            ], 
+            "pod": "V"
         }, 
         "wt_realtimeapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/17626:id/realtimeapi-bin.tar.gz", 
