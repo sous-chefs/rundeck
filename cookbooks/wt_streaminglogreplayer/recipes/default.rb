@@ -78,7 +78,7 @@ mount "#{node['wt_streaminglogreplayer']['share_mount_dir']}" do
     action [:mount, :enable]
 end
 
-def processTemplates (install_dir, node)
+def processTemplates (install_dir, node, user, group)
 
     log "Updating the template files"
     # get the correct environment for the zookeeper nodes
@@ -99,8 +99,8 @@ def processTemplates (install_dir, node)
     # append the zookeeper client port (defaults to 2181)
     i = 0
     while i < zookeeper_pairs.size do
-    zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
-    i += 1
+        zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
+        i += 1
     end
 
     %w[monitoring.properties producer.properties logconverter.properties].each do |template_file|
@@ -152,7 +152,7 @@ if ENV["deploy_build"] == "true" then
         })
     end
 
-    processTemplates(install_dir, node)
+    processTemplates(install_dir, node, user, group)
 
     # delete the application tarball
     execute "delete_install_source" do
@@ -172,7 +172,7 @@ if ENV["deploy_build"] == "true" then
     })
     end
 else
-    processTemplates(install_dir, node)
+    processTemplates(install_dir, node, user, group)
 end
 
 
