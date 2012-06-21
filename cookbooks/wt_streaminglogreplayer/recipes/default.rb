@@ -65,9 +65,6 @@ end
 # create the share mount dir
 directory "#{node['wt_streaminglogreplayer']['share_mount_dir']}" do
     action :create
-    owner   user
-    group   group
-    mode    00755
 end
 
 # mount the NFS mount and add to /etc/fstab
