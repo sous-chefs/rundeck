@@ -1,0 +1,11 @@
+{
+  "name": "squid",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Squid Proxy Server",
+  "run_list": [
+    "recipe[squid]"
+  ],
+  "override_attributes": {
+  }
+}
