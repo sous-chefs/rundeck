@@ -11,3 +11,4 @@ default['wt_streaminglogreplayer']['kafka_topic']       = "rawHits"
 default['wt_streaminglogreplayer']['delete_logs']       = "true"
 default['wt_streaminglogreplayer']['java_opts']         = "-Xms1024m -Djava.net.preferIPv4Stack=true"
 default['wt_streaminglogreplayer']['kafka_broker_list'] = nil
+default['wt_streaminglogreplayer']['lock_check_period'] = 15
