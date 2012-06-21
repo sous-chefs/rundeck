@@ -26,6 +26,10 @@ class HBaseTable:
 		print "Does not exist, Creating: " + self.name()
 		self.hbaseShell("create '" + self.name() + "', " + self.create())
 		return self.tableExists()
+	
+	def alter(self, stmt):
+		print "Altering: " + self.name()
+		return self.hbaseShell("disable '" + self.name() + "'\nalter '" + self.name() + "', " + stmt + "\nenable '" + self.name() + "'\n")
 		
 	def name(self):
 		return HBaseTable.dc + "_" + HBaseTable.pod + "_" + self.table()
