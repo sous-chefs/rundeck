@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.13
+* Added the attribute lock_check_period which determines how many minutes to wait before a local_lock file is considered to be "lost" and thus put back in the process
+
 ## 0.0.12
 * Externalized the healthcheck options 'healthcheck_enabled' to [:wt_monitoring][:healthcheck_enabled]
 * Externalized the healthcheck options 'healthcheck_port' to [:wt_monitoring][:healthcheck_port]
