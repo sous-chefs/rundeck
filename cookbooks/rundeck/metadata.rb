@@ -1,5 +1,5 @@
 maintainer       "Webtrends"
-maintainer_email "hostedops@webtrends.com"
+maintainer_email "Peter Crossley <peter.crossley@webtrends.com>"
 license          "All rights reserved"
 description      "Installs/Configures rundeck"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
