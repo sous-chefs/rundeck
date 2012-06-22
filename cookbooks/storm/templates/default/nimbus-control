@@ -15,6 +15,9 @@ case "$1" in
     start)
         if [ "" = "$FOUND_PID" ]; then
             echo $CMD
+            # Storm processes look for a conf/ directory relative
+            # the processes start directory.
+            cd $HOME_DIR
             # For compatibility with runit we cannot backgroud 
             # ourselves with a '&' at the end, though we do
             # need to exec.

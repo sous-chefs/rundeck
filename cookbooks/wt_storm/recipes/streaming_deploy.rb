@@ -19,7 +19,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   "00644"
   variables(
-	:topology             => "streaming-topology"
+	:topology             => "streaming-topology",
     :zk_quorum            => zk_quorum.map { |server| server[:fqdn] } * ",",
     :cam                  => node[:wt_cam][:cam_server_url],
     :sapi                 => sapi[:fqdn],
