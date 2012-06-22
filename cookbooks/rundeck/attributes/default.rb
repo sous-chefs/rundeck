@@ -12,7 +12,7 @@ default[:rundeck][:project_config] = "/etc/chef/chef-rundeck.json"
 default[:rundeck][:jaas] = "internal"
 
 #LDAP Properties
-default[:rundeck][:ldap][:provider] = "ldap://seadc01.webtrends.corp:389"
+default[:rundeck][:ldap][:provider] = "ldap://seadc01.webtrends.corp:389 ldap://seadc02.webtrends.corp:389"
 default[:rundeck][:ldap][:binddn] = "CN=winbind,ou=serviceaccountsOLD,ou=WebTrendsUsers,dc=webtrends,dc=corp"
 default[:rundeck][:ldap][:bindpwd] = "P1eas3Jo1nM3"
 default[:rundeck][:ldap][:userbasedn] = "ou=WebTrendsUsers,dc=webtrends,dc=corp"
