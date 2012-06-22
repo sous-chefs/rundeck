@@ -64,6 +64,7 @@ webtrends.monitoring.jar
 webtrends.authentication.jar
 webtrends.auditing.serialization.jar
 webtrends.auditing.jar
+wurfl-1.4.0.1.jar
 xmlenc-0.52.jar
 zkclient-0.1.jar
 }.each do |jar|
