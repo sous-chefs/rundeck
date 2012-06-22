@@ -1,0 +1,15 @@
+#loglevel.default is the default log level for jobs: ERR,WARN,INFO,VERBOSE,DEBUG
+loglevel.default=INFO
+
+#rss.enabled if set to true enables RSS feeds that are public (non-authenticated)
+rss.enabled=true
+# 
+#grails.serverURL=http://hostname:PORT
+reportservice.log4j.port=4435
+dataSource.dbCreate = update
+dataSource.url = jdbc:hsqldb:file:/var/lib/rundeck/data/grailsdb;shutdown=true
+
+#note, make sure this is set to "true" if you are using Oracle or Mysql
+rundeck.v14.rdbsupport=false
+
+grails.mail.default.from=rundeck@<%=node[:domain] %>
