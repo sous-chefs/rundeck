@@ -7,3 +7,28 @@
 # in the future this will pull builds from teamcity
 
 include_recipe "wt_storm"
+
+zk_quorum = search(:node, "role:zookeeper AND chef_environment:#{node['wt_realtime_hadoop']['environment']}") # Find zk quorum in the *declared* environment
+sapi = search(:node, "role:wt_streaming_api_server AND chef_environment:#{node.chef_environment}").first
+netacuity = search(:node, "role:wt_netacuity AND chef_environment:#{node.chef_environment}").first
+streaming_data_mover = search(:node, "role:streaming_data_mover AND chef_environment:#{node.chef_environment}").first
+
+template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties" do
+  source "config.properties.erb"
+  owner  "storm"
+  group  "storm"
+  mode   "00644"
+  variables(
+	:topology             => "realtime-topology"
+    :zk_quorum            => zk_quorum.map { |server| server[:fqdn] } * ",",
+    :cam                  => node[:wt_cam][:cam_server_url],
+    :sapi                 => sapi[:fqdn],
+    :config_distrib       => node[:wt_configdistrib][:dcsid_url],
+    :netacuity            => netacuity[:fqdn],
+    :streaming_data_mover => streaming_data_mover[:fqdn],
+    :pod                  => node[:wt_realtime_hadoop][:pod],
+    :datacenter           => node[:wt_realtime_hadoop][:datacenter],
+    :dcsid_whitelist      => node[:wt_storm][:dcsid_whitelist],
+    :debug                => node[:wt_storm][:debug]
+  )
+end
