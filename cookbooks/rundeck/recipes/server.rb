@@ -68,6 +68,16 @@ template "#{node[:rundeck][:configdir]}/profile" do
 end
 
 
+template "#{node[:rundeck][:configdir]}/rundeck-config.properties" do
+  owner node[:rundeck][:user]
+  group node[:rundeck][:user]
+  source "rundeck-config.properties.erb"
+  variables(
+    :rundeck => node[:rundeck]
+  )
+end
+
+
 file "/etc/init.d/rundeckd" do
   action :delete
 end
