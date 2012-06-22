@@ -1,11 +1,19 @@
 {
   "name": "chef_server",
-  "chef_type": "role",
-  "json_class": "Chef::Role",
   "description": "Chef Server",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {"chef_server": {
+						"webui_enabled": true,
+						"solr_heap_size": "1536M"
+				}
+  },
+  "chef_type": "role",
   "run_list": [
-    "recipe[chef-server]"
+    "recipe[chef-server]",
+    "recipe[rundeck::chef-rundeck]"
   ],
-  "override_attributes": {
+  "env_run_lists": {
   }
 }
