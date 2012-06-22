@@ -18,12 +18,9 @@ end
 install_dir = "#{node['wt_common']['install_dir_windows']}\\CAM"
 install_logdir = node['wt_common']['install_log_dir_windows']
 app_pool = node['wt_cam']['app_pool']
-db_server = node['wt_cam']['database']
 pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
-auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['system_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['system_pass']}"
-
-pod = node.chef_environment
+auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
 
 iis_site 'Default Web Site' do
 	action [:stop, :delete]
@@ -34,17 +31,29 @@ directory install_dir do
 	action :create
 end
 
+# empty out default folder
+execute "rmdir_wwwroot" do
+	command "for /d %i in (c:\\inetpub\\wwwroot\\*) do rmdir /s /q %i"
+	action :nothing
+end
+execute "del_wwwroot" do
+	command "del /q c:\\inetpub\\wwwroot\\*"
+	action :nothing
+end
+
 iis_site 'CAM' do
     protocol :http
     port 80
-    path install_dir
+    path "c:\\inetpub\\wwwroot"
 	action [:add,:start]
+	notifies :run, resources(:execute => "del_wwwroot") 
+	notifies :run, resources(:execute => "rmdir_wwwroot") 
 end
 
 wt_base_icacls install_dir do
 	action :grant
-	user user_data['wt_common']['system_user']
-	perm :read
+	user user_data['wt_common']['ui_user']
+	perm :modify
 end
 
 if deploy_mode?
@@ -56,9 +65,8 @@ if deploy_mode?
   template "#{install_dir}\\Webtrends.CamWeb.UI\\web.config" do
   	source "webConfig.erb"  
 	variables(
-  		:db_server => node['wt_cam']['db_server'],
-  		:user_id => user_data['wt_common']['camdb_user'],
-  		:password => user_data['wt_common']['camdb_pass']
+		:db_server => node['wt_cam']['db_server'],
+		:db_name   => node['wt_cam']['db_name']
   	)	
   end
   
