@@ -92,13 +92,4 @@ link "/home/storm/.storm" do
 end
 
 
-# log4j
-
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4j/storm.log.properties" do
-  source "storm.log.properties"
-  owner "storm"
-  group "storm"
-  mode 00644
-end
-
 
