@@ -70,7 +70,9 @@ def processTemplates (install_dir, node)
             :install_dir => install_dir,
             :port => port,
 		    :zookeeper_quorum => zookeeper_quorum,
-            :wt_monitoring => node[:wt_monitoring]
+            :wt_monitoring => node[:wt_monitoring],
+            :pod => node[:wt_realtime_hadoop][:pod],
+            :data_center => node[:wt_realtime_hadoop][:datacenter]
         })
         end 
     end 
