@@ -196,7 +196,7 @@ if node.attribute?("nagios")
 		command "#{node['nagios']['plugin_dir']}/check_file_ages_in_dirs"
 		warning_condition "15"
 		critical_condition "20"
-		parameters "-a '-d #{node['wt_streaminglogreplayer']['share_mount_dir']} -t minutes'"
+		parameters "-d #{node['wt_streaminglogreplayer']['share_mount_dir']} -t minutes"
 		action :add
 	end
 end
