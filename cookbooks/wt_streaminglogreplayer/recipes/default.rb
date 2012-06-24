@@ -199,3 +199,4 @@ if node.attribute?("nagios")
 		parameters "-a '-d #{node['wt_streaminglogreplayer']['share_mount_dir']} -t minutes'"
 		action :add
 	end
+end
