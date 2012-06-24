@@ -1,0 +1,5 @@
+{
+"id": "wt_streaming_logreplayer_old_files_count",
+"hostgroup_name": "wt_streaming_logreplayer",
+"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_streaming_logreplayer_old_files_count"
+}

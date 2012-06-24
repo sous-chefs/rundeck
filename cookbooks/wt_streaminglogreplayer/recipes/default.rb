@@ -192,7 +192,7 @@ end
 
 #Create a nagios nrpe check for old files in the logshare
 if node.attribute?("nagios")
-	nagios_nrpecheck "wt_streaming_logreplayer_oldfiles" do
+	nagios_nrpecheck "wt_streaming_logreplayer_old_files_count" do
 		command "#{node['nagios']['plugin_dir']}/check_file_ages_in_dirs"
 		warning_condition "15"
 		critical_condition "20"
