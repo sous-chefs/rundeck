@@ -17,7 +17,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   source "config.properties.erb"
   owner  "storm"
   group  "storm"
-  mode   "00644"
+  mode   00644
   variables(
 	:topology             => "realtime-topology",
     :zk_quorum            => zk_quorum.map { |server| server[:fqdn] } * ",",
@@ -29,7 +29,9 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :pod                  => node[:wt_realtime_hadoop][:pod],
     :datacenter           => node[:wt_realtime_hadoop][:datacenter],
     :dcsid_whitelist      => node[:wt_storm][:dcsid_whitelist],
-    :debug                => node[:wt_storm][:debug]
+    :debug                => node[:wt_storm][:debug],
+    :audit_bucket_timespan => node[:wt_monitoring][:audit_bucket_timespan],
+    :audit_topic          => node[:wt_monitoring][:audit_topic]
   )
 end
 
@@ -37,7 +39,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   source "log4j.properties.erb"
   owner  "storm"
   group  "storm"
-  mode   "00644"
+  mode   00644
   variables(
 	:home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
   )
@@ -47,7 +49,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/
   source "service-control.erb"
   owner  "storm"
   group  "storm"
-  mode   "00755"
+  mode   00755
   variables(
 	:home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}",
     :java_home => node['java']['java_home']
