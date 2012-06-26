@@ -8,8 +8,8 @@
             }, 
             "sudo": {
                 "groups": [
-                    "STAGINGDMZ\\\\domain-admins", 
-                    "STAGINGDMZ\\\\c.admins"
+                    "domain-admins", 
+                    "c.admins"
                 ], 
                 "include_sudoers_d": true, 
                 "passwordless": false, 
@@ -55,6 +55,7 @@
             }
         }, 
         "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "cache_host": [
                 {
                     "name": "xcache01.staging.dmz", 
@@ -84,6 +85,7 @@
             "rta_host": "crta01.staging.dmz", 
             "sched_host": "cmasterdb01", 
             "schedulerdb_host": "cusagedb01", 
+            "smtp_server": "pdxengmta01.webtrends.corp", 
             "usage_host": "cusagedb01", 
             "velocitycache_hosts": [
                 {
@@ -105,24 +107,50 @@
             "website_name": "DX", 
             "website_port": "80"
         }, 
+        "wt_monitoring": {
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_enabled": "true", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "staging.cpod.servers", 
+            "monitoring_enabled": "true"
+        }, 
         "wt_roadrunner": {
             "build_url": "\\\\sstore02.staging.dmz\\install\\ReleasedBuilds\\10.3.0\\10.3HF bundle build\\RoadRunner_10.3_10.3.0.11_artifacts.zip"
+        }, 
+        "yum": {
+            "epel_release": "6-7"
         }
     }, 
     "description": "C Pod", 
     "json_class": "Chef::Environment", 
     "name": "C", 
     "override_attributes": {
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
         "java": {
             "install_flavor": "oracle", 
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                    }
+                }, 
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
                     }
                 }
-            }, 
-            "jdk_version": "6"
+            }
         }, 
         "memcached": {
             "memory": "1024"
@@ -131,6 +159,9 @@
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
         "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
             "multi_environment_monitoring": "true", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
@@ -156,6 +187,18 @@
             "community": "DevOps", 
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
+        }, 
+        "zookeeper": {
+            "client_port": 2181, 
+            "init_limit": 10, 
+            "quorum": [
+                "szoo01.staging.dmz", 
+                "szoo02.staging.dmz", 
+                "szoo03.staging.dmz"
+            ], 
+            "snapshot_num": 3, 
+            "sync_limit": 5, 
+            "tick_time": 2000
         }
     }
 }
