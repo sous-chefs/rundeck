@@ -1,0 +1,89 @@
+#!/bin/sh
+
+# Setup basic path information.
+MAIN="com.webtrends.streaming.analysis.util.daemon.RealtimeDaemon"
+HOME_DIR="<%= @home_dir %>"
+LOG_OUT="$HOME_DIR/logs/service-control-process.out"
+LOG_ERR="$HOME_DIR/logs/service-control-process.err"
+JAVA_HOME="<%= @java_home %>"
+JMX_OPTS="<%= @jmx_opts %>"
+JMX_PORT="<%= @jmx_port %>"
+
+# Setup classpath, initially empty.
+CP=""
+
+# Add all .jar files to the classpath.
+for jar in `ls $HOME_DIR/lib/*`; do
+    if [ "" = "$CP" ]; then
+        CP=$jar
+    else
+        CP=$CP:$jar
+    fi
+done
+
+# Add the JMX options.
+if [ -z "$JMX_OPTS"]; then
+    JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false "
+fi
+
+# Add the JMX port.
+if [ -z "$JMX_PORT" ]; then
+    JMX_PORT="<%= @java_jmx_port %>"
+    JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
+fi
+
+# Build the command line.
+CMD="$JAVA_HOME/bin/java -cp $CP $JMX_OPTS "
+
+# Find current PID if any.
+FOUND_PID=$(ps -ef | grep java | grep "$HOME_DIR" | grep -v grep | awk '{print $2}')
+
+# Check what the caller wants.
+case "$1" in
+    start)
+        if [ "" = "$FOUND_PID" ]; then
+            echo $CMD
+            # The daemon process looks for a conf/ directory relative
+            # the process' start directory.
+            cd $HOME_DIR
+            # For compatibility with runit we cannot backgroud
+            # ourselves with a '&' at the end, though we do
+            # need to exec.
+            exec $CMD $MAIN >$LOG_OUT 2>$LOG_ERR
+        else
+            echo "Service already running"
+            exit 1
+        fi
+        ;;
+    stop)
+        if [ "" = "$FOUND_PID" ]; then
+            echo "Service not running, nothing to stop"
+            exit 1
+        else
+            kill $FOUND_PID
+            sleep 4
+            # Find PID again to see if we need to use kill -9 termination.
+            FOUND_PID=$(ps -ef | grep java | grep "$HOME_DIR" | grep -v grep | awk '{print $2}')
+            if [ "" != "$FOUND_PID" ]; then
+                echo "Using kill did not work, sending kill -9 to process"
+                kill -9 $FOUND_PID
+            fi
+            exit 0
+        fi
+        ;;
+    status)
+        # Status is found via actual running processes, rather than
+        # trusting a PID log file.
+        if [ "" = "$FOUND_PID" ]; then
+            echo "Not running"
+            exit 1
+        else
+            echo "Running"
+            exit 0
+        fi
+        ;;
+    *)
+        echo "usage: daemon {start|stop|status}" >&2
+        exit 1
+        ;;
+esac
