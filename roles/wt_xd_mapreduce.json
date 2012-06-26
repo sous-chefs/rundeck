@@ -13,7 +13,7 @@
   },
   "run_list": [
     "recipe[java]",
-	"role[wt_xd::madred]"
+	"role[wt_xd::mapred]"
   ],
   "description": "External Data Mapreduce",
   "chef_type": "role"
