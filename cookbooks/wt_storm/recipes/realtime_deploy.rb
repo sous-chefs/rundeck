@@ -17,7 +17,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   source "config.properties.erb"
   owner  "storm"
   group  "storm"
-  mode   "00644"
+  mode   00644
   variables(
 	:topology             => "realtime-topology",
     :zk_quorum            => zk_quorum.map { |server| server[:fqdn] } * ",",
@@ -39,7 +39,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   source "log4j.properties.erb"
   owner  "storm"
   group  "storm"
-  mode   "00644"
+  mode   00644
   variables(
 	:home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
   )
@@ -49,7 +49,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/
   source "service-control.erb"
   owner  "storm"
   group  "storm"
-  mode   "00755"
+  mode   00755
   variables(
 	:home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}",
     :java_home => node['java']['java_home']
