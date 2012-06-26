@@ -163,10 +163,10 @@ else
     processTemplates(install_dir, node)
 end
 
-#Create collectd plugin for kafka JMX objects if collectd has been applied.
+#Create collectd plugin for streamingcollection JMX objects if collectd has been applied.
 if node.attribute?("collectd")
-  template "#{node[:collectd][:plugin_conf_dir]}/collectd_kafka-producer.conf" do
-    source "collectd_kafka-producer.conf.erb"
+  template "#{node[:collectd][:plugin_conf_dir]}/collectd_streamingcollection.conf" do
+    source "collectd_streamingcollection.conf.erb"
     owner "root"
     group "root"
     mode 00644
