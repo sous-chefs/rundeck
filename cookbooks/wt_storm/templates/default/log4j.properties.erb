@@ -7,14 +7,14 @@ log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=[%d] %p %m (%c)%n
 
 log4j.appender.ERR=org.apache.log4j.RollingFileAppender
-log4j.appender.ERR.File=<%= @home_dir %>/logs/service-control.err.log
+log4j.appender.ERR.File=/var/log/storm/logs/service-control.err.log
 log4j.appender.ERR.MaxBackupIndex=3
 log4j.appender.ERR.MaxFileSize=200MB
 log4j.appender.ERR.layout=org.apache.log4j.PatternLayout
 log4j.appender.ERR.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] %m%n
 
 log4j.appender.ROOT=org.apache.log4j.RollingFileAppender
-log4j.appender.ROOT.File=<%= @home_dir %>/logs/service-control.log
+log4j.appender.ROOT.File=/var/log/storm/logs/service-control.log
 log4j.appender.ROOT.MaxBackupIndex=3
 log4j.appender.ROOT.MaxFileSize=200MB
 log4j.appender.ROOT.layout=org.apache.log4j.PatternLayout
