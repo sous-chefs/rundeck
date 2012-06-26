@@ -196,14 +196,14 @@
             "client": {
                 "install_method": "package"
             }, 
-            "multi_environment_monitoring": true,
+            "multi_environment_monitoring": true, 
             "multi_os_monitoring": true, 
             "nrpe": {
                 "dont_blame_nrpe": "1"
-            },
-            "server_auth_method": "htpasswd",
-            "server_role": "nagios_xi",
-            "sysadmin_email": "trent.white@webtrends.com",
+            }, 
+            "server_auth_method": "htpasswd", 
+            "server_role": "nagios_xi", 
+            "sysadmin_email": "trent.white@webtrends.com", 
             "users_databag_group": "staging"
         }, 
         "ntp": {
