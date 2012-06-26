@@ -135,3 +135,14 @@ if ENV["deploy_build"] == "true" then
 else
     processTemplates(install_dir, node)
 end
+
+#Create collectd plugin for realtime api JMX objects if collectd has been applied.
+if node.attribute?("collectd")
+  template "#{node[:collectd][:plugin_conf_dir]}/collectd_realtimeapi.conf" do
+    source "collectd_realtimeapi.conf.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
+  end
+end
