@@ -73,16 +73,24 @@ zkclient-0.1.jar
     source "#{node['wt_storm']['download_url']}/#{jar}"
     owner "storm"
     group "storm"
-    mode "0644"
+    mode 00644
   end
 end
 
+# create the log directory
+directory "/var/log/storm" do
+  action :create
+  owner "storm"
+  group "storm"
+  mode 00655
+end
 
+# template out the log4j config with our customer logging settings
 template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4j/storm.log.properties" do
   source  "storm.log.properties.erb"
   owner "storm"
   group "storm"
-  mode  "00644"
+  mode  00644
   variables({
   })
 end
@@ -92,5 +100,15 @@ link "/home/storm/.storm" do
   to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
 end
 
+# create collectd plugin for storm if collectd has been applied.
+if node.attribute?("collectd")
+	template "#{node[:collectd][:plugin_conf_dir]}/collectd_storm.conf" do
+		source "collectd_storm.conf.erb"
+		owner "root"
+		group "root"
+		mode 00644
+		notifies :restart, resources(:service => "collectd")
+	end
+end
 
 
