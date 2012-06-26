@@ -11,7 +11,7 @@
 
 if node.platform == "centos" 
 
-	["php-ldap" "procmail" ].each do |svc|
+%w["php-ldap" "procmail" ].each do |svc|
 		package pkg do 
 			action :install
 		end
