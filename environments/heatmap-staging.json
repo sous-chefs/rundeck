@@ -192,7 +192,7 @@
             "client": {
                 "install_method": "package"
             }, 
-            "multi_environment_monitoring": "true", 
+            "multi_environment_monitoring": true, 
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
@@ -213,6 +213,11 @@
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
+        "rundeck": {
+            "ssh": {
+                "databag_item": "STAGING"
+            }
+        },
         "snmp": {
             "community": "DevOps", 
             "full_systemview": "true", 
