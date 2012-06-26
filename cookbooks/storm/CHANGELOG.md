@@ -1,5 +1,11 @@
 ## Future
 
+## 1.0.14
+* Create a link /opt/storm/current that points to the current version
+
+## 1.0.13
+* Some Sean changes
+
 ## 1.0.12
 * added fallback method of getting zookeeper servers from attributes
 
