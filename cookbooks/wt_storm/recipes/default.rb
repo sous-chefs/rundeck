@@ -79,7 +79,7 @@ end
 
 # create the log directory
 directory "/var/log/storm" do
-  action create
+  action :create
   owner "storm"
   group "storm"
   mode 00655
