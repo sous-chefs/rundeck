@@ -78,7 +78,7 @@ zkclient-0.1.jar
 end
 
 # create the log directory
-direcgtory "/var/log/storm" do
+directory "/var/log/storm" do
   action create
   owner "storm"
   group "storm"
