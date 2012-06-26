@@ -40,8 +40,6 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/
   mode   "00755"
   variables(
 	:home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}",
-    :java_home => node['java']['java_home'],
-	:jmx_opts  => true,
-	:jmx_port  => 9999
+    :java_home => node['java']['java_home']
   )
 end
