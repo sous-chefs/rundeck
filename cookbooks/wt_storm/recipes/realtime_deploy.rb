@@ -29,6 +29,8 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :pod                  => node[:wt_realtime_hadoop][:pod],
     :datacenter           => node[:wt_realtime_hadoop][:datacenter],
     :dcsid_whitelist      => node[:wt_storm][:dcsid_whitelist],
-    :debug                => node[:wt_storm][:debug]
+    :debug                => node[:wt_storm][:debug],
+    :audit_bucket_timespan => node[:wt_monitoring][:audit_bucket_timespan],
+    :audit_topic          => node[:wt_monitoring][:audit_topic]
   )
 end
