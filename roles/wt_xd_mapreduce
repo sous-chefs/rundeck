@@ -1,0 +1,20 @@
+{
+  "name": "wt_xd_mapreduce",
+  "default_attributes": {
+  },
+  "override_attributes": {
+      "java" : {
+        "install_flavor": "oracle",
+        "jdk_version": "7"
+      }
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[java]",
+	"role[wt_xd::madred]"
+  ],
+  "description": "External Data Mapreduce",
+  "chef_type": "role"
+}
