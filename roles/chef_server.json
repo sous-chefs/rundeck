@@ -7,11 +7,12 @@
   "override_attributes": {"chef_server": {
 						"webui_enabled": true,
 						"solr_heap_size": "1536M"
-				}
+				}, "solr":{"max_field_size":200000}
   },
   "chef_type": "role",
   "run_list": [
-    "recipe[rundeck::chef-rundeck]"
+    "recipe[rundeck::chef-rundeck]",
+	"recipe[chef-server]"
   ],
   "env_run_lists": {
   }
