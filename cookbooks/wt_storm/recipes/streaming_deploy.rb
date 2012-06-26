@@ -17,7 +17,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   source "config.properties.erb"
   owner  "storm"
   group  "storm"
-  mode   "00644"
+  mode   00644
   variables(
 	:topology             => "streaming-topology",
     :zk_quorum            => zk_quorum.map { |server| server[:fqdn] } * ",",
