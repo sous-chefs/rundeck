@@ -3,7 +3,7 @@ maintainer_email "Peter Crossley <peter.crossley@webtrends.com>"
 license          "All rights reserved"
 description      "Installs/Configures rundeck"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "1.0.1"
+version          "1.0.4"
 depends          "runit"
 depends          "sudo"
 depends          "java"
