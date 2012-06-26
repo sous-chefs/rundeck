@@ -13,6 +13,7 @@ include_recipe "storm"
 # of chef-client will fail
 
 %w{
+streaming-analysis.jar
 activation-1.1.jar
 aopalliance-1.0.jar
 avro-1.5.3.jar
