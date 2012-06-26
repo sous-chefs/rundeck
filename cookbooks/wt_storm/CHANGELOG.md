@@ -1,3 +1,6 @@
+# 1.08:
+* Log to /var/log/storm not /opt/storm/current/logs
+
 # 1.07:
 * Added collectd JRE stats
 
