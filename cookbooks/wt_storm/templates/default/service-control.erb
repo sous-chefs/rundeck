@@ -28,7 +28,7 @@ fi
 
 # Add the JMX port.
 if [ -z "$JMX_PORT" ]; then
-    JMX_PORT="<%= @java_jmx_port %>"
+    JMX_PORT="<%= @jmx_port %>"
     JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
 fi
 
