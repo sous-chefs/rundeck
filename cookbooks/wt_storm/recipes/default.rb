@@ -13,6 +13,7 @@ include_recipe "storm"
 # of chef-client will fail
 
 %w{
+streaming-analysis.jar
 activation-1.1.jar
 aopalliance-1.0.jar
 avro-1.5.3.jar
@@ -91,14 +92,5 @@ link "/home/storm/.storm" do
   to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
 end
 
-
-# log4j
-
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4j/storm.log.properties" do
-  source "storm.log.properties"
-  owner "storm"
-  group "storm"
-  mode 00644
-end
 
 
