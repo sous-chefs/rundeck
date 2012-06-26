@@ -3,8 +3,8 @@
 # Setup basic path information.
 MAIN="com.webtrends.streaming.analysis.util.daemon.RealtimeDaemon"
 HOME_DIR="<%= @home_dir %>"
-LOG_OUT="/var/log/storm/service-control-process.out"
-LOG_ERR="/var/log/storm/service-control-process.err"
+LOG_OUT="$HOME_DIR/logs/service-control-process.out"
+LOG_ERR="$HOME_DIR/logs/service-control-process.err"
 JAVA_HOME="<%= @java_home %>"
 JMX_OPTS="<%= @jmx_opts %>"
 JMX_PORT="<%= @jmx_port %>"
