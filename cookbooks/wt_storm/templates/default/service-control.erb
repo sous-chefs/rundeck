@@ -28,8 +28,11 @@ fi
 
 # Add the JMX port.
 if [ -z "$JMX_PORT" ]; then
-    JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
+    JMX_PORT=9999
 fi
+
+# Add JMX options and port together.
+JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
 
 # Build the command line.
 CMD="$JAVA_HOME/bin/java -cp $CP $JMX_OPTS "
