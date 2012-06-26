@@ -1,3 +1,8 @@
+# 1.07:
+* Added collectd JRE stats
+
+# 1.06:
+* Added auditing support
 
 # 1.04:
 * Correctly search out the Kafka nodes by using the Kafka role

@@ -78,6 +78,11 @@ execute "tar" do
   command "tar zxvf #{Chef::Config[:file_cache_path]}/storm-#{node['storm']['version']}.tar.gz"
 end
 
+# create a link from the specific version to a generic current folder
+link "#{node['storm']['install_dir']}/current" do
+	to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
+end
+
 # storm.yaml
 template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
   source "storm.yaml"
