@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.15
+* Added code to create a collectd JMX plugin if collectd has been applied to the node.
+
 ## 0.0.14
 * Externalized the healthcheck options 'healthcheck_enabled' to [:wt_monitoring][:healthcheck_enabled]
 * Externalized the healthcheck options 'healthcheck_port' to [:wt_monitoring][:healthcheck_port]
