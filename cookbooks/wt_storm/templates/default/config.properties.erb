@@ -7,7 +7,8 @@ cd.url=<%= @config_distrib %>
 sapi.host=<%= @sapi %>
 debug=<%= @debug %>
 cam.url=<%= @cam %>/cam/dcsid
-dcsid.whitelist="<%= @dcsid_whitelist %>"
+dcsid.whitelist=<%= @dcsid_whitelist %>
+hbase.pool.size=10
 hbase.zookeeper.quorum=<%= @zk_quorum  %>
 
 # Kafka broker connection info (use this or audit.zk.connect)
