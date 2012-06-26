@@ -32,3 +32,14 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :debug                => node[:wt_storm][:debug]
   )
 end
+
+template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/service-control" do
+  source "service-control.erb"
+  owner  "storm"
+  group  "storm"
+  mode   "00755"
+  variables(
+	:home_dir             => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}",
+    :java_home            => node['java']['java_home']
+  )
+end
