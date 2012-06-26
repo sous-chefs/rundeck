@@ -82,7 +82,7 @@ directory "/var/log/storm" do
   action :create
   owner "storm"
   group "storm"
-  mode 00655
+  mode 00755
 end
 
 # template out the log4j config with our customer logging settings
