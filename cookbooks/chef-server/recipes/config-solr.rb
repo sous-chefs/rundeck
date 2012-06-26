@@ -21,7 +21,7 @@ template node['solr']['config_path'] do
   owner "chef"
   group "chef"
   variables(
-    :maxFieldLength => 200000
+    :maxFieldLength => node['solr']['max_field_size']
   )
   notifies :restart, "service[chef-solr]"
 end
