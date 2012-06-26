@@ -11,7 +11,7 @@ include_recipe "wt_storm"
 zk_quorum = search(:node, "role:zookeeper AND chef_environment:#{node['wt_realtime_hadoop']['environment']}") # Find zk quorum in the *declared* environment
 sapi = search(:node, "role:wt_streaming_api_server AND chef_environment:#{node.chef_environment}").first
 netacuity = search(:node, "role:wt_netacuity AND chef_environment:#{node.chef_environment}").first
-streaming_data_mover = search(:node, "role:streaming_data_mover AND chef_environment:#{node.chef_environment}").first
+streaming_data_mover = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}").first
 
 template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties" do
   source "config.properties.erb"
@@ -32,5 +32,26 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :debug                => node[:wt_storm][:debug],
     :audit_bucket_timespan => node[:wt_monitoring][:audit_bucket_timespan],
     :audit_topic          => node[:wt_monitoring][:audit_topic]
+  )
+end
+
+template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/log4j.properties" do
+  source "log4j.properties.erb"
+  owner  "storm"
+  group  "storm"
+  mode   "00644"
+  variables(
+	:home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
+  )
+end
+
+template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/service-control" do
+  source "service-control.erb"
+  owner  "storm"
+  group  "storm"
+  mode   "00755"
+  variables(
+	:home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}",
+    :java_home => node['java']['java_home']
   )
 end
