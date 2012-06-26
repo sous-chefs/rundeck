@@ -1,3 +1,6 @@
+# 1.07:
+* Added collectd JRE stats
+
 # 1.06:
 * Added auditing support
 
