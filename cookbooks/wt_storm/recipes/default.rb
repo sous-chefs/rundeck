@@ -92,5 +92,15 @@ link "/home/storm/.storm" do
   to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
 end
 
+# create collectd plugin for storm if collectd has been applied.
+if node.attribute?("collectd")
+	template "#{node[:collectd][:plugin_conf_dir]}/collectd_storm.conf" do
+		source "collectd_storm.conf.erb"
+		owner "root"
+		group "root"
+		mode 00644
+		notifies :restart, resources(:service => "collectd")
+	end
+end
 
 

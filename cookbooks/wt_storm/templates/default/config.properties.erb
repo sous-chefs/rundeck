@@ -10,3 +10,12 @@ cam.url=<%= @cam %>/cam/dcsid
 dcsid.whitelist=<%= @dcsid_whitelist %>
 hbase.pool.size=10
 hbase.zookeeper.quorum=<%= @zk_quorum  %>
+
+# Kafka broker connection info (use this or audit.zk.connect)
+audit.broker.list=0:<%= @streaming_data_mover %>:9092
+# The kafka producer type (defaults to async)
+audit.producer.type=async
+# The time span (in minutes) between each audit flush (defaults to 10)
+audit.bucket.timespan=<%= @audit_bucket_timespan %>
+# The topic used for auditing (defaults to stream-audit)
+audit.topic=<%= <%= @audit_topic %>
