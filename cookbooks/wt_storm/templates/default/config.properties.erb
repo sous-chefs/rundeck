@@ -1,7 +1,7 @@
 datacenter=<%= @datacenter %>
 pod=<%= @pod %>
 topology=<%= @topology %>
-kafka.host=<%= @streaming_data_mover %>
+kafka.host=<%= @kafka %>
 geo.host=<%= @netacuity %>
 cd.url=<%= @config_distrib %>
 sapi.host=<%= @sapi %>
@@ -12,7 +12,7 @@ hbase.pool.size=10
 hbase.zookeeper.quorum=<%= @zk_quorum  %>
 
 # Kafka broker connection info (use this or audit.zk.connect)
-audit.broker.list=0:<%= @streaming_data_mover %>:9092
+audit.broker.list=0:<%= @kafka %>:9092
 # The kafka producer type (defaults to async)
 audit.producer.type=async
 # The time span (in minutes) between each audit flush (defaults to 10)
