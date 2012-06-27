@@ -204,7 +204,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
 	nagios_nrpecheck "wt_healthcheck_page" do
 		command "#{node['nagios']['plugin_dir']}/check_http"
-		parameters "-H localhost -u /healthcheck -p 9000 -r \",\\\"healthy\\\": \\\"true\\\"\""
+		parameters "-H localhost -u /healthcheck -p 9000 -r \",\\\"all_services\\\": \\\"ok\\\"\""
 		action :add
 	end
 end
