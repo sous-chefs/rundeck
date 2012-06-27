@@ -36,7 +36,7 @@ remote_file "#{node[:hadoop][:install_dir]}/hbase-#{node[:hbase][:version]}.tar.
   source "http://mirror.uoregon.edu/apache/hbase/hbase-#{node[:hbase][:version]}/hbase-#{node[:hbase][:version]}.tar.gz"
   owner "hadoop"
   group "hadoop"
-  mode "0744"
+  mode 00744
   not_if "test -f #{node[:hadoop][:install_dir]}/hbase-#{node[:hbase][:version]}.tar.gz"
 end
 
@@ -64,11 +64,19 @@ link "/usr/local/hbase/lib/hadoop-core-#{node[:hadoop][:version]}.jar" do
   to "/usr/share/hadoop/hadoop-core-#{node[:hadoop][:version]}.jar"
 end
 
+# create the log dir
+directory "/var/log/hbase" do
+	action :create
+	user "hadoop"
+	group "hadoop"
+	mode 00755
+end
+
 # manage hadoop configs
 %w[masters regionservers hbase-env.sh hbase-site.xml log4j.properties].each do |template_file|
   template "/usr/local/hbase/conf/#{template_file}" do
     source "#{template_file}"
-    mode 0755
+    mode 00755
     variables(
       :namenode => hadoop_namenode, # from hadoop recipe
       :hmaster => hmaster,
