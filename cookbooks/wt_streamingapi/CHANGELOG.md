@@ -1,6 +1,5 @@
-## Future
-
-* Unknown
+## 0.0.16
+* Added a nagios healthcheck
 
 ## 0.0.15
 * Added code to create a collectd JMX plugin if collectd has been applied to the node.
