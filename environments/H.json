@@ -78,7 +78,7 @@
             "smtp_server": "pdxengmta01.webtrends.corp"
         }, 
         "wt_monitoring": {
-            "graphite_enabled": "true", 
+            "graphite_flush_enabled": "true", 
             "graphite_flush_interval": "1", 
             "graphite_port": 2003, 
             "graphite_server": "sgraph01.staging.dmz", 
