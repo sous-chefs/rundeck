@@ -41,7 +41,6 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
-	:home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
   )
 end
 
