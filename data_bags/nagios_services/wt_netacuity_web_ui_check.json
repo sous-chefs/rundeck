@@ -1,0 +1,5 @@
+{
+"id": "wt_netacuity_web_ui_check",
+"hostgroup_name": "wt_netacuity",
+"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -a '-H $HOSTNAME -s \"Digital Envoy\" -p 5500'"
+}
