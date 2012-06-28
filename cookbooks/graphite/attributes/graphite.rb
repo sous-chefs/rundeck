@@ -12,6 +12,8 @@ default[:graphite][:whisper][:checksum] = "36b5fa9175262"
 default[:graphite][:graphite_web][:uri] = "https://launchpad.net/graphite/#{series}/#{version}/+download/graphite-web-#{version}.tar.gz"
 default[:graphite][:graphite_web][:checksum] = "4fd1d16cac398"
 
+default[:graphite][:web_app_timezone] = "UTC"
+default[:graphite][:carbon][:local_data_dir] = "/opt/graphite/storage/whisper/"
 default[:graphite][:carbon][:line_receiver_interface] =   "127.0.0.1"
 default[:graphite][:carbon][:pickle_receiver_interface] = "127.0.0.1"
 default[:graphite][:carbon][:cache_query_interface] =     "127.0.0.1"
