@@ -1,6 +1,5 @@
-## Future
-
-* Unknown
+##0.0.14
+* Add a nagios healthcheck
 
 ## 0.0.13
 * Added the attribute lock_check_period which determines how many minutes to wait before a local_lock file is considered to be "lost" and thus put back in the process

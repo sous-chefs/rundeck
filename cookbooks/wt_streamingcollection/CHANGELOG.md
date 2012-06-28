@@ -1,6 +1,5 @@
-## Future
-
-* Unknown
+##0.0.19
+* Added a nagios healthcheck
 
 ## 0.0.18
 * Externalized the healthcheck options 'healthcheck_enabled' to [:wt_monitoring][:healthcheck_enabled]
