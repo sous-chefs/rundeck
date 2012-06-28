@@ -32,6 +32,7 @@ else
   search(:node, "role:#{node['nagios']['server_role']} AND chef_environment:#{node.chef_environment}") do |n|
     mon_host << n['ipaddress']
   end
+end
 
 include_recipe "nagios::client_#{node['nagios']['client']['install_method']}"
 
