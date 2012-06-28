@@ -125,6 +125,18 @@ class NextIdTable(HBaseTable):
 		return True
 
 
+class MetadataTable(HBaseTable):
+	def table(self):
+		return "metadata"
+
+	def create(self):
+		return """
+		{NAME=>'meta'}
+		"""
+
+	def validate(self, schema):
+		return True
+
 
 HBaseTable.manage(UidTable())
 HBaseTable.manage(DimensionHourTable())
@@ -134,6 +146,7 @@ HBaseTable.manage(SessionTable())
 HBaseTable.manage(DcsidLookupTable())
 HBaseTable.manage(DimensionLookupTable())
 HBaseTable.manage(NextIdTable())
+HBaseTable.manage(MetadataTable())
 
 
 

@@ -173,3 +173,10 @@ if node.attribute?("collectd")
     notifies :restart, resources(:service => "collectd")
   end
 end
+
+#Create a nagios nrpe check for the healthcheck page
+nagios_nrpecheck "wt_healthcheck_page" do
+	command "#{node['nagios']['plugin_dir']}/check_http"
+	parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
+	action :add
+end

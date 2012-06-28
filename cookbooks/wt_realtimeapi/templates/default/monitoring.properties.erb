@@ -3,7 +3,7 @@ monitoring.enabled = <%= node[:wt_monitoring][:monitoring_enabled] %>
 # should we publish to jmx
 monitoring.jmx.enabled = <%= node[:wt_monitoring][:jmx_enabled] %>
 # is graphite monitoring enabled
-monitoring.graphite.enabled = <%= node[:wt_monitoring][:graphite_enabled] %>
+monitoring.graphite.enabled = <%= node[:wt_monitoring][:graphite_flush_enabled] %>
 # graphite host name
 monitoring.graphite.host = <%= node[:wt_monitoring][:graphite_server] %>
 # graphite port
