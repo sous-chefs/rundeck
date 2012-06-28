@@ -11,8 +11,8 @@ dcsid.whitelist=<%= @dcsid_whitelist %>
 hbase.pool.size=80
 hbase.zookeeper.quorum=<%= @zk_quorum  %>
 
-# Kafka broker connection info (use this or audit.zk.connect)
-audit.broker.list=0:<%= @kafka %>:9092
+# Zookeeper connection info (use this or audit.broker.list)
+audit.zk.connect=<%= @zookeeper_pairs.join(",") %>
 # The kafka producer type (defaults to async)
 audit.producer.type=async
 # The time span (in minutes) between each audit flush (defaults to 10)
