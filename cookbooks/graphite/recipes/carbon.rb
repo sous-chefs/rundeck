@@ -1,6 +1,3 @@
-package "python-twisted"
-package "python-simplejson"
-
 version = node[:graphite][:version]
 
 remote_file "/usr/src/carbon-#{version}.tar.gz" do
@@ -23,7 +20,8 @@ end
 template "/opt/graphite/conf/carbon.conf" do
   owner "www-data"
   group "www-data"
-  variables( :line_receiver_interface => node[:graphite][:carbon][:line_receiver_interface],
+  variables( :local_data_dir => node[:graphite][:carbon][:local_data_dir],
+             :line_receiver_interface => node[:graphite][:carbon][:line_receiver_interface],
              :pickle_receiver_interface => node[:graphite][:carbon][:pickle_receiver_interface],
              :cache_query_interface => node[:graphite][:carbon][:cache_query_interface] )
   notifies :restart, "service[carbon-cache]"
@@ -47,6 +45,3 @@ directory "/opt/graphite/lib/twisted/plugins/" do
   group "www-data"
 end
 
-runit_service "carbon-cache" do
-  finish_script true
-end
