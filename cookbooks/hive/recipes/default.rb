@@ -6,7 +6,7 @@
 # Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
-# This recipe installs the CAM IIS app
+# This recipe installs the hive
 
 include_recipe "hadoop"
 
@@ -48,7 +48,6 @@ link "/usr/local/hive" do
   to "#{node[:hadoop][:install_dir]}/hive-#{node[:hive][:version]}-bin"
 end
 
-
 # jdbc connectors
 %w[mysql-connector-java.jar sqljdbc4.jar].each do |jar|
   cookbook_file "/usr/local/hive/lib/#{jar}" do
@@ -61,6 +60,14 @@ end
 
 # load the databag to get the hive meta db authentication
 auth_config = data_bag_item('authorization', "#{node.chef_environment}")
+
+# create the log directory
+directory "/var/log/hive" do
+	action :create
+	owner "hadoop"
+	group "hadoop"
+	mode 00755
+end
 
 # create config files and the startup script from template
 %w[hive-site.xml hive-env.sh hive-exec-log4j.properties hive-log4j.properties].each do |template_file|
@@ -79,7 +86,6 @@ auth_config = data_bag_item('authorization', "#{node.chef_environment}")
     action :delete
   end
 end
-
 
 # remove old jars
 %w[hbase-0.89.0-SNAPSHOT.jar hbase-0.89.0-SNAPSHOT-tests.jar].each do |template_file|
