@@ -190,13 +190,21 @@ if node.attribute?("collectd")
   end
 end
 
-#Create a nagios nrpe check for old files in the logshare
+
 if node.attribute?("nagios")
+  #Create a nagios nrpe check for old files in the logshare
 	nagios_nrpecheck "wt_streaming_logreplayer_old_files_count" do
 		command "#{node['nagios']['plugin_dir']}/check_file_ages_in_dirs"
 		warning_condition "15"
 		critical_condition "20"
 		parameters "-d #{node['wt_streaminglogreplayer']['share_mount_dir']} -t minutes"
+		action :add
+	end
+
+  #Create a nagios nrpe check for the healthcheck page
+	nagios_nrpecheck "wt_healthcheck_page" do
+		command "#{node['nagios']['plugin_dir']}/check_http"
+		parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
 		action :add
 	end
 end

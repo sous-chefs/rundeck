@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 1.0.4
+* Log to /var/log/hbase
+
 ## 1.0.3
 * Minor cleanup
 * Use the hadoop install_dir attribute not install_stage_dir
