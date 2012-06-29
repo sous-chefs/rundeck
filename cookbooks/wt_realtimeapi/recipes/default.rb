@@ -56,6 +56,7 @@ end
 def processTemplates (install_dir, node)
     log "Updating the template files"
     zookeeper_quorum = node['hbase']['site']['zookeeper_quorum']
+    zookeeper_clientport = node['zookeeper']['client_port']
     port = node['wt_realtimeapi']['port']
     cam_url = node['wt_cam']['cam_server_url']
 
@@ -69,7 +70,8 @@ def processTemplates (install_dir, node)
             :cam_url => cam_url,
             :install_dir => install_dir,
             :port => port,
-		    :zookeeper_quorum => zookeeper_quorum,
+		    		:zookeeper_quorum => zookeeper_quorum,
+		    		:zookeeper_clientport => zookeeper_clientport,
             :wt_monitoring => node[:wt_monitoring],
             :pod => node[:wt_realtime_hadoop][:pod],
             :data_center => node[:wt_realtime_hadoop][:datacenter]

@@ -75,24 +75,23 @@ mount "#{node['wt_streaminglogreplayer']['share_mount_dir']}" do
     action [:mount, :enable]
 end
 
-def processTemplates (install_dir, node, user, group)
-
-    log "Updating the template files"
-    # get the correct environment for the zookeeper nodes
-    zookeeper_port = node['zookeeper']['client_port']
-    zookeeper_env = "#{node.chef_environment}"
-    unless node[:wt_streaminglogreplayer][:zookeeper_env].nil? || node[:wt_streaminglogreplayer][:zookeeper_env].empty?
-        zookeeper_env = node['wt_streaminglogreplayer']['zookeeper_env']
-    end
-
-    # grab the zookeeper nodes that are currently available
-    zookeeper_pairs = Array.new
-    if not Chef::Config.solo
-        search(:node, "role:zookeeper AND chef_environment:#{zookeeper_env}").each do |n|
-            zookeeper_pairs << n[:fqdn]
-        end
-    end
-
+def getZookeeperPairs(node)
+	
+	  # get the correct environment for the zookeeper nodes
+	  zookeeper_port = node['zookeeper']['client_port']
+	  zookeeper_env = "#{node.chef_environment}"
+	  unless node[:wt_streaminglogreplayer][:zookeeper_env].nil? || node[:wt_streaminglogreplayer][:zookeeper_env].empty?
+	      zookeeper_env = node['wt_streaminglogreplayer']['zookeeper_env']
+	  end
+	
+	  # grab the zookeeper nodes that are currently available
+	  zookeeper_pairs = Array.new
+	  if not Chef::Config.solo
+	      search(:node, "role:zookeeper AND chef_environment:#{zookeeper_env}").each do |n|
+	          zookeeper_pairs << n[:fqdn]
+	      end
+	  end
+	
 	# fall back to attribs if search doesn't come up with any zookeeper roles
 	if zookeeper_pairs.count == 0
 		node[:zookeeper][:quorum].each do |i|
@@ -100,26 +99,35 @@ def processTemplates (install_dir, node, user, group)
 		end
 	end
 
-    # append the zookeeper client port (defaults to 2181)
-    i = 0
-    while i < zookeeper_pairs.size do
-        zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
-        i += 1
-    end
+	  # append the zookeeper client port (defaults to 2181)
+	  i = 0
+	  while i < zookeeper_pairs.size do
+	      zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
+	      i += 1
+	  end
 
-    %w[monitoring.properties producer.properties logconverter.properties].each do |template_file|
-    template "#{install_dir}/conf/#{template_file}" do
-            source	"#{template_file}.erb"
-            owner user
-            group group
-            mode  00755
-            variables({ 
-                :wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
-                :zookeeper_pairs => zookeeper_pairs,
-                :wt_monitoring => node[:wt_monitoring]
-            })
-        end
-    end
+	return zookeeper_pairs
+end
+
+def processTemplates (install_dir, node, user, group)
+	log "Updating the template files"
+ 	
+	# grab the zookeeper nodes that are currently available
+	zookeeper_pairs = getZookeeperPairs(node)
+	
+	%w[monitoring.properties producer.properties logconverter.properties].each do |template_file|
+	template "#{install_dir}/conf/#{template_file}" do
+	        source	"#{template_file}.erb"
+	        owner user
+	        group group
+	        mode  00755
+	        variables({ 
+	            :wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
+	            :zookeeper_pairs => zookeeper_pairs,
+	            :wt_monitoring => node[:wt_monitoring]
+	        })
+	    end
+	end
 end
 
 
