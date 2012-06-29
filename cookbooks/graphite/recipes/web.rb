@@ -7,6 +7,7 @@ if platform?("redhat", "centos")
   end
   service "httpd" do
     supports :restart => true, :status => true
+    action [:enable, :start]
   end
 end
 
@@ -17,6 +18,7 @@ if platform?("debian","ubuntu")
   end
   service "apache2" do
     supports :restart => true, :status => true
+    action [:enable, :start]
   end
 end
 
