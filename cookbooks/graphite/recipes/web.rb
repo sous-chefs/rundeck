@@ -5,6 +5,9 @@ if platform?("redhat", "centos")
   %w{ Django django-tagging httpd mod_wsgi pycairo python-ldap }.each do |pkg|
     package pkg
   end
+  service "httpd" do
+    supports :restart => true, :status => true
+  end
 end
 
 # Debian/Ubuntu prerequisites
@@ -12,6 +15,16 @@ if platform?("debian","ubuntu")
   %w{ apache2 apache2-mpm-worker apache2-utils apache2.2-bin apache2.2-common python-cairo python-django python-django-tagging python-ldap }.each do |pkg|
     package pkg
   end
+  service "apache2" do
+    supports :restart => true, :status => true
+  end
+end
+
+case node[:platform]
+when "centos","redhat"
+  apache_user = "apache"
+when "debian","ubuntu"
+  apache_user = "www-data"
 end
 
 remote_file "/usr/src/graphite-web-#{version}.tar.gz" do
@@ -59,23 +72,23 @@ if platform?("debian","ubuntu")
 end
 
 directory "/opt/graphite/storage/log" do
-  owner "www-data"
-  group "www-data"
+  owner "#{apache_user}"
+  group "#{apache_user}"
 end
 
 directory "/opt/graphite/storage/log/webapp" do
-  owner "www-data"
-  group "www-data"
+  owner "#{apache_user}"
+  group "#{apache_user}"
 end
 
 directory "/opt/graphite/storage" do
-  owner "www-data"
-  group "www-data"
+  owner "#{apache_user}"
+  group "#{apache_user}"
 end
 
 directory "/opt/graphite/storage/whisper" do
-  owner "www-data"
-  group "www-data"
+  owner "#{apache_user}"
+  group "#{apache_user}"
 end
 
 cookbook_file "/opt/graphite/bin/set_admin_passwd.py" do
@@ -93,7 +106,7 @@ execute "set admin password" do
 end
 
 file "/opt/graphite/storage/graphite.db" do
-  owner "www-data"
-  group "www-data"
+  owner "#{apache_user}"
+  group "#{apache_user}"
   mode "644"
 end
