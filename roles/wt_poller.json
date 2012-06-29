@@ -1,0 +1,10 @@
+{
+  "name": "wt_poller",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Poller box to perform Nagios checks",
+  "run_list": [
+  ],
+  "override_attributes": {
+  }
+}
