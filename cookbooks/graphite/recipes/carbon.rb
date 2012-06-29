@@ -25,9 +25,19 @@ when "debian","ubuntu"
 end
 
 service "carbon-cache" do
-  supports :restart => true, :status => true
+  supports :restart => true, :start => true, :stop => true, :reload => true, :status => true
+  action :nothing
 end
-  
+
+template "/etc/init.d/carbon-cache" do
+  source "carbon-cache.init"
+  owner "root"
+  group "root"
+  mode "0755"
+  notifies :enable, "service[carbon-cache]"
+  notifies :start, "service[carbon-cache]"
+end
+
 template "/opt/graphite/conf/carbon.conf" do
   owner "#{apache_user}"
   group "#{apache_user}"
@@ -35,12 +45,14 @@ template "/opt/graphite/conf/carbon.conf" do
              :line_receiver_interface => node[:graphite][:carbon][:line_receiver_interface],
              :pickle_receiver_interface => node[:graphite][:carbon][:pickle_receiver_interface],
              :cache_query_interface => node[:graphite][:carbon][:cache_query_interface] )
+  mode "0644"
   notifies :restart, "service[carbon-cache]"
 end
 
 template "/opt/graphite/conf/storage-schemas.conf" do
   owner "#{apache_user}"
   group "#{apache_user}"
+  mode "0644"
 end
 
 execute "carbon: change graphite storage permissions to www-data" do
@@ -56,3 +68,6 @@ directory "/opt/graphite/lib/twisted/plugins/" do
   group "#{apache_user}"
 end
 
+service "carbon-cache" do
+  action [:enable, :start]
+end
