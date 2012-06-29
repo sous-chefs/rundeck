@@ -54,6 +54,7 @@
             }
         }, 
         "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "cache_host": [
                 {
                     "name": "xcache01.staging.dmz", 
@@ -83,6 +84,7 @@
             "rta_host": "rta01.devops.dmz", 
             "sched_host": "masterdb01", 
             "schedulerdb_host": "masterdb01", 
+            "smtp_server": "pdxengmta01.webtrends.corp", 
             "usage_host": "masterdb01", 
             "velocitycache_hosts": [
                 {
@@ -115,20 +117,84 @@
             "graphite_flush_interval": "1", 
             "graphite_port": 2003, 
             "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
             "jmx_enabled": "true", 
             "jmx_port": 9999, 
-            "metric_prefix": "staging.vpod.servers", 
+            "metric_prefix": "devops.dopod.servers", 
             "monitoring_enabled": "false"
         }, 
         "wt_platformscheduler": {
             "agent_msi": "WebTrends VDM Scheduler Agent.msi", 
             "url": "guestAuth/repository/download/bt54/.lastSuccessful/"
+        }, 
+        "yum": {
+            "epel_release": "6-7"
         }
     }, 
     "description": "DevOps Pod", 
     "json_class": "Chef::Environment", 
     "name": "DO", 
     "override_attributes": {
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
+        "hadoop": {
+            "core": {
+                "fs_checkpoint_dir": "/var/lib/hadoop/hdfs/backupnamenode", 
+                "fs_checkpoint_period": 900, 
+                "fs_trash_interval": 360, 
+                "io_file_buffer_size": 4096
+            }, 
+            "dfs": {
+                "block_size": 67108864, 
+                "data_dir": "/mnt/hdfs/hdfs01/data01/hdfs", 
+                "datanode_du_reserved": 0, 
+                "datanode_handler_count": 3, 
+                "datanode_max_xcievers": 4096, 
+                "name_dir": "/var/lib/hadoop/hdfs/namenode", 
+                "namenode_handler_count": 10, 
+                "permissions": "true", 
+                "replication": 3
+            }, 
+            "env": {
+                "HADOOP_HEAPSIZE": 2000, 
+                "HADOOP_OPTS": "", 
+                "java_net_preferIPv4Stack": "true"
+            }, 
+            "mapred": {
+                "child_java_opts": "-server -Xmx640m -Djava.net.preferIPv4Stack=true", 
+                "child_ulimit": 8388608, 
+                "io_sort_factor": 10, 
+                "io_sort_mb": 100, 
+                "job_reuse_jvm_num_tasks": 1, 
+                "job_tracker_handler_count": 10, 
+                "local_dir": "/mnt/hdfs/hdfs01/data01/mapred", 
+                "map_tasks_speculative_execution": "false", 
+                "reduce_tasks": 1, 
+                "reduce_tasks_speculative_execution": "false", 
+                "tasktracker_map_tasks_maximum": 2, 
+                "tasktracker_reduce_tasks_maximum": 2
+            }
+        }, 
+        "hbase": {
+            "env": {
+                "HBASE_HEAPSIZE": 4000, 
+                "HBASE_MANAGES_ZK": "false"
+            }, 
+            "site": {
+                "zookeeper_clientport": 2181, 
+                "zookeeper_quorum": ""
+            }
+        }, 
+        "hive": {
+            "metastore": {
+                "connection_url": "", 
+                "connector": ""
+            }
+        }, 
         "java": {
             "install_flavor": "oracle", 
             "jdk": {
@@ -144,6 +210,14 @@
                 }
             }
         }, 
+        "kafka": {
+            "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
+            "log_flush_scheduler_time_interval": "500", 
+            "log_flush_time_interval": "500", 
+            "log_retention_hours": "2", 
+            "threads": "8", 
+            "version": "0.7.0"
+        }, 
         "memcached": {
             "memory": "1024"
         }, 
@@ -152,9 +226,10 @@
         }, 
         "nagios": {
             "client": {
-                "install_method": "package"
+                "install_method": "package", 
+                "skip_install": "true"
             }, 
-            "multi_environment_monitoring": "true", 
+            "multi_environment_monitoring": true, 
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
@@ -172,12 +247,51 @@
             "nameservers": [
                 "192.168.2.100"
             ], 
-            "search": "devops.dmz"
+            "search": "devops.dmz staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
         "snmp": {
             "community": "DevOps", 
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
+        }, 
+        "storm": {
+            "download_url": "http://repo.staging.dmz/repo/linux/storm/"
+        }, 
+        "wt_netacuity": {
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/", 
+            "use_proxy": false, 
+            "version": "4.6"
+        }, 
+        "wt_realtime_hadoop": {
+            "datacenter": "pdx", 
+            "environment": "DO", 
+            "pod": "DO"
+        }, 
+        "wt_realtimeapi": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/18442:id/realtimeapi-bin.tar.gz", 
+            "port": 8082
+        }, 
+        "wt_storm": {
+            "download_url": "http://repo.staging.dmz/repo/linux/storm/jars/"
+        }, 
+        "wt_streaming_audit": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14244:id/streamingauditor-bin.tar.gz"
+        }, 
+        "wt_streamingapi": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/17623:id/streamingapi-bin.tar.gz", 
+            "port": 8080
+        }, 
+        "wt_streamingcollection": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/18842:id/streamingcollection-bin.tar.gz", 
+            "port": 8080
+        }, 
+        "zookeeper": {
+            "client_port": 2181, 
+            "init_limit": 10, 
+            "quorum": [], 
+            "snapshot_num": 3, 
+            "sync_limit": 5, 
+            "tick_time": 2000
         }
     }
 }
