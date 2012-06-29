@@ -48,22 +48,18 @@ recursive true
 action :create
 end
 
-def processTemplates (install_dir, node)
-
-    log "Updating the template files"
-    dcsid_url = node['wt_configdistrib']['dcsid_url']
-    cam_dcsid_url = node['wt_cam']['cam_server_url']
-    zookeeper_port = node['zookeeper']['client_port']
-    port = node['wt_streamingcollection']['port']
-
-    # grab the zookeeper nodes that are currently available
-    zookeeper_pairs = Array.new
-    if not Chef::Config.solo
-        search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-            zookeeper_pairs << n[:fqdn]
-        end
-    end
-
+def getZookeeperPairs(node)
+		# get the correct environment for the zookeeper nodes
+	  zookeeper_port = node['zookeeper']['client_port']
+	  
+	  # grab the zookeeper nodes that are currently available
+	  zookeeper_pairs = Array.new
+	  if not Chef::Config.solo
+	      search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+	          zookeeper_pairs << n[:fqdn]
+	      end
+	  end
+	
 	# fall back to attribs if search doesn't come up with any zookeeper roles
 	if zookeeper_pairs.count == 0
 		node[:zookeeper][:quorum].each do |i|
@@ -71,12 +67,25 @@ def processTemplates (install_dir, node)
 		end
 	end
 
-    # append the zookeeper client port (defaults to 2181)
-    i = 0
-    while i < zookeeper_pairs.size do
-    zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
-    i += 1
-    end
+	  # append the zookeeper client port (defaults to 2181)
+	  i = 0
+	  while i < zookeeper_pairs.size do
+	      zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
+	      i += 1
+	  end
+
+	return zookeeper_pairs
+end
+
+def processTemplates (install_dir, node)
+
+    log "Updating the template files"
+    dcsid_url = node['wt_configdistrib']['dcsid_url']
+    cam_dcsid_url = node['wt_cam']['cam_server_url']
+    port = node['wt_streamingcollection']['port']
+
+    # grab the zookeeper nodes that are currently available
+    zookeeper_pairs = getZookeeperPairs(node)
 
     %w[monitoring.properties config.properties netty.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do

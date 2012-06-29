@@ -1,3 +1,6 @@
+## 0.0.17
+* Added zookeeper client support and standardized zookeeper processing
+
 ## 0.0.16
 * Added a nagios healthcheck
 
