@@ -1,7 +1,7 @@
+default[:graphite][:version] = "0.9.10"
+
 version = node[:graphite][:version]
 series = node[:graphite][:version].split(".").first(2).join(".")
-
-default[:graphite][:version] = "0.9.10"
 
 default[:graphite][:carbon][:uri] = "https://launchpad.net/graphite/#{series}/#{version}/+download/carbon-#{version}.tar.gz"
 default[:graphite][:carbon][:checksum] = "4f37e00595b5b"
