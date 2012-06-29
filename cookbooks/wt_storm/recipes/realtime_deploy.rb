@@ -13,13 +13,14 @@ sapi = search(:node, "role:wt_streaming_api_server AND chef_environment:#{node.c
 netacuity = search(:node, "role:wt_netacuity AND chef_environment:#{node.chef_environment}").first
 kafka = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}").first
 
+
 template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties" do
   source "config.properties.erb"
   owner  "storm"
   group  "storm"
   mode   00644
   variables(
-	:topology             => "realtime-topology",
+    :topology             => "realtime-topology",
     :zk_quorum            => zk_quorum.map { |server| server[:fqdn] } * ",",
     :cam                  => node[:wt_cam][:cam_server_url],
     :sapi                 => sapi[:fqdn],
@@ -41,7 +42,6 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
-	:home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
   )
 end
 

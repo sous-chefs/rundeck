@@ -1,5 +1,6 @@
 {
   "run_list": [
+   "recipe[postfix::default]",
    "recipe[nagios::server]"
   ],
   "json_class": "Chef::Role",
