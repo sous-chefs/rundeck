@@ -1,3 +1,6 @@
+## 0.0.15
+* Added zookeeper client port support and standardized zookeeper processing
+
 ##0.0.14
 * Add a nagios healthcheck
 

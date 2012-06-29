@@ -1,3 +1,6 @@
+## 1.0.11
+* Added zookeeper client port support and standardized zookeeper processing
+
 # 1.08:
 * Log to /var/log/storm not /opt/storm/current/logs
 
