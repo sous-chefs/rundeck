@@ -15,7 +15,7 @@ end
 if platform?("redhat", "centos")
 	execute "install whisper" do
 	  command "python setup.py install"
-	  creates "/usr/lib/python2.6/site-packages/whisper-#{version}.egg-info"
+	  creates "/usr/lib/python2.6/site-packages/whisper-#{version}-py2.6.egg-info"
 	  cwd "/usr/src/whisper-#{version}"
 	end
 end
