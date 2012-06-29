@@ -2,21 +2,12 @@
 
 # configure brokers statically
 # format: brokerid1:host1:port1,brokerid2:host2:port2 ...
-# broker.list=0:localhost:9092
-<% if (node[:wt_streaminglogreplayer][:kafka_broker_list].nil? || node[:wt_streaminglogreplayer][:kafka_broker_list].empty?) %>
-#broker.list=
-<% else %>
-broker.list=<%=node[:wt_streaminglogreplayer][:kafka_broker_list]%>
-<% end %>
+# broker.list=
 
 # zk connection string
 # comma separated host:port pairs, each corresponding to a zk
 # server. e.g. "127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002"
-<% if (node[:wt_streaminglogreplayer][:kafka_broker_list].nil? || node[:wt_streaminglogreplayer][:kafka_broker_list].empty?) %>
 zk.connect=<%= @zookeeper_pairs.join(",") %>
-<% else %>
-#zk.connect=
-<% end %>
 
 # timeout in ms for connecting to zookeeper
 zk.connectiontimeout.ms=1000000
