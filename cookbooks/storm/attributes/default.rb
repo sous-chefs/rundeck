@@ -49,7 +49,7 @@ default['storm']['supervisor']['enable'] = true
 
 
 # worker attributes
-default['storm']['worker']['childopts'] = "-Xmx768m"
+default['storm']['worker']['childopts'] = "-Xmx768m -Dcom.sun.management.jmxremote"
 default['storm']['worker']['heartbeat_frequency_secs'] = 1
 default['storm']['task']['heartbeat_frequency_secs'] = 3
 default['storm']['task']['refresh_poll_secs'] = 10

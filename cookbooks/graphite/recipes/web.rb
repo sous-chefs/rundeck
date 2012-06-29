@@ -1,12 +1,31 @@
-include_recipe "apache2::mod_python"
-
 version = node[:graphite][:version]
 
-package "python-cairo-dev"
-package "python-django"
-package "python-django-tagging"
-package "python-memcache"
-package "python-rrdtool"
+# CentOS/RH prerequisites
+if platform?("redhat", "centos")
+  %w{ Django django-tagging httpd mod_wsgi pycairo python-ldap }.each do |pkg|
+    package pkg
+  end
+  service "httpd" do
+    supports :restart => true, :status => true
+  end
+end
+
+# Debian/Ubuntu prerequisites
+if platform?("debian","ubuntu")
+  %w{ apache2 apache2-mpm-worker apache2-utils apache2.2-bin apache2.2-common python-cairo python-django python-django-tagging python-ldap }.each do |pkg|
+    package pkg
+  end
+  service "apache2" do
+    supports :restart => true, :status => true
+  end
+end
+
+case node[:platform]
+when "centos","redhat"
+  apache_user = "apache"
+when "debian","ubuntu"
+  apache_user = "www-data"
+end
 
 remote_file "/usr/src/graphite-web-#{version}.tar.gz" do
   source node[:graphite][:graphite_web][:uri]
@@ -25,34 +44,51 @@ execute "install graphite-web" do
   cwd "/usr/src/graphite-web-#{version}"
 end
 
-template "/etc/apache2/sites-available/graphite" do
-  source "graphite-vhost.conf.erb"
+template "/opt/graphite/webapp/graphite/local_settings.py" do
+  source "local_settings.py.erb"
+  variables( :web_app_timezone => node[:graphite][:web_app_timezone],
+	         :local_data_dirs => node[:graphite][:carbon][:local_data_dir] )
+  notifies :restart, resources(:service => "httpd")
 end
 
-apache_site "000-default" do
-  enable false
+# Setup the apache site for Graphite
+
+# CentOS/RH prerequisites
+if platform?("redhat", "centos")
+  template "/etc/httpd/conf.d/graphite.conf" do
+    source "graphite-vhost.conf.erb"
+	variables( :django_media_dir => "/usr/lib/python2.6/site-packages/django/contrib/admin/media/" )
+	notifies :restart, resources(:service => "httpd")
+  end
 end
 
-apache_site "graphite"
+# Debian/Ubuntu 
+if platform?("debian","ubuntu")
+  template "/etc/apache2/sites-available/default" do
+    source "graphite-vhost.conf.erb"
+	variables( :django_media_dir => "/usr/share/pyshared/django/contrib/admin/media/" )
+	notifies :restart, resources(:service => "apache2")
+  end
+end
 
 directory "/opt/graphite/storage/log" do
-  owner "www-data"
-  group "www-data"
+  owner "#{apache_user}"
+  group "#{apache_user}"
 end
 
 directory "/opt/graphite/storage/log/webapp" do
-  owner "www-data"
-  group "www-data"
+  owner "#{apache_user}"
+  group "#{apache_user}"
 end
 
 directory "/opt/graphite/storage" do
-  owner "www-data"
-  group "www-data"
+  owner "#{apache_user}"
+  group "#{apache_user}"
 end
 
 directory "/opt/graphite/storage/whisper" do
-  owner "www-data"
-  group "www-data"
+  owner "#{apache_user}"
+  group "#{apache_user}"
 end
 
 cookbook_file "/opt/graphite/bin/set_admin_passwd.py" do
@@ -70,7 +106,7 @@ execute "set admin password" do
 end
 
 file "/opt/graphite/storage/graphite.db" do
-  owner "www-data"
-  group "www-data"
+  owner "#{apache_user}"
+  group "#{apache_user}"
   mode "644"
 end

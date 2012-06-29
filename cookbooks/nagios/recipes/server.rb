@@ -185,7 +185,10 @@ end
 end
 
 nagios_conf "commands" do
-  variables :services => services
+  variables( 
+    :services => services,
+    :mail_command => node['nagios']['email_command']
+  ) 
 end
 
 nagios_conf "services" do

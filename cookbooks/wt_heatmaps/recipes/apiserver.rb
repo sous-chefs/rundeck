@@ -66,3 +66,12 @@ nginx_site "apiserver" do
   enable true
   notifies :restart, resources("service[nginx]","service[php-fastcgi]")
 end
+
+if node.attribute?("nagios")
+#Create a nagios nrpe check for the healthcheck page
+	nagios_nrpecheck "wt_heatmaps_url_check" do
+		command "#{node['nagios']['plugin_dir']}/check_http"
+		parameters "-H localhost -u \"/heatmap_meta.php?accountid=10314&w=1663&h=200&dot=60&filter=infrared&coef=1&startd=2012-05-31&stopd=2012-06-20&top=600&i=3&page=webtrends.com%3B42099b4af021e53fd8fd4e056c2568d7c2e3ffa8\" -p 80 -r \"y_max\""
+		action :add
+	end
+end

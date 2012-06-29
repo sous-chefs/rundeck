@@ -11,8 +11,20 @@ execute "untar whisper" do
   cwd "/usr/src"
 end
 
-execute "install whisper" do
-  command "python setup.py install"
-  creates "/usr/local/lib/python2.6/dist-packages/whisper-#{version}.egg-info"
-  cwd "/usr/src/whisper-#{version}"
+# CentOS/RH 
+if platform?("redhat", "centos")
+	execute "install whisper" do
+	  command "python setup.py install"
+	  creates "/usr/lib/python2.6/site-packages/whisper-#{version}.egg-info"
+	  cwd "/usr/src/whisper-#{version}"
+	end
+end
+
+# Debian/Ubuntu 
+if platform?("debian","ubuntu")
+	execute "install whisper" do
+	  command "python setup.py install"
+	  creates "/usr/local/lib/python2.6/dist-packages/whisper-#{version}.egg-info"
+	  cwd "/usr/src/whisper-#{version}"
+	end
 end

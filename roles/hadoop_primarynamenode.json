@@ -8,7 +8,8 @@
     "role[hive]",
     "role[hbase_hmaster]",
     "role[wt_heatmaps_mapreduce]",
-    "recipe[wt_realtime_hadoop::schema]"
+    "recipe[wt_realtime_hadoop::schema]",
+    "recipe[wt_xd::schema]"
   ],
   "override_attributes": {
   }

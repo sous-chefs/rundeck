@@ -23,7 +23,7 @@ done
 
 # Add the JMX options.
 if [ -z "$JMX_OPTS" ]; then
-    JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false "
+    JMX_OPTS="-Xms1024m -Xmx2048m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false "
 fi
 
 # Add the JMX port.
