@@ -1,6 +1,3 @@
-package "python-twisted"
-package "python-simplejson"
-
 version = node[:graphite][:version]
 
 remote_file "/usr/src/carbon-#{version}.tar.gz" do
@@ -20,18 +17,30 @@ execute "install carbon" do
   cwd "/usr/src/carbon-#{version}"
 end
 
+case node[:platform]
+when "centos","redhat"
+  apache_user = "apache"
+when "debian","ubuntu"
+  apache_user = "www-data"
+end
+
+service "carbon-cache" do
+  supports :restart => true, :status => true
+end
+  
 template "/opt/graphite/conf/carbon.conf" do
-  owner "www-data"
-  group "www-data"
-  variables( :line_receiver_interface => node[:graphite][:carbon][:line_receiver_interface],
+  owner "#{apache_user}"
+  group "#{apache_user}"
+  variables( :local_data_dir => node[:graphite][:carbon][:local_data_dir],
+             :line_receiver_interface => node[:graphite][:carbon][:line_receiver_interface],
              :pickle_receiver_interface => node[:graphite][:carbon][:pickle_receiver_interface],
              :cache_query_interface => node[:graphite][:carbon][:cache_query_interface] )
   notifies :restart, "service[carbon-cache]"
 end
 
 template "/opt/graphite/conf/storage-schemas.conf" do
-  owner "www-data"
-  group "www-data"
+  owner "#{apache_user}"
+  group "#{apache_user}"
 end
 
 execute "carbon: change graphite storage permissions to www-data" do
@@ -43,10 +52,7 @@ execute "carbon: change graphite storage permissions to www-data" do
 end
 
 directory "/opt/graphite/lib/twisted/plugins/" do
-  owner "www-data"
-  group "www-data"
+  owner "#{apache_user}"
+  group "#{apache_user}"
 end
 
-runit_service "carbon-cache" do
-  finish_script true
-end
