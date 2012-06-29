@@ -7,6 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-default[:wt_realltime_hadoop][:datacenter] = nil
-default[:wt_realltime_hadoop][:pod] = nil
-default[:wt_realltime_hadoop][:environment] = nil
+default[:wt_xd][:datacenter] = nil
+default[:wt_xd][:pod] = nil
+default[:wt_xd][:environment] = nil
