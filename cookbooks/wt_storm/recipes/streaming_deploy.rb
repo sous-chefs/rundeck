@@ -26,7 +26,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :sapi                 => sapi[:fqdn],
     :config_distrib       => node[:wt_configdistrib][:dcsid_url],
     :netacuity            => netacuity[:fqdn],
-    :streaming_data_mover => streaming_data_mover[:fqdn],
+	:kafka                => kafka[:fqdn],
     :pod                  => node[:wt_realtime_hadoop][:pod],
     :datacenter           => node[:wt_realtime_hadoop][:datacenter],
     :dcsid_whitelist      => node[:wt_storm][:dcsid_whitelist],
