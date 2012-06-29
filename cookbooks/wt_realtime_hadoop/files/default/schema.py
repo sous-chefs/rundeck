@@ -24,8 +24,8 @@ class DimensionHourTable(HBaseTable):
 
 	def create(self):
 		return """
-		{NAME => 'md',  VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'}
-		{NAME => 'ml',  VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'}
+		{NAME => 'md',  VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'},
+		{NAME => 'ml',  VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'},
 		{NAME => 'mc',  VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'}
 		"""
 
