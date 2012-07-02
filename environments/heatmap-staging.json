@@ -249,7 +249,8 @@
             "port": 8082
         }, 
         "wt_storm": {
-            "dcsid_whitelist": ""
+            "dcsid_whitelist": "",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/19542:id/streaming-analysis-bin.tar.gz"
         }, 
         "wt_streaming_audit": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14244:id/streamingauditor-bin.tar.gz"

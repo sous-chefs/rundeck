@@ -12,6 +12,35 @@ include_recipe "storm"
 # http://repo.staging.dmz/repo/linux/storm/jars/), otherwise the run
 # of chef-client will fail
 
+download_url = node['wt_storm']['download_url']
+install_tmp = "/tmp/wt_storm_install"
+
+if ENV["deploy_build"] == "true" then
+    log "The deploy_build value is true so we will grab the tar ball and install"
+
+    # grab the source file
+    remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+      source download_url
+      mode 00644
+    end
+
+    # create the install TEMP dirctory
+    directory install_tmp do
+      owner "root"
+      group "root"
+      mode 00755
+      recursive true
+      action :create
+    end
+
+    # extract the source file into TEMP directory
+    execute "tar" do
+      user  "root"
+      group "root"
+      cwd install_tmp
+      command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+    end
+
 %w{
 streaming-analysis.jar
 activation-1.1.jar
@@ -69,33 +98,35 @@ wurfl-1.4.0.1.jar
 xmlenc-0.52.jar
 zkclient-0.1.jar
 }.each do |jar|
-  remote_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/#{jar}" do
-    source "#{node['wt_storm']['download_url']}/#{jar}"
-    owner "storm"
-    group "storm"
-    mode 00644
-  end
-end
+      remote_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/#{jar}" do
+        source "#{install_tmp}/lib/#{jar}"
+        owner "storm"
+        group "storm"
+        mode 00644
+      end
+    end
 
-# create the log directory
-directory "/var/log/storm" do
-  action :create
-  owner "storm"
-  group "storm"
-  mode 00755
-end
+    # create the log directory
+    directory "/var/log/storm" do
+      action :create
+      owner "storm"
+      group "storm"
+      mode 00755
+    end
 
-# template out the log4j config with our customer logging settings
-template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4j/storm.log.properties" do
-  source  "storm.log.properties.erb"
-  owner "storm"
-  group "storm"
-  mode  00644
-  variables({
-  })
-end
+    # template out the log4j config with our customer logging settings
+    template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4j/storm.log.properties" do
+      source  "storm.log.properties.erb"
+      owner "storm"
+      group "storm"
+      mode  00644
+      variables({
+      })
+    end
 
-# storm looks for storm.yaml in ~/.storm/storm.yaml
-link "/home/storm/.storm" do
-  to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
+    # storm looks for storm.yaml in ~/.storm/storm.yaml
+    link "/home/storm/.storm" do
+      to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
+    end
+
 end
