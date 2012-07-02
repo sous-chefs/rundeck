@@ -25,17 +25,29 @@ when "debian","ubuntu"
 end
 
 service "carbon-cache" do
-  supports :restart => true, :start => true, :stop => true, :reload => true, :status => true
-  action :nothing
+  supports :status => true, :start => true, :stop => true
 end
 
-template "/etc/init.d/carbon-cache" do
-  source "carbon-cache.init"
-  owner "root"
-  group "root"
-  mode "0755"
-  notifies :enable, "service[carbon-cache]"
-  notifies :start, "service[carbon-cache]"
+#Create init script for RH or DEB
+case node[:platform]
+when "centos","redhat"
+  template "/etc/init.d/carbon-cache" do
+    source "carbon-cache.init_RH"
+    owner "root"
+    group "root"
+    mode "0755"
+    notifies :enable, "service[carbon-cache]"
+    notifies :start, "service[carbon-cache]"
+  end
+when "debian","ubuntu"
+  template "/etc/init.d/carbon-cache" do
+    source "carbon-cache.init_DEB"
+    owner "root"
+    group "root"
+    mode "0755"
+    notifies :enable, "service[carbon-cache]"
+    notifies :start, "service[carbon-cache]"
+  end
 end
 
 template "/opt/graphite/conf/carbon.conf" do

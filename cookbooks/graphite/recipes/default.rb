@@ -19,18 +19,18 @@
 
 # CentOS/RH prerequisites
 if platform?("redhat", "centos")
-  %w{ bitmap bitmap-fonts gcc gcc-c++ git glibc-devel memcached openssl-devel python-devel python-twisted python-memcached python-zope-interface python-rrdtool python-sqlite2 }.each do |pkg|
+  %w{ bitmap bitmap-fonts gcc gcc-c++ git glibc-devel openssl-devel python-devel python-twisted python-memcached python-zope-interface python-rrdtool python-sqlite2 }.each do |pkg|
     package pkg
   end
 end
 
 # Debian/Ubuntu prerequisites
 if platform?("debian","ubuntu")
-  %w{ bzr curl erlang-os-mon erlang-snmp git-core g++ libapache2-mod-wsgi libapache2-mod-python libapr1 libaprutil1 libaprutil1-dbd-sqlite3 libaprutil1-ldap libssl-dev memcached python-dev python-setuptools python-simplejson python-memcache python-pysqlite2 python-rrdtool python-twisted rabbitmq-server sqlite3 }.each do |pkg|
+  %w{ bzr curl erlang-os-mon erlang-snmp git-core g++ libapache2-mod-wsgi libapache2-mod-python libapr1 libaprutil1 libaprutil1-dbd-sqlite3 libaprutil1-ldap libssl-dev python-dev python-setuptools python-simplejson python-memcache python-pysqlite2 python-rrdtool python-twisted sqlite3 }.each do |pkg|
     package pkg
   end
 end
 
 include_recipe "graphite::whisper"
-include_recipe "graphite::carbon"
 include_recipe "graphite::web"
+include_recipe "graphite::carbon"

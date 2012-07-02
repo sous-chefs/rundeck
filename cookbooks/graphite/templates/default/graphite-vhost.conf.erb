@@ -23,6 +23,9 @@
 # XXX You need to set this up!
 # Read http://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGISocketPrefix
 WSGISocketPrefix /var/run/wsgi
+<% if node['platform'] == "debian" || node['platform'] == "ubuntu" -%>
+WSGIImportScript /opt/graphite/conf/graphite.wsgi process-group=graphite application-group=%{GLOBAL}
+<% end -%>
 
 <VirtualHost *:80>
         ServerName <%= node[:graphite][:url] %>
@@ -35,7 +38,9 @@ WSGISocketPrefix /var/run/wsgi
         WSGIDaemonProcess graphite processes=5 threads=5 display-name='%{GROUP}' inactivity-timeout=120
         WSGIProcessGroup graphite
         WSGIApplicationGroup %{GLOBAL}
+        <% if node['platform'] == "redhat" || node['platform'] == "centos" -%>
         WSGIImportScript /opt/graphite/conf/graphite.wsgi process-group=graphite application-group=%{GLOBAL}
+        <% end -%>
 
         # XXX You will need to create this file! There is a graphite.wsgi.example
         # file in this directory that you can safely use, just copy it to graphite.wgsi

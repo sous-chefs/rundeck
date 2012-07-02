@@ -1,24 +1,19 @@
 version = node[:graphite][:version]
 
+include_recipe "apache2"
+include_recipe "memcached::default"
+
 # CentOS/RH prerequisites
 if platform?("redhat", "centos")
-  %w{ Django django-tagging httpd mod_wsgi pycairo python-ldap }.each do |pkg|
+  %w{ Django django-tagging mod_wsgi pycairo python-ldap }.each do |pkg|
     package pkg
-  end
-  service "httpd" do
-    supports :restart => true, :status => true
-    action [:enable, :start]
   end
 end
 
 # Debian/Ubuntu prerequisites
 if platform?("debian","ubuntu")
-  %w{ apache2 apache2-mpm-worker apache2-utils apache2.2-bin apache2.2-common python-cairo python-django python-django-tagging python-ldap }.each do |pkg|
+  %w{ apache2-mpm-worker apache2-utils apache2.2-bin apache2.2-common python-cairo python-django python-django-tagging python-ldap }.each do |pkg|
     package pkg
-  end
-  service "apache2" do
-    supports :restart => true, :status => true
-    action [:enable, :start]
   end
 end
 
@@ -46,30 +41,36 @@ execute "install graphite-web" do
   cwd "/usr/src/graphite-web-#{version}"
 end
 
+execute "setup graphite.wsgi" do
+  command "cp graphite.wsgi.example graphite.wsgi"
+  creates "/opt/graphite/conf/graphite.wsgi"
+  cwd "/opt/graphite/conf"
+end
+
 template "/opt/graphite/webapp/graphite/local_settings.py" do
   source "local_settings.py.erb"
   variables( :web_app_timezone => node[:graphite][:web_app_timezone],
-	         :local_data_dirs => node[:graphite][:carbon][:local_data_dir] )
-  notifies :restart, resources(:service => "httpd")
+             :local_data_dirs => node[:graphite][:carbon][:local_data_dir] )
+  notifies :restart, resources(:service => "apache2")
 end
 
 # Setup the apache site for Graphite
 
-# CentOS/RH prerequisites
+# CentOS/RH
 if platform?("redhat", "centos")
-  template "/etc/httpd/conf.d/graphite.conf" do
+  template "/etc/httpd/sites-available/default" do
     source "graphite-vhost.conf.erb"
-	variables( :django_media_dir => "/usr/lib/python2.6/site-packages/django/contrib/admin/media/" )
-	notifies :restart, resources(:service => "httpd")
+    variables( :django_media_dir => "/usr/lib/python2.6/site-packages/django/contrib/admin/media/" )
+    notifies :restart, resources(:service => "apache2")
   end
 end
 
-# Debian/Ubuntu 
+# Debian/Ubuntu
 if platform?("debian","ubuntu")
   template "/etc/apache2/sites-available/default" do
     source "graphite-vhost.conf.erb"
-	variables( :django_media_dir => "/usr/share/pyshared/django/contrib/admin/media/" )
-	notifies :restart, resources(:service => "apache2")
+    variables( :django_media_dir => "/usr/share/pyshared/django/contrib/admin/media/" )
+    notifies :restart, resources(:service => "apache2")
   end
 end
 
