@@ -2,11 +2,13 @@ Description
 ===========
 
 Installs and configures Graphite http://graphite.wikidot.com/
+Has been updated to install Graphite 0.9.10
 
 Requirements
 ============
 
 * Ubuntu 10.04 (Lucid)
+* CentOS 6.2
 
 Attributes
 ==========
@@ -17,10 +19,6 @@ Usage
 =====
 
 `recipe[graphite]` should build a stand-alone Graphite installation.
-
-`recipe[graphite::ganglia]` integrates with Ganglia. You'll want at
-least one monitor node (i.e. recipe[ganglia]) node to be running
-to use it.
 
 Caveats
 =======
