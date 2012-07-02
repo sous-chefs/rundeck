@@ -36,7 +36,7 @@ class ExternalMetricsTable(HBaseTable):
 
 	def create(self):
 		return """
-		{NAME => 'a',  VERSIONS => 1, COMPRESSION => 'NONE'}
+		{NAME => 'a',  VERSIONS => 1, COMPRESSION => 'NONE'},
 		{NAME => 'm',  VERSIONS => 1, COMPRESSION => 'NONE'}
 		"""
 
