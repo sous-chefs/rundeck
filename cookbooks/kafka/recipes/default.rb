@@ -90,12 +90,18 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
     action :create_if_missing
 end
 
+directory install_dir do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+end
+
 execute "tar" do
   user  "root"
-  group "root" 
-  creates install_dir
+  group "root"
   cwd install_dir
-  command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+  command "tar zxvf #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
 
 template "#{install_dir}/bin/service-control" do
