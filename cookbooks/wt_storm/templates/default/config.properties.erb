@@ -1,6 +1,5 @@
 datacenter=<%= @datacenter %>
 pod=<%= @pod %>
-topology=<%= @topology %>
 kafka.host=<%= @kafka %>
 geo.host=<%= @netacuity %>
 cd.url=<%= @config_distrib %>
@@ -8,9 +7,29 @@ sapi.host=<%= @sapi %>
 debug=<%= @debug %>
 cam.url=<%= @cam %>/cam/dcsid
 dcsid.whitelist=<%= @dcsid_whitelist %>
+
+# Hbase and zookeeper parameters
 hbase.pool.size=80
 hbase.zookeeper.quorum=<%= @zookeeper_quorum  %>
 hbase.zookeeper.property.clientPort=<%=@zookeeper_clientport%>
+
+# Topology should be streaming or realtime
+topology=<%= @topology %>
+
+# Overrides settings in storm.yaml and is different between
+# realtime and streaming
+topology.override.max.spout.pending=<%= @topology_override_max_spout_pending %>
+topology.override.msg.timeout.seconds=<%= @topology_override_msg_timeout_seconds %>
+
+# Realtime parameters, should have blank values in streaming
+realtime.topology.parsing.bolt.count=<%= @topology_parsing_bolt_count %>
+realtime.topology.row.key.bolt.count=<%= @topology_row_key_bolt_count %>
+realtime.topology.writing.bolt.count=<%= @topology_writing_bolt_count %>
+realtime.topology.dimensions.bolt.count=<%= @topology_dimensions_bolt_count %>
+
+# Streaming parameters, should have blank values in realtime
+streaming.topology.parsing.bolt.count=
+streaming.topology.netty.emitter.bolt.count=
 
 # Zookeeper connection info (use this or audit.broker.list)
 audit.zk.connect=<%= @zookeeper_quorumport %>
