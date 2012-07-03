@@ -12,11 +12,10 @@ include_recipe "storm"
 # http://repo.staging.dmz/repo/linux/storm/jars/), otherwise the run
 # of chef-client will fail
 
+jf_base_download_url = node['wt_storm']['jf_base_download_url']
 download_url = node['wt_storm']['download_url']
 install_tmp = '/tmp/wt_storm_install'
 tarball = 'streaming-analysis-bin.tar.gz'
-
-jf_base_download_url = node['wt_storm']['jf_base_download_url']
 
 if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so we will grab the tar ball and install"
