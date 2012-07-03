@@ -21,21 +21,27 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
-    :topology             => "realtime-topology",
-    :zookeeper_quorum     => zookeeper_quorum.map { |server| server[:fqdn] } * ",",
-    :zookeeper_clientport => zookeeper_clientport,
-    :zookeeper_pairs	  => zookeeper_quorum.map { |server| "#{server[:fqdn]}:#{zookeeper_clientport}" } * ",",
-    :cam                  => node[:wt_cam][:cam_server_url],
-    :sapi                 => sapi[:fqdn],
-    :config_distrib       => node[:wt_configdistrib][:dcsid_url],
-    :netacuity            => netacuity[:fqdn],
-    :kafka                => kafka[:fqdn],
-    :pod                  => node[:wt_realtime_hadoop][:pod],
-    :datacenter           => node[:wt_realtime_hadoop][:datacenter],
-    :dcsid_whitelist      => node[:wt_storm][:dcsid_whitelist],
-    :debug                => node[:wt_storm][:debug],
+    :topology => "realtime-topology",
+    :topology_parsing_bolt_count    => 3,
+    :topology_row_key_bolt_count    => 12,
+    :topology_writing_bolt_count    => 24,
+    :topology_dimensions_bolt_count => 3,
+    :topology_override_max_spout_pending => 3000,
+    :topology_override_msg_timeout_seconds => 120,
+    :zookeeper_quorum      => zookeeper_quorum.map { |server| server[:fqdn] } * ",",
+    :zookeeper_clientport  => zookeeper_clientport,
+    :zookeeper_pairs	   => zookeeper_quorum.map { |server| "#{server[:fqdn]}:#{zookeeper_clientport}" } * ",",
+    :cam                   => node[:wt_cam][:cam_server_url],
+    :sapi                  => sapi[:fqdn],
+    :config_distrib        => node[:wt_configdistrib][:dcsid_url],
+    :netacuity             => netacuity[:fqdn],
+    :kafka                 => kafka[:fqdn],
+    :pod                   => node[:wt_realtime_hadoop][:pod],
+    :datacenter            => node[:wt_realtime_hadoop][:datacenter],
+    :dcsid_whitelist       => node[:wt_storm][:dcsid_whitelist],
+    :debug                 => node[:wt_storm][:debug],
     :audit_bucket_timespan => node[:wt_monitoring][:audit_bucket_timespan],
-    :audit_topic          => node[:wt_monitoring][:audit_topic]
+    :audit_topic           => node[:wt_monitoring][:audit_topic]
   )
 end
 
