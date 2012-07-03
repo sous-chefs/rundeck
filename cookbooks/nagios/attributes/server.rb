@@ -26,14 +26,14 @@ default['nagios']['pagerduty_key'] = ""
 
 case node['platform']
 when "ubuntu","debian"
-  set['nagios']['server']['install_method'] = 'package'
-  set['nagios']['server']['service_name']   = 'nagios3'
+  default['nagios']['server']['install_method'] = 'package'
+  default['nagios']['server']['service_name']   = 'nagios3'
 when "redhat","centos","fedora","scientific"
-  set['nagios']['server']['install_method'] = 'source'
-  set['nagios']['server']['service_name']   = 'nagios'
+  default['nagios']['server']['install_method'] = 'source'
+  default['nagios']['server']['service_name']   = 'nagios'
 else
-  set['nagios']['server']['install_method'] = 'source'
-  set['nagios']['server']['service_name']   = 'nagios'
+  default['nagios']['server']['install_method'] = 'source'
+  default['nagios']['server']['service_name']   = 'nagios'
 end
 
 set['nagios']['home']       = "/usr/lib/nagios3"
