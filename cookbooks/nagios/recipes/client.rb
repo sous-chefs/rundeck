@@ -34,27 +34,35 @@ else
   end
 end
 
+user node['nagios']['user'] do
+  system true
+end
+
+group node['nagios']['group'] do
+  members [ node['nagios']['user'] ]
+end
+
 include_recipe "nagios::client_#{node['nagios']['client']['install_method']}"
 
 remote_directory node['nagios']['plugin_dir'] do
   source "plugins"
   owner "root"
   group "root"
-  mode 0755
-  files_mode 0755
+  mode 00755
+  files_mode 00755
 end
 
 directory "#{node['nagios']['nrpe']['conf_dir']}/nrpe.d" do
   owner "root"
   group "root"
-  mode 0755
+  mode 00755
 end
 
 template "#{node['nagios']['nrpe']['conf_dir']}/nrpe.cfg" do
   source "nrpe.cfg.erb"
   owner "root"
   group "root"
-  mode "0644"
+  mode 00644
   variables(
     :mon_host => mon_host,
     :nrpe_directory => "#{node['nagios']['nrpe']['conf_dir']}/nrpe.d"

@@ -34,14 +34,6 @@ pkgs.each do |pkg|
   end
 end
 
-user node['nagios']['user'] do
-  system true
-end
-
-group node['nagios']['group'] do
-  members [ node['nagios']['user'] ]
-end
-
 plugins_version = node['nagios']['plugins']['version']
 
 remote_file "#{Chef::Config[:file_cache_path]}/nagios-plugins-#{plugins_version}.tar.gz" do
