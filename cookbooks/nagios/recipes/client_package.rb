@@ -18,28 +18,16 @@
 # limitations under the License.
 #
 
-if platform?("centos", "redhat", "fedora", "amazon", "scientific")
-  %w{
-    nrpe
-    nagios-plugins
-  }.each do |pkg|
-    package pkg
-  end
-  
-  user node['nagios']['user'] do
-    system true
-  end
+pkgs = value_for_platform(
+    ["redhat","centos","fedora","scientific","amazon"] =>
+        {"default" => %w{ nrpe nagios-plugins }},
+    [ "debian", "ubuntu" ] =>
+        {"default" => %w{ nagios-nrpe-server nagios-plugins nagios-plugins-basic nagios-plugins-standard }},
+    "default" => %w{ nagios-nrpe-server nagios-plugins nagios-plugins-basic nagios-plugins-standard }
+  )
 
-  group node['nagios']['group'] do
-    members [ node['nagios']['user'] ]
-  end
-else
-  %w{
-    nagios-nrpe-server
-    nagios-plugins
-    nagios-plugins-basic
-    nagios-plugins-standard
-  }.each do |pkg|
-    package pkg
+pkgs.each do |pkg|
+  package pkg do
+    action :install
   end
 end
