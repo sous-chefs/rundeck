@@ -28,7 +28,7 @@ case node['platform']
 when "ubuntu","debian"
   default['nagios']['server']['install_method'] = 'package'
   default['nagios']['server']['service_name']   = 'nagios3'
-when "redhat","centos","fedora","scientific"
+when "redhat","centos","fedora","scientific","amazon"
   default['nagios']['server']['install_method'] = 'source'
   default['nagios']['server']['service_name']   = 'nagios'
 else
