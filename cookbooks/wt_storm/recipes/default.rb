@@ -13,7 +13,10 @@ include_recipe "storm"
 # of chef-client will fail
 
 download_url = node['wt_storm']['download_url']
-install_tmp = "/tmp/wt_storm_install"
+install_tmp = '/tmp/wt_storm_install'
+tarball = 'streaming-analysis-bin.tar.gz'
+
+jf_base_download_url = node['wt_storm']['jf_base_download_url']
 
 if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so we will grab the tar ball and install"
@@ -30,7 +33,6 @@ if ENV["deploy_build"] == "true" then
       group "root"
       mode 00755
       recursive true
-      action :create
     end
 
     # extract the source file into TEMP directory
@@ -38,11 +40,26 @@ if ENV["deploy_build"] == "true" then
       user  "root"
       group "root"
       cwd install_tmp
-      command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+      creates "#{install_tmp}/lib"
+      command "tar zxvf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
 
 %w{
-streaming-analysis.jar
+webtrends.hbase.jar
+webtrends.core.jar
+webtrends.monitoring.jar
+webtrends.authentication.jar
+webtrends.auditing.serialization.jar
+webtrends.auditing.jar
+}.each do |jar|
+      # grab the source file
+      remote_file "#{install_tmp}/lib/#{jar}" do
+        source "#{jf_base_download_url}/#{jar}"
+        mode 00644
+      end
+    end
+	
+%w{
 activation-1.1.jar
 aopalliance-1.0.jar
 avro-1.5.3.jar
@@ -54,10 +71,8 @@ commons-el-1.0.jar
 commons-httpclient-3.1.jar
 commons-math-2.1.jar
 commons-net-1.4.1.jar
-concurrentlinkedhashmap-lru-1.2.jar
 fastutil-6.4.4.jar
 groovy-all-1.7.6.jar
-gson-2.1.jar
 guice-3.0.jar
 hadoop-core-1.0.0.jar
 hamcrest-core-1.1.jar
@@ -68,7 +83,7 @@ jackson-jaxrs-1.5.5.jar
 jackson-mapper-asl-1.9.3.jar
 jackson-xc-1.5.5.jar
 JavaEWAH-0.5.0.jar
-javax.inject.jar
+javax.inject-1.jar
 jdom-1.1.jar
 jersey-core-1.4.jar
 jersey-json-1.4.jar
@@ -87,7 +102,8 @@ scala-library-2.8.0.jar
 snappy-java-1.0.3.2.jar
 stax-api-1.0.1.jar
 storm-kafka-0.7.2-snaptmp8.jar
-user-agent-utils-1.2.4.jar
+streaming-analysis.jar
+UserAgentUtils-1.2.4.jar
 webtrends.hbase.jar
 webtrends.core.jar
 webtrends.monitoring.jar
@@ -98,11 +114,10 @@ wurfl-1.4.0.1.jar
 xmlenc-0.52.jar
 zkclient-0.1.jar
 }.each do |jar|
-      remote_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/#{jar}" do
-        source "#{install_tmp}/lib/#{jar}"
-        owner "storm"
-        group "storm"
-        mode 00644
+      execute "mv" do
+        user  "root"
+        group "root"
+        command "mv #{install_tmp}/lib/#{jar} #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/#{jar}"
       end
     end
 
