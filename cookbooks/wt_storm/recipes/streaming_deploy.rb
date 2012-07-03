@@ -21,7 +21,9 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
-    :topology             => "streaming-topology",
+    :topology => "streaming-topology",
+	:topology_parsing_bolt_count       => 10,
+	:topology_netty_emitter_bolt_count => 10,
     :zookeeper_quorum     => zookeeper_quorum.map { |server| server[:fqdn] } * ",",
     :zookeeper_clientport => zookeeper_clientport,
     :zookeeper_pairs	  => zookeeper_quorum.map { |server| "#{server[:fqdn]}:#{zookeeper_clientport}" } * ",",
