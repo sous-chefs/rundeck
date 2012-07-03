@@ -61,7 +61,7 @@ bash "compile-nagios" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
     tar zxvf nagios-#{version}.tar.gz
-    cd nagios-#{version}
+    cd nagios
     ./configure --prefix=/usr \
         --mandir=/usr/share/man \
         --bindir=/usr/sbin \
