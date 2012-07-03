@@ -260,6 +260,58 @@ LoadPlugin java
 				Attribute "MeanRate"
 			</Value>
         </MBean>
+        <MBean "collection-latency">
+			ObjectName "streamingapi:type=latency,name=collection-latency"
+			InstancePrefix "SAPI_latency_"
+			InstanceFrom "name"
+			<Value>
+				Type "gauge"
+				InstancePrefix "Max"
+				#InstanceFrom ""
+				Table false
+				Attribute "Max"
+			</Value>
+			<Value>
+				Type "gauge"
+				InstancePrefix "Min"
+				#InstanceFrom ""
+				Table false
+				Attribute "Min"
+			</Value>
+            <Value>
+				Type "gauge"
+				InstancePrefix "Mean"
+				#InstanceFrom ""
+				Table false
+				Attribute "Mean"
+			</Value>
+        </MBean>
+        <MBean "source-latency">
+			ObjectName "streamingapi:type=latency,name=source-latency"
+			InstancePrefix "SAPI_latency_"
+			InstanceFrom "name"
+			<Value>
+				Type "gauge"
+				InstancePrefix "Max"
+				#InstanceFrom ""
+				Table false
+				Attribute "Max"
+			</Value>
+			<Value>
+				Type "gauge"
+				InstancePrefix "Min"
+				#InstanceFrom ""
+				Table false
+				Attribute "Min"
+			</Value>
+            <Value>
+				Type "gauge"
+				InstancePrefix "Mean"
+				#InstanceFrom ""
+				Table false
+				Attribute "Mean"
+			</Value>
+        </MBean>
         <MBean "socket_active-filter-channels">
 			ObjectName "streamingapi:type=sockethandler,name=active-filter-channels"
 			InstancePrefix "SAPI_sockethandler_"
@@ -358,14 +410,16 @@ LoadPlugin java
 			Collect "auth_handle-request"
 			Collect "auth_invalid-credentials"
 			Collect "auth_requests-handled"
-			Collect "metrics_active-channels">
-			Collect "metrics_handle-request">
-			Collect "metrics_handle-request-error">
-			Collect "metrics_requests-handled">
-			Collect "socket_active-filter-channels">
-			Collect "socket_handle-request">
-			Collect "socket_handle-request-error">
-			Collect "socket_requests-handled">
+			Collect "metrics_active-channels"
+			Collect "metrics_handle-request"
+			Collect "metrics_handle-request-error"
+			Collect "metrics_requests-handled"
+			Collect "socket_active-filter-channels"
+			Collect "socket_handle-request"
+			Collect "socket_handle-request-error"
+			Collect "socket_requests-handled"
+            Collect "collection-latency"
+            Collect "source-latency"
         </Connection>
         </Plugin>
 </Plugin>
