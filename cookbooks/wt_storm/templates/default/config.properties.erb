@@ -32,7 +32,7 @@ streaming.topology.parsing.bolt.count=
 streaming.topology.netty.emitter.bolt.count=
 
 # Zookeeper connection info (use this or audit.broker.list)
-audit.zk.connect=<%= @zookeeper_quorumport %>
+audit.zk.connect=<%= @zookeeper_pairs %>
 # The kafka producer type (defaults to async)
 audit.producer.type=async
 # The time span (in minutes) between each audit flush (defaults to 10)
