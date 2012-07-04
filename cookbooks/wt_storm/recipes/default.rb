@@ -118,6 +118,11 @@ zkclient-0.1.jar
         group "root"
         command "mv #{install_tmp}/lib/#{jar} #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/#{jar}"
       end
+      execute "chown" do
+        user  "root"
+        group "root"
+        command "chown storm:storm #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/#{jar}"
+      end
     end
 
     # create the log directory
@@ -141,6 +146,11 @@ zkclient-0.1.jar
     # storm looks for storm.yaml in ~/.storm/storm.yaml
     link "/home/storm/.storm" do
       to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
+    end
+
+    directory install_tmp do
+      action :delete
+      recursive true
     end
 
 end
