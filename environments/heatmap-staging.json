@@ -250,7 +250,7 @@
         }, 
         "wt_storm": {
             "dcsid_whitelist": "",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/19671:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/19677:id/streaming-analysis-bin.tar.gz",
             "jf_base_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt119/19631:id/jars/"
         }, 
         "wt_streaming_audit": {
