@@ -22,10 +22,10 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   mode   00644
   variables(
     :topology => "realtime-topology",
-    :topology_parsing_bolt_count    => 3,
-    :topology_row_key_bolt_count    => 12,
-    :topology_writing_bolt_count    => 24,
-    :topology_dimensions_bolt_count => 3,
+    :realtime_topology_parsing_bolt_count    => 3,
+    :realtime_topology_row_key_bolt_count    => 12,
+    :realtime_topology_writing_bolt_count    => 24,
+    :realtime_topology_dimensions_bolt_count => 3,
     :topology_override_max_spout_pending => 3000,
     :topology_override_msg_timeout_seconds => 120,
     :zookeeper_quorum      => zookeeper_quorum.map { |server| server[:fqdn] } * ",",
