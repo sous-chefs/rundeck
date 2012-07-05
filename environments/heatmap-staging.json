@@ -245,7 +245,7 @@
             "environment": "heatmap-staging"
         }, 
         "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/19360:id/realtimeapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/19635:id/realtimeapi-bin.tar.gz", 
             "port": 8082
         }, 
         "wt_storm": {
