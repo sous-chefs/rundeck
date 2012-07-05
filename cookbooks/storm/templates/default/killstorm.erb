@@ -25,13 +25,13 @@ killall -u storm
 if [ "/" = "$MNT_DIR" -o "" = "$MNT_DIR" ]; then
     echo "Storm scratch directory set to root, check your script!"
 else
-    rm -rf "$MNT_DIR/*"
+    rm -rf $MNT_DIR/*
 fi
 
 if [ "/" = "$LOG_DIR" -o "" = "$LOG_DIR" ]; then
     echo "Storm log directory set to root, check your script!"
 else
-    rm -f "$LOG_DIR/*"
+    rm -f $LOG_DIR/*
 fi
 
 echo "Storm killed, you will need to run 'sv start [component]' to restart it..."
