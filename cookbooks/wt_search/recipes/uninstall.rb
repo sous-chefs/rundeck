@@ -33,7 +33,7 @@ end
 
 ruby_block "wait" do
 	block do
-		sleep(30)
+		sleep(60)
 	end
 	action :create
 end
