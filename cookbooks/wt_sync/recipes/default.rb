@@ -14,26 +14,10 @@ require 'rexml/document'
 require 'json'
 
 if deploy_mode?
-	include_recipe "wt_sync::uninstall" 
-
-	# source build
-	build_data = data_bag_item('wt_builds', node.chef_environment)
-	build_id = build_data[node['wt_sync']['tc_proj'] ]
-	if build_id == nil
-		raise Chef::Exceptions::AttributeNotFound,
-		"could not find build id: #{install_dir}"
-	end
-	base_url = 'http://teamcity.webtrends.corp/guestAuth/app/rest/builds/' + build_id
-
-	response = RestClient.get base_url
-	btID = nil
-	build_doc = REXML::Document.new(response.body)
-	build_doc.elements.each('//buildType') do |type|
-		btID = type.attributes["id"]
-	end
-	install_url = "http://teamcity.webtrends.corp/guestAuth/repository/download/#{btID}/#{build_id}:id/#{node['wt_sync']['artifact']}"
-	log install_url
+	include_recipe "wt_sync::uninstall" 	
 end
+
+download_url = node['wt_sync']['download_url']
 # get parameters
 master_host = node['wt_common']['master_host']
 
