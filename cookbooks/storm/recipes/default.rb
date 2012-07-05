@@ -104,3 +104,13 @@ template "/home/storm/.profile" do
   )
 end
 
+template "#{install_dir}/bin/killstorm" do
+  source  "killstorm.erb"
+  owner "root"
+  group "root"
+  mode  00755
+  variables({
+    :log_dir => node['storm']['log_dir']
+  })
+end
+
