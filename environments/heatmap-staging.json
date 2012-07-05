@@ -7,7 +7,7 @@
         "kafka": "= 1.0.5", 
         "wt_heatmaps": "= 0.10.4", 
         "wt_realtimeapi": "= 0.0.17", 
-        "wt_streamingapi": "= 0.0.14", 
+        "wt_streamingapi": "= 0.0.16", 
         "wt_streamingaudit": "= 0.0.6", 
         "wt_streamingcollection": "= 0.0.18", 
         "wt_streaminglogreplayer": "= 0.0.15", 
@@ -257,7 +257,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14244:id/streamingauditor-bin.tar.gz"
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/19637:id/streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/19794:id/streamingapi-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingcollection": {
