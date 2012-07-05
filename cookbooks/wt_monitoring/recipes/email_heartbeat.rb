@@ -12,5 +12,5 @@
 cron "email_heartbeat" do
   minute "0"
   hour "*/6"
-  command "echo \"At the tone the time will be $(date \\+\\%k:\\%M) on $(date \\+\\%Y-\\%m-\\%d)\" | /bin/mail -s \"Nagios 4hr Heartbeat - $(date \\+\\%k:\\%M)\" #{node['wt_common']['admin_email']}"
+  command "echo \"At the tone the time will be $(date \\+\\%k:\\%M) on $(date \\+\\%Y-\\%m-\\%d)\" | mail -s \"Nagios 4hr Heartbeat - $(date \\+\\%k:\\%M)\" #{node['wt_common']['admin_email']}"
 end
