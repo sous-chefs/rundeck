@@ -101,6 +101,7 @@ scala-library-2.8.0.jar
 snappy-java-1.0.3.2.jar
 stax-api-1.0.1.jar
 storm-kafka-0.7.2-snaptmp8.jar
+streaming-analysis.jar
 UserAgentUtils-1.2.4.jar
 webtrends.hbase.jar
 webtrends.core.jar
@@ -122,18 +123,6 @@ zkclient-0.1.jar
         group "root"
         command "chown storm:storm #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/#{jar}"
       end
-    end
-
-    # special location for streaming-analysis.jar
-    execute "mv" do
-      user  "root"
-      group "root"
-      command "mv #{install_tmp}/lib/streaming-analysis.jar #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/streaming-analysis.jar"
-    end
-    execute "chown" do
-      user  "root"
-      group "root"
-      command "chown storm:storm #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/streaming-analysis.jar"
     end
 	
     # create the log directory
