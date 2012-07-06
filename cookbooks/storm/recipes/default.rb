@@ -114,3 +114,12 @@ template "#{install_dir}/bin/killstorm" do
   })
 end
 
+# increase the file limits for the storm user
+file "/etc/security/limits.d/123storm.conf" do
+  owner "root"
+  group "root"
+  mode 00644
+  content "storm  -       nofile  32768"
+  action :create
+end
+
