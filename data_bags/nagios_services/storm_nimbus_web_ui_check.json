@@ -1,5 +1,5 @@
 {
-"id": "storm_nimbus_web_ui_check",
-"hostgroup_name": "storm_nimbus",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -a '-H localhost -u http://localhost/ -p 8080'"
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -a '-H localhost -u http://localhost/ -p 8080'", 
+    "hostgroup_name": "storm_nimbus", 
+    "id": "storm_nimbus_web_ui_check"
 }

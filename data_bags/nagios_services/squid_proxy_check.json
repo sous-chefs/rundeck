@@ -1,5 +1,5 @@
 {
-"id": "squid_proxy_check",
-"hostgroup_name": "squid",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -a '-H localhost -p 8080 -u 'http://www.google.com''"
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -a '-H localhost -p 8080 -u 'http://www.google.com''", 
+    "hostgroup_name": "squid", 
+    "id": "squid_proxy_check"
 }

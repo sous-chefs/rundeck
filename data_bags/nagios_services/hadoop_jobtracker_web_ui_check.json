@@ -1,5 +1,5 @@
 {
-"id": "hadoop_jobtracker_web_ui_check",
-"hostgroup_name": "hadoop_jobtracker",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -a '-H $HOSTNAME -u http://$HOSTNAME/jobtracker.jsp -p 50030'"
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -a '-H $HOSTNAME -u http://$HOSTNAME/jobtracker.jsp -p 50030'", 
+    "hostgroup_name": "hadoop_jobtracker", 
+    "id": "hadoop_jobtracker_web_ui_check"
 }
