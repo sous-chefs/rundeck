@@ -1,5 +1,5 @@
 {
-"id": "wt_streaming_collection_server_process_check",
-"hostgroup_name": "wt_streaming_collection_server",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jps -a 'CollectionDaemon'"
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jps -a 'CollectionDaemon'", 
+    "hostgroup_name": "wt_streaming_collection_server", 
+    "id": "wt_streaming_collection_server_process_check"
 }

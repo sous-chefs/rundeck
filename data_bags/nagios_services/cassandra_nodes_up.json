@@ -1,5 +1,5 @@
 {
-"id": "cassandra_nodes_up",
-"hostgroup_name": "cassandra",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_cassandra_ring -a '-w 9 -c 9'"
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_cassandra_ring -a '-w 9 -c 9'", 
+    "hostgroup_name": "cassandra", 
+    "id": "cassandra_nodes_up"
 }

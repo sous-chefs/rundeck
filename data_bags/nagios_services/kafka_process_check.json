@@ -1,5 +1,5 @@
 {
-"id": "kafka_process_check",
-"hostgroup_name": "kafka",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jps -a 'Kafka'"
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jps -a 'Kafka'", 
+    "hostgroup_name": "kafka", 
+    "id": "kafka_process_check"
 }
