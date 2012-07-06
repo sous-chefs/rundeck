@@ -1,5 +1,5 @@
 {
-"id": "zookeeper_peers",
-"hostgroup_name": "zookeeper",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jmx -a '-U service:jmx:rmi:///jndi/rmi://localhost:10201/jmxrmi -O org.apache.ZooKeeperService:name0=ReplicatedServer_id* -A QuorumSize -c 3:'"
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jmx -a '-U service:jmx:rmi:///jndi/rmi://localhost:10201/jmxrmi -O org.apache.ZooKeeperService:name0=ReplicatedServer_id* -A QuorumSize -c 3:'", 
+    "hostgroup_name": "zookeeper", 
+    "id": "zookeeper_peers"
 }

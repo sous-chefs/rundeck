@@ -1,5 +1,5 @@
 {
-"id": "wt_heatmaps_logconverter_log_check",
-"hostgroup_name": "wt_heatmaps_logconverter",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_log -a '-F /var/log/webtrends/hmlc/heatmaps-logconverter.log -O /tmp/NRPE_check_log_heatmaps-logconverter.log -q 'ERROR''"
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_log -a '-F /var/log/webtrends/hmlc/heatmaps-logconverter.log -O /tmp/NRPE_check_log_heatmaps-logconverter.log -q 'ERROR''", 
+    "hostgroup_name": "wt_heatmaps_logconverter", 
+    "id": "wt_heatmaps_logconverter_log_check"
 }
