@@ -8,15 +8,15 @@ LOG_DIR=<%=@log_dir%>
 MNT_DIR=/mnt/storm
 
 if [ "" != "$SUPERVISOR" ]; then
-        sv stop supervisor
+    sv stop supervisor
 fi
 
 if [ "" != "$STORMUI" ]; then
-        sv stop stormui
+    sv stop stormui
 fi
 
 if [ "" != "$NIMBUS" ]; then
-        sv stop nimbus
+    sv stop nimbus
 fi
 
 sleep 2
