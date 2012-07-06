@@ -1,0 +1,10 @@
+{
+  "name": "ea_system",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Early Adopter Systems",
+  "run_list": [
+  ],
+  "override_attributes": {
+  }
+}
