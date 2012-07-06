@@ -1,5 +1,5 @@
 {
-"id": "wt_streaming_api_server_healthcheck",
-"hostgroup_name": "wt_streaming_api_server",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_healthcheck_page"
+  "id":"wt_streaming_api_server_healthcheck",
+  "hostgroup_name":"wt_streaming_api_server",
+  "command_line":"$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_healthcheck_page"
 }
