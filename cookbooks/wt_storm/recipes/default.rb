@@ -46,6 +46,7 @@ if ENV["deploy_build"] == "true" then
 %w{
 webtrends.hbase.jar
 webtrends.core.jar
+webtrends.collection.messages.jar
 webtrends.monitoring.jar
 webtrends.authentication.jar
 webtrends.auditing.serialization.jar
@@ -105,6 +106,7 @@ streaming-analysis.jar
 UserAgentUtils-1.2.4.jar
 webtrends.hbase.jar
 webtrends.core.jar
+webtrends.collection.messages.jar
 webtrends.monitoring.jar
 webtrends.authentication.jar
 webtrends.auditing.serialization.jar
