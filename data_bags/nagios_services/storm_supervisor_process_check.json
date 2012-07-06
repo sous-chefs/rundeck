@@ -1,5 +1,5 @@
 {
-"id": "storm_supervisor_process_check",
-"hostgroup_name": "storm_supervisor",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jps -a 'supervisor worker'"
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jps -a 'supervisor worker'", 
+    "hostgroup_name": "storm_supervisor", 
+    "id": "storm_supervisor_process_check"
 }

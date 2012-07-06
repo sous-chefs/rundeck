@@ -1,5 +1,5 @@
 {
-"id": "memcached_connection_check",
-"hostgroup_name": "memcached",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_memcached_conns -a '-w 800 -c 900'"
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_memcached_conns -a '-w 800 -c 900'", 
+    "hostgroup_name": "memcached", 
+    "id": "memcached_connection_check"
 }

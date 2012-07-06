@@ -1,5 +1,5 @@
 {
-"id": "cassandra_log_file_age",
-"hostgroup_name": "cassandra",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_file_age -a '-f /var/log/cassandra/system.log -w 14399 -c 14400'"
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_file_age -a '-f /var/log/cassandra/system.log -w 14399 -c 14400'", 
+    "hostgroup_name": "cassandra", 
+    "id": "cassandra_log_file_age"
 }
