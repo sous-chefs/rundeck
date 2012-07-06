@@ -56,7 +56,6 @@ default['nagios']['server']['version']  = '3.4.1'
 default['nagios']['server']['checksum'] = '2fa8acfb2a92b1bf8d173a855832de1f'
 
 default['nagios']['notifications_enabled']   = 0
-default['nagios']['email_command']           = "/bin/mail"
 default['nagios']['check_external_commands'] = true
 default['nagios']['default_contact_groups']  = %w(admins)
 default['nagios']['sysadmin_email']          = "root@localhost"

@@ -145,6 +145,36 @@ user "webtrends" do
   password "*"
 end
 
+# create the dev account on early adopter systems with sudo privs
+if node.run_list.includes?("ea_system")
+	user "ea" do
+		uid 31337
+		home "/home/ea"
+		supports :manage_home => true
+		comment "Early Adopter Dev Account"
+		shell "/bin/bash"
+		password auth_config['ea_password']
+	end
+	
+	file "/etc/sudoers.d/ea" do
+		owner "root"
+		group "root"
+		mode 00440
+		content "ea	ALL=(ALL) ALL"
+		action :create
+	end
+else
+  #This disables the user if the system is not a EA system
+	user "ea" do
+		uid 31337
+		home "/home/ea"
+		supports :manage_home => true
+		comment "Early Adopter Dev Account"
+		shell "/bin/bash"
+		password "*"
+	end
+end
+
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
 
