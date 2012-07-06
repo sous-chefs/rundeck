@@ -26,10 +26,19 @@ service node['wt_sync']['service_name'] do
 	ignore_failure true
 end
 
+# delays to give the service plenty of time to actually stop
+ruby_block "wait" do
+	block do
+		sleep(120)
+	end
+	action :create
+end
+
 execute "sc" do
 	command sc_cmd
 	ignore_failure true
 end
+
 
 # delete install folder
 directory install_dir do
