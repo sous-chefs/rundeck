@@ -1,4 +1,8 @@
-## Future
+## 1.0.16
+* Increase file limits for the storm user from 1024 to 32k
+
+## 1.0.15
+* Someone changes something
 
 ## 1.0.14
 * Create a link /opt/storm/current that points to the current version
