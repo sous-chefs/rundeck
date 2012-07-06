@@ -1,5 +1,5 @@
 {
-"id": "wt_heatmaps_url_check",
-"hostgroup_name": "wt_heatmaps_api",
-"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_heatmaps_url_check"
+"id": "wt_netacuity_web_ui_check",
+"hostgroup_name": "wt_netacuity",
+"command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_netacuity_web_ui_check"
 }
