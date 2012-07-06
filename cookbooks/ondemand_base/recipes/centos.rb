@@ -146,7 +146,7 @@ user "webtrends" do
 end
 
 # create the dev account on early adopter systems with sudo privs
-if node.run_list.includes?("ea_system")
+if node.run_list.include?("ea_system")
 	user "ea" do
 		uid 31337
 		home "/home/ea"
