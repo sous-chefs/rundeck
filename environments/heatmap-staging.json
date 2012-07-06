@@ -248,9 +248,9 @@
             "port": 8082
         }, 
         "wt_storm": {
-            "dcsid_whitelist": "", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/19679:id/streaming-analysis-bin.tar.gz", 
-            "jf_base_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt119/19884:id/jars/"
+            "dcsid_whitelist": "",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/19993:id/streaming-analysis-bin.tar.gz",
+            "jf_base_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt119/19999:id/jars/"
         }, 
         "wt_streaming_audit": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14244:id/streamingauditor-bin.tar.gz"
