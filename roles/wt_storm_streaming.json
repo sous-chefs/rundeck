@@ -10,11 +10,11 @@
     "storm": {
       "cluster_role": "wt_storm_streaming",
       "zookeeper": {
-        "root": "/storm-streaming"
+        "root": "/v2-storm-streaming"
       },
       "transactional": {
         "zookeeper": {
-          "root": "/storm-streaming-transactional"
+          "root": "/v2-storm-streaming-transactional"
         }
       }
     }
