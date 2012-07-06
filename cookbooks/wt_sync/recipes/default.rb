@@ -72,7 +72,7 @@ if deploy_mode?
 
 	# unzip the install package
 	windows_zipfile install_dir do
-		source install_url
+		source download_url
 		action :unzip	
 	end
 	
