@@ -1,8 +1,8 @@
 {
-  "name": "ea_system",
+  "name": "ea_server",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Early Adopter Systems",
+  "description": "Early Adopter Servers",
   "run_list": [
   ],
   "override_attributes": {
