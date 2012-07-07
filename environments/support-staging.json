@@ -201,11 +201,15 @@
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
+            "server": {
+                "install_method": "source", 
+                "service_name": "nagios"
+            }, 
             "server_auth_method": "htpasswd", 
             "server_role": "nagios_xi", 
             "sysadmin_email": "trent.white@webtrends.com", 
             "users_databag_group": "staging"
-        }, 
+        },
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
