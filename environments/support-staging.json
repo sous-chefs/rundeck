@@ -1,6 +1,8 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {}, 
+    "cookbook_versions": {
+				"nagios": "= 1.3.0"
+    }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
