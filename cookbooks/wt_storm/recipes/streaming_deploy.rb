@@ -8,8 +8,16 @@
 
 include_recipe "wt_storm"
 
+# grab the zookeeper port number if specified
 zookeeper_clientport = node['zookeeper']['client_port']
-zookeeper_quorum = search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}")
+
+# grab the zookeeper nodes that are currently available
+zookeeper_quorum = Array.new
+if not Chef::Config.solo
+    search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+        zookeeper_quorum << n[:fqdn]
+    end
+end
 
 # fall back to attribs if search doesn't come up with any zookeeper nodes
 if zookeeper_quorum.count == 0
@@ -29,22 +37,23 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
-    :topology => "streaming-topology",
-    :streaming_topology_sapi_host => sapi[:fqdn],
+    :topology                                    => "streaming-topology",
+    :streaming_topology_sapi_host                => sapi[:fqdn],
     :streaming_topology_parsing_bolt_count       => 50,
     :streaming_topology_netty_emitter_bolt_count => 10,
-    :zookeeper_quorum     => zookeeper_quorum.map { |server| server[:fqdn] } * ",",
-    :zookeeper_clientport => zookeeper_clientport,
-    :zookeeper_pairs	  => zookeeper_quorum.map { |server| "#{server[:fqdn]}:#{zookeeper_clientport}" } * ",",
-    :cam                  => node[:wt_cam][:cam_server_url],
-    :config_distrib       => node[:wt_configdistrib][:dcsid_url],
-    :netacuity            => netacuity[:fqdn],
-    :kafka                => kafka[:fqdn],
-    :pod                  => node[:wt_realtime_hadoop][:pod],
-    :datacenter           => node[:wt_realtime_hadoop][:datacenter],
-    :dcsid_whitelist      => node[:wt_storm][:dcsid_whitelist],
-    :debug                => node[:wt_storm][:debug],
+    # non-storm parameters
+    :zookeeper_quorum      => zookeeper_quorum * ",",
+    :zookeeper_clientport  => zookeeper_clientport,
+    :zookeeper_pairs       => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
+    :cam                   => node[:wt_cam][:cam_server_url],
+    :config_distrib        => node[:wt_configdistrib][:dcsid_url],
+    :netacuity             => netacuity[:fqdn],
+    :kafka                 => kafka[:fqdn],
+    :pod                   => node[:wt_realtime_hadoop][:pod],
+    :datacenter            => node[:wt_realtime_hadoop][:datacenter],
+    :dcsid_whitelist       => node[:wt_storm][:dcsid_whitelist],
+    :debug                 => node[:wt_storm][:debug],
     :audit_bucket_timespan => node[:wt_monitoring][:audit_bucket_timespan],
-    :audit_topic          => node[:wt_monitoring][:audit_topic]
+    :audit_topic           => node[:wt_monitoring][:audit_topic]
   )
 end
