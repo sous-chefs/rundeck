@@ -149,7 +149,7 @@
             }, 
             "site": {
                 "zookeeper_clientport": 2181, 
-                "zookeeper_quorum": "hzoo01.staging.dmz,hzoo02.staging.dmz,hzoo03.staging.dmz"
+                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
             }
         }, 
         "java": {
@@ -241,21 +241,23 @@
             "pod": "H"
         }, 
         "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/18775:id/realtimeapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/.lastSuccessful/realtimeapi-bin.tar.gz", 
             "port": 8082
         }, 
         "wt_storm": {
-            "download_url": "http://repo.staging.dmz/repo/linux/storm/jars/"
+            "dcsid_whitelist": "", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/.lastSuccessful/streaming-analysis-bin.tar.gz", 
+            "jf_base_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt119/.lastSuccessful/jars/"
         }, 
         "wt_streaming_audit": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14244:id/streamingauditor-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/.lastSuccessful/streamingauditor-bin.tar.gz"
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/18771:id/streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/.lastSuccessful/streamingapi-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/18773:id/streamingcollection-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/.lastSuccessful/streamingcollection-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streaminglogreplayer": {

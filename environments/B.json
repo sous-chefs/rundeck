@@ -225,9 +225,9 @@
             "client_port": 2181, 
             "init_limit": 10, 
             "quorum": [
-                "bzoo01.staging.dmz", 
-                "bzoo02.staging.dmz", 
-                "bzoo03.staging.dmz"
+                "szoo01.staging.dmz", 
+                "szoo02.staging.dmz", 
+                "szoo03.staging.dmz"
             ], 
             "snapshot_num": 3, 
             "sync_limit": 5, 
