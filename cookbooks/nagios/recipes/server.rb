@@ -45,7 +45,7 @@ end
 # if multi_os_monitoring is enabled then find all unique platforms to create hostgroups
 os_list = Array.new
 if node['nagios']['multi_os_monitoring']
-  nodes do |n|
+  nodes.each do |n|
     if !os_list.include?(n.os)
       os_list << n.os
     end
