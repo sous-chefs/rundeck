@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: ms_dotnet4
+# Cookbook Name:: ms_dotnet45
 # Recipe:: default
 #
 # Copyright 2012, Webtrends Inc.
