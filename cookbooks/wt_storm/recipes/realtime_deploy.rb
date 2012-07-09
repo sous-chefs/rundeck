@@ -8,8 +8,16 @@
 
 include_recipe "wt_storm"
 
+# grab the zookeeper port number if specified
 zookeeper_clientport = node['zookeeper']['client_port']
-zookeeper_quorum = search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}")
+
+# grab the zookeeper nodes that are currently available
+zookeeper_quorum = Array.new
+if not Chef::Config.solo
+    search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+        zookeeper_quorum << n[:fqdn]
+    end
+end
 
 # fall back to attribs if search doesn't come up with any zookeeper nodes
 if zookeeper_quorum.count == 0
@@ -29,16 +37,17 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
-    :topology => "realtime-topology",
+    :topology                                => "realtime-topology",
     :realtime_topology_parsing_bolt_count    => 3,
     :realtime_topology_row_key_bolt_count    => 12,
     :realtime_topology_writing_bolt_count    => 48,
     :realtime_topology_dimensions_bolt_count => 3,
-    :topology_override_max_spout_pending => 3000,
-    :topology_override_msg_timeout_seconds => 120,
-    :zookeeper_quorum      => zookeeper_quorum.map { |server| server[:fqdn] } * ",",
+    :topology_override_max_spout_pending     => 3000,
+    :topology_override_msg_timeout_seconds   => 120,
+    # non-storm parameters
+    :zookeeper_quorum      => zookeeper_quorum * ",",
     :zookeeper_clientport  => zookeeper_clientport,
-    :zookeeper_pairs	   => zookeeper_quorum.map { |server| "#{server[:fqdn]}:#{zookeeper_clientport}" } * ",",
+    :zookeeper_pairs	   => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
     :cam                   => node[:wt_cam][:cam_server_url],
     :sapi                  => sapi[:fqdn],
     :config_distrib        => node[:wt_configdistrib][:dcsid_url],
