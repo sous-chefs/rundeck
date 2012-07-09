@@ -28,7 +28,7 @@ include_recipe "php"
 include_recipe "php::module_gd"
 
 pkgs = value_for_platform(
-    ["redhat","centos","fedora","scientific"] =>
+    ["redhat","centos","fedora","scientific","amazon"] =>
         {"default" => %w{ openssl-devel gd-devel }},
     [ "debian", "ubuntu" ] =>
         {"default" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx}},

@@ -1,5 +1,5 @@
 {
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_procs -a '-c 1: -C 'collectd''", 
     "hostgroup_name": "linux", 
-    "id": "collectd_daemon"
+    "id": "linux_collectd_daemon"
 }

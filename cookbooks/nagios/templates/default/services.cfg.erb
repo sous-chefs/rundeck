@@ -7,7 +7,6 @@ define service {
     service_description Nagios
     hostgroup_name      <%= node['nagios']['server_role'] %>
     check_command       check-nagios
-    contact_groups      admins
     use                 default-service
 }
 
@@ -24,13 +23,6 @@ define service {
     service_description Free Space All Disks
     hostgroup_name      linux
     check_command       check_all_disks
-    use                 default-service
-}
-
-define service {
-    service_description Load Average
-    hostgroup_name      linux
-    check_command       check_load
     use                 default-service
 }
 
