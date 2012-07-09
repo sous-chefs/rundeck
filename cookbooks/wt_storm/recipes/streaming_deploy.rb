@@ -23,7 +23,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   variables(
     :topology => "streaming-topology",
     :streaming_topology_sapi_host => sapi[:fqdn],
-    :streaming_topology_parsing_bolt_count       => 3,
+    :streaming_topology_parsing_bolt_count       => 50,
     :streaming_topology_netty_emitter_bolt_count => 10,
     :zookeeper_quorum     => zookeeper_quorum.map { |server| server[:fqdn] } * ",",
     :zookeeper_clientport => zookeeper_clientport,
