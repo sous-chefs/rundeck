@@ -8,8 +8,8 @@
 
 include_recipe "wt_storm"
 
+zookeeper_clientport = node['zookeeper']['client_port']
 zookeeper_quorum = search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}")
-zookeeper_clientport = search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").first[:client_port]
 
 # fall back to attribs if search doesn't come up with any zookeeper nodes
 if zookeeper_quorum.count == 0
