@@ -1,5 +1,5 @@
 {
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_updates", 
     "hostgroup_name": "linux", 
-    "id": "system_updates"
+    "id": "linux_system_updates"
 }

@@ -1,6 +1,8 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {}, 
+    "cookbook_versions": {
+        "nagios": "= 1.3.0"
+    }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -200,6 +202,10 @@
             "multi_os_monitoring": true, 
             "nrpe": {
                 "dont_blame_nrpe": "1"
+            }, 
+            "server": {
+                "install_method": "source", 
+                "service_name": "nagios"
             }, 
             "server_auth_method": "htpasswd", 
             "server_role": "nagios_xi", 
