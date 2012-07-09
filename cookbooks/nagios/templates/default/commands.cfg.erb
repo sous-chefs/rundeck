@@ -286,11 +286,6 @@ define command {
 }
 
 define command {
-	command_name    check_swap
-	command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c check_swap -t 20
-}
-
-define command {
 	command_name    check_solr_index
 	command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c check_$ARG1$_solr_index -t 20
 }
@@ -338,6 +333,16 @@ define command {
 <% @services.each do |service| -%>
 define command {
   command_name check_<%= service['id'] %>
-  command_line <%= service ['command_line'] %>
+  command_line <%= service['command_line'] %>
 }
+<% end -%>
+
+<% if !eventhandlers.empty? do -%>
+# Event Handlers added through nagios_eventhandlers data bags
+<% @eventhandlers.each do |service| -%>
+define command {
+  command_name check_<%= eventhandlers['id'] %>
+  command_line <%= eventhandlers['command_line'] %>
+}
+<% end -%>
 <% end -%>
