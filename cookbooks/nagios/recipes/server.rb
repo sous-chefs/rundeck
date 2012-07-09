@@ -36,16 +36,23 @@ else
 	nodes = search(:node, "hostname:[* TO *] AND chef_environment:#{node.chef_environment}")
 end
 
+if nodes.empty?
+  Chef::Log.info("No nodes returned from search, using this node so hosts.cfg has data")
+  nodes = Array.new
+  nodes << node
+end
+
 # if multi_os_monitoring is enabled then find all unique platforms to create hostgroups
 os_list = Array.new
 if node['nagios']['multi_os_monitoring']
-  search(:node, "hostname:[* TO *]") do |n|
+  nodes do |n|
     if !os_list.include?(n.os)
       os_list << n.os
     end
   end
 end
 
+# Load Nagios services from the nagios_services data bag
 begin
   services = search(:nagios_services, '*:*')
 rescue Net::HTTPServerException
@@ -57,10 +64,16 @@ if services.nil? || services.empty?
   services = Array.new
 end
 
-if nodes.empty?
-  Chef::Log.info("No nodes returned from search, using this node so hosts.cfg has data")
-  nodes = Array.new
-  nodes << node
+# Load Nagios event handlers from the nagios_eventhandlers data bag
+begin
+  eventhandlers = search(:nagios_eventhandlers, '*:*')
+rescue Net::HTTPServerException
+  Chef::Log.info("Search for nagios_eventhandlers data bag failed, so we'll just move on.")
+end
+
+if eventhandlers.nil? || eventhandlers.empty?
+  Chef::Log.info("No Event Handlers returned from data bag search.")
+  eventhandlers = Array.new
 end
 
 members = Array.new
@@ -94,6 +107,7 @@ else
   public_domain = node['domain']
 end
 
+# Install nagios either from source of package
 include_recipe "nagios::server_#{node['nagios']['server']['install_method']}"
 
 nagios_conf "nagios" do
@@ -185,10 +199,10 @@ end
 end
 
 nagios_conf "commands" do
-  variables( 
+  variables(
     :services => services,
-    :mail_command => node['nagios']['email_command']
-  ) 
+    :eventhandlers => eventhandlers
+  )
 end
 
 nagios_conf "services" do
