@@ -6,6 +6,7 @@
  * Include hp-tools on HP systems
 
 ## 1.5
+ * Give Dev Users sudo access if the node has the ea_server role
  * Add code to join the domain to the Windows cookbook
  * Setup our repo and apt first on Ubuntu so we have an updated package list before installing packages
  * skip running nagios::client recipe if node['nagios']['client']['skip_install'] is set to true
