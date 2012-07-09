@@ -139,33 +139,19 @@ user "webtrends" do
   password "*"
 end
 
-# create the dev account on early adopter systems with sudo privs
-if node.run_list.includes?("ea_system")
-	user "ea" do
-		uid 31337
-		home "/home/ea"
-		supports :manage_home => true
-		comment "Early Adopter Dev Account"
-		shell "/bin/bash"
-		password auth_config['ea_password']
-	end
-	
-	file "/etc/sudoers.d/ea" do
+# Create a sudoers file for devAccess group if the system has ea_server role
+if node.run_list.include?("role[ea_server]")
+	file "/etc/sudoers.d/devAccess" do
 		owner "root"
 		group "root"
 		mode 00440
-		content "ea	ALL=(ALL) ALL"
+		content "netiqdmz\\\\devAccess	ALL=(ALL) ALL"
 		action :create
 	end
 else
-  #This disables the user if the system is not a EA system
-	user "ea" do
-		uid 31337
-		home "/home/ea"
-		supports :manage_home => true
-		comment "Early Adopter Dev Account"
-		shell "/bin/bash"
-		password "*"
+  # Make sure the sudo file is gone if the system is not an EA system
+	file "/etc/sudoers.d/devAccess" do
+		action :delete
 	end
 end
 

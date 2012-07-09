@@ -67,7 +67,7 @@ end
 # create the log dir
 directory "/var/log/hbase" do
 	action :create
-	user "hadoop"
+	owner "hadoop"
 	group "hadoop"
 	mode 00755
 end
