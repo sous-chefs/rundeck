@@ -286,11 +286,6 @@ define command {
 }
 
 define command {
-	command_name    check_swap
-	command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c check_swap -t 20
-}
-
-define command {
 	command_name    check_solr_index
 	command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c check_$ARG1$_solr_index -t 20
 }
