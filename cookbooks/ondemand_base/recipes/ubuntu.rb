@@ -140,7 +140,7 @@ user "webtrends" do
 end
 
 # Create a sudoers file for devAccess group if the system has ea_server role
-if node.run_list.include?("ea_server")
+if node.run_list.include?("role[ea_server]")
 	file "/etc/sudoers.d/devAccess" do
 		owner "root"
 		group "root"
