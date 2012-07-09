@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-default['ms_dotnet4']['http_url'] = "http://download.microsoft.com/download/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe"
+default['ms_dotnet45']['http_url'] = "http://download.microsoft.com/download/D/0/F/D0F564A3-6734-470B-9772-AC38B3B6D8C2/dotNetFx45_Full_x86_x64.exe"
