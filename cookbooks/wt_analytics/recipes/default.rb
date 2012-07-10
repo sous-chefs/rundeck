@@ -12,24 +12,13 @@ require 'json'
 
 if deploy_mode? 
   include_recipe "wt_analytics::uninstall" 
-  include_recipe "ms_dotnet4::resetiis"
-  # source build
-	build_data = data_bag_item('wt_builds', node.chef_environment)
-	build_id = build_data[node['wt_analytics']['tc_proj'] ]
-	base_url = 'http://teamcity.webtrends.corp/guestAuth/app/rest/builds/' + build_id
-
-	response = RestClient.get base_url
-	btID = nil
-	build_doc = REXML::Document.new(response.body)
-	build_doc.elements.each('//buildType') do |type|
-		btID = type.attributes["id"]
-	end
-	install_url = "http://teamcity.webtrends.corp/guestAuth/repository/download/#{btID}/#{build_id}:id/#{node['wt_analytics']['artifact']}"
-	log install_url
+  include_recipe "ms_dotnet4::resetiis" 
 end
+
 
 #Properties
 install_dir = node['wt_common']['install_dir_windows'] + node['wt_analytics']['install_dir']
+install_url = node['wt_analytics']['download_url']
 install_logdir = node['wt_common']['install_log_dir_windows']
 pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
@@ -40,10 +29,12 @@ auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identit
 
 directory install_dir do
 	action :create
+	recursive true
 end
 
 directory install_logdir do
 	action :create
+	recursive true
 end
 
 iis_site 'Default Web Site' do
