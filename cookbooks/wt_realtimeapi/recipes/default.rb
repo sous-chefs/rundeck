@@ -37,20 +37,20 @@ log "Java home: #{java_home}"
 
 # create the log dir
 directory "#{log_dir}" do
-    owner   user
-    group   group
-    mode    00755
-    recursive true
-    action :create
+		owner   user
+		group   group
+		mode    00755
+		recursive true
+		action :create
 end
 
 # create the install dir 
 directory "#{install_dir}/bin" do
-owner "root"
-group "root"
-mode 00755
-recursive true
-action :create
+		owner "root"
+		group "root"
+		mode 00755
+		recursive true
+		action :create
 end
 
 def processTemplates (install_dir, node)
@@ -85,16 +85,16 @@ if ENV["deploy_build"] == "true" then
 
     # grab the source file
     remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-    source download_url
-    mode 00644
+				source download_url
+				mode 00644
     end
 
     # extract the source file
     execute "tar" do
-    user  "root"
-    group "root" 
-    cwd install_dir
-    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+				user  "root"
+				group "root" 
+				cwd install_dir
+				command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
 
     #templates
