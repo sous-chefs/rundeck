@@ -151,7 +151,7 @@ if node.run_list.include?("role[ea_server]")
 		owner "root"
 		group "root"
 		mode 00440
-		content "netiqdmz\\\\devAccess	ALL=(ALL) ALL"
+		content "%netiqdmz\\\\devAccess	ALL=(ALL) ALL\n"
 		action :create
 	end
 else
