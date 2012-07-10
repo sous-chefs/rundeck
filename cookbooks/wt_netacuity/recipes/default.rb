@@ -103,6 +103,7 @@ template "netacuity-passwd" do
   ignore_failure true
 end
 
+
 if node.attribute?("nagios")
   #Create a nagios nrpe check for the netacuity page
 	nagios_nrpecheck "wt_netacuity_web_ui_check" do
@@ -110,4 +111,17 @@ if node.attribute?("nagios")
 		parameters "-H localhost -p 5500 -s \"Digital Envoy\""
 		action :add
 	end
+	
+	#Create a nagios nrpe command for the restart event handler
+	nagios_nrpecheck "restart_netacuity" do
+		command "#{node['nagios']['plugin_dir']}/restart_netacuity"
+		action :add
+	end
+	
+	#Copy in the event handler plugin
+	cookbook_file "#{node['nagios']['plugin_dir']}/restart_netacuity" do
+		source "restart_netacuity"
+		mode 00755
+	end
+	
 end
