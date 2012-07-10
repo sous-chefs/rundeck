@@ -36,16 +36,16 @@ end
 #Include the SNMP cookbook making sure that "libcmaX64.so" is loaded in our snmpd.conf file.
 include_recipe "snmp"
 
-service "hp-snmp-agents" do
-  action [ :start, :enable ]
+#Because of HP's buggy init script, the only way to start this service if it's stopped is by calling the script directly.
+execute "hp-snmp-agents service start" do
+  command "/etc/init.d/hp-snmp-agents start"
+  creates "/var/lock/subsys/hp-snmp-agents"
+  action :run
 end
 
 service "hpsmhd" do
-  action [ :start, :enable ]
-end
-
-service "snmpd" do
-  action [ :start, :enable ]
+  supports :status => true, :restart => true, :reload => true
+  action [ :enable, :start ]
 end
 
 cookbook_file "/opt/hp/hpsmh/conf/smhpd.xml" do
