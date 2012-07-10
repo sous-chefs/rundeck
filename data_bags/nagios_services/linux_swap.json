@@ -1,5 +1,5 @@
 {
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_swap -a '-w '50%' -c '25%''",
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_swap -a '-w '50%' -c '25%''", 
     "hostgroup_name": "linux", 
     "id": "linux_swap"
 }
