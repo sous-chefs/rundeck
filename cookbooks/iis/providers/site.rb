@@ -34,8 +34,9 @@ action :add do
     shell_out!(cmd, {:returns => [0,42]})
 	if @new_resource.app_pool != nil
 		cmd2 = "#{appcmd} set app \"#{@new_resource.site_name}\"/"
-		cmd2 << " //applicationPool:\"#{@new_resource.app_pool}\""
+		cmd2 << " /applicationPool:\"#{@new_resource.app_pool}\""
 		shell_out!(cmd2, {:returns => [0,42]})
+        end
     @new_resource.updated_by_last_action(true)
     Chef::Log.info("#{@new_resource} added new site '#{@new_resource.site_name}'")
   else
