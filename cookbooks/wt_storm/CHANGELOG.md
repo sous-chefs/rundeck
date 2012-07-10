@@ -1,3 +1,9 @@
+## 1.0.21
+* Use the load balancer NetAcuity URL instead of searching for netacuity
+
+## 1.0.12 - 1.0.20
+* Who knows
+
 ## 1.0.11
 * Added zookeeper client port support and standardized zookeeper processing
 
