@@ -32,6 +32,10 @@ action :add do
     cmd << ":#{@new_resource.port}:" if @new_resource.port
     cmd << "#{@new_resource.host_header}" if @new_resource.host_header
     shell_out!(cmd, {:returns => [0,42]})
+	if @new_resource.app_pool != nil
+		cmd2 = "#{appcmd} set app \"#{@new_resource.site_name}\"/"
+		cmd2 << " //applicationPool:\"#{@new_resource.app_pool}\""
+		shell_out!(cmd2, {:returns => [0,42]})
     @new_resource.updated_by_last_action(true)
     Chef::Log.info("#{@new_resource} added new site '#{@new_resource.site_name}'")
   else
