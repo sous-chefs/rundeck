@@ -27,7 +27,6 @@ if zookeeper_quorum.count == 0
 end
 
 sapi = search(:node, "role:wt_streaming_api_server AND chef_environment:#{node.chef_environment}").first
-netacuity = search(:node, "role:wt_netacuity AND chef_environment:#{node.chef_environment}").first
 kafka = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}").first
 
 
@@ -47,7 +46,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :zookeeper_pairs       => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
     :cam                   => node[:wt_cam][:cam_server_url],
     :config_distrib        => node[:wt_configdistrib][:dcsid_url],
-    :netacuity             => netacuity[:fqdn],
+    :netacuity             => node[:wt_netacuity][:geo_url],
     :kafka                 => kafka[:fqdn],
     :pod                   => node[:wt_realtime_hadoop][:pod],
     :datacenter            => node[:wt_realtime_hadoop][:datacenter],
