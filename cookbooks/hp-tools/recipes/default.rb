@@ -17,27 +17,28 @@
 # limitations under the License.
 #
 
-# Restart hp-snmp-agents later. it is buggy and has issues with its own libraries when started on package installation
-
-#Exit the recipe if the sda drive doesn't have a vendor of HP.  This appears to be the only way to find HP hardware
-if node[:block_device][:sda][:vendor] != "HP" then
+#Exit the recipe if system's manufacturer as detected by ohai does not match "HP"
+if node[:dmi][:system][:manufacturer] != "HP" then
 	return
 end
 
-include_recipe snmp
+#Create a symlink for a zlib shared object that doesn't get detectd correctly by the HP RPM on some systems.
+link "/usr/lib/libz.so.1" do
+  to "/lib64/libz.so.1.2.3"
+  only_if "test -f /lib64/libz.so.1.2.3"
+end
+
+#Install HP system utilities along with the HP System Management Homepage
+%w{ cpqacuxe hp-health hp-smh-templates hp-snmp-agents hpacucli hpdiags hponcfg hpsmh hpvca }.each do |pkg|
+  package pkg
+end
+
+#Include the SNMP cookbook making sure that "libcmaX64.so" is loaded in our snmpd.conf file.
+include_recipe "snmp"
 
 service "hp-snmp-agents" do
-  action :nothing
+  action [ :start, :enable ]
 end
-
-package "hp-health"
-package "hpacucli"
-package "cpqacuxe"
-package "hp-snmp-agents" do
-  notifies :restart, resources(:service => "hp-snmp-agents")
-end
-package "hp-smh-templates"
-package "hpsmh"
 
 service "hpsmhd" do
   action [ :start, :enable ]
@@ -55,24 +56,10 @@ cookbook_file "/opt/hp/hpsmh/conf/smhpd.xml" do
   notifies :restart, resources(:service => "hpsmhd")
 end
 
-cookbook_file "/etc/snmp/snmpd.conf" do
-  source "snmpd.conf"
+file "/etc/sudoers.d/hpsmh-snmptrap" do
   owner "root"
   group "root"
-  mode 00644
-  notifies :restart, resources(:service => "snmpd")
+  mode 00440
+  content "%hpsmh       ALL = NOPASSWD: /usr/bin/snmptrap\n"
+  action :create
 end
-
-cookbook_file "/etc/default/snmpd" do
-  source "snmpd.default"
-  owner "root"
-  group "root"
-  mode 0644
-  notifies :restart, resources(:service => "snmpd")
-end
-
-sudoers "hpsmh-snmptrap" do
-  group "hpsmh"
-  rights "ALL=NOPASSWD:/usr/bin/snmptrap"
-end
-

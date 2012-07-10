@@ -5,12 +5,14 @@ This cookbook installs the HP Management tools including the HP System Managemen
 
 Requirements
 ============
-SNMP cookbook with a configured trap server to send hardware events to
+* SNMP cookbook with a configured trap server to send hardware events to
+* The following RPM's need to be available in a public or private repo configured on your node:
+    - cpqacuxe, hp-health, hp-smh-templates, hp-snmp-agents, hpacucli, hpdiags, hponcfg, hpsmh, hpvca
 
 Platform
 --------
 
-* RHEL / CentOS
+* Tested on RHEL 6 / CentOS 6.2
 
 
 Attributes
