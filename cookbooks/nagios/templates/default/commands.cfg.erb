@@ -337,7 +337,7 @@ define command {
 }
 <% end -%>
 
-<% if !eventhandlers.empty? do -%>
+<% if !eventhandlers.empty? -%>
 # Event Handlers added through nagios_eventhandlers data bags
 <% @eventhandlers.each do |service| -%>
 define command {
