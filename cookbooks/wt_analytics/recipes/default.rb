@@ -24,8 +24,8 @@ pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
 ui_user = user_data['wt_common']['ui_user']
 ui_password = user_data['wt_common']['ui_pass']
-app_pool = node['wt_analytics']['app_pool']
-auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{ui_user} /[name='#{app_pool}'].processModel.password:#{ui_password}"
+pool = node['wt_analytics']['pool']
+auth_cmd = "/section:applicationPools /[name='#{pool}'].processModel.identityType:SpecificUser /[name='#{pool}'].processModel.userName:#{ui_user} /[name='#{pool}'].processModel.password:#{ui_password}"
 
 directory install_dir do
 	action :create
@@ -41,11 +41,18 @@ iis_site 'Default Web Site' do
 	action [:stop, :delete]
 end
 
+iis_pool pool do
+  	  pipeline_mode :Integrated
+  	  runtime_version "4.0"
+      action [:add, :config]
+end
+
 iis_site 'Analytics' do
-	protocol :http
+    protocol :http
     port 80
     path "#{node['wt_common']['install_dir_windows']}\\Insight"
-	action [:add,:start]
+    app_pool pool
+    action [:add,:start]
 end
 
 wt_base_icacls install_dir do
@@ -58,13 +65,7 @@ if deploy_mode?
 	windows_zipfile install_dir do
 		source install_url
 		action :unzip
-	end
-	
-	iis_pool app_pool do
-  	  pipeline_mode :Integrated
-  	  runtime_version "4.0"
-      action [:add, :config]
-    end
+	end	
 	
 	search_server = search(:node, "chef_environment:#{node.chef_environment} AND role:wt_search")
 	search_host = "#{search_server[0][:fqdn]}"
