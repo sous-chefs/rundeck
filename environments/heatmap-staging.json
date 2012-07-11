@@ -237,7 +237,8 @@
         "wt_netacuity": {
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/", 
             "use_proxy": false, 
-            "version": "4.6"
+            "version": "4.6",
+            "geo_url": "10.164.14.29"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "pdx", 
@@ -249,7 +250,7 @@
         }, 
         "wt_storm": {
             "dcsid_whitelist": "", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/20537:id/streaming-analysis-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/20654:id/streaming-analysis-bin.tar.gz"
         }, 
         "wt_streaming_audit": {}, 
         "wt_streamingapi": {
