@@ -39,6 +39,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :topology                                    => "streaming-topology",
     :streaming_topology_sapi_host                => sapi[:fqdn],
     :streaming_topology_parsing_bolt_count       => 50,
+    :streaming_topology_in_session_bolt_count    => 1,
     :streaming_topology_netty_emitter_bolt_count => 10,
     # kafka consumer settings
     :kafka_consumer_topic                 => 'rawHits',
