@@ -5,7 +5,13 @@ geo.host=<%= @netacuity %>
 cd.url=<%= @config_distrib %>
 debug=<%= @debug %>
 cam.url=<%= @cam %>/cam/dcsid
-dcsid.whitelist=<%= @dcsid_whitelist %>
+
+# Kafka consumer parameters
+kafka.zookeeper.quorum=<%= @kafka_zookeeper_quorum %>
+kafka.zookeeper.timeout.milliseconds=<%= @kafka_zookeeper_timeout_milliseconds %>
+kafka.consumer.topic=<%= @kafka_consumer_topic %>
+kafka.consumer.group.id=<%= @kafka_consumer_group_id %>
+kafka.dcsid.whitelist=<%= @kafka_dcsid_whitelist %>
 
 # Hbase and zookeeper parameters
 hbase.pool.size=80
