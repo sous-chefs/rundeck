@@ -12,7 +12,6 @@ include_recipe "storm"
 # http://repo.staging.dmz/repo/linux/storm/jars/), otherwise the run
 # of chef-client will fail
 
-jf_base_download_url = node['wt_storm']['jf_base_download_url']
 download_url = node['wt_storm']['download_url']
 install_tmp = '/tmp/wt_storm_install'
 tarball = 'streaming-analysis-bin.tar.gz'
@@ -43,20 +42,15 @@ if ENV["deploy_build"] == "true" then
       command "tar zxvf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
 
-%w{
-webtrends.hbase.jar
-webtrends.core.jar
-webtrends.collection.messages.jar
-webtrends.monitoring.jar
-webtrends.authentication.jar
-webtrends.auditing.serialization.jar
-webtrends.auditing.jar
-}.each do |jar|
-      # grab the source file
-      remote_file "#{install_tmp}/lib/#{jar}" do
-        source "#{jf_base_download_url}/#{jar}"
-        mode 00644
-      end
+    execute "mv" do
+      user  "root"
+      group "root"
+      command "mv #{install_tmp}/lib/webtrends*.jar #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/"
+    end
+    execute "chown" do
+      user  "root"
+      group "root"
+      command "chown storm:storm #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/webtrends*.jar"
     end
 
 %w{
@@ -104,13 +98,6 @@ stax-api-1.0.1.jar
 storm-kafka-0.7.2-snaptmp8.jar
 streaming-analysis.jar
 UserAgentUtils-1.2.4.jar
-webtrends.hbase.jar
-webtrends.core.jar
-webtrends.collection.messages.jar
-webtrends.monitoring.jar
-webtrends.authentication.jar
-webtrends.auditing.serialization.jar
-webtrends.auditing.jar
 wurfl-1.4.0.1.jar
 xmlenc-0.52.jar
 zkclient-0.1.jar
