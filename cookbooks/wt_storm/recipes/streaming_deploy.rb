@@ -40,6 +40,12 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :streaming_topology_sapi_host                => sapi[:fqdn],
     :streaming_topology_parsing_bolt_count       => 50,
     :streaming_topology_netty_emitter_bolt_count => 10,
+    # kafka consumer settings
+    :kafka_consumer_topic                 => 'rawHits',
+    :kafka_dcsid_whitelist                => node[:wt_storm][:dcsid_whitelist],
+    :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
+    :kafka_consumer_group_id              => 'kafka-streaming',
+    :kafka_zookeeper_timeout_milliseconds => 1000000,
     # non-storm parameters
     :zookeeper_quorum      => zookeeper_quorum * ",",
     :zookeeper_clientport  => zookeeper_clientport,
@@ -50,7 +56,6 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :kafka                 => kafka[:fqdn],
     :pod                   => node[:wt_realtime_hadoop][:pod],
     :datacenter            => node[:wt_realtime_hadoop][:datacenter],
-    :dcsid_whitelist       => node[:wt_storm][:dcsid_whitelist],
     :debug                 => node[:wt_storm][:debug],
     :audit_bucket_timespan => node[:wt_monitoring][:audit_bucket_timespan],
     :audit_topic           => node[:wt_monitoring][:audit_topic]
