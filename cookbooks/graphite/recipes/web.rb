@@ -54,12 +54,17 @@ template "/opt/graphite/webapp/graphite/local_settings.py" do
   notifies :restart, resources(:service => "apache2")
 end
 
+apache_site "000-default" do
+  enable false
+end
+
 # Setup the apache site for Graphite
 
 # CentOS/RH
 if platform?("redhat", "centos")
-  template "/etc/httpd/sites-available/default" do
+  template "/etc/httpd/sites-available/graphite" do
     source "graphite-vhost.conf.erb"
+    mode 0644
     variables( :django_media_dir => "/usr/lib/python2.6/site-packages/django/contrib/admin/media/" )
     notifies :restart, resources(:service => "apache2")
   end
@@ -67,11 +72,16 @@ end
 
 # Debian/Ubuntu
 if platform?("debian","ubuntu")
-  template "/etc/apache2/sites-available/default" do
+  template "/etc/apache2/sites-available/graphite" do
     source "graphite-vhost.conf.erb"
+    mode 0644
     variables( :django_media_dir => "/usr/share/pyshared/django/contrib/admin/media/" )
     notifies :restart, resources(:service => "apache2")
   end
+end
+
+apache_site "graphite" do
+  enable true
 end
 
 directory "/opt/graphite/storage/log" do
@@ -112,4 +122,9 @@ file "/opt/graphite/storage/graphite.db" do
   owner "#{apache_user}"
   group "#{apache_user}"
   mode "644"
+end
+
+service "memcached" do
+  supports :status => true, :start => true, :stop => true
+  action [:enable, :start]
 end
