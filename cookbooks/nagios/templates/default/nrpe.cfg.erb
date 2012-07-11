@@ -51,3 +51,4 @@ command[wt_check_mailq]=sudo <%= node['nagios']['plugin_dir'] %>/check_mailq $AR
 command[wt_check_squid]=sudo <%= node['nagios']['plugin_dir'] %>/check_squid $ARG1$
 command[wt_check_jmx]=<%= node['nagios']['plugin_dir'] %>/check_jmx $ARG1$
 command[wt_check_graphite_data]=<%= node['nagios']['plugin_dir'] %>/check_graphite_data $ARG1$
+command[wt_check_hpasm]=sudo <%= node['nagios']['plugin_dir'] %>/check_hpasm $ARG1$
