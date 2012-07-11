@@ -1,3 +1,7 @@
+# 1.0.23
+* Added support in the configuration for the "in session" bolt, though
+  this feature may or may-not be enabled yet in code
+
 # 1.0.22
 * Added independent kafka configuration properties to allow for kafka to
   register with its own zookeeper
