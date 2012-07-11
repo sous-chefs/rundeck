@@ -1,10 +1,14 @@
-## 1.0.21
+# 1.0.22
+* Added independent kafka configuration properties to allow for kafka to
+  register with its own zookeeper
+  
+# 1.0.21
 * Use the load balancer NetAcuity URL instead of searching for netacuity
 
-## 1.0.12 - 1.0.20
+# 1.0.12 - 1.0.20
 * Who knows
 
-## 1.0.11
+# 1.0.11
 * Added zookeeper client port support and standardized zookeeper processing
 
 # 1.08:
