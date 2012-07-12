@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Note: As an alternative to hand editing this file you can use the 
+    web admin tool to configure settings for your application. Use
+    the Website->Asp.Net Configuration option in Visual Studio.
+    A full list of settings and comments can be found in 
+    machine.config.comments usually located in 
+    \Windows\Microsoft.Net\Framework\v2.x\Config 
+-->
 <configuration>
   <configSections>
     <section name="cacheConfiguration" type="Webtrends.Cache.Configuration.CacheConfigurationSection, Webtrends.Cache2" />
@@ -8,6 +16,7 @@
       <section name="errorMail" requirePermission="false" type="Elmah.ErrorMailSectionHandler, Elmah" />
       <section name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah" />
     </sectionGroup>
+    <section name="HBaseConfig" type="Webtrends.HBase.Core.HBaseConfigSection, Webtrends.HBase.Core" />
     <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core" />
     <section name="serviceBus" type="Webtrends.ServiceBus.Configuration.ServiceBusConfiguration, Webtrends.ServiceBus" />
     <sectionGroup name="insight">
@@ -30,7 +39,9 @@
     </servers>
   </cacheConfiguration>
   <!-- End Cache settings -->
-
+  <!-- Start HBase settings-->
+  <HBaseConfig HBaseLocation="<%= @hbase_location %>" DataCenterId="<%= @dc_id %>" PodId="<%= @pod_id %>" ThriftPort="<%= @hbase_thrift_port %>" />
+  <!-- End HBase settings-->
   <!-- Start ServiceBus endpoint -->
   <serviceBus>
     <endpoints>
@@ -143,7 +154,7 @@
     </errorFilter>
   </elmah>
   <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>"
-    MetaDataColumnFamily="<%= @metadata_column %>" ThriftPort="<%= @thrift_port %>" UseLegacy="false">
+    MetaDataColumnFamily="<%= @metadata_column %>" ThriftPort="<%= @cass_thrift_port %>" UseLegacy="false">
     <Nodes>
       <clear />
       <add Hostname="<%= @cass_host %>" />
@@ -170,6 +181,7 @@
     <add key="threshold.mini" value="300" />
     <add key="threshold.pagesize.thumbailview" value="21" />
     <add key="threshold.pagesize.listview" value="100" />
+    <add key="threshold.pagesize.thumblistview" value="10" />
     <add key="ondemand.base.domain" value="ondemand.webtrends.com" />
     <add key="fb_redirector_dcsid" value="dcsi89ir010000c9z6cv65km9_6e2g" />
     <!-- production -->
@@ -200,13 +212,24 @@
     <!-- See SpacesController.cs for uses -->
     <add key="client_side_validation_status" value="on" />
     <add key="PrivacyPolicy" value="http://www.webtrends.com/AboutWebtrends/PrivacyPolicy.aspx" />
-    <add key="MobileOtherLink" value="http://product.webtrends.com/dcapi/index.html" />    
+    <add key="MobileOtherLink" value="http://product.webtrends.com/dcapi/index.html" />
+
+    <add key="twitter_redirector_dcsid" value="dcsi89ir010000c9z6cv65km9_6e2g" />
+    <add key="twitter_app_consumer_key" value="MlOwfdZS1zzGlEoOhL4Q" />
+    <add key="twitter_app_consumer_secret" value="nPShUsMPVGvZH101mu74gmUWaM6cxPd6k02cmKUwAA" />
+
+    <!-- For development while running on the webtrends domain against sstore in staging -->
+    <add key="staging_user" value="YOUR_STAGING_USERNAME" />
+    <add key="staging_password" value="YOUR_STAGING_PASSWORD" />
+    <add key="staging_domain" value="stagingdmz" />
 
     <!-- Third party connection public encryption keys -->
     <add key="iOSPublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
     <add key="FaceBookPublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
     <add key="AndroidPublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
-    
+    <add key="YouTubePublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
+    <add key="TwitterPublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
+
     <add key="TagBuilderDownloadUrl" value="https://tagbuilder.webtrends.com/" />
     <add key="TagBuilderUrlTemplate" value="https://tagbuilder.webtrends.com/{0}/{1}{2}" />
     <add key="TagBuilderDomain" value="statse.webtrendslive.com" />
@@ -220,8 +243,10 @@
     <add key="trackchangehistory" value="true" />
     <add key="trackreportactivity" value="true" />
 
-    <!-- TODO: replace once proxy is available -->
-    <add key="heatmapserviceurl" value="<%= @hmapi_host %>" />
+    <!-- Terms Of Service Source -->
+    <add key="TermsOfServiceSource" value="https://www.webtrends.com/tos.php" />
+
+	<add key="heatmapserviceurl" value="<%= @hmapi_host %>" />
   </appSettings>
 
   <system.serviceModel>
@@ -344,6 +369,7 @@
         <add namespace="WebTrends.UI.Reporting.Helpers" />
         <add namespace="Webtrends.Web.Mvc.Helpers" />
         <add namespace="Webtrends.Extensions" />
+        <add namespace="SquishIt.Framework" />
       </namespaces>
     </pages>
 

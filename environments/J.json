@@ -125,7 +125,16 @@
     "json_class": "Chef::Environment", 
     "name": "J", 
     "override_attributes": {
-        "java": {
+        "hbase": {
+            "site": {
+                "zookeeper_clientport": "", 
+                "zookeeper_quorum": ""
+            },
+			"thrift_port" : 9090,
+			"data_center_id" : "Lab",
+			"location": "shdata.staging.dmz"
+        }, 
+		"java": {
             "install_flavor": "oracle", 
             "jdk": {
                 "6": {

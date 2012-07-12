@@ -2,9 +2,13 @@
 
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
- * Include dell-tools on Dell systems
- * Include hp-tools on HP systems
 
+## 1.7
+ * Include dell-tools on Dell systems
+
+## 1.6
+ * Installs hp-tools (System Management Homepage) on HP hardware boxes running CentOS/RH
+ 
 ## 1.5
  * Give Dev Users sudo access if the node has the ea_server role
  * Add code to join the domain to the Windows cookbook
