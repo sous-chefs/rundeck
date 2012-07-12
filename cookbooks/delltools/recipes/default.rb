@@ -12,11 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Most Dell stuff on CentOS needs these.
-%w{procmail compat-libstdc++-33}.each do |d|
-   package "#{d}" do
-   action :install  
-  end
+#Exit the recipe if system's manufacturer as detected by ohai does not match "Dell"
+if node[:dmi][:system][:manufacturer] != "Dell" then
+	return
 end
 
-
+# Most Dell stuff on CentOS / Redhat needs these.
+%w{procmail compat-libstdc++-33}.each do |dellpkg|
+		package dellpkg
+end
