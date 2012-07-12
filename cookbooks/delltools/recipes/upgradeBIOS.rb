@@ -15,7 +15,7 @@
 # I'll add more later to upgrade different models.  I just needed this one immediately.
 
 #Exit the recipe if system's manufacturer as detected by ohai does not match "Dell"
-if node[:dmi][:system][:manufacturer] != "Dell" then
+if !node[:dmi][:system][:manufacturer].include? 'Dell' then
 	return
 end
 
