@@ -4,3 +4,10 @@ webtrends.authentication.baseUrl = <%=@cam_url%>
 webtrends.authentication.tokenDetail =  %%baseUrl%%/cam/auth/%%access_token%%
 # This is the url to the REST service for getting a token's detailed account information
 webtrends.authentication.accountDetail = %%baseUrl%%/cam/auth/%%access_token%%/account
+
+# Used for zmq connectivity
+datacenter=<%= @datacenter %>
+pod=<%= @pod %>
+zookeeper.quorum=<%= @zookeeper_quorum  %>
+streaming.zmq.znodeRoot=/StreamingZMQ
+streaming.zmq.port=1543
