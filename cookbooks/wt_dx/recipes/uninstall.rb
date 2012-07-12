@@ -13,6 +13,19 @@ streamingservices_pool = node['wt_dx']['v3']['streamingservices']['app_pool']
 webservices_pool = node['wt_dx']['v3']['webservices']['app_pool']
 dx_dir = "#{node['wt_common']['installdir']}\\Data Extraction API"
 oem_dir = "#{node['wt_common']['installdir']}\\OEM Data Extraction API"
+logdir = node['wt_common']['log_dir_windows']
+msi_name = node['wt_dx']['commonlib_msi']
+
+directory logdir do
+	action :create
+	recursive true
+end
+
+windows_package "WebTrends Common Lib" do
+        source "#{Chef::Config[:file_cache_path]}\\#{msi_name}"
+        options "/l*v \"#{logdir}\\#{msi_name}-Uninstall.log\""
+        action :remove
+end
 
 iis_config "/section:httpCompression /-\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
 	action :config
