@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-default[:Dell][:BIOS][:C6100][:Version] = "1.52"
+default[:delltools][:bios][:c6100][:version] = "1.52"
