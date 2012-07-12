@@ -7,7 +7,7 @@
 #
 
 # jar download path
-default['wt_storm']['download_url'] = "http://repo.staging.dmz/repo/linux/storm/jars"
+default['wt_storm']['download_url'] = ""
 
 default['wt_storm']['dcsid_whitelist'] = ""
 default['wt_storm']['debug'] = "false"

@@ -26,17 +26,17 @@ topology=<%= @topology %>
 topology.override.max.spout.pending=<%= @topology_override_max_spout_pending %>
 topology.override.msg.timeout.seconds=<%= @topology_override_msg_timeout_seconds %>
 
-# Realtime parameters, should have blank values in streaming
+# Realtime parameters, should have blank values in realtime
 realtime.topology.parsing.bolt.count=<%= @realtime_topology_parsing_bolt_count %>
 realtime.topology.row.key.bolt.count=<%= @realtime_topology_row_key_bolt_count %>
 realtime.topology.writing.bolt.count=<%= @realtime_topology_writing_bolt_count %>
 realtime.topology.dimensions.bolt.count=<%= @realtime_topology_dimensions_bolt_count %>
 
-# Streaming parameters, should have blank values in realtime
-streaming.topology.sapi.host=<%= @streaming_topology_sapi_host %>
+# Streaming parameters, should have blank values in streaming
 streaming.topology.parsing.bolt.count=<%= @streaming_topology_parsing_bolt_count %>
 streaming.topology.in.session.bolt.count=<%= @streaming_topology_in_session_bolt_count %>
-streaming.topology.netty.emitter.bolt.count=<%= @streaming_topology_netty_emitter_bolt_count %>
+streaming.topology.zmq.emitter.bolt.count=<%= @streaming_topology_zmq_emitter_bolt_count %>
+streaming.topology.zmq.emitter.znodeRoot=/StreamingZMQ
 
 # Zookeeper connection info (use this or audit.broker.list)
 audit.zk.connect=<%= @zookeeper_pairs %>

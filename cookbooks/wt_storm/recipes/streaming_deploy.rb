@@ -26,9 +26,7 @@ if zookeeper_quorum.count == 0
     end
 end
 
-sapi = search(:node, "role:wt_streaming_api_server AND chef_environment:#{node.chef_environment}").first
 kafka = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}").first
-
 
 template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties" do
   source "config.properties.erb"
@@ -37,10 +35,9 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   mode   00644
   variables(
     :topology                                    => "streaming-topology",
-    :streaming_topology_sapi_host                => sapi[:fqdn],
-    :streaming_topology_parsing_bolt_count       => 50,
+    :streaming_topology_parsing_bolt_count       => 5,
     :streaming_topology_in_session_bolt_count    => 1,
-    :streaming_topology_netty_emitter_bolt_count => 10,
+    :streaming_topology_zmq_emitter_bolt_count   => 5,
     # kafka consumer settings
     :kafka_consumer_topic                 => 'rawHits',
     :kafka_dcsid_whitelist                => node[:wt_storm][:dcsid_whitelist],
