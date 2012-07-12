@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-default[:Dell][:DSET][:Version] = "2.2.0.125_x64_A01"
+default[:delltools][:dset][:version] = "2.2.0.125_x64_A01"
