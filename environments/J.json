@@ -130,7 +130,9 @@
                 "zookeeper_clientport": "", 
                 "zookeeper_quorum": ""
             },
-			"thrift_port" : 9090
+			"thrift_port" : 9090,
+			"data_center_id" : "Lab",
+			"location": "shdata.staging.dmz"
         }, 
 		"java": {
             "install_flavor": "oracle", 
