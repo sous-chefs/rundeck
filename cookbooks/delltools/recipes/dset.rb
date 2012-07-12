@@ -19,7 +19,7 @@ end
 
 # download the application bin and notify the install
 remote_file "#{Chef::Config[:file_cache_path]}/delldset_v#{node[:delltools][:dset][:version]}.bin" do
-	source "http://ftp.us.dell.com/diags/delldset_v#{node[:delltools][:dset][:version]}.bin"
+	source "http://ftp.dell.com/diags/delldset_v#{node[:delltools][:dset][:version]}.bin"
 	mode 00644
 	not_if {File.exists?("#{Chef::Config[:file_cache_path]}/delldset_v#{node[:delltools][:dset][:version]}.bin")}
 	notifies :run, "execute[installDSET]", :immediately
