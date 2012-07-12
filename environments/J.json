@@ -116,12 +116,8 @@
             "app_settings_section": {
                 "streamingServiceRoot": "https://jdx.englab.webtrends.corp/StreamingServices_v3/"
             }, 
-            "brandedaccountid": "20578,20663", 
-            "cacheenabled": "True", 
-            "cachename": "J_DX", 
-            "endpoint_address": "net.tcp://jsearch.englab.webtrends.corp:8096/SearchService/Search", 
-            "website_name": "DX", 
-            "website_port": "80"
+            "brandedaccountid": "20578,20663",             
+            "cachename": "J_DX"
         }, 
         "wt_monitoring": {
             "graphite_flush_enabled": "true", 
