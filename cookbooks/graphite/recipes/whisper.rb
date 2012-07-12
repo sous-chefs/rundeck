@@ -1,4 +1,5 @@
 version = node[:graphite][:version]
+pyver = node[:graphite][:python_version]
 
 remote_file "/usr/src/whisper-#{version}.tar.gz" do
   source node[:graphite][:whisper][:uri]
@@ -15,7 +16,7 @@ end
 if platform?("redhat", "centos")
   execute "install whisper" do
     command "python setup.py install"
-    creates "/usr/lib/python2.6/site-packages/whisper-#{version}-py2.6.egg-info"
+    creates "/usr/lib/python#{pyver}/site-packages/whisper-#{version}-py#{pyver}.egg-info"
     cwd "/usr/src/whisper-#{version}"
   end
 end
@@ -24,7 +25,7 @@ end
 if platform?("debian","ubuntu")
   execute "install whisper" do
     command "python setup.py install"
-    creates "/usr/local/lib/python2.6/dist-packages/whisper-#{version}.egg-info"
+    creates "/usr/local/lib/python#{pyver}/dist-packages/whisper-#{version}.egg-info"
     cwd "/usr/src/whisper-#{version}"
   end
 end

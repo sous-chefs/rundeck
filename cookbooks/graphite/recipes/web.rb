@@ -1,4 +1,5 @@
 version = node[:graphite][:version]
+pyver = node[:graphite][:python_version]
 
 include_recipe "apache2"
 include_recipe "memcached::default"
@@ -17,13 +18,6 @@ if platform?("debian","ubuntu")
   end
 end
 
-case node[:platform]
-when "centos","redhat"
-  apache_user = "apache"
-when "debian","ubuntu"
-  apache_user = "www-data"
-end
-
 remote_file "/usr/src/graphite-web-#{version}.tar.gz" do
   source node[:graphite][:graphite_web][:uri]
   checksum node[:graphite][:graphite_web][:checksum]
@@ -37,7 +31,7 @@ end
 
 execute "install graphite-web" do
   command "python setup.py install"
-  creates "/opt/graphite/webapp/graphite_web-#{version}-py2.6.egg-info"
+  creates "/opt/graphite/webapp/graphite_web-#{version}-py#{pyver}.egg-info"
   cwd "/usr/src/graphite-web-#{version}"
 end
 
@@ -51,15 +45,21 @@ template "/opt/graphite/webapp/graphite/local_settings.py" do
   source "local_settings.py.erb"
   variables( :web_app_timezone => node[:graphite][:web_app_timezone],
              :local_data_dirs => node[:graphite][:carbon][:local_data_dir] )
+  mode 0644
   notifies :restart, resources(:service => "apache2")
+end
+
+apache_site "000-default" do
+  enable false
 end
 
 # Setup the apache site for Graphite
 
 # CentOS/RH
 if platform?("redhat", "centos")
-  template "/etc/httpd/sites-available/default" do
+  template "/etc/httpd/sites-available/graphite" do
     source "graphite-vhost.conf.erb"
+    mode 0644
     variables( :django_media_dir => "/usr/lib/python2.6/site-packages/django/contrib/admin/media/" )
     notifies :restart, resources(:service => "apache2")
   end
@@ -67,31 +67,36 @@ end
 
 # Debian/Ubuntu
 if platform?("debian","ubuntu")
-  template "/etc/apache2/sites-available/default" do
+  template "/etc/apache2/sites-available/graphite" do
     source "graphite-vhost.conf.erb"
+    mode 0644
     variables( :django_media_dir => "/usr/share/pyshared/django/contrib/admin/media/" )
     notifies :restart, resources(:service => "apache2")
   end
 end
 
+apache_site "graphite" do
+  enable true
+end
+
 directory "/opt/graphite/storage/log" do
-  owner "#{apache_user}"
-  group "#{apache_user}"
+  owner node['apache']['user']
+  group node['apache']['group']
 end
 
 directory "/opt/graphite/storage/log/webapp" do
-  owner "#{apache_user}"
-  group "#{apache_user}"
+  owner node['apache']['user']
+  group node['apache']['group']
 end
 
 directory "/opt/graphite/storage" do
-  owner "#{apache_user}"
-  group "#{apache_user}"
+  owner node['apache']['user']
+  group node['apache']['group']
 end
 
 directory "/opt/graphite/storage/whisper" do
-  owner "#{apache_user}"
-  group "#{apache_user}"
+  owner node['apache']['user']
+  group node['apache']['group']
 end
 
 cookbook_file "/opt/graphite/bin/set_admin_passwd.py" do
@@ -109,7 +114,12 @@ execute "set admin password" do
 end
 
 file "/opt/graphite/storage/graphite.db" do
-  owner "#{apache_user}"
-  group "#{apache_user}"
+  owner node['apache']['user']
+  group node['apache']['group']
   mode "644"
+end
+
+service "memcached" do
+  supports :status => true, :start => true, :stop => true
+  action [:enable, :start]
 end
