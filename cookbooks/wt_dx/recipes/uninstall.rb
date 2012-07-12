@@ -13,7 +13,7 @@ streamingservices_pool = node['wt_dx']['v3']['streamingservices']['app_pool']
 webservices_pool = node['wt_dx']['v3']['webservices']['app_pool']
 dx_dir = "#{node['wt_common']['installdir']}\\Data Extraction API"
 oem_dir = "#{node['wt_common']['installdir']}\\OEM Data Extraction API"
-logdir = node['wt_common']['log_dir_windows']
+logdir = node['wt_common']['install_log_dir_windows']
 msi_name = node['wt_dx']['commonlib_msi']
 
 directory logdir do
