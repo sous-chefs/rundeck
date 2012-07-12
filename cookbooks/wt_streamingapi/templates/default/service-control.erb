@@ -34,7 +34,7 @@ fi
 JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
 
 # Create the JSVC command line.
-CMD="$JAVA_HOME/bin/java -cp $CP -Dcom.webtrends.log.dir=<%=@log_dir%> $JAVA_OPTS $JMX_OPTS"
+CMD="$JAVA_HOME/bin/java -Djava.library.path=/usr/local/lib:/opt/local/lib:/usr/lib -cp $CP -Dcom.webtrends.log.dir=<%=@log_dir%> $JAVA_OPTS $JMX_OPTS"
 
 # Find current PID if any.
 FOUND_PID=`ps -ef |grep $MAIN |grep -v grep |awk '{print $2}'`
