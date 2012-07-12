@@ -11,6 +11,7 @@ default['wt_dx']['website_name'] = "DX"
 default['wt_dx']['cacheenabled'] = "True"
 default['wt_dx']['website_port'] = "80"
 default['wt_dx']['commonlib_msi'] = "WebtrendsCommonLib.msi"
+default['wt_dx']['download_url'] = "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt23/.lastSuccessful/DX.zip"
 
 default['wt_dx']['v2_1']['app_pool'] = "Webtrends_WebServices_v2_1"
 default['wt_dx']['v2_1']['dir'] = "\\Data Extraction API\\v2_1"

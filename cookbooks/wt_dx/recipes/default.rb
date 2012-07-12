@@ -13,6 +13,7 @@ if deploy_mode?
   include_recipe "ms_dotnet4::resetiis"
   iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
 	action :config
+	ignore_failure true
   end
 end
 
@@ -44,11 +45,7 @@ directory install_logdir do
 	action :create
 end
 
-cfg_cmds.each do |cmd|	
-	iis_config "#{cmd}" do
-		action :config
-	end
-end	
+
 
 iis_pool app_pool_v21 do
   	thirty_two_bit :true
@@ -93,14 +90,14 @@ if deploy_mode?
   
   windows_package "WebTrends Common Lib" do
     source "#{Chef::Config[:file_cache_path]}\\#{msi_name}"
-	options "/l*v \"#{logdir}\\#{msi_name}-Install.log\" INSTALLDIR=\"#{installdir}\" SQL_SERVER_NAME=\"#{master_host}\" WTMASTER=\"wtMaster\"  WTSCHED=\"wt_Sched\""
+	options "/l*v \"#{install_logdir}\\#{msi_name}-Install.log\" INSTALLDIR=\"#{install_dir}\" SQL_SERVER_NAME=\"#{node['wt_common']['master_host']}\" WTMASTER=\"wtMaster\"  WTSCHED=\"wt_Sched\""
 	action :install
   end
   
   template "#{install_dir_v21}\\web.config" do
   	source "webConfigv21.erb"
   	variables(
-  		:cache_hosts => c_hosts
+  		:cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached")
   	)
   end  
   
@@ -115,16 +112,15 @@ if deploy_mode?
   	action :config
   end
 
-  windows_zipfile "#{installdir}#{v3_installdir}" do
-    source "#{install_url}#{v3_install_url}"
-    action :unzip	
-    not_if {::File.exists?("#{installdir}#{v3_installdir}\\StreamingServices\\log4net.config")}
+  execute "Movev3" do
+    command "mv #{Chef::Config[:file_cache_path]}\\v3 #{install_dir_v3}"
+    action :run
   end
   
   template "#{install_dir_v3}\\StreamingServices\\Web.config" do
   	source "webConfigv3Streaming.erb"
   	variables(
-  		:cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached"),,
+  		:cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached"),
   		:master_host => node['wt_common']['master_host']
   	)
   end
@@ -135,7 +131,7 @@ if deploy_mode?
   template "#{install_dir_v3}\\Web Services\\Web.config" do
   	source "webConfigv3Web.erb"
   	variables(
-  		:cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached"),,
+  		:cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached"),
   		:cassandra_hosts => node['wt_common']['cassandra_hosts'],
   		:master_host => node['wt_common']['master_host'],
   		:report_col => node['wt_common']['cassandra_report_column'],
@@ -195,6 +191,12 @@ if deploy_mode?
   	physical_path "#{install_dir_v3}"
   	action :add
   end
+  
+  cfg_cmds.each do |cmd|	
+    iis_config "#{cmd}" do
+		action :config
+	end
+  end	
 end
 
 #Post Install
