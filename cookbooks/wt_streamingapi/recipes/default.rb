@@ -10,6 +10,29 @@
 # include runit so we can create a runit service
 include_recipe "runit"
 
+# install dependency packages
+%w{zeromq jzmq}.each do |pkg|
+  package pkg do
+    action :install
+    options "--force-yes"
+  end
+end
+
+# grab the zookeeper nodes that are currently available
+zookeeper_quorum = Array.new
+if not Chef::Config.solo
+    search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+        zookeeper_quorum << n[:fqdn]
+    end
+end
+
+# fall back to attribs if search doesn't come up with any zookeeper nodes
+if zookeeper_quorum.count == 0
+    node[:zookeeper][:quorum].each do |i|
+        zookeeper_quorum << i
+    end
+end
+
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then 
     log "The deploy_build value is true so un-deploy first"
@@ -52,7 +75,7 @@ recursive true
 action :create
 end
 
-def processTemplates (install_dir, node)
+def processTemplates (install_dir, node, zookeeper_quorum)
     log "Updating the template files"
     cam_url = node['wt_cam']['cam_server_url']
     port = node['wt_streamingapi']['port']
@@ -67,7 +90,12 @@ def processTemplates (install_dir, node)
             :cam_url => cam_url,
             :install_dir => install_dir,
             :port => port,
-            :wt_monitoring => node[:wt_monitoring]
+            :wt_monitoring => node[:wt_monitoring],
+            
+            # streaming 0mq parameters
+            :zookeeper_quorum => zookeeper_quorum * ",",
+            :pod              => node[:wt_realtime_hadoop][:pod],
+            :datacenter       => node[:wt_realtime_hadoop][:datacenter]
         })
         end 
     end 
@@ -107,7 +135,7 @@ if ENV["deploy_build"] == "true" then
         })
     end
 
-    processTemplates(install_dir, node)
+    processTemplates(install_dir, node, zookeeper_quorum)
 
     # delete the install tar ball
     execute "delete_install_source" do
@@ -127,7 +155,7 @@ if ENV["deploy_build"] == "true" then
         }) 
     end
 else
-    processTemplates(install_dir, node)
+    processTemplates(install_dir, node, zookeeper_quorum)
 end
 
 #Create collectd plugin for streaming api JMX objects if collectd has been applied.
