@@ -8,7 +8,7 @@
 # All rights reserved - Do Not Redistribute
 # This recipe uninstalls all DX versions
 
-app_pool = node['wt_analytics']['app_pool']
+app_pool = node['wt_analytics']['pool']
 install_dir = node['wt_common']['install_dir_windows'] + node['wt_analytics']['install_dir']
 
 iis_pool app_pool do
@@ -24,5 +24,4 @@ end
 directory install_dir do
   recursive true
   action :delete
-  ignore_failure true
 end

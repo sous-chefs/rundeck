@@ -1,8 +1,16 @@
 = DESCRIPTION:
 
+Installs Dell System E-Support Tool (DSET), Dell OpenManage, and updates the bios on
+Dell C6100 series servers.  Each function is provided in a separate recipe so you can
+choose what items you wish to install.
+
 = REQUIREMENTS:
+
+Any Dell server for the installation of OpenManager / DSET
+Dell C6100 for BIOS Updates
 
 = ATTRIBUTES:
 
 = USAGE:
-
+Apply the default recipe on the node to install the necessary packages then choose what
+tools / updates you would like applied and add those recipes to your node
