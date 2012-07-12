@@ -80,7 +80,7 @@
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 
-            "graphite_flush_enabled": "true", 
+            "graphite_flush_enabled": "false", 
             "graphite_flush_interval": "1", 
             "graphite_port": 2003, 
             "graphite_server": "sgraph01.staging.dmz", 
@@ -220,9 +220,8 @@
         }, 
         "wt_cam": {
             "cam_server_url": "http://hcam01.staging.dmz/camservice", 
-            "db_name": "wtCamLite", 
-            "db_server": "hcamdb01.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt122/15622:id/CAM.zip"
+            "db_name": "cam",
+            "db_server": "hcamdb01.staging.dmz"
         }, 
         "wt_configdistrib": {
             "dcsid_url": "http://jcd01.englab.webtrends.corp:8097/config/dcsid2account"

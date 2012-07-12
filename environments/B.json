@@ -16,6 +16,7 @@
         "wt_streamingaudit": "= 0.0.6", 
         "wt_streamingcollection": "= 0.0.19", 
         "wt_streaminglogreplayer": "= 0.0.15", 
+        "wt_cam": "= 1.0.4",
         "zookeeper": "= 1.0.4"
     }, 
     "default_attributes": {
@@ -97,7 +98,7 @@
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 
-            "graphite_flush_enabled": "true", 
+            "graphite_flush_enabled": "false", 
             "graphite_flush_interval": "1", 
             "graphite_port": 2003, 
             "graphite_server": "sgraph01.staging.dmz", 
