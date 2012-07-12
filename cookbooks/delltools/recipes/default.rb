@@ -21,3 +21,8 @@ end
 %w{procmail compat-libstdc++-33}.each do |dellpkg|
 		package dellpkg
 end
+
+# You'll probably want ipmitool for interacting with the server
+package "ipmitool" do
+    action :install
+end
