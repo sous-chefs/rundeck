@@ -14,15 +14,20 @@
 
 # I'll add more later to upgrade different models.  I just needed this one immediately.
 
+#Exit the recipe if system's manufacturer as detected by ohai does not match "Dell"
+if node[:dmi][:system][:manufacturer] != "Dell" then
+	return
+end
+
 # This will reboot your server immediately!
-if node[:Dell][:BIOS][:C6100][:Version] > node[:dmi][:bios][:version]
+if node[:delltools][:bios][:c6100][:version] > node[:dmi][:bios][:version]
   bash "upgradeBIOS_C6100" do
   user "root"
     cwd "/tmp"
     code <<-EOH
-    wget ftp://ftp.us.dell.com/bios/PECC6100_BIOS_LX_#{node[:Dell][:BIOS][:C6100][:Version].split(".").join("_")}.BIN
-    chmod +x PECC6100_BIOS_LX_#{node[:Dell][:BIOS][:C6100][:Version].split(".").join("_")}.BIN
-    /tmp/PECC6100_BIOS_LX_#{node[:Dell][:BIOS][:C6100][:Version].split(".").join("_")}.BIN -q -r
+    wget ftp://ftp.us.dell.com/bios/PECC6100_BIOS_LX_#{node[:delltools][:bios][c6100][:version].split(".").join("_")}.BIN
+    chmod +x PECC6100_BIOS_LX_#{node[:delltools][:bios][c6100][:version].split(".").join("_")}.BIN
+    /tmp/PECC6100_BIOS_LX_#{node[:delltools][:bios][c6100][:version].split(".").join("_")}.BIN -q -r
     EOH
   end
 end
