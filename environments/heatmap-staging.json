@@ -11,6 +11,7 @@
         "wt_streamingaudit": "= 0.0.6", 
         "wt_streamingcollection": "= 0.0.18", 
         "wt_streaminglogreplayer": "= 0.0.15", 
+        "wt_cam": "= 1.0.4",
         "zookeeper": "= 1.0.4"
     }, 
     "default_attributes": {
