@@ -2,20 +2,13 @@
   "name": "wt_dx",
   "description": "Webtrends Data Extraction API",
   "json_class": "Chef::Role",
-  "default_attributes": {
-      "wt_dx": {
-        "v2_2_url": "dx/v2_2.zip",
-        "v3_url": "guestAuth/repository/download/bt23/.lastFinished/v3.zip",
-        "v2_url": "dx/v2.zip",
-        "v2_1_url": "dx/v2_1.zip"
-      }
+  "default_attributes": {      
   },
   "override_attributes": {
   },
   "chef_type": "role",
   "run_list": [
     "role[iis]",
-    "role[wt_commonlib]",
     "recipe[ms_dotnet35]",
     "recipe[vc2010]",
     "recipe[wt_dx]"

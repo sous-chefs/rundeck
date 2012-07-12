@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: wt_dx
-# Recipe:: pre
+# Recipe:: default
 # Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
 #
 # Copyright 2012, Webtrends
@@ -13,6 +13,7 @@ if deploy_mode?
   include_recipe "ms_dotnet4::resetiis"
   iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
 	action :config
+	ignore_failure true
   end
 end
 
@@ -24,8 +25,7 @@ pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
 ui_user = user_data['wt_common']['ui_user']
 ui_password = user_data['wt_common']['ui_pass']
-endpoint = node['wt_dx']['endpoint_address']
-c_hosts = "test"
+msi_name = node['wt_dx']['commonlib_msi']
 
 #v21 Properties
 cfg_cmds_v21 = node['wt_dx']['v2_1']['cfg_cmd']
@@ -45,11 +45,12 @@ directory install_logdir do
 	action :create
 end
 
-cfg_cmds.each do |cmd|	
-	iis_config "#{cmd}" do
-		action :config
-	end
-end	
+
+
+iis_pool app_pool_v21 do
+  	thirty_two_bit :true
+    action [:add, :config]
+end
 
 iis_site 'Default Web Site' do
 	action [:stop, :delete]
@@ -81,26 +82,24 @@ wt_base_firewall 'OEM_DXWS' do
 	action [:open_port]
 end
 
-if deploy_mode?
-  ##################################
-  # DX V2_1
-  ##################################
-  windows_zipfile install_dir_v21 do
-    source "#{archive_url}#{v21_install_url}"
+if deploy_mode?  
+  windows_zipfile "#{Chef::Config[:file_cache_path]}" do
+    source node['wt_dx']['download_url']
     action :unzip	
+  end
+  
+  windows_package "WebTrends Common Lib" do
+    source "#{Chef::Config[:file_cache_path]}\\#{msi_name}"
+	options "/l*v \"#{install_logdir}\\#{msi_name}-Install.log\" INSTALLDIR=\"#{install_dir}\" SQL_SERVER_NAME=\"#{node['wt_common']['master_host']}\" WTMASTER=\"wtMaster\"  WTSCHED=\"wt_Sched\""
+	action :install
   end
   
   template "#{install_dir_v21}\\web.config" do
   	source "webConfigv21.erb"
   	variables(
-  		:cache_hosts => c_hosts
+  		:cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached")
   	)
-  end
-  
-  iis_pool app_pool_v21 do
-  	thirty_two_bit :true
-  action [:add, :config]
-  end
+  end  
   
   iis_app "DX" do
   	path "/v2_1"
@@ -112,35 +111,34 @@ if deploy_mode?
   iis_config auth_cmd_v21 do
   	action :config
   end
-  
-  ##################################
-  # DX V3
-  ##################################
-  windows_zipfile "#{installdir}#{v3_installdir}" do
-    source "#{install_url}#{v3_install_url}"
-    action :unzip	
-    not_if {::File.exists?("#{installdir}#{v3_installdir}\\StreamingServices\\log4net.config")}
+
+  execute "Movev3" do
+    command "mv #{Chef::Config[:file_cache_path]}\\v3 #{install_dir_v3}"
+    action :run
   end
   
   template "#{install_dir_v3}\\StreamingServices\\Web.config" do
   	source "webConfigv3Streaming.erb"
   	variables(
-  		:cache_hosts => c_hosts,
+  		:cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached"),
   		:master_host => node['wt_common']['master_host']
   	)
   end
   
+  search_server = search(:node, "chef_environment:#{node.chef_environment} AND role:wt_search")
+  search_host = "#{search_server[0][:fqdn]}"
+  
   template "#{install_dir_v3}\\Web Services\\Web.config" do
   	source "webConfigv3Web.erb"
   	variables(
-  		:cache_hosts => c_hosts,
+  		:cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached"),
   		:cassandra_hosts => node['wt_common']['cassandra_hosts'],
   		:master_host => node['wt_common']['master_host'],
   		:report_col => node['wt_common']['cassandra_report_column'],
   		:metadata_col => node['wt_common']['cassandra_meta_column'],
   		:snmp_comm => node['wt_common']['cassandra_snmp_comm'],
   		:cache_name => node['wt_dx']['cachename'],
-  		:endpoint_address => node['wt_dx']['endpoint_address'],
+  		:endpoint_address => "net.tcp://#{search_host}:8096/SearchService/Search",
   		:streamingservice_root => node['wt_dx']['app_settings_section']['streamingServiceRoot']
   	)
   end
@@ -178,20 +176,14 @@ if deploy_mode?
   	action :config
   end
   
-  ##################################
-  # DX V2
-  ##################################
   #DX 2.0 really just uses the DX 2.1 installations
   iis_app "DX" do
   	path "/v2"
   	application_pool "#{app_pool_v21}"
   	physical_path "#{install_dir_v21}"
   	action :add
-  end
+  end 
   
-  ##################################
-  # DX V2_2
-  ##################################
   #DX 2.2 just uses the DX 3.0 installation
   iis_app "OEM_DX" do
   	path "/v2_2"
@@ -199,6 +191,12 @@ if deploy_mode?
   	physical_path "#{install_dir_v3}"
   	action :add
   end
+  
+  cfg_cmds.each do |cmd|	
+    iis_config "#{cmd}" do
+		action :config
+	end
+  end	
 end
 
 #Post Install
