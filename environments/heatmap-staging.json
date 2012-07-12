@@ -251,11 +251,7 @@
         }, 
         "wt_storm": {
             "dcsid_whitelist": "", 
-<<<<<<< HEAD
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt141/20660:id/streaming-analysis-bin.tar.gz"
-=======
             "download_url": "http://teamcity/repository/download/bt141/20560:id/streaming-analysis-bin.tar.gz"
->>>>>>> Added zmq streaming topo to vpod.
         }, 
         "wt_streaming_audit": {}, 
         "wt_streamingapi": {
