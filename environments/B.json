@@ -226,7 +226,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/.lastSuccessful/streamingauditor-bin.tar.gz"
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity/guestAuth/repository/download/bt139/20797:id/streamingapi-bin.tar.gz" 
+            "download_url": "http://teamcity/guestAuth/repository/download/bt139/20797:id/streamingapi-bin.tar.gz",
             "port": 8080
         }, 
         "wt_streamingcollection": {
