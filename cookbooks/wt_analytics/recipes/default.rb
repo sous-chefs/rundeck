@@ -55,9 +55,21 @@ iis_site 'Analytics' do
     action [:add,:start]
 end
 
+# wt_base_icacls install_dir do
+	# action :grant
+	# user user_data['wt_common']['ui_user']
+	# perm :read
+# end
+
 wt_base_icacls install_dir do
 	action :grant
 	user user_data['wt_common']['ui_user']
+	perm :modify
+end
+
+wt_base_icacls install_dir do
+	action :grant
+	user "IUSR"
 	perm :read
 end
 
@@ -76,11 +88,16 @@ if deploy_mode?
 		  :master_host => node['wt_common']['master_host'],
 		  :cass_host => node['wt_common']['cassandra_host'],
 		  :report_column => node['wt_common']['cassandra_report_column'],
-		  :thrift_port => node['wt_common']['cassandra_thrift_port'],
+		  :cass_thrift_port => node['wt_common']['cassandra_thrift_port'],
 		  :metadata_column => node['wt_common']['cassandra_meta_column'],
 		  :cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached"),
 		  :search_host => search_host,
-		  :cache_region => node['wt_common']['cache_region']
+		  :cache_region => node['wt_common']['cache_region'],
+		  :hbase_location => node['hbase']['location'],
+		  :hbase_thrift_port => node['hbase']['thrift_port'],
+		  :hmapi_host => search(:node, "chef_environment:#{node.chef_environment} AND role:wt_heatmaps_api"),
+		  :dc_id => node['hbase']['data_center_id'],
+		  :pod_id => node.chef_environment
 	  )
 	end
 	

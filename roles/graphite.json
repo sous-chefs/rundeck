@@ -7,5 +7,8 @@
     "recipe[graphite]"
   ],
   "override_attributes": {
+    "apache": {
+      "default_site_enabled": false
+    }
   }
 }
