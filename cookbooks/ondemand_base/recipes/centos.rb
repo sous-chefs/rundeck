@@ -164,10 +164,17 @@ end
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
 
-#Allow for hardware monitoring (CentOS only goes on hardware systems)
+#Allow for hardware monitoring (CentOS in prod is always on hardware systems)
 include_recipe "snmp"
 
-#Install VMware tools if no version is present
+#HP Systems only: Install HP System Management Homepage along with other HP tools.
+include_recipe "hp-tools"
+
+#Dell Systems only: Install Dell System E-Support Tool
+include_recipe "delltools::default"
+include_recipe "delltools::dset"
+
+#VMware Systems only: Install VMware tools since we have CentOS boxes in PP/Staging on VMs
 include_recipe "vmware-tools"
 
 #Install collectd - system statistics collection daemon

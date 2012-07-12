@@ -7,7 +7,7 @@
         "kafka": "= 1.0.5", 
         "wt_heatmaps": "= 0.10.4", 
         "wt_realtimeapi": "= 0.0.17", 
-        "wt_streamingapi": "= 0.0.16", 
+        "wt_streamingapi": "= 0.0.17", 
         "wt_streamingaudit": "= 0.0.6", 
         "wt_streamingcollection": "= 0.0.18", 
         "wt_streaminglogreplayer": "= 0.0.15", 
@@ -238,7 +238,8 @@
         "wt_netacuity": {
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/", 
             "use_proxy": false, 
-            "version": "4.6"
+            "version": "4.6",
+            "geo_url": "10.164.14.29"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "pdx", 
@@ -250,11 +251,12 @@
         }, 
         "wt_storm": {
             "dcsid_whitelist": "", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/20537:id/streaming-analysis-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt141/20660:id/streaming-analysis-bin.tar.gz"
         }, 
         "wt_streaming_audit": {}, 
         "wt_streamingapi": {
-            "port": 8080
+            "port": 8080,
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt139/.lastSuccessful/streamingapi-bin.tar.gz"
         }, 
         "wt_streamingcollection": {
             "port": 8080
