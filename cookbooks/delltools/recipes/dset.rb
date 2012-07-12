@@ -12,14 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-bash "installDSET" do
+#Exit the recipe if system's manufacturer as detected by ohai does not match "Dell"
+if !node[:dmi][:system][:manufacturer].include? 'Dell' then
+	return
+end
+
+# download the application bin and notify the install
+remote_file "#{Chef::Config[:file_cache_path]}/delldset_v#{node[:delltools][:dset][:version]}.bin" do
+	source "http://ftp.dell.com/diags/delldset_v#{node[:delltools][:dset][:version]}.bin"
+	mode 00644
+	not_if {File.exists?("#{Chef::Config[:file_cache_path]}/delldset_v#{node[:delltools][:dset][:version]}.bin")}
+	notifies :run, "execute[installDSET]", :immediately
+end
+
+# install DSET
+execute "installDSET" do
   user "root"
-  cwd "/tmp"
-  code <<-EOH
-  if [ ! -d /opt/dell/dset ]; then
-    wget http://ftp.us.dell.com/diags/delldset_v#{node[:Dell][:DSET][:Version]}.bin
-    chmod +x /tmp/delldset_v#{node[:Dell][:DSET][:Version]}.bin
-    /tmp/delldset_v#{node[:Dell][:DSET][:Version]}.bin --install
-  fi
-  EOH
+  cwd "#{Chef::Config[:file_cache_path]}"
+  command "chmod +x delldset_v#{node[:delltools][:dset][:version]}.bin; ./delldset_v#{node[:delltools][:dset][:version]}.bin --install"
+  action :nothing
 end

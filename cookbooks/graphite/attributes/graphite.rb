@@ -1,5 +1,5 @@
 default[:graphite][:version] = "0.9.10"
-
+default[:graphite][:python_version] = "2.6"
 version = node[:graphite][:version]
 series = node[:graphite][:version].split(".").first(2).join(".")
 
