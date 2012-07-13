@@ -10,11 +10,7 @@
 
 if deploy_mode? 
   include_recipe "wt_dx::uninstall" 
-  include_recipe "ms_dotnet4::resetiis"
-  iis_config "/section:httpCompression /+\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
-	action :config
-	ignore_failure true
-  end
+  include_recipe "ms_dotnet4::resetiis"  
 end
 
 #Properties
@@ -45,7 +41,15 @@ directory install_logdir do
 	action :create
 end
 
+directory install_dir_v21 do
+	action :create
+	recursive true
+end
 
+directory install_dir_v3 do
+	action :create
+	recursive true
+end
 
 iis_pool app_pool_v21 do
   	thirty_two_bit :true
@@ -113,7 +117,7 @@ if deploy_mode?
   end
 
   execute "Movev3" do
-    command "mv #{Chef::Config[:file_cache_path]}\\v3 #{install_dir_v3}"
+    command "cp -r #{Chef::Config[:file_cache_path]}\\v3 \"#{install_dir_v3}\""
     action :run
   end
   
@@ -201,15 +205,15 @@ end
 
 #Post Install
 
-wt_base_icacls "#{node['wt_common']['installdir_windows']}\\Data Extraction API" do
+wt_base_icacls "#{install_dir}" do
 	action :grant
 	user user_data['wt_common']['ui_user']
 	perm :read
 end
 
-wt_base_icacls node['wt_common']['installdir_windows'] do
+wt_base_icacls node['wt_common']['install_dir_windows'] do
 	action :grant
-	user "#{node['wt_common']['installdir_windows']}\\OEM Data Extraction API"
+	user user_data['wt_common']['ui_user']
 	perm :read
 end
 
