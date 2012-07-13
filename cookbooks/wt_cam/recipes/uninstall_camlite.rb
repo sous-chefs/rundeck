@@ -8,24 +8,21 @@
 # All rights reserved - Do Not Redistribute
 # This recipe uninstalls all DX versions
 
-app_pool = node['wt_cam']['app_pool']
-install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Cam"
+app_pool = node['wt_cam']['camlite_app_pool']
+install_dir = "#{node['wt_common']['install_dir_windows']}\\CAMLITE"
 
-iis_app "CAM" do
-	path "/Cam"
+iis_app "CAMLITE" do
+	path "/CamService"
 	application_pool "#{app_pool}"
 	action :delete
-    ignore_failure true
 end
 
 iis_pool "#{app_pool}" do
   action [:stop, :delete]
-    ignore_failure true
 end
 
-iis_site 'CAM' do
+iis_site 'CAMLITE' do
 	action [:stop, :delete]
-    ignore_failure true
 end
 
 directory "#{install_dir}" do
