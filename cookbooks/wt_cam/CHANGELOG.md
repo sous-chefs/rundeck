@@ -1,6 +1,9 @@
 ## Future
 * Unknown
 
+## 1.0.5
+* Added a cam_lite recipe to split the old stuff out. This will eventually go away
+
 ## 1.0.4
 * removed camdb_user and change web.config to use Trusted_Connection
 * changed service account to be ui_user

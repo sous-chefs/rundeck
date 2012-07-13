@@ -10,14 +10,14 @@
 
 if deploy_mode?
   include_recipe "ms_dotnet4::resetiis"
-  include_recipe "wt_cam::uninstall" 
+  include_recipe "wt_cam::uninstall_camlite" 
 end
 
 
 #Properties
-install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Cam"
+install_dir = "#{node['wt_common']['install_dir_windows']}\\CAMLITE"
 install_logdir = node['wt_common']['install_log_dir_windows']
-app_pool = node['wt_cam']['app_pool']
+app_pool = node['wt_cam']['camlite_app_pool']
 pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
@@ -41,9 +41,9 @@ execute "del_wwwroot" do
 	action :nothing
 end
 
-iis_site 'CAM' do
+iis_site 'CAMLITE' do
     protocol :http
-    port 8080
+    port 80
     path "c:\\inetpub\\wwwroot"
 	action [:add,:start]
 	notifies :run, resources(:execute => "del_wwwroot") 
@@ -58,16 +58,15 @@ end
 
 if deploy_mode?
   windows_zipfile install_dir do
-    source node['wt_cam']['download_url']
+    source node['wt_cam']['camlite_download_url']
     action :unzip	
   end
   
-  template "#{install_dir}\\web.config" do
-  	source "web.config.erb"  
+  template "#{install_dir}\\Webtrends.CamWeb.UI\\web.config" do
+  	source "webConfig_camlite.erb"  
 	variables(
 		:db_server => node['wt_cam']['db_server'],
-		:db_name   => node['wt_cam']['db_name'],
-        :tokenExpirationMinutes => node['wt_cam']['tokenExpirationMinutes']
+		:db_name   => node['wt_cam']['camlite_db_name']
   	)	
   end
   
@@ -77,10 +76,10 @@ if deploy_mode?
 	action [:add, :config]
   end
   
-  iis_app "CAM" do
-  	path "/Cam"
+  iis_app "CAMLITE" do
+  	path "/CamService"
   	application_pool app_pool
-  	physical_path "#{install_dir}"
+  	physical_path "#{install_dir}\\Webtrends.CamWeb.UI"
   	action :add
   end
 	
