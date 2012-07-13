@@ -70,18 +70,6 @@ define command {
 }
 
 define command {
-  command_name    check_solr
-  command_line    $USER1$/check_solr.rb -c 10 -h $HOSTADDRESS$ -r 10 -p $ARG1$
-
-}
-
-define command {
-  command_name    query_solr
-  command_line    $USER1$/check_solr.rb -c 10 -h $HOSTADDRESS$ -r 10 -p $ARG1$ -q $ARG2$
-
-}
-
-define command {
   command_name    check_mem
   command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c check_mem -t 20
 }

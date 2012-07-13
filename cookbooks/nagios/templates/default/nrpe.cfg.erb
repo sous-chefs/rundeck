@@ -17,7 +17,7 @@ command[check_zombie_procs]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 5
 command[check_total_procs]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 150 -c 200
 command[check_chef_client]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 1:2 -c 1:2 -C chef-client
 command[check_nginx]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 2:3 -c 1:5 -C nginx
-
+command[check_solr]=<%= node['nagios']['plugin_dir'] %>/check_solr.rb -c 10 -r 10 -h localhost -p solr
 
 # The following examples allow user-supplied arguments and can
 # only be used if the NRPE daemon was compiled with support for
@@ -52,3 +52,4 @@ command[wt_check_squid]=sudo <%= node['nagios']['plugin_dir'] %>/check_squid $AR
 command[wt_check_jmx]=<%= node['nagios']['plugin_dir'] %>/check_jmx $ARG1$
 command[wt_check_graphite_data]=<%= node['nagios']['plugin_dir'] %>/check_graphite_data $ARG1$
 command[wt_check_hpasm]=sudo <%= node['nagios']['plugin_dir'] %>/check_hpasm $ARG1$
+
