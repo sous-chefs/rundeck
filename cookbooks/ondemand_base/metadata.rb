@@ -3,7 +3,7 @@ maintainer_email "hostedops@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures ondemand_base"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "1.7.0"
+version          "1.7.1"
 depends          "ad-auth"
 depends          "chef-client"
 depends          "collectd"
