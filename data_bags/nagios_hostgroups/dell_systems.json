@@ -1,0 +1,5 @@
+{
+    "search_query": ":node, 'dmi_system_manufacturer:Dell*'", 
+    "hostgroup_name": "dell_systems", 
+    "id": "dell_systems"
+}

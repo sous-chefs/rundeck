@@ -1,4 +1,5 @@
 version = node[:graphite][:version]
+pyver = node[:graphite][:python_version]
 
 remote_file "/usr/src/carbon-#{version}.tar.gz" do
   source node[:graphite][:carbon][:uri]
@@ -13,15 +14,8 @@ end
 
 execute "install carbon" do
   command "python setup.py install"
-  creates "/opt/graphite/lib/carbon-#{version}-py2.6.egg-info"
+  creates "/opt/graphite/lib/carbon-#{version}-py#{pyver}.egg-info"
   cwd "/usr/src/carbon-#{version}"
-end
-
-case node[:platform]
-when "centos","redhat"
-  apache_user = "apache"
-when "debian","ubuntu"
-  apache_user = "www-data"
 end
 
 service "carbon-cache" do
@@ -39,8 +33,8 @@ template "/etc/init.d/carbon-cache" do
 end
 
 template "/opt/graphite/conf/carbon.conf" do
-  owner "#{apache_user}"
-  group "#{apache_user}"
+  owner node['apache']['user']
+  group node['apache']['group']
   variables( :local_data_dir => node[:graphite][:carbon][:local_data_dir],
              :line_receiver_interface => node[:graphite][:carbon][:line_receiver_interface],
              :pickle_receiver_interface => node[:graphite][:carbon][:pickle_receiver_interface],
@@ -50,13 +44,13 @@ template "/opt/graphite/conf/carbon.conf" do
 end
 
 template "/opt/graphite/conf/storage-schemas.conf" do
-  owner "#{apache_user}"
-  group "#{apache_user}"
+  owner node['apache']['user']
+  group node['apache']['group']
   mode "0644"
 end
 
-execute "carbon: change graphite storage permissions to www-data" do
-  command "chown -R www-data:www-data /opt/graphite/storage"
+execute "carbon: change graphite storage permissions to apache user" do
+  command "chown -R #{node['apache']['user']}:#{node['apache']['group']} /opt/graphite/storage"
   only_if do
     f = File.stat("/opt/graphite/storage")
     f.uid == 0 and f.gid == 0
@@ -64,8 +58,8 @@ execute "carbon: change graphite storage permissions to www-data" do
 end
 
 directory "/opt/graphite/lib/twisted/plugins/" do
-  owner "#{apache_user}"
-  group "#{apache_user}"
+  owner node['apache']['user']
+  group node['apache']['group']
 end
 
 service "carbon-cache" do
