@@ -207,7 +207,8 @@
         "wt_netacuity": {
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/", 
             "use_proxy": false, 
-            "version": "4.6"
+            "version": "4.6",
+            "geo_url": "butil01.staging.dmz"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
