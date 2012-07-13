@@ -1,3 +1,9 @@
+# 1.0.26:
+* Remove the default storm log directory since we use /var/storm
+
+# 1.0.24 - 25:
+* The lost releases
+
 # 1.0.23
 * Added support in the configuration for the "in session" bolt, though
   this feature may or may-not be enabled yet in code
