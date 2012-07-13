@@ -44,7 +44,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :topology_override_max_spout_pending     => 3000,
     :topology_override_msg_timeout_seconds   => 120,
     # kafka consumer settings
-    :kafka_consumer_topic                 => 'rawHits',
+    :kafka_consumer_topic                 => 'scsRawHits:0,lrRawHits:0',
     :kafka_dcsid_whitelist                => node[:wt_storm][:dcsid_whitelist],
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-realtime',

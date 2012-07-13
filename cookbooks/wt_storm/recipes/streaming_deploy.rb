@@ -39,7 +39,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :streaming_topology_in_session_bolt_count    => 1,
     :streaming_topology_zmq_emitter_bolt_count   => 5,
     # kafka consumer settings
-    :kafka_consumer_topic                 => 'rawHits',
+    :kafka_consumer_topic                 => 'scsRawHits:0,lrRawHits:15',
     :kafka_dcsid_whitelist                => node[:wt_storm][:dcsid_whitelist],
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-streaming',
