@@ -1,5 +1,11 @@
 ## Future
 
+## 1.1.11:
+
+* Modified the regex in pool:load_current_resource to search for the full app pool name, rather then the start.
+
+## 1.1.1:
+
 * `:modify` action for iis_site
 * resource/provider for managing IIS virtual directories
 * IIS 6.0 support
