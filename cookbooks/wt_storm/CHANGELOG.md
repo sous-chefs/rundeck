@@ -1,8 +1,11 @@
-# 1.0.26:
+# 1.0.26
 * Remove the default storm log directory since we use /var/storm
 
-# 1.0.24 - 25:
+# 1.0.25
 * The lost releases
+
+# 1.0.24
+* Added changes to support finding SAPI hosts via zookeeper
 
 # 1.0.23
 * Added support in the configuration for the "in session" bolt, though
@@ -21,19 +24,19 @@
 # 1.0.11
 * Added zookeeper client port support and standardized zookeeper processing
 
-# 1.08:
+# 1.08
 * Log to /var/log/storm not /opt/storm/current/logs
 
-# 1.07:
+# 1.07
 * Added collectd JRE stats
 
-# 1.06:
+# 1.06
 * Added auditing support
 
-# 1.04:
+# 1.04
 * Correctly search out the Kafka nodes by using the Kafka role
 
-# 1.02-03:
+# 1.02-03
 * Obviously something happened here
 
 # 1.01
