@@ -329,7 +329,7 @@ define command {
 # Event Handlers added through nagios_eventhandlers data bags
 <% @eventhandlers.each do |eventhandlers| -%>
 define command {
-  command_name check_<%= eventhandlers['id'] %>
+  command_name <%= eventhandlers['id'] %>
   command_line <%= eventhandlers['command_line'] %>
 }
 <% end -%>
