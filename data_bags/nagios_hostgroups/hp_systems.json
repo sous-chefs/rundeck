@@ -1,5 +1,5 @@
 {
-    "search_query": ":node, 'dmi_system_manufacturer:hp'", 
+    "search_query": ":node, 'dmi_system_manufacturer:HP'", 
     "hostgroup_name": "hp_systems", 
     "id": "hp_systems"
 }
