@@ -123,6 +123,11 @@ zkclient-0.1.jar
       group "storm"
       mode 00755
     end
+    
+    # delete the unused storm log directory
+    file "#{node['storm']['install_dir']}/current/logs"
+      action :delete
+    end
 
     # template out the log4j config with our customer logging settings
     template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4j/storm.log.properties" do
