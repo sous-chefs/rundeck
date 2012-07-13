@@ -11,11 +11,12 @@
         "wt_monitoring": "= 0.0.2",
         "wt_netacuity": "= 1.0.4",
         "wt_realtimeapi": "= 0.0.17",
-        "wt_storm": "= 1.0.20",
-        "wt_streamingapi": "= 0.0.16", 
+        "wt_storm": "= 1.0.24",
+        "wt_streamingapi": "= 0.0.17", 
         "wt_streamingaudit": "= 0.0.6", 
         "wt_streamingcollection": "= 0.0.19", 
         "wt_streaminglogreplayer": "= 0.0.15", 
+        "wt_cam": "= 1.0.4",
         "zookeeper": "= 1.0.4"
     }, 
     "default_attributes": {
@@ -97,7 +98,7 @@
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 
-            "graphite_flush_enabled": "true", 
+            "graphite_flush_enabled": "false", 
             "graphite_flush_interval": "1", 
             "graphite_port": 2003, 
             "graphite_server": "sgraph01.staging.dmz", 
@@ -206,7 +207,8 @@
         "wt_netacuity": {
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/", 
             "use_proxy": false, 
-            "version": "4.6"
+            "version": "4.6",
+            "geo_url": "butil01.staging.dmz"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
@@ -219,14 +221,13 @@
         }, 
         "wt_storm": {
             "dcsid_whitelist": "", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/.lastSuccessful/streaming-analysis-bin.tar.gz", 
-            "jf_base_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt119/.lastSuccessful/jars/"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt141/20560:id/streaming-analysis-bin.tar.gz" 
         }, 
         "wt_streaming_audit": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/.lastSuccessful/streamingauditor-bin.tar.gz"
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/.lastSuccessful/streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity/guestAuth/repository/download/bt139/20797:id/streamingapi-bin.tar.gz",
             "port": 8080
         }, 
         "wt_streamingcollection": {
