@@ -1,0 +1,5 @@
+{
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c check_solr", 
+    "hostgroup_name": "linux", 
+    "id": "chef_server_solr_query_check"
+}
