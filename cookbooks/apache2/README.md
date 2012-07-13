@@ -79,6 +79,7 @@ In order to support the broadest number of platforms, several attributes are det
 * `node['apache']['pid_file']` - Location of the PID file for Apache httpd
 * `node['apache']['lib_dir']` - Location for shared libraries
 * `node['apache']['default_site_enabled']` - Default site enabled. Defaults to true on redhat-family platforms
+* `node['apache']['ext_status']` - if true, enables ExtendedStatus for `mod_status`
 
 General settings
 ----------------
@@ -163,6 +164,13 @@ Change the DBLocation with the attribute as required; this file is in a differen
 * `AuthType OpenID` instead of `AuthOpenIDEnabled On`.
 * `require user` instead of `AuthOpenIDUserProgram`.
 * A bug(?) in `mod_auth_openid` causes it to segfault when attempting to update the database file if the containing directory is not writable by the HTTPD process owner (e.g., www-data), even if the file is writable. In order to not interfere with other settings from the default recipe in this cookbook, the db file is moved.
+
+mod\_fastcgi
+------------
+
+Install the fastcgi package and enable the module.
+
+Only work on Debian/Ubuntu
 
 mod\_fcgid
 ----------
@@ -302,9 +310,9 @@ To use the default web_app, for example:
 
 The parameters specified will be used as:
 
-* `@params['server_name']`
-* `@params['server_aliases']`
-* `@params['docroot']`
+* `@params[:server_name]`
+* `@params[:server_aliases]`
+* `@params[:docroot]`
 
 In the template. When you write your own, the `@` is significant.
 
