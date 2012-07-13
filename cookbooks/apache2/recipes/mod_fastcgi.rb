@@ -1,4 +1,8 @@
-# Copyright 2011, Nathan Milford
+#
+# Cookbook Name:: apache2
+# Recipe:: fastcgi
+#
+# Copyright 2008-2009, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,18 +15,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-#Exit the recipe if system's manufacturer as detected by ohai does not match "Dell"
-if !node[:dmi][:system][:manufacturer].include? 'Dell' then
-	return
-end
+if platform?("debian", "ubuntu")
+  package "libapache2-mod-fastcgi"
 
-# Most Dell stuff on CentOS / Redhat needs these.
-%w{procmail compat-libstdc++-33}.each do |dellpkg|
-		package dellpkg
-end
-
-# You'll probably want ipmitool for interacting with the server
-package "ipmitool" do
-    action :install
+  apache_module "fastcgi" do
+    conf true
+  end
 end
