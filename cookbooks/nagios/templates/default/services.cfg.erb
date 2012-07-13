@@ -98,7 +98,7 @@ define service {
   hostgroup_name <%= service['hostgroup_name'] %>
   check_command check_<%= service['id'] %>
   use default-service
-  <% if service['event_handler'].nil? -%>
+  <% unless service['event_handler'].nil? -%>
   event_handler <%= service['event_handler'] %>
   <% end -%>
 }
