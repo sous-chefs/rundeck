@@ -32,7 +32,7 @@ action :enable do
   end
 
   case node['platform']
-  when "centos", "redhat", "freebsd"
+  when "centos", "redhat", "freebsd", "amazon", "scientific", "fedora"
     template "#{node["bluepill"]["init_dir"]}/bluepill-#{new_resource.service_name}" do
       source "bluepill_init.erb"
       cookbook "bluepill"
@@ -40,7 +40,7 @@ action :enable do
       group node["bluepill"]["group"]
       mode "0755"
       variables(
-        :service_name => "#{new_resource.service_name}",
+        :service_name => new_resource.service_name,
         :config_file => config_file
       )
     end
@@ -49,17 +49,21 @@ action :enable do
       action [ :enable ]
     end
   end
+
+  new_resource.updated_by_last_action(true)
 end
 
 action :load do
   unless @bp.running
     execute "#{node['bluepill']['bin']} load #{node['bluepill']['conf_dir']}/#{new_resource.service_name}.pill"
+    new_resource.updated_by_last_action(true)
   end
 end
 
 action :start do
   unless @bp.running
     execute "#{node['bluepill']['bin']} #{new_resource.service_name} start"
+    new_resource.updated_by_last_action(true)
   end
 end
 
@@ -71,18 +75,21 @@ action :disable do
     link "#{node['bluepill']['init_dir']}/#{new_resource.service_name}" do
       action :delete
     end
+    new_resource.updated_by_last_action(true)
   end
 end
 
 action :stop do
   if @bp.running
     execute "#{node['bluepill']['bin']} #{new_resource.service_name} stop"
+    new_resource.updated_by_last_action(true)
   end
 end
 
 action :restart do
   if @bp.running
     execute "#{node['bluepill']['bin']} #{new_resource.service_name} restart"
+    new_resource.updated_by_last_action(true)
   end
 end
 
