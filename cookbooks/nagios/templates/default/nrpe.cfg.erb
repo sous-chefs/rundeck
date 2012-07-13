@@ -20,7 +20,7 @@ command[check_nginx]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 2:3 -c 1
 command[check_solr]=<%= node['nagios']['plugin_dir'] %>/check_solr.rb -c 10 -r 10 -h localhost -p solr
 command[chef_server_web_api_check]=<%= node['nagios']['plugin_dir'] %>/check_http -H #{node[:fqdn]} -p 4000 -r "Chef"
 command[chef_server_web_ui_check]=<%= node['nagios']['plugin_dir'] %>/check_http -H #{node[:fqdn]} -p 4040 -u /users/login -r "Chef"
-command[check_ipmi_sensors]=<%= node['nagios']['plugin_dir'] %>/check_ipmi.pl
+command[check_ipmi_sensors]=<%= node['nagios']['plugin_dir'] %>/check_ipmi_sensors
 command[check_raid]=<%= node['nagios']['plugin_dir'] %>/check_megaraid_sas
 
 # The following examples allow user-supplied arguments and can
