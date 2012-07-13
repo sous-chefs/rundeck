@@ -44,7 +44,7 @@ action :enable do
 end
 
 def load_current_resource
-        @current_portopening = Chef::Resource::WindowsFirewall.new(@new_resource.name)
+        @current_portopening = Chef::Resource::WtBaseFirewall.new(@new_resource.name)
         @current_portopening.rule_name(@new_resource.rule_name)
         cmd = shell_out("#{firewallcmd} show portopening")
         Chef::Log.debug("#{@new_resource} show portopening command output: #{cmd.stdout}")
