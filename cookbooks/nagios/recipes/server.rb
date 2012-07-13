@@ -76,6 +76,18 @@ if eventhandlers.nil? || eventhandlers.empty?
   eventhandlers = Array.new
 end
 
+# Load search defined Nagios hostgroups from the nagios_hostgroups data bag
+begin
+  search_hostgroups = search(:nagios_hostgroups, '*:*')
+rescue Net::HTTPServerException
+  Chef::Log.info("Search for nagios_hostgroups data bag failed, so we'll just move on.")
+end
+
+if search_hostgroups.nil? || search_hostgroups.empty?
+  Chef::Log.info("No search defined Host Groups returned from data bag search.")
+  search_hostgroups = Array.new
+end
+
 members = Array.new
 sysadmins.each do |s|
   members << s['id']
