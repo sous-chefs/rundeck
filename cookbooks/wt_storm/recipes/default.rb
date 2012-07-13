@@ -125,7 +125,7 @@ zkclient-0.1.jar
     end
     
     # delete the unused storm log directory
-    file "#{node['storm']['install_dir']}/current/logs"
+    file "#{node['storm']['install_dir']}/current/logs" do
       action :delete
     end
 
