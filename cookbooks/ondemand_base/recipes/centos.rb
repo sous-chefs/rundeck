@@ -174,6 +174,7 @@ include_recipe "hp-tools"
 #Dell Systems only: Install Dell System E-Support Tool
 include_recipe "delltools::default"
 include_recipe "delltools::dset"
+include_recipe "delltools::megaraid"
 
 #VMware Systems only: Install VMware tools since we have CentOS boxes in PP/Staging on VMs
 include_recipe "vmware-tools"
