@@ -1,4 +1,7 @@
-##0.0.19
+## 0.0.20
+* Changed topic name to scsRawHits
+
+## 0.0.19
 * Added a nagios healthcheck
 
 ## 0.0.18
