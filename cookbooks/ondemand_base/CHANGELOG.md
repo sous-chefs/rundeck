@@ -4,6 +4,7 @@
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
 
 ## 1.7.1
+ * Add MegaRAID MegaCLI on Dell boxes with the MegaRAID controller
  * Make sure to create the alternative non-root user's home dir
 
 ## 1.7
