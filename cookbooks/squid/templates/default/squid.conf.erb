@@ -608,17 +608,26 @@ acl to_localhost dst 127.0.0.0/8 0.0.0.0/32
 # Example rule allowing access from your local networks.
 # Adapt to list your (internal) IP networks from where browsing
 # should be allowed
-
-<% node['squid']['localnet'].each do |localnet| -%>
-acl localnet src  <%= localnet %>
-<% end -%>
+acl localnet src 10.0.0.0/8	# RFC1918 possible internal network
+acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
+acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
 #
-<% node['squid']['ssl_ports'].each do |ssl_ports| -%>
-acl SSL_ports port <%= ssl_ports %>
-<% end -%>
-<% node['squid']['safe_ports'].each do |safe_ports| -%>
-acl Safe_ports port <%= safe_ports %>
-<% end -%>
+acl SSL_ports port 443		# https
+acl SSL_ports port 563		# snews
+acl SSL_ports port 873		# rsync
+acl Safe_ports port 80		# http
+acl Safe_ports port 21		# ftp
+acl Safe_ports port 443		# https
+acl Safe_ports port 70		# gopher
+acl Safe_ports port 210		# wais
+acl Safe_ports port 1025-65535	# unregistered ports
+acl Safe_ports port 280		# http-mgmt
+acl Safe_ports port 488		# gss-http
+acl Safe_ports port 591		# filemaker
+acl Safe_ports port 777		# multiling http
+acl Safe_ports port 631		# cups
+acl Safe_ports port 873		# rsync
+acl Safe_ports port 901		# SWAT
 acl purge method PURGE
 acl CONNECT method CONNECT
 
@@ -666,7 +675,7 @@ http_access deny CONNECT !SSL_ports
 # Example rule allowing access from your local networks.
 # Adapt localnet in the ACL section to list your (internal) IP networks
 # from where browsing should be allowed
-http_access allow localnet
+#http_access allow localnet
 http_access allow localhost
 
 # And finally deny all other access to this proxy
@@ -4953,4 +4962,6 @@ coredump_dir /var/spool/squid
 #
 #Default:
 # windows_ipaddrchangemonitor on
-
+refresh_pattern deb$ 1577846 100% 1577846
+cache_dir ufs /var/spool/squid 15000 2 8
+maximum_object_size 1024000 KB
