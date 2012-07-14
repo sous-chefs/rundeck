@@ -1,0 +1,8 @@
+# default squid options
+SQUID_OPTS="<%= node["squid"]["opts"] %>"
+# Time to wait for Squid to shut down when asked. Should not be necessary
+# most of the time.
+SQUID_SHUTDOWN_TIMEOUT=<%= node["squid"]["timeout"] %>
+
+# default squid conf file
+SQUID_CONF="<%= node["squid"]["config_file"] %>"
