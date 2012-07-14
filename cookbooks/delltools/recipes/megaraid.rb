@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Exit the recipe if system's manufacturer as detected by ohai does not match "Dell"
-if !node[:dmi][:system][:manufacturer].include? 'Dell' || !node[:kernel][:modules].haskey?('megaraid_sas') then
+if !node[:kernel][:modules].include? 'megaraid_sas' then
   return
 end
 
