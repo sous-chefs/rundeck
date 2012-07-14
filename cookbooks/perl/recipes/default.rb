@@ -17,52 +17,14 @@
 # limitations under the License.
 #
 
-package "perl" do
-  action :upgrade
+node['perl']['packages'].each do |perl_pkg|
+  package perl_pkg
 end
 
-package "libwww-perl" do
-  case node[:platform]
-  when "centos"
-    package_name "perl-libwww-perl"
-  when "arch"
-    package_name "perl-libwww"
-  end
-  action :upgrade
-end
-
-package "libperl-dev" do
-  case node[:platform]
-  when "centos","arch"
-    action :nothing
-  else
-    action :upgrade
-  end
-end
-
-directory "/root/.cpan" do
-  owner "root"
-  group "root"
-  mode 0750
-end
-
-cookbook_file "CPAN-Config.pm" do
-  case node[:platform]
-  when "centos","redhat"
-    path "/usr/lib/perl5/5.8.8/CPAN/Config.pm"
-  when "arch"
-    path "/usr/share/perl5/core_perl/CPAN/Config.pm"
-  else
-    path "/etc/perl/CPAN/Config.pm"
-  end
-  source "Config-#{node[:languages][:perl][:version]}.pm"
-  owner "root"
-  group "root"
-  mode 0644
-end
-
-cookbook_file "/usr/local/bin/cpan_install" do
-  source "cpan_install"
+cpanm = node['perl']['cpanm'].to_hash
+remote_file cpanm['path'] do
+  source cpanm['url']
+  checksum cpanm['checksum']
   owner "root"
   group "root"
   mode 0755
