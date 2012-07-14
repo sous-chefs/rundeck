@@ -12,6 +12,47 @@ Usage
 =====
 Include the squid recipe on the server. Other nodes may search for this node as their caching proxy and use the `node.ipaddress` and `node['squid']['port']` to point at it.
 
+Databags are able to be used for storing host & url acls and also which hosts/nets are able to access which hosts/url
+
+Example Databags
+================
+
+squid_urls - yubikey item
+-------------------------
+{
+  "urls": [
+    "^https://api.yubico.com/wsapi/2.0/verify"
+  ],
+  "id": "yubikey"
+}
+
+squid_hosts - bastion item
+--------------------------
+{
+  "type": "src",
+  "id": "bastion",
+  "net": [
+    "192.168.0.2/32"
+  ]
+}
+
+squid_acls - bastion item
+-------------------------
+{
+  "id": "bastion",
+  "acl": [
+    [
+      "yubikey",
+      "allow"
+    ],
+    [
+      "all",
+      "deny"
+    ]
+  ]
+}
+
+
 License and Author
 ==================
 

@@ -18,14 +18,9 @@
 # limitations under the License.
 #
 
-default[:squid][:port] = 3128
-default[:squid][:network] = nil
-
-# network segments to allow connections from (default is the default from the squid config)
-default[:squid][:localnet] = ["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16"]
-
-# ssl ports to allow outbound connects to (default is the default from the squid config)
-default[:squid][:ssl_ports] = ["443","563","873"]
-
-# ports to allow outbound connections to (default is the default from the squid config)
-default[:squid][:safe_ports] = ["80","21","443","70","210","1025-65535","280","488","591","777","631","873","901"]
+default['squid']['port'] = 3128
+default['squid']['network'] = nil
+default['squid']['config_file'] = "/etc/squid/squid.conf"
+default['squid']['timeout'] = "10"
+default['squid']['opts'] = ""
+default['squid']['version'] = ""
