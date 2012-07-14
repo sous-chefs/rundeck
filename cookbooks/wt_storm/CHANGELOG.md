@@ -1,3 +1,6 @@
+# 1.0.27
+* Removed delete of logs director
+
 # 1.0.26
 * Remove the default storm log directory since we use /var/storm
 
