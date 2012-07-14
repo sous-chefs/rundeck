@@ -12,14 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#Exit the recipe if system's manufacturer as detected by ohai does not match "Dell"
-if !node[:dmi][:system][:manufacturer].include? 'Dell' && !node[:kernel][:modules][:megaraid_sas].exists? then
-	return
+# Exit the recipe if system's manufacturer as detected by ohai does not match "Dell"
+if !node[:dmi][:system][:manufacturer].include? 'Dell' || !node[:kernel][:modules].haskey?('megaraid_sas') then
+  return
+end
+
+# Fetch the Megaraid RPM
+remote_file "#{Chef::Config[:file_cache_path]}/#{node[:delltools][:megaraid][:megacli_packagename]}" do
+  source node[:delltools][:megaraid][:megacli_url]
+  mode 00644
+  action :create_if_missing
 end
 
 # Install the megaraid cli with --nodeps since LSI makes bad packages
 package "MegaCli" do
   action :install
-  source node[:delltools][:megaraid][:megacli_url]
-  option "--nodeps"
+  source "#{Chef::Config[:file_cache_path]}/#{node[:delltools][:megaraid][:megacli_packagename]}"
+  provider Chef::Provider::Package::Rpm
+  options "--nodeps"
 end

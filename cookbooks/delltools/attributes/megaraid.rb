@@ -14,3 +14,4 @@
 
 # You will need to host the megacli RPM somewhere and set this attribute
 default[:delltools][:megaraid][:megacli_url] = ""
+default[:delltools][:megaraid][:megacli_packagename] = "MegaCli-8.04.07-1.noarch.rpm"
