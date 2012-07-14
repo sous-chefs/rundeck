@@ -1,3 +1,6 @@
+## 0.0.16
+* Added changes to kafka topic name to support "smoothing" of the stream
+
 ## 0.0.15
 * Added zookeeper client port support and standardized zookeeper processing
 
