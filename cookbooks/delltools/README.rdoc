@@ -14,3 +14,20 @@ Dell C6100 for BIOS Updates
 = USAGE:
 Apply the default recipe on the node to install the necessary packages then choose what
 tools / updates you would like applied and add those recipes to your node
+
+RAID Recipe requirements:
+The RAID recipe installs the necessary management software for the LSI SAS 9260 and PERC
+H200 (LSI SAS 2008) controllers that ship in the Dell C Series servers.  Dell does not 
+directory provide the necessary utilities for these controllers so you must find them
+elsewhere.
+
+9260:
+Go to http://www.lsi.com/support/Pages/download-search.aspx and search for the 9260. 
+Under "Management Software and Tools" you can download the MegaCLI tool.  Within this ZIP
+file you can find the MegaCLI RPM.  You will need to host this on a http server somewhere.
+Make sure to set the necessary attribute for your download location and package name
+
+H200:
+This recipe uses the SAS2IRCU utility hosted by SuperMicro since LSI and Dell don't host
+this package.  The recipe will download it direct from SuperMicro or you can override the 
+attribute with a local download URL
