@@ -38,7 +38,7 @@ if node[:kernel][:modules].include? 'megaraid_sas' then
 		end
 		
 		nagios_nrpecheck "dell_raid_check" do
-			command "#{node['nagios']['plugin_dir']}/check_megaraid_sas"
+			command "sudo #{node['nagios']['plugin_dir']}/check_megaraid_sas"
 			action :add
 		end
 	end
@@ -80,7 +80,7 @@ if node[:kernel][:modules].include? 'mpt2sas' then
 		end
 		
 		nagios_nrpecheck "dell_raid_check" do
-			command "#{node['nagios']['plugin_dir']}/check_sas2ircu"
+			command "sudo #{node['nagios']['plugin_dir']}/check_sas2ircu"
 			action :add
 		end
 	end
