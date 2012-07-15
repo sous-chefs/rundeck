@@ -1,5 +1,5 @@
 {
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c check_dell_raid", 
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c dell_raid_check", 
     "hostgroup_name": "hadoop_datanode", 
     "id": "dell_raid_controllers"
 }
