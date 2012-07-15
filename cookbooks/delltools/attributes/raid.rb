@@ -13,5 +13,8 @@
 # limitations under the License.
 
 # You will need to host the megacli RPM somewhere and set this attribute
-default[:delltools][:megaraid][:megacli_url] = ""
-default[:delltools][:megaraid][:megacli_packagename] = "MegaCli-8.04.07-1.noarch.rpm"
+default[:delltools][:raid][:megacli_url] = ""
+default[:delltools][:raid][:megacli_packagename] = "MegaCli-8.04.07-1.noarch.rpm"
+
+default[:delltools][:raid][:sas2ircu_url] = "http://www.supermicro.com/support/faqs/data_lib/FAQ_9633_SAS2IRCU_Phase_5.0-5.00.00.00.zip"
+default[:delltools][:raid][:sas2ircu_packagename] = "FAQ_9633_SAS2IRCU_Phase_5.0-5.00.00.00.zip"
