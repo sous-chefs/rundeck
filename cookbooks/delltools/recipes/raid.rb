@@ -67,7 +67,7 @@ if node[:kernel][:modules].include? 'mpt2sas' then
 	
 	# copy the utility into place
 	execute "copy" do
-		command "cp #{Chef::Config[:file_cache_path]}/sas2ircu/sas2ircu_linux_x86_rel/sas2ircu /usr/sbin/sas2ircu"
+		command "cp #{Chef::Config[:file_cache_path]}/sas2ircu/sas2ircu_linux_x86_rel/sas2ircu /usr/sbin/sas2ircu; chmod 755 /usr/sbin/sas2ircu"
 		action :nothing
 		subscribes :run, resources(:execute => "unzip")
 	end
