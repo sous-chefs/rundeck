@@ -31,3 +31,16 @@ package "MegaCli" do
   provider Chef::Provider::Package::Rpm
   options "--nodeps"
 end
+
+# Add nagios check for the megaraid card to nrpe if nagios is being used
+if node.attribute?("nagios")
+  cookbook_file "#{node['nagios']['plugin_dir']}/check_megaraid_sas" do
+    source "check_megaraid_sas"
+    mode 00755
+  end
+  
+	nagios_nrpecheck "dell_raid_check" do
+		command "#{node['nagios']['plugin_dir']}/check_megaraid_sas"
+		action :add
+	end
+end
