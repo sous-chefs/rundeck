@@ -82,9 +82,11 @@ begin
   hostgroup_list = Array.new
   search(:nagios_hostgroups, '*:*') do |hg|
     hostgroup_list << hg['hostgroup_name']
+    temp_hostgroup_array= Array.new
     search(:node, "#{hg['search_query']}") do |n|
-      hostgroup_nodes[hg['hostgroup_name']] << n['hostname']
+       temp_hostgroup_array << n['hostname']
     end
+    hostgroup_nodes[hg['hostgroup_name']] = temp_hostgroup_array.join(",")
   end
 rescue Net::HTTPServerException
   Chef::Log.info("Search for nagios_hostgroups data bag failed, so we'll just move on.")
