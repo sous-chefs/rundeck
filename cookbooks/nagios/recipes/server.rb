@@ -82,7 +82,7 @@ begin
   hostgroup_list = Array.new
   search(:nagios_hostgroups, '*:*') do |hg|
     hostgroup_list << hg['hostgroup_name']
-    search("#{hg['search_query']}") do |n|
+    search(#{hg['search_query']}) do |n|
       hostgroup_nodes[hg['hostgroup_name']] = n['hostname']
     end
   end
