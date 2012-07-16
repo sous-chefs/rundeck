@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Install utilities / monitors for the LSI SAS 9260
-if node[:kernel][:modules].include? 'megaraid_sas' then
+if node[:kernel][:modules].include? 'megaraid_sas'
 
 	# Fetch the Megaraid RPM
 	remote_file "#{Chef::Config[:file_cache_path]}/#{node[:delltools][:raid][:megacli_packagename]}" do
@@ -42,12 +42,8 @@ if node[:kernel][:modules].include? 'megaraid_sas' then
 			action :add
 		end
 	end
-	
-end
-
-
 # Install utilities / monitors for the PERC H200 aka LSI SAS 2008
-if node[:kernel][:modules].include? 'mpt2sas' then
+elsif node[:kernel][:modules].include? 'mpt2sas' then
 	
 	# Download SAS-2 Integrated RAID Configuration Utility
 	remote_file "#{Chef::Config[:file_cache_path]}/#{node[:delltools][:raid][:sas2ircu_packagename]}" do
