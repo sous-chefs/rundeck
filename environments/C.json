@@ -1,13 +1,16 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
+		"iis":  "= 1.1.11",
         "java": "= 1.5.0",
         "kafka": "= 1.0.5",
         "nagios": "= 1.3.0",
-        "ondemand_base": "= 1.5.0",
+        "ondemand_base": "= 1.7.2",
         "storm": "= 1.0.16",
         "windows": "= 1.2.12",
+		"wt_analytics": "= 0.0.20",
         "wt_cam": "= 1.0.4",
+		"wt_base": "0.10.5",
         "wt_monitoring": "= 0.0.2",
         "wt_netacuity": "= 1.0.4",
         "wt_realtimeapi": "= 0.0.17",
@@ -155,7 +158,7 @@
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
 		},
 	    "wt_analytics": {
-	    	"download_url":"http://teamcity/repository/download/bt15/21137:id/AnalyticsUI.zip"
+	    	"download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/21157:id/AnalyticsUI.zip"
         },
 	"hbase": {
             "site": {
