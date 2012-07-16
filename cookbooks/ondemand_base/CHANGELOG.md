@@ -3,8 +3,11 @@
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
 
+## 1.7.2
+ * Add libxtst6 and libxtst-dev packages for Java troubleshooting on Ubuntu systems
+
 ## 1.7.1
- * Add MegaRAID MegaCLI on Dell boxes with the MegaRAID controller
+ * Add MegaRAID MegaCLI on Dell boxes with the MegaRAID controller and sas2ircu to Dell boxes with the Perc H200 controller
  * Make sure to create the alternative non-root user's home dir
 
 ## 1.7
