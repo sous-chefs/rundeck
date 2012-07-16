@@ -105,6 +105,11 @@ end
 # Used for password string generation
 package "libshadow-ruby1.8"
 
+# Install package used by common Java tools
+%w{ libxtst6 and libxtst-dev }.each do |pkg|
+  package pkg
+end
+
 #Pull authorization data from the authorization data bag
 auth_config = data_bag_item('authorization', node.chef_environment)
 
