@@ -88,7 +88,7 @@
             "cassandra_report_column": "D_Report", 
             "cassandra_snmp_comm": "StagingRO", 
             "cassandra_snmp_port": "", 
-            "cassandra_thrift_port": "", 
+            "cassandra_thrift_port": "9160", 
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
@@ -133,7 +133,19 @@
         "esx": {
             "checksum": "6127d1fbd6fcf6cda7d06c8fd4720405", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz",
+	    "wt_analytics": {
+	    	"download_url":"http://teamcity/repository/download/bt15/21137:id/AnalyticsUI.zip"
+		}
+        }, 
+	"hbase": {
+            "site": {
+                "zookeeper_clientport": "", 
+                "zookeeper_quorum": ""
+            },
+			"thrift_port" : 9090,
+			"data_center_id" : "Lab",
+			"location": "shdata.staging.dmz"
         }, 
         "java": {
             "install_flavor": "oracle", 
