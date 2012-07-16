@@ -1,5 +1,5 @@
 {
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c check_ipmi_sensors", 
-    "hostgroup_name": "hadoop_datanode", 
+    "hostgroup_name": "dell_systems", 
     "id": "dell_ipmi_sensors"
 }
