@@ -83,7 +83,7 @@ begin
   search(:nagios_hostgroups, '*:*') do |hg|
     hostgroup_list << hg['hostgroup_name']
     search(:node, "#{hg['search_query']}") do |n|
-      hostgroup_nodes[hg['hostgroup_name']] = n['hostname']
+      hostgroup_nodes[hg['hostgroup_name']] << n['hostname']
     end
   end
 rescue Net::HTTPServerException
@@ -236,6 +236,8 @@ nagios_conf "hostgroups" do
     :roles => role_list,
     :environments => environment_list,
     :os => os_list
+    :search_hostgroups => hostgroup_list
+    :search_nodes => hostgroup_nodes
     )
 end
 
