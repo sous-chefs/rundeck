@@ -78,7 +78,7 @@ end
 
 # Load search defined Nagios hostgroups from the nagios_hostgroups data bag and find nodes
 begin
-  hostgroups_nodes= Hash.new
+  hostgroup_nodes= Hash.new
   hostgroup_list = Array.new
   search(:nagios_hostgroups, '*:*') do |hg|
     hostgroup_list << hg['hostgroup_name']
@@ -235,8 +235,8 @@ nagios_conf "hostgroups" do
   variables(
     :roles => role_list,
     :environments => environment_list,
-    :os => os_list
-    :search_hostgroups => hostgroup_list
+    :os => os_list,
+    :search_hostgroups => hostgroup_list,
     :search_nodes => hostgroup_nodes
     )
 end
