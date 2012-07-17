@@ -128,6 +128,7 @@ if auth_config['alternate_user']
 			uid auth_config['alternate_uid']
 		end
 		shell "/bin/bash"
+		home "/home/#{auth_config['alternate_user']}"
 		supports :manage_home => true
 	end
 end
@@ -173,6 +174,7 @@ include_recipe "hp-tools"
 #Dell Systems only: Install Dell System E-Support Tool
 include_recipe "delltools::default"
 include_recipe "delltools::dset"
+include_recipe "delltools::raid"
 
 #VMware Systems only: Install VMware tools since we have CentOS boxes in PP/Staging on VMs
 include_recipe "vmware-tools"

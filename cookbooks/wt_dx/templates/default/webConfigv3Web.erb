@@ -23,13 +23,12 @@
         <add name="wtMasterConnection" connectionString="server=<%= @master_host %>;Trusted_Connection=true;database=wtMaster;connection timeout=30" providerName="System.Data.SqlClient"></add>
     </connectionStrings>
     
-    <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_col %>" MetaDataColumnFamily="<%= @metadata_col %>" SnmpCommunity="<%= @snmp_comm %>" SnmpPort="1161" ThriftPort="9160">
-        <Nodes>
-    <% @cassandra_hosts.each do |host| -%>
-	  	<add Hostname="<%= host %>"/>
-	  <% end -%>
-        </Nodes>
-    </CassandraCluster>
+    <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>" MetaDataColumnFamily="<%= @metadata_column %>" ThriftPort="<%= @cass_thrift_port %>" UseLegacy="false">
+    <Nodes>
+      <clear />
+      <add Hostname="<%= @cass_host %>" />
+    </Nodes>
+  </CassandraCluster>
     
     <cacheConfiguration enabled="true" region="<%= @cache_name %>" protocol="Binary" lifespan="00:15:00">
         <servers>

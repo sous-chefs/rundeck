@@ -1,3 +1,8 @@
+## v1.0.6:
+
+* [COOK-1304] - support amazon linux
+* [COOK-1427] - resolve foodcritic warnings
+
 ## v1.0.4:
 
 * [COOK-1106] - fix chkconfig loader for CentOS 5
