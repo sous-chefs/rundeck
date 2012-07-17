@@ -1,0 +1,36 @@
+{
+  "name": "squid",
+  "description": "Installs/Configures squid as a simple caching proxy",
+  "long_description": "Description\n===========\nConfigures squid as a caching proxy.\n\nRecipes\n=======\ndefault\n-------\nThe default recipe installs squid and sets up simple proxy caching. As of now, the options you may change are the port (`node['squid']['port']`) and the network the caching proxy is available on the subnet from `node.ipaddress` (ie. \"192.168.1.0/24\") but may be overridden with `node['squid']['network']`. The size of objects allowed to be stored has been bumped up to allow for caching of installation files.\n\nUsage\n=====\nInclude the squid recipe on the server. Other nodes may search for this node as their caching proxy and use the `node.ipaddress` and `node['squid']['port']` to point at it.\n\nDatabags are able to be used for storing host & url acls and also which hosts/nets are able to access which hosts/url\n\nExample Databags\n================\n\nsquid_urls - yubikey item\n-------------------------\n{\n  \"urls\": [\n    \"^https://api.yubico.com/wsapi/2.0/verify\"\n  ],\n  \"id\": \"yubikey\"\n}\n\nsquid_hosts - bastion item\n--------------------------\n{\n  \"type\": \"src\",\n  \"id\": \"bastion\",\n  \"net\": [\n    \"192.168.0.2/32\"\n  ]\n}\n\nsquid_acls - bastion item\n-------------------------\n{\n  \"id\": \"bastion\",\n  \"acl\": [\n    [\n      \"yubikey\",\n      \"allow\"\n    ],\n    [\n      \"all\",\n      \"deny\"\n    ]\n  ]\n}\n\n\nLicense and Author\n==================\n\nAuthor:: Matt Ray (<matt@opscode.com>)\n\nCopyright 2012 Opscode, Inc.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n\n",
+  "maintainer": "Opscode, Inc.",
+  "maintainer_email": "matt@opscode.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "debian": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "fedora": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "scientific": ">= 0.0.0",
+    "suse": ">= 0.0.0"
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.2.0"
+}

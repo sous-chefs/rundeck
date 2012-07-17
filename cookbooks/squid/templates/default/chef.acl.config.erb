@@ -1,6 +1,12 @@
 #managed with Chef
-acl chef_network src <%= @network %>
-http_access allow chef_network
-refresh_pattern deb$ 1577846 100% 1577846
-cache_dir ufs /var/spool/squid 15000 2 8
-maximum_object_size 1024000 KB
+#acl chef_network src <%= @network %>
+#http_access allow chef_network
+<% @host_acl.each do |host| %>
+acl <%= host[0] %> <%= host[1] %> <%= host[2] %>
+<% end %>
+<% @url_acl.each do |url| %>
+acl <%= url[0] %> url_regex <%= url[1] %>
+<% end %>
+<% @acls.each do |acl| %>
+http_access <%= acl[0] %> <%= acl[1] %> <%= acl[2] %>
+<% end %>

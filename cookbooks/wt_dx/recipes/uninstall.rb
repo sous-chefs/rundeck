@@ -29,7 +29,8 @@ end
 
 iis_config "/section:httpCompression /-\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
 	action :config
-  end
+	ignore_failure true
+end
 
 iis_app "DX" do
 	path "/v2"

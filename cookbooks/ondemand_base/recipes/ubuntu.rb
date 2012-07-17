@@ -105,6 +105,11 @@ end
 # Used for password string generation
 package "libshadow-ruby1.8"
 
+# Install package used by common Java tools
+%w{ libxtst6 libxtst-dev }.each do |pkg|
+  package pkg
+end
+
 #Pull authorization data from the authorization data bag
 auth_config = data_bag_item('authorization', node.chef_environment)
 
@@ -122,6 +127,7 @@ if auth_config['alternate_user']
 			uid auth_config['alternate_uid']
 		end
 		shell "/bin/bash"
+		home "/home/#{auth_config['alternate_user']}"
 		supports :manage_home => true
 	end
 end
