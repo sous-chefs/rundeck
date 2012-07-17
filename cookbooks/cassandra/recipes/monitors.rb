@@ -21,9 +21,6 @@ end
 
 # Add nagios checks if nagios is applied on the node
 if node.attribute?("nagios")
-	# find the number of Cassandra nodes in the environment
-	node_count=search(:node, 'recipes:cassandra\:\:default')
-  node_count.count
 	cookbook_file "#{node['nagios']['plugin_dir']}/cassandra_ring" do
 		source "cassandra_ring"
 		mode 00755
