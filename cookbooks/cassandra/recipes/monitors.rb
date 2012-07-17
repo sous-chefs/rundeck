@@ -29,7 +29,7 @@ if node.attribute?("nagios")
 		mode 00755
 	end
 
-	nodes=search(:node, "recipes:cassandra\:\:default")
+	nodes=search(:node, 'recipes:cassandra\:\:default')
 	alert_threshold=nodes.count - 1
 	nagios_nrpecheck "check_cassandra_ring" do
 		command "sudo #{node['nagios']['plugin_dir']}/cassandra_ring"
