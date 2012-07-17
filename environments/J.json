@@ -1,6 +1,7 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {        
+    "cookbook_versions": {  
+wt_analytics": "= 0.0.20"	
     },
     "default_attributes": {
         "authorization": {
