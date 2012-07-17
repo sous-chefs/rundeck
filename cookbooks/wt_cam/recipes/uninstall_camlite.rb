@@ -11,18 +11,21 @@
 app_pool = node['wt_cam']['camlite_app_pool']
 install_dir = "#{node['wt_common']['install_dir_windows']}\\CAMLITE"
 
-iis_app "CAMLITE" do
+# remove the app
+iis_app 'CAMLITE' do
 	path "/CamService"
 	application_pool "#{app_pool}"
 	action :delete
 end
 
-iis_pool "#{app_pool}" do
-  action [:stop, :delete]
-end
-
+# remove the site
 iis_site 'CAMLITE' do
 	action [:stop, :delete]
+end
+
+# remove the pool
+iis_pool "#{app_pool}" do
+  action [:stop, :delete]
 end
 
 directory "#{install_dir}" do
