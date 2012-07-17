@@ -257,7 +257,7 @@
         "wt_streaming_audit": {}, 
         "wt_streamingapi": {
             "port": 8080,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt139/.lastSuccessful/streamingapi-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt142/.lastSuccessful/streamingapi-bin.tar.gz"
         }, 
         "wt_streamingcollection": {
             "port": 8080
