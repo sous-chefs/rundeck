@@ -111,7 +111,7 @@ LoadPlugin java
 	#####################
 	<Connection>
 		Host "<%= @node[:hostname] %>"
-		ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:10201/jmxrmi"
+		ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:<%= node[:zookeeper][:jmx_port] %>/jmxrmi"
 		Collect "classes"
 		Collect "memory-heap"
 		Collect "memory_nonheap"
