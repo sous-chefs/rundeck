@@ -7,7 +7,7 @@
         "ondemand_base": "= 1.5.0",
         "storm": "= 1.0.16",
         "windows": "= 1.2.12",
-        "wt_cam": "= 1.0.4",
+        "wt_cam": "= 1.0.5",
         "wt_monitoring": "= 0.0.2",
         "wt_netacuity": "= 1.0.4",
         "wt_realtimeapi": "= 0.0.17",
