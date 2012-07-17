@@ -1,7 +1,7 @@
 Description
 ===========
 
-Installs Cassandra.  This cookbook currently does NOT configure Cassandra.  Future versions may do this.
+Installs Apache Cassandra.  This cookbook currently does NOT configure Cassandra.  Future versions may do this.
 
 Requirements
 ============
