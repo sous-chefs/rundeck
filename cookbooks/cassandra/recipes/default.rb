@@ -41,13 +41,4 @@ user "root"
   EOH
 end
 
-#Create collectd plugin for cassandra if collectd has been applied.
-if node.attribute?("collectd")
-  template "#{node[:collectd][:plugin_conf_dir]}/collectd_cassandra.conf" do
-    source "collectd_cassandra.conf.erb"
-    owner "root"
-    group "root"
-    mode 00644
-    notifies :restart, resources(:service => "collectd")
-  end
-end
+include_recipe "cassandra::monitors"

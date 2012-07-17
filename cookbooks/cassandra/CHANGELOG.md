@@ -1,9 +1,7 @@
-## Future
+## 1.0.10:
+* Nagios monitors and collectd plugin applied from the monitors recipe
 
-* Unknown
-
-## 1.0.9 (IP):
-
+## 1.0.9:
 * Initial release with a changelog
 * Updated the default recipe to create a collectd java/JMX plugin
 * Created a templates folder and .erb file for the collectd plugin
