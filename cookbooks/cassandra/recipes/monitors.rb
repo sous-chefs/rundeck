@@ -29,7 +29,12 @@ if node.attribute?("nagios")
 		mode 00755
 	end
 
-	nodes=search(:node, 'recipes:cassandra\:\:default')
+  if node['cassandra']['cluster_chef_environments'].empty?
+    alert_threshold= search(:node, "recipes:cassandra").count - 1
+  els
+   search_string= node['cassandra']['cluster_chef_environments'].map  { |env| "\(recipes:cassandra AND chef_environment:#{env}\)"}.join(" OR ")
+   alert_threshold= search(:node, search_string).count - 1
+  end
 	alert_threshold=nodes.count - 1
 	nagios_nrpecheck "check_cassandra_ring" do
 		command "sudo #{node['nagios']['plugin_dir']}/cassandra_ring"

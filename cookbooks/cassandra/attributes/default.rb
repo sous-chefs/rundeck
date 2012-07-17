@@ -12,6 +12,9 @@ default['cassandra']['jna_url'] = "http://java.net/projects/jna/sources/svn/cont
 
 default['cassandra']['version'] = "1.0.7-1"
 
+# array of environments used if you have multiple cassandra clusters and you want to define a cluster's environments for building the Nagios NRPE monitor
+default['cassandra']['cluster_chef_environments']=[]
+
 # Currently unused attributes that will be part of the new full configuration recipe
 default['cassandra']['auto_bootstrap'] = false
 default['cassandra']['hinted_handoff_enabled'] = true 
