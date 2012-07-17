@@ -71,7 +71,7 @@ if node.attribute?("nagios")
 		mode 00755
 	end
 	
-	if node[:dmi][:system][:product_name].contains?('DL1')
+	if node[:dmi][:system][:product_name].include?('DL1')
 		nagios_nrpecheck "check_hpasm" do
 			command "sudo #{node['nagios']['plugin_dir']}/check_hpasm --ignore-dimms"
 			action :add
