@@ -1,6 +1,6 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {        
+    "cookbook_versions": { 
     },
     "default_attributes": {
         "authorization": {
