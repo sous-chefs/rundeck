@@ -1,34 +1,44 @@
-= DESCRIPTION:
+Description
+===========
 
-Manages Perl installation and provides cpan_module, to install modules 
+Manages Perl installation and provides `cpan_module`, to install modules
 from... CPAN.
 
-= REQUIREMENTS:
+Requirements
+============
 
-This cookbook requires at least Ohai 0.3.0 to get the Perl language data:
+## Platform:
 
-{
-  "perl": {
-    "version": "5.10.0",
-    "archname": "x86_64-linux-gnu-thread-multi"
-  }
-}
+* Debian/Ubuntu/Mint
+* RHEL/CentOS/Scientific/Oracle/Fedora
+* ArchLinux
 
-Tested with Perl 5.8.8 and 5.10.0.
+Attributes
+==========
 
-= USAGE:
+  * perl\['packages'\] - platform specific packages installed by default recipe
+
+  * perl\['cpanm'\]\['path'\] - platform specific path for `cpanm` binary to live
+
+  * perl\['cpanm'\]\['url'\] - URL to download cpanm script from
+
+  * perl\['cpanm'\]\['checksum'\] - checksum for the above remote file
+
+Usage
+=====
 
 To install a module from CPAN:
 
-  cpan_module "App::Munchies"
+    cpan_module "App::Munchies"
 
 Optionally, installation can forced with the 'force' parameter.
 
-  cpan_module "App::Munchies"
-    force true
-  end
+    cpan_module "App::Munchies"
+      force true
+    end
 
-= LICENSE and AUTHOR:
+License and Author
+==================
 
 Author:: Joshua Timberman (<joshua@opscode.com>)
 Copyright:: 2009, Opscode, Inc.

@@ -121,7 +121,7 @@ template "#{node[:zookeeper][:install_dir]}/current/bin/zkServer.sh" do
 	owner "zookeeper"
 	group "zookeeper"
 	variables({
-		:java_jmx_port => 10201
+		:java_jmx_port => node[:zookeeper][:jmx_port]
 	})
 end
   
@@ -150,7 +150,7 @@ end
 # setup service
 runit_service "zookeeper" do
 	options({
-		:java_jmx_port => 10201
+		:java_jmx_port => node[:zookeeper][:jmx_port]
 	})
 end
 

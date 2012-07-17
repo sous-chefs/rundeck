@@ -63,3 +63,23 @@ file "/etc/sudoers.d/hpsmh-snmptrap" do
   content "%hpsmh       ALL = NOPASSWD: /usr/bin/snmptrap\n"
   action :create
 end
+
+# Add nagios hardware check if nagios is applied on the node
+if node.attribute?("nagios")
+	cookbook_file "#{node['nagios']['plugin_dir']}/check_hpasm" do
+		source "check_hpasm"
+		mode 00755
+	end
+	
+	if node[:dmi][:system][:product_name].include?('DL1')
+		nagios_nrpecheck "check_hpasm" do
+			command "sudo #{node['nagios']['plugin_dir']}/check_hpasm --ignore-dimms"
+			action :add
+		end
+	else
+		nagios_nrpecheck "check_hpasm" do
+			command "sudo #{node['nagios']['plugin_dir']}/check_hpasm"
+			action :add
+		end
+	end
+end
