@@ -1,7 +1,6 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": { 
-    },
+    "cookbook_versions": {}, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -221,7 +220,7 @@
         }, 
         "wt_cam": {
             "cam_server_url": "http://hcam01.staging.dmz/camservice", 
-            "db_name": "cam",
+            "db_name": "cam", 
             "db_server": "hcamdb01.staging.dmz"
         }, 
         "wt_configdistrib": {
