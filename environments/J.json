@@ -1,8 +1,8 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {  
-wt_analytics": "= 0.0.20"	
-    },
+    "cookbook_versions": {
+        "wt_analytics": "= 0.0.20"
+    }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -102,7 +102,7 @@ wt_analytics": "= 0.0.20"
             "app_settings_section": {
                 "streamingServiceRoot": "https://jdx.englab.webtrends.corp/StreamingServices_v3/"
             }, 
-            "brandedaccountid": "20578,20663",             
+            "brandedaccountid": "20578,20663", 
             "cachename": "J_DX"
         }, 
         "wt_monitoring": {
@@ -124,15 +124,15 @@ wt_analytics": "= 0.0.20"
     "name": "J", 
     "override_attributes": {
         "hbase": {
+            "data_center_id": "Lab", 
+            "location": "shdata.staging.dmz", 
             "site": {
                 "zookeeper_clientport": "", 
                 "zookeeper_quorum": ""
-            },
-			"thrift_port" : 9090,
-			"data_center_id" : "Lab",
-			"location": "shdata.staging.dmz"
+            }, 
+            "thrift_port": 9090
         }, 
-		"java": {
+        "java": {
             "install_flavor": "oracle", 
             "jdk": {
                 "6": {
