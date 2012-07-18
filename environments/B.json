@@ -124,7 +124,7 @@
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         },
 	"wt_analytics": {
-                "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/21673:id/AnalyticsUI.zip"
+                "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/21756:id/AnalyticsUI.zip"
  	},
         "hbase": {
             "site": {
