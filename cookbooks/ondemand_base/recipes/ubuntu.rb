@@ -106,7 +106,7 @@ end
 package "libshadow-ruby1.8"
 
 # Install package used by common Java tools
-%w{ libxtst6 and libxtst-dev }.each do |pkg|
+%w{ libxtst6 libxtst-dev }.each do |pkg|
   package pkg
 end
 
