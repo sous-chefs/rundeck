@@ -1,20 +1,20 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "ondemand_base": "= 1.7.2",
-        "nagios": "= 1.5.0",
-        "java": "= 1.5.0",
-        "cobbler": "= 0.0.1",
-        "graphite": "= 0.3.0",
-        "hive": "= 1.0.3",
-        "hbase": "= 1.0.4",
-        "hadoop": "= 1.0.3",
-        "zookeeper": "= 1.0.4",
-        "wt_base": "= 0.10.5",
-        "windows": "= 1.2.12",
-        "rundeck": "= 1.0.4",
-        "memcached": "= 1.0.2",
-        "cassandra": "= 1.0.9"
+        "cassandra": "= 1.0.9", 
+        "cobbler": "= 0.0.1", 
+        "graphite": "= 0.3.0", 
+        "hadoop": "= 1.0.3", 
+        "hbase": "= 1.0.4", 
+        "hive": "= 1.0.3", 
+        "java": "= 1.5.0", 
+        "memcached": "= 1.0.2", 
+        "nagios": "= 1.5.0", 
+        "ondemand_base": "= 1.7.2", 
+        "rundeck": "= 1.0.4", 
+        "windows": "= 1.2.12", 
+        "wt_base": "= 0.10.5", 
+        "zookeeper": "= 1.0.4"
     }, 
     "default_attributes": {
         "authorization": {
