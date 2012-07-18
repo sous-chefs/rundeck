@@ -5,14 +5,14 @@
         "hbase": "= 1.0.3", 
         "hive": "= 1.0.2", 
         "kafka": "= 1.0.5", 
-        "wt_storm": "= 1.0.27",
+        "wt_cam": "= 1.0.4", 
         "wt_heatmaps": "= 0.10.4", 
         "wt_realtimeapi": "= 0.0.17", 
+        "wt_storm": "= 1.0.27", 
         "wt_streamingapi": "= 0.0.17", 
         "wt_streamingaudit": "= 0.0.6", 
         "wt_streamingcollection": "= 0.0.20", 
         "wt_streaminglogreplayer": "= 0.0.16", 
-        "wt_cam": "= 1.0.4",
         "zookeeper": "= 1.0.4"
     }, 
     "default_attributes": {
@@ -238,9 +238,9 @@
         }, 
         "wt_netacuity": {
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/", 
+            "geo_url": "10.164.14.29", 
             "use_proxy": false, 
-            "version": "4.6",
-            "geo_url": "10.164.14.29"
+            "version": "4.6"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "pdx", 
@@ -256,8 +256,8 @@
         }, 
         "wt_streaming_audit": {}, 
         "wt_streamingapi": {
-            "port": 8080,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt142/.lastSuccessful/streamingapi-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt142/.lastSuccessful/streamingapi-bin.tar.gz", 
+            "port": 8080
         }, 
         "wt_streamingcollection": {
             "port": 8080

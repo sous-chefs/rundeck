@@ -1,26 +1,26 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "iis":  "= 1.1.11",
-        "java": "= 1.5.0",
-        "kafka": "= 1.0.5",
-        "nagios": "= 1.3.0",
-        "ondemand_base": "= 1.7.2",
-        "storm": "= 1.0.16",
-        "windows": "= 1.2.12",
-		"wt_analytics": "= 0.0.20",
-        "wt_cam": "= 1.0.4",
-		"wt_base": "0.10.5",
-        "wt_monitoring": "= 0.0.2",
-        "wt_netacuity": "= 1.0.4",
-        "wt_realtimeapi": "= 0.0.17",
-        "wt_storm": "= 1.0.20",
-        "wt_streamingapi": "= 0.0.16",
-        "wt_streamingaudit": "= 0.0.6",
-        "wt_streamingcollection": "= 0.0.19",
-        "wt_streaminglogreplayer": "= 0.0.15",
+        "iis": "= 1.1.11", 
+        "java": "= 1.5.0", 
+        "kafka": "= 1.0.5", 
+        "nagios": "= 1.3.0", 
+        "ondemand_base": "= 1.7.2", 
+        "storm": "= 1.0.16", 
+        "windows": "= 1.2.12", 
+        "wt_analytics": "= 0.0.20", 
+        "wt_base": "0.10.5", 
+        "wt_cam": "= 1.0.4", 
+        "wt_monitoring": "= 0.0.2", 
+        "wt_netacuity": "= 1.0.4", 
+        "wt_realtimeapi": "= 0.0.17", 
+        "wt_storm": "= 1.0.20", 
+        "wt_streamingapi": "= 0.0.16", 
+        "wt_streamingaudit": "= 0.0.6", 
+        "wt_streamingcollection": "= 0.0.19", 
+        "wt_streaminglogreplayer": "= 0.0.15", 
         "zookeeper": "= 1.0.4"
-    },
+    }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -28,8 +28,8 @@
             }, 
             "sudo": {
                 "groups": [
-                    "STAGINGDMZ\\\\domain-admins", 
-                    "STAGINGDMZ\\\\d.admins"
+                    "domain-admins", 
+                    "d.admins"
                 ], 
                 "include_sudoers_d": true, 
                 "passwordless": false, 
@@ -75,6 +75,7 @@
             }
         }, 
         "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "cache_host": [
                 {
                     "name": "xcache01.staging.dmz", 
@@ -104,6 +105,7 @@
             "rta_host": "drta01.staging.dmz", 
             "sched_host": "dmasterdb01", 
             "schedulerdb_host": "dusagedb01", 
+            "smtp_server": "pdxengmta01.webtrends.corp", 
             "usage_host": "dusagedb01", 
             "velocitycache_hosts": [
                 {
@@ -125,8 +127,25 @@
             "website_name": "DX", 
             "website_port": "80"
         }, 
+        "wt_monitoring": {
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "false", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "staging.dpod.servers", 
+            "monitoring_enabled": "true"
+        }, 
         "wt_roadrunner": {
             "url": "path/to/zip/here"
+        }, 
+        "yum": {
+            "epel_release": "6-7"
         }
     }, 
     "description": "D Pod", 
@@ -134,21 +153,18 @@
     "name": "D", 
     "override_attributes": {
         "esx": {
-            "checksum": "6127d1fbd6fcf6cda7d06c8fd4720405", 
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
-		},
-	    "wt_analytics": {
-	    	"download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/21535:id/AnalyticsUI.zip"
         }, 
-	"hbase": {
+        "hbase": {
+            "data_center_id": "Lab", 
+            "location": "shdata.staging.dmz", 
             "site": {
-                "zookeeper_clientport": "", 
-                "zookeeper_quorum": ""
-            },
-			"thrift_port" : 9090,
-			"data_center_id" : "Lab",
-			"location": "shdata.staging.dmz"
+                "zookeeper_clientport": 2181, 
+                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
+            }, 
+            "thrift_port": 9090
         }, 
         "java": {
             "install_flavor": "oracle", 
@@ -175,7 +191,7 @@
             "client": {
                 "install_method": "package"
             }, 
-            "multi_environment_monitoring": "true", 
+            "multi_environment_monitoring": true, 
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
@@ -201,6 +217,21 @@
             "community": "DevOps", 
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
+        }, 
+        "wt_analytics": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/21535:id/AnalyticsUI.zip"
+        }, 
+        "zookeeper": {
+            "client_port": 2181, 
+            "init_limit": 10, 
+            "quorum": [
+                "szoo01.staging.dmz", 
+                "szoo02.staging.dmz", 
+                "szoo03.staging.dmz"
+            ], 
+            "snapshot_num": 3, 
+            "sync_limit": 5, 
+            "tick_time": 2000
         }
     }
 }
