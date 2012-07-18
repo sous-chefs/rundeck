@@ -1,3 +1,6 @@
+# 1.0.28
+* Moved topology parameters from recepies to environment file.
+
 # 1.0.27
 * Removed delete of logs director
 
