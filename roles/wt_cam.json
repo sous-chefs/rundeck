@@ -12,8 +12,7 @@
     "recipe[ms_dotnet4]",
     "role[iis]",
     "recipe[iis::mod_mvc3]",
-    "recipe[wt_cam]",
-    "recipe[wt_cam::cam_lite]"
+    "recipe[wt_cam]"
   ],
   "env_run_lists": {
   }
