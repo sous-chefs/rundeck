@@ -1,5 +1,8 @@
 ## Future
 
+## 1.0.5:
+* exposed jmx port as an attribute
+
 ## 1.0.4:
 * moved conf files to /etc/zookeeper
 * configured log dir to be /var/log/zookeeper
