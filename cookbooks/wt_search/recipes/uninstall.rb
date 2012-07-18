@@ -29,7 +29,7 @@ end
 # delays to give the service plenty of time to actually stop
 ruby_block "wait" do
 	block do
-		#sleep(300)		
+		sleep(300)		
 	end
 	action :create
 end
@@ -47,8 +47,10 @@ end
 
 ruby_block "directoryCheck" do
 	block do
-		if File.directory? install_dir
+		require 'fileutils'  
+		while File.directory? install_dir		  
 		  puts "Directory not removed"
+		  FileUtils.rm_rf install_dir
 		end
 	end
 	action :create
