@@ -59,3 +59,16 @@ case "$1" in
         exit 1
         ;;
 esac
+
+
+NIMBUS_PID_P=`ps -f -U storm |grep "bin/storm nimbus" |awk '{ print $2 }'`
+NIMBUS_PID_SH=`ps -f -U storm |grep "sh -c java" |grep "nimbus" |awk '{ print $2 }'`
+NIMBUS_PID_JAVA=`ps -f -U storm |grep "java -server" |grep -v "sh -c java" |grep "nimbus" |awk '{ print $2 }'`
+
+
+
+
+
+
+
+
