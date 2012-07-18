@@ -45,17 +45,6 @@ directory install_dir do
 	action :delete
 end
 
-ruby_block "directoryCheck" do
-	block do
-		require 'fileutils'  
-		while File.directory? install_dir		  
-		  puts "Directory not removed"
-		  FileUtils.rm_rf install_dir
-		end
-	end
-	action :create
-end
-
 # delete log folder
 directory "#{node['wt_common']['install_dir_windows']}#{node['wt_search']['log_dir']}" do
 	recursive true
