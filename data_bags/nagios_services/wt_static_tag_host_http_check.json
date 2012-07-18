@@ -1,5 +1,5 @@
 {
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -a '-H localhost'", 
     "hostgroup_name": "wt_static_tag_host", 
-    "id": "s_tag_http_check"
+    "id": "wt_static_tag_host_http_check"
 }
