@@ -7,5 +7,6 @@ version          "1.0.5"
 supports         "windows"
 depends          "iis"
 depends          "windows"
-depends          "ms_dotnet4"
-depends			 "wt_base"
+depends          "wt_base"
+depends	         "ms_dotnet4"
+

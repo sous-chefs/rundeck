@@ -67,7 +67,7 @@ template "#{node['nagios']['nrpe']['conf_dir']}/nrpe.cfg" do
     :mon_host => mon_host,
     :nrpe_directory => "#{node['nagios']['nrpe']['conf_dir']}/nrpe.d"
   )
-  notifies :reload, "service[nagios-nrpe-server]"
+  notifies :restart, "service[nagios-nrpe-server]"
 end
 
 service "nagios-nrpe-server" do
@@ -79,7 +79,7 @@ service "nagios-nrpe-server" do
    else
      service_name "nagios-nrpe-server"
   end
-  action [:start, :enable]
+  action [:enable,:start]
   supports :restart => true, :reload => true
 end
 

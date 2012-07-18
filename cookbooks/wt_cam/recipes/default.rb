@@ -13,7 +13,6 @@ if deploy_mode?
   include_recipe "wt_cam::uninstall" 
 end
 
-
 #Properties
 install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Cam"
 install_logdir = node['wt_common']['install_log_dir_windows']
@@ -21,6 +20,12 @@ app_pool = node['wt_cam']['app_pool']
 pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
+
+iis_pool app_pool do
+    pipeline_mode :Integrated
+    runtime_version "4.0"
+    action [:add, :config]
+end
 
 iis_site 'Default Web Site' do
 	action [:stop, :delete]
@@ -32,22 +37,28 @@ directory install_dir do
 end
 
 # empty out default folder
-execute "rmdir_wwwroot" do
-	command "for /d %i in (c:\\inetpub\\wwwroot\\*) do rmdir /s /q %i"
-	action :nothing
-end
-execute "del_wwwroot" do
-	command "del /q c:\\inetpub\\wwwroot\\*"
-	action :nothing
-end
+#execute "rmdir_wwwroot" do
+#	command "for /d %i in (c:\\inetpub\\wwwroot\\*) do rmdir /s /q %i"
+#	action :nothing
+#end
+#execute "del_wwwroot" do
+#	command "del /q c:\\inetpub\\wwwroot\\*"
+#	action :nothing
+#end
 
 iis_site 'CAM' do
     protocol :http
-    port 8080
-    path "c:\\inetpub\\wwwroot"
+    port 81
+    path "#{install_dir}"
 	action [:add,:start]
-	notifies :run, resources(:execute => "del_wwwroot") 
-	notifies :run, resources(:execute => "rmdir_wwwroot") 
+	#notifies :run, resources(:execute => "del_wwwroot") 
+	#notifies :run, resources(:execute => "rmdir_wwwroot") 
+end
+
+wt_base_firewall 'CAMWS' do
+	protocol "TCP"
+	port 81
+    action [:open_port]
 end
 
 wt_base_icacls install_dir do
@@ -69,12 +80,6 @@ if deploy_mode?
 		:db_name   => node['wt_cam']['db_name'],
         :tokenExpirationMinutes => node['wt_cam']['tokenExpirationMinutes']
   	)	
-  end
-  
-  iis_pool app_pool do
-	pipeline_mode :Integrated
-  	runtime_version "4.0"
-	action [:add, :config]
   end
   
   iis_app "CAM" do
