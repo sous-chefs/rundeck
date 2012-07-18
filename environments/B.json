@@ -7,6 +7,7 @@
         "ondemand_base": "= 1.5.0",
         "storm": "= 1.0.16",
         "windows": "= 1.2.12",
+ 	"wt_analytics": "= 0.0.20",
         "wt_monitoring": "= 0.0.2",
         "wt_netacuity": "= 1.0.4",
         "wt_realtimeapi": "= 0.0.17",
@@ -121,7 +122,10 @@
             "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
-        }, 
+        },
+	"wt_analytics": {
+                "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/21673:id/AnalyticsUI.zip"
+ 	},
         "hbase": {
             "site": {
                 "zookeeper_clientport": 2181, 
