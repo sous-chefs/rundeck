@@ -29,7 +29,7 @@ end
 # delays to give the service plenty of time to actually stop
 ruby_block "wait" do
 	block do
-		sleep(120)
+		#sleep(300)		
 	end
 	action :create
 end
@@ -43,6 +43,15 @@ end
 directory install_dir do
 	recursive true
 	action :delete
+end
+
+ruby_block "directoryCheck" do
+	block do
+		if File.directory? install_dir
+		  puts "Directory not removed"
+		end
+	end
+	action :create
 end
 
 # delete log folder
