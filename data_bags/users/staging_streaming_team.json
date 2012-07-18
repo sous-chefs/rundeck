@@ -1,0 +1,8 @@
+{
+	"id": "streaming",
+	"groups": [ "staging" ],
+	"htpasswd": "lpDF2Rwb9m38o",
+	"nagios": {
+		"email": "streamingteam@webtrends.com"
+	}
+}
