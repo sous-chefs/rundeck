@@ -194,12 +194,7 @@
         "wt_cam": {
             "cam_server_url": "http://bcam01.staging.dmz/camservice", 
             "db_name": "wtCamLite", 
-            "db_server": "bcamdb01.staging.dmz", 
-
-
-
-
-
+            "db_server": "bcamdb01.staging.dmz",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/20989:id/CAM.zip"
         }, 
         "wt_configdistrib": {
