@@ -8,13 +8,13 @@ HOME_DIR="<%=@install_dir%>"
 CMD="$HOME_DIR/bin/storm ui"
 
 # Find top parent PID.
-UI_PID_P=`ps -f -U storm |grep "bin/storm ui" |awk '{ print $2 }'`
+UI_PID_P=`ps -f -U storm |grep "bin/storm ui" |grep -v grep |awk '{ print $2 }'`
 
 # Find sub-shell PID.
-UI_PID_SH=`ps -f -U storm |grep "sh -c java" |grep "ui" |awk '{ print $2 }'`
+UI_PID_SH=`ps -f -U storm |grep "sh -c java" |grep "ui" |grep -v grep |awk '{ print $2 }'`
 
 # Find the sub-shell's Java process PID.
-UI_PID_JAVA=`ps -f -U storm |grep "java -server" |grep -v "sh -c java" |grep "ui" |awk '{ print $2 }'`
+UI_PID_JAVA=`ps -f -U storm |grep "java -server" |grep -v "sh -c java" |grep "ui" |grep -v grep |awk '{ print $2 }'`
 
 # Check what the caller wants.
 case "$1" in
