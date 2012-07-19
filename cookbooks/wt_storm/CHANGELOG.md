@@ -1,3 +1,6 @@
+# 1.0.29
+* Moved the kafka topic parameter to environment file.
+
 # 1.0.28
 * Moved topology parameters from recepies to environment file.
 
