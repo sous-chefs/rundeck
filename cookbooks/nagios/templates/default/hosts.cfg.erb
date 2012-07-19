@@ -21,7 +21,7 @@ define host {
 <% else -%>
   hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.os %>
 <% end -%>
-<% if node['nagios']['non_alerting_environments'].include?("#{n.chef_enviroment}") -%>
+<% if node['nagios']['non_alerting_environments'].include?("#{n.chef_environment}") -%>
   notifications_enabled 0
 <% end -%>
 }
