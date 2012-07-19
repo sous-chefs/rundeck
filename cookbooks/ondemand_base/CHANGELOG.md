@@ -3,6 +3,9 @@
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
 
+## 1.7.3
+ * Take out the creation of the webtrends user on centos.  This is causing odd failures and isn't used (yet)
+ 
 ## 1.7.2
  * Add libxtst6 and libxtst-dev packages for Java troubleshooting on Ubuntu systems
 
