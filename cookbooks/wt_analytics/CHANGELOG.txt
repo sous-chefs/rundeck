@@ -1,1 +1,2 @@
 0.0.18 Added hbase values to web.config template
+0.0.21 Add PatentsLink configuration item to appSettings in web.config template
