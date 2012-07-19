@@ -37,12 +37,12 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   mode   00644
   variables(
     :topology                                => "realtime-topology",
-    :realtime_topology_parsing_bolt_count    => 3,
-    :realtime_topology_row_key_bolt_count    => 12,
-    :realtime_topology_writing_bolt_count    => 48,
-    :realtime_topology_dimensions_bolt_count => 3,
-    :topology_override_max_spout_pending     => 3000,
-    :topology_override_msg_timeout_seconds   => 120,
+    :realtime_topology_parsing_bolt_count    => node['wt_storm']['realtime_topology']['realtime_topology_parsing_bolt_count'],
+    :realtime_topology_row_key_bolt_count    => node['wt_storm']['realtime_topology']['realtime_topology_row_key_bolt_count'],
+    :realtime_topology_writing_bolt_count    => node['wt_storm']['realtime_topology']['realtime_topology_writing_bolt_count'],
+    :realtime_topology_dimensions_bolt_count => node['wt_storm']['realtime_topology']['realtime_topology_dimensions_bolt_count'],
+    :topology_override_max_spout_pending     => node['wt_storm']['realtime_topology']['topology_override_max_spout_pending'],
+    :topology_override_msg_timeout_seconds   => node['wt_storm']['realtime_topology']['topology_override_msg_timeout_seconds'],
     # kafka consumer settings
     :kafka_consumer_topic                 => 'scsRawHits:0,lrRawHits:0',
     :kafka_dcsid_whitelist                => node[:wt_storm][:dcsid_whitelist],
