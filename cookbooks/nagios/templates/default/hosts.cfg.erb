@@ -18,7 +18,6 @@ define host {
   hostgroups all
 <% elsif node['nagios']['multi_environment_monitoring'] -%>
   hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.chef_environment %>,<%= n.os %>
-<% end -%>
 <% else -%>
   hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.os %>
 <% end -%>
