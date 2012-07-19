@@ -133,19 +133,6 @@ if auth_config['alternate_user']
 	end
 end
 
-# create the webtrends service account and group
-group "webtrends" do
-  gid 1993
-end
-
-user "webtrends" do
-  uid 1993
-  gid "webtrends"
-  shell "/bin/false"
-  comment "Webtrends local service account"
-  password "*"
-end
-
 # Create a sudoers file for devAccess group if the system has ea_server role
 if node.run_list.include?("role[ea_server]")
 	file "/etc/sudoers.d/devAccess" do
