@@ -66,7 +66,7 @@ if deploy_mode?
   	source "webConfig_camlite.erb"  
 	variables(
 		:db_server => node['wt_cam']['db_server'],
-		:db_name   => node['wt_cam']['camlite_db_name']
+		:camlite_db_name   => node['wt_cam']['camlite_db_name']
   	)	
   end
   
