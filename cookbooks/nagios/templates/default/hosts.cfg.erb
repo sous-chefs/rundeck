@@ -17,15 +17,13 @@ define host {
 <% if n.run_list.roles.nil? || n.run_list.roles.length == 0 -%>
   hostgroups all
 <% elsif node['nagios']['multi_environment_monitoring'] -%>
-<% if node['nagios']['multi_os_monitoring'] -%>
   hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.chef_environment %>,<%= n.os %>
-<% else -%>
-  hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.chef_environment %>
 <% end -%>
-<% elsif node['nagios']['multi_os_monitoring'] -%>
-  hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.os %>
 <% else -%>
-  hostgroups <%= n.run_list.roles.to_a.join(",") %>
+  hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.os %>
+<% end -%>
+<% if node['nagios']['non_alerting_environments'].include?("#{n.chef_enviroment}") -%>
+  notifications_enabled 0
 <% end -%>
 }
 <% end -%>
