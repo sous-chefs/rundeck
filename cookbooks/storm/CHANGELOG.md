@@ -1,3 +1,8 @@
+## 1.0.17
+* Change nimbus and storm ui start/stop scripts to kill related
+  processes
+
+
 ## 1.0.16
 * Increase file limits for the storm user from 1024 to 32k
 
