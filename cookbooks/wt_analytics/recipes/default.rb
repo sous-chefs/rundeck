@@ -12,7 +12,7 @@ require 'json'
 
 if deploy_mode? 
   include_recipe "wt_analytics::uninstall" 
-  include_recipe "ms_dotnet4::resetiis" 
+  include_recipe "ms_dotnet4::regiis" 
 end
 
 
