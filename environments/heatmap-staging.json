@@ -254,7 +254,7 @@
             "dcsid_whitelist": "", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/21053:id/streaming-analysis-bin.tar.gz",
             "streaming_topology": {
-                "kafka_consumer_topic": "scsRawHits:0,lrRawHits:15",
+                "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0",
                 "streaming_topology_parsing_bolt_count": 50,
                 "streaming_topology_in_session_bolt_count": 1,
                 "streaming_topology_zmq_emitter_bolt_count": 1,
