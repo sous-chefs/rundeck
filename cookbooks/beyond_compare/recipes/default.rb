@@ -9,8 +9,8 @@
 #
 
 # files needed to assist silent install
-key_file = "#{Chef::Config[:file_cache_path]}/#{node['beyond_compare']['key_file']}"
-inf_file = "#{Chef::Config[:file_cache_path]}/#{node['beyond_compare']['inf_file']}"
+key_file = "#{Chef::Config[:file_cache_path]}/BC3Key.txt"
+inf_file = "#{Chef::Config[:file_cache_path]}/bc3inf.txt"
 
 # is beyond compare installed?
 is_installed = in_reg_uninstall? node['beyond_compare']['display_name']
@@ -23,7 +23,7 @@ end
 
 # setup inf file
 cookbook_file inf_file do
-	source node['beyond_compare']['inf_file']
+	source "bc3inf.txt"
 	backup false
 	action :create
 	not_if { is_installed }
