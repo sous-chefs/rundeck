@@ -1,6 +1,9 @@
 ## Future
 * Unknown
 
+## 1.0.6
+* Changed the database name from CAM to wtCam to match the db deploy
+
 ## 1.0.5
 * Added a cam_lite recipe to split the old stuff out. This will eventually go away
 
