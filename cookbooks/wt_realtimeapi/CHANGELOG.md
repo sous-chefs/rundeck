@@ -1,3 +1,6 @@
+## 0.0.18
+* Add garbage collection nagios check
+
 ## 0.0.17
 * Added zookeeper client support and standardized zookeeper processing
 
