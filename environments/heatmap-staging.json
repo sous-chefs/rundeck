@@ -12,7 +12,7 @@
         "wt_streamingapi": "= 0.0.17", 
         "wt_streamingaudit": "= 0.0.6", 
         "wt_streamingcollection": "= 0.0.20", 
-        "wt_streaminglogreplayer": "= 0.0.16", 
+        "wt_streaminglogreplayer": "= 0.0.17", 
         "zookeeper": "= 1.0.4"
     }, 
     "default_attributes": {
