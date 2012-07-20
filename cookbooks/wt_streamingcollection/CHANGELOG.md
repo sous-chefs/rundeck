@@ -1,3 +1,6 @@
+## 0.0.21
+* Add garbage collection nagios check
+
 ## 0.0.20
 * Changed topic name to scsRawHits
 
