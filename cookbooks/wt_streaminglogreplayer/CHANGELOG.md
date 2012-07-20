@@ -1,3 +1,6 @@
+## 0.0.18
+* Add garbage collection nagios check
+
 ## 0.0.17
 * Added additional properties to support Zookeeper nodes, thread pool size, and a log file regular expression
 
