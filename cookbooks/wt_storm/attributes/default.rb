@@ -20,3 +20,6 @@ default['wt_storm']['streaming_topology']['streaming_topology_in_session_bolt_co
 default['wt_storm']['streaming_topology']['streaming_topology_zmq_emitter_bolt_count'] = 1
 default['wt_storm']['streaming_topology']['streaming_topology_validation_bolt_count'] = 1
 default['wt_storm']['streaming_topology']['streaming_topology_augmentation_bolt_count'] = 1
+
+
+default['wt_storm']['streaming_topology']['kafka_consumer_topic'] = ""
