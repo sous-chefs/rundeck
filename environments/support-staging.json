@@ -236,7 +236,8 @@
                 "J",
                 "K",
                 "PF",
-                "heatmap-staging"
+                "heatmap-staging",
+                "_default"
             ],
             "nrpe": {
                 "dont_blame_nrpe": "1"
