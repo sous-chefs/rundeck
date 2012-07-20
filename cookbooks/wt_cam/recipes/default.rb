@@ -9,7 +9,7 @@
 # This recipe installs the CAM IIS app
 
 if deploy_mode?
-  include_recipe "ms_dotnet4::resetiis"
+  include_recipe "ms_dotnet4::regiis"
   include_recipe "wt_cam::uninstall" 
 end
 
