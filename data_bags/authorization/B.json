@@ -2,6 +2,15 @@
     "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "alternate_uid": "2001", 
     "alternate_user": "bobo", 
+    "beyond_compare_v3": {
+        "license_key": [
+            "--- BEGIN LICENSE KEY ---", 
+            "E72PRdldttGI8NSbqeDsT6Vg0VRG82HYKNxaMYgFxu9Do7nhQ8Sie4kBs", 
+            "PRBH6IJ9paf-R7HgnVzOX9OcoP277JzJXE6YVapYW7f+tRRXRFI4yn4Nj", 
+            "jZ0RiiqGRCTVzwComUcXB-eiFWRBY6JpSsCNkmIxL5KsRCo442djHhTZE", 
+            "--- END LICENSE KEY -----"
+        ]
+    }, 
     "id": "B", 
     "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "wt_common": {

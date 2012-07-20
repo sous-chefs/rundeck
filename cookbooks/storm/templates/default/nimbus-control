@@ -8,18 +8,18 @@ HOME_DIR="<%=@install_dir%>"
 CMD="$HOME_DIR/bin/storm nimbus"
 
 # Find top parent PID.
-NIMBUS_PID_P=`ps -f -U storm |grep "bin/storm nimbus" |awk '{ print $2 }'`
+NIMBUS_PID_P=`ps -f -U storm |grep "bin/storm nimbus" |grep -v grep |awk '{ print $2 }'`
 
 # Find sub-shell PID.
-NIMBUS_PID_SH=`ps -f -U storm |grep "sh -c java" |grep "nimbus" |awk '{ print $2 }'`
+NIMBUS_PID_SH=`ps -f -U storm |grep "sh -c java" |grep "nimbus" |grep -v grep |awk '{ print $2 }'`
 
 # Find the sub-shell's Java process PID.
-NIMBUS_PID_JAVA=`ps -f -U storm |grep "java -server" |grep -v "sh -c java" |grep "nimbus" |awk '{ print $2 }'`
+NIMBUS_PID_JAVA=`ps -f -U storm |grep "java -server" |grep -v "sh -c java" |grep "nimbus" |grep -v grep |awk '{ print $2 }'`
 
 # Check what the caller wants.
 case "$1" in
     start)
-        if [ "" = "$UI_PID_P" -a "" = "$UI_PID_SH" -a "" = "$UI_PID_JAVA" ]; then
+        if [ "" = "$NIMBUS_PID_P" -a "" = "$NIMBUS_PID_SH" -a "" = "$NIMBUS_PID_JAVA" ]; then
             echo $CMD
             # Storm processes look for a conf/ directory relative
             # the processes start directory.
@@ -34,21 +34,21 @@ case "$1" in
         fi
         ;;
     stop)
-        if [ "" = "$UI_PID_P" -a "" = "$UI_PID_SH" -a "" = "$UI_PID_JAVA" ]; then
+        if [ "" = "$NIMBUS_PID_P" -a "" = "$NIMBUS_PID_SH" -a "" = "$NIMBUS_PID_JAVA" ]; then
             echo "Service not running, nothing to stop"
             exit 1
         else
-            kill -9 $UI_PID_P $UI_PID_SH $UI_PID_JAVA
+            kill -9 $NIMBUS_PID_P $NIMBUS_PID_SH $NIMBUS_PID_JAVA
             exit 0
         fi
         ;;
     status)
         # Status is found via actual running processes, rather than
         # trusting a PID log file.
-        if [ "" = "$UI_PID_P" -a "" = "$UI_PID_SH" -a "" = "$UI_PID_JAVA" ]; then
+        if [ "" = "$NIMBUS_PID_P" -a "" = "$NIMBUS_PID_SH" -a "" = "$NIMBUS_PID_JAVA" ]; then
             echo "Not running"
             exit 1
-        elif [ "" != "$UI_PID_P" -a "" != "$UI_PID_SH" -a "" != "$UI_PID_JAVA" ]; then
+        elif [ "" != "$NIMBUS_PID_P" -a "" != "$NIMBUS_PID_SH" -a "" != "$NIMBUS_PID_JAVA" ]; then
             echo "Running"
             exit 0
         else

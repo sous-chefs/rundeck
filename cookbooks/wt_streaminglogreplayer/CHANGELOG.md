@@ -1,3 +1,6 @@
+## 0.0.17
+* Added additional properties to support Zookeeper nodes, thread pool size, and a log file regular expression
+
 ## 0.0.16
 * Added changes to kafka topic name to support "smoothing" of the stream
 
