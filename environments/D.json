@@ -219,7 +219,7 @@
             "syscontact": "trent.white@webtrends.com"
         }, 
         "wt_analytics": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/21535:id/AnalyticsUI.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/22367:id/AnalyticsUI.zip"
         }, 
         "zookeeper": {
             "client_port": 2181, 
