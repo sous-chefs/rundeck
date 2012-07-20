@@ -225,7 +225,7 @@
         }, 
         "wt_storm": {
             "dcsid_whitelist": "", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/22362:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/22458:id/streaming-analysis-bin.tar.gz",
             "streaming_topology": {
                 "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0",
                 "streaming_topology_parsing_bolt_count": 50,
