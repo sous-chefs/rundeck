@@ -1,15 +1,16 @@
 #
 # Cookbook Name:: wt_analytics
 # Recipe:: uninstall
-# Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
+# Author:: Kendrick Martin(<kendrick.martin@webtrends.com>)
 #
-# Copyright 2012, Webtrends
+# Copyright 2012, Webtrends Inc.
 #
 # All rights reserved - Do Not Redistribute
-# This recipe uninstalls all DX versions
+#
+# Uninstalls A10 UI
 
 app_pool = node['wt_analytics']['pool']
-install_dir = node['wt_common']['install_dir_windows'] + node['wt_analytics']['install_dir']
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_analytics']['install_dir']).gsub(/[\\\/]+/,"\\")
 
 iis_pool app_pool do
   action [:stop, :delete]
