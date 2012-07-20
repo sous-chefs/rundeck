@@ -9,7 +9,7 @@
         "windows": "= 1.2.12", 
         "wt_analytics": "= 0.0.20", 
         "wt_base": "= 0.10.52", 
-        "wt_cam": "= 1.0.5", 
+        "wt_cam": "= 1.0.7", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
         "wt_realtimeapi": "= 0.0.17", 
