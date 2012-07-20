@@ -1,6 +1,9 @@
 ## Future
 * Unknown
 
+## 1.0.7
+* Updated the web.config template with the correct database connection string
+
 ## 1.0.6
 * Changed the database name to match the db deploy
 
