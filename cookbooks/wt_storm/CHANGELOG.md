@@ -1,4 +1,8 @@
 # 1.0.29
+* attribute fixes to cookbook
+* adding additional bolt parallelism attributes
+
+# 1.0.29
 * Moved the kafka topic parameter to environment file.
 
 # 1.0.28
