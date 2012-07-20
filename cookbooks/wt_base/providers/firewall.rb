@@ -27,7 +27,7 @@ include Windows::Helper
 action :open_port do
         unless @current_portopening.exists
                 Chef::Log.debug("Opening Fireawll port  #{@new_resource.rule_name}")
-                cmd = "#{firewallcmd} firewall set portopening protocol=#{@new_resource.protocol}"
+                cmd = "#{firewallcmd} firewall set portopening protocol=#{@new_resource.protocol} "
                 cmd << "port=#{@new_resource.port} name=#{@new_resource.rule_name}"
                 shell_out!(cmd)
                 Chef::Log.info("#{@new_resource.rule_name} firewall port opened")

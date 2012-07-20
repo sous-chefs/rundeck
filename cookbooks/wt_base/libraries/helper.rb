@@ -1,4 +1,4 @@
-
+#
 # Author:: David Dvorak (<david.dvorak@webtrends.com>)
 # Cookbook Name:: wt_base
 # Library:: helper

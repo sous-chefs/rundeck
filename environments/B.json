@@ -8,8 +8,8 @@
         "storm": "= 1.0.16", 
         "windows": "= 1.2.12", 
         "wt_analytics": "= 0.0.20", 
-        "wt_base": "= 0.10.51", 
-        "wt_cam": "= 1.0.5", 
+        "wt_base": "= 0.10.52", 
+        "wt_cam": "= 1.0.7", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
         "wt_realtimeapi": "= 0.0.17", 
@@ -196,8 +196,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/21756:id/AnalyticsUI.zip"
         }, 
         "wt_cam": {
-            "cam_server_url": "http://bcam01.staging.dmz/camservice", 
-            "db_name": "wtCamLite", 
+            "cam_server_url": "http://bcam01.staging.dmz/camservice",              
             "db_server": "bcamdb01.staging.dmz", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/20989:id/CAM.zip"
         }, 
