@@ -6,13 +6,13 @@
         "hive": "= 1.0.2", 
         "kafka": "= 1.0.5", 
         "wt_cam": "= 1.0.4", 
-        "wt_storm": "= 1.0.28",
+        "wt_storm": "= 1.0.29",
         "wt_heatmaps": "= 0.10.4", 
         "wt_realtimeapi": "= 0.0.17", 
         "wt_streamingapi": "= 0.0.17", 
         "wt_streamingaudit": "= 0.0.6", 
         "wt_streamingcollection": "= 0.0.20", 
-        "wt_streaminglogreplayer": "= 0.0.16", 
+        "wt_streaminglogreplayer": "= 0.0.17", 
         "zookeeper": "= 1.0.4"
     }, 
     "default_attributes": {
@@ -252,13 +252,15 @@
         }, 
         "wt_storm": {
             "dcsid_whitelist": "", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt141/21053:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/21053:id/streaming-analysis-bin.tar.gz",
             "streaming_topology": {
+                "kafka_consumer_topic": "scsRawHits:0,lrRawHits:15",
                 "streaming_topology_parsing_bolt_count": 50,
                 "streaming_topology_in_session_bolt_count": 1,
                 "streaming_topology_zmq_emitter_bolt_count": 10
             },
             "realtime_topology": {
+                "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0",
                 "realtime_topology_parsing_bolt_count": 3,
                 "realtime_topology_row_key_bolt_count": 12,
                 "realtime_topology_writing_bolt_count": 48,

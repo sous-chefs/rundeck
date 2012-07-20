@@ -1,0 +1,6 @@
+[Setup]
+Lang=en
+Dir=C:\Program Files (x86)\Beyond Compare 3
+Group=Beyond Compare 3
+NoIcons=0
+Tasks=shellextension
