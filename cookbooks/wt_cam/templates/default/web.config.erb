@@ -5,7 +5,7 @@
   -->
 <configuration>
   <connectionStrings>
-   <add connectionString="server=<%= @db_server %>;Trusted_Connection=yes;database=<%= @db_name %>;connection timeout=30" name="wtCamConnection" providerName="System.Data.SqlClient" />
+<add name="wtCamConnection" connectionString="Data Source=<%= @db_server %>;Initial Catalog=<%= @db_name %>;Trusted_Connection=true;Connect Timeout=30" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <appSettings>
     <add key="webpages:Version" value="2.0.0.0" />
