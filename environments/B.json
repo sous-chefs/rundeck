@@ -196,8 +196,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/21756:id/AnalyticsUI.zip"
         }, 
         "wt_cam": {
-            "cam_server_url": "http://bcam01.staging.dmz/camservice", 
-            "db_name": "wtCamLite", 
+            "cam_server_url": "http://bcam01.staging.dmz/camservice",              
             "db_server": "bcamdb01.staging.dmz", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/20989:id/CAM.zip"
         }, 
@@ -225,7 +224,7 @@
         }, 
         "wt_storm": {
             "dcsid_whitelist": "", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/22362:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/22458:id/streaming-analysis-bin.tar.gz",
             "streaming_topology": {
                 "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0",
                 "streaming_topology_parsing_bolt_count": 50,
@@ -248,7 +247,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/.lastSuccessful/streamingauditor-bin.tar.gz"
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/22327:id/streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/22577:id/streamingapi-bin.tar.gz",
             "port": 8080
         }, 
         "wt_streamingcollection": {
