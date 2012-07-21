@@ -1,0 +1,14 @@
+{
+  "name": "wt_data_collection_server",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+  ],
+  "description": "Webtrends Data Collection Server",
+  "chef_type": "role"  
+}
