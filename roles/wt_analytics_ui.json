@@ -1,5 +1,5 @@
 {
-  "name": "wt_analytics",
+  "name": "wt_analytics_ui",
   "description": "Webtrends A10 UI",
   "json_class": "Chef::Role",
   "default_attributes": {      
