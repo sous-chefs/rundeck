@@ -1,0 +1,16 @@
+{
+  "name": "wt_analytics_ui",
+  "description": "Webtrends A10 UI",
+  "json_class": "Chef::Role",
+  "default_attributes": {      
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "role[iis]",
+    "recipe[wt_analytics]"
+  ],
+  "env_run_lists": {
+  }
+}

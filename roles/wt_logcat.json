@@ -1,0 +1,14 @@
+{
+  "name": "wt_logcat",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+  ],
+  "description": "Webtrends Logcat Service",
+  "chef_type": "role"  
+}
