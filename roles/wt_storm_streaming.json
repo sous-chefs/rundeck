@@ -2,7 +2,7 @@
   "name": "wt_storm_streaming",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Storm Streaming Cluster",
+  "description": "Webtrends Storm Streaming Cluster",
   "run_list": [
     "recipe[wt_storm::streaming_deploy]"
   ],
