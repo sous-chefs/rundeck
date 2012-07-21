@@ -1,6 +1,9 @@
 ## Future
 * Unknown
 
+## 1.0.8
+* Web.config template again - format of connection string changed
+
 ## 1.0.7
 * Updated the web.config template with the correct database connection string
 
