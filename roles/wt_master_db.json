@@ -1,5 +1,5 @@
 {
-  "name": "wt_scheduled_report_ui",
+  "name": "wt_master_db",
   "default_attributes": {
   },
   "override_attributes": {
@@ -9,6 +9,6 @@
   },
   "run_list": [
   ],
-  "description": "Webtrends Scheduled Report UI",
+  "description": "Webtrends Master DB",
   "chef_type": "role"  
 }
