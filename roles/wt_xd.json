@@ -1,0 +1,14 @@
+{
+  "name": "wt_xd",
+  "description": "Webtrends External Data Service",
+  "json_class": "Chef::Role",
+  "default_attributes": {      
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+  ],
+  "env_run_lists": {
+  }
+}
