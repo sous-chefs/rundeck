@@ -28,7 +28,7 @@ when "ubuntu","debian"
   set['nagios']['nrpe']['pidfile'] = '/var/run/nagios/nrpe.pid'
   set['nagios']['nrpe']['home']              = "/usr/lib/nagios"
 when "redhat","centos","fedora","scientific"
-  set['nagios']['client']['install_method'] = 'source'
+  set['nagios']['client']['install_method'] = 'package'
   set['nagios']['nrpe']['pidfile'] = '/var/run/nrpe.pid'
   set['nagios']['nrpe']['home']              = "/usr/lib64/nagios"
 else
