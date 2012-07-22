@@ -44,7 +44,7 @@ execute "extract-hive" do
   group "hadoop"
 end
 
-link "/usr/local/hive" do
+link "/usr/share/hive" do
   to "#{node[:hadoop][:install_dir]}/hive-#{node[:hive][:version]}-bin"
 end
 
