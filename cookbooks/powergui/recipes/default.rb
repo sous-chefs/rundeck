@@ -9,7 +9,7 @@
 # Code based off the PowerShell cookbook by Seth Chisamore
 
 if platform?("windows")
-    windows_package "Quest PowerGUI® 3.2" do
+    windows_package "Quest PowerGUI\® 3.2" do
         source node['powergui']['http_url']
         installer_type :msi
         action :install
