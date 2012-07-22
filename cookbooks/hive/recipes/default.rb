@@ -50,7 +50,7 @@ end
 
 # jdbc connectors
 %w[mysql-connector-java.jar sqljdbc4.jar].each do |jar|
-  cookbook_file "/usr/local/hive/lib/#{jar}" do
+  cookbook_file "/usr/share/hive/lib/#{jar}" do
     source "#{jar}"
     owner "hadoop"
     group "hadoop"
@@ -71,7 +71,7 @@ end
 
 # create config files and the startup script from template
 %w[hive-site.xml hive-env.sh hive-exec-log4j.properties hive-log4j.properties].each do |template_file|
-  template "/usr/local/hive/conf/#{template_file}" do
+  template "/usr/share/hive/conf/#{template_file}" do
     source "#{template_file}"
     mode 00755
     variables(
@@ -82,18 +82,18 @@ end
   end
 
   # remove default template files
-  file "/usr/local/hive/conf/#{template_file}.template" do
+  file "/usr/share/hive/conf/#{template_file}.template" do
     action :delete
   end
 end
 
 # remove old jars
 %w[hbase-0.89.0-SNAPSHOT.jar hbase-0.89.0-SNAPSHOT-tests.jar].each do |template_file|
-  file "/usr/local/hive/lib/#{template_file}" do
+  file "/usr/share/hive/lib/#{template_file}" do
     action :delete
   end
 end
 
-link "/usr/local/hive/lib/hbase-0.92.0.jar" do
-  to "/usr/local/hbase/hbase-0.92.0.jar"
+link "/usr/share/hive/lib/hbase-0.92.0.jar" do
+  to "/usr/share/hbase/hbase-0.92.0.jar"
 end
