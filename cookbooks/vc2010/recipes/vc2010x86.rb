@@ -3,7 +3,7 @@
 # Cookbook Name:: vc2010
 # Recipe:: vc2010x86
 #
-# Copyright 2011, Webtrends Inc.
+# Copyright 2012, Webtrends Inc.
 #
 # All rights reserved - Do Not Redistribute
 #
