@@ -16,11 +16,8 @@ default['storm']['install_dir'] = "/opt/storm"
 default['storm']['log_dir'] = "/var/log/storm"
 
 
-
-
 ######################################################
 # attributes for storm.yaml below here
-
 
 
 # general storm attributes

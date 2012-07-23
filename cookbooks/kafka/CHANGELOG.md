@@ -1,5 +1,3 @@
-## Future
-* Unknown
 ## 1.0.5
 * Added template to create a collectd plugin for kafka JMX objects. 
 
@@ -13,7 +11,6 @@
 * Set default broker_id to nil and if not set will use the ip address without the '.'
 * Set the default broker_host_name to nil and if not set will use the server hostname
 * Fixed log4j.properties problems
-
 
 ## 1.0.1
 
