@@ -1,0 +1,14 @@
+{
+  "name": "wt_management_console",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+  ],
+  "description": "Webtrends Management Console",
+  "chef_type": "role"  
+}
