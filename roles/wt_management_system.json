@@ -1,6 +1,6 @@
 {
-  "name": "wt_labstation",
-  "description": "Webtrends Lab Workstation",
+  "name": "wt_management_system",
+  "description": "Webtrends Management System",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
@@ -10,7 +10,9 @@
   "run_list": [
     "recipe[notepadplusplus]",
     "recipe[firefox]",
-    "recipe[7-zip]"
+    "recipe[7-zip]",
+    "recipe[powergui]",
+    "recipe[filezilla]"
   ],
   "env_run_lists": {
   }
