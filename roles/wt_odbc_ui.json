@@ -1,0 +1,14 @@
+{
+  "name": "wt_odbc_ui",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+  ],
+  "description": "Webtrends ODBC UI",
+  "chef_type": "role"  
+}

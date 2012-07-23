@@ -2,7 +2,7 @@
   "name": "wt_storm_realtime",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Storm Realtime Cluster",
+  "description": "Webtrends Storm Realtime Cluster",
   "run_list": [
     "recipe[wt_storm::realtime_deploy]"
   ],
