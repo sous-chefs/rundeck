@@ -1,5 +1,5 @@
 = DESCRIPTION:
-Installs hive 0.8.1
+Installs Apache Hive 0.8.1
 
 = REQUIREMENTS:
 
