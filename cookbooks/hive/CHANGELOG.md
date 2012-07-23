@@ -1,6 +1,5 @@
-## Future
-
-* Install in a more sane directory
+## 1.0.4
+* Install to /usr/share/hive to match the /usr/share/hadoop folder setup
 
 ## 1.0.3
 * Log to /var/log/hive not /tmp

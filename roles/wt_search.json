@@ -1,6 +1,6 @@
 {
   "name": "wt_search",
-  "description": "",
+  "description": "Webtrends Search Service",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
