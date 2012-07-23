@@ -27,6 +27,14 @@ directory "/var/lib/hadoop/hdfs/namenode/current" do
 	action :create
 end
 
+# Create the mapred.exclude file for decommissioning nodes if it doesn't exist
+file "/etc/hadoop/mapred.exclude" do
+  owner "root"
+  group "root"
+  mode 00755
+  action :create_if_missing
+end
+
 #Create collectd plugin for hadoop name node if collectd has been applied.
 if node.attribute?("collectd")
   template "#{node[:collectd][:plugin_conf_dir]}/collectd_hadoop_NameNode.conf" do
