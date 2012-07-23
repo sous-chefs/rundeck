@@ -3,7 +3,7 @@
 # Cookbook Name:: vc2010
 # Attribute:: default
 #
-# Copyright 2011, Webtrends Inc.
+# Copyright 2012, Webtrends Inc.
 #
 
 # Microsoft Visual C++ 2010  x86 Redistributable
