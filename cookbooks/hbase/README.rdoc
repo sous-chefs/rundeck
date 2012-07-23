@@ -1,5 +1,5 @@
 = DESCRIPTION:
-Installs hbase 0.92.0
+Installs Apache HBase 0.92.0
 
 = REQUIREMENTS:
 

@@ -15,6 +15,6 @@
     "recipe[java]",
 	"recipe[wt_xd::mapred]"
   ],
-  "description": "External Data Mapreduce",
+  "description": "Webtrends External Data Mapreduce",
   "chef_type": "role"
 }

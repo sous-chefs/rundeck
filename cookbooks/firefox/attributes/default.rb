@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-default['firefox']['http_url'] = "http://mozilla.cdn.leaseweb.com/firefox/releases/13.0.1/win32/en-US/Firefox%20Setup%2013.0.1.exe"
+default['firefox']['http_url'] = "http://mozilla.cdn.leaseweb.com/firefox/releases/14.0.1/win32/en-US/Firefox%20Setup%2014.0.1.exe"
