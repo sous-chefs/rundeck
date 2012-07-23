@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.7
+* Added roundtrip support
+
 ## 0.0.6
 * Externalized the healthcheck options 'healthcheck_enabled' to [:wt_monitoring][:healthcheck_enabled]
 * Externalized the healthcheck options 'healthcheck_port' to [:wt_monitoring][:healthcheck_port]
