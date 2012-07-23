@@ -93,7 +93,7 @@ end
 directory install_dir do
   owner "root"
   group "root"
-  mode "0755"
+  mode 00755
   action :create
 end
 

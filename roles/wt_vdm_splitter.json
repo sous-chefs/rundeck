@@ -1,0 +1,14 @@
+{
+  "name": "wt_vdm_splitter",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+  ],
+  "description": "Webtrends VDM Splitter",
+  "chef_type": "role"  
+}

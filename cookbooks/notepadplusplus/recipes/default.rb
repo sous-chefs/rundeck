@@ -2,7 +2,7 @@
 # Cookbook Name:: notepadplusplus
 # Recipe:: default
 #
-# Copyright 2012, Webtrends Inc.
+# Copyright 2012, Tim Smith - Webtrends Inc.
 #
 # All rights reserved
 #
