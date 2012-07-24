@@ -96,15 +96,18 @@ def processTemplates (install_dir, node)
     })
     end
 
-    %w[monitoring.properties auditor.properties].each do | template_file|
+    %w[auditor.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
         source	"#{template_file}.erb"
         owner "root"
         group "root"
         mode  00644
         variables({
-            :listener_threads => listener_threads,
-            :wt_monitoring => node[:wt_monitoring]
+            :zookeeper_pairs => zookeeper_pairs,
+            :wt_streamingaudit => node[:wt_streamingaudit],
+            :wt_monitoring => node[:wt_monitoring],
+            :pod => node[:wt_realtime_hadoop][:pod],
+            :datacenter => node[:wt_realtime_hadoop][:datacenter]
         })
         end 
     end
