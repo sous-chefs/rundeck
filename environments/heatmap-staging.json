@@ -113,7 +113,7 @@
             "core": {
                 "fs_checkpoint_dir": "${hadoop.tmp.dir}/dfs/namesecondary", 
                 "fs_checkpoint_period": 3600, 
-                "fs_trash_interval": 360, 
+                "fs_trash_interval": 60, 
                 "io_file_buffer_size": 4096
             }, 
             "dfs": {
