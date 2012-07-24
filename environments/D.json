@@ -75,8 +75,6 @@
             }
         }, 
         "wt_common": {
-        "search_hostname": "dsearch.staging.dmz", 
-            "search_service": "net.tcp://dsearch.staging.dmz:8096/Search/Service",
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "cache_hosts": [
                 {
@@ -107,6 +105,8 @@
             "rta_host": "drta01.staging.dmz", 
             "sched_host": "dmasterdb01", 
             "schedulerdb_host": "dusagedb01", 
+            "search_hostname": "dsearch.staging.dmz", 
+            "search_service": "net.tcp://dsearch.staging.dmz:8096/Search/Service", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
             "usage_host": "dusagedb01", 
             "velocitycache_hosts": [
@@ -234,14 +234,13 @@
             "ondemand_base_domain": "dod.webtrends.com", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true", 
+            "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
             "rest_base_uri": "https://ddx.webtrends.com/v3", 
             "show_profiling": "true", 
             "tagbuilder_download_url": "https://stb.webtrends.com", 
             "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
         }, 
-        "wt_search": {
-            
-        }, 
+        "wt_search": {}, 
         "zookeeper": {
             "client_port": 2181, 
             "init_limit": 10, 

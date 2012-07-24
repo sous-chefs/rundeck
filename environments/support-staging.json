@@ -211,34 +211,34 @@
             "client": {
                 "install_method": "package"
             }, 
-            "default_host":{
-                "flap_detection": false,
-                "check_interval": 60,
-                "max_check_attempts": 3,
-                "notification_interval": 600,
+            "default_host": {
+                "check_interval": 60, 
+                "flap_detection": false, 
+                "max_check_attempts": 3, 
+                "notification_interval": 600, 
                 "retry_interval": 30
-            },
-            "default_service":{
-                "flap_detection": false,
-                "check_interval": 120,
-                "max_check_attempts": 3,
-                "notification_interval": 600,
+            }, 
+            "default_service": {
+                "check_interval": 120, 
+                "flap_detection": false, 
+                "max_check_attempts": 3, 
+                "notification_interval": 600, 
                 "retry_interval": 30
-            },
+            }, 
             "multi_environment_monitoring": true, 
             "non_alerting_environments": [
-                "A",
-                "B",
-                "C",
-                "D",
-                "F",
-                "H",
-                "J",
-                "K",
-                "PF",
-                "heatmap-staging",
+                "A", 
+                "B", 
+                "C", 
+                "D", 
+                "F", 
+                "H", 
+                "J", 
+                "K", 
+                "PF", 
+                "heatmap-staging", 
                 "_default"
-            ],
+            ], 
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 

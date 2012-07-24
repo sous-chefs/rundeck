@@ -105,6 +105,19 @@ LoadPlugin java
 				Attribute "LoadedClassCount"
 			</Value>
 		</MBean>
+		# java runtime attributes
+		<MBean "runtime">
+			ObjectName "java.lang:type=Runtime"
+			InstancePrefix "runtime"
+			#InstanceFrom ""
+			<Value>
+				Type "gauge"
+				InstancePrefix "JVM_uptime"
+				#InstanceFrom ""
+				Table false
+				Attribute "Uptime"
+			</Value>
+		</MBean>
 		#Kafka Metrics
         <MBean "kafka">
                 ObjectName "kafka:type=kafka.KafkaProducerStats"
@@ -234,6 +247,7 @@ LoadPlugin java
 			Collect "java_threads"
 			Collect "memory-heap"
 			Collect "memory_nonheap"
+			Collect "runtime"
 			Collect "kafka"
 			Collect "async"
 			Collect "hits-accepted"
