@@ -45,4 +45,3 @@ default['wt_analytics']['reinvigorate_tracking_code'] = 'fv6b7-9x820v8963'
 default['wt_analytics']['fb_app_clientid'] = '103645866351316'
 default['wt_analytics']['fb_app_clientsecret'] = 'f856805656c4b27bef04dc49641dbd58'
 default['wt_analytics']['hmap_url'] = 'http://hmapi.netiq.dmz/'
-
