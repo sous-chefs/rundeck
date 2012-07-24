@@ -18,7 +18,8 @@
 #
 
 # gate the installation of net_acuity unless we are in deploy mode
-if deploy_mode?
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so we will grab the tar ball and install"
 	include_recipe "wt_netacuity::undeploy"
 
 		# create the install directory
