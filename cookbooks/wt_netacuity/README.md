@@ -3,7 +3,6 @@ Installs NetAcuity Server preloaded with a Webtrends license key (thus the wt_ne
 
 = REQUIREMENTS:
 * java
-* wt_base
 
 = ATTRIBUTES:
 * 'version': The version to install
