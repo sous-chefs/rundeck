@@ -103,7 +103,20 @@ LoadPlugin java
 				Table false
 				Attribute "LoadedClassCount"
 			</Value>
-		</MBean>		
+		</MBean>
+		# java runtime attributes
+		<MBean "runtime">
+			ObjectName "java.lang:type=Runtime"
+			InstancePrefix "runtime"
+			#InstanceFrom ""
+			<Value>
+				Type "gauge"
+				InstancePrefix "JVM_uptime"
+				#InstanceFrom ""
+				Table false
+				Attribute "Uptime"
+			</Value>
+		</MBean>
 		#WT Metrics start here
         <MBean "kafka">
                 ObjectName "kafka:type=kafka.KafkaProducerStats"
@@ -304,6 +317,7 @@ LoadPlugin java
 			Collect "java_threads"
 			Collect "memory-heap"
 			Collect "memory_nonheap"
+			Collect "runtime"
 			Collect "kafka"
 			Collect "async"
 			Collect "kafka-router_handle-send-message-error"
