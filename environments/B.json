@@ -13,7 +13,7 @@
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
         "wt_realtimeapi": "= 0.0.18", 
-        "wt_storm": "= 1.0.30", 
+        "wt_storm": "= 1.0.31", 
         "wt_streamingapi": "= 0.0.18", 
         "wt_streamingaudit": "= 0.0.6", 
         "wt_streamingcollection": "= 0.0.21", 
@@ -224,7 +224,7 @@
         }, 
         "wt_storm": {
             "dcsid_whitelist": "", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/22458:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/22960:id/streaming-analysis-bin.tar.gz",
             "streaming_topology": {
                 "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0",
                 "streaming_topology_parsing_bolt_count": 50,
@@ -247,7 +247,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/.lastSuccessful/streamingauditor-bin.tar.gz"
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/22700:id/streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/22941:id/streamingapi-bin.tar.gz",
             "port": 8080
         }, 
         "wt_streamingcollection": {
