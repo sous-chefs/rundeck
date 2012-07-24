@@ -242,6 +242,8 @@
     <add key="TermsOfServiceSource" value="https://www.webtrends.com/tos.php" />
 
 	<add key="heatmapserviceurl" value="<%= @hmap_url %>" />
+	<add key="reinvigorateTrackingCode" value="<%= @reinvigorate_code %>" />
+	<add key="showProfiling" value="<%= @show_profiling %>" />
   </appSettings>
 
   <system.serviceModel>
@@ -421,7 +423,7 @@
   </system.webServer>
   <system.net>
     <defaultProxy enabled="<%= @proxy_enabled %>">
-      <proxy proxyaddress="<%= @proxy_addr %>" />
+      <proxy proxyaddress="<%= @proxy_address %>" />
       <bypasslist />
     </defaultProxy>
   </system.net>
