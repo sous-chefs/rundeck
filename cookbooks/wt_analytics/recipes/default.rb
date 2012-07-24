@@ -105,10 +105,12 @@ if deploy_mode?
 			:tagbuilder_url_template => node['wt_analytics']['tagbuilder_url_template'],
 			:help_link               => node['wt_analytics']['help_link'],
 			:hmap_url                => node['wt_analytics']['hmap_url'],
+			:reinvigorate_code       => node['wt_analytics']['reinvigorate_tracking_code'],
+			:show_profiling          => node['wt_analytics']['show_profiling'],
 
 			# proxy
 			:proxy_enabled => node['wt_analytics']['proxy_enabled'],
-			:proxy_addr    => node['wt_analytics']['proxy_address'],
+			:proxy_address => node['wt_analytics']['proxy_address'],
 
 			# other settings
 			:custom_errors        => node['wt_analytics']['custom_errors'],
