@@ -39,8 +39,8 @@ end
 
 #DisableUAC
 windows_registry 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' do
-  values 'EnableLUA' => 0
-  notifies :request, "windows_reboot[60]"
+	values 'EnableLUA' => 0
+	notifies :request, "windows_reboot[60]"
 end
 
 #Turn off hibernation
@@ -55,12 +55,8 @@ execute "powercfg-performance" do
 	action :run
 end
 
-#Install the working version of rubyzip gem
-gem_package("rubyzip") do
-  options("-v 0.9.5")
-end
-
 #copy a deploy file that can be called to execuate a deploy via rundeck
 cookbook_file "#{node['chef_client']['conf_dir']}\\deploy.bat" do
-  source "deploy.bat"
+	source "deploy.bat"
 end
+
