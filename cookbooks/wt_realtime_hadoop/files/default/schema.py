@@ -4,20 +4,6 @@ import sys
 from hbasetable import HBaseTable
 
 
-class UidTable(HBaseTable):
-	def table(self):
-		return "uid"
-	
-	def create(self):
-		return """
-		{NAME => 'name', VERSIONS => 1,COMPRESSION => 'NONE'},
-		{NAME => 'id',   VERSIONS => 1,COMPRESSION => 'NONE'}
-		"""
-	
-	def validate(self, schema):
-		return True
-
-
 class DimensionHourTable(HBaseTable):
 	def table(self):
 		return "dimension-hour"
@@ -84,47 +70,6 @@ class SessionTable(HBaseTable):
 		return True
 
 
-class DcsidLookupTable(HBaseTable):
-	def table(self):
-		return "dcsid-lookup"
-
-	def create(self):
-		return """
-		{NAME => 'id',   VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'},
-		{NAME => 'name', VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'}
-		"""
-
-	def validate(self, schema):
-		return True
-
-
-class DimensionLookupTable(HBaseTable):
-	def table(self):
-		return "dimension-lookup"
-
-	def create(self):
-		return """
-		{NAME => 'id',   VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'},
-		{NAME => 'name', VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'}
-		"""
-
-	def validate(self, schema):
-		return True
-
-
-class NextIdTable(HBaseTable):
-	def table(self):
-		return "next-id"
-
-	def create(self):
-		return """
-		{NAME => 'id', VERSIONS => 1, COMPRESSION => 'NONE', BLOOMFILTER => 'ROW'}
-		"""
-
-	def validate(self, schema):
-		return True
-
-
 class MetadataTable(HBaseTable):
 	def table(self):
 		return "metadata"
@@ -138,14 +83,10 @@ class MetadataTable(HBaseTable):
 		return True
 
 
-HBaseTable.manage(UidTable())
 HBaseTable.manage(DimensionHourTable())
 HBaseTable.manage(DimensionDayTable())
 HBaseTable.manage(VisitorTable())
 HBaseTable.manage(SessionTable())
-HBaseTable.manage(DcsidLookupTable())
-HBaseTable.manage(DimensionLookupTable())
-HBaseTable.manage(NextIdTable())
 HBaseTable.manage(MetadataTable())
 
 

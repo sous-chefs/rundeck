@@ -1,4 +1,5 @@
-## Future
+## 1.0.2:
+* Removed unused tables
 
 ## 1.0.1:
 * No longer creates ul, nul, uc and nuc for new tables
