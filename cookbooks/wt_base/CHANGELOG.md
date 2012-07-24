@@ -1,6 +1,10 @@
 ## Future
 
-* Unknown
+* windows network configuration
+
+## 0.10.53
+
+* Added support for 'net localgroup' command on windows
 
 ## 0.10.6
 
