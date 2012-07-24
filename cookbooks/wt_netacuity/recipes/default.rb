@@ -87,10 +87,9 @@ end
 auth_data = data_bag_item('authorization', node.chef_environment)
 begin
   admin_password = auth_data['wt_netacuity']['admin_password']
-rescue Net::HTTPServerException
-  Chef::Log.info("Cannot find the NetAcuity admin_password  value in the authorization databag")
+rescue Chef::Exceptions::ResourceNotFound
+  log("Cannot find the NetAcuity admin_password value in the authorization databag") { level :fatal }
 end
-
 
 # create the password file from a template
 template "netacuity-passwd" do
@@ -102,7 +101,6 @@ template "netacuity-passwd" do
   notifies :restart, resources(:service => "netacuity")
   ignore_failure true
 end
-
 
 if node.attribute?("nagios")
   #Create a nagios nrpe check for the netacuity page
