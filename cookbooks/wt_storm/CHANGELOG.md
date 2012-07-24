@@ -1,3 +1,6 @@
+# 1.0.31
+* Added ANTLR libs
+
 # 1.0.29
 * attribute fixes to cookbook
 * adding additional bolt parallelism attributes
