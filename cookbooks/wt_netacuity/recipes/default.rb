@@ -30,13 +30,13 @@ if deploy_mode?
 			action :create
 		end
 		
-		# pull the install source file down from the repo
+		# pull the install .tgz file down from the repo
 		remote_file "#{Chef::Config[:file_cache_path]}/NetAcuity_#{node['wt_netacuity']['version']}.tgz" do
 			source "#{node['wt_netacuity']['download_url']}/NetAcuity_#{node['wt_netacuity']['version']}_#{node['kernel']['machine']}.tgz"
 			mode 00644
 		end
 		
-		# uncompress the install source
+		# uncompress the install .tgz
 		execute "tar" do
 			user  "root"
 			group "root" 
