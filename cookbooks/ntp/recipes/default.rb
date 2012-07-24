@@ -31,6 +31,8 @@ when "redhat","centos","fedora","scientific"
   package "ntp" do
     action :install
   end
+when "windows"
+  include_recipe "windows_client"
 end
 
 case node[:platform]
