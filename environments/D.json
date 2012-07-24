@@ -75,6 +75,8 @@
             }
         }, 
         "wt_common": {
+        "search_hostname": "dsearch.staging.dmz", 
+            "search_service": "net.tcp://dsearch.staging.dmz:8096/Search/Service",
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "cache_hosts": [
                 {
@@ -238,8 +240,7 @@
             "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
         }, 
         "wt_search": {
-            "search_hostname": "dsearch.staging.dmz", 
-            "search_service": "net.tcp://dsearch.staging.dmz:8096/Search/Service"
+            
         }, 
         "zookeeper": {
             "client_port": 2181, 
