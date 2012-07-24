@@ -29,23 +29,23 @@
   </configSections>
 
   <!-- Start Cache settings -->
-  <cacheConfiguration enabled="true" region="<%= @cache_region %>" lifespan="00:15:00"
+  <cacheConfiguration enabled="<%= @cache_enabled %>" region="<%= @cache_region %>" lifespan="00:15:00"
     protocol="Binary">
     <servers>
       <clear />
 	  <% @cache_hosts.each do |cache| -%>
-	  <add address="<%= cache['name']%>" port="11211" />
+	  <add address="<%= cache['name']%>" port="<%= cache['port']%>" />
 	  <% end -%>
     </servers>
   </cacheConfiguration>
   <!-- End Cache settings -->
   <!-- Start HBase settings-->
-  <HBaseConfig HBaseLocation="<%= @hbase_location %>" DataCenterId="<%= @dc_id %>" PodId="<%= @pod_id %>" ThriftPort="<%= @hbase_thrift_port %>" />
+  <HBaseConfig HBaseLocation="<%= @hbase_location %>" DataCenterId="<%= @hbase_dc_id %>" PodId="<%= @hbase_pod_id %>" ThriftPort="<%= @hbase_thrift_port %>" />
   <!-- End HBase settings-->
   <!-- Start ServiceBus endpoint -->
   <serviceBus>
     <endpoints>
-      <endpoint endpointIdentifier="serviceBusUIMain@localhost" name="Webtrends Insight UI" binding="mainBinding" returnAddress="serviceBusUIMain@localhost" poisonMessageAddress="serviceBusUIError@localhost" maxMessageRetryCount="3" numberOfWorkerThreads="12" maxRetries="4" statusReportInterval="00:00:30" statusReportGracePeriod="00:01:00" monitorServiceAddress="" incomingMessageLoggingLevel="None" outgoingMessageLoggingLevel="None" sendOnly="false">
+      <endpoint endpointIdentifier="serviceBusUIMain@localhost" name="Webtrends Insight UI" binding="mainBinding" returnAddress="serviceBusUIMain@localhost" poisonMessageAddress="serviceBusUIError@localhost" maxMessageRetryCount="3" numberOfWorkerThreads="12" maxRetries="4" statusReportInterval="00:00:30" statusReportGracePeriod="00:01:00" monitorServiceAddress="<%= @monitor_service_addr %>" incomingMessageLoggingLevel="None" outgoingMessageLoggingLevel="None" sendOnly="false">
 
         <profiler enabled="true" profilePipelineComponents="true" pipelineDirection="Both" />
 
@@ -153,8 +153,8 @@
       </test>
     </errorFilter>
   </elmah>
-  <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>"
-    MetaDataColumnFamily="<%= @metadata_column %>" ThriftPort="<%= @cass_thrift_port %>" UseLegacy="false">
+  <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @cass_report_column %>"
+    MetaDataColumnFamily="<%= @cass_metadata_column %>" ThriftPort="<%= @cass_thrift_port %>" UseLegacy="false">
     <Nodes>
       <clear />
       <add Hostname="<%= @cass_host %>" />
@@ -175,24 +175,18 @@
     <add key="ServiceBusManaged" value="true" />
     <add key="ClientValidationEnabled" value="true" />
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
-    <add key="RestBaseUri" value="https://ws.webtrends.com/v3" />
+    <add key="RestBaseUri" value="<%= @rest_base_uri %>" />
     <add key="reportActivityLog" value="true" />
     <add key="threshold.compact" value="200" />
     <add key="threshold.mini" value="300" />
     <add key="threshold.pagesize.thumbailview" value="21" />
     <add key="threshold.pagesize.listview" value="100" />
     <add key="threshold.pagesize.thumblistview" value="10" />
-    <add key="ondemand.base.domain" value="ondemand.webtrends.com" />
+    <add key="ondemand.base.domain" value="<%= @ondemand_base_domain %>" />
     <add key="fb_redirector_dcsid" value="dcsi89ir010000c9z6cv65km9_6e2g" />
-    <!-- production -->
-    <add key="fb_app_clientid" value="103645866351316" />
-    <add key="fb_app_clientsecret" value="f856805656c4b27bef04dc49641dbd58" />
-    <!-- test -->
-    <!--
-    <add key="fb_app_clientid" value="119772538146833"/>
-    <add key="fb_app_clientsecret" value="3622dee4341c3ab15076ce92caa0a71c"/>
-    -->
-    <add key="beta" value="false" />
+    <add key="fb_app_clientid" value="<%= @fb_app_clientid %>" />
+    <add key="fb_app_clientsecret" value="<%= @fb_app_clientsecret %>" />
+    <add key="beta" value="<%= @beta %>" />
     <add key="GetSatisfaction" value="s3.amazonaws.com/getsatisfaction.com/" />
     <add key="GetSatisfactionCompany" value="webtrends" />
     <add key="BetaGetSatisfactionCompany" value="webtrendssbx" />
@@ -205,7 +199,7 @@
     <add key="twitterAppAccessToken" value="71357888-nrJcbFR1GQUcQlc7HSPZQNGaS6DUCMAHJYsks" />
     <!-- This is the Twitter token secret for our application -->
     <add key="twitterAppTokenSecret" value="HY9o52ZwbNMFCtOpPC6welD6JHaThkqmxMp8H5kqc" />
-    <add key="Branding" value="Webtrends" />
+    <add key="Branding" value="<%= @branding %>" />
     <!--Blackberry-->
     <add key="BrandedAccountId" value="0" />
     <!--BB = 20578-->
@@ -230,12 +224,12 @@
     <add key="YouTubePublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
     <add key="TwitterPublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
 
-    <add key="TagBuilderDownloadUrl" value="https://tagbuilder.webtrends.com/" />
-    <add key="TagBuilderUrlTemplate" value="https://tagbuilder.webtrends.com/{0}/{1}{2}" />
+    <add key="TagBuilderDownloadUrl" value="<%= @tagbuilder_download_url %>" />
+    <add key="TagBuilderUrlTemplate" value="<%= @tagbuilder_url_template %>" />
     <add key="TagBuilderDomain" value="statse.webtrendslive.com" />
     <add key="TagBuilderDomainMobile" value="dc.webtrends.com/v1" />
     <!-- Help Link -->
-    <add key="helpLink" value="http://help.webtrends.com/{0}/analytics10/" />
+    <add key="helpLink" value="<%= @help_link %>" />
     <add key="SecurityStatementLink" value="http://www.webtrends.com/AboutWebtrends/SecurityStatement" />
     <add key="PatentsLink" value="http://www.webtrends.com/patents/" />
     <add key="ReleaseNotesLink" value="http://releasenotes.webtrends.com/on-demand/category/analytics/analytics-10/" />
@@ -247,7 +241,7 @@
     <!-- Terms Of Service Source -->
     <add key="TermsOfServiceSource" value="https://www.webtrends.com/tos.php" />
 
-	<add key="heatmapserviceurl" value="<%= @hmapi_host %>" />
+	<add key="heatmapserviceurl" value="<%= @hmap_url %>" />
   </appSettings>
 
   <system.serviceModel>
@@ -354,7 +348,7 @@
     TODO: Convert to 404 pages that can be used with ResponseRewrite mode so we do not always
     redirect to /error/notfound?aspxpath=X 
     -->
-    <customErrors mode="RemoteOnly" defaultRedirect="/error/unknown">
+    <customErrors mode="<%= @custom_errors %>" defaultRedirect="/error/unknown">
       <error statusCode="404" redirect="/error/notfound" />
       <error statusCode="403" redirect="/error/forbidden" />
     </customErrors>
@@ -426,8 +420,8 @@
     </httpErrors>
   </system.webServer>
   <system.net>
-    <defaultProxy enabled="false">
-      <proxy proxyaddress="http://127.0.0.1:8888" />
+    <defaultProxy enabled="<%= @proxy_enabled %>">
+      <proxy proxyaddress="<%= @proxy_addr %>" />
       <bypasslist />
     </defaultProxy>
   </system.net>
