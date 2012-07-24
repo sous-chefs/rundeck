@@ -5,6 +5,7 @@
 
 ## 1.7.3
  * Take out the creation of the webtrends user on centos.  This is causing odd failures and isn't used (yet)
+ * Removed windows rubyzip 0.9.5 install
  
 ## 1.7.2
  * Add libxtst6 and libxtst-dev packages for Java troubleshooting on Ubuntu systems
