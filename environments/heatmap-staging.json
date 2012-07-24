@@ -285,9 +285,9 @@
             "share_mount_dir": "/ifr"
         }, 
         "zookeeper": {
-            "clientPort": 2181, 
-            "dataDir": "/var/lib/zookeeper", 
-            "initLimit": 10, 
+            "client_port": 2181, 
+            "data_dir": "/var/lib/zookeeper", 
+            "init_limit": 10, 
             "quorum": [
                 "vzookeeper01.staging.dmz", 
                 "vzookeeper02.staging.dmz", 
@@ -295,10 +295,10 @@
                 "vzookeeper04.staging.dmz", 
                 "vzookeeper05.staging.dmz"
             ], 
-            "snapshotDir": "/var/lib/zookeeper/snapshots", 
-            "snapshotNum": 3, 
-            "syncLimit": 5, 
-            "tickTime": 2000
+            "snapshot_dir": "/var/lib/zookeeper/snapshots", 
+            "snapshot_num": 3, 
+            "sync_limit": 5, 
+            "tick_time": 2000
         }
     }
 }
