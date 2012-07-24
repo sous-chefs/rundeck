@@ -112,7 +112,7 @@ if deploy_mode?
 
 			# other settings
 			:custom_errors        => node['wt_analytics']['custom_errors'],
-			:search_host          => node['wt_search']['search_hostname'],
+			:search_host          => node['wt_common']['search_hostname'],
 			:monitor_service_addr => node['wt_common']['monitor_service_addr']
 		)
 	end
