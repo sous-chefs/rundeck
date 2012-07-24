@@ -22,18 +22,18 @@ directory "C:\NTP" do
   action :create
 end
 
-cookbook_file "C:\NTP\ntp.ini"
+cookbook_file "C:\NTP\ntp.ini" do
   source "ntp.ini"
   inherits true
   action :create
 end
 
 if !File.exists?("C:/NTP/bin/ntpd.exe")
-	remote_file "#{Chef::Config[:file_cache_path]}/ntpd.exe" do
-		source node[:ntp][:package_url]
-	end
-  
+  remote_file "#{Chef::Config[:file_cache_path]}/ntpd.exe" do
+    source node[:ntp][:package_url]
+  end
+
   execute "ntpd_install" do
-		command "ntpd.exe /USEFILE=C:\\NTP\\ntp.ini"
+    command "ntpd.exe /USEFILE=C:\\NTP\\ntp.ini"
   end
 end
