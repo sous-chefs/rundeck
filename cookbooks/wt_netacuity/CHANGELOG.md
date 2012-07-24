@@ -3,6 +3,10 @@
 * Run under runit
 * Pass the license file in somehow (databag?)
 
+## 1.0.5
+* Remove wt_base code.  There's no need for it
+* Remove missing data bag catches that weren't working
+
 ## 1.0.4
 * Wrap the recipe in a deploy flag since this recipe will never leave webtrends
 * Template the password file from the authorization data bag
