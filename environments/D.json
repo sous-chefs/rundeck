@@ -5,10 +5,10 @@
         "java": "= 1.5.0", 
         "kafka": "= 1.0.5", 
         "nagios": "= 1.3.0", 
-        "ondemand_base": "= 1.7.2", 
+        "ondemand_base": "= 1.7.3", 
         "storm": "= 1.0.16", 
         "windows": "= 1.2.12", 
-        "wt_analytics": "= 0.0.20", 
+        "wt_analytics": "= 0.0.21", 
         "wt_base": "0.10.5", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 0.0.2", 
@@ -76,7 +76,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "cache_host": [
+            "cache_hosts": [
                 {
                     "name": "xcache01.staging.dmz", 
                     "port": "11211"
@@ -86,7 +86,6 @@
                     "port": "11211"
                 }
             ], 
-            "cache_region": "D_A10", 
             "cassandra_host": "cassandra.staging.dmz", 
             "cassandra_meta_column": "D_Meta", 
             "cassandra_report_column": "D_Report", 
@@ -102,6 +101,7 @@
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
             "master_host": "dmasterdb01", 
+            "monitor_service_addr": "serviceBusMonitoring@dds01.staging.dmz", 
             "rta_host": "drta01.staging.dmz", 
             "sched_host": "dmasterdb01", 
             "schedulerdb_host": "dusagedb01", 
@@ -160,6 +160,7 @@
         "hbase": {
             "data_center_id": "Lab", 
             "location": "shdata.staging.dmz", 
+            "pod_id": "D", 
             "site": {
                 "zookeeper_clientport": 2181, 
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
@@ -219,7 +220,26 @@
             "syscontact": "trent.white@webtrends.com"
         }, 
         "wt_analytics": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/22367:id/AnalyticsUI.zip"
+            "app_pool_private_memory": 2097152, 
+            "bba_domain": "dbba.webtrends.com", 
+            "cache_region": "D_A10", 
+            "custom_errors": "Off", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/22367:id/AnalyticsUI.zip", 
+            "fb_app_clientid": "119772538146833", 
+            "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
+            "help_link": "http://help-release.itl.webtrends.corp/{0}/analytics10/", 
+            "hmap_url": "", 
+            "ondemand_base_domain": "dod.webtrends.com", 
+            "proxy_address": "http://sproxy02.staging.dmz:3128", 
+            "proxy_enabled": "true", 
+            "rest_base_uri": "https://ddx.webtrends.com/v3", 
+            "show_profiling": "true", 
+            "tagbuilder_download_url": "https://stb.webtrends.com", 
+            "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
+        }, 
+        "wt_search": {
+            "search_hostname": "dsearch.staging.dmz", 
+            "search_service": "net.tcp://dsearch.staging.dmz:8096/Search/Service"
         }, 
         "zookeeper": {
             "client_port": 2181, 
