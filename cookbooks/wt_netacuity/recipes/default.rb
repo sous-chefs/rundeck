@@ -18,7 +18,8 @@
 #
 
 # gate the installation of net_acuity unless we are in deploy mode
-if deploy_mode?
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so we will grab the tar ball and install"
 	include_recipe "wt_netacuity::undeploy"
 
 		# create the install directory
@@ -30,13 +31,13 @@ if deploy_mode?
 			action :create
 		end
 		
-		# pull the install source file down from the repo
+		# pull the install .tgz file down from the repo
 		remote_file "#{Chef::Config[:file_cache_path]}/NetAcuity_#{node['wt_netacuity']['version']}.tgz" do
 			source "#{node['wt_netacuity']['download_url']}/NetAcuity_#{node['wt_netacuity']['version']}_#{node['kernel']['machine']}.tgz"
 			mode 00644
 		end
 		
-		# uncompress the install source
+		# uncompress the install .tgz
 		execute "tar" do
 			user  "root"
 			group "root" 
@@ -85,12 +86,7 @@ end
 
 # grab the admin password from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
-begin
-  admin_password = auth_data['wt_netacuity']['admin_password']
-rescue Net::HTTPServerException
-  Chef::Log.info("Cannot find the NetAcuity admin_password  value in the authorization databag")
-end
-
+admin_password = auth_data['wt_netacuity']['admin_password']
 
 # create the password file from a template
 template "netacuity-passwd" do
@@ -102,7 +98,6 @@ template "netacuity-passwd" do
   notifies :restart, resources(:service => "netacuity")
   ignore_failure true
 end
-
 
 if node.attribute?("nagios")
   #Create a nagios nrpe check for the netacuity page
