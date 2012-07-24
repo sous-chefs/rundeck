@@ -85,11 +85,7 @@ end
 
 # grab the admin password from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
-begin
-  admin_password = auth_data['wt_netacuity']['admin_password']
-rescue Chef::Exceptions::ResourceNotFound
-  log("Cannot find the NetAcuity admin_password value in the authorization databag") { level :fatal }
-end
+admin_password = auth_data['wt_netacuity']['admin_password']
 
 # create the password file from a template
 template "netacuity-passwd" do
