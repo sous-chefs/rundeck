@@ -7,14 +7,13 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-# Uninstalls A10 UI
 
-app_pool = node['wt_analytics']['pool']
+app_pool = node['wt_analytics']['app_pool_name']
 install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_analytics']['install_dir']).gsub(/[\\\/]+/,"\\")
 
 iis_pool app_pool do
-  action [:stop, :delete]
-  ignore_failure true
+	action [:stop, :delete]
+	ignore_failure true
 end
 
 iis_site 'Analytics' do
@@ -23,6 +22,6 @@ iis_site 'Analytics' do
 end
 
 directory install_dir do
-  recursive true
-  action :delete
+	recursive true
+	action :delete
 end
