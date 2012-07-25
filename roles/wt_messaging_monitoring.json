@@ -1,5 +1,5 @@
 {
-  "name": "wt_backup_service",
+  "name": "wt_messaging_monitoring",
   "default_attributes": {
   },
   "override_attributes": {
@@ -9,6 +9,6 @@
   },
   "run_list": [
   ],
-  "description": "Webtrends Backup Service",
+  "description": "Webtrends Messaging Monitoring Service",
   "chef_type": "role"  
 }

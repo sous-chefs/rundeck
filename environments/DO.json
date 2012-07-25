@@ -291,11 +291,11 @@
         "wt_storm": {
             "download_url": "http://repo.staging.dmz/repo/linux/storm/jars/"
         }, 
-        "wt_streamingauditor": {}, 
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/17623:id/streamingapi-bin.tar.gz", 
             "port": 8080
         }, 
+        "wt_streamingauditor": {}, 
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/18842:id/streamingcollection-bin.tar.gz", 
             "port": 8080
