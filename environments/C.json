@@ -1,7 +1,6 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "iis": "= 1.1.12", 
         "java": "= 1.5.0", 
         "kafka": "= 1.0.5", 
         "nagios": "= 1.3.0", 
@@ -9,7 +8,7 @@
         "storm": "= 1.0.16", 
         "windows": "= 1.2.12", 
         "wt_analytics_ui": "= 0.0.23", 
-        "wt_base": "0.10.53", 
+        "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
@@ -21,7 +20,11 @@
         "wt_streaminglogreplayer": "= 0.0.15", 
         "zookeeper": "= 1.0.4"
     }, 
-    "default_attributes": {
+    "default_attributes": {}, 
+    "description": "C Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "C", 
+    "override_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
@@ -42,6 +45,68 @@
             "cassandra_host": "cassandra.staging.dmz", 
             "cassandra_meta_column": "C_Meta", 
             "cassandra_report_column": "C_Report"
+        }, 
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
+        "hbase": {
+            "data_center_id": "Lab", 
+            "location": "shdata.staging.dmz", 
+            "pod_id": "C", 
+            "site": {
+                "zookeeper_clientport": 2181, 
+                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
+            }, 
+            "thrift_port": 9090
+        }, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                    }
+                }, 
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                    }
+                }
+            }
+        }, 
+        "memcached": {
+            "cache_hosts": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "memory": "1024"
+        }, 
+        "ms_dotnet4": {
+            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
+        }, 
+        "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
+            "multi_environment_monitoring": true, 
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server_role": "nagios_xi", 
+            "users_databag_group": "staging"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
         }, 
         "ondemand_base": {
             "apt": [
@@ -71,6 +136,21 @@
                 }
             ]
         }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
+        "snmp": {
+            "community": "DevOps", 
+            "full_systemview": "true", 
+            "syscontact": "trent.white@webtrends.com"
+        }, 
         "vc2010": {
             "x64": {
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
@@ -78,6 +158,30 @@
             "x86": {
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
+        }, 
+        "wt_analytics_ui": {
+            "app_pool_private_memory": 2097152, 
+            "bba_domain": "cbba.webtrends.com", 
+            "cache_region": "C_A10", 
+            "custom_errors": "Off", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/22860:id/AnalyticsUI.zip", 
+            "fb_app_clientid": "119772538146833", 
+            "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
+            "help_link": "http://help-release.itl.webtrends.corp/{0}/analytics10/", 
+            "hmap_url": "", 
+            "ondemand_base_domain": "cod.webtrends.com", 
+            "proxy_address": "http://sproxy02.staging.dmz:3128", 
+            "proxy_enabled": "true", 
+            "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
+            "rest_base_uri": "https://cdx.webtrends.com/v3", 
+            "show_profiling": "true", 
+            "tagbuilder_download_url": "https://stb.webtrends.com", 
+            "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
+        }, 
+        "wt_cam": {
+            "cam_server_url": "http://ccam01.staging.dmz/camservice", 
+            "db_server": "ccamdb01.staging.dmz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/20989:id/CAM.zip"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -147,110 +251,7 @@
         }, 
         "yum": {
             "epel_release": "6-7"
-        }
-    }, 
-    "description": "C Pod", 
-    "json_class": "Chef::Environment", 
-    "name": "C", 
-    "override_attributes": {
-        "esx": {
-            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
-            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
-        "hbase": {
-            "data_center_id": "Lab", 
-            "location": "shdata.staging.dmz", 
-            "pod_id": "C", 
-            "site": {
-                "zookeeper_clientport": 2181, 
-                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
-            }, 
-            "thrift_port": 9090
-        }, 
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk": {
-                "6": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
-                    }
-                }, 
-                "7": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
-                    }
-                }
-            }
-        }, 
-        "memcached": {
-            "cache_hosts": [
-                {
-                    "name": "xcache01.staging.dmz", 
-                    "port": "11211"
-                }, 
-                {
-                    "name": "xcache02.staging.dmz", 
-                    "port": "11211"
-                }
-            ], 
-            "memory": "1024"
-        }, 
-        "ms_dotnet4": {
-            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
-        }, 
-        "nagios": {
-            "client": {
-                "install_method": "package"
-            }, 
-            "multi_environment_monitoring": true, 
-            "nrpe": {
-                "dont_blame_nrpe": "1"
-            }, 
-            "server_role": "nagios_xi", 
-            "users_databag_group": "staging"
-        }, 
-        "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }, 
-        "postfix": {
-            "relayhost": "pdxengmta01.webtrends.corp"
-        }, 
-        "resolver": {
-            "nameservers": [
-                "10.164.0.11", 
-                "10.164.0.12"
-            ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
-        }, 
-        "snmp": {
-            "community": "DevOps", 
-            "full_systemview": "true", 
-            "syscontact": "trent.white@webtrends.com"
-        }, 
-        "wt_analytics_ui": {
-            "app_pool_private_memory": 2097152, 
-            "bba_domain": "cbba.webtrends.com", 
-            "cache_region": "C_A10", 
-            "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/.lastSuccessful/AnalyticsUI.zip", 
-            "fb_app_clientid": "119772538146833", 
-            "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
-            "help_link": "http://help-release.itl.webtrends.corp/{0}/analytics10/", 
-            "hmap_url": "", 
-            "install_dir": "Analytics", 
-            "ondemand_base_domain": "cod.webtrends.com", 
-            "proxy_address": "http://sproxy02.staging.dmz:3128", 
-            "proxy_enabled": "true", 
-            "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
-            "rest_base_uri": "https://cdx.webtrends.com/v3", 
-            "show_profiling": "true", 
-            "tagbuilder_download_url": "https://stb.webtrends.com", 
-            "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
-        }, 
-        "wt_search": {}, 
         "zookeeper": {
             "client_port": 2181, 
             "init_limit": 10, 

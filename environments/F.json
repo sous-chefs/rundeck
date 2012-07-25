@@ -4,9 +4,11 @@
         "java": "= 1.5.0", 
         "kafka": "= 1.0.5", 
         "nagios": "= 1.3.0", 
-        "ondemand_base": "= 1.5.0", 
+        "ondemand_base": "= 1.7.3", 
         "storm": "= 1.0.16", 
         "windows": "= 1.2.12", 
+        "wt_analytics_ui": "= 0.0.23", 
+        "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
@@ -18,15 +20,19 @@
         "wt_streaminglogreplayer": "= 0.0.15", 
         "zookeeper": "= 1.0.4"
     }, 
-    "default_attributes": {
+    "default_attributes": {}, 
+    "description": "F Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "F", 
+    "override_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
             }, 
             "sudo": {
                 "groups": [
-                    "STAGINGDMZ\\\\domain-admins", 
-                    "STAGINGDMZ\\\\f.admins"
+                    "domain-admins", 
+                    "f.admins"
                 ], 
                 "include_sudoers_d": true, 
                 "passwordless": false, 
@@ -34,6 +40,73 @@
                     "bobo"
                 ]
             }
+        }, 
+        "cassandra": {
+            "cassandra_host": "cassandra.staging.dmz", 
+            "cassandra_meta_column": "F_Meta", 
+            "cassandra_report_column": "F_Report"
+        }, 
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
+        "hbase": {
+            "data_center_id": "Lab", 
+            "location": "shdata.staging.dmz", 
+            "pod_id": "F", 
+            "site": {
+                "zookeeper_clientport": 2181, 
+                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
+            }, 
+            "thrift_port": 9090
+        }, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                    }
+                }, 
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                    }
+                }
+            }
+        }, 
+        "memcached": {
+            "cache_hosts": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "memory": "1024"
+        }, 
+        "ms_dotnet4": {
+            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
+        }, 
+        "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
+            "multi_environment_monitoring": true, 
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server_role": "nagios_xi", 
+            "users_databag_group": "staging"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
         }, 
         "ondemand_base": {
             "apt": [
@@ -63,105 +136,6 @@
                 }
             ]
         }, 
-        "vc2010": {
-            "x64": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-            }, 
-            "x86": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-            }
-        }, 
-        "wt_common": {
-            "cache_host": [
-                {
-                    "name": "xcache01.staging.dmz", 
-                    "port": "11211"
-                }, 
-                {
-                    "name": "xcache02.staging.dmz", 
-                    "port": "11211"
-                }
-            ], 
-            "cache_region": "F_A10", 
-            "cassandra_host": "cassandra.staging.dmz", 
-            "cassandra_meta_column": "F_Meta", 
-            "cassandra_report_column": "F_Report", 
-            "cassandra_snmp_comm": "StagingRO", 
-            "cassandra_snmp_port": "", 
-            "cassandra_thrift_port": "", 
-            "config_dir_linux": "/etc/webtrends/", 
-            "install_dir_linux": "/opt/webtrends/", 
-            "install_dir_windows": "d:\\wrs", 
-            "install_log_dir_linux": "/var/log/webtrends/install", 
-            "install_log_dir_windows": "d:\\logs", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "log_dir_linux": "/var/log/webtrends/", 
-            "log_dir_windows": "", 
-            "master_host": "fmasterdb01", 
-            "rta_host": "frta01.staging.dmz", 
-            "sched_host": "fmasterdb01", 
-            "schedulerdb_host": "fusagedb01", 
-            "usage_host": "fusagedb01", 
-            "velocitycache_hosts": [
-                {
-                    "name": "fdxweb01.staging.dmz", 
-                    "port": "22233"
-                }, 
-                {
-                    "name": "fdxweb02.staging.dmz", 
-                    "port": "22233"
-                }
-            ], 
-            "wrsread_group": "STAGINGDMZ\\F.WRS.Read"
-        }, 
-        "wt_dx": {
-            "app_settings_section": {
-                "streamingServiceRoot": "https://fdx.webtrends.com/StreamingServices_v3/"
-            }, 
-            "brandedaccountid": "20578,20663", 
-            "cacheenabled": "True", 
-            "cachename": "F_DX", 
-            "endpoint_address": "net.tcp://fsearch.staging.dmz:8096/SearchService/Search", 
-            "website_name": "DX", 
-            "website_port": "80"
-        }, 
-        "wt_roadrunner": {
-            "build_url": "\\\\sstore02.staging.dmz\\install\\ReleasedBuilds\\10.3.0\\10.3HF bundle build\\RoadRunner_10.3_10.3.0.11_artifacts.zip"
-        }
-    }, 
-    "description": "F Pod", 
-    "json_class": "Chef::Environment", 
-    "name": "F", 
-    "override_attributes": {
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk": {
-                "6": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
-                    }
-                }
-            }, 
-            "jdk_version": "6"
-        }, 
-        "memcached": {
-            "memory": "1024"
-        }, 
-        "ms_dotnet4": {
-            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
-        }, 
-        "nagios": {
-            "multi_environment_monitoring": "true", 
-            "nrpe": {
-                "dont_blame_nrpe": "1"
-            }, 
-            "server_role": "nagios_xi"
-        }, 
-        "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -176,6 +150,123 @@
             "community": "DevOps", 
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "wt_analytics_ui": {
+            "app_pool_private_memory": 2097152, 
+            "bba_domain": "fbba.webtrends.com", 
+            "cache_region": "F_A10", 
+            "custom_errors": "Off", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/22860:id/AnalyticsUI.zip", 
+            "fb_app_clientid": "119772538146833", 
+            "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
+            "help_link": "http://help-release.itl.webtrends.corp/{0}/analytics10/", 
+            "hmap_url": "", 
+            "ondemand_base_domain": "fod.webtrends.com", 
+            "proxy_address": "http://sproxy02.staging.dmz:3128", 
+            "proxy_enabled": "true", 
+            "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
+            "rest_base_uri": "https://fdx.webtrends.com/v3", 
+            "show_profiling": "true", 
+            "tagbuilder_download_url": "https://stb.webtrends.com", 
+            "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
+        }, 
+        "wt_cam": {
+            "cam_server_url": "http://fcam01.staging.dmz/camservice", 
+            "db_server": "fcamdb01.staging.dmz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/20989:id/CAM.zip"
+        }, 
+        "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "config_dir_linux": "/etc/webtrends/", 
+            "install_dir_linux": "/opt/webtrends/", 
+            "install_dir_windows": "d:\\wrs", 
+            "install_log_dir_linux": "/var/log/webtrends/install", 
+            "install_log_dir_windows": "d:\\logs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "log_dir_linux": "/var/log/webtrends/", 
+            "log_dir_windows": "", 
+            "smtp_server": "pdxengmta01.webtrends.corp", 
+            "velocitycache_hosts": [
+                {
+                    "name": "fdxweb01.staging.dmz", 
+                    "port": "22233"
+                }, 
+                {
+                    "name": "fdxweb02.staging.dmz", 
+                    "port": "22233"
+                }
+            ], 
+            "wrsmodify_group": "STAGINGDMZ\\F.WRS.Modify", 
+            "wrsread_group": "STAGINGDMZ\\F.WRS.Read"
+        }, 
+        "wt_dx": {
+            "app_settings_section": {
+                "streamingServiceRoot": "https://fdx.webtrends.com/StreamingServices_v3/"
+            }, 
+            "brandedaccountid": "20578,20663", 
+            "cacheenabled": "True", 
+            "cachename": "F_DX", 
+            "endpoint_address": "net.tcp://fsearch.staging.dmz:8096/SearchService/Search", 
+            "website_name": "DX", 
+            "website_port": "80"
+        }, 
+        "wt_masterdb": {
+            "master_host": "fmasterdb01.staging.dmz", 
+            "sched_host": "fmasterdb01.staging.dmz"
+        }, 
+        "wt_messaging_monitoring": {
+            "monitor_service_addr": "serviceBusMonitoring@fds01.staging.dmz"
+        }, 
+        "wt_monitoring": {
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "true", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "staging.fpod.servers", 
+            "monitoring_enabled": "true"
+        }, 
+        "wt_roadrunner": {
+            "build_url": "\\\\sstore02.staging.dmz\\install\\ReleasedBuilds\\10.3.0\\10.3HF bundle build\\RoadRunner_10.3_10.3.0.11_artifacts.zip"
+        }, 
+        "wt_rta": {
+            "rta_host": "frta01.staging.dmz"
+        }, 
+        "wt_search": {
+            "search_hostname": "fsearch.staging.dmz", 
+            "search_service": "net.tcp://fsearch.staging.dmz:8096/Search/Service"
+        }, 
+        "wt_usagedb": {
+            "schedulerdb_host": "fusagedb01.staging.dmz", 
+            "usage_host": "fusagedb01.staging.dmz"
+        }, 
+        "yum": {
+            "epel_release": "6-7"
+        }, 
+        "zookeeper": {
+            "client_port": 2181, 
+            "init_limit": 10, 
+            "quorum": [
+                "szoo01.staging.dmz", 
+                "szoo02.staging.dmz", 
+                "szoo03.staging.dmz"
+            ], 
+            "snapshot_num": 3, 
+            "sync_limit": 5, 
+            "tick_time": 2000
         }
     }
 }
