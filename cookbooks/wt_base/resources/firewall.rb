@@ -1,10 +1,9 @@
 #
-# Cookbook Name:: windows
+# Cookbook Name:: wt_base
 # Provider:: firewall 
 # Author: Kendrick Martin
 #
-# Copyright 2011, Webtrends
-#
+# Copyright 2011, Webtrends Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,4 +25,3 @@ attribute :rule_name, :kind_of => String, :name_attribute => true
 attribute :port, :kind_of => Integer
 attribute :protocol, :kind_of => String
 attr_accessor :exists
-
