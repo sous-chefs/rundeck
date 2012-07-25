@@ -17,12 +17,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-directory "C:\NTP" do
+directory "C:/NTP/etc" do
   inherits true
   action :create
+  recursive true
 end
 
-cookbook_file "C:\NTP\ntp.ini" do
+cookbook_file "C:/NTP/ntp.ini" do
   source "ntp.ini"
   inherits true
   action :create
@@ -34,6 +35,7 @@ if !File.exists?("C:/NTP/bin/ntpd.exe")
   end
 
   execute "ntpd_install" do
-    command "ntpd.exe /USEFILE=C:\\NTP\\ntp.ini"
+    command "#{Chef::Config[:file_cache_path]}\\ntpd.exe /USEFILE=C:\\NTP\\ntp.ini"
+    returns [0,2]
   end
 end

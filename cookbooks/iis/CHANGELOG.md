@@ -1,5 +1,9 @@
 ## Future
 
+## 1.1.12
+
+* Added support for configuring app pool identity
+
 ## 1.1.11:
 
 * Modified the regex in pool:load_current_resource to search for the full app pool name, rather then the start.

@@ -142,6 +142,7 @@ if ENV["deploy_build"] == "true" then
             :user => user,
             :java_class => "com.webtrends.streaming.auditor.AuditorDaemon",
             :java_jmx_port => node['wt_monitoring']['jmx_port'],
+            #:java_jmx_port => 9998,
             :java_opts => java_opts
         })
     end
@@ -167,4 +168,25 @@ if ENV["deploy_build"] == "true" then
     end
 else
     processTemplates(install_dir, node)
+end
+
+#Create collectd plugin for streaming auditor JMX objects if collectd has been applied.
+if node.attribute?("collectd")
+  template "#{node[:collectd][:plugin_conf_dir]}/collectd_streamingauditor.conf" do
+    source "collectd_streamingauditor.conf.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
+  end
+end
+
+if node.attribute?("nagios")
+  #Create a nagios nrpe check for the healthcheck page
+	nagios_nrpecheck "wt_healthcheck_page" do
+		command "#{node['nagios']['plugin_dir']}/check_http"
+		parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
+		action :add
+	end
+ 
 end
