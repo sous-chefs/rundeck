@@ -1,7 +1,11 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {}, 
-    "default_attributes": {
+    "default_attributes": {}, 
+    "description": "H Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "H", 
+    "override_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
@@ -18,87 +22,6 @@
                 ]
             }
         }, 
-        "ondemand_base": {
-            "apt": [
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
-                }, 
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "distribution_suffix": "-0.10", 
-                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
-                    "name": "wtlab-opscode", 
-                    "url": "http://repo.staging.dmz/repo/apt/opscode"
-                }
-            ], 
-            "yum": [
-                {
-                    "description": "Webtrends Repo", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
-                }
-            ]
-        }, 
-        "vc2010": {
-            "x64": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-            }, 
-            "x86": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-            }
-        }, 
-        "wt_common": {
-            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "cache_host": [
-                {
-                    "name": "xcache01.staging.dmz", 
-                    "port": "11211"
-                }, 
-                {
-                    "name": "xcache02.staging.dmz", 
-                    "port": "11211"
-                }
-            ], 
-            "cache_region": "H_A10", 
-            "config_dir_linux": "/etc/webtrends/", 
-            "install_dir_linux": "/opt/webtrends/", 
-            "install_dir_windows": "d:\\wrs", 
-            "install_log_dir_linux": "/var/log/webtrends/install", 
-            "install_log_dir_windows": "d:\\logs", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "log_dir_linux": "/var/log/webtrends/", 
-            "log_dir_windows": "", 
-            "smtp_server": "pdxengmta01.webtrends.corp"
-        }, 
-        "wt_monitoring": {
-            "audit_bucket_timespan": 10, 
-            "audit_topic": "stream-audit", 
-            "graphite_flush_enabled": "false", 
-            "graphite_flush_interval": "1", 
-            "graphite_port": 2003, 
-            "graphite_server": "sgraph01.staging.dmz", 
-            "healthcheck_enabled": "true", 
-            "healthcheck_port": 9000, 
-            "jmx_enabled": "true", 
-            "jmx_port": 9999, 
-            "metric_prefix": "staging.hpod.servers", 
-            "monitoring_enabled": "true"
-        }, 
-        "yum": {
-            "epel_release": "6-7"
-        }
-    }, 
-    "description": "H Pod", 
-    "json_class": "Chef::Environment", 
-    "name": "H", 
-    "override_attributes": {
         "esx": {
             "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
@@ -200,6 +123,34 @@
                 "time.webtrends.corp"
             ]
         }, 
+        "ondemand_base": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
+                }, 
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution_suffix": "-0.10", 
+                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
+                    "name": "wtlab-opscode", 
+                    "url": "http://repo.staging.dmz/repo/apt/opscode"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
+                }
+            ]
+        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -218,10 +169,41 @@
         "storm": {
             "download_url": "http://repo.staging.dmz/repo/linux/storm/"
         }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
         "wt_cam": {
             "cam_server_url": "http://hcam01.staging.dmz/camservice", 
             "db_name": "cam", 
             "db_server": "hcamdb01.staging.dmz"
+        }, 
+        "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "cache_host": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "cache_region": "H_A10", 
+            "config_dir_linux": "/etc/webtrends/", 
+            "install_dir_linux": "/opt/webtrends/", 
+            "install_dir_windows": "d:\\wrs", 
+            "install_log_dir_linux": "/var/log/webtrends/install", 
+            "install_log_dir_windows": "d:\\logs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "log_dir_linux": "/var/log/webtrends/", 
+            "log_dir_windows": "", 
+            "smtp_server": "pdxengmta01.webtrends.corp"
         }, 
         "wt_configdistrib": {
             "dcsid_url": "http://jcd01.englab.webtrends.corp:8097/config/dcsid2account"
@@ -229,6 +211,20 @@
         "wt_heatmaps": {
             "config_distrib": "jcd01.englab.webtrends.corp:8097", 
             "heatmap_reducers": -1
+        }, 
+        "wt_monitoring": {
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "false", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "staging.hpod.servers", 
+            "monitoring_enabled": "true"
         }, 
         "wt_netacuity": {
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/", 
@@ -262,6 +258,9 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/.lastSuccessful/streaminglogreplayer-bin.tar.gz", 
             "log_extension": ".gz", 
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay"
+        }, 
+        "yum": {
+            "epel_release": "6-7"
         }, 
         "zookeeper": {
             "client_port": 2181, 

@@ -18,7 +18,11 @@
         "wt_streaminglogreplayer": "= 0.0.15", 
         "zookeeper": "= 1.0.4"
     }, 
-    "default_attributes": {
+    "default_attributes": {}, 
+    "description": "K Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "K", 
+    "override_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "WTENGLAB"
@@ -34,6 +38,35 @@
                     "bobo"
                 ]
             }
+        }, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
+                    }
+                }
+            }, 
+            "jdk_version": "6"
+        }, 
+        "memcached": {
+            "memory": "1024"
+        }, 
+        "ms_dotnet4": {
+            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
+        }, 
+        "nagios": {
+            "multi_environment_monitoring": "true", 
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server_role": "nagios_xi"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
         }, 
         "ondemand_base": {
             "apt": [
@@ -62,6 +95,21 @@
                     "url": "http://repo.staging.dmz/repo/yum/webtrends"
                 }
             ]
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.61.65.251", 
+                "10.61.65.252"
+            ], 
+            "search": "englab.webtrends.corp webtrends.corp staging.dmz"
+        }, 
+        "snmp": {
+            "community": "DevOps", 
+            "full_systemview": "true", 
+            "syscontact": "trent.white@webtrends.com"
         }, 
         "vc2010": {
             "x64": {
@@ -121,55 +169,6 @@
             "endpoint_address": "net.tcp://ksearch.englab.webtrends.corp:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
-        }
-    }, 
-    "description": "K Pod", 
-    "json_class": "Chef::Environment", 
-    "name": "K", 
-    "override_attributes": {
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk": {
-                "6": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
-                    }
-                }
-            }, 
-            "jdk_version": "6"
-        }, 
-        "memcached": {
-            "memory": "1024"
-        }, 
-        "ms_dotnet4": {
-            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
-        }, 
-        "nagios": {
-            "multi_environment_monitoring": "true", 
-            "nrpe": {
-                "dont_blame_nrpe": "1"
-            }, 
-            "server_role": "nagios_xi"
-        }, 
-        "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }, 
-        "postfix": {
-            "relayhost": "pdxengmta01.webtrends.corp"
-        }, 
-        "resolver": {
-            "nameservers": [
-                "10.61.65.251", 
-                "10.61.65.252"
-            ], 
-            "search": "englab.webtrends.corp webtrends.corp staging.dmz"
-        }, 
-        "snmp": {
-            "community": "DevOps", 
-            "full_systemview": "true", 
-            "syscontact": "trent.white@webtrends.com"
         }
     }
 }

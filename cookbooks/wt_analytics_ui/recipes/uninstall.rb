@@ -26,3 +26,13 @@ directory install_dir do
 	action :delete
 end
 
+directory "d:\\wrs\\Insight" do
+	recursive true
+	action :delete
+end
+
+wt_base_netlocalgroup "Administrators" do
+	user wt_config['ui_user']
+	returns [0, 2]
+	action :remove
+end
