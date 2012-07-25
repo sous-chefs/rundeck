@@ -5,8 +5,9 @@ default['wt_streamingauditor']['java_opts']     = "-Xms1024m -Djava.net.preferIP
 default['wt_streamingauditor']['auditlistener_enabled'] = false
 default['wt_streamingauditor']['auditlistener_threads'] = 4
 default['wt_streamingauditor']['roundtrip_interval'] = 1
-default['wt_streamingauditor']['roundtrip_dcsid'] = "dcs93136b10000004rrmeb3jo_5u5i"
-default['wt_streamingauditor']['roundtrip_token'] = "84c4756aee3b4d5797b8ec16cce15cec"
+default['wt_streamingauditor']['roundtrip_scs_dcsid'] = "dcsi6mqqn00000kb6g4qhxvtt_7t9q"
+default['wt_streamingauditor']['roundtrip_tagserver_dcsid'] = "dcsjlcm9a10000wowm5b8svtt_8t7o"
+default['wt_streamingauditor']['roundtrip_token'] = "28bb76182b104974912d82c19af4f619"
 default['wt_streamingauditor']['roundtrip_tagserver_url'] = "http://statse.webtrendslive.com"
 default['wt_streamingauditor']['roundtrip_scs_url'] = "http://scs.webtrends.com"
 

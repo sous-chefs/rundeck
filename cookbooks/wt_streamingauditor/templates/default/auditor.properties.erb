@@ -10,8 +10,10 @@ pod=<%= @pod %>
 
 # The interval (minutes) to run the roundtrip test 
 roundtrip.interval=<%= node[:wt_streamingauditor][:roundtrip_interval] %>
-# The dcsid to use for the round-trip auditing
-roundtrip.dcsid=<%= node[:wt_streamingauditor][:roundtrip_dcsid] %>
+# The SCS dcsid to use for the round-trip auditing
+roundtrip.scs.dcsid=<%= node[:wt_streamingauditor][:roundtrip_scs_dcsid] %>
+# The tag server dcsid to use for the round-trip auditing
+roundtrip.tagserver.dcsid=<%= node[:wt_streamingauditor][:roundtrip_tagserver_dcsid] %>
 # The token to use for the round-trip auditing
 roundtrip.token=<%= node[:wt_streamingauditor][:roundtrip_token] %>
 # The url to SCS
