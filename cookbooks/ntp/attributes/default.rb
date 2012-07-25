@@ -39,7 +39,7 @@ when "freebsd"
   default[:ntp][:driftfile] = "/var/db/ntpd.drift"
   default[:ntp][:statsdir] = "/var/db/ntpstats/"
 when "windows"
-  default[:ntp][:service] = "Network Time Protocol Daemon"
+  default[:ntp][:service] = "NTP"
   default[:ntp][:driftfile] = "C:\NTP\ntp.drift"
   default[:ntp][:package_url] = "http://www.meinberg.de/download/ntp/windows/ntp-4.2.4p8@lennon-o-lpv-win32-setup.exe"
 else
