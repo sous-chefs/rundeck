@@ -11,7 +11,8 @@
     "recipe[notepadplusplus]",
     "recipe[firefox]",
     "recipe[7-zip]",
-    "recipe[filezilla]"
+    "recipe[filezilla]",
+    "recipe[beyond_compare]"
   ],
   "env_run_lists": {
   }

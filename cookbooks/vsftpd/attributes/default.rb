@@ -1,9 +1,8 @@
 #
-# Cookbook Name:: wt_base
-# Provider:: firewall 
-# Author: Kendrick Martin
+# Cookbook Name:: vsftpd
+# Attribute File:: sudoers
 #
-# Copyright 2011, Webtrends Inc.
+# Copyright 2010 Robert J. Berger
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,11 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-
-actions :open_port, :enable
-
-attribute :rule_name, :kind_of => String, :name_attribute => true
-attribute :port, :kind_of => Integer
-attribute :protocol, :kind_of => String
-attr_accessor :exists
+default[:vsftpd][:chroot_local_user] = "YES"
+default[:vsftpd][:chroot_users] = Array.new 
+default[:vsftpd][:use_ssl_certs_from_cookbook] = true
+default[:vsftpd][:ssl_cert_path] = "/etc/ssl/certs"
+default[:vsftpd][:ssl_private_key_path] = "/etc/ssl/private"
+default[:vsftpd][:ssl_certs_basename] = "ftp.example.com"
