@@ -105,7 +105,19 @@ LoadPlugin java
 			Attribute "LoadedClassCount"
 		</Value>
 	</MBean>
-
+	# java runtime attributes
+	<MBean "runtime">
+		ObjectName "java.lang:type=Runtime"
+		InstancePrefix "runtime"
+		#InstanceFrom ""
+		<Value>
+			Type "gauge"
+			InstancePrefix "JVM_uptime"
+			#InstanceFrom ""
+			Table false
+			Attribute "Uptime"
+		</Value>
+	</MBean>
 	#WT Cassandra CF Polling
 	<MBean "cassandra-cf-Webtrends">
 		ObjectName "org.apache.cassandra.db:type=ColumnFamilies,keyspace=Webtrends,columnfamily=*"
@@ -164,6 +176,7 @@ LoadPlugin java
 		Collect "memory_nonheap"
 		Collect "java_threads"
 		Collect "garbage_collector"
+		Collect "runtime"
 		Collect "cassandra-cf-Webtrends"
 		Collect "cassandra-cache-Webtrends"
 	</Connection>

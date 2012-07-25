@@ -105,7 +105,19 @@ LoadPlugin java
                         Attribute "LoadedClassCount"
                 </Value>
         </MBean>
-
+		# java runtime attributes
+		<MBean "runtime">
+			ObjectName "java.lang:type=Runtime"
+			InstancePrefix "runtime"
+			#InstanceFrom ""
+			<Value>
+				Type "gauge"
+				InstancePrefix "JVM_uptime"
+				#InstanceFrom ""
+				Table false
+				Attribute "Uptime"
+			</Value>
+		</MBean>
         #WT Hadoop Job Tracker Metrics
         <MBean "task_tracker">
                 ObjectName "Hadoop:service=JobTracker,name=JobTrackerMetrics"
@@ -173,6 +185,7 @@ LoadPlugin java
                 Collect "memory_nonheap"
                 Collect "java_threads"
                 Collect "garbage_collector"
+				Collect "runtime"
                 Collect "task_tracker"
         </Connection>
         </Plugin>

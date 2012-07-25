@@ -1,2 +1,15 @@
-0.0.18 Added hbase values to web.config template
-0.0.21 Add PatentsLink configuration item to appSettings in web.config template
+Future
+	Change IIS site bindings
+
+0.0.22
+	Added UI user to MachineKeys folder
+	Added UI user to Performance Monitor Users
+
+0.0.21
+	Added PatentsLink configuration item to appSettings in web.config template
+	Added many new attributes
+	Added mapping.xml.erb and webtrends-brand.xml.erb
+	Removed install_logdir creation
+
+0.0.18
+	Added hbase values to web.config template

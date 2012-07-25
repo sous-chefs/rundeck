@@ -32,7 +32,7 @@ when "redhat","centos","fedora","scientific"
     action :install
   end
 when "windows"
-  include_recipe "windows_client"
+  include_recipe "ntp::windows_client"
 end
 
 case node[:platform]
@@ -42,8 +42,8 @@ when "freebsd"
     group root_group
     mode "0755"
   end
-when "redhat","centos","fedora","scientific"
-  # ntpstats dir doesn't exist on RHEL/CentOS
+when "redhat","centos","fedora","scientific","windows"
+  # ntpstats dir doesn't exist on RHEL/CentOS/Windows
 else
   directory node[:ntp][:statsdir] do
     owner "ntp"
@@ -58,9 +58,11 @@ service node[:ntp][:service] do
 end
 
 template "/etc/ntp.conf" do
-  source "ntp.conf.erb"
-  owner "root"
-  group root_group
-  mode "0644"
-  notifies :restart, resources(:service => node[:ntp][:service])
+	source "ntp.conf.erb"
+if !node[:platform]=="windows"
+	owner "root"
+	group root_group
+	mode "0644"
+end
+	notifies :restart, resources(:service => node[:ntp][:service])
 end
