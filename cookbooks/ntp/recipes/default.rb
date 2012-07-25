@@ -57,17 +57,12 @@ service node[:ntp][:service] do
   action [ :enable, :start ]
 end
 
-case node[:platform]
-when "windows"
-	template "C:/NTP/etc/ntp.conf" do
-		source "ntp.conf.windows.erb"
-	end
-else
-	template "/etc/ntp.conf" do
-		source "ntp.conf.erb"
-		owner "root"
-		group root_group
-		mode "0644"
-		notifies :restart, resources(:service => node[:ntp][:service])
-	end
+template "/etc/ntp.conf" do
+	source "ntp.conf.erb"
+if !node[:platform]=="windows"
+	owner "root"
+	group root_group
+	mode "0644"
+end
+	notifies :restart, resources(:service => node[:ntp][:service])
 end
