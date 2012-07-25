@@ -8,8 +8,8 @@
         "ondemand_base": "= 1.7.3", 
         "storm": "= 1.0.16", 
         "windows": "= 1.2.12", 
-        "wt_analytics": "= 0.0.21", 
-        "wt_base": "0.10.5", 
+        "wt_analytics_ui": "= 0.0.23", 
+        "wt_base": "0.10.53", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
@@ -221,7 +221,7 @@
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
         }, 
-        "wt_analytics": {
+        "wt_analytics_ui": {
             "app_pool_private_memory": 2097152, 
             "bba_domain": "dbba.webtrends.com", 
             "cache_region": "D_A10", 

@@ -8,7 +8,7 @@
         "ondemand_base": "= 1.7.3", 
         "storm": "= 1.0.16", 
         "windows": "= 1.2.12", 
-        "wt_analytics": "= 0.0.22", 
+        "wt_analytics_ui": "= 0.0.23", 
         "wt_base": "0.10.53", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 0.0.2", 
@@ -37,6 +37,11 @@
                     "bobo"
                 ]
             }
+        }, 
+        "cassandra": {
+            "cassandra_host": "cassandra.staging.dmz", 
+            "cassandra_meta_column": "C_Meta", 
+            "cassandra_report_column": "C_Report"
         }, 
         "ondemand_base": {
             "apt": [
@@ -76,22 +81,6 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "cache_hosts": [
-                {
-                    "name": "xcache01.staging.dmz", 
-                    "port": "11211"
-                }, 
-                {
-                    "name": "xcache02.staging.dmz", 
-                    "port": "11211"
-                }
-            ], 
-            "cassandra_host": "cassandra.staging.dmz", 
-            "cassandra_meta_column": "C_Meta", 
-            "cassandra_report_column": "C_Report", 
-            "cassandra_snmp_comm": "StagingRO", 
-            "cassandra_snmp_port": "", 
-            "cassandra_thrift_port": "9160", 
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
@@ -100,15 +89,7 @@
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
-            "master_host": "cmasterdb01", 
-            "monitor_service_addr": "serviceBusMonitoring@cds01.staging.dmz", 
-            "rta_host": "crta01.staging.dmz", 
-            "sched_host": "cmasterdb01", 
-            "schedulerdb_host": "cusagedb01", 
-            "search_hostname": "csearch.staging.dmz", 
-            "search_service": "net.tcp://csearch.staging.dmz:8096/Search/Service", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
-            "usage_host": "cusagedb01", 
             "velocitycache_hosts": [
                 {
                     "name": "cdxweb01.staging.dmz", 
@@ -129,6 +110,13 @@
             "website_name": "DX", 
             "website_port": "80"
         }, 
+        "wt_masterdb": {
+            "master_host": "cmasterdb01.staging.dmz", 
+            "sched_host": "cmasterdb01.staging.dmz"
+        }, 
+        "wt_messaging_monitoring": {
+            "monitor_service_addr": "serviceBusMonitoring@cds01.staging.dmz"
+        }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 
@@ -145,6 +133,17 @@
         }, 
         "wt_roadrunner": {
             "build_url": "\\\\sstore02.staging.dmz\\install\\ReleasedBuilds\\10.3.0\\10.3HF bundle build\\RoadRunner_10.3_10.3.0.11_artifacts.zip"
+        }, 
+        "wt_rta": {
+            "rta_host": "crta01.staging.dmz"
+        }, 
+        "wt_search": {
+            "search_hostname": "csearch.staging.dmz", 
+            "search_service": "net.tcp://csearch.staging.dmz:8096/Search/Service"
+        }, 
+        "wt_usagedb": {
+            "schedulerdb_host": "cusagedb01.staging.dmz", 
+            "usage_host": "cusagedb01.staging.dmz"
         }, 
         "yum": {
             "epel_release": "6-7"
@@ -185,6 +184,16 @@
             }
         }, 
         "memcached": {
+            "cache_hosts": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
             "memory": "1024"
         }, 
         "ms_dotnet4": {
@@ -221,16 +230,17 @@
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
         }, 
-        "wt_analytics": {
+        "wt_analytics_ui": {
             "app_pool_private_memory": 2097152, 
             "bba_domain": "cbba.webtrends.com", 
             "cache_region": "C_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/22860:id/AnalyticsUI.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/.lastSuccessful/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
             "help_link": "http://help-release.itl.webtrends.corp/{0}/analytics10/", 
             "hmap_url": "", 
+            "install_dir": "Analytics", 
             "ondemand_base_domain": "cod.webtrends.com", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true", 
