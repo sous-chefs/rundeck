@@ -33,6 +33,11 @@
                 ]
             }
         }, 
+        "delltools": {
+            "raid": {
+                "megacli_url": "http://repo.staging.dmz/repo/yum/webtrends/MegaCli-8.04.07-1.noarch.rpm"
+            }
+        }, 
         "ondemand_base": {
             "apt": [
                 {
