@@ -1,5 +1,8 @@
 Future
 	Change IIS site bindings
+	
+0.0.23
+	Cookbook renamed to wt_analytics_ui
 
 0.0.22
 	Added UI user to MachineKeys folder
