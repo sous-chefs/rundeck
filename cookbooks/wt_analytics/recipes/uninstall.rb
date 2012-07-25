@@ -25,3 +25,4 @@ directory install_dir do
 	recursive true
 	action :delete
 end
+
