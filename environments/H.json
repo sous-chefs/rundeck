@@ -248,9 +248,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/.lastSuccessful/streaming-analysis-bin.tar.gz", 
             "jf_base_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt119/.lastSuccessful/jars/"
         }, 
-        "wt_streaming_audit": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/.lastSuccessful/streamingauditor-bin.tar.gz"
-        }, 
+        "wt_streamingauditor": {}, 
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/.lastSuccessful/streamingapi-bin.tar.gz", 
             "port": 8080
