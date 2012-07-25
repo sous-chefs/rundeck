@@ -29,6 +29,10 @@ cookbook_file "C:/NTP/ntp.ini" do
   action :create
 end
 
+template "C:\NTP\etc\ntp.conf" do
+  source "ntp.conf.erb"
+end
+
 if !File.exists?("C:/NTP/bin/ntpd.exe")
   remote_file "#{Chef::Config[:file_cache_path]}/ntpd.exe" do
     source node[:ntp][:package_url]
@@ -37,4 +41,9 @@ if !File.exists?("C:/NTP/bin/ntpd.exe")
   execute "ntpd_install" do
     command "#{Chef::Config[:file_cache_path]}\\ntpd.exe /USEFILE=C:\\NTP\\ntp.ini"
   end
+end
+
+service node[:ntp][:service] do
+  supports :restart => true
+  action [ :enable, :start ]
 end
