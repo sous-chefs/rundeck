@@ -53,15 +53,28 @@ iis_site 'Analytics' do
 end
 
 wt_base_icacls install_dir do
-	action :grant
 	user ui_user
 	perm :modify
+	action :grant
 end
 
 wt_base_icacls install_dir do
-	action :grant
 	user "IUSR"
 	perm :read
+	action :grant
+end
+
+# resolves "Unable to obtain public key for StrongNameKeyPair" error
+wt_base_icacls "C:\\ProgramData\\Microsoft\\Crypto\\RSA\\MachineKeys" do
+	user ui_user
+	perm :modify
+	action :grant
+end
+
+wt_base_netlocalgroup "Performance Monitor Users" do
+	user ui_user
+	returns [0, 2]
+	action :add
 end
 
 if deploy_mode?
