@@ -1,8 +1,15 @@
-
+#
+# Cookbook Name:: wt_base
+# Recipe:: msdtc
+#
+# Copyright 2012, Webtrends Inc.
+#
+# All rights reserved - Do Not Redistribute
+#
 
 windows_registry 'HKLM\SOFTWARE\Microsoft\MSDTC' do
-  values 'TurnOffRpcSecurity' => 1, 'FallbackToUnsecureRPCIfNecessary' => 0, 'AllowOnlySecureRpcCalls' => 0
-  notifies :restart, "service[MSDTC]"
+	values 'TurnOffRpcSecurity' => 1, 'FallbackToUnsecureRPCIfNecessary' => 0, 'AllowOnlySecureRpcCalls' => 0
+	notifies :restart, "service[MSDTC]"
 end
 
 windows_registry 'HKLM\SOFTWARE\Microsoft\MSDTC\Security' do
@@ -10,24 +17,22 @@ windows_registry 'HKLM\SOFTWARE\Microsoft\MSDTC\Security' do
 	notifies :restart, "service[MSDTC]", :immediately
 end
 
-
-windows_firewall "Distributed Transaction Coordinator (RPC)" do
+wt_base_firewall "Distributed Transaction Coordinator (RPC)" do
 	action :enable
 end
 
-windows_firewall "Distributed Transaction Coordinator (RPC-EPMAP)" do
+wt_base_firewall "Distributed Transaction Coordinator (RPC-EPMAP)" do
 	action :enable
 end
 
-windows_firewall "Distributed Transaction Coordinator (TCP-In)" do
+wt_base_firewall "Distributed Transaction Coordinator (TCP-In)" do
 	action :enable
 end
 
-windows_firewall "Distributed Transaction Coordinator (TCP-In)" do
+wt_base_firewall "Distributed Transaction Coordinator (TCP-In)" do
 	action :enable
 end
 
-
-service "MSDTC" do 
+service "MSDTC" do
 	action :nothing
 end
