@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_streamingaudit
+# Cookbook Name:: wt_streamingauditor
 # Recipe:: default
 #
 # Copyright 2012, Webtrends
@@ -13,20 +13,22 @@ include_recipe "runit"
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then 
     log "The deploy_build value is true so un-deploy first"
-    include_recipe "wt_streamingaudit::undeploy"
+    # NOTE: Delete the undeploy_old after the deployment has gone through the next cycle
+    include_recipe "wt_streamingauditor::undeploy_old"
+    include_recipe "wt_streamingauditor::undeploy"
 else
     log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingaudit")
-install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingaudit")
+log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingauditor")
+install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingauditor")
 
 tarball      = "streamingaudit-bin.tar.gz"
 java_home    = node['java']['java_home']
-download_url = node['wt_streamingaudit']['download_url']
-user = node['wt_streamingaudit']['user']
-group = node['wt_streamingaudit']['group']
-java_opts = node['wt_streamingaudit']['java_opts']
+download_url = node['wt_streamingauditor']['download_url']
+user = node['wt_streamingauditor']['user']
+group = node['wt_streamingauditor']['group']
+java_opts = node['wt_streamingauditor']['java_opts']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -81,7 +83,7 @@ end
 
 def processTemplates (install_dir, node)
     log "Updating the template files"
-    listener_threads = node['wt_streamingaudit']['listener_threads']
+    listener_threads = node['wt_streamingauditor']['listener_threads']
 
     # grab the zookeeper nodes that are currently available
     zookeeper_pairs = getZookeeperPairs(node)
@@ -104,7 +106,7 @@ def processTemplates (install_dir, node)
         mode  00644
         variables({
             :zookeeper_pairs => zookeeper_pairs,
-            :wt_streamingaudit => node[:wt_streamingaudit],
+            :wt_streamingauditor => node[:wt_streamingauditor],
             :wt_monitoring => node[:wt_monitoring],
             :pod => node[:wt_realtime_hadoop][:pod],
             :datacenter => node[:wt_realtime_hadoop][:datacenter]
@@ -158,7 +160,7 @@ if ENV["deploy_build"] == "true" then
     end
 
     # create a runit service
-    runit_service "streamingaudit" do
+    runit_service "streamingauditor" do
     options({
         :log_dir => log_dir,
         :install_dir => install_dir,

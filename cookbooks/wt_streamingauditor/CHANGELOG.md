@@ -3,7 +3,8 @@
 * Unknown
 
 ## 0.0.7
-* Added roundtrip support
+* Added roundtrip support and renamed cookobook to wt_streamingauditor
+* Added unploy_old recipe until the old service has gone through an install cycle on each of the environments. At that time the undeploy_old can be deleted.
 
 ## 0.0.6
 * Externalized the healthcheck options 'healthcheck_enabled' to [:wt_monitoring][:healthcheck_enabled]

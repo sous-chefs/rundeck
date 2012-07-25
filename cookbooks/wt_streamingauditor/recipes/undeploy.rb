@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_streamingaudit
+# Cookbook Name:: wt_streamingauditor
 # Recipe:: undeploy
 #
 # Copyright 2012, Webtrends
@@ -7,22 +7,22 @@
 # All rights reserved - Do Not Redistribute
 #
 
-log_dir      = "#{node['wt_common']['log_dir_linux']}/streamingaudit"
-install_dir  = "#{node['wt_common']['install_dir_linux']}/streamingaudit"
+log_dir      = "#{node['wt_common']['log_dir_linux']}/streamingauditor"
+install_dir  = "#{node['wt_common']['install_dir_linux']}/streamingauditor"
 
-runit_service "streamingaudit" do
+runit_service "streamingauditor" do
     action :disable
     run_restart false
 end 
 
 # try to stop the service, but allow a failure without printing the error
-service "streamingaudit" do
+service "streamingauditor" do
   action [:stop, :disable]
   ignore_failure true
 end
 
 # force stop the service in case the stop failed
-service "streamingaudit" do
+service "streamingauditor" do
   action [:stop]
   stop_command "force-stop"
 end
