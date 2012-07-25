@@ -1,5 +1,5 @@
 {
-  "name": "wt_messaging_service",
+  "name": "wt_lfm_ftp",
   "default_attributes": {
   },
   "override_attributes": {
@@ -9,6 +9,6 @@
   },
   "run_list": [
   ],
-  "description": "Webtrends Messaging Service",
-  "chef_type": "role"  
+  "description": "Webtrends LFM FTP Server",
+  "chef_type": "role"
 }
