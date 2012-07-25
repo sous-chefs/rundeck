@@ -32,7 +32,7 @@ when "redhat","centos","fedora","scientific"
     action :install
   end
 when "windows"
-  include_recipe "windows_client"
+  include_recipe "ntp::windows_client"
 end
 
 case node[:platform]
