@@ -42,8 +42,8 @@ when "freebsd"
     group root_group
     mode "0755"
   end
-when "redhat","centos","fedora","scientific"
-  # ntpstats dir doesn't exist on RHEL/CentOS
+when "redhat","centos","fedora","scientific","windows"
+  # ntpstats dir doesn't exist on RHEL/CentOS/Windows
 else
   directory node[:ntp][:statsdir] do
     owner "ntp"
@@ -57,10 +57,17 @@ service node[:ntp][:service] do
   action [ :enable, :start ]
 end
 
-template "/etc/ntp.conf" do
-  source "ntp.conf.erb"
-  owner "root"
-  group root_group
-  mode "0644"
-  notifies :restart, resources(:service => node[:ntp][:service])
+case node[:platform]
+when "windows"
+	template "C:/NTP/etc/ntp.conf" do
+		source "ntp.conf.windows.erb"
+	end
+else
+	template "/etc/ntp.conf" do
+		source "ntp.conf.erb"
+		owner "root"
+		group root_group
+		mode "0644"
+		notifies :restart, resources(:service => node[:ntp][:service])
+	end
 end
