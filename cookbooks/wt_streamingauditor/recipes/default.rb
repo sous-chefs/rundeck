@@ -83,8 +83,7 @@ end
 
 def processTemplates (install_dir, node)
     log "Updating the template files"
-    listener_threads = node['wt_streamingauditor']['listener_threads']
-
+    
     # grab the zookeeper nodes that are currently available
     zookeeper_pairs = getZookeeperPairs(node)
 
