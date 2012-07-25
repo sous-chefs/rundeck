@@ -8,6 +8,10 @@
   },
   "chef_type": "role",
   "run_list": [
+	"recipe[vc2010]",
+	"recipe[ms_dotnet35]",
+	"recipe[ms_dotnet4]",
+	"recipe[ms_messagequeue]",
     "role[iis]",
     "recipe[wt_analytics]"
   ],
