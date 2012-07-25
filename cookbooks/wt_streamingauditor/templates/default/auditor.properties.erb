@@ -1,7 +1,7 @@
 # Are we currently listening for audit records
-auditlistener.enabled= <%= node[:wt_streamingaudit][:auditlistener_enabled] %>
+auditlistener.enabled= <%= node[:wt_streamingauditor][:auditlistener_enabled] %>
 # the number of threads to use for listening
-auditlistener.threads = <%= node[:wt_streamingaudit][:auditlistener_threads] %>
+auditlistener.threads = <%= node[:wt_streamingauditor][:auditlistener_threads] %>
 
 # The root node name for SAPI nodes
 sapi.znode.root=/StreamingZMQ
@@ -9,15 +9,15 @@ datacenter=<%= @datacenter %>
 pod=<%= @pod %>
 
 # The interval (minutes) to run the roundtrip test 
-roundtrip.interval=<%= node[:wt_streamingaudit][:roundtrip_interval] %>
+roundtrip.interval=<%= node[:wt_streamingauditor][:roundtrip_interval] %>
 # The dcsid to use for the round-trip auditing
-roundtrip.dcsid=<%= node[:wt_streamingaudit][:roundtrip_dcsid] %>
+roundtrip.dcsid=<%= node[:wt_streamingauditor][:roundtrip_dcsid] %>
 # The token to use for the round-trip auditing
-roundtrip.token=<%= node[:wt_streamingaudit][:roundtrip_token] %>
+roundtrip.token=<%= node[:wt_streamingauditor][:roundtrip_token] %>
 # The url to SCS
-roundtrip.scs.url=<%= node[:wt_streamingaudit][:roundtrip_scs_url] %>
+roundtrip.scs.url=<%= node[:wt_streamingauditor][:roundtrip_scs_url] %>
 # The url to the tag server(s)
-roundtrip.tagserver.url=<%= node[:wt_streamingaudit][:roundtrip_tagserver_url] %>
+roundtrip.tagserver.url=<%= node[:wt_streamingauditor][:roundtrip_tagserver_url] %>
 
 # are we monitoring at all
 monitoring.enabled = <%= node[:wt_monitoring][:monitoring_enabled] %>
