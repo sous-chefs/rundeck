@@ -4,12 +4,13 @@
         "hadoop": "= 1.0.3", 
         "hbase": "= 1.0.3", 
         "hive": "= 1.0.2", 
-        "kafka": "= 1.0.5",
+        "kafka": "= 1.0.5", 
         "storm": "= 1.0.17", 
         "wt_cam": "= 1.0.4", 
-        "wt_storm": "= 1.0.31",
         "wt_heatmaps": "= 0.10.4", 
+        "wt_realtime_hadoop": "= 1.0.2", 
         "wt_realtimeapi": "= 0.0.17", 
+        "wt_storm": "= 1.0.31", 
         "wt_streamingapi": "= 0.0.18", 
         "wt_streamingaudit": "= 0.0.7", 
         "wt_streamingcollection": "= 0.0.21", 
@@ -112,7 +113,7 @@
             "core": {
                 "fs_checkpoint_dir": "${hadoop.tmp.dir}/dfs/namesecondary", 
                 "fs_checkpoint_period": 3600, 
-                "fs_trash_interval": 360, 
+                "fs_trash_interval": 60, 
                 "io_file_buffer_size": 4096
             }, 
             "dfs": {
@@ -253,23 +254,23 @@
         }, 
         "wt_storm": {
             "dcsid_whitelist": "", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/23055:id/streaming-analysis-bin.tar.gz",
-            "streaming_topology": {
-                "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0",
-                "streaming_topology_parsing_bolt_count": 50,
-                "streaming_topology_in_session_bolt_count": 1,
-                "streaming_topology_zmq_emitter_bolt_count": 1,
-                "streaming_topology_validation_bolt_count": 10,
-                "streaming_topology_augmentation_bolt_count": 10
-            },
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/23055:id/streaming-analysis-bin.tar.gz", 
             "realtime_topology": {
-                "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0",
-                "realtime_topology_parsing_bolt_count": 3,
-                "realtime_topology_row_key_bolt_count": 12,
-                "realtime_topology_writing_bolt_count": 48,
-                "realtime_topology_dimensions_bolt_count": 6,
-                "topology_override_max_spout_pending": 3000,
-                "topology_override_msg_timeout_seconds": 120 
+                "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0", 
+                "realtime_topology_dimensions_bolt_count": 6, 
+                "realtime_topology_parsing_bolt_count": 3, 
+                "realtime_topology_row_key_bolt_count": 12, 
+                "realtime_topology_writing_bolt_count": 48, 
+                "topology_override_max_spout_pending": 3000, 
+                "topology_override_msg_timeout_seconds": 120
+            }, 
+            "streaming_topology": {
+                "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0", 
+                "streaming_topology_augmentation_bolt_count": 10, 
+                "streaming_topology_in_session_bolt_count": 1, 
+                "streaming_topology_parsing_bolt_count": 50, 
+                "streaming_topology_validation_bolt_count": 10, 
+                "streaming_topology_zmq_emitter_bolt_count": 1
             }
         }, 
         "wt_streaming_audit": {}, 
