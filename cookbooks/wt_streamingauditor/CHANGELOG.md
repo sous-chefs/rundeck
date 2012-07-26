@@ -2,6 +2,10 @@
 
 * Unknown
 
+## 0.0.8
+* Added roundtrip_tagserver_timeout to wait for receiving an event back before erroring out. 
+* Added roundtrip_scs_timeout to wait for receiving an event back before erroring out.
+
 ## 0.0.7
 * Added roundtrip support and renamed cookobook to wt_streamingauditor
 * Added unploy_old recipe until the old service has gone through an install cycle on each of the environments. At that time the undeploy_old can be deleted.
