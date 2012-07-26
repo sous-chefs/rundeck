@@ -29,8 +29,8 @@
             }, 
             "sudo": {
                 "groups": [
-                    "STAGINGDMZ\\\\domain-admins", 
-                    "STAGINGDMZ\\\\a.admins"
+                    "domain-admins", 
+                    "a.admins"
                 ], 
                 "include_sudoers_d": true, 
                 "passwordless": false, 
