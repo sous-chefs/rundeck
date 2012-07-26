@@ -89,7 +89,7 @@ if deploy_mode?
 		  :master_host => master_host,
 		  :cass_host => node['cassandra']['cassandra_host'],
 		  :report_column => node['cassandra']['cassandra_report_column'],
-		  :thrift_port => node['cassandra']['rpc_port'],
+		  :thrift_port => node['cassandra']['cassandra_thrift_port'],
 		  :metadata_column => node['cassandra']['cassandra_meta_column'],
 		  :cache_hosts => node['memcached']['cache_hosts'],
 		  :cache_region => node['wt_analytics_ui']['cache_region']
