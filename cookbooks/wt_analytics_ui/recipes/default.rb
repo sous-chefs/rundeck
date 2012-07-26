@@ -105,7 +105,7 @@ if deploy_mode?
 			:cass_host            => node['cassandra']['cassandra_host'],
 			:cass_report_column   => node['cassandra']['cassandra_report_column'],
 			:cass_metadata_column => node['cassandra']['cassandra_meta_column'],
-			:cass_thrift_port     => node['cassandra']['rpc_port'],
+			:cass_thrift_port     => node['cassandra']['cassandra_thrift_port'],
 
 			# app setting section
 			:rest_base_uri           => node['wt_analytics_ui']['rest_base_uri'],
@@ -147,4 +147,12 @@ if deploy_mode?
 		)
 	end
 
+	template "#{install_dir}\\log4net.config" do
+		source "log4net.config.erb"
+		variables(
+			:log_level => node['wt_analytics_ui']['log_level']
+		)
+	end
+
+	share_wrs
 end

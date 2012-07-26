@@ -44,7 +44,8 @@
         "cassandra": {
             "cassandra_host": "cassandra.staging.dmz", 
             "cassandra_meta_column": "B_Meta", 
-            "cassandra_report_column": "B_Report"
+            "cassandra_report_column": "B_Report", 
+            "cassandra_thrift_port": 9160
         }, 
         "esx": {
             "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
