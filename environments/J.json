@@ -1,7 +1,6 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "wt_analytics_ui": "= 0.0.23"
     }, 
     "default_attributes": {}, 
     "description": "J Pod", 
@@ -146,7 +145,7 @@
             "bba_domain": "jblackberry.englab.webtrends.corp", 
             "cache_region": "J_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/22860:id/AnalyticsUI.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt144/.lastSuccessful/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
             "help_link": "http://help-release.itl.webtrends.corp/{0}/analytics10/", 
