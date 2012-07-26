@@ -13,8 +13,8 @@
   },
   "run_list": [
     "recipe[java]",
-	"role[wt_xd::mapred]"
+	"recipe[wt_xd::mapred]"
   ],
-  "description": "External Data Mapreduce",
+  "description": "Webtrends External Data Mapreduce",
   "chef_type": "role"
 }

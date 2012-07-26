@@ -1,6 +1,6 @@
 {
-  "name": "wt_analytics",
-  "description": "Webtrends A10 UI",
+  "name": "wt_xd",
+  "description": "Webtrends External Data Service",
   "json_class": "Chef::Role",
   "default_attributes": {      
   },
@@ -8,8 +8,6 @@
   },
   "chef_type": "role",
   "run_list": [
-    "role[iis]",
-    "recipe[wt_analytics]"
   ],
   "env_run_lists": {
   }

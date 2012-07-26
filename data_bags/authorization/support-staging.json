@@ -2,10 +2,22 @@
     "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "alternate_uid": "2001", 
     "alternate_user": "bobo", 
+    "beyond_compare_v3": {
+        "license_key": [
+            "--- BEGIN LICENSE KEY ---", 
+            "E72PRdldttGI8NSbqeDsT6Vg0VRG82HYKNxaMYgFxu9Do7nhQ8Sie4kBs", 
+            "PRBH6IJ9paf-R7HgnVzOX9OcoP277JzJXE6YVapYW7f+tRRXRFI4yn4Nj", 
+            "jZ0RiiqGRCTVzwComUcXB-eiFWRBY6JpSsCNkmIxL5KsRCo442djHhTZE", 
+            "--- END LICENSE KEY -----"
+        ]
+    }, 
     "hive": {
         "dbpass": "QZ3caTZCJ5ybp0oDKgt4", 
         "dbuser": "hivemeta"
     }, 
     "id": "support-staging", 
-    "root_password": "$6$vU62efg8$LRXmqJ2A3gz/JjnKi3SNxzoAOfZf2CQkXaaqB3v5UW3KsKPbj5V5opjbJ4n0js/ErXTU5XNLiZXoF498esaeM1"
+    "root_password": "$6$vU62efg8$LRXmqJ2A3gz/JjnKi3SNxzoAOfZf2CQkXaaqB3v5UW3KsKPbj5V5opjbJ4n0js/ErXTU5XNLiZXoF498esaeM1", 
+    "wt_netacuity": {
+        "admin_password": "SHvWHezZSc7"
+    }
 }

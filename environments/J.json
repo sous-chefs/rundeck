@@ -1,17 +1,21 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {  
-wt_analytics": "= 0.0.20"	
-    },
-    "default_attributes": {
+    "cookbook_versions": {
+        "wt_analytics_ui": "= 0.0.23"
+    }, 
+    "default_attributes": {}, 
+    "description": "J Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "J", 
+    "override_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "WTENGLAB"
             }, 
             "sudo": {
                 "groups": [
-                    "WTENGLAB\\\\domain-admins", 
-                    "WTENGLAB\\\\j.admins"
+                    "domain-admins", 
+                    "j.admins"
                 ], 
                 "include_sudoers_d": true, 
                 "passwordless": false, 
@@ -19,6 +23,72 @@ wt_analytics": "= 0.0.20"
                     "bobo"
                 ]
             }
+        }, 
+        "cassandra": {
+            "cassandra_host": "cassandra.staging.dmz", 
+            "cassandra_meta_column": "J_Meta", 
+            "cassandra_report_column": "J_Report", 
+            "cassandra_thrift_port": 9160
+        }, 
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
+        "hbase": {
+            "data_center_id": "Lab", 
+            "location": "shdata.staging.dmz", 
+            "site": {
+                "zookeeper_clientport": "", 
+                "zookeeper_quorum": ""
+            }, 
+            "thrift_port": 9090
+        }, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                    }
+                }, 
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                    }
+                }
+            }
+        }, 
+        "memcached": {
+            "cache_hosts": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "memory": "1024"
+        }, 
+        "ms_dotnet4": {
+            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
+        }, 
+        "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
+            "multi_environment_monitoring": true, 
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server_role": "nagios_xi"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
         }, 
         "ondemand_base": {
             "apt": [
@@ -48,127 +118,6 @@ wt_analytics": "= 0.0.20"
                 }
             ]
         }, 
-        "vc2010": {
-            "x64": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-            }, 
-            "x86": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-            }
-        }, 
-        "wt_common": {
-            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "cache_host": [
-                {
-                    "name": "xcache01.staging.dmz", 
-                    "port": "11211"
-                }, 
-                {
-                    "name": "xcache02.staging.dmz", 
-                    "port": "11211"
-                }
-            ], 
-            "cache_region": "J_A10", 
-            "cassandra_host": "cassandra.staging.dmz", 
-            "cassandra_meta_column": "J_Meta", 
-            "cassandra_report_column": "J_Report", 
-            "cassandra_snmp_comm": "StagingRO", 
-            "cassandra_snmp_port": "", 
-            "cassandra_thrift_port": "9160", 
-            "config_dir_linux": "/etc/webtrends/", 
-            "install_dir_linux": "/opt/webtrends/", 
-            "install_dir_windows": "d:\\wrs", 
-            "install_log_dir_linux": "/var/log/webtrends/install", 
-            "install_log_dir_windows": "d:\\logs", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "log_dir_linux": "/var/log/webtrends/", 
-            "log_dir_windows": "", 
-            "master_host": "jmasterdb01", 
-            "rta_host": "jrta01.englab.webtrends.corp", 
-            "sched_host": "jmasterdb01", 
-            "schedulerdb_host": "jusagedb01", 
-            "smtp_server": "pdxengmta01.webtrends.corp", 
-            "usage_host": "jusagedb01", 
-            "velocitycache_hosts": [
-                {
-                    "name": "jdxweb01.englab.webtrends.corp", 
-                    "port": "22233"
-                }
-            ], 
-            "wrsmodify_group": "WTENGLAB\\J.WRS.Modify", 
-            "wrsread_group": "WTENGLAB\\J.WRS.Read"
-        }, 
-        "wt_dx": {
-            "app_settings_section": {
-                "streamingServiceRoot": "https://jdx.englab.webtrends.corp/StreamingServices_v3/"
-            }, 
-            "brandedaccountid": "20578,20663",             
-            "cachename": "J_DX"
-        }, 
-        "wt_monitoring": {
-            "graphite_flush_enabled": "true", 
-            "graphite_flush_interval": "1", 
-            "graphite_port": 2003, 
-            "graphite_server": "sgraph01.staging.dmz", 
-            "jmx_enabled": "true", 
-            "jmx_port": 9999, 
-            "metric_prefix": "englab.jpod.servers", 
-            "monitoring_enabled": "true"
-        }, 
-        "yum": {
-            "epel_release": "6-7"
-        }
-    }, 
-    "description": "J Pod", 
-    "json_class": "Chef::Environment", 
-    "name": "J", 
-    "override_attributes": {
-        "hbase": {
-            "site": {
-                "zookeeper_clientport": "", 
-                "zookeeper_quorum": ""
-            },
-			"thrift_port" : 9090,
-			"data_center_id" : "Lab",
-			"location": "shdata.staging.dmz"
-        }, 
-		"java": {
-            "install_flavor": "oracle", 
-            "jdk": {
-                "6": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
-                    }
-                }, 
-                "7": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
-                    }
-                }
-            }, 
-            "jdk_version": "6"
-        }, 
-        "memcached": {
-            "memory": "1024"
-        }, 
-        "ms_dotnet4": {
-            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
-        }, 
-        "nagios": {
-            "client": {
-                "install_method": "package"
-            }, 
-            "multi_environment_monitoring": "true", 
-            "nrpe": {
-                "dont_blame_nrpe": "1"
-            }, 
-            "server_role": "nagios_xi"
-        }, 
-        "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -184,8 +133,93 @@ wt_analytics": "= 0.0.20"
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
         }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "wt_analytics_ui": {
+            "app_pool_private_memory": 2097152, 
+            "bba_domain": "jblackberry.englab.webtrends.corp", 
+            "cache_region": "J_A10", 
+            "custom_errors": "Off", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/22860:id/AnalyticsUI.zip", 
+            "fb_app_clientid": "119772538146833", 
+            "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
+            "help_link": "http://help-release.itl.webtrends.corp/{0}/analytics10/", 
+            "hmap_url": "", 
+            "ondemand_base_domain": "jod.englab.webtrends.corp", 
+            "proxy_address": "http://sproxy02.staging.dmz:3128", 
+            "proxy_enabled": "true", 
+            "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
+            "rest_base_uri": "https://jdx.englab.webtrends.corp/v3", 
+            "show_profiling": "true", 
+            "tagbuilder_download_url": "https://stb.webtrends.com", 
+            "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
+        }, 
         "wt_camservice": {
             "url": "http://jcam01.englab.webtrends.corp/camservice"
+        }, 
+        "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "config_dir_linux": "/etc/webtrends/", 
+            "install_dir_linux": "/opt/webtrends/", 
+            "install_dir_windows": "d:\\wrs", 
+            "install_log_dir_linux": "/var/log/webtrends/install", 
+            "install_log_dir_windows": "d:\\logs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "log_dir_linux": "/var/log/webtrends/", 
+            "log_dir_windows": "", 
+            "smtp_server": "pdxengmta01.webtrends.corp", 
+            "velocitycache_hosts": [
+                {
+                    "name": "jdxweb01.englab.webtrends.corp", 
+                    "port": "22233"
+                }
+            ], 
+            "wrsmodify_group": "WTENGLAB\\J.WRS.Modify", 
+            "wrsread_group": "WTENGLAB\\J.WRS.Read"
+        }, 
+        "wt_dx": {
+            "app_settings_section": {
+                "streamingServiceRoot": "https://jdx.englab.webtrends.corp/StreamingServices_v3/"
+            }, 
+            "brandedaccountid": "20578,20663", 
+            "cachename": "J_DX"
+        }, 
+        "wt_masterdb": {
+            "master_host": "jmasterdb01.englab.webtrends.corp", 
+            "sched_host": "jmasterdb01.englab.webtrends.corp"
+        }, 
+        "wt_messaging_monitoring": {
+            "monitor_service_addr": "serviceBusMonitoring@cds01.staging.dmz"
+        }, 
+        "wt_monitoring": {
+            "graphite_flush_enabled": "true", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "englab.jpod.servers", 
+            "monitoring_enabled": "true"
+        }, 
+        "wt_rta": {
+            "rta_host": "jrta01.englab.webtrends.corp"
+        }, 
+        "wt_search": {
+            "search_hostname": "jsearch.englab.webtrends.corp", 
+            "search_service": "net.tcp://jsearch.englab.webtrends.corp:8096/Search/Service"
+        }, 
+        "wt_usagedb": {
+            "schedulerdb_host": "jusagedb01.englab.webtrends.corp", 
+            "usage_host": "jusagedb01.englab.webtrends.corp"
+        }, 
+        "yum": {
+            "epel_release": "6-7"
         }
     }
 }

@@ -1,0 +1,20 @@
+{
+  "name": "wt_analytics_ui",
+  "description": "Webtrends A10 UI",
+  "json_class": "Chef::Role",
+  "default_attributes": {      
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+	"recipe[vc2010]",
+	"recipe[ms_dotnet4]",
+	"recipe[ms_messagequeue]",
+	"recipe[wt_base::msdtc]",
+	"role[iis]",
+	"recipe[wt_analytics_ui]"
+  ],
+  "env_run_lists": {
+  }
+}
