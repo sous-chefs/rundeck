@@ -20,6 +20,10 @@ roundtrip.token=<%= node[:wt_streamingauditor][:roundtrip_token] %>
 roundtrip.scs.url=<%= node[:wt_streamingauditor][:roundtrip_scs_url] %>
 # The url to the tag server(s)
 roundtrip.tagserver.url=<%= node[:wt_streamingauditor][:roundtrip_tagserver_url] %>
+#The timeout (minutes) for waiting until we receive a response
+roundtrip.scs.timeout=<%= node[:wt_streamingauditor][:roundtrip_scs_timeout] %>
+#The timeout (minutes) for waiting until we receive a response
+roundtrip.scs.timeout=<%= node[:wt_streamingauditor][:roundtrip_tagserver_timeout] %>
 
 # are we monitoring at all
 monitoring.enabled = <%= node[:wt_monitoring][:monitoring_enabled] %>

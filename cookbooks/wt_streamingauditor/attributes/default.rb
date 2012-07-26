@@ -10,4 +10,5 @@ default['wt_streamingauditor']['roundtrip_tagserver_dcsid'] = "dcsjlcm9a10000wow
 default['wt_streamingauditor']['roundtrip_token'] = "28bb76182b104974912d82c19af4f619"
 default['wt_streamingauditor']['roundtrip_tagserver_url'] = "http://statse.webtrendslive.com"
 default['wt_streamingauditor']['roundtrip_scs_url'] = "http://scs.webtrends.com"
-
+default['wt_streamingauditor']['roundtrip_tagserver_timeout'] = 15
+default['wt_streamingauditor']['roundtrip_scs_timeout'] = 2
