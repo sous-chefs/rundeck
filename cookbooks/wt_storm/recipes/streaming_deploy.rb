@@ -35,12 +35,15 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   mode   00644
   variables(
     :topology                                    => "streaming-topology",
-    :streaming_topology_parsing_bolt_count       => 5,
-    :streaming_topology_in_session_bolt_count    => 1,
-    :streaming_topology_zmq_emitter_bolt_count   => 5,
+    :streaming_topology_parsing_bolt_count       => node['wt_storm']['streaming_topology']['streaming_topology_parsing_bolt_count'],
+    :streaming_topology_in_session_bolt_count    => node['wt_storm']['streaming_topology']['streaming_topology_in_session_bolt_count'],
+    :streaming_topology_zmq_emitter_bolt_count   => node['wt_storm']['streaming_topology']['streaming_topology_zmq_emitter_bolt_count'],
+    :streaming_topology_validation_bolt_count    => node['wt_storm']['streaming_topology']['streaming_topology_validation_bolt_count'],
+    :streaming_topology_augmentation_bolt_count  => node['wt_storm']['streaming_topology']['streaming_topology_augmentation_bolt_count'],
+    
     # kafka consumer settings
-    :kafka_consumer_topic                 => 'scsRawHits:0,lrRawHits:15',
-    :kafka_dcsid_whitelist                => node[:wt_storm][:dcsid_whitelist],
+    :kafka_consumer_topic                 => node['wt_storm']['streaming_topology']['kafka_consumer_topic'],
+    :kafka_dcsid_whitelist                => node['wt_storm']['dcsid_whitelist'],
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-streaming',
     :kafka_zookeeper_timeout_milliseconds => 1000000,

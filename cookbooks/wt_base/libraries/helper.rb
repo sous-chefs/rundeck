@@ -1,4 +1,4 @@
-
+#
 # Author:: David Dvorak (<david.dvorak@webtrends.com>)
 # Cookbook Name:: wt_base
 # Library:: helper
@@ -18,7 +18,8 @@ module WtBase
 		def get_build(target, source=nil)
 
 			# determine location of target file from various points of configuration
-			source = ENV['BUILD_URL'] if ENV['BUILD_URL']
+			source = ENV['download_url'] if ENV['download_url']
+			source = ENV['build_url'] if ENV['build_url'] if source.nil?
 			source = get_source_from_attributes if source.nil?
 			raise Chef::Exceptions::FileNotFound, "no source provided" if source.nil?
 
@@ -133,7 +134,9 @@ module WtBase
 		end
 
 		def get_source_from_attributes
-			if cb_config['build_url']
+			if cb_config['download_url']
+				cb_config['download_url']
+			elsif cb_config['build_url']
 				cb_config['build_url']
 			elsif wt_config['install_server'] and cb_config['suburl']
 				src = wt_config['install_server'] + "/" + cb_config['suburl']

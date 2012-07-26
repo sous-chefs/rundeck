@@ -16,7 +16,7 @@ include_recipe "wt_roadrunner::uninstall" if deploy_mode?
 build_url = "#{node['wt_roadrunner']['build_url']}#{node['wt_roadrunner']['zip_file']}"
 
 # get parameters
-master_host = node['wt_common']['master_host']
+master_host = node['wt_masterdb']['master_host']
 
 # destinations
 install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_roadrunner']['install_dir']}"

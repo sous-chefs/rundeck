@@ -9,7 +9,7 @@
 # This recipe installs the CAM IIS app
 
 if deploy_mode?
-  include_recipe "ms_dotnet4::resetiis"
+  include_recipe "ms_dotnet4::regiis"
   include_recipe "wt_cam::uninstall_camlite" 
 end
 
@@ -66,7 +66,7 @@ if deploy_mode?
   	source "webConfig_camlite.erb"  
 	variables(
 		:db_server => node['wt_cam']['db_server'],
-		:db_name   => node['wt_cam']['camlite_db_name']
+		:camlite_db_name   => node['wt_cam']['camlite_db_name']
   	)	
   end
   

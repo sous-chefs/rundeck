@@ -1,0 +1,14 @@
+{
+  "name": "ms_velocity_cache",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+  ],
+  "description": "Microsoft Velocity Cache",
+  "chef_type": "role"
+}

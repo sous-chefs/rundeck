@@ -6,7 +6,7 @@
 # Copyright 2012, Webtrends Inc.
 #
 
-default[:hive][:path] = "/usr/local/hive/lib/"
+default[:hive][:path] = "/usr/share/hive/lib/"
 
 default[:hive][:version] = "0.8.1"
 default[:hive][:download_url] = "http://mirror.uoregon.edu/apache/hive/hive-0.8.1/"

@@ -7,7 +7,7 @@
 #
 
 # display_name should match the registered DisplayName
-# ref:  HKLM\Software\<Wow6432Node>\Microsoft\CurrentVersion\Uninstall
+# ref:  HKLM\Software\<Wow6432Node>\Microsoft\Windows\CurrentVersion\Uninstall
 default['wt_example']['display_name'] = 'WebTrends Common Lib'
 
 # msi filename
