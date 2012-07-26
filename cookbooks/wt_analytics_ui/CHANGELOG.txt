@@ -3,6 +3,7 @@ Future
 	
 0.0.23
 	Cookbook renamed to wt_analytics_ui
+	Share wrs folder
 
 0.0.22
 	Added UI user to MachineKeys folder

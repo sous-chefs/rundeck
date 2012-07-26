@@ -147,4 +147,5 @@ if deploy_mode?
 		)
 	end
 
+	share_wrs
 end
