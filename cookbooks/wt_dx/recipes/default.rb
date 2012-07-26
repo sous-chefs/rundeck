@@ -10,7 +10,7 @@
 
 if deploy_mode? 
   include_recipe "wt_dx::uninstall" 
-  include_recipe "ms_dotnet4::resetiis"  
+  include_recipe "ms_dotnet4::regiis"  
 end
 
 #Properties
@@ -94,7 +94,7 @@ if deploy_mode?
   
   windows_package "WebTrends Common Lib" do
     source "#{Chef::Config[:file_cache_path]}\\#{msi_name}"
-	options "/l*v \"#{install_logdir}\\#{msi_name}-Install.log\" INSTALLDIR=\"#{install_dir}\" SQL_SERVER_NAME=\"#{node['wt_common']['master_host']}\" WTMASTER=\"wtMaster\"  WTSCHED=\"wt_Sched\""
+	options "/l*v \"#{install_logdir}\\#{msi_name}-Install.log\" INSTALLDIR=\"#{install_dir}\" SQL_SERVER_NAME=\"#{node['wt_masterdb']['master_host']}\" WTMASTER=\"wtMaster\"  WTSCHED=\"wt_Sched\""
 	action :install
   end
   
@@ -125,7 +125,7 @@ if deploy_mode?
   	source "webConfigv3Streaming.erb"
   	variables(
   		:cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached"),
-  		:master_host => node['wt_common']['master_host']
+  		:master_host => node['wt_masterdb']['master_host']
   	)
   end
   
@@ -136,11 +136,10 @@ if deploy_mode?
   	source "webConfigv3Web.erb"
   	variables(
   		:cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached"),
-  		:cassandra_hosts => node['wt_common']['cassandra_hosts'],
-  		:master_host => node['wt_common']['master_host'],
-  		:report_col => node['wt_common']['cassandra_report_column'],
-  		:metadata_col => node['wt_common']['cassandra_meta_column'],
-  		:snmp_comm => node['wt_common']['cassandra_snmp_comm'],
+  		:cassandra_hosts => node['cassandra']['cassandra_host'],
+  		:master_host => node['wt_masterdb']['master_host'],
+  		:report_col => node['cassandra']['cassandra_report_column'],
+  		:metadata_col => node['cassandra']['cassandra_meta_column'],
   		:cache_name => node['wt_dx']['cachename'],
   		:endpoint_address => "net.tcp://#{search_host}:8096/SearchService/Search",
   		:streamingservice_root => node['wt_dx']['app_settings_section']['streamingServiceRoot']

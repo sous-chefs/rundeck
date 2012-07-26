@@ -1,6 +1,6 @@
 {
   "name": "wt_labstation",
-  "description": "Installs basic tools for a workstation in a lab environment.",
+  "description": "Webtrends Lab Workstation",
   "json_class": "Chef::Role",
   "default_attributes": {
   },

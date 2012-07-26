@@ -1,1 +1,0 @@
-0.0.18 Added hbase values to web.config template

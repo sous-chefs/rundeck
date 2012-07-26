@@ -1,7 +1,11 @@
-## Future
+## 0.10.53
 
-* Unknown
+* Added support for 'net localgroup' command on windows
 
-## 0.10.5 (IP):
+## 0.10.6
+
+* Typo in firewall command (missing space between arguments)
+
+## 0.10.5:
 
 * Initial release with a changelog

@@ -42,14 +42,12 @@ if nodes.empty?
   nodes << node
 end
 
-# if multi_os_monitoring is enabled then find all unique platforms to create hostgroups
+# find all unique platforms to create hostgroups
 os_list = Array.new
-if node['nagios']['multi_os_monitoring']
-  nodes.each do |n|
-    if !os_list.include?(n.os)
-      os_list << n.os
-    end
-  end
+nodes.each do |n|
+	if !os_list.include?(n.os)
+		os_list << n.os
+	end
 end
 
 # Load Nagios services from the nagios_services data bag

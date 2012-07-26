@@ -19,7 +19,7 @@ end
 
 download_url = node['wt_search']['download_url']
 # get parameters
-master_host = node['wt_common']['master_host']
+master_host = node['wt_masterdb']['master_host']
 
 # destinations
 install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_search']['install_dir']}"
@@ -73,32 +73,32 @@ if deploy_mode?
 	template "#{install_dir}\\Webtrends.Search.Service.exe.config" do
 	  source "searchConfig.erb"
 	  variables(		
-		  :master_host => node['wt_common']['master_host'],
-		  :cass_host => node['wt_common']['cassandra_host'],
-		  :report_column => node['wt_common']['cassandra_report_column'],
-		  :metadata_column => node['wt_common']['cassandra_meta_column']
+		  :master_host => master_host,
+		  :cass_host => node['cassandra']['cassandra_host'],
+		  :report_column => node['cassandra']['cassandra_report_column'],
+		  :metadata_column => node['cassandra']['cassandra_meta_column']
 	  )
 	end
 	
 	template "#{install_dir}\\Webtrends.Search.Bulkload.exe.config" do
 	  source "bulkloadConfig.erb"
 	  variables(		
-		  :master_host => node['wt_common']['master_host'],
-		  :cass_host => node['wt_common']['cassandra_host'],
-		  :report_column => node['wt_common']['cassandra_report_column'],
-		  :thrift_port => node['wt_common']['cassandra_thrift_port'],
-		  :metadata_column => node['wt_common']['cassandra_meta_column']
+		  :master_host => master_host,
+		  :cass_host => node['cassandra']['cassandra_host'],
+		  :report_column => node['cassandra']['cassandra_report_column'],
+		  :thrift_port => node['cassandra']['cassandra_thrift_port'],
+		  :metadata_column => node['cassandra']['cassandra_meta_column']
 	  )
 	end
 	
 	template "#{install_dir}\\LocalStateRetriever.exe.config" do
 	  source "localStateRetrieverConfig.erb"
 	  variables(		
-		  :master_host => node['wt_common']['master_host'],
-		  :cass_host => node['wt_common']['cassandra_host'],
-		  :report_column => node['wt_common']['cassandra_report_column'],
-		  :thrift_port => node['wt_common']['cassandra_thrift_port'],
-		  :metadata_column => node['wt_common']['cassandra_meta_column']
+		  :master_host => master_host,
+		  :cass_host => node['cassandra']['cassandra_host'],
+		  :report_column => node['cassandra']['cassandra_report_column'],
+		  :thrift_port => node['cassandra']['cassandra_thrift_port'],
+		  :metadata_column => node['cassandra']['cassandra_meta_column']
 	  )
 	end
 

@@ -1,0 +1,19 @@
+{
+  "name": "wt_management_system",
+  "description": "Webtrends Management System",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[notepadplusplus]",
+    "recipe[firefox]",
+    "recipe[7-zip]",
+    "recipe[filezilla]",
+    "recipe[beyond_compare]"
+  ],
+  "env_run_lists": {
+  }
+}
