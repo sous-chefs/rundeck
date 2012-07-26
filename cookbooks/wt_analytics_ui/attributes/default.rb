@@ -46,3 +46,6 @@ default['wt_analytics_ui']['fb_app_clientid'] = '103645866351316'
 default['wt_analytics_ui']['fb_app_clientsecret'] = 'f856805656c4b27bef04dc49641dbd58'
 default['wt_analytics_ui']['hmap_url'] = 'http://hmapi.netiq.dmz/'
 
+# log4net settings
+default['wt_analytics_ui']['log_level'] = 'INFO'
+
