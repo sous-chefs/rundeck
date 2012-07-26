@@ -190,4 +190,10 @@ if node.attribute?("nagios")
 		action :add
 	end
  
+    # Create a nagios nrpe check for the overall streaming health
+    nagios_nrpecheck "wt_streaming_healthcheck" do
+		command "#{node['nagios']['plugin_dir']}/check_http"
+		parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"streaming_healthcheck\\\":{\\\"healthy\\\": \\\"true\\\"\""
+		action :add
+	end
 end
