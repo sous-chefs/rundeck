@@ -62,7 +62,6 @@ default['nagios']['sysadmin_email']          = "root@localhost"
 default['nagios']['sysadmin_sms_email']      = "root@localhost"
 default['nagios']['server_auth_method']      = "openid"
 default['nagios']['users_databag_group']     = "sysadmin"
-default['nagios']['multi_os_monitoring']     = false
 
 # This setting is effectively sets the minimum interval (in seconds) nagios can handle.
 # Other interval settings provided in seconds will calculate their actual from this value, since nagios works in 'time units' rather than allowing definitions everywhere in seconds
@@ -82,3 +81,5 @@ default['nagios']['default_service']['retry_interval']     = 15
 default['nagios']['default_service']['max_check_attempts'] = 3
 default['nagios']['default_service']['notification_interval'] = 1200
 default['nagios']['default_service']['flap_detection'] = true
+
+default['nagios']['non_alerting_environments'] = []

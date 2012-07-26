@@ -14,18 +14,24 @@ define host {
   use server
 	address <%= n['ipaddress'] %>
 	host_name <%= n['hostname'] %>
+<% if node['nagios']['multi_environment_monitoring'] -%>
 <% if n.run_list.roles.nil? || n.run_list.roles.length == 0 -%>
-  hostgroups all
-<% elsif node['nagios']['multi_environment_monitoring'] -%>
-<% if node['nagios']['multi_os_monitoring'] -%>
-  hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.chef_environment %>,<%= n.os %>
-<% else -%>
-  hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.chef_environment %>
+  hostgroups all,<%= n.chef_environment %>,<%= n.os %>
+<% if node['nagios']['non_alerting_environments'].include?("#{n.chef_environment}") -%>
+  notifications_enabled 0
 <% end -%>
-<% elsif node['nagios']['multi_os_monitoring'] -%>
-  hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.os %>
 <% else -%>
-  hostgroups <%= n.run_list.roles.to_a.join(",") %>
+  hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.chef_environment %>,<%= n.os %>
+<% if node['nagios']['non_alerting_environments'].include?("#{n.chef_environment}") -%>
+  notifications_enabled 0
+<% end -%>
+<% end -%>
+<% elsif -%>
+<% if n.run_list.roles.nil? || n.run_list.roles.length == 0 -%>
+  hostgroups all,<%= n.os %>
+<% else -%>
+  hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.os %>
+<% end -%>
 <% end -%>
 }
 <% end -%>

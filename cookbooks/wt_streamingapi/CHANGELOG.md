@@ -1,3 +1,9 @@
+## 0.0.18
+* Add garbage collection nagios check
+
+## 0.0.17
+* Who knows
+
 ## 0.0.16
 * Added a nagios healthcheck
 

@@ -19,7 +19,7 @@ end
 
 download_url = node['wt_sync']['download_url']
 # get parameters
-master_host = node['wt_common']['master_host']
+master_host = node['wt_masterdb']['master_host']
 
 # destinations
 install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_sync']['install_dir']}"
@@ -79,20 +79,20 @@ if deploy_mode?
 	template "#{install_dir}\\SyncMessageUtil.exe.config" do
 	  source "syncMsgUtilConfig.erb"
 	  variables(		
-		  :master_host => node['wt_common']['master_host']
+		  :master_host => master_host
 	  )
 	end
 	
 	template "#{install_dir}\\Webtrends.SyncService.exe.config" do
 	  source "syncServiceConfig.erb"
 	  variables(		
-		  :master_host => node['wt_common']['master_host'],
-		  :cass_host => node['wt_common']['cassandra_host'],
-		  :report_column => node['wt_common']['cassandra_report_column'],
-		  :thrift_port => node['wt_common']['cassandra_thrift_port'],
-		  :metadata_column => node['wt_common']['cassandra_meta_column'],
-		  :cache_hosts => node['wt_common']['cache_host'],
-		  :cache_region => node['wt_common']['cache_region']
+		  :master_host => master_host,
+		  :cass_host => node['cassandra']['cassandra_host'],
+		  :report_column => node['cassandra']['cassandra_report_column'],
+		  :thrift_port => node['cassandra']['cassandra_thrift_port'],
+		  :metadata_column => node['cassandra']['cassandra_meta_column'],
+		  :cache_hosts => node['memcached']['cache_hosts'],
+		  :cache_region => node['wt_analytics_ui']['cache_region']
 	  )
 	end
 
