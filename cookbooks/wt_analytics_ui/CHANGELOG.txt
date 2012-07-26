@@ -4,6 +4,7 @@ Future
 0.0.23
 	Cookbook renamed to wt_analytics_ui
 	Share wrs folder
+	Added log4net.config template
 
 0.0.22
 	Added UI user to MachineKeys folder
