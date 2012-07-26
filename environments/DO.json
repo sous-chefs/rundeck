@@ -1,24 +1,28 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "java": "= 1.5.0",
-        "kafka": "= 1.0.5",
-        "nagios": "= 1.3.0",
-        "ondemand_base": "= 1.5.0",
-        "storm": "= 1.0.16",
-        "windows": "= 1.2.12",
-        "wt_cam": "= 1.0.4",
-        "wt_monitoring": "= 0.0.2",
-        "wt_netacuity": "= 1.0.4",
-        "wt_realtimeapi": "= 0.0.17",
-        "wt_storm": "= 1.0.20",
-        "wt_streamingapi": "= 0.0.16",
-        "wt_streamingaudit": "= 0.0.6",
-        "wt_streamingcollection": "= 0.0.19",
-        "wt_streaminglogreplayer": "= 0.0.15",
+        "java": "= 1.5.0", 
+        "kafka": "= 1.0.5", 
+        "nagios": "= 1.3.0", 
+        "ondemand_base": "= 1.5.0", 
+        "storm": "= 1.0.16", 
+        "windows": "= 1.2.12", 
+        "wt_cam": "= 1.0.4", 
+        "wt_monitoring": "= 0.0.2", 
+        "wt_netacuity": "= 1.0.4", 
+        "wt_realtimeapi": "= 0.0.17", 
+        "wt_storm": "= 1.0.20", 
+        "wt_streamingapi": "= 0.0.16", 
+        "wt_streamingauditor": "= 0.0.7", 
+        "wt_streamingcollection": "= 0.0.19", 
+        "wt_streaminglogreplayer": "= 0.0.15", 
         "zookeeper": "= 1.0.4"
-    },
-    "default_attributes": {
+    }, 
+    "default_attributes": {}, 
+    "description": "DevOps Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "DO", 
+    "override_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "DEVOPS"
@@ -34,125 +38,6 @@
                 ]
             }
         }, 
-        "ondemand_base": {
-            "apt": [
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
-                }, 
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "distribution_suffix": "-0.10", 
-                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
-                    "name": "wtlab-opscode", 
-                    "url": "http://repo.staging.dmz/repo/apt/opscode"
-                }
-            ], 
-            "yum": [
-                {
-                    "description": "Webtrends Repo", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
-                }
-            ]
-        }, 
-        "vc2010": {
-            "x64": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-            }, 
-            "x86": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-            }
-        }, 
-        "wt_common": {
-            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "cache_host": [
-                {
-                    "name": "xcache01.staging.dmz", 
-                    "port": "11211"
-                }, 
-                {
-                    "name": "xcache02.staging.dmz", 
-                    "port": "11211"
-                }
-            ], 
-            "cache_region": "DO_A10", 
-            "cassandra_host": "cass01.devops.dmz", 
-            "cassandra_meta_column": "DO_Meta", 
-            "cassandra_report_column": "DO_Report", 
-            "cassandra_snmp_comm": "StagingRO", 
-            "cassandra_snmp_port": "", 
-            "cassandra_thrift_port": "", 
-            "config_dir_linux": "/etc/webtrends/", 
-            "install_dir_linux": "/opt/webtrends/", 
-            "install_dir_windows": "d:\\wrs", 
-            "install_log_dir_linux": "/var/log/webtrends/install", 
-            "install_log_dir_windows": "d:\\logs", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "log_dir_linux": "/var/log/webtrends/", 
-            "log_dir_windows": "", 
-            "master_host": "masterdb01", 
-            "rta_host": "rta01.devops.dmz", 
-            "sched_host": "masterdb01", 
-            "schedulerdb_host": "masterdb01", 
-            "smtp_server": "pdxengmta01.webtrends.corp", 
-            "usage_host": "masterdb01", 
-            "velocitycache_hosts": [
-                {
-                    "name": "dxweb01.devops.dmz", 
-                    "port": "22233"
-                }
-            ], 
-            "wrsmodify_group": "DEVOPS\\DO.WRS.Modify", 
-            "wrsread_group": "DEVOPS\\DO.WRS.Read"
-        }, 
-        "wt_dbmaint": {
-            "index_file": "VDMIndex.zip", 
-            "url": "guestAuth/repository/download/bt63/.lastSuccessful/"
-        }, 
-        "wt_dx": {
-            "app_settings_section": {
-                "streamingServiceRoot": "http://dx.devops.dmz/StreamingServices_v3/"
-            }, 
-            "brandedaccountid": "20578,20663", 
-            "cacheenabled": "True", 
-            "cachename": "DO_DX", 
-            "endpoint_address": "net.tcp://search.devops.dmz:8096/SearchService/Search", 
-            "website_name": "DX", 
-            "website_port": "80"
-        }, 
-        "wt_monitoring": {
-            "audit_bucket_timespan": 10, 
-            "audit_topic": "stream-audit", 
-            "graphite_flush_enabled": "true", 
-            "graphite_flush_interval": "1", 
-            "graphite_port": 2003, 
-            "graphite_server": "sgraph01.staging.dmz", 
-            "healthcheck_enabled": "true", 
-            "healthcheck_port": 9000, 
-            "jmx_enabled": "true", 
-            "jmx_port": 9999, 
-            "metric_prefix": "devops.dopod.servers", 
-            "monitoring_enabled": "false"
-        }, 
-        "wt_platformscheduler": {
-            "agent_msi": "WebTrends VDM Scheduler Agent.msi", 
-            "url": "guestAuth/repository/download/bt54/.lastSuccessful/"
-        }, 
-        "yum": {
-            "epel_release": "6-7"
-        }
-    }, 
-    "description": "DevOps Pod", 
-    "json_class": "Chef::Environment", 
-    "name": "DO", 
-    "override_attributes": {
         "esx": {
             "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
@@ -257,6 +142,34 @@
                 "time.webtrends.corp"
             ]
         }, 
+        "ondemand_base": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
+                }, 
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution_suffix": "-0.10", 
+                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
+                    "name": "wtlab-opscode", 
+                    "url": "http://repo.staging.dmz/repo/apt/opscode"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
+                }
+            ]
+        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -274,10 +187,93 @@
         "storm": {
             "download_url": "http://repo.staging.dmz/repo/linux/storm/"
         }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "cache_host": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "cache_region": "DO_A10", 
+            "cassandra_host": "cass01.devops.dmz", 
+            "cassandra_meta_column": "DO_Meta", 
+            "cassandra_report_column": "DO_Report", 
+            "cassandra_snmp_comm": "StagingRO", 
+            "cassandra_snmp_port": "", 
+            "cassandra_thrift_port": "", 
+            "config_dir_linux": "/etc/webtrends/", 
+            "install_dir_linux": "/opt/webtrends/", 
+            "install_dir_windows": "d:\\wrs", 
+            "install_log_dir_linux": "/var/log/webtrends/install", 
+            "install_log_dir_windows": "d:\\logs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "log_dir_linux": "/var/log/webtrends/", 
+            "log_dir_windows": "", 
+            "master_host": "masterdb01", 
+            "rta_host": "rta01.devops.dmz", 
+            "sched_host": "masterdb01", 
+            "schedulerdb_host": "masterdb01", 
+            "smtp_server": "pdxengmta01.webtrends.corp", 
+            "usage_host": "masterdb01", 
+            "velocitycache_hosts": [
+                {
+                    "name": "dxweb01.devops.dmz", 
+                    "port": "22233"
+                }
+            ], 
+            "wrsmodify_group": "DEVOPS\\DO.WRS.Modify", 
+            "wrsread_group": "DEVOPS\\DO.WRS.Read"
+        }, 
+        "wt_dbmaint": {
+            "index_file": "VDMIndex.zip", 
+            "url": "guestAuth/repository/download/bt63/.lastSuccessful/"
+        }, 
+        "wt_dx": {
+            "app_settings_section": {
+                "streamingServiceRoot": "http://dx.devops.dmz/StreamingServices_v3/"
+            }, 
+            "brandedaccountid": "20578,20663", 
+            "cacheenabled": "True", 
+            "cachename": "DO_DX", 
+            "endpoint_address": "net.tcp://search.devops.dmz:8096/SearchService/Search", 
+            "website_name": "DX", 
+            "website_port": "80"
+        }, 
+        "wt_monitoring": {
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "true", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "devops.dopod.servers", 
+            "monitoring_enabled": "false"
+        }, 
         "wt_netacuity": {
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/", 
             "use_proxy": false, 
             "version": "4.6"
+        }, 
+        "wt_platformscheduler": {
+            "agent_msi": "WebTrends VDM Scheduler Agent.msi", 
+            "url": "guestAuth/repository/download/bt54/.lastSuccessful/"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "pdx", 
@@ -291,16 +287,17 @@
         "wt_storm": {
             "download_url": "http://repo.staging.dmz/repo/linux/storm/jars/"
         }, 
-        "wt_streaming_audit": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/14244:id/streamingauditor-bin.tar.gz"
-        }, 
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/17623:id/streamingapi-bin.tar.gz", 
             "port": 8080
         }, 
+        "wt_streamingauditor": {}, 
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/18842:id/streamingcollection-bin.tar.gz", 
             "port": 8080
+        }, 
+        "yum": {
+            "epel_release": "6-7"
         }, 
         "zookeeper": {
             "client_port": 2181, 

@@ -105,7 +105,20 @@ LoadPlugin java
 				Attribute "LoadedClassCount"
 			</Value>
 		</MBean>
-		#Metrics
+		# java runtime attributes
+		<MBean "runtime">
+			ObjectName "java.lang:type=Runtime"
+			InstancePrefix "runtime"
+			#InstanceFrom ""
+			<Value>
+				Type "gauge"
+				InstancePrefix "JVM_uptime"
+				#InstanceFrom ""
+				Table false
+				Attribute "Uptime"
+			</Value>
+		</MBean>		
+		#WT Metrics
         <MBean "auth_handle-request">
 			ObjectName "streamingapi:type=authentication,name=handle-request"
 			InstancePrefix "SAPI_authentication_"
@@ -407,6 +420,7 @@ LoadPlugin java
 			Collect "java_threads"
 			Collect "memory-heap"
 			Collect "memory_nonheap"
+			Collect "runtime"
 			Collect "auth_handle-request"
 			Collect "auth_invalid-credentials"
 			Collect "auth_requests-handled"

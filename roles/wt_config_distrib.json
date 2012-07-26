@@ -1,0 +1,14 @@
+{
+  "name": "wt_config_distrib",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+  ],
+  "description": "Webtrends Configuration Distribution Service",
+  "chef_type": "role"  
+}

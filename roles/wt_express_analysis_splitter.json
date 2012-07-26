@@ -1,0 +1,14 @@
+{
+  "name": "wt_express_analysis_splitter",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+  ],
+  "description": "Webtrends Express Analysis splitter",
+  "chef_type": "role"  
+}
