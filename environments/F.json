@@ -247,6 +247,7 @@
             "rta_host": "frta01.staging.dmz"
         }, 
         "wt_search": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/.lastSuccessful/Search.zip", 
             "search_hostname": "fsearch.staging.dmz", 
             "search_service": "net.tcp://fsearch.staging.dmz:8096/Search/Service"
         }, 
