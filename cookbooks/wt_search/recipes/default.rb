@@ -30,12 +30,12 @@ svcuser = auth_data['wt_common']['system_user']
 svcpass = auth_data['wt_common']['system_pass']
 
 # determine root drive of install_dir - ENG390500
-if (install_dir =~ /^(\w:)\\.*$/)
-	install_dir_drive = $1
-else
-	raise Chef::Exceptions::AttributeNotFound,
-		"could not determine install_dir_drive, please verify value of install_dir: #{install_dir}"
-end
+#if (install_dir =~ /^(\w:)\\.*$/)
+#	install_dir_drive = $1
+#else
+#	raise Chef::Exceptions::AttributeNotFound,
+#		"could not determine install_dir_drive, please verify value of install_dir: #{install_dir}"
+#end
 
 # create the install directory
 directory install_dir do
@@ -48,18 +48,23 @@ directory "#{node['wt_common']['install_dir_windows']}#{node['wt_search']['log_d
 	action :create
 end
 
-
 # set permissions for the service user to have read access to the install drive - ENG390500
-wt_base_icacls install_dir_drive do
-	action :grant
-	user svcuser 
-	perm :read
-end
+#wt_base_icacls install_dir_drive do
+#	action :grant
+#	user svcuser 
+#	perm :read
+#end
 
 wt_base_icacls node['wt_common']['install_dir_windows'] do
 	action :grant
 	user svcuser 
 	perm :modify
+end
+
+wt_base_netlocalgroup "Performance Monitor Users" do
+	user svcuser
+	returns [0, 2]
+	action :add
 end
 
 if deploy_mode?
@@ -75,6 +80,7 @@ if deploy_mode?
 	  variables(		
 		  :master_host => master_host,
 		  :cass_host => node['cassandra']['cassandra_host'],
+		  :cass_thrift_port => node['cassandra']['cassandra_thrift_port'],
 		  :report_column => node['cassandra']['cassandra_report_column'],
 		  :metadata_column => node['cassandra']['cassandra_meta_column']
 	  )
