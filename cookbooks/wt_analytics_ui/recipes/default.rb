@@ -48,7 +48,7 @@ iis_site 'Analytics' do
 	protocol :http
 	port node['wt_analytics_ui']['website_port']
 	path install_dir
-	app_pool app_pool_name
+	application_pool app_pool_name
 	action [:add, :start]
 end
 
