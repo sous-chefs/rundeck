@@ -11,8 +11,8 @@
 actions :run
 
 attribute :hostname,       :kind_of => String, :name_attribute => true
-attribute :pod,            :kind_of => String, :required
-attribute :role,           :kind_of => String, :required
+attribute :pod,            :kind_of => String, :required => true
+attribute :role,           :kind_of => String, :required => true
 attribute :version,        :kind_of => String, :default => nil
 attribute :selectversion,  :kind_of => String, :default => nil
 attribute :branch,         :kind_of => String, :default => nil
