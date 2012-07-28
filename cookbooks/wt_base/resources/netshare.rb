@@ -1,9 +1,9 @@
 #
-# Author:: David Dvorak(<david.dvorakd@webtrends.com>)
 # Cookbook Name:: wt_base
 # Resource:: netshare
+# Author:: David Dvorak(<david.dvorakd@webtrends.com>)
 #
-# Copyright:: 2012, Webtrends Inc.
+# Copyright 2012, Webtrends Inc.
 #
 # All rights reserved - Do Not Redistribute
 #
