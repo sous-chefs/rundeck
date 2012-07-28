@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: wt_base
-# Provider:: firewall 
-# Author: Kendrick Martin
+# Resource:: firewall 
+# Author:: Kendrick Martin
 #
 # Copyright 2011, Webtrends Inc.
 #
@@ -17,7 +17,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 
 actions :open_port, :enable
 
