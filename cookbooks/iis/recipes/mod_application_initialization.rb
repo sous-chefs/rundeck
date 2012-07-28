@@ -1,9 +1,9 @@
 #
 # Author:: Seth Chisamore (<schisamo@opscode.com>)
 # Cookbook Name:: iis
-# Attribute:: default
+# Recipe:: mod_application_initialization
 #
-# Copyright:: Copyright (c) 2011 Opscode, Inc.
+# Copyright 2011, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,12 +18,9 @@
 # limitations under the License.
 #
 
-default['iis']['accept_eula'] = false
+include_recipe "iis"
 
-default['iis']['home']       = "#{ENV['WINDIR']}\\System32\\inetsrv"
-default['iis']['conf_dir']   = "#{iis['home']}\\config"
-default['iis']['pubroot']    = "#{ENV['SYSTEMDRIVE']}\\inetpub"
-default['iis']['docroot']    = "#{iis['pubroot']}\\wwwroot"
-default['iis']['log_dir']    = "#{iis['pubroot']}\\logs\\LogFiles"
-default['iis']['cache_dir']  = "#{iis['pubroot']}\\temp"
-default['iis']['components'] = "IIS7"
+webpi_product "ApplicationInitializationRC" do
+  accept_eula node['iis']['accept_eula']
+  action :install
+end
