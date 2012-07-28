@@ -1,7 +1,7 @@
 #
-# Author:: David Dvorak (<david.dvorak@webtrends.com>)
 # Cookbook Name:: wt_base
 # Library:: registry_helper
+# Author:: David Dvorak (<david.dvorak@webtrends.com>)
 #
 # Copyright 2012, Webtrends Inc.
 #
