@@ -1,4 +1,7 @@
-## 0.0.18
+## 0.0.20
+* Stepping up nofile
+
+## 0.0.19
 * Exposing writeBufferHighWaterMark as an attribute and increasing default size
 
 ## 0.0.18
