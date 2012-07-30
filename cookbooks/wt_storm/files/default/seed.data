@@ -1,0 +1,83 @@
+#
+#       ':'  main delimiter (separate one dimension from next dimension)
+#       ';'  element delimiter (separate one parameter from another in a dimension)
+#       '&'  AND marker in filter
+#       ==  filter for parameter equals
+#       !=  filter for parameter not equal
+#       !!  filter for parameter not present
+#       <> non-parameter hit element
+
+
+#Dimension Definitions
+#format = [-1] : [d] : [hit element] : [filter] : [attributes] : [objectid] : [label] : [Is Delimited]
+-1:d:<country>:*::country:country:false
+-1:d:<region>:*::region:region:false
+-1:d:<city>:*::city:city:false
+-1:d:wt.cg_n:*::contentgroup:contentgroup:false
+-1:d:wt.cg_s:*::contentsubgroup:contentsubgroup:false
+-1:d:<cs-referer>:*::cs-referer:referrer:false
+-1:d:<cs-uri-stem>:*::cs-uri-stem:page:false
+-1:d:<sc-status>:*::status:status:false
+-1:d:<url>:*:wt.ti:url:url;title:false
+-1:d:wt.mc_id:*::wt.mc_id:campaign:false
+-1:d:wt.conv:*::wt.conv:conversion:false
+-1:d:wt.clip_n:*::wt.clip_n:media:false
+-1:d:wt.oss:*::wt.oss:onsitesearch:false
+-1:d:wt.tx_e:wt.tx_e==v::wt.tx_ev:productview:false
+-1:d:wt.tx_e:wt.tx_e==a::wt.tx_ea:shoppingcartadd:false
+-1:d:wt.tx_e:wt.tx_e==r::wt.tx_er:shoppingcartremove:false
+-1:d:wt.tx_e:wt.tx_e==p::wt.tx_ep:purchase:false
+-1:d:<sku>:*::wt.pn_sku:productsku:false
+-1:d:wt.tx_u:*::wt.tx_u:units:false
+-1:d:<cartremoveunits>:wt.tx_e==r&wt.tx_u::cartremoveunits:removedunits:false
+-1:d:wt.si_n:*::wt.si_n:stepname:false
+-1:d:wt.si_x:*::wt.si_x:stepnumber:false
+-1:d:wt.si_cs:*::wt.si_cs:conversiondtep:false
+-1:d:<trafficsource>:*::wt.tsrc:trafficsource:false
+-1:d:<wt.srch>:*::wt.srch:searchtype:false
+-1:d:<keywords>:*::keywords:keywords:false
+-1:d:<engine>:*::engine:searchengine:false
+custom:18929:-1:d:author:*::author:author:true
+custom:18929:-1:d:channel:*::channel:channel:false
+custom:18929:-1:d:articleid:*::articleid:articleid:false
+custom:18929:-1:d:wt.ti:*::wt.ti:pagetitle:false
+custom:18929:-1:d:category:*::category:category:false
+
+#Measure Definitions
+#format = [-1] : [m] : [filter] : [attributes] : [objectid] : [label]
+-1:m:*:<visitor>;<session>;<hit>:hits:hits;visitor;session;hit
+-1:m:wt.dl==0;wt.dl!!:<visitor>;<session>;<hit>:pageviews:pageviews;visitor;session;hit
+
+#Default Categories
+#format = [0] : [c] : [categoryid] : [dimensions] : [measures] : [label]
+
+0:c:geo1:country;region;city:hits;pageviews:geography
+0:c:contentgroup1:contentgroup;contentsubgroup:hits;pageviews:contentgroup
+0:c:referrer1:cs-referer;cs-uri-stem:hits;pageviews:referer
+0:c:toppages1:url:hits;pageviews:toppages
+0:c:topstatus1:status;cs-uri-stem:hits;pageviews:topstatus
+0:c:adclickthrough1:wt.mc_id;url:hits;pageviews:adclickthrough
+0:c:conversion1:wt.conv;url:hits;pageviews:conversion
+0:c:media1:wt.clip_n;url:hits;pageviews:media
+0:c:oss1:wt.oss;url:hits;pageviews:onsitesearch
+0:c:productview1:wt.tx_ev;wt.pn_sku:hits;pageviews:productview            
+0:c:productview2:wt.pn_sku;wt.tx_ev:hits;pageviews:productview    
+0:c:shoppingcartadd1:wt.tx_ea;wt.tx_u;wt.pn_sku:hits;pageviews:shoppingcartadd
+0:c:shoppingcartadd2:wt.pn_sku;wt.tx_ea;wt.tx_u:hits;pageviews:shoppingcartadd
+0:c:shoppingcartremove1:wt.tx_er;cartremoveunits;wt.pn_sku:hits;pageviews:shoppingcartremove
+0:c:shoppingcartremove2:wt.pn_sku;wt.tx_er;cartremoveunits:hits;pageviews:shoppingcartremove
+0:c:purchase1:wt.tx_ep;wt.pn_sku:hits;pageviews:purchase
+0:c:purchase2:wt.pn_sku;wt.tx_ep:hits;pageviews:purchase
+0:c:scenario1:wt.si_n;wt.pn_sku:hits;pageviews:scenario
+0:c:scenario2:wt.si_x;wt.pn_sku:hits;pageviews:scenario
+0:c:scenario3:wt.si_cs;wt.pn_sku:hits;pageviews:scenario
+0:c:trafficsource1:wt.tsrc;wt.srch;cs-referrer;url:hits;pageviews:trafficsource
+0:c:trafficsource2:wt.tsrc;wt.srch;wt.mc_id:hits;pageviews:trafficsource
+0:c:search1:keywords;engine;wt.tsrc;url:hits;pageviews:search
+custom:18929:0:c:toppagesc1:author;wt.ti:hits;pageviews:toppages
+custom:18929:0:c:toppagesc2:channel;wt.ti:hits;pageviews:toppages
+custom:18929:0:c:toppagesc3:articleid;wt.ti:hits;pageviews:toppages
+custom:18929:0:c:categoryc1:category:hits;pageviews:category
+custom:18929:0:c:categoryc2:channel;category:hits;pageviews:category
+
+            

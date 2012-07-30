@@ -85,3 +85,20 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/
     :java_home => node['java']['java_home']
   )
 end
+
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf" do
+  source "seed.data"
+  mode "0644"
+end
+
+# template out the metadata loader
+template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/metadata-loader" do
+  source  "metadata-loader.erb"
+  owner "storm"
+  group "storm"
+  mode  00644
+  variables({
+    :home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}",
+    :java_home => node['java']['java_home']
+  })
+nd
