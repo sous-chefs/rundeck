@@ -1,7 +1,6 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {
-    }, 
+    "cookbook_versions": {}, 
     "default_attributes": {}, 
     "description": "J Pod", 
     "json_class": "Chef::Environment", 
@@ -211,8 +210,12 @@
         }, 
         "wt_search": {
             "search_hostname": "jsearch.englab.webtrends.corp", 
-            "search_service": "net.tcp://jsearch.englab.webtrends.corp:8096/Search/Service"
+            "search_service": "net.tcp://jsearch.englab.webtrends.corp:8096/Search/Service",
+			"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/.lastSuccessful/Search.zip"
         }, 
+		"wt_sync": {
+		    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/.lastSuccessful/SyncService.zip"
+		},
         "wt_usagedb": {
             "schedulerdb_host": "jusagedb01.englab.webtrends.corp", 
             "usage_host": "jusagedb01.englab.webtrends.corp"
