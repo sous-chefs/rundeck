@@ -15,7 +15,7 @@
         "wt_realtimeapi": "= 0.0.19", 
         "wt_storm": "= 1.0.32", 
         "wt_streamingapi": "= 0.0.18", 
-        "wt_streamingauditor": "= 0.0.7", 
+        "wt_streamingauditor": "= 0.0.8", 
         "wt_streamingcollection": "= 0.0.21", 
         "wt_streaminglogreplayer": "= 0.0.18", 
         "zookeeper": "= 1.0.4"
@@ -286,7 +286,7 @@
         "wt_streamingauditor": {
             "roundtrip_scs_url": "http://bscs01.staging.dmz:8080",
 	    "roundtrip_token": "9019769dfb544c94a31e56194d316968",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/23284:id/streamingauditor-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/23540:id/streamingauditor-bin.tar.gz"
         }, 
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/23167:id/streamingcollection-bin.tar.gz", 
