@@ -1,4 +1,7 @@
 ## 0.0.18
+* Exposing writeBufferHighWaterMark as an attribute and increasing default size
+
+## 0.0.18
 * Add garbage collection nagios check
 
 ## 0.0.17
