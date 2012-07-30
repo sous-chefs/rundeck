@@ -7,10 +7,10 @@
         "kafka": "= 1.0.5", 
         "storm": "= 1.0.17", 
         "wt_cam": "= 1.0.4", 
+        "wt_storm": "= 1.0.32", 
         "wt_heatmaps": "= 0.10.4", 
         "wt_realtime_hadoop": "= 1.0.2",
-        "wt_realtimeapi": "= 0.0.17", 
-        "wt_storm": "= 1.0.31", 
+        "wt_realtimeapi": "= 0.0.19", 
         "wt_streamingapi": "= 0.0.18", 
         "wt_streamingauditor": "= 0.0.7", 
         "wt_streamingcollection": "= 0.0.21", 
@@ -246,11 +246,12 @@
             "pod": "V"
         }, 
         "wt_realtimeapi": {
-            "port": 8082
+            "port": 8082,
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/23743:id/realtimeapi-bin.tar.gz"
         }, 
         "wt_storm": {
             "dcsid_whitelist": "", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/23055:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/23744:id/streaming-analysis-bin.tar.gz", 
             "realtime_topology": {
                 "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0", 
                 "realtime_topology_dimensions_bolt_count": 6, 
