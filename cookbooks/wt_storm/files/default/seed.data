@@ -71,8 +71,8 @@ custom:18929:-1:d:category:*::category:category:false
 0:c:scenario1:wt.si_n;wt.pn_sku:hits;pageviews:scenario
 0:c:scenario2:wt.si_x;wt.pn_sku:hits;pageviews:scenario
 0:c:scenario3:wt.si_cs;wt.pn_sku:hits;pageviews:scenario
-0:c:trafficsource1:wt.tsrc;wt.srch;cs-referrer;url:hits;pageviews:trafficsource
-0:c:trafficsource2:wt.tsrc;wt.srch;wt.mc_id:hits;pageviews:trafficsource
+# 0:c:trafficsource1:wt.tsrc;wt.srch;cs-referrer;url:hits;pageviews:trafficsource
+# 0:c:trafficsource2:wt.tsrc;wt.srch;wt.mc_id:hits;pageviews:trafficsource
 0:c:search1:keywords;engine;wt.tsrc;url:hits;pageviews:search
 custom:18929:0:c:toppagesc1:author;wt.ti:hits;pageviews:toppages
 custom:18929:0:c:toppagesc2:channel;wt.ti:hits;pageviews:toppages
