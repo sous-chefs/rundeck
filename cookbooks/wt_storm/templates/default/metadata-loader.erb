@@ -20,6 +20,11 @@ done
 # Build the command line.
 CMD="$JAVA_HOME/bin/java -cp $CP $MAIN $1 $2"
 
+
+if [ `pwd` != "$HOME_DIR" ]; then
+    echo "Must be in install dir to execute: $HOME_DIR"
+    exit 1
+fi
+
 # Exec the command line.
 exec $CMD
-
