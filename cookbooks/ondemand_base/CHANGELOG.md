@@ -3,6 +3,9 @@
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
 
+## 1.7.4
+ * Modified the deploy.bat to test launching builds remotely. 
+ 
 ## 1.7.3
  * Take out the creation of the webtrends user on centos.  This is causing odd failures and isn't used (yet)
  * Removed windows rubyzip 0.9.5 install
