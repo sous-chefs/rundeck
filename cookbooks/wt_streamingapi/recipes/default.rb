@@ -57,6 +57,20 @@ log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
 
+
+# step up nofile
+cookbook_file "/etc/security/limits.conf" do
+  source "limits.conf"
+  mode 00644
+end
+
+# enable pam_limits.so
+cookbook_file "/etc/pam.d/common-session" do
+  source "common-session"
+  mode 00644
+end
+
+
 # create the log directory
 directory "#{log_dir}" do
     owner   user
