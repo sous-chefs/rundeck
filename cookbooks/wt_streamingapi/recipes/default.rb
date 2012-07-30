@@ -91,6 +91,7 @@ def processTemplates (install_dir, node, zookeeper_quorum)
             :install_dir => install_dir,
             :port => port,
             :wt_monitoring => node[:wt_monitoring],
+            :writeBufferHighWaterMark => node[:wt_streamingapi][:writeBufferHighWaterMark],
             
             # streaming 0mq parameters
             :zookeeper_quorum => zookeeper_quorum * ",",
