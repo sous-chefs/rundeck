@@ -1,3 +1,6 @@
+## 0.0.19
+* Removed entry to get latest successful, now using pinned versions
+
 ## 0.0.18
 * Add garbage collection nagios check
 
