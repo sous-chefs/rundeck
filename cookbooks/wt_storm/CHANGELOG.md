@@ -1,3 +1,6 @@
+# 1.0.32
+* Added metadata-loader
+
 # 1.0.31
 * Added ANTLR libs
 
