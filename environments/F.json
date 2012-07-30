@@ -18,6 +18,8 @@
         "wt_streamingauditor": "= 0.0.7", 
         "wt_streamingcollection": "= 0.0.19", 
         "wt_streaminglogreplayer": "= 0.0.15", 
+		"wt_sync": "= 0.0.21",
+		"wt_search": "= 0.0.28",
         "zookeeper": "= 1.0.4"
     }, 
     "default_attributes": {}, 
@@ -247,12 +249,12 @@
             "rta_host": "frta01.staging.dmz"
         }, 
         "wt_search": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/.lastSuccessful/Search.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/23495:id/Search.zip", 
             "search_hostname": "fsearch.staging.dmz", 
             "search_service": "net.tcp://fsearch.staging.dmz:8096/Search/Service"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/.lastSuccessful/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/23477:id/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "fusagedb01.staging.dmz", 
