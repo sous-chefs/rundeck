@@ -12,7 +12,7 @@
         "wt_cam": "= 1.0.8", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
-        "wt_realtimeapi": "= 0.0.20", 
+        "wt_realtimeapi": "= 0.0.19", 
         "wt_storm": "= 1.0.32", 
         "wt_streamingapi": "= 0.0.20", 
         "wt_streamingauditor": "= 0.0.8", 
