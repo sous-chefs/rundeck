@@ -2,6 +2,19 @@
 
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
+
+## 1.7.8
+ * Changing redirect from nul to log 
+ 
+## 1.7.8
+ * Removed logging entirely to get the damn thing to work
+ 
+## 1.7.7
+ * Removed type statement to the end of deploy.bat to display log
+ 
+## 1.7.6
+ * Added type statement to the end of deploy.bat to display log
+ 
 ## 1.7.5
  * Modified the deploy.bat to redirect to nil 
  
