@@ -31,6 +31,13 @@ Attributes
 * `node['wt_masterdb']['master_host']` - Host name of masterdb
 * `node['wt_messaging_monitoring']['monitor_service_addr'] - 
 * `node['wt_search']['search_hostname']` - Load balanced address of search boxes
+
+Data Bag Items
+===============
+* authorization data bag should have a data bag item for every environment Analytics will be deployed to. It must contain the following values
+	* `authorization['wt_common']['ui_user']` - User that owns the app pool and site in IIS
+	* `authorization['wt_common']['ui_pass']` - Password for ui_user
+
 Usage
 =====
 

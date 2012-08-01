@@ -1,6 +1,10 @@
 Future
 	Change IIS site bindings
-	
+
+0.0.24
+	Changed rest_uri to be under wt_dx rather then wt_analytics_ui
+	Removed rest_uri from default attributes
+
 0.0.23
 	Cookbook renamed to wt_analytics_ui
 	Share wrs folder
