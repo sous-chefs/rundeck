@@ -1,7 +1,7 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "cassandra": "= 1.0.9", 
+        "cassandra": "= 1.0.10", 
         "cobbler": "= 0.0.1", 
         "graphite": "= 0.3.0", 
         "hadoop": "= 1.0.3", 
