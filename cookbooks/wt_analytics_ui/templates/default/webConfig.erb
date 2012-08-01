@@ -45,7 +45,7 @@
   <!-- Start ServiceBus endpoint -->
   <serviceBus>
     <endpoints>
-      <endpoint endpointIdentifier="serviceBusUIMain@localhost" name="Webtrends Insight UI" binding="mainBinding" returnAddress="serviceBusUIMain@localhost" poisonMessageAddress="serviceBusUIError@localhost" maxMessageRetryCount="3" numberOfWorkerThreads="12" maxRetries="4" statusReportInterval="00:00:30" statusReportGracePeriod="00:01:00" monitorServiceAddress="serviceBusMonitoring@<%= @monitor_service_addr %>" incomingMessageLoggingLevel="None" outgoingMessageLoggingLevel="None" sendOnly="false">
+      <endpoint endpointIdentifier="serviceBusUIMain@localhost" name="Webtrends Insight UI" binding="mainBinding" returnAddress="serviceBusUIMain@localhost" poisonMessageAddress="serviceBusUIError@localhost" maxMessageRetryCount="3" numberOfWorkerThreads="12" maxRetries="4" statusReportInterval="00:00:30" statusReportGracePeriod="00:01:00" monitorServiceAddress="serviceBusMonitoring@<%= @monitor_host %>" incomingMessageLoggingLevel="None" outgoingMessageLoggingLevel="None" sendOnly="false">
 
         <profiler enabled="true" profilePipelineComponents="true" pipelineDirection="Both" />
 
