@@ -6,7 +6,7 @@
 # Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
-# This recipe installs the CAM IIS app
+# This recipe installs the Auth IIS app component of CAM
 
 if deploy_mode?
   include_recipe "ms_dotnet4::regiis"
@@ -14,7 +14,7 @@ if deploy_mode?
 end
 
 #Properties
-install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Cam"
+install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Auth"
 install_logdir = node['wt_common']['install_log_dir_windows']
 app_pool = node['wt_cam']['app_pool']
 pod = node.chef_environment
@@ -46,18 +46,18 @@ end
 #	action :nothing
 #end
 
-iis_site 'CAM' do
+iis_site 'AUTH' do
     protocol :http
-    port 81
+    port 8081
     path "#{install_dir}"
 	action [:add,:start]
 	#notifies :run, resources(:execute => "del_wwwroot") 
 	#notifies :run, resources(:execute => "rmdir_wwwroot") 
 end
 
-wt_base_firewall 'CAMWS' do
+wt_base_firewall 'CAMAUTHWS' do
 	protocol "TCP"
-	port 81
+	port 8081
     action [:open_port]
 end
 
@@ -74,15 +74,16 @@ if deploy_mode?
   end
   
   template "#{install_dir}\\web.config" do
-  	source "web.config.erb"  
+  	source "auth.web.config.erb"  
 	variables(
 		:db_server => node['wt_cam']['db_server'],
-		:db_name   => node['wt_cam']['db_name']
+		:db_name   => node['wt_cam']['db_name'],
+                :tokenExpirationMinutes => node['wt_cam']['tokenExpirationMinutes']
   	)	
   end
   
-  iis_app "CAM" do
-  	path "/Cam"
+  iis_app "AUTH" do
+  	path "/Auth"
   	application_pool app_pool
   	physical_path "#{install_dir}"
   	action :add
