@@ -223,7 +223,7 @@
             "sched_host": "fmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {
-            "monitor_service_addr": "fds01.staging.dmz"
+            "monitor_hostname": "fds01.staging.dmz"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 

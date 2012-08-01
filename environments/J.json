@@ -194,7 +194,7 @@
             "sched_host": "jmasterdb01.englab.webtrends.corp"
         }, 
         "wt_messaging_monitoring": {
-            "monitor_service_addr": "jds01.staging.dmz"
+            "monitor_hostname": "jds01.staging.dmz"
         }, 
         "wt_monitoring": {
             "graphite_flush_enabled": "true", 
