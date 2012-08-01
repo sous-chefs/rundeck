@@ -13,13 +13,13 @@
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
         "wt_realtimeapi": "= 0.0.17", 
+        "wt_search": "= 0.0.28", 
         "wt_storm": "= 1.0.20", 
         "wt_streamingapi": "= 0.0.16", 
         "wt_streamingauditor": "= 0.0.7", 
         "wt_streamingcollection": "= 0.0.19", 
         "wt_streaminglogreplayer": "= 0.0.15", 
-		"wt_sync": "= 0.0.21",
-		"wt_search": "= 0.0.28",
+        "wt_sync": "= 0.0.21", 
         "zookeeper": "= 1.0.4"
     }, 
     "default_attributes": {}, 
@@ -170,12 +170,12 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt144/23421:id/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
-            "help_link": "http://help-release.itl.webtrends.corp/{0}/analytics10/", 
+            "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
             "hmap_url": "", 
             "ondemand_base_domain": "fod.webtrends.com", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true", 
-            "reinvigorate_tracking_code": "fv6b7-9x820v8963",              
+            "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
             "show_profiling": "true", 
             "tagbuilder_download_url": "https://stb.webtrends.com", 
             "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
@@ -215,7 +215,7 @@
             }, 
             "brandedaccountid": "20578,20663", 
             "cacheenabled": "True", 
-            "cachename": "F_DX",             
+            "cachename": "F_DX", 
             "rest_base_uri": "https://fdx.webtrends.com/v3"
         }, 
         "wt_masterdb": {
@@ -246,7 +246,7 @@
             "rta_host": "frta01.staging.dmz"
         }, 
         "wt_search": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/23495:id/Search.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/23495:id/Search.zip", 
             "search_hostname": "fsearch.staging.dmz"
         }, 
         "wt_sync": {

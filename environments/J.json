@@ -36,12 +36,12 @@
         "hbase": {
             "data_center_id": "Lab", 
             "location": "shdata.staging.dmz", 
+            "pod_id": "J", 
             "site": {
                 "zookeeper_clientport": "", 
                 "zookeeper_quorum": ""
             }, 
-            "thrift_port": 9090,
-			"pod_id": "J"
+            "thrift_port": 9090
         }, 
         "java": {
             "install_flavor": "oracle", 
@@ -148,12 +148,12 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt144/.lastSuccessful/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
-            "help_link": "http://help-release.itl.webtrends.corp/{0}/analytics10/", 
+            "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
             "hmap_url": "", 
             "ondemand_base_domain": "jod.englab.webtrends.corp", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true", 
-            "reinvigorate_tracking_code": "fv6b7-9x820v8963",             
+            "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
             "show_profiling": "true", 
             "tagbuilder_download_url": "https://stb.webtrends.com", 
             "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
@@ -186,8 +186,8 @@
                 "streamingServiceRoot": "https://jdx.englab.webtrends.corp/StreamingServices_v3/"
             }, 
             "brandedaccountid": "20578,20663", 
-            "cachename": "J_DX",
-	        "rest_base_uri": "https://jdx.englab.webtrends.corp/v3"
+            "cachename": "J_DX", 
+            "rest_base_uri": "https://jdx.englab.webtrends.corp/v3"
         }, 
         "wt_masterdb": {
             "master_host": "jmasterdb01.englab.webtrends.corp", 
@@ -210,12 +210,12 @@
             "rta_host": "jrta01.englab.webtrends.corp"
         }, 
         "wt_search": {
-			"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/.lastSuccessful/Search.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/.lastSuccessful/Search.zip", 
             "search_hostname": "jsearch.englab.webtrends.corp"
         }, 
-		"wt_sync": {
-			"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/.lastSuccessful/SyncService.zip"
-		},
+        "wt_sync": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/.lastSuccessful/SyncService.zip"
+        }, 
         "wt_usagedb": {
             "schedulerdb_host": "jusagedb01.englab.webtrends.corp", 
             "usage_host": "jusagedb01.englab.webtrends.corp"
