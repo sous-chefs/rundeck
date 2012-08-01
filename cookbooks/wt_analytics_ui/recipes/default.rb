@@ -108,7 +108,7 @@ if deploy_mode?
 			:cass_thrift_port     => node['cassandra']['cassandra_thrift_port'],
 
 			# app setting section
-			:rest_base_uri           => node['wt_analytics_ui']['rest_base_uri'],
+			:rest_base_uri           => node['wt_dx']['rest_base_uri'],
 			:ondemand_base_domain    => node['wt_analytics_ui']['ondemand_base_domain'],
 			:fb_app_clientid         => node['wt_analytics_ui']['fb_app_clientid'],
 			:fb_app_clientsecret     => node['wt_analytics_ui']['fb_app_clientsecret'],

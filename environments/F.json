@@ -175,8 +175,7 @@
             "ondemand_base_domain": "fod.webtrends.com", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true", 
-            "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
-            "rest_base_uri": "https://fdx.webtrends.com/v3", 
+            "reinvigorate_tracking_code": "fv6b7-9x820v8963",              
             "show_profiling": "true", 
             "tagbuilder_download_url": "https://stb.webtrends.com", 
             "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
@@ -216,17 +215,15 @@
             }, 
             "brandedaccountid": "20578,20663", 
             "cacheenabled": "True", 
-            "cachename": "F_DX", 
-            "endpoint_address": "net.tcp://fsearch.staging.dmz:8096/SearchService/Search", 
-            "website_name": "DX", 
-            "website_port": "80"
+            "cachename": "F_DX",             
+            "rest_base_uri": "https://fdx.webtrends.com/v3"
         }, 
         "wt_masterdb": {
             "master_host": "fmasterdb01.staging.dmz", 
             "sched_host": "fmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {
-            "monitor_service_addr": "serviceBusMonitoring@fds01.staging.dmz"
+            "monitor_service_addr": "fds01.staging.dmz"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
@@ -249,9 +246,8 @@
             "rta_host": "frta01.staging.dmz"
         }, 
         "wt_search": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/23495:id/Search.zip", 
-            "search_hostname": "fsearch.staging.dmz", 
-            "search_service": "net.tcp://fsearch.staging.dmz:8096/Search/Service"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/23495:id/Search.zip",
+            "search_hostname": "fsearch.staging.dmz"
         }, 
         "wt_sync": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/23477:id/SyncService.zip"
