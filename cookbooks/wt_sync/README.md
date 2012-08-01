@@ -15,6 +15,7 @@ Attributes
 * `node['cassandra']['cassandra_meta_column']` - Meta column for cassandra to use
 * `node['cassandra']['cassandra_report_column']` - Report column for cassandra to use
 * `node['cassandra']['cassandra_thrift_port']` - Thrift port for cassandra to use
+* `node['memcached']['cache_hosts']` - An array of all memcache boxes
 * `node['wt_common']['install_dir_windows']` - Base location for all windows products to be installed(ie. "D:\\wrs")
 * `node['wt_sync']['download_url']` - Http path to where the zip file to deploy is located
 * `node['wt_masterdb']['master_host']` - Host name of masterdb
