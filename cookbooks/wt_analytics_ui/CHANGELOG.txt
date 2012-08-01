@@ -1,8 +1,10 @@
 Future
 	Change IIS site bindings
 	General IIS configurations (i.e. compression)
+	Search alternate/current environment for cache_hosts
 
 0.0.24
+	Changed monitor_service_addr to monitor_hostname
 	Changed rest_uri to be under wt_dx rather then wt_analytics_ui
 	Removed rest_uri from default attributes
 

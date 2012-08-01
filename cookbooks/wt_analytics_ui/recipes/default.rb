@@ -126,9 +126,9 @@ if deploy_mode?
 			:proxy_address => node['wt_analytics_ui']['proxy_address'],
 
 			# other settings
-			:custom_errors        => node['wt_analytics_ui']['custom_errors'],
-			:search_host          => node['wt_search']['search_hostname'],
-			:monitor_service_addr => node['wt_messaging_monitoring']['monitor_service_addr']
+			:custom_errors => node['wt_analytics_ui']['custom_errors'],
+			:search_host   => node['wt_search']['search_hostname'],
+			:monitor_host  => node['wt_messaging_monitoring']['monitor_hostname']
 		)
 	end
 
