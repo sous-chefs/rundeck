@@ -167,7 +167,7 @@
             "bba_domain": "fbba.webtrends.com", 
             "cache_region": "F_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt144/23957:id/AnalyticsUI.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt144/24124:id/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
             "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
