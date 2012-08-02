@@ -178,6 +178,10 @@
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
+		"webpi": {
+			"url": "http://chefclient02.devops.dmz/windows/webpi/webpicmd_x86.zip",
+			"xmlpath": "http://chefclient02.devops.dmz/windows/webpi/WebProductList.xml"
+		},
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "cache_host": [
