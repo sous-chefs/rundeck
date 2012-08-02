@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-default[:zookeeper][:version] = "3.3.5"
+default[:zookeeper][:version] = "3.3.6"
 default[:zookeeper][:download_url] = "http://mirror.uoregon.edu/apache/zookeeper/zookeeper-#{node[:zookeeper][:version]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz"
 
 default[:zookeeper][:install_dir] = "/opt/zookeeper"
