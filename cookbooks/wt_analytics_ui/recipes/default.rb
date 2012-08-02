@@ -31,10 +31,6 @@ directory install_dir do
 	recursive true
 end
 
-iis_site 'Default Web Site' do
-	action [:stop, :delete]
-end
-
 iis_pool app_pool_name do
 	pipeline_mode :Integrated
 	runtime_version "4.0"

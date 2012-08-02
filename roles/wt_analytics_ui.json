@@ -12,7 +12,7 @@
 	"recipe[ms_dotnet4]",
 	"recipe[ms_messagequeue]",
 	"recipe[wt_base::msdtc]",
-	"role[iis]",
+	"recipe[wt_analytics_ui::iis]",
 	"recipe[wt_analytics_ui]"
   ],
   "env_run_lists": {
