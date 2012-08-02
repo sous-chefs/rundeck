@@ -10,7 +10,7 @@
 
 if deploy_mode?
   include_recipe "ms_dotnet4::regiis"
-  include_recipe "wt_cam::uninstall" 
+  include_recipe "wt_cam::uninstall_auth" 
 end
 
 #Properties
@@ -69,7 +69,7 @@ end
 
 if deploy_mode?
   windows_zipfile install_dir do
-    source node['wt_cam']['download_url']
+    source node['wt_cam']['auth_download_url']
     action :unzip	
   end
   
