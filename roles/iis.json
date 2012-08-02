@@ -1,19 +1,18 @@
 {
   "name": "iis",
-  "default_attributes": {
-    "iis": {
-      "accept_eula": true
-    }
-  },
+  "default_attributes": {},
   "json_class": "Chef::Role",
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[iis]",
-    "recipe[iis::mod_urlrewrite]"
+    "recipe[iis]"
   ],
-  "description": "Microsoft IIS",
+  "description": "Microsoft IIS Server",
   "chef_type": "role",
   "override_attributes": {
+	 "iis": {
+      "accept_eula": true,
+	  "components": "StaticContent,DefaultDocument,HTTPErrors,HTTPLogging,RequestMonitor,RequestFiltering,StaticContentCompression,IISManagementConsole"
+    }
   }
 }
