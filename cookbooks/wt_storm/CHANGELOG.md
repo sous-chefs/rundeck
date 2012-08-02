@@ -1,3 +1,6 @@
+# 1.0.33
+* Updated seed.data file
+
 # 1.0.32
 * Added metadata-loader
 
