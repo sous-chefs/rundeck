@@ -1,6 +1,12 @@
 ## Future
 * Unknown
 
+## 1.0.9
+* Separated Auth service from the Cam
+* Updated cam cookbook and web.config template
+* Added web.config template for Auth
+* Added install and uninstall recipes for Auth
+
 ## 1.0.8
 * Web.config template again - format of connection string changed
 
