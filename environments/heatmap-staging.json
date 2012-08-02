@@ -15,7 +15,7 @@
         "wt_streamingauditor": "= 0.0.7", 
         "wt_streamingcollection": "= 0.0.21", 
         "wt_streaminglogreplayer": "= 0.0.17", 
-        "zookeeper": "= 1.0.4"
+        "zookeeper": "= 1.0.6"
     }, 
     "default_attributes": {}, 
     "description": "Webtrends Heatmap Staging Environment", 
