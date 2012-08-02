@@ -43,7 +43,16 @@ template "/usr/bin/php-fastcgi" do
 end
 
 service "php-fastcgi" do
-  supports :status => false, :restart => true, :reload => true
+  supports :status => false, :restart => false, :reload => false
   status_command "ps aux | grep [p]hp5-cgi"
   action :start
 end
+
+cookbook_file "/etc/php5/cli/php.ini" do
+  source "php.ini"
+  owner "root"
+  group "root"
+  mode 00644
+  notifies :restart, resources(:service => "php-fastcgi")
+end
+
