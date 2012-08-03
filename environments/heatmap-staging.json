@@ -245,6 +245,13 @@
             "environment": "heatmap-staging", 
             "pod": "V"
         }, 
+        "wt_streamingconfigservice": {
+            "camConnString": "jdbc:sqlserver://hcamdb01.staging.dmz:1433;databaseName=CAM;user=sa;password=cad890;",
+            "masterConnString": "jdbc:sqlserver://jmasterdb01.englab.webtrends.corp:1433;databaseName=wtMaster;user=streamingconfig;password=h4Qk5lhQARHEEgdiKqAw;",
+            "includeUnmappedAnalyticsIds": "true",
+            "port": "8080",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/24707:id/streaming-configservice-bin.tar.gz"
+        },
         "wt_realtimeapi": {
             "port": 8082,
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/23935:id/realtimeapi-bin.tar.gz"
