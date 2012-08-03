@@ -113,6 +113,7 @@ iis_pool app_pool_name do
 	pipeline_mode :Integrated
 	runtime_version "4.0"
 	private_mem node['wt_analytics_ui']['app_pool_private_memory']
+	max_proc 1
 	pool_username ui_user
 	pool_password ui_pass
 	action [:add, :config]
