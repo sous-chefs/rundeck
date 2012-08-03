@@ -3,6 +3,9 @@ Future
 	Search alternate/current environment for cache_hosts
 	Figure work around for deploying on servers without Internet access
 
+0.0.26
+	Merged IIS config into default.rb
+
 0.0.25
 	Added general IIS configuration
 

@@ -15,7 +15,6 @@
 	"role[iis]",
 	"recipe[iis::mod_compress_dynamic]",
 	"recipe[iis::mod_aspnet]",
-	"recipe[wt_analytics_ui::iis]",
 	"recipe[wt_analytics_ui]"
   ],
   "env_run_lists": {
