@@ -47,7 +47,22 @@ recursive true
 action :create
 end
 
-def updateTemplates (install_dir, node)
+if ENV["deploy_build"] == "true" then 
+    log "The deploy_build value is true so we will grab the tar ball and install"
+
+    # download the application tarball
+    remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+    source download_url
+    mode 00644
+    end
+
+    # uncompress the application tarball into the install directory
+    execute "tar" do
+    user  "root"
+    group "root" 
+    cwd install_dir
+    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+    end
 
     log "Updating the template file"
 
@@ -77,28 +92,9 @@ def updateTemplates (install_dir, node)
             :java_class => "com.webtrends.streaming.configservice.ConfigServiceDaemon",
             :java_jmx_port => "",
             :java_opts => ""
-    })
-    end	
-end
-
-if ENV["deploy_build"] == "true" then 
-    log "The deploy_build value is true so we will grab the tar ball and install"
-
-    # download the application tarball
-    remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-    source download_url
-    mode 00644
+       })
     end
 
-    # uncompress the application tarball into the install directory
-    execute "tar" do
-    user  "root"
-    group "root" 
-    cwd install_dir
-    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-    end
-
-    updateTemplates(install_dir, node)
 
     # delete the application tarball
     execute "delete_install_source" do
@@ -117,6 +113,4 @@ if ENV["deploy_build"] == "true" then
         :user => user
     })
     end
-else
-    updateTemplates(install_dir, node)
 end
