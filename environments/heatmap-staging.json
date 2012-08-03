@@ -259,7 +259,7 @@
                 "realtime_topology_writing_bolt_count": 96, 
                 "topology_override_max_spout_pending": 3000, 
                 "topology_override_msg_timeout_seconds": 120,
-                "dcsid_whitelist": ""
+                "dcsid_whitelist": "dcs067c7h10000k3k5zmvwaj5_8c4n,dcs08qllk7dv0h04wzra57hqa_6h6w,dcs0hhch6100008q5kuq6r1on_4f5k,dcs0k3bfw9bv0h43mmbfafa4r_3d3d,dcs0kruhf6dv0hwgnqv6b8b8m_6d3l,dcs0oy2sj9dv0h4bkmkv4xnvu_6k3z,dcs0s2y5510000w8o91zxsvnn_5e6s,dcs19pwlvvz5bdigu9pwxx9l2_6y3o,dcs1gyhv610000k3owahtrynn_3n4l,dcs1qap5e10000kflmi2xhunn_1v1d,dcs245tu510000kf5y4ratynn_7u7b,dcs29w0rnvz5bdnctay4sq3jc_3u3s,dcs2b2yk01000000wkh4yz0on_8v6g,dcs34vb8400000kjwxl69ttnn_7n2v,dcs3nbznq10000gk24ak431on_8p4c,dcs43l8ue5dv0hc9cttwihinf_9n4v,dcs47s6qjvz5bdnkeht20izhr_5l4t,dcs4jxi4zuz5bdn8i3a7617hw_9f7j,dcs4ns4a46bv0hkbj2mbl4kz4_2f9c,dcs4xi0pgvz5bdqcujokwj2l2_3p8t,dcs500j24vz5bdezn8993kakn_3h5n,dcs5aiq8l000000s1oljc3vnn_4j4o,dcs5ayx17wz5bdjrnzzdbyutq_5z7k,dcs5b71nmuz5bd05xhq8bq4q9_4k9u,dcs5c1q1k100000oasrcvxny9_9y7p,dcs5flvyp000000spy9crd1on_7n1v,dcs5k9hvz00000oqsyiqwpznn_7k1j,dcs5o60j5wz5bdfyozcs4bp6l_8c6z,dcs5oiviquz5bdmb1vby0bq0m_8d3h,dcs5wls3mvz5bdrbnkmz3vbia_8y4l,dcs679u7gvz5bdvketfrwpqz4_3d8d,dcs710mic000008qpbtjsi0on_2b6q,dcs74v7l7wz5bdaowgr5drbrw_3s3j,dcs8ozrta00000golpansoxnn_4l8x,dcs92jn69wz5bdvu3mscmc99c_5f7f,dcs9bqd2110000shw6eext1on_5y2d,dcsae9ion10000g0v03g40wnn_8u6e,dcsazrqn910000g0nuouqtznn_1u4f,dcsb72n2r10000ch1ul65xznn_3s1w"
             }, 
             "streaming_topology": {
                 "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0", 
