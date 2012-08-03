@@ -1,3 +1,7 @@
+# 1.0.34
+* Updated cookbook to support independent dcsid_whitelist parameters in
+  the realtime and streaming topologies
+
 # 1.0.33
 * Updated seed.data file
 

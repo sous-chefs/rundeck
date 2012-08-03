@@ -45,7 +45,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :topology_override_msg_timeout_seconds   => node['wt_storm']['realtime_topology']['topology_override_msg_timeout_seconds'],
     # kafka consumer settings
     :kafka_consumer_topic                 => node['wt_storm']['realtime_topology']['kafka_consumer_topic'],
-    :kafka_dcsid_whitelist                => node['wt_storm']['dcsid_whitelist'],
+    :kafka_dcsid_whitelist                => node['wt_storm']['realtime_topology']['dcsid_whitelist'],
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-realtime',
     :kafka_zookeeper_timeout_milliseconds => 1000000,
