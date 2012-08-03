@@ -77,13 +77,13 @@ extensions = [
 	'.woff'
 ]
 
-iis_config "/section:requestfiltering /fileExtensions.allowunlisted:false" do
+iis_config "/section:system.webServer/security/requestfiltering /fileExtensions.allowunlisted:false" do
 	action :config
 end
 
-#iis_config "/section:requestfiltering /fileExtensions.applyToWebDAV:false" do
-#	action :config
-#end
+iis_config "/section:system.webServer/security/requestfiltering /fileExtensions.applyToWebDAV:false" do
+	action :config
+end
 
 extensions.each do |ext|
 	iis_config "Allow Extensions" do
