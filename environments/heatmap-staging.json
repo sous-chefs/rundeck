@@ -250,7 +250,6 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/23935:id/realtimeapi-bin.tar.gz"
         }, 
         "wt_storm": {
-            "dcsid_whitelist": "", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/23934:id/streaming-analysis-bin.tar.gz", 
             "realtime_topology": {
                 "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0", 
@@ -259,7 +258,8 @@
                 "realtime_topology_row_key_bolt_count": 6, 
                 "realtime_topology_writing_bolt_count": 96, 
                 "topology_override_max_spout_pending": 3000, 
-                "topology_override_msg_timeout_seconds": 120
+                "topology_override_msg_timeout_seconds": 120,
+                "dcsid_whitelist": ""
             }, 
             "streaming_topology": {
                 "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0", 
@@ -267,7 +267,8 @@
                 "streaming_topology_in_session_bolt_count": 1, 
                 "streaming_topology_parsing_bolt_count": 50, 
                 "streaming_topology_validation_bolt_count": 10, 
-                "streaming_topology_zmq_emitter_bolt_count": 1
+                "streaming_topology_zmq_emitter_bolt_count": 1,
+                "dcsid_whitelist": ""
             }
         }, 
         "wt_streamingapi": {
