@@ -38,8 +38,17 @@ recursive true
 action :create
 end
 
-# create the install directory
+# create the bin directory
 directory "#{install_dir}/bin" do
+owner "root"
+group "root"
+mode 00755
+recursive true
+action :create
+end
+
+# create the conf directory
+directory "#{install_dir}/conf" do
 owner "root"
 group "root"
 mode 00755
@@ -90,7 +99,7 @@ if ENV["deploy_build"] == "true" then
             :java_home => java_home,
             :user => user,
             :java_class => "com.webtrends.streaming.configservice.ConfigServiceDaemon",
-            :java_jmx_port => "",
+            :java_jmx_port => 9999,
             :java_opts => ""
        })
     end
