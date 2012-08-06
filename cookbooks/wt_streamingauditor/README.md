@@ -18,6 +18,8 @@ Installs Streaming Auditor Service
 * roundtrip_token - The old CAM token used to connect up to a SAPI socket to monitor roundtrip events
 * roundtrip_tagserver_url - The tag server URL to send audit events to. Defaults to "http://statse.webtrendslive.com"
 * roundtrip_scs_url - The SCS URL to send audit events to. Defaults to "http://scs.webtrends.com".
+* roundtrip_tagserver_timeout - The timeout (minutes) to wait for receiving an event back before erroring out. Defaults to 15 minutes. 
+* roundtrip_scs_timeout - The timeout (minutes) to wait for receiving an event back before erroring out. Defaults to 2 minutes. 
 
 * wt_realtime_hadoop:datacenter - The datacenter this is deployed in
 * wt_realtime_hadoop:pod - The pod this is deployed in
