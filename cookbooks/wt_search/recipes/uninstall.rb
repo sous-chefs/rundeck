@@ -29,7 +29,7 @@ end
 # delays to give the service plenty of time to actually stop
 ruby_block "wait" do
 	block do
-		sleep(300)		
+		sleep(480)		
 	end
 	action :create
 end
