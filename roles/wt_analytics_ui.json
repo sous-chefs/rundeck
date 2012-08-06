@@ -13,6 +13,8 @@
 	"recipe[ms_messagequeue]",
 	"recipe[wt_base::msdtc]",
 	"role[iis]",
+	"recipe[iis::mod_compress_dynamic]",
+	"recipe[iis::mod_aspnet]",
 	"recipe[wt_analytics_ui]"
   ],
   "env_run_lists": {

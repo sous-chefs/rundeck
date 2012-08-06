@@ -45,7 +45,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :topology_override_msg_timeout_seconds   => node['wt_storm']['realtime_topology']['topology_override_msg_timeout_seconds'],
     # kafka consumer settings
     :kafka_consumer_topic                 => node['wt_storm']['realtime_topology']['kafka_consumer_topic'],
-    :kafka_dcsid_whitelist                => node['wt_storm']['dcsid_whitelist'],
+    :kafka_dcsid_whitelist                => node['wt_storm']['realtime_topology']['dcsid_whitelist'],
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-realtime',
     :kafka_zookeeper_timeout_milliseconds => 1000000,
@@ -84,4 +84,21 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/
 	:home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}",
     :java_home => node['java']['java_home']
   )
+end
+
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/seed.data" do
+  source "seed.data"
+  mode "0644"
+end
+
+# template out the metadata loader
+template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/metadata-loader" do
+  source  "metadata-loader.erb"
+  owner "storm"
+  group "storm"
+  mode  00755
+  variables({
+    :home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}",
+    :java_home => node['java']['java_home']
+  })
 end

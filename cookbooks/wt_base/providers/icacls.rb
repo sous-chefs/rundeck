@@ -1,9 +1,9 @@
 #
-# Author:: David Dvorak (<david.dvorak@webtrends.com>)
 # Cookbook Name:: wt_base
 # Provider:: icacls
+# Author:: David Dvorak (<david.dvorak@webtrends.com>)
 #
-# Copyright:: 2012, Webtrends Inc.
+# Copyright 2012, Webtrends Inc.
 #
 # All rights reserved - Do Not Redistribute
 #

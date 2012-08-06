@@ -12,10 +12,10 @@
         "wt_cam": "= 1.0.8", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
-        "wt_realtimeapi": "= 0.0.18", 
-        "wt_storm": "= 1.0.31", 
-        "wt_streamingapi": "= 0.0.18", 
-        "wt_streamingauditor": "= 0.0.7", 
+        "wt_realtimeapi": "= 0.0.19", 
+        "wt_storm": "= 1.0.32", 
+        "wt_streamingapi": "= 0.0.20", 
+        "wt_streamingauditor": "= 0.0.8", 
         "wt_streamingcollection": "= 0.0.21", 
         "wt_streaminglogreplayer": "= 0.0.18", 
         "zookeeper": "= 1.0.4"
@@ -192,7 +192,7 @@
         "wt_cam": {
             "cam_server_url": "http://bcam01.staging.dmz/camservice", 
             "db_server": "bcamdb01.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/20989:id/CAM.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/23378:id/CAM.zip"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -248,7 +248,7 @@
             "pod": "B"
         }, 
         "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/21003:id/realtimeapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/23935:id/realtimeapi-bin.tar.gz", 
             "port": 8082
         }, 
         "wt_rta": {
@@ -260,7 +260,7 @@
         }, 
         "wt_storm": {
             "dcsid_whitelist": "", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/23055:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/23934:id/streaming-analysis-bin.tar.gz",
             "realtime_topology": {
                 "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0", 
                 "realtime_topology_dimensions_bolt_count": 6, 
@@ -280,13 +280,13 @@
             }
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/22941:id/streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/24435:id/streamingapi-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingauditor": {
             "roundtrip_scs_url": "http://bscs01.staging.dmz:8080",
 	    "roundtrip_token": "9019769dfb544c94a31e56194d316968",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/23284:id/streamingauditor-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/23540:id/streamingauditor-bin.tar.gz"
         }, 
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/23167:id/streamingcollection-bin.tar.gz", 
