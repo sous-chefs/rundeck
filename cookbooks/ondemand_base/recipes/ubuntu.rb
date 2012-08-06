@@ -85,7 +85,7 @@ else
 	log "skipping nagios::client"
 end
 
-# Sets up runeck private keys
+# Sets up rundeck private keys
 include_recipe "rundeck"
 
 # installs vim
@@ -107,7 +107,7 @@ package "libshadow-ruby1.8"
 
 # Install package used by common Java tools
 %w{ libxtst6 libxtst-dev }.each do |pkg|
-  package pkg
+	package pkg
 end
 
 #Pull authorization data from the authorization data bag
@@ -134,15 +134,15 @@ end
 
 # create the webtrends service account and group
 group "webtrends" do
-  gid 1993
+	gid 1993
 end
 
 user "webtrends" do
-  uid 1993
-  gid "webtrends"
-  shell "/bin/false"
-  comment "Webtrends local service account"
-  password "*"
+	uid 1993
+	gid "webtrends"
+	shell "/bin/false"
+	comment "Webtrends local service account"
+	password "*"
 end
 
 # Create a sudoers file for devAccess group if the system has ea_server role
@@ -155,7 +155,7 @@ if node.run_list.include?("role[ea_server]")
 		action :create
 	end
 else
-  # Make sure the sudo file is gone if the system is not an EA system
+	# Make sure the sudo file is gone if the system is not an EA system
 	file "/etc/sudoers.d/devAccess" do
 		action :delete
 	end

@@ -54,9 +54,6 @@ include_recipe "ntp"
 # configures /etc/resolv.conf
 include_recipe "resolver"
 
-# Sets up runeck private keys
-include_recipe "rundeck"
-
 #Add the Webtrends Yum repo
 node['ondemand_base']['yum'].each do |yumrepo|
 	yum_repository yumrepo['name'] do
@@ -69,11 +66,11 @@ end
 
 #Setup NRPE to run sudo w/o a password
 file "/etc/sudoers.d/nagios" do
-  owner "root"
-  group "root"
-  mode 00440
-  content "nagios       ALL=NOPASSWD: ALL"
-  action :create
+	owner "root"
+	group "root"
+	mode 00440
+	content "nagios	ALL=NOPASSWD: ALL"
+	action :create
 end
 
 # install nagios from package only
@@ -82,6 +79,9 @@ if node['nagios']['client']['install_method'] == "package" and node['nagios']['c
 else
 	log "skipping nagios::client"
 end
+
+# Sets up rundeck private keys
+include_recipe "rundeck"
 
 # installs vim
 include_recipe "vim"
@@ -133,6 +133,19 @@ if auth_config['alternate_user']
 	end
 end
 
+# create the webtrends service account and group
+group "webtrends" do
+	gid 1993
+end
+
+user "webtrends" do
+	uid 1993
+	gid "webtrends"
+	shell "/bin/false"
+	comment "Webtrends local service account"
+	password "*"
+end
+
 # Create a sudoers file for devAccess group if the system has ea_server role
 if node.run_list.include?("role[ea_server]")
 	file "/etc/sudoers.d/devAccess" do
@@ -143,7 +156,7 @@ if node.run_list.include?("role[ea_server]")
 		action :create
 	end
 else
-  # Make sure the sudo file is gone if the system is not an EA system
+	# Make sure the sudo file is gone if the system is not an EA system
 	file "/etc/sudoers.d/devAccess" do
 		action :delete
 	end
