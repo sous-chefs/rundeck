@@ -43,7 +43,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     
     # kafka consumer settings
     :kafka_consumer_topic                 => node['wt_storm']['streaming_topology']['kafka_consumer_topic'],
-    :kafka_dcsid_whitelist                => node['wt_storm']['dcsid_whitelist'],
+    :kafka_dcsid_whitelist                => node['wt_storm']['streaming_topology']['dcsid_whitelist'],
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-streaming',
     :kafka_zookeeper_timeout_milliseconds => 1000000,

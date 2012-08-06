@@ -141,7 +141,7 @@ zkclient-0.1.jar
     link "/home/storm/.storm" do
       to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
     end
-
+    
     directory install_tmp do
       action :delete
       recursive true

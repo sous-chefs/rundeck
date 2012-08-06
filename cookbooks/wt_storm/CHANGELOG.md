@@ -1,3 +1,13 @@
+# 1.0.34
+* Updated cookbook to support independent dcsid_whitelist parameters in
+  the realtime and streaming topologies
+
+# 1.0.33
+* Updated seed.data file
+
+# 1.0.32
+* Added metadata-loader
+
 # 1.0.31
 * Added ANTLR libs
 
