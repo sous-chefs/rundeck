@@ -6,7 +6,7 @@
     <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core" />
   </configSections>
   <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>"
-    MetaDataColumnFamily="<%= @metadata_column %>" UseLegacy="false">
+    MetaDataColumnFamily="<%= @metadata_column %>" ThriftPort="<%= @cass_thrift_port %>" UseLegacy="false">
     <Nodes>
       <clear />
       <add Hostname="<%= @cass_host %>" />
