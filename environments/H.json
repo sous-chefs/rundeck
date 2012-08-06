@@ -208,6 +208,13 @@
         "wt_configdistrib": {
             "dcsid_url": "http://jcd01.englab.webtrends.corp:8097/config/dcsid2account"
         }, 
+        "wt_streamingconfigservice": {
+            "camConnString": "jdbc:sqlserver://hcamdb01.staging.dmz:1433;databaseName=CAM;user=sa;password=cad890;",
+            "masterConnString": "jdbc:sqlserver://jmasterdb01.englab.webtrends.corp:1433;databaseName=wtMaster;user=streamingconfig;password=h4Qk5lhQARHEEgdiKqAw;",
+            "includeUnmappedAnalyticsIds": "true",
+            "port": "8080",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/24764:id/streaming-configservice-bin.tar.gz"
+        },
         "wt_heatmaps": {
             "config_distrib": "jcd01.englab.webtrends.corp:8097", 
             "heatmap_reducers": -1
