@@ -33,7 +33,6 @@ default['wt_analytics_ui']['proxy_enabled'] = 'true'
 default['wt_analytics_ui']['proxy_address'] = 'http://pdxproxy.netiq.dmz:8080'
 
 # app settings section
-default['wt_analytics_ui']['rest_base_uri'] = 'https://ws.webtrends.com/v3'
 default['wt_analytics_ui']['ondemand_base_domain'] = 'ondemand.webtrends.com'
 default['wt_analytics_ui']['beta'] = 'false'
 default['wt_analytics_ui']['branding'] = 'Webtrends'

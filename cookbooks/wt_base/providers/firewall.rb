@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: wt_base
 # Provider:: firewall
-# Author: Kendrick Martin
+# Author:: Kendrick Martin
 #
 # Copyright 2011, Webtrends Inc.
 #

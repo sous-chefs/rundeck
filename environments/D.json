@@ -7,7 +7,7 @@
         "ondemand_base": "= 1.7.3", 
         "storm": "= 1.0.16", 
         "windows": "= 1.2.12", 
-        "wt_analytics_ui": "= 0.0.23", 
+        "wt_analytics_ui": "= 0.0.26", 
         "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 0.0.2", 
@@ -165,16 +165,15 @@
             "bba_domain": "dbba.webtrends.com", 
             "cache_region": "D_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt144/23421:id/AnalyticsUI.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt144/24197:id/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
-            "help_link": "http://help-release.itl.webtrends.corp/{0}/analytics10/", 
+            "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
             "hmap_url": "", 
             "ondemand_base_domain": "dod.webtrends.com", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true", 
             "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
-            "rest_base_uri": "https://ddx.webtrends.com/v3", 
             "show_profiling": "true", 
             "tagbuilder_download_url": "https://stb.webtrends.com", 
             "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
@@ -207,6 +206,7 @@
             "cacheenabled": "True", 
             "cachename": "D_DX", 
             "endpoint_address": "net.tcp://dsearch.staging.dmz:8096/SearchService/Search", 
+            "rest_base_uri": "https://ddx.webtrends.com/v3", 
             "website_name": "DX", 
             "website_port": "80"
         }, 
@@ -215,7 +215,7 @@
             "sched_host": "dmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {
-            "monitor_service_addr": "serviceBusMonitoring@dds01.staging.dmz"
+            "monitor_hostname": "dds01.staging.dmz"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
@@ -240,6 +240,9 @@
         "wt_search": {
             "search_hostname": "dsearch.staging.dmz", 
             "search_service": "net.tcp://dsearch.staging.dmz:8096/Search/Service"
+        }, 
+        "wt_sync": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/24176:id/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "dusagedb01.staging.dmz", 

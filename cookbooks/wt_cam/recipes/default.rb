@@ -77,8 +77,7 @@ if deploy_mode?
   	source "web.config.erb"  
 	variables(
 		:db_server => node['wt_cam']['db_server'],
-		:db_name   => node['wt_cam']['db_name'],
-        :tokenExpirationMinutes => node['wt_cam']['tokenExpirationMinutes']
+		:db_name   => node['wt_cam']['db_name']
   	)	
   end
   
