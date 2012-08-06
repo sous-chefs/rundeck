@@ -3,7 +3,13 @@
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
 
-## 1.7.8
+## 1.7.11
+ * Fixing path of log
+
+## 1.7.10
+ * Adding -L to create log and redirecting to nul
+
+## 1.7.9
  * Changing redirect from nul to log 
  
 ## 1.7.8
