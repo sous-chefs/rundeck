@@ -3,6 +3,8 @@
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
 
+## 1.7.12
+ * Added 'webtrends' user to centos
 ## 1.7.11
  * Fixing path of log
 
