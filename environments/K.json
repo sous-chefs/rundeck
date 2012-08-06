@@ -12,8 +12,8 @@
             }, 
             "sudo": {
                 "groups": [
-                    "WTENGLAB\\\\domain-admins", 
-                    "WTENGLAB\\\\k.admins"
+                    "domain-admins", 
+                    "k.admins"
                 ], 
                 "include_sudoers_d": true, 
                 "passwordless": false, 

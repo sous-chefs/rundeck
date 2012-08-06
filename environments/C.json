@@ -4,7 +4,7 @@
         "java": "= 1.5.0", 
         "kafka": "= 1.0.5", 
         "nagios": "= 1.3.0", 
-        "ondemand_base": "= 1.7.3", 
+        "ondemand_base": "= 1.7.12", 
         "storm": "= 1.0.16", 
         "windows": "= 1.2.12", 
         "wt_analytics_ui": "= 0.0.26", 
