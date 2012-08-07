@@ -14,7 +14,7 @@
         "wt_realtime_hadoop": "= 1.0.2",
         "wt_streamingauditor": "= 0.0.7",
         "wt_streamingcollection": "= 0.0.21", 
-        "wt_streaminglogreplayer": "= 0.0.17", 
+        "wt_streaminglogreplayer": "= 0.0.19", 
         "zookeeper": "= 1.0.6"
     }, 
     "default_attributes": {}, 
