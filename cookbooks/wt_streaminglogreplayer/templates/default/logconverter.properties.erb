@@ -10,6 +10,9 @@ kafkaTopic=<%=node[:wt_streaminglogreplayer][:kafka_topic]%>
 deleteLogs=<%=node[:wt_streaminglogreplayer][:delete_logs]%>
 # How many minutes to wait before a local_lock file is considered to be "lost" and thus put back in the process
 lock_check_period=<%=node[:wt_streaminglogreplayer][:lock_check_period]%>
+# When processing events in a log, the process might get ahead of the "relative time" so we need to wait until the next second comes about. 
+# This setting (milliseconds) determines how long we sleep before checking to see if "time" has caught up to the next second
+logtime.catchup=<%=node[:wt_streaminglogreplayer][:logtime_catchup]%>
 # The number of threads for managing log files (The number should be the number of files to handle + 2 for supporting threads)
 thread.pool.size=<%=node[:wt_streaminglogreplayer][:thread_pool_size]%>
 # The events time regular expression taken from the log file name
