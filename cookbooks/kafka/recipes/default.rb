@@ -85,9 +85,9 @@ tarball = "kafka-#{node[:kafka][:version]}.tar.gz"
 download_file = "#{node[:kafka][:download_url]}/#{tarball}"
 
 remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-    source download_file
-    mode 00644
-    action :create_if_missing
+  source download_file
+  mode 00644
+  action :create_if_missing
 end
 
 directory install_dir do
@@ -141,7 +141,7 @@ while i < zookeeper_pairs.size do
   i += 1
 end
 
-%w[server.properties consumer.properties producer.properties zookeeper.properties log4j.properties].each do |template_file|
+%w[server.properties zookeeper.properties log4j.properties].each do |template_file|
   template "#{install_dir}/config/#{template_file}" do
         source	"#{template_file}.erb"
         owner user
