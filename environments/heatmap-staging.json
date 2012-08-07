@@ -4,15 +4,15 @@
         "hadoop": "= 1.0.3", 
         "hbase": "= 1.0.3", 
         "hive": "= 1.0.2", 
-        "kafka": "= 1.0.5", 
+        "kafka": "= 1.0.7",
         "storm": "= 1.0.17", 
         "wt_cam": "= 1.0.4", 
         "wt_storm": "= 1.0.34", 
         "wt_heatmaps": "= 0.10.42", 
-        "wt_realtime_hadoop": "= 1.0.2",
         "wt_realtimeapi": "= 0.0.19", 
-        "wt_streamingapi": "= 0.0.20", 
-        "wt_streamingauditor": "= 0.0.8", 
+        "wt_streamingapi": "= 0.0.20",
+        "wt_realtime_hadoop": "= 1.0.2",
+        "wt_streamingauditor": "= 0.0.7",
         "wt_streamingcollection": "= 0.0.21", 
         "wt_streaminglogreplayer": "= 0.0.17", 
         "zookeeper": "= 1.0.6"
@@ -113,7 +113,7 @@
             }
         }, 
         "kafka": {
-            "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
+            "download_url": "file:///tmp/",
             "log_flush_scheduler_time_interval": "500", 
             "log_flush_time_interval": "500", 
             "log_retention_hours": "2", 
@@ -279,7 +279,7 @@
             }
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/25022:id/streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/25148:id/streamingapi-bin.tar.gz",
             "port": 8080
         }, 
         "wt_streamingauditor": {

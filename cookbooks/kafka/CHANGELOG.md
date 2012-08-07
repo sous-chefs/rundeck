@@ -1,3 +1,6 @@
+## 1.0.6 - 1.0.7
+* Added changes to support kafka 0.7.1
+
 ## 1.0.5
 * Added template to create a collectd plugin for kafka JMX objects. 
 
