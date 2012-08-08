@@ -1,8 +1,17 @@
 Description
 ===========
+This cookbook installs and configures Webtrends Analytics UI.
 
 Requirements
 ============
+The following recipes must be included in the wt_analytics_ui role prior to running this cookbooks default recipe
+* `recipe[vc2010]`
+* `recipe[ms_dotnet4]`
+* `recipe[ms_messagequeue]`
+* `recipe[wt_base::msdtc]`
+* `role[iis]`
+* `recipe[iis::mod_compress_dynamic]`
+* `recipe[iis::mod_aspnet]`
 
 Attributes
 ==========
