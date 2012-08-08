@@ -190,21 +190,9 @@ LoadPlugin java
 				Attribute "MeanRate"
 			</Value>
         </MBean>
-        <MBean "metrics_active-channels">
-			ObjectName "streamingapi:type=metricshandler,name=active-channels"
-			InstancePrefix "SAPI_metricshandler_"
-			InstanceFrom "name"
-			<Value>
-				Type "gauge"
-				InstancePrefix "Value"
-				#InstanceFrom ""
-				Table false
-				Attribute "Value"
-			</Value>
-        </MBean>
-        <MBean "metrics_handle-request">
-			ObjectName "streamingapi:type=metricshandler,name=handle-request"
-			InstancePrefix "SAPI_metricshandler_"
+         <MBean "metrics_event-writes">
+			ObjectName "streamingapi:type=zmqserver,name=event-writes"
+			InstancePrefix "SAPI_zmqserver_"
 			InstanceFrom "name"
 			<Value>
 				Type "counter"
@@ -215,48 +203,15 @@ LoadPlugin java
 			</Value>
 			<Value>
 				Type "gauge"
-				InstancePrefix "Max"
-				#InstanceFrom ""
-				Table false
-				Attribute "Max"
-			</Value>
-			<Value>
-				Type "gauge"
-				InstancePrefix "Mean"
-				#InstanceFrom ""
-				Table false
-				Attribute "Mean"
-			</Value>
-			<Value>
-				Type "gauge"
 				InstancePrefix "MeanRate"
 				#InstanceFrom ""
 				Table false
 				Attribute "MeanRate"
 			</Value>
-			<Value>
-				Type "gauge"
-				InstancePrefix "Min"
-				#InstanceFrom ""
-				Table false
-				Attribute "Min"
-			</Value>
         </MBean>
-        <MBean "metrics_handle-request-error">
-			ObjectName "streamingapi:type=metricshandler,name=handle-request-error"
-			InstancePrefix "SAPI_metricshandler_"
-			InstanceFrom "name"
-			<Value>
-				Type "gauge"
-				InstancePrefix "Count"
-				#InstanceFrom ""
-				Table false
-				Attribute "Count"
-			</Value>
-        </MBean>
-        <MBean "metrics_requests-handled">
-			ObjectName "streamingapi:type=metricshandler,name=requests-handled"
-			InstancePrefix "SAPI_metricshandler_"
+        <MBean "metrics_events-handled">
+			ObjectName "streamingapi:type=zmqserver,name=events-handled"
+			InstancePrefix "SAPI_zmqserver_"
 			InstanceFrom "name"
 			<Value>
 				Type "counter"
@@ -275,32 +230,6 @@ LoadPlugin java
         </MBean>
         <MBean "collection-latency">
 			ObjectName "streamingapi:type=latency,name=collection-latency"
-			InstancePrefix "SAPI_latency_"
-			InstanceFrom "name"
-			<Value>
-				Type "gauge"
-				InstancePrefix "Max"
-				#InstanceFrom ""
-				Table false
-				Attribute "Max"
-			</Value>
-			<Value>
-				Type "gauge"
-				InstancePrefix "Min"
-				#InstanceFrom ""
-				Table false
-				Attribute "Min"
-			</Value>
-            <Value>
-				Type "gauge"
-				InstancePrefix "Mean"
-				#InstanceFrom ""
-				Table false
-				Attribute "Mean"
-			</Value>
-        </MBean>
-        <MBean "source-latency">
-			ObjectName "streamingapi:type=latency,name=source-latency"
 			InstancePrefix "SAPI_latency_"
 			InstanceFrom "name"
 			<Value>
