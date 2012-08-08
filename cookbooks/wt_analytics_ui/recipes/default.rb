@@ -7,10 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# require 'rest_client'
-# require 'rexml/document'
-# require 'json'
-
 # configure IIS
 appcmds = Array.new
 
