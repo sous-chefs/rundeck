@@ -12,7 +12,7 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[java]",
+	"recipe[java]",
 	"recipe[wt_xd::mapred]"
   ],
   "description": "Webtrends External Data Mapreduce",

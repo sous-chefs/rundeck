@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Setup basic path information.
+MAIN="com.webtrends.mapreduce.facebook.post.LoadExternalMetricsFacebook"
+LOG_OUT="<%= File.join(@log_dir, 'ExternalDataMRFB.log') %>"
+LOG_ERR="<%= File.join(@log_dir, 'ExternalDataMRFBError.log') %>"
+HOME_DIR="<%= @install_dir %>"
+JAVA_HOME="<%= @java_home %>"
+# JAVA_OPTS="-Xms1024m -Djava.net.preferIPv4Stack=true"
+
+# Setup classpath, initially empty.
+CP=""
+
+# Add all .jar files to the classpath.
+for jar in `ls $HOME_DIR/lib/*`; do
+    if [ "" = "$CP" ]; then
+        CP=$jar
+    else
+        CP=$CP:$jar
+    fi
+done
+
+
+# Create the JSVC command line.
+CMD="$JAVA_HOME/bin/java -cp $CP -Dcom.webtrends.configuration.dir=$HOME_DIR/conf/ -Dcom.webtrends.log.dir=<%= @log_dir %>"
+
+exec $CMD $MAIN
