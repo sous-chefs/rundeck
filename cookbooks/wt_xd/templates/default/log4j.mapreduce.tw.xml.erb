@@ -3,7 +3,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
    <!-- FileLog is set to be a RollingFileAppender -->
    <appender name="FileLog" class="org.apache.log4j.RollingFileAppender">
-       <param name="file" value="${com.webtrends.log.dir}/ExternalData.Mapreduce.Twitter.Info.log" />
+       <param name="file" value="${com.webtrends.log.dir}/ExternalData.MapReduce.Twitter.Info.log" />
        <param name="MaxFileSize" value="100MB" />
        <param name="MaxBackupIndex" value="10"/>
        <param name="append" value="true" />
@@ -13,7 +13,7 @@
    </appender>
    <!-- ErrorLog is set to be a RollingFileAppender -->
    <appender name="ErrorLog" class="org.apache.log4j.RollingFileAppender">
-       <param name="file" value="${com.webtrends.log.dir}/ExternalData.Mapreduce.Twitter.Error.log" />
+       <param name="file" value="${com.webtrends.log.dir}/ExternalData.MapReduce.Twitter.Error.log" />
        <param name="MaxFileSize" value="100MB" />
        <param name="MaxBackupIndex" value="10"/>
        <param name="append" value="true" />
