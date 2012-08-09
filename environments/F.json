@@ -78,7 +78,15 @@
                     }
                 }
             }
-        }, 
+        },
+	"kafka": {
+            "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
+            "log_flush_scheduler_time_interval": "500", 
+            "log_flush_time_interval": "500", 
+            "log_retention_hours": "2", 
+            "threads": "8", 
+            "version": "0.7.0"
+        },  
         "memcached": {
             "cache_hosts": [
                 {
