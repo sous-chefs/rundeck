@@ -103,8 +103,8 @@ cookbook_file "#{node['nagios']['plugin_dir']}/check_nrpe" do
 end
 
 %w{ cache_dir log_dir run_dir }.each do |dir|
-  
-  directory node['nagios'][dir] do 
+
+  directory node['nagios'][dir] do
     owner node['nagios']['user']
     group node['nagios']['group']
     mode 00755
