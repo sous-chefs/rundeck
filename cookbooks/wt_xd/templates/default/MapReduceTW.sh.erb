@@ -1,5 +1,14 @@
 #!/bin/sh
 
+# prevent from running multiple instances
+exec 9>/tmp/MapReduceTW.sh
+
+if ! flock -n 9 ; then
+        echo "another instance is running"
+        exit 1
+fi
+
+
 # Setup basic path information.
 MAIN="com.webtrends.mapreduce.twitter.post.LoadExternalMetricsTwitter"
 LOG_OUT="<%= File.join(@log_dir, 'ExternalDataMRTW.log') %>"
