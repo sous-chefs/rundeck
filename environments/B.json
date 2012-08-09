@@ -41,17 +41,31 @@
                 ]
             }
         }, 
+	"beyond_compare":{
+            "download_url": ""
+        },
         "cassandra": {
             "cassandra_host": "cassandra.staging.dmz", 
             "cassandra_meta_column": "B_Meta", 
             "cassandra_report_column": "B_Report", 
             "cassandra_thrift_port": 9160
         }, 
+	"delltools": {
+            "raid":{
+                "megacli_url": ""
+            }
+        },
         "esx": {
             "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
+	"hadoop": {
+            "core": {},
+            "dfs": {},
+            "env": {},
+            "mapred": {}
+        },
         "hbase": {
             "data_center_id": "Lab", 
             "location": "shdata.staging.dmz", 
@@ -62,6 +76,9 @@
             }, 
             "thrift_port": 9090
         }, 
+	"hive": {
+            "metastore": {}
+        },
         "java": {
             "install_flavor": "oracle", 
             "jdk": {
