@@ -9,7 +9,7 @@
         "windows": "= 1.2.12", 
         "wt_analytics_ui": "= 0.0.23", 
         "wt_base": "= 0.10.53", 
-        "wt_cam": "= 1.0.8", 
+        "wt_cam": "= 1.0.9", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
         "wt_realtimeapi": "= 0.0.19", 
@@ -41,17 +41,31 @@
                 ]
             }
         }, 
+	"beyond_compare":{
+            "download_url": ""
+        },
         "cassandra": {
             "cassandra_host": "cassandra.staging.dmz", 
             "cassandra_meta_column": "B_Meta", 
             "cassandra_report_column": "B_Report", 
             "cassandra_thrift_port": 9160
         }, 
+	"delltools": {
+            "raid":{
+                "megacli_url": ""
+            }
+        },
         "esx": {
             "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
+	"hadoop": {
+            "core": {},
+            "dfs": {},
+            "env": {},
+            "mapred": {}
+        },
         "hbase": {
             "data_center_id": "Lab", 
             "location": "shdata.staging.dmz", 
@@ -62,6 +76,9 @@
             }, 
             "thrift_port": 9090
         }, 
+	"hive": {
+            "metastore": {}
+        },
         "java": {
             "install_flavor": "oracle", 
             "jdk": {
@@ -192,7 +209,7 @@
         "wt_cam": {
             "cam_server_url": "http://bcam01.staging.dmz/camservice", 
             "db_server": "bcamdb01.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/23378:id/CAM.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/25596:id/CAM.zip"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -281,12 +298,12 @@
             }
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/25448:id/streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/22941:id/streamingapi-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/25012:id/streamingauditor-bin.tar.gz", 
-            "roundtrip_scs_url": "http://bscs01.staging.dmz:8080", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/bt123/25760:id/webtrends-streamingauditor-bin.tar.gz", 
+            "ronndtrip_scs_url": "http://bscs01.staging.dmz:8080", 
             "roundtrip_token": "9019769dfb544c94a31e56194d316968"
         }, 
         "wt_streamingcollection": {
