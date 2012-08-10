@@ -1,3 +1,6 @@
+## 0.0.22
+* Changed logic to pull the tar file from the 'download_url' attribute
+
 ## 0.0.21
 * Add garbage collection nagios check
 
