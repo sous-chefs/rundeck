@@ -26,10 +26,10 @@ install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streaming
 
 java_home    = node['java']['java_home']
 download_url = node['wt_streaminglogreplayer']['download_url']
+tarball      = node['wt_streaminglogreplayer']['download_url'].split("/")[-1]
 user = node['wt_streaminglogreplayer']['user']
 group = node['wt_streaminglogreplayer']['group']
 java_opts = node['wt_streaminglogreplayer']['java_opts']
-tarball = "streaminglogreplayer-bin.tar.gz"
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"

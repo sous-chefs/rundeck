@@ -21,10 +21,11 @@ end
  
 log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "realtimeapi")
 install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "realtimeapi")
-tarball     = "realtimeapi-bin.tar.gz"
-download_url = node['wt_realtimeapi']['download_url']
-java_home   = node['java']['java_home']
 
+
+java_home   = node['java']['java_home']
+download_url = node['wt_realtimeapi']['download_url']
+tarball      = node['wt_realtimeapi']['download_url'].split("/")[-1]
 # This is disabled until we can work out windows node search issues     
 #    cam_url = search(:node, "role:wt_cam AND chef_environment:#{node.chef_environment}")
 user = node['wt_realtimeapi']['user']
