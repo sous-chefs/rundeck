@@ -1,4 +1,13 @@
-default['wt_streamingapi']['user']                     = "webtrends" 
+#
+# Cookbook Name:: wt_streamingapi
+# Attributes:: default
+#
+# Copyright 2012, Webtrends
+#
+# All rights reserved - Do Not Redistribute
+#
+
+default['wt_streamingapi']['user']                     = "webtrends"
 default['wt_streamingapi']['group']                    = "webtrends"
 default['wt_streamingapi']['download_url']             = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/.lastSuccessful/streamingapi-bin.tar.gz"
 default['wt_streamingapi']['port']                     = "8080"

@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: zookeeper
+# Cookbook Name:: wt_realtime_hadoop
 # Attributes:: default
 #
-# Copyright 2012, Webtrends Inc.
+# Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
 #
