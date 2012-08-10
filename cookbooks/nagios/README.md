@@ -1,7 +1,7 @@
 Description
 ===========
 
-Installs and configures Nagios 3 for a server and for clients using Chef search capabilities.
+Installs and configures Nagios 3 for a server and NRPE for clients using Chef search capabilities.
 
 Requirements
 ============
@@ -16,6 +16,8 @@ A data bag named 'users' should exist, see __Data Bag__ below.
 The monitoring server that uses this recipe should have a role named 'monitoring' or similar, this is settable via an attribute. See __Attributes__ below.
 
 Because of the heavy use of search, this recipe will not work with Chef Solo, as it cannot do any searches without a server.
+
+By default NRPE clients can only be monitored by Nagios servers in the same environment. To change this set the multi_environment_monitoring attribute. See __Attributes__ below.
 
 Platform
 --------
@@ -65,6 +67,7 @@ The following attributes are used for the client NRPE checks for warning and cri
 * `node['nagios']['checks']['load']['warning']` - threshold of warning load average, default 15,10,5
 * `node['nagios']['checks']['smtp_host']` - default relayhost to check for connectivity. Default is an empty string, set via an attribute in a role.
 * `node['nagios']['server_role']` - the role that the nagios server will have in its run list that the clients can search for.
+* `node['nagios']['multi_environment_monitoring']` - Allow Nagios servers in any Chef environment to monitor NRPE
 
 server
 ------
@@ -179,6 +182,39 @@ pagerduty
 Installs and configures pagerduty plugin for nagios.  You need to set a `node['nagios']['pagerduty_key']` attribute on your server for this to work.  This can be set through environments so that you can use different API keys for servers in production vs staging for instance.
 
 This recipe was written based on the [Nagios Integration Guide](http://www.pagerduty.com/docs/guides/nagios-integration-guide) from PagerDuty which explains how to get an API key for your nagios server.
+
+email notifications
+--------------
+
+You need to set `default['nagios']['notifications_enabled'] = 1` attribute on your nagios server to enable email notifications.
+
+For email notifications to work an appropriate mail program package and local MTA need to be installed so that /usr/bin/mail or /bin/mail is available on the system.
+
+Example:
+
+Include [postfix cookbook](https://github.com/opscode-cookbooks/postfix) to be installed on your nagios server node.
+
+Add override_attributes to your `monitoring` role:
+
+    % cat roles/monitoring.rb
+
+    name "monitoring"
+    description "Monitoring Server"
+    run_list(
+      "recipe[nagios::server]",
+      "recipe[postfix]"
+    )
+
+    override_attributes(
+      "nagios" => { "notifications_enabled" => "1" },
+      "postfix" => { "myhostname":"your_hostname", "mydomain":"example.com" }
+    )
+
+    default_attributes(
+      "nagios" => { "server_auth_method" => "htauth" }
+    )
+
+    % knife role from file monitoring.rb
 
 Data Bags
 =========
