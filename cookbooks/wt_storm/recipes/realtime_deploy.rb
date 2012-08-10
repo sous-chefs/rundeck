@@ -71,7 +71,6 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :zookeeper_clientport  => zookeeper_clientport,
     :zookeeper_pairs	   => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
     :cam                   => node[:wt_cam][:cam_server_url],
-    :sapi                  => sapi[:fqdn],
     :config_distrib        => node[:wt_configdistrib][:dcsid_url],
     :netacuity             => node[:wt_netacuity][:geo_url],
     :kafka                 => kafka[:fqdn],
