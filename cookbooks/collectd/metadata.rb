@@ -5,6 +5,6 @@ description      "Install and configure the collectd monitoring daemon"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "1.0.1"
 
-%w{ debian ubuntu centos redhat }.each do |os|
+%w{ debian ubuntu centos redhat amazon scientific fedora}.each do |os|
   supports os
 end
