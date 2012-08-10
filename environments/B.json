@@ -286,7 +286,7 @@
         }, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/25747:id/streamingauditor-bin.tar.gz", 
-            "roundtrip_scs_url": "http://bscs01.staging.dmz:8080", 
+            "ronndtrip_scs_url": "http://bscs01.staging.dmz:8080", 
             "roundtrip_token": "9019769dfb544c94a31e56194d316968"
         }, 
         "wt_streamingcollection": {
