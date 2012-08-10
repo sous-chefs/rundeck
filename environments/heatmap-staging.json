@@ -7,7 +7,7 @@
         "kafka": "= 1.0.7",
         "storm": "= 1.0.18",
         "wt_cam": "= 1.0.4", 
-        "wt_storm": "= 1.0.36",
+        "wt_storm": "= 1.0.37",
         "wt_heatmaps": "= 0.10.42", 
         "wt_realtimeapi": "= 0.0.19", 
         "wt_streamingapi": "= 0.0.20",
