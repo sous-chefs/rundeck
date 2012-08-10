@@ -17,6 +17,7 @@
         "wt_streamingapi": "= 0.0.20", 
         "wt_streamingauditor": "= 0.0.8", 
         "wt_streamingcollection": "= 0.0.21", 
+	"wt_streamingconfigservice": "= 0.0.1",
         "wt_streaminglogreplayer": "= 0.0.18", 
         "zookeeper": "= 1.0.4"
     }, 
@@ -274,7 +275,14 @@
         "wt_search": {
             "search_hostname": "bsearch.staging.dmz", 
             "search_service": "net.tcp://bsearch.staging.dmz:8096/Search/Service"
-        }, 
+        },
+	"wt_streamingconfigservice": {
+		"camConnString": "jdbc:sqlserver://bcamdb01.staging.dmz:1433;databaseName=CAM;user=sa;password=cad890;",
+		"masterConnString": "jdbc:sqlserver://dmasterdb01.englab.webtrends.corp:1433;databaseName=wtMaster;user=sa;password=cad890;",
+		"includeUnmappedAnalyticsIds": "true",
+		"port": "8080",
+		"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/24764:id/streaming-configservice-bin.tar.gz"
+	},
         "wt_storm": {
             "dcsid_whitelist": "", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/24696:id/streaming-analysis-bin.tar.gz", 
