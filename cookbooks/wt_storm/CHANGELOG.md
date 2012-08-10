@@ -1,3 +1,13 @@
+# 1.0.37
+* Updated seed.data file for trafficsource changes
+
+# 1.0.36
+* Updated streaming_depoly.rb to also support storm 0.8.0
+
+# 1.0.35
+* Moved to storm 0.8.0 and added datacenter and pod prefixes to zookeeper
+  paths
+
 # 1.0.34
 * Updated cookbook to support independent dcsid_whitelist parameters in
   the realtime and streaming topologies
