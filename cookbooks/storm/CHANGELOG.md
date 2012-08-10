@@ -1,3 +1,6 @@
+## 1.0.18
+* Removed Webtrends specific attributes
+
 ## 1.0.17
 * Change nimbus and storm ui start/stop scripts to kill related
   processes
