@@ -59,7 +59,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :streaming_topology_in_session_bolt_count    => node['wt_storm']['streaming_topology']['streaming_topology_in_session_bolt_count'],
     :streaming_topology_zmq_emitter_bolt_count   => node['wt_storm']['streaming_topology']['streaming_topology_zmq_emitter_bolt_count'],
     :streaming_topology_validation_bolt_count    => node['wt_storm']['streaming_topology']['streaming_topology_validation_bolt_count'],
-    :streaming_topology_augmentation_bolt_count  => node['wt_storm']['streaming_topology']['streaming_topology_augmentation_bolt_count'],   
+    :streaming_topology_augmentation_bolt_count  => node['wt_storm']['streaming_topology']['streaming_topology_augmentation_bolt_count'],
     # kafka consumer settings
     :kafka_consumer_topic                 => node['wt_storm']['streaming_topology']['kafka_consumer_topic'],
     :kafka_dcsid_whitelist                => node['wt_storm']['streaming_topology']['dcsid_whitelist'],
