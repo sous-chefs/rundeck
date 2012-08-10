@@ -1,3 +1,12 @@
+#
+# Cookbook Name:: wt_streamingcollection
+# Attributes:: default
+#
+# Copyright 2012, Webtrends
+#
+# All rights reserved - Do Not Redistribute
+#
+
 default['wt_streamingcollection']['user']         = "webtrends"
 default['wt_streamingcollection']['group']        = "webtrends"
 default['wt_streamingcollection']['download_url'] = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz"

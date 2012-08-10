@@ -9,6 +9,8 @@ A RHEL/CentOS box with a poorly crafted /etc/hosts file
 Attributes
 ==========
 
+None
+
 Usage
 =====
 Add to the runlist (the higher the better)
