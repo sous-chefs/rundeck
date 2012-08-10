@@ -8,7 +8,7 @@ Requirements
 ============
 
 * Ubuntu 10.04 (Lucid)
-* CentOS 6.2
+* CentOS / Redhat 6.2
 
 Attributes
 ==========

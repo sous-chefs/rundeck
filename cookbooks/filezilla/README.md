@@ -19,6 +19,8 @@ Platform
 Attributes
 ==========
 
+* http_url: Path to download the installer from.  Default to the official installer on SourceForge
+
 Usage
 =====
 

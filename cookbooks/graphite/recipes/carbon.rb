@@ -1,3 +1,21 @@
+#
+# Cookbook Name:: graphite
+# Recipe:: carbon
+#
+# Copyright 2011, Heavy Water Software Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 version = node[:graphite][:version]
 pyver = node[:graphite][:python_version]
 
@@ -27,7 +45,7 @@ template "/etc/init.d/carbon-cache" do
   source "carbon-cache.init.erb"
   owner "root"
   group "root"
-  mode "0755"
+  mode 00755
   notifies :enable, "service[carbon-cache]"
   notifies :start, "service[carbon-cache]"
 end
@@ -39,14 +57,14 @@ template "/opt/graphite/conf/carbon.conf" do
              :line_receiver_interface => node[:graphite][:carbon][:line_receiver_interface],
              :pickle_receiver_interface => node[:graphite][:carbon][:pickle_receiver_interface],
              :cache_query_interface => node[:graphite][:carbon][:cache_query_interface] )
-  mode "0644"
+  mode 00644
   notifies :restart, "service[carbon-cache]"
 end
 
 template "/opt/graphite/conf/storage-schemas.conf" do
   owner node['apache']['user']
   group node['apache']['group']
-  mode "0644"
+  mode 00644
 end
 
 execute "carbon: change graphite storage permissions to apache user" do
