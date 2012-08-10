@@ -1,3 +1,6 @@
+# 1.0.37
+* Updated seed.data file for trafficsource changes
+
 # 1.0.36
 * Updated streaming_depoly.rb to also support storm 0.8.0
 
