@@ -23,10 +23,9 @@ end
 log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingauditor")
 install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingauditor")
 
-tarball      = node['wt_streamingauditor']['download_url'].split("/")[-1]
-log "The TARBALL is #{tarball}"
-java_home    = node['java']['java_home']
 download_url = node['wt_streamingauditor']['download_url']
+tarball      = node['wt_streamingauditor']['download_url'].split("/")[-1]
+java_home    = node['java']['java_home']
 user = node['wt_streamingauditor']['user']
 group = node['wt_streamingauditor']['group']
 java_opts = node['wt_streamingauditor']['java_opts']

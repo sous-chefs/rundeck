@@ -19,7 +19,7 @@ end
 log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingcollection")
 install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingcollection")
 
-tarball      = "streamingcollection-bin.tar.gz"
+tarball      = node['wt_streamingcollection']['download_url'].split("/")[-1]
 java_home    = node['java']['java_home']
 download_url = node['wt_streamingcollection']['download_url']
 user = node['wt_streamingcollection']['user']
