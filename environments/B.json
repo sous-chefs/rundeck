@@ -9,7 +9,7 @@
         "windows": "= 1.2.12", 
         "wt_analytics_ui": "= 0.0.23", 
         "wt_base": "= 0.10.53", 
-        "wt_cam": "= 1.0.8", 
+        "wt_cam": "= 1.0.9", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
         "wt_realtimeapi": "= 0.0.19", 
@@ -209,7 +209,7 @@
         "wt_cam": {
             "cam_server_url": "http://bcam01.staging.dmz/camservice", 
             "db_server": "bcamdb01.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/23378:id/CAM.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/25596:id/CAM.zip"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -298,12 +298,12 @@
             }
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/25617:id/streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/22941:id/streamingapi-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/25012:id/streamingauditor-bin.tar.gz", 
-            "roundtrip_scs_url": "http://bscs01.staging.dmz:8080", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/25747:id/streamingauditor-bin.tar.gz", 
+            "ronndtrip_scs_url": "http://bscs01.staging.dmz:8080", 
             "roundtrip_token": "9019769dfb544c94a31e56194d316968"
         }, 
         "wt_streamingcollection": {
