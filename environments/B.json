@@ -302,7 +302,7 @@
             "port": 8080
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/25760:id/streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/bt123/25760:id/webtrends-streamingauditor-bin.tar.gz", 
             "ronndtrip_scs_url": "http://bscs01.staging.dmz:8080", 
             "roundtrip_token": "9019769dfb544c94a31e56194d316968"
         }, 
