@@ -6,19 +6,7 @@
 # Copyright 2012, Webtrends Inc.
 #
 
-# cluster identifier
 default['storm']['cluster_role'] = ""
-
-# installation attributes
-default['storm']['version'] = "0.7.3"
-default['storm']['download_url'] = "http://repo.staging.dmz/repo/linux/storm"
-default['storm']['install_dir'] = "/opt/storm"
-default['storm']['log_dir'] = "/var/log/storm"
-
-
-######################################################
-# attributes for storm.yaml below here
-
 
 # general storm attributes
 default['storm']['java_lib_path'] = "/usr/local/lib:/opt/local/lib:/usr/lib"
@@ -46,7 +34,7 @@ default['storm']['supervisor']['enable'] = true
 
 
 # worker attributes
-default['storm']['worker']['childopts'] = "-Xmx768m -Dcom.sun.management.jmxremote"
+default['storm']['worker']['childopts'] = "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
 default['storm']['worker']['heartbeat_frequency_secs'] = 1
 default['storm']['task']['heartbeat_frequency_secs'] = 3
 default['storm']['task']['refresh_poll_secs'] = 10
@@ -55,6 +43,7 @@ default['storm']['zmq']['longer_millis'] = 5000
 
 
 # nimbus attributes
+default['storm']['nimbus']['host'] = ""
 default['storm']['nimbus']['thrift_port'] = 6627
 default['storm']['nimbus']['childopts'] = "-Xmx1024m"
 default['storm']['nimbus']['task_timeout_secs'] = 30

@@ -26,9 +26,27 @@ if zookeeper_quorum.count == 0
     end
 end
 
-sapi = search(:node, "role:wt_streaming_api_server AND chef_environment:#{node.chef_environment}").first
 kafka = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}").first
 
+pod = node[:wt_realtime_hadoop][:pod]
+datacenter = node[:wt_realtime_hadoop][:datacenter]
+
+node['wt_storm']['zookeeper_quorum'] = zookeeper_quorum
+node['wt_storm']['nimbus']['host'] = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
+node['wt_storm']['worker']['childopts'] = node['wt_storm']['realtime_topology']['worker']['childopts']
+node['wt_storm']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-realtime"
+node['wt_storm']['transactional']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-realtime-transactional"
+
+
+template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
+  source "storm.yaml.erb"
+  owner  "storm"
+  group  "storm"
+  mode   00644
+  variables(
+    :storm_config => node['wt_storm']
+  )
+end
 
 template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties" do
   source "config.properties.erb"
@@ -38,7 +56,6 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   variables(
     :topology                                => "realtime-topology",
     :realtime_topology_parsing_bolt_count    => node['wt_storm']['realtime_topology']['realtime_topology_parsing_bolt_count'],
-    :realtime_topology_row_key_bolt_count    => node['wt_storm']['realtime_topology']['realtime_topology_row_key_bolt_count'],
     :realtime_topology_writing_bolt_count    => node['wt_storm']['realtime_topology']['realtime_topology_writing_bolt_count'],
     :realtime_topology_dimensions_bolt_count => node['wt_storm']['realtime_topology']['realtime_topology_dimensions_bolt_count'],
     :topology_override_max_spout_pending     => node['wt_storm']['realtime_topology']['topology_override_max_spout_pending'],
@@ -54,12 +71,11 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :zookeeper_clientport  => zookeeper_clientport,
     :zookeeper_pairs	   => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
     :cam                   => node[:wt_cam][:cam_server_url],
-    :sapi                  => sapi[:fqdn],
     :config_distrib        => node[:wt_configdistrib][:dcsid_url],
     :netacuity             => node[:wt_netacuity][:geo_url],
     :kafka                 => kafka[:fqdn],
-    :pod                   => node[:wt_realtime_hadoop][:pod],
-    :datacenter            => node[:wt_realtime_hadoop][:datacenter],
+    :pod                   => pod,
+    :datacenter            => datacenter,
     :debug                 => node[:wt_storm][:debug],
     :audit_bucket_timespan => node[:wt_monitoring][:audit_bucket_timespan],
     :audit_topic           => node[:wt_monitoring][:audit_topic]
