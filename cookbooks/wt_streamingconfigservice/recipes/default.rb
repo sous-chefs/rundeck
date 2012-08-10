@@ -8,14 +8,14 @@
 #
 
 log "Deploy build is #{ENV["deploy_build"]}"
-if ENV["deploy_build"] == "true" then 
+if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so un-deploy first"
     include_recipe "wt_streamingconfigservice::undeploy"
 else
     log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-   
+
 log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingconfigservice")
 install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingconfigservice")
 
@@ -56,7 +56,7 @@ recursive true
 action :create
 end
 
-if ENV["deploy_build"] == "true" then 
+if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so we will grab the tar ball and install"
 
     # download the application tarball
@@ -68,7 +68,7 @@ if ENV["deploy_build"] == "true" then
     # uncompress the application tarball into the install directory
     execute "tar" do
     user  "root"
-    group "root" 
+    group "root"
     cwd install_dir
     command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
@@ -103,7 +103,6 @@ if ENV["deploy_build"] == "true" then
             :java_opts => ""
        })
     end
-
 
     # delete the application tarball
     execute "delete_install_source" do
