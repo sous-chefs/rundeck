@@ -2,7 +2,7 @@
 # Cookbook Name:: multi_repo
 # Recipe:: default
 #
-# Copyright 2012, YOUR_COMPANY_NAME
+# Copyright 2012, Webtrends Inc.
 #
 # All rights reserved - Do Not Redistribute
 #
@@ -42,7 +42,7 @@ mount "#{node['multi_repo']['repo_path']}" do
   options "rw"
   action [:mount, :enable]
 end
-  
+
 # create the apache site
 apache_site "repo" do
   ignore_failure true

@@ -10,7 +10,7 @@ depends	"zookeeper"
 
 recipe	"kafka::default",		"Base configuration for kafka"
 
-%w{ debian ubuntu centos redhat fedora }.each do |os|
+%w{ debian ubuntu centos redhat fedora scientific amazon }.each do |os|
   supports os
 end
 
@@ -38,7 +38,7 @@ attribute "kafka/broker_id",
   :display_name => "Kafka Broker Id",
   :description => "The id of the broker. This must be set to a unique integer for each broker. If not set, it defaults to the machine's ip address without the '.'.",
   :default => ""
- 
+
 attribute "kafka/broker_host_name",
   :display_name => "Kafka Host Name",
   :description => "Hostname the broker will advertise to consumers. If not set, kafka will use the host name for the server being deployed to.",

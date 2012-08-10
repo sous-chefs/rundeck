@@ -2,7 +2,7 @@
 # Cookbook Name:: cobbler
 # Recipe:: default
 #
-# Copyright 2011, Webtrends
+# Copyright 2012, Webtrends Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,10 +17,12 @@
 # limitations under the License.
 #
 
+# install cobbler and dhcpd
 %w{ cobbler cobbler-web isc-dhcp-server }.each do |pkg|
   package pkg
 end
 
+# setup the cobbler config
 template "/etc/cobbler/settings" do
   source "settings.erb"
   mode 00644
@@ -35,6 +37,7 @@ template "/etc/cobbler/settings" do
   notifies :restart, "service[cobbler]"
 end
 
+# setup the dhcp template used by cobbler
 template "/etc/cobbler/dhcp.template" do
   source "dhcp.template.erb"
   mode 00644
@@ -80,7 +83,7 @@ template "/etc/cobbler/users.digest" do
   mode 00644
   owner "root"
   group "root"
-  notifies :restart, "service[cobbler]"  
+  notifies :restart, "service[cobbler]"
 end
 
 # grab pxelinux.0
