@@ -6,6 +6,8 @@ This cookbook installs the Microsoft .NET Framework 4.0
 Requirements
 ============
 
+* Windows cookbook
+
 Platform
 --------
 
