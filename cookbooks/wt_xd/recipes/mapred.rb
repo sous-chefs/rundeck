@@ -58,7 +58,7 @@ if zookeeper_quorum.count == 0
 end
 
 # configure templates
-%w[environment.properties hbase.properties log4j.mapreduce.fb.xml log4j.mapreduce.tw.xml log4j.xml].each do |template_file|
+%w[environment.properties hbase.properties log4j.mapreduce.fb.xml log4j.mapreduce.tw.xml].each do |template_file|
 	template "#{install_dir}/conf/#{template_file}" do
 		source "#{template_file}.erb"
 		owner 'webtrends'
@@ -106,11 +106,11 @@ end
 # setup cron jobs
 cron 'MapReduceFB' do
 	user 'webtrends'
-	minute '*/15'
+	minute '*/05'
 	command File.join(install_dir, 'MapReduceFB.sh')
 end
 cron 'MapReduceTW' do
 	user 'webtrends'
-	minute '*/30'
+	minute '*/05'
 	command File.join(install_dir, 'MapReduceTW.sh')
 end
