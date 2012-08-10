@@ -1,3 +1,6 @@
+## 0.0.20
+* Changed logic to pull the tar file from the 'download_url' attribute
+
 ## 0.0.19
 * Added the attribute
 
