@@ -15,7 +15,7 @@ case node[:platform]
         ignore_failure true
     end
   end
-  when "rhel", "centos"
+  when "rhel", "centos", "amazon", "fedora", "scientific"
     node[:redhat][:install_list].each do |pkg|
       package pkg do
         action :install
