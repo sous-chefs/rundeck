@@ -25,12 +25,12 @@ unless Chef::Config[:solo]
 end
 
 #Make sure someone didn't set the _default environment
-if node.chef_environment == "_default" 
+if node.chef_environment == "_default"
 	Chef::Log.info("Set a Chef environment. We don't want to use _default")
 	exit(true)
 end
 
-#Fix the host file
+#Fix the host file as CentOS ships with a bad hostfile
 include_recipe "hosts"
 
 #Set chef-client to run on a regular schedule (30 mins)
@@ -171,12 +171,12 @@ include_recipe "snmp"
 #HP Systems only: Install HP System Management Homepage along with other HP tools.
 include_recipe "hp-tools"
 
-#Dell Systems only: Install Dell System E-Support Tool
+#Dell Systems only: Install Dell System E-Support Tool and Dell RAID tools
 include_recipe "delltools::default"
 include_recipe "delltools::dset"
 include_recipe "delltools::raid"
 
-#VMware Systems only: Install VMware tools since we have CentOS boxes in PP/Staging on VMs
+#VMware Systems only: Install VMware tools
 include_recipe "vmware-tools"
 
 #Install collectd - system statistics collection daemon
