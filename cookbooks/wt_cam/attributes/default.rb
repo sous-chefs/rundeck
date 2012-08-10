@@ -6,7 +6,6 @@
 # Copyright 2012, Webtrends Inc.
 #
 
-
 default['wt_cam']['app_pool'] = "CAM"
 default['wt_cam']['camlite_app_pool'] = "CAMService"
 default['wt_cam']['download_url'] = "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/CAM.zip"
