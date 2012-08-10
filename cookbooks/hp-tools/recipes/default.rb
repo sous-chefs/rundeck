@@ -7,9 +7,9 @@
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -70,7 +70,8 @@ if node.attribute?("nagios")
 		source "check_hpasm"
 		mode 00755
 	end
-	
+
+	# If running on a HP DL1XX model don't run the DIMM check since the hardware doesn't support polling DIMMS
 	if node[:dmi][:system][:product_name].include?('DL1')
 		nagios_nrpecheck "check_hpasm" do
 			command "sudo #{node['nagios']['plugin_dir']}/check_hpasm --ignore-dimms"

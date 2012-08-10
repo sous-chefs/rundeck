@@ -27,4 +27,3 @@ end
 %w{ ruby-odbc dbd-odbc dbi aws}.each do |gem|
   gem_package gem
 end
-

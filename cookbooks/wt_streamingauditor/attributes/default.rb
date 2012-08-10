@@ -1,3 +1,12 @@
+#
+# Cookbook Name:: wt_streamingauditor
+# Attributes:: default
+#
+# Copyright 2012, Webtrends
+#
+# All rights reserved - Do Not Redistribute
+#
+
 default['wt_streamingauditor']['user']         = "webtrends"
 default['wt_streamingauditor']['group']        = "webtrends"
 default['wt_streamingauditor']['download_url'] = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz"
