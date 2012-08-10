@@ -6,6 +6,8 @@ This cookbook installs the Microsoft .NET Framework 3.5 on Windows Vista, 7, and
 Requirements
 ============
 
+* Windows cookbook
+
 Platform
 --------
 

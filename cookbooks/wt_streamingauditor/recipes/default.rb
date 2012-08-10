@@ -23,7 +23,8 @@ end
 log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingauditor")
 install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingauditor")
 
-tarball      = "streamingaudit-bin.tar.gz"
+tarball      = node['wt_streamingauditor']['download_url'].split("/")[-1]
+log "The TARBALL is #{tarball}"
 java_home    = node['java']['java_home']
 download_url = node['wt_streamingauditor']['download_url']
 user = node['wt_streamingauditor']['user']
@@ -193,7 +194,7 @@ if node.attribute?("nagios")
     # Create a nagios nrpe check for the overall streaming health
     nagios_nrpecheck "wt_streaming_healthcheck" do
 		command "#{node['nagios']['plugin_dir']}/check_http"
-		parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"streaming_healthcheck\\\":{\\\"healthy\\\": \\\"true\\\"\""
+		parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"streaming_healthcheck\\\":\{\\\"healthy\\\": \\\"true\\\"\""
 		action :add
 	end
 end

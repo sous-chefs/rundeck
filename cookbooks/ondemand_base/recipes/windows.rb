@@ -8,13 +8,13 @@
 # All rights reserved - Do Not Redistribute
 #
 
-#Make sure that this recipe only runs on Windows systems
+# make sure that this recipe only runs on Windows systems
 if not platform?("windows")
 	Chef::Log.info("Windows required for the Windows recipe.")
 	return
 end
 
-#Save the node to prevent empty run lists on failures
+# save the node to prevent empty run lists on failures
 unless Chef::Config[:solo]
 	ruby_block "save node data" do
 		block do
@@ -24,8 +24,8 @@ unless Chef::Config[:solo]
 	end
 end
 
-#Make sure someone didn't set the _default environment
-if node.chef_environment == "_default" 
+# make sure someone didn't set the _default environment
+if node.chef_environment == "_default"
 	Chef::Log.info("Set a Chef environment. We don't want to use _default")
 	exit(true)
 end
@@ -37,25 +37,25 @@ windows_reboot 60 do
 	action :nothing
 end
 
-#DisableUAC
+# disable UAC
 windows_registry 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' do
 	values 'EnableLUA' => 0
 	notifies :request, "windows_reboot[60]"
 end
 
-#Turn off hibernation
+# turn off hibernation
 execute "powercfg-hibernation" do
 	command "powercfg.exe /hibernate off"
 	action :run
 end
 
-#Set high performance power options
+# set high performance power options
 execute "powercfg-performance" do
 	command "powercfg.exe /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c"
 	action :run
 end
 
-#copy a deploy file that can be called to execuate a deploy via rundeck
+# copy a deploy file that can be called to execuate a deploy via rundeck
 cookbook_file "#{node['chef_client']['conf_dir']}\\deploy.bat" do
 	source "deploy.bat"
 end
