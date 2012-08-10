@@ -18,7 +18,7 @@
 #
 
 # CentOS/RH prerequisites
-if platform?("redhat", "centos")
+if platform?("redhat", "centos", "amazon", "scientific", "fedora")
   %w{ bitmap bitmap-fonts gcc gcc-c++ git glibc-devel openssl-devel python-devel python-twisted python-memcached python-zope-interface python-rrdtool python-sqlite2 }.each do |pkg|
     package pkg
   end

@@ -12,7 +12,7 @@
         "wt_realtimeapi": "= 0.0.19", 
         "wt_streamingapi": "= 0.0.20",
         "wt_realtime_hadoop": "= 1.0.2",
-        "wt_streamingauditor": "= 0.0.7",
+        "wt_streamingauditor": "= 0.0.9",
         "wt_streamingcollection": "= 0.0.21", 
         "wt_streaminglogreplayer": "= 0.0.19", 
         "zookeeper": "= 1.0.6"
