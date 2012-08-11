@@ -7,7 +7,7 @@ debug=<%= @debug %>
 cam.url=<%= @cam %>/cam/dcsid
 
 # Kafka consumer parameters
-kafka.zookeeper.quorum=<%= @kafka_zookeeper_quorum %>
+kafka.zookeeper.quorum=<%= @kafka_zookeeper_quorum %><%= @kafka_chroot %>
 kafka.zookeeper.timeout.milliseconds=<%= @kafka_zookeeper_timeout_milliseconds %>
 kafka.consumer.topic=<%= @kafka_consumer_topic %>
 kafka.consumer.group.id=<%= @kafka_consumer_group_id %>
