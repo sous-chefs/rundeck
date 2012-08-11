@@ -1,4 +1,4 @@
-zk.connect=<%= @zookeeper_pairs.join(",") %>
+zk.connect=<%= @zookeeper_pairs.join(",") %><%= @kafka_chroot %>
 serializer.class=kafka.serializer.StringEncoder
 producer.type=async
 router.topic=scsRawHits
