@@ -23,6 +23,7 @@ default[:kafka][:download_url] = nil
 default[:kafka][:install_dir] = "/opt/kafka"
 default[:kafka][:data_dir] = "/var/kafka"
 default[:kafka][:log_dir] = "/var/log/kafka"
+default[:kafka][:chroot_suffix] = "brokers"
 
 default[:kafka][:broker_id] = nil
 default[:kafka][:broker_host_name] = nil

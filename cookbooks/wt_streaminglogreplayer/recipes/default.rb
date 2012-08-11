@@ -31,6 +31,10 @@ user = node['wt_streaminglogreplayer']['user']
 group = node['wt_streaminglogreplayer']['group']
 java_opts = node['wt_streaminglogreplayer']['java_opts']
 
+pod = node[:wt_realtime_hadoop][:pod]
+datacenter = node[:wt_realtime_hadoop][:datacenter]
+kafka_chroot_suffix = node[:kafka][:chroot_suffix]
+
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -124,6 +128,7 @@ def processTemplates (install_dir, node, user, group)
 	        variables({ 
 	            :wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
 	            :zookeeper_pairs => zookeeper_pairs,
+                :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
 	            :wt_monitoring => node[:wt_monitoring]
 	        })
 	    end

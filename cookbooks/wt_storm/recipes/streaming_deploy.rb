@@ -30,6 +30,7 @@ kafka = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}"
 
 pod = node[:wt_realtime_hadoop][:pod]
 datacenter = node[:wt_realtime_hadoop][:datacenter]
+kafka_chroot_suffix = node[:kafka][:chroot_suffix]
 
 node['wt_storm']['zookeeper_quorum'] = zookeeper_quorum
 node['wt_storm']['nimbus']['host'] = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
@@ -61,6 +62,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :streaming_topology_validation_bolt_count    => node['wt_storm']['streaming_topology']['streaming_topology_validation_bolt_count'],
     :streaming_topology_augmentation_bolt_count  => node['wt_storm']['streaming_topology']['streaming_topology_augmentation_bolt_count'],
     # kafka consumer settings
+    :kafka_chroot                         => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
     :kafka_consumer_topic                 => node['wt_storm']['streaming_topology']['kafka_consumer_topic'],
     :kafka_dcsid_whitelist                => node['wt_storm']['streaming_topology']['dcsid_whitelist'],
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",

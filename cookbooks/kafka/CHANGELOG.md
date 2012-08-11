@@ -1,3 +1,6 @@
+## 1.0.8
+* Added broker chroot prefix for zk.connect string
+
 ## 1.0.6 - 1.0.7
 * Added changes to support kafka 0.7.1
 
