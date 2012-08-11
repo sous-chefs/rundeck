@@ -7,7 +7,7 @@
 # zk connection string
 # comma separated host:port pairs, each corresponding to a zk
 # server. e.g. "127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002"
-zk.connect=<%= @zookeeper_pairs.join(",") %>
+zk.connect=<%= @zookeeper_pairs.join(",") %><%= @kafka_chroot %>
 
 # timeout in ms for connecting to zookeeper
 zk.connectiontimeout.ms=1000000

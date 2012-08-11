@@ -1,3 +1,6 @@
+# 1.0.38
+* Added broker chroot prefix for zk.connect string
+
 # 1.0.37
 * Updated seed.data file for trafficsource changes
 

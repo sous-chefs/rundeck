@@ -1,3 +1,6 @@
+## 0.0.23
+* Added broker chroot prefix for zk.connect string
+
 ## 0.0.22
 * Changed logic to pull the tar file from the 'download_url' attribute
 
