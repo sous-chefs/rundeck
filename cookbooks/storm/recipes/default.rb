@@ -118,7 +118,7 @@ file "/etc/security/limits.d/123storm.conf" do
   owner "root"
   group "root"
   mode 00644
-  content "storm  -       nofile  32768"
+  content "*  -  nofile  32768"
   action :create
 end
 
