@@ -10,7 +10,7 @@
         "wt_storm": "= 1.0.37",
         "wt_heatmaps": "= 0.10.42", 
         "wt_realtimeapi": "= 0.0.20", 
-        "wt_streamingapi": "= 0.0.21",
+        "wt_streamingapi": "= 0.0.22",
         "wt_realtime_hadoop": "= 1.0.2",
         "wt_streamingauditor": "= 0.0.10",
         "wt_streamingcollection": "= 0.0.22", 
@@ -293,7 +293,7 @@
             }
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/26111:id/streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/26111:id/webtrends-streamingapi-bin.tar.gz",
             "port": 8080
         }, 
         "wt_streamingauditor": {
