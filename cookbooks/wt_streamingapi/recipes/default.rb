@@ -44,7 +44,7 @@ end
 
 log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "streamingapi")
 install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "streamingapi")
-tarball     = "streamingapi-bin.tar.gz"
+tarball      = node['wt_streamingapi']['download_url'].split("/")[-1]
 download_url = node['wt_streamingapi']['download_url']
 java_home   = node['java']['java_home']
 java_opts = node['wt_streamingapi']['java_opts']
