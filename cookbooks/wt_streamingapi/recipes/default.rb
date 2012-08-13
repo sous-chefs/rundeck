@@ -65,10 +65,10 @@ cookbook_file "/etc/security/limits.conf" do
 end
 
 # enable pam_limits.so
-cookbook_file "/etc/pam.d/common-session" do
-  source "common-session"
-  mode 00644
-end
+#cookbook_file "/etc/pam.d/common-session" do
+#  source "common-session"
+#  mode 00644
+#end
 
 
 # create the log directory
