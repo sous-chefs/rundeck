@@ -10,13 +10,13 @@
 
 #Dimension Definitions
 #format = [-1] : [d] : [hit element] : [filter] : [attributes] : [objectid] : [label] : [Is Delimited]
--1:d:<country>:*::country:country:false
--1:d:<region>:*::region:region:false
--1:d:<city>:*::city:city:false
+-1:d:country:*::country:country:false
+-1:d:region:*::region:region:false
+-1:d:city:*::city:city:false
 -1:d:wt.cg_n:*::contentgroup:contentgroup:false
 -1:d:wt.cg_s:*::contentsubgroup:contentsubgroup:false
--1:d:<cs-referer>:*::cs-referer:referrer:false
--1:d:<cs-uri-stem>:*::cs-uri-stem:page:false
+-1:d:cs-referer:*::cs-referer:referrer:false
+-1:d:cs-uri-stem:*::cs-uri-stem:page:false
 -1:d:<sc-status>:*::status:status:false
 -1:d:<url>:*:wt.ti:url:url;pagetitle:false
 -1:d:wt.mc_id:*::wt.mc_id:campaign:false
@@ -33,10 +33,10 @@
 -1:d:wt.si_n:*::wt.si_n:stepname:false
 -1:d:wt.si_x:*::wt.si_x:stepnumber:false
 -1:d:wt.si_cs:*::wt.si_cs:conversionstep:false
--1:d:<trafficsource>:*::wt.tsrc:trafficsource:false
--1:d:<wt.srch>:*::wt.srch:searchtype:false
--1:d:<keywords>:*::keywords:keywords:false
--1:d:<engine>:*::engine:searchengine:false
+-1:d:trafficSource:*::trafficsource:trafficsource:false
+-1:d:searchKeywords:*::searchkeywords:searchkeywords:false
+-1:d:<searchtype>:*::searchtype:searchtype:false
+-1:d:<searchengine>:*::searchengine:searchengine:false
 -1:d:wt.ti:*::wt.ti:pagetitle:false
 custom:18929:-1:d:author:*::author:author:true
 custom:18929:-1:d:channel:*::channel:channel:false
@@ -72,9 +72,9 @@ custom:18929:-1:d:category:*::category:category:false
 0:c:scenario1:wt.si_n;wt.pn_sku:hits;pageviews:scenario
 0:c:scenario2:wt.si_x;wt.pn_sku:hits;pageviews:scenario
 0:c:scenario3:wt.si_cs;wt.pn_sku:hits;pageviews:scenario
-#0:c:trafficsource1:wt.tsrc;wt.srch;cs-referrer;url:hits;pageviews:trafficsource
-#0:c:trafficsource2:wt.tsrc;wt.srch;wt.mc_id:hits;pageviews:trafficsource
-#0:c:search1:keywords;engine;wt.tsrc;url:hits;pageviews:search
+0:c:trafficsource1:trafficsource;searchtype;cs-referer;url:hits;pageviews:trafficsource
+0:c:trafficsource2:trafficsource;searchtype;wt.mc_id:hits;pageviews:trafficsource
+0:c:search1:searchkeywords;searchengine;trafficsource;url:hits;pageviews:search
 custom:18929:0:c:toppagesc1:author;wt.ti:hits;pageviews:toppages
 custom:18929:0:c:toppagesc2:channel;wt.ti:hits;pageviews:toppages
 custom:18929:0:c:toppagesc3:articleid;wt.ti:hits;pageviews:toppages

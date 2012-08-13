@@ -39,7 +39,6 @@ execute "sc" do
 	ignore_failure true
 end
 
-
 # delete install folder
 directory install_dir do
 	recursive true

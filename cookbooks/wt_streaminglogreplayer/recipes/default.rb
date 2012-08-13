@@ -26,10 +26,14 @@ install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streaming
 
 java_home    = node['java']['java_home']
 download_url = node['wt_streaminglogreplayer']['download_url']
+tarball      = node['wt_streaminglogreplayer']['download_url'].split("/")[-1]
 user = node['wt_streaminglogreplayer']['user']
 group = node['wt_streaminglogreplayer']['group']
 java_opts = node['wt_streaminglogreplayer']['java_opts']
-tarball = "streaminglogreplayer-bin.tar.gz"
+
+pod = node[:wt_realtime_hadoop][:pod]
+datacenter = node[:wt_realtime_hadoop][:datacenter]
+kafka_chroot_suffix = node[:kafka][:chroot_suffix]
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -124,6 +128,7 @@ def processTemplates (install_dir, node, user, group)
 	        variables({ 
 	            :wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
 	            :zookeeper_pairs => zookeeper_pairs,
+                :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
 	            :wt_monitoring => node[:wt_monitoring]
 	        })
 	    end
