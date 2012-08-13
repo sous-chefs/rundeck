@@ -1,6 +1,6 @@
 {
-  "name": "ondemand_server",
-  "description": "On Demand Server",
+  "name": "webtrends_server",
+  "description": "Webtrends Server",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
@@ -8,7 +8,7 @@
   },
   "chef_type": "role",
   "run_list": [
-    "recipe[ondemand_base]"
+    "recipe[webtrends_server]"
   ],
   "env_run_lists": {
   }

@@ -3,6 +3,9 @@
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
 
+## 1.8.0
+ * Rename ondemand_base to webtrends_server.  Two fold:  This cookbook will be used for Optimize as well going forward and it should match the role name
+
 ## 1.7.12
  * Added 'webtrends' user to centos
 ## 1.7.11
@@ -12,27 +15,27 @@
  * Adding -L to create log and redirecting to nul
 
 ## 1.7.9
- * Changing redirect from nul to log 
- 
+ * Changing redirect from nul to log
+
 ## 1.7.8
  * Removed logging entirely to get the damn thing to work
- 
+
 ## 1.7.7
  * Removed type statement to the end of deploy.bat to display log
- 
+
 ## 1.7.6
  * Added type statement to the end of deploy.bat to display log
- 
+
 ## 1.7.5
- * Modified the deploy.bat to redirect to nil 
- 
+ * Modified the deploy.bat to redirect to nil
+
 ## 1.7.4
- * Modified the deploy.bat to test launching builds remotely. 
- 
+ * Modified the deploy.bat to test launching builds remotely.
+
 ## 1.7.3
  * Take out the creation of the webtrends user on centos.  This is causing odd failures and isn't used (yet)
  * Removed windows rubyzip 0.9.5 install
- 
+
 ## 1.7.2
  * Add libxtst6 and libxtst-dev packages for Java troubleshooting on Ubuntu systems
 
@@ -45,7 +48,7 @@
 
 ## 1.6
  * Installs hp-tools (System Management Homepage) on HP hardware boxes running CentOS/RH
- 
+
 ## 1.5
  * Give Dev Users sudo access if the node has the ea_server role
  * Add code to join the domain to the Windows cookbook
@@ -59,7 +62,7 @@
  * Better error logs when a recipe run on the wrong platform
  * Include the apt repo after webtrends repo is added so the cache gets cleared correctly on Ubuntu
  * Remove the hack to install likewise-open package in the Ubuntu recipe
- 
+
 ## 1.3:
  * Installs vmware-tools
  * Installs and configures NRPE including configuration of nrpe.cfg and installation of plugins
@@ -70,4 +73,4 @@
  * Prevents the Windows recipe from running on non-Windows systems, which resulted in a chef-client crash
  * Saves the node back to the Chef server to prevent run lists from being wiped if a run fails during provisioning
  * Sets high performance Power configs on Windows systems
- * Disables hibernation on Windows systems  
+ * Disables hibernation on Windows systems
