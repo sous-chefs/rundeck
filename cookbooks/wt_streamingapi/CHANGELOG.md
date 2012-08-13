@@ -1,3 +1,7 @@
+## 0.0.23
+  Added JVM options and netty configuration.
+## 0.0.22
+  Commented out the pam code as it appears to be breaking the system, perhaps stepping on likewise
 ## 0.0.21
 * Changed logic to pull the tar file from the 'download_url' attribute
 
