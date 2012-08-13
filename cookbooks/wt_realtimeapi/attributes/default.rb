@@ -1,4 +1,13 @@
-default['wt_realtimeapi']['user']         = "webtrends" 
+#
+# Cookbook Name:: wt_realtimeapi
+# Attributes:: default
+#
+# Copyright 2012, Webtrends
+#
+# All rights reserved - Do Not Redistribute
+#
+
+default['wt_realtimeapi']['user']         = "webtrends"
 default['wt_realtimeapi']['group']        = "webtrends"
 default['wt_realtimeapi']['download_url'] = ""
 default['wt_realtimeapi']['port']         = "8082"

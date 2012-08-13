@@ -22,6 +22,10 @@ include_recipe "java"
 include_recipe "runit"
 
 java_home   = node['java']['java_home']
+pod = node['wt_realtime_hadoop']['pod']
+datacenter = node['wt_realtime_hadoop']['datacenter']
+kafka_chroot_suffix = node[:kafka][:chroot_suffix]
+
 user = "kafka"
 group = "kafka"
 
@@ -141,7 +145,7 @@ while i < zookeeper_pairs.size do
   i += 1
 end
 
-%w[server.properties zookeeper.properties log4j.properties].each do |template_file|
+%w[server.properties log4j.properties].each do |template_file|
   template "#{install_dir}/config/#{template_file}" do
         source	"#{template_file}.erb"
         owner user
@@ -150,6 +154,7 @@ end
         variables({ 
             :kafka => node[:kafka],
             :zookeeper_pairs => zookeeper_pairs,
+            :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
             :client_port => node[:zookeeper][:client_port]
         })
     end

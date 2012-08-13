@@ -1,9 +1,9 @@
 = DESCRIPTION:
-Installs Streaming Config Service
+Installs the Webtrends Streaming Config Service
 
 = REQUIREMENTS:
-* java
-* runit
+* java cookbook
+* runit cookbook
 
 = ATTRIBUTES:
 * user: The user to run the service under

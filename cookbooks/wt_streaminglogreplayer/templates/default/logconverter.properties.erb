@@ -1,21 +1,30 @@
 # The dcsids to include hits from, all others will be dropped.
 dcsidWhiteList=<%=node[:wt_streaminglogreplayer][:dcsid_whitelist]%>
+
 # Firectory where log files will be searched.
 inputLogDir=<%=node[:wt_streaminglogreplayer][:share_mount_dir]%>
+
 # File extension to look for, others will be ignored. 
 inputLogExtension=<%=node[:wt_streaminglogreplayer][:log_extension]%>
+
 # Kafka topic to push to for each hit.
 kafkaTopic=<%=node[:wt_streaminglogreplayer][:kafka_topic]%>
+
 # Should the logs be deleted when they have been completed
 deleteLogs=<%=node[:wt_streaminglogreplayer][:delete_logs]%>
+
 # How many minutes to wait before a local_lock file is considered to be "lost" and thus put back in the process
 lock_check_period=<%=node[:wt_streaminglogreplayer][:lock_check_period]%>
+
 # When processing events in a log, the process might get ahead of the "relative time" so we need to wait until the next second comes about. 
 # This setting (milliseconds) determines how long we sleep before checking to see if "time" has caught up to the next second
 logtime.catchup=<%=node[:wt_streaminglogreplayer][:logtime_catchup]%>
+
 # The number of threads for managing log files (The number should be the number of files to handle + 2 for supporting threads)
 thread.pool.size=<%=node[:wt_streaminglogreplayer][:thread_pool_size]%>
+
 # The events time regular expression taken from the log file name
 eventtime.log.regex=<%=node[:wt_streaminglogreplayer][:eventtime_log_regex]%>
+
 # The znode root for storing the high-water mark
 znode.root=<%=node[:wt_streaminglogreplayer][:znode_root]%>

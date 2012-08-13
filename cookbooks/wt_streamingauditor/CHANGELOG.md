@@ -2,6 +2,13 @@
 
 * Unknown
 
+## 0.0.10
+* Fixed escaping issue with Nagios entry
+
+## 0.0.9
+* Fixed Nagios regex issue
+* Changed default tar file to prepend 'webtrends-'
+
 ## 0.0.8
 * Added roundtrip_tagserver_timeout to wait for receiving an event back before erroring out. 
 * Added roundtrip_scs_timeout to wait for receiving an event back before erroring out.

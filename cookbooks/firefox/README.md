@@ -19,6 +19,8 @@ Platform
 Attributes
 ==========
 
+* http_url: URL for the installer package.  Defaults to a mirror on leaseweb.com
+
 Usage
 =====
 
