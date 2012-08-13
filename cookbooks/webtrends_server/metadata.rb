@@ -1,9 +1,9 @@
 maintainer       "Webtrends Inc"
 maintainer_email "hostedops@webtrends.com"
 license          "All rights reserved"
-description      "Installs/Configures ondemand_base"
+description      "Installs/Configures the base Webtrends server setup"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "1.7.12"
+version          "1.8.0"
 depends          "ad-auth"
 depends          "chef-client"
 depends          "collectd"
