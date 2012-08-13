@@ -1,20 +1,20 @@
 #
 # Author:: Tim Smith(<tim.smith@webtrends.com>)
-# Cookbook Name:: ondemand_base
-# Recipe:: ubuntu
+# Cookbook Name:: webtrends_server
+# Recipe:: centos
 #
 # Copyright 2012, Webtrends Inc.
 #
 # All rights reserved - Do Not Redistribute
 #
 
-# make sure that this recipe only runs on Ubuntu systems
-if not platform?("ubuntu")
-	Chef::Log.info("Ubuntu required for the Ubuntu recipe.")
+#Make sure that this recipe only runs on ubuntu systems
+if not platform?("centos")
+	Chef::Log.info("CentOS required for the CentOS recipe.")
 	return
 end
 
-# save the node to prevent empty run lists on failures
+#Save the node to prevent empty run lists on failures
 unless Chef::Config[:solo]
 	ruby_block "save node data" do
 		block do
@@ -24,38 +24,23 @@ unless Chef::Config[:solo]
 	end
 end
 
-# make sure someone didn't set the _default environment
+#Make sure someone didn't set the _default environment
 if node.chef_environment == "_default"
 	Chef::Log.info("Set a Chef environment. We don't want to use _default")
 	exit(true)
 end
 
-# setup the Webtrends apt repo.  This has to be the first thing that happens
-node['ondemand_base']['apt'].each do |aptrepo|
-	apt_repository aptrepo['name'] do
-		repo_name aptrepo['name']
-		if aptrepo.has_key? "distribution"
-			distribution aptrepo['distribution']
-		elsif aptrepo.has_key? "distribution_suffix"
-			distribution node[:lsb][:codename] + aptrepo['distribution_suffix']
-		else
-			distribution node[:lsb][:codename]
-		end
-		uri aptrepo['url']
-		components aptrepo['components']
-		key aptrepo['key']
-		action :add
-	end
-end
+#Fix the host file as CentOS ships with a bad hostfile
+include_recipe "hosts"
 
-# updates apt cache and sets up daily package list updates
-include_recipe "apt"
-
-# set chef-client to run on a regular schedule (30 mins)
+#Set chef-client to run on a regular schedule (30 mins)
 include_recipe "chef-client"
 
-# configures /etc/apt/sources.list
-include_recipe "ubuntu"
+# configures selinux enforcement policy
+include_recipe "selinux::permissive"
+
+# installs the EPEL repository
+include_recipe "yum::epel"
 
 # configures /etc/sudoers
 include_recipe "sudo"
@@ -69,8 +54,18 @@ include_recipe "ntp"
 # configures /etc/resolv.conf
 include_recipe "resolver"
 
-# setup NRPE to run sudo w/o a password
-file "/etc/sudoers.d/nrpe" do
+#Add the Webtrends Yum repo
+node['ondemand_base']['yum'].each do |yumrepo|
+	yum_repository yumrepo['name'] do
+		repo_name yumrepo['name']
+		description yumrepo['description']
+		url yumrepo['url']
+		action :add
+	end
+end
+
+#Setup NRPE to run sudo w/o a password
+file "/etc/sudoers.d/nagios" do
 	owner "root"
 	group "root"
 	mode 00440
@@ -102,15 +97,21 @@ include_recipe "networking_basic"
 	package pkg
 end
 
-# used for password string generation
-package "libshadow-ruby1.8"
+# Disable iptables firewall
+service "iptables" do
+	action :stop
+	action :disable
+end
 
-# install packages used by common Java tools
-%w{ libxtst6 libxtst-dev }.each do |pkg|
+#fprintd crashes every time someone tries to sudo.  Uninstall it
+%w{ fprintd libfprint }.each do |pkg|
 	package pkg
 end
 
-# pull authorization data from the authorization data bag
+# Used for password string generation
+package "ruby-shadow"
+
+#Pull authorization data from the authorization data bag
 auth_config = data_bag_item('authorization', node.chef_environment)
 
 # set root password from authorization databag
@@ -145,7 +146,7 @@ user "webtrends" do
 	password "*"
 end
 
-# create a sudoers file for devAccess group if the system has ea_server role
+# Create a sudoers file for devAccess group if the system has ea_server role
 if node.run_list.include?("role[ea_server]")
 	file "/etc/sudoers.d/devAccess" do
 		owner "root"
@@ -155,20 +156,31 @@ if node.run_list.include?("role[ea_server]")
 		action :create
 	end
 else
-	# make sure the sudo file is gone if the system is not an EA system
+	# Make sure the sudo file is gone if the system is not an EA system
 	file "/etc/sudoers.d/devAccess" do
 		action :delete
 	end
 end
 
-# now that the local user is created attach the system to AD
+#Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
 
-# install VMware tools
+#Allow for hardware monitoring (CentOS in prod is always on hardware systems)
+include_recipe "snmp"
+
+#HP Systems only: Install HP System Management Homepage along with other HP tools.
+include_recipe "hp-tools"
+
+#Dell Systems only: Install Dell System E-Support Tool and Dell RAID tools
+include_recipe "delltools::default"
+include_recipe "delltools::dset"
+include_recipe "delltools::raid"
+
+#VMware Systems only: Install VMware tools
 include_recipe "vmware-tools"
 
-# install collectd - system statistics collection daemon
+#Install collectd - system statistics collection daemon
 include_recipe "collectd"
 
-# install collectd plugins for WT base OS monitoring
+#Install collectd plugins for WT base OS monitoring
 include_recipe "wt_monitoring::collectd_base"
