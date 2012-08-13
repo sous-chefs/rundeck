@@ -1,6 +1,6 @@
 #
 # Author:: Tim Smith(<tim.smith@webtrends.com>)
-# Cookbook Name:: ondemand_base
+# Cookbook Name:: webtrends_server
 # Recipe:: windows
 #
 # Copyright 2012, Webtrends Inc.

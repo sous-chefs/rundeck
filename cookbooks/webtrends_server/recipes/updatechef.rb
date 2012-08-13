@@ -1,6 +1,6 @@
 #
 # Author:: Kendrick Martin(<kendrick.martin@webtrends.com>)
-# Cookbook Name:: ondemand_base
+# Cookbook Name:: webtrends_server
 # Recipe:: updatechef
 #
 # Copyright 2012, Webtrends Inc.
