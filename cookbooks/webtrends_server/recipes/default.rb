@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: ondemand_base
+# Cookbook Name:: webtrends_server
 # Recipe:: default
 #
 # Copyright 2012, Webtrends Inc.

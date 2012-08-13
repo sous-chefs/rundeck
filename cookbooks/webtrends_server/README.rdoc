@@ -12,4 +12,4 @@ None
 
 = USAGE:
 
-The ondemand_server role should include each of the 3 recipes in its runlist.
+The webtrends_server role should include each of the 3 recipes in its runlist.
