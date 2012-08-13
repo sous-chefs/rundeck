@@ -14,7 +14,7 @@ require 'rexml/document'
 require 'json'
 
 if deploy_mode?
-	include_recipe "wt_sync::uninstall" 	
+	include_recipe "wt_sync::uninstall"
 end
 
 download_url = node['wt_sync']['download_url']
@@ -25,7 +25,7 @@ master_host = node['wt_masterdb']['master_host']
 # destinations
 install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_sync']['install_dir']}"
 
-# get data bag items 
+# get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
 svcuser = auth_data['wt_common']['system_user']
 svcpass = auth_data['wt_common']['system_pass']
@@ -52,19 +52,19 @@ end
 # set permissions for the service user to have read access to the install drive - ENG390500
 # wt_base_icacls install_dir_drive do
 # 	action :grant
-# 	user svcuser 
+# 	user svcuser
 # 	perm :read
 # end
 
 wt_base_icacls install_dir do
 	action :grant
-	user svcuser 
+	user svcuser
 	perm :modify
 end
 
 wt_base_icacls "#{node['wt_common']['install_dir_windows']}#{node['wt_sync']['log_dir']}" do
 	action :grant
-	user svcuser 
+	user svcuser
 	perm :modify
 end
 
@@ -79,19 +79,19 @@ if deploy_mode?
 	# unzip the install package
 	windows_zipfile install_dir do
 		source download_url
-		action :unzip	
+		action :unzip
 	end
-	
+
 	template "#{install_dir}\\SyncMessageUtil.exe.config" do
 	  source "syncMsgUtilConfig.erb"
-	  variables(		
+	  variables(
 		  :master_host => master_host
 	  )
 	end
-	
+
 	template "#{install_dir}\\Webtrends.SyncService.exe.config" do
 	  source "syncServiceConfig.erb"
-	  variables(		
+	  variables(
 		  :master_host => master_host,
 		  :cass_host => node['cassandra']['cassandra_host'],
 		  :report_column => node['cassandra']['cassandra_report_column'],
@@ -103,7 +103,7 @@ if deploy_mode?
 	end
 
 	powershell "create service" do
-		environment({'serviceName' => node['wt_sync']['service_name'], 'serviceBinary' => node['wt_sync']['service_binary'], 'install_dir' => install_dir, 'svcuser' => svcuser, 'svcpass' => svcpass})	
+		environment({'serviceName' => node['wt_sync']['service_name'], 'serviceBinary' => node['wt_sync']['service_binary'], 'install_dir' => install_dir, 'svcuser' => svcuser, 'svcpass' => svcpass})
 		code <<-EOH
  		# $computer = gc env:computername
  		$class = "Win32_Service"
@@ -129,7 +129,7 @@ if deploy_mode?
 		$result | Format-List
 		EOH
 	end
-	
+
 end
 
 service node['wt_sync']['service_name'] do

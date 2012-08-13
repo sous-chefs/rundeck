@@ -1,13 +1,13 @@
 Description
 ===========
 
-Installs ZooKeeper
+Installs ZooKeeper on Ubuntu / Debian systems
 
 Requirements
 ============
-
-* java
-* runit
+* Ubuntu / Debian system
+* java cookbook
+* runit cookbook
 
 Attributes
 ==========
