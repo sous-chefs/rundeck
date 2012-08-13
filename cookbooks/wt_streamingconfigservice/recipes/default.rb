@@ -7,6 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# include runit so we can create a runit service
+include_recipe "runit"
+
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so un-deploy first"
@@ -22,8 +25,10 @@ install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streaming
 tarball      = "streaming-configservice-bin.tar.gz"
 java_home    = node['java']['java_home']
 download_url = node['wt_streamingconfigservice']['download_url']
+tarball      = node['wt_streamingconfigservice']['download_url'].split("/")[-1]
 user = node['wt_streamingconfigservice']['user']
 group = node['wt_streamingconfigservice']['group']
+java_opts = node['wt_streamingconfigservice']['java_opts']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -56,6 +61,26 @@ recursive true
 action :create
 end
 
+def processTemplates (install_dir, node, user, group)
+	log "Updating the template files"
+
+    %w[monitoring.properties config.properties].each do |template_file|
+	template "#{install_dir}/conf/#{template_file}" do
+	        source	"#{template_file}.erb"
+	        owner user
+	        group group
+	        mode  00755
+	        variables({ 
+	            :port => node['wt_streamingconfigservice']['port'],
+                :camConnString => node['wt_streamingconfigservice']['camConnString'],
+                :masterConnString => node['wt_streamingconfigservice']['masterConnString'],
+                :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
+	            :wt_monitoring => node[:wt_monitoring]
+	        })
+	    end
+	end
+end
+
 if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so we will grab the tar ball and install"
 
@@ -72,22 +97,7 @@ if ENV["deploy_build"] == "true" then
     cwd install_dir
     command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
-
-    log "Updating the template file"
-
-    template "#{install_dir}/conf/config.properties" do
-        source  "config.properties.erb"
-        owner   "root"
-        group   "root"
-        mode    00644
-        variables({
-            :port => node['wt_streamingconfigservice']['port'],
-            :camConnString => node['wt_streamingconfigservice']['camConnString'],
-            :masterConnString => node['wt_streamingconfigservice']['masterConnString'],
-            :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds']
-        })
-    end
-
+   
     template "#{install_dir}/bin/service-control" do
         source  "service-control.erb"
         owner "root"
@@ -99,10 +109,12 @@ if ENV["deploy_build"] == "true" then
             :java_home => java_home,
             :user => user,
             :java_class => "com.webtrends.streaming.configservice.ConfigServiceDaemon",
-            :java_jmx_port => 9999,
-            :java_opts => ""
-       })
+            :java_jmx_port => node['wt_monitoring']['jmx_port'],
+            :java_opts => java_opts
+        })
     end
+
+    processTemplates(install_dir, node, user, group)
 
     # delete the application tarball
     execute "delete_install_source" do
@@ -121,4 +133,28 @@ if ENV["deploy_build"] == "true" then
         :user => user
     })
     end
+else
+    processTemplates(install_dir, node, user, group)
+end
+
+#Create collectd plugin for streamingconfigservice JMX objects if collectd has been applied.
+if node.attribute?("collectd")
+  template "#{node[:collectd][:plugin_conf_dir]}/collectd_streamingconfigservice.conf" do
+    source "collectd_streamingconfigservice.conf.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
+  end
+end
+
+if node.attribute?("nagios")
+  	
+  #Create a nagios nrpe check for the healthcheck page
+	nagios_nrpecheck "wt_healthcheck_page" do
+		command "#{node['nagios']['plugin_dir']}/check_http"
+		parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
+		action :add
+	end
+  
 end
