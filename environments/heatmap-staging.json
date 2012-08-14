@@ -264,7 +264,7 @@
             "port": 8082
         }, 
         "wt_storm": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/25658:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/25668:id/streaming-analysis-bin.tar.gz",
             "realtime_topology": {
                 "worker": {
                     "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
