@@ -1,5 +1,5 @@
 {
-  "name": "wt_storm_realtime",
+  "name": "wt_storm_realtime_topo",
   "chef_type": "role",
   "json_class": "Chef::Role",
   "description": "Webtrends Storm Realtime Cluster",
