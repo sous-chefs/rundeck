@@ -9,7 +9,7 @@
         "wt_cam": "= 1.0.4", 
         "wt_storm": "= 1.0.37",
         "wt_heatmaps": "= 0.10.42", 
-        "wt_realtimeapi": "= 0.0.20", 
+        "wt_realtimeapi": "= 0.0.21", 
         "wt_streamingapi": "= 0.0.22",
         "wt_realtime_hadoop": "= 1.0.2",
         "wt_streamingauditor": "= 0.0.10",
@@ -258,11 +258,10 @@
             "masterConnString": "jdbc:sqlserver://jmasterdb01.englab.webtrends.corp:1433;databaseName=wtMaster;user=streamingconfig;password=h4Qk5lhQARHEEgdiKqAw;",
             "includeUnmappedAnalyticsIds": "true",
             "port": "8080",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/24707:id/streaming-configservice-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/webtrends-streaming-configservice-bin.tar.gz"
         },
         "wt_realtimeapi": {
-            "port": 8082,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/23935:id/realtimeapi-bin.tar.gz"
+            "port": 8082
         }, 
         "wt_storm": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/25658:id/streaming-analysis-bin.tar.gz",
