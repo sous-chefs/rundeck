@@ -1,3 +1,5 @@
+# 2.0.1
+  Added lookup files and cookbook to lay them down.
 # 2.0.0
 * Renamed wt_storm to wt_storm_realtime and wt_storm_streaming
 
