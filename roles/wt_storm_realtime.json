@@ -4,19 +4,6 @@
   "json_class": "Chef::Role",
   "description": "Webtrends Storm Realtime Cluster",
   "run_list": [
-    "recipe[wt_storm::realtime_deploy]"
-  ],
-  "override_attributes": {
-    "storm": {
-      "cluster_role": "wt_storm_realtime",
-      "zookeeper": {
-        "root": "/v2-storm-realtime"
-      },
-      "transactional": {
-        "zookeeper": {
-          "root": "/v2-storm-realtime-transactional"
-        }
-      }
-    }
-  }
+    "recipe[wt_storm_realtime]"
+  ]
 }
