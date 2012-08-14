@@ -116,6 +116,7 @@ def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
     variables({
         :zookeeper_pairs => zookeeper_pairs,
         :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
+        :kafka_topic => "#{datacenter}_#{pod}_scsRawHits"
     })
     end
 
