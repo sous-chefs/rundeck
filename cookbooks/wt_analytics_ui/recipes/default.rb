@@ -168,7 +168,6 @@ if deploy_mode?
 
 			# hbase config
 			:hbase_location    => node['hbase']['location'],
-			:hbase_thrift_port => node['hbase']['thrift_port'],
 			:hbase_dc_id       => node['hbase']['data_center_id'],
 			:hbase_pod_id      => node['hbase']['pod_id'],
 

@@ -20,7 +20,6 @@ Attributes
 * `node['cassandra']['cassandra_report_column']` - Report column for cassandra to use
 * `node['cassandra']['cassandra_thrift_port']` - Thrift port for cassandra to use
 * `node['hbase']['location']` - Load balanced address of Hbase nodes
-* `node['hbase']['thrift_port']` - Thrift port used by Hbase
 * `node['hbase']['data_center_id']` - Data Center ID
 * `node['hbase']['pod_id']` - Pod ID
 * `node['memcached']['cache_hosts']` - An array of all memcache boxes
