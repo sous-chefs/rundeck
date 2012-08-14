@@ -261,7 +261,6 @@
                 "worker": {
                     "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
                 },
-                "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0",
                 "realtime_topology_dimensions_bolt_count": 6,
                 "realtime_topology_parsing_bolt_count": 3,
                 "realtime_topology_row_key_bolt_count": 6,
@@ -274,7 +273,6 @@
                 "worker": {
                     "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
                 },
-                "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0",
                 "streaming_topology_augmentation_bolt_count": 10,
                 "streaming_topology_in_session_bolt_count": 1,
                 "streaming_topology_parsing_bolt_count": 50,

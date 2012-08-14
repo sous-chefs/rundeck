@@ -115,7 +115,9 @@ end
 
 def processTemplates (install_dir, node, user, group, datacenter, pod, kafka_chroot_suffix)
 	log "Updating the template files"
- 	
+
+    node[:wt_streaminglogreplayer][:kafka_topic] = "#{datacenter}_#{pod}_lrRawHits"
+    
 	# grab the zookeeper nodes that are currently available
 	zookeeper_pairs = getZookeeperPairs(node)
 	
@@ -168,7 +170,7 @@ if ENV["deploy_build"] == "true" then
             :java_opts => java_opts
         })
     end
-
+    
     processTemplates(install_dir, node, user, group, datacenter, pod, kafka_chroot_suffix)
 
     # delete the application tarball
