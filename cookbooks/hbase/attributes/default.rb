@@ -14,3 +14,5 @@ default[:hbase][:env][:HBASE_MANAGES_ZK] = "true"
 # hbase-site.xml
 default[:hbase][:site][:zookeeper_clientport] = 2181
 default[:hbase][:site][:zookeeper_quorum] = "localhost"
+default[:hbase][:site][:cluster_distributed] = "true"
+default[:hbase][:site][:master_info_port] = 60010
