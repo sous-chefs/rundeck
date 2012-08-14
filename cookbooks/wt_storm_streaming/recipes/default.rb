@@ -131,9 +131,9 @@ stax-api-1.0.1.jar
 storm-kafka-0.7.2-snaptmp8.jar
 streaming-analysis.jar
 UserAgentUtils-1.2.4.jar
-wurfl-1.4.0.1.jar
 xmlenc-0.52.jar
 zkclient-0.1.jar
+mobi.mtld.da-1.5.3.jar
 }.each do |jar|
       execute "mv" do
         user  "root"
@@ -248,10 +248,44 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/
   )
 end
 
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/seed.data" do
-  source "seed.data"
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/botIP.csv" do
+  source "botIP.csv"
   mode 00644
 end
+
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/asn_org.csv" do
+  source "asn_org.csv"
+  mode 00644
+end
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/conn_speed_code.csv" do
+  source "conn_speed_code.csv"
+  mode 00644
+end
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/city_codes.csv" do
+  source "city_codes.csv"
+  mode 00644
+end
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/country_codes.csv" do
+  source "country_codes.csv"
+  mode 00644
+end
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/metro_codes.csv" do
+  source "metro_codes.csv"
+  mode 00644
+end
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/region_codes.csv" do
+  source "region_codes.csv"
+  mode 00644
+end
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/keywords.ini" do
+  source "keywords.ini"
+  mode 00644
+end
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/device-atlas-20120813.json" do
+  source "device-atlas-20120813.json"
+  mode 00644
+end
+
 
 # template out the metadata loader
 template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/metadata-loader" do
