@@ -1,3 +1,6 @@
+# 2.0.0
+* Renamed wt_storm to wt_storm_realtime and wt_storm_streaming
+
 # 1.0.38
 * Added broker chroot prefix for zk.connect string
 
@@ -53,7 +56,7 @@
 # 1.0.22
 * Added independent kafka configuration properties to allow for kafka to
   register with its own zookeeper
-  
+
 # 1.0.21
 * Use the load balancer NetAcuity URL instead of searching for netacuity
 
