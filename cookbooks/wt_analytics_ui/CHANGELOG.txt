@@ -1,6 +1,8 @@
 Future
 	Change IIS site bindings
 	Search alternate/current environment for cache_hosts
+0.0.28
+	Hard code the thrift port for hbase since it's not actually tunable.
 
 0.0.27
 	Added YouTube settings
