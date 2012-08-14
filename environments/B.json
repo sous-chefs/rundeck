@@ -315,7 +315,7 @@
             "camConnString": "jdbc:sqlserver://bcamdb01.staging.dmz:1433;databaseName=CAM;user=sa;password=cad890;", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/streaming-configservice-bin.tar.gz", 
             "includeUnmappedAnalyticsIds": "true", 
-            "masterConnString": "jdbc:sqlserver://dmasterdb01.englab.webtrends.corp:1433;databaseName=wtMaster;user=sa;password=cad890;", 
+            "masterConnString": "jdbc:sqlserver://dmasterdb01.staging.dmz:1433;databaseName=wtMaster;user=sa;password=cad890;", 
             "port": "8080"
         }, 
         "wt_streaminglogreplayer": {
