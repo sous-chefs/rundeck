@@ -3,6 +3,9 @@
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
 
+## 1.8.1
+ * Added resource to add gem repo for windows
+
 ## 1.8.0
  * Rename ondemand_base to webtrends_server.  Two fold:  This cookbook will be used for Optimize as well going forward and it should match the role name
 
