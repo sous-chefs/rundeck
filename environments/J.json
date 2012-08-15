@@ -214,7 +214,7 @@
             "search_hostname": "jsearch.englab.webtrends.corp"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/.lastSuccessful/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt172/.lastSuccessful/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "jusagedb01.englab.webtrends.corp", 
