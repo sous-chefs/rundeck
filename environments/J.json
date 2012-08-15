@@ -33,10 +33,8 @@
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
-        "hbase": {
-            "data_center_id": "Lab", 
+        "hbase": { 
             "location": "shdata.staging.dmz", 
-            "pod_id": "J", 
             "site": {
                 "zookeeper_clientport": "", 
                 "zookeeper_quorum": ""
@@ -148,6 +146,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt160/.lastSuccessful/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
+            "fb_data_center_id": "Lab",
             "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
             "hmap_url": "", 
             "ondemand_base_domain": "jod.englab.webtrends.corp", 
@@ -170,7 +169,8 @@
             "install_log_dir_windows": "d:\\logs", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "log_dir_linux": "/var/log/webtrends/", 
-            "log_dir_windows": "", 
+            "log_dir_windows": "",  
+            "pod_id": "J",
             "smtp_server": "pdxengmta01.webtrends.corp", 
             "velocitycache_hosts": [
                 {
@@ -214,7 +214,7 @@
             "search_hostname": "jsearch.englab.webtrends.corp"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/.lastSuccessful/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt172/.lastSuccessful/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "jusagedb01.englab.webtrends.corp", 
