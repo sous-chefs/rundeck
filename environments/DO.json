@@ -202,6 +202,7 @@
             "cassandra_snmp_port": "", 
             "cassandra_thrift_port": "", 
             "config_dir_linux": "/etc/webtrends/", 
+	    "gem_repo":"http://chefclient02/gems-repo/",
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
