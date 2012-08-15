@@ -81,7 +81,7 @@ def getZookeeperPairs(node)
 	return zookeeper_pairs
 end
 
-def processTemplates (install_dir, node)
+def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
 
     log "Updating the template files"
     dcsid_url = node['wt_configdistrib']['dcsid_url']
@@ -116,6 +116,7 @@ def processTemplates (install_dir, node)
     variables({
         :zookeeper_pairs => zookeeper_pairs,
         :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
+        :kafka_topic => "#{datacenter}_#{pod}_scsRawHits"
     })
     end
 
@@ -154,7 +155,7 @@ if ENV["deploy_build"] == "true" then
     })
     end
 
-    processTemplates(install_dir, node)
+    processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix)
 
     # delete the application tarball
     execute "delete_install_source" do
