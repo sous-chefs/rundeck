@@ -16,3 +16,14 @@ default[:hbase][:site][:zookeeper_clientport] = 2181
 default[:hbase][:site][:zookeeper_quorum] = "localhost"
 default[:hbase][:site][:cluster_distributed] = "true"
 default[:hbase][:site][:master_info_port] = 60010
+
+# logging levels
+
+#log4j.logger.org.apache.zookeeper
+default[:hbase][:log4j][:zookeeper] = "INFO"
+#log4j.logger.org.apache.hadoop.hbase
+default[:hbase][:log4j][:hbase] = "INFO"
+#log4j.logger.org.apache.hadoop.hbase.zookeeper.ZKUtil
+default[:hbase][:log4j][:ZKUtil] = "INFO"
+#log4j.logger.org.apache.hadoop.hbase.zookeeper.ZooKeeperWatcher
+default[:hbase][:log4j][:ZooKeeperWatcher] = "INFO"
