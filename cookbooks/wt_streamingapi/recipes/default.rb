@@ -53,6 +53,10 @@ java_opts = node['wt_streamingapi']['java_opts']
 user = node['wt_streamingapi']['user']
 group = node['wt_streamingapi']['group']
 
+pod = node[:wt_realtime_hadoop][:pod]
+datacenter = node[:wt_realtime_hadoop][:datacenter]
+kafka_chroot_suffix = node[:kafka][:chroot_suffix]
+
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -89,12 +93,12 @@ recursive true
 action :create
 end
 
-def processTemplates (install_dir, node, zookeeper_quorum)
+def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix)
     log "Updating the template files"
     cam_url = node['wt_cam']['cam_server_url']
     port = node['wt_streamingapi']['port']
 
-    %w[monitoring.properties streaming.properties netty.properties].each do | template_file|
+    %w[monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
         source	"#{template_file}.erb"
         owner "root"
@@ -106,11 +110,12 @@ def processTemplates (install_dir, node, zookeeper_quorum)
             :port => port,
             :wt_monitoring => node[:wt_monitoring],
             :writeBufferHighWaterMark => node[:wt_streamingapi][:writeBufferHighWaterMark],
-            
+            :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",            
+
             # streaming 0mq parameters
             :zookeeper_quorum => zookeeper_quorum * ",",
-            :pod              => node[:wt_realtime_hadoop][:pod],
-            :datacenter       => node[:wt_realtime_hadoop][:datacenter]
+            :pod              => pod,
+            :datacenter       => datacenter,
         })
         end 
     end 
@@ -150,7 +155,7 @@ if ENV["deploy_build"] == "true" then
         })
     end
 
-    processTemplates(install_dir, node, zookeeper_quorum)
+    processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix)
 
     # delete the install tar ball
     execute "delete_install_source" do
@@ -170,7 +175,7 @@ if ENV["deploy_build"] == "true" then
         }) 
     end
 else
-    processTemplates(install_dir, node, zookeeper_quorum)
+    processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix)
 end
 
 #Create collectd plugin for streaming api JMX objects if collectd has been applied.
