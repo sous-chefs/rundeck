@@ -292,7 +292,7 @@
             }
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/26494:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/26496:id/webtrends-streamingapi-bin.tar.gz",
             "port": 8080
         }, 
         "wt_streamingauditor": {
