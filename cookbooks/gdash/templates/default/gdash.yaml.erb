@@ -1,0 +1,33 @@
+:graphite: <%= node.gdash.graphite_url %>
+:templatedir: <%= node.gdash.templatedir %>
+<% if node.gdash.basic_auth -%>
+:username: <%= node.gdash.username %>
+:password: <%= node.gdash.password %>
+<% end -%>
+:options:
+  :title: <%= node.gdash.title %>
+  :prefix: ""
+  :refresh_rate: <%= node.gdash.refresh_rate %>
+  :graph_columns: 2
+  :graph_width: 550
+  :graph_height: 250
+  :whisper_dir: /opt/graphite/storage/whisper
+  :interval_filters:
+    - :label: Last Hour
+      :from: -1hour
+      :to: now
+    - :label: Last Day
+      :from: -1day
+    - :label: Last Week
+      :from: -1week
+    - :label: Last Month
+      :from: -1month
+    - :label: Last Year
+      :from: -1year
+  :intervals:
+    - [ "-1hour", "1 hour" ]
+    - [ "-2hour", "2 hour" ]
+    - [ "-1day", "1 day" ]
+    - [ "-1month", "1 month" ]
+    - [ "-1year", "1 year" ]
+
