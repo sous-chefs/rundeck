@@ -30,6 +30,10 @@ user = node['wt_streamingauditor']['user']
 group = node['wt_streamingauditor']['group']
 java_opts = node['wt_streamingauditor']['java_opts']
 
+pod = node[:wt_realtime_hadoop][:pod]
+datacenter = node[:wt_realtime_hadoop][:datacenter]
+kafka_chroot_suffix = node[:kafka][:chroot_suffix]
+
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -81,7 +85,7 @@ def getZookeeperPairs(node)
 	return zookeeper_pairs
 end
 
-def processTemplates (install_dir, node)
+def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
     log "Updating the template files"
     
     # grab the zookeeper nodes that are currently available
@@ -93,7 +97,8 @@ def processTemplates (install_dir, node)
     group   "root"
     mode    00644
     variables({
-        :zookeeper_pairs => zookeeper_pairs
+        :zookeeper_pairs => zookeeper_pairs,
+        :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}"
     })
     end
 
@@ -107,8 +112,8 @@ def processTemplates (install_dir, node)
             :zookeeper_pairs => zookeeper_pairs,
             :wt_streamingauditor => node[:wt_streamingauditor],
             :wt_monitoring => node[:wt_monitoring],
-            :pod => node[:wt_realtime_hadoop][:pod],
-            :datacenter => node[:wt_realtime_hadoop][:datacenter]
+            :pod => pod,
+            :datacenter => datacenter
         })
         end 
     end
@@ -148,7 +153,7 @@ if ENV["deploy_build"] == "true" then
         })
     end
 
-    processTemplates(install_dir, node)
+    processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix)
 
     # delete the application tarball
     execute "delete_install_source" do
@@ -168,7 +173,7 @@ if ENV["deploy_build"] == "true" then
     })
     end
 else
-    processTemplates(install_dir, node)
+    processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix)
 end
 
 #Create collectd plugin for streaming auditor JMX objects if collectd has been applied.
