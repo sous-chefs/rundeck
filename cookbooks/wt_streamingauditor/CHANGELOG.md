@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.11
+* Added broker chroot prefix for zk.connect string
+
 ## 0.0.10
 * Fixed escaping issue with Nagios entry
 

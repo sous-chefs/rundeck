@@ -8,7 +8,7 @@ inputLogDir=<%= @wt_streaminglogreplayer[:share_mount_dir] %>
 inputLogExtension=<%= @wt_streaminglogreplayer[:log_extension] %>
 
 # Kafka topic to push to for each hit.
-kafkaTopic=<%= @wt_streaminglogreplayer[:kafka_topic] %>
+kafkaTopic=<%= @kafka_topic %>
 
 # Should the logs be deleted when they have been completed
 deleteLogs=<%= @wt_streaminglogreplayer[:delete_logs] %>
