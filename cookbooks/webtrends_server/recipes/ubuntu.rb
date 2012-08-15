@@ -31,7 +31,7 @@ if node.chef_environment == "_default"
 end
 
 # setup the Webtrends apt repo.  This has to be the first thing that happens
-node['ondemand_base']['apt'].each do |aptrepo|
+node['webtrends_server']['apt'].each do |aptrepo|
 	apt_repository aptrepo['name'] do
 		repo_name aptrepo['name']
 		if aptrepo.has_key? "distribution"
