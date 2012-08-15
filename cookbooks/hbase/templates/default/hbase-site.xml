@@ -32,14 +32,14 @@
 	</property>
 	<property>
 		<name>hbase.master.info.port</name>
-		<value>60010</value>
+		<value><%= node[:hbase][:site][:master_info_port] %></value>
 		<description>The port for the hbase master web UI
 		Set to -1 if you do not want the info server to run.
 		</description>
 	</property>
 	<property>
 		<name>hbase.cluster.distributed</name>
-		<value>true</value>
+		<value><%= node[:hbase][:site][:cluster_distributed] %></value>
 		<description>The mode the cluster will be in. Possible values are
 		false: standalone and pseudo-distributed setups with managed Zookeeper
 		true: fully-distributed with unmanaged Zookeeper Quorum (see hbase-env.sh)

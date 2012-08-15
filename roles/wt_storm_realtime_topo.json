@@ -1,0 +1,9 @@
+{
+  "name": "wt_storm_realtime_topo",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Webtrends Storm Realtime Cluster",
+  "run_list": [
+    "recipe[wt_storm_realtime]"
+  ]
+}

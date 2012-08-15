@@ -1,3 +1,9 @@
+## 1.0.7
+* Expose all logging levels as attributes
+
+## 1.0.6
+* Add ability to override all values in hbase-site.xml
+
 ## 1.0.5
 * Install to /usr/share/hbase not /usr/local/hbase so that we follow the same path setup as hadoop
 * Don't fall back to localhost if searches don't return a Hadoop namenode
