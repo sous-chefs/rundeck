@@ -1,0 +1,14 @@
+ExtendedStatus on
+TraceEnable off
+<VirtualHost *:80>
+  SetEnv GRAPHITE_URL <%= node.gdash.graphite_url %>
+  ServerAdmin     <%= node['wt_common']['admin_email'] %>
+  ServerName      <%= node['fqdn'] %>
+  DocumentRoot    <%= @docroot %>
+  CustomLog       <%= node['apache']['log_dir'] %>/gdash_access.log combined
+  ErrorLog        <%= node['apache']['log_dir'] %>/gdash_error.log
+  <Directory />
+    Options -Indexes
+  </Directory>
+</VirtualHost>
+
