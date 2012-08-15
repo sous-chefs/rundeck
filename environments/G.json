@@ -64,12 +64,6 @@
                 }
             }
         }, 
-        "storm": {
-            "version": "0.8.0",
-            "download_url": "http://repo.staging.dmz/repo/linux/storm",
-            "install_dir": "/opt/storm",
-            "log_dir": "/var/log/storm"
-        },
         "kafka": {
             "download_url": "http://repo.staging.dmz/repo/linux/kafka/",
             "log_flush_scheduler_time_interval": "500",
