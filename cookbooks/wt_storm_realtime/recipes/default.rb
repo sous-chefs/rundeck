@@ -207,7 +207,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :topology_override_msg_timeout_seconds   => node['wt_storm_realtime']['realtime_topology']['topology_override_msg_timeout_seconds'],
     # kafka consumer settings
     :kafka_chroot                         => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
-    :kafka_consumer_topic                 => node['wt_storm_realtime']['realtime_topology']['kafka_consumer_topic'],
+    :kafka_consumer_topic                 => "#{datacenter}_#{pod}_scsRawHits:0,#{datacenter}_#{pod}_lrRawHits:0",
     :kafka_dcsid_whitelist                => node['wt_storm_realtime']['realtime_topology']['dcsid_whitelist'],
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-realtime',
@@ -234,17 +234,6 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
-  )
-end
-
-template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/service-control" do
-  source "service-control.erb"
-  owner  "storm"
-  group  "storm"
-  mode   00755
-  variables(
-	:home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}",
-    :java_home => node['java']['java_home']
   )
 end
 
