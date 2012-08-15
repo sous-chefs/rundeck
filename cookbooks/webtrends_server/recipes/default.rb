@@ -9,11 +9,11 @@
 
 case node.platform
 	when "ubuntu", "debian"
-		include_recipe "ondemand_base::ubuntu"
+		include_recipe "webtrends_server::ubuntu"
 	when "centos", "redhat"
-		include_recipe "ondemand_base::centos"
+		include_recipe "webtrends_server::centos"
 	when "windows", "mswin", "mingw32"
-		include_recipe "ondemand_base::windows"
+		include_recipe "webtrends_server::windows"
 	else
 		log "unknown platform => #{node.platform} #{node.platform_version}"
 end
