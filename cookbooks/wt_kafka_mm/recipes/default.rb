@@ -37,6 +37,8 @@ def getZookeeperPairs(node, env)
 		end
 	end
 	
+	log "JB - #{zookeeper_pairs.size} instances of zookeeper found found in #{env}"
+
 	# fall back to attribs if search doesn't come up with any zookeeper roles
 	# if zookeeper_pairs.count == 0
 	#	node[:zookeeper][:quorum].each do |i|
@@ -45,6 +47,7 @@ def getZookeeperPairs(node, env)
 	# end
 
 	# append the zookeeper client port (defaults to 2181)
+
 	i = 0
 	while i < zookeeper_pairs.size do
 		zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
@@ -56,59 +59,60 @@ end
 
 #update the config files
 def processConfTemplates (install_dir, node, log_dir)
-
-    	log "Updating the template files"
  
-    	# grab the zookeeper nodes that are currently available
-    	zookeeper_pairs_src = getZookeeperPairs(node, node['mirror_source_env'])
     	zookeeper_pairs_target = getZookeeperPairs(node, node.chef_environment)
 
-    	# Set up the consumer config - The zookeepers in the source environment
-    	template "#{install_dir}/conf/#{node['mirror_source_env']}/consumer.config" do
-    		source  "consumer.config.erb"
-    		owner   "root"
-		group   "root"
-		mode    00644
-		variables({
-			#:zkconnect => zookeeper_pairs_src,
-			#hard coding until environments are ready
-			:zkconnect => ["szoo01.staging.dmz:2181", "szoo02.staging.dmz:2181", "szoo03.staging.dmz:2181"], 
-			:conn_timeout => "10000",
-			:groupid => "mm_#{node['mirror_source_env']}"
-    		})
-    	end
+	node['wt_mirrormaker']['src_envs'].each { |srcEnv|
 
-    	# Set up the producer config - The zookeepers in the target environment
-    	template "#{install_dir}/conf/#{node['mirror_source_env']}/producer.config" do
-		source  "producer.config.erb"
-		owner   "root"
-		group   "root"
-		mode    00644
-		variables({
-			:zkconnect => zookeeper_pairs_target 
-		})
-    	end
+	    	# grab the zookeeper nodes that are currently available in the source environment
+	    	zookeeper_pairs_src = getZookeeperPairs(node, srcEnv)
 
-    	# Set up the topic whitelist
-    	template "#{install_dir}/conf/#{node['mirror_source_env']}/whitelist" do
-    		source  "whitelist.erb"
-		owner   "root"
-		group   "root"
-		mode    00644
-		variables({
-    		})
-    	end
+		# create the conf directory
+		directory "#{install_dir}/conf/#{srcEnv}" do
+			owner "root"
+			group "root"
+			mode 00755
+			recursive true
+			action :create
+		end
 
-	# log4j
-    	template "#{install_dir}/conf/#{node['mirror_source_env']}/log4j.properties" do
-    		source  "log4j.properties.erb"
-		owner   "root"
-		group   "root"
-		mode    00644
-		variables({
-			:log_file => "#{log_dir}/mirrormaker_#{node['mirror_source_env']}.log"
-    		})
-    	end
+	    	# Set up the consumer config - The zookeepers in the source environment
+	    	template "#{install_dir}/conf/#{srcEnv}/consumer.config" do
+	    		source  "consumer.config.erb"
+	    		owner   "root"
+			group   "root"
+			mode    00644
+			variables({
+				#:zkconnect => zookeeper_pairs_src,
+				#hard coding until environments are ready
+				:zkconnect => zookeeper_pairs_src, 
+				:conn_timeout => "10000",
+				:groupid => "mm_#{srcEnv}"
+	    		})
+	    	end
+
+	    	# Set up the producer config - The zookeepers in the target environment
+	    	template "#{install_dir}/conf/#{srcEnv}/producer.config" do
+			source  "producer.config.erb"
+			owner   "root"
+			group   "root"
+			mode    00644
+			variables({
+				:zkconnect => zookeeper_pairs_target 
+			})
+	    	end
+
+		# log4j
+	    	template "#{install_dir}/conf/#{srcEnv}/log4j.properties" do
+	    		source  "log4j.properties.erb"
+			owner   "root"
+			group   "root"
+			mode    00644
+			variables({
+				:log_file => "#{log_dir}/mirrormaker_#{srcEnv}.log"
+	    		})
+	    	end
+	}
 end
 
 #Pull Kafka from the repository and copy necessary files to lib directory
@@ -177,15 +181,6 @@ if ENV["deploy_build"] == "true" then
 		recursive true
 		action :create
 	end
-	
-	# create the conf directory
-	directory "#{install_dir}/conf/#{node['mirror_source_env']}" do
-		owner "root"
-		group "root"
-		mode 00755
-		recursive true
-		action :create
-	end
 
 	# create the lib directory
 	directory "#{install_dir}/lib" do
@@ -212,20 +207,23 @@ if ENV["deploy_build"] == "true" then
 			:user => user,
 			:java_class => "kafka.tools.MirrorMaker",
 			:java_jmx_port => node['wt_monitoring']['jmx_port'],
-			:java_opts => java_opts
+			:java_opts => java_opts,
+			:topic_white_list => node['wt_mirrormaker']['topic_white_list']
 		})
 	end
 
-	#create the run it service for this mirror maker instance 
-	runit_service "mirrormaker_#{node['mirror_source_env']}" do
-		template_name "mirrormaker"	#/templates/sv-mirrormaker-run.erb
-	    	options({
-			:install_dir => install_dir,
-			:user => user,
-			:src_env => node['mirror_source_env']
-	    	})
-    	end
+	#create a runit service for each mirrored data center 
+	node['wt_mirrormaker']['src_envs'].each { |srcEnv|
 
+		runit_service "mirrormaker_#{srcEnv}" do
+			template_name "mirrormaker"	#/templates/sv-mirrormaker-run.erb
+		    	options({
+				:install_dir => install_dir,
+				:user => user,
+				:src_env => srcEnv
+		    	})
+	    	end
+	}
 end
 
 #Do this in all situations
