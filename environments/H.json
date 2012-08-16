@@ -22,7 +22,7 @@
         "wt_streamingconfigservice": "= 0.0.3",
         "wt_streaminglogreplayer": "= 0.0.21",
         "zookeeper": "= 1.0.6",
-	"wt_kafka_mm": "= 0.0.4"
+        "wt_kafka_mm": "= 0.0.4"
     },
     "default_attributes": {},
     "description": "H Pod",
@@ -135,7 +135,6 @@
                 "install_method": "package"
             },
             "multi_environment_monitoring": true,
-            "multi_os_monitoring": true,
             "nrpe": {
                 "dont_blame_nrpe": "1"
             },
