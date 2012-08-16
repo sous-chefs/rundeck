@@ -20,5 +20,5 @@ producer.type=async
 
 queue.enqueueTimeout.ms=-1
 
-zk.connect = <%= @zkconnect.join(',') %>
+zk.connect = <%= @zkconnect.join(',') %><%= @kafka_chroot %>
 
