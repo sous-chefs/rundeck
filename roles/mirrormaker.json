@@ -8,7 +8,7 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[mirrormaker]"
+    "recipe[wt_kafka_mm]"
   ],
   "description": "This is the Kafka mirror maker",
   "chef_type": "role"
