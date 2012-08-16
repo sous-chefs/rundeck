@@ -230,6 +230,7 @@
             "dcsid_url": "http://dcd01.staging.dmz:8097/config/dcsid2account"
         }, 
         "wt_heatmaps": {
+            "alt_chef_environment": "support-staging", 
             "config_distrib": "dcd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 

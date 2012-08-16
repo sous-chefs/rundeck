@@ -1,5 +1,8 @@
 ## Future
 
+## 0.10.43
+* Added support for search alternate chef environment for data nodes.
+
 
 ## 0.10.41
 * Added NRPE check
