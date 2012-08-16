@@ -1,7 +1,7 @@
 {
     "chef_type": "environment",
     "cookbook_versions": {
-        "java": "= 1.5.0",
+        "java": "= 1.5.2",
         "kafka": "= 1.0.5",
         "nagios": "= 1.5.0",
         "ondemand_base": "= 1.7.12",
