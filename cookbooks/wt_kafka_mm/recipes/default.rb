@@ -62,13 +62,21 @@ def processConfTemplates (install_dir, node, log_dir)
  
     	zookeeper_pairs_target = getZookeeperPairs(node, node.chef_environment)
 
-	node['wt_mirrormaker']['src_envs'].each { |srcEnv|
+	node['wt_mirrormaker']['src_envs'].each { |srcEnvArray|
 
-	    	# grab the zookeeper nodes that are currently available in the source environment
-	    	zookeeper_pairs_src = getZookeeperPairs(node, srcEnv)
+		src_env = srcEnvArray[0]
+		src_dc = srcEnvArray[1]
+
+		#No idea why this is pulled from wt_realtime_hadoop but following pattern from streaming collection
+		tgt_env = node[:wt_realtime_hadoop][:pod]
+		tgt_dc = node[:wt_realtime_hadoop][:datacenter]
+
+	   	# grab the zookeeper nodes that are currently available in the source environment
+	    	zookeeper_pairs_src = getZookeeperPairs(node, src_env)
+		kafka_chroot_suffix = node[:kafka][:chroot_suffix]
 
 		# create the conf directory
-		directory "#{install_dir}/conf/#{srcEnv}" do
+		directory "#{install_dir}/conf/#{src_env}" do
 			owner "root"
 			group "root"
 			mode 00755
@@ -77,39 +85,39 @@ def processConfTemplates (install_dir, node, log_dir)
 		end
 
 	    	# Set up the consumer config - The zookeepers in the source environment
-	    	template "#{install_dir}/conf/#{srcEnv}/consumer.config" do
+	    	template "#{install_dir}/conf/#{src_env}/consumer.config" do
 	    		source  "consumer.config.erb"
 	    		owner   "root"
 			group   "root"
 			mode    00644
 			variables({
-				#:zkconnect => zookeeper_pairs_src,
-				#hard coding until environments are ready
-				:zkconnect => zookeeper_pairs_src, 
+				:zkconnect => zookeeper_pairs_src,
+				:kafka_chroot => "/#{src_dc}_#{src_env}_#{kafka_chroot_suffix}", 
 				:conn_timeout => "10000",
-				:groupid => "mm_#{srcEnv}"
+				:groupid => "mm_#{src_env}"
 	    		})
 	    	end
 
 	    	# Set up the producer config - The zookeepers in the target environment
-	    	template "#{install_dir}/conf/#{srcEnv}/producer.config" do
+	    	template "#{install_dir}/conf/#{src_env}/producer.config" do
 			source  "producer.config.erb"
 			owner   "root"
 			group   "root"
 			mode    00644
 			variables({
-				:zkconnect => zookeeper_pairs_target 
+				:zkconnect => zookeeper_pairs_target, 
+				:kafka_chroot => "/#{tgt_dc}_#{tgt_env}_#{kafka_chroot_suffix}"
 			})
 	    	end
 
 		# log4j
-	    	template "#{install_dir}/conf/#{srcEnv}/log4j.properties" do
+	    	template "#{install_dir}/conf/#{src_env}/log4j.properties" do
 	    		source  "log4j.properties.erb"
 			owner   "root"
 			group   "root"
 			mode    00644
 			variables({
-				:log_file => "#{log_dir}/mirrormaker_#{srcEnv}.log"
+				:log_file => "#{log_dir}/mirrormaker_#{src_env}.log"
 	    		})
 	    	end
 	}
@@ -213,14 +221,16 @@ if ENV["deploy_build"] == "true" then
 	end
 
 	#create a runit service for each mirrored data center 
-	node['wt_mirrormaker']['src_envs'].each { |srcEnv|
+	node['wt_mirrormaker']['src_envs'].each { |srcEnvArray|
 
-		runit_service "mirrormaker_#{srcEnv}" do
+		src_env = srcEnvArray[0]
+
+		runit_service "mirrormaker_#{src_env}" do
 			template_name "mirrormaker"	#/templates/sv-mirrormaker-run.erb
 		    	options({
 				:install_dir => install_dir,
 				:user => user,
-				:src_env => srcEnv
+				:src_env => src_env
 		    	})
 	    	end
 	}
