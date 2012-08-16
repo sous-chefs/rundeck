@@ -17,7 +17,7 @@
         "wt_streamingapi": "= 0.0.23", 
         "wt_streamingauditor": "= 0.0.10", 
         "wt_streamingcollection": "= 0.0.21", 
-        "wt_streamingconfigservice": "= 0.0.2", 
+        "wt_streamingconfigservice": "= 0.0.3", 
         "wt_streaminglogreplayer": "= 0.0.18", 
         "zookeeper": "= 1.0.4"
     }, 
@@ -230,6 +230,7 @@
             "dcsid_url": "http://dcd01.staging.dmz:8097/config/dcsid2account"
         }, 
         "wt_heatmaps": {
+            "alt_chef_environment": "support-staging", 
             "config_distrib": "dcd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
@@ -312,10 +313,12 @@
             "port": 8080
         }, 
         "wt_streamingconfigservice": {
-            "camConnString": "jdbc:sqlserver://bcamdb01.staging.dmz:1433;databaseName=CAM;user=sa;password=cad890;", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/streaming-configservice-bin.tar.gz", 
+			"camdbserver": "bcamdb01.staging.dmz",
+			"camdbname": "CAM",
+			"masterdbserver": "dmasterdb01.staging.dmz",
+			"masterdbname": "wtmaster",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/webtrends-streaming-configservice-bin.tar.gz", 
             "includeUnmappedAnalyticsIds": "true", 
-            "masterConnString": "jdbc:sqlserver://dmasterdb01.staging.dmz:1433;databaseName=wtMaster;user=sa;password=cad890;", 
             "port": "8080"
         }, 
         "wt_streaminglogreplayer": {
