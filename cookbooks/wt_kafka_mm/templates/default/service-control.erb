@@ -12,6 +12,7 @@ LOG_ERR="<%=File.join(@log_dir,"process_$2.err")%>"
 HOME_DIR="<%=@install_dir%>"
 JAVA_HOME="<%=@java_home%>"
 JAVA_OPTS="<%=@java_opts%>"
+TOPIC_REGEX="<%=@topic_white_list%>"
 
 # Setup classpath, initially empty.
 CP="$HOME_DIR/conf/$2/"
@@ -39,7 +40,7 @@ fi
 JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
 
 # MirrorMaker options
-MM_OPTS="--producer.config $HOME_DIR/conf/$2/producer.config --consumer.config $HOME_DIR/conf/$2/consumer.config --whitelist \".*\""
+MM_OPTS="--producer.config $HOME_DIR/conf/$2/producer.config --consumer.config $HOME_DIR/conf/$2/consumer.config --whitelist $TOPIC_REGEX"
 
 # Create the JSVC command line.
 CMD="$JAVA_HOME/bin/java -cp $CP $JAVA_OPTS $JMX_OPTS"
