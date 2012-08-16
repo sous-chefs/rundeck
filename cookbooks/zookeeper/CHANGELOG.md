@@ -1,5 +1,8 @@
 ## Future
 
+## 1.0.6
+* Install ZooKeeper 3.3.6 by default now
+
 ## 1.0.5:
 * exposed jmx port as an attribute
 
