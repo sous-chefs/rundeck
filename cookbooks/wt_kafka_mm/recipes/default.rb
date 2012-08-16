@@ -206,7 +206,7 @@ if ENV["deploy_build"] == "true" then
 			:java_home => java_home,
 			:user => user,
 			:java_class => "kafka.tools.MirrorMaker",
-			:java_jmx_port => node['wt_monitoring']['jmx_port'],
+			:java_jmx_port => node['wt_mirrormaker']['jmx_port'],
 			:java_opts => java_opts,
 			:topic_white_list => node['wt_mirrormaker']['topic_white_list']
 		})
@@ -228,5 +228,3 @@ end
 
 #Do this in all situations
 processConfTemplates(install_dir, node, log_dir)
-
-
