@@ -64,7 +64,14 @@ end
 def processTemplates (install_dir, node, user, group)
 	log "Updating the template files"
 
-    %w[monitoring.properties config.properties].each do |template_file|
+    # grab the users and passwords from the data bag
+    auth_data = data_bag_item('authorization', node.chef_environment)
+    camdbuser  = auth_data['wt_streamingconfigservice']['camdbuser']
+    camdbpwd = auth_data['wt_streamingconfigservice']['camdbpwd']
+    masterdbuser = auth_data['wt_streamingconfigservice']['masterdbuser']
+    masterdbpwd = auth_data['wt_streamingconfigservice']['masterdbpwd']
+
+     %w[monitoring.properties config.properties].each do |template_file|
 	template "#{install_dir}/conf/#{template_file}" do
 	        source	"#{template_file}.erb"
 	        owner user
@@ -74,12 +81,12 @@ def processTemplates (install_dir, node, user, group)
 	            :port => node['wt_streamingconfigservice']['port'],
                     :camdbserver => node['wt_streamingconfigservice']['camdbserver'],
                     :camdbname => node['wt_streamingconfigservice']['camdbname'],
-                    :camdbuser => node['wt_streamingconfigservice']['camdbuser'],
-                    :camdbpwd => node['wt_streamingconfigservice']['camdbpwd'],
+                    :camdbuser => camdbuser,
+                    :camdbpwd => camdbpwd,
                     :masterdbserver => node['wt_streamingconfigservice']['masterdbserver'],
                     :masterdbname => node['wt_streamingconfigservice']['masterdbname'],
-                    :masterdbuser => node['wt_streamingconfigservice']['masterdbuser'],
-                    :masterdbpwd => node['wt_streamingconfigservice']['masterdbpwd'],
+                    :masterdbuser => masterdbuser,
+                    :masterdbpwd => masterdbpwd,
                     :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
 	            :wt_monitoring => node[:wt_monitoring]
 	        })
