@@ -30,4 +30,10 @@
     "wt_netacuity": {
         "admin_password": "SHvWHezZSc7"
     }
+	"wt_streamingconfigservice" : {
+		"camdbuser": "wtUI",
+		"camdbpwd:": "bijoux",
+		"masterdbuser": "ConfigSvc",
+		"masterdbpwd": "bijoux",
+    }
 }
