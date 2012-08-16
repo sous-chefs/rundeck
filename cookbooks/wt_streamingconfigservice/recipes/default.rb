@@ -22,7 +22,7 @@ end
 log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingconfigservice")
 install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingconfigservice")
 
-tarball      = "streaming-configservice-bin.tar.gz"
+# tarball      = "webtrends-streaming-configservice-bin.tar.gz"
 java_home    = node['java']['java_home']
 download_url = node['wt_streamingconfigservice']['download_url']
 tarball      = node['wt_streamingconfigservice']['download_url'].split("/")[-1]
@@ -64,7 +64,14 @@ end
 def processTemplates (install_dir, node, user, group)
 	log "Updating the template files"
 
-    %w[monitoring.properties config.properties].each do |template_file|
+    # grab the users and passwords from the data bag
+    auth_data = data_bag_item('authorization', node.chef_environment)
+    camdbuser  = auth_data['wt_streamingconfigservice']['camdbuser']
+    camdbpwd = auth_data['wt_streamingconfigservice']['camdbpwd']
+    masterdbuser = auth_data['wt_streamingconfigservice']['masterdbuser']
+    masterdbpwd = auth_data['wt_streamingconfigservice']['masterdbpwd']
+
+     %w[monitoring.properties config.properties].each do |template_file|
 	template "#{install_dir}/conf/#{template_file}" do
 	        source	"#{template_file}.erb"
 	        owner user
@@ -72,9 +79,15 @@ def processTemplates (install_dir, node, user, group)
 	        mode  00755
 	        variables({ 
 	            :port => node['wt_streamingconfigservice']['port'],
-                :camConnString => node['wt_streamingconfigservice']['camConnString'],
-                :masterConnString => node['wt_streamingconfigservice']['masterConnString'],
-                :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
+                    :camdbserver => node['wt_streamingconfigservice']['camdbserver'],
+                    :camdbname => node['wt_streamingconfigservice']['camdbname'],
+                    :camdbuser => camdbuser,
+                    :camdbpwd => camdbpwd,
+                    :masterdbserver => node['wt_streamingconfigservice']['masterdbserver'],
+                    :masterdbname => node['wt_streamingconfigservice']['masterdbname'],
+                    :masterdbuser => masterdbuser,
+                    :masterdbpwd => masterdbpwd,
+                    :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
 	            :wt_monitoring => node[:wt_monitoring]
 	        })
 	    end
