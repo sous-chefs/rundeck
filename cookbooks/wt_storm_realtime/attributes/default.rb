@@ -68,7 +68,6 @@ default['wt_storm_realtime']['drpc']['request_timeout_secs'] = 600
 
 # transactional attributes
 default['wt_storm_realtime']['transactional']['zookeeper']['root'] = "/v2-storm-realtime-transactional"
-default['wt_storm_realtime']['transactional']['zookeeper']['port'] = 2181
 
 
 # topology attributes
