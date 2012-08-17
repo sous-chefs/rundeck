@@ -1,6 +1,3 @@
-## Future
-* Unknown
-
 ## 1.0.9
 * Separated Auth service from the Cam
 * Updated cam cookbook and web.config template
