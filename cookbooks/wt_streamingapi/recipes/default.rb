@@ -95,7 +95,7 @@ end
 
 def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix)
     log "Updating the template files"
-    cam_url = node['wt_cam']['cam_server_url']
+    auth_url = node['wt_cam']['auth_service_url']
     port = node['wt_streamingapi']['port']
 
     %w[monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
@@ -105,7 +105,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
         group "root"
         mode  00644
         variables({
-            :cam_url => cam_url,
+            :auth_url => auth_url,
             :install_dir => install_dir,
             :port => port,
             :wt_monitoring => node[:wt_monitoring],
