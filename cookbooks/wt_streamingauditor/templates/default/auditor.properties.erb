@@ -1,7 +1,10 @@
+# Are we currently listening for metric records
+metricslistener.enabled= <%= node[:wt_streamingauditor][:metricslistener_enabled] %>
+# The topic used for sapi metrics (defaults to sapi-metrics)
+metrics.topic=sapi-metrics
+
 # Are we currently listening for audit records
 auditlistener.enabled= <%= node[:wt_streamingauditor][:auditlistener_enabled] %>
-# the number of threads to use for listening
-auditlistener.threads = <%= node[:wt_streamingauditor][:auditlistener_threads] %>
 
 # The root node name for SAPI nodes
 sapi.znode.root=/StreamingZMQ

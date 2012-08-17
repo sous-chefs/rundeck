@@ -37,7 +37,7 @@ Attributes
 * `node['wt_common']['install_dir_windows']` - Base location for all windows products to be installed(ie. "D:\\wrs")
 * `node['wt_dx']['rest_base_uri']` - URL to DX box to make REST calls to(ie. https://ws.webtrends.com/v3)
 * `node['wt_masterdb']['master_host']` - Host name of masterdb
-* `node['wt_messaging_monitoring']['monitor_service_addr'] - 
+* `node['wt_messaging_monitoring']['monitor_hostname'] - 
 * `node['wt_search']['search_hostname']` - Load balanced address of search boxes
 
 Data Bag Items

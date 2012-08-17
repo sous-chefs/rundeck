@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.12
+* Added metrics listener support
+
 ## 0.0.11
 * Added broker chroot prefix for zk.connect string
 
