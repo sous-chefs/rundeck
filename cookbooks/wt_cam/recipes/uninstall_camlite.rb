@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: wt_dx
-# Recipe:: uninstall
+# Cookbook Name:: wt_cam
+# Recipe:: uninstall_camlite
 # Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
 #
 # Copyright 2012, Webtrends
