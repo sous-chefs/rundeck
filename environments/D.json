@@ -91,8 +91,7 @@
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
-            "server_role": "nagios_xi", 
-            "users_databag_group": "staging"
+            "server_role": "nagios_xi"
         }, 
         "ntp": {
             "servers": [
