@@ -1,7 +1,7 @@
 Description
 ===========
 
-Multi-pod environments
+Installs the Python script used to setup the HBase table schema for Realtime
 
 Requirements
 ============
