@@ -6,7 +6,6 @@
 # Copyright 2012, Webtrends Inc.
 #
 
-default['wt_storm_streaming']['cluster_role'] = "wt_storm_realtime_streaing"
 
 # general storm attributes
 default['wt_storm_streaming']['java_lib_path'] = "/usr/local/lib:/opt/local/lib:/usr/lib"

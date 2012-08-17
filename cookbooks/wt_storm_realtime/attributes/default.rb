@@ -6,8 +6,6 @@
 # Copyright 2012, Webtrends Inc.
 #
 
-default['wt_storm_realtime']['cluster_role'] = "wt_storm_realtime_realtime"
-
 # general storm attributes
 default['wt_storm_realtime']['java_lib_path'] = "/usr/local/lib:/opt/local/lib:/usr/lib"
 default['wt_storm_realtime']['local_dir'] = "/mnt/storm"
