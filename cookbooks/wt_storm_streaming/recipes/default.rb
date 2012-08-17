@@ -31,7 +31,7 @@ kafka_chroot_suffix = node[:kafka][:chroot_suffix]
 # Perform some really funky overrides that should never be done and need to be removed
 node['wt_storm_streaming']['zookeeper_quorum'] = zookeeper_quorum
 node['wt_storm_streaming']['nimbus']['host'] = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
-node['wt_storm_streaming']['worker']['childopts'] = node['wt_storm_streaming']['streaming_topology']['worker']['childopts']
+node['wt_storm_streaming']['worker']['childopts'] = node['wt_storm']['streaming_topology']['worker']['childopts']
 node['wt_storm_streaming']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-streaming"
 node['wt_storm_streaming']['transactional']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-streaming-transactional"
 
