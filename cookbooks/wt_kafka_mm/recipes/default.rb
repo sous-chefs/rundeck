@@ -14,8 +14,8 @@ else
     log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "mirrormaker")
-install_dir	= File.join("#{node['wt_common']['install_dir_linux']}", "mirrormaker")
+log_dir     = "#{node['wt_common']['log_dir_linux']}/mirrormaker"
+install_dir	= "#{node['wt_common']['install_dir_linux']}/mirrormaker"
 
 user = node['wt_mirrormaker']['user']
 group = node['wt_mirrormaker']['group']
@@ -163,34 +163,37 @@ def getLib(lib_dir)
 	end
 end
 
+########################
+# Perform actual deploy
+
+# create the log directory
+directory "#{log_dir}" do
+	owner   user
+	group   group
+	mode    00755
+	recursive true
+	action :create
+end
+
+# create the install directory
+directory "#{install_dir}/bin" do
+	owner "root"
+	group "root"
+	mode 00755
+	recursive true
+	action :create
+end
+
+# create the lib directory
+directory "#{install_dir}/lib" do
+	owner "root"
+	group "root"
+	mode 00755
+	recursive true
+	action :create
+end
+
 if ENV["deploy_build"] == "true" then
-
-	# create the log directory
-	directory "#{log_dir}" do
-		owner   user
-		group   group
-		mode    00755
-		recursive true
-		action :create
-	end
-
-	# create the install directory
-	directory "#{install_dir}/bin" do
-		owner "root"
-		group "root"
-		mode 00755
-		recursive true
-		action :create
-	end
-
-	# create the lib directory
-	directory "#{install_dir}/lib" do
-		owner "root"
-		group "root"
-		mode 00755
-		recursive true
-		action :create
-	end
 
 	#pull down the mirror maker dependencies and copy to /lib
 	getLib("#{install_dir}/lib")
