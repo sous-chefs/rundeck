@@ -10,7 +10,6 @@
         "ondemand_base": "= 1.7.12",
         "storm": "= 1.0.16",
         "windows": "= 1.2.12",
-        "wt_analytics_ui": "= 0.0.23",
         "wt_base": "= 0.10.53",
         "wt_cam": "= 1.0.9",
         "wt_monitoring": "= 0.0.2",
@@ -45,20 +44,9 @@
                 ]
             }
         },
-        "beyond_compare": {
-            "download_url": ""
-        },
-        "cassandra": {
-            "cassandra_host": "cassandra.staging.dmz",
-            "cassandra_meta_column": "B_Meta",
-            "cassandra_report_column": "B_Report",
-            "cassandra_thrift_port": 9160
-        },
-        "delltools": {
-            "raid": {
-                "megacli_url": ""
-            }
-        },
+        "beyond_compare": {},
+        "cassandra": {},
+        "delltools": {},
         "esx": {
             "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4",
             "repo": "http://repo.staging.dmz/repo/linux/vmware",
@@ -77,12 +65,9 @@
             "site": {
                 "zookeeper_clientport": 2181,
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
-            },
-            "thrift_port": 9090
+            }
         },
-        "hive": {
-            "metastore": {}
-        },
+        "hive": {},
         "java": {
             "install_flavor": "oracle",
             "jdk": {
@@ -106,19 +91,7 @@
             "threads": "8",
             "version": "0.7.0"
         },
-        "memcached": {
-            "cache_hosts": [
-                {
-                    "name": "xcache01.staging.dmz",
-                    "port": "11211"
-                },
-                {
-                    "name": "xcache02.staging.dmz",
-                    "port": "11211"
-                }
-            ],
-            "memory": "1024"
-        },
+        "memcached": {},
         "ms_dotnet4": {
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         },
@@ -191,25 +164,7 @@
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         },
-        "wt_analytics_ui": {
-            "app_pool_private_memory": 2097152,
-            "bba_domain": "bbba.webtrends.com",
-            "cache_region": "B_A10",
-            "custom_errors": "Off",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/25797:id/AnalyticsUI.zip",
-            "fb_app_clientid": "119772538146833",
-            "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c",
-            "help_link": "http://help-release.itl.webtrends.corp/{0}/analytics10/",
-            "hmap_url": "",
-            "ondemand_base_domain": "bod.webtrends.com",
-            "proxy_address": "http://sproxy02.staging.dmz:3128",
-            "proxy_enabled": "true",
-            "reinvigorate_tracking_code": "fv6b7-9x820v8963",
-            "rest_base_uri": "https://bdx.webtrends.com/v3",
-            "show_profiling": "true",
-            "tagbuilder_download_url": "https://stb.webtrends.com",
-            "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
-        },
+        "wt_analytics_ui": {},
         "wt_cam": {
             "cam_server_url": "http://bcam01.staging.dmz/camservice",
             "db_server": "bcamdb01.staging.dmz",
@@ -241,9 +196,7 @@
             "master_host": "bmasterdb01.staging.dmz",
             "sched_host": "bmasterdb01.staging.dmz"
         },
-        "wt_messaging_monitoring": {
-            "monitor_service_addr": "serviceBusMonitoring@bds01.staging.dmz"
-        },
+        "wt_messaging_monitoring": {},
         "wt_monitoring": {
             "audit_bucket_timespan": 10,
             "audit_topic": "stream-audit",
@@ -273,13 +226,8 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/23935:id/realtimeapi-bin.tar.gz",
             "port": 8082
         },
-        "wt_rta": {
-            "rta_host": "brta01.staging.dmz"
-        },
-        "wt_search": {
-            "search_hostname": "bsearch.staging.dmz",
-            "search_service": "net.tcp://bsearch.staging.dmz:8096/Search/Service"
-        },
+        "wt_rta": {},
+        "wt_search": {},
         "wt_storm": {
             "dcsid_whitelist": "",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/24696:id/streaming-analysis-bin.tar.gz",
