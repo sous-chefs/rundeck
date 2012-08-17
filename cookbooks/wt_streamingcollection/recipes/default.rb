@@ -84,8 +84,7 @@ end
 def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
 
     log "Updating the template files"
-    dcsid_url = node['wt_configdistrib']['dcsid_url']
-    cam_dcsid_url = node['wt_cam']['cam_server_url']
+    configservice_url = node['wt_streamingconfigservice']['config_service_url']
     port = node['wt_streamingcollection']['port']
 
     # grab the zookeeper nodes that are currently available
@@ -98,8 +97,7 @@ def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
         group "root"
         mode  00644
         variables({
-            :server_url => dcsid_url,
-            :cam_url => cam_dcsid_url,
+            :configservice => configservice_url,
             :install_dir => install_dir,
             :port => port,
             :zookeeper_pairs => zookeeper_pairs,

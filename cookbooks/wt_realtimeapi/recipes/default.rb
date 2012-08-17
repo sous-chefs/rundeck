@@ -59,7 +59,7 @@ def processTemplates (install_dir, node)
     zookeeper_quorum = node['hbase']['site']['zookeeper_quorum']
     zookeeper_clientport = node['zookeeper']['client_port']
     port = node['wt_realtimeapi']['port']
-    cam_url = node['wt_cam']['cam_server_url']
+    auth_url = node['wt_cam']['auth_service_url']
 
     %w[monitoring.properties config.properties netty.properties hbase.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
@@ -68,7 +68,7 @@ def processTemplates (install_dir, node)
         group "root"
         mode  00644
         variables({
-            :cam_url => cam_url,
+            :auth_url => auth_url,
             :install_dir => install_dir,
             :port => port,
 		    		:zookeeper_quorum => zookeeper_quorum,

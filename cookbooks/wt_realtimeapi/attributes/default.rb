@@ -9,7 +9,6 @@
 
 default['wt_realtimeapi']['user']         = "webtrends"
 default['wt_realtimeapi']['group']        = "webtrends"
-default['wt_realtimeapi']['download_url'] = ""
 default['wt_realtimeapi']['port']         = "8082"
 default['wt_realtimeapi']['java_opts']    = "-Xms1024m -Djava.net.preferIPv4Stack=true"
-default['wt_realtimeapi']['download_url'] = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/.lastSuccessful/webtrends-realtimeapi-bin.tar.gz"
+default['wt_realtimeapi']['download_url'] = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt169/.lastSuccessful/webtrends-realtimeapi-bin.tar.gz"
