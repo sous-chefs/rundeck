@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: wt_cam
-# Recipe:: default
+# Recipe:: cam_lite
 # Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
 #
 # Copyright 2012, Webtrends
@@ -10,7 +10,7 @@
 
 if deploy_mode?
   include_recipe "ms_dotnet4::regiis"
-  include_recipe "wt_cam::uninstall_camlite" 
+  include_recipe "wt_cam::uninstall_camlite"
 end
 
 
@@ -46,8 +46,8 @@ iis_site 'CAMLITE' do
     port 80
     path "c:\\inetpub\\wwwroot"
 	action [:add,:start]
-	notifies :run, resources(:execute => "del_wwwroot") 
-	notifies :run, resources(:execute => "rmdir_wwwroot") 
+	notifies :run, resources(:execute => "del_wwwroot")
+	notifies :run, resources(:execute => "rmdir_wwwroot")
 end
 
 wt_base_icacls install_dir do
@@ -59,30 +59,30 @@ end
 if deploy_mode?
   windows_zipfile install_dir do
     source node['wt_cam']['camlite_download_url']
-    action :unzip	
+    action :unzip
   end
-  
+
   template "#{install_dir}\\Webtrends.CamWeb.UI\\web.config" do
-  	source "webConfig_camlite.erb"  
+  	source "webConfig_camlite.erb"
 	variables(
 		:db_server => node['wt_cam']['db_server'],
 		:camlite_db_name   => node['wt_cam']['camlite_db_name']
-  	)	
+  	)
   end
-  
+
   iis_pool app_pool do
 	pipeline_mode :Integrated
   	runtime_version "4.0"
 	action [:add, :config]
   end
-  
+
   iis_app "CAMLITE" do
   	path "/CamService"
   	application_pool app_pool
   	physical_path "#{install_dir}\\Webtrends.CamWeb.UI"
   	action :add
   end
-	
+
   iis_config auth_cmd do
   	action :config
   end
