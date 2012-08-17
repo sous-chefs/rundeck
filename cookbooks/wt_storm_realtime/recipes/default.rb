@@ -221,7 +221,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :kafka                 => kafka[:fqdn],
     :pod                   => pod,
     :datacenter            => datacenter,
-    :debug                 => node[:wt_storm][:debug],
+    :debug                 => node[:wt_storm_realtime][:debug],
     :audit_bucket_timespan => node[:wt_monitoring][:audit_bucket_timespan],
     :audit_topic           => node[:wt_monitoring][:audit_topic]
   )
