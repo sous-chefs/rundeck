@@ -198,15 +198,15 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   mode   00644
   variables(
     :topology                                    => "streaming-topology",
-    :streaming_topology_parsing_bolt_count       => node['wt_storm_streaming']['streaming_topology']['streaming_topology_parsing_bolt_count'],
-    :streaming_topology_in_session_bolt_count    => node['wt_storm_streaming']['streaming_topology']['streaming_topology_in_session_bolt_count'],
-    :streaming_topology_zmq_emitter_bolt_count   => node['wt_storm_streaming']['streaming_topology']['streaming_topology_zmq_emitter_bolt_count'],
-    :streaming_topology_validation_bolt_count    => node['wt_storm_streaming']['streaming_topology']['streaming_topology_validation_bolt_count'],
-    :streaming_topology_augmentation_bolt_count  => node['wt_storm_streaming']['streaming_topology']['streaming_topology_augmentation_bolt_count'],
+    :streaming_topology_parsing_bolt_count       => node['wt_storm']['streaming_topology']['streaming_topology_parsing_bolt_count'],
+    :streaming_topology_in_session_bolt_count    => node['wt_storm']['streaming_topology']['streaming_topology_in_session_bolt_count'],
+    :streaming_topology_zmq_emitter_bolt_count   => node['wt_storm']['streaming_topology']['streaming_topology_zmq_emitter_bolt_count'],
+    :streaming_topology_validation_bolt_count    => node['wt_storm']['streaming_topology']['streaming_topology_validation_bolt_count'],
+    :streaming_topology_augmentation_bolt_count  => node['wt_storm']['streaming_topology']['streaming_topology_augmentation_bolt_count'],
     # kafka consumer settings
     :kafka_chroot                         => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
     :kafka_consumer_topic                 => "#{datacenter}_#{pod}_scsRawHits:0,#{datacenter}_#{pod}_lrRawHits:0",
-    :kafka_dcsid_whitelist                => node['wt_storm_streaming']['streaming_topology']['dcsid_whitelist'],
+    :kafka_dcsid_whitelist                => node['wt_storm']['streaming_topology']['dcsid_whitelist'],
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-streaming',
     :kafka_zookeeper_timeout_milliseconds => 1000000,
