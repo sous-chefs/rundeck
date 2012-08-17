@@ -16,7 +16,6 @@ default['wt_storm_realtime']['cluster_mode'] = "distributed"
 
 
 # zookeeper attributes
-default['wt_storm_realtime']['zookeeper']['port'] = 2181
 default['wt_storm_realtime']['zookeeper']['root'] = "/v2-storm-realtime"
 default['wt_storm_realtime']['zookeeper']['session_timeout'] = 20000
 default['wt_storm_realtime']['zookeeper']['retry_times'] = 5
