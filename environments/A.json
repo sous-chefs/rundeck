@@ -1,9 +1,9 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "java": "= 1.5.0", 
+        "java": "= 1.5.2",
         "kafka": "= 1.0.5", 
-        "nagios": "= 1.3.0", 
+        "nagios": "= 1.5.0",
         "ondemand_base": "= 1.5.0", 
         "storm": "= 1.0.16", 
         "windows": "= 1.2.12", 
@@ -40,16 +40,20 @@
             }
         }, 
         "java": {
-            "install_flavor": "oracle", 
+            "install_flavor": "oracle",
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                    }
+                },
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
                     }
                 }
-            }, 
-            "jdk_version": "6"
-        }, 
+            }
+        },
         "memcached": {
             "memory": "1024"
         }, 
@@ -57,7 +61,10 @@
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
         "nagios": {
-            "multi_environment_monitoring": "true", 
+            "client": {
+                "install_method": "package"
+            },
+            "multi_environment_monitoring": true,
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
