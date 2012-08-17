@@ -20,41 +20,45 @@ app_pool = node['wt_cam']['camlite_app_pool']
 user_data = data_bag_item('authorization', node.chef_environment)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
 
+# stop and delete the default IIS site since we don't want this
 iis_site 'Default Web Site' do
 	action [:stop, :delete]
 end
 
-directory install_dir do
-	recursive true
-	action :create
-end
-
-# empty out default folder
+# delete the default site's files
 execute "rmdir_wwwroot" do
 	command "for /d %i in (c:\\inetpub\\wwwroot\\*) do rmdir /s /q %i"
 	action :nothing
 end
+
+# delete the default site folder
 execute "del_wwwroot" do
 	command "del /q c:\\inetpub\\wwwroot\\*"
 	action :nothing
 end
 
-iis_site 'CAMLITE' do
-    protocol :http
-    port 80
-    path "c:\\inetpub\\wwwroot"
-	action [:add,:start]
-	notifies :run, resources(:execute => "del_wwwroot")
-	notifies :run, resources(:execute => "rmdir_wwwroot")
-end
-
-wt_base_icacls install_dir do
-	action :grant
-	user user_data['wt_common']['ui_user']
-	perm :modify
+#create the install directory for the product
+directory install_dir do
+	recursive true
+	action :create
 end
 
 if deploy_mode?
+	iis_site 'CAMLITE' do
+			protocol :http
+			port 80
+			path "c:\\inetpub\\wwwroot"
+		action [:add,:start]
+		notifies :run, resources(:execute => "del_wwwroot")
+		notifies :run, resources(:execute => "rmdir_wwwroot")
+	end
+
+	wt_base_icacls install_dir do
+		action :grant
+		user user_data['wt_common']['ui_user']
+		perm :modify
+	end
+
   windows_zipfile install_dir do
     source node['wt_cam']['camlite_download_url']
     action :unzip
