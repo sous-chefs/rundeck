@@ -162,7 +162,7 @@
             "hmap_url": "http://hmapi.netiq.dmz/", 
             "ondemand_base_domain": "dod.webtrends.com", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
-            "proxy_enabled": "true", 
+            "proxy_enabled": "false", 
             "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
             "show_profiling": "true", 
             "tagbuilder_download_url": "https://stb.webtrends.com", 
