@@ -44,8 +44,10 @@
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
-        "hbase": {            
-            "location": "shdata.staging.dmz",             
+        "hbase": {
+            "data_center_id": "Lab", 
+            "location": "shdata.staging.dmz", 
+            "pod_id": "F", 
             "site": {
                 "zookeeper_clientport": 2181, 
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
@@ -67,14 +69,7 @@
                 }
             }
         }, 
-        "kafka": {
-            "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
-            "log_flush_scheduler_time_interval": "500", 
-            "log_flush_time_interval": "500", 
-            "log_retention_hours": "2", 
-            "threads": "8", 
-            "version": "0.7.0"
-        }, 
+        "kafka": {}, 
         "memcached": {
             "cache_hosts": [
                 {
@@ -165,8 +160,8 @@
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt160/26429:id/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
-            "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c",
-			"fb_data_center_id": "Lab", 			
+            "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
+            "fb_data_center_id": "Lab", 
             "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
             "hmap_url": "", 
             "ondemand_base_domain": "fod.webtrends.com", 
@@ -192,7 +187,7 @@
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
-			"pod_id": "F",
+            "pod_id": "F", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
             "velocitycache_hosts": [
                 {
@@ -253,6 +248,9 @@
         "wt_usagedb": {
             "schedulerdb_host": "fusagedb01.staging.dmz", 
             "usage_host": "fusagedb01.staging.dmz"
+        }, 
+        "wt_xd": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/26404:id/artifacts.zip"
         }, 
         "yum": {
             "epel_release": "6-7"
