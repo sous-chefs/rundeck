@@ -39,13 +39,6 @@ def getZookeeperPairs(node, env)
 
 	log "JB - #{zookeeper_pairs.size} instances of zookeeper found found in #{env}"
 
-	# fall back to attribs if search doesn't come up with any zookeeper roles
-	# if zookeeper_pairs.count == 0
-	#	node[:zookeeper][:quorum].each do |i|
-	#		zookeeper_pairs << i
-	#	end
-	# end
-
 	# append the zookeeper client port (defaults to 2181)
 	i = 0
 	while i < zookeeper_pairs.size do
