@@ -1,3 +1,5 @@
+# 2.0.4
+  Changed attribute name to reference wt_storm which is where the attributes live in the environment
 # 2.0.3
   Removed misleading cluster_role from this cookbook as it wasn't getting used and we are setting that in the role.
 # 2.0.1
