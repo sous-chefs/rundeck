@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: wt_cam
-# Recipe:: default
+# Recipe:: cam_auth
 # Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
 #
 # Copyright 2012, Webtrends
