@@ -65,8 +65,8 @@
             },
             "dfs": {
                 "block_size": 67108864,
-                "data_dir": "/mnt/hdfs/hdfs01/data01/hdfs",
-                "datanode_du_reserved": 0,
+                "data_dir": "/mnt/hdfs/hdfs01/data1/hdfs,/mnt/hdfs/hdfs01/data2/hdfs,/mnt/hdfs/hdfs01/data3/hdfs,/mnt/hdfs/hdfs01/data4/hdfs,/mnt/hdfs/hdfs01/data5/hdfs,/mnt/hdfs/hdfs01/data6/hdfs,/mnt/hdfs/hdfs01/data7/hdfs,/mnt/hdfs/hdfs01/data8/hdfs,/mnt/hdfs/hdfs01/data9/hdfs,/mnt/hdfs/hdfs01/data10/hdfs,/mnt/hdfs/hdfs01/data11/hdfs,/mnt/hdfs/hdfs01/data12/hdfs", 
+                "datanode_du_reserved": 10485760, 
                 "datanode_handler_count": 3,
                 "datanode_max_xcievers": 4096,
                 "name_dir": "/var/lib/hadoop/hdfs/namenode",
@@ -86,12 +86,12 @@
                 "io_sort_mb": 100,
                 "job_reuse_jvm_num_tasks": 1,
                 "job_tracker_handler_count": 10,
-                "local_dir": "/mnt/hdfs/hdfs01/data01/mapred",
+                "local_dir": "/mnt/hdfs/hdfs01/data1/mapred,/mnt/hdfs/hdfs01/data2/mapred,/mnt/hdfs/hdfs01/data3/mapred,/mnt/hdfs/hdfs01/data4/mapred,/mnt/hdfs/hdfs01/data5/mapred,/mnt/hdfs/hdfs01/data6/mapred,/mnt/hdfs/hdfs01/data7/mapred,/mnt/hdfs/hdfs01/data8/mapred,/mnt/hdfs/hdfs01/data9/mapred,/mnt/hdfs/hdfs01/data10/mapred,/mnt/hdfs/hdfs01/data11/mapred,/mnt/hdfs/hdfs01/data12/mapred", 
                 "map_tasks_speculative_execution": "false",
-                "reduce_tasks": 1,
+                "reduce_tasks": 26, 
                 "reduce_tasks_speculative_execution": "false",
-                "tasktracker_map_tasks_maximum": 2,
-                "tasktracker_reduce_tasks_maximum": 2
+                "tasktracker_map_tasks_maximum": 6, 
+                "tasktracker_reduce_tasks_maximum": 3
             }
         },
         "hbase": {
