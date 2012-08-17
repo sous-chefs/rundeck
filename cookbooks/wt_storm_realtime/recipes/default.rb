@@ -200,15 +200,15 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   mode   00644
   variables(
     :topology                                => "realtime-topology",
-    :realtime_topology_parsing_bolt_count    => node['wt_storm_realtime']['realtime_topology']['realtime_topology_parsing_bolt_count'],
-    :realtime_topology_writing_bolt_count    => node['wt_storm_realtime']['realtime_topology']['realtime_topology_writing_bolt_count'],
-    :realtime_topology_dimensions_bolt_count => node['wt_storm_realtime']['realtime_topology']['realtime_topology_dimensions_bolt_count'],
-    :topology_override_max_spout_pending     => node['wt_storm_realtime']['realtime_topology']['topology_override_max_spout_pending'],
-    :topology_override_msg_timeout_seconds   => node['wt_storm_realtime']['realtime_topology']['topology_override_msg_timeout_seconds'],
+    :realtime_topology_parsing_bolt_count    => node['wt_storm']['realtime_topology']['realtime_topology_parsing_bolt_count'],
+    :realtime_topology_writing_bolt_count    => node['wt_storm']['realtime_topology']['realtime_topology_writing_bolt_count'],
+    :realtime_topology_dimensions_bolt_count => node['wt_storm']['realtime_topology']['realtime_topology_dimensions_bolt_count'],
+    :topology_override_max_spout_pending     => node['wt_storm']['realtime_topology']['topology_override_max_spout_pending'],
+    :topology_override_msg_timeout_seconds   => node['wt_storm']['realtime_topology']['topology_override_msg_timeout_seconds'],
     # kafka consumer settings
     :kafka_chroot                         => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
     :kafka_consumer_topic                 => "#{datacenter}_#{pod}_scsRawHits:0,#{datacenter}_#{pod}_lrRawHits:0",
-    :kafka_dcsid_whitelist                => node['wt_storm_realtime']['realtime_topology']['dcsid_whitelist'],
+    :kafka_dcsid_whitelist                => node['wt_storm']['realtime_topology']['dcsid_whitelist'],
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-realtime',
     :kafka_zookeeper_timeout_milliseconds => 1000000,
