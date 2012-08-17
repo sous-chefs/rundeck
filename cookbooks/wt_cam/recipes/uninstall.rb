@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_dx
+# Cookbook Name:: wt_cam
 # Recipe:: uninstall
 # Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
 #
@@ -27,7 +27,7 @@ end
 iis_pool "#{app_pool}" do
     action [:stop, :delete]
     # ignore errors for now since the resource search will match CAMService when searching for CAM
-    ignore_failure true 
+    ignore_failure true
 end
 
 directory "#{install_dir}" do
