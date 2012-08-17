@@ -3,6 +3,11 @@
   "chef_type": "role",
   "json_class": "Chef::Role",
   "description": "Webtrends Storm Streaming Cluster",
+  "override_attributes": {
+	"storm": {
+		"cluster_role":"wt_storm_streaming_topo"
+	}
+  }
   "run_list": [
     "recipe[wt_storm_streaming]"
   ]
