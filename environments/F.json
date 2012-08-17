@@ -5,12 +5,12 @@
         "nagios": "= 1.5.0", 
         "ondemand_base": "= 1.7.12", 
         "windows": "= 1.2.12", 
-        "wt_analytics_ui": "= 0.0.29", 
-        "wt_base": "= 0.10.53", 
+        "wt_analytics_ui": "= 1.0.0", 
+        "wt_base": "= 1.0.0", 
         "wt_cam": "= 1.0.9", 
         "wt_monitoring": "= 0.0.2", 
-        "wt_search": "= 0.0.28", 
-        "wt_sync": "= 0.0.21"
+        "wt_search": "= 1.0.0", 
+        "wt_sync": "= 1.0.0"
     }, 
     "default_attributes": {}, 
     "description": "F Pod", 
@@ -45,9 +45,7 @@
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
         "hbase": {
-            "data_center_id": "Lab", 
-            "location": "shdata.staging.dmz", 
-            "pod_id": "F", 
+            "location": "shdata.staging.dmz",
             "site": {
                 "zookeeper_clientport": 2181, 
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
