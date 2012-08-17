@@ -172,8 +172,6 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4
 	owner "storm"
 	group "storm"
 	mode  00644
-	variables({
-	})
 end
 
 # storm looks for storm.yaml in ~/.storm/storm.yaml so make a link
@@ -216,7 +214,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :zookeeper_quorum      => zookeeper_quorum * ",",
     :zookeeper_clientport  => zookeeper_clientport,
     :zookeeper_pairs       => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
-    :configservice         => node[:wt_streamingconfigservice][:config_service_url],    
+    :configservice         => node[:wt_streamingconfigservice][:config_service_url],
     :netacuity             => node[:wt_netacuity][:geo_url],
     :kafka                 => kafka[:fqdn],
     :pod                   => pod,
