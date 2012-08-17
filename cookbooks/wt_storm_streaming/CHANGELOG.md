@@ -1,3 +1,5 @@
+# 2.0.3
+  Removed misleading cluster_role from this cookbook as it wasn't getting used and we are setting that in the role.
 # 2.0.1
   Added lookup files and cookbook to lay them down.
 # 2.0.0
