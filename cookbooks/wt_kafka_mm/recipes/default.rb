@@ -1,10 +1,9 @@
 #
-# Cookbook Name:: wt_streamingcollection
+# Author: Jeff Berger (<jeff.berger@webtrends.com>)
+# Cookbook Name:: wt_kafka_mm
 # Recipe:: default
 #
 # Copyright 2012, Webtrends
-#
-# All rights reserved - Do Not Redistribute
 #
 
 log "Deploy build is #{ENV["deploy_build"]}"
@@ -13,9 +12,9 @@ if ENV["deploy_build"] == "true" then
 else
     log "The deploy_build value is not set or is false so we will only update the configuration"
 end
-   
-log_dir      	= File.join("#{node['wt_common']['log_dir_linux']}", "mirrormaker")
-install_dir	= File.join("#{node['wt_common']['install_dir_linux']}", "mirrormaker")
+
+log_dir = "#{node['wt_common']['log_dir_linux']}/mirrormaker"
+install_dir = "#{node['wt_common']['install_dir_linux']}/mirrormaker"
 
 user = node['wt_mirrormaker']['user']
 group = node['wt_mirrormaker']['group']
@@ -181,6 +180,8 @@ def getLib(lib_dir)
 	end
 end
 
+############################
+# Perform actual deploy
 if ENV["deploy_build"] == "true" then 
 
 	# create the log directory
