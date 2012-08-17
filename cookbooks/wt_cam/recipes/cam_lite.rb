@@ -13,13 +13,11 @@ if deploy_mode?
   include_recipe "wt_cam::uninstall_camlite"
 end
 
-
 #Properties
 install_dir = "#{node['wt_common']['install_dir_windows']}\\CAMLITE"
 install_logdir = node['wt_common']['install_log_dir_windows']
 app_pool = node['wt_cam']['camlite_app_pool']
-pod = node.chef_environment
-user_data = data_bag_item('authorization', pod)
+user_data = data_bag_item('authorization', node.chef_environment)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
 
 iis_site 'Default Web Site' do
