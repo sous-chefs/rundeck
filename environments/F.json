@@ -5,12 +5,12 @@
         "nagios": "= 1.5.0", 
         "ondemand_base": "= 1.7.12", 
         "windows": "= 1.2.12", 
-        "wt_analytics_ui": "= 0.0.29", 
-        "wt_base": "= 0.10.53", 
+        "wt_analytics_ui": "= 1.0.0", 
+        "wt_base": "= 1.0.0", 
         "wt_cam": "= 1.0.9", 
         "wt_monitoring": "= 0.0.2", 
-        "wt_search": "= 0.0.28", 
-        "wt_sync": "= 0.0.21"
+        "wt_search": "= 1.0.0", 
+        "wt_sync": "= 1.0.0"
     }, 
     "default_attributes": {}, 
     "description": "F Pod", 
@@ -45,9 +45,7 @@
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
         "hbase": {
-            "data_center_id": "Lab", 
-            "location": "shdata.staging.dmz", 
-            "pod_id": "F", 
+            "location": "shdata.staging.dmz",
             "site": {
                 "zookeeper_clientport": 2181, 
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
@@ -157,7 +155,7 @@
             "bba_domain": "fbba.webtrends.com", 
             "cache_region": "F_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt160/26429:id/AnalyticsUI.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt160/26937:id/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
             "fb_data_center_id": "Lab", 
@@ -238,18 +236,18 @@
             "rta_host": "frta01.staging.dmz"
         }, 
         "wt_search": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/25693:id/Search.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/26130:id/Search.zip", 
             "search_hostname": "fsearch.staging.dmz"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt172/26400:id/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt172/26827:id/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "fusagedb01.staging.dmz", 
             "usage_host": "fusagedb01.staging.dmz"
         }, 
         "wt_xd": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/26404:id/artifacts.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/26947:id/artifacts.zip"
         }, 
         "yum": {
             "epel_release": "6-7"
