@@ -117,7 +117,7 @@ if deploy_mode?
 		$result | Format-List
 		EOH
 	end
-	
+	share_wrs
 end
 
 service node['wt_search']['service_name'] do
