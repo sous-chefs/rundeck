@@ -130,6 +130,7 @@ if deploy_mode?
 		EOH
 	end
 	
+	share_wrs
 end
 
 service node['wt_sync']['service_name'] do
