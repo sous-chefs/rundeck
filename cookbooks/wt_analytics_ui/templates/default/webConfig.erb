@@ -145,7 +145,7 @@
 
   <!-- ELMAH config -->
   <elmah>
-    <security allowRemoteAccess="1" />
+    <security allowRemoteAccess="<%= @remote_access %>" />
     <errorLog type="Elmah.XmlFileErrorLog, Elmah" logPath="~/App_Data/elmah" />
     <errorFilter>
       <test>
@@ -218,16 +218,16 @@
     <add key="staging_domain" value="stagingdmz" />
 
     <!-- Third party connection public encryption keys -->
-    <add key="iOSPublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
-    <add key="FaceBookPublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
-    <add key="AndroidPublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
-    <add key="YouTubePublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
-    <add key="TwitterPublicKey" value="mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==" />
+    <add key="iOSPublicKey" value="<%= @ios_public_key %>" />
+    <add key="FaceBookPublicKey" value="<%= @facebook_public_key %>" />
+    <add key="AndroidPublicKey" value="<%= @android_public_key %>" />
+    <add key="YouTubePublicKey" value="<%= @youtube_public_key %>" />
+    <add key="TwitterPublicKey" value="<%= @twitter_public_key %>" />
 
     <add key="TagBuilderDownloadUrl" value="<%= @tagbuilder_download_url %>" />
     <add key="TagBuilderUrlTemplate" value="<%= @tagbuilder_url_template %>" />
-    <add key="TagBuilderDomain" value="statse.webtrendslive.com" />
-    <add key="TagBuilderDomainMobile" value="dc.webtrends.com/v1" />
+    <add key="TagBuilderDomain" value="<%= @tagbuilder_domain %>" />
+    <add key="TagBuilderDomainMobile" value="<%= @tagbuilder_domainmobile %>" />
     <!-- Help Link -->
     <add key="helpLink" value="<%= @help_link %>" />
     <add key="SecurityStatementLink" value="http://www.webtrends.com/AboutWebtrends/SecurityStatement" />

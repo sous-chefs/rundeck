@@ -1,7 +1,8 @@
 Future
 	Change IIS site bindings
 	Search alternate/current environment for cache_hosts
-
+0.0.30
+	Adding missing parameters
 0.0.26
 	Merged IIS config into default.rb
 
