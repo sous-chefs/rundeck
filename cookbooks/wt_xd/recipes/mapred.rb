@@ -15,6 +15,7 @@ source_fullpath = File.join(Chef::Config[:file_cache_path], source_zipfile)
 install_dir = File.join(node['wt_common']['install_dir_linux'], 'wt_xd')
 log_dir     = node['wt_common']['log_dir_linux']
 
+
 # clean up old deploy
 include_recipe 'wt_xd::mapred_undeploy' if deploy_mode?
 
@@ -26,6 +27,16 @@ include_recipe 'wt_xd::mapred_undeploy' if deploy_mode?
 		recursive true
 	end
 end
+
+# directory for any lock files
+directory "/var/lock/webtrends" do
+  owner "webtrends"
+  group "webtrends"
+  mode 00755
+  action :create
+end
+
+
 
 # deploy build
 if deploy_mode?
