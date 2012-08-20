@@ -178,10 +178,10 @@
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
-		"webpi": {
-			"url": "http://chefclient02.devops.dmz/windows/webpi/webpicmd_x86.zip",
-			"xmlpath": "http://chefclient02.devops.dmz/windows/webpi/WebProductList.xml"
-		},
+        "webpi": {
+            "url": "http://chefclient02.devops.dmz/windows/webpi/webpicmd_x86.zip", 
+            "xmlpath": "http://chefclient02.devops.dmz/windows/webpi/WebProductList.xml"
+        }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "cache_host": [
@@ -202,7 +202,7 @@
             "cassandra_snmp_port": "", 
             "cassandra_thrift_port": "", 
             "config_dir_linux": "/etc/webtrends/", 
-	    "gem_repo":"http://chefclient02/gems-repo/",
+            "gem_repo": "http://chefclient02/gems-repo/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 

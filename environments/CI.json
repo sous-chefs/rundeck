@@ -74,7 +74,7 @@
                 "HBASE_HEAPSIZE": 4000, 
                 "HBASE_MANAGES_ZK": "false"
             }, 
-            "location": "shdata.staging.dmz", 
+            "location": "sdata.staging.dmz", 
             "pod_id": "CI", 
             "site": {
                 "zookeeper_clientport": 2181, 
