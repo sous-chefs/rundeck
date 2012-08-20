@@ -235,7 +235,7 @@ if ENV["deploy_build"] == "true" then
 	#create a runit service for each mirrored data center 
 	node['wt_mirrormaker']['sources'].each { |src_env|
 
-		runit_service "mirrormaker_#{src_env}" do
+		runit_service "mirrormaker_#{src_env[0]}" do
 			template_name "mirrormaker"	#/templates/sv-mirrormaker-run.erb
 		    	options({
 				:install_dir => install_dir,
