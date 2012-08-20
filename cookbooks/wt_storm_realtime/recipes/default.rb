@@ -135,6 +135,7 @@ UserAgentUtils-1.2.4.jar
 xmlenc-0.52.jar
 zkclient-0.1.jar
 mobi.mtld.da-1.5.3.jar
+ini4j-0.5.2.jar
 }.each do |jar|
       execute "mv" do
         user  "root"
@@ -271,6 +272,10 @@ cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}
 end
 cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/device-atlas-20120813.json" do
   source "device-atlas-20120813.json"
+  mode 00644
+end
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/browsers.ini" do
+  source "browsers.ini"
   mode 00644
 end
 
