@@ -2,7 +2,7 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "java": "= 1.5.2", 
-        "nagios": "= 1.5.0",
+        "nagios": "= 1.5.0", 
         "ondemand_base": "= 1.7.12", 
         "windows": "= 1.2.12", 
         "wt_analytics_ui": "= 0.0.26", 
@@ -44,7 +44,7 @@
         }, 
         "hbase": {
             "data_center_id": "Lab", 
-            "location": "shdata.staging.dmz", 
+            "location": "sdata.staging.dmz", 
             "pod_id": "C", 
             "site": {
                 "zookeeper_clientport": 2181, 

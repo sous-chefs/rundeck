@@ -30,6 +30,7 @@ kafka_chroot_suffix = node[:kafka][:chroot_suffix]
 
 # Perform some really funky overrides that should never be done and need to be removed
 node['wt_storm_streaming']['zookeeper_quorum'] = zookeeper_quorum
+node['wt_storm_streaming']['zookeeper']['port'] = node['zookeeper']['client_port']
 node['wt_storm_streaming']['nimbus']['host'] = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
 node['wt_storm_streaming']['worker']['childopts'] = node['wt_storm']['streaming_topology']['worker']['childopts']
 node['wt_storm_streaming']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-streaming"
@@ -134,6 +135,7 @@ UserAgentUtils-1.2.4.jar
 xmlenc-0.52.jar
 zkclient-0.1.jar
 mobi.mtld.da-1.5.3.jar
+ini4j-0.5.2.jar
 }.each do |jar|
       execute "mv" do
         user  "root"
@@ -269,6 +271,10 @@ cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}
 end
 cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/device-atlas-20120813.json" do
   source "device-atlas-20120813.json"
+  mode 00644
+end
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/browsers.ini" do
+  source "browsers.ini"
   mode 00644
 end
 
