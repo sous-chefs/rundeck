@@ -32,7 +32,7 @@
     },
     "wt_streamingconfigservice" : {
         "camdbuser": "wtUI",
-        "camdbpwd:": "bijoux",
+        "camdbpwd": "bijoux",
         "masterdbuser": "ConfigSvc",
         "masterdbpwd": "bijoux"
     }
