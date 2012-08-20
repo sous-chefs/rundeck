@@ -272,6 +272,10 @@ cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}
   source "device-atlas-20120813.json"
   mode 00644
 end
+cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/browsers.ini" do
+  source "browsers.ini"
+  mode 00644
+end
 
 
 # template out the metadata loader
