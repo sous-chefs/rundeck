@@ -1,3 +1,5 @@
+# 2.0.6
+  Added browsers.ini support and ini4j-0.5.2.jar
 # 2.0.4
   Changed attribute name to reference wt_storm which is where the attributes live in the environment
 # 2.0.3

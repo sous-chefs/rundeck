@@ -47,7 +47,7 @@
         }, 
         "hbase": {
             "data_center_id": "Lab", 
-            "location": "shdata.staging.dmz", 
+            "location": "sdata.staging.dmz", 
             "pod_id": "D", 
             "site": {
                 "zookeeper_clientport": 2181, 
