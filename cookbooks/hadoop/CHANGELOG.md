@@ -3,6 +3,9 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+## 1.0.6
+* Added mapred.submit.replication factor to mapred-site.xml and corresponding attribute.
+
 ## 1.0.5
 * Create the mapred.exclude file for decommissioning nodes if it doesn't exist on the name node
 

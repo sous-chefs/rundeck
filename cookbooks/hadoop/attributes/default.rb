@@ -36,6 +36,7 @@ default[:hadoop][:mapred][:reduce_tasks_speculative_execution] =  "false"
 default[:hadoop][:mapred][:job_reuse_jvm_num_tasks] = 1
 default[:hadoop][:mapred][:io_sort_factor] = 10
 default[:hadoop][:mapred][:io_sort_mb] = 100
+default[:hadoop][:mapred][:submit_replication] = 10
 
 
 # core-site.xml
