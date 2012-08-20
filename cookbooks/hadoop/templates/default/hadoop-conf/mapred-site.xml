@@ -387,9 +387,11 @@ mapred.cluster.reduce.memory.mb is also turned off (-1).
 </description>
 </property>
 
-
+<property>
+<name>mapred.submit.replication</name>
+<value><%= node[:hadoop][:mapred][:submit_replication] %></value>
+<final>true</final>
+</property>
 
 </configuration>
-
-
 
