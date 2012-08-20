@@ -256,7 +256,7 @@
             "pod": "H"
         },
         "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt169/26818:id/webtrends-realtimeapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt169/26818:id/realtimeapi-bin.tar.gz",
             "port": 8082
         },
         "wt_rta": {},
