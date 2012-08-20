@@ -45,7 +45,9 @@
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
         "hbase": {
-            "location": "shdata.staging.dmz",
+            "data_center_id": "Lab", 
+            "location": "sdata.staging.dmz", 
+            "pod_id": "F", 
             "site": {
                 "zookeeper_clientport": 2181, 
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
@@ -155,7 +157,7 @@
             "bba_domain": "fbba.webtrends.com", 
             "cache_region": "F_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt160/26937:id/AnalyticsUI.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt160/26984:id/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
             "fb_data_center_id": "Lab", 
