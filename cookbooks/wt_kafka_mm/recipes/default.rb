@@ -59,7 +59,7 @@ end
 #update the config files
 def processConfTemplates (install_dir, node, log_dir)
  
-    	zookeeper_pairs_target = getZookeeperPairs(node, node.chef_environment)                       
+    	zookeeper_pairs_target = getZookeeperPairs(node, node["wt_mirrormaker"]["target"])                       
 	
 # 	Assumes that a node has wt_mirrormaker/sources attribute 
 #  	"wt_mirrormaker": {
