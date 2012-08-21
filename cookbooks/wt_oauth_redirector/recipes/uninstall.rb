@@ -14,7 +14,7 @@ stop_cmd = "thin stop -C #{install_dir}/oard.thin.yml"
 execute "stop application" do
   command stop_cmd
   action :run
-  ignore_failure
+  ignore_failure true
 end
 
 directory install_dir do
