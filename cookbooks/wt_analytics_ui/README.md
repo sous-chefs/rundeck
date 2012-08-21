@@ -34,7 +34,19 @@ Attributes
 * `node['wt_analytics_ui']['hmap_url']` - Heatmaps URL
 * `node['wt_analytics_ui']['proxy_address']` - Address of proxy
 * `node['wt_analytics_ui']['reinvigorate_tracking_code']` - Reinvigorate tracking code
+* `node['wt_analytics_ui']['ios_public_key'] - Public key for iOS
+* `node['wt_analytics_ui']['facebook_public_key'] - Public key for Facebook
+* `node['wt_analytics_ui']['android_public_key'] - Public key for Android
+* `node['wt_analytics_ui']['youtube_public_key'] - Public key for YouTube
+* `node['wt_analytics_ui']['twitter_public_key'] - Public key for Twitter
+* `node['wt_analytics_ui']['tagbuilder_download_url'] - Download URL for TagBuilder 
+* `node['wt_analytics_ui']['tagbuilder_url_template'] - Template URL for Tag Builder
+* `node['wt_analytics_ui']['tagbuilder_domain'] - TagBuilder domain
+* `node['wt_analytics_ui']['tagbuilder_domainmobile'] - TagBuilder Mobile Domain
+* `node['wt_analytics_ui']['remote_access'] - 0 to disable remote access, 1 to enable
 * `node['wt_common']['install_dir_windows']` - Base location for all windows products to be installed(ie. "D:\\wrs")
+* `node['wt_common']['wrsmodify_group']` - Windows AD group that should have modify access to the install dir
+* `node['wt_common']['wrsread_group']` - Windows AD group that should have read access to the install dir
 * `node['wt_dx']['rest_base_uri']` - URL to DX box to make REST calls to(ie. https://ws.webtrends.com/v3)
 * `node['wt_masterdb']['master_host']` - Host name of masterdb
 * `node['wt_messaging_monitoring']['monitor_hostname'] - 
