@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#since twitter and facebook run every 5 minutes, offset twitter to actually start 1 minute later 
+sleep 60
+
 # prevent from running multiple instances
 exec 9>/var/lock/webtrends/MapReduceTW.sh
 
