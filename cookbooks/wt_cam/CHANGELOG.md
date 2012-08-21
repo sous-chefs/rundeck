@@ -1,3 +1,5 @@
+## 1.0.15
+* Adding in missing windows_zipfile resource
 ## 1.0.14
 * Reverting port back to 82
 * Changed cam_lite_port to camlite_port
