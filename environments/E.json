@@ -1,6 +1,22 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {}, 
+    "cookbook_versions": {
+        "hadoop": "= 1.0.3",
+        "hbase": "= 1.0.3",
+        "hive": "= 1.0.2",
+        "kafka": "= 1.0.8",
+        "storm": "= 1.0.19",
+        "wt_cam": "= 1.0.4",
+        "wt_heatmaps": "= 0.10.42",
+        "wt_realtime_hadoop": "= 1.0.2",
+        "wt_realtimeapi": "= 0.0.20",
+        "wt_storm": "= 1.0.38",
+        "wt_streamingapi": "= 0.0.21",
+        "wt_streamingauditor": "= 0.0.10",
+        "wt_streamingcollection": "= 0.0.24",
+        "wt_streaminglogreplayer": "= 0.0.21",
+        "zookeeper": "= 1.0.6" 
+    },
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -45,12 +61,13 @@
             }
         }, 
         "kafka": {
-            "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
-            "log_flush_scheduler_time_interval": "500", 
-            "log_flush_time_interval": "500", 
-            "log_retention_hours": "2", 
-            "threads": "8", 
-            "version": "0.7.0"
+	    "chroot_suffix":"brokers",
+            "download_url": "http://repo.staging.dmz/repo/linux/kafka/",
+            "log_flush_scheduler_time_interval": "500",
+            "log_flush_time_interval": "500",
+            "log_retention_hours": "2",
+            "threads": "8",
+            "version": "0.7.1"
         }, 
         "memcached": {}, 
         "ms_dotnet4": {
@@ -115,7 +132,13 @@
         }, 
         "wt_analytics_ui": {}, 
         "wt_cam": {
-            "cam_server_url": "http://bcam01.staging.dmz/camservice"
+            "auth_service_url": "http://bcam01.staging.dmz:8081",
+            "cam_server_url": "http://bcam01.staging.dmz/camservice",
+            "db_name": "cam",
+            "db_server": "bcamdb01.staging.dmz",
+            "camlite_port": 80,
+            "cam_port": 81,
+            "auth_port": 8081
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -152,8 +175,11 @@
             "metric_prefix": "staging.epod.servers", 
             "monitoring_enabled": "true"
         }, 
-        "wt_netacuity": {}, 
-        "wt_realtime_hadoop": {}, 
+        "wt_netacuity": {},
+        "wt_realtime_hadoop": {
+            "datacenter": "Lab",
+            "pod": "E"
+        },  
         "wt_realtimeapi": {}, 
         "wt_rta": {}, 
         "wt_search": {}, 
@@ -161,9 +187,19 @@
         "wt_streamingapi": {}, 
         "wt_streamingauditor": {}, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/27350:id/webtrends-streamingcollection-bin.tar.gz",
+            "port": 8080
         }, 
-        "wt_streamingconfigservice": {}, 
+        "wt_streamingconfigservice": {          
+	    "camdbname": "CAM",
+            "camdbserver": "bcamdb01.staging.dmz",
+            "config_service_url": "http://butil01.staging.dmz:8080",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/webtrends-streaming-configservice-bin.tar.gz",
+            "includeUnmappedAnalyticsIds": "true",
+            "masterdbname": "wtmaster",
+            "masterdbserver": "dmasterdb01.englab.webtrends.corp",
+            "port": "8080"
+        },
         "wt_streaminglogreplayer": {}, 
         "wt_usagedb": {}, 
         "yum": {
