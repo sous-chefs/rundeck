@@ -47,18 +47,23 @@ end
 #end
 
 iis_site 'CAM' do
+
+    http_port = node['wt_cam']['cam_port']
+
     protocol :http
-    port node['wt_cam']['cam_port']
+    port http_port
     path "#{install_dir}"
 	action [:add,:start]
 	#notifies :run, resources(:execute => "del_wwwroot") 
 	#notifies :run, resources(:execute => "rmdir_wwwroot") 
 end
 
-wt_base_firewall 'CAMWS' do
-	protocol "TCP"
-	port node['wt_cam']['cam_port']
-    action [:open_port]
+if http_port != 80
+    wt_base_firewall 'CAMWS' do
+    	    protocol "TCP"
+	    port http_port
+        action [:open_port]
+    end
 end
 
 wt_base_icacls install_dir do
