@@ -1,3 +1,5 @@
+## 1.0.11
+* Changed CamLite to use installdir instead of hardcoded path.
 ## 1.0.10
 * Added attributes for the port numbers for cam, auth and cam_lite 
 * removed hard-coded values for same
