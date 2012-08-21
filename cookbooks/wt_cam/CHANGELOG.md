@@ -1,3 +1,6 @@
+## 1.0.14
+* Reverting port back to 82
+* Changed cam_lite_port to camlite_port
 ## 1.0.13
 * Changed CamLite port to 85
 ## 1.0.12
