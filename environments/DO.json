@@ -1,11 +1,7 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {}, 
-    "default_attributes": {}, 
-    "description": "DevOps Pod", 
-    "json_class": "Chef::Environment", 
-    "name": "DO", 
-    "override_attributes": {
+    "default_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "DEVOPS"
@@ -120,11 +116,6 @@
             }, 
             "server_role": "nagios_xi"
         }, 
-        "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }, 
         "ondemand_base": {
             "apt": [
                 {
@@ -155,12 +146,6 @@
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
-        }, 
-        "resolver": {
-            "nameservers": [
-                "192.168.2.100"
-            ], 
-            "search": "devops.dmz staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -201,6 +186,7 @@
             "cassandra_snmp_comm": "StagingRO", 
             "cassandra_snmp_port": "", 
             "cassandra_thrift_port": "", 
+            "common_resource_environment": "", 
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://chefclient02/gems-repo/", 
             "install_dir_linux": "/opt/webtrends/", 
@@ -294,6 +280,22 @@
             "snapshot_num": 3, 
             "sync_limit": 5, 
             "tick_time": 2000
+        }
+    }, 
+    "description": "DevOps Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "DO", 
+    "override_attributes": {
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "resolver": {
+            "nameservers": [
+                "192.168.2.100"
+            ], 
+            "search": "devops.dmz staging.dmz webtrends.corp englab.webtrends.corp"
         }
     }
 }
