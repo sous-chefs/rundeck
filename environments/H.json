@@ -22,11 +22,7 @@
         "wt_streaminglogreplayer": "= 0.0.21", 
         "zookeeper": "= 1.0.6"
     }, 
-    "default_attributes": {}, 
-    "description": "H Pod", 
-    "json_class": "Chef::Environment", 
-    "name": "H", 
-    "override_attributes": {
+    "default_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
@@ -138,11 +134,6 @@
             }, 
             "server_role": "nagios_xi"
         }, 
-        "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }, 
         "ondemand_base": {
             "apt": [
                 {
@@ -174,13 +165,6 @@
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
-        "resolver": {
-            "nameservers": [
-                "10.164.0.11", 
-                "10.164.0.12"
-            ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
-        }, 
         "snmp": {
             "community": "DevOps", 
             "full_systemview": "true", 
@@ -209,6 +193,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "common_resource_environment": "support-staging", 
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
@@ -288,14 +273,14 @@
         }, 
         "wt_storm_realtime": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt174/26831:id/streaming-analysis-bin.tar.gz"
-		},		
-	"wt_storm_streaming":{		
+        }, 
+        "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/27269:id/streaming-analysis-bin.tar.gz"
-		},
+        }, 
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/27309:id/webtrends-streamingapi-bin.tar.gz", 
-            "port": 8080,
-            "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true" 
+            "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
+            "port": 8080
         }, 
         "wt_streamingauditor": {
             "roundtrip_scs_url": "http://hscs01.staging.dmz:8080", 
@@ -336,6 +321,23 @@
             "snapshot_num": 3, 
             "sync_limit": 5, 
             "tick_time": 2000
+        }
+    }, 
+    "description": "H Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "H", 
+    "override_attributes": {
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }
     }
 }

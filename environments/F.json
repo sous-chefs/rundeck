@@ -12,11 +12,7 @@
         "wt_search": "= 1.0.0", 
         "wt_sync": "= 1.0.0"
     }, 
-    "default_attributes": {}, 
-    "description": "F Pod", 
-    "json_class": "Chef::Environment", 
-    "name": "F", 
-    "override_attributes": {
+    "default_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
@@ -96,11 +92,6 @@
             }, 
             "server_role": "nagios_xi"
         }, 
-        "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }, 
         "ondemand_base": {
             "apt": [
                 {
@@ -131,13 +122,6 @@
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
-        }, 
-        "resolver": {
-            "nameservers": [
-                "10.164.0.11", 
-                "10.164.0.12"
-            ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -178,6 +162,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "common_resource_environment": "support-staging", 
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
@@ -265,6 +250,23 @@
             "snapshot_num": 3, 
             "sync_limit": 5, 
             "tick_time": 2000
+        }
+    }, 
+    "description": "F Pod", 
+    "json_class": "Chef::Environment", 
+    "name": "F", 
+    "override_attributes": {
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }
     }
 }
