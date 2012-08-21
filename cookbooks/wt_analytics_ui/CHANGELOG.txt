@@ -1,6 +1,8 @@
 Future
 	Change IIS site bindings
 	Search alternate/current environment for cache_hosts
+0.0.31
+	Merge in HBase parameter moves.
 0.0.30
 	Adding missing parameters
 0.0.26
