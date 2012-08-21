@@ -42,7 +42,7 @@
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
         "hbase": {
-			"location": "sdata.staging.dmz"
+	    "location": "sdata.staging.dmz",
             "site": {
                 "zookeeper_clientport": 2181, 
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
