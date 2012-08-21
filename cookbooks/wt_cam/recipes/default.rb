@@ -49,7 +49,6 @@ end
 http_port = node['wt_cam']['cam_port']
 
 iis_site 'CAM' do
-
     protocol :http
     port http_port
     path "#{install_dir}"
