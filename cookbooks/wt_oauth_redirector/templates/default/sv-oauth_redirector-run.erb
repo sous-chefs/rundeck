@@ -1,0 +1,4 @@
+#!/bin/sh
+exec 2>&1
+exec \
+		thin start -C <%= @options[:install_dir] %>/oard.thin.yml

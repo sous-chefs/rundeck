@@ -1,3 +1,14 @@
+## 0.0.6
+* Creating runit service
+* Setting uninstall to ignore failures
+* Changing oard.thin.yaml to use machine's IP and made port attribute
+
+## 0.0.5
+* Added the log_name for creating logs
+
+## 0.0.4
+* Creating directories for install and log dir
+
 ## 0.0.3
 * Added uninstall recipe, and ignore failure on the service start
 
