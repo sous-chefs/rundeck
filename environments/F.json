@@ -139,7 +139,7 @@
             "bba_domain": "fbba.webtrends.com", 
             "cache_region": "F_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt160/27267:id/AnalyticsUI.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt160/27487:id/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c",
             "fb_data_center_id": "Lab", 
@@ -233,7 +233,7 @@
             "search_hostname": "fsearch.staging.dmz"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt172/26827:id/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt172/27458:id/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "fusagedb01.staging.dmz", 
