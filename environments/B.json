@@ -5,7 +5,7 @@
         "hbase": "= 1.0.3", 
         "hive": "= 1.0.2", 
         "java": "= 1.5.2", 
-        "kafka": "= 1.0.5", 
+        "kafka": "= 1.0.8", 
         "nagios": "= 1.5.0", 
         "ondemand_base": "= 1.7.12", 
         "storm": "= 1.0.16", 
@@ -82,12 +82,13 @@
             }
         }, 
         "kafka": {
+	    "chroot_suffix":"brokers",
             "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
             "log_flush_scheduler_time_interval": "500", 
             "log_flush_time_interval": "500", 
             "log_retention_hours": "2", 
             "threads": "8", 
-            "version": "0.7.0"
+            "version": "0.7.1"
         }, 
         "memcached": {}, 
         "ms_dotnet4": {
