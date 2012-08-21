@@ -49,7 +49,7 @@ if deploy_mode?
 	iis_site 'CAMLITE' do
 			protocol :http
 			port http_port
-			path "c:\\inetpub\\wwwroot"
+			path install_dir
 		action [:add,:start]
 		notifies :run, resources(:execute => "del_wwwroot")
 		notifies :run, resources(:execute => "rmdir_wwwroot")
