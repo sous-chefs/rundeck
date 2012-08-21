@@ -184,12 +184,19 @@ if deploy_mode?
 			:fb_app_clientsecret     => node['wt_analytics_ui']['fb_app_clientsecret'],
 			:beta                    => node['wt_analytics_ui']['beta'],
 			:branding                => node['wt_analytics_ui']['branding'],
+			:ios_public_key			 => node['wt_analytics_ui']['ios_public_key'],
+			:facebook_public_key	 => node['wt_analytics_ui']['facebook_public_key'],
+			:android_public_key		 => node['wt_analytics_ui']['android_public_key'],
+			:youtube_public_key		 => node['wt_analytics_ui']['youtube_public_key'],
+			:twitter_public_key		 => node['wt_analytics_ui']['twitter_public_key'],
 			:tagbuilder_download_url => node['wt_analytics_ui']['tagbuilder_download_url'],
 			:tagbuilder_url_template => node['wt_analytics_ui']['tagbuilder_url_template'],
+			:tagbuilder_domain       => node['wt_analytics_ui']['tagbuilder_domain'],
+			:tagbuilder_domainmobile => node['wt_analytics_ui']['tagbuilder_domainmobile'],
 			:help_link               => node['wt_analytics_ui']['help_link'],
 			:hmap_url                => node['wt_analytics_ui']['hmap_url'],
 			:reinvigorate_code       => node['wt_analytics_ui']['reinvigorate_tracking_code'],
-			:show_profiling          => node['wt_analytics_ui']['show_profiling'],
+			:show_profiling          => node['wt_analytics_ui']['show_profiling'],	
 
 			# proxy
 			:proxy_enabled => node['wt_analytics_ui']['proxy_enabled'],
@@ -198,7 +205,9 @@ if deploy_mode?
 			# other settings
 			:custom_errors => node['wt_analytics_ui']['custom_errors'],
 			:search_host   => node['wt_search']['search_hostname'],
-			:monitor_host  => node['wt_messaging_monitoring']['monitor_hostname']
+			:monitor_host  => node['wt_messaging_monitoring']['monitor_hostname'],
+			:remote_access => node['wt_analytics_ui']['remote_access']
+			
 		)
 	end
 
