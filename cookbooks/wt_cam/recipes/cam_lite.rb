@@ -46,12 +46,18 @@ end
 if deploy_mode?
 	iis_site 'CAMLITE' do
 			protocol :http
-			port 80
+			port node['wt_cam']['camlite_port']
 			path "c:\\inetpub\\wwwroot"
 		action [:add,:start]
 		notifies :run, resources(:execute => "del_wwwroot")
 		notifies :run, resources(:execute => "rmdir_wwwroot")
 	end
+
+        wt_base_firewall 'CAMAUTHWS' do
+                protocol "TCP"
+                port node['wt_cam']['camlite_port']
+            action [:open_port]
+        end
 
 	wt_base_icacls install_dir do
 		action :grant
