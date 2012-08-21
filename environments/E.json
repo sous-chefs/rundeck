@@ -61,6 +61,7 @@
             }
         }, 
         "kafka": {
+	    "chroot_suffix":"brokers",
             "download_url": "http://repo.staging.dmz/repo/linux/kafka/",
             "log_flush_scheduler_time_interval": "500",
             "log_flush_time_interval": "500",
