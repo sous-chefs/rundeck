@@ -46,9 +46,9 @@ end
 #	action :nothing
 #end
 
-iis_site 'CAM' do
+http_port = node['wt_cam']['cam_port']
 
-    http_port = node['wt_cam']['cam_port']
+iis_site 'CAM' do
 
     protocol :http
     port http_port
