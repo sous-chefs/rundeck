@@ -1,5 +1,5 @@
 --- 
-address: 0.0.0.0
+address: <%= @ipaddress %>
 environment: production
 max_conns: 1024
 wait: 30
@@ -7,7 +7,7 @@ chdir: <%= @chdir %>
 require: []
 
 log: <%= File.join(@log_dir, @log_name) %>
-port: 3000
+port: <%= @oauth_port %>
 pid: tmp/pids/thin.pid
 max_persistent_conns: 512
 timeout: 30
