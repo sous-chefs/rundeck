@@ -185,8 +185,8 @@
             }
         }, 
 		"webpi" : {
-			"url" : "http://repo.staging.dmz/windows/webpi/webpicmd_x86.zip",
-			"xmlpath" : "http://repo.staging.dmz/windows/webpi/WebProductList.xml"
+			"url" : "http://repo.staging.dmz/repo/windows/webpi/webpicmd_x86.zip",
+			"xmlpath" : "http://repo.staging.dmz/repo/windows/webpi/WebProductList.xml"
 		},
         "wt_analytics_ui": {}, 
         "wt_cam": {
