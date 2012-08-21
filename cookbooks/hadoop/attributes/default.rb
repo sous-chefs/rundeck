@@ -28,6 +28,7 @@ default[:hadoop][:mapred][:child_java_opts] = "-server -Xmx640m -Djava.net.prefe
 default[:hadoop][:mapred][:job_tracker_handler_count] = 10
 default[:hadoop][:mapred][:reduce_tasks] = 1
 default[:hadoop][:mapred][:local_dir] = "${hadoop.tmp.dir}/mapred/local"
+default[:hadoop][:mapred][:non_datanode_local_dir] = "${hadoop.tmp.dir}/mapred/local"
 default[:hadoop][:mapred][:tasktracker_map_tasks_maximum] = 2
 default[:hadoop][:mapred][:tasktracker_reduce_tasks_maximum] = 2
 default[:hadoop][:mapred][:child_ulimit] = "8388608"
