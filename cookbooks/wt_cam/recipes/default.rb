@@ -48,7 +48,7 @@ end
 
 iis_site 'CAM' do
     protocol :http
-    port 81
+    port node['wt_cam']['cam_port']
     path "#{install_dir}"
 	action [:add,:start]
 	#notifies :run, resources(:execute => "del_wwwroot") 
@@ -57,7 +57,7 @@ end
 
 wt_base_firewall 'CAMWS' do
 	protocol "TCP"
-	port 81
+	port node['wt_cam']['cam_port']
     action [:open_port]
 end
 
