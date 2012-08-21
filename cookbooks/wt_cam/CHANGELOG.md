@@ -1,3 +1,7 @@
+## 1.0.10
+* Added attributes for the port numbers for cam, auth and cam_lite 
+* removed hard-coded values for same
+
 ## 1.0.9
 * Separated Auth service from the Cam
 * Updated cam cookbook and web.config template
