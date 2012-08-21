@@ -1,0 +1,14 @@
+{
+  "name": "wt_oauth_redirector",
+  "default_attributes": {
+  },
+  "override_attributes": {},
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[wt_oauth_redirector]"
+  ],
+  "description": "Webtrends OAuth Redirector",
+  "chef_type": "role"
+}
