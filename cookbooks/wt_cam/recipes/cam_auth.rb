@@ -47,7 +47,7 @@ end
 
 iis_site 'AUTH' do
     protocol :http
-    port 8081
+    port node['wt_cam']['auth_port']
     path "#{install_dir}"
 	action [:add,:start]
 	#notifies :run, resources(:execute => "del_wwwroot")
@@ -56,7 +56,7 @@ end
 
 wt_base_firewall 'CAMAUTHWS' do
 	protocol "TCP"
-	port 8081
+	port node['wt_cam']['auth_port']
     action [:open_port]
 end
 

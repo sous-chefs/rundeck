@@ -15,3 +15,6 @@ default['wt_cam']['db_server'] = "(local)"
 default['wt_cam']['db_name'] = "Cam"
 default['wt_cam']['camlite_db_name'] = "wtCamLite"
 default['wt_cam']['tokenExpirationMinutes'] = 60
+default['wt_cam']['cam_port'] = 80
+default['wt_cam']['auth_port'] = 81
+default['wt_cam']['cam_lite_port'] = 82
