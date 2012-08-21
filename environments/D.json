@@ -42,9 +42,7 @@
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
         "hbase": {
-            "data_center_id": "Lab", 
-            "location": "sdata.staging.dmz", 
-            "pod_id": "D", 
+			"location": "sdata.staging.dmz"
             "site": {
                 "zookeeper_clientport": 2181, 
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
@@ -145,6 +143,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt144/27247:id/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
+			"fb_data_center_id": "Lab",
             "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
             "hmap_url": "http://hmapi.netiq.dmz/", 
             "ondemand_base_domain": "dod.webtrends.com", 
@@ -172,6 +171,7 @@
             "install_log_dir_linux": "/var/log/webtrends/install", 
             "install_log_dir_windows": "d:\\logs", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+			"pod_id": "D",
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
