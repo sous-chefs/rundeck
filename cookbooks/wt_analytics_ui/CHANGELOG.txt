@@ -1,6 +1,13 @@
 Future
 	Change IIS site bindings
 	Search alternate/current environment for cache_hosts
+
+0.0.31
+	Merge in HBase parameter moves.
+0.0.30
+	Adding missing parameters
+
+1.0.0   Incremented version to allow room for hotfixes
 0.0.29
 	Changed hbase settings to use wt_common version of pod_id and moved fb_data_center_id under wt_analtics_ui
 0.0.28
@@ -8,6 +15,7 @@ Future
 
 0.0.27
 	Added YouTube settings
+
 0.0.26
 	Merged IIS config into default.rb
 
