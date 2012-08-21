@@ -1,3 +1,5 @@
+## 1.0.13
+* Changed CamLite port to 85
 ## 1.0.12
 * Fixed spacing and removed check around firewall rule.
 ## 1.0.11
