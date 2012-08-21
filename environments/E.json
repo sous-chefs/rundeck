@@ -61,6 +61,7 @@
             }
         }, 
         "kafka": {
+	    "chroot_suffix":"brokers",
             "download_url": "http://repo.staging.dmz/repo/linux/kafka/",
             "log_flush_scheduler_time_interval": "500",
             "log_flush_time_interval": "500",
@@ -131,7 +132,13 @@
         }, 
         "wt_analytics_ui": {}, 
         "wt_cam": {
-            "cam_server_url": "http://bcam01.staging.dmz/camservice"
+            "auth_service_url": "http://bcam01.staging.dmz:8081",
+            "cam_server_url": "http://bcam01.staging.dmz/camservice",
+            "db_name": "cam",
+            "db_server": "bcamdb01.staging.dmz",
+            "camlite_port": 80,
+            "cam_port": 81,
+            "auth_port": 8081
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -183,7 +190,16 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/27350:id/webtrends-streamingcollection-bin.tar.gz",
             "port": 8080
         }, 
-        "wt_streamingconfigservice": {}, 
+        "wt_streamingconfigservice": {          
+	    "camdbname": "CAM",
+            "camdbserver": "bcamdb01.staging.dmz",
+            "config_service_url": "http://butil01.staging.dmz:8080",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/webtrends-streaming-configservice-bin.tar.gz",
+            "includeUnmappedAnalyticsIds": "true",
+            "masterdbname": "wtmaster",
+            "masterdbserver": "dmasterdb01.englab.webtrends.corp",
+            "port": "8080"
+        },
         "wt_streaminglogreplayer": {}, 
         "wt_usagedb": {}, 
         "yum": {
