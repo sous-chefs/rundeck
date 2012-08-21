@@ -52,10 +52,11 @@ directory install_dir do
 end
 
 if deploy_mode?
-
-    
+	windows_zipfile install_dir do
+		source node['wt_cam']['camlite_download_url']
+		action :unzip
+	end
 	
-
     wt_base_firewall 'CAMLITEWS' do
 		protocol "TCP"
         port http_port
