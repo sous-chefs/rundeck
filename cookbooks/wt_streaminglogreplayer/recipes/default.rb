@@ -116,7 +116,7 @@ end
 def processTemplates (install_dir, node, user, group, datacenter, pod, kafka_chroot_suffix)
 	log "Updating the template files"
 
-    kafka_topic = "#{datacenter}_#{pod}_#{node[:wt_streaminglogreplayer][:kafka_topic]}"
+    node[:wt_streaminglogreplayer][:kafka_topic] = "#{datacenter}_#{pod}_lrRawHits"
     
 	# grab the zookeeper nodes that are currently available
 	zookeeper_pairs = getZookeeperPairs(node)
@@ -131,7 +131,6 @@ def processTemplates (install_dir, node, user, group, datacenter, pod, kafka_chr
 	            :wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
 	            :zookeeper_pairs => zookeeper_pairs,
                 :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
-                :kafka_topic => kafka_topic,
 	            :wt_monitoring => node[:wt_monitoring]
 	        })
 	    end
