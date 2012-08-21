@@ -205,7 +205,10 @@
             "auth_service_url": "http://hcam01.staging.dmz:8081", 
             "cam_server_url": "http://hcam01.staging.dmz/camservice", 
             "db_name": "cam", 
-            "db_server": "hcamdb01.staging.dmz"
+            "db_server": "hcamdb01.staging.dmz",
+            "cam_lite_port": "80",
+            "cam_port": "81",
+            "auth_port": "8081"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
