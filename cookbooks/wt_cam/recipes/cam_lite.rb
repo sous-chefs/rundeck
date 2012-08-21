@@ -19,6 +19,7 @@ install_logdir = node['wt_common']['install_log_dir_windows']
 app_pool = node['wt_cam']['camlite_app_pool']
 user_data = data_bag_item('authorization', node.chef_environment)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
+http_port = node['wt_cam']['camlite_port']
 
 # stop and delete the default IIS site since we don't want this
 iis_site 'Default Web Site' do
@@ -36,6 +37,13 @@ execute "del_wwwroot" do
 	command "del /q c:\\inetpub\\wwwroot\\*"
 	action :nothing
 end
+log "Creating CAMLITE site on port #{http_port}"
+iis_site 'CAMLITE' do
+    protocol :http
+    port http_port
+    path "#{install_dir}"
+	action [:add,:start]
+end
 
 #create the install directory for the product
 directory install_dir do
@@ -44,31 +52,22 @@ directory install_dir do
 end
 
 if deploy_mode?
-	iis_site 'CAMLITE' do
-			protocol :http
-			port node['wt_cam']['camlite_port']
-			path "c:\\inetpub\\wwwroot"
-		action [:add,:start]
-		notifies :run, resources(:execute => "del_wwwroot")
-		notifies :run, resources(:execute => "rmdir_wwwroot")
+	windows_zipfile install_dir do
+		source node['wt_cam']['camlite_download_url']
+		action :unzip
 	end
-
-        wt_base_firewall 'CAMAUTHWS' do
-                protocol "TCP"
-                port node['wt_cam']['camlite_port']
-            action [:open_port]
-        end
+	
+    wt_base_firewall 'CAMLITEWS' do
+		protocol "TCP"
+        port http_port
+        action [:open_port]
+    end
 
 	wt_base_icacls install_dir do
 		action :grant
 		user user_data['wt_common']['ui_user']
 		perm :modify
-	end
-
-  windows_zipfile install_dir do
-    source node['wt_cam']['camlite_download_url']
-    action :unzip
-  end
+	end 
 
   template "#{install_dir}\\Webtrends.CamWeb.UI\\web.config" do
   	source "webConfig_camlite.erb"

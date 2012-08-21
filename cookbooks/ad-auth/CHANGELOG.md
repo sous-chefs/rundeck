@@ -1,5 +1,5 @@
-## Future
-* Release upstream with a real ReadMe
+## 1.0.5
+* Add OS support to the metadata
 
 ## 1.0.4
 * Non-impacting code cleanup to follow best practices
