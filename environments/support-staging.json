@@ -4,7 +4,7 @@
         "cassandra": "= 1.0.10", 
         "cobbler": "= 0.0.1", 
         "graphite": "= 0.3.0", 
-        "hadoop": "= 1.0.3", 
+        "hadoop": "= 1.0.6", 
         "hbase": "= 1.0.4", 
         "hive": "= 1.0.3", 
         "java": "= 1.5.2", 
@@ -16,11 +16,7 @@
         "wt_base": "= 0.10.53", 
         "zookeeper": "= 1.0.4"
     }, 
-    "default_attributes": {}, 
-    "description": "Staging Support Servers", 
-    "json_class": "Chef::Environment", 
-    "name": "support-staging", 
-    "override_attributes": {
+    "default_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
@@ -90,6 +86,7 @@
                 "map_tasks_speculative_execution": "false", 
                 "reduce_tasks": 26, 
                 "reduce_tasks_speculative_execution": "false", 
+                "submit_replication": 5, 
                 "tasktracker_map_tasks_maximum": 6, 
                 "tasktracker_reduce_tasks_maximum": 3
             }
@@ -183,11 +180,6 @@
             "sysadmin_email": "trent.white@webtrends.com", 
             "users_databag_group": "staging"
         }, 
-        "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
-        }, 
         "ondemand_base": {
             "apt": [
                 {
@@ -218,13 +210,6 @@
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
-        }, 
-        "resolver": {
-            "nameservers": [
-                "10.164.0.11", 
-                "10.164.0.12"
-            ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -286,6 +271,23 @@
             "snapshot_num": 3, 
             "sync_limit": 5, 
             "tick_time": 2000
+        }
+    }, 
+    "description": "Staging Support Servers", 
+    "json_class": "Chef::Environment", 
+    "name": "support-staging", 
+    "override_attributes": {
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }
     }
 }
