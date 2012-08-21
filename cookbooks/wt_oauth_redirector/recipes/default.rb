@@ -11,10 +11,10 @@ log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "oauth_redirect
 install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "oauth_redirector")
 tarball      = node['wt_oauth_redirector']['download_url'].split("/")[-1]
 download_url = node['wt_oauth_redirector']['download_url']
-
-
 start_cmd = "thin start -C #{install_dir}/oard.thin.yml"
-stop_cmd = "thin stop -C #{install_dir}/oard.thin.yml"
+if ENV["deploy_build"] == "true" then 
+	include_recipe "wt_oauth_redirector::uninstall"
+end
 
 # Install gems
 
@@ -61,5 +61,5 @@ end
 execute "start application" do
   command start_cmd
   action :run
+  ignore_failure true
 end
-
