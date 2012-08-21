@@ -1,3 +1,5 @@
+## 1.0.12
+* Fixed spacing and removed check around firewall rule.
 ## 1.0.11
 * Changed CamLite to use installdir instead of hardcoded path.
 ## 1.0.10
