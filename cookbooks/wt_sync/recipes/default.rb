@@ -129,12 +129,7 @@ if deploy_mode?
 		$result | Format-List
 		EOH
 	end
-<<<<<<< HEAD
-
-=======
-	
 	share_wrs
->>>>>>> 10.5Hotfix
 end
 
 service node['wt_sync']['service_name'] do
