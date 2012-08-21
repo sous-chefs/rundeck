@@ -5,12 +5,12 @@
         "nagios": "= 1.5.0", 
         "ondemand_base": "= 1.7.12", 
         "windows": "= 1.2.12", 
-        "wt_analytics_ui": "= 1.0.0", 
+        "wt_analytics_ui": "= 1.0.1", 
         "wt_base": "= 1.0.0", 
         "wt_cam": "= 1.0.9", 
         "wt_monitoring": "= 0.0.2", 
-        "wt_search": "= 1.0.0", 
-        "wt_sync": "= 1.0.0"
+        "wt_search": "= 1.0.1", 
+        "wt_sync": "= 1.0.1"
     }, 
     "default_attributes": {
         "authorization": {
@@ -40,10 +40,8 @@
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
-        "hbase": {
-            "data_center_id": "Lab", 
-            "location": "sdata.staging.dmz", 
-            "pod_id": "F", 
+        "hbase": { 
+            "location": "sdata.staging.dmz",
             "site": {
                 "zookeeper_clientport": 2181, 
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
@@ -143,7 +141,7 @@
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt160/27267:id/AnalyticsUI.zip", 
             "fb_app_clientid": "119772538146833", 
-            "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
+            "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c",
             "fb_data_center_id": "Lab", 
             "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
             "hmap_url": "", 
@@ -153,7 +151,15 @@
             "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
             "show_profiling": "true", 
             "tagbuilder_download_url": "https://stb.webtrends.com", 
-            "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}"
+            "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}",
+			"ios_public_key" : "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==",
+			"facebook_public_key" : "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==",
+			"android_public_key" : "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==",
+			"youtube_public_key" : "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==",
+			"twitter_public_key" : "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==",
+			"tagbuilder_domain" : "statse.webtrendslive.com",
+			"tagbuilder_domainmobile" : "dc.webtrends.com/v1",
+			"remote_access" : "1"
         }, 
         "wt_cam": {
             "cam_server_url": "http://fcam01.staging.dmz/camservice", 

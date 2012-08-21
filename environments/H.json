@@ -184,13 +184,17 @@
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
+		"webpi" : {
+			"url" : "http://repo.staging.dmz/repo/windows/webpi/webpicmd_x86.zip",
+			"xmlpath" : "http://repo.staging.dmz/repo/windows/webpi/WebProductList.xml"
+		},
         "wt_analytics_ui": {}, 
         "wt_cam": {
             "auth_service_url": "http://hcam01.staging.dmz:8081", 
             "cam_server_url": "http://hcam01.staging.dmz/camservice", 
             "db_name": "cam", 
             "db_server": "hcamdb01.staging.dmz",
-            "cam_lite_port": 80,
+            "camlite_port": 80,
             "cam_port": 81,
             "auth_port": 8081
         }, 
@@ -290,7 +294,7 @@
             "roundtrip_token": "9019769dfb544c94a31e56194d316968"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/27052:id/webtrends-streamingcollection-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/27350:id/webtrends-streamingcollection-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingconfigservice": {
