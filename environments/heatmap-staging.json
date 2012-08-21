@@ -18,11 +18,7 @@
         "wt_streaminglogreplayer": "= 0.0.21", 
         "zookeeper": "= 1.0.6"
     }, 
-    "default_attributes": {}, 
-    "description": "Webtrends Heatmap Staging Environment", 
-    "json_class": "Chef::Environment", 
-    "name": "heatmap-staging", 
-    "override_attributes": {
+    "default_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
@@ -211,6 +207,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "common_resource_environment": "support-staging", 
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
@@ -324,6 +321,23 @@
             "snapshot_num": 3, 
             "sync_limit": 5, 
             "tick_time": 2000
+        }
+    }, 
+    "description": "Webtrends Heatmap Staging Environment", 
+    "json_class": "Chef::Environment", 
+    "name": "heatmap-staging", 
+    "override_attributes": {
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }
     }
 }
