@@ -1,3 +1,5 @@
+## 0.0.7
+* Setting uninstall directory removal to be 
 ## 0.0.6
 * Creating runit service
 * Setting uninstall to ignore failures
