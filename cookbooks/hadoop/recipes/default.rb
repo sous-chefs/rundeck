@@ -39,6 +39,10 @@ search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment
   hadoop_datanodes << n[:fqdn]
 end
 
+# determine local_dir (datanodes often have multiples disks, while namenode/jotrackers don't)
+local_dir = search(:node, "name:#{node.name} AND role:hadoop_datanode").length == 1 ? node[:hadoop][:mapred][:local_dir] : node[:hadoop][:mapred][:non_datanode_local_dir]
+
+
 # setup hadoop group
 group "hadoop"
 
@@ -93,7 +97,8 @@ end
       :namenode => hadoop_namenode,
       :jobtracker => hadoop_jobtracker,
       :backupnamenode => hadoop_backupnamenode,
-      :datanodes => hadoop_datanodes
+      :datanodes => hadoop_datanodes,
+      :local_dir => local_dir
     )
   end
 end
