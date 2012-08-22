@@ -8,7 +8,7 @@
         "kafka": "= 1.0.8", 
         "nagios": "= 1.5.0", 
         "ondemand_base": "= 1.7.12", 
-        "storm": "= 1.0.16", 
+        "storm": "= 1.0.19", 
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.9", 
@@ -141,7 +141,10 @@
             "syscontact": "trent.white@webtrends.com"
         }, 
         "storm": {
-            "download_url": "http://repo.staging.dmz/repo/linux/storm/"
+            "download_url": "http://repo.staging.dmz/repo/linux/storm",
+            "install_dir": "/opt/storm",
+            "log_dir": "/var/log/storm",
+            "version": "0.8.0"
         }, 
         "vc2010": {
             "x64": {
