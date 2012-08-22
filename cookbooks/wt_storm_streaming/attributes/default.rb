@@ -6,7 +6,6 @@
 # Copyright 2012, Webtrends Inc.
 #
 
-
 # general storm attributes
 default['wt_storm_streaming']['java_lib_path'] = "/usr/local/lib:/opt/local/lib:/usr/lib"
 default['wt_storm_streaming']['local_dir'] = "/mnt/storm"
