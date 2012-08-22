@@ -3,7 +3,7 @@
     "cookbook_versions": {
         "hadoop": "= 1.0.7", 
         "hbase": "= 1.0.3", 
-        "hive": "= 1.0.2", 
+        "hive": "= 1.0.5", 
         "kafka": "= 1.0.7", 
         "storm": "= 1.0.18", 
         "wt_cam": "= 1.0.4", 
