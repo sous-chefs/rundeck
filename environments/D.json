@@ -37,9 +37,7 @@
             "cassandra_thrift_port": 9160
         }, 
         "hbase": {
-            "data_center_id": "Lab", 
             "location": "sdata.staging.dmz", 
-            "pod_id": "D", 
             "site": {
                 "zookeeper_clientport": 2181, 
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
