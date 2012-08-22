@@ -1,5 +1,5 @@
-## 1.0.7
-* namenode and jobtracker use non_datanode_local_dir instead of local_dir in order to take different drive configurations into account
+## 1.0.5
+* removing vpod reside from hive-env.sh
 
 ## 1.0.4
 * Install to /usr/share/hive to match the /usr/share/hadoop folder setup
