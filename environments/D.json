@@ -11,7 +11,7 @@
         "wt_monitoring": "= 0.0.2", 
         "wt_search": "= 0.0.29", 
         "wt_sync": "= 0.0.22", 
-        "wt_xd": "= 0.0.1"
+        "wt_xd": "= 0.0.2"
     }, 
     "default_attributes": {
         "authorization": {
