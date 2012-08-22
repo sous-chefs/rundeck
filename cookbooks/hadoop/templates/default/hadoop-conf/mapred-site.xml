@@ -36,7 +36,7 @@ that we do not leave VMs around for later jobs.
 
 <property>
 <name>mapred.local.dir</name>
-<value><%= node[:hadoop][:mapred][:local_dir] %></value>
+<value><%= @local_dir %></value>
 <final>true</final>
 </property>
 
