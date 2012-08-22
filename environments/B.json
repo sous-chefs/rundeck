@@ -8,7 +8,7 @@
         "kafka": "= 1.0.8", 
         "nagios": "= 1.5.0", 
         "ondemand_base": "= 1.7.12", 
-        "storm": "= 1.0.16", 
+        "storm": "= 1.0.19", 
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.9", 
@@ -16,7 +16,7 @@
         "wt_netacuity": "= 1.0.4", 
         "wt_realtimeapi": "= 0.0.19", 
         "wt_storm": "= 1.0.34",
-	"wt_storm_Streaming": "= 2.0.6", 
+	"wt_storm_streaming": "= 2.0.6", 
         "wt_streamingapi": "= 0.0.25", 
         "wt_streamingauditor": "= 0.0.10", 
         "wt_streamingcollection": "= 0.0.21", 
@@ -141,7 +141,10 @@
             "syscontact": "trent.white@webtrends.com"
         }, 
         "storm": {
-            "download_url": "http://repo.staging.dmz/repo/linux/storm/"
+            "download_url": "http://repo.staging.dmz/repo/linux/storm",
+            "install_dir": "/opt/storm",
+            "log_dir": "/var/log/storm",
+            "version": "0.8.0"
         }, 
         "vc2010": {
             "x64": {
@@ -226,6 +229,9 @@
         "wt_storm_realtime": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/27269:id/streaming-analysis-bin.tar.gz"
         },
+	"wt_storm_streaming": {
+	    "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/27269:id/streaming-analysis-bin.tar.gz"
+	},
         "wt_storm": {
             "dcsid_whitelist": "", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/24696:id/streaming-analysis-bin.tar.gz", 
@@ -237,7 +243,10 @@
                 "realtime_topology_row_key_bolt_count": 12, 
                 "realtime_topology_writing_bolt_count": 48, 
                 "topology_override_max_spout_pending": 3000, 
-                "topology_override_msg_timeout_seconds": 120
+                "topology_override_msg_timeout_seconds": 120,
+                "worker": {
+                    "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                }
             }, 
             "streaming_topology": {
                 "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0", 
@@ -245,7 +254,10 @@
                 "streaming_topology_in_session_bolt_count": 1, 
                 "streaming_topology_parsing_bolt_count": 50, 
                 "streaming_topology_validation_bolt_count": 10, 
-                "streaming_topology_zmq_emitter_bolt_count": 1
+                "streaming_topology_zmq_emitter_bolt_count": 1,
+                "worker": {
+                    "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                }
             }
         }, 
         "wt_streamingapi": {
