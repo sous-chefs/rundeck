@@ -237,7 +237,10 @@
                 "realtime_topology_row_key_bolt_count": 12, 
                 "realtime_topology_writing_bolt_count": 48, 
                 "topology_override_max_spout_pending": 3000, 
-                "topology_override_msg_timeout_seconds": 120
+                "topology_override_msg_timeout_seconds": 120,
+                "worker": {
+                    "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                }
             }, 
             "streaming_topology": {
                 "kafka_consumer_topic": "scsRawHits:0,lrRawHits:0", 
@@ -245,7 +248,10 @@
                 "streaming_topology_in_session_bolt_count": 1, 
                 "streaming_topology_parsing_bolt_count": 50, 
                 "streaming_topology_validation_bolt_count": 10, 
-                "streaming_topology_zmq_emitter_bolt_count": 1
+                "streaming_topology_zmq_emitter_bolt_count": 1,
+                "worker": {
+                    "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                }
             }
         }, 
         "wt_streamingapi": {
