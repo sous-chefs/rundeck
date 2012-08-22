@@ -16,10 +16,41 @@ if ENV["deploy_build"] == "true" then
 	include_recipe "wt_oauth_redirector::uninstall"
 end
 
+directory install_dir do
+  action :create
+  recursive true
+end
+
+directory log_dir do
+  action :create
+  recursive true
+end
+
 # Install gems
 
 gem_package "sinatra"
 gem_package "thin"
+
+# Set up config templates
+
+template "#{install_dir}/oard_config.yml" do
+	source "oard_config.yml.erb"
+	variables(
+		:log_dir => node['wt_common']['log_dir_linux'],
+		:log_name => node['wt_oauth_redirector']['logname']
+	)
+end
+
+template "#{install_dir}/oard.thin.yml" do
+	source "oard.thin.yml.erb"
+	variables(
+		:log_dir 	=> node['wt_common']['log_dir_linux'],
+		:chdir 		=> install_dir,
+		:log_name 	=> node['wt_oauth_redirector']['logname'],
+		:ipaddress 	=> node['ipaddress'],
+		:oauth_port		=> node['wt_oauth_redirector']['port']
+	)
+end
 
 # Unpack app
 if ENV["deploy_build"] == "true" then 
@@ -38,28 +69,17 @@ if ENV["deploy_build"] == "true" then
     cwd install_dir
     command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
+	
+	runit_service "oauth_redirector" do
+	  run_restart false
+	  options(
+			:install_dir => install_dir
+		)
+	  notifies :restart, "service[oauth_redirector]"
+	end
 end
 
-
-# Set up config templates
-
-template "#{install_dir}/oard_config.yml" do
-	source "oard_config.yml.erb"
-	variables(
-		:log_dir => node['wt_common']['log_dir_linux']
-	)
-end
-
-template "#{install_dir}/oard.thin.yml" do
-	source "oard.thin.yml.erb"
-	variables(
-		:log_dir => node['wt_common']['log_dir_linux'],
-		:chdir => install_dir
-	)
-end
-
-execute "start application" do
-  command start_cmd
-  action :run
+service "oauth_redirector" do
+  action :start
   ignore_failure true
 end
