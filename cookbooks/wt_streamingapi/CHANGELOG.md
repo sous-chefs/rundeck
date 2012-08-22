@@ -1,3 +1,5 @@
+## 0.0.26
+  Updated netty configuration
 ## 0.0.24
 * Added broker chroot prefix for zk.connect string
 
