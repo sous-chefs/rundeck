@@ -59,28 +59,27 @@ end
 #update the config files
 def processConfTemplates (install_dir, node, log_dir)
  
-    	zookeeper_pairs_target = getZookeeperPairs(node, node["wt_mirrormaker"]["target"])                       
+    	zookeeper_pairs_target = getZookeeperPairs(node, node["wt_mirrormaker"]["target"]["env"])                       
 	
 # 	Assumes that a node has wt_mirrormaker/sources attribute 
-#  	"wt_mirrormaker": {
-#      		"sources": {
-#        		"collectionEnv1": "dc1",
-#			"collectionEnv1": "dc2"
-#			}
-#	}
-#	Where collectionEnv1 and collectionEnv2 are names of the chef environments to mirror
-#	And dc1 and dc2 are the datacenters of those environments
+#  	    "wt_mirrormaker": {
+#      "sources": {
+#        "G": "Lab"
+#      },
+#      "target": {
+#        "dc": "Lab"
+#	"env": "h"
+#      }
+#    }
 	
 	node['wt_mirrormaker']['sources'].each { |src_env_o|	                                         
 	                                          
 		src_env = src_env_o[0]
 		src_dc = src_env_o[1]
-		#src_dc = node['wt_mirrormaker']['sources']['#{src_env}']
-
-		#No idea why this is pulled from wt_realtime_hadoop but following pattern from streaming collection
-		tgt_env = node[:wt_realtime_hadoop][:pod]
-		tgt_dc = node[:wt_realtime_hadoop][:datacenter]
-
+		
+		tgt_dc = node['wt_mirrormaker']['target']['dc']
+		tgt_env = node['wt_mirrormaker']['target']['env']
+	                                               
 	   	# grab the zookeeper nodes that are currently available in the source environment
 	    	zookeeper_pairs_src = getZookeeperPairs(node, src_env)
 		kafka_chroot_suffix = node[:kafka][:chroot_suffix]
