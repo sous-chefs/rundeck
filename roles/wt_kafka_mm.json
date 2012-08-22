@@ -1,14 +1,18 @@
 {
   "name": "wt_kafka_mm",
   "default_attributes": {
-	"mirror_source_env":"H"
   },
   "override_attributes": {
+    "java" : {
+	"install_flavor": "oracle",
+	"jdk_version": "7"
+      }
   },
   "json_class": "Chef::Role",
   "env_run_lists": {
   },
   "run_list": [
+    "recipe[java]",
     "recipe[wt_kafka_mm]"
   ],
   "description": "This is the Kafka mirror maker",
