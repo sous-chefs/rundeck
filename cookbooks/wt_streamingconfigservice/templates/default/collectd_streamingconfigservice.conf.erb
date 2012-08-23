@@ -111,7 +111,7 @@ LoadPlugin java
         #Connection Block
         <Connection>
 			Host "<%= @node[:hostname] %>"
-			ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:9999/jmxrmi"
+			ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:<%= @jmx_port %>/jmxrmi"
 			Collect "classes"
 			Collect "garbage_collector"
 			Collect "java_threads"
