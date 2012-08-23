@@ -28,12 +28,15 @@ case node['platform']
 when "ubuntu","debian"
   default['nagios']['server']['install_method'] = 'package'
   default['nagios']['server']['service_name']   = 'nagios3'
+  default['nagios']['server']['mail_command']   = '/usr/bin/mail'
 when "redhat","centos","fedora","scientific","amazon"
   default['nagios']['server']['install_method'] = 'source'
   default['nagios']['server']['service_name']   = 'nagios'
+  default['nagios']['server']['mail_command']   = '/bin/mail'
 else
   default['nagios']['server']['install_method'] = 'source'
   default['nagios']['server']['service_name']   = 'nagios'
+  default['nagios']['server']['mail_command']   = '/bin/mail'
 end
 
 set['nagios']['home']       = "/usr/lib/nagios3"
@@ -53,7 +56,7 @@ set['nagios']['ssl_req'] = "/C=US/ST=Several/L=Locality/O=Example/OU=Operations/
 # for server from source installation
 default['nagios']['server']['url']      = 'http://prdownloads.sourceforge.net/sourceforge/nagios'
 default['nagios']['server']['version']  = '3.4.1'
-default['nagios']['server']['checksum'] = '2fa8acfb2a92b1bf8d173a855832de1f'
+default['nagios']['server']['checksum'] = 'a5c693f9af22410cc17d6da9c0df9bd65c47d787de3f937b5ccbda934131f8c8'
 
 default['nagios']['notifications_enabled']   = 0
 default['nagios']['check_external_commands'] = true
