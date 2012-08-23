@@ -2,21 +2,16 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "java": "= 1.5.2", 
-        "kafka": "= 1.0.5", 
         "nagios": "= 1.5.0", 
-        "ondemand_base": "= 1.5.0", 
-        "storm": "= 1.0.16", 
+        "ondemand_base": "= 1.7.12", 
         "windows": "= 1.2.12", 
-        "wt_cam": "= 1.0.4", 
+        "wt_analytics_ui": "= 0.0.31", 
+        "wt_base": "= 0.10.53", 
+        "wt_cam": "= 1.0.9", 
         "wt_monitoring": "= 0.0.2", 
-        "wt_netacuity": "= 1.0.4", 
-        "wt_realtimeapi": "= 0.0.17", 
-        "wt_storm": "= 1.0.20", 
-        "wt_streamingapi": "= 0.0.16", 
-        "wt_streamingaudit": "= 0.0.7", 
-        "wt_streamingcollection": "= 0.0.19", 
-        "wt_streaminglogreplayer": "= 0.0.15", 
-        "zookeeper": "= 1.0.4"
+        "wt_search": "= 0.0.29", 
+        "wt_sync": "= 0.0.22", 
+        "wt_xd": "= 0.0.2"
     }, 
     "default_attributes": {
         "authorization": {
@@ -35,6 +30,20 @@
                 ]
             }
         }, 
+        "cassandra": {
+            "cassandra_host": "cassandra.staging.dmz", 
+            "cassandra_meta_column": "A_Meta", 
+            "cassandra_report_column": "A_Report", 
+            "cassandra_thrift_port": 9160
+        }, 
+        "hbase": {
+            "location": "sdata.staging.dmz", 
+            "site": {
+                "zookeeper_clientport": 2181, 
+                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
+            }, 
+            "thrift_port": 9090
+        }, 
         "java": {
             "install_flavor": "oracle", 
             "jdk": {
@@ -50,7 +59,18 @@
                 }
             }
         }, 
+        "kafka": {}, 
         "memcached": {
+            "cache_hosts": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
             "memory": "1024"
         }, 
         "ms_dotnet4": {
@@ -110,24 +130,35 @@
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
-        "wt_common": {
-            "cache_host": [
-                {
-                    "name": "xcache01.staging.dmz", 
-                    "port": "11211"
-                }, 
-                {
-                    "name": "xcache02.staging.dmz", 
-                    "port": "11211"
-                }
-            ], 
+        "wt_analytics_ui": {
+            "android_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
+            "app_pool_private_memory": 2097152, 
+            "bba_domain": "abba.webtrends.com", 
             "cache_region": "A_A10", 
-            "cassandra_host": "cassandra.staging.dmz", 
-            "cassandra_meta_column": "A_Meta", 
-            "cassandra_report_column": "A_Report", 
-            "cassandra_snmp_comm": "StagingRO", 
-            "cassandra_snmp_port": "", 
-            "cassandra_thrift_port": "", 
+            "custom_errors": "Off", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt144/27971:id/AnalyticsUI.zip", 
+            "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
+            "fb_app_clientid": "119772538146833", 
+            "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
+            "fb_data_center_id": "Lab", 
+            "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
+            "hmap_url": "", 
+            "ios_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
+            "ondemand_base_domain": "aod.webtrends.com", 
+            "proxy_address": "http://sproxy02.staging.dmz:3128", 
+            "proxy_enabled": "true", 
+            "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
+            "remote_access": "1", 
+            "show_profiling": "true", 
+            "tagbuilder_domain": "statse.webtrendslive.com", 
+            "tagbuilder_domainmobile": "dc.webtrends.com/v1", 
+            "tagbuilder_download_url": "https://stb.webtrends.com", 
+            "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}", 
+            "twitter_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
+            "youtube_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw=="
+        }, 
+        "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
@@ -137,11 +168,8 @@
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
-            "master_host": "amasterdb01", 
-            "rta_host": "arta01.staging.dmz", 
-            "sched_host": "amasterdb01", 
-            "schedulerdb_host": "ausagedb01", 
-            "usage_host": "ausagedb01", 
+            "pod_id": "A", 
+            "smtp_server": "pdxengmta01.webtrends.corp", 
             "velocitycache_hosts": [
                 {
                     "name": "adxweb01.staging.dmz", 
@@ -158,18 +186,77 @@
             "brandedaccountid": "20578,20663", 
             "cacheenabled": "True", 
             "cachename": "A_DX", 
-            "endpoint_address": "net.tcp://asearch.staging.dmz:8096/SearchService/Search", 
+            "endpoint_address": "net.tcp://asearch.staging.dmz:8096/Search/Service", 
+            "rest_base_uri": "https://adx.webtrends.com/v3", 
             "website_name": "DX", 
             "website_port": "80"
         }, 
+        "wt_masterdb": {
+            "master_host": "amasterdb01.staging.dmz", 
+            "sched_host": "amasterdb01.staging.dmz"
+        }, 
+        "wt_messaging_monitoring": {
+            "monitor_hostname": "ads01.staging.dmz"
+        }, 
+        "wt_monitoring": {
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "false", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "staging.apod.servers", 
+            "monitoring_enabled": "true"
+        }, 
         "wt_roadrunner": {
             "build_url": "\\\\sstore02.staging.dmz\\install\\ReleasedBuilds\\10.3.0\\10.3HF bundle build\\RoadRunner_10.3_10.3.0.11_artifacts.zip"
+        }, 
+        "wt_rta": {
+            "rta_host": "arta01.staging.dmz"
+        }, 
+        "wt_search": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/27943:id/Search.zip", 
+            "search_hostname": "asearch.staging.dmz"
+        }, 
+        "wt_sync": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/27946:id/SyncService.zip"
+        }, 
+        "wt_usagedb": {
+            "schedulerdb_host": "ausagedb01.staging.dmz", 
+            "usage_host": "ausagedb01.staging.dmz"
+        }, 
+        "wt_xd": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/27836:id/artifacts.zip"
+        }, 
+        "yum": {
+            "epel_release": "6-7"
+        }, 
+        "zookeeper": {
+            "client_port": 2181, 
+            "init_limit": 10, 
+            "quorum": [
+                "szoo01.staging.dmz", 
+                "szoo02.staging.dmz", 
+                "szoo03.staging.dmz"
+            ], 
+            "snapshot_num": 3, 
+            "sync_limit": 5, 
+            "tick_time": 2000
         }
     }, 
     "description": "A Pod", 
     "json_class": "Chef::Environment", 
     "name": "A", 
     "override_attributes": {
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

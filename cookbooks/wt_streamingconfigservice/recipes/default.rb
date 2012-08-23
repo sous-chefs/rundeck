@@ -22,13 +22,12 @@ end
 log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingconfigservice")
 install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingconfigservice")
 
-# tarball      = "webtrends-streaming-configservice-bin.tar.gz"
 java_home    = node['java']['java_home']
 download_url = node['wt_streamingconfigservice']['download_url']
 tarball      = node['wt_streamingconfigservice']['download_url'].split("/")[-1]
-user = node['wt_streamingconfigservice']['user']
-group = node['wt_streamingconfigservice']['group']
-java_opts = node['wt_streamingconfigservice']['java_opts']
+user         = node['wt_streamingconfigservice']['user']
+group        = node['wt_streamingconfigservice']['group']
+java_opts    = node['wt_streamingconfigservice']['java_opts']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -36,62 +35,29 @@ log "Java home: #{java_home}"
 
 # create the log directory
 directory "#{log_dir}" do
-owner   user
-group   group
-mode    00755
-recursive true
-action :create
+	owner   user
+	group   group
+	mode    00755
+	recursive true
+	action :create
 end
 
 # create the bin directory
 directory "#{install_dir}/bin" do
-owner "root"
-group "root"
-mode 00755
-recursive true
-action :create
+	owner "root"
+	group "root"
+	mode 00755
+	recursive true
+	action :create
 end
 
 # create the conf directory
 directory "#{install_dir}/conf" do
-owner "root"
-group "root"
-mode 00755
-recursive true
-action :create
-end
-
-def processTemplates (install_dir, node, user, group)
-	log "Updating the template files"
-
-    # grab the users and passwords from the data bag
-    auth_data = data_bag_item('authorization', node.chef_environment)
-    camdbuser  = auth_data['wt_streamingconfigservice']['camdbuser']
-    camdbpwd = auth_data['wt_streamingconfigservice']['camdbpwd']
-    masterdbuser = auth_data['wt_streamingconfigservice']['masterdbuser']
-    masterdbpwd = auth_data['wt_streamingconfigservice']['masterdbpwd']
-
-     %w[monitoring.properties config.properties].each do |template_file|
-	template "#{install_dir}/conf/#{template_file}" do
-	        source	"#{template_file}.erb"
-	        owner user
-	        group group
-	        mode  00755
-	        variables({ 
-	            :port => node['wt_streamingconfigservice']['port'],
-                    :camdbserver => node['wt_streamingconfigservice']['camdbserver'],
-                    :camdbname => node['wt_streamingconfigservice']['camdbname'],
-                    :camdbuser => camdbuser,
-                    :camdbpwd => camdbpwd,
-                    :masterdbserver => node['wt_streamingconfigservice']['masterdbserver'],
-                    :masterdbname => node['wt_streamingconfigservice']['masterdbname'],
-                    :masterdbuser => masterdbuser,
-                    :masterdbpwd => masterdbpwd,
-                    :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
-	            :wt_monitoring => node[:wt_monitoring]
-	        })
-	    end
-	end
+	owner "root"
+	group "root"
+	mode 00755
+	recursive true
+	action :create
 end
 
 if ENV["deploy_build"] == "true" then
@@ -99,18 +65,18 @@ if ENV["deploy_build"] == "true" then
 
     # download the application tarball
     remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-    source download_url
-    mode 00644
+			source download_url
+			mode 00644
     end
 
     # uncompress the application tarball into the install directory
     execute "tar" do
-    user  "root"
-    group "root"
-    cwd install_dir
-    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+			user  "root"
+			group "root"
+			cwd install_dir
+			command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
-   
+
     template "#{install_dir}/bin/service-control" do
         source  "service-control.erb"
         owner "root"
@@ -127,7 +93,36 @@ if ENV["deploy_build"] == "true" then
         })
     end
 
-    processTemplates(install_dir, node, user, group)
+		log "Updating the template files"
+
+		# grab the users and passwords from the data bag
+		auth_data = data_bag_item('authorization', node.chef_environment)
+		camdbuser  = auth_data['wt_streamingconfigservice']['camdbuser']
+		camdbpwd = auth_data['wt_streamingconfigservice']['camdbpwd']
+		masterdbuser = auth_data['wt_streamingconfigservice']['masterdbuser']
+		masterdbpwd = auth_data['wt_streamingconfigservice']['masterdbpwd']
+
+		%w[monitoring.properties config.properties].each do |template_file|
+			template "#{install_dir}/conf/#{template_file}" do
+					source	"#{template_file}.erb"
+					owner user
+					group group
+					mode  00755
+					variables({
+										:port => node['wt_streamingconfigservice']['port'],
+										:camdbserver => node['wt_streamingconfigservice']['camdbserver'],
+										:camdbname => node['wt_streamingconfigservice']['camdbname'],
+										:camdbuser => camdbuser,
+										:camdbpwd => camdbpwd,
+										:masterdbserver => node['wt_streamingconfigservice']['masterdbserver'],
+										:masterdbname => node['wt_streamingconfigservice']['masterdbname'],
+										:masterdbuser => masterdbuser,
+										:masterdbpwd => masterdbpwd,
+										:includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
+										:wt_monitoring => node[:wt_monitoring]
+					})
+			end
+		end
 
     # delete the application tarball
     execute "delete_install_source" do
@@ -162,12 +157,12 @@ if node.attribute?("collectd")
 end
 
 if node.attribute?("nagios")
-  	
+
   #Create a nagios nrpe check for the healthcheck page
 	nagios_nrpecheck "wt_healthcheck_page" do
 		command "#{node['nagios']['plugin_dir']}/check_http"
 		parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
 		action :add
 	end
-  
+
 end
