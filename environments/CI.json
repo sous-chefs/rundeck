@@ -280,6 +280,9 @@
         "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/26337:id/webtrends-streamingapi-bin.tar.gz", 
         "port": 8080
       }, 
+      "wt_storm_streaming": {
+        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/28096:id/streaming-analysis-bin.tar.gz"
+      },
       "wt_streamingauditor": {
         "roundtrip_scs_url": "http://ciscs01.staging.dmz:8080", 
         "roundtrip_token": "9019769dfb544c94a31e56194d316968"
