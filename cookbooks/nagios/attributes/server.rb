@@ -28,12 +28,15 @@ case node['platform']
 when "ubuntu","debian"
   default['nagios']['server']['install_method'] = 'package'
   default['nagios']['server']['service_name']   = 'nagios3'
+  default['nagios']['server']['mail_command']   = '/usr/bin/mail'
 when "redhat","centos","fedora","scientific","amazon"
   default['nagios']['server']['install_method'] = 'source'
   default['nagios']['server']['service_name']   = 'nagios'
+  default['nagios']['server']['mail_command']   = '/bin/mail'
 else
   default['nagios']['server']['install_method'] = 'source'
   default['nagios']['server']['service_name']   = 'nagios'
+  default['nagios']['server']['mail_command']   = '/bin/mail'
 end
 
 set['nagios']['home']       = "/usr/lib/nagios3"
