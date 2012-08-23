@@ -1,3 +1,6 @@
+# 2.0.8
+* Reverted, should now be the same as 2.0.7
+
 # 2.0.7
 * Added support to get a list of topics which include other datacenters
 
