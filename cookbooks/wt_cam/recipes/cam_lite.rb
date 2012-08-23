@@ -19,7 +19,7 @@ install_logdir = node['wt_common']['install_log_dir_windows']
 app_pool = node['wt_cam']['camlite_app_pool']
 user_data = data_bag_item('authorization', node.chef_environment)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
-http_port = node['wt_cam']['camlite_port']
+http_port = node['wt_cam']['camlite']['port']
 
 # stop and delete the default IIS site since we don't want this
 iis_site 'Default Web Site' do
@@ -53,7 +53,7 @@ end
 
 if deploy_mode?
 	windows_zipfile install_dir do
-		source node['wt_cam']['camlite_download_url']
+		source node['wt_cam']['camlite']['download_url']
 		action :unzip
 	end
 	
