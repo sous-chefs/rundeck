@@ -1,22 +1,6 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {
-        "hadoop": "= 1.0.3", 
-        "hbase": "= 1.0.3", 
-        "hive": "= 1.0.2", 
-        "kafka": "= 1.0.8", 
-        "storm": "= 1.0.19", 
-        "wt_cam": "= 1.0.4", 
-        "wt_heatmaps": "= 0.10.42", 
-        "wt_realtime_hadoop": "= 1.0.2", 
-        "wt_realtimeapi": "= 0.0.20", 
-        "wt_storm": "= 1.0.38", 
-        "wt_streamingapi": "= 0.0.21", 
-        "wt_streamingauditor": "= 0.0.10", 
-        "wt_streamingcollection": "= 0.0.24", 
-        "wt_streaminglogreplayer": "= 0.0.21", 
-        "zookeeper": "= 1.0.6"
-    }, 
+    "cookbook_versions": {}, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -25,7 +9,7 @@
             "sudo": {
                 "groups": [
                     "domain-admins", 
-                    "g.admins"
+                    "m.admins"
                 ], 
                 "include_sudoers_d": true, 
                 "passwordless": false, 
@@ -128,12 +112,6 @@
             }
         }, 
         "wt_analytics_ui": {}, 
-        "wt_cam": {
-            "auth_service_url": "http://hcam01.staging.dmz:8081", 
-            "cam_server_url": "http://hcam01.staging.dmz/camservice", 
-            "db_name": "cam", 
-            "db_server": "hcamdb01.staging.dmz"
-        }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
@@ -146,8 +124,8 @@
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
-            "wrsmodify_group": "STAGINGDMZ\\G.WRS.Modify", 
-            "wrsread_group": "STAGINGDMZ\\G.WRS.Read"
+            "wrsmodify_group": "STAGINGDMZ\\M.WRS.Modify", 
+            "wrsread_group": "STAGINGDMZ\\M.WRS.Read"
         }, 
         "wt_configdistrib": {
             "dcsid_url": "http://jcd01.englab.webtrends.corp:8097/config/dcsid2account"
@@ -168,21 +146,14 @@
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
-            "pod": "G"
+            "pod": "M"
         }, 
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/27350:id/webtrends-streamingcollection-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingconfigservice": {
-            "camdbname": "CAM", 
-            "camdbserver": "hcamdb01.staging.dmz", 
-            "config_service_url": "http://hutil01.staging.dmz:8080", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/webtrends-streaming-configservice-bin.tar.gz", 
-            "includeUnmappedAnalyticsIds": "true", 
-            "masterdbname": "wtmaster", 
-            "masterdbserver": "jmasterdb01.englab.webtrends.corp", 
-            "port": "8080"
+            "config_service_url": "http://hutil01.staging.dmz:8080"
         }, 
         "yum": {
             "epel_release": "6-7"
@@ -191,16 +162,16 @@
             "client_port": 2181, 
             "init_limit": 10, 
             "quorum": [
-                "gzoo01.staging.dmz"
+                "mzoo01.staging.dmz"
             ], 
             "snapshot_num": 3, 
             "sync_limit": 5, 
             "tick_time": 2000
         }
     }, 
-    "description": "G Pod", 
+    "description": "M Pod", 
     "json_class": "Chef::Environment", 
-    "name": "G", 
+    "name": "M", 
     "override_attributes": {
         "ntp": {
             "servers": [
