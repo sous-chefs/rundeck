@@ -152,6 +152,9 @@ if node.attribute?("collectd")
     owner "root"
     group "root"
     mode 00644
+    variables({
+        :jmx_port => node['wt_streamingconfigservice']['jmx_port']
+    })
     notifies :restart, resources(:service => "collectd")
   end
 end
