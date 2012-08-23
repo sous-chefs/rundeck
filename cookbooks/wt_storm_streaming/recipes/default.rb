@@ -207,7 +207,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :streaming_topology_augmentation_bolt_count  => node['wt_storm']['streaming_topology']['streaming_topology_augmentation_bolt_count'],
     # kafka consumer settings
     :kafka_chroot                         => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
-    :kafka_consumer_topic                 => node['wt_storm']['streaming_topology']['topic_list'].join ',',
+    :kafka_consumer_topic                 => node['wt_storm']['streaming_topology']['topic_list'].join(','),
     :kafka_dcsid_whitelist                => node['wt_storm']['streaming_topology']['dcsid_whitelist'],
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-streaming',
