@@ -258,6 +258,7 @@
         "realtime_topology_parsing_bolt_count": 3, 
         "realtime_topology_row_key_bolt_count": 6, 
         "realtime_topology_writing_bolt_count": 48, 
+        "topic_list": ["Lab_CI_scsRawHits:0","Lab_CI_lrRawHits:0"],
         "topology_override_max_spout_pending": 3000, 
         "topology_override_msg_timeout_seconds": 120, 
         "worker": {
@@ -281,6 +282,9 @@
         "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/26337:id/webtrends-streamingapi-bin.tar.gz", 
         "port": 8080
       }, 
+      "wt_storm_realtime": {
+        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/28096:id/streaming-analysis-bin.tar.gz"
+      }
       "wt_storm_streaming": {
         "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/28096:id/streaming-analysis-bin.tar.gz"
       },
