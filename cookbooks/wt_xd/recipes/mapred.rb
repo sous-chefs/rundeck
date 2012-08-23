@@ -77,8 +77,8 @@ end
 		mode  00644
 		variables ({
 			# hbase config
-			:hbase_dc_id  => node['hbase']['data_center_id'],
-			:hbase_pod_id => node['hbase']['pod_id'],
+			:hbase_dc_id  => node['wt_analytics_ui']['fb_data_center_id'],
+			:hbase_pod_id => node['wt_common']['pod_id'],
 
 			# zookeeper config
 			:zookeeper_quorum     => zookeeper_quorum * ',',
