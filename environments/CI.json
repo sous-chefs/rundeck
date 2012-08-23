@@ -14,7 +14,7 @@
     "wt_kafka_mm": "= 0.0.5",
     "wt_realtime_hadoop": "= 1.0.2",
     "wt_streamingcollection": "= 0.0.24",
-    "wt_streamingconfigservice": "= 0.0.3",
+    "wt_streamingconfigservice": "= 0.0.4",
     "zookeeper": "= 1.0.6"
   }, 
   "default_attributes": {
