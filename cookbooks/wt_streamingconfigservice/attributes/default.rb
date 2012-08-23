@@ -24,3 +24,5 @@ default['wt_streamingconfigservice']['masterdbuser'] = ""
 default['wt_streamingconfigservice']['masterdbpwd'] = ""
 
 default['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'] = "true"
+
+default['wt_streamingconfigservice']['jmx_port'] = "9999"
