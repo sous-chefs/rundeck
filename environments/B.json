@@ -19,7 +19,7 @@
 	"wt_storm_streaming": "= 2.0.7", 
         "wt_streamingapi": "= 0.0.26", 
         "wt_streamingauditor": "= 0.0.10", 
-        "wt_streamingcollection": "= 0.0.21", 
+        "wt_streamingcollection": "= 0.0.24", 
         "wt_streamingconfigservice": "= 0.0.3", 
         "wt_streaminglogreplayer": "= 0.0.22", 
         "zookeeper": "= 1.0.4",
@@ -261,7 +261,7 @@
             }
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt177/27754:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/27826:id/webtrends-streamingapi-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingauditor": {
@@ -270,7 +270,7 @@
             "roundtrip_token": "9019769dfb544c94a31e56194d316968"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/23167:id/streamingcollection-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/27350:id/webtrends-streamingcollection-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingconfigservice": {
