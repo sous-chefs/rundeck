@@ -2,7 +2,7 @@
   "name": "wt_dx",
   "description": "Webtrends Data Extraction API",
   "json_class": "Chef::Role",
-  "default_attributes": {      
+  "default_attributes": {
   },
   "override_attributes": {
   },
@@ -11,6 +11,7 @@
     "role[iis]",
     "recipe[ms_dotnet35]",
     "recipe[vc2010]",
+    "recipe[wt_commonlib]",
     "recipe[wt_dx]"
   ],
   "env_run_lists": {
