@@ -95,23 +95,6 @@
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
-        "snmp": {
-            "community": "DevOps", 
-            "full_systemview": "true", 
-            "syscontact": "trent.white@webtrends.com"
-        }, 
-        "storm": {
-            "download_url": "http://repo.staging.dmz/repo/linux/storm/"
-        }, 
-        "vc2010": {
-            "x64": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-            }, 
-            "x86": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-            }
-        }, 
-        "wt_analytics_ui": {}, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
