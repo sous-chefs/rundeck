@@ -52,6 +52,15 @@ recursive true
 action :create
 end
 
+# create the config directory
+directory "#{install_dir}/conf" do
+	owner "root"
+	group "root"
+	mode 00755
+	recursive true
+	action :create
+end
+
 def getZookeeperPairs(node)
 		# get the correct environment for the zookeeper nodes
 	  zookeeper_port = node['zookeeper']['client_port']
@@ -173,7 +182,7 @@ if ENV["deploy_build"] == "true" then
     })
     end
 else
-    processTemplates(install_dir, node)
+    processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix)
 end
 
 #Create collectd plugin for streamingcollection JMX objects if collectd has been applied.
