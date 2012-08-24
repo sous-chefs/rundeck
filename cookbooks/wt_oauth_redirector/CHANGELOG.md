@@ -1,5 +1,12 @@
+## 0.0.9
+* Add Nagios check
+
+## 0.0.8
+* Fix thin path in the runit config
+
 ## 0.0.7
-* Setting uninstall directory removal to be 
+* Setting uninstall directory removal to be
+
 ## 0.0.6
 * Creating runit service
 * Setting uninstall to ignore failures
@@ -14,5 +21,5 @@
 ## 0.0.3
 * Added uninstall recipe, and ignore failure on the service start
 
-## 0.0.2 
+## 0.0.2
 * Added variables, untar steps, and execute of start command

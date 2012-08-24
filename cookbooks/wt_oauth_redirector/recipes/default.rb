@@ -12,7 +12,7 @@ install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "oauth_redi
 tarball      = node['wt_oauth_redirector']['download_url'].split("/")[-1]
 download_url = node['wt_oauth_redirector']['download_url']
 start_cmd = "thin start -C #{install_dir}/oard.thin.yml"
-if ENV["deploy_build"] == "true" then 
+if ENV["deploy_build"] == "true" then
 	include_recipe "wt_oauth_redirector::uninstall"
 end
 
@@ -53,7 +53,7 @@ template "#{install_dir}/oard.thin.yml" do
 end
 
 # Unpack app
-if ENV["deploy_build"] == "true" then 
+if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so we will grab the tar ball and install"
 
     # download the application tarball
@@ -65,11 +65,11 @@ if ENV["deploy_build"] == "true" then
     # uncompress the application tarbarll into the install dir
     execute "tar" do
     user  "root"
-    group "root" 
+    group "root"
     cwd install_dir
     command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
-	
+
 	runit_service "oauth_redirector" do
 	  run_restart false
 	  options(
@@ -82,4 +82,13 @@ end
 service "oauth_redirector" do
   action :start
   ignore_failure true
+end
+
+if node.attribute?("nagios")
+  #Create a nagios nrpe check for the the IP address of the node page
+	nagios_nrpecheck "wt_oauth_redirector_health" do
+		command "#{node['nagios']['plugin_dir']}/check_http"
+		parameters "-H #{node[:fqdn]} -p 8080"
+		action :add
+	end
 end
