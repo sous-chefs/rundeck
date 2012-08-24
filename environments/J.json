@@ -32,8 +32,8 @@
         "hbase": {
             "location": "sdata.staging.dmz", 
             "site": {
-                "zookeeper_clientport": "", 
-                "zookeeper_quorum": ""
+                "zookeeper_clientport": 2181,, 
+                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
             }, 
             "thrift_port": 9090
         }, 
@@ -213,6 +213,9 @@
             "schedulerdb_host": "jusagedb01.englab.webtrends.corp", 
             "usage_host": "jusagedb01.englab.webtrends.corp"
         }, 
+        "wt_xd": {
+            "download_url": "http://teamcity/guestAuth/repository/downloadAll/bt134/.lastSuccessful/artifacts.zip"
+        },
         "yum": {
             "epel_release": "6-7"
         }
