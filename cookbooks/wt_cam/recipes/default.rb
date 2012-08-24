@@ -95,4 +95,7 @@ if deploy_mode?
   iis_config auth_cmd do
   	action :config
   end
+
+  # add the plugins here
+  include_recipe "wt_cam::cam_plugins" 
 end

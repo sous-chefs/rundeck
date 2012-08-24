@@ -1,3 +1,6 @@
+## 1.0.16
+* Added the 'cam_plugins' recipe and logic to call it at the end of the default recipe run
+
 ## 1.0.15
 * Adding in missing windows_zipfile resource
 ## 1.0.14
