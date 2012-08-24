@@ -19,8 +19,8 @@ else
 end
 
 
-log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingconfigservice")
-install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingconfigservice")
+log_dir      = File.join(node['wt_common']['log_dir_linux'], "streamingconfigservice")
+install_dir  = File.join(node['wt_common']['install_dir_linux'], "streamingconfigservice")
 
 java_home    = node['java']['java_home']
 download_url = node['wt_streamingconfigservice']['download_url']
@@ -34,7 +34,7 @@ log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
 
 # create the log directory
-directory "#{log_dir}" do
+directory log_dir do
 	owner   user
 	group   group
 	mode    00755
@@ -147,7 +147,7 @@ end
 
 #Create collectd plugin for streamingconfigservice JMX objects if collectd has been applied.
 if node.attribute?("collectd")
-  template "#{node[:collectd][:plugin_conf_dir]}/collectd_streamingconfigservice.conf" do
+  template "#{node['collectd']['plugin_conf_dir']}/collectd_streamingconfigservice.conf" do
     source "collectd_streamingconfigservice.conf.erb"
     owner "root"
     group "root"
@@ -164,7 +164,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
 	nagios_nrpecheck "wt_healthcheck_page" do
 		command "#{node['nagios']['plugin_dir']}/check_http"
-		parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
+		parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
 		action :add
 	end
 
