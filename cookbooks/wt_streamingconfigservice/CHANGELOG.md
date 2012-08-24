@@ -1,3 +1,9 @@
+## 0.0.6
+* Address food critic warnings
+
+## 0.0.5
+* unknown
+
 ## 0.0.4
 * Removed the use of a method to template configs as it only made the cookbook more complex
 * Added all attributes to the attributes file

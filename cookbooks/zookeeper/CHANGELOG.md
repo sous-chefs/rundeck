@@ -1,5 +1,8 @@
 ## Future
 
+## 1.0.7
+* Address food critic warnings
+
 ## 1.0.6
 * Install ZooKeeper 3.3.6 by default now
 

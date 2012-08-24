@@ -3,6 +3,9 @@
 * Run under runit
 * Pass the license file in somehow (databag?)
 
+## 1.0.6
+* Address several food critic warnings
+
 ## 1.0.5
 * Remove wt_base code.  There's no need for it
 * Remove missing data bag catches that weren't working

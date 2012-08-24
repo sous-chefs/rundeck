@@ -167,8 +167,8 @@
             "url": "http://chefclient02.devops.dmz/windows/webpi/webpicmd_x86.zip", 
             "xmlpath": "http://chefclient02.devops.dmz/windows/webpi/WebProductList.xml"
         }, 
-		"webtrends_server" : {
-			"apt": [
+        "webtrends_server": {
+            "apt": [
                 {
                     "components": [
                         "main"
@@ -194,7 +194,7 @@
                     "url": "http://repo.staging.dmz/repo/yum/webtrends"
                 }
             ]
-		},
+        }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "cache_host": [
