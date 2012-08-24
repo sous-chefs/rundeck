@@ -1,3 +1,6 @@
+## 0.0.10
+* Corrections for Foodcritic warnings
+
 ## 0.0.9
 * Add Nagios check
 
