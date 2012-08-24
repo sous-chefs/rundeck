@@ -28,12 +28,12 @@ service "streamingconfigservice" do
   ignore_failure true
 end
 
-directory "#{log_dir}" do
+directory log_dir do
   recursive true
   action :delete
 end
 
-directory "#{install_dir}" do
+directory install_dir do
   recursive true
   action :delete
 end
