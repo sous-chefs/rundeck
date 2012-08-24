@@ -27,7 +27,7 @@ directory log_dir do
 end
 
 # Install gems
-
+package "ruby-dev"
 gem_package "sinatra"
 gem_package "thin"
 
