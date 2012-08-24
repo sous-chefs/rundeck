@@ -7,8 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "oauth_redirector")
-install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "oauth_redirector")
+log_dir     = File.join(node['wt_common']['log_dir_linux'], "oauth_redirector")
+install_dir = File.join(node['wt_common']['install_dir_linux'], "oauth_redirector")
 tarball      = node['wt_oauth_redirector']['download_url'].split("/")[-1]
 download_url = node['wt_oauth_redirector']['download_url']
 start_cmd = "thin start -C #{install_dir}/oard.thin.yml"
@@ -88,7 +88,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the the IP address of the node page
 	nagios_nrpecheck "wt_oauth_redirector_health" do
 		command "#{node['nagios']['plugin_dir']}/check_http"
-		parameters "-H #{node[:fqdn]} -p 8080"
+		parameters "-H #{node['fqdn']} -p 8080"
 		action :add
 	end
 end
