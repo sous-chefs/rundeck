@@ -163,7 +163,7 @@
             "healthcheck_port": 9000, 
             "jmx_enabled": "true", 
             "jmx_port": 9999, 
-            "metric_prefix": "staging.epod.servers", 
+            "metric_prefix": "staging.gpod.servers", 
             "monitoring_enabled": "true"
         }, 
         "wt_realtime_hadoop": {
