@@ -3,6 +3,9 @@
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
 
+## 1.8.2
+ * Address foodcritic warnings by using strings instead of symbols and including apt in the metadata
+
 ## 1.8.1
  * Added resource to add gem repo for windows
 
@@ -11,6 +14,7 @@
 
 ## 1.7.12
  * Added 'webtrends' user to centos
+
 ## 1.7.11
  * Fixing path of log
 
