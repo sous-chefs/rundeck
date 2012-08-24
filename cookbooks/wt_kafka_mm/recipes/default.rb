@@ -7,7 +7,7 @@
 #
 
 log "Deploy build is #{ENV["deploy_build"]}"
-if ENV["deploy_build"] == "true" then 
+if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so un-deploy first"
 else
     log "The deploy_build value is not set or is false so we will only update the configuration"
@@ -24,10 +24,10 @@ java_opts = node['wt_mirrormaker']['java_opts']
 
 #Get the zookeeper instances in the specified environment
 def getZookeeperPairs(node, env)
-	
+
 	# get the correct environment for the zookeeper nodes
 	zookeeper_port = node['zookeeper']['client_port']
-	  
+
 	# grab the zookeeper nodes that are currently available
 	zookeeper_pairs = Array.new
 	if not Chef::Config.solo
@@ -35,7 +35,7 @@ def getZookeeperPairs(node, env)
 			zookeeper_pairs << n[:fqdn]
 		end
 	end
-	
+
 	log "#{zookeeper_pairs.size} instances of zookeeper found found in #{env}"
 
 	# fall back to attribs if search doesn't come up with any zookeeper roles
@@ -58,10 +58,10 @@ end
 
 #update the config files
 def processConfTemplates (install_dir, node, log_dir)
- 
-    	zookeeper_pairs_target = getZookeeperPairs(node, node["wt_mirrormaker"]["target"]["env"])                       
-	
-# 	Assumes that a node has wt_mirrormaker/sources attribute 
+
+    	zookeeper_pairs_target = getZookeeperPairs(node, node["wt_mirrormaker"]["target"]["env"])
+
+# 	Assumes that a node has wt_mirrormaker/sources attribute
 #  	    "wt_mirrormaker": {
 #      "sources": {
 #        "G": "Lab"
@@ -71,18 +71,18 @@ def processConfTemplates (install_dir, node, log_dir)
 #	"env": "h"
 #      }
 #    }
-	
-	node['wt_mirrormaker']['sources'].each { |src_env_o|	                                         
-	                                          
+
+	node['wt_mirrormaker']['sources'].each { |src_env_o|
+
 		src_env = src_env_o[0]
 		src_dc = src_env_o[1]
-		
+
 		tgt_dc = node['wt_mirrormaker']['target']['dc']
 		tgt_env = node['wt_mirrormaker']['target']['env']
-	                                               
-	   	# grab the zookeeper nodes that are currently available in the source environment
-	    	zookeeper_pairs_src = getZookeeperPairs(node, src_env)
-		kafka_chroot_suffix = node[:kafka][:chroot_suffix]
+
+		# grab the zookeeper nodes that are currently available in the source environment
+		zookeeper_pairs_src = getZookeeperPairs(node, src_env)
+		kafka_chroot_suffix = node['kafka']['chroot_suffix']
 
 		# create the conf directory
 		directory "#{install_dir}/conf/#{src_env}" do
@@ -101,7 +101,7 @@ def processConfTemplates (install_dir, node, log_dir)
 			mode    00644
 			variables({
 				:zkconnect => zookeeper_pairs_src,
-				:kafka_chroot => "/#{src_dc}_#{src_env}_#{kafka_chroot_suffix}", 
+				:kafka_chroot => "/#{src_dc}_#{src_env}_#{kafka_chroot_suffix}",
 				:conn_timeout => "10000",
 				:groupid => "mm_#{src_env}"
 	    		})
@@ -114,7 +114,7 @@ def processConfTemplates (install_dir, node, log_dir)
 			group   "root"
 			mode    00644
 			variables({
-				:zkconnect => zookeeper_pairs_target, 
+				:zkconnect => zookeeper_pairs_target,
 				:kafka_chroot => "/#{tgt_dc}_#{tgt_env}_#{kafka_chroot_suffix}"
 			})
 	    	end
@@ -135,10 +135,10 @@ end
 #Pull Kafka from the repository and copy necessary files to lib directory
 def getLib(lib_dir)
 
-	tarball = "kafka-#{node[:kafka][:version]}.tar.gz"
-	download_file = "#{node[:kafka][:download_url]}/#{tarball}"
+	tarball = "kafka-#{node['kafka']['version']}.tar.gz"
+	download_file = "#{node['kafka']['download_url']}/#{tarball}"
 	install_tmp = "#{Chef::Config[:file_cache_path]}/kafka_mm_install"
-	
+
 	#download the tar to temp directory
 	remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
 		source download_file
@@ -181,10 +181,10 @@ end
 
 ############################
 # Perform actual deploy
-if ENV["deploy_build"] == "true" then 
+if ENV["deploy_build"] == "true" then
 
 	# create the log directory
-	directory "#{log_dir}" do
+	directory log_dir do
 		owner   user
 		group   group
 		mode    00755
@@ -211,11 +211,11 @@ if ENV["deploy_build"] == "true" then
 	end
 
 	#pull down the mirror maker dependencies and copy to /lib
-	getLib("#{install_dir}/lib")	
+	getLib("#{install_dir}/lib")
 
 	#Set up the control script
 	template "#{install_dir}/bin/service-control" do
-	    	source  "service-control.erb"
+		source  "service-control.erb"
 		owner "root"
 		group "root"
 		mode  00755
@@ -223,7 +223,6 @@ if ENV["deploy_build"] == "true" then
 			:log_dir => log_dir,
 			:install_dir => install_dir,
 			:java_home => java_home,
-			:user => user,
 			:java_class => "kafka.tools.MirrorMaker",
 			:java_jmx_port => node['wt_mirrormaker']['jmx_port'],
 			:java_opts => java_opts,
@@ -231,7 +230,7 @@ if ENV["deploy_build"] == "true" then
 		})
 	end
 
-	#create a runit service for each mirrored data center 
+	#create a runit service for each mirrored data center
 	node['wt_mirrormaker']['sources'].each { |src_env|
 
 		runit_service "mirrormaker_#{src_env[0]}" do

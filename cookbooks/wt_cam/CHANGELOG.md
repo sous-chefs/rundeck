@@ -1,6 +1,8 @@
-## 1.0.16
+## 1.0.17
 * Added the 'cam_plugins' recipe and logic to call it at the end of the default recipe run
-
+## 1.0.16
+* Modified attribute names to use 3 parts
+* Added templates for log4net to auth and cam
 ## 1.0.15
 * Adding in missing windows_zipfile resource
 ## 1.0.14
