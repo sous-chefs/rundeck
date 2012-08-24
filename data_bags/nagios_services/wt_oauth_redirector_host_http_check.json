@@ -1,5 +1,5 @@
 {
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -a '-H localhost -p 8080'",
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -a '-H $HOSTADDRESS -p 8080'",
     "hostgroup_name": "wt_oauth_redirector",
     "id": "wt_oauth_redirector_host_http_check"
 }
