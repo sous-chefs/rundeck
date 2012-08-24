@@ -9,9 +9,9 @@
 
 service "netacuity" do
     action [:stop, :disable]
-end 
+end
 
-directory "#{node['wt_netacuity']['install_dir']}" do
+directory node['wt_netacuity']['install_dir'] do
   recursive true
   action :delete
 end
