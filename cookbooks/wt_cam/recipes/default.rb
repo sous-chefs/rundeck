@@ -20,6 +20,7 @@ app_pool = node['wt_cam']['app_pool']
 pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
+http_port = node['wt_cam']['cam']['port']
 
 iis_pool app_pool do
     pipeline_mode :Integrated
@@ -46,8 +47,6 @@ end
 #	action :nothing
 #end
 
-http_port = node['wt_cam']['cam_port']
-
 iis_site 'CAM' do
     protocol :http
     port http_port
@@ -57,13 +56,12 @@ iis_site 'CAM' do
 	#notifies :run, resources(:execute => "rmdir_wwwroot") 
 end
 
-if http_port != 80
-    wt_base_firewall 'CAMWS' do
-    	    protocol "TCP"
-	    port http_port
-        action [:open_port]
-    end
+wt_base_firewall 'CAMWS' do
+    protocol "TCP"
+    port http_port
+    action [:open_port]
 end
+
 
 wt_base_icacls install_dir do
 	action :grant
@@ -73,7 +71,7 @@ end
 
 if deploy_mode?
   windows_zipfile install_dir do
-    source node['wt_cam']['download_url']
+    source node['wt_cam']['cam']['download_url']
     action :unzip	
   end
   
@@ -84,6 +82,14 @@ if deploy_mode?
 		:db_name   => node['wt_cam']['db_name']
   	)	
   end
+
+  template "#{install_dir}\\log4net.config" do
+        source "log4net.config.erb"
+        variables(
+                :log_level => node['wt_cam']['cam']['log_level']
+        )
+  end
+
   
   iis_app "CAM" do
   	path "/Cam"

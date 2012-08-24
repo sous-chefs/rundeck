@@ -86,7 +86,7 @@
                 "map_tasks_speculative_execution": "false", 
                 "reduce_tasks": 26, 
                 "reduce_tasks_speculative_execution": "false", 
-                "submit_replication": 5, 
+                "submit_replication": 3, 
                 "tasktracker_map_tasks_maximum": 6, 
                 "tasktracker_reduce_tasks_maximum": 3
             }
@@ -160,10 +160,14 @@
                 "B", 
                 "C", 
                 "D", 
+                "E", 
                 "F", 
+                "G", 
                 "H", 
                 "J", 
                 "K", 
+                "L", 
+                "M", 
                 "PF", 
                 "heatmap-staging", 
                 "_default"
@@ -211,6 +215,13 @@
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
         "snmp": {
             "community": "DevOps", 
             "full_systemview": "true", 
@@ -226,17 +237,6 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "cache_host": [
-                {
-                    "name": "xcache01.staging.dmz", 
-                    "port": "11211"
-                }, 
-                {
-                    "name": "xcache02.staging.dmz", 
-                    "port": "11211"
-                }
-            ], 
-            "cache_region": "A10", 
             "config_dir_linux": "/etc/webtrends/", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
@@ -281,13 +281,6 @@
             "servers": [
                 "time.webtrends.corp"
             ]
-        }, 
-        "resolver": {
-            "nameservers": [
-                "10.164.0.11", 
-                "10.164.0.12"
-            ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }
     }
 }
