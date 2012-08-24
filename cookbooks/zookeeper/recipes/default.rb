@@ -25,7 +25,7 @@ user "zookeeper" do
 end
 
 # create the config directory
-directory "#{node[:zookeeper][:config_dir]}" do
+directory node[:zookeeper][:config_dir] do
 	owner "root"
 	group "root"
 	recursive true
@@ -33,7 +33,7 @@ directory "#{node[:zookeeper][:config_dir]}" do
 end
 
 # create the install directory
-directory "#{node[:zookeeper][:install_dir]}" do
+directory node[:zookeeper][:install_dir] do
 	owner "zookeeper"
 	group "zookeeper"
 	recursive true
@@ -41,7 +41,7 @@ directory "#{node[:zookeeper][:install_dir]}" do
 end
 
 # create the data directory
-directory "#{node[:zookeeper][:data_dir]}" do
+directory node[:zookeeper][:data_dir] do
 	owner "zookeeper"
 	group "zookeeper"
 	recursive true
@@ -49,7 +49,7 @@ directory "#{node[:zookeeper][:data_dir]}" do
 end
 
 # create the snapshot directory
-directory "#{node[:zookeeper][:snapshot_dir]}" do
+directory node[:zookeeper][:snapshot_dir] do
 	owner "zookeeper"
 	group "zookeeper"
 	recursive true
@@ -57,7 +57,7 @@ directory "#{node[:zookeeper][:snapshot_dir]}" do
 end
 
 # create the log directory
-directory "#{node[:zookeeper][:log_dir]}" do
+directory node[:zookeeper][:log_dir] do
 	owner "zookeeper"
 	group "zookeeper"
 	recursive true
@@ -74,7 +74,7 @@ end
 
 # download zookeeper
 remote_file "#{Chef::Config[:file_cache_path]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz" do
-	source "#{node[:zookeeper][:download_url]}"
+	source node[:zookeeper][:download_url]
 	owner "zookeeper"
 	group "zookeeper"
 	mode 00744
@@ -85,7 +85,7 @@ end
 execute "extract-zookeeper" do
 	command "tar -zxf #{Chef::Config[:file_cache_path]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz"
 	creates "#{node[:zookeeper][:install_dir]}/zookeeper-#{node[:zookeeper][:version]}"
-	cwd "#{node[:zookeeper][:install_dir]}"
+	cwd node[:zookeeper][:install_dir]
 	user "zookeeper"
 	group "zookeeper"
 end
@@ -104,7 +104,7 @@ end
 # manage configs
 %w[configuration.xsl java.env log4j.properties zoo.cfg].each do |template_file|
 	template "#{node[:zookeeper][:config_dir]}/#{template_file}" do
-		source "#{template_file}"
+		source "#{template_file}.erb"
 		mode 00644
 		owner "root"
 		group "root"
@@ -116,7 +116,7 @@ end
 
 # configure start script (the true startup script is in /etc/service)
 template "#{node[:zookeeper][:install_dir]}/current/bin/zkServer.sh" do
-	source "zkServer.sh"
+	source "zkServer.sh.erb"
 	mode 00755
 	owner "zookeeper"
 	group "zookeeper"
@@ -124,10 +124,10 @@ template "#{node[:zookeeper][:install_dir]}/current/bin/zkServer.sh" do
 		:java_jmx_port => node[:zookeeper][:jmx_port]
 	})
 end
-  
+
 # myid
 template "#{node[:zookeeper][:data_dir]}/myid" do
-	source "myid"
+	source "myid.erb"
 	owner "zookeeper"
 	group "zookeeper"
 	mode 00644
@@ -135,7 +135,7 @@ end
 
 # setup snapshot roller cron job
 template "/etc/cron.hourly/zkRollSnapshot" do
-	source "zkRollSnapshot"
+	source "zkRollSnapshot.erb"
 	owner "zookeeper"
 	group "zookeeper"
 	mode 00555
