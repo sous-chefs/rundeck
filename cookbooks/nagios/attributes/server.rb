@@ -39,18 +39,18 @@ else
   default['nagios']['server']['mail_command']   = '/bin/mail'
 end
 
-set['nagios']['home']       = "/usr/lib/nagios3"
-set['nagios']['conf_dir']   = "/etc/nagios3"
-set['nagios']['config_dir'] = "/etc/nagios3/conf.d"
-set['nagios']['log_dir']    = "/var/log/nagios3"
-set['nagios']['cache_dir']  = "/var/cache/nagios3"
-set['nagios']['state_dir']  = "/var/lib/nagios3"
-set['nagios']['run_dir']    = "/var/run/nagios3"
-set['nagios']['docroot']    = "/usr/share/nagios3/htdocs"
-set['nagios']['enable_ssl'] = false
-set['nagios']['http_port']  = node['nagios']['enable_ssl'] ? "443" : "80"
-set['nagios']['server_name'] = node.has_key?(:domain) ? "nagios.#{domain}" : "nagios"
-set['nagios']['ssl_req'] = "/C=US/ST=Several/L=Locality/O=Example/OU=Operations/" +
+default['nagios']['home']       = "/usr/lib/nagios3"
+default['nagios']['conf_dir']   = "/etc/nagios3"
+default['nagios']['config_dir'] = "/etc/nagios3/conf.d"
+default['nagios']['log_dir']    = "/var/log/nagios3"
+default['nagios']['cache_dir']  = "/var/cache/nagios3"
+default['nagios']['state_dir']  = "/var/lib/nagios3"
+default['nagios']['run_dir']    = "/var/run/nagios3"
+default['nagios']['docroot']    = "/usr/share/nagios3/htdocs"
+default['nagios']['enable_ssl'] = false
+default['nagios']['http_port']  = node['nagios']['enable_ssl'] ? "443" : "80"
+default['nagios']['server_name'] = node.has_key?(:domain) ? "nagios.#{domain}" : "nagios"
+default['nagios']['ssl_req'] = "/C=US/ST=Several/L=Locality/O=Example/OU=Operations/" +
   "CN=#{node['nagios']['server_name']}/emailAddress=ops@#{node['nagios']['server_name']}"
 
 # for server from source installation
@@ -66,8 +66,8 @@ default['nagios']['sysadmin_sms_email']      = "root@localhost"
 default['nagios']['server_auth_method']      = "openid"
 default['nagios']['users_databag_group']     = "sysadmin"
 
-# This setting is effectively sets the minimum interval (in seconds) nagios can handle.
-# Other interval settings provided in seconds will calculate their actual from this value, since nagios works in 'time units' rather than allowing definitions everywhere in seconds
+# This defaultting is effectively defaults the minimum interval (in seconds) nagios can handle.
+# Other interval defaulttings provided in seconds will calculate their actual from this value, since nagios works in 'time units' rather than allowing definitions everywhere in seconds
 
 default['nagios']['templates'] = Mash.new
 default['nagios']['interval_length'] = 1
