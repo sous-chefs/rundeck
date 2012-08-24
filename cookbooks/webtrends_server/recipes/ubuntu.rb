@@ -37,9 +37,9 @@ node['webtrends_server']['apt'].each do |aptrepo|
 		if aptrepo.has_key? "distribution"
 			distribution aptrepo['distribution']
 		elsif aptrepo.has_key? "distribution_suffix"
-			distribution node[:lsb][:codename] + aptrepo['distribution_suffix']
+			distribution node['lsb']['codename'] + aptrepo['distribution_suffix']
 		else
-			distribution node[:lsb][:codename]
+			distribution node['lsb']['codename']
 		end
 		uri aptrepo['url']
 		components aptrepo['components']
