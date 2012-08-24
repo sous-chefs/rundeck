@@ -2,9 +2,6 @@ Description
 ===========
 This cookbook installs and configures the Webtrends OAuth Redirector
 
-Requirements
-============
-
 Attributes
 ==========
 `node['wt_common']['log_dir_linux']` - Base install dir where the oauth_redirector folder gets placed under

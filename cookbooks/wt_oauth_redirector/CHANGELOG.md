@@ -1,3 +1,6 @@
+## 0.0.11
+* Changed runit script to use explicit path to thin gem
+
 ## 0.0.10
 * Corrections for Foodcritic warnings
 
