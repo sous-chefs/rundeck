@@ -7,6 +7,7 @@
   "env_run_lists": {
   },
   "run_list": [
+	"recipe[build-essential]",
     "recipe[wt_oauth_redirector]"
   ],
   "description": "Webtrends OAuth Redirector",
