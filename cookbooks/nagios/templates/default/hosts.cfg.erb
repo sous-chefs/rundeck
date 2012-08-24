@@ -5,8 +5,8 @@
 <% @nodes.each do |n| -%>
 define host {
   use server
-	address <%= n['ipaddress'] %>
-	host_name <%= n['hostname'] %>
+  address <%= n['ipaddress'] %>
+  host_name <%= n['hostname'] %>
   <% if node['nagios']['multi_environment_monitoring'] -%>
   <% if n.run_list.roles.nil? || n.run_list.roles.length == 0 -%>
   hostgroups all,<%= n.chef_environment %>,<%= n.os %>
