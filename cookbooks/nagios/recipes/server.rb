@@ -50,7 +50,7 @@ nodes.each do |n|
 	end
 end
 
-# Load Nagios services from the nagios_services data bag
+# load Nagios services from the nagios_services data bag
 begin
   services = search(:nagios_services, '*:*')
 rescue Net::HTTPServerException
@@ -61,6 +61,27 @@ if services.nil? || services.empty?
   Chef::Log.info("No services returned from data bag search.")
   services = Array.new
 end
+
+# find all unique hostgroups in the nagios_unmanagedhosts data bag
+begin
+  unmanaged_hosts = search(:nagios_unmanagedhosts, '*:*')
+rescue Net::HTTPServerException
+  Chef::Log.info("Search for nagios_unmanagedhosts data bag failed, so we'll just move on.")
+end
+
+if unmanaged_hosts.nil? || unmanaged_hosts.empty?
+  Chef::Log.info("No unmanaged hosts returned from data bag search.")
+  unmanaged_hosts = Array.new
+end
+
+# build an array of all hostgroups defined in the nagios_unmanagedhosts databag
+unmanaged_hostgroups = Array.new
+unmanaged_hosts.each do |h|
+  if !unmanaged_hostgroups.include?(h.hostgroup)
+    unmanaged_hostgroups << h.hostgroup
+  end
+end
+
 
 # Load Nagios event handlers from the nagios_eventhandlers data bag
 begin
