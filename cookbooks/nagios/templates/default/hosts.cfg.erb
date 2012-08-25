@@ -27,5 +27,14 @@ define host {
   <% end -%>
   <% end -%>
 }
+<% end -%>
 
+<% @unmanaged_hosts.each do |n| -%>
+define host {
+  use server
+  address <%= n['ipaddress'] %>
+  host_name <%= n['id'] %>
+  hostgroups <%= n['hostgroups'] %>
+  notifications_enabled <%= n['notifications'] %>
+}
 <% end -%>
