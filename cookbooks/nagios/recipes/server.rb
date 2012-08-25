@@ -77,8 +77,8 @@ end
 # build an array of all hostgroups defined in the nagios_unmanagedhosts databag
 unmanaged_hostgroups = Array.new
 unmanaged_hosts.each do |h|
-  if !unmanaged_hostgroups.include?(h.hostgroup)
-    unmanaged_hostgroups << h.hostgroup
+  if !unmanaged_hostgroups.include?(h['hostgroup'])
+    unmanaged_hostgroups << h['hostgroup']
   end
 end
 
