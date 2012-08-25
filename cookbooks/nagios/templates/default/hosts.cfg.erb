@@ -10,7 +10,7 @@ define host {
   <% if node['nagios']['multi_environment_monitoring'] -%>
   <% if n.run_list.roles.nil? || n.run_list.roles.length == 0 -%>
   hostgroups all,<%= n.chef_environment %>,<%= n.os %>
-  <% if node['nagios']['non_alerting_environments'].include?("#{n.chef_environment}") -%>
+  <% if node['nagios']['non_alerting_environments'].include?("#{n.chef_environment}") and n.chef_environment != "_default" -%>
   notifications_enabled 0
   <% end -%>
   <% else -%>
