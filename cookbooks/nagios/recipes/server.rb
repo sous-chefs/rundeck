@@ -258,12 +258,16 @@ nagios_conf "hostgroups" do
     :environments => environment_list,
     :os => os_list,
     :search_hostgroups => hostgroup_list,
-    :search_nodes => hostgroup_nodes
+    :search_nodes => hostgroup_nodes,
+    :unmanaged_hostgroups => unmanaged_hostgroups
     )
 end
 
 nagios_conf "hosts" do
-  variables :nodes => nodes
+  variables(
+    :nodes => nodes,
+    :unmanaged_hosts => unmanaged_hosts
+  )
 end
 
 service "nagios" do
