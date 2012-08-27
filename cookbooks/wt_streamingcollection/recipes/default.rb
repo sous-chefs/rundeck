@@ -8,14 +8,14 @@
 #
 
 log "Deploy build is #{ENV["deploy_build"]}"
-if ENV["deploy_build"] == "true" then 
+if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so un-deploy first"
     include_recipe "wt_streamingcollection::undeploy"
 else
     log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-   
+
 log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingcollection")
 install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingcollection")
 
@@ -62,32 +62,32 @@ directory "#{install_dir}/conf" do
 end
 
 def getZookeeperPairs(node)
-		# get the correct environment for the zookeeper nodes
-	  zookeeper_port = node['zookeeper']['client_port']
-	  
-	  # grab the zookeeper nodes that are currently available
-	  zookeeper_pairs = Array.new
-	  if not Chef::Config.solo
-	      search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-	          zookeeper_pairs << n[:fqdn]
-	      end
-	  end
-	
-	# fall back to attribs if search doesn't come up with any zookeeper roles
-	if zookeeper_pairs.count == 0
-		node[:zookeeper][:quorum].each do |i|
-			zookeeper_pairs << i
-		end
-	end
+  # get the correct environment for the zookeeper nodes
+  zookeeper_port = node['zookeeper']['client_port']
 
-	  # append the zookeeper client port (defaults to 2181)
-	  i = 0
-	  while i < zookeeper_pairs.size do
-	      zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
-	      i += 1
-	  end
+  # grab the zookeeper nodes that are currently available
+  zookeeper_pairs = Array.new
+  if not Chef::Config.solo
+    search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+      zookeeper_pairs << n[:fqdn]
+    end
+  end
 
-	return zookeeper_pairs
+  # fall back to attribs if search doesn't come up with any zookeeper roles
+  if zookeeper_pairs.count == 0
+    node[:zookeeper][:quorum].each do |i|
+      zookeeper_pairs << i
+    end
+  end
+
+  # append the zookeeper client port (defaults to 2181)
+  i = 0
+  while i < zookeeper_pairs.size do
+    zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
+    i += 1
+  end
+
+  return zookeeper_pairs
 end
 
 def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
@@ -112,7 +112,7 @@ def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
             :zookeeper_pairs => zookeeper_pairs,
             :wt_monitoring => node[:wt_monitoring]
         })
-        end 
+        end
     end
 
     template "#{install_dir}/conf/kafka.properties" do
@@ -129,7 +129,7 @@ def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
 
 end
 
-if ENV["deploy_build"] == "true" then 
+if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so we will grab the tar ball and install"
 
     # download the application tarball
@@ -141,7 +141,7 @@ if ENV["deploy_build"] == "true" then
     # uncompress the application tarball into the install directory
     execute "tar" do
     user  "root"
-    group "root" 
+    group "root"
     cwd install_dir
     command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
