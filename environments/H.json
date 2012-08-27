@@ -265,7 +265,9 @@
                     "Lab_G_scsRawHits:0",
                     "Lab_G_lrRawHits:0",
                     "Lab_H_scsRawHits:0",
-                    "Lab_H_lrRawHits:0"
+                    "Lab_H_lrRawHits:0",
+                    "Lab_M_scsRawHits:0",
+                    "Lab_M_lrRawHits:0"
                 ],
                 "topology_override_max_spout_pending": 3000,
                 "topology_override_msg_timeout_seconds": 120,
@@ -284,7 +286,9 @@
                     "Lab_G_scsRawHits:0",
                     "Lab_G_lrRawHits:0",
                     "Lab_H_scsRawHits:0",
-                    "Lab_H_lrRawHits:0"
+                    "Lab_H_lrRawHits:0",
+                    "Lab_M_scsRawHits:0",
+                    "Lab_M_lrRawHits:0"
                 ],
                 "worker": {
                     "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
