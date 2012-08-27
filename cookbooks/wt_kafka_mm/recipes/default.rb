@@ -22,6 +22,8 @@ group = node['wt_mirrormaker']['group']
 java_home = node['java']['java_home']
 java_opts = node['wt_mirrormaker']['java_opts']
 
+jmx_port = node['wt_mirrormaker']['jmx_port']
+
 #Get the zookeeper instances in the specified environment
 def getZookeeperPairs(node, env)
 
@@ -224,7 +226,7 @@ if ENV["deploy_build"] == "true" then
 			:install_dir => install_dir,
 			:java_home => java_home,
 			:java_class => "kafka.tools.MirrorMaker",
-			:java_jmx_port => node['wt_mirrormaker']['jmx_port'],
+#			:java_port => jmx_port++,
 			:java_opts => java_opts,
 			:topic_white_list => node['wt_mirrormaker']['topic_white_list']
 		})
@@ -238,9 +240,11 @@ if ENV["deploy_build"] == "true" then
 		    	options({
 				:install_dir => install_dir,
 				:user => user,
-				:src_env => src_env[0]
+				:src_env => src_env[0],
+	                       :jmx_port => jmx_port
 		    	})
 	    	end
+		jmx_port = jmx_port.to_i + 1
 	}
 end
 
