@@ -36,29 +36,29 @@ log "Java home: #{java_home}"
 
 # create the log directory
 directory "#{log_dir}" do
-owner   user
-group   group
-mode    00755
-recursive true
-action :create
+  owner   user
+  group   group
+  mode    00755
+  recursive true
+  action :create
 end
 
 # create the install directory
 directory "#{install_dir}/bin" do
-owner "root"
-group "root"
-mode 00755
-recursive true
-action :create
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
 end
 
 # create the config directory
 directory "#{install_dir}/conf" do
-	owner "root"
-	group "root"
-	mode 00755
-	recursive true
-	action :create
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
 end
 
 def getZookeeperPairs(node)
@@ -92,40 +92,40 @@ end
 
 def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
 
-    log "Updating the template files"
-    configservice_url = node['wt_streamingconfigservice']['config_service_url']
-    port = node['wt_streamingcollection']['port']
+  log "Updating the template files"
+  configservice_url = node['wt_streamingconfigservice']['config_service_url']
+  port = node['wt_streamingcollection']['port']
 
-    # grab the zookeeper nodes that are currently available
-    zookeeper_pairs = getZookeeperPairs(node)
+  # grab the zookeeper nodes that are currently available
+  zookeeper_pairs = getZookeeperPairs(node)
 
-    %w[monitoring.properties config.properties netty.properties].each do | template_file|
+  %w[monitoring.properties config.properties netty.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
-        source	"#{template_file}.erb"
-        owner "root"
-        group "root"
-        mode  00644
-        variables({
-            :configservice => configservice_url,
-            :install_dir => install_dir,
-            :port => port,
-            :zookeeper_pairs => zookeeper_pairs,
-            :wt_monitoring => node[:wt_monitoring]
-        })
-        end
+      source	"#{template_file}.erb"
+      owner "root"
+      group "root"
+      mode  00644
+      variables({
+        :configservice => configservice_url,
+        :install_dir => install_dir,
+        :port => port,
+        :zookeeper_pairs => zookeeper_pairs,
+        :wt_monitoring => node[:wt_monitoring]
+      })
     end
+  end
 
-    template "#{install_dir}/conf/kafka.properties" do
+  template "#{install_dir}/conf/kafka.properties" do
     source  "kafka.properties.erb"
     owner   "root"
     group   "root"
     mode    00644
     variables({
-        :zookeeper_pairs => zookeeper_pairs,
-        :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
-        :kafka_topic => "#{datacenter}_#{pod}_scsRawHits"
+      :zookeeper_pairs => zookeeper_pairs,
+      :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
+      :kafka_topic => "#{datacenter}_#{pod}_scsRawHits"
     })
-    end
+  end
 
 end
 
