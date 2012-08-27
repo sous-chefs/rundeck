@@ -9,10 +9,10 @@
 
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then
-    log "The deploy_build value is true so un-deploy first"
-    include_recipe "wt_streamingcollection::undeploy"
+  log "The deploy_build value is true so un-deploy first"
+  include_recipe "wt_streamingcollection::undeploy"
 else
-    log "The deploy_build value is not set or is false so we will only update the configuration"
+  log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
 
@@ -130,59 +130,59 @@ def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
 end
 
 if ENV["deploy_build"] == "true" then
-    log "The deploy_build value is true so we will grab the tar ball and install"
+  log "The deploy_build value is true so we will grab the tar ball and install"
 
-    # download the application tarball
-    remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+  # download the application tarball
+  remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
     source download_url
     mode 00644
-    end
+  end
 
-    # uncompress the application tarball into the install directory
-    execute "tar" do
+  # uncompress the application tarball into the install directory
+  execute "tar" do
     user  "root"
     group "root"
     cwd install_dir
     command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-    end
+  end
 
-    template "#{install_dir}/bin/service-control" do
+  template "#{install_dir}/bin/service-control" do
     source  "service-control.erb"
     owner "root"
     group "root"
     mode  00755
     variables({
-        :log_dir => log_dir,
-        :install_dir => install_dir,
-        :java_home => java_home,
-        :user => user,
-        :java_class => "com.webtrends.streaming.CollectionDaemon",
-        :java_jmx_port => node['wt_monitoring']['jmx_port'],
-        :java_opts => java_opts
+      :log_dir => log_dir,
+      :install_dir => install_dir,
+      :java_home => java_home,
+      :user => user,
+      :java_class => "com.webtrends.streaming.CollectionDaemon",
+      :java_jmx_port => node['wt_monitoring']['jmx_port'],
+      :java_opts => java_opts
     })
-    end
+  end
 
-    processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix)
+  processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix)
 
-    # delete the application tarball
-    execute "delete_install_source" do
-        user "root"
-        group "root"
-        command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
-        action :run
-    end
+  # delete the application tarball
+  execute "delete_install_source" do
+    user "root"
+    group "root"
+    command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
+    action :run
+  end
 
-    # create a runit service
-    runit_service "streamingcollection" do
+  # create a runit service
+  runit_service "streamingcollection" do
     options({
-        :log_dir => log_dir,
-        :install_dir => install_dir,
-        :java_home => java_home,
-        :user => user
+      :log_dir => log_dir,
+      :install_dir => install_dir,
+      :java_home => java_home,
+      :user => user
     })
-    end
+  end
 else
-    processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix)
+  processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix)
 end
 
 #Create collectd plugin for streamingcollection JMX objects if collectd has been applied.
