@@ -271,7 +271,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/28399:id/streaming-analysis-bin.tar.gz"
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/27968:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/29007:id/webtrends-streamingapi-bin.tar.gz",
             "port": 8080
         },
         "wt_streamingauditor": {
