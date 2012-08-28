@@ -1,3 +1,6 @@
+# 2.0.9
+* Tried adding a forced ZK 3.4.3 client, but did not work making this version equal to 2.0.8.
+
 # 2.0.8
 * Reverted, should now be the same as 2.0.7
 
