@@ -1,3 +1,6 @@
+## 1.0.20
+* Add log_dir and install_dir as default attributes
+
 ## 1.0.19
 * Changed the limits.d file to bump the open file limit for any user
 
