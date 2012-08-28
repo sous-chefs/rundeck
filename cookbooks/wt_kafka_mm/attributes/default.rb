@@ -6,10 +6,10 @@
 # Copyright 2012, Webtrends
 #
 
-default['wt_mirrormaker']['user']         = "webtrends"
-default['wt_mirrormaker']['group']        = "webtrends"
-default['wt_mirrormaker']['java_opts']    = "-Xms1024m -Djava.net.preferIPv4Stack=true"
-default['wt_mirrormaker']['jmx_port']    = "10000"
+default['wt_kafka_mm']['user']         = "webtrends"
+default['wt_kafka_mm']['group']        = "webtrends"
+default['wt_kafka_mm']['java_opts']    = "-Xms1024m -Djava.net.preferIPv4Stack=true"
+default['wt_kafka_mm']['jmx_port']    = "10000"
 
-default['wt_mirrormaker']['topic_white_list'] = ".*RawHits"
+default['wt_kafka_mm']['topic_white_list'] = ".*RawHits"
 
