@@ -86,7 +86,7 @@
       "epel_release": "6-7"
     },
     "wt_netacuity": {
-      "geo_url": "hutil01.staging.dmz",
+      "geo_url": "vutil01.staging.dmz",
       "use_proxy": false,
       "download_url": "http://repo.staging.dmz/repo/linux/netacuity/",
       "version": "4.6"
@@ -246,9 +246,9 @@
     "wt_cam": {
       "camlite_port": 80,
       "auth_port": 8081,
-      "cam_server_url": "http://hcam01.staging.dmz/camservice",
+      "cam_server_url": "http://vcam01.staging.dmz/camservice",
       "db_server": "hcamdb01.staging.dmz",
-      "auth_service_url": "http://hcam01.staging.dmz:8081",
+      "auth_service_url": "http://vcam01.staging.dmz:8081",
       "db_name": "cam",
       "cam_port": 81
     },
@@ -320,7 +320,7 @@
     "wt_streamingconfigservice": {
       "camdbname": "CAM",
       "camdbserver": "hcamdb01.staging.dmz",
-      "config_service_url": "http://hutil01.staging.dmz:8080",
+      "config_service_url": "http://vutil01.staging.dmz:8080",
       "includeUnmappedAnalyticsIds": "true",
       "masterdbserver": "jmasterdb01.englab.webtrends.corp",
       "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/.lastSuccessful/webtrends-streaming-configservice-bin.tar.gz",
@@ -334,7 +334,7 @@
       "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
     },
     "wt_monitoring": {
-      "metric_prefix": "staging.hpod.servers",
+      "metric_prefix": "staging.vpod.servers",
       "audit_topic": "stream-audit",
       "jmx_port": 9999,
       "graphite_port": 2003,
