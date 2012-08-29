@@ -30,9 +30,6 @@ Attributes
 Example node attributes for target and sources. Note that there can only be a single
 target but multiple sources
 "wt_kafka_mm": {
-      "target": {
-        "env": "H",
-        "dc": "Lab"# "wt_kafka_mm": {
       "sources": {
         "G": "Lab_G_brokers"
       },
@@ -41,12 +38,7 @@ target but multiple sources
         "zkpath": "Lab_H_brokers"
       }
     },
-  
-      "sources": {
-        "M": "Lab",
-        "G": "Lab"
-      }
-    },
+
 
 
 *** Other referenced attributes
