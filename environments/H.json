@@ -20,7 +20,7 @@
         "wt_streamingauditor": "= 0.0.13",
         "wt_streamingcollection": "= 0.0.24",
         "wt_streamingconfigservice": "= 0.0.3",
-        "wt_streaminglogreplayer": "= 0.0.22",
+        "wt_streaminglogreplayer": "= 0.0.23",
         "zookeeper": "= 1.0.6"
     },
     "default_attributes": {
