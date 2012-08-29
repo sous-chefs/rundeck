@@ -39,7 +39,7 @@ command[wt_check_disk]=<%= node['nagios']['plugin_dir'] %>/check_disk $ARG1$
 command[wt_check_ssh]=<%= node['nagios']['plugin_dir'] %>/check_ssh localhost
 command[wt_check_swap]=<%= node['nagios']['plugin_dir'] %>/check_swap $ARG1$
 command[wt_check_procs]=<%= node['nagios']['plugin_dir'] %>/check_procs $ARG1$
-command[wt_check_updates]=<%= node['nagios']['plugin_dir'] %>/check_system_updates
+command[wt_check_updates]=sudo <%= node['nagios']['plugin_dir'] %>/check_system_updates
 command[wt_check_system_info]=<%= node['nagios']['plugin_dir'] %>/check_system_info
 command[wt_check_ftp]=<%= node['nagios']['plugin_dir'] %>/check_ftp $ARG1$
 command[wt_check_http]=<%= node['nagios']['plugin_dir'] %>/check_http $ARG1$
