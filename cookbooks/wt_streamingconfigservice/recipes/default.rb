@@ -35,45 +35,6 @@ camdbuser  = auth_data['wt_streamingconfigservice']['camdbuser']
 camdbpwd = auth_data['wt_streamingconfigservice']['camdbpwd']
 masterdbuser = auth_data['wt_streamingconfigservice']['masterdbuser']
 masterdbpwd = auth_data['wt_streamingconfigservice']['masterdbpwd']
-log "Updating the template files"
-
-template "#{install_dir}/bin/service-control" do
-        source  "service-control.erb"
-        owner "root"
-        group "root"
-        mode  00755
-        variables({
-            :log_dir => log_dir,
-            :install_dir => install_dir,
-            :java_home => java_home,
-            :user => user,
-            :java_class => "com.webtrends.streaming.configservice.ConfigServiceDaemon",
-            :java_jmx_port => node['wt_monitoring']['jmx_port'],
-            :java_opts => java_opts
-        })
-end		
-
-%w[monitoring.properties config.properties].each do |template_file|
-	template "#{install_dir}/conf/#{template_file}" do
-			source	"#{template_file}.erb"
-			owner user
-			group group
-			mode  00755
-			variables({
-								:port => node['wt_streamingconfigservice']['port'],
-								:camdbserver => node['wt_streamingconfigservice']['camdbserver'],
-								:camdbname => node['wt_streamingconfigservice']['camdbname'],
-								:camdbuser => camdbuser,
-								:camdbpwd => camdbpwd,
-								:masterdbserver => node['wt_streamingconfigservice']['masterdbserver'],
-								:masterdbname => node['wt_streamingconfigservice']['masterdbname'],
-								:masterdbuser => masterdbuser,
-								:masterdbpwd => masterdbpwd,
-								:includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
-								:wt_monitoring => node[:wt_monitoring]
-			})
-	end
-end
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -105,6 +66,47 @@ directory "#{install_dir}/conf" do
 	recursive true
 	action :create
 end
+
+log "Updating the template files"
+
+template "#{install_dir}/bin/service-control" do
+	source  "service-control.erb"
+	owner "root"
+	group "root"
+	mode  00755
+	variables({
+		:log_dir => log_dir,
+		:install_dir => install_dir,
+		:java_home => java_home,
+		:user => user,
+		:java_class => "com.webtrends.streaming.configservice.ConfigServiceDaemon",
+		:java_jmx_port => node['wt_monitoring']['jmx_port'],
+		:java_opts => java_opts
+	})
+end		
+
+%w[monitoring.properties config.properties].each do |template_file|
+	template "#{install_dir}/conf/#{template_file}" do
+			source	"#{template_file}.erb"
+			owner user
+			group group
+			mode  00755
+			variables({
+				:port => node['wt_streamingconfigservice']['port'],
+				:camdbserver => node['wt_streamingconfigservice']['camdbserver'],
+				:camdbname => node['wt_streamingconfigservice']['camdbname'],
+				:camdbuser => camdbuser,
+				:camdbpwd => camdbpwd,
+				:masterdbserver => node['wt_streamingconfigservice']['masterdbserver'],
+				:masterdbname => node['wt_streamingconfigservice']['masterdbname'],
+				:masterdbuser => masterdbuser,
+				:masterdbpwd => masterdbpwd,
+				:includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
+				:wt_monitoring => node[:wt_monitoring]
+			})
+	end
+end
+
 
 if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so we will grab the tar ball and install"
