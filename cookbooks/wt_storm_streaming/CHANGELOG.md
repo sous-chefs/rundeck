@@ -1,3 +1,6 @@
+# 2.0.10
+* Fixes for STR-160 - TrafficSource and Browsers data not accurate"
+
 # 2.0.9
 * Tried adding a forced ZK 3.4.3 client, but did not work making this version equal to 2.0.8.
 
