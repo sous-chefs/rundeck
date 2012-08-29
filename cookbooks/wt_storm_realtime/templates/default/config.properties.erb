@@ -40,7 +40,7 @@ streaming.topology.validation.bolt.count=<%= @streaming_topology_validation_bolt
 streaming.topology.augmentation.bolt.count=<%= @streaming_topology_augmentation_bolt_count %>
 
 # Zookeeper connection info (use this or audit.broker.list)
-audit.zk.connect=<%= @zookeeper_pairs %>
+audit.zk.connect=<%= @zookeeper_pairs %><%= @kafka_chroot %>
 # The kafka producer type (defaults to async)
 audit.producer.type=async
 # The time span (in minutes) between each audit flush (defaults to 10)
