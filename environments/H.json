@@ -227,8 +227,6 @@
         "wt_monitoring": {
             "audit_bucket_timespan": 10,
             "audit_topic": "stream-audit",
-            "graphite_flush_enabled": "false",
-            "graphite_flush_interval": "1",
             "graphite_port": 2003,
             "graphite_server": "sgraph01.staging.dmz",
             "healthcheck_enabled": "true",
