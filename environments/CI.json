@@ -28,7 +28,7 @@
                     "ci.admins"
                 ],
                 "include_sudoers_d": true,
-                "passwordless": false,
+                "passwordless": true,
                 "users": [
                     "bobo"
                 ]
