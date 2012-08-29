@@ -11,4 +11,7 @@
 * fix of ENG392547 around scan timeouts
 * also includes twitter fix ENG392552 
 * also changed the environment.properties file to include a setting for hbase region lease timeouts for scan	
+* fixed ENG392544:  Retweet Key Metic total is incorrect 
+ 
+
 
