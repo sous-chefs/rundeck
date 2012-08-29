@@ -1,3 +1,6 @@
+## 1.0.9
+* Make 0.7.1 the default not 0.7.1
+
 ## 1.0.8
 * Added broker chroot prefix for zk.connect string
 
@@ -5,10 +8,10 @@
 * Added changes to support kafka 0.7.1
 
 ## 1.0.5
-* Added template to create a collectd plugin for kafka JMX objects. 
+* Added template to create a collectd plugin for kafka JMX objects.
 
 ## 1.0.4
-* Fixed the creation the bin dir. 
+* Fixed the creation the bin dir.
 
 ## 1.0.3
 * Added logic to prevent kafka from being nuked each time Chef is run. A manual delete of the kafka install folder will trigger a re-deploy.
