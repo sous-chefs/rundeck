@@ -1,5 +1,6 @@
 ## 1.0.7
 * Expose all logging levels as attributes
+* Added download_url for source tarball
 
 ## 1.0.6
 * Add ability to override all values in hbase-site.xml

@@ -7,9 +7,7 @@ metrics.topic=sapi-metrics
 auditlistener.enabled= <%= node[:wt_streamingauditor][:auditlistener_enabled] %>
 
 # The root node name for SAPI nodes
-sapi.znode.root=/StreamingZMQ
-datacenter=<%= @datacenter %>
-pod=<%= @pod %>
+sapi.znode.root=/StreamingZMQ/<%= @datacenter %>_<%= @pod %>
 
 # The interval (minutes) to run the roundtrip test 
 roundtrip.interval=<%= node[:wt_streamingauditor][:roundtrip_interval] %>
@@ -36,7 +34,7 @@ monitoring.jmx.enabled = <%= node[:wt_monitoring][:jmx_enabled] %>
 monitoring.metric.prefix = <%= node[:wt_monitoring][:metric_prefix] %>
 
 # Zookeeper connection info (use this or audit.broker.list)
-audit.zk.connect=<%= @zookeeper_pairs.join(",") %>
+audit.zk.connect=<%= @zookeeper_pairs.join(",") %><%= @kafka_chroot %>
 # The kafka producer type (defaults to async)
 audit.producer.type=async
 # The time span (in minutes) between each audit flush (defaults to 10)

@@ -1,11 +1,18 @@
+# 2.0.7
+ * Added broker chroot prefix for audit.zk.connect string
+
 # 2.0.6
-  Added browsers.ini support and ini4j-0.5.2.jar
+*  Added browsers.ini support and ini4j-0.5.2.jar
+
 # 2.0.4
-  Changed attribute name to reference wt_storm which is where the attributes live in the environment
+*  Changed attribute name to reference wt_storm which is where the attributes live in the environment
+
 # 2.0.3
-  Removed misleading cluster_role from this cookbook as it wasn't getting used and we are setting that in the role.
+*  Removed misleading cluster_role from this cookbook as it wasn't getting used and we are setting that in the role.
+
 # 2.0.1
-  Added lookup files and cookbook to lay them down.
+*  Added lookup files and cookbook to lay them down.
+
 # 2.0.0
 * Renamed wt_storm to wt_storm_realtime and wt_storm_streaming
 

@@ -112,6 +112,7 @@ def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
             :zookeeper_pairs => zookeeper_pairs,
             :wt_streamingauditor => node[:wt_streamingauditor],
             :wt_monitoring => node[:wt_monitoring],
+            :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
             :pod => pod,
             :datacenter => datacenter
         })
