@@ -1,3 +1,5 @@
+## 0.0.7
+* Moved template updates to above the deploy gate. Removed call to processTemplates
 ## 0.0.6
 * Address food critic warnings
 
