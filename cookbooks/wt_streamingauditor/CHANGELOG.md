@@ -2,6 +2,9 @@
 
 * Unknown
 
+## 0.0.13
+* Moved 'datacenter' and 'pod' in kafka.properties.erb directly into 'sapi.znode.root' to simplify the code
+
 ## 0.0.12
 * Added metrics listener support
 

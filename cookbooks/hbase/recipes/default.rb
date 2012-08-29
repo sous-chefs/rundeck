@@ -35,7 +35,7 @@ include_recipe "hadoop"
 
 # download hbase tar.gz
 remote_file "#{Chef::Config[:file_cache_path]}/hbase-#{node[:hbase][:version]}.tar.gz" do
-  source "http://mirror.uoregon.edu/apache/hbase/hbase-#{node[:hbase][:version]}/hbase-#{node[:hbase][:version]}.tar.gz"
+  source node[:hbase][:download_url]
   owner "hadoop"
   group "hadoop"
   mode 00744

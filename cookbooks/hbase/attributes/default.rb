@@ -6,6 +6,7 @@
 #
 
 default[:hbase][:version] = "0.92.0"
+default[:hbase][:download_url] = "http://repo.staging.dmz/repo/linux/hbase/hbase-0.92.0.tar.gz"
 
 # hbase-env.sh
 default[:hbase][:env][:HBASE_HEAPSIZE] = 1000
