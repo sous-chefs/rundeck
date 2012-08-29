@@ -73,18 +73,27 @@ def processConfTemplates (install_dir, node, log_dir)
 #	"env": "h"
 #      }
 #    }
+	
+ # "wt_kafka_mm": {
+ #     "sources": {
+ #       "G": "Lab_G_brokers"
+ #     },
+ #     "target": {
+ #       "env": "H",
+ #       "zkpath": "Lab_H_brokers"
+ #     }
+ #   },
 
 	node['wt_kafka_mm']['sources'].each { |src_env_o|
 
 		src_env = src_env_o[0]
-		src_dc = src_env_o[1]
+		src_zkpath = src_env_o[1]
 
-		tgt_dc = node['wt_kafka_mm']['target']['dc']
 		tgt_env = node['wt_kafka_mm']['target']['env']
-
+		tgt_zkpath = node['wt_kafka_mm']['target']['zkpath']
+                                            
 		# grab the zookeeper nodes that are currently available in the source environment
 		zookeeper_pairs_src = getZookeeperPairs(node, src_env)
-		kafka_chroot_suffix = node['kafka']['chroot_suffix']
 
 		# create the conf directory
 		directory "#{install_dir}/conf/#{src_env}" do
@@ -103,7 +112,7 @@ def processConfTemplates (install_dir, node, log_dir)
 			mode    00644
 			variables({
 				:zkconnect => zookeeper_pairs_src,
-				:kafka_chroot => "/#{src_dc}_#{src_env}_#{kafka_chroot_suffix}",
+				:kafka_chroot => "/#{src_zkpath}",
 				:conn_timeout => "10000",
 				:groupid => "mm_#{src_env}"
 	    		})
@@ -117,7 +126,7 @@ def processConfTemplates (install_dir, node, log_dir)
 			mode    00644
 			variables({
 				:zkconnect => zookeeper_pairs_target,
-				:kafka_chroot => "/#{tgt_dc}_#{tgt_env}_#{kafka_chroot_suffix}"
+				:kafka_chroot => "/#{tgt_zkpath}"
 			})
 	    	end
 
