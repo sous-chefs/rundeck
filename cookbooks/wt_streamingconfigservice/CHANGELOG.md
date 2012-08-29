@@ -1,3 +1,5 @@
+## 0.0.8
+* Moved direction creations to the beginning
 ## 0.0.7
 * Moved template updates to above the deploy gate. Removed call to processTemplates
 ## 0.0.6
