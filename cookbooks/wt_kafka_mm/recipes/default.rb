@@ -16,11 +16,13 @@ end
 log_dir = "#{node['wt_common']['log_dir_linux']}/mirrormaker"
 install_dir = "#{node['wt_common']['install_dir_linux']}/mirrormaker"
 
-user = node['wt_mirrormaker']['user']
-group = node['wt_mirrormaker']['group']
+user = node['wt_kafka_mm']['user']
+group = node['wt_kafka_mm']['group']
 
 java_home = node['java']['java_home']
-java_opts = node['wt_mirrormaker']['java_opts']
+java_opts = node['wt_kafka_mm']['java_opts']
+
+jmx_port = node['wt_kafka_mm']['jmx_port']
 
 #Get the zookeeper instances in the specified environment
 def getZookeeperPairs(node, env)
@@ -59,10 +61,10 @@ end
 #update the config files
 def processConfTemplates (install_dir, node, log_dir)
 
-    	zookeeper_pairs_target = getZookeeperPairs(node, node["wt_mirrormaker"]["target"]["env"])
+    	zookeeper_pairs_target = getZookeeperPairs(node, node["wt_kafka_mm"]["target"]["env"])
 
-# 	Assumes that a node has wt_mirrormaker/sources attribute
-#  	    "wt_mirrormaker": {
+# 	Assumes that a node has wt_kafka_mm/sources attribute
+#  	    "wt_kafka_mm": {
 #      "sources": {
 #        "G": "Lab"
 #      },
@@ -72,13 +74,13 @@ def processConfTemplates (install_dir, node, log_dir)
 #      }
 #    }
 
-	node['wt_mirrormaker']['sources'].each { |src_env_o|
+	node['wt_kafka_mm']['sources'].each { |src_env_o|
 
 		src_env = src_env_o[0]
 		src_dc = src_env_o[1]
 
-		tgt_dc = node['wt_mirrormaker']['target']['dc']
-		tgt_env = node['wt_mirrormaker']['target']['env']
+		tgt_dc = node['wt_kafka_mm']['target']['dc']
+		tgt_env = node['wt_kafka_mm']['target']['env']
 
 		# grab the zookeeper nodes that are currently available in the source environment
 		zookeeper_pairs_src = getZookeeperPairs(node, src_env)
@@ -224,23 +226,25 @@ if ENV["deploy_build"] == "true" then
 			:install_dir => install_dir,
 			:java_home => java_home,
 			:java_class => "kafka.tools.MirrorMaker",
-			:java_jmx_port => node['wt_mirrormaker']['jmx_port'],
+#			:java_port => jmx_port++,
 			:java_opts => java_opts,
-			:topic_white_list => node['wt_mirrormaker']['topic_white_list']
+			:topic_white_list => node['wt_kafka_mm']['topic_white_list']
 		})
 	end
 
 	#create a runit service for each mirrored data center
-	node['wt_mirrormaker']['sources'].each { |src_env|
+	node['wt_kafka_mm']['sources'].each { |src_env|
 
 		runit_service "mirrormaker_#{src_env[0]}" do
 			template_name "mirrormaker"	#/templates/sv-mirrormaker-run.erb
 		    	options({
 				:install_dir => install_dir,
 				:user => user,
-				:src_env => src_env[0]
+				:src_env => src_env[0],
+	                       :jmx_port => jmx_port
 		    	})
 	    	end
+		jmx_port = jmx_port.to_i + 1
 	}
 end
 

@@ -6,6 +6,9 @@
 # Copyright 2012, Webtrends Inc.
 #
 
+default['storm']['install_dir'] = "/opt/storm"
+default['storm']['log_dir'] = "/var/log/storm"
+
 default['storm']['cluster_role'] = ""
 
 # general storm attributes
