@@ -27,7 +27,7 @@ when "ubuntu","debian"
   default['nagios']['client']['install_method'] = 'package'
   default['nagios']['nrpe']['pidfile'] = '/var/run/nagios/nrpe.pid'
   default['nagios']['nrpe']['home']              = "/usr/lib/nagios"
-when "redhat","centos","fedora","scientific"
+when "redhat","centos","fedora","scientific","amazon"
   default['nagios']['client']['install_method'] = 'package'
   default['nagios']['nrpe']['pidfile'] = '/var/run/nrpe.pid'
   default['nagios']['nrpe']['home']              = "/usr/lib64/nagios"
