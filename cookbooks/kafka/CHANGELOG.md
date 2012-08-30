@@ -1,3 +1,6 @@
+## 1.0.10
+* Remove broker chroot prefix from zk.connect string
+
 ## 1.0.9
 * Make 0.7.1 the default not 0.7.1
 
