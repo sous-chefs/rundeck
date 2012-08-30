@@ -1,3 +1,6 @@
+## 0.0.25
+* Remove broker chroot prefix for zk.connect and audit.zkconnect strings
+
 ## 0.0.24
 * Added broker chroot prefix for audit.zk.connect string
 
