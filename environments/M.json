@@ -4,7 +4,7 @@
         "hadoop": "= 1.0.3",
         "hbase": "= 1.0.3",
         "hive": "= 1.0.2",
-        "kafka": "= 1.0.8",
+        "kafka": "= 1.0.10",
         "storm": "= 1.0.19",
         "wt_cam": "= 1.0.4",
         "wt_heatmaps": "= 0.10.42",
@@ -13,8 +13,8 @@
         "wt_storm": "= 1.0.38",
         "wt_streamingapi": "= 0.0.21",
         "wt_streamingauditor": "= 0.0.10",
-        "wt_streamingcollection": "= 0.0.24",
-        "wt_streaminglogreplayer": "= 0.0.21",
+        "wt_streamingcollection": "= 0.0.25",
+        "wt_streaminglogreplayer": "= 0.0.23",
         "zookeeper": "= 1.0.6"
     },
     "default_attributes": {
