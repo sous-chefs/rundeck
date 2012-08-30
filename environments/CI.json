@@ -1,3 +1,4 @@
+####This file is auto-edited through TeamCity and will not upload to chef in its current state##
 {
     "chef_type": "environment",
     "cookbook_versions": {
@@ -276,7 +277,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/28096:id/streaming-analysis-bin.tar.gz"
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/SAPIBUILDID:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/SAPIBUILDID/SAPICONFIGID:id/webtrends-streamingapi-bin.tar.gz",
             "port": 8080
         },
         "wt_streamingauditor": {
@@ -284,7 +285,8 @@
             "roundtrip_token": "9019769dfb544c94a31e56194d316968"
         },
         "wt_streamingcollection": {
-            "port": 8080
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/SCSBUILDID/SCSCONFIGID:id/webtrends-streamingcollection-bin.tar.gz"
+			"port": 8080
         },
         "wt_streamingconfigservice": {
             "camdbname": "CAM",
