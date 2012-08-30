@@ -14,7 +14,7 @@ monitoring.graphite.interval = <%= node[:wt_monitoring][:graphite_flush_interval
 monitoring.metric.prefix = <%= node[:wt_monitoring][:metric_prefix] %>
 
 # Zookeeper connection info (use this or audit.broker.list)
-audit.zk.connect=<%= @zookeeper_pairs.join(",") %><%= @kafka_chroot %>
+audit.zk.connect=<%= @zookeeper_pairs.join(",") %>
 # The kafka producer type (defaults to async)
 audit.producer.type=async
 # The time span (in minutes) between each audit flush (defaults to 10)
