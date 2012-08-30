@@ -1,4 +1,3 @@
-####This file is auto-edited through TeamCity and will not upload to chef in its current state##
 {
     "chef_type": "environment",
     "cookbook_versions": {
@@ -292,7 +291,7 @@
             "camdbname": "CAM",
             "camdbserver": "cicamdb01.staging.dmz",
             "config_service_url": "http://ciutil01.staging.dmz:8080",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/webtrends-streaming-configservice-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/UTILBUILDID/UTILCONFIGID:id/webtrends-streaming-configservice-bin.tar.gz",
             "includeUnmappedAnalyticsIds": "true",
             "masterdbname": "wtmaster",
             "masterdbserver": "dmasterdb01.staging.dmz",
