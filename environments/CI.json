@@ -1,3 +1,4 @@
+####This file is auto-edited through TeamCity and will not upload to chef in its current state##
 {
     "chef_type": "environment",
     "cookbook_versions": {
