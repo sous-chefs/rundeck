@@ -1,3 +1,6 @@
+## 0.0.23
+* Remove broker chroot prefix from zk.connect string
+
 ## 0.0.22
 * Added new kafka_topic logic.
 
