@@ -281,7 +281,7 @@
             "port": 8080
         },
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/SAUDITBUILDID/SAUDITCONFIGID/webtrends-streamingauditor-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/SAUDITBUILDID/SAUDITCONFIGID:id/webtrends-streamingauditor-bin.tar.gz",
 			"roundtrip_scs_url": "http://ciscs01.staging.dmz:8080",
             "roundtrip_token": "9019769dfb544c94a31e56194d316968"
         },
