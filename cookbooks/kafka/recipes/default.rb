@@ -22,9 +22,6 @@ include_recipe "java"
 include_recipe "runit"
 
 java_home   = node['java']['java_home']
-pod = node['wt_realtime_hadoop']['pod']
-datacenter = node['wt_realtime_hadoop']['datacenter']
-kafka_chroot_suffix = node[:kafka][:chroot_suffix]
 
 user = "kafka"
 group = "kafka"
@@ -154,7 +151,6 @@ end
         variables({ 
             :kafka => node[:kafka],
             :zookeeper_pairs => zookeeper_pairs,
-            :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
             :client_port => node[:zookeeper][:client_port]
         })
     end
