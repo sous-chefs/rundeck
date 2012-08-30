@@ -15,7 +15,7 @@
 
 # zk connection string (should point to the source cluster that you want to
 # mirror)
-zk.connect=<%= @zkconnect.join(',') %><%= @kafka_chroot %>
+zk.connect=<%= @zkconnect.join(',') %>
 
 # timeout in ms for connecting to zookeeper
 zk.connectiontimeout.ms=<%= @conn_timeout %>

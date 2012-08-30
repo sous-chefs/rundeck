@@ -61,36 +61,18 @@ end
 #update the config files
 def processConfTemplates (install_dir, node, log_dir)
 
-    	zookeeper_pairs_target = getZookeeperPairs(node, node["wt_kafka_mm"]["target"]["env"])
+    	zookeeper_pairs_target = getZookeeperPairs(node, node["wt_kafka_mm"]["target"])
 
-# 	Assumes that a node has wt_kafka_mm/sources attribute
-#  	    "wt_kafka_mm": {
-#      "sources": {
-#        "G": "Lab"
-#      },
-#      "target": {
-#        "dc": "Lab"
-#	"env": "h"
-#      }
-#    }
-	
- # "wt_kafka_mm": {
- #     "sources": {
- #       "G": "Lab_G_brokers"
- #     },
- #     "target": {
- #       "env": "H",
- #       "zkpath": "Lab_H_brokers"
- #     }
- #   },
+#    "wt_kafka_mm": {
+#      "target": "H",
+#      "sources": [
+#        "G"
+#      ]
+#    },
+    
+	node['wt_kafka_mm']['sources'].each { |src_env|
 
-	node['wt_kafka_mm']['sources'].each { |src_env_o|
-
-		src_env = src_env_o[0]
-		src_zkpath = src_env_o[1]
-
-		tgt_env = node['wt_kafka_mm']['target']['env']
-		tgt_zkpath = node['wt_kafka_mm']['target']['zkpath']
+		tgt_env = node['wt_kafka_mm']['target']
                                             
 		# grab the zookeeper nodes that are currently available in the source environment
 		zookeeper_pairs_src = getZookeeperPairs(node, src_env)
@@ -112,7 +94,6 @@ def processConfTemplates (install_dir, node, log_dir)
 			mode    00644
 			variables({
 				:zkconnect => zookeeper_pairs_src,
-				:kafka_chroot => "/#{src_zkpath}",
 				:conn_timeout => "10000",
 				:groupid => "mm_#{src_env}"
 	    		})
@@ -125,8 +106,7 @@ def processConfTemplates (install_dir, node, log_dir)
 			group   "root"
 			mode    00644
 			variables({
-				:zkconnect => zookeeper_pairs_target,
-				:kafka_chroot => "/#{tgt_zkpath}"
+				:zkconnect => zookeeper_pairs_target
 			})
 	    	end
 
@@ -244,12 +224,12 @@ if ENV["deploy_build"] == "true" then
 	#create a runit service for each mirrored data center
 	node['wt_kafka_mm']['sources'].each { |src_env|
 
-		runit_service "mirrormaker_#{src_env[0]}" do
+		runit_service "mirrormaker_#{src_env}" do
 			template_name "mirrormaker"	#/templates/sv-mirrormaker-run.erb
 		    	options({
 				:install_dir => install_dir,
 				:user => user,
-				:src_env => src_env[0],
+				:src_env => src_env,
 	                       :jmx_port => jmx_port
 		    	})
 	    	end
