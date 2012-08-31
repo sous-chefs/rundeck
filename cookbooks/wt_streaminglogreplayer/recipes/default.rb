@@ -116,6 +116,7 @@ def processTemplates (install_dir, node, user, group, datacenter, pod)
 	log "Updating the template files"
 
     node[:wt_streaminglogreplayer][:kafka_topic] = "#{datacenter}_#{pod}_lrRawHits"
+    node[:wt_streaminglogreplayer][:configservice_url] = "#{node['wt_streamingconfigservice']['config_service_url']}/whitelist/logreplayer"
     
 	# grab the zookeeper nodes that are currently available
 	zookeeper_pairs = getZookeeperPairs(node)
