@@ -1,3 +1,6 @@
+# 2.0.12
+* Added CAM Urls
+
 # 2.0.11
 * Remove broker chroot prefix from zk.connect string
 

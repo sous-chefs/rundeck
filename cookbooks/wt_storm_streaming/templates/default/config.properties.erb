@@ -46,3 +46,8 @@ audit.producer.type=async
 audit.bucket.timespan=<%= @audit_bucket_timespan %>
 # The topic used for auditing (defaults to stream-audit)
 audit.topic=<%= @audit_topic %>
+
+# This is the base url for the CAM service
+webtrends.authentication.baseUrl = <%=@auth_url%>
+# This is the url to the REST service for getting product provisioning
+webtrends.authentication.provisioningDetail=%%baseUrl%%/cam/api/account/%%accountId%%/product/%%productId%%
