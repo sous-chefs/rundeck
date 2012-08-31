@@ -1,3 +1,6 @@
+# 2.0.13
+* Removed whitelist, updated config service endpoint 
+
 # 2.0.12
 * Added CAM Urls
 
