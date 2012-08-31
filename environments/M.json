@@ -154,7 +154,8 @@
             "pod": "M"
         },
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/27350:id/webtrends-streamingcollection-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt188/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz",
+            "port": 8080
         },
         "wt_streamingconfigservice": {
             "camdbname": "CAM",
