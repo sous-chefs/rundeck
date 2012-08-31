@@ -3,14 +3,13 @@ pod=<%= @pod %>
 kafka.host=<%= @kafka %>
 geo.host=<%= @netacuity %>
 debug=<%= @debug %>
-cs.url=<%= @configservice %>/dcsids
+cs.url=<%= @configservice %>/dcsid/streaming
 
 # Kafka consumer parameters
 kafka.zookeeper.quorum=<%= @kafka_zookeeper_quorum %>
 kafka.zookeeper.timeout.milliseconds=<%= @kafka_zookeeper_timeout_milliseconds %>
 kafka.consumer.topic=<%= @kafka_consumer_topic %>
 kafka.consumer.group.id=<%= @kafka_consumer_group_id %>
-kafka.dcsid.whitelist=<%= @kafka_dcsid_whitelist %>
 
 # Hbase and zookeeper parameters
 hbase.pool.size=80
