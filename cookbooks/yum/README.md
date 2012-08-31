@@ -90,7 +90,7 @@ yum_key "RPM-GPG-KEY-zenoss" do
   url "http://dev.zenoss.com/yum/RPM-GPG-KEY-zenoss"
   action :add
 end
-    
+
 # remove Zenoss GPG key
 yum_key "RPM-GPG-KEY-zenoss" do
   action :remove
@@ -106,7 +106,7 @@ repo is added.
 
 #### Actions
 
-- :add: creates a repository file and builds the repository listing
+- :add: creates a repository file and builds the repository listing (default)
 - :remove: removes the repository file
 
 #### Attribute Parameters
@@ -121,6 +121,7 @@ repo is added.
 - type: Optional, alternate type of repository
 - failovermethod: Optional, failovermethod
 - bootstrapurl: Optional, bootstrapurl
+- make_cache: Optional, Default is `true`, if `false` then `yum -q makecache` will not be ran
 
 ### Example
 
@@ -132,7 +133,7 @@ yum_repository "zenoss" do
   key "RPM-GPG-KEY-zenoss"
   action :add
 end
-    
+
 # remove Zenoss repo
 yum_repository "zenoss" do
   action :remove
