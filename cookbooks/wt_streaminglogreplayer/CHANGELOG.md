@@ -1,3 +1,6 @@
+## 0.0.24
+* Replaced static whitelist with url to config service endpoint
+
 ## 0.0.23
 * Remove broker chroot prefix from zk.connect string
 
