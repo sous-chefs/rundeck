@@ -1,3 +1,5 @@
+## 0.0.27
+  Added directory creation for conf directory
 ## 0.0.26
   Updated netty configuration
 ## 0.0.24

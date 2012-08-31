@@ -93,6 +93,14 @@ recursive true
 action :create
 end
 
+directory "#{install_dir}/conf" do
+owner "root"
+group "root"
+mode 00755
+recursive true
+action :create
+end
+
 def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix)
     log "Updating the template files"
     auth_url = node['wt_cam']['auth_service_url']

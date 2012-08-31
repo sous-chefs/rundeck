@@ -1,4 +1,4 @@
 #!/bin/sh
 exec 2>&1
 exec \
-		thin start -C <%= @options[:install_dir] %>/oard.thin.yml
+		/var/lib/gems/1.8/bin/thin start -C <%= @options[:install_dir] %>/oard.thin.yml
