@@ -1,3 +1,6 @@
+# 2.0.8
+* Updated seed.data file
+
 # 2.0.7
  * Added broker chroot prefix for audit.zk.connect string
 

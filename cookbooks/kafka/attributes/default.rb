@@ -17,7 +17,7 @@
 # limitations under the License.
 
 # Install
-default[:kafka][:version] = "0.7.0"
+default[:kafka][:version] = "0.7.1"
 default[:kafka][:download_url] = nil
 
 default[:kafka][:install_dir] = "/opt/kafka"

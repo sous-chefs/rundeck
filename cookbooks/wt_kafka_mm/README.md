@@ -22,24 +22,23 @@ Attributes
 
 *** These are used to form the zk connect string to identify the target kafka brokers
 ['wt_kafka_mm']['target']['env']
-['wt_kafka_mm']['target']['dc']
+['wt_kafka_mm']['target']['zkpath']
 
 *** These are used to form the zk connect string to identify the source kafka brokers
-['wt_kafka_mm']['sources']['env']
-['wt_kafka_mm']['sourcest']['dc']
+[wt_kafka_mm][sources]
 
 Example node attributes for target and sources. Note that there can only be a single
 target but multiple sources
 "wt_kafka_mm": {
+      "sources": {
+        "G": "Lab_G_brokers"
+      },
       "target": {
         "env": "H",
-        "dc": "Lab"
-      },
-      "sources": {
-        "M": "Lab",
-        "G": "Lab"
+        "zkpath": "Lab_H_brokers"
       }
     },
+
 
 
 *** Other referenced attributes
