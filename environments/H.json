@@ -15,9 +15,9 @@
         "wt_realtime_hadoop": "= 1.0.2",
         "wt_realtimeapi": "= 0.0.22",
         "wt_storm": "= 1.0.38",
-        "wt_storm_streaming": "= 2.0.13",
+        "wt_storm_streaming": "= 2.0.14",
         "wt_storm_realtime": "= 2.0.09",
-        "wt_streamingapi": "= 0.0.27",
+        "wt_streamingapi": "= 0.0.28",
         "wt_streamingauditor": "= 0.0.14",
         "wt_streamingcollection": "= 0.0.25",
         "wt_streamingconfigservice": "= 0.0.8",
@@ -193,6 +193,7 @@
         "wt_analytics_ui": {},
         "wt_cam": {
             "auth_service_url": "http://hcam01.staging.dmz:81",
+            "cam_service_url": "http://hcam01.staging.dmz",
             "db_name": "cam",
             "db_server": "hcamdb01.staging.dmz"
         },
