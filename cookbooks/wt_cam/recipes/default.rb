@@ -84,7 +84,7 @@ if deploy_mode?
   end
 
   template "#{install_dir}\\log4net.config" do
-        source "log4net.config.erb"
+        source "cam.log4net.config.erb"
         variables(
                 :log_level => node['wt_cam']['cam']['log_level']
         )
