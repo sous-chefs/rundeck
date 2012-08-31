@@ -1,3 +1,6 @@
+#2.0.10 
+ * updated cs.url and removed whitelist setting
+
 #2.0.9
  * Cleaned up storm and kafka zk configs
 
