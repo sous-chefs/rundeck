@@ -1,5 +1,8 @@
+#2.0.9
+ * Cleaned up storm and kafka zk configs
+
 # 2.0.8
-* Updated seed.data file
+ * Removed broker chroot prefix from zk.connect string and audit.zk.connect string
 
 # 2.0.7
  * Added broker chroot prefix for audit.zk.connect string
