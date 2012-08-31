@@ -3,7 +3,7 @@ maintainer_email  "ivan.vonnagy@webtrends.com"
 license           "Apache 2.0"
 description       "Sets up Kafka"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version           "1.0.8"
+version           "1.0.10"
 depends	"java"
 depends	"runit"
 depends	"zookeeper"
@@ -17,7 +17,7 @@ end
 attribute "kafka/version",
   :display_name => "Kafka Version",
   :description => "The Kafka version to pull and use",
-  :default => "0.7.0"
+  :default => "0.7.1"
 
 attribute "kafka/home_dir",
   :display_name => "Kafka Home Directory",

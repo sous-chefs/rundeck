@@ -1,7 +1,7 @@
 Description
 ===========
 
-This cookbook installs Firefox 14.0.1
+This cookbook installs Firefox 15
 
 Requirements
 ============
@@ -25,5 +25,3 @@ Usage
 =====
 
 Include the default recipe on a node's runlist to ensure that Firefox is installed
-
-
