@@ -13,8 +13,6 @@ include_recipe "runit"
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then 
     log "The deploy_build value is true so un-deploy first"
-    # NOTE: Delete the undeploy_old after the deployment has gone through the next cycle
-    include_recipe "wt_streamingauditor::undeploy_old"
     include_recipe "wt_streamingauditor::undeploy"
 else
     log "The deploy_build value is not set or is false so we will only update the configuration"

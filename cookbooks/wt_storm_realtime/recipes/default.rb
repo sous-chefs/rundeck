@@ -28,27 +28,35 @@ tarball = 'streaming-analysis-bin.tar.gz'
 zookeeper_clientport = node['zookeeper']['client_port']
 
 # grab the zookeeper nodes that are currently available
-zookeeper_quorum = Array.new
+zookeeper_quorum_kafka = Array.new
 if not Chef::Config.solo
     search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-        zookeeper_quorum << n[:fqdn]
+        zookeeper_quorum_kafka << n[:fqdn]
+    end
+end
+
+hbaseEnv = node['wt_common']['common_resource_environment']
+# grab the zookeeper nodes that are currently available
+zookeeper_quorum_hbase = Array.new
+if not Chef::Config.solo
+    search(:node, "role:zookeeper AND chef_environment:#{hbaseEnv}").each do |n|
+        zookeeper_quorum_hbase << n[:fqdn]
     end
 end
 
 # fall back to attribs if search doesn't come up with any zookeeper nodes
-if zookeeper_quorum.count == 0
-    node[:zookeeper][:quorum].each do |i|
-        zookeeper_quorum << i
-    end
-end
+#if zookeeper_quorum.count == 0
+#    node[:zookeeper][:quorum].each do |i|
+#        zookeeper_quorum << i
+#    end
+#end
 
 kafka = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}").first
 pod = node[:wt_realtime_hadoop][:pod]
 datacenter = node[:wt_realtime_hadoop][:datacenter]
-kafka_chroot_suffix = node[:kafka][:chroot_suffix]
 
 # Perform some really funky overrides that should never be done and need to be removed
-node['wt_storm_realtime']['zookeeper_quorum'] = zookeeper_quorum
+node['wt_storm_realtime']['zookeeper_quorum'] = zookeeper_quorum_kafka
 node['wt_storm_realtime']['zookeeper']['port'] = node['zookeeper']['client_port']
 node['wt_storm_realtime']['nimbus']['host'] = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
 node['wt_storm_realtime']['worker']['childopts'] = node['wt_storm']['realtime_topology']['worker']['childopts']
@@ -227,16 +235,15 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :topology_override_max_spout_pending     => node['wt_storm']['realtime_topology']['topology_override_max_spout_pending'],
     :topology_override_msg_timeout_seconds   => node['wt_storm']['realtime_topology']['topology_override_msg_timeout_seconds'],
     # kafka consumer settings
-    :kafka_chroot                         => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
     :kafka_consumer_topic                 => "#{datacenter}_#{pod}_scsRawHits:0,#{datacenter}_#{pod}_lrRawHits:0",
-    :kafka_dcsid_whitelist                => node['wt_storm']['realtime_topology']['dcsid_whitelist'],
-    :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
+    #:kafka_dcsid_whitelist                => node['wt_storm']['realtime_topology']['dcsid_whitelist'],
+    :kafka_zookeeper_quorum               => zookeeper_quorum_kafka * ",",
     :kafka_consumer_group_id              => 'kafka-realtime',
     :kafka_zookeeper_timeout_milliseconds => 1000000,
     # non-storm parameters
-    :zookeeper_quorum      => zookeeper_quorum * ",",
+    :zookeeper_quorum      	=> zookeeper_quorum_hbase.join(","),
     :zookeeper_clientport  => zookeeper_clientport,
-    :zookeeper_pairs	   => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
+    :zookeeper_pairs	   => zookeeper_quorum_kafka.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
     :configservice         => node[:wt_streamingconfigservice][:config_service_url],
     :netacuity             => node[:wt_netacuity][:geo_url],
     :kafka                 => kafka[:fqdn],
