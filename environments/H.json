@@ -313,7 +313,7 @@
             "camdbname": "CAM",
             "camdbserver": "hcamdb01.staging.dmz",
             "config_service_url": "http://hutil01.staging.dmz:8080",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/webtrends-streaming-configservice-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt195/.lastSuccessful/webtrends-streaming-configservice-bin.tar.gz",
             "includeUnmappedAnalyticsIds": "true",
             "masterdbname": "wtmaster",
             "masterdbserver": "jmasterdb01.englab.webtrends.corp",
