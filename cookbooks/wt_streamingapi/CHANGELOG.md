@@ -1,7 +1,10 @@
+## 0.0.28
+* Added cam url
 ## 0.0.27
-  Added directory creation for conf directory
+*  Added directory creation for conf directory
+
 ## 0.0.26
-  Updated netty configuration
+*  Updated netty configuration
 ## 0.0.24
 * Added broker chroot prefix for zk.connect string
 
