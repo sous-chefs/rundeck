@@ -67,6 +67,45 @@ directory "#{install_dir}/conf" do
 	action :create
 end
 
+if ENV["deploy_build"] == "true" then
+    log "The deploy_build value is true so we will grab the tar ball and install"
+
+    # download the application tarball
+    remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+			source download_url
+			mode 00644
+    end
+
+    # uncompress the application tarball into the install directory
+    execute "tar" do
+			user  "root"
+			group "root"
+			cwd install_dir
+			command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+    end
+
+    
+
+    # delete the application tarball
+    execute "delete_install_source" do
+        user "root"
+        group "root"
+        command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
+        action :run
+    end
+
+    # create a runit service
+    runit_service "streamingconfigservice" do
+    options({
+        :log_dir => log_dir,
+        :install_dir => install_dir,
+        :java_home => java_home,
+        :user => user
+    })
+    end
+
+end
+
 log "Updating the template files"
 
 template "#{install_dir}/bin/service-control" do
@@ -105,46 +144,6 @@ end
 				:wt_monitoring => node[:wt_monitoring]
 			})
 	end
-end
-
-
-if ENV["deploy_build"] == "true" then
-    log "The deploy_build value is true so we will grab the tar ball and install"
-
-    # download the application tarball
-    remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-			source download_url
-			mode 00644
-    end
-
-    # uncompress the application tarball into the install directory
-    execute "tar" do
-			user  "root"
-			group "root"
-			cwd install_dir
-			command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-    end
-
-    
-
-    # delete the application tarball
-    execute "delete_install_source" do
-        user "root"
-        group "root"
-        command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
-        action :run
-    end
-
-    # create a runit service
-    runit_service "streamingconfigservice" do
-    options({
-        :log_dir => log_dir,
-        :install_dir => install_dir,
-        :java_home => java_home,
-        :user => user
-    })
-    end
-
 end
 
 #Create collectd plugin for streamingconfigservice JMX objects if collectd has been applied.
