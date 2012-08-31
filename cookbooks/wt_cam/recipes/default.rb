@@ -11,6 +11,7 @@
 if deploy_mode?
   include_recipe "ms_dotnet4::regiis"
   include_recipe "wt_cam::uninstall" 
+  include_recipe "wt_cam::uninstall_camlite"
 end
 
 #Properties
@@ -84,7 +85,7 @@ if deploy_mode?
   end
 
   template "#{install_dir}\\log4net.config" do
-        source "log4net.config.erb"
+        source "cam.log4net.config.erb"
         variables(
                 :log_level => node['wt_cam']['cam']['log_level']
         )
