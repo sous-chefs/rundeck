@@ -298,19 +298,20 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt193/29914:id/streaming-analysis-bin.tar.gz"
         },
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/28399:id/streaming-analysis-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt193/.lastSuccessful/streaming-analysis-bin.tar.gz"
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/29007:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt192/.lastSuccessful/webtrends-streamingapi-bin.tar.gz",
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
             "port": 8080
         },
         "wt_streamingauditor": {
             "roundtrip_scs_url": "http://hscs01.staging.dmz:8080",
-            "roundtrip_token": "9019769dfb544c94a31e56194d316968"
+            "roundtrip_token": "9019769dfb544c94a31e56194d316968",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt194/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz"
         },
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/29004:id/webtrends-streamingcollection-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt188/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz",
             "port": 8080
         },
         "wt_streamingconfigservice": {
@@ -324,7 +325,7 @@
             "port": "8080"
         },
         "wt_streaminglogreplayer": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/28996:id/webtrends-streaminglogreplayer-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt196/.lastSuccessful/webtrends-streaminglogreplayer-bin.tar.gz",
             "log_extension": ".gz",
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay"
         },
