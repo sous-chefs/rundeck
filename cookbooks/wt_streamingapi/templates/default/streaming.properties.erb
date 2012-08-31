@@ -2,6 +2,8 @@
 webtrends.authentication.baseUrl = <%=@auth_url%>
 # This is the url to the REST service for getting a token's detailed information
 webtrends.authentication.tokenDetail = %%baseUrl%%/Auth/api/%%access_token%%
+# This is the url to the REST service for getting product provisioning
+webtrends.authentication.provisioningDetail=%%baseUrl%%/cam/api/account/%%accountId%%/product/%%productId%%
 
 # Used for zmq connectivity
 datacenter=<%= @datacenter %>
