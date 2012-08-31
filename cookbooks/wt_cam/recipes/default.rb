@@ -11,6 +11,7 @@
 if deploy_mode?
   include_recipe "ms_dotnet4::regiis"
   include_recipe "wt_cam::uninstall" 
+  include_recipe "wt_cam::uninstall_camlite"
 end
 
 #Properties
