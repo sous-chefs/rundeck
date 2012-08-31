@@ -239,7 +239,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :debug                 => node[:wt_storm][:debug],
     :audit_bucket_timespan => node[:wt_monitoring][:audit_bucket_timespan],
     :audit_topic           => node[:wt_monitoring][:audit_topic],
-    :auth_url              => node['wt_cam']['auth_service_url']
+    :cam_url              => node['wt_cam']['cam_service_url']
   )
 end
 
