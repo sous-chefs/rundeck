@@ -69,7 +69,6 @@ wt_base_firewall 'CAMWS' do
     action [:open_port]
 end
 
-
 wt_base_icacls install_dir do
 	action :grant
 	user user_data['wt_common']['ui_user']
@@ -102,7 +101,9 @@ if deploy_mode?
                 :log_level => node['wt_cam']['cam']['log_level']
         )
   end
-
+  
+  # add the plugins here
+  include_recipe "wt_cam::cam_plugins" 
   
   iis_app "CAM" do
   	path "/Cam"
@@ -114,7 +115,5 @@ if deploy_mode?
   iis_config auth_cmd do
   	action :config
   end
-
-  # add the plugins here
-  include_recipe "wt_cam::cam_plugins" 
+  
 end
