@@ -10,6 +10,7 @@
 
 app_pool = node['wt_cam']['app_pool']
 install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Cam"
+log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
 
 # remove the app
 iis_app 'CAM' do
@@ -31,6 +32,11 @@ iis_pool "#{app_pool}" do
 end
 
 directory "#{install_dir}" do
+  recursive true
+  action :delete
+end
+
+directory "#{log_dir}" do
   recursive true
   action :delete
 end
