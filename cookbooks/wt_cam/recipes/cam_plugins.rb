@@ -32,6 +32,7 @@ if deploy_mode?
     windows_zipfile plugin_install_dir do
         source node['wt_cam']['cam_plugins']['download_url']
         action :unzip
+        overwrite true
     end
 
     # Restart the CAM site
