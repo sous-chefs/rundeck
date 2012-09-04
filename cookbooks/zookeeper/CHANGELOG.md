@@ -1,5 +1,8 @@
 ## Future
 
+## 1.1.0
+* add support for multiple clusters in the same chef environment
+
 ## 1.0.7
 * Address food critic warnings
 
