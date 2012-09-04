@@ -70,9 +70,9 @@ end
 
 # search for nodes in all environments if multi_environment_monitoring is enabled
 if node['nagios']['multi_environment_monitoring']
-	nodes = search(:node, "hostname:[* TO *]")
+  nodes = search(:node, "hostname:[* TO *]")
 else
-	nodes = search(:node, "hostname:[* TO *] AND chef_environment:#{node.chef_environment}")
+  nodes = search(:node, "hostname:[* TO *] AND chef_environment:#{node.chef_environment}")
 end
 
 if nodes.empty?
@@ -169,6 +169,7 @@ search(:role, "*:*") do |r|
     search(:node, "roles:#{r.name} AND chef_environment:#{node.chef_environment}") do |n|
       service_hosts[r.name] = n['hostname']
     end
+  end
 end
 
 # if using multi environment monitoring then grab the list of environments
