@@ -1,3 +1,5 @@
+## 0.0.10
+* Added shared connection string for new db schema
 ## 0.0.9
 * Moved template section to bottom of recipe.
 ## 0.0.8
