@@ -1,3 +1,7 @@
+## v1.1.0:
+
+* [COOK-1592] - use mixlib-shellout instead of execute, add test-kitchen
+
 ## v1.0.6:
 
 * [COOK-1304] - support amazon linux
