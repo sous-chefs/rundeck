@@ -83,9 +83,10 @@ end
 
 # find all unique platforms to create hostgroups
 os_list = Array.new
+
 nodes.each do |n|
-	if !os_list.include?(n.os)
-		os_list << n.os
+	if !os_list.include?(n['os'])
+		os_list << n['os']
 	end
 end
 
@@ -287,6 +288,6 @@ end
 # Add the NRPE check to monitor the Nagios server
 nagios_nrpecheck "check_nagios" do
   command "#{node['nagios']['plugin_dir']}/check_nagios"
-  parameters "-F #{node[:nagios][:cache_dir]}/status.dat -e 4 -C /usr/sbin/#{node['nagios']['server']['service_name']}"
+  parameters "-F #{node["nagios"]["cache_dir"]}/status.dat -e 4 -C /usr/sbin/#{node['nagios']['server']['service_name']}"
   action :add
 end
