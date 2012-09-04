@@ -18,8 +18,8 @@
 # limitations under the License.
 
 package "libwww-perl" do
-  case node[:platform]
-  when "redhat","centos","scientific","fedora","suse"
+  case node["platform"]
+  when "redhat", "centos", "scientific", "fedora", "suse", "amazon"
     package_name "perl-libwww-perl"
   when "debian","ubuntu"
     package_name "libwww-perl"
@@ -30,8 +30,8 @@ package "libwww-perl" do
 end
 
 package "libcrypt-ssleay-perl" do
-  case node[:platform]
-  when "redhat","centos","scientific","fedora","suse"
+  case node["platform"]
+  when "redhat", "centos", "scientific", "fedora", "suse", "amazon"
     package_name "perl-Crypt-SSLeay"
   when "debian","ubuntu"
     package_name "libcrypt-ssleay-perl"
@@ -44,18 +44,18 @@ end
 template "#{node['nagios']['config_dir']}/pagerduty_nagios.cfg" do
   owner "nagios"
   group "nagios"
-  mode 0644
+  mode 00644
   source "pagerduty_nagios.cfg.erb"
 end
 
 remote_file "#{node['nagios']['plugin_dir']}/pagerduty_nagios.pl" do
   owner "root"
   group "root"
-  mode 0755
+  mode 00755
   source "http://www.pagerduty.com/configs/pagerduty_nagios.pl"
   action :create_if_missing
 end
-  
+
 cron "Flush Pagerduty" do
   user "nagios"
   mailto "root@localhost"
