@@ -17,4 +17,4 @@
 # limitations under the License.
 #
 
-include_recipe "hbase"
+include_recipe 'hbase'
