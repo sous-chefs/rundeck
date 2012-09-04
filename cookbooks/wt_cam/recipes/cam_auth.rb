@@ -16,6 +16,7 @@ end
 #Properties
 install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Auth"
 install_logdir = node['wt_common']['install_log_dir_windows']
+log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
 app_pool = node['wt_cam']['app_pool']
 user_data = data_bag_item('authorization', node.chef_environment)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
@@ -32,6 +33,11 @@ iis_site 'Default Web Site' do
 end
 
 directory install_dir do
+	recursive true
+	action :create
+end
+
+directory log_dir do
 	recursive true
 	action :create
 end
@@ -63,6 +69,12 @@ wt_base_firewall 'CAMAUTHWS' do
  end
 
 wt_base_icacls install_dir do
+	action :grant
+	user user_data['wt_common']['ui_user']
+	perm :modify
+end
+
+wt_base_icacls log_dir do
 	action :grant
 	user user_data['wt_common']['ui_user']
 	perm :modify
