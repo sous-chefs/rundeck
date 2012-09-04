@@ -1,3 +1,5 @@
+## 0.0.29
+* Added usage db connection string
 ## 0.0.28
 * Added cam url
 ## 0.0.27
