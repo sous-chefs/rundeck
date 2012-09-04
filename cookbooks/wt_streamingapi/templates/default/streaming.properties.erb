@@ -8,6 +8,8 @@ webtrends.cam.baseUrl = <%=@cam_url%>
 # This is the url to the REST service for getting product provisioning
 webtrends.cam.provisioningDetail=%%baseUrl%%/cam/api/account/%%accountId%%/product/%%productId%%
 
+usageConnString=jdbc:sqlserver://<%= @usagedbserver %>:1433;databaseName=<%= @usagedbname %>;user=<%= @usagedbuser %>;password=<%= @usagedbpwd %>;
+
 # Used for zmq connectivity
 datacenter=<%= @datacenter %>
 pod=<%= @pod %>
