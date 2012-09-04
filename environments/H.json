@@ -20,7 +20,7 @@
         "wt_streamingapi": "= 0.0.28",
         "wt_streamingauditor": "= 0.0.14",
         "wt_streamingcollection": "= 0.0.26",
-        "wt_streamingconfigservice": "= 0.0.8",
+        "wt_streamingconfigservice": "= 0.0.10",
         "wt_streaminglogreplayer": "= 0.0.24",
         "zookeeper": "= 1.0.6"
     },
@@ -314,7 +314,7 @@
             "camdbname": "CAM",
             "camdbserver": "hcamdb01.staging.dmz",
             "config_service_url": "http://hutil01.staging.dmz:8080",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt195/.lastSuccessful/webtrends-streaming-configservice-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt199/30523:id/webtrends-streaming-configservice-bin.tar.gz",
             "includeUnmappedAnalyticsIds": "true",
             "masterdbname": "wtmaster",
             "masterdbserver": "jmasterdb01.englab.webtrends.corp",
