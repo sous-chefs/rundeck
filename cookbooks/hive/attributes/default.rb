@@ -1,18 +1,21 @@
 #
-# Author:: Sean McNamara(<sean.mcnamara@webtrends.com>)
 # Cookbook Name:: hive
 # Attribute:: default
+# Author:: Sean McNamara(<sean.mcnamara@webtrends.com>)
 #
 # Copyright 2012, Webtrends Inc.
 #
 
-default[:hive][:path] = "/usr/share/hive/lib/"
+# cluster name
+default[:hive][:cluster_name] = 'default'
 
-default[:hive][:version] = "0.8.1"
-default[:hive][:download_url] = "http://mirror.uoregon.edu/apache/hive/hive-0.8.1/"
-default[:hive][:tarball] = "hive-0.8.1-bin.tar.gz"
+# hive cluster attributes
+default[:hive][:default][:path] = '/usr/share/hive/lib'
+default[:hive][:default][:version] = '0.8.1'
+default[:hive][:default][:download_url] = 'http://repo.staging.dmz/repo/linux/hive/hive-0.8.1-bin.tar.gz'
 
-default[:hive][:metastore][:connection_url] = ""
-default[:hive][:metastore][:connector] = "mysql"
-default[:hive][:metastore][:dbuser] = "root"
-default[:hive][:metastore][:dbpass] = ""
+# metastore information
+default[:hive][:default][:metastore][:connection_url] = ''
+default[:hive][:default][:metastore][:connector] = 'mysql'
+default[:hive][:default][:metastore][:dbuser] = 'root'
+default[:hive][:default][:metastore][:dbpass] = ''
