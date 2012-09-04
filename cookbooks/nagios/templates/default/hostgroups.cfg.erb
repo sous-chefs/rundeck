@@ -43,10 +43,3 @@ define hostgroup {
 <% end -%>
 }
 <% end -%>
-
-<% @unmanaged_hostgroups.each do |hostgroup| -%>
-define hostgroup {
-  hostgroup_name <%= hostgroup %>
-  alias <%= hostgroup %>
-}
-<% end -%>
