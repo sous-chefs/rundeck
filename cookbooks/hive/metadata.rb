@@ -1,11 +1,13 @@
 maintainer        "Webtrends"
 maintainer_email  "sean.mcnamara@webtrends.com"
 license           "Apache 2.0"
-description       "Installs hive 0.8.1"
-long_description  IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version           "1.0.5"
+description       "Installs hive"
+long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+version           "1.1.0"
 depends           "java"
 depends           "hadoop"
+depends           "hbase"
+depends           "zookeeper"
 
 recipe "hive", "Installs hive"
 
