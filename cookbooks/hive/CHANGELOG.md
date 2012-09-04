@@ -1,3 +1,9 @@
+## Future
+
+## 1.1.0
+* add support for multiple clusters in the same chef environment
+* add creation of /etc/zookeeper file, which has a list of zookeeper nodes.
+
 ## 1.0.5
 * removing vpod reside from hive-env.sh
 

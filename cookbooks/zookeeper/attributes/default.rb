@@ -1,24 +1,26 @@
 #
 # Cookbook Name:: zookeeper
-# Attributes:: default
+# Attribute:: default
 #
 # Copyright 2012, Webtrends Inc.
 #
 
-default[:zookeeper][:version] = "3.3.6"
-default[:zookeeper][:download_url] = "http://mirror.uoregon.edu/apache/zookeeper/zookeeper-#{node[:zookeeper][:version]}/zookeeper-#{node[:zookeeper][:version]}.tar.gz"
+# cluster name
+default[:zookeeper][:cluster_name] = 'default'
 
-default[:zookeeper][:install_dir] = "/opt/zookeeper"
-default[:zookeeper][:config_dir] = "/etc/zookeeper"
-default[:zookeeper][:log_dir] = '/var/log/zookeeper'
-default[:zookeeper][:data_dir] = "/var/zookeeper"
-default[:zookeeper][:snapshot_dir] = "#{default[:zookeeper][:data_dir]}/snapshots"
+default[:zookeeper][:default][:version] = '3.3.6'
+default[:zookeeper][:default][:download_url] = 'http://mirror.uoregon.edu/apache/zookeeper/zookeeper-3.3.6/zookeeper-3.3.6.tar.gz'
 
-default[:zookeeper][:tick_time] = 2000
-default[:zookeeper][:init_limit] = 10
-default[:zookeeper][:sync_limit] = 5
-default[:zookeeper][:client_port] = 2181
-default[:zookeeper][:snapshot_num] = 3
+default[:zookeeper][:default][:install_dir] = '/opt/zookeeper'
+default[:zookeeper][:default][:config_dir] = '/etc/zookeeper'
+default[:zookeeper][:default][:log_dir] = '/var/log/zookeeper'
+default[:zookeeper][:default][:data_dir] = '/var/zookeeper'
+default[:zookeeper][:default][:snapshot_dir] = '/var/zookeeper/snapshots'
 
+default[:zookeeper][:default][:tick_time] = 2000
+default[:zookeeper][:default][:init_limit] = 10
+default[:zookeeper][:default][:sync_limit] = 5
+default[:zookeeper][:default][:client_port] = 2181
+default[:zookeeper][:default][:snapshot_num] = 3
 
-default[:zookeeper][:jmx_port] = 10201
+default[:zookeeper][:default][:jmx_port] = 10201

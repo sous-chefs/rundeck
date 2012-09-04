@@ -2,7 +2,7 @@
 
 <property>
   <name>javax.jdo.option.ConnectionURL</name>
-  <value><%= node[:hive][:metastore][:connection_url] %></value>
+  <value><%= node.hive_attrib(:metastore, :connection_url) %></value>
   <description>JDBC connect string for a JDBC metastore</description>
 </property>
 

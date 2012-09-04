@@ -29,7 +29,7 @@ export JAVA_HOME=/usr/lib/jvm/java/jre
 export HBASE_CLASSPATH="$HADOOP_CLASSPATH:$HBASE_CLASSPATH:/usr/share/hadoop/hadoop-core*.jar:/usr/share/hadoop/lib/*.jar"
 
 # The maximum amount of heap to use, in MB. Default is 1000.
-export HBASE_HEAPSIZE=<%= node[:hbase][:env][:HBASE_HEAPSIZE] %>
+export HBASE_HEAPSIZE=<%= node.hbase_attrib(:env, :HBASE_HEAPSIZE) %>
 
 # Extra Java runtime options.
 # Below are what we set by default.  May only work with SUN JVM.
@@ -57,7 +57,7 @@ export HBASE_THRIFT_OPTS="$HBASE_JMX_BASE -Dcom.sun.management.jmxremote.port=10
 # export HBASE_SSH_OPTS="-o ConnectTimeout=1 -o SendEnv=HBASE_CONF_DIR"
 
 # Where log files are stored.  $HBASE_HOME/logs by default.
-# export HBASE_LOG_DIR=${HBASE_HOME}/logs
+export HBASE_LOG_DIR=<%= node.hbase_attrib(:log_dir) %>
 
 # A string representing this instance of hbase. $USER by default.
 # export HBASE_IDENT_STRING=$USER
@@ -74,4 +74,4 @@ export HBASE_PID_DIR=/var/run/hadoop
 # export HBASE_SLAVE_SLEEP=0.1
 
 # Tell HBase whether it should manage it's own instance of Zookeeper or not.
-export HBASE_MANAGES_ZK=<%= node[:hbase][:env][:HBASE_MANAGES_ZK] %>
+export HBASE_MANAGES_ZK=<%= node.hbase_attrib(:env, :HBASE_MANAGES_ZK) %>
