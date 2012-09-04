@@ -54,7 +54,7 @@ end
 begin
   services = search(:nagios_services, '*:*')
 rescue Net::HTTPServerException
-  Chef::Log.info("Search for nagios_services data bag failed, so we'll just move on.")
+  Chef::Log.info("Could not search for nagios_service data bag items, skipping dynamically generated service checks")
 end
 
 if services.nil? || services.empty?
@@ -121,20 +121,25 @@ role_list = Array.new
 service_hosts= Hash.new
 search(:role, "*:*") do |r|
   role_list << r.name
-  search(:node, "roles:#{r.name}") do |n|
-    service_hosts[r.name] = n['hostname']
-  end
+  if node['nagios']['multi_environment_monitoring']
+    search(:node, "roles:#{r.name}") do |n|
+      service_hosts[r.name] = n['hostname']
+    end
+  else
+    search(:node, "roles:#{r.name} AND chef_environment:#{node.chef_environment}") do |n|
+      service_hosts[r.name] = n['hostname']
+    end
 end
 
 # if using multi environment monitoring then grab the list of environments
 if node['nagios']['multi_environment_monitoring']
-	environment_list = Array.new
-	search(:environment, "*:*") do |e|
-		role_list << e.name
-		search(:node, "chef_environment:#{e.name}") do |n|
-			service_hosts[e.name] = n['hostname']
-		end
-	end
+  environment_list = Array.new
+  search(:environment, "*:*") do |e|
+    role_list << e.name
+    search(:node, "chef_environment:#{e.name}") do |n|
+      service_hosts[e.name] = n['hostname']
+    end
+  end
 end
 
 if node['public_domain']
