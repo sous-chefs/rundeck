@@ -38,5 +38,5 @@
     "java::oracle": "Installs the Oracle flavor of Java",
     "java::oracle_i386": "Installs the 32-bit jvm without setting it as the default"
   },
-  "version": "1.5.2"
+  "version": "1.5.4"
 }
