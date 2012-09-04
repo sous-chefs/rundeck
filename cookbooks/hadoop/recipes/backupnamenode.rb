@@ -17,11 +17,11 @@
 # limitations under the License.
 #
 
-include_recipe "hadoop"
+include_recipe 'hadoop'
 
-directory node[:hadoop][:core][:fs_checkpoint_dir] do
-	owner "hadoop"
-	group "hadoop"
+directory node.hadoop_attrib(:core, :fs_checkpoint_dir) do
+	owner 'hadoop'
+	group 'hadoop'
 	mode 00755
 	recursive true
 	action :create

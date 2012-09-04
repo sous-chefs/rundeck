@@ -32,14 +32,14 @@
 	</property>
 	<property>
 		<name>hbase.master.info.port</name>
-		<value><%= node[:hbase][:site][:master_info_port] %></value>
+		<value><%= node.hbase_attrib(:site, :master_info_port) %></value>
 		<description>The port for the hbase master web UI
 		Set to -1 if you do not want the info server to run.
 		</description>
 	</property>
 	<property>
 		<name>hbase.cluster.distributed</name>
-		<value><%= node[:hbase][:site][:cluster_distributed] %></value>
+		<value><%= node.hbase_attrib(:site, :cluster_distributed) %></value>
 		<description>The mode the cluster will be in. Possible values are
 		false: standalone and pseudo-distributed setups with managed Zookeeper
 		true: fully-distributed with unmanaged Zookeeper Quorum (see hbase-env.sh)
@@ -47,14 +47,14 @@
 	</property>
 	<property>
 		<name>hbase.zookeeper.property.clientPort</name>
-		<value><%= node[:hbase][:site][:zookeeper_clientport] %></value>
+		<value><%= node.zookeeper_attrib(:client_port) %></value>
 		<description>Property from ZooKeeper's config zoo.cfg.
 		The port at which the clients will connect.
 		</description>
 	</property>
 	<property>
 		<name>hbase.zookeeper.quorum</name>
-		<value><%= node[:hbase][:site][:zookeeper_quorum] %></value>
+		<value><%= @zookeeper_nodes.join(',') %></value>
 		<description>Comma separated list of servers in the ZooKeeper Quorum.
 		For example, "host1.mydomain.com,host2.mydomain.com,host3.mydomain.com".
 		By default this is set to localhost for local and pseudo-distributed modes

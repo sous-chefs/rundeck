@@ -17,23 +17,24 @@
 # limitations under the License.
 #
 
-include_recipe "hadoop"
+include_recipe 'hadoop'
 
-directory "/var/lib/hadoop/mapred" do
-  owner "hadoop"
-  group "hadoop"
-  mode 00700
-  recursive true
-  action :create
-end
+# is this dir actually used? -dvorak
+#directory '/var/lib/hadoop/mapred' do
+#	owner 'hadoop'
+#	group 'hadoop'
+#	mode 00700
+#	recursive true
+#	action :create
+#end
 
-#Create collectd plugin for hadoop jobtracker if collectd has been applied.
-if node.attribute?("collectd")
-  template "#{node[:collectd][:plugin_conf_dir]}/collectd_hadoop_JobTracker.conf" do
-    source "collectd_hadoop_JobTracker.conf.erb"
-    owner "root"
-    group "root"
-    mode 00644
-    notifies :restart, resources(:service => "collectd")
-  end
+# Create collectd plugin for hadoop jobtracker if collectd has been applied.
+if node.attribute?('collectd')
+	template "#{node[:collectd][:plugin_conf_dir]}/collectd_hadoop_JobTracker.conf" do
+		source 'collectd_hadoop_JobTracker.conf.erb'
+		owner 'root'
+		group 'root'
+		mode 00644
+		notifies :restart, resources(:service => 'collectd')
+	end
 end

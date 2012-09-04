@@ -17,29 +17,26 @@
 # limitations under the License.
 #
 
-include_recipe "hadoop"
+include_recipe 'hadoop'
 
-=begin **** NOTE ****
-Setup up dirs for data.  This is a staging specific hack.  In prod
-there will be multiple drives and thus multiple data dirs on each drive. 
-=end
+# TODO:  Dynamically get a list of drives to configure.
 
-%w[/data/hadoop/hdfs/datanode /data/hadoop/mapred].each do |dir|
-  directory "#{dir}" do
-    owner "hadoop"
-    group "hadoop"
-    mode 00700
-    recursive true
-  end
+node.hadoop_attrib(:dfs, :data_dir).split(',').each do |dir|
+	directory "#{dir}" do
+		owner "hadoop"
+		group "hadoop"
+		mode 00700
+		recursive true
+	end
 end
 
-#Create collectd plugin for hadoop datanode if collectd has been applied.
-if node.attribute?("collectd")
-  template "#{node[:collectd][:plugin_conf_dir]}/collectd_hadoop_DataNode.conf" do
-    source "collectd_hadoop_DataNode.conf.erb"
-    owner "root"
-    group "root"
-    mode 00644
-    notifies :restart, resources(:service => "collectd")
-  end
+# Create collectd plugin for hadoop datanode if collectd has been applied.
+if node.attribute?('collectd')
+	template "#{node[:collectd][:plugin_conf_dir]}/collectd_hadoop_DataNode.conf" do
+		source 'collectd_hadoop_DataNode.conf.erb'
+		owner 'root'
+		group 'root'
+		mode 00644
+		notifies :restart, resources(:service => 'collectd')
+	end
 end
