@@ -296,7 +296,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/UTILBUILDID/UTILCONFIGID:id/webtrends-streaming-configservice-bin.tar.gz",
             "includeUnmappedAnalyticsIds": "true",
             "masterdbname": "wtmaster",
-            "masterdbserver": "dmasterdb01.staging.dmz",
+            "masterdbserver": "jmasterdb01.englab.webtrends.corp",
             "port": "8080"
         },
         "wt_streaminglogreplayer": {
