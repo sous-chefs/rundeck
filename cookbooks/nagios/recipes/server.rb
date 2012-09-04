@@ -266,7 +266,7 @@ nagios_conf "hostgroups" do
     :environments => environment_list,
     :os => os_list,
     :search_hostgroups => hostgroup_list,
-    :search_nodes => hostgroup_nodes,
+    :search_nodes => hostgroup_nodes
     )
 end
 
