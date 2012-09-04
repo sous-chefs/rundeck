@@ -8,6 +8,8 @@
 <add name="wtCamConnection" connectionString="Data Source=<%= @db_server %>;Initial Catalog=<%= @db_name %>;Trusted_Connection=true;Connect Timeout=30" providerName="System.Data.SqlClient" />
   </connectionStrings>
   <appSettings>
+    <!-- This is the path to the log4net config file -->
+    <add key="log4net.Config" value="log4net.config" />
     <add key="webpages:Version" value="2.0.0.0" />
     <add key="webpages:Enabled" value="true" />
     <add key="pluginUrl" value="~/plugins"/>
