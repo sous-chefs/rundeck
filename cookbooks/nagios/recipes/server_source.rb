@@ -21,18 +21,25 @@
 # Package pre-reqs
 
 include_recipe "build-essential"
-include_recipe "apache2"
-include_recipe "apache2::mod_php5"
 include_recipe "nagios::client"
 include_recipe "php"
 include_recipe "php::module_gd"
+
+web_srv = node['nagios']['server']['web_server'].to_sym
+
+case web_srv
+when :apache
+  include_recipe "nagios::apache"
+else
+  include_recipe "nagios::nginx"
+end
 
 pkgs = value_for_platform(
     ["redhat","centos","fedora","scientific","amazon"] =>
         {"default" => %w{ openssl-devel gd-devel }},
     [ "debian", "ubuntu" ] =>
         {"default" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx}},
-    "default" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx}
+    "default" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx }
   )
 
 pkgs.each do |pkg|
@@ -42,7 +49,10 @@ pkgs.each do |pkg|
 end
 
 group node['nagios']['group'] do
-  members [ node['nagios']['user'], node['apache']['user'] ]
+  members [
+    node['nagios']['user'],
+    web_srv == :nginx ? node['nginx']['user'] : node['apache']['user']
+  ]
   action :modify
 end
 
@@ -83,20 +93,12 @@ bash "compile-nagios" do
     make install
     make install-init
     make install-config
-    make install-commandline
-    make install-webconf
+    make install-commandmode
   EOH
   creates "/usr/sbin/nagios"
 end
 
 directory "#{node['nagios']['conf_dir']}/conf.d" do
-  owner "root"
-  group "root"
-  mode 00755
-end
-
-cookbook_file "#{node['nagios']['plugin_dir']}/check_nrpe" do
-  source "check_nrpe"
   owner "root"
   group "root"
   mode 00755
@@ -122,7 +124,8 @@ link "#{node['nagios']['conf_dir']}/stylesheets" do
   to "#{node['nagios']['docroot']}/stylesheets"
 end
 
-apache_module "cgi" do
-  enable :true
+if web_srv == :apache
+  apache_module "cgi" do
+    enable :true
+  end
 end
-
