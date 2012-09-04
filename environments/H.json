@@ -291,7 +291,7 @@
             }
         },
         "wt_storm_realtime": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt201/30447:id/streaming-analysis-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt201/30529:id/streaming-analysis-bin.tar.gz"
         },
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt193/.lastSuccessful/streaming-analysis-bin.tar.gz"
