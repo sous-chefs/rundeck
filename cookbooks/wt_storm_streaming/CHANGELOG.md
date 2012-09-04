@@ -1,3 +1,15 @@
+## 2.0.14
+* Added cam url
+
+# 2.0.13
+* Removed whitelist, updated config service endpoint 
+
+# 2.0.12
+* Added CAM Urls
+
+# 2.0.11
+* Remove broker chroot prefix from zk.connect string
+
 # 2.0.10
 * Fixes for STR-160 - TrafficSource and Browsers data not accurate"
 

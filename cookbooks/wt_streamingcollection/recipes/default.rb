@@ -28,7 +28,6 @@ java_opts = node['wt_streamingcollection']['java_opts']
 
 pod = node[:wt_realtime_hadoop][:pod]
 datacenter = node[:wt_realtime_hadoop][:datacenter]
-kafka_chroot_suffix = node[:kafka][:chroot_suffix]
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -90,7 +89,7 @@ def getZookeeperPairs(node)
   return zookeeper_pairs
 end
 
-def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
+def processTemplates (install_dir, node, datacenter, pod)
 
   log "Updating the template files"
   configservice_url = node['wt_streamingconfigservice']['config_service_url']
@@ -110,8 +109,7 @@ def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
         :install_dir => install_dir,
         :port => port,
         :zookeeper_pairs => zookeeper_pairs,
-        :wt_monitoring => node[:wt_monitoring],
-        :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
+        :wt_monitoring => node[:wt_monitoring]
       })
     end
   end
@@ -123,7 +121,6 @@ def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
     mode    00644
     variables({
       :zookeeper_pairs => zookeeper_pairs,
-      :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
       :kafka_topic => "#{datacenter}_#{pod}_scsRawHits"
     })
   end
@@ -163,7 +160,7 @@ if ENV["deploy_build"] == "true" then
     })
   end
 
-  processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix)
+  processTemplates(install_dir, node, datacenter, pod)
 
   # delete the application tarball
   execute "delete_install_source" do
@@ -183,7 +180,7 @@ if ENV["deploy_build"] == "true" then
     })
   end
 else
-  processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix)
+  processTemplates(install_dir, node, datacenter, pod)
 end
 
 #Create collectd plugin for streamingcollection JMX objects if collectd has been applied.

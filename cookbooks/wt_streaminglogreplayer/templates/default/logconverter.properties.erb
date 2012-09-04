@@ -1,5 +1,5 @@
-# The dcsids to include hits from, all others will be dropped.
-dcsidWhiteList=<%= @wt_streaminglogreplayer[:dcsid_whitelist] %>
+# The endpoint to retrieve the list of dcsids to include hits from, all others will be dropped.
+configservice.url=<%= @wt_streaminglogreplayer[:configservice_url] %>
 
 # Firectory where log files will be searched.
 inputLogDir=<%= @wt_streaminglogreplayer[:share_mount_dir] %>

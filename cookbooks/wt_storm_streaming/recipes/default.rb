@@ -45,7 +45,6 @@ end
 kafka = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}").first
 pod = node[:wt_realtime_hadoop][:pod]
 datacenter = node[:wt_realtime_hadoop][:datacenter]
-kafka_chroot_suffix = node[:kafka][:chroot_suffix]
 
 # Perform some really funky overrides that should never be done and need to be removed
 node['wt_storm_streaming']['zookeeper_quorum'] = zookeeper_quorum
@@ -224,9 +223,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :streaming_topology_validation_bolt_count    => node['wt_storm']['streaming_topology']['streaming_topology_validation_bolt_count'],
     :streaming_topology_augmentation_bolt_count  => node['wt_storm']['streaming_topology']['streaming_topology_augmentation_bolt_count'],
     # kafka consumer settings
-    :kafka_chroot                         => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
     :kafka_consumer_topic                 => node['wt_storm']['streaming_topology']['topic_list'].join(','),
-    :kafka_dcsid_whitelist                => node['wt_storm']['streaming_topology']['dcsid_whitelist'],
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-streaming',
     :kafka_zookeeper_timeout_milliseconds => 1000000,
@@ -241,7 +238,8 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :datacenter            => datacenter,
     :debug                 => node[:wt_storm][:debug],
     :audit_bucket_timespan => node[:wt_monitoring][:audit_bucket_timespan],
-    :audit_topic           => node[:wt_monitoring][:audit_topic]
+    :audit_topic           => node[:wt_monitoring][:audit_topic],
+    :cam_url              => node['wt_cam']['cam_service_url']
   )
 end
 
