@@ -321,7 +321,7 @@
             "port": "8080"
         },
         "wt_streaminglogreplayer": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt196/.lastSuccessful/webtrends-streaminglogreplayer-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt202/.lastSuccessful/webtrends-streaminglogreplayer-bin.tar.gz",
             "log_extension": ".gz",
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay"
         },
