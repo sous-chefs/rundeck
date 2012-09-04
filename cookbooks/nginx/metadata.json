@@ -151,13 +151,14 @@
       "type": "array",
       "default": [
         "text/plain",
-        "text/html",
         "text/css",
         "application/x-javascript",
         "text/xml",
         "application/xml",
         "application/xml+rss",
-        "text/javascript"
+        "text/javascript",
+        "application/javascript",
+        "application/json"
       ],
       "choice": [
 
@@ -248,6 +249,19 @@
       "recipes": [
 
       ]
+    },
+    "nginx/default_site_enabled": {
+      "display_name": "Default site enabled",
+      "default": "true",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
     }
   },
   "groupings": {
@@ -256,5 +270,5 @@
     "nginx": "Installs nginx package and sets up configuration with Debian apache style with sites-enabled/sites-available",
     "nginx::source": "Installs nginx from source and sets up configuration with Debian apache style with sites-enabled/sites-available"
   },
-  "version": "0.101.6"
+  "version": "1.0.0"
 }
