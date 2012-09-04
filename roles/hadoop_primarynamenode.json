@@ -5,8 +5,8 @@
   "description": "Hadoop Primary Namenode",
   "run_list": [
     "recipe[hadoop::namenode]",
-    "role[hive]",
     "role[hbase_hmaster]",
+    "role[hive]",
     "role[wt_heatmaps_mapreduce]",
     "recipe[wt_realtime_hadoop::schema]",
     "recipe[wt_xd::schema]"
