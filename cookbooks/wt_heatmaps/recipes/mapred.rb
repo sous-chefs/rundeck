@@ -9,18 +9,6 @@
 
 package "php-cli"
 
-zk_quorum = search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}")
-
-template "/etc/zookeeper" do
-  source "zookeeper"
-  owner "hadoop"
-  group "hadoop"
-  mode 00755
-  variables(
-    :zk_quorum => zk_quorum
-  )
-end
-
 template "/etc/config_distrib" do
   source "config_distrib"
   owner "hadoop"
