@@ -2,19 +2,11 @@
 monitoring.enabled = <%= node[:wt_monitoring][:monitoring_enabled] %>
 # should we publish to jmx
 monitoring.jmx.enabled = <%= node[:wt_monitoring][:jmx_enabled] %>
-# is graphite monitoring enabled
-monitoring.graphite.enabled = <%= node[:wt_monitoring][:graphite_flush_enabled] %>
-# graphite host name
-monitoring.graphite.host = <%= node[:wt_monitoring][:graphite_server] %>
-# graphite port
-monitoring.graphite.port = <%= node[:wt_monitoring][:graphite_port] %>
-# the interval to flush graphite data
-monitoring.graphite.interval = <%= node[:wt_monitoring][:graphite_flush_interval] %>
 # the prefix to append metrics being sent to graphite
 monitoring.metric.prefix = <%= node[:wt_monitoring][:metric_prefix] %>
 
 # Zookeeper connection info (use this or audit.broker.list)
-audit.zk.connect=<%= @zookeeper_pairs.join(",") %><%= @kafka_chroot %>
+audit.zk.connect=<%= @zookeeper_pairs.join(",") %>
 # The kafka producer type (defaults to async)
 audit.producer.type=async
 # The time span (in minutes) between each audit flush (defaults to 10)

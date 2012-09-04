@@ -93,9 +93,18 @@ recursive true
 action :create
 end
 
+directory "#{install_dir}/conf" do
+owner "root"
+group "root"
+mode 00755
+recursive true
+action :create
+end
+
 def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix)
     log "Updating the template files"
     auth_url = node['wt_cam']['auth_service_url']
+    cam_url = node['wt_cam']['cam_service_url']
     port = node['wt_streamingapi']['port']
 
     %w[monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
@@ -106,6 +115,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
         mode  00644
         variables({
             :auth_url => auth_url,
+            :cam_url => cam_url,
             :install_dir => install_dir,
             :port => port,
             :wt_monitoring => node[:wt_monitoring],

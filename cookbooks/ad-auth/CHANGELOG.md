@@ -1,5 +1,6 @@
 ## 1.0.5
 * Add OS support to the metadata
+* Use a standard default.rb attributes file not a non-standard named file
 
 ## 1.0.4
 * Non-impacting code cleanup to follow best practices
