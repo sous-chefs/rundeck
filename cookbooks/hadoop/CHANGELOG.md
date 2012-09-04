@@ -3,6 +3,9 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+## 1.1.0
+* add support for multiple clusters in the same chef environment
+
 ## 1.0.7
 * namenode and jobtracker use non_datanode_local_dir instead of local_dir in order to take different drive configurations into account
 
