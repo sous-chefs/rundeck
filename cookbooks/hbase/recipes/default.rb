@@ -17,72 +17,110 @@
 # limitations under the License.
 #
 
-hadoop_namenode = search(:node, "role:hadoop_primarynamenode AND chef_environment:#{node.chef_environment}")
-if hadoop_namenode.first[:fqdn]
-  hadoop_namenode = hadoop_namenode.first[:fqdn]
-  hmaster = hadoop_namenode.first[:fqdn]
-else
-  log("Failed to find a valid Hadoop Primary Name Node in your environment") { level :fatal }
-end
-
-regionservers = Array.new
-search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment}").each do |n|
-  regionservers << n[:fqdn]
-end
-
 # hbase requires hadoop to be installed
-include_recipe "hadoop"
+include_recipe 'hadoop'
+
+# servers in this cluster
+hadoop_namenode = hadoop_search('hadoop_primarynamenode', 1)
+hmaster         = hbase_search('hbase_hmaster', 1)
+# backup_master   = hbase_search('hadoop_backupnamenode', 1)
+regionservers   = hbase_search('hbase_regionserver').sort
+zookeeper_nodes = zookeeper_search('zookeeper').sort
+
+source_tarball  = node.hbase_attrib(:download_url)[/\/([^\/\?]+)(\?.*)?$/, 1]
+source_fullpath = File.join(Chef::Config[:file_cache_path], source_tarball)
+hadoop_version  = node.hadoop_attrib(:version)[/(.*?)(-\d+)?$/, 1]  # strip out rpm revision
 
 # download hbase tar.gz
-remote_file "#{Chef::Config[:file_cache_path]}/hbase-#{node[:hbase][:version]}.tar.gz" do
-  source node[:hbase][:download_url]
-  owner "hadoop"
-  group "hadoop"
-  mode 00744
-  not_if "test -f #{Chef::Config[:file_cache_path]}/hbase-#{node[:hbase][:version]}.tar.gz"
+remote_file source_fullpath do
+	source node.hbase_attrib(:download_url)
+	owner 'hadoop'
+	group 'hadoop'
+	mode 00744
+	not_if "test -f #{source_fullpath}"
+end
+
+# remove old hadoop core file
+execute 'remove hadoop-core' do
+	command "for i in hadoop-core-*.jar; do [ \"$i\" != \"hadoop-core-#{hadoop_version}.jar\" ] && rm -f $i; done"
+	cwd '/usr/share/hbase/lib'
+	returns [0, 1]
+	action :nothing
 end
 
 # extract the tar.gz
-execute "extract-hbase" do
-  command "tar -zxf #{Chef::Config[:file_cache_path]}/hbase-#{node[:hbase][:version]}.tar.gz"
-  creates "hbase-#{node[:hbase][:version]}"
-  cwd "#{node[:hadoop][:install_dir]}"
-  user "hadoop"
-  group "hadoop"
+execute 'extract-hbase' do
+	command "tar -zxf #{source_fullpath}"
+	creates "hbase-#{node.hbase_attrib(:version)}"
+	cwd "#{node.hadoop_attrib(:install_dir)}"
+	user 'hadoop'
+	group 'hadoop'
+	notifies :run, resources(:execute => 'remove hadoop-core')
 end
 
 # link from the specific version of hbase to a generic path
-link "/usr/share/hbase" do
-  to "#{node[:hadoop][:install_dir]}/hbase-#{node[:hbase][:version]}"
-end
-
-# remove old hadoop core file, we run 0.20.205.0
-file "/usr/share/hbase/lib/hadoop-core-0.20-append-r1056497.jar" do
-  action :delete
+link '/usr/share/hbase' do
+	owner 'hadoop'
+	group 'hadoop'
+	to "#{node.hadoop_attrib(:install_dir)}/hbase-#{node.hbase_attrib(:version)}"
 end
 
 # hbase needs right hadoop core
-link "/usr/share/hbase/lib/hadoop-core-#{node[:hadoop][:version]}.jar" do
-  to "/usr/share/hadoop/hadoop-core-#{node[:hadoop][:version]}.jar"
+link "/usr/share/hbase/lib/hadoop-core-#{hadoop_version}.jar" do
+	owner 'hadoop'
+	group 'hadoop'
+	to "/usr/share/hadoop/hadoop-core-#{hadoop_version}.jar"
 end
 
 # create the log dir
-directory "/var/log/hbase" do
+directory node.hbase_attrib(:log_dir) do
 	action :create
-	owner "hadoop"
-	group "hadoop"
+	owner 'hadoop'
+	group 'hadoop'
 	mode 00755
 end
 
-# manage hadoop configs
-%w[masters regionservers hbase-env.sh hbase-site.xml log4j.properties].each do |template_file|
-  template "/usr/share/hbase/conf/#{template_file}" do
-    source "#{template_file}"
-    mode 00755
-    variables(
-      :namenode => hadoop_namenode, # from hadoop recipe
-      :hmaster => hmaster,
-      :regionservers => regionservers
-    )
-  end
+# is this file actually used by anything? -dvorak
+file '/usr/share/hbase/conf/masters' do
+	owner 'root'
+	group 'root'
+	mode 00644
+	content hmaster
+end
+
+## TODO:  add a backup-master role
+#file '/usr/share/hbase/conf/backup-masters' do
+#	owner 'root'
+#	group 'root'
+#	mode 00644
+#	content backup_master
+#end
+
+file '/usr/share/hbase/conf/regionservers' do
+	owner 'root'
+	group 'root'
+	mode 00644
+	content regionservers.join("\n")
+end
+
+# manage configs
+%w[hbase-env.sh hbase-site.xml log4j.properties].each do |template_file|
+	template "/usr/share/hbase/conf/#{template_file}" do
+		source "#{template_file}"
+		mode 00755
+		variables(
+			:namenode        => hadoop_namenode,
+			:regionservers   => regionservers,
+			:zookeeper_nodes => zookeeper_nodes
+		)
+	end
+end
+
+# add hbase to path
+file '/etc/profile.d/hbase.sh' do
+	owner 'root'
+	group 'root'
+	mode 00644
+	content 'export PATH=$PATH:/usr/share/hbase/bin'
+	action :create_if_missing
 end
