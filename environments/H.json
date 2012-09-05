@@ -259,12 +259,12 @@
                 "realtime_topology_row_key_bolt_count": 6,
                 "realtime_topology_writing_bolt_count": 48,
                 "topic_list": [
-                    "Lab_G_scsRawHits:0",
-                    "Lab_G_lrRawHits:0",
-                    "Lab_H_scsRawHits:0",
-                    "Lab_H_lrRawHits:0",
-                    "Lab_M_scsRawHits:0",
-                    "Lab_M_lrRawHits:0"
+                    "Lab_G_scsRawHits:1",
+                    "Lab_G_lrRawHits:1",
+                    "Lab_H_scsRawHits:1",
+                    "Lab_H_lrRawHits:1",
+                    "Lab_M_scsRawHits:1",
+                    "Lab_M_lrRawHits:1"
                 ],
                 "topology_override_max_spout_pending": 3000,
                 "topology_override_msg_timeout_seconds": 120,
@@ -279,12 +279,12 @@
                 "streaming_topology_validation_bolt_count": 10,
                 "streaming_topology_zmq_emitter_bolt_count": 1,
                 "topic_list": [
-                    "Lab_G_scsRawHits:0",
-                    "Lab_G_lrRawHits:0",
-                    "Lab_H_scsRawHits:0",
-                    "Lab_H_lrRawHits:0",
-                    "Lab_M_scsRawHits:0",
-                    "Lab_M_lrRawHits:0"
+                    "Lab_G_scsRawHits:1",
+                    "Lab_G_lrRawHits:1",
+                    "Lab_H_scsRawHits:1",
+                    "Lab_H_lrRawHits:1",
+                    "Lab_M_scsRawHits:1",
+                    "Lab_M_lrRawHits:1"
                 ],
                 "worker": {
                     "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
