@@ -13,7 +13,7 @@
         "wt_base": "= 0.10.53",
         "wt_kafka_mm": "= 0.0.13",
         "wt_realtime_hadoop": "= 1.0.2",
-        "wt_realtimeapi": "= 0.0.22",
+        "wt_realtimeapi": "= 0.0.23",
         "wt_storm": "= 1.0.38",
         "wt_storm_streaming": "= 2.0.14",
         "wt_storm_realtime": "= 2.0.10",
@@ -245,7 +245,7 @@
             "pod": "H"
         },
         "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt169/26818:id/realtimeapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt207/30613:id/webtrends-realtimeapi-bin.tar.gz",
             "port": 8082
         },
         "wt_rta": {},
