@@ -11,6 +11,7 @@
         "storm": "= 1.0.19",
         "windows": "= 1.2.12",
         "wt_base": "= 0.10.53",
+	"wt_cam": "= 1.0.17",
         "wt_kafka_mm": "= 0.0.13",
         "wt_realtime_hadoop": "= 1.0.2",
         "wt_realtimeapi": "= 0.0.23",
