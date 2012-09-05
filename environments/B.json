@@ -12,15 +12,15 @@
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.17", 
-        "wt_kafka_mm": "= 0.0.12", 
+        "wt_kafka_mm": "= 0.0.13", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
         "wt_realtimeapi": "= 0.0.19", 
         "wt_storm": "= 1.0.34", 
-        "wt_storm_streaming": "= 2.0.7", 
-        "wt_streamingapi": "= 0.0.26", 
-        "wt_streamingauditor": "= 0.0.10", 
-        "wt_streamingcollection": "= 0.0.24", 
+        "wt_storm_streaming": "= 2.0.13", 
+        "wt_streamingapi": "= 0.0.29", 
+        "wt_streamingauditor": "= 0.0.14", 
+        "wt_streamingcollection": "= 0.0.26", 
         "wt_streamingconfigservice": "= 0.0.10", 
         "wt_streaminglogreplayer": "= 0.0.24", 
         "zookeeper": "= 1.0.4"
@@ -264,18 +264,18 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/27269:id/streaming-analysis-bin.tar.gz"
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/28399:id/streaming-analysis-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt205/30561:id/streaming-analysis-bin.tar.gz"
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt76/29007:id/webtrends-streamingapi-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt206/30576:id/webtrends-streamingapi-bin.tar.gz"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/26357:id/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt203/30514:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_url": "http://bscs01.staging.dmz:8080", 
             "roundtrip_token": "9019769dfb544c94a31e56194d316968"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/29004:id/webtrends-streamingcollection-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt204/30592:id/webtrends-streamingcollection-bin.tar.gz"
         }, 
         "wt_streamingconfigservice": {
             "camdbname": "CAM", 
