@@ -22,8 +22,8 @@
         "admin_password": "SHvWHezZSc7"
     },
     "wt_streamingconfigservice": {
-        "camdbuser": "sa",
-        "camdbpwd": "cad890",
+        "camdbuser": "wtUI",
+        "camdbpwd": "bijoux",
         "masterdbuser": "ConfigSvc",
         "masterdbpwd": "bijoux"
     }
