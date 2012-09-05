@@ -104,10 +104,6 @@ if ENV["deploy_build"] == "true" then
     })
     end
 
-    http_request "Health check" do
-      url "#{nodes['fqdn']}:9000"
-    end
-
 end
 
 log "Updating the template files"
