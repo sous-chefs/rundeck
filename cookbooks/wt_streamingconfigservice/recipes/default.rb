@@ -104,8 +104,16 @@ if ENV["deploy_build"] == "true" then
     })
     end
 
-    http_request "Health check" do
-      url "#{nodes['fqdn']}:9000"
+    ruby_block "Validate installation through healthcheck" do
+      block do
+        require 'net/http'
+        require 'json'
+
+        res = Net::HTTP.get(node['fqdn'],"/healthcheck",9000)
+        health = JSON.parse(res)
+        exit(1) if !health['checks']['monitoring_healthcheck']['healthy']
+      end
+      action :create
     end
 
 end
