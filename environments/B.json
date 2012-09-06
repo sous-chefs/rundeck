@@ -160,12 +160,12 @@
         },
         "wt_analytics_ui": {},
         "wt_cam": {
-            "auth_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/30467:id/auth.zip",
-            "auth_service_url": "http://bcam01.staging.dmz:81",
-            "cam_server_url": "http://bcam01.staging.dmz:82/camservice",
+            "auth_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/30795:id/auth.zip",
+            "auth_service_url": "http://bsauth.webtrends.com",
+            "cam_server_url": "http://bcam.staging.dmz",
             "db_name": "cam",
             "db_server": "bcamdb01.staging.dmz",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/30467:id/cam.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/30795:id/cam.zip"
         },
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp",
