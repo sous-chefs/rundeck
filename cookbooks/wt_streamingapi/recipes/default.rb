@@ -95,15 +95,18 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
-def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix)
+def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix, data_bag_item)
   log "Updating the template files"
   auth_url = node['wt_cam']['auth_service_url']
   cam_url = node['wt_cam']['cam_service_url']
   port = node['wt_streamingapi']['port']
   usagedbserver = node['wt_streamingapi']['usagedbserver']
   usagedbname = node['wt_streamingapi']['usagedbname']
-  usagedbuser = node['wt_streamingapi']['usagedbuser']
-  usagedbpwd = node['wt_streamingapi']['usagedbpwd']
+  # grab the users and passwords from the data bag
+  auth_data = data_bag_item('authorization', node.chef_environment)
+  usagedbuser  = auth_data['wt_streamingapi']['usagedbuser']
+  usagedbpwd = auth_data['wt_streamingapi']['usagedbpwd']
+
 
   %w[monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
@@ -169,7 +172,7 @@ if ENV["deploy_build"] == "true" then
     })
   end
 
-  processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix)
+  processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix, data_bag_item)
 
   # delete the install tar ball
   execute "delete_install_source" do
@@ -190,7 +193,7 @@ if ENV["deploy_build"] == "true" then
   end
 
 else
-  processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix)
+  processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix, data_bag_item)
 end
 
 #Create collectd plugin for streaming api JMX objects if collectd has been applied.
