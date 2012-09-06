@@ -1,3 +1,6 @@
+## 1.0.11
+* Allow changing the Kafka local user / group
+
 ## 1.0.10
 * Remove broker chroot prefix from zk.connect string
 
