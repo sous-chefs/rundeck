@@ -192,6 +192,9 @@
             "heatmap_reducers": -1
         },
         "wt_masterdb": {
+            "master_host": "amasterdb01.staging.dmz",
+            "master_db": "wtmaster",
+            "sched_host": "amasterdb01.staging.dmz"
         },
         "wt_messaging_monitoring": {},
         "wt_monitoring": {
