@@ -35,6 +35,9 @@ java_opts = node['wt_streaminglogreplayer']['java_opts']
 pod = node[:wt_realtime_hadoop][:pod]
 datacenter = node[:wt_realtime_hadoop][:datacenter]
 
+kafka_topic = "#{datacenter}_#{pod}_lrRawHits"
+configservice_url = "#{node['wt_streamingconfigservice']['config_service_url']}/whitelist/logreplayer"
+
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -114,9 +117,6 @@ def getZookeeperPairs(node)
 end
 
 def processTemplates (install_dir, node, user, group, datacenter, pod)
-
-    node['wt_streaminglogreplayer']['kafka_topic'] = "#{datacenter}_#{pod}_lrRawHits"
-    node['wt_streaminglogreplayer']['configservice_url'] = "#{node['wt_streamingconfigservice']['config_service_url']}/whitelist/logreplayer"
   log "Updating the templated config files"
 
 	# grab the zookeeper nodes that are currently available
@@ -131,7 +131,9 @@ def processTemplates (install_dir, node, user, group, datacenter, pod)
 			variables({
 				:wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
 				:zookeeper_pairs => zookeeper_pairs,
-				:wt_monitoring => node[:wt_monitoring]
+				:wt_monitoring => node[:wt_monitoring],
+				:configservice_url => configservice_url,
+				:kafka_topic => kafka_topic
 			})
 		end
 	end
