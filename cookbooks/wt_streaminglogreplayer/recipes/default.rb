@@ -14,11 +14,11 @@ include_recipe "runit"
 package "nfs-common"
 
 log "Deploy build is #{ENV["deploy_build"]}"
-if ENV["deploy_build"] == "true" then 
-    log "The deploy_build value is true so un-deploy first"
-    include_recipe "wt_streaminglogreplayer::undeploy"
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so un-deploy first"
+  include_recipe "wt_streaminglogreplayer::undeploy"
 else
-    log "The deploy_build value is not set or is false so we will only update the configuration"
+  log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
 log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streaminglogreplayer")
@@ -40,53 +40,53 @@ log "Java home: #{java_home}"
 
 # create the log directory
 directory "#{log_dir}" do
-owner   user
-group   group
-mode    00755
-recursive true
-action :create
+  owner   user
+  group   group
+  mode    00755
+  recursive true
+  action :create
 end
 
 # create the bin directory
 directory "#{install_dir}/bin" do
-owner "root"
-group "root"
-mode 00755
-recursive true
-action :create
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
 end
 
 # create the conf directory
 directory "#{install_dir}/conf" do
-owner "root"
-group "root"
-mode 00755
-recursive true
-action :create
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
 end
 
 # create the share mount dir
 directory "#{node['wt_streaminglogreplayer']['share_mount_dir']}" do
-    action :create
+ action :create
 end
 
 # mount the NFS mount and add to /etc/fstab
 mount "#{node['wt_streaminglogreplayer']['share_mount_dir']}" do
-    device "#{node['wt_streaminglogreplayer']['log_share_mount']}"
-    fstype "nfs"
-    options "rw"
-    action [:mount, :enable]
+  device "#{node['wt_streaminglogreplayer']['log_share_mount']}"
+  fstype "nfs"
+  options "rw"
+  action [:mount, :enable]
 end
 
 def getZookeeperPairs(node)
-	
+
 	  # get the correct environment for the zookeeper nodes
 	  zookeeper_port = node['zookeeper']['client_port']
 	  zookeeper_env = "#{node.chef_environment}"
 	  unless node[:wt_streaminglogreplayer][:zookeeper_env].nil? || node[:wt_streaminglogreplayer][:zookeeper_env].empty?
 	      zookeeper_env = node['wt_streaminglogreplayer']['zookeeper_env']
 	  end
-	
+
 	  # grab the zookeeper nodes that are currently available
 	  zookeeper_pairs = Array.new
 	  if not Chef::Config.solo
@@ -94,7 +94,7 @@ def getZookeeperPairs(node)
 	          zookeeper_pairs << n[:fqdn]
 	      end
 	  end
-	
+
 	# fall back to attribs if search doesn't come up with any zookeeper roles
 	if zookeeper_pairs.count == 0
 		node[:zookeeper][:quorum].each do |i|
@@ -117,17 +117,17 @@ def processTemplates (install_dir, node, user, group, datacenter, pod)
 
     node[:wt_streaminglogreplayer][:kafka_topic] = "#{datacenter}_#{pod}_lrRawHits"
     node[:wt_streaminglogreplayer][:configservice_url] = "#{node['wt_streamingconfigservice']['config_service_url']}/whitelist/logreplayer"
-    
+
 	# grab the zookeeper nodes that are currently available
 	zookeeper_pairs = getZookeeperPairs(node)
-	
+
 	%w[monitoring.properties producer.properties logconverter.properties].each do |template_file|
 	template "#{install_dir}/conf/#{template_file}" do
 	        source	"#{template_file}.erb"
 	        owner user
 	        group group
 	        mode  00755
-	        variables({ 
+	        variables({
 	            :wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
 	            :zookeeper_pairs => zookeeper_pairs,
 	            :wt_monitoring => node[:wt_monitoring]
@@ -137,7 +137,7 @@ def processTemplates (install_dir, node, user, group, datacenter, pod)
 end
 
 
-if ENV["deploy_build"] == "true" then 
+if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so we will grab the tar ball and install"
 
     # download the application tarball
@@ -149,7 +149,7 @@ if ENV["deploy_build"] == "true" then
     # uncompress the application tarball into the install dir
     execute "tar" do
     user  "root"
-    group "root" 
+    group "root"
     cwd install_dir
     command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
@@ -169,7 +169,7 @@ if ENV["deploy_build"] == "true" then
             :java_opts => java_opts
         })
     end
-    
+
     processTemplates(install_dir, node, user, group, datacenter, pod)
 
     # delete the application tarball
@@ -213,7 +213,7 @@ if node.attribute?("nagios")
 		parameters "-d #{node['wt_streaminglogreplayer']['share_mount_dir']} -t minutes"
 		action :add
 	end
-	
+
   #Create a nagios nrpe check for the healthcheck page
 	nagios_nrpecheck "wt_healthcheck_page" do
 		command "#{node['nagios']['plugin_dir']}/check_http"
