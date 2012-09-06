@@ -1,5 +1,6 @@
 ## 0.0.25
 * Add an JMX port attribute and use that attribute vs the wt_monitoring jmx_port attribute
+* Don't use attributes for kafka_topic and configservice_url that get overridden by the cookbook anyways
 
 ## 0.0.24
 * Replaced static whitelist with url to config service endpoint
