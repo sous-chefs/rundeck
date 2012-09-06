@@ -233,7 +233,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :kafka_consumer_group_id              => 'kafka-realtime',
     :kafka_zookeeper_timeout_milliseconds => 1000000,
     # non-storm parameters
-    :zookeeper_quorum      	=> zookeeper_quorum_hbase.join(","),
+    :zookeeper_quorum      => zookeeper_quorum_hbase.join(","),
     :zookeeper_clientport  => zookeeper_clientport,
     :zookeeper_pairs	   => zookeeper_quorum_kafka.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
     :configservice         => node[:wt_streamingconfigservice][:config_service_url],
