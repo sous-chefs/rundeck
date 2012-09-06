@@ -18,7 +18,7 @@
         "wt_storm": "= 1.0.38",
         "wt_storm_streaming": "= 2.0.14",
         "wt_storm_realtime": "= 2.0.10",
-        "wt_streamingapi": "= 0.0.28",
+        "wt_streamingapi": "= 0.0.30",
         "wt_streamingauditor": "= 0.0.14",
         "wt_streamingcollection": "= 0.0.26",
         "wt_streamingconfigservice": "= 0.0.10",
@@ -221,7 +221,11 @@
             "config_distrib": "jcd01.englab.webtrends.corp:8097",
             "heatmap_reducers": -1
         },
-        "wt_masterdb": {},
+        "wt_masterdb": {
+            "master_host": "jmasterdb01.englab.webtrends.corp",
+            "master_db": "wtmaster",
+            "sched_host": "jmasterdb01.englab.webtrends.corp"
+        },
         "wt_messaging_monitoring": {},
         "wt_monitoring": {
             "audit_bucket_timespan": 10,
@@ -292,7 +296,7 @@
             }
         },
         "wt_storm_realtime": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt201/30529:id/streaming-analysis-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt205/30561:id/streaming-analysis-bin.tar.gz"
         },
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt205/30561:id/streaming-analysis-bin.tar.gz"
@@ -300,7 +304,12 @@
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt192/.lastSuccessful/webtrends-streamingapi-bin.tar.gz",
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
-            "port": 8080
+            "port": 8080,
+            "usagedbserver": "hcamdb01.staging.dmz",
+            "usagedbname": "Streaming",
+            "usagedbuser": "sa",
+            "usagedbpwd": "cad890"
+
         },
         "wt_streamingauditor": {
             "roundtrip_scs_url": "http://hscs01.staging.dmz:8080",

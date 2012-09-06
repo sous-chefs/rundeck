@@ -4,7 +4,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-log4j.rootLogger=INFO,R
+log4j.rootLogger=<%= node["kafka"]["log4j_logging_level"] %>,R
 
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
@@ -17,5 +17,5 @@ log4j.appender.R.MaxBackupIndex=1
 log4j.appender.R.layout=org.apache.log4j.PatternLayout
 log4j.appender.R.layout.ConversionPattern=[%d{ISO8601}]  %-4r [%t] %-5p %c %x - %m%n
 
-log4j.logger.kafka=INFO
-log4j.logger.org.IOItec.zkclient.ZkClient=INFO
+log4j.logger.kafka=<%= node["kafka"]["log4j_logging_level"] %>
+log4j.logger.org.IOItec.zkclient.ZkClient=<%= node["kafka"]["log4j_logging_level"] %>
