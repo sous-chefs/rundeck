@@ -37,3 +37,4 @@ default[:kafka][:log_retention_hours] = 168
 default[:kafka][:user] = "kafka"
 default[:kafka][:group] = "kafka"
 
+default[:kafka][:log4j_logging_level] = "INFO"
