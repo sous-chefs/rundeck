@@ -163,7 +163,7 @@
         "wt_cam": {
             "auth_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/30795:id/auth.zip",
             "auth_service_url": "http://bcam01.staging.dmz:81", 
-            "cam_service_url": "http://bcam.staging.dmz", 
+            "cam_service_url": "http://bcam01.staging.dmz", 
             "db_name": "cam",
             "db_server": "bcamdb01.staging.dmz",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/30795:id/cam.zip"
