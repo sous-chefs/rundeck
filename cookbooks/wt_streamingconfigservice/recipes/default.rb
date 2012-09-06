@@ -84,7 +84,7 @@ if ENV["deploy_build"] == "true" then
 			command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
 
-    
+
 
     # delete the application tarball
     execute "delete_install_source" do
@@ -119,10 +119,10 @@ template "#{install_dir}/bin/service-control" do
 		:java_home => java_home,
 		:user => user,
 		:java_class => "com.webtrends.streaming.configservice.ConfigServiceDaemon",
-		:java_jmx_port => node['wt_monitoring']['jmx_port'],
+		:java_jmx_port => node['wt_streamingconfigservice']['jmx_port'],
 		:java_opts => java_opts
 	})
-end		
+end
 
 %w[monitoring.properties config.properties].each do |template_file|
 	template "#{install_dir}/conf/#{template_file}" do
@@ -136,8 +136,8 @@ end
 				:camdbname => node['wt_streamingconfigservice']['camdbname'],
 				:camdbuser => camdbuser,
 				:camdbpwd => camdbpwd,
-				:masterdbserver => node['wt_streamingconfigservice']['masterdbserver'],
-				:masterdbname => node['wt_streamingconfigservice']['masterdbname'],
+				:masterdbserver => node['wt_masterdb']['master_host'],
+				:masterdbname => node['wt_masterdb']['master_db'],
 				:masterdbuser => masterdbuser,
 				:masterdbpwd => masterdbpwd,
 				:includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
