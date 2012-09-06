@@ -1,11 +1,19 @@
+## 0.0.11
+* Find the hostname / db name for the On Demand master DB from wt_masterdb environmental attributes not from attributes in this cookbook
+* Use the JMX port attribute in the cookbook and not the attribute from wt_monitoring
+
 ## 0.0.10
 * Added shared connection string for new db schema
+
 ## 0.0.9
 * Moved template section to bottom of recipe.
+
 ## 0.0.8
 * Moved direction creations to the beginning
+
 ## 0.0.7
 * Moved template updates to above the deploy gate. Removed call to processTemplates
+
 ## 0.0.6
 * Address food critic warnings
 
