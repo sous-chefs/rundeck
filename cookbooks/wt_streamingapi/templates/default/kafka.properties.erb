@@ -1,7 +1,7 @@
 serializer.class=kafka.serializer.StringEncoder
 
 # zk connection string
-zk.connect=<%= @zookeeper_quorum  %><%= @kafka_chroot %>
+zk.connect=<%= @zookeeper_quorum  %>
 
 # specifies whether the messages are sent asynchronously (async) or synchronously (sync)
 producer.type=async
