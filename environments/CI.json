@@ -173,6 +173,9 @@
             }
         },
         "wt_analytics_ui": {},
+        "wt_cam_db" : {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/CAMBUILDID/CAMCONFIGID:id/artifacts.zip"i
+        },
         "wt_cam": {
             "auth_port": 8081,
             "auth_service_url": "http://cicam01.staging.dmz:8081",
