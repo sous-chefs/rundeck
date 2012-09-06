@@ -1,8 +1,8 @@
+debug=<%= @debug %>
 datacenter=<%= @datacenter %>
 pod=<%= @pod %>
 kafka.host=<%= @kafka %>
 geo.host=<%= @netacuity %>
-debug=<%= @debug %>
 cs.url=<%= @configservice %>/dcsid/streaming
 
 # Kafka consumer parameters
@@ -10,11 +10,6 @@ kafka.zookeeper.quorum=<%= @kafka_zookeeper_quorum %>
 kafka.zookeeper.timeout.milliseconds=<%= @kafka_zookeeper_timeout_milliseconds %>
 kafka.consumer.topic=<%= @kafka_consumer_topic %>
 kafka.consumer.group.id=<%= @kafka_consumer_group_id %>
-
-# Hbase and zookeeper parameters
-hbase.pool.size=80
-hbase.zookeeper.quorum=<%= @zookeeper_quorum  %>
-hbase.zookeeper.property.clientPort=<%=@zookeeper_clientport%>
 
 # Topology should be streaming or realtime
 topology=streaming-topology
