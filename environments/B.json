@@ -19,7 +19,7 @@
         "wt_storm": "= 1.0.34",
         "wt_storm_streaming": "= 2.0.14",
 	"wt_storm_realtime": "= 2.0.10",
-        "wt_streamingapi": "= 0.0.29",
+        "wt_streamingapi": "= 0.0.30",
         "wt_streamingauditor": "= 0.0.14",
         "wt_streamingcollection": "= 0.0.26",
         "wt_streamingconfigservice": "= 0.0.10",
@@ -268,7 +268,11 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt205/30561:id/streaming-analysis-bin.tar.gz"
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt206/30576:id/webtrends-streamingapi-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt206/30576:id/webtrends-streamingapi-bin.tar.gz",
+        		"usagedbserver": "bcamdb01.staging.dmz",
+        		"usagedbname": "Streaming",
+        		"usagedbuser": "sa",
+        		"usagedbpwd": "cad890"
         },
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt203/30514:id/webtrends-streamingauditor-bin.tar.gz",
