@@ -23,6 +23,7 @@ include_recipe "storm"
 download_url = node['wt_storm_realtime']['download_url']
 install_tmp = '/tmp/wt_storm_install'
 tarball = 'streaming-analysis-bin.tar.gz'
+nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
 
 # grab the zookeeper port number if specified
 zookeeper_clientport = node['zookeeper']['client_port']
@@ -57,18 +58,11 @@ datacenter = node[:wt_realtime_hadoop][:datacenter]
 
 # Perform some really funky overrides that should never be done and need to be removed
 node['wt_storm_realtime']['zookeeper_quorum'] = zookeeper_quorum_kafka
-node['wt_storm_realtime']['zookeeper']['port'] = node['zookeeper']['client_port']
-node['wt_storm_realtime']['nimbus']['host'] = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
-node['wt_storm_realtime']['worker']['childopts'] = node['wt_storm']['realtime_topology']['worker']['childopts']
+node['wt_storm_realtime']['zookeeper']['port'] = zookeeper_clientport
+node['wt_storm_realtime']['nimbus']['host'] = nimbus_host
 node['wt_storm_realtime']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-realtime"
 node['wt_storm_realtime']['transactional']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-realtime-transactional"
 
-#############################################################################
-# Storm jars
-
-# Before adding a jar here make sure it's in the repo (i.e.-
-# http://repo.staging.dmz/repo/linux/storm/jars/), otherwise the run
-# of chef-client will fail
 
 # Perform a deploy if the deploy flag is set
 if ENV["deploy_build"] == "true" then
@@ -228,16 +222,14 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
-    :topology                                => "realtime-topology",
-    :realtime_topology_parsing_bolt_count    => node['wt_storm']['realtime_topology']['realtime_topology_parsing_bolt_count'],
-    :realtime_topology_writing_bolt_count    => node['wt_storm']['realtime_topology']['realtime_topology_writing_bolt_count'],
-    :realtime_topology_dimensions_bolt_count => node['wt_storm']['realtime_topology']['realtime_topology_dimensions_bolt_count'],
-    :topology_override_max_spout_pending     => node['wt_storm']['realtime_topology']['topology_override_max_spout_pending'],
-    :topology_override_msg_timeout_seconds   => node['wt_storm']['realtime_topology']['topology_override_msg_timeout_seconds'],
+    :realtime_topology_parsing_bolt_count    => node['wt_storm_realtime']['realtime_topology_parsing_bolt_count'],
+    :realtime_topology_writing_bolt_count    => node['wt_storm_realtime']['realtime_topology_writing_bolt_count'],
+    :realtime_topology_dimensions_bolt_count => node['wt_storm_realtime']['realtime_topology_dimensions_bolt_count'],
+    :topology_override_max_spout_pending     => node['wt_storm_realtime']['topology_override_max_spout_pending'],
+    :topology_override_msg_timeout_seconds   => node['wt_storm_realtime']['topology_override_msg_timeout_seconds'],
     # kafka consumer settings
-    :kafka_consumer_topic                 => "#{datacenter}_#{pod}_scsRawHits:0,#{datacenter}_#{pod}_lrRawHits:0",
-    #:kafka_dcsid_whitelist                => node['wt_storm']['realtime_topology']['dcsid_whitelist'],
-    :kafka_zookeeper_quorum               => zookeeper_quorum_kafka * ",",
+    :kafka_consumer_topic                 => node['wt_storm_streaming']['topic_list'].join(','),
+    :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-realtime',
     :kafka_zookeeper_timeout_milliseconds => 1000000,
     # non-storm parameters
@@ -264,45 +256,22 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   )
 end
 
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/seed.data" do
-  source "seed.data"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/asn_org.csv" do
-  source "asn_org.csv"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/conn_speed_code.csv" do
-  source "conn_speed_code.csv"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/city_codes.csv" do
-  source "city_codes.csv"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/country_codes.csv" do
-  source "country_codes.csv"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/metro_codes.csv" do
-  source "metro_codes.csv"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/region_codes.csv" do
-  source "region_codes.csv"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/keywords.ini" do
-  source "keywords.ini"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/device-atlas-20120813.json" do
-  source "device-atlas-20120813.json"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/browsers.ini" do
-  source "browsers.ini"
-  mode 00644
+%w{
+'botIP.csv'
+'asn_org.csv'
+'conn_speed_code.csv'
+'city_codes.csv'
+'country_codes.csv'
+'metro_codes.csv'
+'region_codes.csv'
+'keywords.ini'
+'device-atlas-20120813.json'
+'browsers.ini'
+}.each do |file_ini|
+    cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/#{file_ini}" do
+    source file_ini
+    mode 00644
+    end
 end
 
 # template out the metadata loader

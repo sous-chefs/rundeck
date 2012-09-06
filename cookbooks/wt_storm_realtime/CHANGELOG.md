@@ -1,14 +1,17 @@
-#2.0.10 
- * updated cs.url and removed whitelist setting
+# 2.1.0
+* Finished splitting storm_streaming and storm_realtime
 
-#2.0.9
- * Cleaned up storm and kafka zk configs
+# 2.0.10 
+* updated cs.url and removed whitelist setting
+
+# 2.0.9
+* Cleaned up storm and kafka zk configs
 
 # 2.0.8
- * Removed broker chroot prefix from zk.connect string and audit.zk.connect string
+* Removed broker chroot prefix from zk.connect string and audit.zk.connect string
 
 # 2.0.7
- * Added broker chroot prefix for audit.zk.connect string
+* Added broker chroot prefix for audit.zk.connect string
 
 # 2.0.6
 *  Added browsers.ini support and ini4j-0.5.2.jar
