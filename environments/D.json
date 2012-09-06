@@ -193,6 +193,7 @@
         },
         "wt_masterdb": {
             "master_host": "dmasterdb01.staging.dmz",
+            "master_db": "wtmaster",
             "sched_host": "dmasterdb01.staging.dmz"
         },
         "wt_messaging_monitoring": {
