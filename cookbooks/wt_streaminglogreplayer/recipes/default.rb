@@ -83,7 +83,7 @@ def getZookeeperPairs(node)
 	  # get the correct environment for the zookeeper nodes
 	  zookeeper_port = node['zookeeper']['client_port']
 	  zookeeper_env = "#{node.chef_environment}"
-	  unless node[:wt_streaminglogreplayer][:zookeeper_env].nil? || node[:wt_streaminglogreplayer][:zookeeper_env].empty?
+	  unless node['wt_streaminglogreplayer']['zookeeper_env'].nil? || node['wt_streaminglogreplayer']['zookeeper_env'].empty?
 	      zookeeper_env = node['wt_streaminglogreplayer']['zookeeper_env']
 	  end
 
@@ -97,7 +97,7 @@ def getZookeeperPairs(node)
 
 	# fall back to attribs if search doesn't come up with any zookeeper roles
 	if zookeeper_pairs.count == 0
-		node[:zookeeper][:quorum].each do |i|
+		node['zookeeper']['quorum'].each do |i|
 			zookeeper_pairs << i
 		end
 	end
@@ -115,8 +115,8 @@ end
 def processTemplates (install_dir, node, user, group, datacenter, pod)
 	log "Updating the template files"
 
-    node[:wt_streaminglogreplayer][:kafka_topic] = "#{datacenter}_#{pod}_lrRawHits"
-    node[:wt_streaminglogreplayer][:configservice_url] = "#{node['wt_streamingconfigservice']['config_service_url']}/whitelist/logreplayer"
+    node['wt_streaminglogreplayer']['kafka_topic'] = "#{datacenter}_#{pod}_lrRawHits"
+    node['wt_streaminglogreplayer']['configservice_url'] = "#{node['wt_streamingconfigservice']['config_service_url']}/whitelist/logreplayer"
 
 	# grab the zookeeper nodes that are currently available
 	zookeeper_pairs = getZookeeperPairs(node)
@@ -195,7 +195,7 @@ end
 
 #Create collectd plugin for streaminglogreplayer JMX objects if collectd has been applied.
 if node.attribute?("collectd")
-  template "#{node[:collectd][:plugin_conf_dir]}/collectd_kafka-producer.conf" do
+  template "#{node['collectd']['plugin_conf_dir']}/collectd_kafka-producer.conf" do
     source "collectd_kafka-producer.conf.erb"
     owner "root"
     group "root"
