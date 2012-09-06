@@ -28,7 +28,7 @@ end
 
 # fall back to attribs if search doesn't come up with any zookeeper nodes
 if zookeeper_quorum.count == 0
-  node[:zookeeper][:quorum].each do |i|
+  node['zookeeper']['quorum'].each do |i|
     zookeeper_quorum << i
   end
 end
@@ -49,9 +49,9 @@ java_home   = node['java']['java_home']
 java_opts = node['wt_streamingapi']['java_opts']
 user = node['wt_streamingapi']['user']
 group = node['wt_streamingapi']['group']
-pod = node[:wt_realtime_hadoop][:pod]
-datacenter = node[:wt_realtime_hadoop][:datacenter]
-kafka_chroot_suffix = node[:kafka][:chroot_suffix]
+pod = node['wt_realtime_hadoop']['pod']
+datacenter = node['wt_realtime_hadoop']['datacenter']
+kafka_chroot_suffix = node['kafka']['chroot_suffix']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
