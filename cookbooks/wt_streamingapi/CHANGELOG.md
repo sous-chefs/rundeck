@@ -1,3 +1,5 @@
+## 0.0.31
+* Changed usage database credentials source to data bag
 ## 0.0.30
 * Fixed missing logic for the usage database connection
 ## 0.0.29
