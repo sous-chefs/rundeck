@@ -306,10 +306,7 @@
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
             "port": 8080,
             "usagedbserver": "hcamdb01.staging.dmz",
-            "usagedbname": "Streaming",
-            "usagedbuser": "sa",
-            "usagedbpwd": "cad890"
-
+            "usagedbname": "Streaming"
         },
         "wt_streamingauditor": {
             "roundtrip_scs_url": "http://hscs01.staging.dmz:8080",
