@@ -179,6 +179,7 @@ if ENV["deploy_build"] == "true" then
       :user => user
     })
   end
+
 else
   processTemplates(install_dir, node, datacenter, pod)
 end
