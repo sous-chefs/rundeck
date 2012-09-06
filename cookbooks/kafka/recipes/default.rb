@@ -23,8 +23,8 @@ include_recipe "runit"
 
 java_home   = node['java']['java_home']
 
-user = "kafka"
-group = "kafka"
+user = node[:kafka][:user]
+group = node[:kafka][:group]
 
 if node[:kafka][:broker_id].nil? || node[:kafka][:broker_id].empty?
     node[:kafka][:broker_id] = node[:ipaddress].gsub(".","")
@@ -112,7 +112,7 @@ template "#{install_dir}/bin/service-control" do
   mode  00755
   variables({
         :install_dir => install_dir,
-		:log_dir => node[:kafka][:log_dir], 
+		:log_dir => node[:kafka][:log_dir],
         :java_home => java_home,
         :java_jmx_port => 9999,
         :java_class => "kafka.Kafka",
@@ -148,7 +148,7 @@ end
         owner user
         group group
         mode  00755
-        variables({ 
+        variables({
             :kafka => node[:kafka],
             :zookeeper_pairs => zookeeper_pairs,
             :client_port => node[:zookeeper][:client_port]
@@ -185,7 +185,7 @@ runit_service "kafka" do
         :install_dir => install_dir,
         :java_home => java_home,
         :user => user
-      }) 
+      })
 end
 
 #Create collectd plugin for kafka JMX objects if collectd has been applied.
