@@ -106,6 +106,10 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
     auth_url = node['wt_cam']['auth_service_url']
     cam_url = node['wt_cam']['cam_service_url']
     port = node['wt_streamingapi']['port']
+    usagedbserver = node['wt_streamingapi']['usagedbserver']
+    usagedbname = node['wt_streamingapi']['usagedbname']
+    usagedbuser = node['wt_streamingapi']['usagedbuser']
+    usagedbpwd = node['wt_streamingapi']['usagedbpwd']
 
     %w[monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
@@ -120,7 +124,13 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
             :port => port,
             :wt_monitoring => node[:wt_monitoring],
             :writeBufferHighWaterMark => node[:wt_streamingapi][:writeBufferHighWaterMark],
-            :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",            
+            :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}", 
+
+            # usage db parameters
+            :usagedbserver => usagedbserver,
+            :usagedbname => usagedbname,
+            :usagedbuser => usagedbuser,
+            :usagedbpwd => usagedbpwd,
 
             # streaming 0mq parameters
             :zookeeper_quorum => zookeeper_quorum * ",",
