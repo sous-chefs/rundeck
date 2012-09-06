@@ -11,9 +11,9 @@ log_dir      = "#{node['wt_common']['log_dir_linux']}/streaminglogreplayer"
 install_dir  = "#{node['wt_common']['install_dir_linux']}/streaminglogreplayer"
 
 runit_service "streaminglogreplayer" do
-    action :disable
-    run_restart false
-end 
+  action :disable
+  run_restart false
+end
 
 # try to stop the service, but allow a failure without printing the error
 service "streaminglogreplayer" do
