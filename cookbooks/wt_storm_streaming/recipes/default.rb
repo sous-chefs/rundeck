@@ -267,15 +267,3 @@ end
     mode 00644
     end
 end
-
-# template out the metadata loader
-template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/metadata-loader" do
-  source  "metadata-loader.erb"
-  owner "storm"
-  group "storm"
-  mode  00755
-  variables({
-    :home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}",
-    :java_home => node['java']['java_home']
-  })
-end
