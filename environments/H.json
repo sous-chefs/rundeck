@@ -221,7 +221,11 @@
             "config_distrib": "jcd01.englab.webtrends.corp:8097",
             "heatmap_reducers": -1
         },
-        "wt_masterdb": {},
+        "wt_masterdb": {
+            "master_host": "jmasterdb01.englab.webtrends.corp",
+            "master_db": "wtmaster",
+            "sched_host": "jmasterdb01.englab.webtrends.corp"
+        },
         "wt_messaging_monitoring": {},
         "wt_monitoring": {
             "audit_bucket_timespan": 10,
@@ -305,7 +309,7 @@
             "usagedbname": "Streaming",
             "usagedbuser": "sa",
             "usagedbpwd": "cad890"
-            
+
         },
         "wt_streamingauditor": {
             "roundtrip_scs_url": "http://hscs01.staging.dmz:8080",
