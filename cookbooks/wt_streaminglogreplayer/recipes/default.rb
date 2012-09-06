@@ -193,7 +193,7 @@ if ENV["deploy_build"] == "true" then
     })
     end
 else
-    processTemplates(install_dir, node, user, group)
+    processTemplates(install_dir, node, user, group, datacenter, pod)
 end
 
 #Create collectd plugin for streaminglogreplayer JMX objects if collectd has been applied.
