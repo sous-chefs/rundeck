@@ -17,7 +17,7 @@
         "wt_netacuity": "= 1.0.4",
         "wt_realtimeapi": "= 0.0.23",
         "wt_storm": "= 1.0.34",
-        "wt_storm_streaming": "= 2.0.14",
+        "wt_storm_streaming": "= 2.1.0",
 	"wt_storm_realtime": "= 2.1.1",
         "wt_streamingapi": "= 0.0.31",
         "wt_streamingauditor": "= 0.0.14",
@@ -226,6 +226,24 @@
         },
         "wt_rta": {},
         "wt_search": {},
+	"wt_storm_streaming": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt205/31106:id/streaming-analysis-bin.tar.gz",
+            "streaming_topology_augmentation_bolt_count": 10,
+            "streaming_topology_in_session_bolt_count": 1,
+            "streaming_topology_validation_bolt_count": 10,
+            "streaming_topology_zmq_emitter_bolt_count": 1,
+            "topic_list": [
+                "Lab_B_scsRawHits:1",
+                "Lab_B_lrRawHits:1",
+                "Lab_E_scsRawHits:1",
+                "Lab_E_lrRawHits:1",
+                "Lab_L_scsRawHits:1",
+                "Lab_L_lrRawHits:1"
+            ],
+            "worker": {
+                "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+            }       
+        },
         "wt_storm": {
             "dcsid_whitelist": "",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/24696:id/streaming-analysis-bin.tar.gz",
@@ -243,22 +261,6 @@
                 ],
                 "topology_override_max_spout_pending": 3000,
                 "topology_override_msg_timeout_seconds": 120,
-                "worker": {
-                    "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
-                }
-            },
-            "streaming_topology": {
-                "streaming_topology_augmentation_bolt_count": 10,
-                "streaming_topology_in_session_bolt_count": 1,
-                "streaming_topology_parsing_bolt_count": 50,
-                "streaming_topology_validation_bolt_count": 10,
-                "streaming_topology_zmq_emitter_bolt_count": 1,
-                "topic_list": [
-                    "Lab_E_scsRawHits:0",
-                    "Lab_E_lrRawHits:0",
-                    "Lab_B_scsRawHits:0",
-                    "Lab_B_lrRawHits:0"
-                ],
                 "worker": {
                     "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
                 }
