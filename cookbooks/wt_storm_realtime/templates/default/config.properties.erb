@@ -1,17 +1,16 @@
+debug=<%= @debug %>
 datacenter=<%= @datacenter %>
 pod=<%= @pod %>
 kafka.host=<%= @kafka %>
 geo.host=<%= @netacuity %>
-debug=<%= @debug %>
-# config service (replaced the config distrib+cam impl)
-cs.url=<%= @configservice %>/dcsid/streaming
+cs.url=<%= @configservice %>/dcsid/realtime
 
 # Kafka consumer parameters
 kafka.zookeeper.quorum=<%= @kafka_zookeeper_quorum %>
 kafka.zookeeper.timeout.milliseconds=<%= @kafka_zookeeper_timeout_milliseconds %>
 kafka.consumer.topic=<%= @kafka_consumer_topic %>
 kafka.consumer.group.id=<%= @kafka_consumer_group_id %>
-
+kafka.dcsid.whitelist=<%= @kafka_dcsid_whitelist %>
 
 # Hbase and zookeeper parameters
 hbase.pool.size=80
@@ -19,7 +18,7 @@ hbase.zookeeper.quorum=<%= @zookeeper_quorum  %><%= @zookeeper_quorum_path %>
 hbase.zookeeper.property.clientPort=<%=@zookeeper_clientport%>
 
 # Topology should be streaming or realtime
-topology=<%= @topology %>
+topology=realtime-topology
 
 # Overrides settings in storm.yaml and is different between
 # realtime and streaming
@@ -30,14 +29,6 @@ topology.override.msg.timeout.seconds=<%= @topology_override_msg_timeout_seconds
 realtime.topology.parsing.bolt.count=<%= @realtime_topology_parsing_bolt_count %>
 realtime.topology.writing.bolt.count=<%= @realtime_topology_writing_bolt_count %>
 realtime.topology.dimensions.bolt.count=<%= @realtime_topology_dimensions_bolt_count %>
-
-# Streaming parameters, should have blank values in streaming
-streaming.topology.parsing.bolt.count=<%= @streaming_topology_parsing_bolt_count %>
-streaming.topology.in.session.bolt.count=<%= @streaming_topology_in_session_bolt_count %>
-streaming.topology.zmq.emitter.bolt.count=<%= @streaming_topology_zmq_emitter_bolt_count %>
-streaming.topology.zmq.emitter.znodeRoot=/StreamingZMQ
-streaming.topology.validation.bolt.count=<%= @streaming_topology_validation_bolt_count %>
-streaming.topology.augmentation.bolt.count=<%= @streaming_topology_augmentation_bolt_count %>
 
 # Zookeeper connection info (use this or audit.broker.list)
 audit.zk.connect=<%= @zookeeper_pairs %>
