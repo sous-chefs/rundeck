@@ -228,7 +228,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :topology_override_max_spout_pending     => node['wt_storm_realtime']['topology_override_max_spout_pending'],
     :topology_override_msg_timeout_seconds   => node['wt_storm_realtime']['topology_override_msg_timeout_seconds'],
     # kafka consumer settings
-    :kafka_consumer_topic                 => node['wt_storm_streaming']['topic_list'].join(','),
+    :kafka_consumer_topic                 => node['wt_storm_realtime']['topic_list'].join(','),
     :kafka_zookeeper_quorum               => zookeeper_quorum_kafka * ",",
     :kafka_consumer_group_id              => 'kafka-realtime',
     :kafka_zookeeper_timeout_milliseconds => 1000000,
