@@ -6,6 +6,19 @@
 # Copyright 2012, Webtrends Inc.
 #
 
+# wt specific parameters
+default['wt_storm_realtime']['download_url'] = ""
+default['wt_storm_realtime']['realtime_topology_dimensions_bolt_count'] = 6
+default['wt_storm_realtime']['realtime_topology_parsing_bolt_count'] = 3
+default['wt_storm_realtime']['realtime_topology_writing_bolt_count'] = 48
+
+default['wt_storm_realtime']['topology_override_max_spout_pending'] = 3000
+default['wt_storm_realtime']['topology_override_msg_timeout_seconds'] = 120
+default['wt_storm_realtime']['topic_list'] = []
+
+# debug setting, setting this to true in a pod would run the system on only one host
+default['wt_storm_realtime']['debug'] = false
+
 # general storm attributes
 default['wt_storm_realtime']['java_lib_path'] = "/usr/local/lib:/opt/local/lib:/usr/lib"
 default['wt_storm_realtime']['local_dir'] = "/mnt/storm"
