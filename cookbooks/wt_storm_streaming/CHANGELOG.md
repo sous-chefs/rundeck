@@ -1,3 +1,6 @@
+## 2.1.0
+* Added new version to fully separate out "storm streaming" and "storm realtime"
+
 ## 2.0.14
 * Added cam url
 
