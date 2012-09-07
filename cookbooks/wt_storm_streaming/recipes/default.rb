@@ -23,6 +23,7 @@ include_recipe "storm"
 download_url = node['wt_storm_streaming']['download_url']
 install_tmp = '/tmp/wt_storm_install'
 tarball = 'streaming-analysis-bin.tar.gz'
+nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
 
 # grab the zookeeper port number if specified
 zookeeper_clientport = node['zookeeper']['client_port']
@@ -48,9 +49,8 @@ datacenter = node[:wt_realtime_hadoop][:datacenter]
 
 # Perform some really funky overrides that should never be done and need to be removed
 node['wt_storm_streaming']['zookeeper_quorum'] = zookeeper_quorum
-node['wt_storm_streaming']['zookeeper']['port'] = node['zookeeper']['client_port']
-node['wt_storm_streaming']['nimbus']['host'] = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
-node['wt_storm_streaming']['worker']['childopts'] = node['wt_storm_streaming']['worker']['childopts']
+node['wt_storm_streaming']['zookeeper']['port'] = zookeeper_clientport
+node['wt_storm_streaming']['nimbus']['host'] = nimbus_host
 node['wt_storm_streaming']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-streaming"
 node['wt_storm_streaming']['transactional']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-streaming-transactional"
 
@@ -251,16 +251,16 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
 end
 
 %w{
-'botIP.csv'
-'asn_org.csv'
-'conn_speed_code.csv'
-'city_codes.csv'
-'country_codes.csv'
-'metro_codes.csv'
-'region_codes.csv'
-'keywords.ini'
-'device-atlas-20120813.json'
-'browsers.ini'
+botIP.csv
+asn_org.csv
+conn_speed_code.csv
+city_codes.csv
+country_codes.csv
+metro_codes.csv
+region_codes.csv
+keywords.ini
+device-atlas-20120813.json
+browsers.ini
 }.each do |ini_file|
     cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/#{ini_file}" do
     source ini_file
