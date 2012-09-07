@@ -174,7 +174,7 @@
         },
         "wt_analytics_ui": {},
         "wt_cam_db" : {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/CAMBUILDID/CAMCONFIGID:id/artifacts.zip"i
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/CAMBUILDID/CAMCONFIGID:id/artifacts.zip"
         },
         "wt_cam": {
             "auth_port": 8081,
