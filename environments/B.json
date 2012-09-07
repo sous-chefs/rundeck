@@ -18,7 +18,7 @@
         "wt_realtimeapi": "= 0.0.23",
         "wt_storm": "= 1.0.34",
         "wt_storm_streaming": "= 2.0.14",
-	"wt_storm_realtime": "= 2.0.10",
+	"wt_storm_realtime": "= 2.1.1",
         "wt_streamingapi": "= 0.0.30",
         "wt_streamingauditor": "= 0.0.14",
         "wt_streamingcollection": "= 0.0.26",
@@ -264,10 +264,27 @@
                 }
             }
         },
-        "wt_storm_realtime": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt205/30561:id/streaming-analysis-bin.tar.gz"
+	"wt_storm_realtime": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt205/31032:id/streaming-analysis-bin.tar.gz",
+            "dcsid_whitelist": "dcsyzsuwrvz5bdv8tcntgzutq_9g1b,dcspqo4cm10000s1g3ohltw6k_8h8m,dcse1dpwv00000cdisgddy37k_8u5q,dcs34vb8400000kjwxl69ttnn_7n2v,$
+            "realtime_topology_dimensions_bolt_count": 6,
+            "realtime_topology_parsing_bolt_count": 3,
+            "realtime_topology_writing_bolt_count": 48,
+            "topic_list": [
+                "Lab_G_scsRawHits:1",
+                "Lab_G_lrRawHits:1",
+                "Lab_H_scsRawHits:1",
+                "Lab_H_lrRawHits:1",
+                "Lab_M_scsRawHits:1",
+                "Lab_M_lrRawHits:1"
+            ],
+            "topology_override_max_spout_pending": 3000,
+            "topology_override_msg_timeout_seconds": 120,
+            "worker": {
+                "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+            }
         },
-        "wt_storm_streaming": {
+	"wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt205/30561:id/streaming-analysis-bin.tar.gz"
         },
         "wt_streamingapi": {
