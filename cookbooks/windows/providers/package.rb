@@ -120,7 +120,7 @@ def install_package(name,version)
   Chef::Log.debug("Processing #{@new_resource} as a #{installer_type} installer.")
   install_args = [cached_file(@new_resource.source, @new_resource.checksum), expand_options(unattended_installation_flags), expand_options(@new_resource.options)]
   Chef::Log.info("Starting installation...this could take awhile.")
-  shell_out!(sprintf(install_command_template, *install_args), {:returns => [0,42,127]})
+  shell_out!(sprintf(install_command_template, *install_args), {:timeout => @new_resource.timeout, :returns => [0,42,127]})
 end
 
 def remove_package(name, version)
@@ -131,7 +131,7 @@ def remove_package(name, version)
       "#{uninstall_string} /qn"
     else
       uninstall_string.gsub!('"','')
-      "start /wait /d\"#{::File.dirname(uninstall_string)}\" #{::File.basename(uninstall_string)}#{expand_options(@new_resource.options)} /S"
+      "start \"\" /wait /d\"#{::File.dirname(uninstall_string)}\" #{::File.basename(uninstall_string)}#{expand_options(@new_resource.options)} /S"
     end
   end
   Chef::Log.info("Removing #{@new_resource} with uninstall command '#{uninstall_command}'")
@@ -145,7 +145,7 @@ def install_command_template
   when :msi
     "msiexec%2$s %1$s%3$s"
   else
-    "start /wait %1$s%2$s%3$s"
+    "start \"\" /wait %1$s%2$s%3$s"
   end
 end
 
@@ -154,7 +154,7 @@ def uninstall_command_template
   when :msi
     "msiexec %2$s %1$s"
   else
-    "start /wait /d\"%1$s\" %2$s %3$s"
+    "start \"\" /wait /d%1$s %2$s %3$s"
   end
 end
 
@@ -180,24 +180,24 @@ def installed_packages
   @installed_packages || begin
     installed_packages = {}
     # Computer\HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall
-    installed_packages.merge!(extract_installed_packages_from_key(Win32::Registry::HKEY_LOCAL_MACHINE)) #rescue nil
+    installed_packages.merge!(extract_installed_packages_from_key(::Win32::Registry::HKEY_LOCAL_MACHINE)) #rescue nil
     # 64-bit registry view
     # Computer\HKEY_LOCAL_MACHINE\Software\Wow6464Node\Microsoft\Windows\CurrentVersion\Uninstall
-    installed_packages.merge!(extract_installed_packages_from_key(Win32::Registry::HKEY_LOCAL_MACHINE, (Win32::Registry::Constants::KEY_READ | 0x0100))) #rescue nil
+    installed_packages.merge!(extract_installed_packages_from_key(::Win32::Registry::HKEY_LOCAL_MACHINE, (::Win32::Registry::Constants::KEY_READ | 0x0100))) #rescue nil
     # 32-bit registry view
     # Computer\HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall
-    installed_packages.merge!(extract_installed_packages_from_key(Win32::Registry::HKEY_LOCAL_MACHINE, (Win32::Registry::Constants::KEY_READ | 0x0200))) #rescue nil
+    installed_packages.merge!(extract_installed_packages_from_key(::Win32::Registry::HKEY_LOCAL_MACHINE, (::Win32::Registry::Constants::KEY_READ | 0x0200))) #rescue nil
     # Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall
-    installed_packages.merge!(extract_installed_packages_from_key(Win32::Registry::HKEY_CURRENT_USER)) #rescue nil
+    installed_packages.merge!(extract_installed_packages_from_key(::Win32::Registry::HKEY_CURRENT_USER)) #rescue nil
     installed_packages
   end
 end
 
-def extract_installed_packages_from_key(hkey = Win32::Registry::HKEY_LOCAL_MACHINE, desired = Win32::Registry::Constants::KEY_READ)
+def extract_installed_packages_from_key(hkey = ::Win32::Registry::HKEY_LOCAL_MACHINE, desired = ::Win32::Registry::Constants::KEY_READ)
   uninstall_subkey = 'Software\Microsoft\Windows\CurrentVersion\Uninstall'
   packages = {}
   begin
-    Win32::Registry.open(hkey, uninstall_subkey, desired) do |reg|
+    ::Win32::Registry.open(hkey, uninstall_subkey, desired) do |reg|
       reg.each_key do |key, wtime|
         begin
           k = reg.open(key, desired)
@@ -209,11 +209,11 @@ def extract_installed_packages_from_key(hkey = Win32::Registry::HKEY_LOCAL_MACHI
                                       :version => version,
                                       :uninstall_string => uninstall_string}
           end
-        rescue Win32::Registry::Error
+        rescue ::Win32::Registry::Error
         end
       end
     end
-  rescue Win32::Registry::Error
+  rescue ::Win32::Registry::Error
   end
   packages
 end
