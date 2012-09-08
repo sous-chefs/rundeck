@@ -1,3 +1,6 @@
+# 2.1.1
+* Modified cs.url and added back whitelist setting
+
 # 2.1.0
 * Finished splitting storm_streaming and storm_realtime
 
