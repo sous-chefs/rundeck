@@ -8,6 +8,6 @@ fi
 
 logger -s "zkRollSnapshot"
 
-<%= node[:zookeeper][:install_dir] %>/current/bin/zkCleanup.sh  <%= node[:zookeeper][:data_dir] %> <%= node[:zookeeper][:snapshot_dir] %> <%= node[:zookeeper][:snapshot_num] %>
+<%= node.zookeeper_attrib(:install_dir) %>/current/bin/zkCleanup.sh  <%= node.zookeeper_attrib(:data_dir) %> <%= node.zookeeper_attrib(:snapshot_dir) %> <%= node.zookeeper_attrib(:snapshot_num) %>
 
 exit 0

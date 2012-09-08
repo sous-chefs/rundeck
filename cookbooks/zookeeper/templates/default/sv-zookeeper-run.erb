@@ -21,7 +21,7 @@ else
 	ZOOMAIN="org.apache.zookeeper.server.quorum.QuorumPeerMain"
 fi
 
-ZOOBINDIR=<%= node[:zookeeper][:install_dir] %>/current/bin
+ZOOBINDIR=<%= node.zookeeper_attrib(:install_dir) %>/current/bin
 
 . "$ZOOBINDIR"/zkEnv.sh
 

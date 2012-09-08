@@ -1,3 +1,7 @@
+## 1.0.11
+* Allow changing the Kafka local user / group
+* Log4J logging levels are now controlled via log4j_logging_level attribute
+
 ## 1.0.10
 * Remove broker chroot prefix from zk.connect string
 

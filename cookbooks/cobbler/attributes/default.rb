@@ -5,6 +5,14 @@
 #
 # Copyright 2012, Webtrends Inc.
 #
+
+# distribute addresses via dhcp with cobbler
 default[:cobbler][:manage_dhcp] = 0
-default[:cobbler][:pxe_just_once] = 0
+
+# subnets that cobbler manages systems on
 default[:cobbler][:subnets] = {}
+
+
+# once a system has pxe booted disable the flag to PXE boot again
+default[:cobbler][:pxe_just_once] = 0
+

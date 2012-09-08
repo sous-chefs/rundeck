@@ -17,31 +17,43 @@
 # limitations under the License.
 #
 
-include_recipe "hadoop"
+include_recipe 'hadoop'
 
-directory "/var/lib/hadoop/hdfs/namenode/current" do
-	owner "hadoop"
-	group "hadoop"
+name_dir_current = File.join(node.hadoop_attrib(:dfs, :name_dir), 'current')
+
+directory name_dir_current do
+	owner 'hadoop'
+	group 'hadoop'
 	mode 00755
 	recursive true
 	action :create
 end
 
-# Create the mapred.exclude file for decommissioning nodes if it doesn't exist
-file "/etc/hadoop/mapred.exclude" do
-  owner "root"
-  group "root"
-  mode 00755
-  action :create_if_missing
+# correct permissions 
+execute 'chown namenode' do
+	d = File.expand_path('..', node.hadoop_attrib(:dfs, :name_dir))
+	command "chown -R hadoop:hadoop #{d}"
+	only_if do
+		f = File.stat(d)
+		f.uid == 0 || f.gid == 0
+	end
 end
 
-#Create collectd plugin for hadoop name node if collectd has been applied.
-if node.attribute?("collectd")
-  template "#{node[:collectd][:plugin_conf_dir]}/collectd_hadoop_NameNode.conf" do
-    source "collectd_hadoop_NameNode.conf.erb"
-    owner "root"
-    group "root"
-    mode 00644
-    notifies :restart, resources(:service => "collectd")
-  end
+# Create the mapred.exclude file for decommissioning nodes if it doesn't exist
+file '/etc/hadoop/mapred.exclude' do
+	owner 'root'
+	group 'root'
+	mode 00755
+	action :create_if_missing
+end
+
+# Create collectd plugin for hadoop name node if collectd has been applied.
+if node.attribute?('collectd')
+	template "#{node[:collectd][:plugin_conf_dir]}/collectd_hadoop_NameNode.conf" do
+		source 'collectd_hadoop_NameNode.conf.erb'
+		owner 'root'
+		group 'root'
+		mode 00644
+		notifies :restart, resources(:service => 'collectd')
+	end
 end
