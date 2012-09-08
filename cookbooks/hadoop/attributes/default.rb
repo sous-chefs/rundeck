@@ -5,50 +5,55 @@
 # Copyright 2012, Webtrends Inc.
 #
 
-default[:hadoop][:version] = "1.0.3"
-default[:hadoop][:install_dir] = "/usr/share/hadoop"
+# cluster name
+default[:hadoop][:cluster_name] = 'default'
+
+# hadoop cluster attributes
+default[:hadoop][:default][:version] = '1.0.3-1'
+default[:hadoop][:default][:install_dir] = '/usr/share/hadoop'
 
 
 # hdfs-site.xml
 # see: http://hadoop.apache.org/common/docs/current/hdfs-default.html
-default[:hadoop][:dfs][:block_size] = 67108864
-default[:hadoop][:dfs][:name_dir] = "/var/lib/hadoop/hdfs/namenode"
-default[:hadoop][:dfs][:data_dir] = "/data/hadoop/hdfs/datanode"
-default[:hadoop][:dfs][:datanode_handler_count] = 3
-default[:hadoop][:dfs][:namenode_handler_count] = 10
-default[:hadoop][:dfs][:datanode_du_reserved] = 0
-default[:hadoop][:dfs][:replication] = 3
-default[:hadoop][:dfs][:permissions] = "true"
-default[:hadoop][:dfs][:datanode_max_xcievers] = 4096
+default[:hadoop][:default][:dfs][:block_size] = 67108864
+default[:hadoop][:default][:dfs][:name_dir] = '/var/lib/hadoop/hdfs/namenode'
+default[:hadoop][:default][:dfs][:data_dir] = '/data/hadoop/hdfs/datanode'
+default[:hadoop][:default][:dfs][:datanode_handler_count] = 3
+default[:hadoop][:default][:dfs][:namenode_handler_count] = 10
+default[:hadoop][:default][:dfs][:datanode_du_reserved] = 0
+default[:hadoop][:default][:dfs][:replication] = 3
+default[:hadoop][:default][:dfs][:permissions] = 'true'
+default[:hadoop][:default][:dfs][:datanode_max_xcievers] = 4096
 
 
 # mapred-site.xml
 # see: http://hadoop.apache.org/common/docs/current/mapred-default.html
-default[:hadoop][:mapred][:child_java_opts] = "-server -Xmx640m -Djava.net.preferIPv4Stack=true"
-default[:hadoop][:mapred][:job_tracker_handler_count] = 10
-default[:hadoop][:mapred][:reduce_tasks] = 1
-default[:hadoop][:mapred][:local_dir] = "${hadoop.tmp.dir}/mapred/local"
-default[:hadoop][:mapred][:non_datanode_local_dir] = "${hadoop.tmp.dir}/mapred/local"
-default[:hadoop][:mapred][:tasktracker_map_tasks_maximum] = 2
-default[:hadoop][:mapred][:tasktracker_reduce_tasks_maximum] = 2
-default[:hadoop][:mapred][:child_ulimit] = "8388608"
-default[:hadoop][:mapred][:map_tasks_speculative_execution] = "false"
-default[:hadoop][:mapred][:reduce_tasks_speculative_execution] =  "false"
-default[:hadoop][:mapred][:job_reuse_jvm_num_tasks] = 1
-default[:hadoop][:mapred][:io_sort_factor] = 10
-default[:hadoop][:mapred][:io_sort_mb] = 100
-default[:hadoop][:mapred][:submit_replication] = 10
+default[:hadoop][:default][:mapred][:child_java_opts] = '-server -Xmx640m -Djava.net.preferIPv4Stack=true'
+default[:hadoop][:default][:mapred][:job_tracker_handler_count] = 10
+default[:hadoop][:default][:mapred][:reduce_tasks] = 1
+default[:hadoop][:default][:mapred][:local_dir] = '${hadoop.tmp.dir}/mapred/local'
+default[:hadoop][:default][:mapred][:non_datanode_local_dir] = '${hadoop.tmp.dir}/mapred/local'
+default[:hadoop][:default][:mapred][:tasktracker_map_tasks_maximum] = 2
+default[:hadoop][:default][:mapred][:tasktracker_reduce_tasks_maximum] = 2
+default[:hadoop][:default][:mapred][:child_ulimit] = 8388608
+default[:hadoop][:default][:mapred][:map_tasks_speculative_execution] = 'false'
+default[:hadoop][:default][:mapred][:reduce_tasks_speculative_execution] =  'false'
+default[:hadoop][:default][:mapred][:job_reuse_jvm_num_tasks] = 1
+default[:hadoop][:default][:mapred][:io_sort_factor] = 10
+default[:hadoop][:default][:mapred][:io_sort_mb] = 100
+default[:hadoop][:default][:mapred][:submit_replication] = 10
 
 
 # core-site.xml
 # see: http://hadoop.apache.org/common/docs/current/core-default.html
-default[:hadoop][:core][:io_file_buffer_size] = 4096
-default[:hadoop][:core][:fs_checkpoint_dir] = "/var/lib/hadoop/hdfs/backupnamenode"
-default[:hadoop][:core][:fs_checkpoint_period] = 3600
-default[:hadoop][:core][:fs_trash_interval] = 360
+default[:hadoop][:default][:core][:io_file_buffer_size] = 4096
+default[:hadoop][:default][:core][:fs_checkpoint_dir] = '/var/lib/hadoop/hdfs/backupnamenode'
+default[:hadoop][:default][:core][:fs_checkpoint_period] = 3600
+default[:hadoop][:default][:core][:fs_trash_interval] = 360
 
 
 # hadoop-env.sh
-default[:hadoop][:env][:HADOOP_HEAPSIZE] = 1000
-default[:hadoop][:env][:java_net_preferIPv4Stack] = "true"
-default[:hadoop][:env][:HADOOP_OPTS] = ""
+default[:hadoop][:default][:env][:HADOOP_HEAPSIZE] = 1000
+default[:hadoop][:default][:env][:java_net_preferIPv4Stack] = 'true'
+default[:hadoop][:default][:env][:HADOOP_OPTS] = ''
+

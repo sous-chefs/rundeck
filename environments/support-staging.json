@@ -4,9 +4,9 @@
         "cassandra": "= 1.0.10", 
         "cobbler": "= 0.0.1", 
         "graphite": "= 0.3.0", 
-        "hadoop": "= 1.0.7", 
-        "hbase": "= 1.0.7", 
-        "hive": "= 1.0.5", 
+        "hadoop": "= 1.1.0", 
+        "hbase": "= 1.1.0", 
+        "hive": "= 1.1.0", 
         "java": "= 1.5.2", 
         "memcached": "= 1.0.2", 
         "nagios": "= 1.6.0", 
@@ -14,7 +14,7 @@
         "rundeck": "= 1.0.4", 
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
-        "zookeeper": "= 1.0.4"
+        "zookeeper": "= 1.1.0"
     }, 
     "default_attributes": {
         "authorization": {
@@ -53,58 +53,40 @@
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
         "hadoop": {
-            "core": {
-                "fs_checkpoint_dir": "/var/lib/hadoop/hdfs/backupnamenode", 
-                "fs_checkpoint_period": 900, 
-                "fs_trash_interval": 360, 
-                "io_file_buffer_size": 4096
-            }, 
-            "dfs": {
-                "block_size": 67108864, 
-                "data_dir": "/mnt/hdfs/hdfs01/data1/hdfs,/mnt/hdfs/hdfs01/data2/hdfs,/mnt/hdfs/hdfs01/data3/hdfs,/mnt/hdfs/hdfs01/data4/hdfs,/mnt/hdfs/hdfs01/data5/hdfs,/mnt/hdfs/hdfs01/data6/hdfs,/mnt/hdfs/hdfs01/data7/hdfs,/mnt/hdfs/hdfs01/data8/hdfs,/mnt/hdfs/hdfs01/data9/hdfs,/mnt/hdfs/hdfs01/data10/hdfs,/mnt/hdfs/hdfs01/data11/hdfs,/mnt/hdfs/hdfs01/data12/hdfs", 
-                "datanode_du_reserved": 10485760, 
-                "datanode_handler_count": 3, 
-                "datanode_max_xcievers": 4096, 
-                "name_dir": "/var/lib/hadoop/hdfs/namenode", 
-                "namenode_handler_count": 10, 
-                "permissions": "true", 
-                "replication": 3
-            }, 
-            "env": {
-                "HADOOP_HEAPSIZE": 2000, 
-                "HADOOP_OPTS": "", 
-                "java_net_preferIPv4Stack": "true"
-            }, 
-            "mapred": {
-                "child_java_opts": "-server -Xmx640m -Djava.net.preferIPv4Stack=true", 
-                "child_ulimit": 8388608, 
-                "io_sort_factor": 10, 
-                "io_sort_mb": 100, 
-                "job_reuse_jvm_num_tasks": 1, 
-                "job_tracker_handler_count": 10, 
-                "local_dir": "/mnt/hdfs/hdfs01/data1/mapred,/mnt/hdfs/hdfs01/data2/mapred,/mnt/hdfs/hdfs01/data3/mapred,/mnt/hdfs/hdfs01/data4/mapred,/mnt/hdfs/hdfs01/data5/mapred,/mnt/hdfs/hdfs01/data6/mapred,/mnt/hdfs/hdfs01/data7/mapred,/mnt/hdfs/hdfs01/data8/mapred,/mnt/hdfs/hdfs01/data9/mapred,/mnt/hdfs/hdfs01/data10/mapred,/mnt/hdfs/hdfs01/data11/mapred,/mnt/hdfs/hdfs01/data12/mapred", 
-                "map_tasks_speculative_execution": "false", 
-                "reduce_tasks": 26, 
-                "reduce_tasks_speculative_execution": "false", 
-                "submit_replication": 3, 
-                "tasktracker_map_tasks_maximum": 6, 
-                "tasktracker_reduce_tasks_maximum": 3
+            "default": {
+                "core": {
+                    "fs_checkpoint_period": 900
+                }, 
+                "dfs": {
+                    "data_dir": "/mnt/hdfs/hdfs01/data1/hdfs,/mnt/hdfs/hdfs01/data2/hdfs,/mnt/hdfs/hdfs01/data3/hdfs,/mnt/hdfs/hdfs01/data4/hdfs,/mnt/hdfs/hdfs01/data5/hdfs,/mnt/hdfs/hdfs01/data6/hdfs,/mnt/hdfs/hdfs01/data7/hdfs,/mnt/hdfs/hdfs01/data8/hdfs,/mnt/hdfs/hdfs01/data9/hdfs,/mnt/hdfs/hdfs01/data10/hdfs,/mnt/hdfs/hdfs01/data11/hdfs,/mnt/hdfs/hdfs01/data12/hdfs", 
+                    "datanode_du_reserved": 10485760
+                }, 
+                "env": {
+                    "HADOOP_HEAPSIZE": 2000
+                }, 
+                "mapred": {
+                    "local_dir": "/mnt/hdfs/hdfs01/data1/mapred,/mnt/hdfs/hdfs01/data2/mapred,/mnt/hdfs/hdfs01/data3/mapred,/mnt/hdfs/hdfs01/data4/mapred,/mnt/hdfs/hdfs01/data5/mapred,/mnt/hdfs/hdfs01/data6/mapred,/mnt/hdfs/hdfs01/data7/mapred,/mnt/hdfs/hdfs01/data8/mapred,/mnt/hdfs/hdfs01/data9/mapred,/mnt/hdfs/hdfs01/data10/mapred,/mnt/hdfs/hdfs01/data11/mapred,/mnt/hdfs/hdfs01/data12/mapred", 
+                    "reduce_tasks": 26, 
+                    "submit_replication": 3, 
+                    "tasktracker_map_tasks_maximum": 6, 
+                    "tasktracker_reduce_tasks_maximum": 3
+                }
             }
         }, 
         "hbase": {
-            "env": {
-                "HBASE_HEAPSIZE": 4000, 
-                "HBASE_MANAGES_ZK": "false"
-            }, 
-            "site": {
-                "zookeeper_clientport": 2181, 
-                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
+            "default": {
+                "env": {
+                    "HBASE_HEAPSIZE": 4000, 
+                    "HBASE_MANAGES_ZK": "false"
+                }
             }
         }, 
         "hive": {
-            "metastore": {
-                "connection_url": "jdbc:sqlserver://shivemeta01.staging.dmz;databaseName=hivemeta", 
-                "connector": "sqlserver"
+            "default": {
+                "metastore": {
+                    "connection_url": "jdbc:sqlserver://shivemeta01.staging.dmz;databaseName=hivemeta", 
+                    "connector": "sqlserver"
+                }
             }
         }, 
         "java": {
@@ -235,6 +217,34 @@
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
+        "webtrends_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
+                }, 
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution_suffix": "-0.10", 
+                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
+                    "name": "wtlab-opscode", 
+                    "url": "http://repo.staging.dmz/repo/apt/opscode"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
+                }
+            ]
+        }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "config_dir_linux": "/etc/webtrends/", 
@@ -261,16 +271,10 @@
             "epel_release": "6-7"
         }, 
         "zookeeper": {
-            "client_port": 2181, 
-            "init_limit": 10, 
-            "quorum": [
-                "szoo01.staging.dmz", 
-                "szoo02.staging.dmz", 
-                "szoo03.staging.dmz"
-            ], 
-            "snapshot_num": 3, 
-            "sync_limit": 5, 
-            "tick_time": 2000
+            "default": {
+                "download_url": "http://repo.staging.dmz/repo/linux/zookeeper/zookeeper-3.3.5.tar.gz", 
+                "version": "3.3.5"
+            }
         }
     }, 
     "description": "Staging Support Servers", 

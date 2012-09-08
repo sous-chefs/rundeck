@@ -23,6 +23,7 @@ include_recipe "storm"
 download_url = node['wt_storm_streaming']['download_url']
 install_tmp = '/tmp/wt_storm_install'
 tarball = 'streaming-analysis-bin.tar.gz'
+nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
 
 # grab the zookeeper port number if specified
 zookeeper_clientport = node['zookeeper']['client_port']
@@ -48,9 +49,8 @@ datacenter = node[:wt_realtime_hadoop][:datacenter]
 
 # Perform some really funky overrides that should never be done and need to be removed
 node['wt_storm_streaming']['zookeeper_quorum'] = zookeeper_quorum
-node['wt_storm_streaming']['zookeeper']['port'] = node['zookeeper']['client_port']
-node['wt_storm_streaming']['nimbus']['host'] = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
-node['wt_storm_streaming']['worker']['childopts'] = node['wt_storm']['streaming_topology']['worker']['childopts']
+node['wt_storm_streaming']['zookeeper']['port'] = zookeeper_clientport
+node['wt_storm_streaming']['nimbus']['host'] = nimbus_host
 node['wt_storm_streaming']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-streaming"
 node['wt_storm_streaming']['transactional']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-streaming-transactional"
 
@@ -216,14 +216,12 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
-    :topology                                    => "streaming-topology",
-    :streaming_topology_parsing_bolt_count       => node['wt_storm']['streaming_topology']['streaming_topology_parsing_bolt_count'],
-    :streaming_topology_in_session_bolt_count    => node['wt_storm']['streaming_topology']['streaming_topology_in_session_bolt_count'],
-    :streaming_topology_zmq_emitter_bolt_count   => node['wt_storm']['streaming_topology']['streaming_topology_zmq_emitter_bolt_count'],
-    :streaming_topology_validation_bolt_count    => node['wt_storm']['streaming_topology']['streaming_topology_validation_bolt_count'],
-    :streaming_topology_augmentation_bolt_count  => node['wt_storm']['streaming_topology']['streaming_topology_augmentation_bolt_count'],
+    :streaming_topology_in_session_bolt_count    => node['wt_storm_streaming']['streaming_topology_in_session_bolt_count'],
+    :streaming_topology_zmq_emitter_bolt_count   => node['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'],
+    :streaming_topology_validation_bolt_count    => node['wt_storm_streaming']['streaming_topology_validation_bolt_count'],
+    :streaming_topology_augmentation_bolt_count  => node['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'],
     # kafka consumer settings
-    :kafka_consumer_topic                 => node['wt_storm']['streaming_topology']['topic_list'].join(','),
+    :kafka_consumer_topic                 => node['wt_storm_streaming']['topic_list'].join(','),
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
     :kafka_consumer_group_id              => 'kafka-streaming',
     :kafka_zookeeper_timeout_milliseconds => 1000000,
@@ -231,15 +229,15 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :zookeeper_quorum      => zookeeper_quorum * ",",
     :zookeeper_clientport  => zookeeper_clientport,
     :zookeeper_pairs       => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
-    :configservice         => node[:wt_streamingconfigservice][:config_service_url],
-    :netacuity             => node[:wt_netacuity][:geo_url],
-    :kafka                 => kafka[:fqdn],
+    :configservice         => node['wt_streamingconfigservice']['config_service_url'],
+    :netacuity             => node['wt_netacuity']['geo_url'],
+    :kafka                 => kafka['fqdn'],
     :pod                   => pod,
     :datacenter            => datacenter,
-    :debug                 => node[:wt_storm][:debug],
-    :audit_bucket_timespan => node[:wt_monitoring][:audit_bucket_timespan],
-    :audit_topic           => node[:wt_monitoring][:audit_topic],
-    :cam_url              => node['wt_cam']['cam_service_url']
+    :debug                 => node['wt_storm_streaming']['debug'],
+    :audit_bucket_timespan => node['wt_monitoring']['audit_bucket_timespan'],
+    :audit_topic           => node['wt_monitoring']['audit_topic'],
+    :cam_url               => node['wt_cam']['cam_service_url']
   )
 end
 
@@ -252,57 +250,20 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   )
 end
 
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/botIP.csv" do
-  source "botIP.csv"
-  mode 00644
-end
-
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/asn_org.csv" do
-  source "asn_org.csv"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/conn_speed_code.csv" do
-  source "conn_speed_code.csv"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/city_codes.csv" do
-  source "city_codes.csv"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/country_codes.csv" do
-  source "country_codes.csv"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/metro_codes.csv" do
-  source "metro_codes.csv"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/region_codes.csv" do
-  source "region_codes.csv"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/keywords.ini" do
-  source "keywords.ini"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/device-atlas-20120813.json" do
-  source "device-atlas-20120813.json"
-  mode 00644
-end
-cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/browsers.ini" do
-  source "browsers.ini"
-  mode 00644
-end
-
-
-# template out the metadata loader
-template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/bin/metadata-loader" do
-  source  "metadata-loader.erb"
-  owner "storm"
-  group "storm"
-  mode  00755
-  variables({
-    :home_dir  => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}",
-    :java_home => node['java']['java_home']
-  })
+%w{
+botIP.csv
+asn_org.csv
+conn_speed_code.csv
+city_codes.csv
+country_codes.csv
+metro_codes.csv
+region_codes.csv
+keywords.ini
+device-atlas-20120813.json
+browsers.ini
+}.each do |ini_file|
+    cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/#{ini_file}" do
+    source ini_file
+    mode 00644
+    end
 end

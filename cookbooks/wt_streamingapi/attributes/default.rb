@@ -13,5 +13,10 @@ default['wt_streamingapi']['download_url']             = "http://teamcity.webtre
 default['wt_streamingapi']['port']                     = "8080"
 default['wt_streamingapi']['java_opts']                = "-Xms2048m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true"
 default['wt_streamingapi']['writeBufferHighWaterMark'] = 1048576
+default['wt_streamingapi']['usagedbserver'] = ""
+default['wt_streamingapi']['usagedbname'] = "Streaming"
+default['wt_streamingapi']['usagedbuser'] = ""
+default['wt_streamingapi']['usagedbpwd'] = ""
+
 
 
