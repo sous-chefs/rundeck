@@ -173,11 +173,14 @@
             }
         },
         "wt_analytics_ui": {},
+        "wt_cam_db" : {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/CAMBUILDID/CAMCONFIGID:id/artifacts.zip"
+        },
         "wt_cam": {
             "auth_port": 8081,
             "auth_service_url": "http://cicam01.staging.dmz:8081",
             "cam_port": 81,
-            "cam_server_url": "http://cicam01.staging.dmz/camservice",
+            "cam_service_url": "http://cicam01.staging.dmz/camservice",
             "camlite_port": 80,
             "db_name": "cam",
             "db_server": "cicamdb01.staging.dmz"
@@ -278,6 +281,7 @@
         },
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/SAPIBUILDID/SAPICONFIGID:id/webtrends-streamingapi-bin.tar.gz",
+			"java_opts": "-Xms768m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
             "port": 8080
         },
         "wt_streamingauditor": {

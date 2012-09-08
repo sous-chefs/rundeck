@@ -22,6 +22,12 @@
   package pkg
 end
 
+# disable apparmor so that dhcpd will start
+service "apparmor" do
+  action :disable
+  supports [ :restart, :reload, :status ]
+end
+
 # setup the cobbler config
 template "/etc/cobbler/settings" do
   source "settings.erb"

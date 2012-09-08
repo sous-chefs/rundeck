@@ -106,5 +106,3 @@ fi
 export HADOOP_CONF_DIR=/etc/hadoop
 export HADOOP_CLASSPATH=/usr/share/hadoop
 
-
-
