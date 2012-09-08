@@ -35,5 +35,9 @@
         "camdbpwd": "bijoux",
         "masterdbuser": "ConfigSvc",
         "masterdbpwd": "bijoux"
+    },
+    "wt_streamingapi": {    
+    	"usagedbuser": "wtUI",   
+    	"usagedbpwd": "bijoux"   
     }
 }
