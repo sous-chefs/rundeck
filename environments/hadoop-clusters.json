@@ -1,21 +1,6 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {
-        "cassandra": "= 1.0.10", 
-        "cobbler": "= 0.0.1", 
-        "graphite": "= 0.3.0", 
-        "hadoop": "= 1.1.0", 
-        "hbase": "= 1.1.0", 
-        "hive": "= 1.1.0", 
-        "java": "= 1.5.2", 
-        "memcached": "= 1.0.2", 
-        "nagios": "= 1.6.0", 
-        "ondemand_base": "= 1.7.12", 
-        "rundeck": "= 1.0.4", 
-        "windows": "= 1.2.12", 
-        "wt_base": "= 0.10.53", 
-        "zookeeper": "= 1.1.0"
-    }, 
+    "cookbook_versions": {}, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -71,6 +56,15 @@
                     "tasktracker_map_tasks_maximum": 6, 
                     "tasktracker_reduce_tasks_maximum": 3
                 }
+            }, 
+            "y_cluster": {
+                "dfs": {
+                    "data_dir": "/mnt/hdfs/hdfs01/data1/hdfs"
+                }, 
+                "mapred": {
+                    "local_dir": "/mnt/hdfs/hdfs01/data1/mapred"
+                }, 
+                "version": "1.0.2-1"
             }
         }, 
         "hbase": {
@@ -79,12 +73,25 @@
                     "HBASE_HEAPSIZE": 4000, 
                     "HBASE_MANAGES_ZK": "false"
                 }
-            }
+            }, 
+            "y_cluster": {}
         }, 
         "hive": {
             "default": {
                 "metastore": {
                     "connection_url": "jdbc:sqlserver://shivemeta01.staging.dmz;databaseName=hivemeta", 
+                    "connector": "sqlserver"
+                }
+            }, 
+            "y_cluster": {
+                "metastore": {
+                    "connection_url": "jdbc:sqlserver://shivemeta01.staging.dmz;databaseName=y_hivemeta", 
+                    "connector": "sqlserver"
+                }
+            }, 
+            "z_cluster": {
+                "metastore": {
+                    "connection_url": "jdbc:sqlserver://shivemeta01.staging.dmz;databaseName=z_hivemeta", 
                     "connector": "sqlserver"
                 }
             }
@@ -166,34 +173,6 @@
             "sysadmin_email": "trent.white@webtrends.com", 
             "users_databag_group": "staging"
         }, 
-        "ondemand_base": {
-            "apt": [
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
-                }, 
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "distribution_suffix": "-0.10", 
-                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
-                    "name": "wtlab-opscode", 
-                    "url": "http://repo.staging.dmz/repo/apt/opscode"
-                }
-            ], 
-            "yum": [
-                {
-                    "description": "Webtrends Repo", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
-                }
-            ]
-        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -264,22 +243,26 @@
             "graphite_server": "sgraph01.staging.dmz", 
             "jmx_enabled": "true", 
             "jmx_port": 9999, 
-            "metric_prefix": "support-staging.servers", 
+            "metric_prefix": "hadoop-clusters.servers", 
             "monitoring_enabled": "true"
         }, 
         "yum": {
             "epel_release": "6-7"
         }, 
         "zookeeper": {
-            "default": {
+            "y_cluster": {
                 "download_url": "http://repo.staging.dmz/repo/linux/zookeeper/zookeeper-3.3.5.tar.gz", 
                 "version": "3.3.5"
+            }, 
+            "z_cluster": {
+                "download_url": "http://repo.staging.dmz/repo/linux/zookeeper/zookeeper-3.3.6.tar.gz", 
+                "version": "3.3.6"
             }
         }
     }, 
-    "description": "Staging Support Servers", 
+    "description": "Hadoop Clusters Test Environment", 
     "json_class": "Chef::Environment", 
-    "name": "support-staging", 
+    "name": "hadoop-clusters", 
     "override_attributes": {
         "ntp": {
             "servers": [
