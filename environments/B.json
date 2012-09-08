@@ -255,12 +255,12 @@
             "realtime_topology_parsing_bolt_count": 3,
             "realtime_topology_writing_bolt_count": 48,
             "topic_list": [
-                "Lab_E_scsRawHits:1",
-                "Lab_E_lrRawHits:1",
-                "Lab_B_scsRawHits:1",
-                "Lab_B_lrRawHits:1",
-                "Lab_L_scsRawHits:1",
-                "Lab_L_lrRawHits:1"
+                "Lab_E_scsRawHits:0",
+                "Lab_E_lrRawHits:0",
+                "Lab_B_scsRawHits:0",
+                "Lab_B_lrRawHits:0",
+                "Lab_L_scsRawHits:0",
+                "Lab_L_lrRawHits:0"
             ],
             "topology_override_max_spout_pending": 3000,
             "topology_override_msg_timeout_seconds": 120,
