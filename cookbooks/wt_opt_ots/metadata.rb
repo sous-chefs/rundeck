@@ -1,6 +1,6 @@
-maintainer       "YOUR_COMPANY_NAME"
-maintainer_email "YOUR_EMAIL"
+maintainer       "Tim Smith - Webtrends, Inc."
+maintainer_email "hostedops@webtrends.com"
 license          "All rights reserved"
-description      "Installs/Configures wt_opt_ots"
+description      "Installs/Configures Optimize OTS Data Collection"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.0.1"
