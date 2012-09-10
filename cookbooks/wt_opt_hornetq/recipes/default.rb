@@ -99,7 +99,7 @@ if ENV["deploy_build"] == "true" then
   # add the config xml
   template "hq-config" do
     path "#{install_dir}/current/config/wop/hornetq-configuration.xml"
-    source "hornetq-#{node['wt_opt_hornetq']['type']}/#{hornetq_version}-configuration.xml.erb"
+    source "hornetq-#{node['wt_opt_hornetq']['type']}/#{node['wt_opt_hornetq']['hornetq_version']}-configuration.xml.erb"
     mode 00644
     owner "jboss"
     group "jboss"
@@ -113,7 +113,7 @@ if ENV["deploy_build"] == "true" then
   # add the config xml
   template "hq-run" do
     path "#{install_dir}/current/bin/run.sh"
-    source "hornetq-#{wop_config['hornetq']['type']}/run.sh.erb"
+    source "run.sh.erb"
     mode 00744
     owner "jboss"
     group "jboss"
@@ -130,29 +130,13 @@ if ENV["deploy_build"] == "true" then
 
 end
 
-
-# Add collectd plugins
-case wop_config['hornetq']['type']
-when "main"
-  #Create collectd plugin for hornetq-main if the collectd recipe has been applied.
-  if node.attribute?("collectd")
-    template "#{node[:collectd][:plugin_conf_dir]}/collectd_hornetq-main.conf" do
-      source "/hornetq-main/collectd_hornetq-main.conf.erb"
-      owner "root"
-      group "root"
-      mode 00644
-      notifies :restart, resources(:service => "collectd")
-    end
-  end
-when "pod"
-  #Create collectd plugin for hornetq-pod if the collectd recipe has been applied.
-  if node.attribute?("collectd")
-    template "#{node[:collectd][:plugin_conf_dir]}/collectd_hornetq.conf" do
-      source "/hornetq-pod/collectd_hornetq.conf.erb"
-      owner "root"
-      group "root"
-      mode 00644
-      notifies :restart, resources(:service => "collectd")
-    end
+#Create collectd plugin for hornetq-pod if the collectd recipe has been applied.
+if node.attribute?("collectd")
+  template "#{node['collectd']['plugin_conf_dir']}/collectd_hornetq.conf" do
+    source "/hornetq-#{node['wt_opt_hornetq']['type']}/collectd_hornetq.conf.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    notifies :restart, resources(:service => "collectd")
   end
 end
