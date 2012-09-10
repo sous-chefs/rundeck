@@ -39,6 +39,7 @@ if ENV["deploy_build"] then
 
   windows_zipfile Chef::Config[:file_cache_path] do
     source download_url
+    overwrite true
     action :unzip
   end
 
