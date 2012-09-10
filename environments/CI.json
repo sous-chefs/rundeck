@@ -174,16 +174,19 @@
         },
         "wt_analytics_ui": {},
         "wt_cam_db" : {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/CAMBUILDID/CAMCONFIGID:id/artifacts.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/CAMDBBUILDID/CAMDBCONFIGID:id/artifacts.zip"
         },
         "wt_cam": {
+            "auth_download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/CAMBUILDID/CAMCONFIGID:id/CAM.zip",
             "auth_port": 8081,
             "auth_service_url": "http://cicam01.staging.dmz:8081",
             "cam_port": 81,
             "cam_service_url": "http://cicam01.staging.dmz/camservice",
+            "camlite_download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/CAMLITEBUILDID/CAMLITECONFIGID/CAM.zip"
             "camlite_port": 80,
             "db_name": "cam",
-            "db_server": "cicamdb01.staging.dmz"
+            "db_server": "cicamdb01.staging.dmz",
+            "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/CAMBUILDID/CAMCONFIGID:id/CAM.zip"
         },
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp",
