@@ -1,3 +1,6 @@
+## 1.0.21
+* Add ulimit statement to the runit script for nimbus to increase the file limit to 10240
+
 ## 1.0.20
 * Add log_dir and install_dir as default attributes
 

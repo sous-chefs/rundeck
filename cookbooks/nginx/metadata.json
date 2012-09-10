@@ -20,7 +20,7 @@
     "runit": ">= 0.0.0",
     "bluepill": ">= 0.0.0",
     "yum": ">= 0.0.0",
-    "ohai": "~> 1.0.2"
+    "ohai": ">= 1.1.0"
   },
   "recommendations": {
   },
@@ -270,5 +270,5 @@
     "nginx": "Installs nginx package and sets up configuration with Debian apache style with sites-enabled/sites-available",
     "nginx::source": "Installs nginx from source and sets up configuration with Debian apache style with sites-enabled/sites-available"
   },
-  "version": "1.0.0"
+  "version": "1.0.2"
 }
