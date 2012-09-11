@@ -43,7 +43,7 @@ if zookeeper_quorum.count == 0
     end
 end
 
-kafka = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}").first
+kafka = search(:node, "role:kafka_aggregator AND chef_environment:#{node.chef_environment}").first
 pod = node[:wt_realtime_hadoop][:pod]
 datacenter = node[:wt_realtime_hadoop][:datacenter]
 
