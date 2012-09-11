@@ -1,21 +1,31 @@
+## 1.0.18
+* Take out the "latest" builds for download URLs from the default attributes.  This has unintended consequences when a bad attribute is in an environment file
+
 ## 1.0.17
 * Added the 'cam_plugins' recipe and logic to call it at the end of the default recipe run
+
 ## 1.0.16
 * Modified attribute names to use 3 parts
 * Added templates for log4net to auth and cam
+
 ## 1.0.15
 * Adding in missing windows_zipfile resource
+
 ## 1.0.14
 * Reverting port back to 82
 * Changed cam_lite_port to camlite_port
+
 ## 1.0.13
 * Changed CamLite port to 85
+
 ## 1.0.12
 * Fixed spacing and removed check around firewall rule.
+
 ## 1.0.11
 * Changed CamLite to use installdir instead of hardcoded path.
+
 ## 1.0.10
-* Added attributes for the port numbers for cam, auth and cam_lite 
+* Added attributes for the port numbers for cam, auth and cam_lite
 * removed hard-coded values for same
 
 ## 1.0.9
