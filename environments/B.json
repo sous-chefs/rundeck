@@ -292,7 +292,7 @@
         		"usagedbname": "Streaming"
         },
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt203/30514:id/webtrends-streamingauditor-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/31468:id/webtrends-streamingauditor-bin.tar.gz",
             "roundtrip_scs_url": "http://bscs01.staging.dmz:8080",
             "roundtrip_token": "9019769dfb544c94a31e56194d316968"
         },
@@ -303,7 +303,7 @@
             "camdbname": "CAM",
             "camdbserver": "bcamdb01.staging.dmz",
             "config_service_url": "http://butil01.staging.dmz:8080",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt199/30523:id/webtrends-streaming-configservice-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/31469:id/webtrends-streaming-configservice-bin.tar.gz",
             "includeUnmappedAnalyticsIds": "true",
             "masterdbname": "wtmaster",
             "masterdbserver": "amasterdb01.staging.dmz"
