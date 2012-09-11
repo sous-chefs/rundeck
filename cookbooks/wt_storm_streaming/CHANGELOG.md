@@ -1,3 +1,5 @@
+## 2.1.1
+* Changed kafka to kafka_aggregator
 ## 2.1.0
 * Added new version to fully separate out "storm streaming" and "storm realtime"
 
