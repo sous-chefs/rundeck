@@ -17,7 +17,7 @@ camdbhost = node['fqdn']
 camdbport = node['wt_cam_db']['port']
 
 domain         = node['authorization']['ad_auth']['ad_network']
-installerlogin = auth_data['wt_common']['camdb_install_acct']
+installerlogin = auth_data['wt_common']['camdb_install_user']
 uilogin        = auth_data['wt_common']['ui_acct']
 majorversion   = node['wt_cam_db']['major_version']
 minorversion   = node['wt_cam_db']['minor_version']
