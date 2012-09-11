@@ -26,11 +26,11 @@ directory "#{node['multi_repo']['repo_path']}" do
 end
 
 # template the apache config for the repo site
-template "#{node['apache']['dir']}/sites-available/repo.conf" do
+template "#{node['apache']['dir']}/sites-available/repo" do
   source "apache2.conf.erb"
   mode 00644
   variables(:docroot => node['multi_repo']['repo_path'])
-  if ::File.symlink?("#{node['apache']['dir']}/sites-enabled/repo.conf")
+  if ::File.symlink?("#{node['apache']['dir']}/sites-enabled/repo")
     notifies :reload, resources(:service => "apache2")
   end
 end
@@ -46,5 +46,5 @@ end
 # create the apache site
 apache_site "repo" do
   ignore_failure true
-  action :create
+  enable true
 end
