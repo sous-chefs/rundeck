@@ -43,9 +43,10 @@ if ENV["deploy_build"] then
     action :unzip
   end
 
+  log "Calling Deploy_CAM.bat #{camdbhost} #{camdbname} #{domain} #{installerlogin} #{uilogin} #{majorversion} #{minorversion}"
+
   execute "Deploy_CAM.bat" do
     cwd "#{Chef::Config[:file_cache_path]}/release"
-    log "Calling Deploy_CAM.bat #{camdbhost} #{camdbname} #{domain} #{installerlogin} #{uilogin} #{majorversion} #{minorversion}"
     command "Deploy_CAM.bat #{camdbhost} #{camdbname} #{domain} #{installerlogin} #{uilogin} #{majorversion} #{minorversion}"
   end
 
