@@ -12,7 +12,7 @@ auth_data = data_bag_item('authorization', node.chef_environment)
 
 camdbuser = auth_data['wt_streamingconfigservice']['camdbuser']
 camdbpwd  = auth_data['wt_streamingconfigservice']['camdbpwd']
-camdbname = node['wt_cam']['db_name']
+camdbname = node['wt_cam']['db_name'].upcase
 camdbhost = node['fqdn']
 camdbport = node['wt_cam_db']['port']
 
@@ -48,6 +48,7 @@ if ENV["deploy_build"] then
   execute "Deploy_CAM.bat" do
     cwd "#{Chef::Config[:file_cache_path]}/release"
     command "Deploy_CAM.bat #{camdbhost} #{camdbname} #{domain} #{installerlogin} #{uilogin} #{majorversion} #{minorversion}"
+    action :run
   end
 
 end
