@@ -1,7 +1,8 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "cobbler": "= 1.0.1"
+        "cobbler": "= 1.0.1", 
+        "webtrends_server": "= 1.8.2"
     }, 
     "default_attributes": {
         "authorization": {
@@ -24,8 +25,8 @@
             "manage_dhcp": 1, 
             "pxe_just_once": 1, 
             "subnets": {
-                "10.164.0.0": {
-                    "netmask": "255.255.0.0"
+                "10.160.8.0": {
+                    "netmask": "255.255.252.0"
                 }
             }
         }, 
@@ -33,24 +34,6 @@
             "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
-        }, 
-        "java": {
-            "install_flavor": "oracle", 
-            "jdk": {
-                "6": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
-                    }
-                }, 
-                "7": {
-                    "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
-                    }
-                }
-            }
-        }, 
-        "ms_dotnet4": {
-            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
         "nagios": {
             "client": {
@@ -110,19 +93,6 @@
             ], 
             "search": "englab.webtrends.corp webtrends.corp staging.dmz"
         }, 
-        "snmp": {
-            "community": "DevOps", 
-            "full_systemview": "true", 
-            "syscontact": "trent.white@webtrends.com"
-        }, 
-        "vc2010": {
-            "x64": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-            }, 
-            "x86": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-            }
-        }, 
         "webtrends_server": {
             "apt": [
                 {
@@ -150,18 +120,6 @@
                     "url": "http://repo.staging.dmz/repo/yum/webtrends"
                 }
             ]
-        }, 
-        "wt_common": {
-            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "config_dir_linux": "/etc/webtrends/", 
-            "install_dir_linux": "/opt/webtrends/", 
-            "install_dir_windows": "d:\\wrs", 
-            "install_log_dir_linux": "/var/log/webtrends/install", 
-            "install_log_dir_windows": "d:\\logs", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "log_dir_linux": "/var/log/webtrends/", 
-            "log_dir_windows": "", 
-            "smtp_server": "pdxengmta01.webtrends.corp"
         }, 
         "wt_monitoring": {
             "graphite_flush_enabled": "true", 
