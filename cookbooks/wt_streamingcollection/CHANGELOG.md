@@ -1,3 +1,6 @@
+## 0.0.27
+* Don't fall back to a valid TC URL
+
 ## 0.0.26
 * Change config option configserver.dcsids.url to configservice.whitelist.url
 * Removing server url config option that is no longer used
