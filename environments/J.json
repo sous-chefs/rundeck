@@ -201,6 +201,9 @@
        "wt_rta": {
            "rta_host": "jrta01.englab.webtrends.corp"
        },
+	    "wt_search": {	
+ 	 	  "search_hostname": "jsearch.englab.webtrends.corp"
+ 	 	},
        "wt_usagedb": {
            "schedulerdb_host": "jusagedb01.englab.webtrends.corp",
            "usage_host": "jusagedb01.englab.webtrends.corp"
