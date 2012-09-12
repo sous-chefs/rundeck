@@ -9,7 +9,7 @@
 
 default['wt_streamingauditor']['user']         = "webtrends"
 default['wt_streamingauditor']['group']        = "webtrends"
-default['wt_streamingauditor']['download_url'] = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt123/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz"
+default['wt_streamingauditor']['download_url'] = ""
 default['wt_streamingauditor']['java_opts']     = "-Xms1024m -Djava.net.preferIPv4Stack=true"
 default['wt_streamingauditor']['metricslistener_enabled'] = true
 default['wt_streamingauditor']['auditlistener_enabled'] = false
