@@ -1,3 +1,10 @@
+## 0.0.23
+* Don't fall back to a valid TC url
+* Change the default port to 8080 to match our other products
+
+## 0.0.23:
+* Unknown
+
 ## 0.0.21
 * Added the 'download_url' attribute
 
