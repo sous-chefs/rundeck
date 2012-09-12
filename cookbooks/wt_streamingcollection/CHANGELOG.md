@@ -1,3 +1,9 @@
+## 0.0.28
+* Don't fallback to Zookeeper quorum attributes if search fails.  If search fails we have bigger issues
+* Address food critic warnings
+* Remove an unused template attribute in the service control template (user)
+* Remove the java_class attribute from the service control template since it's just hardcoded
+
 ## 0.0.27
 * Don't fall back to a valid TC URL
 
