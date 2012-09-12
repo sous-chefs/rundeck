@@ -3,6 +3,9 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+## 1.1.1
+* added acls_enabled attribute to aid dev environments
+
 ## 1.1.0
 * add support for multiple clusters in the same chef environment
 

@@ -1,3 +1,8 @@
+## 0.0.12
+* Removed authentication attributes from the attributes file since these come from the databag anyways
+* Removed unused user attribute being passed to a template
+* Removed Java Class attribute being passed since it was hardcoded text anyways.  No need to waste memory on this
+
 ## 0.0.11
 * Find the hostname / db name for the On Demand master DB from wt_masterdb environmental attributes not from attributes in this cookbook
 * Use the JMX port attribute in the cookbook and not the attribute from wt_monitoring
