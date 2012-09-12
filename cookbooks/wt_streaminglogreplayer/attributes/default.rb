@@ -7,7 +7,7 @@
 
 default['wt_streaminglogreplayer']['user']         = "webtrends"
 default['wt_streaminglogreplayer']['group']        = "webtrends"
-default['wt_streaminglogreplayer']['download_url'] = "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/.lastSuccessful/webtrends-streaminglogreplayer-bin.tar.gz"
+default['wt_streaminglogreplayer']['download_url'] = ""
 
 default['wt_streaminglogreplayer']['log_extension']     = ".gz"
 default['wt_streaminglogreplayer']['log_share_mount']   = ""
