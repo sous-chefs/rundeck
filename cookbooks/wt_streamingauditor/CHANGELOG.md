@@ -1,6 +1,5 @@
-## Future
-
-* Unknown
+## 0.0.15
+* Don't fall back to a valid TC URL
 
 ## 0.0.14
 * Removed old undelpoy code
@@ -22,7 +21,7 @@
 * Changed default tar file to prepend 'webtrends-'
 
 ## 0.0.8
-* Added roundtrip_tagserver_timeout to wait for receiving an event back before erroring out. 
+* Added roundtrip_tagserver_timeout to wait for receiving an event back before erroring out.
 * Added roundtrip_scs_timeout to wait for receiving an event back before erroring out.
 
 ## 0.0.7
