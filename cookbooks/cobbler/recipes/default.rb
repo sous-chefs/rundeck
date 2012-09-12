@@ -23,9 +23,12 @@
 end
 
 # disable apparmor so that dhcpd will start
-service "apparmor" do
-  action :disable
-  supports [ :restart, :reload, :status ]
+# NOTE:  this issue has been resolved in Ubuntu 12.04
+if node.platform_family?('debian') && node.platform_version.to_i < 12
+  service "apparmor" do
+    action :disable
+    supports [ :restart, :reload, :status ]
+  end
 end
 
 # setup the cobbler config
@@ -101,6 +104,9 @@ end
 link "/var/www/validation.pem" do
   to Chef::Config[:validation_key]
 end
+file Chef::Config[:validation_key] do
+	mode 00644
+end
 
 # firstboot script
 %w{ firstboot.sh firstbootrc.sh }.each do |file|
@@ -122,3 +128,4 @@ service "cobbler" do
   action [:start, :enable]
   supports :status => true
 end
+
