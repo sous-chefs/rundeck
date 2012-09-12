@@ -18,11 +18,6 @@ default['wt_streamingconfigservice']['port'] = "8080"
 default['wt_streamingconfigservice']['camdbname'] = "cam"
 default['wt_streamingconfigservice']['camdbserver'] = ""
 
-default['wt_streamingconfigservice']['camdbuser'] = ""
-default['wt_streamingconfigservice']['camdbpwd'] = ""
-default['wt_streamingconfigservice']['masterdbuser'] = ""
-default['wt_streamingconfigservice']['masterdbpwd'] = ""
-
 default['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'] = "true"
 
 default['wt_streamingconfigservice']['jmx_port'] = "9999"

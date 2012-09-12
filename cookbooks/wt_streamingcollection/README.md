@@ -1,5 +1,5 @@
 = DESCRIPTION:
-Installs Streaming Collection Service
+Installs Webtrends Streaming Collection Service
 
 = REQUIREMENTS:
 * java

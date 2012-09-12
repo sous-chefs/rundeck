@@ -15,26 +15,23 @@ else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-
-log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streamingcollection")
-install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streamingcollection")
-
+log_dir      = File.join(node['wt_common']['log_dir_linux'], "streamingcollection")
+install_dir  = File.join(node['wt_common']['install_dir_linux'], "streamingcollection")
 tarball      = node['wt_streamingcollection']['download_url'].split("/")[-1]
 java_home    = node['java']['java_home']
 download_url = node['wt_streamingcollection']['download_url']
 user = node['wt_streamingcollection']['user']
 group = node['wt_streamingcollection']['group']
 java_opts = node['wt_streamingcollection']['java_opts']
-
-pod = node[:wt_realtime_hadoop][:pod]
-datacenter = node[:wt_realtime_hadoop][:datacenter]
+pod = node['wt_realtime_hadoop']['pod']
+datacenter = node['wt_realtime_hadoop']['datacenter']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
 
 # create the log directory
-directory "#{log_dir}" do
+directory log_dir do
   owner   user
   group   group
   mode    00755
@@ -69,13 +66,6 @@ def getZookeeperPairs(node)
   if not Chef::Config.solo
     search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
       zookeeper_pairs << n[:fqdn]
-    end
-  end
-
-  # fall back to attribs if search doesn't come up with any zookeeper roles
-  if zookeeper_pairs.count == 0
-    node[:zookeeper][:quorum].each do |i|
-      zookeeper_pairs << i
     end
   end
 
@@ -153,8 +143,6 @@ if ENV["deploy_build"] == "true" then
       :log_dir => log_dir,
       :install_dir => install_dir,
       :java_home => java_home,
-      :user => user,
-      :java_class => "com.webtrends.streaming.CollectionDaemon",
       :java_jmx_port => node['wt_monitoring']['jmx_port'],
       :java_opts => java_opts
     })
@@ -186,7 +174,7 @@ end
 
 #Create collectd plugin for streamingcollection JMX objects if collectd has been applied.
 if node.attribute?("collectd")
-  template "#{node[:collectd][:plugin_conf_dir]}/collectd_streamingcollection.conf" do
+  template "#{node['collectd']['plugin_conf_dir']}/collectd_streamingcollection.conf" do
     source "collectd_streamingcollection.conf.erb"
     owner "root"
     group "root"
@@ -199,7 +187,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
 	nagios_nrpecheck "wt_healthcheck_page" do
 		command "#{node['nagios']['plugin_dir']}/check_http"
-		parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
+		parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
 		action :add
 	end
   #Create a nagios nrpe check for the log file

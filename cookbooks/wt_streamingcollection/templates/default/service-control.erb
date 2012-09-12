@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Setup basic path information.
-MAIN="<%=@java_class%>"
+MAIN="com.webtrends.streaming.CollectionDaemon"
 LOG_OUT="<%=File.join(@log_dir,"process.out")%>"
 LOG_ERR="<%=File.join(@log_dir,"process.err")%>"
 HOME_DIR="<%=@install_dir%>"
@@ -45,11 +45,11 @@ case "$1" in
         if [ "" = "$FOUND_PID" ]; then
             cd   $HOME_DIR
             echo $CMD $MAIN
-            # For compatibility with runit we cannot backgroud 
+            # For compatibility with runit we cannot backgroud
             # ourselves with a '&' at the end, though we do
             # need to exec.
             exec $CMD $MAIN >$LOG_OUT 2>$LOG_ERR
-        else 
+        else
             echo "Service already running"
             exit 1
         fi
@@ -68,7 +68,7 @@ case "$1" in
                 kill -9 $FOUND_PID
             fi
             exit 0
-        fi 
+        fi
         ;;
     status)
         # Status is found via actual running processes, rather than
