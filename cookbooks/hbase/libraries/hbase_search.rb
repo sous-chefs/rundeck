@@ -14,7 +14,7 @@ module HbaseSearch
 
 		query =  "chef_environment:#{node.chef_environment}"
 		query << " AND roles:#{role}"
-		query << " hbase_cluster_name:#{node[:hbase][:cluster_name]}"
+		query << " AND hbase_cluster_name:#{node[:hbase][:cluster_name]}"
 
 		results = Array.new
 		search(:node, query).each do |n|
