@@ -42,6 +42,8 @@ default[:hadoop][:default][:mapred][:job_reuse_jvm_num_tasks] = 1
 default[:hadoop][:default][:mapred][:io_sort_factor] = 10
 default[:hadoop][:default][:mapred][:io_sort_mb] = 100
 default[:hadoop][:default][:mapred][:submit_replication] = 10
+default[:hadoop][:default][:mapred][:acls_enabled] = 'true'
+
 
 
 # core-site.xml

@@ -117,8 +117,6 @@ template "#{install_dir}/bin/service-control" do
 		:log_dir => log_dir,
 		:install_dir => install_dir,
 		:java_home => java_home,
-		:user => user,
-		:java_class => "com.webtrends.streaming.configservice.ConfigServiceDaemon",
 		:java_jmx_port => node['wt_streamingconfigservice']['jmx_port'],
 		:java_opts => java_opts
 	})
