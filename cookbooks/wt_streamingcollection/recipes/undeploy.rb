@@ -13,7 +13,7 @@ install_dir  = "#{node['wt_common']['install_dir_linux']}/streamingcollection"
 runit_service "streamingcollection" do
     action :disable
     run_restart false
-end 
+end
 
 # try to stop the service, but allow a failure without printing the error
 service "streamingcollection" do
@@ -28,12 +28,12 @@ service "streamingcollection" do
   ignore_failure true
 end
 
-directory "#{log_dir}" do
+directory log_dir do
   recursive true
   action :delete
 end
 
-directory "#{install_dir}" do
+directory install_dir do
   recursive true
   action :delete
 end
