@@ -14,7 +14,7 @@ module ZookeeperSearch
 
 		query =  "chef_environment:#{node.chef_environment}"
 		query << " AND roles:#{role}"
-		query << " zookeeper_cluster_name:#{node[:zookeeper][:cluster_name]}"
+		query << " AND zookeeper_cluster_name:#{node[:zookeeper][:cluster_name]}"
 
 		results = Array.new
 		search(:node, query).each do |n|
