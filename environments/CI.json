@@ -277,7 +277,7 @@
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/SAPIBUILDID/SAPICONFIGID:id/webtrends-streamingapi-bin.tar.gz",
 			"java_opts": "-Xms768m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
-            "port": 8080
+            "usagedbserver": "cicamdb01.staging.dmz"
         },
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/SAUDITBUILDID/SAUDITCONFIGID:id/webtrends-streamingauditor-bin.tar.gz",
