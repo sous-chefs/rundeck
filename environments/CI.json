@@ -174,7 +174,7 @@
         },
         "wt_analytics_ui": {},
         "wt_cam_db" : {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/CAMDBBUILDID/CAMDBCONFIGID:id/artifacts.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt137/.lastSuccessful/artifacts.zip"
         },
         "wt_cam": {
             "auth_download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/CAMBUILDID/CAMCONFIGID:id/CAM.zip",
