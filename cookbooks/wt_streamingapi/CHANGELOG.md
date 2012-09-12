@@ -1,16 +1,24 @@
+## 0.0.32
+* Remove the fallback URL for download_url
+
 ## 0.0.31
 * Changed usage database credentials source to data bag
+
 ## 0.0.30
 * Fixed missing logic for the usage database connection
+
 ## 0.0.29
 * Added usage db connection string
+
 ## 0.0.28
 * Added cam url
+
 ## 0.0.27
 *  Added directory creation for conf directory
 
 ## 0.0.26
 *  Updated netty configuration
+
 ## 0.0.24
 * Added broker chroot prefix for zk.connect string
 
@@ -19,6 +27,7 @@
 
 ## 0.0.22
   Commented out the pam code as it appears to be breaking the system, perhaps stepping on likewise
+
 ## 0.0.21
 * Changed logic to pull the tar file from the 'download_url' attribute
 
