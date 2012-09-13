@@ -1,11 +1,11 @@
 <VirtualHost *:80>
-        ServerName <%= @config['ots']['frontend_url']%>
-        ServerAlias <%= node[:hostname] %>
-        ServerAlias <%= node[:fqdn] %>
-        ServerAdmin ops@<%= node[:domain]%>
-        ErrorLog /var/log/apache2/ots-<%= node[:wop_server][:env] %>_error.log
+        ServerName <%= node['wt_opt_ots']['frontend_url']%>
+        ServerAlias <%= node['hostname'] %>
+        ServerAlias <%= node['fqdn'] %>
+        ServerAdmin <%= node['wt_common']['admin_email']%>
+        ErrorLog /var/log/apache2/ots-<%= node['chef_environment'] %>_error.log
 
-        Header set p3p "CP=\"NOI DSP COR NID ADM DEV PSA OUR IND UNI PUR COM NAV INT STA\"" 
+        Header set p3p "CP=\"NOI DSP COR NID ADM DEV PSA OUR IND UNI PUR COM NAV INT STA\""
 
         DocumentRoot /var/www
         ServerSignature On
@@ -14,20 +14,20 @@
         ErrorDocument 404 http://optimize.webtrends.com/404/
         ErrorDocument 403 http://optimize.webtrends.com/404/
         ErrorDocument 503 http://optimize.webtrends.com/503/
-        
+
         <Proxy *>
                 Order deny,allow
                 Allow from all
         </Proxy>
-        
+
         ProxyPass        /ots http://localhost:8080/ots
         ProxyPassReverse /ots http://localhost:8080/ots
-        
+
         <Directory />
                 Options FollowSymLinks
                 AllowOverride None
         </Directory>
-	
+
         <Location /server-status>
           SetHandler server-status
 
@@ -35,19 +35,19 @@
           Deny from all
           Allow from 127.0.0.1
         </Location>
-        
+
 </VirtualHost>
 
-<% if node[:ec2] || node[:dmi][:system][:manufacturer] == "Xen" -%>
+<% if node['wt_opt_ots']['ssl'] -%>
 <VirtualHost *:443>
-        ServerName <%= @config['ots']['frontend_url']%>
-        ServerAlias <%= node[:hostname] %>
-        ServerAlias <%= node[:fqdn] %>
-        ServerAdmin ops@<%= node[:domain]%>
-        ErrorLog /var/log/apache2/ots-<%= node[:wop_server][:env] %>_error.log
-        TransferLog /var/log/apache2/ots-<%= node[:wop_server][:env]%>_access.log
+        ServerName <%= node['wt_opt_ots']['frontend_url']%>
+        ServerAlias <%= node['hostname'] %>
+        ServerAlias <%= node['fqdn'] %>
+        ServerAdmin ops@<%= node['domain']%>
+        ErrorLog /var/log/apache2/ots-<%= node['chef_environment'] %>_error.log
+        TransferLog /var/log/apache2/ots-<%= node['chef_environment'] %>_access.log
 
-        Header set p3p "CP=\"NOI DSP COR NID ADM DEV PSA OUR IND UNI PUR COM NAV INT STA\"" 
+        Header set p3p "CP=\"NOI DSP COR NID ADM DEV PSA OUR IND UNI PUR COM NAV INT STA\""
 
         DocumentRoot /var/www
         ServerSignature On
@@ -56,12 +56,12 @@
         ErrorDocument 404 http://optimize.webtrends.com/404/
         ErrorDocument 403 http://optimize.webtrends.com/404/
         ErrorDocument 503 http://optimize.webtrends.com/503/
-        
+
         <Proxy *>
                 Order deny,allow
                 Allow from all
         </Proxy>
-        
+
         ProxyPass        /ots http://localhost:8080/ots
         ProxyPassReverse /ots http://localhost:8080/ots
         SSLEngine on
@@ -71,7 +71,7 @@
         SetEnvIf User-Agent ".*MSIE.*" \
                   nokeepalive ssl-unclean-shutdown \
                   downgrade-1.0 force-response-1.0
-        
+
         <Directory />
                 Options FollowSymLinks
                 AllowOverride None
