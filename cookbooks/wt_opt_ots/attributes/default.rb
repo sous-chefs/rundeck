@@ -19,14 +19,18 @@
 
 default['wt_opt_ots']['frontend_url'] = ""
 default['wt_opt_ots']['geolocation_server'] = ""
-default['wt_opt_ots']['javaopts'] = "-server -Xms2048m -Xmx2048m -XX:MaxPermSize=384m"
 default['wt_opt_ots']['memcache_servers'] = []
+
+default['wt_opt_ots']['javaopts'] = "-server -Xms2048m -Xmx2048m -XX:MaxPermSize=384m"
 default['wt_opt_ots']['multicast_address'] =
 default['wt_opt_ots']['ssl'] = false
 default['wt_opt_ots']['pod_id'] =
-default['wt_opt_ots']['pod_id'] =
 default['wt_opt_ots']['log_level'] = "INFO"
+
 default['wt_opt_ots']['install_dir'] = "/opt/webtrends"
+default['wt_opt_ots']['mount_dir_prefix'] = "/srv/otsdata"
+default['wt_opt_ots']['nfs_mount'] = ""
+
 default['wt_opt_ots']['jboss_uid'] = 1001
 default['wt_opt_ots']['jboss_gid'] = 1001
 
