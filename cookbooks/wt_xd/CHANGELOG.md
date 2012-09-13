@@ -13,5 +13,6 @@
 * also changed the environment.properties file to include a setting for hbase region lease timeouts for scan	
 * fixed ENG392544:  Retweet Key Metic total is incorrect 
  
-
+# 0.0.4
+* includes fix for adding to jobtracker the mapreduce apps (facebook/twitter)
 

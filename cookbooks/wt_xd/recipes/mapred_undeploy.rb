@@ -18,6 +18,14 @@ log_dir     = node['wt_common']['log_dir_linux']
 	end
 end
 
+
+%w[MapReduceFB MapReduceTW].each do |job|
+        cron job do
+                user 'hadoop'
+                action :delete
+        end
+end
+
 # delete install directory (keep log dir)
 directory install_dir do
 	recursive true
