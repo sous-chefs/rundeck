@@ -6,5 +6,6 @@
   ErrorLog        <%= node['apache']['log_dir'] %>/multi_repo_error.log
   <Directory />
     Options Indexes
+    Options FollowSymLinks
   </Directory>
 </VirtualHost>
