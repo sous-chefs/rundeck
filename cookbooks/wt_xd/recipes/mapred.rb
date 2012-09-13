@@ -15,6 +15,11 @@ source_fullpath = File.join(Chef::Config[:file_cache_path], source_zipfile)
 install_dir = File.join(node['wt_common']['install_dir_linux'], 'wt_xd')
 log_dir     = node['wt_common']['log_dir_linux']
 
+# paths for jobtracker
+
+job_tracker_uri = search(:node, "role:hadoop_jobtracker AND chef_environment:#{node['wt_xd']['environment']}").first[:fqdn]
+
+
 
 # clean up old deploy
 include_recipe 'wt_xd::mapred_undeploy' if deploy_mode?
@@ -22,16 +27,16 @@ include_recipe 'wt_xd::mapred_undeploy' if deploy_mode?
 # create directories
 [install_dir, log_dir].each do |dir|
 	directory dir do
-		owner 'webtrends'
-		group 'webtrends'
+		owner 'hadoop'
+		group 'hadoop'
 		recursive true
 	end
 end
 
 # directory for any lock files
 directory "/var/lock/webtrends" do
-  owner "webtrends"
-  group "webtrends"
+  owner "hadoop"
+  group "hadoop"
   mode 00755
   action :create
 end
@@ -72,8 +77,8 @@ end
 %w[environment.properties hbase.properties log4j.mapreduce.fb.xml log4j.mapreduce.tw.xml].each do |template_file|
 	template "#{install_dir}/conf/#{template_file}" do
 		source "#{template_file}.erb"
-		owner 'webtrends'
-		group 'webtrends'
+		owner 'hadoop'
+		group 'hadoop'
 		mode  00644
 		variables ({
 			# hbase config
@@ -85,7 +90,10 @@ end
 			:zookeeper_clientport => node['zookeeper']['client_port'],
 
 			# log level
-			:log_level => node['wt_xd']['log_level']
+			:log_level => node['wt_xd']['log_level'],
+
+			# jobtracker uri
+			:job_tracker_uri => job_tracker_uri
 		})
 	end
 end
@@ -94,8 +102,8 @@ end
 %w[MapReduceFB.sh MapReduceTW.sh].each do |template_file|
 	template "#{install_dir}/#{template_file}" do
 		source "#{template_file}.erb"
-		owner 'webtrends'
-		group 'webtrends'
+		owner 'hadoop'
+		group 'hadoop'
 		mode  00755
 		variables ({
 			# locations
@@ -109,19 +117,19 @@ end
 # fix ownership
 [install_dir, log_dir].each do |dir|
 	execute dir do
-		command "chown -R webtrends:webtrends \"#{dir}\""
+		command "chown -R hadoop:hadoop \"#{dir}\""
 		action :run
 	end
 end
 
 # setup cron jobs
 cron 'MapReduceFB' do
-	user 'webtrends'
+	user 'hadoop'
 	minute '*/05'
 	command File.join(install_dir, 'MapReduceFB.sh')
 end
 cron 'MapReduceTW' do
-	user 'webtrends'
+	user 'hadoop'
 	minute '*/05'
 	command File.join(install_dir, 'MapReduceTW.sh')
 end
