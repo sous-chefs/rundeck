@@ -17,8 +17,8 @@ execute "clone_repo" do
 end
 
 # link just the environment file to the root of the repository
-link "/root/chef-repo/environments" do
-  to "/var/repo/chef_environments"
+link "/srv/repo/chef_environments" do
+  to "/root/chef-repo/environments"
   action :create
 end
 
