@@ -202,7 +202,7 @@ be members.
 
 <property>
 <name>mapred.acls.enabled</name>
-<value>true</value>
+<value><%= node.hadoop_attrib(:mapred, :acls_enabled) %></value>
 </property>
 
 <property>
