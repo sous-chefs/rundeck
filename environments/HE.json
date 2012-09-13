@@ -1,22 +1,34 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "cassandra": "= 1.0.10", 
-        "cobbler": "= 1.0.1", 
-        "graphite": "= 0.3.0", 
-        "hadoop": "= 1.1.0", 
-        "hbase": "= 1.1.0", 
-        "hive": "= 1.1.0", 
+        "apache2": "= 1.1.10", 
+        "cassandra": "= 1.0.7", 
+        "hadoop": "= 0.0.2", 
+        "hbase": "= 0.0.1", 
+        "hive": "= 0.0.1", 
         "java": "= 1.5.2", 
-        "memcached": "= 1.0.2", 
-        "nagios": "= 1.6.0", 
-        "ondemand_base": "= 1.7.12", 
-        "rundeck": "= 1.0.4", 
-        "windows": "= 1.2.12", 
+        "nagios": "= 1.5.0", 
+        "nginx": "= 0.101.0", 
+        "ondemand_base": "= 1.7.14", 
+        "sudo": "= 1.0.0", 
+        "webtrends_server": "= 1.8.1", 
+        "wt_analytics_ui": "= 1.0.1", 
         "wt_base": "= 0.10.53", 
-        "zookeeper": "= 1.1.0"
+        "wt_commonlib": "= 0.10.3", 
+        "wt_dx": "= 0.10.3", 
+        "wt_heatmaps": "= 0.10.41", 
+        "wt_roadrunner": "= 0.10.31", 
+        "wt_search": "= 1.0.1", 
+        "wt_storm": "= 1.0.34", 
+        "wt_streaminglogreplayer": "= 0.0.24", 
+        "wt_sync": "= 1.0.1", 
+        "zookeeper": "= 0.0.1"
     }, 
-    "default_attributes": {
+    "default_attributes": {}, 
+    "description": "", 
+    "json_class": "Chef::Environment", 
+    "name": "HE", 
+    "override_attributes": {
         "authorization": {
             "ad_auth": {
                 "ad_network": "STAGINGDMZ"
@@ -33,61 +45,67 @@
                 ]
             }
         }, 
-        "cobbler": {
-            "manage_dhcp": 1, 
-            "pxe_just_once": 1, 
-            "subnets": {
-                "10.164.0.0": {
-                    "netmask": "255.255.0.0"
-                }
-            }
-        }, 
-        "delltools": {
-            "raid": {
-                "megacli_url": "http://repo.staging.dmz/repo/yum/webtrends/MegaCli-8.04.07-1.noarch.rpm"
-            }
-        }, 
         "esx": {
             "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
         "hadoop": {
-            "default": {
-                "core": {
-                    "fs_checkpoint_period": 900
-                }, 
-                "dfs": {
-                    "data_dir": "/mnt/hdfs/hdfs01/data1/hdfs,/mnt/hdfs/hdfs01/data2/hdfs,/mnt/hdfs/hdfs01/data3/hdfs,/mnt/hdfs/hdfs01/data4/hdfs,/mnt/hdfs/hdfs01/data5/hdfs,/mnt/hdfs/hdfs01/data6/hdfs,/mnt/hdfs/hdfs01/data7/hdfs,/mnt/hdfs/hdfs01/data8/hdfs,/mnt/hdfs/hdfs01/data9/hdfs,/mnt/hdfs/hdfs01/data10/hdfs,/mnt/hdfs/hdfs01/data11/hdfs,/mnt/hdfs/hdfs01/data12/hdfs", 
-                    "datanode_du_reserved": 10485760, 
-                    "permissions": "false"
-                }, 
-                "env": {
-                    "HADOOP_HEAPSIZE": 2000
-                }, 
-                "mapred": {
-                    "local_dir": "/mnt/hdfs/hdfs01/data1/mapred,/mnt/hdfs/hdfs01/data2/mapred,/mnt/hdfs/hdfs01/data3/mapred,/mnt/hdfs/hdfs01/data4/mapred,/mnt/hdfs/hdfs01/data5/mapred,/mnt/hdfs/hdfs01/data6/mapred,/mnt/hdfs/hdfs01/data7/mapred,/mnt/hdfs/hdfs01/data8/mapred,/mnt/hdfs/hdfs01/data9/mapred,/mnt/hdfs/hdfs01/data10/mapred,/mnt/hdfs/hdfs01/data11/mapred,/mnt/hdfs/hdfs01/data12/mapred", 
-                    "reduce_tasks": 26, 
-                    "submit_replication": 3, 
-                    "tasktracker_map_tasks_maximum": 6, 
-                    "tasktracker_reduce_tasks_maximum": 3
-                }
+            "core": {
+                "fs_checkpoint_dir": "/var/lib/hadoop/hdfs/backupnamenode", 
+                "fs_checkpoint_period": 900, 
+                "fs_trash_interval": 360, 
+                "io_file_buffer_size": 4096
+            }, 
+            "dfs": {
+                "block_size": 67108864, 
+                "data_dir": "/mnt/hdfs/hdfs01/data1/hdfs,/mnt/hdfs/hdfs01/data2/hdfs,/mnt/hdfs/hdfs01/data3/hdfs,/mnt/hdfs/hdfs01/data4/hdfs,/mnt/hdfs/hdfs01/data5/hdfs,/mnt/hdfs/hdfs01/data6/hdfs,/mnt/hdfs/hdfs01/data7/hdfs,/mnt/hdfs/hdfs01/data8/hdfs,/mnt/hdfs/hdfs01/data9/hdfs,/mnt/hdfs/hdfs01/data10/hdfs,/mnt/hdfs/hdfs01/data11/hdfs,/mnt/hdfs/hdfs01/data12/hdfs", 
+                "datanode_du_reserved": 10485760, 
+                "datanode_handler_count": 3, 
+                "datanode_max_xcievers": 4096, 
+                "name_dir": "/var/lib/hadoop/hdfs/namenode", 
+                "namenode_handler_count": 10, 
+                "permissions": "true", 
+                "replication": 3
+            }, 
+            "env": {
+                "HADOOP_HEAPSIZE": 2000, 
+                "HADOOP_OPTS": "", 
+                "java_net_preferIPv4Stack": "true"
+            }, 
+            "mapred": {
+                "child_java_opts": "-server -Xmx640m -Djava.net.preferIPv4Stack=true", 
+                "child_ulimit": 8388608, 
+                "io_sort_factor": 10, 
+                "io_sort_mb": 100, 
+                "job_reuse_jvm_num_tasks": 1, 
+                "job_tracker_handler_count": 10, 
+                "local_dir": "/mnt/hdfs/hdfs01/data1/mapred,/mnt/hdfs/hdfs01/data2/mapred,/mnt/hdfs/hdfs01/data3/mapred,/mnt/hdfs/hdfs01/data4/mapred,/mnt/hdfs/hdfs01/data5/mapred,/mnt/hdfs/hdfs01/data6/mapred,/mnt/hdfs/hdfs01/data7/mapred,/mnt/hdfs/hdfs01/data8/mapred,/mnt/hdfs/hdfs01/data9/mapred,/mnt/hdfs/hdfs01/data10/mapred,/mnt/hdfs/hdfs01/data11/mapred,/mnt/hdfs/hdfs01/data12/mapred", 
+                "map_tasks_speculative_execution": "false", 
+                "reduce_tasks": 26, 
+                "reduce_tasks_speculative_execution": "false", 
+                "tasktracker_map_tasks_maximum": 6, 
+                "tasktracker_reduce_tasks_maximum": 3
             }
         }, 
         "hbase": {
-            "default": {
-                "env": {
-                    "HBASE_HEAPSIZE": 4000, 
-                    "HBASE_MANAGES_ZK": "false"
-                }
-            }
+            "data_center_id": "Lab", 
+            "env": {
+                "HBASE_HEAPSIZE": 4000, 
+                "HBASE_MANAGES_ZK": "false"
+            }, 
+            "location": "hedata.staging.dmz", 
+            "pod_id": "HE", 
+            "site": {
+                "zookeeper_clientport": 2181, 
+                "zookeeper_quorum": "hezoo01.staging.dmz,hezoo02.staging.dmz,hezoo03.staging.dmz"
+            }, 
+            "thrift_port": 9090
         }, 
         "hive": {
-            "default": {
-                "metastore": {
-                    "connection_url": "jdbc:sqlserver://shivemeta01.staging.dmz;databaseName=hivemeta", 
-                    "connector": "sqlserver"
-                }
+            "metastore": {
+                "connection_url": "jdbc:sqlserver://shivemeta01.staging.dmz;databaseName=he_hivemeta", 
+                "connector": "sqlserver"
             }
         }, 
         "java": {
@@ -106,12 +124,13 @@
             }
         }, 
         "kafka": {
+            "chroot_suffix": "brokers", 
             "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
             "log_flush_scheduler_time_interval": "500", 
             "log_flush_time_interval": "500", 
             "log_retention_hours": "2", 
             "threads": "8", 
-            "version": "0.7.0"
+            "version": "0.7.1"
         }, 
         "memcached": {
             "memory": "1024"
@@ -123,49 +142,16 @@
             "client": {
                 "install_method": "package"
             }, 
-            "default_host": {
-                "check_interval": 60, 
-                "flap_detection": false, 
-                "max_check_attempts": 3, 
-                "notification_interval": 600, 
-                "retry_interval": 30
-            }, 
-            "default_service": {
-                "check_interval": 120, 
-                "flap_detection": false, 
-                "max_check_attempts": 3, 
-                "notification_interval": 600, 
-                "retry_interval": 30
-            }, 
             "multi_environment_monitoring": true, 
-            "non_alerting_environments": [
-                "A", 
-                "B", 
-                "C", 
-                "D", 
-                "E", 
-                "F", 
-                "G", 
-                "H", 
-                "J", 
-                "K", 
-                "L", 
-                "M", 
-                "PF", 
-                "heatmap-staging", 
-                "_default"
-            ], 
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
-            "server": {
-                "install_method": "source", 
-                "service_name": "nagios"
-            }, 
-            "server_auth_method": "htpasswd", 
-            "server_role": "nagios_xi", 
-            "sysadmin_email": "trent.white@webtrends.com", 
-            "users_databag_group": "staging"
+            "server_role": "nagios_xi"
+        }, 
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
         }, 
         "ondemand_base": {
             "apt": [
@@ -218,6 +204,10 @@
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
+        "webpi": {
+            "url": "http://repo.staging.dmz/repo/windows/webpi/webpicmd_x86.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/WebProductList.xml"
+        }, 
         "webtrends_server": {
             "apt": [
                 {
@@ -248,7 +238,20 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "cache_host": [
+                {
+                    "name": "xcache01.staging.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "xcache02.staging.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "cache_region": "A10", 
+            "common_resource_environment": "HE", 
             "config_dir_linux": "/etc/webtrends/", 
+            "datacenter": "Lab", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
@@ -256,13 +259,22 @@
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
-            "smtp_server": "pdxengmta01.webtrends.corp"
+            "pod_id": "HE", 
+            "smtp_server": "pdxengmta01.englab.webtrends.corp"
+        }, 
+        "wt_heatmaps": {
+            "config_distrib": "ccd01.staging.dmz:8097", 
+            "heatmap_reducers": -1
         }, 
         "wt_monitoring": {
-            "graphite_flush_enabled": "true", 
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "false", 
             "graphite_flush_interval": "1", 
             "graphite_port": 2003, 
             "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
             "jmx_enabled": "true", 
             "jmx_port": 9999, 
             "metric_prefix": "support-staging.servers", 
@@ -272,20 +284,22 @@
             "epel_release": "6-7"
         }, 
         "zookeeper": {
-            "default": {
-                "download_url": "http://repo.staging.dmz/repo/linux/zookeeper/zookeeper-3.3.5.tar.gz", 
-                "version": "3.3.5"
-            }
-        }
-    }, 
-    "description": "Staging Support Servers", 
-    "json_class": "Chef::Environment", 
-    "name": "support-staging", 
-    "override_attributes": {
-        "ntp": {
-            "servers": [
-                "time.webtrends.corp"
-            ]
+            "clientPort": 2181, 
+            "client_port": 2181, 
+            "dataDir": "/var/run/zookeeper", 
+            "initLimit": 10, 
+            "init_limit": 10, 
+            "quorum": [
+                "hezoo01.staging.dmz", 
+                "hezoo02.staging.dmz", 
+                "hezoo03.staging.dmz"
+            ], 
+            "snapshot_num": 3, 
+            "syncLimit": 5, 
+            "sync_limit": 5, 
+            "tickTime": 2000, 
+            "tick_time": 2000, 
+            "version": "3.3.4"
         }
     }
 }
