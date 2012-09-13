@@ -25,6 +25,12 @@ include_recipe "apache2::mod_deflate"
 include_recipe "apache2::mod_headers"
 include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
+include_recipe "apache2::mod_headers"
+
+# only include the Apache worker recipe if we want mpm=worker
+if node['wt_opt_ots']['apache']['mpm'] == "worker" then
+  include_recipe "apache2::worker"
+end
 
 # only include mod_ssl if the node will have SSL terminated at the host
 if node['wt_opt_ots']['ssl']
@@ -40,7 +46,7 @@ cookbook_file "/etc/logrotate.d/apache2" do
   backup false
   owner "root"
   group "root"
-  mode 0644
+  mode 00644
 end
 
 # Setup logrotate to run via cron hourly
@@ -60,14 +66,6 @@ end
 # create the jboss group
 group "jboss" do
   gid node['wt_opt_ots']['jboss_gid']
-end
-
-# gather information about what server we're hitting
-cookbook_file "/var/www/debug.php" do
-  source "debug.php"
-  owner "root"
-  group "root"
-  mode 00644
 end
 
 # delete the default web page that ships with Apache2
@@ -94,12 +92,79 @@ mount "#{node['wt_opt_ots']['mount_dir_prefix']}-#{node['chef_environment']}" do
   only_if do File.directory?("#{node['wt_opt_ots']['mount_dir_prefix']}-#{node['chef_environment']}") end
 end
 
+# disable the default Apache site
+apache_site "000-default" do
+  enable false
+  notifies :reload, resources(:service => "apache2")
+end
+
+apache_site "default" do
+  enable false
+  notifies :reload, resources(:service => "apache2")
+end
+
+apache_site "default-ssl" do
+  enable false
+  notifies :reload, resources(:service => "apache2")
+end
+
 # perform actions that need to be gated by a deploy flag
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so we will grab the tar ball and install"
 
-# enable in service load balancer check
-file "/var/www/lbpool-inservice.txt"
+  directory "/var/www/w3c" do
+    recursive true
+  end
+
+  cookbook_file "/var/www/w3c/p3p.xml" do
+    source "p3p.xml"
+    owner "root"
+    group "root"
+    mode 0644
+  end
+
+  # Add the crossdomain.xml file needed by flash
+  cookbook_file "/var/www/crossdomain.xml" do
+    source "ots/crossdomain.xml"
+    owner "root"
+    group "root"
+    mode 00644
+  end
+
+  if node['wt_opt_ots']['ssl']
+    ssl_certificate "#{wop_config['ots']['frontend_url']}" do
+      notifies :reload, resources(:service => "apache2")
+    end
+  end
+
+  # load up the apache conf
+  template "apache-ots-config" do
+    path "#{node['apache']['dir']}/sites-available/ots.conf"
+    source "ots.conf.erb"
+    mode 00644
+    owner "root"
+    group "root"
+    variables(
+      :config  => wop_config
+    )
+    notifies :reload, resources(:service => "apache2")
+  end
+
+  # enable
+  apache_site "ots.conf" do
+    notifies :reload, resources(:service => "apache2")
+  end
+
+  runit_service "wop" do
+    run_restart false
+    options(
+      :basedir => node['wt_opt_ots']['install_dir'],
+      :javaopts => node['wt_opt_ots']['javaopts']
+    )
+  end
+
+  # enable in service load balancer check
+  file "/var/www/lbpool-inservice.txt"
 
 end
 
