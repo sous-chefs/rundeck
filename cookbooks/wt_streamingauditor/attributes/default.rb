@@ -7,10 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
-default['wt_streamingauditor']['user']         = "webtrends"
-default['wt_streamingauditor']['group']        = "webtrends"
+default['wt_streamingauditor']['user'] = "webtrends"
+default['wt_streamingauditor']['group'] = "webtrends"
 default['wt_streamingauditor']['download_url'] = ""
-default['wt_streamingauditor']['java_opts']     = "-Xms1024m -Djava.net.preferIPv4Stack=true"
+default['wt_streamingauditor']['java_opts'] = "-Xms1024m -Djava.net.preferIPv4Stack=true"
 default['wt_streamingauditor']['metricslistener_enabled'] = true
 default['wt_streamingauditor']['auditlistener_enabled'] = false
 default['wt_streamingauditor']['roundtrip_interval'] = 1
