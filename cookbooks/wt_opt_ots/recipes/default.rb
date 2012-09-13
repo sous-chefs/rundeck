@@ -43,7 +43,7 @@ cookbook_file "/etc/logrotate.d/apache2" do
   mode 0644
 end
 
-# Setup logrotate to run via cron
+# Setup logrotate to run via cron hourly
 link "/etc/cron.hourly/logrotate" do
  to "/etc/cron.daily/logrotate"
 end
@@ -51,12 +51,13 @@ end
 # install aio library
 package "libaio1"
 
-# create the jboss user and group
+# create the jboss user
 user "jboss" do
   home "#{node['wt_opt_ots']['install_dir']}"
   uid node['wt_opt_ots']['jboss_gid']
 end
 
+# create the jboss group
 group "jboss" do
   gid node['wt_opt_ots']['jboss_gid']
 end
@@ -74,10 +75,28 @@ file "/var/www/index.html" do
   action :delete
 end
 
+# install nfs package so we can mount the file store
+package "nfs-common"
+
+# create the mount point
+directory "#{node['wt_opt_ots']['mount_dir_prefix']}-#{node['chef_environment']}" do
+  action :create
+end
+
+# mount the file store
+mount "#{node['wt_opt_ots']['mount_dir_prefix']}-#{node['chef_environment']}" do
+  device "#{node['wt_opt_ots']['nfs_mount']}"
+  fstype nfs
+  action [ :mount, :enable ]
+  options "rw,hard,intr"
+  dump 0
+  pass 0
+  only_if do File.directory?("#{node['wt_opt_ots']['mount_dir_prefix']}-#{node['chef_environment']}") end
+end
+
 # perform actions that need to be gated by a deploy flag
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so we will grab the tar ball and install"
-
 
 # enable in service load balancer check
 file "/var/www/lbpool-inservice.txt"
