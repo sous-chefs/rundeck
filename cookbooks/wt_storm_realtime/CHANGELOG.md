@@ -1,3 +1,6 @@
+# 2.1.2
+  Modified Kafka groupid for realtime/devday
+
 # 2.1.1
 * Modified cs.url and added back whitelist setting
 
