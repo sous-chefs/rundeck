@@ -68,9 +68,9 @@ group "jboss" do
   gid node['wt_opt_ots']['jboss_gid']
 end
 
-# delete the default web page that ships with Apache2
-file "/var/www/index.html" do
-  action :delete
+# create the install dir and www/w3c directory
+directory "#{node['wt_opt_ots']['install_dir']}/www/w3c" do
+  recursive true
 end
 
 # install nfs package so we can mount the file store
@@ -112,19 +112,15 @@ end
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so we will grab the tar ball and install"
 
-  directory "/var/www/w3c" do
-    recursive true
-  end
-
-  cookbook_file "/var/www/w3c/p3p.xml" do
+  cookbook_file "#{node['wt_opt_ots']['install_dir']}/w3c/p3p.xml" do
     source "p3p.xml"
     owner "root"
     group "root"
-    mode 0644
+    mode 00644
   end
 
   # Add the crossdomain.xml file needed by flash
-  cookbook_file "/var/www/crossdomain.xml" do
+  cookbook_file "#{node['wt_opt_ots']['install_dir']}/crossdomain.xml" do
     source "ots/crossdomain.xml"
     owner "root"
     group "root"
@@ -132,7 +128,7 @@ if ENV["deploy_build"] == "true" then
   end
 
   if node['wt_opt_ots']['ssl']
-    ssl_certificate "#{wop_config['ots']['frontend_url']}" do
+    ssl_certificate "#{node['wt_opt_ots']['frontend_url']}" do
       notifies :reload, resources(:service => "apache2")
     end
   end
@@ -144,9 +140,6 @@ if ENV["deploy_build"] == "true" then
     mode 00644
     owner "root"
     group "root"
-    variables(
-      :config  => wop_config
-    )
     notifies :reload, resources(:service => "apache2")
   end
 
@@ -164,9 +157,8 @@ if ENV["deploy_build"] == "true" then
   end
 
   # enable in service load balancer check
-  file "/var/www/lbpool-inservice.txt"
+  file "#{node['wt_opt_ots']['install_dir']}/lbpool-inservice.txt"
 
 end
-
 
 

@@ -7,9 +7,9 @@
 
         Header set p3p "CP=\"NOI DSP COR NID ADM DEV PSA OUR IND UNI PUR COM NAV INT STA\""
 
-        DocumentRoot /var/www
+        DocumentRoot <%= "#{node['wt_opt_ots']['install_dir']}/www" %>
         ServerSignature On
-	LimitRequestLine 16320
+        LimitRequestLine 16320
 
         ErrorDocument 404 http://optimize.webtrends.com/404/
         ErrorDocument 403 http://optimize.webtrends.com/404/
@@ -49,9 +49,9 @@
 
         Header set p3p "CP=\"NOI DSP COR NID ADM DEV PSA OUR IND UNI PUR COM NAV INT STA\""
 
-        DocumentRoot /var/www
+        DocumentRoot <%= "#{node['wt_opt_ots']['install_dir']}/www" %>
         ServerSignature On
-	LimitRequestLine 16320
+        LimitRequestLine 16320
 
         ErrorDocument 404 http://optimize.webtrends.com/404/
         ErrorDocument 403 http://optimize.webtrends.com/404/
