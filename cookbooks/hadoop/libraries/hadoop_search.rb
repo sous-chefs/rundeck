@@ -14,7 +14,7 @@ module HadoopSearch
 
 		query =  "chef_environment:#{node.chef_environment}"
 		query << " AND roles:#{role}"
-		query << " hadoop_cluster_name:#{node[:hadoop][:cluster_name]}"
+		query << " AND hadoop_cluster_name:#{node[:hadoop][:cluster_name]}"
 
 		results = Array.new
 		search(:node, query).each do |n|
