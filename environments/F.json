@@ -4,6 +4,7 @@
         "java": "= 1.6.0", 
         "nagios": "= 1.5.0", 
         "ondemand_base": "= 1.7.12", 
+        "webtrends_server": "= 1.8.2", 
         "windows": "= 1.2.12", 
         "wt_analytics_ui": "= 1.0.1", 
         "wt_base": "= 1.0.0", 
