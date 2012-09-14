@@ -1,4 +1,4 @@
-log4j.rootLogger=INFO, ROOT
+log4j.rootLogger=<%= @log_level %>, ROOT
 
 log4j.appender.ROOT=org.apache.log4j.RollingFileAppender
 log4j.appender.ROOT.File=<%= @log_file %>

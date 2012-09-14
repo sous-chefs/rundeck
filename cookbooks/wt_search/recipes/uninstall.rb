@@ -8,7 +8,8 @@
 # This recipe uninstalls existing Search Service installs
 
 # destinations
-install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_search']['install_dir']}"
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['install_dir'].gsub(/[\\\/]+/,"\\"))
+log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['log_dir'].gsub(/[\\\/]+/,"\\"))
 
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
@@ -29,9 +30,18 @@ end
 # delays to give the service plenty of time to actually stop
 ruby_block "wait" do
 	block do
-		sleep(480)		
+		sleep(300)		
 	end
 	action :create
+end
+
+powershell "verify service removal" do
+  code <<-EOH
+	$WtServices = get-wmiobject -query 'select * from win32_service Where DisplayName Like "%Webtrends%"'
+	Foreach ($Service in $WtServices){ 
+    If ($Service){Stop-Process -Processname ($Service.Pathname -Replace ".*\\","" -Replace ".exe","") -Force -ErrorAction SilentlyContinue}
+	}
+	EOH
 end
 
 execute "sc" do
@@ -46,7 +56,7 @@ directory install_dir do
 end
 
 # delete log folder
-directory "#{node['wt_common']['install_dir_windows']}#{node['wt_search']['log_dir']}" do
+directory log_dir do
 	recursive true
 	action :delete
 end
