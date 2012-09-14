@@ -17,6 +17,12 @@ source_fullpath = File.join(Chef::Config[:file_cache_path], source_tarball)
 
 # servers in this cluster
 zookeeper_nodes = zookeeper_search('zookeeper').sort
+if zookeeper_nodes.count == 0
+	# corner case:  in single node cluster, role is never found in search until node state is saved.
+	node.save
+	zookeeper_nodes = zookeeper_search('zookeeper').sort
+	raise Chef::Exceptions::RoleNotFound, "zookeeper role not found" if zookeeper_nodes.count == 0
+end
 
 # setup zookeeper group
 group 'zookeeper'
