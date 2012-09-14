@@ -1,3 +1,6 @@
+## 1.0.2
+	* Adding powershell service kill to uninstall. 
+	* Removed default download url
 ## 1.0.1
 	* Merging in hotfixes to master
 ## 0.0.29

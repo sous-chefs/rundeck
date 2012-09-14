@@ -12,3 +12,8 @@ default['wt_kafka_mm']['java_opts']    = "-Xms1024m -Djava.net.preferIPv4Stack=t
 default['wt_kafka_mm']['jmx_port']    = "10000"
 
 default['wt_kafka_mm']['topic_white_list'] = ".*RawHits"
+
+default['wt_kafka_mm']['log_level'] = "INFO"
+
+default['wt_kafka_mm']['sources'] = {}
+default['wt_kafka_mm']['target'] = {}
