@@ -1,3 +1,9 @@
+0.0.14
+  * STR-127: Expose Log4J logging level as an attribute
+  * Cookbook review cleanup
+    * Switch to using File.join
+    * Add source and target attribute entries to cookbook attributes
+
 0.0.13
   * Removed zookeeper kafka prefixing
   
