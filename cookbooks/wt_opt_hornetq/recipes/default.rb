@@ -89,7 +89,7 @@ if ENV["deploy_build"] == "true" then
   end
 
   bindaddress = "127.0.0.1"
-  inet = node['network']['interfaces']['eth0']]['addresses'].select { |address, data| data["family"] == "inet" }
+  inet = node['network']['interfaces']['eth0']['addresses'].select { |address, data| data["family"] == "inet" }
   if inet.size > 0 then
     bindaddress = inet[0][0]
   end
