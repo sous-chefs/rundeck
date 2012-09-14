@@ -7,6 +7,25 @@
 # All rights reserved - Do Not Redistribute
 #
 
+log "Deploy build is #{ENV["deploy_build"]}"
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so un-deploy first"  
+  include_recipe "wt_analytics_ui::uninstall"
+  include_recipe "ms_dotnet4::regiis"
+else
+  log "The deploy_build value is not set or is false so we will only update the configuration"
+end
+
+# properties
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_analytics_ui']['install_dir']).gsub(/[\\\/]+/,"\\")
+install_url = node['wt_analytics_ui']['download_url']
+
+user_data = data_bag_item('authorization', node.chef_environment)
+ui_user   = user_data['wt_common']['ui_user']
+ui_pass   = user_data['wt_common']['ui_pass']
+
+app_pool_name = node['wt_analytics_ui']['app_pool_name']
+
 # configure IIS
 appcmds = Array.new
 
@@ -85,21 +104,6 @@ extensions.each do |ext|
 	end
 end
 
-if deploy_mode?
-	include_recipe "wt_analytics_ui::uninstall"
-	include_recipe "ms_dotnet4::regiis"
-end
-
-# properties
-install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_analytics_ui']['install_dir']).gsub(/[\\\/]+/,"\\")
-install_url = node['wt_analytics_ui']['download_url']
-
-user_data = data_bag_item('authorization', node.chef_environment)
-ui_user   = user_data['wt_common']['ui_user']
-ui_pass   = user_data['wt_common']['ui_pass']
-
-app_pool_name = node['wt_analytics_ui']['app_pool_name']
-
 directory install_dir do
 	action :create
 	recursive true
@@ -148,7 +152,7 @@ wt_base_netlocalgroup "Performance Monitor Users" do
 	action :add
 end
 
-if deploy_mode?
+if ENV["deploy_build"] == "true" then
 
 	windows_zipfile install_dir do
 		source install_url

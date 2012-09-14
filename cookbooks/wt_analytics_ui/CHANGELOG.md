@@ -2,6 +2,8 @@ Future
 	Change IIS site bindings
 	Search alternate/current environment for cache_hosts
 
+## 1.0.2
+	* Removed default download url. Cleaned up default recipe to improve readability
 ## 1.0.1
 	* Merge 10.5 hotfixe to master.
 ## 0.0.31
