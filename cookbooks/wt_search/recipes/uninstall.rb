@@ -36,10 +36,9 @@ ruby_block "wait" do
 end
 
 powershell "verify service removal" do
-  code <-EOH
-    #Using WMI, pull all services that contain "Webtrends" in the display name and then kill the process.
+  code <<-EOH
 	$WtServices = get-wmiobject -query 'select * from win32_service Where DisplayName Like "%Webtrends%"'
-	Foreach ($Service in $WtServices){ #Loop through the list of services returned and stop the process associated with the service.
+	Foreach ($Service in $WtServices){ 
     If ($Service){Stop-Process -Processname ($Service.Pathname -Replace ".*\\","" -Replace ".exe","") -Force -ErrorAction SilentlyContinue}
 	}
 	EOH
