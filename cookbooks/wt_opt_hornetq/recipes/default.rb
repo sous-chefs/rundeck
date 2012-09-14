@@ -89,11 +89,9 @@ if ENV["deploy_build"] == "true" then
   end
 
   bindaddress = "127.0.0.1"
-  if node[:network][:interfaces].include?(wop_config['backend_if']) then
-    inet = node[:network][:interfaces][wop_config['backend_if']][:addresses].select { |address, data| data["family"] == "inet" }
-    if inet.size > 0 then
-      bindaddress = inet[0][0]
-    end
+  inet = node['network']['interfaces']['eth0']]['addresses'].select { |address, data| data["family"] == "inet" }
+  if inet.size > 0 then
+    bindaddress = inet[0][0]
   end
 
   # add the config xml
@@ -117,7 +115,6 @@ if ENV["deploy_build"] == "true" then
     owner "jboss"
     group "jboss"
     variables(
-      :config  => wop_config,
       :bindaddress => bindaddress
     )
     notifies :restart, resources(:service => "hornetq")
