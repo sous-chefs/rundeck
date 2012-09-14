@@ -191,7 +191,7 @@
         "wt_analytics_ui": {}, 
         "wt_cam": {
             "auth_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/30795:id/auth.zip", 
-            "auth_service_url": "http://bcam.staging.dmz:81", 
+            "auth_service_url": "https://bsauth.webtrends.com", 
             "cam_service_url": "http://bcam.staging.dmz", 
             "db_name": "cam", 
             "db_server": "bcamdb01.staging.dmz", 
