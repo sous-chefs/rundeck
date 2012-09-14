@@ -1,0 +1,22 @@
+#The environments that are being mirrored
+mirrorsources=<%= @mirrorsources %>
+
+#The name of the machine being monitored - This will be used to create the topic
+#for the test hits. The monitored machine, and only the monitored machine, will
+#need to have its topic whitelist set up to mirror the topic
+mirrormachineid=<%= @mirrormachineid %>
+
+#The environment that data is being mirrored into
+mirrortarget=<%= @mirrortarget %>
+
+#The monitor will record the average mirror time for the last N events it received
+rollingAverageCount=<%= @averagecount %>
+
+#The monitor will fail if it has not receieved a message in the last N milliseconds
+rateThreshold=<%= @ratethreshold %>
+
+#The monitor will fail if it has not receieved a message in the last N milliseconds
+averageMirrorTimeThreshold=<%= @avgthreshold %>
+
+#The interval on which monitor events will be generated
+produceRate=<%= @producerate %>
