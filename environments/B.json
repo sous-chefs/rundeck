@@ -9,6 +9,7 @@
         "nagios": "= 1.6.0", 
         "ondemand_base": "= 1.7.12", 
         "storm": "= 1.0.19", 
+        "webtrends_server": "= 1.8.2", 
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.17", 
