@@ -76,7 +76,7 @@ if ENV["deploy_build"] == "true" then
 
   # create a link from the specific version to a generic current folder
   link "#{install_dir}/current" do
-    to "#{install_dir}/#{node['wt_opt_hornetq']['version']}"
+    to "#{install_dir}/#{node['wt_opt_hornetq']['hornetq_version']}"
   end
 
   # set the proper ownership on the install files
