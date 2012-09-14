@@ -13,8 +13,8 @@ else
     log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-log_dir = "#{node['wt_common']['log_dir_linux']}/mirrormaker"
-install_dir = "#{node['wt_common']['install_dir_linux']}/mirrormaker"
+log_dir = File.join(node['wt_common']['log_dir_linux'], "/mirrormaker")
+install_dir = File.join(node['wt_common']['install_dir_linux'], "/mirrormaker")
 
 user = node['wt_kafka_mm']['user']
 group = node['wt_kafka_mm']['group']
@@ -63,13 +63,6 @@ def processConfTemplates (install_dir, node, log_dir)
 
     	zookeeper_pairs_target = getZookeeperPairs(node, node["wt_kafka_mm"]["target"])
 
-#    "wt_kafka_mm": {
-#      "target": "H",
-#      "sources": [
-#        "G"
-#      ]
-#    },
-    
 	node['wt_kafka_mm']['sources'].each { |src_env|
 
 		tgt_env = node['wt_kafka_mm']['target']
@@ -117,7 +110,8 @@ def processConfTemplates (install_dir, node, log_dir)
 			group   "root"
 			mode    00644
 			variables({
-				:log_file => "#{log_dir}/mirrormaker_#{src_env}.log"
+				:log_file => "#{log_dir}/mirrormaker_#{src_env}.log",
+				:log_level => node['wt_kafka_mm']['log_level']
 	    		})
 	    	end
 	}
@@ -127,8 +121,8 @@ end
 def getLib(lib_dir)
 
 	tarball = "kafka-#{node['kafka']['version']}.tar.gz"
-	download_file = "#{node['kafka']['download_url']}/#{tarball}"
-	install_tmp = "#{Chef::Config[:file_cache_path]}/kafka_mm_install"
+	download_file = File.join(node['kafka']['download_url'], tarball)
+	install_tmp = File.join(Chef::Config[:file_cache_path], "kafka_mm_install")
 
 	#download the tar to temp directory
 	remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
