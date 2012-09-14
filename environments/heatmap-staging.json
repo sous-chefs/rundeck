@@ -6,6 +6,7 @@
         "hive": "= 1.0.5", 
         "kafka": "= 1.0.7", 
         "storm": "= 1.0.18", 
+        "webtrends_server": "= 1.8.2", 
         "wt_cam": "= 1.0.4", 
         "wt_heatmaps": "= 0.10.42", 
         "wt_kafka_mm": "= 0.0.3", 
