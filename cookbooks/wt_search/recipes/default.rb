@@ -9,9 +9,11 @@
 #
 # This recipe installs the needed components to full setup/configure the Search service
 #
-
-if deploy_mode?
-	include_recipe "wt_search::uninstall" 	
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so un-deploy first"  
+  include_recipe "wt_search::uninstall"
+else
+  log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
 # get parameters
@@ -19,7 +21,8 @@ download_url = node['wt_search']['download_url']
 master_host = node['wt_masterdb']['master_host']
 
 # destinations
-install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_search']['install_dir']}"
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['install_dir'].gsub(/[\\\/]+/,"\\"))
+log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['log_dir'].gsub(/[\\\/]+/,"\\"))
 
 # get data bag items 
 auth_data = data_bag_item('authorization', node.chef_environment)
@@ -32,7 +35,7 @@ directory install_dir do
 	action :create
 end
 
-directory "#{node['wt_common']['install_dir_windows']}#{node['wt_search']['log_dir']}" do
+directory log_dir do
 	recursive true
 	action :create
 end
@@ -49,7 +52,7 @@ wt_base_netlocalgroup "Performance Monitor Users" do
 	action :add
 end
 
-if deploy_mode?
+if ENV["deploy_build"] == "true" then
 
 	# unzip the install package
 	windows_zipfile install_dir do
