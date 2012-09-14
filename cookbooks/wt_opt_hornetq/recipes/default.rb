@@ -19,6 +19,12 @@ log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "hornetq")
 install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "hornetq")
 tarball      = node['wt_opt_hornetq']['download_url'].split("/")[-1]
 
+bindaddress = "127.0.0.1"
+inet = node['network']['interfaces']['eth0']['addresses'].select { |address, data| data["family"] == "inet" }
+if inet.size > 0 then
+  bindaddress = inet[0][0]
+end
+
 include_recipe "java"
 
 # install libaio1 to support AIO in HornetQ
@@ -88,10 +94,8 @@ if ENV["deploy_build"] == "true" then
     action :delete
   end
 
-  bindaddress = "127.0.0.1"
-  inet = node['network']['interfaces']['eth0']['addresses'].select { |address, data| data["family"] == "inet" }
-  if inet.size > 0 then
-    bindaddress = inet[0][0]
+  runit_service "hornetq" do
+    options(:basedir => install_dir)
   end
 
   # add the config xml
@@ -107,7 +111,7 @@ if ENV["deploy_build"] == "true" then
     notifies :restart, resources(:service => "hornetq")
   end
 
-  # add the config xml
+  # add the run sh
   template "hq-run" do
     path "#{install_dir}/current/bin/run.sh"
     source "run.sh.erb"
@@ -118,10 +122,6 @@ if ENV["deploy_build"] == "true" then
       :bindaddress => bindaddress
     )
     notifies :restart, resources(:service => "hornetq")
-  end
-
-  runit_service "hornetq" do
-    options(:basedir => install_dir)
   end
 
 end
