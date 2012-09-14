@@ -10,7 +10,7 @@
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploy first"
-  include_recipe "wt_streamingcollection::undeploy"
+#  include_recipe "wt_opt_hornetq::undeploy"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
