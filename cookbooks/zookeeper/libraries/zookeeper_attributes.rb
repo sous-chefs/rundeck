@@ -17,11 +17,11 @@ module ZookeeperAttributes
 		cluster_name = construct_attributes[:zookeeper][:cluster_name]
 		Chef::Log.debug "zookeeper_attrib: cluster_name: #{cluster_name}"
 
-		# compose call to get hadoop default attribute
+		# compose call to get zookeeper default attribute
 		default_call = "construct_attributes[:zookeeper][:default]"
 		keys.each {|k| default_call << "[:#{k}]" }
 
-		# get hadoop cluster_name attribute if it exists, otherwise get hadoop default attribute
+		# get zookeeper cluster_name attribute if it exists, otherwise get zookeeper default attribute
 		if eval("construct_attributes[:zookeeper].attribute?(cluster_name)")
 			cluster_keys = "[:zookeeper][cluster_name]"
 			count = 0
