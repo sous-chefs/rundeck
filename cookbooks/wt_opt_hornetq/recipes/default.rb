@@ -104,7 +104,6 @@ if ENV["deploy_build"] == "true" then
     owner "jboss"
     group "jboss"
     variables(
-      :config  => wop_config,
       :bindaddress => bindaddress
     )
     notifies :restart, resources(:service => "hornetq")

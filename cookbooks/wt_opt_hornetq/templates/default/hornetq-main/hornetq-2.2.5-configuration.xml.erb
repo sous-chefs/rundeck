@@ -3,35 +3,35 @@
                xsi:schemaLocation="urn:hornetq /schema/hornetq-configuration.xsd">
 
    <paging-directory>${data.dir:../data}/paging</paging-directory>
-   
+
    <bindings-directory>${data.dir:../data}/bindings</bindings-directory>
-   
+
    <journal-directory>${data.dir:../data}/journal</journal-directory>
-   
+
    <journal-min-files>10</journal-min-files>
-   
+
    <large-messages-directory>${data.dir:../data}/large-messages</large-messages-directory>
    <message-counter-enabled>true</message-counter-enabled>
    <message-counter-sample-period>15000</message-counter-sample-period>
-   <message-counter-max-day-history>7</message-counter-max-day-history> 
+   <message-counter-max-day-history>7</message-counter-max-day-history>
 
 
-   
+
    <connectors>
       <connector name="netty">
          <factory-class>org.hornetq.core.remoting.impl.netty.NettyConnectorFactory</factory-class>
          <param key="host"  value="${hornetq.remoting.netty.host:localhost}"/>
          <param key="port"  value="${hornetq.remoting.netty.port:5445}"/>
       </connector>
-      
+
       <connector name="netty-throughput">
          <factory-class>org.hornetq.core.remoting.impl.netty.NettyConnectorFactory</factory-class>
          <param key="host"  value="${hornetq.remoting.netty.host:localhost}"/>
          <param key="port"  value="${hornetq.remoting.netty.batch.port:5455}"/>
          <param key="batch-delay" value="50"/>
       </connector>
-<% @config['ots']['pods'].each { |key, value| %>
-      
+<% node['wt_opt_hornetq']['pods'].each { |key, value| %>
+
       <connector name="ots-pod-<%=key%>">
          <factory-class>org.hornetq.core.remoting.impl.netty.NettyConnectorFactory</factory-class>
          <param key="host"  value="<%=value[0]%>"/>
@@ -48,7 +48,7 @@
          <param key="host"  value="0.0.0.0"/>
          <param key="port"  value="${hornetq.remoting.netty.port:5445}"/>
       </acceptor>
-      
+
       <acceptor name="netty-throughput">
          <factory-class>org.hornetq.core.remoting.impl.netty.NettyAcceptorFactory</factory-class>
          <param key="host"  value="${hornetq.remoting.netty.host:localhost}"/>
@@ -87,28 +87,28 @@
          <address-full-policy>PAGE</address-full-policy>
       </address-setting>
    </address-settings>
-    
-   <queues>   
+
+   <queues>
       <queue name="jms.topic.WOPEvents">
         <address>jms.topic.WOPEvents</address>
         <durable>false</durable>
       </queue>
-       
+
       <queue name="jms.queue.OTSEventQueue">
         <address>jms.queue.OTSEventQueue</address>
         <durable>true</durable>
       </queue>
-      
+
       <queue name="jms.queue.RASEventQueue">
         <address>jms.queue.RASEventQueue</address>
         <durable>true</durable>
       </queue>
-      
+
       <queue name="jms.queue.WASEventQueue">
         <address>jms.queue.WASEventQueue</address>
         <durable>true</durable>
       </queue>
-      
+
       <queue name="jms.queue.JOSEventQueue">
         <address>jms.queue.JOSEventQueue</address>
         <durable>true</durable>
@@ -138,37 +138,37 @@
         <address>jms.queue.OTS-<%=key%>-PkgForward</address>
         <durable>true</durable>
       </queue>
-      
+
       <queue name="jms.queue.OTS-<%=key%>-Forward">
         <address>jms.queue.OTS-<%=key%>-Forward</address>
         <durable>false</durable>
       </queue>
       <% end %>
 <% } %>
-      
+
    </queues>
 
   <diverts>
 <% @config['ots']['pods'].each_key { |key| %>
 
       <% if @config['ots']['pods'][key].size > 0 then %>
-      <divert name="ots-<%=key%>-pkg-divert">                 
+      <divert name="ots-<%=key%>-pkg-divert">
          <address>jms.queue.OTSEventQueue</address>
-         <forwarding-address>jms.queue.OTS-<%=key%>-PkgForward</forwarding-address>         
+         <forwarding-address>jms.queue.OTS-<%=key%>-PkgForward</forwarding-address>
          <exclusive>true</exclusive>
       </divert>
 
-      <divert name="ots-<%=key%>-divert">                 
+      <divert name="ots-<%=key%>-divert">
          <address>jms.topic.WOPEvents</address>
-         <forwarding-address>jms.queue.OTS-<%=key%>-Forward</forwarding-address>         
+         <forwarding-address>jms.queue.OTS-<%=key%>-Forward</forwarding-address>
          <filter string="ALL = TRUE OR OTS = TRUE"/>
          <transformer-class-name>
             org.hornetq.core.server.cluster.impl.AddExpirationTimeTransformer
-         </transformer-class-name> 
+         </transformer-class-name>
          <exclusive>false</exclusive>
       </divert>
     <% end %>
-<% } %>      
+<% } %>
 
   </diverts>
 
