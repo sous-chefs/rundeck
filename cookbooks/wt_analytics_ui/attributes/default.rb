@@ -9,7 +9,7 @@
 # build info
 default['wt_analytics_ui']['artifact'] = 'AnalyticsUI.zip'
 default['wt_analytics_ui']['tc_proj'] = 'Analytics'
-default['wt_analytics_ui']['download_url'] = 'http://teamcity.webtrends.corp/guestAuth/repository/download/bt15/.lastSuccessful/AnalyticsUI.zip'
+default['wt_analytics_ui']['download_url'] = ''
 
 # install subfolder
 default['wt_analytics_ui']['install_dir'] = 'Analytics'
