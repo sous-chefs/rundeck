@@ -40,15 +40,7 @@ def getZookeeperPairs(node, env)
 
 	log "#{zookeeper_pairs.size} instances of zookeeper found found in #{env}"
 
-	# fall back to attribs if search doesn't come up with any zookeeper roles
-	# if zookeeper_pairs.count == 0
-	#	node[:zookeeper][:quorum].each do |i|
-	#		zookeeper_pairs << i
-	#	end
-	# end
-
 	# append the zookeeper client port (defaults to 2181)
-
 	i = 0
 	while i < zookeeper_pairs.size do
 		zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
@@ -61,12 +53,12 @@ end
 #update the config files
 def processConfTemplates (install_dir, node, log_dir)
 
-    	zookeeper_pairs_target = getZookeeperPairs(node, node["wt_kafka_mm"]["target"])
+		zookeeper_pairs_target = getZookeeperPairs(node, node["wt_kafka_mm"]["target"])
 
-	node['wt_kafka_mm']['sources'].each { |src_env|
+		node['wt_kafka_mm']['sources'].each { |src_env|
 
 		tgt_env = node['wt_kafka_mm']['target']
-                                            
+
 		# grab the zookeeper nodes that are currently available in the source environment
 		zookeeper_pairs_src = getZookeeperPairs(node, src_env)
 
@@ -79,41 +71,41 @@ def processConfTemplates (install_dir, node, log_dir)
 			action :create
 		end
 
-	    	# Set up the consumer config - The zookeepers in the source environment
-	    	template "#{install_dir}/conf/#{src_env}/consumer.config" do
-	    		source  "consumer.config.erb"
-	    		owner   "root"
-			group   "root"
-			mode    00644
-			variables({
+		# Set up the consumer config - The zookeepers in the source environment
+		template "#{install_dir}/conf/#{src_env}/consumer.config" do
+		  source  "consumer.config.erb"
+		  owner   "root"
+		  group   "root"
+	  	mode    00644
+		  variables({
 				:zkconnect => zookeeper_pairs_src,
 				:conn_timeout => "10000",
 				:groupid => "mm_#{src_env}"
-	    		})
-	    	end
+		  })
+		end
 
-	    	# Set up the producer config - The zookeepers in the target environment
-	    	template "#{install_dir}/conf/#{src_env}/producer.config" do
-			source  "producer.config.erb"
-			owner   "root"
+    # Set up the producer config - The zookeepers in the target environment
+		template "#{install_dir}/conf/#{src_env}/producer.config" do
+		  source  "producer.config.erb"
+		  owner   "root"
 			group   "root"
 			mode    00644
 			variables({
 				:zkconnect => zookeeper_pairs_target
 			})
-	    	end
+		end
 
 		# log4j
-	    	template "#{install_dir}/conf/#{src_env}/log4j.properties" do
-	    		source  "log4j.properties.erb"
-			owner   "root"
-			group   "root"
-			mode    00644
-			variables({
-				:log_file => "#{log_dir}/mirrormaker_#{src_env}.log",
-				:log_level => node['wt_kafka_mm']['log_level']
-	    		})
-	    	end
+		template "#{install_dir}/conf/#{src_env}/log4j.properties" do
+      source  "log4j.properties.erb"
+      owner   "root"
+      group   "root"
+      mode    00644
+      variables({
+        :log_file => "#{log_dir}/mirrormaker_#{src_env}.log",
+        :log_level => node['wt_kafka_mm']['log_level']
+      })
+    end
 	}
 end
 
@@ -137,30 +129,30 @@ def getLib(lib_dir)
 		group "root"
 		mode 00755
 		recursive true
-    	end
+  end
 
-    	# extract the source file into TEMP directory
-    	execute "tar" do
-      		user  "root"
-     		group "root"
-      		cwd install_tmp
-      		creates "#{install_tmp}/lib"
-      		command "tar zxvf #{Chef::Config[:file_cache_path]}/#{tarball}"
-    	end
+  # extract the source file into TEMP directory
+  execute "tar" do
+    user  "root"
+    group "root"
+    cwd install_tmp
+    creates "#{install_tmp}/lib"
+    command "tar zxvf #{Chef::Config[:file_cache_path]}/#{tarball}"
+  end
 
 	#copy necessary files to /lib
-    	execute "mv" do
-      		user  "root"
-      		group "root"
-      		command "mv #{install_tmp}/lib/*.jar #{lib_dir}"
-    	end
+  execute "mv" do
+    user  "root"
+    group "root"
+    command "mv #{install_tmp}/lib/*.jar #{lib_dir}"
+  end
 
 	#Clean up
 	execute "delete_install_source" do
-    		user "root"
-    		group "root"
-    		command "rm -rf #{Chef::Config[:file_cache_path]}/#{tarball} #{install_tmp}"
-    		action :run
+    user "root"
+    group "root"
+    command "rm -rf #{Chef::Config[:file_cache_path]}/#{tarball} #{install_tmp}"
+    action :run
 	end
 end
 
@@ -220,13 +212,13 @@ if ENV["deploy_build"] == "true" then
 
 		runit_service "mirrormaker_#{src_env}" do
 			template_name "mirrormaker"	#/templates/sv-mirrormaker-run.erb
-		    	options({
+      options({
 				:install_dir => install_dir,
 				:user => user,
 				:src_env => src_env,
-	                       :jmx_port => jmx_port
-		    	})
-	    	end
+        :jmx_port => jmx_port
+      })
+    end
 		jmx_port = jmx_port.to_i + 1
 	}
 end
