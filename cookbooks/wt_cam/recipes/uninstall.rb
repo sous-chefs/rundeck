@@ -25,18 +25,18 @@ iis_site 'CAM' do
 end
 
 # remove the pool
-iis_pool "#{app_pool}" do
+iis_pool app_pool do
     action [:stop, :delete]
-    # ignore errors for now since the resource search will match CAMService when searching for CAM
+    # ignore errors for now since the resource search will match CAMService when searching for CAM (this is fixed in IIS cookbook v1.2)
     ignore_failure true
 end
 
-directory "#{install_dir}" do
+directory install_dir do
   recursive true
   action :delete
 end
 
-directory "#{log_dir}" do
+directory log_dir do
   recursive true
   action :delete
 end

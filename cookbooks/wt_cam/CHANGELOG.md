@@ -1,3 +1,7 @@
+## 1.0.19
+* Address food critic warnings
+* Remove CAM Lite cookbooks since we don't use CAM lite anymore
+
 ## 1.0.18
 * Take out the "latest" builds for download URLs from the default attributes.  This has unintended consequences when a bad attribute is in an environment file
 
