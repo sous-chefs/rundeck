@@ -18,7 +18,7 @@ source_fullpath = File.join(Chef::Config[:file_cache_path], source_tarball)
 # servers in this cluster
 zookeeper_nodes = zookeeper_search('zookeeper').sort
 if zookeeper_nodes.count == 0
-	# corner case:  in single node cluster, role is never found in search until node state is saved.
+	# in single node cluster, role is never found in search until node state is saved.
 	node.save
 	zookeeper_nodes = zookeeper_search('zookeeper').sort
 	raise Chef::Exceptions::RoleNotFound, "zookeeper role not found" if zookeeper_nodes.count == 0
@@ -167,7 +167,10 @@ runit_service 'zookeeper' do
 end
 
 service 'zookeeper' do
-	subscribes :restart, resources(:template => "#{node.zookeeper_attrib(:config_dir)}/zoo.cfg")
+	subscribes :restart, resources(
+		:template => "#{node.zookeeper_attrib(:config_dir)}/zoo.cfg",
+		:link     => "#{node.zookeeper_attrib(:install_dir)}/current"
+	)
 end
 
 # create collectd plugin for zookeeper if collectd has been applied.
