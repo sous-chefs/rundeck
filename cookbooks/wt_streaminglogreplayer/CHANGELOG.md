@@ -1,3 +1,7 @@
+## 0.0.27
+* Added a reference to wt_streamingconfigservice. Im not sure if this was to be
+  avoided, but the 0.0.26 version of the cookbook did not install in Hpod.
+
 ## 0.0.26
 * Don't fall back to a valid TC URL
 
