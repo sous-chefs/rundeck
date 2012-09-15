@@ -1,11 +1,10 @@
-DESCRIPTION
+Description
 ===========
 
-Installs packages required for compiling C software from source.
+Installs packages required for compiling C software from source. Use
+this cookbook if you wish to compile C programs, or install RubyGems
+with native extensions.
 
-<<<<<<< HEAD
-LICENSE AND AUTHOR
-=======
 Requirements
 ============
 
@@ -105,13 +104,12 @@ them, or to compile RubyGems with native C extensions. You should
 create a cookbook for handling that.
 
 License and Author
->>>>>>> chef-vendor-build-essential
 ==================
 
 Author:: Joshua Timberman (<joshua@opscode.com>)
 Author:: Seth Chisamore (<schisamo@opscode.com>)
 
-Copyright 2009-2011, Opscode, Inc.
+Copyright 2009-2011, Opscode, Inc. (<legal@opscode.com>)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
