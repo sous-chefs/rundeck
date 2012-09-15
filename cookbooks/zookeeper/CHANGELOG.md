@@ -1,5 +1,9 @@
 ## Future
 
+## 1.1.1
+* fixed corner case when installing a single node cluster that could not find it role
+* restart service if /opt/zookeeper/current link changes, such as during an upgrade or downgrade.
+
 ## 1.1.0
 * add support for multiple clusters in the same chef environment
 
