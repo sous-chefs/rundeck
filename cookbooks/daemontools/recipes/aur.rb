@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: daemontools
-# Recipe:: default
+# Recipe:: aur
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2010-2012, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,21 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe "ucspi-tcp"
-
-case node['daemontools']['install_method']
-when "package"
-
-  include_recipe "daemontools::package"
-
-when "aur"
-
-  include_recipe "daemontools::aur"
-
-when "source"
-
-  include_recipe "daemontools::source"
-
+if platform?("arch")
+  pacman_aur "daemontools" do
+    patches ["daemontools-0.76.svscanboot-path-fix.patch"]
+    pkgbuild_src true
+    action [:build,:install]
+  end
 else
-  Chef::Log.info("Could not find a method to install daemontools for platform #{node['platform']}, version #{node['platform_version']}")
+  Chef::Log.warn("daemontools installation with AUR doesn't make sense on non-ArchLinux platforms, skipping #{cookbook_name}::#{recipe_name}")
 end

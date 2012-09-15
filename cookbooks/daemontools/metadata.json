@@ -1,28 +1,18 @@
 {
   "name": "daemontools",
   "description": "Installs/Configures daemontools",
-  "long_description": "Description\n===========\n\nInstalls DJB's Daemontools and includes a service LWRP.\n\nRequirements\n============\n\nShould work on ArchLinux, Debian and Ubuntu. May work on Red Hat family distributions.\n\nRequires build-essential and ucspi-tcp cookbooks.\n\nAttributes\n==========\n\n* `node[:daemontools][:bin_dir]` - Sets the location of the binaries for daemontools, default is selected by platform, or '/usr/local/bin' as a fallback.\n\nResource/Provider\n=================\n\nThis cookbook includes an LWRP for managing daemontools services.\n\nUsage\n=====\n\nLicense and Author\n==================\n\nAuthor: Joshua Timberman (<joshua@opscode.com>)\n\nCopyright 2010, Opscode, Inc.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
+  "long_description": "Description\n===========\n\nInstalls [DJB's Daemontools](http://cr.yp.to/daemontools.html) and\nincludes a service LWRP.\n\nRequirements\n============\n\n## Platform:\n\nTested on:\n\n* Debian 5.0 and 6.0\n* Ubuntu 10.04 and 12.04\n* ArchLinux\n\nMay work on other platforms with or without modification using the\n\"source\" installation method.\n\n## Cookbooks:\n\n* ucspi-tcp\n* pacman (for ArchLinux)\n* build-essential (for source installs)\n\nAttributes\n==========\n\n* `node['daemontools']['bin_dir']` - Sets the location of the binaries\n  for daemontools, default is selected by platform, or\n  '/usr/local/bin' as a fallback.\n* `node['daemontools']['service_dir']` - Daemontools \"service\"\n  directory where svscan will find services to manage.\n* `node['daemontools']['install_method']` - how to install\n  daemontools, can be `source`, `package` or `aur` (for ArchLinux).\n\nRecipes\n=======\n\n## default\n\nThe default recipe dispatches to the other recipes depending on the `node['daemontools']['install_method']`.\n\n## package\n\nWorks and tested on Debian family (`platform_family`) for installing the\n`daemontools-run` package. This recipe can be included anywhere if you\nhave a `daemontools` package available in your distribution's package\nrepositories or in a local package repository.\n\n## aur\n\nOn ArchLinux systems, include the pacman cookbook in a base role or\nsimilar as this cookbook doesn't directly depend on it.\n\n## source\n\nThe source installation of daemontools should work on most other\nplatforms that do not have a package available.\n\nResource/Provider\n=================\n\nThis cookbook includes an LWRP, `daemontools_service`, for managing\nservices with daemontools. Examples:\n\n    daemontools_service \"tinydns-internal\" do\n      directory \"/etc/djbdns/tinydns-internal\"\n      template false\n      action [:enable,:start]\n    end\n\n    daemontools_service \"chef-client\" do\n      directory \"/etc/sv/chef-client\"\n      template \"chef-client\"\n      action [:enable,:start]\n      log true\n    end\n\nDaemontools itself can perform a number of actions on services. The\nfollowing are commands sent via the `svc` program. See its man page\nfor more information.\n\n* start, stop, status, restart, up, down, once, pause, cont, hup,\n  alrm, int, term, kill\n\nEnabling a service (`:enable` action) is done by setting up the\ndirectory located by the `directory` resource attribute. The following\nare set up:\n\n* `run` script that runs the service startup using the `template`\n  resource attribute name.\n* `log/run` directory and script that runs the logger if the resource\n  attribute `log` is true.\n* `finish` script, if specified using the `finish` resource attribute\n* `env` directory, containing ENV variablesif specified with the `env`\n  resource attribute\n* links the `node['daemontools']['service_dir']/service_name` to the\n  `service_name` directory.\n\nThe default action is `:start` - once enabled daemontools services are\nstarted by svscan anyway.\n\nThe name attribute for the resource is `service_name`.\n\nUsage\n=====\n\nInclude the daemontools recipe on nodes that should have daemontools\ninstalled for managing services. Use the `daemontools_service` LWRP\nfor any services that should be managed by daemontools. In your\ncookbooks where `daemontools_service` is used, create the appropriate\nrun and log-run scripts for your service. For example if the service\nis \"flowers\":\n\n    daemontools_service \"flowers\" do\n      directory \"/etc/sv/flowers\"\n      template \"flowers\"\n      action [:enable, :start]\n      log true\n    end\n\nCreate these templates in your cookbook:\n\n* `templates/default/sv-flowers-run.erb`\n* `templates/default/sv-flowers-log-run.erb`\n\nIf your service also has a finish script, set the resource attribute\n`finish` to true and create `sv-flowers-finish.erb`.\n\nThe content of the scripts should be appropriate for the \"flowers\"\nservice.\n\nLicense and Author\n==================\n\nAuthor: Joshua Timberman (<joshua@opscode.com>)\n\nCopyright 2010-2012, Opscode, Inc.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
   "maintainer": "Opscode, Inc.",
   "maintainer_email": "cookbooks@opscode.com",
   "license": "Apache 2.0",
   "platforms": {
-    "debian": [
-
-    ],
-    "ubuntu": [
-
-    ],
-    "arch": [
-
-    ]
+    "debian": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0",
+    "arch": ">= 0.0.0"
   },
   "dependencies": {
-    "build-essential": [
-
-    ],
-    "ucspi-tcp": [
-
-    ]
+    "build-essential": ">= 0.0.0",
+    "ucspi-tcp": ">= 0.0.0"
   },
   "recommendations": {
   },
@@ -41,5 +31,5 @@
   "recipes": {
     "daemontools": "Installs daemontools by source or package depending on platform"
   },
-  "version": "0.9.0"
+  "version": "1.0.0"
 }

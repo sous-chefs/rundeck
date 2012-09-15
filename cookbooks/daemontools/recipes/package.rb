@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: daemontools
-# Recipe:: default
+# Recipe:: package
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2010-2012, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,21 +17,17 @@
 # limitations under the License.
 #
 
-include_recipe "ucspi-tcp"
-
-case node['daemontools']['install_method']
-when "package"
-
-  include_recipe "daemontools::package"
-
-when "aur"
-
-  include_recipe "daemontools::aur"
-
-when "source"
-
-  include_recipe "daemontools::source"
-
+case node['platform_family']
+when "debian"
+  package "daemontools-run" do
+    action :install
+  end
 else
-  Chef::Log.info("Could not find a method to install daemontools for platform #{node['platform']}, version #{node['platform_version']}")
+  Chef::Log.info "Attempting package installation method of daemontools in #{cookbook_name}::#{recipe_name}."
+  Chef::Log.info "If this fails, try node['daemontools']['install_method'] 'source'"
+
+  package "daemontools" do
+    action :install
+  end
 end
+
