@@ -10,7 +10,7 @@
 #
 
 %w(collectd_WT-Base collectd_Graphite-Write).each do |file|
-  template "#{node[:collectd][:plugin_conf_dir]}/#{file}.conf" do
+  template "#{node['collectd']['plugin_conf_dir']}/#{file}.conf" do
     source "/collectd_base/#{file}.conf.erb"
     owner "root"
     group "root"
