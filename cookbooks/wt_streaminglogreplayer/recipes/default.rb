@@ -116,7 +116,7 @@ def getZookeeperPairs(node)
 	return zookeeper_pairs
 end
 
-def processTemplates (install_dir, node, user, group, datacenter, pod)
+def processTemplates (install_dir, node, user, group, datacenter, pod, configservice_url, kafka_topic)
   log "Updating the templated config files"
 
 	# grab the zookeeper nodes that are currently available
@@ -173,7 +173,7 @@ if ENV["deploy_build"] == "true" then
         })
     end
 
-    processTemplates(install_dir, node, user, group, datacenter, pod)
+    processTemplates(install_dir, node, user, group, datacenter, pod, configservice_url, kafka_topic)
 
     # delete the application tarball
     execute "delete_install_source" do
@@ -193,7 +193,7 @@ if ENV["deploy_build"] == "true" then
     })
     end
 else
-    processTemplates(install_dir, node, user, group, datacenter, pod)
+    processTemplates(install_dir, node, user, group, datacenter, pod, configservice_url, kafka_topic)
 end
 
 #Create collectd plugin for streaminglogreplayer JMX objects if collectd has been applied.
