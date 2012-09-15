@@ -1,6 +1,7 @@
-## Future
+## 0.10.53
+* Removed last successful build default download URL
+* Use the website port and oem website port from attributes instead of hardcoded values
 
-* Unknown
 ## 0.10.52
 * Added vc2010 as dependency in metadata
 
