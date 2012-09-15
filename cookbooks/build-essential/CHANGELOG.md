@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 ## v1.1.2:
 
 * [COOK-1620] - support OS X 10.8
@@ -11,7 +9,6 @@
 * [COOK-1296] - allow for compile-time installation of packages
   through an attribute (see README)
 
->>>>>>> chef-vendor-build-essential
 ## v1.0.2:
 
 * [COOK-1098] - Add Amazon Linux platform support
