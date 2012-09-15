@@ -8,9 +8,9 @@
 # All rights reserved - Do Not Redistribute
 # This recipe sets up the base configuration for DX
 
-if deploy_mode? 
-  include_recipe "wt_dx::uninstall" 
-  include_recipe "ms_dotnet4::regiis"  
+if deploy_mode?
+  include_recipe "wt_dx::uninstall"
+  include_recipe "ms_dotnet4::regiis"
 end
 
 #Properties
@@ -62,56 +62,56 @@ end
 
 iis_site 'DX' do
 	protocol :http
-    port 80
+    port node['wt_dx']['website_port']
     path "#{node['wt_common']['install_dir_windows']}\\Data Extraction API"
 	action [:add,:start]
 end
 
 iis_site 'OEM_DX' do
 	protocol :http
-    port 81
+    port node['wt_dx']['oem_website_port']
     path "#{node['wt_common']['install_dir_windows']}\\OEM Data Extraction API"
 	action [:add,:start]
 end
 
 wt_base_firewall 'DXWS' do
 	protocol "TCP"
-	port 80
+	port node['wt_dx']['website_port']
 	action [:open_port]
 end
 
 wt_base_firewall 'OEM_DXWS' do
 	protocol "TCP"
-	port 81
+	port node['wt_dx']['oem_website_port']
 	action [:open_port]
 end
 
-if deploy_mode?  
+if deploy_mode?
   windows_zipfile "#{Chef::Config[:file_cache_path]}" do
     source node['wt_dx']['download_url']
-    action :unzip	
+    action :unzip
   end
-  
+
   windows_package "WebTrends Common Lib" do
     source "#{Chef::Config[:file_cache_path]}\\#{msi_name}"
 	options "/l*v \"#{install_logdir}\\#{msi_name}-Install.log\" INSTALLDIR=\"#{install_dir}\" SQL_SERVER_NAME=\"#{node['wt_masterdb']['master_host']}\" WTMASTER=\"wtMaster\"  WTSCHED=\"wt_Sched\""
 	action :install
   end
-  
+
   template "#{install_dir_v21}\\web.config" do
   	source "webConfigv21.erb"
   	variables(
   		:cache_hosts => search(:node, "chef_environment:#{node.chef_environment} AND role:memcached")
   	)
-  end  
-  
+  end
+
   iis_app "DX" do
   	path "/v2_1"
   	application_pool app_pool_v21
   	physical_path install_dir_v21
   	action :add
   end
-  
+
   iis_config auth_cmd_v21 do
   	action :config
   end
@@ -120,7 +120,7 @@ if deploy_mode?
     command "cp -r #{Chef::Config[:file_cache_path]}\\v3 \"#{install_dir_v3}\""
     action :run
   end
-  
+
   template "#{install_dir_v3}\\StreamingServices\\Web.config" do
   	source "webConfigv3Streaming.erb"
   	variables(
@@ -128,10 +128,10 @@ if deploy_mode?
   		:master_host => node['wt_masterdb']['master_host']
   	)
   end
-  
+
   search_server = search(:node, "chef_environment:#{node.chef_environment} AND role:wt_search")
   search_host = "#{search_server[0][:fqdn]}"
-  
+
   template "#{install_dir_v3}\\Web Services\\Web.config" do
   	source "webConfigv3Web.erb"
   	variables(
@@ -145,48 +145,48 @@ if deploy_mode?
   		:streamingservice_root => node['wt_dx']['app_settings_section']['streamingServiceRoot']
   	)
   end
-  
+
   iis_pool "#{streamingservices_pool}" do
   	pipeline_mode :Integrated
     action [:add, :config]
   end
-  
+
   iis_pool "#{webservices_pool}" do
   	pipeline_mode :Integrated
   	runtime_version "4.0"
     action [:add, :config]
   end
-  
+
   iis_app "DX" do
   	path "/StreamingServices_v3"
   	application_pool "#{streamingservices_pool}"
   	physical_path "#{install_dir_v3}\\StreamingServices"
   	action :add
   end
-  
+
   iis_app "DX" do
   	path "/v3"
   	application_pool "#{webservices_pool}"
   	physical_path "#{install_dir_v3}\\Web Services"
   	action :add
   end
-  
+
   iis_config streamingauth_cmd do
   	action :config
   end
-  
+
   iis_config webauth_cmd do
   	action :config
   end
-  
+
   #DX 2.0 really just uses the DX 2.1 installations
   iis_app "DX" do
   	path "/v2"
   	application_pool "#{app_pool_v21}"
   	physical_path "#{install_dir_v21}"
   	action :add
-  end 
-  
+  end
+
   #DX 2.2 just uses the DX 3.0 installation
   iis_app "OEM_DX" do
   	path "/v2_2"
@@ -194,12 +194,12 @@ if deploy_mode?
   	physical_path "#{install_dir_v3}"
   	action :add
   end
-  
-  cfg_cmds.each do |cmd|	
+
+  cfg_cmds.each do |cmd|
     iis_config "#{cmd}" do
 		action :config
 	end
-  end	
+  end
 end
 
 #Post Install
