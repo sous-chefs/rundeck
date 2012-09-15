@@ -1,7 +1,6 @@
-## Future
-
-* Run under runit
-* Pass the license file in somehow (databag?)
+## 1.0.7
+* Don't use the deploy flag.  This breaks setups where NetAcuity sits with other WT services and wipes away the DBs / breaks NetAcuity for over and hour post deploy of the WT services
+* Delete the init script on uninstall
 
 ## 1.0.6
 * Address several food critic warnings

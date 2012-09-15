@@ -15,3 +15,7 @@ directory node['wt_netacuity']['install_dir'] do
   recursive true
   action :delete
 end
+
+file "/etc/init.d/netacuity" do
+  action :delete
+end
