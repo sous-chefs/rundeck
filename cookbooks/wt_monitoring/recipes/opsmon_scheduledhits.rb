@@ -33,6 +33,3 @@ cron "opsmon04_scheduledhits" do
   minute "*/5"
   command "/usr/bin/curl -d type=v -d domainID=265800 -d testID=265925 -d runID=265927 -d systemUID=$(date \\+\\%s) http://ots.optimize.webtrends.com/ots/ots/json-ping-3.1"
 end
-
-
-
