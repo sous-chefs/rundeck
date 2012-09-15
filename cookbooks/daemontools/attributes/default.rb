@@ -16,27 +16,38 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-case platform
+
+default['daemontools']['bin_dir'] = "/usr/local/bin"
+default['daemontools']['service_dir'] = "/etc/service"
+default['daemontools']['install_method'] = "source"
+
+case node['platform']
 when "ubuntu"
-  if platform_version.to_f >= 9.04
-    set[:daemontools][:bin_dir] = "/usr/bin"
-    set[:daemontools][:service_dir] = "/etc/service"
+  if node['platform_version'].to_f >= 9.04
+    default['daemontools']['bin_dir'] = "/usr/bin"
+    default['daemontools']['service_dir'] = "/etc/service"
+    default['daemontools']['install_method'] = "package"
   else
-    set[:daemontools][:bin_dir] = "/usr/local/bin"
-    set[:daemontools][:service_dir] = "/etc/service"
-  end 
+    default['daemontools']['bin_dir'] = "/usr/local/bin"
+    default['daemontools']['service_dir'] = "/etc/service"
+    default['daemontools']['install_method'] = "source"
+  end
 when "debian"
-  if platform_version.to_f >= 5.0
-    set[:daemontools][:bin_dir] = "/usr/bin"
-    set[:daemontools][:service_dir] = "/etc/service"
+  if node['platform_version'].to_f >= 5.0
+    default['daemontools']['bin_dir'] = "/usr/bin"
+    default['daemontools']['service_dir'] = "/etc/service"
+    default['daemontools']['install_method'] = "package"
   else
-    set[:daemontools][:bin_dir] = "/usr/local/bin"
-    set[:daemontools][:service_dir] = "/etc/service"
-  end 
+    default['daemontools']['bin_dir'] = "/usr/local/bin"
+    default['daemontools']['service_dir'] = "/etc/service"
+    default['daemontools']['install_method'] = "source"
+  end
 when "arch"
-  set[:daemontools][:bin_dir] = "/usr/sbin"
-  set[:daemontools][:service_dir] = "/etc/service"
+  default['daemontools']['bin_dir'] = "/usr/sbin"
+  default['daemontools']['service_dir'] = "/etc/service"
+  default['daemontools']['install_method'] = "aur"
 else
-  set[:daemontools][:bin_dir] = "/usr/local/bin"
-  set[:daemontools][:service_dir] = "/etc/service"
+  default['daemontools']['bin_dir'] = "/usr/local/bin"
+  default['daemontools']['service_dir'] = "/etc/service"
+  default['daemontools']['install_method'] = "source"
 end
