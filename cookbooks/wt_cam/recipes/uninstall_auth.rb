@@ -25,18 +25,18 @@ iis_site 'AUTH' do
 end
 
 # remove the pool
-iis_pool "#{app_pool}" do
+iis_pool app_pool do
     action [:stop, :delete]
     # ignore errors for now since the resource search will match CAMService when searching for CAM
     ignore_failure true
 end
 
-directory "#{install_dir}" do
+directory install_dir do
   recursive true
   action :delete
 end
 
-directory "#{log_dir}" do
+directory log_dir do
   recursive true
   action :delete
 end
