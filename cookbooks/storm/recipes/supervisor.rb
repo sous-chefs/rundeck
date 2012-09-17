@@ -15,7 +15,7 @@ install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploy first"
   include_recipe "storm::undeploy-supervisor"
-else
+end
 
 %w{supervisor}.each do |daemon|
   # control file
