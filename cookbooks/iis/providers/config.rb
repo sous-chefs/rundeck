@@ -1,9 +1,9 @@
 #
 # Author:: Kendrick Martin (kendrick.martin@webtrends.com)
 # Cookbook Name:: iis
-# Provider:: config
+# Resource:: config
 #
-# Copyright:: 2011, Webtrends Inc.
+# Copyright:: 2011, Webtrends
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,15 +24,14 @@ include Chef::Mixin::ShellOut
 include Windows::Helper
 
 action :config do
-	cmd = "#{appcmd} set config #{@new_resource.cfg_cmd}"
-	Chef::Log.debug(cmd)
-	shell_out!(cmd, :returns => @new_resource.returns)
-	Chef::Log.info("IIS Config command run")
+	Chef::Log.debug("#{appcmd} set config #{@new_resource.cfg_cmd}")
+	shell_out!("#{appcmd} set config #{@new_resource.cfg_cmd}")
+	Chef::Log.info("IIS Config command run")	
 end
 
 private
 def appcmd
-	@appcmd ||= begin
-		"#{node['iis']['home']}\\appcmd.exe"
-	end
+  @appcmd ||= begin
+    "#{node['iis']['home']}\\appcmd.exe"
+  end
 end
