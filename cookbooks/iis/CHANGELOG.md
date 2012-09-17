@@ -4,18 +4,17 @@
 * resource/provider for managing IIS virtual directories
 * IIS 6.0 support
 
-## v1.2.0:
+## 1.1.2
 
-* [COOK-1061] - `iis_site` doesn't allow setting the pool
-* [COOK-1078] - handle advanced bindings
-* [COOK-1283] - typo on pool
-* [COOK-1284] - install iis application initialization
-* [COOK-1285] - allow multiple host_header, port and protocol
-* [COOK-1286] - allow directly setting which app pool on site creation
-* [COOK-1449] - iis pool regex returns true if similar site exists
-* [COOK-1647] - mod_ApplicationInitialization isn't RC
+* add config resource attribute :returns to accept non-zero return codes.
+* add support for configuring app pool identity
+* add attribute to install IIS with alternative list of components
 
-## v1.1.0:
+## 1.1.1:
+
+* Modified the regex in pool:load_current_resource to search for the full app pool name, rather then the start.
+
+## 1.1.0:
 
 * [COOK-1012] - support adding apps
 * [COOK-1028] - support for config command
@@ -23,11 +22,11 @@
 * [COOK-835] - add app pool management
 * [COOK-950] - documentation correction for version of IIS/OS
 
-## v1.0.2:
+## 1.0.2:
 
 * Ruby 1.9 compat fixes
 * ensure carriage returns are removed before applying regex
 
-## v1.0.0:
+## 1.0.0:
 
 * [COOK-718] initial release
