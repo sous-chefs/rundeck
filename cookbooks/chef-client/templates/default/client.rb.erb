@@ -1,10 +1,21 @@
-log_level        :info
-log_location     STDOUT
+<% unless @chef_requires.empty? %>
+<%= @chef_requires.inspect %>.each do |lib|
+  begin
+    require lib
+  rescue LoadError
+    Chef::Log.warn "Failed to load #{lib}. This should be resolved after a chef run."
+  end
+end
+<% end %>
 
-<% if Chef::Config.has_key?(:chef_server_url) -%>
-chef_server_url  "<%= Chef::Config[:chef_server_url] %>"
-<% else -%>
+log_level        :<%= @chef_log_level.to_s %>
+log_location     <%= @chef_log_location %>
+verbose_logging <%= @chef_verbose_logging %>
+
+<% if node.attribute?("chef_client") && node["chef_client"]["server_url"] -%>
 chef_server_url  "<%= node["chef_client"]["server_url"] %>"
+<% else -%>
+chef_server_url  "<%= Chef::Config[:chef_server_url] %>"
 <% end -%>
 validation_client_name "<%= node["chef_client"]["validation_client_name"] %>"
 <% if @chef_node_name -%>
@@ -34,3 +45,7 @@ ENV['HTTP_PROXY'] = "<%= node["chef_client"]["http_proxy"] %>"
 
 Ohai::Config[:plugin_path] << "<%= node["ohai"]["plugin_path"] %>"
 <% end -%>
+
+<% if @chef_environment %>
+environment "<%= @chef_environment %>"
+<% end %>  
