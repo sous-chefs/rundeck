@@ -36,5 +36,5 @@
   "recipes": {
     "perl": "Installs perl and adds a provider to install cpan modules"
   },
-  "version": "1.0.0"
+  "version": "1.0.2"
 }
