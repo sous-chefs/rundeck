@@ -17,11 +17,11 @@
 # limitations under the License.
 
 
-template node['solr']['config_path'] do
+template node['chef_server']['solr']['config_path'] do
   owner "chef"
   group "chef"
   variables(
-    :maxFieldLength => node['solr']['max_field_size']
+    :maxFieldLength => node['chef_server']['solr']['max_field_size']
   )
   notifies :restart, "service[chef-solr]"
 end
