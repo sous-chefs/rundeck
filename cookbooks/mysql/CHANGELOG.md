@@ -1,6 +1,3 @@
-## v1.3.1
-Fixed attribute name issue on windows - KLM
-
 ## v1.3.0:
 
 **Important note for this release**
