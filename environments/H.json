@@ -222,8 +222,8 @@
         }, 
         "wt_analytics_ui": {}, 
         "wt_cam": {
-            "auth_service_url": "http://hcam01.staging.dmz:81", 
-            "cam_service_url": "http://hcam01.staging.dmz", 
+            "auth_service_url": "https://hsauth.webtrends.com", 
+            "cam_service_url": "http://hcam.staging.dmz", 
             "db_name": "cam", 
             "db_server": "hcamdb01.staging.dmz"
         }, 
