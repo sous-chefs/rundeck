@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-actions :add, :delete, :start, :stop, :restart, :config
+actions :add, :delete, :start, :stop, :restart
 
 attribute :site_name, :kind_of => String, :name_attribute => true
 attribute :site_id, :kind_of => Integer
