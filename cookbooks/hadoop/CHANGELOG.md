@@ -3,6 +3,9 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+## 1.1.2
+* adding attributes: cluster_administrators, job_acl_modify, job_acl_view
+
 ## 1.1.1
 * added acls_enabled attribute to aid dev environments
 
