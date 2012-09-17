@@ -47,7 +47,7 @@ This cookbook is used to configure a system to be a Chef Server. It has a few re
 REQUIREMENTS
 ============
 
-Chef 0.10.0 or later is required. For earlier versions of Chef, see the `chef` cookbook, version 0.99.0.
+Chef ~> 0.10.0, 10.0 is required.
 
 Platform
 --------
@@ -102,6 +102,7 @@ The following attributes are chosen based on the platform and set accordingly. S
 * redhat
 * centos
 * fedora
+* amazon
 * openbsd
 * freebsd
 * mac\_os\_x
@@ -328,14 +329,6 @@ Runit and daemontools "run" scripts for the services configured when `node['chef
 -----------
 
 Bluepill "pill" files for the services configured when `node['chef_server']['init_style']` is "bluepill".
-
-Changes
-=======
-
-## v0.99.12:
-
-* [COOK-757] - compact all the views
-* [COOK-969] - `server_name` and `server_aliases` as configurable attributes on `chef_server::nginx-proxy` and `chef_server::apache-proxy`
 
 LICENSE AND AUTHORS
 ===================

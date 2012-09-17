@@ -1,3 +1,6 @@
+## 1.0.20
+* Added retries to the site add/start resource
+
 ## 1.0.19
 * Address food critic warnings
 * Remove CAM Lite cookbooks since we don't use CAM lite anymore

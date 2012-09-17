@@ -9,14 +9,17 @@ MNT_DIR=/mnt/storm
 
 if [ "" != "$SUPERVISOR" ]; then
     sv stop supervisor
+    echo "Service 'supervisor' stopped, to restart use: sv start supervisor"
 fi
 
 if [ "" != "$STORMUI" ]; then
     sv stop stormui
+    echo "Service 'stormui' stopped, to restart use: sv start stormui"
 fi
 
 if [ "" != "$NIMBUS" ]; then
     sv stop nimbus
+    echo "Service 'nimbus' stopped, to restart use: sv start nimbus"
 fi
 
 sleep 2
@@ -34,4 +37,3 @@ else
     rm -f $LOG_DIR/*
 fi
 
-echo "Storm killed, you will need to run 'sv start [component]' to restart it..."
