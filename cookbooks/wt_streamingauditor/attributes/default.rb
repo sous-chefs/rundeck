@@ -21,3 +21,4 @@ default['wt_streamingauditor']['roundtrip_tagserver_url'] = "http://statse.webtr
 default['wt_streamingauditor']['roundtrip_scs_url'] = "http://scs.webtrends.com"
 default['wt_streamingauditor']['roundtrip_tagserver_timeout'] = 15
 default['wt_streamingauditor']['roundtrip_scs_timeout'] = 2
+default['wt_streamingauditor']['jmx_port'] = 9999

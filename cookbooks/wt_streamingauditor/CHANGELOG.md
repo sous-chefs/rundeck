@@ -1,3 +1,11 @@
+## 0.0.16
+* Use JMX port from cookbook attribute not from wt_monitoring attribute
+* Don't fallback to attributes if the Zookeeper search fails
+* Fix non-standard JMX ports breaking Graphite logging of JMX values
+* Remove unused "user" variable from service control template
+* Address food critic warnings
+* Remove hard coded java_class variable from the service control template
+
 ## 0.0.15
 * Don't fall back to a valid TC URL
 
