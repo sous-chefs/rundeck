@@ -31,15 +31,15 @@ LoadPlugin java
 				Table true
 				Attribute "Usage"
 			</Value>
-		</MBean>	
+		</MBean>
 		# Heap memory usage
 		<MBean "memory-heap">
 			ObjectName "java.lang:type=Memory"
 			#InstanceFrom ""
-			InstancePrefix "memory-heap"  
+			InstancePrefix "memory-heap"
 			# Creates four values: committed, init, max, used
 			<Value>
-				Type "memory"  
+				Type "memory"
 				#InstancePrefix ""
 				#InstanceFrom ""
 				Table true
@@ -71,7 +71,7 @@ LoadPlugin java
 				#InstanceFrom ""
 				Attribute "ThreadCount"
 			</Value>
-		</MBean>	
+		</MBean>
 		# Garbage Collector stats
 		<MBean "garbage_collector">
 			ObjectName "java.lang:type=GarbageCollector,*"
@@ -183,7 +183,7 @@ LoadPlugin java
         #Connection Block
         <Connection>
 			Host "<%= @node[:hostname] %>"
-			ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:9998/jmxrmi"
+			ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:<%= node['wt_realtimeapi']['jmx_port'] %>/jmxrmi"
 			Collect "classes"
 			Collect "garbage_collector"
 			Collect "java_threads"
