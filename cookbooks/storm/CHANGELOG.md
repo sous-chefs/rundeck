@@ -1,3 +1,8 @@
+## 1.0.22
+* Address food critic warnings
+* Remove the ulimits template since this doesn't work in Ubuntu and was replaced with a ulimit statement in 1.0.21
+* Don't fall back to attributes if the Zookeeper node search fails
+
 ## 1.0.21
 * Add ulimit statement to the runit script for nimbus to increase the file limit to 10240
 
