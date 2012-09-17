@@ -25,7 +25,6 @@ service "nimbus" do
   ignore_failure true
 end
 
-
 runit_service "stormui" do
     action :disable
     run_restart false
@@ -42,4 +41,11 @@ service "stormui" do
   action [:stop]
   stop_command "force-stop"
   ignore_failure true
+end
+
+# and just in case that did not work, we do a kill on all storm user processes
+execute "kill" do
+  user    "root"
+  group   "root"
+  command "killall -u storm"
 end

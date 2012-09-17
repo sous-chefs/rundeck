@@ -24,3 +24,10 @@ service "supervisor" do
   stop_command "force-stop"
   ignore_failure true
 end 
+
+# and just in case that did not work, we do a kill on all storm user processes
+execute "kill" do
+  user    "root"
+  group   "root"
+  command "killall -u storm"
+end
