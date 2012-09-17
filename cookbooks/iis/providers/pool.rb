@@ -1,9 +1,9 @@
 #
 # Author:: Kendrick Martin (kendrick.martin@webtrends.com)
 # Cookbook Name:: iis
-# Provider:: pool
+# Provider:: site
 #
-# Copyright:: 2011, Webtrends Inc.
+# Copyright:: 2011, Webtrends
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -51,14 +51,9 @@ action :config do
 	cmd = "#{appcmd} set apppool /apppool.name:#{@new_resource.pool_name} /enable32BitAppOnWin64:#{@new_resource.thirty_two_bit}"
 	Chef::Log.debug(cmd)
 	shell_out!(cmd)
-	if @new_resource.pool_username != nil and @new_resource.pool_password != nil
-		cmd = "#{appcmd} set config /section:applicationPools"
-		cmd << " /[name='#{@new_resource.pool_name}'].processModel.identityType:SpecificUser"
-		cmd << " /[name='#{@new_resource.pool_name}'].processModel.userName:\"#{@new_resource.pool_username}\""
-		cmd << " /[name='#{@new_resource.pool_name}'].processModel.password:\"#{@new_resource.pool_password}\""
-		Chef::Log.debug(cmd)
-		shell_out!(cmd)
-	end
+	cmd = "#{appcmd} set apppool /apppool.name:#{@new_resource.pool_name} /managedRuntimeVersion:v#{@new_resource.runtime_version}"
+	Chef::Log.debug(cmd) if @new_resource.runtime_version
+	shell_out!(cmd)
 end
 
 action :delete do
