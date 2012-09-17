@@ -20,7 +20,7 @@
 
 include_recipe "webpi"
 
-webpi_product node['iis']['components'] do
+webpi_product "IIS7" do
   accept_eula node['iis']['accept_eula']
   action :install
 end
