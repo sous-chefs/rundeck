@@ -42,7 +42,7 @@ that we do not leave VMs around for later jobs.
 
 <property>
 <name>mapreduce.cluster.administrators</name>
-<value>mr</value>
+<value><%= node.hadoop_attrib(:mapred, :cluster_administrators) %></value>
 </property>
 
 <property>
@@ -183,12 +183,12 @@ name. It is a path in the default file system.
 
 <property>
 <name>mapreduce.job.acl-modify-job</name>
-<value></value>
+<value>hadoop</value>
 </property>
 
 <property>
 <name>mapreduce.job.acl-view-job</name>
-<value>Dr.Who</value>
+<value>hadoop</value>
 </property>
 
 <property>

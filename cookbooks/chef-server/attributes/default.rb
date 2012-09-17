@@ -17,14 +17,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-case platform
+case node["platform"]
 when "arch"
   default["chef_server"]["init_style"]  = "arch"
   default["chef_server"]["path"]        = "/var/lib/chef"
   default["chef_server"]["run_path"]    = "/var/run/chef"
   default["chef_server"]["cache_path"]  = "/var/cache/chef"
   default["chef_server"]["backup_path"] = "/var/lib/chef/backup"
-when "debian","ubuntu","redhat","centos","fedora"
+when "debian","ubuntu","redhat","centos","fedora","amazon"
   default["chef_server"]["init_style"]  = "init"
   default["chef_server"]["path"]        = "/var/lib/chef"
   default["chef_server"]["run_path"]    = "/var/run/chef"
@@ -44,6 +44,7 @@ else
   default["chef_server"]["backup_path"] = "/var/chef/backup"
 end
 
+default['chef_server']['bin_path']        = "/usr/sbin"
 default['chef_server']['umask']           = "0022"
 default['chef_server']['url']             = "http://localhost:4000"
 default['chef_server']['log_dir']         = "/var/log/chef"
@@ -54,5 +55,5 @@ default['chef_server']['solr_heap_size']  = "256M"
 default['chef_server']['validation_client_name'] = "chef-validator"
 default['chef_server']['expander_nodes'] = 1
 
-default['solr']['config_path']		  = "/var/lib/chef/solr/conf/solrconfig.xml"
-default['solr']['max_field_size']	  = 10000
+default['chef_server']['solr']['config_path']		  = "/var/lib/chef/solr/conf/solrconfig.xml"
+default['chef_server']['solr']['max_field_size']	  = 10000

@@ -3,7 +3,7 @@
 # Author:: Seth Chisamore (<schisamo@opscode.com>)
 # Author:: Bryan Berry (<bryan.berry@gmail.com>)
 # Cookbook Name:: chef-client
-# Recipe:: cron 
+# Recipe:: cron
 #
 # Copyright 2009-2011, Opscode, Inc.
 #
@@ -20,6 +20,8 @@
 # limitations under the License.
 #
 
+require "digest/md5"
+
 root_group = value_for_platform(
                                 ["openbsd", "freebsd", "mac_os_x"] => { "default" => "wheel" },
                                 "default" => "root"
@@ -30,7 +32,7 @@ root_group = value_for_platform(
 if ::File.executable?(node["chef_client"]["bin"])
   client_bin = node["chef_client"]["bin"]
   # search for the bin in some sane paths
-elsif (chef_in_sane_path=Chef::Client::SANE_PATHS.map{|p| p="#{p}/chef-client";p if ::File.executable?(p)}.compact.first) && chef_in_sane_path
+elsif Chef::Client.const_defined?('SANE_PATHS') && (chef_in_sane_path=Chef::Client::SANE_PATHS.map{|p| p="#{p}/chef-client";p if ::File.executable?(p)}.compact.first) && chef_in_sane_path
   client_bin = chef_in_sane_path
   # last ditch search for a bin in PATH
 elsif (chef_in_path=%x{which chef-client}.chomp) && ::File.executable?(chef_in_path)
@@ -73,11 +75,15 @@ service "chef-client" do
 end
 
 cron "chef-client" do
-  minute node['chef_client']['cron']['minute']	
-  hour	node['chef_client']['cron']['hour']
-  user	"root"
-  shell	"/bin/bash"
-  command "/bin/sleep `/usr/bin/expr $RANDOM \\% 90` &> /dev/null ; #{client_bin} &> /dev/null "
+  minute  node['chef_client']['cron']['minute']
+  hour    node['chef_client']['cron']['hour']
+  path    node['chef_client']['cron']['path'] if node['chef_client']['cron']['path']
+  user    "root"
+  shell   "/bin/bash"
+
+  # Generate a uniformly distributed unique number to sleep.
+  checksum = Digest::MD5.hexdigest node['fqdn']
+  sleep_time = checksum.to_s.hex % 90
+
+  command "/bin/sleep #{sleep_time}; #{client_bin} &> /dev/null"
 end
-
-
