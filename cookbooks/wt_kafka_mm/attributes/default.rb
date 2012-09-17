@@ -17,10 +17,3 @@ default['wt_kafka_mm']['log_level'] = "INFO"
 
 default['wt_kafka_mm']['sources'] = {}
 default['wt_kafka_mm']['target'] = {}
-
-#monitoring
-node["wt_kafka_mm"]["averagecount"] = 100
-node["wt_kafka_mm"]["ratethreshold"] = 8000
-node["wt_kafka_mm"]["avgthreshold"] = 8000
-node["wt_kafka_mm"]["producerate"] = 5000
-node['wt_kafka_mm']['monitor_jmx_port']    = "10005"
