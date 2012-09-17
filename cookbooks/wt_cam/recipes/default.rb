@@ -48,8 +48,7 @@ iis_site 'CAM' do
     port http_port
     path "#{install_dir}"
 	action [:add,:start]
-	#notifies :run, resources(:execute => "del_wwwroot")
-	#notifies :run, resources(:execute => "rmdir_wwwroot")
+	retries 2
 end
 
 wt_base_firewall 'CAMWS' do
