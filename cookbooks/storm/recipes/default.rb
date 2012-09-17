@@ -27,13 +27,6 @@ search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").ea
 	zookeeper_quorum << n[:fqdn]
 end
 
-# fall back to attribs if search doesn't come up with any zookeeper roles
-if zookeeper_quorum.count == 0
-	node['zookeeper']['quorum'].each do |i|
-		zookeeper_quorum << i
-	end
-end
-
 install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
 
 # setup storm group
@@ -61,11 +54,11 @@ end
 
 # download storm
 remote_file "#{Chef::Config[:file_cache_path]}/storm-#{node[:storm][:version]}.tar.gz" do
-  source "#{node[:storm][:download_url]}/storm-#{node[:storm][:version]}.tar.gz"
+  source "#{node['storm']['download_url']}/storm-#{node['storm']['version']}.tar.gz"
   owner  "storm"
   group  "storm"
   mode   00744
-  not_if "test -f #{Chef::Config[:file_cache_path]}/storm-#{node[:storm][:version]}.tar.gz"
+  not_if "test -f #{Chef::Config[:file_cache_path]}/storm-#{node['storm']['version']}.tar.gz"
 end
 
 # uncompress the application tarball into the install directory
@@ -84,7 +77,7 @@ end
 
 # storm.yaml
 template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
-  source "storm.yaml"
+  source "storm.yaml.erb"
   mode 00644
   variables(
     :nimbus => storm_nimbus,
@@ -96,7 +89,7 @@ end
 template "/home/storm/.profile" do
   owner  "storm"
   group  "storm"
-  source "profile"
+  source "profile.erb"
   mode   00644
   variables(
     :storm_dir => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
@@ -112,13 +105,3 @@ template "#{install_dir}/bin/killstorm" do
     :log_dir => node['storm']['log_dir']
   })
 end
-
-# increase the file limits for the storm user
-file "/etc/security/limits.d/123storm.conf" do
-  owner "root"
-  group "root"
-  mode 00644
-  content "*  -  nofile  32768"
-  action :create
-end
-
