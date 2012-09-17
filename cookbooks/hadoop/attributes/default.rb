@@ -43,7 +43,9 @@ default[:hadoop][:default][:mapred][:io_sort_factor] = 10
 default[:hadoop][:default][:mapred][:io_sort_mb] = 100
 default[:hadoop][:default][:mapred][:submit_replication] = 10
 default[:hadoop][:default][:mapred][:acls_enabled] = 'true'
-
+default[:hadoop][:default][:mapred][:cluster_administrators] = 'hadoop'
+default[:hadoop][:default][:mapred][:job_acl_modify] = 'hadoop'
+default[:hadoop][:default][:mapred][:job_acl_view] = 'hadoop'
 
 
 # core-site.xml
