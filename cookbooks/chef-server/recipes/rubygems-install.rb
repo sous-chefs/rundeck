@@ -57,7 +57,7 @@ when "debian"
   include_recipe "chef-server::rabbitmq"
   include_recipe "gecode"
 
-when "centos","redhat","fedora"
+when "centos","redhat","fedora","amazon"
 
   include_recipe "couchdb"
   include_recipe "java"
@@ -188,23 +188,22 @@ when "init"
 
   dist_dir = value_for_platform(
     ["ubuntu", "debian"] => { "default" => "debian" },
-    ["redhat", "centos", "fedora"] => { "default" => "redhat"}
+    ["redhat", "centos", "fedora", "amazon"] => { "default" => "redhat"}
   )
 
   conf_dir = value_for_platform(
     ["ubuntu", "debian"] => { "default" => "default" },
-    ["redhat", "centos", "fedora"] => { "default" => "sysconfig"}
+    ["redhat", "centos", "fedora", "amazon"] => { "default" => "sysconfig"}
   )
 
   chef_version = node['chef_packages']['chef']['version']
   gems_dir = node['languages']['ruby']['gems_dir']
 
   server_services.each do |svc|
-    init_content = IO.read("#{gems_dir}/gems/chef-#{chef_version}/distro/#{dist_dir}/etc/init.d/#{svc}")
     conf_content = IO.read("#{gems_dir}/gems/chef-#{chef_version}/distro/#{dist_dir}/etc/#{conf_dir}/#{svc}")
 
-    file "/etc/init.d/#{svc}" do
-      content init_content
+    template "/etc/init.d/#{svc}" do
+      source "#{dist_dir}/init.d/#{svc}.erb"
       mode 0755
     end
 
@@ -213,7 +212,7 @@ when "init"
       mode 0644
     end
 
-    link "/usr/sbin/#{svc}" do
+    link "#{node['chef_server']['bin_path']}/#{svc}" do
       to "#{node['languages']['ruby']['bin_dir']}/#{svc}"
     end
 
