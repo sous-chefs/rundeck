@@ -22,7 +22,7 @@ group = node['wt_kafka_mm']['group']
 java_home = node['java']['java_home']
 java_opts = node['wt_kafka_mm']['java_opts']
 
-jmx_port = node['wt_kafka_mm']['jmx_port']
+jmx_port = node['wt_kafka_mm']['monitor_jmx_port']
 
 ###############################################################
 #
@@ -179,37 +179,30 @@ if ENV["deploy_build"] == "true" then
 	#pull down the mirror maker dependencies and copy to /lib
 	#getLib("#{install_dir}/lib")
 
-	#Set up the control script
-	#template "#{install_dir}/bin/service-control" do
-	#	source  "service-control.erb"
-	#	owner "root"
-	#	group "root"
-	#	mode  00755
-	#	variables({
-	#		:log_dir => log_dir,
-	#		:install_dir => install_dir,
-	#		:java_home => java_home,
-	#		:java_class => "kafka.tools.MirrorMaker",
-	#		:java_port => jmx_port++,
-	#		:java_opts => java_opts,
-	#		:topic_white_list => node['wt_kafka_mm']['topic_white_list']
-	#	})
-	#end
+	# Set up the control script
+	template "#{install_dir}/bin/service-control" do
+		source  "monitor.service-control.erb"
+		owner "root"
+		group "root"
+		mode  00755
+		variables({
+			:log_dir => log_dir,
+			:install_dir => install_dir,
+			:java_home => java_home,
+			:java_class => "com.webtrends.mirrormonitor.MirrorMonitorDaemon",
+			:java_port => jmx_port,
+			:java_opts => java_opts
+		})
+	end
 
-	#create a runit service for each mirrored data center
-	#node['wt_kafka_mm']['sources'].each { |src_env|
-
-	#	runit_service "mirrormaker_#{src_env}" do
-	#		template_name "mirrormaker"	#/templates/sv-mirrormaker-run.erb
-	#	    	options({
-	#			:install_dir => install_dir,
-	#			:user => user,
-	#			:src_env => src_env,
-	#                      :jmx_port => jmx_port
-	#	    	})
-	#    	end
-	#	jmx_port = jmx_port.to_i + 1
-	#}
+#	runit_service "mirrormonitor" do
+#	  template_name "mirrormonitor"	#/templates/sv-mirrormonitor-run.erb
+#	    options({
+#	      :install_dir => install_dir,
+#	      :user => user,
+#	      :jmx_port => jmx_port
+#	    })
+#	  end
 end
 
 #Do this in all situations
