@@ -208,7 +208,9 @@
             "cam_service_url": "http://cicam01.staging.dmz/camservice", 
             "db_name": "cam", 
             "db_server": "cicamdb01.staging.dmz", 
-            "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/CAMBUILDID/CAMCONFIGID:id/CAM.zip"
+            "cam":{
+	      "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/CAMBUILDID/CAMCONFIGID:id/CAM.zip"
+	    }
         }, 
         "wt_cam_db": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt137/.lastSuccessful/artifacts.zip"
