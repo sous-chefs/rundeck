@@ -10,6 +10,11 @@
 include_recipe "runit"
 include_recipe "java"
 
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so un-deploy first"
+  include_recipe "storm::undeploy-default"
+else
+
 # install dependency packages
 %w{unzip python zeromq jzmq}.each do |pkg|
   package pkg do
