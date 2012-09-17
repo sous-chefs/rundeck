@@ -1,48 +1,48 @@
 # Are we currently listening for metric records
-metricslistener.enabled= <%= node[:wt_streamingauditor][:metricslistener_enabled] %>
+metricslistener.enabled= <%= node['wt_streamingauditor']['metricslistener_enabled'] %>
 # The topic used for sapi metrics (defaults to sapi-metrics)
 metrics.topic=sapi-metrics
 
 # Are we currently listening for audit records
-auditlistener.enabled= <%= node[:wt_streamingauditor][:auditlistener_enabled] %>
+auditlistener.enabled= <%= node['wt_streamingauditor']['auditlistener_enabled'] %>
 
 # The root node name for SAPI nodes
 sapi.znode.root=/StreamingZMQ/<%= @datacenter %>_<%= @pod %>
 
-# The interval (minutes) to run the roundtrip test 
-roundtrip.interval=<%= node[:wt_streamingauditor][:roundtrip_interval] %>
+# The interval (minutes) to run the roundtrip test
+roundtrip.interval=<%= node['wt_streamingauditor']['roundtrip_interval'] %>
 # The SCS dcsid to use for the round-trip auditing
-roundtrip.scs.dcsid=<%= node[:wt_streamingauditor][:roundtrip_scs_dcsid] %>
+roundtrip.scs.dcsid=<%= node['wt_streamingauditor']['roundtrip_scs_dcsid'] %>
 # The tag server dcsid to use for the round-trip auditing
-roundtrip.tagserver.dcsid=<%= node[:wt_streamingauditor][:roundtrip_tagserver_dcsid] %>
+roundtrip.tagserver.dcsid=<%= node['wt_streamingauditor']['roundtrip_tagserver_dcsid'] %>
 # The token to use for the round-trip auditing
-roundtrip.token=<%= node[:wt_streamingauditor][:roundtrip_token] %>
+roundtrip.token=<%= node['wt_streamingauditor']['roundtrip_token'] %>
 # The url to SCS
-roundtrip.scs.url=<%= node[:wt_streamingauditor][:roundtrip_scs_url] %>
+roundtrip.scs.url=<%= node['wt_streamingauditor']['roundtrip_scs_url'] %>
 # The url to the tag server(s)
-roundtrip.tagserver.url=<%= node[:wt_streamingauditor][:roundtrip_tagserver_url] %>
+roundtrip.tagserver.url=<%= node['wt_streamingauditor']['roundtrip_tagserver_url'] %>
 #The timeout (minutes) for waiting until we receive a response
-roundtrip.scs.timeout=<%= node[:wt_streamingauditor][:roundtrip_scs_timeout] %>
+roundtrip.scs.timeout=<%= node['wt_streamingauditor']['roundtrip_scs_timeout'] %>
 #The timeout (minutes) for waiting until we receive a response
-roundtrip.tagserver.timeout=<%= node[:wt_streamingauditor][:roundtrip_tagserver_timeout] %>
+roundtrip.tagserver.timeout=<%= node['wt_streamingauditor']['roundtrip_tagserver_timeout'] %>
 
 # are we monitoring at all
-monitoring.enabled = <%= node[:wt_monitoring][:monitoring_enabled] %>
+monitoring.enabled = <%= node['wt_monitoring']['monitoring_enabled'] %>
 # should we publish to jmx
-monitoring.jmx.enabled = <%= node[:wt_monitoring][:jmx_enabled] %>
+monitoring.jmx.enabled = <%= node['wt_monitoring']['jmx_enabled'] %>
 # the prefix to append metrics being sent to graphite
-monitoring.metric.prefix = <%= node[:wt_monitoring][:metric_prefix] %>
+monitoring.metric.prefix = <%= node['wt_monitoring']['metric_prefix'] %>
 
 # Zookeeper connection info (use this or audit.broker.list)
 audit.zk.connect=<%= @zookeeper_pairs.join(",") %>
 # The kafka producer type (defaults to async)
 audit.producer.type=async
 # The time span (in minutes) between each audit flush (defaults to 10)
-audit.bucket.timespan=<%= node[:wt_monitoring][:audit_bucket_timespan] %>
+audit.bucket.timespan=<%= node['wt_monitoring']['audit_bucket_timespan'] %>
 # The topic used for auditing (defaults to stream-audit)
-audit.topic=<%= node[:wt_monitoring][:audit_topic] %>
+audit.topic=<%= node['wt_monitoring']['audit_topic'] %>
 
 # Are health checks enabled
-healthcheck.enabled=<%= node[:wt_monitoring][:healthcheck_enabled] %>
+healthcheck.enabled=<%= node['wt_monitoring']['healthcheck_enabled'] %>
 # This is for future use for having health checks bound to an alternative port
-healthcheck.port=<%= node[:wt_monitoring][:healthcheck_port] %>
+healthcheck.port=<%= node['wt_monitoring']['healthcheck_port'] %>
