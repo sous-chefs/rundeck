@@ -12,8 +12,8 @@
   "chef_type": "role",
   "run_list": [
     "recipe[chef-server]",
-	"recipe[chef-server::config-solr]",
-	"recipe[rundeck::chef-rundeck]"	
+    "recipe[chef-server::config-solr]",
+    "recipe[rundeck::chef-rundeck]"
   ],
   "env_run_lists": {
   }
