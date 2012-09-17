@@ -1,3 +1,10 @@
+## 0.0.24
+* Address food critic warnings
+* Don't pass in a hardcoded java_class variable
+* Don't use a hardcoded JMX port of 9998.  Use an attribute from within the realtime cookbook and set 9999 as we do everywhere else
+* Removed unused user variable being passed into the service control template
+* Find Zookeeper nodes via search and not using the deprecated quorum attribute in the ZK cookbook
+
 ## 0.0.23
 * Don't fall back to a valid TC url
 * Change the default port to 8080 to match our other products
