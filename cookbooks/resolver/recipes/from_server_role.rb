@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: resolver
-# Recipe:: default
+# Recipe:: from_server_role
 #
 # Copyright 2009, Opscode, Inc.
 #
@@ -16,20 +16,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# = Requires
-# * node[:resolver][:nameservers]
 
-if node['resolver']['nameservers'].empty? || node['resolver']['nameservers'][0].empty?
-  Chef::Log.warn("#{cookbook_name}::#{recipe_name} requires that attribute ['resolver']['nameservers'] is set.")
-  Chef::Log.info("#{cookbook_name}::#{recipe_name} will exit to prevent a potential breaking change in /etc/resolv.conf.")
-  return
-else
-  template "/etc/resolv.conf" do
-    source "resolv.conf.erb"
-    owner "root"
-    group "root"
-    mode 0644
-    # This syntax makes the resolver sub-keys available directly
-    variables node['resolver']
-  end
+nameservers =
+  search(:node, "role:#{node['resolver']['server_role']} AND chef_environment:#{node.chef_environment}").
+    map {|node| node['ipaddress'] } +
+  node['resolver']['nameservers']
+
+template "/etc/resolv.conf" do
+  source "resolv.conf.erb"
+  owner "root"
+  group "root"
+  mode 0644
+  variables(
+    'search' => node['resolver']['search'],
+    'nameservers' => nameservers,
+    'options' => node['resolver']['options']
+  )
 end
+

@@ -1,8 +1,13 @@
-## v1.0.2
+## v1.1.0:
+
+* [COOK-1242] - collect nameservers using a server role, adds
+  `from_server_role` recipe
+
+## v1.0.2:
 
 * 'node' went missing in the template.
 
-## v1.0.0
+## v1.0.0:
 
 * [COOK-1089] - accept resolver options via attributes
 * [COOK-1109] - return from resolver recipe if no nameserver attribute
