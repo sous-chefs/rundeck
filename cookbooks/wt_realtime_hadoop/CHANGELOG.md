@@ -1,3 +1,6 @@
+## 1.0.3
+* Use the attribute in wt_common for the Linux install dir instead of hard coding the value
+
 ## 1.0.2:
 * Removed unused tables
 
