@@ -20,3 +20,8 @@ directory "#{install_dir}" do
   recursive true
   action :delete
 end
+
+directory node['storm']['local_dir'] do
+  recursive true
+  action :delete
+end
