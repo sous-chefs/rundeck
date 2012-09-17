@@ -24,7 +24,7 @@ end
 package "libmemcache-dev" do
   case node[:platform]
   when "redhat","centos","fedora"
-    package_name "libmemcache-devel"
+    package_name "libmemcached-devel"
   else
     package_name "libmemcache-dev"
   end
@@ -76,16 +76,5 @@ when "karmic"
     group "root"
     mode "0644"
     notifies :restart, resources(:service => "memcached"), :immediately
-  end
-end
-
-#Create collectd plugin for memcached if collectd has been applied.
-if node.attribute?("collectd")
-  template "#{node[:collectd][:plugin_conf_dir]}/collectd_memcached.conf" do
-    source "collectd_memcached.conf.erb"
-    owner "root"
-    group "root"
-    mode 00644
-    notifies :restart, resources(:service => "collectd")
   end
 end
