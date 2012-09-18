@@ -4,11 +4,10 @@
         "hadoop": "= 1.0.3", 
         "hbase": "= 1.0.3", 
         "hive": "= 1.0.2", 
-        "java": "= 1.5.2", 
-        "kafka": "= 1.0.11",
+        "java": "= 1.5.4", 
+        "kafka": "= 1.0.11", 
         "nagios": "= 1.6.0", 
-        "ondemand_base": "= 1.7.12", 
-        "storm": "= 1.0.22",
+        "storm": "= 1.0.22", 
         "webtrends_server": "= 1.8.2", 
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
@@ -19,11 +18,11 @@
         "wt_storm": "= 1.0.38", 
         "wt_storm_realtime": "= 2.1.2", 
         "wt_storm_streaming": "= 2.1.0", 
-        "wt_streamingapi": "= 0.0.32",
-        "wt_streamingauditor": "= 0.0.16",
-        "wt_streamingcollection": "= 0.0.28",
-        "wt_streamingconfigservice": "= 0.0.12",
-        "wt_streaminglogreplayer": "= 0.0.27",
+        "wt_streamingapi": "= 0.0.32", 
+        "wt_streamingauditor": "= 0.0.16", 
+        "wt_streamingcollection": "= 0.0.28", 
+        "wt_streamingconfigservice": "= 0.0.12", 
+        "wt_streaminglogreplayer": "= 0.0.27", 
         "zookeeper": "= 1.0.6"
     }, 
     "default_attributes": {
@@ -138,34 +137,6 @@
             }, 
             "server_role": "nagios_xi"
         }, 
-        "ondemand_base": {
-            "apt": [
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
-                }, 
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "distribution_suffix": "-0.10", 
-                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
-                    "name": "wtlab-opscode", 
-                    "url": "http://repo.staging.dmz/repo/apt/opscode"
-                }
-            ], 
-            "yum": [
-                {
-                    "description": "Webtrends Repo", 
-                    "name": "wtlab", 
-                   "url": "http://repo.staging.dmz/repo/yum/webtrends"
-                }
-            ]
-        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -222,19 +193,19 @@
         }, 
         "wt_analytics_ui": {}, 
         "wt_cam": {
-            "auth_service_url": "https://hsauth.webtrends.com", 
-            "cam_service_url": "http://hcam.staging.dmz", 
-            "db_name": "cam", 
-            "db_server": "hcamdb01.staging.dmz",
-            "cam": {
-                "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/CAM.zip"
-             },
             "auth": {
                 "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Auth.zip"
-            },
+            }, 
+            "auth_service_url": "https://hsauth.webtrends.com", 
+            "cam": {
+                "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/CAM.zip"
+            }, 
             "cam_plugins": {
-                "download_url":  "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Plugins.zip"
-            }
+                "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Plugins.zip"
+            }, 
+            "cam_service_url": "http://hcam.staging.dmz", 
+            "db_name": "cam", 
+            "db_server": "hcamdb01.staging.dmz"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 

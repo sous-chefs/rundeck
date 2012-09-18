@@ -1,6 +1,5 @@
-## Future
-
-* 
+## 1.0.5
+* Address food critic warnings
 
 ## 1.0.4
 *  Parameterized the rundeck.rb template
