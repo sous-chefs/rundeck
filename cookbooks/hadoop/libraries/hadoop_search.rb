@@ -22,7 +22,7 @@ module HadoopSearch
 		end
 
 		if (results.length == 0 || results.length > limit)
-			log("hadoop_search: #{role}: nodes found: #{results.length}") { level :error }
+			Chef::Log.error "hadoop_search: #{role}: nodes found: #{results.length}"
 		end
 
 		Chef::Log.debug "hadoop_search: #{role}: nodes found: #{results.length}"
