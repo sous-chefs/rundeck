@@ -115,7 +115,7 @@
             "version": "0.7.0"
         }, 
         "memcached": {
-            "memory": "1024"
+            "memory": "2048"
         }, 
         "ms_dotnet4": {
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
