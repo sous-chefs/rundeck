@@ -27,7 +27,7 @@ module HadoopSearch
 
 		Chef::Log.debug "hadoop_search: #{role}: nodes found: #{results.length}"
 
-		results.length == 1 ? results.first : results
+		results
 
 	end
 

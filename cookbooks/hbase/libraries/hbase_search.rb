@@ -27,7 +27,7 @@ module HbaseSearch
 
 		Chef::Log.debug "hbase_search: #{role}: nodes found: #{results.length}"
 
-		results.length == 1 ? results.first : results
+		results
 
 	end
 

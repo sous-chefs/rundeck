@@ -27,7 +27,7 @@ module ZookeeperSearch
 
 		Chef::Log.debug "zookeeper_search: #{role}: nodes found: #{results.length}"
 
-		results.length == 1 ? results.first : results
+		results
 
 	end
 

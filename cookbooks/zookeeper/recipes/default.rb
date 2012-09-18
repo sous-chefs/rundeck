@@ -15,14 +15,10 @@ include_recipe 'runit'
 source_tarball  = node.zookeeper_attrib(:download_url)[/\/([^\/\?]+)(\?.*)?$/, 1]
 source_fullpath = File.join(Chef::Config[:file_cache_path], source_tarball)
 
-# servers in this cluster
+# get servers in this cluster
+node.save # needed so the roles list is populated for new nodes
 zookeeper_nodes = zookeeper_search('zookeeper').sort
-if zookeeper_nodes.count == 0
-	# in single node cluster, role is never found in search until node state is saved.
-	node.save
-	zookeeper_nodes = zookeeper_search('zookeeper').sort
-	raise Chef::Exceptions::RoleNotFound, "zookeeper role not found" if zookeeper_nodes.count == 0
-end
+raise Chef::Exceptions::RoleNotFound, "zookeeper role not found" if zookeeper_nodes.count == 0
 
 # setup zookeeper group
 group 'zookeeper'
