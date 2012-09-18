@@ -3,7 +3,7 @@ maintainer_email "hostedops@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures the base Webtrends server setup"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "1.8.2"
+version          "1.8.3"
 depends          "ad-auth"
 depends          "apt"
 depends          "chef-client"
