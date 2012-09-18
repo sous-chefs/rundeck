@@ -1,7 +1,5 @@
-## Future
+## 1.0.0
+* Address food critic warnings
 
-* Unknown
-
-## 0.10.5 (IP):
-
+## 0.10.5:
 * Initial release with a changelog
