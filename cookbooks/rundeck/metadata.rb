@@ -1,9 +1,9 @@
-maintainer       "Webtrends"
+maintainer       "Webtrends, Inc."
 maintainer_email "Peter Crossley <peter.crossley@webtrends.com>"
 license          "All rights reserved"
-description      "Installs/Configures rundeck"
+description      "Installs/Configures Rundeck"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "1.0.4"
+version          "1.0.5"
 depends          "runit"
 depends          "sudo"
 depends          "java"
