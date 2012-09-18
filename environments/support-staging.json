@@ -4,7 +4,7 @@
         "cassandra": "= 1.0.10", 
         "cobbler": "= 1.0.1", 
         "graphite": "= 0.3.0", 
-        "hadoop": "= 1.1.0", 
+        "hadoop": "= 1.1.2", 
         "hbase": "= 1.1.0", 
         "hive": "= 1.1.0", 
         "java": "= 1.5.2", 
@@ -15,7 +15,7 @@
         "webtrends_server": "= 1.8.2", 
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
-        "zookeeper": "= 1.1.0"
+        "zookeeper": "= 1.1.1"
     }, 
     "default_attributes": {
         "authorization": {
@@ -271,12 +271,6 @@
         }, 
         "yum": {
             "epel_release": "6-7"
-        }, 
-        "zookeeper": {
-            "default": {
-                "download_url": "http://repo.staging.dmz/repo/linux/zookeeper/zookeeper-3.3.5.tar.gz", 
-                "version": "3.3.5"
-            }
         }
     }, 
     "description": "Staging Support Servers", 
