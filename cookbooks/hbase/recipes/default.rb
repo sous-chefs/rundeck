@@ -20,15 +20,14 @@
 # hbase requires hadoop to be installed
 include_recipe 'hadoop'
 
-# servers in this cluster
+# get servers in this cluster
+node.save # needed so the roles list is populated for new nodes
 hadoop_namenode = hadoop_search('hadoop_primarynamenode', 1)
-if !hadoop_namenode.kind_of?(String)
-	node.save
-	hadoop_namenode = hadoop_search('hadoop_primarynamenode', 1)
-	raise Chef::Exceptions::RoleNotFound, "single hadoop_primarynamenode role not found" if !hadoop_namenode.kind_of?(String)
-end
-hmaster         = hbase_search('hbase_hmaster', 1)
-# backup_master   = hbase_search('hadoop_backupnamenode', 1)
+raise Chef::Exceptions::RoleNotFound, "hadoop_primarynamenode role not found" unless hadoop_namenode.count == 1
+hadoop_namenode = hadoop_namenode.first
+
+hmaster         = hbase_search('hbase_hmaster', 1).first
+# backup_master   = hbase_search('hadoop_backupnamenode', 1).first
 regionservers   = hbase_search('hbase_regionserver').sort
 zookeeper_nodes = zookeeper_search('zookeeper').sort
 

@@ -3,9 +3,12 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+## 1.1.3
+* node.save at beginning
+* changed hadoop_search to always return an Array
+
 ## 1.1.2
 * add attributes: cluster_administrators, job_acl_modify, job_acl_view
-* need to node.save in certain conditions
 
 ## 1.1.1
 * added acls_enabled attribute to aid dev environments

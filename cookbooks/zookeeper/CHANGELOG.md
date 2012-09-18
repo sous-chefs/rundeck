@@ -1,5 +1,9 @@
 ## Future
 
+## 1.1.2
+* node.save at beginning
+* changed zookeeper_search to always return an Array
+
 ## 1.1.1
 * fixed corner case when installing a single node cluster that could not find it role
 * restart service if /opt/zookeeper/current link changes, such as during an upgrade or downgrade.

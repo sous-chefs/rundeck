@@ -1,9 +1,12 @@
 ## Future
 
+## 1.1.1
+* node.save at beginning
+* changed hbase_search to always return an Array
+
 ## 1.1.0
 * add support for multiple clusters in the same chef environment
 * moved hbase logs to be under /var/log/hbase
-* need to node.save in certain conditions.
 
 ## 1.0.7
 * Expose all logging levels as attributes
