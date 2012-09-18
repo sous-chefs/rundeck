@@ -162,7 +162,7 @@
                 {
                     "description": "Webtrends Repo", 
                     "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
+                   "url": "http://repo.staging.dmz/repo/yum/webtrends"
                 }
             ]
         }, 
@@ -225,7 +225,16 @@
             "auth_service_url": "https://hsauth.webtrends.com", 
             "cam_service_url": "http://hcam.staging.dmz", 
             "db_name": "cam", 
-            "db_server": "hcamdb01.staging.dmz"
+            "db_server": "hcamdb01.staging.dmz",
+            "cam": {
+                "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/CAM.zip"
+             },
+            "auth": {
+                "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Auth.zip"
+            },
+            "cam_plugins": {
+                "download_url":  "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Plugins.zip"
+            }
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
