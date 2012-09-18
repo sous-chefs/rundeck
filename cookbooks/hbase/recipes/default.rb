@@ -22,6 +22,11 @@ include_recipe 'hadoop'
 
 # servers in this cluster
 hadoop_namenode = hadoop_search('hadoop_primarynamenode', 1)
+if !hadoop_namenode.kind_of?(String)
+	node.save
+	hadoop_namenode = hadoop_search('hadoop_primarynamenode', 1)
+	raise Chef::Exceptions::RoleNotFound, "single hadoop_primarynamenode role not found" if !hadoop_namenode.kind_of?(String)
+end
 hmaster         = hbase_search('hbase_hmaster', 1)
 # backup_master   = hbase_search('hadoop_backupnamenode', 1)
 regionservers   = hbase_search('hbase_regionserver').sort

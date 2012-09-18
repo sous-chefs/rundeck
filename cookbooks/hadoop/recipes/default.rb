@@ -26,6 +26,11 @@ include_recipe 'java'
 end
 
 hadoop_namenode       = hadoop_search('hadoop_primarynamenode', 1)
+if !hadoop_namenode.kind_of?(String)
+	node.save
+	hadoop_namenode   = hadoop_search('hadoop_primarynamenode', 1)
+	raise Chef::Exceptions::RoleNotFound, "single hadoop_primarynamenode role not found" if !hadoop_namenode.kind_of?(String)
+end
 hadoop_backupnamenode = hadoop_search('hadoop_backupnamenode', 1)
 hadoop_jobtracker     = hadoop_search('hadoop_jobtracker', 1)
 hadoop_datanodes      = hadoop_search('hadoop_datanode').sort

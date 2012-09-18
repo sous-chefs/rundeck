@@ -4,7 +4,8 @@
 * Format the data disks if they haven't been formated already
 
 ## 1.1.2
-* adding attributes: cluster_administrators, job_acl_modify, job_acl_view
+* add attributes: cluster_administrators, job_acl_modify, job_acl_view
+* need to node.save in certain conditions
 
 ## 1.1.1
 * added acls_enabled attribute to aid dev environments
