@@ -2,7 +2,7 @@
 # Recipe:: uninstall
 # Author:: Kendrick Martin
 #
-# Copyright 2012, Webtrends
+# Copyright 2012, Webtrends, Inc
 #
 # All rights reserved - Do Not Redistribute
 # This recipe uninstalls existing Search Service installs
@@ -30,7 +30,7 @@ end
 # delays to give the service plenty of time to actually stop
 ruby_block "wait" do
 	block do
-		sleep(300)		
+		sleep(120)		
 	end
 	action :create
 end
