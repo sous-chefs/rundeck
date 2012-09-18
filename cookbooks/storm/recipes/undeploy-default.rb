@@ -7,20 +7,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
-log_dir      = "#{node['storm']['log_dir']}"
 install_dir  = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
 
 
-directory "#{log_dir}" do
-  recursive true
-  action :delete
-end
-
+# clean out the install directory from the previous version
 directory "#{install_dir}" do
   recursive true
   action :delete
 end
 
+# clean out the local state from the previous version
 directory node['storm']['local_dir'] do
   recursive true
   action :delete
