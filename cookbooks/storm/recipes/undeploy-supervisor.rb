@@ -29,5 +29,6 @@ end
 execute "kill" do
   user    "root"
   group   "root"
+  returns [0,1]
   command "killall -u storm"
 end
