@@ -22,15 +22,15 @@ master_host = node['wt_masterdb']['master_host']
 install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_roadrunner']['install_dir']}"
 log_dir     = "#{node['wt_common']['install_dir_windows']}#{node['wt_roadrunner']['log_dir']}"
 
-# get data bag items 
+# get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
 svcuser = auth_data['wt_common']['loader_user']
 svcpass = auth_data['wt_common']['loader_pass']
 
-$rr_port = 8097
+rr_port = 8097
 gac_cmd = "#{install_dir}\\gacutil.exe /i \"#{install_dir}\\Webtrends.RoadRunner.SSISPackageRunner.dll\""
-urlacl_cmd = "netsh http add urlacl url=http://+:#{$rr_port}/ user=\"#{svcuser}\""
-firewall_cmd="netsh advfirewall firewall add rule name=\"Webtrends RoadRunner port #{$rr_port}\" dir=in action=allow protocol=TCP localport=#{$rr_port}"
+urlacl_cmd = "netsh http add urlacl url=http://+:#{rr_port}/ user=\"#{svcuser}\""
+firewall_cmd="netsh advfirewall firewall add rule name=\"Webtrends RoadRunner port #{rr_port}\" dir=in action=allow protocol=TCP localport=#{$rr_port}"
 
 # determine root drive of install_dir - ENG390500
 if (install_dir =~ /^(\w:)\\.*$/)
@@ -41,28 +41,28 @@ else
 end
 
 # create the install directory
-directory "#{install_dir}" do
+directory install_dir do
 	recursive true
 	action :create
 end
 
 # set permissions for the service user to have read access to the install drive - ENG390500
-wt_base_icacls "#{install_dir_drive}" do
+wt_base_icacls install_dir_drive do
 	action :grant
-	user svcuser 
+	user svcuser
 	perm :read
 end
 
 # create the log directory
-directory "#{log_dir}" do
+directory log_dir do
 	recursive true
 	action :create
 end
 
 # allow the service account to modify files in the log directory
-wt_base_icacls "#{log_dir}" do
+wt_base_icacls log_dir do
 	action :grant
-	user svcuser 
+	user svcuser
 	perm :modify
 end
 
@@ -73,32 +73,32 @@ if deploy_mode?
 	this_zipfile = get_build node['wt_roadrunner']['zip_file']
 
 	# unzip the install package
-	windows_zipfile "#{install_dir}" do
+	windows_zipfile install_dir do
 		source "#{this_zipfile}"
-		action :unzip	
+		action :unzip
 	end
 
 	template "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config" do
 	  source "RRServiceConfig.erb"
-	  variables(		
+	  variables(
 		  :master_host => master_host
 	  )
 	end
 
 	template "#{install_dir}\\log4net.config" do
 	  source "log4net.erb"
-	  variables(		
+	  variables(
 	  	:logdir => log_dir
 	  )
 	end
 
 	execute "gac" do
 	  command gac_cmd
-	  cwd install_dir	
+	  cwd install_dir
 	end
 
 	powershell "create service" do
-		environment({'serviceName' => node['wt_roadrunner']['service_name'], 'install_dir' => install_dir, 'svcuser' => svcuser, 'svcpass' => svcpass})	
+		environment({'serviceName' => node['wt_roadrunner']['service_name'], 'install_dir' => install_dir, 'svcuser' => svcuser, 'svcpass' => svcpass})
 		code <<-EOH
  		# $computer = gc env:computername
  		$class = "Win32_Service"
@@ -128,7 +128,7 @@ if deploy_mode?
 	#Set the ACL up to allow http traffic on port 8097
 	execute "netsh_urlacl" do
 		command urlacl_cmd
-		cwd install_dir	
+		cwd install_dir
 	end
 
 	# Set the firewall to allow traffic into the system on port 8097
