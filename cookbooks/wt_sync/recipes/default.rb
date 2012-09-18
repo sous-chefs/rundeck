@@ -3,18 +3,19 @@
 # Recipe:: default
 # Author:: Kendrick Martin
 #
-# Copyright 2012, Webtrends
+# Copyright 2012, Webtrends, Inc
 #
 # All rights reserved - Do Not Redistribute
 #
 # This recipe installs the needed components to full setup/configure the Search service
 #
-require 'rest_client'
-require 'rexml/document'
-require 'json'
 
-if deploy_mode?
-	include_recipe "wt_sync::uninstall"
+#
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so un-deploy first"  
+  include_recipe "wt_sync::uninstall"
+else
+  log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
 download_url = node['wt_sync']['download_url']
@@ -23,20 +24,13 @@ download_url = node['wt_sync']['download_url']
 master_host = node['wt_masterdb']['master_host']
 
 # destinations
-install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_sync']['install_dir']}"
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['install_dir'].gsub(/[\\\/]+/,"\\"))
+log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['log_dir'].gsub(/[\\\/]+/,"\\"))
 
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
 svcuser = auth_data['wt_common']['system_user']
 svcpass = auth_data['wt_common']['system_pass']
-
-# determine root drive of install_dir - ENG390500
-# if (install_dir =~ /^(\w:)\\.*$/)
-# 	install_dir_drive = $1
-# else
-# 	raise Chef::Exceptions::AttributeNotFound,
-# 		"could not determine install_dir_drive, please verify value of install_dir: #{install_dir}"
-# end
 
 # create the install directory
 directory install_dir do
@@ -44,17 +38,10 @@ directory install_dir do
 	action :create
 end
 
-directory "#{node['wt_common']['install_dir_windows']}#{node['wt_sync']['log_dir']}" do
+directory log_dir do
 	recursive true
 	action :create
 end
-
-# set permissions for the service user to have read access to the install drive - ENG390500
-# wt_base_icacls install_dir_drive do
-# 	action :grant
-# 	user svcuser
-# 	perm :read
-# end
 
 wt_base_icacls install_dir do
 	action :grant
@@ -62,7 +49,7 @@ wt_base_icacls install_dir do
 	perm :modify
 end
 
-wt_base_icacls "#{node['wt_common']['install_dir_windows']}#{node['wt_sync']['log_dir']}" do
+wt_base_icacls log_dir do
 	action :grant
 	user svcuser
 	perm :modify
@@ -74,7 +61,7 @@ wt_base_netlocalgroup "Performance Monitor Users" do
 	action :add
 end
 
-if deploy_mode?
+if ENV["deploy_build"] == "true" then
 
 	# unzip the install package
 	windows_zipfile install_dir do

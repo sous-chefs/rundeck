@@ -1,5 +1,7 @@
-Future
-	Add logic to detect if service still exists
+## 1.0.2
+	* Adding powershell service kill to uninstall. 
+	* Removed default download url
+	* Added commment line to templates
 ## 1.0.1
 	* Merging hotfixes to master
 ## 0.0.22
