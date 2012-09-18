@@ -246,7 +246,7 @@
         }, 
         "wt_masterdb": {		  
             "master_db": "wtmaster", 
-            "master_host": "kmasterdb01.englab.webtrends.corp", 
+            "master_host": "jmasterdb01.englab.webtrends.corp"
 		}, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
