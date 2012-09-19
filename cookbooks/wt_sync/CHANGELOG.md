@@ -1,3 +1,5 @@
+## 1.0.3
+	* Fixed attribute name.
 ## 1.0.2
 	* Adding powershell service kill to uninstall. 
 	* Removed default download url
