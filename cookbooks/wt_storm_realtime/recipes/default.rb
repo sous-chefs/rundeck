@@ -74,6 +74,15 @@ if ENV["deploy_build"] == "true" then
       mode 00644
     end
 
+    # delete previous the install TEMP dirctory
+    directory install_tmp do
+      owner "root"
+      group "root"
+      mode 00755
+      recursive true
+      action :delete
+    end
+    
     # create the install TEMP dirctory
     directory install_tmp do
       owner "root"
@@ -138,10 +147,9 @@ jersey-core-1.4.jar
 jersey-json-1.4.jar
 jersey-server-1.4.jar
 jettison-1.1.jar
-jopt-simple-3.2.jar
 jsp-2.1-6.1.14.jar
 jsp-api-2.1-6.1.14.jar
-kafka-0.7.0.jar
+kafka-0.7.1.jar
 libthrift-0.7.0.jar
 netty-3.3.0.Final.jar
 plexus-utils-1.5.6.jar
@@ -150,7 +158,6 @@ regexp-1.3.jar
 scala-library-2.8.0.jar
 snappy-java-1.0.3.2.jar
 stax-api-1.0.1.jar
-storm-kafka-0.7.2-snaptmp8.jar
 streaming-analysis.jar
 UserAgentUtils-1.2.4.jar
 xmlenc-0.52.jar
