@@ -1,0 +1,11 @@
+{
+  "name": "gdash",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "GDash Server",
+  "run_list": [
+    "recipe[gdash]"
+  ],
+  "override_attributes": {
+  }
+}
