@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: ntp
 # Recipe:: windows_client
-# Author:: Timothy Smith (<tim.smith@webtrends.com>)
+# Author:: Tim Smith (<tim.smith@webtrends.com>)
 #
 # Copyright 2012, Webtrends, Inc
 #
