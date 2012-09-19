@@ -27,13 +27,6 @@ service "supervisor" do
   ignore_failure true
 end
 
-# force stop the service in case the stop failed
-service "supervisor" do
-  action [:stop]
-  stop_command "force-stop"
-  ignore_failure true
-end
-
 # and just in case that did not work, we do a kill on all storm user processes
 execute "kill" do
   user    "root"
