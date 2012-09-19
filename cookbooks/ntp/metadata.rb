@@ -7,7 +7,7 @@ version           "1.1.6"
 
 recipe "ntp", "Installs and configures ntp either as a server or client"
 
-%w{ ubuntu debian redhat centos fedora scientific freebsd }.each do |os|
+%w{ ubuntu debian redhat centos fedora scientific freebsd windows}.each do |os|
   supports os
 end
 
