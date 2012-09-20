@@ -3,11 +3,19 @@
 # Recipe:: default
 # Author:: sean.mcnamara@webtrends.com / tim.smith@webtrends.com
 #
-# Copyright 2012, Webtrends Inc.
+# Copyright 2012, Webtrends, Inc.
 #
-# All rights reserved - Do Not Redistribute
-
-# This recipe installs the needed components to prepare machine for db_index exe
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 include_recipe 'java'
 include_recipe 'runit'
@@ -15,14 +23,10 @@ include_recipe 'runit'
 source_tarball  = node.zookeeper_attrib(:download_url)[/\/([^\/\?]+)(\?.*)?$/, 1]
 source_fullpath = File.join(Chef::Config[:file_cache_path], source_tarball)
 
-# servers in this cluster
+# get servers in this cluster
+node.save # needed so the roles list is populated for new nodes
 zookeeper_nodes = zookeeper_search('zookeeper').sort
-if zookeeper_nodes.count == 0
-	# in single node cluster, role is never found in search until node state is saved.
-	node.save
-	zookeeper_nodes = zookeeper_search('zookeeper').sort
-	raise Chef::Exceptions::RoleNotFound, "zookeeper role not found" if zookeeper_nodes.count == 0
-end
+raise Chef::Exceptions::RoleNotFound, "zookeeper role not found" if zookeeper_nodes.count == 0
 
 # setup zookeeper group
 group 'zookeeper'

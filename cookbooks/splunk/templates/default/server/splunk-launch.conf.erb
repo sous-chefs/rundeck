@@ -1,0 +1,11 @@
+# Where splunk is installed.
+SPLUNK_HOME=<%= node['splunk']['server_home'] %>
+
+# Location where we want to store the indexed data.
+SPLUNK_DB=<%= node['splunk']['db_directory'] %>
+
+# Splunkd daemon name
+SPLUNK_SERVER_NAME=splunkd
+
+# Splunkweb daemon name
+SPLUNK_WEB_NAME=splunkweb

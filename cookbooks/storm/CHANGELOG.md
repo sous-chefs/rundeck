@@ -1,3 +1,6 @@
+## 1.0.24
+* Removed the 'force-stop' call since it is not suported by the 'service' command
+
 ## 1.0.23
 * Added undeploy scripts.
 
