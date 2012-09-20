@@ -184,3 +184,8 @@ include_recipe "collectd"
 
 #Install collectd plugins for WT base OS monitoring
 include_recipe "wt_monitoring::collectd_base"
+
+# makes getting around easier
+package "screen" do
+  action :install
+end

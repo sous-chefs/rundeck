@@ -22,12 +22,12 @@ module ZookeeperSearch
 		end
 
 		if (results.length == 0 || results.length > limit)
-			log("zookeeper_search: #{role}: nodes found: #{results.length}") { level :error }
+			Chef::Log.error "zookeeper_search: #{role}: nodes found: #{results.length}"
 		end
 
 		Chef::Log.debug "zookeeper_search: #{role}: nodes found: #{results.length}"
 
-		results.length == 1 ? results.first : results
+		results
 
 	end
 
