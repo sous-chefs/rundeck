@@ -39,7 +39,7 @@ service node['ntp']['service'] do
   action [ :enable, :start ]
 end
 
-template "/etc/ntp.conf" do
+template node['ntp']['conffile'] do
   source "ntp.conf.erb"
   owner node['ntp']['conf_owner']
   group node['ntp']['conf_group']
