@@ -130,8 +130,8 @@ def processConfTemplates (install_dir, node, log_dir)
 	end
 	
 	# log4j
-	template "#{install_dir}/conf/log4j.properties" do
-	  source  "log4j.properties.erb"
+	template "#{install_dir}/conf/log4j.xml" do
+	  source  "log4j.xml.erb"
 	  owner   "root"
 	  group   "root"
 	  mode    00644
@@ -252,14 +252,14 @@ if ENV["deploy_build"] == "true" then
 		})
 	end
 
-#	runit_service "mirrormonitor" do
-#	  template_name "mirrormonitor"	#/templates/sv-mirrormonitor-run.erb
-#	    options({
-#	      :install_dir => install_dir,
-#	      :user => user,
-#	      :jmx_port => jmx_port
-#	    })
-#	  end
+	runit_service "mirrormonitor" do
+	  template_name "mirrormonitor"	
+	    options({
+	      :install_dir => install_dir,
+	      :user => user,
+	      :jmx_port => jmx_port
+	    })
+	  end
 end
 
 #Do this in all situations

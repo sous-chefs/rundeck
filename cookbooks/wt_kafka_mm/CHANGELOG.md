@@ -1,3 +1,6 @@
+0.0.15
+  *Add mirror monitor recipe
+
 0.0.14
   * STR-127: Expose Log4J logging level as an attribute
   * Cookbook review cleanup
