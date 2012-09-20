@@ -310,7 +310,7 @@
             }, 
             "streaming_topology": {
                 "streaming_topology_augmentation_bolt_count": 10, 
-                "streaming_topology_in_session_bolt_count": 1, 
+                "streaming_topology_in_session_bolt_count": 0, 
                 "streaming_topology_parsing_bolt_count": 50, 
                 "streaming_topology_validation_bolt_count": 10, 
                 "streaming_topology_zmq_emitter_bolt_count": 1, 
