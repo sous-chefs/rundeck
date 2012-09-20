@@ -54,6 +54,3 @@ default['chef_server']['webui_enabled']   = false
 default['chef_server']['solr_heap_size']  = "256M"
 default['chef_server']['validation_client_name'] = "chef-validator"
 default['chef_server']['expander_nodes'] = 1
-
-default['chef_server']['solr']['config_path']		  = "/var/lib/chef/solr/conf/solrconfig.xml"
-default['chef_server']['solr']['max_field_size']	  = 10000
