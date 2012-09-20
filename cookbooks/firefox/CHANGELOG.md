@@ -1,3 +1,6 @@
+## 1.03
+* Fix the download URL
+
 ## 1.0.2
 * Update to Firefox 15.0.1
 
