@@ -4,18 +4,18 @@
         "cassandra": "= 1.0.10", 
         "cobbler": "= 1.0.1", 
         "graphite": "= 0.3.0", 
-        "hadoop": "= 1.1.0", 
-        "hbase": "= 1.1.0", 
+        "hadoop": "= 1.1.3", 
+        "hbase": "= 1.1.1", 
         "hive": "= 1.1.0", 
         "java": "= 1.5.2", 
-        "memcached": "= 1.0.2", 
+        "memcached": "= 1.0.4", 
         "nagios": "= 1.6.0", 
         "ondemand_base": "= 1.7.12", 
         "rundeck": "= 1.0.4", 
         "webtrends_server": "= 1.8.2", 
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
-        "zookeeper": "= 1.1.0"
+        "zookeeper": "= 1.1.2"
     }, 
     "default_attributes": {
         "authorization": {
@@ -115,7 +115,7 @@
             "version": "0.7.0"
         }, 
         "memcached": {
-            "memory": "1024"
+            "memory": "2048"
         }, 
         "ms_dotnet4": {
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
@@ -271,12 +271,6 @@
         }, 
         "yum": {
             "epel_release": "6-7"
-        }, 
-        "zookeeper": {
-            "default": {
-                "download_url": "http://repo.staging.dmz/repo/linux/zookeeper/zookeeper-3.3.5.tar.gz", 
-                "version": "3.3.5"
-            }
         }
     }, 
     "description": "Staging Support Servers", 

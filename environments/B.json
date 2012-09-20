@@ -4,26 +4,25 @@
         "hadoop": "= 1.0.3", 
         "hbase": "= 1.0.3", 
         "hive": "= 1.0.2", 
-        "java": "= 1.5.2", 
-        "kafka": "= 1.0.10", 
+        "java": "= 1.5.4", 
+        "kafka": "= 1.0.11", 
         "nagios": "= 1.6.0", 
-        "ondemand_base": "= 1.7.12", 
-        "storm": "= 1.0.19", 
+        "storm": "= 1.0.23", 
         "webtrends_server": "= 1.8.2", 
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
-        "wt_cam": "= 1.0.17", 
-        "wt_kafka_mm": "= 0.0.13", 
+        "wt_cam": "= 1.0.20", 
+        "wt_kafka_mm": "= 0.0.14", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.4", 
         "wt_realtimeapi": "= 0.0.23", 
         "wt_storm": "= 1.0.34", 
         "wt_storm_realtime": "= 2.1.1", 
-        "wt_storm_streaming": "= 2.1.0", 
-        "wt_streamingapi": "= 0.0.31", 
-        "wt_streamingauditor": "= 0.0.14", 
-        "wt_streamingcollection": "= 0.0.26", 
-        "wt_streamingconfigservice": "= 0.0.10", 
+        "wt_storm_streaming": "= 2.1.1", 
+        "wt_streamingapi": "= 0.0.32", 
+        "wt_streamingauditor": "= 0.0.16", 
+        "wt_streamingcollection": "= 0.0.28", 
+        "wt_streamingconfigservice": "= 0.0.12", 
         "wt_streaminglogreplayer": "= 0.0.27", 
         "zookeeper": "= 1.0.5"
     }, 
@@ -105,34 +104,6 @@
                 "dont_blame_nrpe": "1"
             }, 
             "server_role": "nagios_xi"
-        }, 
-        "ondemand_base": {
-            "apt": [
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
-                }, 
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "distribution_suffix": "-0.10", 
-                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
-                    "name": "wtlab-opscode", 
-                    "url": "http://repo.staging.dmz/repo/apt/opscode"
-                }
-            ], 
-            "yum": [
-                {
-                    "description": "Webtrends Repo", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
-                }
-            ]
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
@@ -284,12 +255,8 @@
             "realtime_topology_parsing_bolt_count": 3, 
             "realtime_topology_writing_bolt_count": 48, 
             "topic_list": [
-                "Lab_E_scsRawHits:0", 
-                "Lab_E_lrRawHits:0", 
                 "Lab_B_scsRawHits:0", 
-                "Lab_B_lrRawHits:0", 
-                "Lab_L_scsRawHits:0", 
-                "Lab_L_lrRawHits:0"
+                "Lab_B_lrRawHits:0"
             ], 
             "topology_override_max_spout_pending": 3000, 
             "topology_override_msg_timeout_seconds": 120, 
@@ -298,18 +265,14 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt205/31115:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt233/32567:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augmentation_bolt_count": 10, 
             "streaming_topology_in_session_bolt_count": 1, 
             "streaming_topology_validation_bolt_count": 10, 
             "streaming_topology_zmq_emitter_bolt_count": 1, 
             "topic_list": [
                 "Lab_B_scsRawHits:0", 
-                "Lab_B_lrRawHits:0", 
-                "Lab_E_scsRawHits:0", 
-                "Lab_E_lrRawHits:0", 
-                "Lab_L_scsRawHits:0", 
-                "Lab_L_lrRawHits:0"
+                "Lab_B_lrRawHits:0"
             ], 
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"

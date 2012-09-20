@@ -4,11 +4,10 @@
         "hadoop": "= 1.0.3", 
         "hbase": "= 1.0.3", 
         "hive": "= 1.0.2", 
-        "java": "= 1.5.2", 
+        "java": "= 1.5.4", 
         "kafka": "= 1.0.10", 
         "nagios": "= 1.6.0", 
-        "ondemand_base": "= 1.7.12", 
-        "storm": "= 1.0.19", 
+        "storm": "= 1.0.23", 
         "webtrends_server": "= 1.8.2", 
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
@@ -105,34 +104,6 @@
                 "dont_blame_nrpe": "1"
             }, 
             "server_role": "nagios_xi"
-        }, 
-        "ondemand_base": {
-            "apt": [
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
-                }, 
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "distribution_suffix": "-0.10", 
-                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
-                    "name": "wtlab-opscode", 
-                    "url": "http://repo.staging.dmz/repo/apt/opscode"
-                }
-            ], 
-            "yum": [
-                {
-                    "description": "Webtrends Repo", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
-                }
-            ]
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
@@ -235,7 +206,7 @@
             "healthcheck_port": 9000, 
             "jmx_enabled": "true", 
             "jmx_port": 9999, 
-            "metric_prefix": "staging.bpod.servers", 
+            "metric_prefix": "staging.npod.servers", 
             "monitoring_enabled": "true"
         }, 
         "wt_netacuity": {
