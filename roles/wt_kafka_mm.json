@@ -13,7 +13,8 @@
   },
   "run_list": [
     "recipe[java]",
-    "recipe[wt_kafka_mm]"
+    "recipe[wt_kafka_mm]",
+    "recipe[wt_kafka_mm::mirror_monitor]"
   ],
   "description": "This is the Kafka mirror maker",
   "chef_type": "role"

@@ -42,23 +42,12 @@ directory log_dir do
 	action :create
 end
 
-# empty out default folder
-#execute "rmdir_wwwroot" do
-#	command "for /d %i in (c:\\inetpub\\wwwroot\\*) do rmdir /s /q %i"
-#	action :nothing
-#end
-#execute "del_wwwroot" do
-#	command "del /q c:\\inetpub\\wwwroot\\*"
-#	action :nothing
-#end
-
 iis_site 'AUTH' do
     protocol :http
     port http_port
     path "#{install_dir}"
 	action [:add,:start]
-	#notifies :run, resources(:execute => "del_wwwroot")
-	#notifies :run, resources(:execute => "rmdir_wwwroot")
+	retries 1
 end
 
 
