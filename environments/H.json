@@ -13,7 +13,7 @@
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.17", 
-        "wt_kafka_mm": "= 0.0.14", 
+        "wt_kafka_mm": "= 0.0.15", 
         "wt_realtime_hadoop": "= 1.0.2", 
         "wt_realtimeapi": "= 0.0.23", 
         "wt_storm": "= 1.0.38", 
@@ -249,7 +249,10 @@
             "alt_chef_environment": "support-staging", 
             "config_distrib": "jcd01.englab.webtrends.corp:8097", 
             "heatmap_reducers": -1
-        }, 
+        },
+	"wt_kafka_mm" : {
+		"monitor_download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt242/.lastSuccessful/MirrorMonitor-bin.tar.gz"	
+	}, 
         "wt_masterdb": {
             "master_db": "wtmaster", 
             "master_host": "jmasterdb01.englab.webtrends.corp", 

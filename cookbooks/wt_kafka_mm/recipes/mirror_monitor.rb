@@ -74,13 +74,13 @@ def processConfTemplates (install_dir, node, log_dir)
 	  if count !=  0
 	    srcEnvs += ","
 	  end             	                                    
-	  srcEnvs += "{\"name\":\"#{src_env}\",\"zkconnect\":\"#{getZookeeperPairs(node, src_env)}\"}" 
+	  srcEnvs += "{\"name\":\"#{src_env}\",\"zkconnect\":\"#{getZookeeperPairs(node, src_env).join(',')}\"}" 
 	  count += 1
 	}
 	srcEnvs += "]}"
 	                                    
 	#zookeeper_pairs_target = getZookeeperPairs(node, node["wt_kafka_mm"]["target"])
-	tgtEnv = "{\"environments\":[{\"name\":\"#{node["wt_kafka_mm"]["target"]}\",\"zkconnect\":\"#{getZookeeperPairs(node, node["wt_kafka_mm"]["target"])}\"}]}"	
+	tgtEnv = "{\"name\":\"#{node["wt_kafka_mm"]["target"]}\",\"zkconnect\":\"#{getZookeeperPairs(node, node["wt_kafka_mm"]["target"]).join(',')}\"}"	
 
 	# Set up the main mirror monitor config
     	template "#{install_dir}/conf/mirrormonitor.properties" do
@@ -119,6 +119,16 @@ def processConfTemplates (install_dir, node, log_dir)
 	  })
 	end
 	
+	# Set up the monitoring properties
+    	template "#{install_dir}/conf/monitoring.properties" do
+	  source  "monitor.monitoring.properties.erb"
+	  owner   "root"
+	  group   "root"
+	  mode    00644
+	  variables({
+	  })
+	end
+	
 	# log4j
 	template "#{install_dir}/conf/log4j.properties" do
 	  source  "log4j.properties.erb"
@@ -130,6 +140,53 @@ def processConfTemplates (install_dir, node, log_dir)
 	    :log_level => node['wt_kafka_mm']['log_level']
 	  })
 	end
+end
+
+#Pull Kafka from the repository and copy necessary files to lib directory
+def getLib(lib_dir)
+
+  download_file = node['wt_kafka_mm']['monitor_download_url']
+  install_tmp = File.join(Chef::Config[:file_cache_path], "mirrormonitor_install")
+  tarball      = download_file.split("/")[-1]
+
+  #download the tar to temp directory
+  remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+    source download_file
+    mode 00644
+    action :create_if_missing
+  end
+
+	# create the install TEMP dirctory
+  directory install_tmp do
+    owner "root"
+    group "root"
+    mode 00755
+    recursive true
+  end
+
+  # extract the source file into TEMP directory
+  execute "tar" do
+    user  "root"
+    group "root"
+    cwd install_tmp
+    creates "#{install_tmp}/lib"
+    command "tar zxvf #{Chef::Config[:file_cache_path]}/#{tarball}"
+  end
+
+  #copy necessary files to /lib
+  execute "mv" do
+    user  "root"
+    group "root"
+    command "mv #{install_tmp}/lib/*.jar #{lib_dir}"
+  end
+
+  #Clean up
+  execute "delete_install_source" do
+    user "root"
+    group "root"
+    command "rm -rf #{Chef::Config[:file_cache_path]}/#{tarball} #{install_tmp}"
+    action :run
+  end
 end
 
 ###############################################################
@@ -177,7 +234,7 @@ if ENV["deploy_build"] == "true" then
 	end
 
 	#pull down the mirror maker dependencies and copy to /lib
-	#getLib("#{install_dir}/lib")
+	getLib("#{install_dir}/lib")
 
 	# Set up the control script
 	template "#{install_dir}/bin/service-control" do
@@ -190,7 +247,7 @@ if ENV["deploy_build"] == "true" then
 			:install_dir => install_dir,
 			:java_home => java_home,
 			:java_class => "com.webtrends.mirrormonitor.MirrorMonitorDaemon",
-			:java_port => jmx_port,
+			:jmx_port => jmx_port,
 			:java_opts => java_opts
 		})
 	end
