@@ -1,0 +1,10 @@
+[default]
+host = <%= node['ec2']['instance_id'] %>-splunk
+
+[monitor://$SPLUNK_HOME/var/log/splunk]
+
+[monitor:///var/log]
+ignoreOlderThan = 30d
+disabled = 0
+index = default
+crcSalt = <SOURCE>
