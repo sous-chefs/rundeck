@@ -1,3 +1,6 @@
+## 1.0.21
+* Added retries to the site add/start resource for auth
+
 ## 1.0.20
 * Added retries to the site add/start resource
 
