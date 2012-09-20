@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dashboard>
+  <label>http</label>
+  <row>
+    <single>
+      <searchString>source="/var/log/apache2/access.log" | stats count</searchString>
+      <title>Requests per minute</title>
+      <earliestTime>rt-1m</earliestTime>
+      <latestTime>rt</latestTime>
+    </single>
+  </row>
+  <row>
+    <chart>
+      <searchString>source="/var/log/apache2/access.log" | timechart count</searchString>
+      <title>RealTime Requests</title>
+      <earliestTime>rt-5m</earliestTime>
+      <latestTime>rt</latestTime>
+      <option name="charting.chart">area</option>
+      <option name="drilldown">all</option>
+    </chart>
+  </row>
+  <row>
+    <chart>
+      <searchString>source="/var/log/apache2/access.log" (status="500" OR status="501" OR status="502" OR status="503" OR status="504") | timechart count</searchString>
+      <title>50X errors</title>
+      <earliestTime>rt-5m</earliestTime>
+      <latestTime>rt</latestTime>
+      <option name="charting.chart">area</option>
+      <option name="drilldown">all</option>
+    </chart>
+    <chart>
+      <searchString>source="/var/log/apache2/access.log" (status="400" OR status="401" OR status="403" OR status="404") | timechart count</searchString>
+      <title>40X errors</title>
+      <earliestTime>rt-5m</earliestTime>
+      <latestTime>rt</latestTime>
+      <option name="charting.chart">area</option>
+      <option name="drilldown">all</option>
+    </chart>
+  </row>
+  <row>
+    <chart>
+      <searchString>source="/var/log/apache2/access.log" status="200" | timechart count</searchString>
+      <title>200</title>
+      <earliestTime>rt-5m</earliestTime>
+      <latestTime>rt</latestTime>
+      <option name="charting.chart">area</option>
+      <option name="drilldown">all</option>
+    </chart>
+  </row>
+</dashboard>

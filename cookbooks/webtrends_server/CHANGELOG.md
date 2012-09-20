@@ -3,6 +3,10 @@
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
 
+
+## 1.8.3
+ * Adding screen to ubuntu and centos
+
 ## 1.8.2
  * Address foodcritic warnings by using strings instead of symbols and including apt in the metadata
 

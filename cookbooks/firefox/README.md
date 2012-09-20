@@ -1,7 +1,7 @@
 Description
 ===========
 
-This cookbook installs Firefox 15
+This cookbook installs Firefox 15.0.1
 
 Requirements
 ============
