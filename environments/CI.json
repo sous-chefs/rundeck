@@ -297,7 +297,7 @@
         }, 
         "wt_storm_streaming": {
             "dcsid_whitelist": "", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/28096:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/STRANALBUILDID/STRANALCONFIGID:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augmentation_bolt_count": 10, 
             "streaming_topology_in_session_bolt_count": 1, 
             "streaming_topology_parsing_bolt_count": 50, 
