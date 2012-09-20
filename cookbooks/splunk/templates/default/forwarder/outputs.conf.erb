@@ -1,0 +1,8 @@
+[tcpout]
+defaultGroup = <%= node['splunk']['indexer_name']%>_<%= node['splunk']['receiver_port']%>
+disabled = false
+
+[tcpout:<%= node['splunk']['indexer_name']%>_<%= node['splunk']['receiver_port']%>]
+server=<% @splunk_servers.sort.each do |server| -%><%= server['ipaddress'] %>:<%= node['splunk']['receiver_port']%>, <% end -%>
+
+[tcpout-server://<%= node['splunk']['indexer_name']%>_<%= node['splunk']['receiver_port']%>]
