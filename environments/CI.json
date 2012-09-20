@@ -205,7 +205,7 @@
             "auth_port": 81, 
             "auth_service_url": "http://cicam01.staging.dmz:81", 
             "cam_port": 80, 
-            "cam_service_url": "http://cicam01.staging.dmz/camservice", 
+            "cam_service_url": "http://cicam01.staging.dmz", 
             "db_name": "cam", 
             "db_server": "cicamdb01.staging.dmz", 
             "cam":{
@@ -244,7 +244,10 @@
             "config_distrib": "jcd01.englab.webtrends.corp:8097", 
             "heatmap_reducers": -1
         }, 
-        "wt_masterdb": {}, 
+        "wt_masterdb": {		  
+            "master_db": "wtmaster", 
+            "master_host": "jmasterdb01.englab.webtrends.corp"
+		}, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
@@ -328,8 +331,6 @@
             "config_service_url": "http://ciutil01.staging.dmz:8080", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/UTILBUILDID/UTILCONFIGID:id/webtrends-streaming-configservice-bin.tar.gz", 
             "includeUnmappedAnalyticsIds": "true", 
-            "masterdbname": "wtmaster", 
-            "masterdbserver": "jmasterdb01.englab.webtrends.corp", 
             "port": "8080"
         }, 
         "wt_streaminglogreplayer": {

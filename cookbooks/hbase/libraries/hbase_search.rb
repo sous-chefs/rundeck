@@ -22,12 +22,12 @@ module HbaseSearch
 		end
 
 		if (results.length == 0 || results.length > limit)
-			log("hbase_search: #{role}: nodes found: #{results.length}") { level :error }
+			Chef::Log.error "hbase_search: #{role}: nodes found: #{results.length}"
 		end
 
 		Chef::Log.debug "hbase_search: #{role}: nodes found: #{results.length}"
 
-		results.length == 1 ? results.first : results
+		results
 
 	end
 

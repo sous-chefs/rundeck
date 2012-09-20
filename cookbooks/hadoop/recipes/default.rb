@@ -25,14 +25,18 @@ include_recipe 'java'
 	end
 end
 
+# get servers in this cluster
+node.save # needed so the roles list is populated for new nodes
 hadoop_namenode       = hadoop_search('hadoop_primarynamenode', 1)
-hadoop_backupnamenode = hadoop_search('hadoop_backupnamenode', 1)
-hadoop_jobtracker     = hadoop_search('hadoop_jobtracker', 1)
+raise Chef::Exceptions::RoleNotFound, "hadoop_primarynamenode role not found" unless hadoop_namenode.count == 1
+hadoop_namenode       = hadoop_namenode.first
+hadoop_backupnamenode = hadoop_search('hadoop_backupnamenode', 1).first
+hadoop_jobtracker     = hadoop_search('hadoop_jobtracker', 1).first
 hadoop_datanodes      = hadoop_search('hadoop_datanode').sort
 
-# determine local_dir (datanodes often have multiples disks, while namenode/jobtrackers don't)
+# determine local_dir (datanodes often have multiples disks, while namenode/jobtrackers do not)
 query = "name:#{node.name} AND role:hadoop_datanode"
-local_dir = search(:node, query).length == 1 ? node.hadoop_attrib(:mapred, :local_dir) : node.hadoop_attrib(:mapred, :non_datanode_local_dir)
+local_dir = search(:node, query).count == 1 ? node.hadoop_attrib(:mapred, :local_dir) : node.hadoop_attrib(:mapred, :non_datanode_local_dir)
 
 # setup hadoop group
 group 'hadoop'
