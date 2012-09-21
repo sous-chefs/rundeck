@@ -1,3 +1,7 @@
+## 2.1.3
+* Address food critic warnings
+* Remove fallback to attributes if Zookeeper search fails
+
 ## 2.1.2
 * Added more cleanup logic
 
@@ -11,7 +15,7 @@
 * Added cam url
 
 # 2.0.13
-* Removed whitelist, updated config service endpoint 
+* Removed whitelist, updated config service endpoint
 
 # 2.0.12
 * Added CAM Urls
@@ -33,16 +37,16 @@
 
 # 2.0.6
 * Added browsers.ini file and the ini4j-0.5.2.jar
-  
+
 # 2.0.4
 * Changed attribute name to reference wt_storm which is where the attributes live in the environment
-  
+
 # 2.0.3
 * Removed misleading cluster_role from this cookbook as it wasn't getting used and we are setting that in the role.
-  
+
 # 2.0.1
 * Added lookup files and cookbook to lay them down.
-  
+
 # 2.0.0
 * Renamed wt_storm to wt_storm_realtime and wt_storm_streaming
 
