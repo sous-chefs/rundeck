@@ -179,7 +179,7 @@ end
 
 # create collectd plugin for zookeeper if collectd has been applied.
 if node.attribute?('collectd')
-	template "#{node[:collectd][:plugin_conf_dir]}/collectd_zookeeper.conf" do
+	template "#{node['collectd']['plugin_conf_dir']}/collectd_zookeeper.conf" do
 		source "collectd_zookeeper.conf.erb"
 		owner 'root'
 		group 'root'
