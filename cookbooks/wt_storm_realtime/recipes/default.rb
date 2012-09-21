@@ -24,11 +24,12 @@ download_url = node['wt_storm_realtime']['download_url']
 install_tmp = '/tmp/wt_storm_install'
 tarball = 'streaming-analysis-bin.tar.gz'
 nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
-
-# grab the zookeeper port number if specified
 zookeeper_clientport = node['zookeeper']['client_port']
+kafka = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}").first
+pod = node['wt_realtime_hadoop']['pod']
+datacenter = node['wt_realtime_hadoop']['datacenter']
 
-# grab the zookeeper nodes that are currently available
+# find the zookeeper nodes used by the Kafka Aggregators
 zookeeper_quorum_kafka = Array.new
 if not Chef::Config.solo
     search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
@@ -36,18 +37,14 @@ if not Chef::Config.solo
     end
 end
 
+# find the zookeeper nodes used by Hbase
 hbaseEnv = node['wt_common']['common_resource_environment']
-# grab the zookeeper nodes that are currently available
 zookeeper_quorum_hbase = Array.new
 if not Chef::Config.solo
     search(:node, "role:zookeeper AND chef_environment:#{hbaseEnv}").each do |n|
         zookeeper_quorum_hbase << n[:fqdn]
     end
 end
-
-kafka = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}").first
-pod = node['wt_realtime_hadoop']['pod']
-datacenter = node['wt_realtime_hadoop']['datacenter']
 
 # Perform some really funky overrides that should never be done and need to be removed
 node['wt_storm_realtime']['zookeeper_quorum'] = zookeeper_quorum_kafka
