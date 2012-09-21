@@ -61,14 +61,14 @@ else
     source "htpasswd.users.erb"
     owner node['nagios']['user']
     group web_group
-    mode 0640
+    mode 00640
     variables(
       :sysadmins => sysadmins
     )
   end
 end
 
-# search for nodes in all environments if multi_environment_monitoring is enabled
+# find nodes to monitor.  Search in all environments if multi_environment_monitoring is enabled
 if node['nagios']['multi_environment_monitoring']
   nodes = search(:node, "hostname:[* TO *]")
 else
@@ -79,6 +79,17 @@ if nodes.empty?
   Chef::Log.info("No nodes returned from search, using this node so hosts.cfg has data")
   nodes = Array.new
   nodes << node
+end
+
+# if using multi environment monitoring then grab the list of environments
+if node['nagios']['multi_environment_monitoring']
+  environment_list = Array.new
+  search(:environment, "*:*") do |e|
+    role_list << e.name
+    search(:node, "chef_environment:#{e.name}") do |n|
+      service_hosts[e.name] = n['hostname']
+    end
+  end
 end
 
 # find all unique platforms to create hostgroups
@@ -130,11 +141,6 @@ rescue Net::HTTPServerException
   Chef::Log.info("Search for nagios_hostgroups data bag failed, so we'll just move on.")
 end
 
-members = Array.new
-sysadmins.each do |s|
-  members << s['id']
-end
-
 # maps nodes into nagios hostgroups
 role_list = Array.new
 service_hosts= Hash.new
@@ -169,23 +175,16 @@ else
   end
 end
 
-# if using multi environment monitoring then grab the list of environments
-if node['nagios']['multi_environment_monitoring']
-  environment_list = Array.new
-  search(:environment, "*:*") do |e|
-    role_list << e.name
-    search(:node, "chef_environment:#{e.name}") do |n|
-      service_hosts[e.name] = n['hostname']
-    end
-  end
-end
-
 if node['public_domain']
   public_domain = node['public_domain']
 else
   public_domain = node['domain']
 end
 
+members = Array.new
+sysadmins.each do |s|
+  members << s['id']
+end
 
 nagios_conf "nagios" do
   config_subdir false
