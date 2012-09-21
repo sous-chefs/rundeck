@@ -1,5 +1,9 @@
 ## Future
 
+## 1.1.3
+* changed search to role instead of roles
+* treat cluster_name 'default' and nil to be the same cluster
+
 ## 1.1.2
 * node.save at beginning
 * changed zookeeper_search to always return an Array
