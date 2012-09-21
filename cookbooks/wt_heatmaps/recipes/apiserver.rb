@@ -57,17 +57,6 @@ remote_directory "/var/www" do
 	mode 00744
 end
 
-#Create collectd plugin for nginx if collectd has been applied.
-if node.attribute?("collectd")
-	cookbook_file "#{node[:collectd][:plugin_conf_dir]}/nginx.conf" do
-		source "nginx.conf"
-		owner "root"
-		group "root"
-		mode 00644
-		notifies :restart, resources(:service => "collectd")
-	end
-end
-
 nginx_site "default" do
 	enable false
 end
@@ -83,5 +72,16 @@ if node.attribute?("nagios")
 		command "#{node['nagios']['plugin_dir']}/check_http"
 		parameters "-H localhost -u \"/heatmap_meta.php?accountid=10314&w=1663&h=200&dot=60&filter=infrared&coef=1&startd=2012-05-31&stopd=2012-06-20&top=600&i=3&page=webtrends.com%3B42099b4af021e53fd8fd4e056c2568d7c2e3ffa8\" -p 80 -r \"y_max\""
 		action :add
+	end
+end
+
+#Create collectd plugin for nginx if collectd has been applied.
+if node.attribute?("collectd")
+	cookbook_file "#{node[:collectd][:plugin_conf_dir]}/nginx.conf" do
+		source "nginx.conf"
+		owner "root"
+		group "root"
+		mode 00644
+		notifies :restart, resources(:service => "collectd")
 	end
 end
