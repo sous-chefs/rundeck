@@ -1,3 +1,7 @@
+## 0.0.33
+* Address food critic warnings
+* Remove Zookeeper fallback to attributes
+
 ## 0.0.32
 * Remove the fallback URL for download_url
 
