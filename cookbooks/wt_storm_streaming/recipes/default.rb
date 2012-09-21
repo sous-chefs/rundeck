@@ -64,7 +64,7 @@ if ENV["deploy_build"] == "true" then
       mode 00644
     end
 
-    # delete previous the install TEMP dirctory
+    # delete previous the install TEMP directory
     directory install_tmp do
       owner "root"
       group "root"
