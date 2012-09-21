@@ -1,3 +1,6 @@
+## 2.1.5
+* Search for kafka_aggregator not kafka
+
 # 2.1.4
 * Address food critic warnings
 * Remove fallback to attributes in Zookeeper search
