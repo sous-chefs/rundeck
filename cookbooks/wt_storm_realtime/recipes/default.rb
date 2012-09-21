@@ -25,7 +25,7 @@ install_tmp = '/tmp/wt_storm_install'
 tarball = 'streaming-analysis-bin.tar.gz'
 nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
 zookeeper_clientport = node['zookeeper']['client_port']
-kafka = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}").first
+kafka = search(:node, "role:kafka_aggregator AND chef_environment:#{node.chef_environment}").first
 pod = node['wt_realtime_hadoop']['pod']
 datacenter = node['wt_realtime_hadoop']['datacenter']
 
