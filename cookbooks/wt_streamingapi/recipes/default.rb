@@ -160,9 +160,7 @@ if ENV["deploy_build"] == "true" then
       :log_dir => log_dir,
       :install_dir => install_dir,
       :java_home => java_home,
-      :user => user,
-      :java_class => "com.webtrends.streaming.websocket.StreamingAPIDaemon",
-      :java_jmx_port => node['wt_monitoring']['jmx_port'],
+      :java_jmx_port => node['wt_streamingapi']['jmx_port'],
       :java_opts => java_opts
     })
   end
