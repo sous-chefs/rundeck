@@ -79,7 +79,7 @@ if deploy_mode?
   	source "appSettings.config.erb"
 	variables(
 		:cam_auth_url => node['wt_streaming_viz']['cam_auth_url'],
-		:sapi_url   => node['wt_streaming_viz']['sapi_url']
+		:sapi_url   => node['wt_streaming_viz']['sapi_url'],
         :chef_environment => pod
   	)
   end
