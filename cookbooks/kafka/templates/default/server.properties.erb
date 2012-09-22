@@ -61,7 +61,7 @@ log.dir=<%=node["kafka"]["data_dir"]%>
 
 # The number of logical partitions per topic per server. More partitions allow greater parallelism
 # for consumption, but also mean more files.
-num.partitions=1
+num.partitions=<%= node[:kafka][:num_partitions] %>
 
 # Overrides for for the default given by num.partitions on a per-topic basis
 #topic.partition.count.map=topic1:3, topic2:4

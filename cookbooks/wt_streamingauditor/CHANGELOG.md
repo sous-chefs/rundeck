@@ -1,3 +1,6 @@
+## 0.0.15
+* Added logic to use the wt_monitoring client id and secret to get a token to connect to SAPI
+
 ## 0.0.16
 * Use JMX port from cookbook attribute not from wt_monitoring attribute
 * Don't fallback to attributes if the Zookeeper search fails

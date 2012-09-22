@@ -24,11 +24,12 @@ download_url = node['wt_storm_realtime']['download_url']
 install_tmp = '/tmp/wt_storm_install'
 tarball = 'streaming-analysis-bin.tar.gz'
 nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
-
-# grab the zookeeper port number if specified
 zookeeper_clientport = node['zookeeper']['client_port']
+kafka = search(:node, "role:kafka_aggregator AND chef_environment:#{node.chef_environment}").first
+pod = node['wt_realtime_hadoop']['pod']
+datacenter = node['wt_realtime_hadoop']['datacenter']
 
-# grab the zookeeper nodes that are currently available
+# find the zookeeper nodes used by the Kafka Aggregators
 zookeeper_quorum_kafka = Array.new
 if not Chef::Config.solo
     search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
@@ -36,25 +37,14 @@ if not Chef::Config.solo
     end
 end
 
+# find the zookeeper nodes used by Hbase
 hbaseEnv = node['wt_common']['common_resource_environment']
-# grab the zookeeper nodes that are currently available
 zookeeper_quorum_hbase = Array.new
 if not Chef::Config.solo
     search(:node, "role:zookeeper AND chef_environment:#{hbaseEnv}").each do |n|
         zookeeper_quorum_hbase << n[:fqdn]
     end
 end
-
-# fall back to attribs if search doesn't come up with any zookeeper nodes
-#if zookeeper_quorum.count == 0
-#    node[:zookeeper][:quorum].each do |i|
-#        zookeeper_quorum << i
-#    end
-#end
-
-kafka = search(:node, "role:kafka AND chef_environment:#{node.chef_environment}").first
-pod = node[:wt_realtime_hadoop][:pod]
-datacenter = node[:wt_realtime_hadoop][:datacenter]
 
 # Perform some really funky overrides that should never be done and need to be removed
 node['wt_storm_realtime']['zookeeper_quorum'] = zookeeper_quorum_kafka
@@ -82,7 +72,7 @@ if ENV["deploy_build"] == "true" then
       recursive true
       action :delete
     end
-    
+
     # create the install TEMP dirctory
     directory install_tmp do
       owner "root"
@@ -244,14 +234,14 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :zookeeper_quorum      => zookeeper_quorum_hbase.join(","),
     :zookeeper_clientport  => zookeeper_clientport,
     :zookeeper_pairs	   => zookeeper_quorum_kafka.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
-    :configservice         => node[:wt_streamingconfigservice][:config_service_url],
-    :netacuity             => node[:wt_netacuity][:geo_url],
-    :kafka                 => kafka[:fqdn],
+    :configservice         => node['wt_streamingconfigservice']['config_service_url'],
+    :netacuity             => node['wt_netacuity']['geo_url'],
+    :kafka                 => kafka['fqdn'],
     :pod                   => pod,
     :datacenter            => datacenter,
-    :debug                 => node[:wt_storm_realtime][:debug],
-    :audit_bucket_timespan => node[:wt_monitoring][:audit_bucket_timespan],
-    :audit_topic           => node[:wt_monitoring][:audit_topic]
+    :debug                 => node['wt_storm_realtime']['debug'],
+    :audit_bucket_timespan => node['wt_monitoring']['audit_bucket_timespan'],
+    :audit_topic           => node['wt_monitoring']['audit_topic']
   )
 end
 
