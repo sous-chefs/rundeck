@@ -6,7 +6,7 @@
         "hive": "= 1.0.2", 
         "java": "= 1.5.2",
         "nagios": "= 1.6.0",
-        "kafka": "= 1.0.11",
+        "kafka": "= 1.0.12",
         "ondemand_base": "= 1.7.12", 
         "storm": "= 1.0.24",
         "webtrends_server": "= 1.8.2", 
@@ -17,8 +17,8 @@
         "wt_realtime_hadoop": "= 1.0.2", 
         "wt_realtimeapi": "= 0.0.23", 
         "wt_storm_realtime": "= 2.1.5", 
-        "wt_storm_streaming": "= 2.1.2", 
         "wt_streaming_viz": "= 1.0.2",
+        "wt_storm_streaming": "= 2.1.3",
         "wt_streamingapi": "= 0.0.32",
         "wt_streamingauditor": "= 0.0.17",
         "wt_streamingcollection": "= 0.0.28",
@@ -294,12 +294,8 @@
             "realtime_topology_parsing_bolt_count": 3, 
             "realtime_topology_writing_bolt_count": 96, 
             "topic_list": [
-                "Lab_G_scsRawHits:1", 
-                "Lab_G_lrRawHits:1", 
                 "Lab_H_scsRawHits:1", 
-                "Lab_H_lrRawHits:1", 
-                "Lab_M_scsRawHits:1", 
-                "Lab_M_lrRawHits:1"
+                "Lab_H_lrRawHits:1"
             ], 
             "topology_override_max_spout_pending": 100, 
             "topology_override_msg_timeout_seconds": 30, 
@@ -308,18 +304,14 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt193/.lastSuccessful/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/32909:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augmentation_bolt_count": 10, 
             "streaming_topology_in_session_bolt_count": 0, 
             "streaming_topology_validation_bolt_count": 10, 
             "streaming_topology_zmq_emitter_bolt_count": 1, 
             "topic_list": [
-                "Lab_G_scsRawHits:1", 
-                "Lab_G_lrRawHits:1", 
                 "Lab_H_scsRawHits:1", 
-                "Lab_H_lrRawHits:1", 
-                "Lab_M_scsRawHits:1", 
-                "Lab_M_lrRawHits:1"
+                "Lab_H_lrRawHits:1"
             ], 
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
@@ -356,7 +348,7 @@
             "port": "8080"
         }, 
         "wt_streaminglogreplayer": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt229/31919:id/webtrends-streaminglogreplayer-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/33085:id/webtrends-streaminglogreplayer-bin.tar.gz", 
             "log_extension": ".gz", 
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay"
         }, 
