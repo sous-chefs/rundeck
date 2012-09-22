@@ -18,6 +18,7 @@
         "wt_realtimeapi": "= 0.0.23", 
         "wt_storm_realtime": "= 2.1.5", 
         "wt_storm_streaming": "= 2.1.2", 
+        "wt_streaming_viz": "= 1.0.2",
         "wt_streamingapi": "= 0.0.32",
         "wt_streamingauditor": "= 0.0.17",
         "wt_streamingcollection": "= 0.0.28",
@@ -323,7 +324,12 @@
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
-        }, 
+        },
+        "wt_streaming_viz": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip",
+            "cam_auth_uri": "https://hsauth.webtrends.com",
+            "sapi_uri": "ws://hsapi01.staging.dmz:8080",
+        },
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt192/.lastSuccessful/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
