@@ -3,6 +3,10 @@
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
 
+## 1.8.4
+ * Update the updatechef cookbook to update to the new current version of 10.14.2
+ * Add supports for ubuntu/centos/windows in the metadata
+ * Roll the installation of screen into the "useful tools" installation section
 
 ## 1.8.3
  * Adding screen to ubuntu and centos

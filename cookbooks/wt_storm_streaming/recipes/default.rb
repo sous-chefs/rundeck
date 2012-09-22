@@ -36,16 +36,9 @@ if not Chef::Config.solo
     end
 end
 
-# fall back to attribs if search doesn't come up with any zookeeper nodes
-if zookeeper_quorum.count == 0
-    node[:zookeeper][:quorum].each do |i|
-        zookeeper_quorum << i
-    end
-end
-
 kafka = search(:node, "role:kafka_aggregator AND chef_environment:#{node.chef_environment}").first
-pod = node[:wt_realtime_hadoop][:pod]
-datacenter = node[:wt_realtime_hadoop][:datacenter]
+pod = node['wt_realtime_hadoop']['pod']
+datacenter = node['wt_realtime_hadoop']['datacenter']
 
 # Perform some really funky overrides that should never be done and need to be removed
 node['wt_storm_streaming']['zookeeper_quorum'] = zookeeper_quorum
@@ -71,7 +64,7 @@ if ENV["deploy_build"] == "true" then
       mode 00644
     end
 
-    # delete previous the install TEMP dirctory
+    # delete previous the install TEMP directory
     directory install_tmp do
       owner "root"
       group "root"
@@ -79,7 +72,7 @@ if ENV["deploy_build"] == "true" then
       recursive true
       action :delete
     end
-    
+
     # create the install TEMP dirctory
     directory install_tmp do
       owner "root"
