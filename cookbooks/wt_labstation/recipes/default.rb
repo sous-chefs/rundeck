@@ -8,8 +8,8 @@
 #
 
 case node.platform
-	when "ubuntu", "debian"		
-	when "centos", "redhat"		
+	when "ubuntu", "debian"
+	when "centos", "redhat"
 	when "windows", "mswin", "mingw32"
 		include_recipe "wt_labstation::windows"
 	else

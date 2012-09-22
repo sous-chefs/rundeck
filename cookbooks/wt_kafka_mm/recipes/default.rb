@@ -96,8 +96,8 @@ def processConfTemplates (install_dir, node, log_dir)
   end
 
   # log4j
-  template "#{install_dir}/conf/#{src_env}/log4j.properties" do
-    source  "log4j.properties.erb"
+  template "#{install_dir}/conf/#{src_env}/log4j.xml" do
+    source  "log4j.xml.erb"
     owner   "root"
     group   "root"
     mode    00644
@@ -203,7 +203,7 @@ if ENV["deploy_build"] == "true" then
       :java_class => "kafka.tools.MirrorMaker",
 #			:java_port => jmx_port++,
       :java_opts => java_opts,
-      :topic_white_list => node['wt_kafka_mm']['topic_white_list']
+      :topic_white_list => "(#{node['wt_kafka_mm']['topic_white_list']})|(MirrorMonitor_#{node["wt_kafka_mm"]["id"]}.*)"
     })
 	end
 

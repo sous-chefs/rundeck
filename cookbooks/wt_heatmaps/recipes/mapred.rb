@@ -32,4 +32,3 @@ remote_directory "/usr/local/mapred" do
   files_mode 00744
   mode 00744
 end
-
