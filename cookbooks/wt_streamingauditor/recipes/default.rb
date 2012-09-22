@@ -33,6 +33,10 @@ pod = node['wt_realtime_hadoop']['pod']
 datacenter = node['wt_realtime_hadoop']['datacenter']
 kafka_chroot_suffix = node['kafka']['chroot_suffix']
 
+auth_data = data_bag_item('authorization', node.chef_environment)
+client_id = auth_data['wt_streamingauditor']['client_id']
+client_secret = auth_data['wt_streamingauditor']['client_secret']
+
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -77,7 +81,7 @@ def getZookeeperPairs(node)
 	return zookeeper_pairs
 end
 
-def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
+def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix, client_id, client_secret)
     log "Updating the template files"
 
     # grab the zookeeper nodes that are currently available
@@ -104,9 +108,12 @@ def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix)
             :zookeeper_pairs => zookeeper_pairs,
             :wt_streamingauditor => node['wt_streamingauditor'],
             :wt_monitoring => node['wt_monitoring'],
+            :wt_cam => node['wt_cam'],
             :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
             :pod => pod,
-            :datacenter => datacenter
+            :datacenter => datacenter,
+            :client_id => client_id,
+            :client_secret => client_secret
         })
         end
     end
@@ -143,7 +150,7 @@ if ENV["deploy_build"] == "true" then
         })
     end
 
-    processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix)
+    processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix, client_id, client_secret)
 
     # delete the application tarball
     execute "delete_install_source" do
@@ -163,7 +170,7 @@ if ENV["deploy_build"] == "true" then
     })
     end
 else
-    processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix)
+    processTemplates(install_dir, node, datacenter, pod, kafka_chroot_suffix, client_id, client_secret)
 end
 
 #Create collectd plugin for streaming auditor JMX objects if collectd has been applied.
