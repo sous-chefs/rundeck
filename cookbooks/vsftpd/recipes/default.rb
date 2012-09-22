@@ -29,7 +29,7 @@ if node['vsftpd']['use_ssl_certs_from_cookbook']
 end
 
 template "/etc/vsftpd.chroot_list" do
-  source "vsftpd.chroot_list"
+  source "vsftpd.chroot_list.erb"
   owner "root"
   group "root"
   mode 00644
@@ -37,7 +37,7 @@ template "/etc/vsftpd.chroot_list" do
 end
 
 template "/etc/vsftpd.conf" do
-  source "vsftpd.conf"
+  source "vsftpd.conf.erb"
   owner "root"
   group "root"
   mode 00644
