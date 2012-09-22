@@ -1,3 +1,6 @@
+## 1.0.4:
+* Use right port variable from environment.
+
 ## 1.0.3:
 * Add missing comma.
 
