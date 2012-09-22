@@ -23,6 +23,8 @@ include_recipe 'runit'
 source_tarball  = node.zookeeper_attrib(:download_url)[/\/([^\/\?]+)(\?.*)?$/, 1]
 source_fullpath = File.join(Chef::Config[:file_cache_path], source_tarball)
 
+node.save # needed to populate attributes
+
 # get servers in this cluster
 zookeeper_nodes = zookeeper_search('zookeeper').sort
 raise Chef::Exceptions::RoleNotFound, "zookeeper role not found" if zookeeper_nodes.count == 0
