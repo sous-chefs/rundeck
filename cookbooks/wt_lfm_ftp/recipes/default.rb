@@ -18,7 +18,7 @@
 
 
 # include the vsftp cookbook
-include_recipe "vsftp"
+include_recipe "vsftpd"
 
 # create the mount directory
 directory node['wt_lfm_ftp']['lfm_mount_path'] do
