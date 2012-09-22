@@ -12,11 +12,9 @@ module ZookeeperSearch
 
 	def zookeeper_search(role, limit = 1000)
 
-		search_timeout = 60 
+		search_timeout = 120 # seconds
 
 		Chef::Log.info "zookeeper_cluster_name: #{node[:zookeeper][:cluster_name]}"
-
-		node.save # needed so attributes are populated
 
 		results = Array.new
 
@@ -31,7 +29,7 @@ module ZookeeperSearch
 			while results.count == 0 && i < search_timeout 
 				search(:node, query).each {|n| results << n[:fqdn] }
 				if results.count == 0
-					Chef::Log.warn "no results, sleeping"
+					Chef::Log.warn "no results, sleeping..."
 					i += 5
 					sleep 5
 				end
