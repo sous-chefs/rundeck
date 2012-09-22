@@ -21,7 +21,7 @@ app_pool = node['wt_streaming_viz']['app_pool']
 pod = node.chef_environment
 user_data = data_bag_item('authorization', pod)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
-http_port = node['wt_streaming_viz']['cam']['port']
+http_port = node['wt_streaming_viz']['port']
 
 iis_pool app_pool do
     pipeline_mode :Integrated
