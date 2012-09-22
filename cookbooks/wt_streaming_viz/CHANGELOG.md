@@ -1,3 +1,6 @@
+## 1.0.3:
+* Add missing comma.
+
 ## 1.0.2:
 * Include POD id in appsettings.config for the dirty hack.
 
