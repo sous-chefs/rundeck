@@ -169,7 +169,7 @@ if unmanaged_hosts.nil? || unmanaged_hosts.empty?
   Chef::Log.info("No unmanaged hosts returned from data bag search.")
 else
   unmanaged_hosts.each do |h|
-    if !unmanaged_hostgroups.include?(h['hostgroup'])
+    if !role_list.include?(h['hostgroup'])
       role_list << h['hostgroup']
     end
   end
