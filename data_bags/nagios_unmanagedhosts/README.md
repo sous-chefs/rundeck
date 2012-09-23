@@ -8,7 +8,7 @@ Example:
 
 {
   "address": "webserver1.mydmz.dmz",
-  "hostgroup": "web_servers",
+  "hostgroup": ["web_servers","production_servers"],
   "id": "webserver1",
   "notifications": 1
 }
