@@ -13,13 +13,6 @@ define service {
 # default checks for all hosts
 
 define service {
-    service_description Chef Client
-    hostgroup_name     linux
-    check_command      check_chef_client
-    use                default-service
-}
-
-define service {
     service_description Free Space All Disks
     hostgroup_name      linux
     check_command       check_all_disks
