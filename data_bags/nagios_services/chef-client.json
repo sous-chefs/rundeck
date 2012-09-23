@@ -1,0 +1,5 @@
+{
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_chef_client -t 20",
+    "hostgroup_name": "chef_managed_systems",
+    "id": "chef-client"
+}
