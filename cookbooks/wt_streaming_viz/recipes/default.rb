@@ -48,6 +48,7 @@ iis_site 'StreamingViz' do
     port http_port
     path "#{install_dir}"
 	action [:add,:start]
+	application_pool app_pool
 	retries 2
 end
 
@@ -91,12 +92,12 @@ if deploy_mode?
   #       )
   # end
 
-  iis_app "StreamingViz" do
-  	path "/"
-  	application_pool app_pool
-  	physical_path "#{install_dir}"
-  	action :add
-  end
+  # iis_app "StreamingViz" do
+  	# path "/"
+  	# application_pool app_pool
+  	# physical_path "#{install_dir}"
+  	# action :add
+  # end
 
   iis_config auth_cmd do
   	action :config
