@@ -1,0 +1,5 @@
+{
+    "search_query": "name:[* TO *]",
+    "hostgroup_name": "chef_managed_systems",
+    "id": "chef_managed_systems"
+}
