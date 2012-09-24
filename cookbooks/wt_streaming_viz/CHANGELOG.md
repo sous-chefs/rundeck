@@ -1,5 +1,9 @@
+## 1.0.6
+* Remove app removal, set ignore_failure for site removal.
+
 ## 1.0.5
 * Remove app creation. Set app_pool for site
+
 ## 1.0.4:
 * Use right port variable from environment.
 
