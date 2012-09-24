@@ -1,5 +1,8 @@
 ## Future
 
+## 1.1.2
+* treat cluster_name 'default' and nil to be the same cluster
+
 ## 1.1.1
 * node.save at beginning
 * changed hbase_search to always return an Array
