@@ -12,20 +12,59 @@ module HbaseSearch
 
 	def hbase_search(role, limit = 1000)
 
-		query =  "chef_environment:#{node.chef_environment}"
-		query << " AND roles:#{role}"
-		query << " AND hbase_cluster_name:#{node[:hbase][:cluster_name]}"
+		search_timeout = 120 # seconds
+
+		Chef::Log.info "hbase_cluster_name: #{node[:hbase][:cluster_name]}"
 
 		results = Array.new
-		search(:node, query).each do |n|
-			results << n[:fqdn]
+
+		if node[:hbase][:cluster_name] == 'default'
+
+			# search for nodes with default cluster name
+			query =  "chef_environment:#{node.chef_environment}"
+			query << " AND roles:#{role}"
+			query << " AND hbase_cluster_name:#{node[:hbase][:cluster_name]}"
+
+			i = 0
+			while results.count == 0 && i < search_timeout
+				search(:node, query).each {|n| results << n[:fqdn] }
+				if results.count == 0
+					Chef::Log.warn "hbase_search: no results, sleeping..."
+					i += 5
+					sleep 5
+				end
+			end
+
+			# search for nodes that have no cluster name
+			query =  "chef_environment:#{node.chef_environment}"
+			query << " AND roles:#{role}"
+			query << " AND NOT hbase_cluster_name:*"
+			search(:node, query).each {|n| results << n[:fqdn] }
+
+		else
+
+			# search for nodes with a non-default cluster name
+			query =  "chef_environment:#{node.chef_environment}"
+			query << " AND roles:#{role}"
+			query << " AND hbase_cluster_name:#{node[:hbase][:cluster_name]}"
+
+			i = 0
+			while results.count == 0 && i < search_timeout
+				search(:node, query).each {|n| results << n[:fqdn] }
+				if results.count == 0
+					Chef::Log.warn "hbase_search: no results, sleeping..."
+					i += 5
+					sleep 5
+				end
+			end
+
 		end
 
-		if (results.length == 0 || results.length > limit)
-			Chef::Log.error "hbase_search: #{role}: nodes found: #{results.length}"
+		if results.count == 0 || results.count > limit
+			Chef::Log.error "hbase_search: #{role}: nodes found: #{results.count}"
 		end
-
-		Chef::Log.debug "hbase_search: #{role}: nodes found: #{results.length}"
+		Chef::Log.debug "hbase_search: #{role}: nodes found: #{results.count}"
+		Chef::Log.warn  "hbase_search: slept for #{i} seconds." if i > 0
 
 		results
 
