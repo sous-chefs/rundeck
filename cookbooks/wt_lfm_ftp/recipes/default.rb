@@ -20,15 +20,25 @@
 # include the vsftp cookbook
 include_recipe "vsftpd"
 
-# create the mount directory
-directory node['wt_lfm_ftp']['lfm_mount_path'] do
-  recursive true
+# create the base directory for the mounts
+directory "/srv/lfm" do
+  action :create
 end
 
-# mount the NFS export onto the mount directory
-mount node['wt_lfm_ftp']['repo_path'] do
-  device node['wt_lfm_ftp']['lfm_nfs_export']
-  fstype "nfs"
-  options "rw"
-  action [:mount, :enable]
+# create the mount directories and mount the shares
+node['wt_lfm_ftp']['lfm_nfs_exports'].each do |dir,export|
+
+  #create the mount path
+  directory dir do
+    recursive true
+  end
+
+  # mount the NFS export onto the mount directory
+  mount dir do
+    device export
+    fstype "nfs"
+    options "rw"
+    action [:mount, :enable]
+  end
+
 end
