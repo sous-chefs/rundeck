@@ -1,3 +1,6 @@
+## 2.1.4
+* Making cookbook compatible with release artifact for streaming-1.0.1
+
 ## 2.1.3
 * Address food critic warnings
 * Remove fallback to attributes if Zookeeper search fails
