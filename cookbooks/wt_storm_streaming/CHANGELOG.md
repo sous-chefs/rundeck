@@ -1,5 +1,7 @@
+## 2.1.6
+* Changing back to kafka-0.7.1
 ## 2.1.5
-Added support for changing the field grouping and debug setting of a topo
+* Added support for changing the field grouping and debug setting of a topo
 ## 2.1.4
 * Making cookbook compatible with release artifact for streaming-1.0.1
 
