@@ -1,3 +1,9 @@
+## 1.0.4:
+* Use right port variable from environment.
+
+## 1.0.3:
+* Add missing comma.
+
 ## 1.0.2:
 * Include POD id in appsettings.config for the dirty hack.
 
