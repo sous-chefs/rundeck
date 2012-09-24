@@ -13,15 +13,16 @@ install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Streaming.
 log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
 
 # remove the app
-iis_app 'StreamingViz' do
-	path "/"
-	application_pool "#{app_pool}"
-	action :delete
-end
+# iis_app 'StreamingViz' do
+# 	path "/"
+# 	application_pool "#{app_pool}"
+# 	action :delete
+# end
 
 # remove the site
 iis_site 'StreamingViz' do
 	action [:stop, :delete]
+    ignore_failure true
 end
 
 # remove the pool
