@@ -10,7 +10,8 @@
   "run_list": [
     "recipe[notepadplusplus]",
     "recipe[firefox]",
-    "recipe[7-zip]"
+    "recipe[7-zip]",
+	"recipe[filezilla]"
   ],
   "env_run_lists": {
   }
