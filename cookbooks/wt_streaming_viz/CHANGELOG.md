@@ -1,3 +1,9 @@
+## 1.0.8
+* Add template for log4net.config 
+
+## 1.0.7
+* Grant IUSR read-only access to install dir.
+
 ## 1.0.6
 * Remove app removal, set ignore_failure for site removal.
 
