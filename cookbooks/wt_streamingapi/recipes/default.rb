@@ -62,12 +62,6 @@ cookbook_file "/etc/security/limits.conf" do
   mode 00644
 end
 
-# enable pam_limits.so
-#cookbook_file "/etc/pam.d/common-session" do
-#  source "common-session"
-#  mode 00644
-#end
-
 # create the log directory
 directory log_dir do
   owner   user
@@ -103,7 +97,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
   usagedbname = node['wt_streamingapi']['usagedbname']
 
 
-  %w[monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
+  %w[log4j.xml monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source	"#{template_file}.erb"
       owner "root"
