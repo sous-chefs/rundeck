@@ -20,7 +20,7 @@
         "wt_storm_realtime": "= 2.1.5", 
         "wt_storm_streaming": "= 2.1.6",
         "wt_streamingapi": "= 0.0.34",
-        "wt_streaming_viz": "= 1.0.8",
+        "wt_streaming_viz": "= 1.0.9",
         "wt_streamingauditor": "= 0.0.17",
         "wt_streamingcollection": "= 0.0.28",
         "wt_streamingconfigservice": "= 0.0.12",
@@ -331,10 +331,14 @@
         "wt_streaming_viz": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip",
             "cam_auth_uri": "https://hsauth.webtrends.com",
-            "sapi_uri": "ws://hsapi01.staging.dmz:8080"
+            "sapi_uri": "ws://hsapi01.staging.dmz:8080",
+            "proxy_enabled": "true",
+            "proxy_address": "http://sproxy02.staging.dmz:3128",
+            "elmah_remote_access": "yes",
+            "custom_errors": "Off"
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/33778:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/33789:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "port": 8080, 
             "usagedbname": "Streaming", 
