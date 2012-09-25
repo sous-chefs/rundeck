@@ -164,6 +164,29 @@ LoadPlugin java
                         Attribute "AsyncProducerQueueSize"
                 </Value>
         </MBean>
+        #Metrics
+        <MBean "active-dcsid">
+			ObjectName "logreplayer:type=config,name=active-dcsid"
+			InstancePrefix ""
+			InstanceFrom "name"
+			<Value>
+				Type "gauge"
+				InstancePrefix "Value"
+				Table false
+				Attribute "Value"
+			</Value>
+	    </MBean>
+        <MBean "files-in-queue">
+			ObjectName "logreplayer:type=filemover,name=files-in-queue"
+			InstancePrefix ""
+			InstanceFrom "name"
+			<Value>
+				Type "gauge"
+				InstancePrefix "Value"
+				Table false
+				Attribute "Value"
+			</Value>
+        </MBean>
         <MBean "hits-accepted">
                 ObjectName "logreplayer:type=logconsumer,name=hits-accepted"
                 #InstancePrefix ""

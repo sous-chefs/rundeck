@@ -25,8 +25,9 @@ include_recipe 'java'
 	end
 end
 
+node.save # needed to populate attributes
+
 # get servers in this cluster
-node.save # needed so the roles list is populated for new nodes
 hadoop_namenode       = hadoop_search('hadoop_primarynamenode', 1)
 raise Chef::Exceptions::RoleNotFound, "hadoop_primarynamenode role not found" unless hadoop_namenode.count == 1
 hadoop_namenode       = hadoop_namenode.first

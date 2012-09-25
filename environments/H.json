@@ -19,7 +19,7 @@
         "wt_storm_realtime": "= 2.1.5", 
         "wt_storm_streaming": "= 2.1.3",
         "wt_streamingapi": "= 0.0.33",
-        "wt_streaming_viz": "= 1.0.2",
+        "wt_streaming_viz": "= 1.0.8",
         "wt_streamingauditor": "= 0.0.17",
         "wt_streamingcollection": "= 0.0.28",
         "wt_streamingconfigservice": "= 0.0.12",
@@ -122,7 +122,8 @@
             "log_flush_time_interval": "500", 
             "log_retention_hours": "2", 
             "threads": "8", 
-            "version": "0.7.1"
+            "version": "0.7.1",
+            "num_partitions": 3
         }, 
         "memcached": {}, 
         "ms_dotnet4": {
@@ -251,7 +252,7 @@
             "heatmap_reducers": -1
         },
 	"wt_kafka_mm" : {
-		"monitor_download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt242/.lastSuccessful/MirrorMonitor-bin.tar.gz"	
+		"monitor_download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/.lastSuccessful/MirrorMonitor-bin.tar.gz"	
 	}, 
         "wt_masterdb": {
             "master_db": "wtmaster", 
@@ -289,13 +290,13 @@
         "wt_search": {}, 
         "wt_storm_realtime": {
             "dcsid_whitelist": "dcskf5ra3wievv2j7rl2dzj9r_8m4t,dcssd1hl110000o65n6wko6yv_3f5i,dcscyjdor000004fu02p6j55k_7z2q,dcss1s1qz00000cpfqm6c3uzk_2u3x,dcsivypwnvz5bdaurmxdcu8oe_4w6t,dcskzwq0z6bv0hgc5x3drmdhl_6b2w,dcs0k3bfw9bv0h43mmbfafa4r_3d3d,dcsx80onvuz5bda0arxz7nuj4_1h7u,dcs4ns4a46bv0hkbj2mbl4kz4_2f9c,dcs679u7gvz5bdvketfrwpqz4_3d8d,dcsg1ip8ouz5bd7ikdlfzxsz4_1h9c,dcsz02wc3wz5bdfq1x2cjvqtf_7p2r,dcs5oiviquz5bdmb1vby0bq0m_8d3h,dcsvx0uq4wz5bdn4q716fat5p_1d8n,dcsy2qt14vz5bd6pu8n9w1l6p_3d5v,dcscp3a1u00000g4ytyr08udx_6d4d,dcsb74cqw5twkfv2wugx2apfw_5f3v,dcsa6u6c06twkfwu94rpvdf54_6d9x,dcswd1aevuievvvtcqup1xi7e_9c3n,dcspkm2ur00000gcsmbjb49hw_8u9c,dcs6tjh57100000439wqk6ahw_7k7l,dcssxgup410000gc09m4bipft_2o3z,dcs2su69w000004fa9fprpovh_9l4d,dcs3gph2p00000kz4vhhgdjdt_1i5h,dcsmky632100008q5co8ux5re_3u3k,dcs5c1q1k100000oasrcvxny9_9y7p,dcsehhbtsvz5bdiav0m1b8akn_2m2n,dcskwbwypuz5bdurwm94ciakn_4j8j,dcs500j24vz5bdezn8993kakn_3h5n,dcs4xi0pgvz5bdqcujokwj2l2_3p8t,dcsmzkhfj10000g856ggp3ov8_2c8z,dcs5b71nmuz5bd05xhq8bq4q9_4k9u,dcskugcufvz5bdjv6xlluvutq_3s1f,dcs5ayx17wz5bdjrnzzdbyutq_5z7k,dcsyzsuwrvz5bdv8tcntgzutq_9g1b,dcs0oy2sj9dv0h4bkmkv4xnvu_6k3z,dcsch13he5dv0hwg3zw9iggwu_5b4m,dcscxtmrk3dv0hc9gok1uql67_2m3c,dcs92jn69wz5bdvu3mscmc99c_5f7f,dcswgm452adv0h001hxga527f_4k1e,dcsc1tzop6dv0hs50irx9i4lk_1o9t,dcsvlof4r10000kb6clcjlsqr_9p5t,dcs44gze000000gs0g0idtsqr_9b3n,dcs11bs6b10000oa0ymlc3tqr_5i1u,dcseh1f9f1000047ctx7q191n_6y8f", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt193/.lastSuccessful/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/.lastSuccessful/streaming-analysis-bin.tar.gz", 
             "realtime_topology_dimensions_bolt_count": 6, 
             "realtime_topology_parsing_bolt_count": 3, 
             "realtime_topology_writing_bolt_count": 96, 
             "topic_list": [
-                "Lab_H_scsRawHits:1", 
-                "Lab_H_lrRawHits:1"
+                "Lab_H_scsRawHits:3",
+                "Lab_H_lrRawHits:3"
             ], 
             "topology_override_max_spout_pending": 100, 
             "topology_override_msg_timeout_seconds": 30, 
@@ -304,14 +305,14 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt193/.lastSuccessful/streaming-analysis-bin.tar.gz", 
+			"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/33651:id/streaming-analysis-bin.tar.gz",
             "streaming_topology_augmentation_bolt_count": 10, 
             "streaming_topology_in_session_bolt_count": 0, 
             "streaming_topology_validation_bolt_count": 10, 
             "streaming_topology_zmq_emitter_bolt_count": 1, 
             "topic_list": [
-                "Lab_H_scsRawHits:1", 
-                "Lab_H_lrRawHits:1"
+                "Lab_H_scsRawHits:3",
+                "Lab_H_lrRawHits:3"
             ], 
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
@@ -323,18 +324,26 @@
             "sapi_uri": "ws://hsapi01.staging.dmz:8080"
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt192/.lastSuccessful/webtrends-streamingapi-bin.tar.gz", 
+<<<<<<< HEAD
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/.lastSuccessful/webtrends-streamingapi-bin.tar.gz", 
+=======
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/33652:id/webtrends-streamingapi-bin.tar.gz", 
+>>>>>>> 51683b0e5f407cd0051f7227986a370f52d53243
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "port": 8080, 
             "usagedbname": "Streaming", 
             "usagedbserver": "hcamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt194/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz", 
+<<<<<<< HEAD
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz", 
+=======
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/33653:id/webtrends-streamingauditor-bin.tar.gz", 
+>>>>>>> 51683b0e5f407cd0051f7227986a370f52d53243
             "roundtrip_scs_url": "http://hscs01.staging.dmz:8080"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt188/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingconfigservice": {
