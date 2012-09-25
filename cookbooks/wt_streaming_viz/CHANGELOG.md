@@ -1,3 +1,5 @@
+## A test commit
+
 ## 1.0.8
 * Add template for log4net.config 
 
