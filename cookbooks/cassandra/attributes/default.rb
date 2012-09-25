@@ -17,7 +17,7 @@ default['cassandra']['cluster_chef_environments']=[]
 
 # Currently unused attributes that will be part of the new full configuration recipe
 default['cassandra']['auto_bootstrap'] = false
-default['cassandra']['hinted_handoff_enabled'] = true 
+default['cassandra']['hinted_handoff_enabled'] = true
 default['cassandra']['max_hint_window_in_ms'] = 3600000
 default['cassandra']['hinted_handoff_throttle_delay_in_ms'] = 50
 default['cassandra']['authenticator'] = "org.apache.cassandra.auth.AllowAllAuthenticator"
@@ -34,7 +34,7 @@ default['cassandra']['reduce_cache_sizes_at'] = 0.85
 default['cassandra']['reduce_cache_capacity_to'] = 0.6
 default['cassandra']['seed_provider_class_name'] = "org.apache.cassandra.locator.SimpleSeedProvider"
 default['cassandra']['disk_access_mode'] = "auto"
-default['cassandra']['concurrent_reads'] = 80 
+default['cassandra']['concurrent_reads'] = 80
 default['cassandra']['concurrent_writes'] = 64
 default['cassandra']['memtable_flush_queue_size'] = 4
 default['cassandra']['memtable_flush_writers'] = 1
@@ -63,3 +63,8 @@ default['cassandra']['commitlog_total_space_in_mb'] = 3072
 default['cassandra']['MAX_HEAP_SIZE'] = "10G"
 default['cassandra']['HEAP_NEWSIZE'] = "800M"
 default['cassandra']['jna_location'] = "800M"
+
+# Cassandra data backup attributes
+default['cassandra']['backup']['num_backups_retained'] = 7
+default['cassandra']['backup']['backup_nfs_mount'] = nil
+default['cassandra']['backup']['mount_path'] = nil
