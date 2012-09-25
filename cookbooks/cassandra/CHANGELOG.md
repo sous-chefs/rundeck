@@ -1,3 +1,6 @@
+## 1.0.11
+* Added cron based backup system to the backup recipe
+
 ## 1.0.10:
 * Nagios monitors and collectd plugin applied from the monitors recipe
 
