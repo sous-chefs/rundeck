@@ -29,7 +29,7 @@ module ZookeeperSearch
 			while results.count == 0 && i < search_timeout 
 				search(:node, query).each {|n| results << n[:fqdn] }
 				if results.count == 0
-					Chef::Log.warn "no results, sleeping..."
+					Chef::Log.warn "zookeeper_search: no results, sleeping..."
 					i += 5
 					sleep 5
 				end
@@ -52,7 +52,7 @@ module ZookeeperSearch
 			while results.count == 0 && i < search_timeout
 				search(:node, query).each {|n| results << n[:fqdn] }
 				if results.count == 0
-					Chef::Log.warn "no results, sleeping"
+					Chef::Log.warn "zookeeper_search: no results, sleeping..."
 					i += 5
 					sleep 5
 				end
