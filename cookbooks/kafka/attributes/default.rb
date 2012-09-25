@@ -34,6 +34,7 @@ default[:kafka][:log_flush_interval] = 10000
 default[:kafka][:log_flush_time_interval] = 1000
 default[:kafka][:log_flush_scheduler_time_interval] = 1000
 default[:kafka][:log_retention_hours] = 168
+default[:kafka][:zk_connectiontimeout] = 10000
 
 default[:kafka][:user] = "kafka"
 default[:kafka][:group] = "kafka"
