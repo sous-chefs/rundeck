@@ -122,7 +122,8 @@
             "log_flush_time_interval": "500", 
             "log_retention_hours": "2", 
             "threads": "8", 
-            "version": "0.7.1"
+            "version": "0.7.1",
+            "num_partitions": 3
         }, 
         "memcached": {}, 
         "ms_dotnet4": {
@@ -294,8 +295,8 @@
             "realtime_topology_parsing_bolt_count": 3, 
             "realtime_topology_writing_bolt_count": 96, 
             "topic_list": [
-                "Lab_H_scsRawHits:1", 
-                "Lab_H_lrRawHits:1"
+                "Lab_H_scsRawHits:3",
+                "Lab_H_lrRawHits:3"
             ], 
             "topology_override_max_spout_pending": 100, 
             "topology_override_msg_timeout_seconds": 30, 
@@ -310,8 +311,8 @@
             "streaming_topology_validation_bolt_count": 10, 
             "streaming_topology_zmq_emitter_bolt_count": 1, 
             "topic_list": [
-                "Lab_H_scsRawHits:1", 
-                "Lab_H_lrRawHits:1"
+                "Lab_H_scsRawHits:3",
+                "Lab_H_lrRawHits:3"
             ], 
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
