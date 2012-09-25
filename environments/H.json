@@ -226,17 +226,17 @@
         "wt_cam": {
             "db_name": "cam", 
             "db_server": "hcamdb01.staging.dmz",
-	    "cam_service_url": "hcam.staging.dmz",
-	    "auth_service_url": "hauth.staging.dmz:81",
-	    "auth": {
-            	"download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Auth.zip"
-	    },
-	    "cam_plugins": {
-		"download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Plugins.zip"
-	    },
-	    "cam":{
-		"download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Cam.zip"
-	    }
+            "cam_service_url": "http://hcam.staging.dmz",
+            "auth_service_url": "https://hsauth.webtrends.com",
+            "auth": {
+                    "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Auth.zip"
+            },
+            "cam_plugins": {
+                "download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Plugins.zip"
+            },
+            "cam":{
+                "download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Cam.zip"
+            }
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
