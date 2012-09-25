@@ -1,4 +1,7 @@
-## A test commit
+## 1.0.9
+* Add web.config template
+    * Includes settings for ELMAH, custom errors, and http proxy.
+* Add attributes for elmah, custom errors and http proxy.
 
 ## 1.0.8
 * Add template for log4net.config 
