@@ -267,7 +267,7 @@
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"
         },
-	wt_kafka_mm": {
+	"wt_kafka_mm": {
 	    "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/33776:id/MirrorMonitor-bin.tar.gz"
 	},
         "wt_streamingauditor": {
