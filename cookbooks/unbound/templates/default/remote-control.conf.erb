@@ -1,0 +1,28 @@
+# Remote control config section. 
+<% if node['unbound']['remote_control']['enable'] -%>
+remote-control:
+	# Enable remote control with unbound-control(8) here.
+	# set up the keys and certificates with unbound-control-setup.
+  control-enable: yes
+
+	# what interfaces are listened to for remote control.
+	# give 0.0.0.0 and ::0 to listen to all interfaces.
+  control-interface: <%= node['unbound']['remote_control'] %>
+
+	# port number for remote control operations.
+	# control-port: 953
+
+	# unbound server key file.
+	# server-key-file: "/etc/unbound/unbound_server.key"
+
+	# unbound server certificate file.
+	# server-cert-file: "/etc/unbound/unbound_server.pem"
+
+	# unbound-control key file.
+	# control-key-file: "/etc/unbound/unbound_control.key"
+
+	# unbound-control certificate file.
+	# control-cert-file: "/etc/unbound/unbound_control.pem"
+<% else -%>
+# Remote control is disabled. Set node['unbound']['remote_control'] attributes.
+<% end -%>

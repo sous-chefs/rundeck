@@ -1,0 +1,364 @@
+{
+  "name": "unbound",
+  "description": "Manages unbound DNS resolver",
+  "long_description": "Description\n===========\n\nInstalls and manages the unbound DNS server.\n\n* http://unbound.net\n\nRequirements\n============\n\nA platform with unbound available as a native package. The following platforms have unbound packaged, but note that the filesystem locations are not consistent and at this time only Linux + FHS is supported. See the __Attributes__ section.\n\n* Ubuntu/Debian\n* Red Hat/CentOS/Fedora (requires EPEL)\n* ArchLinux\n* FreeBSD\n\nOpenSUSE seems to have removed the unbound package from recent versions, though 1.0.0 was in 11.1.\n\nAttributes\n==========\n\nFor information about attributes, see the cookbook metadata. Either view the metadata.rb in the cookbook, or review from the Chef server.\n\n    knife cookbook show unbound VERSION\n\nSome values are calculated in the attributes file or in the respective recipes.\n\nResources\n=========\n\nTODO:\n\nNot yet supported.\n\nThis cookbook will provide `unbound_rr`, a resource for managing resource records through unbound-control(8) command in the future. This will require that `node['unbound']['remote_control']['enable']` is true.\n\nTemplates\n=========\n\nFor configuration not handled by the template and cookbook attribute values, edit the template for the local environment.\n\nunbound.conf\n------------\n\nThe main configuration file for unbound. Many settings in the template are controlled via attribute values. The file is located in the `node['unbound']['directory']`.\n\nThe config file created by this cookbook will use unbound's `include` directive for zone files, which will be located in the `node['unbound']['directory']`'s `conf.d` directory.\n\nlocal-zone.conf\n---------------\n\nSet up local network resolver configuration with local-zone.conf.\n\nstub-zone.conf\n---------------\n\nEdit the stub-zone.erb template to create a stub zone configuration.\n\nforward-zone.conf\n-----------------\n\nEdit the forward-zone.erb template to create a forward zone configuration.\n\nremote-control.conf\n-------------------\n\nTODO:\n\nNot yet supported.\n\nSets up the remote-control settings via the `unbound::remote-control` recipe.\n\nRecipes\n=======\n\ndefault\n-------\n\nInstalls unbound and sets up the configuration file(s).\n\nThe recipe will load the local zone data from a data bag if present, otherwise it will attempt to use `node['dns']['domain']` attribute. The various templates can be edited as required by the local user.\n\nchroot\n------\n\nThe intention of this recipe will be to setup the chroot environment if the chroot setting is enabled. However it is not yet complete.\n\n`remote_control`\n----------------\n\nTODO:\n\nNot yet supported.\n\nSets up remote control certificate attributes using the unbound configuration directory. Also creates the config file for remote-control settings and creates the certificates with unbound-control-setup.\n\nUsage\n=====\n\nCreate a role for the unbound server like this:\n\n    name \"unbound\"\n    description \"DNS Server\"\n    default_attributes(\n      \"dns\" => {\n        \"domain\" => \"int.example.com\"\n      },\n      \"unbound\" => {\n        \"access_control\" => { \"127.0.0.1/8\" => \"allow\", \"0.0.0.0/0\" => \"allow\" }\n      }\n    )\n    run_list( \"recipe[unbound]\")\n\nThe `node['dns']['domain']` is used to select the data bag (if it exists), or can be a hash of local zone domain attributes. If using a data bag, it should have the following basic structure.\n\n    {\n      \"id\": \"int_example_com\",\n      \"ns\": [\n        { \"int.example.com\": \"127.0.0.1\" }\n      ],\n      \"host\": [\n        { \"www.int.example.com\": \"10.1.1.200\" }\n      ]\n    }\n\nUnbound itself doesn't support CNAME records. To use this as attributes on the node, put this in the default attributes section of the role (per above).\n\n    default_attributes(\n      \"unbound\" => {\n        \"id\" => \"int_example_com\",\n        \"ns\" => [\n          { \"int.example.com\" => \"127.0.0.1\" }\n        ],\n        \"host\" => [\n          { \"www.int.example.com\" => \"10.1.1.200\" }\n        ]\n      }\n    )\n\n* Note: This is untested with node attributes\n\nChroot\n------\n\nTODO:\n\nNot yet fully implemented.\n\nAccess Control\n--------------\n\nSet the `node['unbound']['access_control']` attribute as a hash in the role to specify the netblock and action.\n\nRemote Control\n--------------\n\nTODO:\n\nNot yet supported.\n\nLicense and Author\n==================\n\nCopyright 2011, Joshua Timberman (<cookbooks@housepub.org>)\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
+  "maintainer": "Joshua Timberman",
+  "maintainer_email": "cookbooks@housepub.org",
+  "license": "Apache 2.0",
+  "platforms": {
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+    "unbound/directory": {
+      "display_name": "Unbound directory",
+      "description": "Configuration directory, depends on platform",
+      "calculated": true,
+      "choice": [
+
+      ],
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/pidfile": {
+      "display_name": "Unbound PID file",
+      "description": "PID file for the daemon process, depends on platform",
+      "calculated": true,
+      "choice": [
+
+      ],
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/bindir": {
+      "display_name": "Unbound binary location",
+      "description": "Location for the unbound binaries, depends on platform",
+      "calculated": true,
+      "choice": [
+
+      ],
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/interface": {
+      "display_name": "Listen interfaces",
+      "description": "Array of IP address interfaces to listen on, default is the nodes ipaddress",
+      "type": "array",
+      "calculated": true,
+      "choice": [
+
+      ],
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/outgoing_interface": {
+      "display_name": "Outgoing interfaces",
+      "description": "Array of IP address interfaces to send outgoing queries to",
+      "type": "array",
+      "default": [
+
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/port": {
+      "display_name": "Answer port",
+      "description": "Port to answer queries",
+      "default": "53",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/num_threads": {
+      "display_name": "Number of threads",
+      "description": "Number of threads to create, 1 disables threading (default)",
+      "default": "1",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/enable_ipv4": {
+      "display_name": "Enable IPV4",
+      "description": "Whether to enable IPV4",
+      "default": "true",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/enable_tcp": {
+      "display_name": "Enable TCP",
+      "description": "Whether to enable TCP",
+      "default": "true",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/enable_udp": {
+      "display_name": "Enable UDP",
+      "description": "Whether to enable UDP",
+      "default": "true",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/access_control": {
+      "display_name": "Client access controls",
+      "description": "Client access controls, key is the netblock size and value is the action",
+      "type": "hash",
+      "default": {
+        "127.0.0.1/8": "allow",
+        "0.0.0.0/0": "refuse"
+      },
+      "choice": [
+
+      ],
+      "calculated": false,
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/logfile": {
+      "display_name": "Log file",
+      "description": "Log file to write to, default \"\" writes to stderr",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/use_syslog": {
+      "display_name": "Log to Syslog",
+      "description": "Whether to log messages to syslog, as daemon, with identity unbound",
+      "default": "yes",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/chroot": {
+      "display_name": "Chroot directory",
+      "description": "Specifies the directory to chroot, default \"\" sets no chroot",
+      "default": "",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/remote_control/enable": {
+      "display_name": "Remote control enable",
+      "description": "Whether to enable remote control",
+      "default": null,
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/remote_control/interface": {
+      "display_name": "Remote control interface",
+      "description": "Interface for remote control",
+      "default": "127.0.0.1",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/remote_control/server_key": {
+      "display_name": "Remote control server key",
+      "description": "Server key file for remote control, in the configuration directory",
+      "calculated": true,
+      "choice": [
+
+      ],
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/remote_control/server_cert": {
+      "display_name": "Remote control server certificate",
+      "description": "Server certificate file for remote control, in the configuration directory",
+      "calculated": true,
+      "choice": [
+
+      ],
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/remote_control/control_key": {
+      "display_name": "Remote control control key",
+      "description": "Control key file for remote control, in the configuration directory",
+      "calculated": true,
+      "choice": [
+
+      ],
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/remote_control/control_cert": {
+      "display_name": "Remote control control certificate",
+      "description": "Control certificate file for remote control, in the configuration directory",
+      "calculated": true,
+      "choice": [
+
+      ],
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/dnssec": {
+      "display_name": "DNSSEC settings",
+      "description": "Not yet implemented",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/stats/internal": {
+      "display_name": "Unbound statistics-interval",
+      "description": "Corresponds to statistics-interval config setting",
+      "default": "0",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/stats/cumulative": {
+      "display_name": "Unbound statistics-cumulative",
+      "description": "Corresponds to statistics-cumulative config setting",
+      "default": "no",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "unbound/stats/extended": {
+      "display_name": "Unbound extended-statistics",
+      "description": "Corresponds to extended-statistics config setting",
+      "default": "no",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    }
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "unbound::default": "Installs unbound and sets up configuration files",
+    "unbound::chroot": "Sets up the chroot environment if chroot attribute is enabled",
+    "unbound::remote_control": "Sets up remote control certificates"
+  },
+  "version": "0.1.0"
+}
