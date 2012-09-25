@@ -92,12 +92,13 @@ if deploy_mode?
   	)
   end
 
-  # template "#{install_dir}\\log4net.config" do
-  #       source "cam.log4net.config.erb"
-  #       variables(
-  #               :log_level => node['wt_streaming_viz']['cam']['log_level']
-  #       )
-  # end
+  template "#{install_dir}\\log4net.config" do
+        source "log4net.config.erb"
+        variables(
+                :log_level => node['wt_streaming_viz']['log_level'],
+                :log_dir => install_logdir
+        )
+  end
 
   # iis_app "StreamingViz" do
   	# path "/"
