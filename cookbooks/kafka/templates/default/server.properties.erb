@@ -123,4 +123,4 @@ enable.zookeeper=<%= @zookeeper_pairs ? true : false %>
 zk.connect=<%= @zookeeper_pairs.join(",") %>
 
 # Timeout in ms for connecting to zookeeper
-zk.connectiontimeout.ms=1000000
+zk.connectiontimeout.ms=<%= node[:kafka][:zk_connectiontimeout] %>
