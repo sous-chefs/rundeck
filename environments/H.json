@@ -251,9 +251,9 @@
             "config_distrib": "jcd01.englab.webtrends.corp:8097", 
             "heatmap_reducers": -1
         },
-	"wt_kafka_mm" : {
-		"monitor_download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/.lastSuccessful/MirrorMonitor-bin.tar.gz"	
-	}, 
+        "wt_kafka_mm" : {
+            "monitor_download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt242/.lastSuccessful/MirrorMonitor-bin.tar.gz"
+        },
         "wt_masterdb": {
             "master_db": "wtmaster", 
             "master_host": "jmasterdb01.englab.webtrends.corp", 
