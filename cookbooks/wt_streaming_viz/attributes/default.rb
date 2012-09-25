@@ -15,3 +15,7 @@ default['wt_streaming_viz']['port'] = 85
 default['wt_streaming_viz']['log_level'] = "INFO"
 default['wt_streaming_viz']['cam_auth_uri'] = ""
 default['wt_streaming_viz']['sapi_uri'] = ""
+default['wt_streaming_viz']['elmah_remote_access'] = "no"
+default['wt_streaming_viz']['custom_errors'] = "On"
+default['wt_streaming_viz']['proxy_enabled'] = "false"
+default['wt_streaming_viz']['proxy_address'] = ""
