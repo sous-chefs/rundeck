@@ -3,6 +3,9 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+## 1.1.5
+* fixing jobtracker ui 'Dr.Who' errors when viewing tasks
+
 ## 1.1.4
 * changed search to role instead of roles
 * treat cluster_name 'default' and nil to be the same cluster
