@@ -11,8 +11,8 @@
         "storm": "= 1.0.24",
         "webtrends_server": "= 1.8.2", 
         "windows": "= 1.2.12", 
-        "wt_base": "= 0.10.53", 
-        "wt_cam": "= 1.0.17", 
+        "wt_base": "= 0.10.53",
+        "wt_cam": "= 1.0.21", 
         "wt_kafka_mm": "= 0.0.15",
         "wt_netacuity": "= 1.0.7",
         "wt_realtime_hadoop": "= 1.0.2", 
@@ -224,10 +224,19 @@
         }, 
         "wt_analytics_ui": {}, 
         "wt_cam": {
-            "auth_service_url": "http://hcam01.staging.dmz:81", 
-            "cam_service_url": "http://hcam01.staging.dmz", 
             "db_name": "cam", 
-            "db_server": "hcamdb01.staging.dmz"
+            "db_server": "hcamdb01.staging.dmz",
+	    "cam_service_url": "hcam.staging.dmz",
+	    "auth_service_url": "hauth.staging.dmz:81",
+	    "auth": {
+            	"download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Auth.zip"
+	    },
+	    "cam_plugins": {
+		"download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Plugins.zip"
+	    },
+	    "cam":{
+		"download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Cam.zip"
+	    }
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
