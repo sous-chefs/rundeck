@@ -43,7 +43,7 @@ class Chef
         set_or_return(
           :drop_users,
           arg,
-          :kind_of => Bool
+          :kind_of => Symbol, :default => :false, :equal_to => [:true, :false]
         )
       end
 

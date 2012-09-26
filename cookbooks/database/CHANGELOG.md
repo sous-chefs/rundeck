@@ -1,5 +1,9 @@
+## v1.3.9
+* Changed Bool to Symbol
+
 ## v1.3.8
 * Changed String to Bool
+
 ## v1.3.7
 * Added support to drop user connections when dropping sql server
 
