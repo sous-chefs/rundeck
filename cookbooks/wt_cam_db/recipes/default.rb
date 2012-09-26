@@ -34,6 +34,7 @@ if ENV["deploy_build"] then
                    :port => camdbport,
                    :username => camdbuser,
                    :password => camdbpwd})
+	  drop_users true
       action :drop 
   end
 
