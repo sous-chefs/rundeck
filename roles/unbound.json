@@ -1,0 +1,12 @@
+{
+    "chef_type": "role", 
+    "default_attributes": {}, 
+    "description": "Unbound DNS server", 
+    "env_run_lists": {}, 
+    "json_class": "Chef::Role", 
+    "name": "unbound", 
+    "override_attributes": {}, 
+    "run_list": [
+        "recipe[unbound::default]"
+    ]
+}
