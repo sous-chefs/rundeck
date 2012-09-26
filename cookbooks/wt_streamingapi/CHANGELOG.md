@@ -1,3 +1,9 @@
+## 0.0.35
+* Removed the force-stop from undeploy.rb
+
+## 0.0.34
+* Added log4j.xml to cookbook rather than pulling from build
+
 ## 0.0.33
 * Address food critic warnings
 * Remove Zookeeper fallback to attributes
