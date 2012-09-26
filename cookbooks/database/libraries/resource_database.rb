@@ -27,6 +27,7 @@ class Chef
         @resource_name = :database
         @database_name = name
         @allowed_actions.push(:create, :drop, :query)
+		@drop_users = drop_users
         @action = :create
       end
 
