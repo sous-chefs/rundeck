@@ -249,7 +249,7 @@
             }
         },
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/33815:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/33892:id/streaming-analysis-bin.tar.gz",
             "streaming_topology_augmentation_bolt_count": 10,
             "streaming_topology_in_session_bolt_count": 0,
             "streaming_topology_validation_bolt_count": 10,
@@ -263,7 +263,7 @@
             }
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/33789:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/33890:id/webtrends-streamingapi-bin.tar.gz",
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"
         },
