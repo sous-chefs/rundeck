@@ -38,6 +38,14 @@ class Chef
           :kind_of => String
         )
       end
+	  
+	  def drop_users(arg=nil)
+        set_or_return(
+          :drop_users,
+          arg,
+          :kind_of => String
+        )
+      end
 
       def connection(arg=nil)
         set_or_return(
