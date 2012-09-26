@@ -160,12 +160,19 @@
         },
         "wt_analytics_ui": {},
         "wt_cam": {
-            "auth_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/auth.zip",
-            "auth_service_url": "https://bsauth.webtrends.com",
-            "cam_service_url": "http://bcam.staging.dmz",
-            "db_name": "cam",
-            "db_server": "bcamdb01.staging.dmz",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/cam.zip"
+	    "db_name": "cam",
+	    "db_server": "bcamdb01.staging.dmz",
+    	    "cam_service_url": "http://bcam.staging.dmz", 
+	    "auth_service_url": "https://bsauth.webtrends.com",
+            "auth": {
+	      	    "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Auth.zip"
+	    },
+	    "cam_plugins": {
+ 		"download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Plugins.zip"
+	    },
+	    "cam": {
+	      	"download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/CAM.zip"
+	    }
         },
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp",
@@ -260,6 +267,9 @@
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"
         },
+	"wt_kafka_mm": {
+	    "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/33776:id/MirrorMonitor-bin.tar.gz"
+	},
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/33779:id/webtrends-streamingauditor-bin.tar.gz",
             "roundtrip_scs_url": "http://bscs01.staging.dmz:8080",
