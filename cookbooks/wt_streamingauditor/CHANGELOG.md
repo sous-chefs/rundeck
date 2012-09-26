@@ -1,3 +1,6 @@
+## 0.0.18
+* Removed the force-stop from undeploy.rb
+
 ## 0.0.15
 * Added logic to use the wt_monitoring client id and secret to get a token to connect to SAPI
 
