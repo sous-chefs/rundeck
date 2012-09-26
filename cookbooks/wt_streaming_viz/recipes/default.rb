@@ -92,6 +92,17 @@ if deploy_mode?
   	)
   end
 
+  template "#{install_dir}\\web.config" do
+  	source "web.config.erb"
+	variables(
+		:elmah_remote_access => node['wt_streaming_viz']['elmah_remote_access'],
+		:custom_errors => node['wt_streaming_viz']['custom_errors'],
+        # proxy
+        :proxy_enabled => node['wt_streaming_viz']['proxy_enabled'],
+        :proxy_address => node['wt_streaming_viz']['proxy_address']
+  	)
+  end
+
   template "#{install_dir}\\log4net.config" do
         source "log4net.config.erb"
         variables(
