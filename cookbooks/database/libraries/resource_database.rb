@@ -43,7 +43,7 @@ class Chef
         set_or_return(
           :drop_users,
           arg,
-          :kind_of => String
+          :kind_of => Bool
         )
       end
 
