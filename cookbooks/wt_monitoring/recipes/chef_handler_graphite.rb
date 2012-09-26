@@ -16,7 +16,7 @@ end.run_action(:install)
 
 argument_array = [
   :metric_key => "#{node['wt_monitoring']['metric_prefix']}.#{node['hostname']}.chef_client",
-  :graphite_host => "#{node['wt_monitoring']['graphite_server']",
+  :graphite_host => "#{node['wt_monitoring']['graphite_server']}",
   :graphite_port => node['wt_monitoring']['graphite_port']
 ]
 
