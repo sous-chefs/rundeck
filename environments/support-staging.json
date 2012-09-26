@@ -217,7 +217,9 @@
                 "0.0.0.0/0": "refuse", 
                 "10.0.0.0/8": "allow", 
                 "127.0.0.1/8": "allow"
-            } 
+            }, 
+            "logfile": "/var/log/unbound.log", 
+            "use_syslog": "no"
         }, 
         "vc2010": {
             "x64": {
