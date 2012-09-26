@@ -1,0 +1,17 @@
+d-i partman-auto/expert_recipe string                         \
+      boot-root ::                                            \
+              40 50 100 ext3                                  \
+                      $primary{ } $bootable{ }                \
+                      method{ format } format{ }              \
+                      use_filesystem{ } filesystem{ ext3 }    \
+                      mountpoint{ /boot }                     \
+              .                                               \
+              500 10000 1000000000 ext3                       \
+                      method{ format } format{ }              \
+                      use_filesystem{ } filesystem{ ext3 }    \
+                      mountpoint{ / }                         \
+              .                                               \
+              64 512 300% linux-swap                          \
+                      method{ swap } format{ }                \
+              .
+d-i partman/default_filesystem string ext4
