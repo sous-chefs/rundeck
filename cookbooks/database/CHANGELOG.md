@@ -1,3 +1,6 @@
+## v1.3.7
+* Added support to drop user connections when dropping sql server
+
 ## v1.3.4:
 
 * [COOK-1561] - depend on mysql 1.3.0+ explicitly
