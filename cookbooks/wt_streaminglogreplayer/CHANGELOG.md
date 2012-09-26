@@ -1,5 +1,5 @@
 ## 0.0.28
-* Updated collectd script to include two new metrics: files-in-queue and 
+* Updated collectd script to include two new metrics: files-in-queue and active-dcsid
 
 ## 0.0.27
 * Added a reference to wt_streamingconfigservice. Im not sure if this was to be
