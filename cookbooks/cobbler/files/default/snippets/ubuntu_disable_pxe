@@ -1,0 +1,3 @@
+#if $pxe_just_once in [ "1", "true", "yes", "y" ]
+    wget "http://$http_server:$http_port/cblr/svc/op/nopxe/system/$system_name" -O /dev/null \
+#end if
