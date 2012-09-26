@@ -1,3 +1,6 @@
+0.0.16
+  *Adding attributes for monitoring
+
 0.0.15
   *Add mirror monitor recipe
 
