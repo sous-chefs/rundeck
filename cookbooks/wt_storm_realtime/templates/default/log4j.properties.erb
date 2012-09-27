@@ -1,6 +1,6 @@
-log4j.category.com.webtrends.streaming = INFO, STREAMING
+log4j.category.com.webtrends.streaming = <%= @root_logging_level %>, STREAMING
 
-log4j.rootLogger=INFO, ROOT
+log4j.rootLogger=<%= @root_logging_level %>, ROOT
 
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
