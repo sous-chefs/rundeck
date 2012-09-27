@@ -193,8 +193,8 @@
         }, 
         "wt_masterdb": {
             "master_db": "wtmaster", 
-            "master_host": "amasterdb01.staging.dmz", 
-            "sched_host": "amasterdb01.staging.dmz"
+            "master_host": "jmasterdb01.englab.webtrends.corp", 
+            "sched_host": "jmasterdb01.englab.webtrends.corp"
         }, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
@@ -227,13 +227,12 @@
         "wt_rta": {}, 
         "wt_search": {},
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/33892:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augmentation_bolt_count": 10, 
-            "streaming_topology_in_session_bolt_count": 1, 
-            "streaming_topology_validation_bolt_count": 10, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/34072:id/streaming-analysis-bin.tar.gz", 
+            "streaming_topology_augmentation_bolt_count": 2, 
+            "streaming_topology_in_session_bolt_count": 0, 
+            "streaming_topology_validation_bolt_count": 2, 
             "streaming_topology_zmq_emitter_bolt_count": 1, 
             "topic_list": [
-                "Lab_N_scsRawHits:3",
                 "Lab_N_lrRawHits:3"
             ], 
             "worker": {

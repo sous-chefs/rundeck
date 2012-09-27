@@ -1,3 +1,7 @@
+## 2.1.8
+* Added the dependency to kafka-0.7.2 which fixes a threading issue
+  with a call to the scala json parser.
+
 ## 2.1.7
 * Created an attribute for the root logging level for log4j
 
