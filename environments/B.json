@@ -24,7 +24,8 @@
         "wt_streamingcollection": "= 0.0.28",
         "wt_streamingconfigservice": "= 0.0.12",
         "wt_streaminglogreplayer": "= 0.0.27",
-        "zookeeper": "= 1.0.5"
+        "zookeeper": "= 1.0.5",
+	"wt_streaming_viz": "1.0.9"
     },
     "default_attributes": {
         "authorization": {
@@ -249,7 +250,7 @@
             }
         },
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/33892:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/34127:id/streaming-analysis-bin.tar.gz",
             "streaming_topology_augmentation_bolt_count": 10,
             "streaming_topology_in_session_bolt_count": 0,
             "streaming_topology_validation_bolt_count": 10,
@@ -263,15 +264,24 @@
             }
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/33890:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/34128:id/webtrends-streamingapi-bin.tar.gz",
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"
         },
+	"wt_streaming_viz": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/33776:id/Streaming.Viz.zip",
+            "cam_auth_uri": "https://bsauth.webtrends.com",
+            "sapi_uri": "ws://bsapi01.staging.dmz:8080",
+            "proxy_enabled": "true",
+            "proxy_address": "http://sproxy02.staging.dmz:3128",
+            "elmah_remote_access": "yes",
+            "custom_errors": "Off"
+	},
         "wt_kafka_mm": {
-            "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/33776:id/MirrorMonitor-bin.tar.gz"
+            "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/34133:id/MirrorMonitor-bin.tar.gz"
         },
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/33779:id/webtrends-streamingauditor-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/34129:id/webtrends-streamingauditor-bin.tar.gz",
             "roundtrip_scs_url": "http://bscs01.staging.dmz:8080",
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         },
