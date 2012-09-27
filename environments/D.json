@@ -112,6 +112,10 @@
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
+        "webpi": {
+            "url": "http://repo.staging.dmz/repo/windows/webpi/webpicmd_x86.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/WebProductList.xml"
+        }, 
         "webtrends_server": {
             "apt": [
                 {
@@ -234,7 +238,7 @@
             "search_hostname": "dsearch.staging.dmz"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/28988:id/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt18/33844:id/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "dusagedb01.staging.dmz", 
