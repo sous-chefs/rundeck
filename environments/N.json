@@ -193,8 +193,8 @@
         }, 
         "wt_masterdb": {
             "master_db": "wtmaster", 
-            "master_host": "jmasterdb01.englab.webtrends.corp", 
-            "sched_host": "jmasterdb01.englab.webtrends.corp"
+            "master_host": "dmasterdb01.englab.webtrends.corp", 
+            "sched_host": "dmasterdb01.englab.webtrends.corp"
         }, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
@@ -259,8 +259,7 @@
             "config_service_url": "http://nutil01.staging.dmz:8080",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/31469:id/webtrends-streaming-configservice-bin.tar.gz",
             "includeUnmappedAnalyticsIds": "true",
-            "masterdbname": "wtmaster",
-            "masterdbserver": "jmasterdb01.englab.webtrends.corp"
+            "masterdbname": "wtmaster"
         }, 
         "wt_streaminglogreplayer": { 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/33085:id/webtrends-streaminglogreplayer-bin.tar.gz", 
