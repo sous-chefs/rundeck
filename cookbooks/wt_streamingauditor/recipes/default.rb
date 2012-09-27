@@ -98,7 +98,7 @@ def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix, c
     })
     end
 
-    %w[auditor.properties].each do | template_file|
+    %w[auditor.properties log4j.xml].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
         source	"#{template_file}.erb"
         owner "root"
