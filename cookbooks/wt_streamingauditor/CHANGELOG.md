@@ -1,3 +1,6 @@
+## 0.0.19
+* Created an attribute for the root logging level for log4j
+
 ## 0.0.18
 * Removed the force-stop from undeploy.rb
 
