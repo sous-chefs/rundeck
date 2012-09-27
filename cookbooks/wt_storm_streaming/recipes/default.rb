@@ -139,7 +139,7 @@ jersey-server-1.4.jar
 jettison-1.1.jar
 jsp-2.1-6.1.14.jar
 jsp-api-2.1-6.1.14.jar
-kafka-0.7.1.jar
+kafka-0.7.2.jar
 libthrift-0.7.0.jar
 netty-3.3.0.Final.jar
 plexus-utils-1.5.6.jar
@@ -191,6 +191,9 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4
 	owner "storm"
 	group "storm"
 	mode  00644
+    variables(
+        :root_logging_level => node['wt_storm_streaming']['log4j']['root_logging_level']
+    )
 end
 
 # storm looks for storm.yaml in ~/.storm/storm.yaml so make a link
@@ -247,6 +250,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
+    :root_logging_level => node['wt_storm_streaming']['log4j']['root_logging_level']
   )
 end
 
