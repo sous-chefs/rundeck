@@ -88,7 +88,7 @@ def processTemplates (install_dir, node, datacenter, pod)
   # grab the zookeeper nodes that are currently available
   zookeeper_pairs = getZookeeperPairs(node)
 
-  %w[monitoring.properties config.properties netty.properties].each do | template_file|
+  %w[monitoring.properties config.properties netty.properties log4j.xml].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source	"#{template_file}.erb"
       owner "root"
