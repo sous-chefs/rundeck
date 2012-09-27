@@ -1,6 +1,8 @@
 ## 2.1.8
-* Added the dependency to kafka-0.7.2 which fixes a threading issue
-  with a call to the scala json parser.
+* This cookbook is functionally equivalent to 2.1.7. Originally the
+  change created a dep to kafka 0.7.2, but it should of gone to a
+  different branch. Since the cookbook is already uploaded to
+  chef the version will stay but dep has been removed.
 
 ## 2.1.7
 * Created an attribute for the root logging level for log4j
