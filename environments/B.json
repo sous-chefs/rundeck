@@ -24,7 +24,8 @@
         "wt_streamingcollection": "= 0.0.28",
         "wt_streamingconfigservice": "= 0.0.12",
         "wt_streaminglogreplayer": "= 0.0.27",
-        "zookeeper": "= 1.0.5"
+        "zookeeper": "= 1.0.5",
+	"wt_streaming_viz": "1.0.9"
     },
     "default_attributes": {
         "authorization": {
@@ -267,6 +268,15 @@
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"
         },
+	"wt_streaming_viz": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/33776:id/Streaming.Viz.zip",
+            "cam_auth_uri": "https://bsauth.webtrends.com",
+            "sapi_uri": "ws://bsapi01.staging.dmz:8080",
+            "proxy_enabled": "true",
+            "proxy_address": "http://sproxy02.staging.dmz:3128",
+            "elmah_remote_access": "yes",
+            "custom_errors": "Off"
+	},
         "wt_kafka_mm": {
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/33776:id/MirrorMonitor-bin.tar.gz"
         },
