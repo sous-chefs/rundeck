@@ -249,8 +249,7 @@
         }, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/33779:id/webtrends-streamingauditor-bin.tar.gz",
-            "roundtrip_scs_url": "http://nscs01.staging.dmz:8080",
-            "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
+            "roundtrip_scs_url": "http://nscs01.staging.dmz:8080"
         }, 
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt204/30592:id/webtrends-streamingcollection-bin.tar.gz"
