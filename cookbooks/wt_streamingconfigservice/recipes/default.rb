@@ -122,7 +122,7 @@ template "#{install_dir}/bin/service-control" do
 	})
 end
 
-%w[monitoring.properties config.properties].each do |template_file|
+%w[monitoring.properties config.properties log4j.xml].each do |template_file|
 	template "#{install_dir}/conf/#{template_file}" do
 			source	"#{template_file}.erb"
 			owner user
