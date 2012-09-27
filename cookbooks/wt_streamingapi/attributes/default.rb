@@ -19,3 +19,4 @@ default['wt_streamingapi']['usagedbname'] = "Streaming"
 default['wt_streamingapi']['usagedbuser'] = ""
 default['wt_streamingapi']['usagedbpwd'] = ""
 default['wt_streamingapi']['log_dir'] = "/var/log/webtrends/streamingapi"
+default['wt_streamingapi']['log4j_root_logging_level'] = 'INFO'

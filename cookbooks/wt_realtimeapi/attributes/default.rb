@@ -13,3 +13,4 @@ default['wt_realtimeapi']['port']         = "8080"
 default['wt_realtimeapi']['java_opts']    = "-Xms1024m -Djava.net.preferIPv4Stack=true"
 default['wt_realtimeapi']['download_url'] = ""
 default['wt_realtimeapi']['jmx_port'] = 9999
+default['wt_realtimeapi']['log4j_root_logging_level'] = 'INFO'
