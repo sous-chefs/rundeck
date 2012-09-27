@@ -40,7 +40,7 @@ end
 private
 def installed?
   @installed ||= begin
-    cmd = shell_out("#{webpicmdline} /list:installed", {:returns => [0,42]})
+    cmd = shell_out("#{webpicmdline} /listoption:installed", {:returns => [0,42]})
     cmd.stderr.empty? && (cmd.stdout =~ /^#{@new_resource.product_id}\s.*$/i)
   end
 end
