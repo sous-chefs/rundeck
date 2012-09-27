@@ -22,4 +22,3 @@ actions :install
 
 attribute :product_id, :kind_of => String, :name_attribute => true
 attribute :accept_eula, :kind_of => [TrueClass, FalseClass], :default => false
-attribute :offline, :kind_of => [TrueClass, FalseClass], :default => false
