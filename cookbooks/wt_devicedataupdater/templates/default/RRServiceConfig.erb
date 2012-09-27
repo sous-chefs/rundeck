@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!-- This file created via Chef from a template.  Do not hand edit-->
+<configuration>
+ <appSettings>
+		<add key="keepSampleTables"  value="true"/>
+		<add key="packageListPoolSize" value="10"/>
+		<add key="enablePerfmon" value="true"/>
+	</appSettings>
+	<connectionStrings>		
+		<add name="wtMasterConnection" connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Integrated Security=SSPI;Application Name=SSIS-GpuMain-Main;" providerName="System.Data.SqlClient"/>
+	</connectionStrings>
+  <system.diagnostics>
+    <sources>
+      <source propagateActivity="true" name="System.ServiceModel" switchValue="Off,ActivityTracing">
+        <listeners>
+          <add type="System.Diagnostics.DefaultTraceListener" name="Default">
+            <filter type="" />
+          </add>
+          <add name="ServiceModelTraceListener">
+            <filter type="" />
+          </add>
+        </listeners>
+      </source>
+      <source name="System.ServiceModel.MessageLogging" switchValue="Warning, ActivityTracing">
+        <listeners>
+          <add type="System.Diagnostics.DefaultTraceListener" name="Default">
+            <filter type="" />
+          </add>
+          <add name="ServiceModelMessageLoggingListener">
+            <filter type="" />
+          </add>
+        </listeners>
+      </source>
+    </sources>
+    <sharedListeners>
+      <add initializeData="..\\logs\app_tracelog.svclog" type="System.Diagnostics.XmlWriterTraceListener, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+        name="ServiceModelTraceListener" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack">
+        <filter type="" />
+      </add>
+      <add initializeData="..\\logs\app_messages.svclog" type="System.Diagnostics.XmlWriterTraceListener, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+        name="ServiceModelMessageLoggingListener" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack">
+        <filter type="" />
+      </add>
+    </sharedListeners>
+    <trace autoflush="true" />
+  </system.diagnostics>
+	<system.serviceModel>
+		
+		<diagnostics performanceCounters="Off">
+   <messageLogging logMalformedMessages="false" logMessagesAtServiceLevel="false"
+    logMessagesAtTransportLevel="false" />
+  </diagnostics>
+  <bindings>			
+			<webHttpBinding>
+				<binding name="RESTWebBinding" maxBufferSize="65536"
+     maxReceivedMessageSize="65536"/>
+			</webHttpBinding>
+		</bindings>
+		<behaviors>      
+			<serviceBehaviors>
+				<behavior name="serviceBehavior">
+					<serviceMetadata httpGetEnabled="false" />
+				</behavior>
+			</serviceBehaviors>
+		</behaviors>    
+		<services>
+   <service name="Webtrends.RoadRunner.Rest.RESTSQLQueryExecutor">
+    <endpoint address="http://localhost:8097/GPU/" binding="webHttpBinding"
+     bindingConfiguration="RESTWebBinding" contract="Webtrends.RoadRunner.Rest.IRESTSQLQueryExecutor" />
+   </service>
+  </services>
+	</system.serviceModel>
+<startup><supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/></startup></configuration>
