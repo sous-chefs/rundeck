@@ -21,6 +21,7 @@ default['wt_streaminglogreplayer']['logtime_catchup'] = 200
 default['wt_streaminglogreplayer']['eventtime_log_regex'] = "^.*(\\d{4}-\\d{2}-\\d{2}-\\d{2}-0\\d{4}).*$"
 default['wt_streaminglogreplayer']['znode_root'] = "/LogReplayer"
 default['wt_streaminglogreplayer']['jmx_port'] = 9999
+default['wt_streaminglogreplayer']['log4j_root_logging_level'] = 'INFO'
 
 # optionally specify the environment where ZooKeeper nodes are located
 default['wt_streaminglogreplayer']['zookeeper_env'] = nil
