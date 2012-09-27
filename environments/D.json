@@ -111,6 +111,10 @@
             "x86": {
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
+        },
+        "webpi": {
+            "url": "http://repo.staging.dmz/repo/windows/webpi/webpicmd_x86.zip",
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/WebProductList.xml"
         }, 
         "webtrends_server": {
             "apt": [
