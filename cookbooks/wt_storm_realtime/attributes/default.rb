@@ -87,3 +87,6 @@ default['wt_storm_realtime']['topology']['state_synchronization_timeout_secs'] =
 default['wt_storm_realtime']['topology']['stats_sample_rate'] = 0.05
 default['wt_storm_realtime']['topology']['fall_back_on_java_serialization'] = true
 default['wt_storm_realtime']['topology']['worker_childopts'] = "null"
+
+# log4j attributes
+default['wt_storm_realtime']['log4j']['root_logging_level'] = 'INFO'
