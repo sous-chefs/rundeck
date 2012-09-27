@@ -26,7 +26,6 @@ include Windows::Helper
 action :install do
   unless installed?
     cmd = "#{webpicmdline}"
-	cmd << " /offline" if node['webpi']['xmlpath']
 	cmd << " /products:#{@new_resource.product_id} /suppressreboot"
     cmd << " /accepteula" if @new_resource.accept_eula
 	cmd << " /XML:#{node['webpi']['xmlpath']}" if node['webpi']['xmlpath']
@@ -48,6 +47,6 @@ end
 
 def webpicmdline
   @webpicmdline ||= begin
-    "#{node['webpi']['home']}\\WebpiCmdLine.exe"
+    "#{node['webpi']['home']}\\WebpiCmd.exe"
   end
 end
