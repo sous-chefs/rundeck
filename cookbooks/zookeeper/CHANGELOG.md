@@ -1,4 +1,6 @@
-## Future
+## 1.1.5
+* Added max client connections to the configuration and set the default
+  to 60 to support topologies in pod with only a single zookeeper node.
 
 ## 1.1.4
 * move node.save out of zookeeper_search and into default recipe
