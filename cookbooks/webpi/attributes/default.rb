@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-default['webpi']['url']       = '"http://download.microsoft.com/download/6/8/D/68DAB32D-10B6-461D-8FF5-43CE9BDA6CE5/WebPICMD.zip'
+default['webpi']['url']       = 'http://download.microsoft.com/download/6/8/D/68DAB32D-10B6-461D-8FF5-43CE9BDA6CE5/WebPICMD.zip'
 default['webpi']['checksum']  = 'c04a42c8874ed24a6e547b06f1d5a100324caf18'
 
 default['webpi']['home'] = "#{ENV['SYSTEMDRIVE']}\\webpi"
