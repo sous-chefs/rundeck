@@ -31,7 +31,7 @@ when "windows"
     checksum node[:git][:checksum]
     action :install
     not_if { File.exists? "#{node[:git][:dir]}\\git.exe" }
-	notifies :modify "env[PATH]", :immediately
+	notifies :modify, "env[PATH]", :immediately
   end
   env "PATH" do
     value node[:git][:dir]
