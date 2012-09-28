@@ -1,7 +1,3 @@
-## 1.0.22
-* Set the application pool when creating the site for cam and auth
-* Removed DefaultAppPool
-
 ## 1.0.21
 * Added retries to the site add/start resource for auth
 
