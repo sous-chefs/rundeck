@@ -32,10 +32,6 @@ iis_site 'Default Web Site' do
 	action [:stop, :delete]
 end
 
-iis_pool 'DefaultAppPool' do
-    action [:stop, :delete]
-end
-
 directory install_dir do
 	recursive true
 	action :create
@@ -49,8 +45,7 @@ end
 iis_site 'AUTH' do
     protocol :http
     port http_port
-    path install_dir
-	application_pool app_pool
+    path "#{install_dir}"
 	action [:add,:start]
 	retries 1
 end
@@ -99,7 +94,7 @@ if deploy_mode?
   iis_app "AUTH" do
   	path "/Auth"
   	application_pool app_pool
-  	physical_path install_dir
+  	physical_path "#{install_dir}"
   	action :add
   end
 
