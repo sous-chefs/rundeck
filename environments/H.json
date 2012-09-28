@@ -12,7 +12,7 @@
         "webtrends_server": "= 1.8.2", 
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
-        "wt_cam": "= 1.0.21", 
+        "wt_cam": "= 1.0.22", 
         "wt_kafka_mm": "= 0.0.15",
         "wt_netacuity": "= 1.0.7",
         "wt_realtime_hadoop": "= 1.0.2", 
@@ -191,8 +191,8 @@
             }
         }, 
         "webpi": {
-            "url": "http://repo.staging.dmz/repo/windows/webpi/webpicmd_x86.zip", 
-            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/WebProductList.xml"
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebPICMD.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/WebPI40ProductList.xml"
         }, 
         "webtrends_server": {
             "apt": [
@@ -330,8 +330,8 @@
         },
         "wt_streaming_viz": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip",
-            "cam_auth_uri": "https://hsauth.webtrends.com",
-            "sapi_uri": "ws://hsapi01.staging.dmz:8080",
+            "cam_auth_url": "https://hsauth.webtrends.com",
+            "sapi_url": "ws://hsapi01.staging.dmz:8080",
             "proxy_enabled": "true",
             "proxy_address": "http://sproxy02.staging.dmz:3128",
             "elmah_remote_access": "yes",

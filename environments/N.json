@@ -9,6 +9,7 @@
         "nagios": "= 1.6.0", 
         "storm": "= 1.0.24",
         "windows": "= 1.2.12",
+		"webpi": "= 1.0.3",
         "webtrends_server": "= 1.8.2",
         "wt_cam": "= 1.0.21",  
         "wt_base": "= 0.10.53", 
@@ -227,7 +228,7 @@
         "wt_rta": {}, 
         "wt_search": {},
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/34072:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/34127:id/streaming-analysis-bin.tar.gz",
             "streaming_topology_augmentation_bolt_count": 2, 
             "streaming_topology_in_session_bolt_count": 0, 
             "streaming_topology_validation_bolt_count": 2, 
@@ -240,14 +241,14 @@
             }
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/33890:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/34128:id/webtrends-streamingapi-bin.tar.gz",
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
             "port": 8080,
             "usagedbname": "Streaming",
             "usagedbserver": "ncamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/33779:id/webtrends-streamingauditor-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/download/bt246/34129:id/webtrends-streamingauditor-bin.tar.gz",
             "roundtrip_scs_url": "http://nscs01.staging.dmz:8080"
         }, 
         "wt_streamingcollection": {
