@@ -25,9 +25,8 @@ include Windows::Helper
 
 action :install do
   unless installed?
-    cmd = "#{webpicmdline}"
-	cmd << " /offline" if @new_resource.offline
-	cmd << " /products:#{@new_resource.product_id} /suppressreboot"
+    cmd = "#{webpicmdline} /Install"
+ 	cmd << " /products:#{@new_resource.product_id} /suppressreboot"
     cmd << " /accepteula" if @new_resource.accept_eula
 	cmd << " /XML:#{node['webpi']['xmlpath']}" if node['webpi']['xmlpath']
     shell_out!(cmd, {:returns => [0,42]})
@@ -41,13 +40,13 @@ end
 private
 def installed?
   @installed ||= begin
-    cmd = shell_out("#{webpicmdline} /list:installed", {:returns => [0,42]})
+    cmd = shell_out("#{webpicmdline} /List /ListOption:Installed", {:returns => [0,42]})
     cmd.stderr.empty? && (cmd.stdout =~ /^#{@new_resource.product_id}\s.*$/i)
   end
 end
 
 def webpicmdline
   @webpicmdline ||= begin
-    "#{node['webpi']['home']}\\WebpiCmdLine.exe"
+    "#{node['webpi']['home']}\\WebpiCmd.exe"
   end
 end

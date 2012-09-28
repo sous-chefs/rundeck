@@ -8,6 +8,7 @@
         "kafka": "= 1.0.13",
         "nagios": "= 1.6.0",
         "storm": "= 1.0.23",
+		"webpi": "= 1.0.3",
         "webtrends_server": "= 1.8.2",
         "windows": "= 1.3.4",
         "wt_base": "= 0.10.53",
@@ -268,15 +269,15 @@
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"
         },
-	"wt_streaming_viz": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/33776:id/Streaming.Viz.zip",
-            "cam_auth_uri": "https://bsauth.webtrends.com",
-            "sapi_uri": "ws://bsapi01.staging.dmz:8080",
+        "wt_streaming_viz": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/34012:id/Streaming.Viz.zip",
+            "cam_auth_url": "https://bsauth.webtrends.com",
+            "sapi_url": "ws://bsapi01.staging.dmz:8080",
             "proxy_enabled": "true",
             "proxy_address": "http://sproxy02.staging.dmz:3128",
             "elmah_remote_access": "yes",
             "custom_errors": "Off"
-	},
+        },
         "wt_kafka_mm": {
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/34133:id/MirrorMonitor-bin.tar.gz"
         },

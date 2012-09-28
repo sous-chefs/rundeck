@@ -1,8 +1,8 @@
-# Cookbook Name:: roadrunner
+# Cookbook Name:: wt_roadrunner
 # Recipe:: uninstall
 # Author:: Kendrick Martin
 #
-# Copyright 2012, Webtrends
+# Copyright 2012, Webtrends, Inc.
 #
 # All rights reserved - Do Not Redistribute
 # This recipe uninstalls existing RoadRunner installs.
