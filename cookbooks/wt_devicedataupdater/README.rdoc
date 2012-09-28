@@ -1,0 +1,15 @@
+= DESCRIPTION:
+
+Installs the configures the Webtrends Device Data Updater executeable
+
+= REQUIREMENTS:
+
+Windows cookbook
+
+= ATTRIBUTES:
+
+
+
+= USAGE:
+
+
