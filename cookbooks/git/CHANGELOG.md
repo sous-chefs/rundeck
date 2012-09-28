@@ -1,3 +1,7 @@
+## v1.0.3 - WEBTRENDS
+* Added a call to update the path variable on windows after installing
+* Changed sets to default in attribute file
+
 ## v1.0.2:
 
 * [COOK-1537] - add recipe for source installation

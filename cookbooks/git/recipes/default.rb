@@ -30,7 +30,12 @@ when "windows"
     source node[:git][:url]
     checksum node[:git][:checksum]
     action :install
-    not_if { File.exists? 'C:\Program Files (x86)\Git\bin\git.exe' }
+    not_if { File.exists? "#{node[:git][:dir]}\\git.exe" }
+	notifies :modify "env[PATH]", :immediately
+  end
+  env "PATH" do
+    value node[:git][:dir]
+	action :nothing
   end
 when "mac_os_x"
   dmg_package "GitOSX-Installer" do
