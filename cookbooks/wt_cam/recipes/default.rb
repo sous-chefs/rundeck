@@ -33,6 +33,10 @@ iis_site 'Default Web Site' do
 	action [:stop, :delete]
 end
 
+iis_pool 'DefaultAppPool' do
+    action [:stop, :delete]
+end
+
 directory install_dir do
 	recursive true
 	action :create
@@ -46,7 +50,8 @@ end
 iis_site 'CAM' do
     protocol :http
     port http_port
-    path "#{install_dir}"
+    path install_dir
+	application_pool app_pool
 	action [:add,:start]
 	retries 2
 end
@@ -96,7 +101,7 @@ if deploy_mode?
   iis_app "CAM" do
   	path "/Cam"
   	application_pool app_pool
-  	physical_path "#{install_dir}"
+  	physical_path install_dir
   	action :add
   end
 
