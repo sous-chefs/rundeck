@@ -15,7 +15,7 @@
         "wt_base": "= 0.10.53", 
         "wt_netacuity": "= 1.0.7",
         "wt_streamingapi": "= 0.0.34", 
-        "wt_storm_streaming": "= 2.1.6",
+        "wt_storm_streaming": "= 2.1.8",
         "wt_streamingauditor": "= 0.0.17", 
         "wt_streamingcollection": "= 0.0.26",
         "wt_streaminglogreplayer": "= 0.0.27",
