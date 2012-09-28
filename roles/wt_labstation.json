@@ -3,6 +3,9 @@
   "description": "Webtrends Lab Workstation",
   "json_class": "Chef::Role",
   "default_attributes": {
+    "git": {
+	  "update_path": true
+	  }
   },
   "override_attributes": {
   },
