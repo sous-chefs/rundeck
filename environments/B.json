@@ -265,7 +265,7 @@
             }
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/34128:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/34318:id/webtrends-streamingapi-bin.tar.gz",
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"
         },
