@@ -1,3 +1,6 @@
+## 0.0.37
+* Added configuration for the new streaming endpoints in CAM
+
 ## 0.0.36
 * Created an attribute for the root logging level for log4j
 
