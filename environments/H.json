@@ -229,13 +229,13 @@
             "cam_service_url": "http://hcam.staging.dmz",
             "auth_service_url": "https://hsauth.webtrends.com",
             "auth": {
-                    "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/.lastSuccessful/Auth.zip"
+                    "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Auth.zip"
             },
             "cam_plugins": {
-                "download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/.lastSuccessful/Plugins.zip"
+                "download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Plugins.zip"
             },
             "cam":{
-                "download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/.lastSuccessful/Cam.zip"
+                "download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Cam.zip"
             }
         }, 
         "wt_common": {
