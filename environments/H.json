@@ -18,7 +18,7 @@
         "wt_realtime_hadoop": "= 1.0.2", 
         "wt_realtimeapi": "= 0.0.26",
         "wt_storm_realtime": "= 2.1.6",
-        "wt_storm_streaming": "= 2.1.8",
+        "wt_storm_streaming": "= 2.1.9",
         "wt_streamingapi": "= 0.0.37",
         "wt_streaming_viz": "= 1.0.9",
         "wt_streamingauditor": "= 0.0.19",
@@ -229,13 +229,13 @@
             "cam_service_url": "http://hcam.staging.dmz",
             "auth_service_url": "https://hsauth.webtrends.com",
             "auth": {
-                    "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Auth.zip"
+                    "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/.lastSuccessful/Auth.zip"
             },
             "cam_plugins": {
-                "download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Plugins.zip"
+                "download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/.lastSuccessful/Plugins.zip"
             },
             "cam":{
-                "download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Cam.zip"
+                "download_url" : "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/.lastSuccessful/Cam.zip"
             }
         }, 
         "wt_common": {
@@ -315,7 +315,7 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/34123:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/.lastSuccessful/streaming-analysis-bin.tar.gz",
             "streaming_topology_augmentation_bolt_count": 10, 
             "streaming_topology_in_session_bolt_count": 0, 
             "streaming_topology_validation_bolt_count": 10, 
@@ -338,7 +338,7 @@
             "custom_errors": "Off"
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/33890:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/.lastSuccessful/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "port": 8080, 
             "usagedbname": "Streaming", 
