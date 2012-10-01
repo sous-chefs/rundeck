@@ -3,6 +3,10 @@
   "default_attributes": {
   },
   "override_attributes": {
+  		"ulimit" : {
+  			"soft": "65000",
+  			"hard": "65000"
+  		},
       "java" : {
         "install_flavor": "oracle",
         "jdk_version": "7"
@@ -12,6 +16,7 @@
   "env_run_lists": {
   },
   "run_list": [
+  	"recipe[ulimit]",
     "recipe[java]",
     "recipe[wt_streamingapi]"
   ],
