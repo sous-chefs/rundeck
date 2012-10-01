@@ -104,7 +104,6 @@ if ENV["deploy_build"] == "true" then
 
 %w{
 activation-1.1.jar
-antlr-2.7.7.jar
 antlr-3.4.jar
 antlr-runtime-3.4.jar
 aopalliance-1.0.jar
@@ -139,7 +138,7 @@ jersey-server-1.4.jar
 jettison-1.1.jar
 jsp-2.1-6.1.14.jar
 jsp-api-2.1-6.1.14.jar
-kafka-0.7.1.jar
+kafka-0.7.2.jar
 libthrift-0.7.0.jar
 netty-3.3.0.Final.jar
 plexus-utils-1.5.6.jar
