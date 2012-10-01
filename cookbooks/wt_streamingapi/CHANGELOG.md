@@ -1,3 +1,6 @@
+## 0.0.38
+* Moved nofile to the wt_streaming_api_server role by way of the ulimit cookbook
+
 ## 0.0.37
 * Added configuration for the new streaming endpoints in CAM
 
