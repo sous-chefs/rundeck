@@ -345,7 +345,7 @@
             "usagedbserver": "hcamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/33779:id/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_url": "http://hscs01.staging.dmz:8080"
         }, 
         "wt_streamingcollection": {
