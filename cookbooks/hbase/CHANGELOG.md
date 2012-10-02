@@ -1,5 +1,9 @@
 ## Future
 
+## 1.1.3
+* adding ability to turn on hbase replication.  Does not actually turn on replication but gives you the ability to set it up table by table
+
+
 ## 1.1.2
 * treat cluster_name 'default' and nil to be the same cluster
 
