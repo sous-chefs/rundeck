@@ -66,7 +66,7 @@ def processTemplates (install_dir, node)
     port = node['wt_realtimeapi']['port']
     auth_url = node['wt_cam']['auth_service_url']
 
-    %w[monitoring.properties config.properties netty.properties hbase.properties log4j.xml].each do | template_file|
+    %w[monitoring.properties config.properties netty.properties hbase.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
         source	"#{template_file}.erb"
         owner "root"

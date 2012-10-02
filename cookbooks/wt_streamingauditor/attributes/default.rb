@@ -21,4 +21,3 @@ default['wt_streamingauditor']['roundtrip_scs_url'] = "http://scs.webtrends.com"
 default['wt_streamingauditor']['roundtrip_tagserver_timeout'] = 15
 default['wt_streamingauditor']['roundtrip_scs_timeout'] = 2
 default['wt_streamingauditor']['jmx_port'] = 9999
-default['wt_streamingauditor']['log4j_root_logging_level'] = 'INFO'
