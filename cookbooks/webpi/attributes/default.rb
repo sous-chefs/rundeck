@@ -19,6 +19,6 @@
 #
 
 default['webpi']['url']       = 'http://download.microsoft.com/download/6/8/D/68DAB32D-10B6-461D-8FF5-43CE9BDA6CE5/WebPICMD.zip'
-default['webpi']['checksum']  = 'c04a42c8874ed24a6e547b06f1d5a100324caf18'
+default['webpi']['checksum']  = '7bef8162b983fc83584016dbe0d3b0070a54eca44155f532b65a3ded7a59dccd'
 
 default['webpi']['home'] = "#{ENV['SYSTEMDRIVE']}\\webpi"
