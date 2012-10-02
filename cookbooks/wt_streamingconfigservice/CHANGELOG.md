@@ -1,3 +1,6 @@
+## 0.0.15
+* STR-187: Changed permissions on config.properties
+
 ## 0.0.14
 * Created an attribute for the root logging level for log4j
 
