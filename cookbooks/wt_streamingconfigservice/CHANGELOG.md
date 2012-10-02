@@ -1,9 +1,3 @@
-## 0.0.14
-* Created an attribute for the root logging level for log4j
-
-## 0.0.13
-* Removed the force-stop from undeploy.rb
-
 ## 0.0.12
 * Removed authentication attributes from the attributes file since these come from the databag anyways
 * Removed unused user attribute being passed to a template
