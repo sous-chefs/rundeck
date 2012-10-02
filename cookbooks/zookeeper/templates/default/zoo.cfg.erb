@@ -12,6 +12,8 @@ syncLimit=<%= node.zookeeper_attrib(:sync_limit) %>
 dataDir=<%= node.zookeeper_attrib(:data_dir) %>
 # the port at which the clients will connect
 clientPort=<%= node.zookeeper_attrib(:client_port) %>
+# max connections from a single IP address
+maxClientCnxns=<%= node.zookeeper_attrib(:max_client_cnxns) %>
 #
 # Be sure to read the maintenance section of the 
 # administrator guide before turning on autopurge.
