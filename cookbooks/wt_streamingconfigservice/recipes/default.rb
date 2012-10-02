@@ -122,26 +122,33 @@ template "#{install_dir}/bin/service-control" do
 	})
 end
 
-%w[monitoring.properties config.properties].each do |template_file|
-	template "#{install_dir}/conf/#{template_file}" do
-			source	"#{template_file}.erb"
-			owner user
-			group group
-			mode  00755
-			variables({
-				:port => node['wt_streamingconfigservice']['port'],
-				:camdbserver => node['wt_streamingconfigservice']['camdbserver'],
-				:camdbname => node['wt_streamingconfigservice']['camdbname'],
-				:camdbuser => camdbuser,
-				:camdbpwd => camdbpwd,
-				:masterdbserver => node['wt_masterdb']['master_host'],
-				:masterdbname => node['wt_masterdb']['master_db'],
-				:masterdbuser => masterdbuser,
-				:masterdbpwd => masterdbpwd,
-				:includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
-				:wt_monitoring => node[:wt_monitoring]
-			})
-	end
+template "#{install_dir}/conf/monitoring.properties" do
+	source "monitoring.properties.erb"
+	owner user
+	group group
+	mode 00755
+   	variables({
+                :wt_monitoring => node[:wt_monitoring]
+       	})
+end
+
+template "#{install_dir}/conf/config.properties" do
+	source config.properties.erb
+	owner "webtrends"
+	group "webtrends"
+	mode  00640
+	variables({
+		:port => node['wt_streamingconfigservice']['port'],
+		:camdbserver => node['wt_streamingconfigservice']['camdbserver'],
+		:camdbname => node['wt_streamingconfigservice']['camdbname'],
+		:camdbuser => camdbuser,
+		:camdbpwd => camdbpwd,
+		:masterdbserver => node['wt_masterdb']['master_host'],
+		:masterdbname => node['wt_masterdb']['master_db'],
+		:masterdbuser => masterdbuser,
+		:masterdbpwd => masterdbpwd,
+		:includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
+	})
 end
 
 #Create collectd plugin for streamingconfigservice JMX objects if collectd has been applied.
