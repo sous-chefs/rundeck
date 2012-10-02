@@ -16,7 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 # Install packages needed to manage repos
 %w{ nfs-common reprepro createrepo }.each do |pkg|
   package pkg
@@ -31,12 +30,39 @@ directory node['multi_repo']['repo_path'] do
   action :create
 end
 
-# create the subdirectories
-%w{ linux product windows tools yum/centos apt/ubuntu gems/gems }.each do |dir|
+# create the repo drop box directory
+directory node['multi_repo']['repo_dropbox_path'] do
+  action :create
+end
+
+# create the apt and yum repo directories
+%w{ yum/centos apt/ubuntu gems/gems }.each do |dir|
   directory "#{node['multi_repo']['repo_path']}/#{dir}" do
     recursive true
     action :create
   end
+end
+
+# create the extra repo directories if defined
+node['multi_repo']['extra_repo_subdirs'].each do |dir|
+  directory "#{node['multi_repo']['repo_path']}/#{dir}" do
+    recursive true
+    action :create
+  end
+end
+
+# copy the gem files from dropbox to the repo
+execute "move gems" do
+  command "mv #{node['multi_repo']['repo_dropbox_path']}/*.gem #{node['multi_repo']['repo_path']}/gems/gems/"
+  action :run
+  only_if File.exists?("#{node['multi_repo']['repo_dropbox_path']}/*.gem")
+end
+
+# copy the rpm files from dropbox to the repo
+execute "move rpms" do
+  command "mv #{node['multi_repo']['repo_dropbox_path']}/*.rpm #{node['multi_repo']['repo_path']}/yum/centos/"
+  action :run
+  only_if File.exists?("#{node['multi_repo']['repo_dropbox_path']}/*.rpm")
 end
 
 # install apache2 to host the repo
