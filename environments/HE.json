@@ -15,7 +15,7 @@
         "wt_base": "= 0.10.53", 
         "wt_commonlib": "= 0.10.3", 
         "wt_dx": "= 0.10.3", 
-        "wt_heatmaps": "= 0.10.41", 
+        "wt_heatmaps": "= 0.10.45", 
         "wt_roadrunner": "= 0.10.31", 
         "wt_search": "= 1.0.1", 
         "wt_storm": "= 1.0.34", 
