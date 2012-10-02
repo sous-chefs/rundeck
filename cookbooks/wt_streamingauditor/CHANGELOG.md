@@ -1,3 +1,6 @@
+## 0.0.20
+* Changed roundtrip.interval from minutes to seconds and defaulted to 10
+
 ## 0.0.19
 * Created an attribute for the root logging level for log4j
 
