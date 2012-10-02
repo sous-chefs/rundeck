@@ -18,9 +18,26 @@
 
 
 # Install packages needed to manage repos
-package "nfs-common"
-package "reprepro"
-package "createrepo"
+%w{ nfs-common reprepro createrepo }.each do |pkg|
+  package pkg
+end
+
+gem_package "builder" do
+  action :install
+end
+
+# create the repo directory
+directory node['multi_repo']['repo_path'] do
+  action :create
+end
+
+# create the subdirectories
+%w{ linux product windows tools yum/centos apt/ubuntu gems/gems }.each do |dir|
+  directory "#{node['multi_repo']['repo_path']}/#{dir}" do
+    recursive true
+    action :create
+  end
+end
 
 # install apache2 to host the repo
 include_recipe "apache2"
@@ -28,11 +45,6 @@ include_recipe "apache2"
 # disable the default apache site
 apache_site "000-default" do
   enable false
-end
-
-# create the repo directory
-directory "#{node['multi_repo']['repo_path']}" do
-  recursive true
 end
 
 # template the apache config for the repo site
@@ -46,8 +58,8 @@ template "#{node['apache']['dir']}/sites-available/repo" do
 end
 
 # mount the NFS mount on the repo
-mount "#{node['multi_repo']['repo_path']}" do
-  device "#{node['multi_repo']['repo_mount']}"
+mount node['multi_repo']['repo_path'] do
+  device node['multi_repo']['repo_mount']
   fstype "nfs"
   options "rw"
   action [:mount, :enable]
