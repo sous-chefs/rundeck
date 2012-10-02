@@ -32,7 +32,7 @@ directory node['multi_repo']['repo_path'] do
 end
 
 # create the subdirectories
-%w{ linux product windows tools yum apt gems }.each do |dir|
+%w{ linux product windows tools yum/centos apt/ubuntu gems/gems }.each do |dir|
   directory "#{node['multi_repo']['repo_path']}/#{dir}" do
     recursive true
     action :create
