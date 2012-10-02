@@ -26,9 +26,10 @@ include Windows::Helper
 action :install do
   unless installed?
     cmd = "#{webpicmdline} /Install"
- 	cmd << " /products:#{@new_resource.product_id} /suppressreboot"
+    cmd << " /products:#{@new_resource.product_id} /suppressreboot"
     cmd << " /accepteula" if @new_resource.accept_eula
-	cmd << " /XML:#{node['webpi']['xmlpath']}" if node['webpi']['xmlpath']
+    cmd << " /XML:#{node['webpi']['xmlpath']}" if node['webpi']['xmlpath']
+	cmd << " /Log:#{Chef::Config[:file_cache_path]}/WebPI.log"
     shell_out!(cmd, {:returns => [0,42]})
     @new_resource.updated_by_last_action(true)
     Chef::Log.info("#{@new_resource} added new product '#{@new_resource.product_id}'")
