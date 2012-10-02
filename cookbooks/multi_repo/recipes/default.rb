@@ -26,18 +26,14 @@ gem_package "builder" do
   action :install
 end
 
-# create the repo directories
-%w{
-"#{node['multi_repo']['repo_path']}"
-"#{node['multi_repo']['repo_path']}/linux"
-"#{node['multi_repo']['repo_path']}/product"
-"#{node['multi_repo']['repo_path']}/windows"
-"#{node['multi_repo']['repo_path']}/tools"
-"#{node['multi_repo']['repo_path']}/yum"
-"#{node['multi_repo']['repo_path']}/apt"
-"#{node['multi_repo']['repo_path']}/gems"
-}.each do |dir|
-  directory dir do
+# create the repo directory
+directory node['multi_repo']['repo_path'] do
+  action :create
+end
+
+# create the subdirectories
+%w{ linux product windows tools yum apt gems }.each do |dir|
+  directory "#{node['multi_repo']['repo_path']}/#{dir}" do
     recursive true
     action :create
   end
