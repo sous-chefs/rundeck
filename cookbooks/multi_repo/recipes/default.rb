@@ -22,7 +22,7 @@
   package pkg
 end
 
-gem_package builder do
+gem_package "builder" do
   action :install
 end
 
@@ -35,6 +35,7 @@ node['multi_repo']['repo_path']
 #{node['multi_repo']['repo_path']}/tools
 #{node['multi_repo']['repo_path']}/yum
 #{node['multi_repo']['repo_path']}/apt
+#{node['multi_repo']['repo_path']}/gems
 }.each do |dir|
   directory dir do
     recursive true
