@@ -1,6 +1,8 @@
 Future
 	Change IIS site bindings
 	Search alternate/current environment for cache_hosts
+## 1.0.4
+	* Updated Castle.Core binding redirect
 ## 1.0.3
 	* Added comment line to template
 ## 1.0.2
