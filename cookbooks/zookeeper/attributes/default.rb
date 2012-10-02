@@ -22,5 +22,6 @@ default[:zookeeper][:default][:init_limit] = 10
 default[:zookeeper][:default][:sync_limit] = 5
 default[:zookeeper][:default][:client_port] = 2181
 default[:zookeeper][:default][:snapshot_num] = 3
+default[:zookeeper][:default][:max_client_cnxns] = 60
 
 default[:zookeeper][:default][:jmx_port] = 10201
