@@ -63,4 +63,8 @@
 		this is the list of servers which we will start/stop ZooKeeper on.
 		</description>
 	</property>
+	<property>
+		<name>hbase.replication</name>
+		<value>true</value>
+	</property>
 </configuration>
