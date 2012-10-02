@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-default['nscp']['http_url'] = "http://files.nscp.org/x-0.4.x/NSCP-0.4.0.172-x64.msi"
+default['nscp']['http_url'] = "http://files.nscp.org/x-0.4.x/NSCP-0.4.0.183-x64.msi"
