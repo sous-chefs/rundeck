@@ -1,9 +1,3 @@
-## 0.0.26
-* Created an attribute for the root logging level for log4j
-
-## 0.0.25
-* Removed the force-stop from undeploy.rb
-
 ## 0.0.24
 * Address food critic warnings
 * Don't pass in a hardcoded java_class variable

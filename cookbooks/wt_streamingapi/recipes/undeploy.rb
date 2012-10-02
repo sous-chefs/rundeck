@@ -22,6 +22,13 @@ service "streamingapi" do
   ignore_failure true
 end
 
+# force stop the service in case the stop failed
+service "streamingapi" do
+  action [:stop]
+  stop_command "force-stop"
+  ignore_failure true
+end
+
 directory "#{log_dir}" do
   recursive true
   action :delete
