@@ -18,8 +18,12 @@
 
 
 # Install packages needed to manage repos
-%w{ nfs-common reprepro createrepo builder }.each do |pkg|
+%w{ nfs-common reprepro createrepo }.each do |pkg|
   package pkg
+end
+
+gem_package builder do
+  action :install
 end
 
 # create the repo directories
