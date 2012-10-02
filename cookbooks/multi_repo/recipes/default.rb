@@ -28,14 +28,14 @@ end
 
 # create the repo directories
 %w{
-node['multi_repo']['repo_path']
-#{node['multi_repo']['repo_path']}/linux
-#{node['multi_repo']['repo_path']}/product
-#{node['multi_repo']['repo_path']}/windows
-#{node['multi_repo']['repo_path']}/tools
-#{node['multi_repo']['repo_path']}/yum
-#{node['multi_repo']['repo_path']}/apt
-#{node['multi_repo']['repo_path']}/gems
+"#{node['multi_repo']['repo_path']}"
+"#{node['multi_repo']['repo_path']}/linux"
+"#{node['multi_repo']['repo_path']}/product"
+"#{node['multi_repo']['repo_path']}/windows"
+"#{node['multi_repo']['repo_path']}/tools"
+"#{node['multi_repo']['repo_path']}/yum"
+"#{node['multi_repo']['repo_path']}/apt"
+"#{node['multi_repo']['repo_path']}/gems"
 }.each do |dir|
   directory dir do
     recursive true
