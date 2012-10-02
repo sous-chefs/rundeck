@@ -1,6 +1,3 @@
-## 0.0.29
-* Removed the force-stop from undeploy.rb
-
 ## 0.0.28
 * Don't fallback to Zookeeper quorum attributes if search fails.  If search fails we have bigger issues
 * Address food critic warnings
