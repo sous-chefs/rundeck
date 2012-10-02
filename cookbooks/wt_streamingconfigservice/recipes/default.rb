@@ -133,7 +133,7 @@ template "#{install_dir}/conf/monitoring.properties" do
 end
 
 template "#{install_dir}/conf/config.properties" do
-        source config.properties.erb
+        source "config.properties.erb"
         owner "webtrends"
         group "webtrends"
         mode  00640
