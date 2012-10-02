@@ -192,9 +192,8 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4
 	owner "storm"
 	group "storm"
 	mode  00644
-	 variables(
-        :root_logging_level => node['wt_storm_realtime']['log4j']['root_logging_level']
-    )
+	variables({
+	})
 end
 
 # storm looks for storm.yaml in ~/.storm/storm.yaml so make a link
@@ -252,7 +251,6 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
-    :root_logging_level => node['wt_storm_realtime']['log4j']['root_logging_level']
   )
 end
 
