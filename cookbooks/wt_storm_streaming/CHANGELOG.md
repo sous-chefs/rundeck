@@ -1,6 +1,3 @@
-## 2.1.7
-* Created an attribute for the root logging level for log4j
-
 ## 2.1.6
 * Changing back to kafka-0.7.1
 
