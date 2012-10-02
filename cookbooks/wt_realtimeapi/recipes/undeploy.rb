@@ -21,6 +21,12 @@ service "realtimeapi" do
   ignore_failure true
 end
 
+# force stop the service in case the stop failed
+service "realtimeapi" do
+  action :stop
+  stop_command "force-stop"
+end
+
 directory log_dir do
   recursive true
   action :delete

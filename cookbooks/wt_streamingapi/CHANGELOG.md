@@ -1,9 +1,3 @@
-## 0.0.36
-* Created an attribute for the root logging level for log4j
-
-## 0.0.35
-* Removed the force-stop from undeploy.rb
-
 ## 0.0.34
 * Added log4j.xml to cookbook rather than pulling from build
 

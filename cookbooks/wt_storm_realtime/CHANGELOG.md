@@ -1,6 +1,3 @@
-## 2.1.6
-* Created an attribute for the root logging level for log4j
-
 ## 2.1.5
 * Search for kafka_aggregator not kafka
 
