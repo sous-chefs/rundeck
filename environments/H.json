@@ -19,7 +19,7 @@
         "wt_realtimeapi": "= 0.0.26",
         "wt_storm_realtime": "= 2.1.6",
         "wt_storm_streaming": "= 2.1.9",
-        "wt_streamingapi": "= 0.0.38",
+        "wt_streamingapi": "= 0.0.39",
         "wt_streaming_viz": "= 1.0.9",
         "wt_streamingauditor": "= 0.0.20",
         "wt_streamingcollection": "= 0.0.30",
@@ -306,8 +306,8 @@
             "realtime_topology_parsing_bolt_count": 3,
             "realtime_topology_writing_bolt_count": 96,
             "topic_list": [
-                "Lab_H_scsRawHits:3",
-                "Lab_H_lrRawHits:3"
+                "Lab_H_scsRawHits:6",
+                "Lab_H_lrRawHits:6"
             ],
             "topology_override_max_spout_pending": 100,
             "topology_override_msg_timeout_seconds": 30,
@@ -331,8 +331,6 @@
         },
         "wt_streaming_viz": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip",
-            "cam_auth_url": "https://hsauth.webtrends.com",
-            "sapi_url": "ws://hsapi01.staging.dmz:8080",
             "proxy_enabled": "true",
             "proxy_address": "http://sproxy02.staging.dmz:3128",
             "elmah_remote_access": "yes",

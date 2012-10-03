@@ -21,7 +21,7 @@
     <compilation debug="false" targetFramework="4.0" />
     <customErrors mode="<%= @custom_errors %>"/>
     <authentication mode="Forms">
-      <forms loginUrl="~/signin" timeout="2880" name="_sauth" domain=".webtrends.com">
+      <forms loginUrl="~/signin" timeout="2880">
         <credentials passwordFormat="SHA1">
           <user name="asos@webtrends.com" password="1B899C78B7189531B8B98FC38BE0C6DACBEB3470" />
           <user name="burberry@webtrends.com" password="1B899C78B7189531B8B98FC38BE0C6DACBEB3470" />
@@ -36,11 +36,6 @@
         </credentials>
       </forms>
     </authentication>
-    <machineKey 
-      validationKey="<%= @machine_validation_key %>" 
-      decryptionKey="<%= @machine_decryption_key %>" 
-      validation="HMACSHA256" 
-      decryption="AES" />
     <pages>
       <namespaces>
         <add namespace="System.Web.Helpers" />
