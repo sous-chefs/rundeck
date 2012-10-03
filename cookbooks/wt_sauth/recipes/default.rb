@@ -85,7 +85,9 @@ if ENV["deploy_build"] == "true" then
 	variables(
 		:db_server => node['wt_sauth']['db_server'],
 		:db_name   => node['wt_sauth']['db_name'],
-                :tokenExpirationMinutes => node['wt_sauth']['tokenExpirationMinutes']
+                :tokenExpirationMinutes => node['wt_sauth']['tokenExpirationMinutes'],
+        	:machine_validation_key => user_data['wt_iis']['machine_validation_key'],
+	        :machine_decryption_key => user_data['wt_iis']['machine_decryption_key']
   	)
   end
 
