@@ -13,7 +13,7 @@ default['wt_streamingauditor']['download_url'] = ""
 default['wt_streamingauditor']['java_opts'] = "-Xms1024m -Djava.net.preferIPv4Stack=true"
 default['wt_streamingauditor']['metricslistener_enabled'] = true
 default['wt_streamingauditor']['auditlistener_enabled'] = false
-default['wt_streamingauditor']['roundtrip_interval'] = 1
+default['wt_streamingauditor']['roundtrip_interval'] = 10
 default['wt_streamingauditor']['roundtrip_scs_dcsid'] = "dcsi6mqqn00000kb6g4qhxvtt_7t9q"
 default['wt_streamingauditor']['roundtrip_tagserver_dcsid'] = "dcsjlcm9a10000wowm5b8svtt_8t7o"
 default['wt_streamingauditor']['roundtrip_tagserver_url'] = "http://statse.webtrendslive.com"
