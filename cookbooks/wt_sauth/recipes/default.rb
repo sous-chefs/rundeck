@@ -8,7 +8,7 @@
 # All rights reserved - Do Not Redistribute
 # This recipe installs the Auth IIS app component of CAM
 
-if if ENV["deploy_build"] == "true" then
+if ENV["deploy_build"] == "true" then
   include_recipe "ms_dotnet4::regiis"
   include_recipe "wt_sauth::uninstall"
   include_recipe "wt_cam::uninstall"
