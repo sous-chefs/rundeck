@@ -1,3 +1,12 @@
+## 0.0.20
+* Changed roundtrip.interval from minutes to seconds and defaulted to 10
+
+## 0.0.19
+* Created an attribute for the root logging level for log4j
+
+## 0.0.18
+* Removed the force-stop from undeploy.rb
+
 ## 0.0.15
 * Added logic to use the wt_monitoring client id and secret to get a token to connect to SAPI
 
