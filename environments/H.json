@@ -334,6 +334,7 @@
             }
         },
         "wt_streaming_viz": {
+            "port": 85,
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip",
             "proxy_enabled": "true",
             "proxy_address": "http://sproxy02.staging.dmz:3128",
