@@ -101,7 +101,7 @@ if deploy_mode?
         :custom_errors => node['wt_streaming_viz']['custom_errors'],
         # proxy
         :proxy_enabled => node['wt_streaming_viz']['proxy_enabled'],
-        :proxy_address => node['wt_common']['http_proxy_url']
+        :proxy_address => node['wt_common']['http_proxy_url'],
         # forms auth
         :machine_validation_key => user_data['wt_iis']['machine_validation_key'],
         :machine_decryption_key => user_data['wt_iis']['machine_decryption_key']

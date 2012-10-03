@@ -1,3 +1,6 @@
+## 1.0.13
+* Missing comma
+
 ## 1.0.12
 * Add cam.url as parameter in appsettings.config
 * Remove dirty ugly hack section
