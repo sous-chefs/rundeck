@@ -99,13 +99,6 @@ if ENV["deploy_build"] == "true" then
         )
   end
 
-  iis_app "AUTH" do
-  	path "/Auth"
-  	application_pool app_pool
-  	physical_path install_dir
-  	action :add
-  end
-
   iis_config auth_cmd do
   	action :config
   end
