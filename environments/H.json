@@ -223,6 +223,10 @@
             ]
         },
         "wt_analytics_ui": {},
+		"wt_auth":{
+            "auth_service_url": "https://hsauth.webtrends.com",
+            "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Auth.zip"
+		},
         "wt_cam": {
             "db_name": "cam",
             "db_server": "hcamdb01.staging.dmz",
@@ -316,7 +320,7 @@
             }
         },
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/34773:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/34992:id/streaming-analysis-bin.tar.gz",
             "streaming_topology_augmentation_bolt_count": 10,
             "streaming_topology_in_session_bolt_count": 0,
             "streaming_topology_validation_bolt_count": 10,
