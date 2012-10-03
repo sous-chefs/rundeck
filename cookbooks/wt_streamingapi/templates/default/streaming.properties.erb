@@ -6,7 +6,11 @@ webtrends.authentication.tokenDetail = %%baseUrl%%/Auth/api/%%access_token%%
 # This is the base url for the CAM service
 webtrends.cam.baseUrl = <%=@cam_url%>
 # This is the url to the REST service for getting product provisioning
-webtrends.cam.provisioningDetail=%%baseUrl%%/cam/api/account/%%accountId%%/product/%%productId%%
+webtrends.cam.provisioningDetail=%%baseUrl%%/account/%%accountId%%/product/%%productId%%
+# This is the url to the REST service for stream types
+webtrends.cam.streamType=%%baseUrl%%/product/sapi/streamtypes
+# This is the url to the REST service for getting the blacklist
+webtrends.cam.blacklist=%%baseUrl%%/product/sapi/blacklist
 
 usageConnString=jdbc:sqlserver://<%= @usagedbserver %>:1433;databaseName=<%= @usagedbname %>;user=<%= @usagedbuser %>;password=<%= @usagedbpwd %>;
 

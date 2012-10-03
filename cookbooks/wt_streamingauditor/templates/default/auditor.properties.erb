@@ -15,7 +15,7 @@ roundtrip.authentication.url = <%= node['wt_cam']['auth_service_url'] %>/auth/ap
 roundtrip.clientid=<%=@client_id%>
 # The client secret for wt_monitoring
 roundtrip.client.secret=<%=@client_secret%>
-# The interval (minutes) to run the roundtrip test
+# The interval (seconds) to run the roundtrip test
 roundtrip.interval=<%= node['wt_streamingauditor']['roundtrip_interval'] %>
 # The SCS dcsid to use for the round-trip auditing
 roundtrip.scs.dcsid=<%= node['wt_streamingauditor']['roundtrip_scs_dcsid'] %>
