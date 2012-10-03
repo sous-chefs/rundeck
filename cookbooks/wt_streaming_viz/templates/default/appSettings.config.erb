@@ -13,12 +13,10 @@
     <add key="elmah.mvc.route" value="secure/admin/errors" />
 
     <!-- streaming locations -->
-    <add key="cam.url" value="<%= @cam_auth_url %>"/>
+    <add key="auth.url" value="<%= @cam_auth_url %>"/>
+    <add key="cam.url" value="<%= @cam_url %>"/>
     <add key="sapi.url" value="<%= @sapi_url %>"/>
     <add key="stream.client.id" value="<%= @stream_client_id %>"/>
     <add key="stream.client.secret" value="<%= @stream_client_secret %>"/>
-
-    <!-- Dirty ugly hack -->
-    <add key="hack:EnvironmentKey" value="<%= @chef_environment %>"/>
 </appSettings>
 
