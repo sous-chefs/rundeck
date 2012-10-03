@@ -1,6 +1,6 @@
 Description
 ===========
-Installs the Webtrends Streaming Dataviz site on Windows servers
+Installs the Webtrends Portfolio Admin site on Windows servers
 
 Requirements
 ============
