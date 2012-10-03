@@ -44,18 +44,18 @@ directory log_dir do
 end
 
 iis_site 'StreamingViz' do
-    protocol :http
-    port http_port
-    path "#{install_dir}"
+	protocol :http
+	port http_port
+	path install_dir
 	action [:add,:start]
 	application_pool app_pool
 	retries 2
 end
 
 wt_base_firewall 'StreamingViz' do
-    protocol "TCP"
-    port http_port
-    action [:open_port]
+	protocol "TCP"
+	port http_port
+	action [:open_port]
 end
 
 wt_base_icacls install_dir do
@@ -79,36 +79,41 @@ end
 
 if deploy_mode?
   windows_zipfile install_dir do
-    source node['wt_streaming_viz']['download_url']
-    action :unzip
+	source node['wt_streaming_viz']['download_url']
+	action :unzip
   end
 
   template "#{install_dir}\\appSettings.config" do
   	source "appSettings.config.erb"
-	variables(
-		:cam_auth_url => node['wt_streaming_viz']['cam_auth_url'],
-		:sapi_url   => node['wt_streaming_viz']['sapi_url'],
-        :chef_environment => pod
-  	)
+  	variables(
+  	  :cam_auth_url => node['wt_cam']['auth_service_url'],
+      :sapi_url   => node['wt_streamingapi']['sapi_service_url'],
+      :stream_client_id => user_data['wt_streaming_viz']['client_id'],
+      :stream_client_secret => user_data['wt_streaming_viz']['client_secret'],
+      :chef_environment => pod
+    )
   end
 
   template "#{install_dir}\\web.config" do
   	source "web.config.erb"
-	variables(
-		:elmah_remote_access => node['wt_streaming_viz']['elmah_remote_access'],
-		:custom_errors => node['wt_streaming_viz']['custom_errors'],
+  	variables(
+        :elmah_remote_access => node['wt_streaming_viz']['elmah_remote_access'],
+        :custom_errors => node['wt_streaming_viz']['custom_errors'],
         # proxy
         :proxy_enabled => node['wt_streaming_viz']['proxy_enabled'],
-        :proxy_address => node['wt_streaming_viz']['proxy_address']
+        :proxy_address => node['wt_common']['http_proxy_url']
+        # forms auth
+        :machine_validation_key => user_data['wt_iis']['machine_validation_key'],
+        :machine_decryption_key => user_data['wt_iis']['machine_decryption_key']
   	)
   end
 
   template "#{install_dir}\\log4net.config" do
-        source "log4net.config.erb"
-        variables(
-                :log_level => node['wt_streaming_viz']['log_level'],
-                :log_dir => install_logdir
-        )
+  	source "log4net.config.erb"
+  	variables(
+  	  :log_level => node['wt_streaming_viz']['log_level'],
+  	  :log_dir => install_logdir
+  	)
   end
 
   # iis_app "StreamingViz" do

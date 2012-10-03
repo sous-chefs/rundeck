@@ -1,3 +1,15 @@
+## 2.1.9
+* Remove antlr-2.7.7.jar and change kafka to 0.7.2. Updated CAM urls
+
+## 2.1.8
+* This cookbook is functionally equivalent to 2.1.7. Originally the
+  change created a dep to kafka 0.7.2, but it should of gone to a
+  different branch. Since the cookbook is already uploaded to
+  chef the version will stay but dep has been removed.
+
+## 2.1.7
+* Created an attribute for the root logging level for log4j
+
 ## 2.1.6
 * Changing back to kafka-0.7.1
 
