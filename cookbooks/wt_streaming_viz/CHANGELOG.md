@@ -1,10 +1,22 @@
+## 1.0.11
+* Add ELMAH config to appSettings.config template.
+* Add wt_iis section to authorization databag. Includes machine key settings for validation and decryption.
+* Add client credentials to streaming_viz databag.
+* Configure forms auth cookie settings to match auth (_sauth cookie, .webtrends.com domain)
+
+## 1.0.10
+* Default to port 80 not port 85
+* Remove attributes for SAPI/Sauth/proxy URLs.  Instead use environmental attributes that already exist
+* Default to using a proxy server
+* Foodcritic fixes
+
 ## 1.0.9
 * Add web.config template
     * Includes settings for ELMAH, custom errors, and http proxy.
 * Add attributes for elmah, custom errors and http proxy.
 
 ## 1.0.8
-* Add template for log4net.config 
+* Add template for log4net.config
 
 ## 1.0.7
 * Grant IUSR read-only access to install dir.
