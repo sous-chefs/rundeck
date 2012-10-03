@@ -1,0 +1,19 @@
+{
+  "name": "wt_sauth",
+  "description": "Webtrends Secure Auth",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[ms_dotnet35]",
+    "recipe[ms_dotnet4]",
+    "role[iis]",
+    "recipe[iis::mod_mvc3]",
+    "recipe[wt_sauth"
+  ],
+  "env_run_lists": {
+  }
+}
