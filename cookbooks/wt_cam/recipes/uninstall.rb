@@ -17,11 +17,13 @@ iis_app 'CAM' do
 	path "/Cam"
 	application_pool "#{app_pool}"
 	action :delete
+	ignore_failure true
 end
 
 # remove the site
 iis_site 'CAM' do
 	action [:stop, :delete]
+	ignore_failure true
 end
 
 # remove the pool
@@ -34,9 +36,11 @@ end
 directory install_dir do
   recursive true
   action :delete
+  ignore_failure true
 end
 
 directory log_dir do
   recursive true
   action :delete
+  ignore_failure true
 end
