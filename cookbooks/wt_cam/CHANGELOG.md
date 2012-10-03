@@ -1,3 +1,6 @@
+## 1.0.23
+* Added ignore_failures to uninstall.
+
 ## 1.0.22
 * Set the application pool when creating the site for cam and auth
 * Removed DefaultAppPool
