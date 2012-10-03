@@ -1,3 +1,9 @@
+## 1.0.11
+* Add ELMAH config to appSettings.config template.
+* Add wt_iis section to authorization databag. Includes machine key settings for validation and decryption.
+* Add client credentials to streaming_viz databag.
+* Configure forms auth cookie settings to match auth (_sauth cookie, .webtrends.com domain)
+
 ## 1.0.10
 * Default to port 80 not port 85
 * Remove attributes for SAPI/Sauth/proxy URLs.  Instead use environmental attributes that already exist
