@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appSettings>
+    <add key="webpages:Version" value="2.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="PreserveLoginUrl" value="true" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+  
+    <!-- streaming locations -->
+    <add key="CamAuthUrl" value="<%= @cam_auth_url %>"/>
+    <add key="SapiUrl" value="<%= @sapi_url %>"/>
+  
+    <!-- Dirty ugly hack -->
+    <add key="hack:EnvironmentKey" value="<%= @chef_environment %>"/>
+</appSettings>
+

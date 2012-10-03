@@ -5,11 +5,19 @@
     <add key="PreserveLoginUrl" value="true" />
     <add key="ClientValidationEnabled" value="true" />
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
-  
+
+    <!-- ELMAH -->
+    <add key="elmah.mvc.disableHandler" value="false" />
+    <add key="elmah.mvc.requiresAuthentication" value="false" />
+    <add key="elmah.mvc.allowedRoles" value="*" />
+    <add key="elmah.mvc.route" value="secure/admin/errors" />
+
     <!-- streaming locations -->
-    <add key="CamAuthUrl" value="<%= @cam_auth_url %>"/>
-    <add key="SapiUrl" value="<%= @sapi_url %>"/>
-  
+    <add key="cam.url" value="<%= @cam_auth_url %>"/>
+    <add key="sapi.url" value="<%= @sapi_url %>"/>
+    <add key="stream.client.id" value="<%= @stream_client_id %>"/>
+    <add key="stream.client.secret" value="<%= @stream_client_secret %>"/>
+
     <!-- Dirty ugly hack -->
     <add key="hack:EnvironmentKey" value="<%= @chef_environment %>"/>
 </appSettings>

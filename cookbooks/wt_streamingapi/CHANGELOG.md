@@ -1,3 +1,6 @@
+## 0.0.39
+* Add ulimit file limit increase to 4096 to the runit exec script
+
 ## 0.0.38
 * Moved nofile to the wt_streaming_api_server role by way of the ulimit cookbook
 
