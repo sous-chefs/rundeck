@@ -29,7 +29,7 @@ action :install do
     cmd << " /products:#{@new_resource.product_id} /suppressreboot"
     cmd << " /accepteula" if @new_resource.accept_eula
     cmd << " /XML:#{node['webpi']['xmlpath']}" if node['webpi']['xmlpath']
-	cmd << " /Log:#{Chef::Config[:file_cache_path]}/WebPI.log"
+    cmd << " /Log:#{node['webpi']['log']}"
     shell_out!(cmd, {:returns => [0,42]})
     @new_resource.updated_by_last_action(true)
     Chef::Log.info("#{@new_resource} added new product '#{@new_resource.product_id}'")
