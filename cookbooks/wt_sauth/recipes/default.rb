@@ -95,7 +95,7 @@ if ENV["deploy_build"] == "true" then
   template "#{install_dir}\\log4net.config" do
         source "log4net.config.erb"
         variables(
-                :log_level => node['wt_sauth']['auth']['log_level']
+                :log_level => node['wt_sauth']['log_level']
         )
   end
 
