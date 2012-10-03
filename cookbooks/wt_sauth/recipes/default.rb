@@ -84,8 +84,8 @@ if ENV["deploy_build"] == "true" then
   template "#{install_dir}\\web.config" do
   	source "web.config.erb"
 	variables(
-		:db_server => node['wt_sauth']['db_server'],
-		:db_name   => node['wt_sauth']['db_name'],
+		:db_server => node['wt_cam']['db_server'],
+		:db_name   => node['wt_cam']['db_name'],
                 :tokenExpirationMinutes => node['wt_sauth']['tokenExpirationMinutes'],
         	:machine_validation_key => user_data['wt_iis']['machine_validation_key'],
 	        :machine_decryption_key => user_data['wt_iis']['machine_decryption_key']
