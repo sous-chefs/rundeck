@@ -22,4 +22,4 @@ default['multi_repo']['repo_mount'] = "pdxstore10.netiq.dmz:/ifs/data/osdeploy/r
 default['multi_repo']['sysadmin_email'] = ""
 default['multi_repo']['chef_repo_path'] = ""
 default['multi_repo']['repo_dropbox_path'] = "/root/repo_dropbox"
-default['multi_repo']['extra_repo_subdirs'] = [ "tools" "product" "windows" "linux"]
+default['multi_repo']['extra_repo_subdirs'] = [ "tools","product","windows","linux"]
