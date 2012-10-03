@@ -1,6 +1,6 @@
 {
-  "name": "wt_sauth",
-  "description": "Webtrends Secure Auth",
+  "name": "wt_portfolio_admin",
+  "description": "Webtrends Portfolio Administration UI",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
@@ -11,8 +11,7 @@
     "recipe[ms_dotnet35]",
     "recipe[ms_dotnet4]",
     "role[iis]",
-    "recipe[iis::mod_mvc3]",
-    "recipe[wt_sauth]"
+    "recipe[wt_portfolio_admin]"
   ],
   "env_run_lists": {
   }
