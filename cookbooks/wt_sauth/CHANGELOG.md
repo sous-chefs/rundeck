@@ -1,3 +1,5 @@
+## 0.1.6
+* Fixed error in config xml
 ## 0.1.3
 * Changing attributes to not have extra level of auth
 ## 0.1.2
