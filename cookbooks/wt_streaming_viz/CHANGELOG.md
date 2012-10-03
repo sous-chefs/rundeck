@@ -1,3 +1,7 @@
+## 1.0.12
+* Add cam.url as parameter in appsettings.config
+* Remove dirty ugly hack section
+
 ## 1.0.11
 * Add ELMAH config to appSettings.config template.
 * Add wt_iis section to authorization databag. Includes machine key settings for validation and decryption.
