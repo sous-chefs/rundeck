@@ -26,7 +26,7 @@
         "wt_streamingconfigservice": "= 0.0.15",
         "wt_streaminglogreplayer": "= 0.0.30",
         "zookeeper": "= 1.0.5",
-        "wt_streaming_viz": "1.0.10",
+        "wt_streaming_viz": "1.0.13",
 	"wt_sauth": "0.1.6"
     },
     "default_attributes": {
@@ -167,14 +167,11 @@
           "db_server": "bcamdb01.staging.dmz",
           "cam_service_url": "http://bcam.staging.dmz",
           "auth_service_url": "https://bsauth.webtrends.com",
-          "auth": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Auth.zip"
-          },
           "cam_plugins": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/Plugins.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt265/35083:id/Plugins.zip"
           },
           "cam": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt254/33617:id/CAM.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt265/35083:id/CAM.zip"
           }
         },
         "wt_common": {
@@ -272,11 +269,8 @@
             "usagedbserver": "bcamdb01.staging.dmz"
         },
         "wt_streaming_viz": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/33776:id/Streaming.Viz.zip",
-            "cam_auth_uri": "https://bsauth.webtrends.com",
-            "sapi_uri": "ws://bsapi01.staging.dmz:8080",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/35039:id/Streaming.Viz.zip",
             "proxy_enabled": "true",
-            "proxy_address": "http://sproxy02.staging.dmz:3128",
             "elmah_remote_access": "yes",
             "custom_errors": "Off"
         },
@@ -308,7 +302,7 @@
         },
 	"wt_sauth": {
 	    "auth_service_url": "https://bsauth.webtrends.com",
-	    "download_url": ""
+	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt265/35083:id/auth.zip"
 	},
         "wt_usagedb": {
             "schedulerdb_host": "busagedb01.staging.dmz",
