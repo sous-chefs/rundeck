@@ -12,7 +12,7 @@
     "recipe[ms_dotnet4]",
     "role[iis]",
     "recipe[iis::mod_mvc3]",
-    "recipe[wt_sauth"
+    "recipe[wt_sauth]"
   ],
   "env_run_lists": {
   }
