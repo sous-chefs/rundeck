@@ -306,8 +306,8 @@
             "realtime_topology_parsing_bolt_count": 3,
             "realtime_topology_writing_bolt_count": 96,
             "topic_list": [
-                "Lab_H_scsRawHits:3",
-                "Lab_H_lrRawHits:3"
+                "Lab_H_scsRawHits:6",
+                "Lab_H_lrRawHits:6"
             ],
             "topology_override_max_spout_pending": 100,
             "topology_override_msg_timeout_seconds": 30,
