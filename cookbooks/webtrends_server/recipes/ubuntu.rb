@@ -98,7 +98,7 @@ include_recipe "man"
 include_recipe "networking_basic"
 
 # install useful tools
-%w{ mtr strace iotop }.each do |pkg|
+%w{ mtr strace iotop screen }.each do |pkg|
 	package pkg
 end
 
@@ -172,8 +172,3 @@ include_recipe "collectd"
 
 # install collectd plugins for WT base OS monitoring
 include_recipe "wt_monitoring::collectd_base"
-
-# makes getting around easier
-package "screen" do
-  action :install
-end

@@ -1,3 +1,6 @@
+## 1.0.8
+* Fix the attribute that keeps NetAcuity from trying to upgrade the base system.  This prevents random service restarts
+
 ## 1.0.7
 * Don't use the deploy flag.  This breaks setups where NetAcuity sits with other WT services and wipes away the DBs / breaks NetAcuity for over and hour post deploy of the WT services
 * Delete the init script on uninstall

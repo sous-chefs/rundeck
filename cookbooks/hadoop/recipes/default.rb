@@ -25,8 +25,9 @@ include_recipe 'java'
 	end
 end
 
+node.save # needed to populate attributes
+
 # get servers in this cluster
-node.save # needed so the roles list is populated for new nodes
 hadoop_namenode       = hadoop_search('hadoop_primarynamenode', 1)
 raise Chef::Exceptions::RoleNotFound, "hadoop_primarynamenode role not found" unless hadoop_namenode.count == 1
 hadoop_namenode       = hadoop_namenode.first
@@ -84,7 +85,7 @@ package 'hadoop' do
 end
 
 # manage hadoop configs
-%w[core-site.xml log4j.properties fair-scheduler.xml hadoop-env.sh hadoop-policy.xml hdfs-site.xml mapred-site.xml masters slaves taskcontroller.cfg].each do |template_file|
+%w[core-site.xml log4j.properties fair-scheduler.xml hadoop-env.sh hadoop-policy.xml hdfs-site.xml mapred-site.xml masters slaves taskcontroller.cfg mapred-queue-acls.xml].each do |template_file|
 	template "/etc/hadoop/#{template_file}" do
 		source "hadoop-conf/#{template_file}"
 		mode 00755

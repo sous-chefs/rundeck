@@ -1,4 +1,13 @@
-## Future
+## 1.1.5
+* Added max client connections to the configuration and set the default
+  to 60 to support topologies in pod with only a single zookeeper node.
+
+## 1.1.4
+* move node.save out of zookeeper_search and into default recipe
+
+## 1.1.3
+* changed search to role instead of roles
+* treat cluster_name 'default' and nil to be the same cluster
 
 ## 1.1.2
 * node.save at beginning

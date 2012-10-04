@@ -7,7 +7,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-# Sets up initial windows machine for use in a lab enviornment 
+# Sets up initial windows machine for use in a lab enviornment
 
 editor = node['wt_labstation']['editor']
 

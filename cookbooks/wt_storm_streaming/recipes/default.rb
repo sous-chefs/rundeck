@@ -36,16 +36,9 @@ if not Chef::Config.solo
     end
 end
 
-# fall back to attribs if search doesn't come up with any zookeeper nodes
-if zookeeper_quorum.count == 0
-    node[:zookeeper][:quorum].each do |i|
-        zookeeper_quorum << i
-    end
-end
-
 kafka = search(:node, "role:kafka_aggregator AND chef_environment:#{node.chef_environment}").first
-pod = node[:wt_realtime_hadoop][:pod]
-datacenter = node[:wt_realtime_hadoop][:datacenter]
+pod = node['wt_realtime_hadoop']['pod']
+datacenter = node['wt_realtime_hadoop']['datacenter']
 
 # Perform some really funky overrides that should never be done and need to be removed
 node['wt_storm_streaming']['zookeeper_quorum'] = zookeeper_quorum
@@ -71,7 +64,7 @@ if ENV["deploy_build"] == "true" then
       mode 00644
     end
 
-    # delete previous the install TEMP dirctory
+    # delete previous the install TEMP directory
     directory install_tmp do
       owner "root"
       group "root"
@@ -79,7 +72,7 @@ if ENV["deploy_build"] == "true" then
       recursive true
       action :delete
     end
-    
+
     # create the install TEMP dirctory
     directory install_tmp do
       owner "root"
@@ -111,7 +104,6 @@ if ENV["deploy_build"] == "true" then
 
 %w{
 activation-1.1.jar
-antlr-2.7.7.jar
 antlr-3.4.jar
 antlr-runtime-3.4.jar
 aopalliance-1.0.jar
@@ -146,14 +138,14 @@ jersey-server-1.4.jar
 jettison-1.1.jar
 jsp-2.1-6.1.14.jar
 jsp-api-2.1-6.1.14.jar
-kafka-0.7.1.jar
+kafka-0.7.2.jar
 libthrift-0.7.0.jar
 netty-3.3.0.Final.jar
 plexus-utils-1.5.6.jar
 protobuf-java-2.4.0a.jar
 regexp-1.3.jar
 scala-library-2.8.0.jar
-snappy-java-1.0.3.2.jar
+snappy-java-1.0.4.1.jar
 stax-api-1.0.1.jar
 streaming-analysis.jar
 UserAgentUtils-1.2.4.jar

@@ -26,13 +26,25 @@
 import sys
 import hashlib
 import httplib
-
+import urlparse
+from collections import defaultdict
 import cjson
 
 
 # functions #####################################################################
 
 account_ids = {}
+
+def group(lst, n):
+	"""group([0,3,4,10,2,3], 2) => [(0,3), (4,10), (2,3)]
+
+	Group a list into consecutive n-tuples. Incomplete tuples are
+	discarded e.g.
+
+	>>> group(range(10), 3)
+	[(0, 1, 2), (3, 4, 5), (6, 7, 8)]
+	"""
+	return zip(*[lst[i::n] for i in range(n)])
 
 
 # functions #####################################################################
@@ -45,6 +57,8 @@ def sha1(str):
 
 # body ##########################################################################
 
+errors = defaultdict(int)
+error_lines = {}
 
 # pull config distributor url from argv[1]
 config_distrib = sys.argv[1]
@@ -93,10 +107,16 @@ while True:
 		if not(tmp["dcs-id"] in account_ids):
 			continue
 
+		# the tag sends this param double encoded
+		if "WT.hm_url" in tmp:
+			tmp["WT.hm_url"] = urlparse.unquote(urlparse.unquote(tmp["WT.hm_url"]))
+
 		# determine page hash (workflow #3)
 		page_ident = tmp["cs-uri-stem"]
 		if "WT.hm_url" in tmp:
-			page_ident += "?" + tmp["WT.hm_url"]
+			a = tmp["WT.hm_url"].split(",")
+			if len(a) & 1 == 0: # make sure length is even
+				page_ident += "?" + "&".join(map(lambda x: "%s=%s"%(x[0], x[1]), group(a, 2))) # convert "k1,v1,k2,v2" -> "k1=v1&k2=v2"
 
 		# there may be multiple account-ids
 		account_id = account_ids[tmp["dcs-id"]]
@@ -108,5 +128,15 @@ while True:
 			sys.stdout.write("%s\n" % (cjson.encode(obj)))
 		
 	except Exception, e:
-		sys.stderr.write("error: %s on line %s\n" % (e, line))
+		errors[str(e)] += 1
+		if not(str(e) in error_lines):
+			error_lines[str(e)] = line
+
+
+# display error summary
+for k,v in errors.items():
+	sys.stderr.write("exception:\n")
+	sys.stderr.write(" * field: %s %i times\n" % (k, v))
+	sys.stderr.write(" * first-instance: %s\n\n" % (error_lines[k]))
+
 

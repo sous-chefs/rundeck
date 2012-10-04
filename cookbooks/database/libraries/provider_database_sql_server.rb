@@ -47,7 +47,12 @@ class Chef
         def action_drop
           if exists?
             begin
-              Chef::Log.debug("#{@new_resource}: Dropping database #{new_resource.database_name}")
+			  if @new_resource.drop_users
+                Chef::Log.debug("#{@new_resource}: Setting database to single user mode to close any connections. #{new_resource.database_name}")
+                db.execute("ALTER DATABASE #{new_resource.database_name} SET SINGLE_USER WITH ROLLBACK IMMEDIATE").do
+                @new_resource.updated_by_last_action(true)
+			  end
+			  Chef::Log.debug("#{@new_resource}: Dropping database #{new_resource.database_name}")
               db.execute("DROP DATABASE #{new_resource.database_name}").do
               @new_resource.updated_by_last_action(true)
             ensure

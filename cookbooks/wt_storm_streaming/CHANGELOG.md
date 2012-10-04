@@ -1,3 +1,28 @@
+## 2.1.9
+* Remove antlr-2.7.7.jar and change kafka to 0.7.2. Updated CAM urls
+
+## 2.1.8
+* This cookbook is functionally equivalent to 2.1.7. Originally the
+  change created a dep to kafka 0.7.2, but it should of gone to a
+  different branch. Since the cookbook is already uploaded to
+  chef the version will stay but dep has been removed.
+
+## 2.1.7
+* Created an attribute for the root logging level for log4j
+
+## 2.1.6
+* Changing back to kafka-0.7.1
+
+## 2.1.5
+* Added support for changing the field grouping and debug setting of a topo
+
+## 2.1.4
+* Making cookbook compatible with release artifact for streaming-1.0.1
+
+## 2.1.3
+* Address food critic warnings
+* Remove fallback to attributes if Zookeeper search fails
+
 ## 2.1.2
 * Added more cleanup logic
 
@@ -11,7 +36,7 @@
 * Added cam url
 
 # 2.0.13
-* Removed whitelist, updated config service endpoint 
+* Removed whitelist, updated config service endpoint
 
 # 2.0.12
 * Added CAM Urls
@@ -33,16 +58,16 @@
 
 # 2.0.6
 * Added browsers.ini file and the ini4j-0.5.2.jar
-  
+
 # 2.0.4
 * Changed attribute name to reference wt_storm which is where the attributes live in the environment
-  
+
 # 2.0.3
 * Removed misleading cluster_role from this cookbook as it wasn't getting used and we are setting that in the role.
-  
+
 # 2.0.1
 * Added lookup files and cookbook to lay them down.
-  
+
 # 2.0.0
 * Renamed wt_storm to wt_storm_realtime and wt_storm_streaming
 
