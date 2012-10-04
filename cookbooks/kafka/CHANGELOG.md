@@ -1,3 +1,11 @@
+## 1.0.13
+* Changed the num_partitions to have a default of 1, and set the partitions
+  to something higher per env.
+
+## 1.0.12
+* Added an attribute to allow for setting the number of partitions globally,
+  and set that value to 4 as the default.
+
 ## 1.0.11
 * Allow changing the Kafka local user / group
 * Log4J logging levels are now controlled via log4j_logging_level attribute

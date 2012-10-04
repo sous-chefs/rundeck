@@ -16,11 +16,54 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 # Install packages needed to manage repos
-package "nfs-common"
-package "reprepro"
-package "createrepo"
+%w{ nfs-common reprepro createrepo }.each do |pkg|
+  package pkg
+end
+
+gem_package "builder" do
+  action :install
+end
+
+# create the repo directory
+directory node['multi_repo']['repo_path'] do
+  action :create
+end
+
+# create the repo drop box directory
+directory node['multi_repo']['repo_dropbox_path'] do
+  action :create
+end
+
+# create the apt and yum repo directories
+%w{ yum/centos apt/ubuntu gems/gems }.each do |dir|
+  directory "#{node['multi_repo']['repo_path']}/#{dir}" do
+    recursive true
+    action :create
+  end
+end
+
+# create the extra repo directories if defined
+node['multi_repo']['extra_repo_subdirs'].each do |dir|
+  directory "#{node['multi_repo']['repo_path']}/#{dir}" do
+    recursive true
+    action :create
+  end
+end
+
+# copy the gem files from dropbox to the repo
+execute "move gems" do
+  command "mv #{node['multi_repo']['repo_dropbox_path']}/*.gem #{node['multi_repo']['repo_path']}/gems/gems/"
+  action :run
+  only_if File.exists?("#{node['multi_repo']['repo_dropbox_path']}/*.gem")
+end
+
+# copy the rpm files from dropbox to the repo
+execute "move rpms" do
+  command "mv #{node['multi_repo']['repo_dropbox_path']}/*.rpm #{node['multi_repo']['repo_path']}/yum/centos/"
+  action :run
+  only_if File.exists?("#{node['multi_repo']['repo_dropbox_path']}/*.rpm")
+end
 
 # install apache2 to host the repo
 include_recipe "apache2"
@@ -28,11 +71,6 @@ include_recipe "apache2"
 # disable the default apache site
 apache_site "000-default" do
   enable false
-end
-
-# create the repo directory
-directory "#{node['multi_repo']['repo_path']}" do
-  recursive true
 end
 
 # template the apache config for the repo site
@@ -46,8 +84,8 @@ template "#{node['apache']['dir']}/sites-available/repo" do
 end
 
 # mount the NFS mount on the repo
-mount "#{node['multi_repo']['repo_path']}" do
-  device "#{node['multi_repo']['repo_mount']}"
+mount node['multi_repo']['repo_path'] do
+  device node['multi_repo']['repo_mount']
   fstype "nfs"
   options "rw"
   action [:mount, :enable]

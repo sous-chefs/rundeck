@@ -1,3 +1,25 @@
+## 0.0.39
+* Add ulimit file limit increase to 4096 to the runit exec script
+
+## 0.0.38
+* Moved nofile to the wt_streaming_api_server role by way of the ulimit cookbook
+
+## 0.0.37
+* Added configuration for the new streaming endpoints in CAM
+
+## 0.0.36
+* Created an attribute for the root logging level for log4j
+
+## 0.0.35
+* Removed the force-stop from undeploy.rb
+
+## 0.0.34
+* Added log4j.xml to cookbook rather than pulling from build
+
+## 0.0.33
+* Address food critic warnings
+* Remove Zookeeper fallback to attributes
+
 ## 0.0.32
 * Remove the fallback URL for download_url
 

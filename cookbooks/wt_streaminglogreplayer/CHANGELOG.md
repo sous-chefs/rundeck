@@ -1,3 +1,6 @@
+## 0.0.28
+* Updated collectd script to include two new metrics: files-in-queue and active-dcsid
+
 ## 0.0.27
 * Added a reference to wt_streamingconfigservice. Im not sure if this was to be
   avoided, but the 0.0.26 version of the cookbook did not install in Hpod.

@@ -23,8 +23,9 @@ include_recipe 'runit'
 source_tarball  = node.zookeeper_attrib(:download_url)[/\/([^\/\?]+)(\?.*)?$/, 1]
 source_fullpath = File.join(Chef::Config[:file_cache_path], source_tarball)
 
+node.save # needed to populate attributes
+
 # get servers in this cluster
-node.save # needed so the roles list is populated for new nodes
 zookeeper_nodes = zookeeper_search('zookeeper').sort
 raise Chef::Exceptions::RoleNotFound, "zookeeper role not found" if zookeeper_nodes.count == 0
 
@@ -179,7 +180,7 @@ end
 
 # create collectd plugin for zookeeper if collectd has been applied.
 if node.attribute?('collectd')
-	template "#{node[:collectd][:plugin_conf_dir]}/collectd_zookeeper.conf" do
+	template "#{node['collectd']['plugin_conf_dir']}/collectd_zookeeper.conf" do
 		source "collectd_zookeeper.conf.erb"
 		owner 'root'
 		group 'root'

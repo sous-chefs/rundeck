@@ -183,12 +183,12 @@ name. It is a path in the default file system.
 
 <property>
 <name>mapreduce.job.acl-modify-job</name>
-<value>hadoop</value>
+<value><%= node.hadoop_attrib(:mapred, :job_acl_modify) %></value>
 </property>
 
 <property>
 <name>mapreduce.job.acl-view-job</name>
-<value>hadoop</value>
+<value><%= node.hadoop_attrib(:mapred, :job_acl_view) %></value>
 </property>
 
 <property>
