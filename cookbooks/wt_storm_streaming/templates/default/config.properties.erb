@@ -16,7 +16,7 @@ hbase.pool.size=80
 hbase.zookeeper.quorum=<%= @zookeeper_quorum  %><%= @zookeeper_quorum_path %>
 hbase.zookeeper.property.clientPort=<%=@zookeeper_clientport%>
 
-# Topology should be streaming or realtime
+# Topology should be streaming
 topology=streaming-topology
 
 # Streaming parameters, should have blank values in streaming
@@ -25,6 +25,8 @@ streaming.topology.zmq.emitter.bolt.count=<%= @streaming_topology_zmq_emitter_bo
 streaming.topology.zmq.emitter.znodeRoot=/StreamingZMQ
 streaming.topology.validation.bolt.count=<%= @streaming_topology_validation_bolt_count %>
 streaming.topology.augmentation.bolt.count=<%= @streaming_topology_augmentation_bolt_count %>
+streaming.topology.mode.local=<%= @streaming_topology_mode_local %>
+streaming.topology.field.grouping.local=<%= @streaming_topology_field_grouping %>
 
 # Zookeeper connection info (use this or audit.broker.list)
 audit.zk.connect=<%= @zookeeper_pairs %>
@@ -38,4 +40,8 @@ audit.topic=<%= @audit_topic %>
 # This is the base url for the CAM service
 webtrends.cam.baseUrl = <%=@cam_url%>
 # This is the url to the REST service for getting product provisioning
-webtrends.cam.provisioningDetail=%%baseUrl%%/cam/api/account/%%accountId%%/product/%%productId%%
+webtrends.cam.provisioningDetail=%%baseUrl%%/account/%%accountId%%/product/%%productId%%
+# This is the url to the REST service for stream types
+webtrends.cam.streamType=%%baseUrl%%/product/sapi/streamtypes
+# This is the url to the REST service for getting the blacklist
+webtrends.cam.blacklist=%%baseUrl%%/product/sapi/blacklist
