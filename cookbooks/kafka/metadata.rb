@@ -3,10 +3,10 @@ maintainer_email  "ivan.vonnagy@webtrends.com"
 license           "Apache 2.0"
 description       "Sets up Kafka"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version           "1.0.13"
-depends	"java"
-depends	"runit"
-depends	"zookeeper"
+version           "1.0.14"
+depends           "java"
+depends           "runit"
+depends           "zookeeper"
 
 recipe	"kafka::default",		"Base configuration for kafka"
 
