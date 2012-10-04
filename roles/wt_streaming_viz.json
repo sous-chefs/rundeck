@@ -1,6 +1,6 @@
 {
-  "name": "wt_cam",
-  "description": "Webtrends Common Account Management service",
+  "name": "wt_streaming_viz",
+  "description": "Webtrends Streaming Visualization UI",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
@@ -11,8 +11,7 @@
     "recipe[ms_dotnet35]",
     "recipe[ms_dotnet4]",
     "role[iis]",
-    "recipe[iis::mod_mvc3]",
-    "recipe[wt_cam]"
+    "recipe[wt_streaming_viz]"
   ],
   "env_run_lists": {
   }

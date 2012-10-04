@@ -3,6 +3,9 @@
   "description": "Webtrends Lab Workstation",
   "json_class": "Chef::Role",
   "default_attributes": {
+    "git": {
+	  "update_path": true
+	  }
   },
   "override_attributes": {
   },
@@ -10,7 +13,8 @@
   "run_list": [
     "recipe[notepadplusplus]",
     "recipe[firefox]",
-    "recipe[7-zip]"
+    "recipe[7-zip]",
+	"recipe[filezilla]"
   ],
   "env_run_lists": {
   }

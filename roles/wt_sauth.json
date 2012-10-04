@@ -1,6 +1,6 @@
 {
-  "name": "wt_cam",
-  "description": "Webtrends Common Account Management service",
+  "name": "wt_sauth",
+  "description": "Webtrends Secure Auth",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
@@ -12,7 +12,7 @@
     "recipe[ms_dotnet4]",
     "role[iis]",
     "recipe[iis::mod_mvc3]",
-    "recipe[wt_cam]"
+    "recipe[wt_sauth]"
   ],
   "env_run_lists": {
   }
