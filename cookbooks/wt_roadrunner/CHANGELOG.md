@@ -1,3 +1,6 @@
+## 1.0.1
+* Remove valid TeamCity download URL
+
 ## 1.0.0
 * Address food critic warnings
 
