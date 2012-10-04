@@ -3,6 +3,10 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+## 1.1.6
+* added more log messages to search method
+* decreased search timeout to 60 seconds
+
 ## 1.1.5
 * fixing jobtracker ui 'Dr.Who' errors when viewing tasks
 
