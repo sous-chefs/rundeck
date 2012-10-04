@@ -1,3 +1,6 @@
+## 1.0.14
+* Make JMX port an attribute within the cookbook instead of hardcoding to 9999
+
 ## 1.0.13
 * Changed the num_partitions to have a default of 1, and set the partitions
   to something higher per env.
