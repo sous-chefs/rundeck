@@ -101,6 +101,7 @@ Default directory locations are based on FHS. Change to suit your preferences.
 * `node['nagios']['default_contact_groups']`
 * `node['nagios']['sysadmin_email']` - default notification email.
 * `node['nagios']['sysadmin_sms_email']` - default notification sms.
+* `node['nagios']['users_databag_group']` - Users databag group considered Nagios admins.  Defaults to sysadmins
 * `node['nagios']['server_auth_method']` - authentication with the server can be done with openid (using `apache2::mod_auth_openid`), or htauth (basic). The default is openid, any other value will use htauth (basic).
 * `node['nagios']['templates']`
 * `node['nagios']['interval_length']` - minimum interval.
@@ -266,6 +267,8 @@ Here's an example of a service check for sshd that you could apply to all hostgr
     "command_line": "$USER1$/check_ssh $HOSTADDRESS$"
     }
 
+You may optionally define the service template for your service by including service_template and a valid template name.  Example:  "service_template": "special_service_template"
+
 Search Defined Hostgroups
 -------------------------
 
@@ -277,6 +280,19 @@ Here's an example to find all HP hardware systems for an "hp_systems" hostgroup:
 		"search_query": "dmi_system_manufacturer:HP",
 		"hostgroup_name": "hp_systems",
 		"id": "hp_systems"
+		}
+
+Monitoring Systems Not In Chef
+------------------------------
+
+Create a nagios\_unmanagedhosts data bag that will contain definitions for hosts not in Chef that you would like to manage.  "hostgroups" can be an existing Chef role (every Chef role gets a Nagios hostgroup) or a new hostgroup.
+Here's an example host definition:
+
+		{
+		"address": "webserver1.mydmz.dmz",
+		"hostgroups": ["web_servers","production_servers"],
+		"id": "webserver1",
+		"notifications": 1
 		}
 
 
