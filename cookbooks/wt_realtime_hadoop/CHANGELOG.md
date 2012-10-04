@@ -1,3 +1,6 @@
+## 1.0.4
+* Correct typos in wt_realtime_hadoop in the attributes.  Realtime should only have 1 L
+
 ## 1.0.3
 * Use the attribute in wt_common for the Linux install dir instead of hard coding the value
 
