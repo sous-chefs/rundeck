@@ -1,3 +1,6 @@
+## 2.1.11
+* Using kafka-0.7.1 rather than kafka-0.7.2, but patched with the concurrency fix.
+
 ## 2.1.10
 * Went back to kafka-0.7.1
 
