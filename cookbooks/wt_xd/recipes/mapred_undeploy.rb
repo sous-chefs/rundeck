@@ -12,23 +12,22 @@ install_dir = File.join(node['wt_common']['install_dir_linux'], 'wt_xd')
 log_dir     = node['wt_common']['log_dir_linux']
 
 %w[MapReduceFB MapReduceTW].each do |job|
-	cron job do
-		user 'webtrends'
-		action :delete
-	end
+  cron job do
+    user 'webtrends'
+    action :delete
+  end
 end
 
-
 %w[MapReduceFB MapReduceTW].each do |job|
-        cron job do
-                user 'hadoop'
-                action :delete
-        end
+  cron job do
+    user 'hadoop'
+    action :delete
+  end
 end
 
 # delete install directory (keep log dir)
 directory install_dir do
-	recursive true
-	action :delete
+  recursive true
+  action :delete
 end
 
