@@ -97,14 +97,14 @@ if deploy_mode?
   template "#{install_dir}\\web.config" do
   	source "web.config.erb"
   	variables(
-  	  :elmah_remote_access => node['wt_portfolio_admin']['elmah_remote_access'],
-  	  :custom_errors => node['wt_portfolio_admin']['custom_errors'],
+      :elmah_remote_access => node['wt_portfolio_admin']['elmah_remote_access'],
+      :custom_errors => node['wt_portfolio_admin']['custom_errors'],
       # proxy
-  	  :proxy_enabled => node['wt_portfolio_admin']['proxy_enabled'],
-      :proxy_address => node['wt_common']['http_proxy_url']
-  	  # forms auth
-  	  :machine_validation_key => user_data['wt_iis']['machine_validation_key'],
-  	  :machine_decryption_key => user_data['wt_iis']['machine_decryption_key']
+      :proxy_enabled => node['wt_portfolio_admin']['proxy_enabled'],
+      :proxy_address => node['wt_common']['http_proxy_url'],
+      # forms auth
+      :machine_validation_key => user_data['wt_iis']['machine_validation_key'],
+      :machine_decryption_key => user_data['wt_iis']['machine_decryption_key']
   	)
   end
 
