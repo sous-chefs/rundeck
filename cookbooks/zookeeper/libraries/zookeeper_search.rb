@@ -12,7 +12,7 @@ module ZookeeperSearch
 
 	def zookeeper_search(role, limit = 1000)
 
-		search_timeout = 120 # seconds
+		search_timeout = 60 # seconds
 
 		Chef::Log.info "zookeeper_cluster_name: #{node[:zookeeper][:cluster_name]}"
 
@@ -24,6 +24,7 @@ module ZookeeperSearch
 			query =  "chef_environment:#{node.chef_environment}"
 			query << " AND role:#{role}"
 			query << " AND zookeeper_cluster_name:#{node[:zookeeper][:cluster_name]}"
+			Chef::Log.info "zookeeper_search: #{query}"
 
 			i = 0
 			while results.count == 0 && i < search_timeout 
@@ -39,6 +40,8 @@ module ZookeeperSearch
 			query =  "chef_environment:#{node.chef_environment}"
 			query << " AND role:#{role}"
 			query << " AND NOT zookeeper_cluster_name:*"
+			Chef::Log.info "zookeeper_search: #{query}"
+
 			search(:node, query).each {|n| results << n[:fqdn] }
 
 		else
@@ -47,6 +50,7 @@ module ZookeeperSearch
 			query =  "chef_environment:#{node.chef_environment}"
 			query << " AND role:#{role}"
 			query << " AND zookeeper_cluster_name:#{node[:zookeeper][:cluster_name]}"
+			Chef::Log.info "zookeeper_search: #{query}"
 
 			i = 0
 			while results.count == 0 && i < search_timeout
@@ -60,12 +64,14 @@ module ZookeeperSearch
 
 		end
 
+		Chef::Log.warn  "zookeeper_search: slept for #{i} seconds." if i > 0
+		Chef::Log.debug "zookeeper_search: #{role}: nodes found: #{results.count}"
 		if results.count == 0 || results.count > limit
 			Chef::Log.error "zookeeper_search: #{role}: nodes found: #{results.count}"
+		else
+			Chef::Log.info "zookeeper_search: #{role}: #{results.first}"
 		end
-		Chef::Log.debug "zookeeper_search: #{role}: nodes found: #{results.count}"
-		Chef::Log.warn  "zookeeper_search: slept for #{i} seconds." if i > 0
-		
+
 		results
 
 	end
