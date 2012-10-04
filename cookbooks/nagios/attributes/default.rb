@@ -27,7 +27,7 @@ default['nagios']['group'] = "nagios"
 case node['platform']
 when "ubuntu","debian"
   default['nagios']['plugin_dir'] = "/usr/lib/nagios/plugins"
-when "redhat","centos","fedora","scientific"
+when "redhat","centos","fedora","scientific","amazon"
   default['nagios']['plugin_dir'] = "/usr/lib64/nagios/plugins"
 else
   default['nagios']['plugin_dir'] = "/usr/lib/nagios/plugins"
