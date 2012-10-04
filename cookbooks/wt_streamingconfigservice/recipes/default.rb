@@ -68,41 +68,39 @@ directory "#{install_dir}/conf" do
 end
 
 if ENV["deploy_build"] == "true" then
-    log "The deploy_build value is true so we will grab the tar ball and install"
+  log "The deploy_build value is true so we will grab the tar ball and install"
 
-    # download the application tarball
-    remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-			source download_url
-			mode 00644
-    end
+  # download the application tarball
+  remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+    source download_url
+    mode 00644
+  end
 
-    # uncompress the application tarball into the install directory
-    execute "tar" do
-			user  "root"
-			group "root"
-			cwd install_dir
-			command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-    end
+  # uncompress the application tarball into the install directory
+  execute "tar" do
+    user  "root"
+    group "root"
+    cwd install_dir
+    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+  end
 
+  # delete the application tarball
+  execute "delete_install_source" do
+    user "root"
+    group "root"
+    command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
+    action :run
+  end
 
-
-    # delete the application tarball
-    execute "delete_install_source" do
-        user "root"
-        group "root"
-        command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
-        action :run
-    end
-
-    # create a runit service
-    runit_service "streamingconfigservice" do
-    options({
-        :log_dir => log_dir,
-        :install_dir => install_dir,
-        :java_home => java_home,
-        :user => user
-    })
-    end
+  # create a runit service
+  runit_service "streamingconfigservice" do
+  options({
+    :log_dir => log_dir,
+    :install_dir => install_dir,
+    :java_home => java_home,
+    :user => user
+  })
+  end
 
 end
 
@@ -123,32 +121,32 @@ template "#{install_dir}/bin/service-control" do
 end
 
 template "#{install_dir}/conf/monitoring.properties" do
-        source "monitoring.properties.erb"
-        owner "root"
-        group "root"
-        mode 00755
-        variables({
-                :wt_monitoring => node[:wt_monitoring]
-        })
+  source "monitoring.properties.erb"
+  owner "root"
+  group "root"
+  mode 00755
+  variables({
+    :wt_monitoring => node[:wt_monitoring]
+  })
 end
 
 template "#{install_dir}/conf/config.properties" do
-        source "config.properties.erb"
-        owner "webtrends"
-        group "webtrends"
-        mode  00640
-        variables({
-                :port => node['wt_streamingconfigservice']['port'],
-                :camdbserver => node['wt_streamingconfigservice']['camdbserver'],
-                :camdbname => node['wt_streamingconfigservice']['camdbname'],
-                :camdbuser => camdbuser,
-                :camdbpwd => camdbpwd,
-                :masterdbserver => node['wt_masterdb']['master_host'],
-                :masterdbname => node['wt_masterdb']['master_db'],
-                :masterdbuser => masterdbuser,
-                :masterdbpwd => masterdbpwd,
-                :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
-        })
+  source "config.properties.erb"
+  owner "webtrends"
+  group "webtrends"
+  mode  00640
+  variables({
+    :port => node['wt_streamingconfigservice']['port'],
+    :camdbserver => node['wt_streamingconfigservice']['camdbserver'],
+    :camdbname => node['wt_streamingconfigservice']['camdbname'],
+    :camdbuser => camdbuser,
+    :camdbpwd => camdbpwd,
+    :masterdbserver => node['wt_masterdb']['master_host'],
+    :masterdbname => node['wt_masterdb']['master_db'],
+    :masterdbuser => masterdbuser,
+    :masterdbpwd => masterdbpwd,
+    :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
+  })
 end
 
 #Create collectd plugin for streamingconfigservice JMX objects if collectd has been applied.
