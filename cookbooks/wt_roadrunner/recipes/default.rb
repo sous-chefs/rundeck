@@ -144,4 +144,3 @@ service node['wt_roadrunner']['service_name'] do
 	action :start
 	ignore_failure true
 end
-
