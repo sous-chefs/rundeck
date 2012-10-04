@@ -16,10 +16,7 @@ install_dir = File.join(node['wt_common']['install_dir_linux'], 'wt_xd')
 log_dir     = node['wt_common']['log_dir_linux']
 
 # paths for jobtracker
-
 job_tracker_uri = search(:node, "role:hadoop_jobtracker AND chef_environment:#{node['wt_xd']['environment']}").first[:fqdn]
-
-
 
 # clean up old deploy
 include_recipe 'wt_xd::mapred_undeploy' if deploy_mode?
@@ -40,7 +37,6 @@ directory "/var/lock/webtrends" do
   mode 00755
   action :create
 end
-
 
 
 # deploy build
@@ -128,6 +124,7 @@ cron 'MapReduceFB' do
 	minute '*/05'
 	command File.join(install_dir, 'MapReduceFB.sh')
 end
+
 cron 'MapReduceTW' do
 	user 'hadoop'
 	minute '*/05'
