@@ -55,14 +55,14 @@ end
 execute "move gems" do
   command "mv #{node['multi_repo']['repo_dropbox_path']}/*.gem #{node['multi_repo']['repo_path']}/gems/gems/"
   action :run
-  only_if File.exists?("#{node['multi_repo']['repo_dropbox_path']}/*.gem")
+  only_if Dir.glob("#{node['multi_repo']['repo_dropbox_path']}/*.gem")
 end
 
 # copy the rpm files from dropbox to the repo
 execute "move rpms" do
   command "mv #{node['multi_repo']['repo_dropbox_path']}/*.rpm #{node['multi_repo']['repo_path']}/yum/centos/"
   action :run
-  only_if File.exists?("#{node['multi_repo']['repo_dropbox_path']}/*.rpm")
+  only_if Dir.glob("#{node['multi_repo']['repo_dropbox_path']}/*.rpm")
 end
 
 # install apache2 to host the repo
