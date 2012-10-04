@@ -26,13 +26,6 @@ if not Chef::Config.solo
   end
 end
 
-# fall back to attribs if search doesn't come up with any zookeeper nodes
-if zookeeper_quorum.count == 0
-  node['zookeeper']['quorum'].each do |i|
-    zookeeper_quorum << i
-  end
-end
-
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploy first"
@@ -63,20 +56,8 @@ log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
 
-# step up nofile
-cookbook_file "/etc/security/limits.conf" do
-  source "limits.conf"
-  mode 00644
-end
-
-# enable pam_limits.so
-#cookbook_file "/etc/pam.d/common-session" do
-#  source "common-session"
-#  mode 00644
-#end
-
 # create the log directory
-directory "#{log_dir}" do
+directory log_dir do
   owner   user
   group   group
   mode    00755
@@ -110,7 +91,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
   usagedbname = node['wt_streamingapi']['usagedbname']
 
 
-  %w[monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
+  %w[log4j.xml monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source	"#{template_file}.erb"
       owner "root"
@@ -167,9 +148,7 @@ if ENV["deploy_build"] == "true" then
       :log_dir => log_dir,
       :install_dir => install_dir,
       :java_home => java_home,
-      :user => user,
-      :java_class => "com.webtrends.streaming.websocket.StreamingAPIDaemon",
-      :java_jmx_port => node['wt_monitoring']['jmx_port'],
+      :java_jmx_port => node['wt_streamingapi']['jmx_port'],
       :java_opts => java_opts
     })
   end
@@ -200,7 +179,7 @@ end
 
 #Create collectd plugin for streaming api JMX objects if collectd has been applied.
 if node.attribute?("collectd")
-  template "#{node[:collectd][:plugin_conf_dir]}/collectd_streamingapi.conf" do
+  template "#{node['collectd']['plugin_conf_dir']}/collectd_streamingapi.conf" do
     source "collectd_streamingapi.conf.erb"
     owner "root"
     group "root"

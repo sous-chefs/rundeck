@@ -1,4 +1,5 @@
-## Future
+## 1.0.2:
+* Modify the partitioning setup based on Webtrends standards for Ubuntu Precise
 
 ## 1.0.1:
 * Appamor doesn't need to be disabled in precise.

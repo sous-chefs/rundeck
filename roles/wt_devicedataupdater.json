@@ -1,0 +1,16 @@
+{
+  "name": "wt_devicedataupdater",
+  "description": "Webtrends Device Data Updater",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[vc2010]",
+    "recipe[wt_devicedataupdater]"
+  ],
+  "env_run_lists": {
+  }
+}

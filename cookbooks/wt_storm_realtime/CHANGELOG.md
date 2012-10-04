@@ -1,3 +1,10 @@
+## 2.1.5
+* Search for kafka_aggregator not kafka
+
+# 2.1.4
+* Address food critic warnings
+* Remove fallback to attributes in Zookeeper search
+
 # 2.1.3
 * Added more clean up logic
 
@@ -10,7 +17,7 @@
 # 2.1.0
 * Finished splitting storm_streaming and storm_realtime
 
-# 2.0.10 
+# 2.0.10
 * updated cs.url and removed whitelist setting
 
 # 2.0.9

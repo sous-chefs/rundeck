@@ -61,14 +61,14 @@ else
     source "htpasswd.users.erb"
     owner node['nagios']['user']
     group web_group
-    mode 0640
+    mode 00640
     variables(
       :sysadmins => sysadmins
     )
   end
 end
 
-# search for nodes in all environments if multi_environment_monitoring is enabled
+# find nodes to monitor.  Search in all environments if multi_environment_monitoring is enabled
 if node['nagios']['multi_environment_monitoring']
   nodes = search(:node, "hostname:[* TO *]")
 else
@@ -79,6 +79,17 @@ if nodes.empty?
   Chef::Log.info("No nodes returned from search, using this node so hosts.cfg has data")
   nodes = Array.new
   nodes << node
+end
+
+# if using multi environment monitoring then grab the list of environments
+if node['nagios']['multi_environment_monitoring']
+  environment_list = Array.new
+  search(:environment, "*:*") do |e|
+    role_list << e.name
+    search(:node, "chef_environment:#{e.name}") do |n|
+      service_hosts[e.name] = n['hostname']
+    end
+  end
 end
 
 # find all unique platforms to create hostgroups
@@ -130,11 +141,6 @@ rescue Net::HTTPServerException
   Chef::Log.info("Search for nagios_hostgroups data bag failed, so we'll just move on.")
 end
 
-members = Array.new
-sysadmins.each do |s|
-  members << s['id']
-end
-
 # maps nodes into nagios hostgroups
 role_list = Array.new
 service_hosts= Hash.new
@@ -158,25 +164,15 @@ rescue Net::HTTPServerException
   Chef::Log.info("Search for nagios_unmanagedhosts data bag failed, so we'll just move on.")
 end
 
+# Add unmanaged host hostgroups to the role_list if they're not already present
 if unmanaged_hosts.nil? || unmanaged_hosts.empty?
   Chef::Log.info("No unmanaged hosts returned from data bag search.")
-  unmanaged_hosts = Array.new
-end
-
-# add all hostgroups defined in unmanaged hosts to the role_list array
-unmanaged_hosts.each do |h|
-  if !unmanaged_hostgroups.include?(h['hostgroup'])
-    role_list << h['hostgroup']
-  end
-end
-
-# if using multi environment monitoring then grab the list of environments
-if node['nagios']['multi_environment_monitoring']
-  environment_list = Array.new
-  search(:environment, "*:*") do |e|
-    role_list << e.name
-    search(:node, "chef_environment:#{e.name}") do |n|
-      service_hosts[e.name] = n['hostname']
+else
+  unmanaged_hosts.each do |host|
+    host['hostgroups'].each do |nested_hostgroup|
+      if !role_list.include?(nested_hostgroup) and !os_list.include?(nested_hostgroup)
+        role_list << nested_hostgroup
+      end
     end
   end
 end
@@ -187,6 +183,10 @@ else
   public_domain = node['domain']
 end
 
+members = Array.new
+sysadmins.each do |s|
+  members << s['id']
+end
 
 nagios_conf "nagios" do
   config_subdir false

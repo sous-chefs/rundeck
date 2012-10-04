@@ -12,6 +12,8 @@ default['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'] = 10
 default['wt_storm_streaming']['streaming_topology_in_session_bolt_count'] = 0
 default['wt_storm_streaming']['streaming_topology_validation_bolt_count'] = 10
 default['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'] = 1
+default['wt_storm_streaming']['streaming.topology.field.grouping.local']="true"
+default['wt_storm_streaming']['streaming.topology.mode.local']="false"
 default['wt_storm_streaming']['topic_list'] = []
 
 # debug setting, setting this to true in a pod would run the system on only one host
@@ -94,4 +96,3 @@ default['wt_storm_streaming']['topology']['state_synchronization_timeout_secs'] 
 default['wt_storm_streaming']['topology']['stats_sample_rate'] = 0.05
 default['wt_storm_streaming']['topology']['fall_back_on_java_serialization'] = true
 default['wt_storm_streaming']['topology']['worker_childopts'] = "null"
-

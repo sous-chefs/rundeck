@@ -9,14 +9,18 @@ auditlistener.enabled= <%= node['wt_streamingauditor']['auditlistener_enabled'] 
 # The root node name for SAPI nodes
 sapi.znode.root=/StreamingZMQ/<%= @datacenter %>_<%= @pod %>
 
-# The interval (minutes) to run the roundtrip test
+# This is the url for the AUTH service to get the token
+roundtrip.authentication.url = <%= node['wt_cam']['auth_service_url'] %>/auth/api
+# The client id for wt_monitoring
+roundtrip.clientid=<%=@client_id%>
+# The client secret for wt_monitoring
+roundtrip.client.secret=<%=@client_secret%>
+# The interval (seconds) to run the roundtrip test
 roundtrip.interval=<%= node['wt_streamingauditor']['roundtrip_interval'] %>
 # The SCS dcsid to use for the round-trip auditing
 roundtrip.scs.dcsid=<%= node['wt_streamingauditor']['roundtrip_scs_dcsid'] %>
 # The tag server dcsid to use for the round-trip auditing
 roundtrip.tagserver.dcsid=<%= node['wt_streamingauditor']['roundtrip_tagserver_dcsid'] %>
-# The token to use for the round-trip auditing
-roundtrip.token=<%= node['wt_streamingauditor']['roundtrip_token'] %>
 # The url to SCS
 roundtrip.scs.url=<%= node['wt_streamingauditor']['roundtrip_scs_url'] %>
 # The url to the tag server(s)
