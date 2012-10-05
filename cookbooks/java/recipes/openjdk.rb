@@ -39,11 +39,19 @@ ruby_block  "set-env-java-home" do
   end
 end
 
+file "/etc/profile.d/jdk.sh" do
+  content <<-EOS
+    export JAVA_HOME=#{node['java']['java_home']}
+  EOS
+  mode 0755
+end
+
+
 if platform?("ubuntu","debian","redhat","centos","fedora","scientific","amazon")
   ruby_block "update-java-alternatives" do
     block do
       arch = node['kernel']['machine'] =~ /x86_64/ ? "x86_64" : "i386"
-      arch = 'amd64' if arch == 'x86_64' && node["platform_version"].to_f >= 12.04
+      arch = 'amd64' if arch == 'x86_64' && platform?("ubuntu") && node["platform_version"].to_f >= 12.04
       if platform?("ubuntu", "debian") and jdk_version == 6
         java_name = if node["platform_version"].to_f >= 11.10
           "java-1.6.0-openjdk"
