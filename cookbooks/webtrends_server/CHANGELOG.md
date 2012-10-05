@@ -1,7 +1,8 @@
 ## Future
-
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
+## 1.8.6
+ * Removed the force install of rubyzip
 ## 1.8.5
  * Fixed ordering of correctly setting gem repo
  
