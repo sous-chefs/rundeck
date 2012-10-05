@@ -1,3 +1,5 @@
+## 1.1.8
+* Added anonymous access for css 
 ## 0.1.6
 * Fixed error in config xml
 ## 0.1.3
