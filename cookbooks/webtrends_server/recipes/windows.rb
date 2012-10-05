@@ -71,5 +71,3 @@ execute "clear_gem_repo" do
   command "gem sources -r http://rubygems.org/"  
   action :nothing
 end
-
-gem_package "rubyzip"
