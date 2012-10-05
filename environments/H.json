@@ -302,7 +302,7 @@
             "elmah_remote_access": "yes",
             "custom_errors": "Off"
         },
-        "wt_realtime_hadoop": {
+       "wt_realtime_hadoop": {
             "datacenter": "Lab",
             "pod": "H"
         },
