@@ -1,6 +1,12 @@
 Future
 	Change IIS site bindings
 	Search alternate/current environment for cache_hosts
+## 1.0.7
+	* Added chomp to deploy build check	
+## 1.0.6
+	* Added .eql to deploy build check
+## 1.0.5
+	* Removed webpi > in metadata
 ## 1.0.4
 	* Updated Castle.Core binding redirect
 ## 1.0.3
