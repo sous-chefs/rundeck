@@ -6,7 +6,7 @@
         "webpi": "= 1.0.3",
         "webtrends_server": "= 1.8.3",
         "windows": "= 1.2.12",
-        "wt_analytics_ui": "= 1.0.5",
+        "wt_analytics_ui": "= 1.0.8",
         "wt_base": "= 0.10.53",
         "wt_cam": "= 1.0.9",
         "wt_monitoring": "= 0.0.2",
