@@ -287,7 +287,16 @@
             "geo_url": "hutil01.staging.dmz", 
             "use_proxy": false, 
             "version": "460"
-        }, 
+        },
+        "wt_portfolio_admin": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lastSuccessful/Portfolio.Admin.zip",
+            "cam_auth_url": "https://hsauth.webtrends.com",
+            "sapi_url": "ws://hsapi01.staging.dmz:8080",
+            "proxy_enabled": "true",
+            "proxy_address": "http://sproxy02.staging.dmz:3128",
+            "elmah_remote_access": "yes",
+            "custom_errors": "Off"
+        },		
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
             "pod": "H"
