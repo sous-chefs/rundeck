@@ -330,8 +330,8 @@
             "streaming_topology_validation_bolt_count": 10, 
             "streaming_topology_zmq_emitter_bolt_count": 1, 
             "topic_list": [
-                "Lab_H_scsRawHits:6",
-                "Lab_H_lrRawHits:6"
+                "Lab_H_lrRawHits:6",
+                "Lab_H_scsRawHits:6"
             ], 
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
