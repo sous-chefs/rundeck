@@ -8,7 +8,7 @@
 #
 
 log "Deploy build is #{ENV["deploy_build"]}"
-if ENV["deploy_build"].chomp.eql?("true") then
+if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploy first"  
   include_recipe "wt_analytics_ui::uninstall"
   include_recipe "ms_dotnet4::regiis"
