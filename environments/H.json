@@ -294,7 +294,7 @@
             "use_proxy": false,
             "version": "460"
         },
-        "wt_portfolio_admin": {
+	"wt_portfolio_admin": {
             "port": 86,
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lastSuccessful/Portfolio.Admin.zip",
             "proxy_enabled": "true",
