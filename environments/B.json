@@ -165,7 +165,7 @@
         "wt_cam": {
           "db_name": "cam",
           "db_server": "bcamdb01.staging.dmz",
-          "cam_service_url": "http://bcam02.staging.dmz",
+          "cam_service_url": "http://bcam.staging.dmz",
           "auth_service_url": "https://bsauth.webtrends.com",
           "cam_plugins": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt265/35083:id/Plugins.zip"
@@ -270,7 +270,7 @@
 	    "sapi_service_url": "ws://bsapi01.staging.dmz:8080"
         },
         "wt_streaming_viz": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/35039:id/Streaming.Viz.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/35380:id/Streaming.Viz.zip",
             "port": 85,
             "proxy_enabled": "true",
             "elmah_remote_access": "yes",
