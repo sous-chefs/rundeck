@@ -1,3 +1,5 @@
+## 1.0.4
+	* Fixing powershell
 ## 1.0.3
 	* Added commment line to templates
 ## 1.0.2
