@@ -8,8 +8,8 @@
 # This recipe uninstalls existing Search Service installs
 
 # destinations
-install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['install_dir'].gsub(/[\\\/]+/,"\\"))
-log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['log_dir'].gsub(/[\\\/]+/,"\\"))
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_sync']['install_dir'].gsub(/[\\\/]+/,"\\"))
+log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_sync']['log_dir'].gsub(/[\\\/]+/,"\\"))
 
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
@@ -20,7 +20,7 @@ if (install_dir =~ /^(\w:)\\.*$/)
 	install_dir_drive = $1
 end
 
-sc_cmd = "\"%WINDIR%\\System32\\sc.exe delete \"#{node['wt_sync']['service_name']}\""
+sc_cmd = "\"%WINDIR%\\System32\\sc.exe\" delete \"#{node['wt_sync']['service_name']}\""
 
 service node['wt_sync']['service_name'] do
 	action :stop
@@ -39,7 +39,7 @@ powershell "verify service removal" do
   code <<-EOH
 	$WtServices = get-wmiobject -query 'select * from win32_service Where DisplayName Like "%Webtrends%"'
 	Foreach ($Service in $WtServices){ 
-    If ($Service){Stop-Process -Processname ($Service.Pathname -Replace ".*\\","" -Replace ".exe","") -Force -ErrorAction SilentlyContinue}
+    If ($Service){Stop-Process -Processname ($Service.Pathname -Replace ".*\\\\","" -Replace ".exe","") -Force -ErrorAction SilentlyContinue}
 	}
 	EOH
 end
