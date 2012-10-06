@@ -1,3 +1,5 @@
+## 1.0.5
+	* Trying 4 escape chars
 ## 1.0.4
 	* Fixing powershell
 ## 1.0.3
