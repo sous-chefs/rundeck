@@ -1,3 +1,5 @@
+## 1.0.6
+	* Removing extra escape char from sc delete command
 ## 1.0.5
 	* Trying 4 escape chars
 ## 1.0.4
