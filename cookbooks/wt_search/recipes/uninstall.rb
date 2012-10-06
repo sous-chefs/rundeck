@@ -20,7 +20,7 @@ if (install_dir =~ /^(\w:)\\.*$/)
 	install_dir_drive = $1
 end
 
-sc_cmd = "\"%WINDIR%\\System32\\sc.exe delete \"#{node['wt_search']['service_name']}\""
+sc_cmd = "\"%WINDIR%\\System32\\sc.exe delete #{node['wt_search']['service_name']}\""
 
 service node['wt_search']['service_name'] do
 	action :stop
