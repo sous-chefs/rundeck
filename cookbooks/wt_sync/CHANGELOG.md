@@ -1,3 +1,5 @@
+## 1.0.4
+	* Fixed uninstall process
 ## 1.0.3
 	* Fixed attribute name.
 ## 1.0.2
