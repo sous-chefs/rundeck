@@ -3,6 +3,6 @@ maintainer_email "kendrick.martin@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures Webtrends Search Service"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.0.6"
+version          "1.0.7"
 depends          "wt_base"
 depends          "powershell"
