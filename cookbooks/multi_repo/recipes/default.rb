@@ -52,18 +52,18 @@ node['multi_repo']['extra_repo_subdirs'].each do |dir|
 end
 
 # copy the gem files from dropbox to the repo
-execute "move gems" do
-  command "mv #{node['multi_repo']['repo_dropbox_path']}/*.gem #{node['multi_repo']['repo_path']}/gems/gems/"
-  action :run
-  only_if Dir.glob("#{node['multi_repo']['repo_dropbox_path']}/*.gem")
-end
+#execute "move gems" do
+#  command "mv #{node['multi_repo']['repo_dropbox_path']}/*.gem #{node['multi_repo']['repo_path']}/gems/gems/"
+#  action :run
+#  only_if Dir.glob("#{node['multi_repo']['repo_dropbox_path']}/*.gem")
+#end
 
 # copy the rpm files from dropbox to the repo
-execute "move rpms" do
-  command "mv #{node['multi_repo']['repo_dropbox_path']}/*.rpm #{node['multi_repo']['repo_path']}/yum/centos/"
-  action :run
-  only_if Dir.glob("#{node['multi_repo']['repo_dropbox_path']}/*.rpm")
-end
+#execute "move rpms" do
+#  command "mv #{node['multi_repo']['repo_dropbox_path']}/*.rpm #{node['multi_repo']['repo_path']}/yum/centos/"
+#  action :run
+#  only_if Dir.glob("#{node['multi_repo']['repo_dropbox_path']}/*.rpm")
+#end
 
 # install apache2 to host the repo
 include_recipe "apache2"
