@@ -1,3 +1,7 @@
+## 1.0.0
+* Clean up deploy logging
+* Change port attribute from string to int
+
 ## 0.0.29
 * Use a jmx_port attribute within the cookbook and not in wt_monitoring
 
