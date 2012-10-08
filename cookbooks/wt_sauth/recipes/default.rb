@@ -68,6 +68,13 @@ wt_base_icacls install_dir do
 	perm :modify
 end
 
+# Allow anonymous access to scripts, etc
+wt_base_icacls install_dir do
+	action :grant
+	user "IUSR"
+	perm :read
+end
+
 wt_base_icacls log_dir do
 	action :grant
 	user user_data['wt_common']['ui_user']

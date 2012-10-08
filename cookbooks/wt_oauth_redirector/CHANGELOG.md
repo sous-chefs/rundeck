@@ -1,3 +1,6 @@
+## 0.0.12
+* Remove the default download URL path to TeamCity
+
 ## 0.0.11
 * Changed runit script to use explicit path to thin gem
 
