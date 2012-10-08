@@ -1,3 +1,6 @@
+## 1.0.3
+* Moving variables back to inside the def processTemplates
+
 ## 1.0.2
 * Using data from node rather then as a variable
 
