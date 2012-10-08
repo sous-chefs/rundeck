@@ -51,15 +51,6 @@ auth_data = data_bag_item('authorization', node.chef_environment)
 usagedbuser  = auth_data['wt_streamingapi']['usagedbuser']
 usagedbpwd = auth_data['wt_streamingapi']['usagedbpwd']
 
-auth_url = node['wt_sauth']['auth_service_url']
-auth_host = auth_url.sub("https://","").sub("http://","")
-proxy_host = node['wt_streamingapi']['proxy_host']
-cam_url = node['wt_cam']['cam_service_url']
-port = node['wt_streamingapi']['port']
-usagedbserver = node['wt_streamingapi']['usagedbserver']
-usagedbname = node['wt_streamingapi']['usagedbname']
-
-
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -92,6 +83,16 @@ end
 
 def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix, usagedbuser, usagedbpwd)
   log "Updating the template files"
+	
+	auth_url = node['wt_sauth']['auth_service_url']
+	auth_host = auth_url.sub("https://","").sub("http://","")
+	proxy_host = node['wt_streamingapi']['proxy_host']
+	cam_url = node['wt_cam']['cam_service_url']
+	port = node['wt_streamingapi']['port']
+	usagedbserver = node['wt_streamingapi']['usagedbserver']
+	usagedbname = node['wt_streamingapi']['usagedbname']
+
+	
 	%w[log4j.xml monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source	"#{template_file}.erb"
@@ -99,7 +100,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
       group "root"
       mode  00644
       variables({
-        :auth_url => auth_url,
+        :auth_url => node['wt_sauth']['auth_service_url'],
         :auth_host => auth_host,
         :proxy_host => proxy_host,
         :cam_url => cam_url,
