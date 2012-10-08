@@ -14,7 +14,6 @@ include_recipe "runit"
 %w{zeromq jzmq}.each do |pkg|
   package pkg do
     action :install
-    options "--force-yes"
   end
 end
 
@@ -26,9 +25,8 @@ if not Chef::Config.solo
   end
 end
 
-log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploy first"
+  log "The deploy_build value is true so un-deploying first"
   include_recipe "wt_streamingapi::undeploy"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
@@ -83,7 +81,7 @@ end
 
 def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix, usagedbuser, usagedbpwd)
   log "Updating the template files"
-	
+	++
 	auth_url = node['wt_sauth']['auth_service_url']
 	auth_host = auth_url.sub("https://","").sub("http://","")
 	proxy_host = node['wt_streamingapi']['proxy_host']
@@ -92,7 +90,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
 	usagedbserver = node['wt_streamingapi']['usagedbserver']
 	usagedbname = node['wt_streamingapi']['usagedbname']
 
-	
+
 	%w[log4j.xml monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source	"#{template_file}.erb"
