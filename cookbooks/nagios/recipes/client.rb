@@ -22,9 +22,12 @@
 # limitations under the License.
 #
 
+# determine hosts that NRPE will allow monitoring from
 mon_host = ['127.0.0.1']
 
-if node['nagios']['multi_environment_monitoring'] == true
+if node.run_list.roles.include?(node['nagios']['server_role'])
+  mon_host << node['ipaddress']
+elsif node['nagios']['multi_environment_monitoring']
   search(:node, "role:#{node['nagios']['server_role']}") do |n|
    mon_host << n['ipaddress']
   end
@@ -79,7 +82,7 @@ service "nagios-nrpe-server" do
    else
      service_name "nagios-nrpe-server"
   end
-  action [:enable,:start]
+  action [:enable, :start]
   supports :restart => true, :reload => true
 end
 

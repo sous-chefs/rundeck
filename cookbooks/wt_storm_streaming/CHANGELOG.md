@@ -1,3 +1,9 @@
+## 2.1.11
+* Using kafka-0.7.1 rather than kafka-0.7.2, but patched with the concurrency fix.
+
+## 2.1.10
+* Went back to kafka-0.7.1
+
 ## 2.1.9
 * Remove antlr-2.7.7.jar and change kafka to 0.7.2. Updated CAM urls
 

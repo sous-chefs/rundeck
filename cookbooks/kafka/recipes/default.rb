@@ -112,9 +112,9 @@ template "#{install_dir}/bin/service-control" do
   mode  00755
   variables({
         :install_dir => install_dir,
-		:log_dir => node[:kafka][:log_dir],
+        :log_dir => node[:kafka][:log_dir],
         :java_home => java_home,
-        :java_jmx_port => 9999,
+        :java_jmx_port => node[:kafka][:jmx_port],
         :java_class => "kafka.Kafka",
         :user => user
   })

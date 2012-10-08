@@ -81,6 +81,22 @@ if nodes.empty?
   nodes << node
 end
 
+# maps nodes into nagios hostgroups
+role_list = Array.new
+service_hosts= Hash.new
+search(:role, "*:*") do |r|
+  role_list << r.name
+  if node['nagios']['multi_environment_monitoring']
+    search(:node, "roles:#{r.name}") do |n|
+      service_hosts[r.name] = n['hostname']
+    end
+  else
+    search(:node, "roles:#{r.name} AND chef_environment:#{node.chef_environment}") do |n|
+      service_hosts[r.name] = n['hostname']
+    end
+  end
+end
+
 # if using multi environment monitoring then grab the list of environments
 if node['nagios']['multi_environment_monitoring']
   environment_list = Array.new
@@ -96,9 +112,9 @@ end
 os_list = Array.new
 
 nodes.each do |n|
-	if !os_list.include?(n['os'])
-		os_list << n['os']
-	end
+  if !os_list.include?(n['os'])
+    os_list << n['os']
+  end
 end
 
 # load Nagios services from the nagios_services data bag
@@ -141,21 +157,6 @@ rescue Net::HTTPServerException
   Chef::Log.info("Search for nagios_hostgroups data bag failed, so we'll just move on.")
 end
 
-# maps nodes into nagios hostgroups
-role_list = Array.new
-service_hosts= Hash.new
-search(:role, "*:*") do |r|
-  role_list << r.name
-  if node['nagios']['multi_environment_monitoring']
-    search(:node, "roles:#{r.name}") do |n|
-      service_hosts[r.name] = n['hostname']
-    end
-  else
-    search(:node, "roles:#{r.name} AND chef_environment:#{node.chef_environment}") do |n|
-      service_hosts[r.name] = n['hostname']
-    end
-  end
-end
 
 # find all unique hostgroups in the nagios_unmanagedhosts data bag
 begin
@@ -267,7 +268,7 @@ nagios_conf "hostgroups" do
     :os => os_list,
     :search_hostgroups => hostgroup_list,
     :search_nodes => hostgroup_nodes
-    )
+  )
 end
 
 nagios_conf "hosts" do

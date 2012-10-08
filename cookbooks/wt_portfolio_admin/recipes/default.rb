@@ -87,24 +87,26 @@ if deploy_mode?
   	source "appSettings.config.erb"
   	variables(
   	  :cam_auth_url => node['wt_cam']['auth_service_url'],
-	  :sapi_url   => node['wt_streamingapi']['sapi_service_url'],
-	  :stream_client_id => user_data['wt_portfolio_admin']['client_id'],
-      :stream_client_secret => user_data['wt_portfolio_admin']['client_secret'],
-      :chef_environment => pod
+  	  :cam_url => node['wt_cam']['cam_service_url'],
+  	  :sapi_url => node['wt_streamingapi']['sapi_service_url'],
+  	  :stream_client_id => user_data['wt_portfolio_admin']['client_id'],
+      :stream_client_secret => user_data['wt_portfolio_admin']['client_secret']
     )
   end
 
   template "#{install_dir}\\web.config" do
   	source "web.config.erb"
   	variables(
-	  :elmah_remote_access => node['wt_portfolio_admin']['elmah_remote_access'],
-	  :custom_errors => node['wt_portfolio_admin']['custom_errors'],
+      :elmah_remote_access => node['wt_portfolio_admin']['elmah_remote_access'],
+      :custom_errors => node['wt_portfolio_admin']['custom_errors'],
       # proxy
       :proxy_enabled => node['wt_portfolio_admin']['proxy_enabled'],
       :proxy_address => node['wt_common']['http_proxy_url'],
+
 	  # forms auth
 	  :machine_validation_key => user_data['wt_iis']['machine_validation_key'],
 	  :machine_decryption_key => user_data['wt_iis']['machine_decryption_key']
+
   	)
   end
 

@@ -1,3 +1,6 @@
+## 0.0.29
+* Use a jmx_port attribute within the cookbook and not in wt_monitoring
+
 ## 0.0.28
 * Don't fallback to Zookeeper quorum attributes if search fails.  If search fails we have bigger issues
 * Address food critic warnings
