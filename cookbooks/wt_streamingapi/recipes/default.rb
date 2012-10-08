@@ -52,7 +52,8 @@ usagedbuser  = auth_data['wt_streamingapi']['usagedbuser']
 usagedbpwd = auth_data['wt_streamingapi']['usagedbpwd']
 
 auth_url = node['wt_sauth']['auth_service_url']
-auth_host = auth_url.sub("https://","").sub("http://","")
+#auth_host = auth_url.sub("https://","").sub("http://","")
+auth_host = "Test"
 proxy_host = node['wt_streamingapi']['proxy_host']
 cam_url = node['wt_cam']['cam_service_url']
 port = node['wt_streamingapi']['port']

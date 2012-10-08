@@ -1,3 +1,6 @@
+## 1.0.1
+* Changing gsub method
+
 ## 1.0.0
 * Changed [wt_cam][auth_service_url] to [wt_sauth][auth_service_url]
 * Fixed spacing
