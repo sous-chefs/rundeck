@@ -89,6 +89,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
   source download_file
   mode 00644
   action :create_if_missing
+  checksum node[:kafka][:checksum]
 end
 
 directory install_dir do
