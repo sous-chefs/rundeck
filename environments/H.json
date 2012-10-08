@@ -13,7 +13,7 @@
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.22",
-				"wt_sauth": "= 1.0.0", 
+        "wt_sauth": "= 1.0.0",
         "wt_kafka_mm": "= 0.0.15",
         "wt_netacuity": "= 1.0.7",
         "wt_realtime_hadoop": "= 1.0.2", 
@@ -297,7 +297,7 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/35672:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/35734:id/streaming-analysis-bin.tar.gz",
             "streaming_topology_augmentation_bolt_count": 40,
             "streaming_topology_in_session_bolt_count": 0, 
             "streaming_topology_validation_bolt_count": 20, 
