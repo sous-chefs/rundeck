@@ -1,3 +1,7 @@
+## 1.0.4
+* Change the port attribute from a string to an int
+* Remove the force on the package install for zmq
+
 ## 1.0.3
 * Moving variables back to inside the def processTemplates
 
