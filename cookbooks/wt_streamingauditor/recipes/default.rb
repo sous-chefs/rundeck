@@ -24,14 +24,15 @@ install_dir  = File.join(node['wt_common']['install_dir_linux'], "streamingaudit
 download_url = node['wt_streamingauditor']['download_url']
 tarball      = node['wt_streamingauditor']['download_url'].split("/")[-1]
 java_home    = node['java']['java_home']
-user = node['wt_streamingauditor']['user']
-group = node['wt_streamingauditor']['group']
-java_opts = node['wt_streamingauditor']['java_opts']
-jmx_port = node['wt_streamingauditor']['jmx_port']
+user         = node['wt_streamingauditor']['user']
+group        = node['wt_streamingauditor']['group']
+java_opts    = node['wt_streamingauditor']['java_opts']
+jmx_port     = node['wt_streamingauditor']['jmx_port']
 
 pod = node['wt_realtime_hadoop']['pod']
 datacenter = node['wt_realtime_hadoop']['datacenter']
 kafka_chroot_suffix = node['kafka']['chroot_suffix']
+zookeeper_port = node['zookeeper']['client_port']
 
 auth_data = data_bag_item('authorization', node.chef_environment)
 client_id = auth_data['wt_streamingauditor']['client_id']
@@ -39,7 +40,6 @@ client_secret = auth_data['wt_streamingauditor']['client_secret']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
-log "Java home: #{java_home}"
 
 # create the log directory
 directory log_dir do
@@ -59,9 +59,8 @@ directory "#{install_dir}/bin" do
 	action :create
 end
 
-def getZookeeperPairs(node)
-	# get the correct environment for the zookeeper nodes
-	zookeeper_port = node['zookeeper']['client_port']
+def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix, client_id, client_secret)
+	log "Updating the template files"
 
 	# grab the zookeeper nodes that are currently available
 	zookeeper_pairs = Array.new
@@ -77,15 +76,6 @@ def getZookeeperPairs(node)
 		zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
 		i += 1
 	end
-
-	return zookeeper_pairs
-end
-
-def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix, client_id, client_secret)
-	log "Updating the template files"
-
-	# grab the zookeeper nodes that are currently available
-	zookeeper_pairs = getZookeeperPairs(node)
 
 	template "#{install_dir}/conf/kafka.properties" do
 		source  "kafka.properties.erb"
