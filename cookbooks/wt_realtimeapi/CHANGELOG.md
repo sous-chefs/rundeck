@@ -1,3 +1,8 @@
+## 1.0.0
+* Changed [wt_cam][auth_service_url] to [wt_sauth][auth_service_url]
+* Fixed spacing
+* Moved templates to outside deploy gate
+
 ## 0.0.24
 * Address food critic warnings
 * Don't pass in a hardcoded java_class variable

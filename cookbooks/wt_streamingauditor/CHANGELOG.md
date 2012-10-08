@@ -1,3 +1,7 @@
+## 1.0.0
+* Changed [wt_cam][auth_service_url] to [wt_sauth][auth_service_url]
+* Fixed spacing
+
 ## 0.0.20
 * Changed roundtrip.interval from minutes to seconds and defaulted to 10
 
