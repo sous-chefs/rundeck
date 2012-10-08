@@ -123,9 +123,9 @@
             "log_flush_scheduler_time_interval": "500", 
             "log_flush_time_interval": "500", 
             "log_retention_hours": "2", 
-            "threads": "12",
+            "threads": "16",
             "version": "0.7.1",
-            "num_partitions": 6
+            "num_partitions": 12
         }, 
         "memcached": {}, 
         "ms_dotnet4": {
@@ -288,7 +288,7 @@
             "realtime_topology_writing_bolt_count": 96, 
             "topic_list": [
                 "Lab_H_scsRawHits:3",
-                "Lab_H_lrRawHits:3"
+                "Lab_H_lrRawHits:12"
             ], 
             "topology_override_max_spout_pending": 100, 
             "topology_override_msg_timeout_seconds": 30, 
