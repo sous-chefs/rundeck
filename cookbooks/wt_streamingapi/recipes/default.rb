@@ -86,7 +86,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
   log "Updating the template files"
   auth_url = node['wt_cam']['auth_service_url']
   auth_host = auth_url.sub("https://","").sub("http://","")
-  proxy_host = node['wt_streamingapi']['proxy_host']
+  proxy_host = node['wt_common']['http_proxy_url'].gsub("http://","")
   cam_url = node['wt_cam']['cam_service_url']
   port = node['wt_streamingapi']['port']
   usagedbserver = node['wt_streamingapi']['usagedbserver']
