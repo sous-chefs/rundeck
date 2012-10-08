@@ -1,3 +1,7 @@
+## 1.0.0
+* Fix deploy logging
+* Change jmx port and product port from a string to a int as it should be
+
 ## 0.0.15
 * STR-187: Changed permissions on config.properties
 

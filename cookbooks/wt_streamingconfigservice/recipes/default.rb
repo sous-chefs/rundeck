@@ -10,14 +10,12 @@
 # include runit so we can create a runit service
 include_recipe "runit"
 
-log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then
-    log "The deploy_build value is true so un-deploy first"
+    log "The deploy_build value is true so un-deploying first"
     include_recipe "wt_streamingconfigservice::undeploy"
 else
     log "The deploy_build value is not set or is false so we will only update the configuration"
 end
-
 
 log_dir      = File.join(node['wt_common']['log_dir_linux'], "streamingconfigservice")
 install_dir  = File.join(node['wt_common']['install_dir_linux'], "streamingconfigservice")
