@@ -1,3 +1,6 @@
+## 0.0.30
+* Add config directory to classpath in service control script
+
 ## 0.0.29
 * Use a jmx_port attribute within the cookbook and not in wt_monitoring
 

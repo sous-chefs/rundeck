@@ -1,3 +1,6 @@
+## 1.0.9
+* Added an NRPE plugin that directly queries netacutiy for data and alerts if the query fails.
+
 ## 1.0.8
 * Fix the attribute that keeps NetAcuity from trying to upgrade the base system.  This prevents random service restarts
 
