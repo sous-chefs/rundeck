@@ -9,8 +9,7 @@
 # This recipe installs the plugins into the CAM site
 
 #Properties
-pod = node.chef_environment
-user_data = data_bag_item('authorization', pod)
+user_data = data_bag_item('authorization', node.chef_environment)
 plugin_install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Cam\\Plugins"
 
 # Make sure the plugin directory exists

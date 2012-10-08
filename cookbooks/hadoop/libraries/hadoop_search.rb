@@ -12,7 +12,7 @@ module HadoopSearch
 
 	def hadoop_search(role, limit = 1000)
 
-		search_timeout = 120 # seconds
+		search_timeout = 60 # seconds
 
 		Chef::Log.info "hadoop_cluster_name: #{node[:hadoop][:cluster_name]}"
 
@@ -24,6 +24,7 @@ module HadoopSearch
 			query =  "chef_environment:#{node.chef_environment}"
 			query << " AND role:#{role}"
 			query << " AND hadoop_cluster_name:#{node[:hadoop][:cluster_name]}"
+			Chef::Log.info "hadoop_search: #{query}"
 
 			i = 0
 			while results.count == 0 && i < search_timeout
@@ -39,6 +40,8 @@ module HadoopSearch
 			query =  "chef_environment:#{node.chef_environment}"
 			query << " AND role:#{role}"
 			query << " AND NOT hadoop_cluster_name:*"
+			Chef::Log.info "hadoop_search: #{query}"
+
 			search(:node, query).each {|n| results << n[:fqdn] }
 
 		else
@@ -47,6 +50,7 @@ module HadoopSearch
 			query =  "chef_environment:#{node.chef_environment}"
 			query << " AND role:#{role}"
 			query << " AND hadoop_cluster_name:#{node[:hadoop][:cluster_name]}"
+			Chef::Log.info "hadoop_search: #{query}"
 
 			i = 0
 			while results.count == 0 && i < search_timeout
@@ -60,11 +64,13 @@ module HadoopSearch
 
 		end
 
+		Chef::Log.warn  "hadoop_search: slept for #{i} seconds." if i > 0
+		Chef::Log.debug "hadoop_search: #{role}: nodes found: #{results.count}"
 		if results.count == 0 || results.count > limit
 			Chef::Log.error "hadoop_search: #{role}: nodes found: #{results.count}"
+		else
+			Chef::Log.info "hadoop_search: #{role}: #{results.first}"
 		end
-		Chef::Log.debug "hadoop_search: #{role}: nodes found: #{results.count}"
-		Chef::Log.warn  "hadoop_search: slept for #{i} seconds." if i > 0
 
 		results
 

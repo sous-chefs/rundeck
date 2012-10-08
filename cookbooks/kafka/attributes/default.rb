@@ -40,3 +40,4 @@ default[:kafka][:user] = "kafka"
 default[:kafka][:group] = "kafka"
 
 default[:kafka][:log4j_logging_level] = "INFO"
+default[:kafka][:jmx_port] = 9999

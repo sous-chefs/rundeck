@@ -56,28 +56,28 @@ include_recipe "resolver"
 
 #Add the Webtrends Yum repo
 node['webtrends_server']['yum'].each do |yumrepo|
-	yum_repository yumrepo['name'] do
-		repo_name yumrepo['name']
-		description yumrepo['description']
-		url yumrepo['url']
-		action :add
-	end
+  yum_repository yumrepo['name'] do
+    repo_name yumrepo['name']
+    description yumrepo['description']
+    url yumrepo['url']
+    action :add
+  end
 end
 
 #Setup NRPE to run sudo w/o a password
 file "/etc/sudoers.d/nagios" do
-	owner "root"
-	group "root"
-	mode 00440
-	content "nagios	ALL=NOPASSWD: ALL"
-	action :create
+  owner "root"
+  group "root"
+  mode 00440
+  content "nagios	ALL=NOPASSWD: ALL"
+  action :create
 end
 
 # install nagios from package only
 if node['nagios']['client']['install_method'] == "package" and node['nagios']['client']['skip_install'] !~ /^true$/i
-	include_recipe "nagios::client"
+  include_recipe "nagios::client"
 else
-	log "skipping nagios::client"
+  log "skipping nagios::client"
 end
 
 # Sets up rundeck private keys
@@ -94,13 +94,13 @@ include_recipe "networking_basic"
 
 # install useful tools
 %w{ mtr strace iotop screen }.each do |pkg|
-	package pkg
+  package pkg
 end
 
 # Disable iptables firewall
 service "iptables" do
-	action :stop
-	action :disable
+  action :stop
+  action :disable
 end
 
 #fprintd crashes every time someone tries to sudo.  Uninstall it
@@ -116,50 +116,50 @@ auth_config = data_bag_item('authorization', node.chef_environment)
 
 # set root password from authorization databag
 user "root" do
-	password auth_config['root_password']
-	shell "/bin/bash"
+  password auth_config['root_password']
+  shell "/bin/bash"
 end
 
 # add non-root user from authorization databag
 if auth_config['alternate_user']
-	user auth_config['alternate_user'] do
-		password auth_config['alternate_pass']
-		if auth_config['alternate_uid']
-			uid auth_config['alternate_uid']
-		end
-		shell "/bin/bash"
-		home "/home/#{auth_config['alternate_user']}"
-		supports :manage_home => true
-	end
+  user auth_config['alternate_user'] do
+    password auth_config['alternate_pass']
+    if auth_config['alternate_uid']
+      uid auth_config['alternate_uid']
+    end
+    shell "/bin/bash"
+    home "/home/#{auth_config['alternate_user']}"
+    supports :manage_home => true
+  end
 end
 
 # create the webtrends service account and group
 group "webtrends" do
-	gid 1993
+  gid 1993
 end
 
 user "webtrends" do
-	uid 1993
-	gid "webtrends"
-	shell "/bin/false"
-	comment "Webtrends local service account"
-	password "*"
+  uid 1993
+  gid "webtrends"
+  shell "/bin/false"
+  comment "Webtrends local service account"
+  password "*"
 end
 
 # Create a sudoers file for devAccess group if the system has ea_server role
 if node.run_list.include?("role[ea_server]")
-	file "/etc/sudoers.d/devAccess" do
-		owner "root"
-		group "root"
-		mode 00440
-		content "%netiqdmz\\\\devAccess	ALL=(ALL) ALL\n"
-		action :create
-	end
+  file "/etc/sudoers.d/devAccess" do
+    owner "root"
+    group "root"
+    mode 00440
+    content "%netiqdmz\\\\devAccess	ALL=(ALL) ALL\n"
+    action :create
+  end
 else
-	# Make sure the sudo file is gone if the system is not an EA system
-	file "/etc/sudoers.d/devAccess" do
-		action :delete
-	end
+  # Make sure the sudo file is gone if the system is not an EA system
+  file "/etc/sudoers.d/devAccess" do
+    action :delete
+  end
 end
 
 #Now that the local user is created attach the system to AD
