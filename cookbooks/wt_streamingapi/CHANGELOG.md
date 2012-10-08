@@ -1,3 +1,6 @@
+## 0.0.41
+* Use the proxy url in wt_common instead of a local attribute
+
 ## 0.0.40
 * Added support for proxy settings.
 
