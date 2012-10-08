@@ -1,3 +1,6 @@
+## 1.0.2
+* Using data from node rather then as a variable
+
 ## 1.0.1
 * Changing gsub method
 
