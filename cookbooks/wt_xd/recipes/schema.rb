@@ -17,11 +17,10 @@ end
 
 # drop in templates
 %w[hbasetable.py schema.py].each do |file|
-	cookbook_file "#{install_dir}/#{file}" do
-		source "#{file}"
-		owner 'hadoop'
-		group 'hadoop'
-		mode 00550
-	end
+  cookbook_file "#{install_dir}/#{file}" do
+    source "${file}"
+    owner 'hadoop'
+    group 'hadoop'
+    mode 00550
+  end
 end
-

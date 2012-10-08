@@ -1,3 +1,6 @@
+## 0.0.40
+* Added support for proxy settings.
+
 ## 0.0.39
 * Add ulimit file limit increase to 4096 to the runit exec script
 

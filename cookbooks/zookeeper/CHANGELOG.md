@@ -1,3 +1,7 @@
+## 1.1.6
+* added more log messages to search method
+* decreased search timeout to 60 seconds
+
 ## 1.1.5
 * Added max client connections to the configuration and set the default
   to 60 to support topologies in pod with only a single zookeeper node.

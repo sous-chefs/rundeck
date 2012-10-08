@@ -55,24 +55,19 @@ execute "powercfg-performance" do
 	action :run
 end
 
-# copy a deploy file that can be called to execuate a deploy via rundeck
-cookbook_file "#{node['chef_client']['conf_dir']}\\deploy.bat" do
-	source "deploy.bat"
-end
-
-execute "Clear Gem Repo" do
-  command "gem sources -r http://rubygems.org/"
-  only_if { node['wt_common']['gem_repo'] }
-  notifies :run, "execute[clear_new_gem_repo]", :immediately
-end
-
 execute "clear_new_gem_repo" do
   command "gem sources -r #{node['wt_common']['gem_repo']}"
   notifies :run, "execute[add_gem_repo]", :immediately
-  action :nothing
+  only_if { node['wt_common']['gem_repo'] }  
 end
 
 execute "add_gem_repo" do
   command "gem sources -a #{node['wt_common']['gem_repo']}"
+  notifies :run, "execute[clear_gem_repo]", :immediately
+  action :nothing
+end
+
+execute "clear_gem_repo" do
+  command "gem sources -r http://rubygems.org/"  
   action :nothing
 end

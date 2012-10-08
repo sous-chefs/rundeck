@@ -12,7 +12,7 @@ module HbaseSearch
 
 	def hbase_search(role, limit = 1000)
 
-		search_timeout = 120 # seconds
+		search_timeout = 60 # seconds
 
 		Chef::Log.info "hbase_cluster_name: #{node[:hbase][:cluster_name]}"
 
@@ -24,6 +24,7 @@ module HbaseSearch
 			query =  "chef_environment:#{node.chef_environment}"
 			query << " AND roles:#{role}"
 			query << " AND hbase_cluster_name:#{node[:hbase][:cluster_name]}"
+			Chef::Log.info "hbase_search: #{query}"
 
 			i = 0
 			while results.count == 0 && i < search_timeout
@@ -39,6 +40,8 @@ module HbaseSearch
 			query =  "chef_environment:#{node.chef_environment}"
 			query << " AND roles:#{role}"
 			query << " AND NOT hbase_cluster_name:*"
+			Chef::Log.info "hbase_search: #{query}"
+
 			search(:node, query).each {|n| results << n[:fqdn] }
 
 		else
@@ -47,6 +50,7 @@ module HbaseSearch
 			query =  "chef_environment:#{node.chef_environment}"
 			query << " AND roles:#{role}"
 			query << " AND hbase_cluster_name:#{node[:hbase][:cluster_name]}"
+			Chef::Log.info "hbase_search: #{query}"
 
 			i = 0
 			while results.count == 0 && i < search_timeout
@@ -60,11 +64,13 @@ module HbaseSearch
 
 		end
 
+		Chef::Log.warn  "hbase_search: slept for #{i} seconds." if i > 0
+		Chef::Log.debug "hbase_search: #{role}: nodes found: #{results.count}"
 		if results.count == 0 || results.count > limit
 			Chef::Log.error "hbase_search: #{role}: nodes found: #{results.count}"
+		else
+			Chef::Log.info "hbase_search: #{role}: #{results.first}"
 		end
-		Chef::Log.debug "hbase_search: #{role}: nodes found: #{results.count}"
-		Chef::Log.warn  "hbase_search: slept for #{i} seconds." if i > 0
 
 		results
 
