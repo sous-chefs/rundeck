@@ -108,5 +108,4 @@ template "/etc/apt/mirrors.list" do
   source "mirrors.list.erb"
   mode 00644
   notifies :run, resources(:execute => "update_apt_mirror")
-  end
 end
