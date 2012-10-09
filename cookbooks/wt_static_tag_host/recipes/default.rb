@@ -28,18 +28,20 @@ else
     log "The deploy_build value is true so we will deploy"
     include_recipe "wt_static_tag_host::undeploy"
 
-	# template the apache config for the repo site
-	template "#{node['apache']['dir']}/sites-available/static_tag_host.conf" do
-		source "apache2.conf.erb"
-		mode 00644
-		variables(:docroot => "/var/www")
-	end
 
-    #Enable the apache site
-    apache_site "static_tag_host.conf" do
-      enable true
-    end
 
+end
+
+# template the apache config for the repo site
+template "#{node['apache']['dir']}/sites-available/static_tag_host.conf" do
+  source "apache2.conf.erb"
+  mode 00644
+  variables(:docroot => "/var/www")
+end
+
+#Enable the apache site
+apache_site "static_tag_host.conf" do
+  enable true
 end
 
 #Create a .htaccess file in /var/www to redirect people to www.webtrends.com in the absence of a index.html file
