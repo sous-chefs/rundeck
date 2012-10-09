@@ -84,7 +84,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
 
 	auth_url = node['wt_sauth']['auth_service_url']
 	auth_host = auth_url.sub("https://","").sub("http://","")
-	proxy_host = node['wt_common']['http_proxy_url'].gsub("http://","")
+	proxy_host = node['wt_common']['http_proxy_url'].sub("https://","").sub("http://","")
 	cam_url = node['wt_cam']['cam_service_url']
 	port = node['wt_streamingapi']['port']
 	usagedbserver = node['wt_streamingapi']['usagedbserver']
