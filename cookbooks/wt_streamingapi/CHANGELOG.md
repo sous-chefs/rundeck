@@ -1,3 +1,6 @@
+## 1.0.7
+* Fix the stripping of http from the proxy URL
+
 ## 1.0.6
 * Fixed the auth url due to changes in the auth endpoints
 
