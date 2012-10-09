@@ -28,6 +28,12 @@ else
   log "The deploy_build value is true so we will redeploy the product"
   include_recipe "wt_static_tag_host::undeploy"
 
+  # create the Gomez monitor file
+  file "/var/www/js/gomez.html" do
+    content "<html><body><h1>It works!</h1></body></html>"
+    action :create
+  end
+
   # Create the inproduction.html file for the load balancer
   #file "/var/www/inproduction.html" do
   #  action :create
