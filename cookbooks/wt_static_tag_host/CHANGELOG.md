@@ -1,5 +1,6 @@
 ## 0.0.3
 * Fix the deploy logging text
+* Ungate the setup of Apache.  We should always be making sure Apache is configured
 
 ## 0.0.2:
 * Hook in deploy_build logic
