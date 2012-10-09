@@ -1,0 +1,19 @@
+{
+  "name": "wt_data_deleter",
+  "description": "Webtrends Data Deleter Service",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[ms_dotnet4]",
+    "recipe[ms_messagequeue]",
+    "recipe[wt_base::msdtc]",
+    "recipe[wt_datadeleter]"
+  ],
+  "env_run_lists": {
+  }
+}
+
