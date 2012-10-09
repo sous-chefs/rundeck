@@ -1,6 +1,5 @@
-## Future
-
-* Install a build off our product repo
+## 0.0.3
+* Fix the deploy logging text
 
 ## 0.0.2:
 * Hook in deploy_build logic
