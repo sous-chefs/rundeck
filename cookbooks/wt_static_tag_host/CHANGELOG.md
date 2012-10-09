@@ -1,6 +1,7 @@
 ## 0.0.3
 * Fix the deploy logging text
 * Ungate the setup of Apache.  We should always be making sure Apache is configured
+* Add a commented out creation of inproduction.html.  We'll use this at some point
 
 ## 0.0.2:
 * Hook in deploy_build logic

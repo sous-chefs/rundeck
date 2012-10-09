@@ -23,12 +23,15 @@ apache_site "000-default" do
 end
 
 if ENV["deploy_build"] != "true" then
-    log "The deploy_build value is not set or is false so exit here"
+  log "The deploy_build value is not set or is false so exit here"
 else
-    log "The deploy_build value is true so we will deploy"
-    include_recipe "wt_static_tag_host::undeploy"
+  log "The deploy_build value is true so we will redeploy the product"
+  include_recipe "wt_static_tag_host::undeploy"
 
-
+  # Create the inproduction.html file for the load balancer
+  #file "/var/www/inproduction.html" do
+  #  action :create
+  #end
 
 end
 
