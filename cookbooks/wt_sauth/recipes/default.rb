@@ -94,7 +94,11 @@ template "#{install_dir}\\web.config" do
 		:db_name   => node['wt_cam']['db_name'],
 		:tokenExpirationMinutes => node['wt_sauth']['tokenExpirationMinutes'],
 		:machine_validation_key => user_data['wt_iis']['machine_validation_key'],
-		:machine_decryption_key => user_data['wt_iis']['machine_decryption_key']
+		:machine_decryption_key => user_data['wt_iis']['machine_decryption_key'],
+		:ldap_host => node['wt_common']['ldap_host'],
+		:ldap_port => node['wt_common']['ldap_port'],
+		:ldap_user => user_data['wt_common']['ldap_user'],
+		:ldap_password => user_data['wt_common']['ldap_password']
 		)
 end
 

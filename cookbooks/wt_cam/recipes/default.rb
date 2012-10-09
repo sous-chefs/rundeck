@@ -83,7 +83,11 @@ if deploy_mode?
     source "web.config.erb"
     variables(
       :db_server => node['wt_cam']['db_server'],
-      :db_name   => node['wt_cam']['db_name']
+      :db_name   => node['wt_cam']['db_name'],
+      :ldap_host => node['wt_common']['ldap_host'],
+      :ldap_port => node['wt_common']['ldap_port'],
+      :ldap_user => user_data['wt_common']['ldap_user'],
+      :ldap_password => user_data['wt_common']['ldap_password']
   	)
   end
 

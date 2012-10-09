@@ -1,3 +1,5 @@
+## 1.0.1
+* Added ldap variables to config template 
 ## 1.0.0
 * Fixed spacing
 * Moved templates outside deploy block
