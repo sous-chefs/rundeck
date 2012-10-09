@@ -11,7 +11,6 @@
 if ENV["deploy_build"] == "true" then
   include_recipe "ms_dotnet4::regiis"
   include_recipe "wt_sauth::uninstall"
-  include_recipe "wt_cam::uninstall"
 end
 
 #Properties
@@ -24,9 +23,9 @@ auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identit
 http_port = node['wt_sauth']['port']
 
 iis_pool app_pool do
-    pipeline_mode :Integrated
-    runtime_version "4.0"
-    action [:add, :config]
+	pipeline_mode :Integrated
+	runtime_version "4.0"
+	action [:add, :config]
 end
 
 iis_site 'Default Web Site' do
@@ -48,19 +47,18 @@ directory log_dir do
 end
 
 iis_site 'AUTH' do
-    protocol :http
-    port http_port
+	protocol :http
+	port http_port
 	application_pool app_pool
-    path install_dir
+	path install_dir
 	action [:add,:start]
-	retries 1
+	retries 2
 end
 
-
 wt_base_firewall 'AUTHWS' do
-    protocol "TCP"
-    port http_port
-    action [:open_port]
+	protocol "TCP"
+	port http_port
+	action [:open_port]
  end
 
 wt_base_icacls install_dir do
@@ -86,27 +84,31 @@ if ENV["deploy_build"] == "true" then
   windows_zipfile install_dir do
     source node['wt_sauth']['download_url']
     action :unzip
-  end
+  end  
+end
 
-  template "#{install_dir}\\web.config" do
-  	source "web.config.erb"
+template "#{install_dir}\\web.config" do
+	source "web.config.erb"
 	variables(
 		:db_server => node['wt_cam']['db_server'],
 		:db_name   => node['wt_cam']['db_name'],
-                :tokenExpirationMinutes => node['wt_sauth']['tokenExpirationMinutes'],
-        	:machine_validation_key => user_data['wt_iis']['machine_validation_key'],
-	        :machine_decryption_key => user_data['wt_iis']['machine_decryption_key']
-  	)
-  end
+		:tokenExpirationMinutes => node['wt_sauth']['tokenExpirationMinutes'],
+		:machine_validation_key => user_data['wt_iis']['machine_validation_key'],
+		:machine_decryption_key => user_data['wt_iis']['machine_decryption_key'],
+		:ldap_host => node['wt_common']['ldap_host'],
+		:ldap_port => node['wt_common']['ldap_port'],
+		:ldap_user => user_data['wt_common']['ldap_user'],
+		:ldap_password => user_data['wt_common']['ldap_password']
+		)
+end
 
-  template "#{install_dir}\\log4net.config" do
-        source "log4net.config.erb"
-        variables(
-                :log_level => node['wt_sauth']['log_level']
-        )
-  end
+template "#{install_dir}\\log4net.config" do
+	source "log4net.config.erb"
+	variables(
+		:log_level => node['wt_sauth']['log_level']
+	)
+end
 
-  iis_config auth_cmd do
-  	action :config
-  end
+iis_config auth_cmd do
+	action :config
 end
