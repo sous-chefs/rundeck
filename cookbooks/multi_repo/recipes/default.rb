@@ -96,3 +96,17 @@ apache_site "repo" do
   ignore_failure true
   enable true
 end
+
+# execute command to update the apt repository (only fires on notifies)
+execute "update_apt_mirror" do
+  command "apt-mirror"
+  action :nothing
+end
+
+# template the apt mirror config
+template "/etc/apt/mirrors.list" do
+  source "mirrors.list.erb"
+  mode 00644
+  notifies :run, resources(:execute => "update_apt_mirror")
+  end
+end
