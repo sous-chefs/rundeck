@@ -22,11 +22,10 @@ apache_site "000-default" do
   enable false
 end
 
-log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] != "true" then
     log "The deploy_build value is not set or is false so exit here"
 else
-    log "The deploy_build value is true so un-deploy first"
+    log "The deploy_build value is true so we will deploy"
     include_recipe "wt_static_tag_host::undeploy"
 
 	# template the apache config for the repo site
