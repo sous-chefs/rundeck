@@ -1,3 +1,6 @@
+## 1.0.2
+* Fixed the auth url due to changes in the auth endpoints
+
 ## 1.0.1
 * Remove the Zookeeper function.  Roll it into the templates function
 
