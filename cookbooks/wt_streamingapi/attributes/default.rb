@@ -14,17 +14,9 @@ default['wt_streamingapi']['port']                     = 8080
 default['wt_streamingapi']['java_opts']                = "-Xms2048m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true"
 default['wt_streamingapi']['jmx_port']                 = 9999
 default['wt_streamingapi']['writeBufferHighWaterMark'] = 1048576
-<<<<<<< HEAD
 default['wt_streamingapi']['usagedbserver'] = ""
 default['wt_streamingapi']['usagedbname'] = "Streaming"
 default['wt_streamingapi']['usagedbuser'] = ""
 default['wt_streamingapi']['usagedbpwd'] = ""
 default['wt_streamingapi']['log_dir'] = "/var/log/webtrends/streamingapi"
-=======
-default['wt_streamingapi']['usagedbserver']            = ""
-default['wt_streamingapi']['usagedbname']              = "Streaming"
-default['wt_streamingapi']['usagedbuser']              = ""
-default['wt_streamingapi']['usagedbpwd']               = ""
-default['wt_streamingapi']['log_dir']                  = "/var/log/webtrends/streamingapi"
 default['wt_streamingapi']['proxy_host']               = ""
->>>>>>> streaming_1.1

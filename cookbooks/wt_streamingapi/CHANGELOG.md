@@ -1,3 +1,6 @@
+## 1.0.6
+* Fixed the auth url due to changes in the auth endpoints
+
 ## 1.0.5
 * Remerge of the 0.0.41 build to the Streaming 1.1 branch
 
