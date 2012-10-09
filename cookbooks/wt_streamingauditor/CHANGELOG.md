@@ -1,3 +1,6 @@
+## 1.0.3
+* Workaround for methods being evil
+
 ## 1.0.2
 * Fixed the auth url due to changes in the auth endpoints
 
