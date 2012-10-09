@@ -1,3 +1,6 @@
+## 1.0.15
+* Adding checksum attribute
+
 ## 1.0.14
 * Make JMX port an attribute within the cookbook instead of hardcoding to 9999
 
