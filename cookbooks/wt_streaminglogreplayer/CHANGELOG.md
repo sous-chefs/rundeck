@@ -1,3 +1,7 @@
+## 1.0.0
+* Removed unused Kafka broker attribute from the attributes file
+* Clean up deploy logging
+
 ## 0.0.28
 * Updated collectd script to include two new metrics: files-in-queue and active-dcsid
 

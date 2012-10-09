@@ -1,3 +1,24 @@
+## 1.0.5
+* Remerge of the 0.0.41 build to the Streaming 1.1 branch
+
+## 1.0.4
+* Change the port attribute from a string to an int
+* Remove the force on the package install for zmq
+
+## 1.0.3
+* Moving variables back to inside the def processTemplates
+
+## 1.0.2
+* Using data from node rather then as a variable
+
+## 1.0.1
+* Changing gsub method
+
+## 1.0.0
+* Changed [wt_cam][auth_service_url] to [wt_sauth][auth_service_url]
+* Fixed spacing
+* Moved templates to outside deploy gate
+
 ## 0.0.41
 * Use the proxy url in wt_common instead of a local attribute
 
