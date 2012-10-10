@@ -1,3 +1,9 @@
+## 1.0.4
+* Removed the attribute 'roundtrip_scs_url' and replaced with 'roundtrip_scs_urls'.
+
+## 1.0.3
+* Workaround for methods being evil
+ 
 ## 1.0.2
 * Fixed the auth url due to changes in the auth endpoints
 
