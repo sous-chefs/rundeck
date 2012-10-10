@@ -1,3 +1,6 @@
+## 1.0.2
+* Add conf/fileResponse.txt file
+
 ## 1.0.1
 * Add config directory to classpath in service control script
 
