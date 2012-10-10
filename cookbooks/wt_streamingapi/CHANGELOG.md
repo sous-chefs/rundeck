@@ -1,3 +1,6 @@
+## 1.0.7
+* Add CAM product detail url config to the streaming.properties file to fix the healthcheck
+
 ## 1.0.6
 * Fixed the auth url due to changes in the auth endpoints
 
