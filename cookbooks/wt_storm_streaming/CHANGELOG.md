@@ -1,3 +1,5 @@
+## 2.1.14
+* Updated version of UserAgentUtils to 1.6 from 1.2.4
 ## 2.1.13
 * Added convert_searchstr.ini file
 
