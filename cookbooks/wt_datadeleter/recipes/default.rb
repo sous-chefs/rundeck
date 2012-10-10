@@ -59,6 +59,14 @@ if ENV["deploy_build"] == "true" then
 		source download_url
 		action :unzip	
 	end
+
+ 	powershell "install service" do
+                environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['service_binary']})
+                code <<-EOH
+                [System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--install")
+                EOH
+        end
+
 	
 	template "#{install_dir}\\DataDeleter.exe.config" do
 	  source "DataDeleter.erb"
@@ -74,11 +82,11 @@ if ENV["deploy_build"] == "true" then
 	  )
 	end
 
-	powershell "install service" do
-		environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['service_binary']})
-		code <<-EOH
-		[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--install")
-		EOH
-	end
+	#powershell "install service" do
+	#	environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['service_binary']})
+	#	code <<-EOH
+	#	[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--install")
+	#	EOH
+	#end
 	share_wrs 
 end
