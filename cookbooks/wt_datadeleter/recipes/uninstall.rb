@@ -15,8 +15,15 @@ log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_datadelet
 auth_data = data_bag_item('authorization', node.chef_environment)
 svcuser = auth_data['wt_common']['system_user']
 
-powershell "uninstall service" do
-	environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['service_binary']})
+powershell "uninstall data deleter" do
+	environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['datadeleter_binary']})
+	code <<-EOH
+	[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--uninstall")
+	EOH
+end
+
+powershell "uninstall deletion scheduler" do
+	environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['deletionscheduler_binary']})
 	code <<-EOH
 	[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--uninstall")
 	EOH
