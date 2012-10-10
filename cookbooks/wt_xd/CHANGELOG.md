@@ -1,3 +1,6 @@
+# 0.0.6
+*  adding template changes for max hours processed
+
 # 0.0.5
 * Remove default download URL to the latest in TeamCity
 * Reformatting and food critic fixes
