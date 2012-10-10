@@ -19,7 +19,7 @@
         "wt_realtime_hadoop": "= 1.0.2", 
         "wt_realtimeapi": "= 1.0.1",
         "wt_storm_realtime": "= 2.1.6",
-        "wt_storm_streaming": "= 2.1.11",
+        "wt_storm_streaming": "= 2.1.14",
         "wt_streamingapi": "= 1.0.7",
         "wt_streaming_viz": "= 1.1.1",
         "wt_streamingauditor": "= 1.0.4",
