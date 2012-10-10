@@ -1,3 +1,6 @@
+## 1.0.3
+* Remove file response.txt added in 1.0.2
+
 ## 1.0.2
 * Add conf/fileResponse.txt file
 
