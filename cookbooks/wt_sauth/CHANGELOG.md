@@ -1,4 +1,10 @@
-## 1.1.8
+## 1.0.1
+* Added ldap variables to config template 
+## 1.0.0
+* Fixed spacing
+* Moved templates outside deploy block
+* Removed reference to cam
+## 0.1.8
 * Added anonymous access for css 
 ## 0.1.6
 * Fixed error in config xml

@@ -1,3 +1,10 @@
+## 1.0.25
+* Added ldap variables to the web.config template
+
+## 1.0.24
+* Removed unnecessary pod variable from the plugins recipe
+* Fix resource formatting
+
 ## 1.0.23
 * Added ignore_failures to uninstall.
 

@@ -1,3 +1,13 @@
+## 1.0.2
+* Add conf/fileResponse.txt file
+
+## 1.0.1
+* Add config directory to classpath in service control script
+
+## 1.0.0
+* Clean up deploy logging
+* Change port attribute from string to int
+
 ## 0.0.29
 * Use a jmx_port attribute within the cookbook and not in wt_monitoring
 

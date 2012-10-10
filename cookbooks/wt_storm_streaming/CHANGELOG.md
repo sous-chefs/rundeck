@@ -1,3 +1,10 @@
+## 2.1.13
+* Added convert_searchstr.ini file
+
+## 2.1.12
+* Remove unused nimbus host attribute since we search this out
+* Cleanup some variables that we were setting as node attributes.  Now using plain old variables
+
 ## 2.1.11
 * Using kafka-0.7.1 rather than kafka-0.7.2, but patched with the concurrency fix.
 
