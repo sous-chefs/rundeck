@@ -170,6 +170,9 @@ if node.attribute?("collectd")
     group "root"
     mode 00644
     notifies :restart, resources(:service => "collectd")
+    variables({
+        :scs_urls => node['wt_streamingauditor']['roundtrip_scs_urls'].split(',')
+    })
   end
 end
 
