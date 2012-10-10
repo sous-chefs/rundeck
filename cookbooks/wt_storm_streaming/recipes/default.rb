@@ -145,7 +145,7 @@ if ENV["deploy_build"] == "true" then
     snappy-java-1.0.4.1.jar
     stax-api-1.0.1.jar
     streaming-analysis.jar
-    UserAgentUtils-1.2.4.jar
+    UserAgentUtils-1.6.jar
     xmlenc-0.52.jar
     zkclient-0.1.jar
     mobi.mtld.da-1.5.3.jar
