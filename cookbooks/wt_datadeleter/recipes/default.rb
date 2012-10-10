@@ -77,7 +77,7 @@ if ENV["deploy_build"] == "true" then
 	powershell "install service" do
 		environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['service_binary']})
 		code <<-EOH
-		[System.Diagnostics.Process]::Start($env.install_dir+$env.service_binary, "--install")
+		[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--install")
 		EOH
 	end
 	share_wrs 

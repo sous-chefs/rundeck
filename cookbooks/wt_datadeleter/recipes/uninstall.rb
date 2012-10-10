@@ -18,7 +18,7 @@ svcuser = auth_data['wt_common']['system_user']
 powershell "uninstall service" do
 	environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['service_binary']})
 	code <<-EOH
-	[System.Diagnostics.Process]::Start($env.install_dir+$env.service_binary, "--uninstall")
+	[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--uninstall")
 	EOH
 end
 
