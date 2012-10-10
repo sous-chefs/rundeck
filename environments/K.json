@@ -228,7 +228,7 @@
             "usage_host": "kusagedb01.englab.webtrends.corp"
         },
         "wt_xd": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36302:id/artifacts.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36325:id/artifacts.zip",
             "environment":  "support-staging"
 
         },
