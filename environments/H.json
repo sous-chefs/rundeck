@@ -22,7 +22,7 @@
         "wt_storm_streaming": "= 2.1.11",
         "wt_streamingapi": "= 1.0.7",
         "wt_streaming_viz": "= 1.1.0",
-        "wt_streamingauditor": "= 1.0.3",
+        "wt_streamingauditor": "= 1.0.4",
         "wt_streamingcollection": "= 0.0.30",
         "wt_streamingconfigservice": "= 0.0.14",
         "wt_streaminglogreplayer": "= 0.0.30",
@@ -332,7 +332,7 @@
         }, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz", 
-            "roundtrip_scs_url": "http://hscs01.staging.dmz:8080"
+            "roundtrip_scs_urls": "http://hscs01.staging.dmz:8080"
         }, 
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz", 
