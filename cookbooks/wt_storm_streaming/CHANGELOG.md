@@ -1,3 +1,6 @@
+## 2.1.13
+* Added convert_searchstr.ini file
+
 ## 2.1.12
 * Remove unused nimbus host attribute since we search this out
 * Cleanup some variables that we were setting as node attributes.  Now using plain old variables
