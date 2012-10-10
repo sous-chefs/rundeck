@@ -19,10 +19,10 @@ roundtrip.client.secret=<%=@client_secret%>
 roundtrip.interval=<%= node['wt_streamingauditor']['roundtrip_interval'] %>
 # The SCS dcsid to use for the round-trip auditing
 roundtrip.scs.dcsid=<%= node['wt_streamingauditor']['roundtrip_scs_dcsid'] %>
+# The SCS urls (e.g. "http://scs.webtrends.com,http://scs.pdx.webtrends.com,http://scs.las.webtrends.com,http://scs.iad2.webtrends.com,http://scs.ams.webtrends.com")
+roundtrip.scs.urls=<%= node['wt_streamingauditor']['roundtrip_scs_urls'] %>
 # The tag server dcsid to use for the round-trip auditing
 roundtrip.tagserver.dcsid=<%= node['wt_streamingauditor']['roundtrip_tagserver_dcsid'] %>
-# The url to SCS
-roundtrip.scs.url=<%= node['wt_streamingauditor']['roundtrip_scs_url'] %>
 # The url to the tag server(s)
 roundtrip.tagserver.url=<%= node['wt_streamingauditor']['roundtrip_tagserver_url'] %>
 #The timeout (minutes) for waiting until we receive a response
