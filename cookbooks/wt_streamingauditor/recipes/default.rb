@@ -32,7 +32,6 @@ jmx_port     = node['wt_streamingauditor']['jmx_port']
 pod = node['wt_realtime_hadoop']['pod']
 datacenter = node['wt_realtime_hadoop']['datacenter']
 kafka_chroot_suffix = node['kafka']['chroot_suffix']
-zookeeper_port = node['zookeeper']['client_port']
 
 auth_data = data_bag_item('authorization', node.chef_environment)
 client_id = auth_data['wt_streamingauditor']['client_id']
@@ -73,7 +72,7 @@ def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix, c
 	# append the zookeeper client port (defaults to 2181)
 	i = 0
 	while i < zookeeper_pairs.size do
-		zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{zookeeper_port}")
+		zookeeper_pairs[i] = zookeeper_pairs[i].concat(":#{node['zookeeper']['client_port']}")
 		i += 1
 	end
 
