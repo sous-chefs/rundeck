@@ -8,7 +8,6 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[java]",
     "recipe[wt_netacuity]"
   ],
   "description": "NetAcuity Geo Lookup Service",
