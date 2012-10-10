@@ -27,8 +27,8 @@ end
 
 # remove the pool
 iis_pool app_pool do
-    action [:stop, :delete]
-    ignore_failure true
+	action [:stop, :delete]
+	ignore_failure true
 end
 
 directory install_dir do

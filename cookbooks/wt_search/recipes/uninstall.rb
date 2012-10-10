@@ -20,7 +20,7 @@ if (install_dir =~ /^(\w:)\\.*$/)
 	install_dir_drive = $1
 end
 
-sc_cmd = "\"%WINDIR%\\System32\\sc.exe delete \"#{node['wt_search']['service_name']}\""
+sc_cmd = "\"%WINDIR%\\System32\\sc.exe\" delete \"#{node['wt_search']['service_name']}\""
 
 service node['wt_search']['service_name'] do
 	action :stop
@@ -39,7 +39,7 @@ powershell "verify service removal" do
   code <<-EOH
 	$WtServices = get-wmiobject -query 'select * from win32_service Where DisplayName Like "%Webtrends%"'
 	Foreach ($Service in $WtServices){ 
-    If ($Service){Stop-Process -Processname ($Service.Pathname -Replace ".*\\","" -Replace ".exe","") -Force -ErrorAction SilentlyContinue}
+    If ($Service){Stop-Process -Processname ($Service.Pathname -Replace ".*\\\\","" -Replace ".exe","") -Force -ErrorAction SilentlyContinue}
 	}
 	EOH
 end

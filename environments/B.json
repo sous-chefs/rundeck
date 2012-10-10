@@ -27,7 +27,7 @@
         "wt_streaminglogreplayer": "= 0.0.30",
         "zookeeper": "= 1.0.5",
         "wt_streaming_viz": "1.0.13",
-	"wt_sauth": "0.1.6"
+	"wt_sauth": "0.1.8"
     },
     "default_attributes": {
         "authorization": {
@@ -165,7 +165,7 @@
         "wt_cam": {
           "db_name": "cam",
           "db_server": "bcamdb01.staging.dmz",
-          "cam_service_url": "http://bcam02.staging.dmz",
+          "cam_service_url": "http://bcam.staging.dmz",
           "auth_service_url": "https://bsauth.webtrends.com",
           "cam_plugins": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt265/35083:id/Plugins.zip"
@@ -264,13 +264,14 @@
             }
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/35360:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/36112:id/webtrends-streamingapi-bin.tar.gz",
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz",
-	    "sapi_service_url": "ws://bsapi01.staging.dmz:8080"
+            "sapi_service_url": "ws://bsapi01.staging.dmz:8080",
+            "proxy_host": "sproxy02.staging.dmz:3128"
         },
         "wt_streaming_viz": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/35039:id/Streaming.Viz.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/35380:id/Streaming.Viz.zip",
             "port": 85,
             "proxy_enabled": "true",
             "elmah_remote_access": "yes",
@@ -282,7 +283,7 @@
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/34989:id/webtrends-streamingauditor-bin.tar.gz",
             "roundtrip_scs_url": "http://bscs01.staging.dmz:8080",
-            "roundtrip_tagserver_url": "statse.webtrendslive.com",
+            "roundtrip_tagserver_url": "http://statse.webtrendslive.com",
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         },
         "wt_streamingcollection": {
@@ -290,7 +291,7 @@
         },
         "wt_streamingconfigservice": {
             "camdbname": "CAM",
-            "camdbserver": "bconfigsvc.staging.dmz",
+            "camdbserver": "bcamdb01.staging.dmz",
             "config_service_url": "http://butil01.staging.dmz:8080",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/31469:id/webtrends-streaming-configservice-bin.tar.gz",
             "includeUnmappedAnalyticsIds": "true",

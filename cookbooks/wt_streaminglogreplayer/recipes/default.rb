@@ -14,9 +14,8 @@ include_recipe "runit"
 package "nfs-common"
 
 # if in deploy mode then uninstall the product first
-log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploy first"
+  log "The deploy_build value is true so un-deploying first"
   include_recipe "wt_streaminglogreplayer::undeploy"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"

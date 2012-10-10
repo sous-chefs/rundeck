@@ -1,3 +1,7 @@
+## 1.0.25
+* Remove the force-yes for installing packages.  This was needed due to the old setup of our apt repo
+* Adding default attribute for the storm version
+
 ## 1.0.24
 * Removed the 'force-stop' call since it is not suported by the 'service' command
 

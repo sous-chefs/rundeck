@@ -8,9 +8,12 @@
 # All rights reserved - Do Not Redistribute
 # This recipe installs the Portfolio Admin IIS app
 
-if deploy_mode?
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so un-deploy first"
   include_recipe "ms_dotnet4::regiis"
   include_recipe "wt_portfolio_admin::uninstall"
+else
+    log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
 #Properties
@@ -24,9 +27,9 @@ auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identit
 http_port = node['wt_portfolio_admin']['port']
 
 iis_pool app_pool do
-    pipeline_mode :Integrated
-    runtime_version "4.0"
-    action [:add, :config]
+	pipeline_mode :Integrated
+	runtime_version "4.0"
+	action [:add, :config]
 end
 
 iis_site 'Default Web Site' do
@@ -77,54 +80,47 @@ wt_base_icacls log_dir do
 	perm :modify
 end
 
-if deploy_mode?
+if ENV["deploy_build"] == "true" then
   windows_zipfile install_dir do
-	source node['wt_portfolio_admin']['download_url']
-	action :unzip
-  end
-
-  template "#{install_dir}\\appSettings.config" do
-  	source "appSettings.config.erb"
-  	variables(
-  	  :cam_auth_url => node['wt_cam']['auth_service_url'],
-  	  :cam_url => node['wt_cam']['cam_service_url'],
-  	  :sapi_url => node['wt_streamingapi']['sapi_service_url'],
-  	  :stream_client_id => user_data['wt_portfolio_admin']['client_id'],
-      :stream_client_secret => user_data['wt_portfolio_admin']['client_secret']
-    )
-  end
-
-  template "#{install_dir}\\web.config" do
-  	source "web.config.erb"
-  	variables(
-      :elmah_remote_access => node['wt_portfolio_admin']['elmah_remote_access'],
-      :custom_errors => node['wt_portfolio_admin']['custom_errors'],
-      # proxy
-      :proxy_enabled => node['wt_portfolio_admin']['proxy_enabled'],
-      :proxy_address => node['wt_common']['http_proxy_url'],
-      # forms auth
-      :machine_validation_key => user_data['wt_iis']['machine_validation_key'],
-      :machine_decryption_key => user_data['wt_iis']['machine_decryption_key']
-  	)
-  end
-
-  template "#{install_dir}\\log4net.config" do
-  	source "log4net.config.erb"
-  	variables(
-  	  :log_level => node['wt_portfolio_admin']['log_level'],
-  	  :log_dir => install_logdir
-  	)
-  end
-
-  # iis_app "PortfolioAdmin" do
-  	# path "/"
-  	# application_pool app_pool
-  	# physical_path "#{install_dir}"
-  	# action :add
-  # end
+		source node['wt_portfolio_admin']['download_url']
+		action :unzip
+  end  
 
   iis_config auth_cmd do
   	action :config
   end
 
+end
+
+template "#{install_dir}\\appSettings.config" do
+	source "appSettings.config.erb"
+	variables(
+		:cam_auth_url => node['wt_sauth']['auth_service_url'],
+		:cam_url => node['wt_cam']['cam_service_url'],
+		:sapi_url => node['wt_streamingapi']['sapi_service_url'],
+		:stream_client_id => user_data['wt_portfolio_admin']['client_id'],
+		:stream_client_secret => user_data['wt_portfolio_admin']['client_secret']
+	)
+end
+
+template "#{install_dir}\\web.config" do
+  source "web.config.erb"
+  variables(
+		:elmah_remote_access => node['wt_portfolio_admin']['elmah_remote_access'],
+		:custom_errors => node['wt_portfolio_admin']['custom_errors'],
+		# proxy
+		:proxy_enabled => node['wt_portfolio_admin']['proxy_enabled'],
+		:proxy_address => node['wt_common']['http_proxy_url'],
+		# forms auth
+		:machine_validation_key => user_data['wt_iis']['machine_validation_key'],
+		:machine_decryption_key => user_data['wt_iis']['machine_decryption_key']
+  )
+end
+
+template "#{install_dir}\\log4net.config" do
+  source "log4net.config.erb"
+  variables(
+  :log_level => node['wt_portfolio_admin']['log_level'],
+  :log_dir => install_logdir
+  )
 end

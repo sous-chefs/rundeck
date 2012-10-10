@@ -18,8 +18,7 @@ install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Cam"
 install_logdir = node['wt_common']['install_log_dir_windows']
 log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
 app_pool = node['wt_cam']['app_pool']
-pod = node.chef_environment
-user_data = data_bag_item('authorization', pod)
+user_data = data_bag_item('authorization', node.chef_environment)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
 http_port = node['wt_cam']['cam']['port']
 
@@ -48,18 +47,18 @@ directory log_dir do
 end
 
 iis_site 'CAM' do
-    protocol :http
-    port http_port
-	application_pool app_pool
-    path install_dir
-	action [:add,:start]
-	retries 2
+  protocol :http
+  port http_port
+  application_pool app_pool
+  path install_dir
+  action [:add,:start]
+  retries 2
 end
 
 wt_base_firewall 'CAMWS' do
-    protocol "TCP"
-    port http_port
-    action [:open_port]
+  protocol "TCP"
+  port http_port
+  action [:open_port]
 end
 
 wt_base_icacls install_dir do
@@ -81,18 +80,22 @@ if deploy_mode?
   end
 
   template "#{install_dir}\\web.config" do
-  	source "web.config.erb"
-	variables(
-		:db_server => node['wt_cam']['db_server'],
-		:db_name   => node['wt_cam']['db_name']
+    source "web.config.erb"
+    variables(
+      :db_server => node['wt_cam']['db_server'],
+      :db_name   => node['wt_cam']['db_name'],
+      :ldap_host => node['wt_common']['ldap_host'],
+      :ldap_port => node['wt_common']['ldap_port'],
+      :ldap_user => user_data['wt_common']['ldap_user'],
+      :ldap_password => user_data['wt_common']['ldap_password']
   	)
   end
 
   template "#{install_dir}\\log4net.config" do
-        source "cam.log4net.config.erb"
-        variables(
-                :log_level => node['wt_cam']['cam']['log_level']
-        )
+    source "cam.log4net.config.erb"
+    variables(
+      :log_level => node['wt_cam']['cam']['log_level']
+    )
   end
 
   # add the plugins here
