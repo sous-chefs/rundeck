@@ -8,8 +8,8 @@ HOME_DIR="<%=@install_dir%>"
 JAVA_HOME="<%=@java_home%>"
 JAVA_OPTS="<%=@java_opts%>"
 
-# Setup classpath, initially empty.
-CP=""
+# Setup classpath, initially only the config directory
+CP="$HOME_DIR/conf/"
 
 # Add all .jar files to the classpath.
 for jar in `ls $HOME_DIR/lib/*`; do

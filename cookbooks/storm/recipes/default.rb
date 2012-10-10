@@ -28,7 +28,6 @@ end
 %w{unzip python zeromq jzmq}.each do |pkg|
   package pkg do
     action :install
-    options "--force-yes"
   end
 end
 

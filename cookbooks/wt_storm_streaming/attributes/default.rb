@@ -25,13 +25,11 @@ default['wt_storm_streaming']['local_dir'] = "/mnt/storm"
 default['wt_storm_streaming']['local_mode_zmq'] = "false"
 default['wt_storm_streaming']['cluster_mode'] = "distributed"
 
-
 # zookeeper attributes
 default['wt_storm_streaming']['zookeeper']['root'] = "/v2-storm-streaming"
 default['wt_storm_streaming']['zookeeper']['session_timeout'] = 20000
 default['wt_storm_streaming']['zookeeper']['retry_times'] = 5
 default['wt_storm_streaming']['zookeeper']['retry_interval'] = 1000
-
 
 # supervisor attributes
 default['wt_storm_streaming']['supervisor']['workers'] = 4
@@ -42,7 +40,6 @@ default['wt_storm_streaming']['supervisor']['monitor_frequecy_secs'] = 3
 default['wt_storm_streaming']['supervisor']['heartbeat_frequency_secs'] = 5
 default['wt_storm_streaming']['supervisor']['enable'] = true
 
-
 # worker attributes
 default['wt_storm_streaming']['worker']['childopts'] = "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
 default['wt_storm_streaming']['worker']['heartbeat_frequency_secs'] = 1
@@ -51,9 +48,7 @@ default['wt_storm_streaming']['task']['refresh_poll_secs'] = 10
 default['wt_storm_streaming']['zmq']['threads'] = 1
 default['wt_storm_streaming']['zmq']['longer_millis'] = 5000
 
-
 # nimbus attributes
-default['wt_storm_streaming']['nimbus']['host'] = ""
 default['wt_storm_streaming']['nimbus']['thrift_port'] = 6627
 default['wt_storm_streaming']['nimbus']['childopts'] = "-Xmx1024m"
 default['wt_storm_streaming']['nimbus']['task_timeout_secs'] = 30
@@ -65,21 +60,17 @@ default['wt_storm_streaming']['nimbus']['task_launch_secs'] = 120
 default['wt_storm_streaming']['nimbus']['reassign'] = true
 default['wt_storm_streaming']['nimbus']['file_copy_expiration_secs'] = 600
 
-
 # ui attributes
 default['wt_storm_streaming']['ui']['port'] = 8080
 default['wt_storm_streaming']['ui']['childopts'] = "-Xmx768m"
-
 
 # drpc attributes
 default['wt_storm_streaming']['drpc']['port'] = 3772
 default['wt_storm_streaming']['drpc']['invocations_port'] = 3773
 default['wt_storm_streaming']['drpc']['request_timeout_secs'] = 600
 
-
 # transactional attributes
 default['wt_storm_streaming']['transactional']['zookeeper']['root'] = "/v2-storm-streaming-transactional"
-
 
 # topology attributes
 default['wt_storm_streaming']['topology']['debug'] = false
