@@ -114,6 +114,16 @@ def processTemplates (install_dir, node, datacenter, pod)
     })
   end
 
+  template "#{install_dir}/conf/fileResponse.txt" do
+    source  "fileResponse.erb"
+    owner   "root"
+    group   "root"
+    mode    00644
+    variables({
+      
+    })
+  end
+
 end
 
 if ENV["deploy_build"] == "true" then
