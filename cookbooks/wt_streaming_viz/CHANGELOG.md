@@ -1,7 +1,14 @@
+## 1.1.1
+* Includes 1.1.0 and 1.0.14 changes because merge.
+
 ## 1.1.0
 * Changed [wt_cam][auth_service_url] to [wt_sauth][auth_service_url]
 * Fixed spacing
 * Moved templates to outside deploy gate
+
+## 1.0.14
+* Make new appSettings parameter auth.url.base with new environment setting to match.
+* Make new appSettings parameter cam.url.base with new environment setting to match.
 
 ## 1.0.13
 * Missing comma
