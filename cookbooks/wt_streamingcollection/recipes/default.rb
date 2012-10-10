@@ -7,9 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploy first"
+  log "The deploy_build value is true so un-deploying first"
   include_recipe "wt_streamingcollection::undeploy"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
@@ -112,6 +111,16 @@ def processTemplates (install_dir, node, datacenter, pod)
     variables({
       :zookeeper_pairs => zookeeper_pairs,
       :kafka_topic => "#{datacenter}_#{pod}_scsRawHits"
+    })
+  end
+
+  template "#{install_dir}/conf/fileResponse.txt" do
+    source  "fileResponse.erb"
+    owner   "root"
+    group   "root"
+    mode    00644
+    variables({
+      
     })
   end
 

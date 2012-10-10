@@ -19,6 +19,10 @@
     <!-- todo: create new config section for these -->
     <add key="TokenExpirationMinutes" value="<%= @tokenExpirationMinutes %>" />
     <!--<add key="AuthCodeExpirationMinutes" value="10" />-->
+    <add key="ldapHostName" value="<%= @ldap_host %>" />
+    <add key="ldapPort" value="<%= @ldap_port %>" />
+    <add key="ldapAdminName" value="<%= @ldap_user %>" />
+    <add key="ldapAdminPassword" value="<%= @ldap_password %>" />
   </appSettings>
   <system.web>
     <compilation debug="true" targetFramework="4.0" />

@@ -1,3 +1,13 @@
+## 1.0.2
+* Fixed the auth url due to changes in the auth endpoints
+
+## 1.0.1
+* Remove the Zookeeper function.  Roll it into the templates function
+
+## 1.0.0
+* Changed [wt_cam][auth_service_url] to [wt_sauth][auth_service_url]
+* Fixed spacing
+
 ## 0.0.20
 * Changed roundtrip.interval from minutes to seconds and defaulted to 10
 

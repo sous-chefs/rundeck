@@ -1,6 +1,8 @@
 Future
 	Change IIS site bindings
 	Search alternate/current environment for cache_hosts
+## 1.0.9
+	* Removed Chomp
 ## 1.0.8
 	* Fixed template comment
 ## 1.0.7

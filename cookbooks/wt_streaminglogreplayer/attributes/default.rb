@@ -14,7 +14,6 @@ default['wt_streaminglogreplayer']['log_share_mount'] = ""
 default['wt_streaminglogreplayer']['share_mount_dir'] = "/srv/logsharedir"
 default['wt_streaminglogreplayer']['delete_logs'] = "true"
 default['wt_streaminglogreplayer']['java_opts'] = "-Xms1024m -Djava.net.preferIPv4Stack=true"
-default['wt_streaminglogreplayer']['kafka_broker_list'] = nil
 default['wt_streaminglogreplayer']['lock_check_period'] = 15
 default['wt_streaminglogreplayer']['thread_pool_size'] = 100
 default['wt_streaminglogreplayer']['logtime_catchup'] = 200
