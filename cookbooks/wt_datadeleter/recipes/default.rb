@@ -11,7 +11,7 @@
 #
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploy first"  
-  include_recipe "wt_search::uninstall"
+  include_recipe "wt_datadeleter::uninstall"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
@@ -22,7 +22,7 @@ master_host = node['wt_masterdb']['master_host']
 
 # destinations
 install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_datadeleter']['install_dir'].gsub(/[\\\/]+/,"\\"))
-log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_deleter']['log_dir'].gsub(/[\\\/]+/,"\\"))
+log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_datadeleter']['log_dir'].gsub(/[\\\/]+/,"\\"))
 
 # get data bag items 
 auth_data = data_bag_item('authorization', node.chef_environment)
