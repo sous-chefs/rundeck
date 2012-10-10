@@ -184,10 +184,10 @@
       "db_name": "cam",
       "db_server": "cicamdb01.staging.dmz",
       "cam": {
-        "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/CAMBUILDID/CAMCONFIGID:id/CAM.zip"
+        "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/CAM.zip"
       },
       "cam_plugins": {
-        "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/CAMBUILDID/CAMCONFIGID:id/Plugins.zip"
+        "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Plugins.zip"
       }
     },
     "wt_cam_db": {
@@ -309,24 +309,24 @@
       "custom_errors": "Off"
     },
     "wt_streamingapi": {
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/SAPIBUILDID/SAPICONFIGID:id/webtrends-streamingapi-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt192/.lastSuccessful/webtrends-streamingapi-bin.tar.gz",
       "java_opts": "-Xms768m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
       "usagedbserver": "cicamdb01.staging.dmz"
     },
     "wt_streamingauditor": {
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/SAUDITBUILDID/SAUDITCONFIGID:id/webtrends-streamingauditor-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt194/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz",
       "roundtrip_scs_url": "http://ciscs01.staging.dmz:8080",
       "roundtrip_token": "9019769dfb544c94a31e56194d316968"
     },
     "wt_streamingcollection": {
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/SCSBUILDID/SCSCONFIGID:id/webtrends-streamingcollection-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt188/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz",
       "port": 8080
     },
     "wt_streamingconfigservice": {
       "camdbname": "CAM",
       "camdbserver": "cicamdb01.staging.dmz",
       "config_service_url": "http://ciutil01.staging.dmz:8080",
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/UTILBUILDID/UTILCONFIGID:id/webtrends-streaming-configservice-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt195/.lastSuccessful/webtrends-streaming-configservice-bin.tar.gz",
       "includeUnmappedAnalyticsIds": "true",
       "port": "8080"
     },
