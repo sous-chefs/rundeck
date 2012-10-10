@@ -84,7 +84,6 @@ if ENV["deploy_build"] == "true" then
 		source node['wt_streaming_viz']['download_url']
 		action :unzip
   end  
-
   iis_config auth_cmd do
   	action :config
   end
@@ -94,7 +93,9 @@ template "#{install_dir}\\appSettings.config" do
 	source "appSettings.config.erb"
 	variables(
 		:cam_auth_url => node['wt_sauth']['auth_service_url'],
+		:cam_auth_url_base => node['wt_streaming_viz']['auth_service_url_base'],
 		:cam_url => node['wt_cam']['cam_service_url'],
+		:cam_url_base => node['wt_streaming_viz']['cam_service_url_base'],
 		:sapi_url   => node['wt_streamingapi']['sapi_service_url'],
 		:stream_client_id => user_data['wt_streaming_viz']['client_id'],
 		:stream_client_secret => user_data['wt_streaming_viz']['client_secret']

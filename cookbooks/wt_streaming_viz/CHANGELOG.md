@@ -3,6 +3,10 @@
 * Fixed spacing
 * Moved templates to outside deploy gate
 
+## 1.0.14
+* Make new appSettings parameter auth.url.base with new environment setting to match.
+* Make new appSettings parameter cam.url.base with new environment setting to match.
+
 ## 1.0.13
 * Missing comma
 
