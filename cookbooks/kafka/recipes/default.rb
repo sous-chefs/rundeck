@@ -64,7 +64,7 @@ directory "#{install_dir}/bin" do
 end
 
 # create the log directory
-directory "#{node[:kafka][:log_dir]}" do
+directory node[:kafka][:log_dir] do
   owner   user
   group   group
   mode    00755
@@ -73,7 +73,7 @@ directory "#{node[:kafka][:log_dir]}" do
 end
 
 # create the data directory
-directory "#{node[:kafka][:data_dir]}" do
+directory node[:kafka][:data_dir] do
   owner   user
   group   group
   mode    00755
@@ -189,7 +189,7 @@ runit_service "kafka" do
       })
 end
 
-#Create collectd plugin for kafka JMX objects if collectd has been applied.
+# create collectd plugin for kafka JMX objects if collectd has been applied.
 if node.attribute?("collectd")
   template "#{node[:collectd][:plugin_conf_dir]}/collectd_kafka-broker.conf" do
     source "collectd_kafka-broker.conf.erb"
@@ -198,4 +198,9 @@ if node.attribute?("collectd")
     mode 00644
     notifies :restart, resources(:service => "collectd")
   end
+end
+
+# start up Kafka broker
+service "kafka" do
+  action :start
 end
