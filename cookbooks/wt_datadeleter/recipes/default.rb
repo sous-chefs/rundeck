@@ -59,14 +59,6 @@ if ENV["deploy_build"] == "true" then
 		source download_url
 		action :unzip	
 	end
-
- 	powershell "install service" do
-                environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['service_binary']})
-                code <<-EOH
-                [System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--install")
-                EOH
-        end
-
 	
 	template "#{install_dir}\\DataDeleter.exe.config" do
 	  source "DataDeleter.erb"
@@ -82,11 +74,33 @@ if ENV["deploy_build"] == "true" then
 	  )
 	end
 
-	#powershell "install service" do
-	#	environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['service_binary']})
-	#	code <<-EOH
-	#	[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--install")
-	#	EOH
-	#end
+	template "#{install_dir}\\DeletionScheduler.exe.config" do
+	  source "DeletionScheduler.erb"
+	  variables(
+		  :master_host => master_host,
+                  :hbase_location => node['hbase']['location'],
+                  :hbase_dc_id => node['wt_analytics_ui']['fb_data_center_id'],
+                  :hbase_pod_id => node['wt_common']['pod_id'],
+                  :cass_host => node['cassandra']['cassandra_host'],
+                  :cass_thrift_port => node['cassandra']['cassandra_thrift_port'],
+                  :report_column => node['cassandra']['cassandra_report_column'],
+                  :metadata_column => node['cassandra']['cassandra_meta_column']
+
+	  )
+	end
+
+	powershell "install data deleter" do
+		environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['datadeleter_binary']})
+		code <<-EOH
+		[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--install")
+		EOH
+	end
+
+	powershell "install deletion scheduler" do
+		environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['deletionscheduler_binary']})
+		code <<-EOH
+		[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--install")
+		EOH
+	end
 	share_wrs 
 end
