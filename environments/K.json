@@ -233,7 +233,7 @@
 
         },
 	"wt_datadeleter": {
-	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt267/36263:id/DataDeleter.zip"
+	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt267/36375:id/DataDeleter.zip"
 	},
         "yum": {
             "epel_release": "6-7"
