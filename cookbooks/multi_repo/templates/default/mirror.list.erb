@@ -19,7 +19,9 @@ set _tilde 0
 deb-<%= arch %> <%= node['multi_repo']['mirrors']['ubuntu_mirror_source'] %> <%= release %> main <%= node['multi_repo']['mirrors']['ubuntu_components'] %>
 <% node['multi_repo']['mirrors']['ubuntu_release_updates'].each do |update| %>
 deb-<%= arch %> <%= node['multi_repo']['mirrors']['ubuntu_mirror_source'] %> <%= release %>-<%= update %><%= node['multi_repo']['mirrors']['ubuntu_components'] %>
+
 <% end %>
+
 <% end %>
 <% end %>
 
