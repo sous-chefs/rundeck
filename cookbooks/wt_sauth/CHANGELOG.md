@@ -1,3 +1,5 @@
+## 1.0.3
+* Missing comma
 ## 1.0.2
 * Added smtp variable to config template 
 * Added UI location variables to config template
