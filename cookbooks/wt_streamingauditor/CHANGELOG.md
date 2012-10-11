@@ -1,3 +1,8 @@
+## 1.0.6
+* Updated auth url
+## 1.0.5
+* Added 'webtrends.authentication.baseUrl' to support the basic AUTH health check
+
 ## 1.0.4
 * Removed the attribute 'roundtrip_scs_url' and replaced with 'roundtrip_scs_urls'.
 

@@ -92,11 +92,14 @@ end
 template "#{install_dir}\\appSettings.config" do
 	source "appSettings.config.erb"
 	variables(
-		:cam_auth_url => node['wt_sauth']['auth_service_url'],
-		:cam_auth_url_base => node['wt_streaming_viz']['auth_service_url_base'],
+		:auth_url => node['wt_sauth']['auth_service_url'],
+		:auth_url_base => node['wt_streaming_viz']['auth_service_url_base'],
 		:cam_url => node['wt_cam']['cam_service_url'],
 		:cam_url_base => node['wt_streaming_viz']['cam_service_url_base'],
 		:sapi_url   => node['wt_streamingapi']['sapi_service_url'],
+		:help_url => "http://help.webtrends.com",
+		:account_url => node['wt_portfolio_admin']['account_ui_url'],
+		:streams_url => node['wt_streaming_viz']['streams_ui_url'],
 		:stream_client_id => user_data['wt_streaming_viz']['client_id'],
 		:stream_client_secret => user_data['wt_streaming_viz']['client_secret']
 	)
