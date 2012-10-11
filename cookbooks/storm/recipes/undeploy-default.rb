@@ -25,7 +25,7 @@ directory "#{install_dir}" do
 end
 
 # clean out the local state from the previous version
-directory node['storm']['local_dir'] do
+directory "#{node['storm']['local_dir']}/supervisor" do
   recursive true
   action :delete
 end
