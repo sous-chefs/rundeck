@@ -56,14 +56,13 @@ directory "/var/lock/webtrends" do
   group "hadoop"
   mode 00755
   action :create
-  recursive true
 end
 
 
 # deploy build
 if deploy_mode?
 
-	package 'unzip' fo
+	package 'unzip' do
 	  action :install
 	end
 
