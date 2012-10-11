@@ -1,3 +1,6 @@
+## 1.1.3
+* Updated auth url
+
 ## 1.1.2
 * Add appSettings references for help, account, and streams urls.
 
