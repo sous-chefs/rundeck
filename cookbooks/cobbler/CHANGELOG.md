@@ -1,3 +1,7 @@
+## 1.0.3:
+* Switch to gems to install Chef on CentOS
+* Allow controlling the version of Chef to install (with Gems) via a new deploy_chef_version attribute
+
 ## 1.0.2:
 * Modify the partitioning setup based on Webtrends standards for Ubuntu Precise
 

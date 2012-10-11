@@ -1,3 +1,6 @@
+## 1.1.2
+* Add appSettings references for help, account, and streams urls.
+
 ## 1.1.1
 * Includes 1.1.0 and 1.0.14 changes because merge.
 
