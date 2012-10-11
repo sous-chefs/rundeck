@@ -104,8 +104,8 @@ template "#{install_dir}\\web.config" do
 		:auth_url => node['wt_sauth']['auth_service_url'],
 		#TODO Right env location
 		:help_url => "http://help.webtrends.com",
-		:account_url => note['wt_portfolio_admin']['account_ui_url'],
-		:streams_url => note['wt_streaming_viz']['streams_ui_url']
+		:account_url => node['wt_portfolio_admin']['account_ui_url'],
+		:streams_url => node['wt_streaming_viz']['streams_ui_url']
 	)
 end
 
