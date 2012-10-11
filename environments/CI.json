@@ -301,8 +301,8 @@
     },
     "wt_streaming_viz": {
       "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip",
-      "cam_auth_url": "https://hsauth.webtrends.com",
-      "sapi_url": "ws://hsapi01.staging.dmz:8080",
+      "cam_auth_url": "https://cisauth.webtrends.com",
+      "sapi_url": "ws://cisapi01.staging.dmz:8080",
       "proxy_enabled": "true",
       "proxy_address": "http://sproxy02.staging.dmz:3128",
       "elmah_remote_access": "yes",
