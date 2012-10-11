@@ -8,7 +8,7 @@
         "nagios": "= 1.6.0",
         "kafka": "= 1.0.13",
         "ondemand_base": "= 1.7.12", 
-        "storm": "= 1.0.24",
+        "storm": "= 1.0.26",
         "webtrends_server": "= 1.8.2", 
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
@@ -302,7 +302,7 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/.lastSuccessful/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/36323:id/streaming-analysis-bin.tar.gz",
             "streaming_topology_augmentation_bolt_count": 10,
             "streaming_topology_in_session_bolt_count": 0, 
             "streaming_topology_validation_bolt_count": 40, 
