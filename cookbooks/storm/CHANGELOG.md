@@ -1,3 +1,9 @@
+## 1.0.26
+* Cleans out the state of only the previous runs supervisors, but not the workers.
+  Removing the workers state caused supsequent supervisors to bitch about not
+  being able to remove the pid files from /mnt/storm/work/XXX/pids without
+  end.
+
 ## 1.0.25
 * Remove the force-yes for installing packages.  This was needed due to the old setup of our apt repo
 * Adding default attribute for the storm version
