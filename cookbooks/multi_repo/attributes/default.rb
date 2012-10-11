@@ -32,4 +32,4 @@ default['multi_repo']['mirrors']['ubuntu_releases'] = ["lucid","oneiric","precis
 default['multi_repo']['mirrors']['ubuntu_components'] = ["main","restricted","universe","multiverse"]
 default['multi_repo']['mirrors']['ubuntu_release_updates'] = ["updates","security"]
 default['multi_repo']['mirrors']['ubuntu_arch'] = ["amd64"]
-default['multi_repo']['mirrors']['ubuntu_mirror_source'] = "http://mirrors.cat.pdx.edu/ubuntu/dists/"
+default['multi_repo']['mirrors']['ubuntu_mirror_source'] = "http://mirrors.cat.pdx.edu/ubuntu"
