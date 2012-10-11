@@ -7,9 +7,14 @@
 #
 # All rights reserved - Do Not Redistribute
 # This recipe installs VDM Scheduler Agent
+#
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so un-deploy first"  
+  include_recipe "wt_platformscheduler::uninstall"
+else
+  log "The deploy_build value is not set or is false so we will only update the configuration"
+end
 
-# define commands
-share_cmd="net share wrs=#{install_dir} /grant:EVERYONE,FULL /remark:\"Set from the install batch file\""
 
 # source build
 msi_name = node['wt_platformscheduler']['agent_msi']
@@ -25,8 +30,8 @@ svcuser = auth_data['wt_common']['system_user']
 svcpass = auth_data['wt_common']['loader_pass']
 
 # get parameters
-master_host = node['wt_common']['master_host']
-sched_host = node['wt_common']['sched_host']
+master_host = node['wt_masterdb']['master_host']
+sched_host = node['wt_masterdb']['sched_host']
 
 Chef::Log.info "Source URL: #{build_url}"
 
@@ -36,34 +41,33 @@ directory log_dir do
 	action :create
 end
 
-# download the VDM Schedule Agent MSI
-remote_file "#{Chef::Config[:file_cache_path]}\\WebtrendsVDMSchedulerAgent.msi" do
-	source "#{build_url}"
+# create the install directory
+directory install_dir do
+	recursive true
+	action :create
 end
 
-# execute the VDM scheduler Agent MSI
-windows_package "Webtrends VDM Scheduler Agent" do
-	source "#{Chef::Config[:file_cache_path]}\\WebtrendsVDMSchedulerAgent.msi"
-	options "/l*v \"#{log_dir}\\#{msi_name}-Install.log\" SERVICEACCT=#{svcuser} SERVICEPASS=#{svcpass} AGENTMANAGERADDRESS=agentmanager.1@#{sched_host} BASEFOLDER=#{node['wt_common']['install_dir']} LOGTOFILE=true FILELOGGINGLEVEL=4 SCHEDULERADDRESS=scheduler2@#{sched_host} MASTER_HOST=#{master_host} STANDALONE=TRUE INSTALLDIR=\"#{install_dir}\""
-	action :install
-end
+if ENV["deploy_build"] == "true" then
 
-# grant the service user full access to the install directory
-wt_base_icacls install_dir do
-	action :grant
-	user svcuser
-	perm :full
-end
+	# execute the VDM scheduler Agent MSI
+	windows_package "Webtrends VDM Scheduler Agent" do
+		source build_url
+		options "/l*v \"#{log_dir}\\#{msi_name}-Install.log\" SERVICEACCT=#{svcuser} SERVICEPASS=#{svcpass} AGENTMANAGERADDRESS=agentmanager.1@#{sched_host} BASEFOLDER=#{node['wt_common']['install_dir']} LOGTOFILE=true FILELOGGINGLEVEL=4 SCHEDULERADDRESS=scheduler2@#{sched_host} MASTER_HOST=#{master_host} STANDALONE=TRUE INSTALLDIR=\"#{install_dir}\""
+		action :install
+	end
 
-# set permissions for the log readers group to have read access to the install directory
-wt_base_icacls install_dir do
-	action :grant
-	user node['wt_common']['wrsread_group']
-	perm :read
-end
+	# grant the service user full access to the install directory
+	wt_base_icacls install_dir do
+		action :grant
+		user svcuser
+		perm :full
+	end
 
-# share the install directory
-execute "share_install_dir" do
-	command share_cmd
-	cwd install_dir_drive
+	# set permissions for the log readers group to have read access to the install directory
+	wt_base_icacls install_dir do
+		action :grant
+		user node['wt_common']['wrsread_group']
+		perm :read
+	end
+
 end
