@@ -1,3 +1,6 @@
+## 1.0.2
+* Added smtp variable to config template 
+* Added UI location variables to config template
 ## 1.0.1
 * Added ldap variables to config template 
 ## 1.0.0
