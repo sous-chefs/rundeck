@@ -99,7 +99,14 @@ template "#{install_dir}\\web.config" do
 		:ldap_port => node['wt_common']['ldap_port'],
 		:ldap_user => user_data['wt_common']['ldap_user'],
 		:ldap_password => user_data['wt_common']['ldap_password']
-		)
+		:smtp_host => node['wt_common']['smtp_server'],
+		# Header bar UI locations
+		:auth_url => node['wt_sauth']['auth_service_url'],
+		#TODO Right env location
+		:help_url => "http://help.webtrends.com",
+		:account_url => note['wt_portfolio_admin']['account_ui_url'],
+		:streams_url => note['wt_streaming_viz']['streams_ui_url']
+	)
 end
 
 template "#{install_dir}\\log4net.config" do
