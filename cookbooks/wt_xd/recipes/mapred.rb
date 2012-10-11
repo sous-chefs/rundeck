@@ -21,36 +21,32 @@ job_tracker_uri = search(:node, "role:hadoop_jobtracker AND chef_environment:#{n
 # clean up old deploy
 include_recipe 'wt_xd::mapred_undeploy' if deploy_mode?
 
-
-
 # setup hadoop group
 group 'hadoop'
 
 # setup hadoop user
 user 'hadoop' do
-        comment 'Hadoop user'
-        gid 'hadoop'
-        home '/home/hadoop'
-        shell '/bin/bash'
-        supports :manage_home => true
+  comment 'Hadoop user'
+  gid 'hadoop'
+  home '/home/hadoop'
+  shell '/bin/bash'
+  supports :manage_home => true
 end
 
 # create the bashrc file for the hadoop user
 cookbook_file '/home/hadoop/.bashrc' do
-        source 'bashrc'
-        owner 'hadoop'
-        group 'hadoop'
-        mode 00644
+  source 'bashrc'
+  owner 'hadoop'
+  group 'hadoop'
+  mode 00644
 end
-
-
 
 # create directories
 [install_dir, log_dir].each do |dir|
 	directory dir do
-		owner 'hadoop'
-		group 'hadoop'
-		recursive true
+  owner 'hadoop'
+  group 'hadoop'
+  recursive true
 	end
 end
 
@@ -65,80 +61,87 @@ end
 
 # deploy build
 if deploy_mode?
-	package 'unzip'
+
+	package 'unzip' fo
+	  action :install
+	end
+
 	remote_file source_fullpath do
-		source node['wt_xd']['download_url']
-		mode 00644
+    source node['wt_xd']['download_url']
+    mode 00644
 	end
+
 	execute 'unzip artifacts' do
-		command "unzip -o #{source_fullpath} -d #{install_dir}"
-		action :run
+    command "unzip -o #{source_fullpath} -d #{install_dir}"
+    action :run
 	end
+
 	file source_fullpath do
-		action :delete
+    action :delete
 	end
+
 end
 
 # get zookeeper nodes
 zookeeper_quorum = Array.new
 if not Chef::Config.solo
 	search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-		zookeeper_quorum << n[:fqdn]
+  zookeeper_quorum << n[:fqdn]
 	end
 end
 # fall back to attribs if search doesn't come up with any zookeeper nodes
 if zookeeper_quorum.count == 0
 	node[:zookeeper][:quorum].each do |i|
-		zookeeper_quorum << i
+  zookeeper_quorum << i
 	end
 end
 
 # configure templates
 %w[environment.properties hbase.properties log4j.mapreduce.fb.xml log4j.mapreduce.tw.xml].each do |template_file|
 	template "#{install_dir}/conf/#{template_file}" do
-		source "#{template_file}.erb"
-		owner 'hadoop'
-		group 'hadoop'
-		mode  00644
-		variables ({
-			# hbase config
-			:hbase_dc_id  => node['wt_analytics_ui']['fb_data_center_id'],
-			:hbase_pod_id => node['wt_common']['pod_id'],
+  source "#{template_file}.erb"
+  owner 'hadoop'
+  group 'hadoop'
+  mode  00644
+  variables ({
+  	# hbase config
+  	:hbase_dc_id  => node['wt_analytics_ui']['fb_data_center_id'],
+  	:hbase_pod_id => node['wt_common']['pod_id'],
 
-			# zookeeper config
-			:zookeeper_quorum     => zookeeper_quorum * ',',
-			:zookeeper_clientport => node['zookeeper']['client_port'],
+  	# zookeeper config
+  	:zookeeper_quorum     => zookeeper_quorum * ',',
+  	:zookeeper_clientport => node['zookeeper']['client_port'],
 
-			# log level
-			:log_level => node['wt_xd']['log_level'],
+  	# log level
+  	:log_level => node['wt_xd']['log_level'],
 
-			# jobtracker uri
-			:job_tracker_uri => job_tracker_uri
-		})
+  	# jobtracker uri
+  	:job_tracker_uri => job_tracker_uri
+  })
 	end
 end
 
 # configure scripts
 %w[MapReduceFB.sh MapReduceTW.sh].each do |template_file|
 	template "#{install_dir}/#{template_file}" do
-		source "#{template_file}.erb"
-		owner 'hadoop'
-		group 'hadoop'
-		mode  00755
-		variables ({
-			# locations
-			:install_dir => install_dir,
-			:log_dir     => log_dir,
-			:java_home   => node['java']['java_home']
-		})
+  source "#{template_file}.erb"
+  owner 'hadoop'
+  group 'hadoop'
+  mode  00755
+  variables ({
+  	# locations
+  	:install_dir => install_dir,
+  	:log_dir     => log_dir,
+  	:java_home   => node['java']['java_home']
+  })
 	end
 end
 
 # fix ownership
 [install_dir, log_dir].each do |dir|
 	execute dir do
-		command "chown -R hadoop:hadoop \"#{dir}\""
-		action :run
+  command "chown -R hadoop:hadoop \"#{dir}\""
+  action :run
 	end
 end
 
