@@ -22,6 +22,13 @@
     <add key="ldapAdminName" value="<%= @ldap_user %>" />
     <add key="ldapAdminPassword" value="<%= @ldap_password %>" />
   </appSettings>
+  <system.net>
+    <mailSettings>
+      <smtp deliveryMethod="Network">
+        <network host="<%= @smtp_host %>" />
+      </smtp>
+    </mailSettings>
+  </system.net>
   <system.web>
     <compilation debug="true" targetFramework="4.0" />
     <authentication mode="Forms">
