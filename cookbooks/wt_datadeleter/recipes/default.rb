@@ -92,14 +92,17 @@ if ENV["deploy_build"] == "true" then
 	powershell "install data deleter" do
 		environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['datadeleter_binary']})
 		code <<-EOH
-		[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--install")
+		$binary_path = $env:install_dir + "\\" + $env:service_binary
+	        &$binary_path --install
 		EOH
 	end
 
 	powershell "install deletion scheduler" do
 		environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['deletionscheduler_binary']})
 		code <<-EOH
-		[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--install")
+		$binary_path = $env:install_dir + "\\" + $env:service_binary
+	        &$binary_path --install
+
 		EOH
 	end
 	share_wrs 

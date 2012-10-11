@@ -18,14 +18,23 @@ svcuser = auth_data['wt_common']['system_user']
 powershell "uninstall data deleter" do
 	environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['datadeleter_binary']})
 	code <<-EOH
-	[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--uninstall")
+        $binary_path = $env:install_dir + "\\" + $env:service_binary
+	$binary_path_exists = Test-Path $binary_path
+	if ($binary_path_exists) {
+		&$binary_path --uninstall
+	}	
 	EOH
 end
 
 powershell "uninstall deletion scheduler" do
 	environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['deletionscheduler_binary']})
 	code <<-EOH
-	[System.Diagnostics.Process]::Start($env.install_dir+"\\"+$env.service_binary, "--uninstall")
+	$binary_path = $env:install_dir + "\\" + $env:service_binary
+        $binary_path_exists = Test-Path $binary_path
+        if ($binary_path_exists) {
+                &$binary_path --uninstall
+        }
+
 	EOH
 end
 
