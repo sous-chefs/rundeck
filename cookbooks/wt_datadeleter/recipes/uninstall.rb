@@ -18,7 +18,7 @@ svcuser = auth_data['wt_common']['system_user']
 powershell "uninstall data deleter" do
 	environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['datadeleter_binary']})
 	code <<-EOH
-        $binary_path = $env.install_dir + "\\" + $env.service_binary
+        $binary_path = $env:install_dir + "\\" + $env:service_binary
 	&$binary_path --uninstall	
 	EOH
 end
@@ -26,7 +26,7 @@ end
 powershell "uninstall deletion scheduler" do
 	environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['deletionscheduler_binary']})
 	code <<-EOH
-	$binary_path = $env.install_dir + "\\" + $env.service_binary
+	$binary_path = $env:install_dir + "\\" + $env:service_binary
         &$binary_path --uninstall
 	EOH
 end
