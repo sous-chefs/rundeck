@@ -253,6 +253,9 @@
         "wt_xd": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/29303:id/artifacts.zip"
         },
+	 "wt_datadeleter": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt267/36375:id/DataDeleter.zip"
+        },
         "yum": {
             "epel_release": "6-7"
         },
