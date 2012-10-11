@@ -1,3 +1,5 @@
+## 1.0.6
+* Updated auth url
 ## 1.0.5
 * Added 'webtrends.authentication.baseUrl' to support the basic AUTH health check
 
