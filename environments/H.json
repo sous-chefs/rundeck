@@ -13,7 +13,7 @@
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.26",
-        "wt_sauth": "= 1.0.3",
+        "wt_sauth": "= 1.0.4",
         "wt_kafka_mm": "= 0.0.15",
         "wt_netacuity": "= 1.0.7",
         "wt_portfolio_admin": "= 1.1.3",
