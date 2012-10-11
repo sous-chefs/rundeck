@@ -271,7 +271,7 @@
             "proxy_host": "sproxy02.staging.dmz:3128"
         },
         "wt_streaming_viz": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/36408:id/Streaming.Viz.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/36531:id/Streaming.Viz.zip",
             "port": 85,
             "proxy_enabled": "true",
             "elmah_remote_access": "yes",
