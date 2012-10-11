@@ -6,11 +6,11 @@
 # set the clock
 ntpdate <%= @node[:ntp][:servers][0] %>
 
-# setup rbel repo
-rpm -Uvh http://rbel.frameos.org/rbel6
-
 # install chef
-yum -y --nogpgcheck install rubygem-chef
+yum -y --nogpgcheck install gcc make ruby-devel
+gem sources -a <%= @node[:wt_common][:gem_repo] %>
+gem install chef -v <%= @node[:cobbler][:deploy_chef_version] %>
+gem install ohai
 chkconfig chef-client on
 
 # fetch validation.pem
@@ -47,6 +47,6 @@ fi
 chef-client -j /etc/chef/first-boot.json
 
 # cleanup
-chmod 600 /etc/chef/validation.pem 
+chmod 600 /etc/chef/validation.pem
 rm /etc/chef/first-boot.json
 
