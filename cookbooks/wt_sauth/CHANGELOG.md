@@ -1,3 +1,5 @@
+## 1.0.4
+* Fix 'note' to 'node'
 ## 1.0.3
 * Missing comma
 ## 1.0.2
