@@ -1,3 +1,6 @@
+## 1.1.3
+* Added missing Autofac config
+
 ## 1.1.2
 * Fixed note -> node typo
 
