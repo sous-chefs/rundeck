@@ -17,4 +17,4 @@ default[:cobbler][:subnets] = {}
 default[:cobbler][:pxe_just_once] = 0
 
 # the version of chef-client to deploy on CentOS systems
-default[:cobbler][:deploy_chef_version] = 10.14.4
+default[:cobbler][:deploy_chef_version] = "10.14.4"
