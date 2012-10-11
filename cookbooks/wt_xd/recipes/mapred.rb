@@ -21,6 +21,30 @@ job_tracker_uri = search(:node, "role:hadoop_jobtracker AND chef_environment:#{n
 # clean up old deploy
 include_recipe 'wt_xd::mapred_undeploy' if deploy_mode?
 
+
+
+# setup hadoop group
+group 'hadoop'
+
+# setup hadoop user
+user 'hadoop' do
+        comment 'Hadoop user'
+        gid 'hadoop'
+        home '/home/hadoop'
+        shell '/bin/bash'
+        supports :manage_home => true
+end
+
+# create the bashrc file for the hadoop user
+cookbook_file '/home/hadoop/.bashrc' do
+        source 'bashrc'
+        owner 'hadoop'
+        group 'hadoop'
+        mode 00644
+end
+
+
+
 # create directories
 [install_dir, log_dir].each do |dir|
 	directory dir do
