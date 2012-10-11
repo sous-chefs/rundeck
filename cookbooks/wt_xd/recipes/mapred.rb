@@ -33,13 +33,6 @@ user 'hadoop' do
   supports :manage_home => true
 end
 
-# create the bashrc file for the hadoop user
-cookbook_file '/home/hadoop/.bashrc' do
-  source 'bashrc'
-  owner 'hadoop'
-  group 'hadoop'
-  mode 00644
-end
 
 # create directories
 [install_dir, log_dir].each do |dir|
