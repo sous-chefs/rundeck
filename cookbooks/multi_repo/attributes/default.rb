@@ -26,10 +26,10 @@ default['multi_repo']['extra_repo_subdirs'] = [ "tools","product","windows","lin
 
 default['multi_repo']['mirrors']['centos_releases'] = ["6.3"]
 default['multi_repo']['mirrors']['centos_repos'] = ["os","updates"]
-default['multi_repo']['mirrors']['centos_arch'] = ["amd64"]
+default['multi_repo']['mirrors']['centos_arch'] = ["x86_64"]
 default['multi_repo']['mirrors']['centos_mirror_source'] = "http://mirrors.cat.pdx.edu/centos/"
 default['multi_repo']['mirrors']['ubuntu_releases'] = ["lucid","oneiric","precise"]
 default['multi_repo']['mirrors']['ubuntu_components'] = ["main","restricted","universe","multiverse"]
 default['multi_repo']['mirrors']['ubuntu_release_updates'] = ["updates","security"]
-default['multi_repo']['mirrors']['ubuntu_arch'] = ["x86_64"]
+default['multi_repo']['mirrors']['ubuntu_arch'] = ["amd64"]
 default['multi_repo']['mirrors']['ubuntu_mirror_source'] = "http://mirrors.cat.pdx.edu/ubuntu/dists/"
