@@ -104,8 +104,8 @@ execute "update_apt_mirror" do
 end
 
 # template the apt mirror config
-template "/etc/apt/mirrors.list" do
-  source "mirrors.list.erb"
+template "/etc/apt/mirror.list" do
+  source "mirror.list.erb"
   mode 00644
   notifies :run, "execute[update_apt_mirror]", :immediately
 end
