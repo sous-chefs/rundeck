@@ -1,3 +1,6 @@
+## 1.1.3
+* Fixed note -> node typo
+
 ## 1.1.2
 * Add appSettings references for help, account, and streams urls.
 
