@@ -262,6 +262,7 @@
         },
         "wt_portfolio_admin": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lastSuccessful/Portfolio.Admin.zip",
+            "account_ui_url": "https://haccount.webtrends.com",
             "cam_auth_url": "https://hsauth.webtrends.com",
             "sapi_url": "ws://hsapi01.staging.dmz:8080",
             "proxy_enabled": "true",
@@ -315,6 +316,7 @@
         },
         "wt_streaming_viz": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip",
+            "streams_ui_url": "https://hstreams.webtrends.com",
             "cam_auth_url": "https://hsauth.webtrends.com",
             "sapi_url": "ws://hsapi01.staging.dmz:8080",
             "proxy_enabled": "true",
