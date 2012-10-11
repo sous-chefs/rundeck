@@ -16,12 +16,13 @@ set _tilde 0
 
 <% node['multi_repo']['mirrors']['ubuntu_releases'].each do |release| %>
 <% node['multi_repo']['mirrors']['ubuntu_arch'].each do |arch| %>
-deb-<%= arch %> <%= node['multi_repo']['mirrors']['ubuntu_mirror_source'] %> <%= release %> main <%= node['multi_repo']['mirrors']['ubuntu_components'] %>
+deb-<%= arch %> <%= node['multi_repo']['mirrors']['ubuntu_mirror_source'] %> <%= release %> main <%= node['multi_repo']['mirrors']['ubuntu_components'].join(" ") %>
 <% node['multi_repo']['mirrors']['ubuntu_release_updates'].each do |update| %>
-deb-<%= arch %> <%= node['multi_repo']['mirrors']['ubuntu_mirror_source'] %> <%= release %>-<%= update %><%= node['multi_repo']['mirrors']['ubuntu_components'] %>
-<% end %>
-<% end %>
+deb-<%= arch %> <%= node['multi_repo']['mirrors']['ubuntu_mirror_source'] %> <%= release %>-<%= update %><%= node['multi_repo']['mirrors']['ubuntu_components'].join(" ") %>
+
 <% end %>
 
+<% end %>
+<% end %>
 
 clean <%= node['multi_repo']['mirrors']['ubuntu_mirror_source'] %>
