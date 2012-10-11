@@ -98,7 +98,7 @@ template "#{install_dir}\\web.config" do
 		:ldap_host => node['wt_common']['ldap_host'],
 		:ldap_port => node['wt_common']['ldap_port'],
 		:ldap_user => user_data['wt_common']['ldap_user'],
-		:ldap_password => user_data['wt_common']['ldap_password']
+		:ldap_password => user_data['wt_common']['ldap_password'],
 		:smtp_host => node['wt_common']['smtp_server'],
 		# Header bar UI locations
 		:auth_url => node['wt_sauth']['auth_service_url'],
