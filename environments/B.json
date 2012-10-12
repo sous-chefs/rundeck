@@ -275,11 +275,14 @@
             "proxy_enabled": "true"
         },
 	"wt_portfolio_admin": {
-	    "account_ui_url": "https://baccount.webtrends.com",
+            "account_ui_url": "https://baccount.webtrends.com",
+            "cam_auth_url": "https://bsauth.webtrends.com/v1",
             "custom_errors": "Off",
-            "download_url": "guestAuth/repository/download/bt277/36673:id/Portfolio.Admin.zip",
+	    "download_url": "guestAuth/repository/download/bt277/36673:id/Portfolio.Admin.zip",
             "elmah_remote_access": "yes",
-            "proxy_enabled": "true"
+            "proxy_address": "http://sproxy02.staging.dmz:3128",
+            "proxy_enabled": "true",
+            "sapi_url": "ws://bsapi01.staging.dmz:8080"
 	},
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/36605:id/webtrends-streamingapi-bin.tar.gz",
