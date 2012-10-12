@@ -14,7 +14,6 @@
         "wt_base": "= 0.10.53",
         "wt_cam": "= 1.0.23",
         "wt_kafka_mm": "= 0.0.16",
-        "wt_monitoring": "= 0.0.2",
         "wt_netacuity": "= 1.0.8",
         "wt_realtimeapi": "= 0.0.23",
         "wt_sauth": "0.1.8",
@@ -61,9 +60,6 @@
             "mapred": {}
         },
         "hbase": {
-            "data_center_id": "Lab",
-            "location": "sdata.staging.dmz",
-            "pod_id": "B",
             "site": {
                 "zookeeper_clientport": 2181,
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
@@ -163,7 +159,6 @@
         },
         "wt_analytics_ui": {},
         "wt_cam": {
-            "auth_service_url": "https://bsauth.webtrends.com",
             "cam": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt265/35083:id/CAM.zip"
             },
@@ -310,9 +305,6 @@
         "wt_usagedb": {
             "schedulerdb_host": "busagedb01.staging.dmz",
             "usage_host": "busagedb01.staging.dmz"
-        },
-        "yum": {
-            "epel_release": "6-7"
         },
         "zookeeper": {
             "client_port": 2181,
