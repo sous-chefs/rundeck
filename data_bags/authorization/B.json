@@ -25,7 +25,9 @@
         "system_user": "STAGINGDMZ\\wtSystem",
         "ui_acct": "wtUI",
         "ui_pass": "Bijoux1",
-        "ui_user": "STAGINGDMZ\\wtUI"
+        "ui_user": "STAGINGDMZ\\wtUI",
+	"ldap_user": "cn=admin,dc=webtrends,dc=com",
+	"ldap_password": "Bijoux01"
     },
     "wt_netacuity": {
         "admin_password": "SHvWHezZSc7"
@@ -52,4 +54,10 @@
         "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com",
         "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
     }
+    },
+    "wt_portfolio_admin": {
+        "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com",
+        "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
+    }
+
 }
