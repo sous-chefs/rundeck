@@ -1,3 +1,7 @@
+## 1.1.0
+* Renamed configuration files to match other services and changed template
+  content to match naming convention of other services.
+
 ## 1.0.0
 * Removed unused Kafka broker attribute from the attributes file
 * Clean up deploy logging
