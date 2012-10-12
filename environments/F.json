@@ -4,14 +4,15 @@
         "java": "= 1.5.4", 
         "nagios": "= 1.6.0", 
         "webpi": "= 1.0.3", 
-        "webtrends_server": "= 1.8.3", 
+        "webtrends_server": "= 1.8.6", 
         "windows": "= 1.2.12", 
-        "wt_analytics_ui": "= 1.0.1", 
-        "wt_base": "= 1.0.0", 
+        "wt_analytics_ui": "= 1.0.9", 
+        "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.9", 
         "wt_monitoring": "= 0.0.2", 
-        "wt_search": "= 1.0.1", 
-        "wt_sync": "= 1.0.1"
+        "wt_search": "= 1.0.7", 
+        "wt_sync": "= 1.0.4", 
+        "wt_xd": "= 0.0.6"
     }, 
     "default_attributes": {
         "authorization": {
@@ -64,7 +65,6 @@
                 }
             }
         }, 
-        "kafka": {}, 
         "memcached": {
             "cache_hosts": [
                 {
@@ -96,6 +96,13 @@
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -144,7 +151,7 @@
             "bba_domain": "fbba.webtrends.com", 
             "cache_region": "F_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt180/28126:id/AnalyticsUI.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt144/33290:id/AnalyticsUI.zip", 
             "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
@@ -204,7 +211,10 @@
             "brandedaccountid": "20578,20663", 
             "cacheenabled": "True", 
             "cachename": "F_DX", 
-            "rest_base_uri": "https://fdx.webtrends.com/v3"
+            "endpoint_address": "net.tcp://fsearch.staging.dmz:8096/Search/Service", 
+            "rest_base_uri": "https://fdx.webtrends.com/v3", 
+            "website_name": "DX", 
+            "website_port": "80"
         }, 
         "wt_masterdb": {
             "master_host": "fmasterdb01.staging.dmz", 
@@ -234,18 +244,19 @@
             "rta_host": "frta01.staging.dmz"
         }, 
         "wt_search": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/26130:id/Search.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/27943:id/Search.zip", 
             "search_hostname": "fsearch.staging.dmz"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt172/27458:id/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/28988:id/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "fusagedb01.staging.dmz", 
             "usage_host": "fusagedb01.staging.dmz"
         }, 
         "wt_xd": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/26947:id/artifacts.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36325:id/artifacts.zip", 
+            "environment": "support-staging"
         }, 
         "yum": {
             "epel_release": "6-7"
@@ -271,13 +282,6 @@
             "servers": [
                 "time.webtrends.corp"
             ]
-        }, 
-        "resolver": {
-            "nameservers": [
-                "10.164.0.11", 
-                "10.164.0.12"
-            ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }
     }
 }
