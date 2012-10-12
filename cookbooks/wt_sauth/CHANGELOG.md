@@ -1,3 +1,5 @@
+## 1.0.7
+* Update request handlers to MVC4 versions
 ## 1.0.6
 * Update binding redirects after MVC4 upgrade.
 ## 1.0.5
