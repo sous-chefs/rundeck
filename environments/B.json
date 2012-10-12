@@ -210,7 +210,6 @@
             "healthcheck_enabled": "true",
             "healthcheck_port": 9000,
             "jmx_enabled": "true",
-            "jmx_port": 9999,
             "metric_prefix": "staging.bpod.servers",
             "monitoring_enabled": "true"
         },
@@ -274,7 +273,6 @@
         },
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/36112:id/webtrends-streamingapi-bin.tar.gz",
-            "proxy_host": "sproxy02.staging.dmz:3128",
             "sapi_service_url": "ws://bsapi01.staging.dmz:8080",
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"
