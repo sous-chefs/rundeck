@@ -19,9 +19,9 @@
         "wt_sauth": "0.1.8",
         "wt_storm": "= 1.0.34",
         "wt_storm_realtime": "= 2.1.1",
-        "wt_storm_streaming": "= 2.1.11",
+        "wt_storm_streaming": "= 2.1.14",
         "wt_streaming_viz": "1.0.14",
-        "wt_streamingapi": "= 0.0.40",
+        "wt_streamingapi": "= 1.0.8",
         "wt_streamingauditor": "= 0.0.20",
         "wt_streamingcollection": "= 0.0.28",
         "wt_streamingconfigservice": "= 0.0.15",
@@ -251,7 +251,7 @@
             }
         },
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/35325:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/36618:id/streaming-analysis-bin.tar.gz",
             "streaming_topology_augmentation_bolt_count": 10,
             "streaming_topology_in_session_bolt_count": 0,
             "streaming_topology_validation_bolt_count": 10,
@@ -272,7 +272,7 @@
             "proxy_enabled": "true"
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/36112:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/36605:id/webtrends-streamingapi-bin.tar.gz",
             "sapi_service_url": "ws://bsapi01.staging.dmz:8080",
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"
