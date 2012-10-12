@@ -281,7 +281,7 @@
             "elmah_remote_access": "yes",
             "proxy_address": "http://sproxy02.staging.dmz:3128",
             "proxy_enabled": "true",
-            "sapi_url": "ws://bsapi01.staging.dmz:8080"
+            "sapi_url": "ws://bsapi.webtrends.com"
 	},
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/36605:id/webtrends-streamingapi-bin.tar.gz",
