@@ -282,7 +282,6 @@
             "custom_errors": "Off",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip",
             "elmah_remote_access": "yes",
-            "proxy_address": "http://sproxy02.staging.dmz:3128",
             "proxy_enabled": "true",
             "sapi_url": "ws://hsapi01.staging.dmz:8080",
             "streams_ui_url": "https://hstreams.webtrends.com"
@@ -290,7 +289,6 @@
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/.lastSuccessful/webtrends-streamingapi-bin.tar.gz",
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
-            "port": 8080,
             "proxy_host": "sproxy02.staging.dmz:3128",
             "usagedbname": "Streaming",
             "usagedbserver": "hcamdb01.staging.dmz"
@@ -300,8 +298,7 @@
             "roundtrip_scs_urls": "http://hscs01.staging.dmz:8080"
         },
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz",
-            "port": 8080
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz"
         },
         "wt_streamingconfigservice": {
             "camdbname": "CAM",
@@ -309,8 +306,7 @@
             "config_service_url": "http://hutil01.staging.dmz:8080",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/31469:id/webtrends-streaming-configservice-bin.tar.gz",
             "includeUnmappedAnalyticsIds": "true",
-            "masterdbname": "wtmaster",
-            "port": "8080"
+            "masterdbname": "wtmaster"
         },
         "wt_streaminglogreplayer": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/33085:id/webtrends-streaminglogreplayer-bin.tar.gz",
@@ -319,9 +315,6 @@
             "thread_pool_size": 200
         },
         "wt_usagedb": {},
-        "yum": {
-            "epel_release": "6-7"
-        },
         "zookeeper": {
             "client_port": 2181,
             "init_limit": 10,
