@@ -1,30 +1,36 @@
 # The endpoint to retrieve the list of dcsids to include hits from, all others will be dropped.
-configservice.url=<%= @configservice_url %>
+config.service.url=<%= @configservice_url %>
 
 # Firectory where log files will be searched.
-inputLogDir=<%= @wt_streaminglogreplayer[:share_mount_dir] %>
+input.log.dir=<%= @wt_streaminglogreplayer[:share_mount_dir] %>
 
 # File extension to look for, others will be ignored.
-inputLogExtension=<%= @wt_streaminglogreplayer[:log_extension] %>
+input.log.ext=<%= @wt_streaminglogreplayer[:log_extension] %>
+
+# File extension to use to indicate that a log file in use an "locked" by this logreplayer; a hostname will be added also.
+lock.file.ext=_lock
 
 # Kafka topic to push to for each hit.
-kafkaTopic=<%= @kafka_topic %>
+kafka.topic=<%= @kafka_topic %>
 
 # Should the logs be deleted when they have been completed
-deleteLogs=<%= @wt_streaminglogreplayer[:delete_logs] %>
+delete.logs=<%= @wt_streaminglogreplayer[:delete_logs] %>
 
-# How many minutes to wait before a local_lock file is considered to be "lost" and thus put back in the process
-lock_check_period=<%= @wt_streaminglogreplayer[:lock_check_period] %>
+# How many minutes to wait before a local_lock file is considered to be "lost" and thus put back in the process.
+lock.check.period.min=<%= @wt_streaminglogreplayer[:lock_check_period] %>
 
 # When processing events in a log, the process might get ahead of the "relative time" so we need to wait until the next second comes about.
 # This setting (milliseconds) determines how long we sleep before checking to see if "time" has caught up to the next second
-logtime.catchup=<%= @wt_streaminglogreplayer[:logtime_catchup] %>
+log.time.catchup.ms=<%= @wt_streaminglogreplayer[:logtime_catchup] %>
 
 # The number of threads for managing log files (The number should be the number of files to handle + 2 for supporting threads)
 thread.pool.size=<%= @wt_streaminglogreplayer[:thread_pool_size] %>
 
 # The events time regular expression taken from the log file name
-eventtime.log.regex=<%= @wt_streaminglogreplayer[:eventtime_log_regex] %>
+event.time.log.regex=<%= @wt_streaminglogreplayer[:eventtime_log_regex] %>
 
 # The znode root for storing the high-water mark
 znode.root=<%= @wt_streaminglogreplayer[:znode_root] %>
+
+# Minimum time to allow a log to sit in the log directory before starting to process it.
+minimum.log.file.age.sec=30

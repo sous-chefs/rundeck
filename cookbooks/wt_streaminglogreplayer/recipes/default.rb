@@ -102,8 +102,8 @@ def getZookeeperPairs(node)
   if zookeeper_pairs.count == 0
     node['zookeeper']['quorum'].each do |i|
       zookeeper_pairs << i
-		end
-	end
+    end
+  end
 
   # append the zookeeper client port (defaults to 2181)
   i = 0
@@ -112,30 +112,30 @@ def getZookeeperPairs(node)
       i += 1
   end
 
-	return zookeeper_pairs
+  return zookeeper_pairs
 end
 
 def processTemplates (install_dir, node, user, group, datacenter, pod, configservice_url, kafka_topic)
   log "Updating the templated config files"
 
-	# grab the zookeeper nodes that are currently available
-	zookeeper_pairs = getZookeeperPairs(node)
+  # grab the zookeeper nodes that are currently available
+  zookeeper_pairs = getZookeeperPairs(node)
 
-	%w[monitoring.properties producer.properties logconverter.properties].each do |template_file|
-		template "#{install_dir}/conf/#{template_file}" do
-			source	"#{template_file}.erb"
-			owner user
-			group group
-			mode  00755
-			variables({
-				:wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
-				:zookeeper_pairs => zookeeper_pairs,
-				:wt_monitoring => node[:wt_monitoring],
-				:configservice_url => configservice_url,
-				:kafka_topic => kafka_topic
-			})
-		end
-	end
+  %w[monitoring.properties producer.properties config.properties log4j.xml].each do |template_file|
+    template "#{install_dir}/conf/#{template_file}" do
+      source  "#{template_file}.erb"
+      owner user
+      group group
+      mode  00755
+      variables({
+        :wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
+        :zookeeper_pairs => zookeeper_pairs,
+        :wt_monitoring => node[:wt_monitoring],
+        :configservice_url => configservice_url,
+        :kafka_topic => kafka_topic
+      })
+    end
+  end
 end
 
 
@@ -172,7 +172,7 @@ if ENV["deploy_build"] == "true" then
         })
     end
 
-    processTemplates(install_dir, node, user, group, datacenter, pod, configservice_url, kafka_topic)
+    processTemplates(install_dir, node, user, group, datacenter, pod, configservice_url, kafka_topic, log_dir)
 
     # delete the application tarball
     execute "delete_install_source" do
@@ -192,7 +192,7 @@ if ENV["deploy_build"] == "true" then
     })
     end
 else
-    processTemplates(install_dir, node, user, group, datacenter, pod, configservice_url, kafka_topic)
+    processTemplates(install_dir, node, user, group, datacenter, pod, configservice_url, kafka_topic, log_dir)
 end
 
 #Create collectd plugin for streaminglogreplayer JMX objects if collectd has been applied.
@@ -208,24 +208,24 @@ end
 
 if node.attribute?("nagios")
   #Create a nagios nrpe check for old files in the logshare
-	nagios_nrpecheck "wt_streaming_logreplayer_old_files_count" do
-		command "#{node['nagios']['plugin_dir']}/check_file_ages_in_dirs"
-		warning_condition "15"
-		critical_condition "20"
-		parameters "-d #{node['wt_streaminglogreplayer']['share_mount_dir']} -t minutes"
-		action :add
-	end
+  nagios_nrpecheck "wt_streaming_logreplayer_old_files_count" do
+    command "#{node['nagios']['plugin_dir']}/check_file_ages_in_dirs"
+    warning_condition "15"
+    critical_condition "20"
+    parameters "-d #{node['wt_streaminglogreplayer']['share_mount_dir']} -t minutes"
+    action :add
+  end
 
   #Create a nagios nrpe check for the healthcheck page
-	nagios_nrpecheck "wt_healthcheck_page" do
-		command "#{node['nagios']['plugin_dir']}/check_http"
-		parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
-		action :add
-	end
+  nagios_nrpecheck "wt_healthcheck_page" do
+    command "#{node['nagios']['plugin_dir']}/check_http"
+    parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
+    action :add
+  end
   #Create a nagios nrpe check for the log file
-	nagios_nrpecheck "wt_garbage_collection_limit_reached" do
-		command "#{node['nagios']['plugin_dir']}/check_log"
-		parameters "-F /var/log/webtrends/streaminglogreplayer/logreplayer.log -O /tmp/logreplayer_old.log -q 'GC overhead limit exceeded'"
-		action :add
-	end
+  nagios_nrpecheck "wt_garbage_collection_limit_reached" do
+    command "#{node['nagios']['plugin_dir']}/check_log"
+    parameters "-F /var/log/webtrends/streaminglogreplayer/logreplayer.log -O /tmp/logreplayer_old.log -q 'GC overhead limit exceeded'"
+    action :add
+  end
 end
