@@ -1,3 +1,5 @@
+## 1.0.5
+* Default to port 80
 ## 1.0.4
 * Fix 'note' to 'node'
 ## 1.0.3
