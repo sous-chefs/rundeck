@@ -1,3 +1,5 @@
+## 1.0.6
+* Update binding redirects after MVC4 upgrade.
 ## 1.0.5
 * Default to port 80
 ## 1.0.4
