@@ -118,9 +118,9 @@ def getLib(lib_dir)
 
   #download the tar to temp directory
   remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+    checksum node["wt_kafka_mm"]["checksum"]
     source download_file
     mode 00644
-    action :create_if_missing
   end
 
 	# create the install TEMP dirctory
