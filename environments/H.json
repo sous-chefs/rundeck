@@ -305,12 +305,10 @@
             "camdbserver": "hcamdb01.staging.dmz",
             "config_service_url": "http://hutil01.staging.dmz:8080",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/31469:id/webtrends-streaming-configservice-bin.tar.gz",
-            "includeUnmappedAnalyticsIds": "true",
-            "masterdbname": "wtmaster"
+            "includeUnmappedAnalyticsIds": "true"
         },
         "wt_streaminglogreplayer": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/33085:id/webtrends-streaminglogreplayer-bin.tar.gz",
-            "log_extension": ".gz",
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay",
             "thread_pool_size": 200
         },
