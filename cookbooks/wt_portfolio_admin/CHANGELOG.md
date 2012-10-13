@@ -1,3 +1,6 @@
+## 1.1.4
+* Change default auth base uri to match with new auth service uri
+
 ## 1.1.3
 * Added missing Autofac config
 
