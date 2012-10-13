@@ -7,6 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# include for the URI object
+require 'uri'
+
 # include runit so we can create a runit service
 include_recipe "runit"
 
@@ -82,17 +85,22 @@ end
 def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix, usagedbuser, usagedbpwd)
   log "Updating the template files"
 
-	auth_url = node['wt_sauth']['auth_service_url']
-	auth_host = auth_url.sub("https://","").sub("http://","")
-	proxy_host = node['wt_common']['http_proxy_url'].gsub("http://","")
-	cam_url = node['wt_cam']['cam_service_url']
-	port = node['wt_streamingapi']['port']
-	usagedbserver = node['wt_streamingapi']['usagedbserver']
-	usagedbname = node['wt_streamingapi']['usagedbname']
+    auth_url = node['wt_sauth']['auth_service_url']
 
-	%w[log4j.xml monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
+    auth_uri = URI(auth_url)
+    auth_host = auth_uri.host
+
+    proxy_uri = URI(node['wt_common']['http_proxy_url'])
+    proxy_host = proxy_uri.host
+    
+    cam_url = node['wt_cam']['cam_service_url']
+    port = node['wt_streamingapi']['port']
+    usagedbserver = node['wt_streamingapi']['usagedbserver']
+    usagedbname = node['wt_streamingapi']['usagedbname']
+
+    %w[log4j.xml monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
-      source	"#{template_file}.erb"
+      source    "#{template_file}.erb"
       owner "root"
       group "root"
       mode  00644
@@ -191,15 +199,15 @@ end
 
 if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
-	nagios_nrpecheck "wt_healthcheck_page" do
-		command "#{node['nagios']['plugin_dir']}/check_http"
-		parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
-		action :add
-	end
+    nagios_nrpecheck "wt_healthcheck_page" do
+        command "#{node['nagios']['plugin_dir']}/check_http"
+        parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
+        action :add
+    end
   #Create a nagios nrpe check for the log file
-	nagios_nrpecheck "wt_garbage_collection_limit_reached" do
+    nagios_nrpecheck "wt_garbage_collection_limit_reached" do
     command "#{node['nagios']['plugin_dir']}/check_log"
-		parameters "-F /var/log/webtrends/streamingapi/streaming.log -O /tmp/streaming_old.log -q 'GC overhead limit exceeded'"
-		action :add
-	end
+        parameters "-F /var/log/webtrends/streamingapi/streaming.log -O /tmp/streaming_old.log -q 'GC overhead limit exceeded'"
+        action :add
+    end
 end
