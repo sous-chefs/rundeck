@@ -181,6 +181,7 @@
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
             "config_dir_linux": "/etc/webtrends/", 
+            "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
@@ -255,7 +256,7 @@
             "usage_host": "fusagedb01.staging.dmz"
         }, 
         "wt_xd": {
-            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/09122012/XD_Map_Reduce_master_1.0.0-SNAPSHOT.102_artifacts.zip",
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/09122012/XD_Map_Reduce_master_1.0.0-SNAPSHOT.102_artifacts.zip", 
             "environment": "support-staging"
         }, 
         "yum": {

@@ -158,6 +158,7 @@
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "config_dir_linux": "/etc/webtrends/", 
+            "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
