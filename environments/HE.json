@@ -2,7 +2,6 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "cassandra": "= 1.0.7", 
-        "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
         "hadoop": "= 0.0.2", 
         "hbase": "= 0.0.1", 
         "hive": "= 0.0.1", 
