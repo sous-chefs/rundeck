@@ -180,7 +180,7 @@
             "install_log_dir_linux": "/var/log/webtrends/install", 
             "install_log_dir_windows": "d:\\logs", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "ldap_host": "bdalp01.staging.dmz", 
+            "ldap_host": "bldap01.staging.dmz", 
             "ldap_port": "636", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
