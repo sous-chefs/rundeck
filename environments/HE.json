@@ -2,6 +2,7 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "cassandra": "= 1.0.7", 
+        "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
         "hadoop": "= 0.0.2", 
         "hbase": "= 0.0.1", 
         "hive": "= 0.0.1", 
@@ -211,6 +212,7 @@
             "common_resource_environment": "HE", 
             "config_dir_linux": "/etc/webtrends/", 
             "datacenter": "Lab", 
+            "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
