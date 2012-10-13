@@ -91,7 +91,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
     auth_host = auth_uri.host
 
     proxy_uri = URI(node['wt_common']['http_proxy_url'])
-    proxy_host = proxy_uri.host
+    proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
     
     cam_url = node['wt_cam']['cam_service_url']
     port = node['wt_streamingapi']['port']
