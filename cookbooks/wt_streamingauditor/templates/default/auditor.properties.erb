@@ -12,7 +12,7 @@ sapi.znode.root=/StreamingZMQ/<%= @datacenter %>_<%= @pod %>
 # This is the base url for the AUTH service. This is used by the health check
 webtrends.authentication.baseUrl=<%= node['wt_sauth']['auth_service_url'] %>
 # This is the url for the AUTH service to get the token
-roundtrip.authentication.url = <%= node['wt_sauth']['auth_service_url'] %>/token
+roundtrip.authentication.url = <%= node['wt_sauth']['auth_service_url'] %>/v1/token
 # The client id for wt_monitoring
 roundtrip.clientid=<%=@client_id%>
 # The client secret for wt_monitoring
