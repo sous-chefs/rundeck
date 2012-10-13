@@ -224,7 +224,7 @@
         }, 
         "wt_portfolio_admin": {
             "account_ui_url": "https://baccount.webtrends.com", 
-            "cam_auth_url": "https://bsauth.webtrends.com", 
+            "cam_auth_url": "https://bsauth.webtrends.com/v1", 
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/36673:id/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
@@ -243,7 +243,7 @@
         }, 
         "wt_rta": {}, 
         "wt_sauth": {
-            "auth_service_url": "https://bsauth.webtrends.com/v1", 
+            "auth_service_url": "https://bsauth.webtrends.com", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/36588:id/auth.zip"
         }, 
         "wt_search": {}, 
