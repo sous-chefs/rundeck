@@ -1,3 +1,6 @@
+## 1.1.5
+* Revert lack of v1 in auth base url
+
 ## 1.1.4
 * Change default auth base uri to match with new auth service uri
 
