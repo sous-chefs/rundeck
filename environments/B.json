@@ -20,7 +20,7 @@
         "wt_storm": "= 1.0.34", 
         "wt_storm_realtime": "= 2.1.1", 
         "wt_storm_streaming": "= 2.1.14", 
-        "wt_streaming_viz": "1.0.14", 
+        "wt_streaming_viz": "1.1.5", 
         "wt_streamingapi": "= 1.0.9", 
         "wt_streamingauditor": "= 1.0.7", 
         "wt_streamingcollection": "= 0.0.28", 
@@ -279,7 +279,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/36531:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/36774:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "port": 85, 
             "proxy_enabled": "true"
