@@ -14,7 +14,7 @@
         "wt_cam": "= 1.0.26", 
         "wt_kafka_mm": "= 0.0.16", 
         "wt_netacuity": "= 1.0.8", 
-        "wt_portfolio_admin": "1.1.3", 
+        "wt_portfolio_admin": "1.1.5", 
         "wt_realtimeapi": "= 0.0.23", 
         "wt_sauth": "1.0.7", 
         "wt_storm": "= 1.0.34", 
@@ -160,10 +160,10 @@
         "wt_analytics_ui": {}, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/36588:id/CAM.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/36777:id/CAM.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/36588:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/36777:id/Plugins.zip"
             }, 
             "cam_service_url": "http://bcam.staging.dmz", 
             "db_name": "cam", 
@@ -226,7 +226,7 @@
             "account_ui_url": "https://baccount.webtrends.com", 
             "cam_auth_url": "https://bsauth.webtrends.com/v1", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/36673:id/Portfolio.Admin.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/36773:id/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true", 
@@ -244,7 +244,7 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://bsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/36588:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/36777:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_realtime": {
