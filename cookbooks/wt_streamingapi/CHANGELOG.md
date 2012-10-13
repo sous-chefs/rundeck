@@ -1,3 +1,6 @@
+## 1.0.9
+* Added new way to get just the host part of the URI
+
 ## 1.0.8
 * Updated auth url
 
