@@ -33,4 +33,4 @@ event.time.log.regex=<%= @wt_streaminglogreplayer[:eventtime_log_regex] %>
 znode.root=<%= @wt_streaminglogreplayer[:znode_root] %>
 
 # Minimum time to allow a log to sit in the log directory before starting to process it.
-minimum.log.file.age.sec=30
+minimum.log.file.age.sec=<%= @wt_streaminglogreplayer[:minimum_log_file_age_sec] %>
