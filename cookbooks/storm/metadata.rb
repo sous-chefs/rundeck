@@ -3,6 +3,6 @@ maintainer_email "sean.mcnamara@webtrends.com"
 license          "All rights reserved"
 description      "Installs Storm"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.0.26"
+version          "1.0.27"
 depends          "java"
 depends          "runit"
