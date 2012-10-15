@@ -1,3 +1,6 @@
+## 1.1.6
+* Add new attribute wt_portfolio_admin.auth_service_version
+* Build auth url from auth_service_url/auth_service_version
 ## 1.1.5
 * Revert lack of v1 in auth base url
 
