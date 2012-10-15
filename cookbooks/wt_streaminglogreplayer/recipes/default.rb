@@ -115,7 +115,7 @@ def getZookeeperPairs(node)
   return zookeeper_pairs
 end
 
-def processTemplates (install_dir, node, user, group, datacenter, pod, configservice_url, kafka_topic)
+def processTemplates (install_dir, node, user, group, datacenter, pod, configservice_url, kafka_topic, log_dir)
   log "Updating the templated config files"
 
   # grab the zookeeper nodes that are currently available
@@ -132,7 +132,8 @@ def processTemplates (install_dir, node, user, group, datacenter, pod, configser
         :zookeeper_pairs => zookeeper_pairs,
         :wt_monitoring => node[:wt_monitoring],
         :configservice_url => configservice_url,
-        :kafka_topic => kafka_topic
+        :kafka_topic => kafka_topic,
+        :log_dir => log_dir
       })
     end
   end
