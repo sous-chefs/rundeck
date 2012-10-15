@@ -1,5 +1,5 @@
 {
-  "name": "wt_platform_scheduler",
+  "name": "wt_platformscheduler",
   "default_attributes": {
   },
   "override_attributes": {
@@ -8,6 +8,10 @@
   "env_run_lists": {
   },
   "run_list": [
+    "role[ms_dotnet4]",
+    "role[ms_messagequeue]",
+    "role[wt_platformscheduler]"
+
   ],
   "description": "Webtrends Platform (VDM) Scheduler",
   "chef_type": "role"  
