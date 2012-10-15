@@ -1,3 +1,7 @@
+## 1.1.6
+* Add attribute wt_streaming_viz.auth_service_version = "v1"
+* Build base url from auth_service_url/auth_service_version
+
 ## 1.1.5
 * Revert auth base url
 
