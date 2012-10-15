@@ -53,7 +53,7 @@ if ENV["deploy_build"] == "true" then
 
 	# execute the VDM scheduler Agent MSI
 	windows_package "Webtrends VDM Scheduler Agent" do
-		source "#{Chef::Config[:file_cache_path]}/#{msi}"
+		source "\"#{Chef::Config[:file_cache_path]}/#{msi}\""
 		options "/l*v \"#{log_dir}\\PlatformSchedulerAgent-Install.log\" SERVICEACCT=#{svcuser} SERVICEPASS=#{svcpass} AGENTMANAGERADDRESS=agentmanager.1@#{sched_host} BASEFOLDER=#{install_dir} LOGTOFILE=true FILELOGGINGLEVEL=4 SCHEDULERADDRESS=scheduler2@#{sched_host} MASTER_HOST=#{master_host} STANDALONE=TRUE INSTALLDIR=\"#{install_dir}\\agent\\common\""
 		action :install
 	end
