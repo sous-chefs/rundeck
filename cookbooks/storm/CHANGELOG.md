@@ -1,3 +1,6 @@
+## 1.0.27
+* Bump the file handler limit on the webui to 1024. The limit was already increased on Nimbus
+
 ## 1.0.26
 * Cleans out the state of only the previous runs supervisors, but not the workers.
   Removing the workers state caused supsequent supervisors to bitch about not
