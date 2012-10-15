@@ -10,9 +10,9 @@ auditlistener.enabled= <%= node['wt_streamingauditor']['auditlistener_enabled'] 
 sapi.znode.root=/StreamingZMQ/<%= @datacenter %>_<%= @pod %>
 
 # This is the base url for the AUTH service. This is used by the health check
-webtrends.authentication.baseUrl=<%= node['wt_sauth']['auth_service_url'] %>
+webtrends.authentication.baseUrl=<%=node['wt_sauth']['auth_service_url']%>/<%=node['wt_sauth']['sauth_version']%>
 # This is the url for the AUTH service to get the token
-roundtrip.authentication.url = <%= node['wt_sauth']['auth_service_url'] %>/v1/token
+roundtrip.authentication.url=<%=node['wt_sauth']['auth_service_url']%>/<%=node['wt_sauth']['sauth_version']%>/token
 # The client id for wt_monitoring
 roundtrip.clientid=<%=@client_id%>
 # The client secret for wt_monitoring
