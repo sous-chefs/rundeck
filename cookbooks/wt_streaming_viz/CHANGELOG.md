@@ -1,3 +1,6 @@
+## 1.1.5
+* Revert auth base url
+
 ## 1.1.4
 * Update auth base url
 

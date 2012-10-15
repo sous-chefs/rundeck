@@ -35,22 +35,6 @@ directory node['multi_repo']['repo_dropbox_path'] do
   action :create
 end
 
-# create the apt and yum repo directories
-%w{ yum/centos apt/ubuntu gems/gems }.each do |dir|
-  directory "#{node['multi_repo']['repo_path']}/#{dir}" do
-    recursive true
-    action :create
-  end
-end
-
-# create the extra repo directories if defined
-node['multi_repo']['extra_repo_subdirs'].each do |dir|
-  directory "#{node['multi_repo']['repo_path']}/#{dir}" do
-    recursive true
-    action :create
-  end
-end
-
 # copy the gem files from dropbox to the repo
 #execute "move gems" do
 #  command "mv #{node['multi_repo']['repo_dropbox_path']}/*.gem #{node['multi_repo']['repo_path']}/gems/gems/"
@@ -97,15 +81,51 @@ apache_site "repo" do
   enable true
 end
 
-# execute command to update the apt repository (only fires on notifies)
-execute "update_apt_mirror" do
-  command "apt-mirror"
-  action :nothing
+# create the extra repo directories
+node['multi_repo']['extra_repo_subdirs'].each do |dir|
+  directory "#{node['multi_repo']['repo_path']}/#{dir}" do
+    recursive true
+    action :create
+  end
 end
 
-# template the apt mirror config
-template "/etc/apt/mirror.list" do
-  source "mirror.list.erb"
-  mode 00644
-  notifies :run, "execute[update_apt_mirror]", :immediately
+# create the gem repo directory
+directory "#{node['multi_repo']['repo_path']}/gems/gems" do
+  recursive true
+  action :create
+end
+
+# manage centos mirror if enabled
+if node['multi_repo']['mirrors']['mirror_centos']
+
+  directory "#{node['multi_repo']['repo_path']}/yum/centos" do
+    recursive true
+    action :create
+  end
+
+end
+
+
+# manage apt mirror if enabled
+if node['multi_repo']['mirrors']['mirror_ubuntu']
+
+  # create the apt mirror directory
+  directory "#{node['multi_repo']['repo_path']}/apt" do
+    recursive true
+    action :create
+  end
+
+  # execute command to update the apt repository (only fires on notifies)
+  execute "update_apt_mirror" do
+    command "apt-mirror"
+    action :nothing
+  end
+
+  # template the apt mirror config
+  template "/etc/apt/mirror.list" do
+    source "mirror.list.erb"
+    mode 00644
+    notifies :run, "execute[update_apt_mirror]", :immediately
+  end
+
 end
