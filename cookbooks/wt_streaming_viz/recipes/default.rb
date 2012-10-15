@@ -89,10 +89,12 @@ if ENV["deploy_build"] == "true" then
   end
 end
 
+auth_base = node['wt_sauth']['auth_service_url']
+auth_version = node['wt_streaming_viz']['auth_service_version']
 template "#{install_dir}\\appSettings.config" do
 	source "appSettings.config.erb"
 	variables(
-		:auth_url => node['wt_sauth']['auth_service_url'],
+		:auth_url => "#{auth_base}/#{auth_version}",
 		:auth_url_base => node['wt_streaming_viz']['auth_service_url_base'],
 		:cam_url => node['wt_cam']['cam_service_url'],
 		:cam_url_base => node['wt_streaming_viz']['cam_service_url_base'],
