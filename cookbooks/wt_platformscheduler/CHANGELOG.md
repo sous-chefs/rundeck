@@ -1,7 +1,12 @@
+## 1.0.6
+* Added seperate download section
+
 ## 1.0.5: 
-Commented out uninstall
+* Commented out uninstall
+
 ## 1.0.4:
 * Hard coded install log
+
 ## 1.0.3:
 * Changed uninstall recipe name
 
