@@ -1,5 +1,5 @@
 ## 1.0.8
-*
+* Added 'sauth_version'
 
 ## 1.0.7
 * Updated the 'roundtrip.authentication.url' to use 'v1/token'
