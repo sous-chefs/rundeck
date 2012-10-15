@@ -281,7 +281,7 @@
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/36774:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
-            "port": 85, 
+            "port": 80, 
             "proxy_enabled": "true"
         }, 
         "wt_streamingapi": {
