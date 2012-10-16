@@ -170,6 +170,148 @@ LoadPlugin java
                         Attribute "tasks_completed"
                 </Value>
         </MBean>		
+	#WT Hbase RPC 60020 stats
+        <MBean "hbase_rpc_statistics">
+                ObjectName "hadoop:service=HBase,name=RPCStatistics-60020"
+                #InstancePrefix ""
+                InstanceFrom "name"
+                <Value>
+                        Type "gauge"
+                        InstancePrefix "compactRegionAvgTime"
+                        Attribute "compactRegionAvgTime"
+                </Value>
+                <Value>
+                        Type "guage"
+                        InstancePrefix "compactRegionMaxTime"
+                        Attribute "compactRegionMaxTime"
+                </Value>
+                <Value>
+                        Type "gauge"
+                        InstancePrefix "compactRegionNumOps"
+                        Attribute "compactRegionNumOps"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "deleteNumOps"
+                        Attribute "deleteNumOps"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "flushRegionAvgTime"
+                        Attribute "flushRegionAvgTime"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "getAvgTime"
+                        Attribute "getAvgTime"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "getMaxTime"
+                        Attribute "getMaxTime"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "getNumOps"
+                        Attribute "getNumOps"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "NumOpenConnections"
+                        Attribute "NumOpenConnections"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "putAvgTime"
+                        Attribute "putAvgTime"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "putMaxTime"
+                        Attribute "putMaxTime"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "putNumOps"
+                        Attribute "putNumOps"
+                </Value>
+		<Value>
+                        Type "counter"
+                        InstancePrefix "ReceivedBytes"
+                        Attribute "ReceivedBytes"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "RpcSlowResponseAvgTime"
+                        Attribute "RpcSlowResponseAvgTime"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "RpcSlowResponseNumOps"
+                        Attribute "RpcSlowResponseNumOps"
+                </Value>
+		<Value>
+                        Type "counter"
+                        InstancePrefix "SentBytes"
+                        Attribute "SentBytes"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "splitRegionNumOps"
+                        Attribute "splitRegionNumOps"
+                </Value>               
+        </MBean>		
+		#WT Region Server Statistics
+        <MBean "region_server_statistics">
+                ObjectName "hadoop:service=RegionServer,name=RegionServerStatistics"
+                #InstancePrefix ""
+                InstanceFrom "name"
+                <Value>
+                        Type "gauge"
+                        InstancePrefix "compactionQueueSize"
+                        Attribute "compactionQueueSize"
+                </Value>
+                <Value>
+                        Type "guage"
+                        InstancePrefix "compactionTimeAvgTime"
+                        Attribute "compactionTimeAvgTime"
+                </Value>
+                <Value>
+                        Type "gauge"
+                        InstancePrefix "compactionTimeNumOps"
+                        Attribute "compactionTimeNumOps"
+                </Value>
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "compactionSizeNumOps"
+                        Attribute "compactionSizeNumOps"
+                </Value>
+		<Value>
+                        Type "counter"
+                        InstancePrefix "flushQueueSize"
+                        Attribute "flushQueueSize"
+		</Value>				
+		<Value>
+                        Type "gauge"
+                        InstancePrefix "readRequestsCount"
+                        Attribute "readRequestsCount"
+                </Value>
+		<Value>
+                        Type "counter"
+                        InstancePrefix "regions"
+                        Attribute "regions"
+                </Value>
+		<Value>
+                        Type "counter"
+                        InstancePrefix "requests"
+                        Attribute "requests"
+                </Value>
+		<Value>
+                        Type "counter"
+                        InstancePrefix "writeRequestsCount"
+                        Attribute "writeRequestsCount"
+		</Value>
+        </MBean>		
         #####################
         # Connection blocks #
         #####################
@@ -182,7 +324,7 @@ LoadPlugin java
                 Collect "memory_nonheap"
                 Collect "java_threads"
                 Collect "garbage_collector"
-				Collect "runtime"
+		Collect "runtime"
                 Collect "data_node"
         </Connection>
 		#TaskTracker Connection
@@ -191,5 +333,13 @@ LoadPlugin java
                 ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:8007/jmxrmi"
                 Collect "task_tracker"
         </Connection>		
+                #HBase RPC Statistics Connection
+        <Connection>
+                Host "<%= @node[:hostname] %>"
+                ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:10102/jmxrmi"
+                Collect "hbase_rpc_statistics"
+		Collect "region_server_statistics"
+        </Connection>
         </Plugin>
 </Plugin>
+
