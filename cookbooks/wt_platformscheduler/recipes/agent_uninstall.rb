@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: wt_platformscheduler
-# Recipe:: default
+# Recipe:: agent_uninstall
 # Author:: Kendrick Martin
 #
 # Copyright 2012, Webtrends
@@ -10,11 +10,6 @@
 
 
 windows_package "Webtrends VDM Scheduler Agent" do
-	action :remove
-	ignore_failure true
-end
-
-windows_package "Webtrends VDM Scheduler" do
 	action :remove
 	ignore_failure true
 end
