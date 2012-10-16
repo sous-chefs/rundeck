@@ -214,8 +214,8 @@
         }, 
         "wt_masterdb": {
             "master_db": "wtmaster", 
-            "master_host": "jmasterdb01.englab.webtrends.corp",
-            "sched_host": "jmasterdb01.englab.webtrends.corp"
+            "master_host": "dmasterdb01.staging.dmz",
+            "sched_host": "dmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
@@ -253,7 +253,7 @@
         }, 
         "wt_rta": {}, 
         "wt_sauth": {
-            "auth_service_url": "https://ciauth01.staging.dmz", 
+            "auth_service_url": "http://ciauth01.staging.dmz", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/auth.zip"
         }, 
         "wt_search": {}, 
@@ -311,8 +311,7 @@
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt188/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz", 
-            "port": 8080
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt188/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz"
         }, 
         "wt_streamingconfigservice": {
             "camdbname": "CAM", 
