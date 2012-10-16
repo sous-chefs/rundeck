@@ -1,3 +1,6 @@
+## 1.0.8
+* Removed spaces from msi name
+
 ## 1.0.7
 * Added extra quotes around msi package
 
