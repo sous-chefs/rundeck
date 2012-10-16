@@ -1,8 +1,8 @@
 Description
 ===========
 
-Setup up an apt and RPM repository on a system.  Installs reprepro for apt support and
-create repo for RPM support.  Installs nfs-common and mounts a NFS volume to the repo path.
+Setup up an apt and yum repository on a system.  Installs reprepro for apt support and
+create repo for yum support.  Installs nfs-common and mounts a NFS volume to the repo path.
 Apache is installed and configured and shares out that repo path.
 
 The optional environment_publish.rb recipe will publish your chef environments folder
