@@ -12,7 +12,7 @@ CarbonPort="2003"
 
 MetricRoot="tools.loadbalancers"
 Host="pdxlbe01"
-HostIP="10.61.1.132"
+HostIP="10.90.19.253"
 
 #SNMP Polling for Gauge type counters
 vsvrFullName=( $(snmpwalk -On -v 2c -c wtlive $HostIP 1.3.6.1.4.1.3375.2.2.10.2.3.1.1 | sed 's/.*"\(.*\)"[^"]*$/\1/;s/\./\_/g;s/_208//')) 
