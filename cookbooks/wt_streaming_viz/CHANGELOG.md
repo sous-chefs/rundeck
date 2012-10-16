@@ -1,4 +1,7 @@
 ## 1.1.7
+* Add httpCompression section to web.config template
+
+## 1.1.7
 * Fixed log4net to use the log_dir variable not the install_log_dir
 * Remove extra "logs" directory in the log4net template
 
