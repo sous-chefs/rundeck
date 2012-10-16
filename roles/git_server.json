@@ -1,0 +1,11 @@
+{
+  "name": "git_server",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Git Server",
+  "run_list": [
+    "recipe[postfix]",
+    "recipe[git::server]"
+  ],
+  "override_attributes": {}
+}
