@@ -1,3 +1,5 @@
+## 1.1.7
+* Change log4net template to use correct log location.
 ## 1.1.6
 * Add new attribute wt_portfolio_admin.auth_service_version
 * Build auth url from auth_service_url/auth_service_version
