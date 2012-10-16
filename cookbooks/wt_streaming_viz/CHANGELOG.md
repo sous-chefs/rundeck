@@ -1,5 +1,6 @@
 ## 1.1.7
 * Fixed log4net to use the log_dir variable not the install_log_dir
+* Remove extra "logs" directory in the log4net template
 
 ## 1.1.6
 * Add attribute wt_streaming_viz.auth_service_version = "v1"
