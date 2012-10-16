@@ -59,7 +59,7 @@ if ENV["deploy_build"] == "true" then
 	end
 	
 	wt_base_icacls install_dir do
-		user system_user
+		user svcuser
 		perm :modify
 		action :grant
 	end
