@@ -253,7 +253,7 @@
         }, 
         "wt_rta": {}, 
         "wt_sauth": {
-            "auth_service_url": "https://ciauth01.staging.dmz", 
+            "auth_service_url": "http://ciauth01.staging.dmz", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/auth.zip"
         }, 
         "wt_search": {}, 
