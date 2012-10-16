@@ -1,6 +1,19 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {}, 
+    "cookbook_versions": {
+        "java": "= 1.5.4", 
+        "nagios": "= 1.6.0", 
+        "webpi": "= 1.0.3", 
+        "webtrends_server": "= 1.8.3", 
+        "windows": "= 1.2.12", 
+        "wt_analytics_ui": "= 1.0.1", 
+        "wt_base": "= 0.10.53", 
+        "wt_cam": "= 1.0.9", 
+        "wt_monitoring": "= 0.0.2", 
+        "wt_search": "= 1.0.7", 
+        "wt_sync": "= 1.0.4", 
+        "wt_xd": "= 0.0.6"
+    }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -84,6 +97,13 @@
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
+        "resolver": {
+            "nameservers": [
+                "10.61.65.251", 
+                "10.61.65.252"
+            ], 
+            "search": "englab.webtrends.corp webtrends.corp staging.dmz"
+        }, 
         "snmp": {
             "community": "DevOps", 
             "full_systemview": "true", 
@@ -131,6 +151,7 @@
             "bba_domain": "jblackberry.englab.webtrends.corp", 
             "cache_region": "J_A10", 
             "custom_errors": "Off", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/0913/AnalyticsUI.zip", 
             "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
@@ -150,9 +171,6 @@
             "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}", 
             "twitter_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "youtube_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw=="
-        }, 
-        "wt_camservice": {
-            "url": "http://jcam01.englab.webtrends.corp/camservice"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -207,14 +225,18 @@
             "rta_host": "jrta01.englab.webtrends.corp"
         }, 
         "wt_search": {
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/0829/Search.zip", 
             "search_hostname": "jsearch.englab.webtrends.corp"
+        }, 
+        "wt_sync": {
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/0829/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "jusagedb01.englab.webtrends.corp", 
             "usage_host": "jusagedb01.englab.webtrends.corp"
         }, 
         "wt_xd": {
-            "download_url": "http://teamcity/guestAuth/repository/downloadAll/bt134/.lastSuccessful/artifacts.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/09122012/XD_Map_Reduce_master_1.0.0-SNAPSHOT.102_artifacts.zip", 
             "environment": "support-staging"
         }, 
         "yum": {
@@ -241,13 +263,6 @@
             "servers": [
                 "time.webtrends.corp"
             ]
-        }, 
-        "resolver": {
-            "nameservers": [
-                "10.61.65.251", 
-                "10.61.65.252"
-            ], 
-            "search": "englab.webtrends.corp webtrends.corp staging.dmz"
         }
     }
 }
