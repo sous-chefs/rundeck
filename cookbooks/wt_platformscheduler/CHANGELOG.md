@@ -2,6 +2,7 @@
 * Correctly named attribute
 
 ## 1.0.8
+* Removed spaces from msi name
 * Fixed uninstall recipe
 
 ## 1.0.7
