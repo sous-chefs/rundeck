@@ -46,17 +46,17 @@ end
 
 if ENV["deploy_build"] == "true" then
 
-	remote_file "#{Chef::Config[:file_cache_path]}/#{msi}" do
+  remote_file "#{Chef::Config[:file_cache_path]}/#{msi}" do
     source node['wt_platformscheduler']['agent']['download_url']
     mode 00644
   end
 
 	# execute the VDM scheduler Agent MSI
-	windows_package "Webtrends VDM Scheduler Agent" do
-		source "\"#{Chef::Config[:file_cache_path]}/#{msi}\""
-		options "/l*v \"#{log_dir}\\PlatformSchedulerAgent-Install.log\" SERVICEACCT=#{svcuser} SERVICEPASS=#{svcpass} AGENTMANAGERADDRESS=agentmanager.1@#{sched_host} BASEFOLDER=#{install_dir} LOGTOFILE=true FILELOGGINGLEVEL=4 SCHEDULERADDRESS=scheduler2@#{sched_host} MASTER_HOST=#{master_host} STANDALONE=TRUE INSTALLDIR=\"#{install_dir}\\agent\\common\""
-		action :install
-	end
+  windows_package "Webtrends VDM Scheduler Agent" do
+    source "#{Chef::Config[:file_cache_path]}/#{msi}"
+    options "/l*v \"#{log_dir}\\PlatformSchedulerAgent-Install.log\" SERVICEACCT=#{svcuser} SERVICEPASS=#{svcpass} AGENTMANAGERADDRESS=agentmanager.1@#{sched_host} BASEFOLDER=#{install_dir} LOGTOFILE=true FILELOGGINGLEVEL=4 SCHEDULERADDRESS=scheduler2@#{sched_host} MASTER_HOST=#{master_host} STANDALONE=TRUE INSTALLDIR=\"#{install_dir}\\agent\\common\""
+    action :install
+  end
 	
-	share_wrs
+  share_wrs
 end
