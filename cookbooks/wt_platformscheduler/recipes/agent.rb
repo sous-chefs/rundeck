@@ -10,7 +10,7 @@
 #
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploy first"  
- # include_recipe "wt_platformscheduler::agent_uninstall"
+  include_recipe "wt_platformscheduler::agent_uninstall"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
@@ -56,6 +56,12 @@ if ENV["deploy_build"] == "true" then
 		source "\"#{Chef::Config[:file_cache_path]}/#{msi}\""
 		options "/l*v \"#{log_dir}\\PlatformSchedulerAgent-Install.log\" SERVICEACCT=#{svcuser} SERVICEPASS=#{svcpass} AGENTMANAGERADDRESS=agentmanager.1@#{sched_host} BASEFOLDER=#{install_dir} LOGTOFILE=true FILELOGGINGLEVEL=4 SCHEDULERADDRESS=scheduler2@#{sched_host} MASTER_HOST=#{master_host} STANDALONE=TRUE INSTALLDIR=\"#{install_dir}\\agent\\common\""
 		action :install
+	end
+	
+	wt_base_icacls install_dir do
+		user system_user
+		perm :modify
+		action :grant
 	end
 	
 	share_wrs
