@@ -128,6 +128,6 @@ template "#{install_dir}\\log4net.config" do
   source "log4net.config.erb"
   variables(
   :log_level => node['wt_portfolio_admin']['log_level'],
-  :log_dir => install_logdir
+  :log_dir => log_dir
   )
 end
