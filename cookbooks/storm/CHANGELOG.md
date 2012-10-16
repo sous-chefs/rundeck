@@ -1,3 +1,6 @@
+## 1.0.28
+* Add support for Ubuntu to the metadata
+
 ## 1.0.27
 * Bump the file handler limit on the webui to 1024. The limit was already increased on Nimbus
 
