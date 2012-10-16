@@ -83,7 +83,7 @@ if ENV["deploy_build"] == "true" then
   windows_zipfile install_dir do
 		source node['wt_streaming_viz']['download_url']
 		action :unzip
-  end  
+  end
   iis_config auth_cmd do
   	action :config
   end
@@ -125,6 +125,6 @@ template "#{install_dir}\\log4net.config" do
 	source "log4net.config.erb"
 	variables(
 		:log_level => node['wt_streaming_viz']['log_level'],
-		:log_dir => install_logdir
+		:log_dir => log_dir
 	)
 end
