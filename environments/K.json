@@ -216,7 +216,7 @@
         },
 				"wt_platformscheduler": {
 				    "agent": {
-						  "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt24/36846:id/WebTrends+VDM+Scheduler.msi"
+						  "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt24/36846:id/WebTrendsVDMSchedulerAgent.msi"
 						}
 				},
         "wt_roadrunner": {
