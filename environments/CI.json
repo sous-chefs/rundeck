@@ -214,8 +214,8 @@
         }, 
         "wt_masterdb": {
             "master_db": "wtmaster", 
-            "master_host": "jmasterdb01.englab.webtrends.corp",
-            "sched_host": "jmasterdb01.englab.webtrends.corp"
+            "master_host": "dmasterdb01.englab.webtrends.corp",
+            "sched_host": "dmasterdb01.englab.webtrends.corp"
         }, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
