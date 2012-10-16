@@ -5,7 +5,7 @@
   "description": "Git Server",
   "run_list": [
     "recipe[postfix]",
-    "recipe[git::server]",
+    "recipe[git::server]"
   ],
   "override_attributes": {}
 }
