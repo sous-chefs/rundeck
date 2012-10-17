@@ -1,3 +1,6 @@
+## 1.0.28
+* Added template entries for audit logging
+
 ## 1.0.27
 * Added streams.url variable to the web.config template
 
