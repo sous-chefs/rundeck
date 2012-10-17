@@ -91,20 +91,20 @@ template "netacuity-passwd" do
 end
 
 if node.attribute?("nagios")
-    #Create a nagios nrpe check to directly query netacuity for data using webtrends.com's IP
+  #Create a nagios nrpe check to directly query netacuity for data using webtrends.com's IP
 	nagios_nrpecheck "wt_netacuity_check" do
 		command "#{node['nagios']['plugin_dir']}/check_netacuity.rb"
 		parameters "localhost 216.223.23.5"
 		action :add
 	end
 
-    #Copy in the nrpe netacuity check plugin config file.
+  #Copy in the nrpe netacuity check plugin config file.
 	cookbook_file "#{node['nagios']['plugin_dir']}/check_netacuity.rb" do
 		source "check_netacuity.rb"
 		mode 00755
 	end
-    
-    #Create a nagios nrpe check for the netacuity page
+
+  #Create a nagios nrpe check for the netacuity page
 	nagios_nrpecheck "wt_netacuity_web_ui_check" do
 		command "#{node['nagios']['plugin_dir']}/check_http"
 		parameters "-H localhost -p 5500 -s \"Digital Envoy\""
