@@ -307,7 +307,7 @@
             "includeUnmappedAnalyticsIds": "true"
         },
         "wt_streaminglogreplayer": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/36944:id/webtrends-streaminglogreplayer-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/37292:id/webtrends-streaminglogreplayer-bin.tar.gz",
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay",
             "thread_pool_size": 200
         },

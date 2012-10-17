@@ -158,10 +158,10 @@ LoadPlugin java
                 #InstanceFrom ""
                 <Value>
                         Type "gauge"
-                        InstancePrefix "AsyncProducerQueueSize"
+                        InstancePrefix "AsyncProducerStats"
                         #InstanceFrom ""
                         Table false
-                        Attribute "AsyncProducerQueueSize"
+                        Attribute "AsyncProducerStats"
                 </Value>
         </MBean>
         #Metrics
@@ -264,7 +264,7 @@ LoadPlugin java
         #Connection Block
         <Connection>
 			Host "<%= @node[:hostname] %>"
-			ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:<%= @node['kafka']['jmx_port'] %>/jmxrmi"
+			ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:<%= @node['wt_streaminglogreplayer']['jmx_port'] %>/jmxrmi"
 			Collect "classes"
 			Collect "garbage_collector"
 			Collect "java_threads"
