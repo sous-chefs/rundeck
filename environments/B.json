@@ -14,13 +14,13 @@
         "wt_cam": "= 1.0.26",
         "wt_kafka_mm": "= 0.0.16",
         "wt_netacuity": "= 1.0.8",
-        "wt_portfolio_admin": "1.1.6",
+        "wt_portfolio_admin": "1.1.7",
         "wt_realtimeapi": "= 0.0.23",
         "wt_sauth": "1.0.7",
         "wt_storm": "= 1.0.34",
         "wt_storm_realtime": "= 2.1.1",
         "wt_storm_streaming": "= 2.1.14",
-        "wt_streaming_viz": "1.1.6",
+        "wt_streaming_viz": "1.1.9",
         "wt_streamingapi": "= 1.0.10",
         "wt_streamingauditor": "= 1.0.8",
         "wt_streamingcollection": "= 0.0.28",
@@ -226,7 +226,7 @@
             "account_ui_url": "https://baccount.webtrends.com",
             "cam_auth_url": "https://bsauth.webtrends.com/v1",
             "custom_errors": "Off",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/37050:id/Portfolio.Admin.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/37262:id/Portfolio.Admin.zip",
             "elmah_remote_access": "yes",
             "proxy_address": "http://sproxy02.staging.dmz:3128",
             "proxy_enabled": "true",
@@ -279,13 +279,15 @@
         },
         "wt_streaming_viz": {
             "custom_errors": "Off",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/37049:id/Streaming.Viz.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/37266:id/Streaming.Viz.zip",
             "elmah_remote_access": "yes",
             "port": 80,
-            "proxy_enabled": "true"
+            "proxy_enabled": "true",
+	    "streams_ui_url": "https://bstreams.webtrends.com"
+
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/36684:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/37252:id/webtrends-streamingapi-bin.tar.gz",
             "sapi_service_url": "ws://bsapi.webtrends.com",
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"
