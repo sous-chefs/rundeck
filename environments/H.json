@@ -13,7 +13,7 @@
         "wt_base": "= 0.10.53",
         "wt_cam": "= 1.0.28",
         "wt_kafka_mm": "= 0.0.16",
-        "wt_netacuity": "= 1.0.8",
+        "wt_netacuity": "= 1.0.9",
         "wt_portfolio_admin": "= 1.1.7",
         "wt_realtime_hadoop": "= 1.0.2",
         "wt_realtimeapi": "= 1.0.1",
