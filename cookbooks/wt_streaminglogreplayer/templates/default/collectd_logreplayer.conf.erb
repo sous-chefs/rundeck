@@ -19,29 +19,24 @@ LoadPlugin java
         ################
         # MBean blocks #
         ################
-		# Memory usage by memory pool.
+				# Memory usage by memory pool.
 		<MBean "memory_pool">
 			ObjectName "java.lang:type=MemoryPool,*"
-			InstancePrefix "memory_pool-"
+			InstancePrefix "memory_pool_"
 			InstanceFrom "name"
 			<Value>
 				Type "memory"
-				#InstancePrefix ""
-				#InstanceFrom ""
 				Table true
 				Attribute "Usage"
 			</Value>
 		</MBean>
 		# Heap memory usage
-		<MBean "memory-heap">
+		<MBean "memory_heap">
 			ObjectName "java.lang:type=Memory"
-			#InstanceFrom ""
-			InstancePrefix "memory-heap"
+			InstancePrefix "memory_heap"
 			# Creates four values: committed, init, max, used
 			<Value>
 				Type "memory"
-				#InstancePrefix ""
-				#InstanceFrom ""
 				Table true
 				Attribute "HeapMemoryUsage"
 			</Value>
@@ -49,13 +44,10 @@ LoadPlugin java
 		# Non-heap memory usage
 		<MBean "memory_nonheap">
 			ObjectName "java.lang:type=Memory"
-			#InstanceFrom ""
-			InstancePrefix "memory-nonheap"
+			InstancePrefix "memory_nonheap"
 			# Creates four values: committed, init, max, used
 			<Value>
 				Type "memory"
-				#InstancePrefix ""
-				#InstanceFrom ""
 				Table true
 				Attribute "NonHeapMemoryUsage"
 			</Value>
@@ -63,31 +55,27 @@ LoadPlugin java
 		# Non-heap memory usage
 		<MBean "java_threads">
 			ObjectName "java.lang:type=Threading"
-			#InstanceFrom ""
 			InstancePrefix "java_threads"
 			<Value>
 				Type "gauge"
 				InstancePrefix "ThreadCount"
-				#InstanceFrom ""
 				Attribute "ThreadCount"
 			</Value>
 		</MBean>
 		# Garbage Collector stats
 		<MBean "garbage_collector">
 			ObjectName "java.lang:type=GarbageCollector,*"
-			InstancePrefix "gc-"
+			InstancePrefix "gc_"
 			InstanceFrom "name"
 			<Value>
 				Type "invocations"
 				InstancePrefix "collection_count"
-				#InstanceFrom ""
 				Table false
 				Attribute "CollectionCount"
 			</Value>
 			<Value>
 				Type "total_time_in_ms"
 				InstancePrefix "collection_time"
-				#InstanceFrom ""
 				Table false
 				Attribute "CollectionTime"
 			</Value>
@@ -96,11 +84,9 @@ LoadPlugin java
 		<MBean "classes">
 			ObjectName "java.lang:type=ClassLoading"
 			InstancePrefix "loaded_classes"
-			#InstanceFrom ""
 			<Value>
 				Type "gauge"
 				InstancePrefix "loaded_classes"
-				#InstanceFrom ""
 				Table false
 				Attribute "LoadedClassCount"
 			</Value>
@@ -109,66 +95,56 @@ LoadPlugin java
 		<MBean "runtime">
 			ObjectName "java.lang:type=Runtime"
 			InstancePrefix "runtime"
-			#InstanceFrom ""
 			<Value>
 				Type "gauge"
 				InstancePrefix "JVM_uptime"
-				#InstanceFrom ""
 				Table false
 				Attribute "Uptime"
 			</Value>
 		</MBean>
 		#Kafka Metrics
-        <MBean "kafka">
+        <MBean "kafka_sync">
                 ObjectName "kafka:type=kafka.KafkaProducerStats"
-                InstancePrefix "KafkaProducerStats"
-                #InstanceFrom ""
+                InstancePrefix "KAFKA_producer_stats"
                 <Value>
                         Type "gauge"
                         InstancePrefix "AvgProduceRequestMs"
-                        #InstanceFrom ""
                         Table false
                         Attribute "AvgProduceRequestMs"
                 </Value>
                 <Value>
                         Type "gauge"
                         InstancePrefix "MaxProduceRequestMs"
-                        #InstanceFrom ""
                         Table false
                         Attribute "MaxProduceRequestMs"
                 </Value>
                 <Value>
-                        Type "counter"
+                        Type "gauge"
                         InstancePrefix "NumProduceRequests"
-                        #InstanceFrom ""
                         Table false
                         Attribute "NumProduceRequests"
                 </Value>
                 <Value>
                         Type "gauge"
                         InstancePrefix "ProduceRequestsPerSecond"
-                        #InstanceFrom ""
                         Table false
                         Attribute "ProduceRequestsPerSecond"
                 </Value>
         </MBean>
-        <MBean "async">
+        <MBean "kafka_async">
                 ObjectName "kafka.producer.Producer:type=AsyncProducerStats"
-                InstancePrefix "AsyncProducerStats"
-                #InstanceFrom ""
+                InstancePrefix "KAFKA_async_producer_stats"
                 <Value>
                         Type "gauge"
-                        InstancePrefix "AsyncProducerStats"
-                        #InstanceFrom ""
+                        InstancePrefix "AsyncProducerEvents"
                         Table false
-                        Attribute "AsyncProducerStats"
+                        Attribute "AsyncProducerEvents"
                 </Value>
         </MBean>
         #Metrics
-        <MBean "active-dcsid">
+        <MBean "active_dcsid">
 			ObjectName "logreplayer:type=config,name=active-dcsid"
-			InstancePrefix ""
-			InstanceFrom "name"
+			InstancePrefix "LR_active_dcsid"
 			<Value>
 				Type "gauge"
 				InstancePrefix "Value"
@@ -176,10 +152,9 @@ LoadPlugin java
 				Attribute "Value"
 			</Value>
 	    </MBean>
-        <MBean "files-in-queue">
+        <MBean "files_in_queue">
 			ObjectName "logreplayer:type=filemover,name=files-in-queue"
-			InstancePrefix ""
-			InstanceFrom "name"
+			InstancePrefix "LR_files_in_queue"
 			<Value>
 				Type "gauge"
 				InstancePrefix "Value"
@@ -187,73 +162,62 @@ LoadPlugin java
 				Attribute "Value"
 			</Value>
         </MBean>
-        <MBean "hits-accepted">
+        <MBean "hits_accepted">
                 ObjectName "logreplayer:type=logconsumer,name=hits-accepted"
-                #InstancePrefix ""
-                InstanceFrom "name"
+                InstancePrefix "LR_hits_accepted"
                 <Value>
-                        Type "counter"
+                        Type "gauge"
                         InstancePrefix "Count"
-                        #InstanceFrom ""
                         Table false
                         Attribute "Count"
                 </Value>
                 <Value>
                         Type "gauge"
                         InstancePrefix "MeanRate"
-                        #InstanceFrom ""
                         Table false
                         Attribute "MeanRate"
                 </Value>
         </MBean>
-        <MBean "hits-per-log-file">
+        <MBean "hits_per_log_file">
                 ObjectName "logreplayer:type=logconsumer,name=hits-per-log-file"
-                #InstancePrefix ""
-                InstanceFrom "name"
+                InstancePrefix "LR_hits_per_log_file"
                 <Value>
-                        Type "counter"
+                        Type "gauge"
                         InstancePrefix "Count"
-                        #InstanceFrom ""
                         Table false
                         Attribute "Count"
                 </Value>
                 <Value>
                         Type "gauge"
                         InstancePrefix "Max"
-                        #InstanceFrom ""
                         Table false
                         Attribute "Max"
                 </Value>
                 <Value>
                         Type "gauge"
                         InstancePrefix "Mean"
-                        #InstanceFrom ""
                         Table false
                         Attribute "Mean"
                 </Value>
                 <Value>
                         Type "gauge"
                         InstancePrefix "Min"
-                        #InstanceFrom ""
                         Table false
                         Attribute "Min"
                 </Value>
         </MBean>
-       <MBean "log-files-replayed">
+       <MBean "log_files_replayed">
                 ObjectName "logreplayer:type=logconsumer,name=log-files-replayed"
-                #InstancePrefix ""
-                InstanceFrom "name"
+                InstancePrefix "LR_log_files_replayed"
                 <Value>
-                        Type "counter"
+                        Type "gauge"
                         InstancePrefix "Count"
-                        #InstanceFrom ""
                         Table false
                         Attribute "Count"
                 </Value>
                 <Value>
                         Type "gauge"
                         InstancePrefix "MeanRate"
-                        #InstanceFrom ""
                         Table false
                         Attribute "MeanRate"
                 </Value>
@@ -268,14 +232,16 @@ LoadPlugin java
 			Collect "classes"
 			Collect "garbage_collector"
 			Collect "java_threads"
-			Collect "memory-heap"
+			Collect "memory_heap"
 			Collect "memory_nonheap"
 			Collect "runtime"
-			Collect "kafka"
-			Collect "async"
-			Collect "hits-accepted"
-			Collect "hits-per-log-file"
-			Collect "log-files-replayed"
+			Collect "kafka_sync"
+			Collect "kafka_async"
+			Collect "active_dcsid"
+			Collect "files_in_queue"
+			Collect "hits_accepted"
+			Collect "hits_per_log_file"
+			Collect "log_files_replayed"
         </Connection>
-        </Plugin>
+    </Plugin>
 </Plugin>
