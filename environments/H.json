@@ -21,7 +21,7 @@
         "wt_storm_realtime": "= 2.1.6",
         "wt_storm_streaming": "= 2.1.15",
         "wt_streaming_viz": "= 1.1.9",
-        "wt_streamingapi": "= 1.0.10",
+        "wt_streamingapi": "= 1.0.11",
         "wt_streamingauditor": "= 1.0.8",
         "wt_streamingcollection": "= 0.0.30",
         "wt_streamingconfigservice": "= 0.0.14",
@@ -284,7 +284,7 @@
             "streams_ui_url": "https://hstreams.webtrends.com"
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/.lastSuccessful/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/37252:id/webtrends-streamingapi-bin.tar.gz",
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
             "sapi_service_url": "ws://hsapi01.staging.dmz:8080",
             "usagedbname": "Streaming",
