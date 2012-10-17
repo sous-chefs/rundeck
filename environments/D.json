@@ -10,6 +10,7 @@
         "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.9", 
         "wt_monitoring": "= 0.0.2", 
+        "wt_netacuity": "= 1.0.10", 
         "wt_search": "= 1.0.7", 
         "wt_sync": "= 1.0.4", 
         "wt_xd": "= 0.0.3"
@@ -232,6 +233,11 @@
             "jmx_port": 9999, 
             "metric_prefix": "staging.dpod.servers", 
             "monitoring_enabled": "true"
+        }, 
+        "wt_netacuity": {
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_0502_x64.tgz", 
+            "geo_url": "dutil01.staging.dmz", 
+            "version": "502"
         }, 
         "wt_roadrunner": {
             "url": "path/to/zip/here"
