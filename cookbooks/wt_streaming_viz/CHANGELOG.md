@@ -1,4 +1,7 @@
-## 1.1.7
+## 1.1.9
+* Add application/x-javascript to httpCompression section in web.config template
+
+## 1.1.8
 * Add httpCompression section to web.config template
 
 ## 1.1.7
