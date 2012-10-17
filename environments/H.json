@@ -20,7 +20,7 @@
         "wt_sauth": "= 1.0.7",
         "wt_storm_realtime": "= 2.1.6",
         "wt_storm_streaming": "= 2.1.15",
-        "wt_streaming_viz": "= 1.1.8",
+        "wt_streaming_viz": "= 1.1.9",
         "wt_streamingapi": "= 1.0.10",
         "wt_streamingauditor": "= 1.0.8",
         "wt_streamingcollection": "= 0.0.30",
