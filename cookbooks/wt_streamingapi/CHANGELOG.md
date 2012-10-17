@@ -1,3 +1,6 @@
+## 1.0.11
+* Resolved issues with the collectd configuration that pulls from JMX
+
 ## 1.0.10
 * Added 'sauth_version'
 
