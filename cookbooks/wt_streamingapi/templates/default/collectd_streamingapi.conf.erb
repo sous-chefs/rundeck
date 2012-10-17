@@ -22,7 +22,7 @@ LoadPlugin java
 		# Memory usage by memory pool.
 		<MBean "memory_pool">
 			ObjectName "java.lang:type=MemoryPool,*"
-			InstancePrefix "memory_pool-"
+			InstancePrefix "memory_pool_"
 			InstanceFrom "name"
 			<Value>
 				Type "memory"
@@ -33,10 +33,10 @@ LoadPlugin java
 			</Value>
 		</MBean>
 		# Heap memory usage
-		<MBean "memory-heap">
+		<MBean "memory_heap">
 			ObjectName "java.lang:type=Memory"
 			#InstanceFrom ""
-			InstancePrefix "memory-heap"
+			InstancePrefix "memory_heap"
 			# Creates four values: committed, init, max, used
 			<Value>
 				Type "memory"
@@ -50,7 +50,7 @@ LoadPlugin java
 		<MBean "memory_nonheap">
 			ObjectName "java.lang:type=Memory"
 			#InstanceFrom ""
-			InstancePrefix "memory-nonheap"
+			InstancePrefix "memory_nonheap"
 			# Creates four values: committed, init, max, used
 			<Value>
 				Type "memory"
@@ -75,7 +75,7 @@ LoadPlugin java
 		# Garbage Collector stats
 		<MBean "garbage_collector">
 			ObjectName "java.lang:type=GarbageCollector,*"
-			InstancePrefix "gc-"
+			InstancePrefix "gc_"
 			InstanceFrom "name"
 			<Value>
 				Type "invocations"
@@ -119,12 +119,12 @@ LoadPlugin java
 			</Value>
 		</MBean>
 		#WT Metrics
-        <MBean "auth_handle-request">
+        <MBean "auth_handle_request">
 			ObjectName "streamingapi:type=authentication,name=handle-request"
-			InstancePrefix "SAPI_authentication_"
-			InstanceFrom "name"
+			InstancePrefix "SAPI_"
+			InstanceFrom ""
 			<Value>
-				Type "counter"
+				Type "gauge"
 				InstancePrefix "Count"
 				#InstanceFrom ""
 				Table false
@@ -159,24 +159,24 @@ LoadPlugin java
 				Attribute "Min"
 			</Value>
         </MBean>
-        <MBean "auth_invalid-credentials">
+        <MBean "auth_invalid_credentials">
 			ObjectName "streamingapi:type=authentication,name=invalid-credentials"
-			InstancePrefix "SAPI_authentication_"
-			InstanceFrom "name"
+			InstancePrefix "SAPI_"
+			InstanceFrom ""
 			<Value>
-				Type "counter"
+				Type "gauge"
 				InstancePrefix "Count"
 				#InstanceFrom ""
 				Table false
 				Attribute "Count"
 			</Value>
         </MBean>
-        <MBean "auth_requests-handled">
+        <MBean "auth_requests_handled">
 			ObjectName "streamingapi:type=authentication,name=requests-handled"
-			InstancePrefix "SAPI_authentication_"
-			InstanceFrom "name"
+			InstancePrefix "SAPI_"
+			InstanceFrom ""
 			<Value>
-				Type "counter"
+				Type "gauge"
 				InstancePrefix "Count"
 				#InstanceFrom ""
 				Table false
@@ -190,12 +190,12 @@ LoadPlugin java
 				Attribute "MeanRate"
 			</Value>
         </MBean>
-         <MBean "metrics_event-writes">
-			ObjectName "streamingapi:type=zmqserver,name=event-writes"
-			InstancePrefix "SAPI_zmqserver_"
+        <MBean "stream_events_dropped">
+			ObjectName "streamingapi:type=streameventhandler,name=events-dropped"
+			InstancePrefix "SAPI_"
 			InstanceFrom "name"
 			<Value>
-				Type "counter"
+				Type "gauge"
 				InstancePrefix "Count"
 				#InstanceFrom ""
 				Table false
@@ -209,12 +209,12 @@ LoadPlugin java
 				Attribute "MeanRate"
 			</Value>
         </MBean>
-        <MBean "metrics_events-handled">
-			ObjectName "streamingapi:type=zmqserver,name=events-handled"
-			InstancePrefix "SAPI_zmqserver_"
+        <MBean "stream_events_handled">
+			ObjectName "streamingapi:type=streameventhandler,name=events-handled"
+			InstancePrefix "SAPI_"
 			InstanceFrom "name"
 			<Value>
-				Type "counter"
+				Type "gauge"
 				InstancePrefix "Count"
 				#InstanceFrom ""
 				Table false
@@ -228,9 +228,9 @@ LoadPlugin java
 				Attribute "MeanRate"
 			</Value>
         </MBean>
-        <MBean "collection-latency">
-			ObjectName "streamingapi:type=latency,name=collection-latency"
-			InstancePrefix "SAPI_latency_"
+        <MBean "collection_latency">
+			ObjectName "streamingapi:type=streameventhandler,name=collection-latency"
+			InstancePrefix "SAPI_"
 			InstanceFrom "name"
 			<Value>
 				Type "gauge"
@@ -254,24 +254,12 @@ LoadPlugin java
 				Attribute "Mean"
 			</Value>
         </MBean>
-        <MBean "socket_active-filter-channels">
-			ObjectName "streamingapi:type=sockethandler,name=active-filter-channels"
-			InstancePrefix "SAPI_sockethandler_"
+        <MBean "socket_handle_request">
+			ObjectName "streamingapi:type=sockethandler,name=handle-request"
+			InstancePrefix "SAPI_"
 			InstanceFrom "name"
 			<Value>
 				Type "gauge"
-				InstancePrefix "Value"
-				#InstanceFrom ""
-				Table false
-				Attribute "Value"
-			</Value>
-        </MBean>
-        <MBean "socket_handle-request">
-			ObjectName "streamingapi:type=sockethandler,name=handle-request"
-			InstancePrefix "SAPI_sockethandler_"
-			InstanceFrom "name"
-			<Value>
-				Type "counter"
 				InstancePrefix "Count"
 				#InstanceFrom ""
 				Table false
@@ -306,9 +294,9 @@ LoadPlugin java
 				Attribute "Min"
 			</Value>
         </MBean>
-        <MBean "socket_handle-request-error">
+        <MBean "socket_handle_request_error">
 			ObjectName "streamingapi:type=sockethandler,name=handle-request-error"
-			InstancePrefix "SAPI_sockethandler_"
+			InstancePrefix "SAPI_"
 			InstanceFrom "name"
 			<Value>
 				Type "gauge"
@@ -318,12 +306,12 @@ LoadPlugin java
 				Attribute "Count"
 			</Value>
         </MBean>
-        <MBean "socket_requests-handled">
+        <MBean "socket_requests_handled">
 			ObjectName "streamingapi:type=sockethandler,name=requests-handled"
-			InstancePrefix "SAPI_sockethandler_"
+			InstancePrefix "SAPI_"
 			InstanceFrom "name"
 			<Value>
-				Type "counter"
+				Type "gauge"
 				InstancePrefix "Count"
 				#InstanceFrom ""
 				Table false
@@ -347,22 +335,18 @@ LoadPlugin java
 			Collect "classes"
 			Collect "garbage_collector"
 			Collect "java_threads"
-			Collect "memory-heap"
+			Collect "memory_heap"
 			Collect "memory_nonheap"
 			Collect "runtime"
-			Collect "auth_handle-request"
-			Collect "auth_invalid-credentials"
-			Collect "auth_requests-handled"
-			Collect "metrics_active-channels"
-			Collect "metrics_handle-request"
-			Collect "metrics_handle-request-error"
-			Collect "metrics_requests-handled"
-			Collect "socket_active-filter-channels"
-			Collect "socket_handle-request"
-			Collect "socket_handle-request-error"
-			Collect "socket_requests-handled"
-            Collect "collection-latency"
-            Collect "source-latency"
+			Collect "auth_handle_request"
+			Collect "auth_invalid_credentials"
+			Collect "auth_requests_handled"
+			Collect "socket_handle_request"
+			Collect "socket_handle_request_error"
+			Collect "socket_requests_handled"
+            Collect "collection_latency"
+            Collect "stream_events_handled"
+            Collect "stream_events_dropped"
         </Connection>
         </Plugin>
 </Plugin>
