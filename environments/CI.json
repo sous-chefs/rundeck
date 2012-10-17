@@ -230,10 +230,9 @@
             "monitoring_enabled": "true"
         }, 
         "wt_netacuity": {
-            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/", 
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_460_x86_64.tgz",
             "geo_url": "ciutil01.staging.dmz", 
-            "original": "460",
-            "use_proxy": false
+            "version": "460"
         }, 
         "wt_portfolio_admin": {
             "custom_errors": "Off", 
