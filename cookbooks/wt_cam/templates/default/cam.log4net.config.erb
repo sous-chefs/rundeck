@@ -20,9 +20,27 @@
             <conversionPattern value="%date [%thread] %-5level %logger - %message%newline" />
         </layout>
     </appender>
+    <appender name="AuditLog" type="log4net.Appender.RollingFileAppender" >
+      <file type="log4net.Util.PatternString" value="../logs/cam-audit-%property{log4net:HostName}" />
+      <appendToFile value="true" />
+      <rollingStyle value="Date" />
+      <datePattern value="-yyyyMMdd.'log'" />
+      <param name="StaticLogFileName" value="false" />
+      <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
 
+      <layout type="log4net.Layout.PatternLayout">
+        <header value="-Start-&#13;&#10;" />
+        <footer value="-End-&#13;&#10;" />
+        <conversionPattern value="%message%newline" />
+      </layout>
+    </appender>
     <root>
         <level value="<%= @log_level %>" />
         <appender-ref ref="LogFileAppender" />
     </root>
+
+    <logger name="Webtrends.Cam.Filters.LogUserAction">
+        <level value="INFO" />
+        <appender-ref ref="AuditLog" />
+    </logger>
 </log4net>
