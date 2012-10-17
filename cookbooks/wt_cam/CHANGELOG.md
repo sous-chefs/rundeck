@@ -1,3 +1,6 @@
+## 1.0.27
+* Added streams.url variable to the web.config template
+
 ## 1.0.26
 * Added smtp variable to the web.config template
 
