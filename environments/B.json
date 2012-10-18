@@ -294,7 +294,7 @@
         },
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/36541:id/webtrends-streamingauditor-bin.tar.gz",
-            "roundtrip_scs_url": "http://bscs.webtrends.com",
+            "roundtrip_scs_urls": "http://bscs.webtrends.com",
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com",
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         },
@@ -305,11 +305,11 @@
             "camdbname": "CAM",
             "camdbserver": "bcamdb01.staging.dmz",
             "config_service_url": "http://bconfigsvc.staging.dmz",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/31469:id/webtrends-streaming-configservice-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/37483:id/webtrends-streaming-configservice-bin.tar.gz",
             "includeUnmappedAnalyticsIds": "true"
         },
         "wt_streaminglogreplayer": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/36944:id/webtrends-streaminglogreplayer-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/37514:id/webtrends-streaminglogreplayer-bin.tar.gz",
             "log_share_mount": "sstore02.staging.dmz:/ifs/bstore/logreplay"
         },
         "wt_usagedb": {
