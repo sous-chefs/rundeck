@@ -8,7 +8,7 @@
 <!-- change configuration variables stored here   -->
 <!-- instead of manually editing this file.       -->
 <CONFIGFILE>
-   <PARAMETER name="SERVER_NAME" value="webtrends-<%= node['hostname'] %>"/>
+   <PARAMETER name="SERVER_NAME" value="<%= node['hostname'] %>"/>
    <PARAMETER name="ADMIN_EMAIL" value="<%= node['wt_common']['admin_email'] %>"/>
    <PARAMETER name="SMTP_SERVER" value="<%= node['wt_common']['smtp_server'] %>"/>
    <PARAMETER name="LOG_LEVEL" value="INFO"/>
