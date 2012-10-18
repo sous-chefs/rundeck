@@ -248,7 +248,7 @@
             "search_hostname": "fsearch.staging.dmz"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt18/37451:id/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt292/37559:id/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "fusagedb01.staging.dmz", 
