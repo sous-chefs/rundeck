@@ -49,6 +49,7 @@ directory "/var/lock/webtrends" do
   group "hadoop"
   mode 00755
   action :create
+  recursive
 end
 
 
