@@ -20,7 +20,7 @@ log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
 app_pool = node['wt_cam']['app_pool']
 user_data = data_bag_item('authorization', node.chef_environment)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
-http_port = node['wt_cam']['cam']['port']
+http_port = node['wt_cam']['port']
 
 iis_pool app_pool do
     pipeline_mode :Integrated
@@ -92,9 +92,9 @@ if deploy_mode?
   end
 
   template "#{install_dir}\\log4net.config" do
-    source "cam.log4net.config.erb"
+    source "log4net.config.erb"
     variables(
-      :log_level => node['wt_cam']['cam']['log_level']
+      :log_level => node['wt_cam']['log_level']
     )
   end
 
