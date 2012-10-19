@@ -13,4 +13,4 @@ default['wt_cam']['db_server'] = "(local)"
 default['wt_cam']['db_name'] = "Cam"
 default['wt_cam']['tokenExpirationMinutes'] = 60
 default['wt_cam']['port'] = 80
-default['wt_cam']['cam']['log_level'] = "INFO"
+default['wt_cam']['log_level'] = "INFO"
