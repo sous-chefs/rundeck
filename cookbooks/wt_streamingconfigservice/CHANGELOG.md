@@ -1,3 +1,6 @@
+## 1.0.2
+* Moved log config from code to cookbook.
+
 ## 1.0.1
 * Remove the unused CAM DB connection string.  This has been replaced with the shared connection string
 
