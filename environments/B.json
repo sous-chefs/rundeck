@@ -24,7 +24,7 @@
         "wt_streamingapi": "= 1.0.11",
         "wt_streamingauditor": "= 1.0.8",
         "wt_streamingcollection": "= 0.0.28",
-        "wt_streamingconfigservice": "= 0.0.15",
+        "wt_streamingconfigservice": "= 1.0.2",
         "wt_streaminglogreplayer": "= 1.1.1",
         "zookeeper": "= 1.1.5"
     },
@@ -263,7 +263,7 @@
             }
         },
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/37143:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/37727:id/streaming-analysis-bin.tar.gz",
             "streaming_topology_augmentation_bolt_count": 10,
             "streaming_topology_in_session_bolt_count": 0,
             "streaming_topology_validation_bolt_count": 10,
@@ -285,7 +285,7 @@
             "streams_ui_url": "https://bstreams.webtrends.com/"
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/37421:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/37728:id/webtrends-streamingapi-bin.tar.gz",
             "sapi_service_url": "ws://bsapi.webtrends.com",
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"
@@ -303,7 +303,7 @@
             "camdbname": "CAM",
             "camdbserver": "bcamdb01.staging.dmz",
             "config_service_url": "http://bconfigsvc.staging.dmz",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/37483:id/webtrends-streaming-configservice-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/37723:id/webtrends-streaming-configservice-bin.tar.gz"
         },
         "wt_streaminglogreplayer": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/37547:id/webtrends-streaminglogreplayer-bin.tar.gz",
