@@ -2,9 +2,9 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "java": "= 1.5.4", 
-        "nagios": "= 1.6.0", 
+        "nagios": "= 1.6.1", 
         "webpi": "= 1.0.3", 
-        "webtrends_server": "= 1.8.3", 
+        "webtrends_server": "= 1.8.6", 
         "windows": "= 1.2.12", 
         "wt_analytics_ui": "= 1.0.9", 
         "wt_base": "= 0.10.53", 
