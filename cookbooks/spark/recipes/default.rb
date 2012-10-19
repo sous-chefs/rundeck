@@ -18,6 +18,9 @@
 #
 
 include_recipe "java"
+package "scala"
+
+spark_slaves = search(:node, "role:spark_slave AND chef_environment:#{node.chef_environment}")
 
 
 install_dir = "#{node['spark']['install_dir']}/spark-#{node['spark']['version']}"
@@ -75,4 +78,27 @@ end
 link "#{node['spark']['install_dir']}/current" do
 	to "#{node['spark']['install_dir']}/spark-#{node['spark']['version']}"
 end
+
+# non-executable templates
+%w{log4j.properties slaves}.each do |name|
+  template "#{install_dir}/conf/#{name}" do
+    source "#{name}"
+    mode 00644
+    variables(
+      :spark_slaves => spark_slaves
+    )
+  end
+end
+
+# executable templates
+%w{spark-env.sh}.each do |name|
+  template "#{install_dir}/conf/#{name}" do
+    source "#{name}"
+    mode 00755
+    variables(
+      :spark_slaves => spark_slaves
+    )
+  end
+end
+
 
