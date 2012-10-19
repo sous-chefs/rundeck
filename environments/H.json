@@ -229,6 +229,10 @@
             "proxy_address": "http://sproxy02.staging.dmz:3128",
             "proxy_enabled": "true"
         },
+        "wt_portfolio_manager": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip",
+            "manager_ui_url": ""
+        },
         "wt_realtime_hadoop": {
             "datacenter": "Lab",
             "environment": "support-staging",
