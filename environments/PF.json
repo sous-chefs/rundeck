@@ -3,10 +3,10 @@
     "cookbook_versions": {
         "java": "= 1.5.4", 
         "kafka": "= 1.0.5", 
-        "nagios": "= 1.6.0", 
+        "nagios": "= 1.6.1", 
         "storm": "= 1.0.16", 
         "webpi": "= 1.0.3", 
-        "webtrends_server": "= 1.8.3", 
+        "webtrends_server": "= 1.8.6", 
         "windows": "= 1.2.12", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 0.0.2", 

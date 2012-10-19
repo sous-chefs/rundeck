@@ -190,14 +190,14 @@
             "common_resource_environment": "support-staging", 
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
-            "http_proxy_url": "http://sproxy02.staging.dmz:3128",
+            "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
             "install_log_dir_windows": "d:\\logs", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "ldap_host": "hldap01.staging.dmz",
-            "ldap_port": "636",
+            "ldap_host": "hldap01.staging.dmz", 
+            "ldap_port": "636", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
@@ -214,7 +214,7 @@
         }, 
         "wt_masterdb": {
             "master_db": "wtmaster", 
-            "master_host": "dmasterdb01.staging.dmz",
+            "master_host": "dmasterdb01.staging.dmz", 
             "sched_host": "dmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {}, 
@@ -230,17 +230,17 @@
             "monitoring_enabled": "true"
         }, 
         "wt_netacuity": {
-            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_460_x86_64.tgz",
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_460_x86_64.tgz", 
             "geo_url": "ciutil01.staging.dmz", 
             "version": "460"
         }, 
         "wt_portfolio_admin": {
+            "account_ui_url": "https://haccount.webtrends.com", 
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lasSuccessful/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
-            "proxy_enabled": "true", 
-            "account_ui_url": "https://haccount.webtrends.com"
+            "proxy_enabled": "true"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
@@ -276,11 +276,11 @@
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/.lastSuccessful/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augmentation_bolt_count": 10, 
+            "streaming_topology_field_grouping_local": "false", 
             "streaming_topology_in_session_bolt_count": 0, 
             "streaming_topology_parsing_bolt_count": 50, 
             "streaming_topology_validation_bolt_count": 40, 
             "streaming_topology_zmq_emitter_bolt_count": 3, 
-            "streaming_topology_field_grouping_local": "false",
             "topic_list": [
                 "Lab_CI_scsRawHits:3", 
                 "Lab_CI_lrRawHits:3"
@@ -300,13 +300,13 @@
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt192/.lastSuccessful/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
-            "usagedbserver": "cicamdb01.staging.dmz",
-            "usagedbname": "Streaming",
-            "sapi_service_url": "ws://cisapi01.staging.dmz:8080"
+            "sapi_service_url": "ws://cisapi01.staging.dmz:8080", 
+            "usagedbname": "Streaming", 
+            "usagedbserver": "cicamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt194/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz", 
-            "roundtrip_scs_urls": "http://ciscs01.staging.dmz:8080",
+            "roundtrip_scs_urls": "http://ciscs01.staging.dmz:8080", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         }, 
         "wt_streamingcollection": {
@@ -317,11 +317,11 @@
             "camdbserver": "cicamdb01.staging.dmz", 
             "config_service_url": "http://ciutil01.staging.dmz:8080", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt195/.lastSuccessful/webtrends-streaming-configservice-bin.tar.gz", 
-            "includeUnmappedAnalyticsIds": "true" 
+            "includeUnmappedAnalyticsIds": "true"
         }, 
         "wt_streaminglogreplayer": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/26189:id/webtrends-streaminglogreplayer-bin.tar.gz", 
-            "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay",
+            "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay", 
             "thread_pool_size": 200
         }, 
         "wt_usagedb": {}, 
