@@ -120,11 +120,21 @@ end
 
 template "#{install_dir}/conf/monitoring.properties" do
   source "monitoring.properties.erb"
-  owner "root"
-  group "root"
-  mode 00755
+  owner "webtrends"
+  group "webtrends"
+  mode 00640
   variables({
     :wt_monitoring => node[:wt_monitoring]
+  })
+end
+
+template "#{install_dir}/conf/log4j.xml" do
+  source "log4j.xml.erb"
+  owner "webtrends"
+  group "webtrends"
+  mode 00640
+  variables({
+    :log_dir => log_dir
   })
 end
 
