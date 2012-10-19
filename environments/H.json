@@ -224,10 +224,14 @@
         "wt_portfolio_admin": {
             "account_ui_url": "https://haccount.webtrends.com",
             "custom_errors": "Off",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lastSuccessful/Portfolio.Admin.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/37352:id/Portfolio.Admin.zip",
             "elmah_remote_access": "yes",
             "proxy_address": "http://sproxy02.staging.dmz:3128",
             "proxy_enabled": "true"
+        },
+        "wt_portfolio_manager": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip",
+            "manager_ui_url": ""
         },
         "wt_realtime_hadoop": {
             "datacenter": "Lab",
@@ -290,7 +294,7 @@
             "usagedbserver": "hcamdb01.staging.dmz"
         },
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/37753:id/webtrends-streamingauditor-bin.tar.gz",
             "roundtrip_scs_urls": "http://hscs.webtrends.com",
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com",
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
