@@ -301,9 +301,8 @@
         "wt_streamingconfigservice": {
             "camdbname": "CAM",
             "camdbserver": "hcamdb01.staging.dmz",
-            "config_service_url": "http://hutil01.staging.dmz:8080",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/37483:id/webtrends-streaming-configservice-bin.tar.gz",
-            "includeUnmappedAnalyticsIds": "true"
+            "config_service_url": "http://hconfigsvc.staging.dmz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/37483:id/webtrends-streaming-configservice-bin.tar.gz"
         },
         "wt_streaminglogreplayer": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/37547:id/webtrends-streaminglogreplayer-bin.tar.gz",
