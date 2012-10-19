@@ -15,7 +15,7 @@
         "wt_kafka_mm": "= 0.0.16",
         "wt_netacuity": "= 1.0.9",
         "wt_portfolio_admin": "= 1.1.7",
-        "wt_realtime_hadoop": "= 1.0.2",
+        "wt_realtime_hadoop": "= 1.0.4",
         "wt_realtimeapi": "= 1.0.1",
         "wt_sauth": "= 1.0.7",
         "wt_storm_realtime": "= 2.1.6",
