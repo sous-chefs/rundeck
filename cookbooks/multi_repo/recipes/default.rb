@@ -115,17 +115,10 @@ if node['multi_repo']['mirrors']['mirror_ubuntu']
     action :create
   end
 
-  # execute command to update the apt repository (only fires on notifies)
-  execute "update_apt_mirror" do
-    command "apt-mirror"
-    action :nothing
-  end
-
   # template the apt mirror config
   template "/etc/apt/mirror.list" do
     source "mirror.list.erb"
     mode 00644
-    notifies :run, "execute[update_apt_mirror]", :immediately
   end
 
 end
