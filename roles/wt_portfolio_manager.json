@@ -1,5 +1,5 @@
 {
-  "name": "wt_portfolio_admin",
+  "name": "wt_portfolio_manager",
   "description": "Webtrends Portfolio Manager UI",
   "json_class": "Chef::Role",
   "default_attributes": {
