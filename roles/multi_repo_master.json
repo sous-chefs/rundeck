@@ -1,0 +1,15 @@
+{
+  "name": "multi_repo_master",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[multi_repo::default]"
+  ],
+  "description": "Master repo for Gems, Apt, and Yum",
+  "chef_type": "role"
+}
