@@ -12,8 +12,8 @@ logdir = node['wt_common']['log_dir_windows']
 msi_name = node['wt_commonlib']['commonlib_msi']
 
 directory logdir do
-	action :create
-	recursive true
+  action :create
+  recursive true
 end
 
 windows_package "WebTrends Common Lib" do

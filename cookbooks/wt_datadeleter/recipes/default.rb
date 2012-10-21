@@ -31,79 +31,79 @@ svcpass = auth_data['wt_common']['system_pass']
 
 # create the install directory
 directory install_dir do
-	recursive true
-	action :create
+  recursive true
+  action :create
 end
 
 directory log_dir do
-	recursive true
-	action :create
+  recursive true
+  action :create
 end
 
 wt_base_icacls node['wt_common']['install_dir_windows'] do
-	action :grant
-	user svcuser
-	perm :modify
+  action :grant
+  user svcuser
+  perm :modify
 end
 
 wt_base_netlocalgroup "Performance Monitor Users" do
-	user svcuser
-	returns [0, 2]
-	action :add
+  user svcuser
+  returns [0, 2]
+  action :add
 end
 
 if ENV["deploy_build"] == "true" then
 
-	# unzip the install package
-	windows_zipfile install_dir do
-		source download_url
-		action :unzip
-	end
+  # unzip the install package
+  windows_zipfile install_dir do
+    source download_url
+    action :unzip
+  end
 
-	template "#{install_dir}\\DataDeleter.exe.config" do
-	  source "DataDeleter.erb"
-	  variables(
-		  :master_host => master_host,
-		  :hbase_location => node['hbase']['location'],
-		  :hbase_dc_id => node['wt_analytics_ui']['fb_data_center_id'],
-		  :hbase_pod_id => node['wt_common']['pod_id'],
-		  :cass_host => node['cassandra']['cassandra_host'],
-		  :cass_thrift_port => node['cassandra']['cassandra_thrift_port'],
-		  :report_column => node['cassandra']['cassandra_report_column'],
-		  :metadata_column => node['cassandra']['cassandra_meta_column']
-	  )
-	end
+  template "#{install_dir}\\DataDeleter.exe.config" do
+    source "DataDeleter.erb"
+    variables(
+      :master_host => master_host,
+      :hbase_location => node['hbase']['location'],
+      :hbase_dc_id => node['wt_analytics_ui']['fb_data_center_id'],
+      :hbase_pod_id => node['wt_common']['pod_id'],
+      :cass_host => node['cassandra']['cassandra_host'],
+      :cass_thrift_port => node['cassandra']['cassandra_thrift_port'],
+      :report_column => node['cassandra']['cassandra_report_column'],
+      :metadata_column => node['cassandra']['cassandra_meta_column']
+    )
+  end
 
-	template "#{install_dir}\\DeletionScheduler.exe.config" do
-	  source "DeletionScheduler.erb"
-	  variables(
-		  :master_host => master_host,
-		  :hbase_location => node['hbase']['location'],
-		  :hbase_dc_id => node['wt_analytics_ui']['fb_data_center_id'],
-		  :hbase_pod_id => node['wt_common']['pod_id'],
-		  :cass_host => node['cassandra']['cassandra_host'],
-		  :cass_thrift_port => node['cassandra']['cassandra_thrift_port'],
-		  :report_column => node['cassandra']['cassandra_report_column'],
-		  :metadata_column => node['cassandra']['cassandra_meta_column']
+  template "#{install_dir}\\DeletionScheduler.exe.config" do
+    source "DeletionScheduler.erb"
+    variables(
+      :master_host => master_host,
+      :hbase_location => node['hbase']['location'],
+      :hbase_dc_id => node['wt_analytics_ui']['fb_data_center_id'],
+      :hbase_pod_id => node['wt_common']['pod_id'],
+      :cass_host => node['cassandra']['cassandra_host'],
+      :cass_thrift_port => node['cassandra']['cassandra_thrift_port'],
+      :report_column => node['cassandra']['cassandra_report_column'],
+      :metadata_column => node['cassandra']['cassandra_meta_column']
 
-	  )
-	end
+    )
+  end
 
-	powershell "install data deleter" do
-		environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['datadeleter_binary']})
-		code <<-EOH
-		$binary_path = $env:install_dir + "\\" + $env:service_binary
-	        &$binary_path --install
-		EOH
-	end
+  powershell "install data deleter" do
+    environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['datadeleter_binary']})
+    code <<-EOH
+    $binary_path = $env:install_dir + "\\" + $env:service_binary
+          &$binary_path --install
+    EOH
+  end
 
-	powershell "install deletion scheduler" do
-		environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['deletionscheduler_binary']})
-		code <<-EOH
-		$binary_path = $env:install_dir + "\\" + $env:service_binary
-	        &$binary_path --install
+  powershell "install deletion scheduler" do
+    environment({'install_dir' => install_dir, 'service_binary' => node['wt_datadeleter']['deletionscheduler_binary']})
+    code <<-EOH
+    $binary_path = $env:install_dir + "\\" + $env:service_binary
+          &$binary_path --install
 
-		EOH
-	end
-	share_wrs
+    EOH
+  end
+  share_wrs
 end
