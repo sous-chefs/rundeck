@@ -18,6 +18,6 @@ execute "stop application" do
 end
 
 directory install_dir do
-	recursive true
-	action :delete
+  recursive true
+  action :delete
 end

@@ -12,13 +12,13 @@ install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_devicedatau
 
 # determine root drive of install_dir - ENG390500
 if (install_dir =~ /^(\w:)\\.*$/)
-	install_dir_drive = $1
+  install_dir_drive = $1
 end
 
 # delete install folder
 directory install_dir do
-	recursive true
-	action :delete
+  recursive true
+  action :delete
 end
 
 unshare_wrs
