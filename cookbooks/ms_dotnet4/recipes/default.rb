@@ -24,8 +24,8 @@ if platform?("windows")
         installer_type :custom
         options "/quiet /norestart"
         action :install
-       end
-	 end
+      end
+    end
   elsif (win_version.windows_server_2003_r2? || win_version.windows_server_2003? || win_version.windows_xp?)
     Chef::Log.warn('The .NET 4.0 Chef recipe currently only supports Windows Vista, 7, 2008, and 2008 R2.')
   end

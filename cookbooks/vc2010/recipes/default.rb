@@ -18,8 +18,8 @@
 # limitations under the License.
 
 if node['kernel']['machine'] =~ /x86_64/
-	include_recipe "vc2010::vc2010x86"
-	include_recipe "vc2010::vc2010x64"
+  include_recipe "vc2010::vc2010x86"
+  include_recipe "vc2010::vc2010x64"
 else
-	include_recipe "vc2010::vc2010x86"
+  include_recipe "vc2010::vc2010x86"
 end
