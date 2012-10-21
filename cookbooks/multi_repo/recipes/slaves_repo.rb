@@ -57,4 +57,6 @@ apache_site "repo" do
   enable true
 end
 
+master_repo = search(:node, 'role:multi_repo_master).fqdn
+
 ##Rsync logic will go here##
