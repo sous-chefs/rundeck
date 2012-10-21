@@ -9,9 +9,9 @@
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,19 +32,19 @@ package "psmisc"
 execute "update_apt" do
   command "apt-get update"
   action :run
-  only_if { (! File.exists?("/opt/likewise")) & (node.platform == "ubuntu") } 
+  only_if { (! File.exists?("/opt/likewise")) & (node.platform == "ubuntu") }
 end
 
 # You will need to add likewise-open 6.1 to a local repo from http://www.beyondtrust.com/Products/PowerBroker-Identity-Services-Open-Edition/
 package "likewise-open" do
-	action :install
-	if node.platform == "ubuntu"
-		options "--force-yes"
-		version "6.1.0-2" if node.platform_version.to_i < 12
-	end
-	if node.platform == "centos"
-		version "6.1.0-2.UNKNOWN.8780"
-	end
+  action :install
+  if node.platform == "ubuntu"
+    options "--force-yes"
+    version "6.1.0-2" if node.platform_version.to_i < 12
+  end
+  if node.platform == "centos"
+    version "6.1.0-2.UNKNOWN.8780"
+  end
 end
 
 # Pull the necessary creds from the appropriate authorization databag depending on the ad_network attribute
