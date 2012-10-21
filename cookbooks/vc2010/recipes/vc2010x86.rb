@@ -18,9 +18,9 @@
 # limitations under the License.
 
 windows_package node['vc2010']['x86']['productname'] do
-	source node['vc2010']['x86']['url']
-	options "/passive"
-	installer_type :custom
-	action :install
-	Chef::Log.info "Source: [#{node['vc2010']['x86']['productname']}] #{node['vc2010']['x86']['url']}"
+  source node['vc2010']['x86']['url']
+  options "/passive"
+  installer_type :custom
+  action :install
+  Chef::Log.info "Source: [#{node['vc2010']['x86']['productname']}] #{node['vc2010']['x86']['url']}"
 end

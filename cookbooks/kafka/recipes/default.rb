@@ -1,7 +1,7 @@
 #
-# Cookbook Name::	kafka
+# Cookbook Name::  kafka
 # Description::     Base configuration for Kafka
-# Recipe::			default
+# Recipe::      default
 #
 # Copyright 2012, Webtrends, Inc.
 #
@@ -125,15 +125,15 @@ end
 zookeeper_pairs = Array.new
 if not Chef::Config.solo
     search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-		zookeeper_pairs << n[:fqdn]
-	end
+    zookeeper_pairs << n[:fqdn]
+  end
 end
 
 # fall back to attribs if search doesn't come up with any zookeeper roles
 if zookeeper_pairs.count == 0
-	node[:zookeeper][:quorum].each do |i|
-		zookeeper_pairs << i
-	end
+  node[:zookeeper][:quorum].each do |i|
+    zookeeper_pairs << i
+  end
 end
 
 # append the zookeeper client port (defaults to 2181)
@@ -145,7 +145,7 @@ end
 
 %w[server.properties log4j.properties].each do |template_file|
   template "#{install_dir}/config/#{template_file}" do
-        source	"#{template_file}.erb"
+        source  "#{template_file}.erb"
         owner user
         group group
         mode  00755
@@ -159,16 +159,16 @@ end
 
 # fix perms and ownership
 execute "chmod" do
-	command "find #{install_dir} -name bin -prune -o -type f -exec chmod 644 {} \\; && find #{install_dir} -type d -exec chmod 755 {} \\;"
-	action :run
+  command "find #{install_dir} -name bin -prune -o -type f -exec chmod 644 {} \\; && find #{install_dir} -type d -exec chmod 755 {} \\;"
+  action :run
 end
 execute "chown" do
-	command "chown -R root:root #{install_dir}"
-	action :run
+  command "chown -R root:root #{install_dir}"
+  action :run
 end
 execute "chmod" do
-	command "chmod -R 755 #{install_dir}/bin"
-	action :run
+  command "chmod -R 755 #{install_dir}/bin"
+  action :run
 end
 
 # delete the application tarball
