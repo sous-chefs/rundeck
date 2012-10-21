@@ -1,0 +1,314 @@
+#!/bin/sh
+##########################################################################
+# Startup script for the NetAcuity Server
+#
+# This script will run on Linux, FreeBSD, and Solaris.
+#
+# The following 2 lines are used by Linux installation
+# ---------- Begin Linux Specific -------------------
+#
+# chkconfig: 35 95 10
+# description: NetAcuity Server is used to access the Digital Envoy \
+#	       Databases and Service.
+#
+# ---------- End Linux Specific ---------------------
+#
+# Revisions:
+# ---------------
+# $Log$
+# Revision 1.8  2007/05/14 17:37:24  jburdette
+# Fixed signal to TERM for linux (from SIGTERM)
+#
+# Revision 1.7  2006/01/27 16:19:44  jburdette
+# Default runAs user was not being set -- hardcoded to root.
+#
+# Revision 1.6  2004/12/06 20:04:14  jburdette
+# Have Solaris use the start_server command instead of just starting exe
+#
+# Revision 1.5  2004/05/20 14:04:36  jburdette
+# Updated module headers and comments.
+#
+# Revision 1.4  2004/05/20 13:53:50  jburdette
+# Corrected the signal handling after porting to Solaris
+#
+# Revision 1.3  2004/05/18 14:17:35  jburdette
+# Merging bugfixes back into the trunk
+#
+# Revision 1.2.2.1  2004/05/14 23:58:38  jburdette
+# Updated so they will work for both Linux and FreeBSD.  It made the scripts
+# much better for Linux, so it is getting checked into the BETA2 for it.
+#
+# Revision 1.2  2004/03/24 20:24:24  jburdette
+# Added change logging information in module
+#
+##########################################################################
+
+## This script is best run by ROOT otherwise it will prompt for 
+## password of the user starting the Server as
+
+## Set up the NetAcuity "Home"
+NetAcuityRoot=<%= node['wt_netacuity']['install_dir'] %>/server
+
+## You can specify a user when you start/shut on the command line
+if test "$2" = ""; then
+    ## Modify this to change the default user you want the Server 
+    ## to run under
+    RunAs=netacuity
+else
+    RunAs=$2
+fi
+
+## Don't modify this!
+NetAcuityPIDFile=$NetAcuityRoot/netacuity.pid
+
+NetAcuityPlatform="-"
+## Get down to work
+case "`uname`" in
+    *BSD*)
+        NetAcuityPlatform=FreeBSD
+	IS_ON=:
+	ECHO=echo
+	ECHO_NR="echo -n"
+	ECHO_OK="echo -n : OK"
+	ECHO_FAIL="echo -n : FAILED"
+        ## Note:
+        ## Executable names need to be changed further down in the code
+        ## as well if this is changed...  search for "na_freebsd_server"
+        exec_name=na_freebsd_server
+        signal="-s SIGTERM"
+        effectiveID=`id -u`
+
+        #
+        # See if the NetAcuity Server is running...  If so, save its PID
+        #
+	pid=`ps ax | awk '{if (match($5, ".*/na_freebsd_server$") || $5 == "na_freebsd_server") print $1}'`
+	;;
+
+    Linux*)
+        NetAcuityPlatform=Linux
+	IS_ON=/bin/true
+	if test -f /etc/init.d/functions; then
+            . /etc/init.d/functions
+            ECHO=echo
+            ECHO_NR="echo -n"
+            ECHO_OK="echo_success"
+            ECHO_FAIL="echo_failure"
+	else
+            ECHO=echo
+            ECHO_NR="echo -n"
+            ECHO_OK="echo -n ' OK'"
+            ECHO_FAIL="echo -n ' FAILED'"
+	fi
+        ## Note:
+        ## Executable names need to be changed further down in the code
+        ## as well if this is changed...  search for "netacuity_server"
+        exec_name=netacuity_server
+        signal="-s TERM"
+        effectiveID=`id -u`
+
+        #
+        # See if the NetAcuity Server is running...  If so, save its PID
+        #
+	pid=`ps ax | awk '{if (match($5, ".*/netacuity_server$") || $5 == "netacuity_server") print $1}'`
+	;;
+
+    SunOS*)
+        NetAcuityPlatform=Solaris
+        IS_ON=:
+        ECHO=/usr/ucb/echo
+        ECHO_NR="/usr/ucb/echo -n"
+        ECHO_OK="/usr/ucb/echo -n : OK"
+        ECHO_FAIL="/usr/ucb/echo -n : FAILED"
+        ## Note:
+        ## Executable names need to be changed further down in the code
+        ## as well if this is changed...  search for "na_solaris_server"
+        exec_name=na_solaris_server
+        signal=-TERM
+    
+        # 
+        # See if the NetAcuity Server is running...  If so, save its PID
+        #
+        pid=`ps -A -o 'pid comm' | nawk '{if (match($2, ".*/na_solaris_server$") || $2 == "na_solaris_server") print $1}'`
+        effectiveID=`/usr/xpg4/bin/id -u`
+        ;;
+
+    *)
+	IS_ON=/bin/true
+	ECHO=echo
+	ECHO_OK=:
+	ECHO_FAIL=:
+	pid=""
+	signal=""
+	;;
+esac
+
+## See if the PID file exists, if so, get what it says the PID is
+if test -f $NetAcuityPIDFile; then
+    PID_FILE=`cat $NetAcuityPIDFile`
+else 
+    PID_FILE=""
+fi
+
+case $1 in
+    start)
+        if test "$pid" != ""; then
+            $ECHO "WARNING!  NetAcuity Server is running on pid $pid"
+            $ECHO "          Use the stop or restart option first."
+            $ECHO_NR "NetAcuity Server startup "
+            $ECHO_FAIL
+            $ECHO
+            exit 1
+        fi
+        if test "$PID_FILE" != ""; then
+            $ECHO "NOTICE:  PID file exists, but Server does not appear"
+            $ECHO "         to be running now.  Will clean up and start."
+            $ECHO
+            rm -f $NetAcuityRoot/netacuity.pid
+        fi
+        $ECHO_NR "NetAcuity Server starting "
+
+        ## Actually Start the executable
+        ## We cd to the directory so the PID file gets created in the 
+        ## right place.  The cd is only for the execution of the script.
+        ## If we are root, then use the su - to start the daemon as a user
+        if test $effectiveID = 0; then
+            ### For Solaris we need to use start_server
+            ### for all other platforms, just start the executable
+            if test "$NetAcuityPlatform" = "Solaris"; then
+               su - $RunAs -c "(cd $NetAcuityRoot; ./start_server)"
+            else
+               su - $RunAs -c "(cd $NetAcuityRoot; ./$exec_name)"
+            fi
+        else
+            ### For Solaris we need to use start_server
+            ### for all other platforms, just start the executable
+            if test "$NetAcuityPlatform" = "Solaris"; then
+               (cd $NetAcuityRoot; ./start_server)
+            else
+               (cd $NetAcuityRoot; ./$exec_name)
+            fi
+        fi
+
+        if test $? != 0; then
+            $ECHO_FAIL
+            $ECHO
+            exit 1
+	fi
+        ## Make sure the PID file is created before alerting as started
+        for xx in [0 1 2 3 4 5 6 7 8 9 10]
+          do
+          if test -f $NetAcuityPIDFile; then
+              $ECHO_OK
+              $ECHO
+              exit 0
+          else
+              sleep 2
+          fi
+        done
+        $ECHO_FAIL
+        $ECHO
+        exit 1
+	;;
+    
+    stop)
+        if test "$pid" = ""; then
+            $ECHO_NR "NetAcuity Server does not appear to be running"
+            $ECHO_FAIL
+            $ECHO
+            exit 1
+        fi
+	$ECHO_NR "NetAcuity Server shutting down "
+
+        ## Send the kill shutdown signal to the Server
+        kill $signal $pid
+        if test $? != 0; then
+            $ECHO_FAIL
+            $ECHO
+            exit 1
+	fi
+
+	for xx in [0 1 2 3 4 5 6 7 8 9 10]
+          do
+          if test -f $NetAcuityPIDFile; then
+              sleep 2;
+          else
+              $ECHO_OK
+              $ECHO
+              exit 0
+          fi
+	done
+        
+        ## Check to see if a process is still running even tho the PID
+        ## file disappeared.  If its not there, then its all good and
+        ## and we can remove the existing PID file.
+	case "`uname`" in
+            Linux*)
+                pid=`ps ax | awk '{if (match($5, ".*/netacuity_server$") || $5 == "netacuity_server") print $1}'`
+                ;;
+            *BSD*)
+                pid=`ps ax | awk '{if (match($5, ".*/na_freebsd_server$") || $5 == "na_freebsd_server") print $1}'`
+		;;
+             SunOS*)
+        	pid=`ps -A -o 'pid comm' | nawk '{if (match($2, ".*/na_solaris_server$") || $2 == "na_solaris_server") print $1}'`
+                ;;
+            *)
+                pid=""
+                ;;
+        esac
+        if test "$pid" = ""; then
+	    $ECHO_OK
+            $ECHO
+	    $ECHO "WARNING:  Server is down but the PID file was hanging"
+	    $ECHO "          around.  Cleaning up."
+            rm -f $NetAcuityPIDFile
+	else
+	    $ECHO_FAIL
+            $ECHO
+	    $ECHO "WARNING:  Shutdown does not appear to have happened!"
+	    $ECHO "          Waited 20 seconds!"
+	    $ECHO "          Check netacuity.log (in server directory)"
+	fi
+	;;
+
+    status)
+        if test "$pid" != ""; then
+            $ECHO_NR "NetAcuity Server is running on pid $pid"
+            $ECHO_OK
+            $ECHO
+        else
+            $ECHO_NR "NetAcuity Server does not appear to be running"
+            $ECHO_FAIL
+            $ECHO
+            exit 1
+        fi
+       ## Check to see if the real pid matches the one in the PID file
+        if test "$pid" = "$PID_FILE"; then
+            $ECHO_NR "Everything ok" 
+            $ECHO_OK
+            $ECHO
+            exit 0
+        else
+            $ECHO_NR "PID mismatch"
+            $ECHO_FAIL
+            $ECHO
+        fi
+
+        ;;
+
+    restart)
+        $0 stop $2
+        $0 start $2
+        ;;
+
+    *)
+        echo "Usage: NetAcuity {start|stop|restart|status}"
+        exit 1
+        ;;
+esac
+
+#
+# Exit with no errors.
+#
+
+exit 0
+

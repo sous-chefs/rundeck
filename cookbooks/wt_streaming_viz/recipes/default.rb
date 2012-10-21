@@ -83,19 +83,25 @@ if ENV["deploy_build"] == "true" then
   windows_zipfile install_dir do
 		source node['wt_streaming_viz']['download_url']
 		action :unzip
-  end  
-
+  end
   iis_config auth_cmd do
   	action :config
   end
 end
 
+auth_base = node['wt_sauth']['auth_service_url']
+auth_version = node['wt_streaming_viz']['auth_service_version']
 template "#{install_dir}\\appSettings.config" do
 	source "appSettings.config.erb"
 	variables(
-		:cam_auth_url => node['wt_sauth']['auth_service_url'],
+		:auth_url => "#{auth_base}/#{auth_version}",
+		:auth_url_base => node['wt_streaming_viz']['auth_service_url_base'],
 		:cam_url => node['wt_cam']['cam_service_url'],
+		:cam_url_base => node['wt_streaming_viz']['cam_service_url_base'],
 		:sapi_url   => node['wt_streamingapi']['sapi_service_url'],
+		:help_url => "http://help.webtrends.com",
+		:account_url => node['wt_portfolio_admin']['account_ui_url'],
+		:streams_url => node['wt_streaming_viz']['streams_ui_url'],
 		:stream_client_id => user_data['wt_streaming_viz']['client_id'],
 		:stream_client_secret => user_data['wt_streaming_viz']['client_secret']
 	)
@@ -119,6 +125,6 @@ template "#{install_dir}\\log4net.config" do
 	source "log4net.config.erb"
 	variables(
 		:log_level => node['wt_streaming_viz']['log_level'],
-		:log_dir => install_logdir
+		:log_dir => log_dir
 	)
 end

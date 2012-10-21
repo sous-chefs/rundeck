@@ -3,6 +3,10 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+## 1.1.7
+* added additional hbase and hadoop counters to collectd_hadoop_DataNode.conf.erb template
+
+
 ## 1.1.6
 * added more log messages to search method
 * decreased search timeout to 60 seconds

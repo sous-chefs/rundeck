@@ -1,3 +1,6 @@
+#2.1.6
+* Added convert_searchstr.ini
+
 ## 2.1.5
 * Search for kafka_aggregator not kafka
 

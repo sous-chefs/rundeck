@@ -6,7 +6,7 @@
     </appender>
 
     <appender name="LogFileAppender" type="log4net.Appender.RollingFileAppender" >
-        <file type="log4net.Util.PatternString" value="<%= @log_dir %>/logs/streamviz-%property{log4net:HostName}" />
+        <file type="log4net.Util.PatternString" value="<%= @log_dir %>/streamviz-%property{log4net:HostName}" />
         <appendToFile value="true" />
         <rollingStyle value="Date" />
         <datePattern value="-yyyyMMdd.'log'" />

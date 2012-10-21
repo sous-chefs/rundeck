@@ -21,7 +21,16 @@
     <add key="ldapPort" value="<%= @ldap_port %>" />
     <add key="ldapAdminName" value="<%= @ldap_user %>" />
     <add key="ldapAdminPassword" value="<%= @ldap_password %>" />
+    <!-- UI location -->
+    <add key="streams.url" value="<%= @streams_ui_url %>" />
   </appSettings>
+  <system.net>
+    <mailSettings>
+      <smtp deliveryMethod="Network">
+        <network host="<%= @smtp_host %>" />
+      </smtp>
+    </mailSettings>
+  </system.net>
   <system.web>
     <compilation debug="true" targetFramework="4.0" />
     <authentication mode="Forms">

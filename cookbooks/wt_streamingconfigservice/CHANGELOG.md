@@ -1,3 +1,9 @@
+## 1.0.2
+* Moved log config from code to cookbook.
+
+## 1.0.1
+* Remove the unused CAM DB connection string.  This has been replaced with the shared connection string
+
 ## 1.0.0
 * Fix deploy logging
 * Change jmx port and product port from a string to a int as it should be

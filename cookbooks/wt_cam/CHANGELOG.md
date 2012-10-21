@@ -1,8 +1,19 @@
-## 1.0.26
+## 1.0.29
 * Removed remaining references to auth in recipe, attributes and templates
 * Updated readme (str-129)
+
+## 1.0.28
+* Added template entries for audit logging
+
+## 1.0.27
+* Added streams.url variable to the web.config template
+
+## 1.0.26
+* Added smtp variable to the web.config template
+
 ## 1.0.25
 * Added ldap variables to the web.config template
+
 ## 1.0.24
 * Removed unnecessary pod variable from the plugins recipe
 * Fix resource formatting

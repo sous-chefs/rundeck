@@ -1,3 +1,7 @@
+## 1.0.16
+* Start Kafka at the end of the recipe
+* Use objects instead of strings where appropriate (reduce food critic warnings)
+
 ## 1.0.15
 * Adding checksum attribute
 

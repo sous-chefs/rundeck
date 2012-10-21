@@ -31,3 +31,13 @@ directory install_dir do
   action :delete
 end
 
+
+# rm directory for any lock files
+directory "/var/lock/webtrends" do
+  recursive true
+  action :delete
+end
+
+
+
+

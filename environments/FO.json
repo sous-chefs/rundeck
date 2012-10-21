@@ -1,0 +1,258 @@
+{
+    "chef_type": "environment", 
+    "cookbook_versions": {
+        "graphite": "= 0.3.0", 
+        "hadoop": "= 1.1.6", 
+        "hbase": "= 1.1.3", 
+        "hive": "= 1.1.0", 
+        "java": "= 1.5.2", 
+        "ondemand_base": "= 1.7.12", 
+        "rundeck": "= 1.0.4", 
+        "zookeeper": "= 1.1.4"
+    }, 
+    "default_attributes": {
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "STAGINGDMZ"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins", 
+                    "stage-admins"
+                ], 
+                "include_sudoers_d": true, 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
+        "hadoop": {
+            "default": {
+                "core": {
+                    "fs_checkpoint_period": 900
+                }, 
+                "dfs": {
+                    "data_dir": "/mnt/hdfs/hdfs01/data01", 
+                    "datanode_du_reserved": 10485760
+                }, 
+                "env": {
+                    "HADOOP_HEAPSIZE": 2000
+                }, 
+                "mapred": {
+                    "local_dir": "/mnt/hdfs/hdfs01/data1/mapred", 
+                    "reduce_tasks": 26, 
+                    "submit_replication": 3, 
+                    "tasktracker_map_tasks_maximum": 6, 
+                    "tasktracker_reduce_tasks_maximum": 3
+                }
+            }
+        }, 
+        "hbase": {
+            "default": {
+                "env": {
+                    "HBASE_HEAPSIZE": 4000, 
+                    "HBASE_MANAGES_ZK": "false"
+                }
+            }
+        }, 
+        "hive": {
+            "default": {
+                "metastore": {
+                    "connection_url": "jdbc:sqlserver://shivemeta01.staging.dmz;databaseName=fo_hivemeta", 
+                    "connector": "sqlserver"
+                }
+            }
+        }, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                    }
+                }, 
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                    }
+                }
+            }
+        }, 
+        "memcached": {
+            "memory": "1024"
+        }, 
+        "ms_dotnet4": {
+            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
+        }, 
+        "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
+            "default_host": {
+                "check_interval": 60, 
+                "flap_detection": false, 
+                "max_check_attempts": 3, 
+                "notification_interval": 600, 
+                "retry_interval": 30
+            }, 
+            "default_service": {
+                "check_interval": 120, 
+                "flap_detection": false, 
+                "max_check_attempts": 3, 
+                "notification_interval": 600, 
+                "retry_interval": 30
+            }, 
+            "multi_environment_monitoring": true, 
+            "non_alerting_environments": [
+                "A", 
+                "B", 
+                "C", 
+                "D", 
+                "E", 
+                "F", 
+                "FO", 
+                "H", 
+                "J", 
+                "K", 
+                "L", 
+                "M", 
+                "PF", 
+                "heatmap-staging", 
+                "_default"
+            ], 
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server": {
+                "install_method": "source", 
+                "service_name": "nagios"
+            }, 
+            "server_auth_method": "htpasswd", 
+            "server_role": "nagios_xi", 
+            "sysadmin_email": "trent.white@webtrends.com", 
+            "users_databag_group": "staging"
+        }, 
+        "ondemand_base": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
+                }, 
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution_suffix": "-0.10", 
+                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
+                    "name": "wtlab-opscode", 
+                    "url": "http://repo.staging.dmz/repo/apt/opscode"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
+                }
+            ]
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
+        "snmp": {
+            "community": "DevOps", 
+            "full_systemview": "true", 
+            "syscontact": "trent.white@webtrends.com"
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "webtrends_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
+                }, 
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution_suffix": "-0.10", 
+                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
+                    "name": "wtlab-opscode", 
+                    "url": "http://repo.staging.dmz/repo/apt/opscode"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
+                }
+            ]
+        }, 
+        "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "config_dir_linux": "/etc/webtrends/", 
+            "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
+            "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
+            "install_dir_linux": "/opt/webtrends/", 
+            "install_dir_windows": "d:\\wrs", 
+            "install_log_dir_linux": "/var/log/webtrends/install", 
+            "install_log_dir_windows": "d:\\logs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "log_dir_linux": "/var/log/webtrends/", 
+            "log_dir_windows": "", 
+            "smtp_server": "pdxengmta01.webtrends.corp"
+        }, 
+        "wt_monitoring": {
+            "graphite_flush_enabled": "true", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "support-staging.servers", 
+            "monitoring_enabled": "true"
+        }, 
+        "yum": {
+            "epel_release": "6-7"
+        }
+    }, 
+    "description": "Test environment for HBase", 
+    "json_class": "Chef::Environment", 
+    "name": "FO", 
+    "override_attributes": {
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }
+    }
+}
