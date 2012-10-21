@@ -9,8 +9,10 @@ auditlistener.enabled= <%= node['wt_streamingauditor']['auditlistener_enabled'] 
 # The root node name for SAPI nodes
 sapi.znode.root=/StreamingZMQ/<%= @datacenter %>_<%= @pod %>
 
+# This is the base url for the AUTH service. This is used by the health check
+webtrends.authentication.baseUrl=<%=node['wt_sauth']['auth_service_url']%>/<%=node['wt_streamingauditor']['sauth_version']%>
 # This is the url for the AUTH service to get the token
-roundtrip.authentication.url = <%= node['wt_sauth']['auth_service_url'] %>/api
+roundtrip.authentication.url=<%=node['wt_sauth']['auth_service_url']%>/<%=node['wt_streamingauditor']['sauth_version']%>/token
 # The client id for wt_monitoring
 roundtrip.clientid=<%=@client_id%>
 # The client secret for wt_monitoring
@@ -19,10 +21,10 @@ roundtrip.client.secret=<%=@client_secret%>
 roundtrip.interval=<%= node['wt_streamingauditor']['roundtrip_interval'] %>
 # The SCS dcsid to use for the round-trip auditing
 roundtrip.scs.dcsid=<%= node['wt_streamingauditor']['roundtrip_scs_dcsid'] %>
+# The SCS urls (e.g. "http://scs.webtrends.com,http://scs.pdx.webtrends.com,http://scs.las.webtrends.com,http://scs.iad2.webtrends.com,http://scs.ams.webtrends.com")
+roundtrip.scs.urls=<%= node['wt_streamingauditor']['roundtrip_scs_urls'] %>
 # The tag server dcsid to use for the round-trip auditing
 roundtrip.tagserver.dcsid=<%= node['wt_streamingauditor']['roundtrip_tagserver_dcsid'] %>
-# The url to SCS
-roundtrip.scs.url=<%= node['wt_streamingauditor']['roundtrip_scs_url'] %>
 # The url to the tag server(s)
 roundtrip.tagserver.url=<%= node['wt_streamingauditor']['roundtrip_tagserver_url'] %>
 #The timeout (minutes) for waiting until we receive a response

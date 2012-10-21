@@ -1,4 +1,7 @@
-## 1.03
+## 1.0.4
+* Bump from Firefox 15.0.1 to 16.0.1
+
+## 1.0.3
 * Fix the download URL
 
 ## 1.0.2

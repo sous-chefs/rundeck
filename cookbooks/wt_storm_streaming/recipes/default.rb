@@ -145,7 +145,7 @@ if ENV["deploy_build"] == "true" then
     snappy-java-1.0.4.1.jar
     stax-api-1.0.1.jar
     streaming-analysis.jar
-    UserAgentUtils-1.2.4.jar
+    UserAgentUtils-1.6.jar
     xmlenc-0.52.jar
     zkclient-0.1.jar
     mobi.mtld.da-1.5.3.jar
@@ -216,6 +216,8 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :streaming_topology_zmq_emitter_bolt_count   => node['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'],
     :streaming_topology_validation_bolt_count    => node['wt_storm_streaming']['streaming_topology_validation_bolt_count'],
     :streaming_topology_augmentation_bolt_count  => node['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'],
+    :streaming_topology_mode_local => node['wt_storm_streaming']['streaming_topology_mode_local'],
+    :streaming_topology_field_grouping_local => node['wt_storm_streaming']['streaming_topology_field_grouping_local'],
     # kafka consumer settings
     :kafka_consumer_topic                 => node['wt_storm_streaming']['topic_list'].join(','),
     :kafka_zookeeper_quorum               => zookeeper_quorum * ",",

@@ -1,7 +1,41 @@
+## 1.1.9
+* Add application/x-javascript to httpCompression section in web.config template
+
+## 1.1.8
+* Add httpCompression section to web.config template
+
+## 1.1.7
+* Fixed log4net to use the log_dir variable not the install_log_dir
+* Remove extra "logs" directory in the log4net template
+
+## 1.1.6
+* Add attribute wt_streaming_viz.auth_service_version = "v1"
+* Build base url from auth_service_url/auth_service_version
+
+## 1.1.5
+* Revert auth base url
+
+## 1.1.4
+* Update auth base url
+
+## 1.1.3
+* Updated auth url
+* Fixed note -> node typo
+
+## 1.1.2
+* Add appSettings references for help, account, and streams urls.
+
+## 1.1.1
+* Includes 1.1.0 and 1.0.14 changes because merge.
+
 ## 1.1.0
 * Changed [wt_cam][auth_service_url] to [wt_sauth][auth_service_url]
 * Fixed spacing
 * Moved templates to outside deploy gate
+
+## 1.0.14
+* Make new appSettings parameter auth.url.base with new environment setting to match.
+* Make new appSettings parameter cam.url.base with new environment setting to match.
 
 ## 1.0.13
 * Missing comma
