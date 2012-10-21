@@ -1,5 +1,20 @@
-## 1.0.7
+## 1.0.12
 * Fix the stripping of http from the proxy URL
+
+## 1.0.11
+* Resolved issues with the collectd configuration that pulls from JMX
+
+## 1.0.10
+* Added 'sauth_version'
+
+## 1.0.9
+* Added new way to get just the host part of the URI
+
+## 1.0.8
+* Updated auth url
+
+## 1.0.7
+* Add CAM product detail url config to the streaming.properties file to fix the healthcheck
 
 ## 1.0.6
 * Fixed the auth url due to changes in the auth endpoints

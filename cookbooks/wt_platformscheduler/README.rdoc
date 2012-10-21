@@ -9,7 +9,7 @@ Installs the configures the Webtrends Platform Scheduler service
 
 = ATTRIBUTES:
 
-Uses attributes for the master DB hostname and the DB name
+
 
 = USAGE:
 

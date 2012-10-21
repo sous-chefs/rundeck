@@ -22,9 +22,9 @@ service "streamingauditor" do
 end
 
 # force stop the service in case the stop failed
-service "streamingauditor" do
-  action :stop
-  stop_command "force-stop"
+execute "streamingauditor" do
+  command "sv force-stop streamingauditor"
+  action :run
 end
 
 directory log_dir do

@@ -48,7 +48,7 @@ service "php-fastcgi" do
   action :start
 end
 
-cookbook_file "/etc/php5/cli/php.ini" do
+cookbook_file "/etc/php5/cgi/php.ini" do
   source "php.ini"
   owner "root"
   group "root"

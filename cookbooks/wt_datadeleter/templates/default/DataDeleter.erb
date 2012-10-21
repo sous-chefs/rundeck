@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
+    <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core,Version=1.0.0.0, Culture=neutral" />
+    <section name="HBaseConfig" type="Webtrends.HBase.Core.HBaseConfigSection, Webtrends.HBase.Core" />
+    <section name="serviceBus" type="Webtrends.ServiceBus.Configuration.ServiceBusConfiguration, Webtrends.ServiceBus" />
+  </configSections>
+  
+  <appSettings>
+    <add key="AgentAddress" value="agent.1@localhost" />
+    <add key="ClientSettingsProvider.ServiceUri" value="" />
+  </appSettings>
+  
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
+  </startup>
+  
+  <log4net>
+    <appender name="ColoredConsoleAppender" type="log4net.Appender.ColoredConsoleAppender">
+      <mapping>
+        <level value="ERROR" />
+        <foreColor value="White" />
+        <backColor value="Red, HighIntensity" />
+      </mapping>
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%date [%thread] %-5level %logger [%property{NDC}] - %message%newline" />
+      </layout>
+    </appender>
+    <appender name="FileAppender" type="log4net.Appender.FileAppender">
+      <File type="log4net.Util.PatternString" value="%property{LogName}" />
+      <appendToFile value="true" />
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="%date [%thread] %-5level %logger [%property{NDC}] - %message%newline" />
+      </layout>
+    </appender>
+    <root>
+      <level value="DEBUG" />
+      <appender-ref ref="ColoredConsoleAppender" />
+      <appender-ref ref="FileAppender" />
+    </root>
+  </log4net>
+  
+  <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>" MetaDataColumnFamily="<%= @metadata_column %>" UseLegacy="False" ThriftPort="<%= @cass_thrift_port %>">
+    <Nodes>
+      <add Hostname="<%= @cass_host %>" />
+    </Nodes>
+  </CassandraCluster>
+  
+  <!-- Start HBase settings-->
+  <HBaseConfig HBaseLocation="<%= @hbase_location %>" DataCenterId="<%= @hbase_dc_id %>" PodId="<%= @hbase_pod_id %>" ThriftPort="9090" />
+  <!-- End HBase settings-->
+  
+  <serviceBus>
+    <endpoints>
+      <endpoint endpointIdentifier="DataDeleter@localhost" returnAddress="DataDeleter@localhost" binding="customMsmqBinding" />
+    </endpoints>
+    <bindings>
+      <msmqBinding purgeOnStartup="false" isTransactional="true" transactionTimeout="00:16:00" isolationLevel="Serializable" name="customMsmqBinding" />
+    </bindings>
+  </serviceBus>
+  
+  <system.web>
+    <membership defaultProvider="ClientAuthenticationMembershipProvider">
+      <providers>
+        <add name="ClientAuthenticationMembershipProvider" type="System.Web.ClientServices.Providers.ClientFormsAuthenticationMembershipProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" />
+      </providers>
+    </membership>
+    <roleManager defaultProvider="ClientRoleProvider" enabled="true">
+      <providers>
+        <add name="ClientRoleProvider" type="System.Web.ClientServices.Providers.ClientRoleProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" cacheTimeout="86400" />
+      </providers>
+    </roleManager>
+  </system.web>
+  
+</configuration>

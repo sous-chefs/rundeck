@@ -1,3 +1,11 @@
+## 1.0.10
+* switch to run as non-root user: netacuity
+* changed data bag admin password, to be the password and not a password hash
+* use NetAcuity provided init script
+* when using proxy, also add param US_INCLUDE_HTTP_HEADER, as stated in addendum to Users Guide
+* removed java dependency
+* download_url is now full url, tarball name is not assumed
+
 ## 1.0.9
 * Added an NRPE plugin that directly queries netacutiy for data and alerts if the query fails.
 
