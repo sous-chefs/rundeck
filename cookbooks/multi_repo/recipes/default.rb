@@ -17,7 +17,7 @@
 # limitations under the License.
 
 # Install packages needed to manage repos
-%w{ nfs-common reprepro createrepo apt-mirror gnupg }.each do |pkg|
+%w{ nfs-common reprepro createrepo apt-mirror gnupg rsync }.each do |pkg|
   package pkg
 end
 
