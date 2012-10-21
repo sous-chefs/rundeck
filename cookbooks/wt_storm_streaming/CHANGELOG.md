@@ -1,3 +1,12 @@
+## 2.1.15
+* Fixes to be able to disable local grouping in the config.properties.
+
+## 2.1.14
+* Updated version of UserAgentUtils to 1.6 from 1.2.4
+
+## 2.1.13
+* Added convert_searchstr.ini file
+
 ## 2.1.12
 * Remove unused nimbus host attribute since we search this out
 * Cleanup some variables that we were setting as node attributes.  Now using plain old variables

@@ -2,7 +2,7 @@
 # Cookbook Name:: wt_netacuity
 # Attributes:: default
 #
-# Copyright 2012, Webtrends
+# Copyright 2012, Webtrends Inc.
 #
 # All rights reserved - Do Not Redistribute
 #

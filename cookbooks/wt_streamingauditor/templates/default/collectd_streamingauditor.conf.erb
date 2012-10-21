@@ -159,6 +159,34 @@ LoadPlugin java
 			</Value>
         </MBean>
         #####################
+        # Loop through the individual hosts and pull the values
+        #####################
+        <% @scs_urls.each_with_index do |host,index| %>
+            <MBean "scs-latency-host-<%=index%>">
+                ObjectName "streamingauditor:type=latency,scope=scs-latency-host,name=<%=URI(host).host%>"
+                InstancePrefix ""
+                InstanceFrom "name"
+                <Value>
+                    Type "gauge"
+                    InstancePrefix "Max"
+                    Table false
+                    Attribute "Max"
+                </Value>
+                <Value>
+                    Type "gauge"
+                    InstancePrefix "Min"
+                    Table false
+                    Attribute "Min"
+                </Value>
+                <Value>
+                    Type "gauge"
+                    InstancePrefix "Mean"
+                    Table false
+                    Attribute "Mean"
+                </Value>
+            </MBean>
+        <% end %>
+        #####################
         # Connection blocks #
         #####################
         #Connection Block
@@ -170,8 +198,11 @@ LoadPlugin java
 			Collect "java_threads"
 			Collect "memory-heap"
 			Collect "memory_nonheap"
-      Collect "scs-latency"
-      Collect "tag-server-latency"
+            Collect "scs-latency"
+            Collect "tag-server-latency"
+            <% @scs_urls.each_with_index do |host,index| %>
+                Collect "scs-latency-host-<%=index%>"
+            <% end %>
         </Connection>
-        </Plugin>
+    </Plugin>
 </Plugin>

@@ -11,6 +11,7 @@
     "recipe[ms_dotnet35]",
     "recipe[ms_dotnet4]",
     "role[iis]",
+    "recipe[iis::mod_compress_dynamic]",
     "recipe[wt_streaming_viz]"
   ],
   "env_run_lists": {
