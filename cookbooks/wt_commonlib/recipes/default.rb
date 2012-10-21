@@ -16,19 +16,19 @@ common_install_url = node['wt_commonlib']['common_install_url']
 msi_name = node['wt_commonlib']['commonlib_msi']
 
 directory logdir do
-	action :create
-	recursive true
+  action :create
+  recursive true
 end
 
-if ENV["deploy_build"] == "true" then 
-	remote_file "#{Chef::Config[:file_cache_path]}\\#{msi_name}" do
-		source "#{archive_url}#{common_install_url}"
-		action :nothing
-	end
+if ENV["deploy_build"] == "true" then
+  remote_file "#{Chef::Config[:file_cache_path]}\\#{msi_name}" do
+    source "#{archive_url}#{common_install_url}"
+    action :nothing
+  end
 
-	windows_package "WebTrends Common Lib" do
-		source "#{Chef::Config[:file_cache_path]}\\#{msi_name}"
-		options "/l*v \"#{logdir}\\#{msi_name}-Install.log\" INSTALLDIR=\"#{installdir}\" SQL_SERVER_NAME=\"#{master_host}\" WTMASTER=\"wtMaster\"  WTSCHED=\"wt_Sched\""
-		action :install
-	end
+  windows_package "WebTrends Common Lib" do
+    source "#{Chef::Config[:file_cache_path]}\\#{msi_name}"
+    options "/l*v \"#{logdir}\\#{msi_name}-Install.log\" INSTALLDIR=\"#{installdir}\" SQL_SERVER_NAME=\"#{master_host}\" WTMASTER=\"wtMaster\"  WTSCHED=\"wt_Sched\""
+    action :install
+  end
 end
