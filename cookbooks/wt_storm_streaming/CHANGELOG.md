@@ -1,3 +1,6 @@
+## 2.1.16
+* Never set node attributes directly.  Then we have to fix stuff later
+
 ## 2.1.15
 * Fixes to be able to disable local grouping in the config.properties.
 
