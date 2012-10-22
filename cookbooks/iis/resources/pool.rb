@@ -26,6 +26,8 @@ attribute :pipeline_mode, :kind_of => Symbol, :default => :Classic, :equal_to =>
 attribute :private_mem, :kind_of => Integer, :default => 1048576
 attribute :max_proc, :kind_of => Integer, :default => 2
 attribute :thirty_two_bit, :kind_of => Symbol, :default => :false, :equal_to => [:true, :false]
+attribute :pool_username, :kind_of => String, :default => nil
+attribute :pool_password, :kind_of => String, :default => nil
 
 attr_accessor :exists, :running
 
