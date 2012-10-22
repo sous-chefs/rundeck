@@ -10,6 +10,6 @@
 
 
 windows_package "Webtrends VDM Scheduler Agent" do
-  action :remove
-  ignore_failure true
+	action :remove
+	ignore_failure true
 end
