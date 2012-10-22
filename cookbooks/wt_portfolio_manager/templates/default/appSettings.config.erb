@@ -12,10 +12,20 @@
     <add key="elmah.mvc.allowedRoles" value="*" />
     <add key="elmah.mvc.route" value="secure/admin/errors" />
 
+    <!-- Licensing -->
+    <add key="aps.url" value="<%= @aps_url %>"/>
+    <add key="aps.url.base" value=""/>
+
     <!-- streaming locations -->
     <add key="cam.url" value="<%= @cam_url %>"/>
     <add key="cam.url.base" value="<%= @cam_url_base %>"/>
     <add key="config.url" value="<%= @config_url%>"/>
     <add key="ad.network" value="<%= @ad_network %>"/>
+
+    <!-- User Access GruopNames -->
+    <add key="ad.group.admin" value="*"/>
+    <add key="ad.group.user" value="*"/>
+    <add key="reauth.minutes" value="90"/>
+
 </appSettings>
 
