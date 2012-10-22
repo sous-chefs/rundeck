@@ -17,8 +17,8 @@ logdir = node['wt_common']['install_log_dir_windows']
 msi_name = node['wt_dx']['commonlib_msi']
 
 directory logdir do
-  action :create
-  recursive true
+	action :create
+	recursive true
 end
 
 windows_package "WebTrends Common Lib" do
@@ -28,20 +28,20 @@ windows_package "WebTrends Common Lib" do
 end
 
 iis_config "/section:httpCompression /-\"[name='deflate',doStaticCompression='True',doDynamicCompression='True',dll='c:\\windows\\system32\\inetsrv\\gzip.dll']\" /commit:apphost" do
-  action :config
-  ignore_failure true
+	action :config
+	ignore_failure true
 end
 
 iis_app "DX" do
-  path "/v2"
-  application_pool "#{v21pool}"
-  action :delete
+	path "/v2"
+	application_pool "#{v21pool}"
+	action :delete
 end
 
 iis_app "DX" do
-  path "/v2_1"
-  application_pool "#{v21pool}"
-  action :delete
+	path "/v2_1"
+	application_pool "#{v21pool}"
+	action :delete
 end
 
 iis_pool "#{v21pool}" do
@@ -49,42 +49,42 @@ iis_pool "#{v21pool}" do
 end
 
 iis_app "OEM_DX" do
-  path "/v2_2"
-  application_pool streamingservices_pool
-  action :delete
+	path "/v2_2"
+	application_pool streamingservices_pool
+	action :delete
 end
 
 
 iis_app "DX" do
-  path "/StreamingServices_v3"
-  application_pool "#{streamingservices_pool}"
-  action :delete
+	path "/StreamingServices_v3"
+	application_pool "#{streamingservices_pool}"
+	action :delete
 end
 
 iis_app "DX" do
-  path "/v3"
-  application_pool "#{webservices_pool}"
-  action :delete
+	path "/v3"
+	application_pool "#{webservices_pool}"
+	action :delete
 end
 
 iis_pool "#{streamingservices_pool}" do
-  action [:stop, :delete]
+	action [:stop, :delete]
 end
 
 iis_pool "#{webservices_pool}" do
-  action [:stop, :delete]
+	action [:stop, :delete]
 end
 
 iis_site 'DX' do
-  action [:stop, :delete]
+	action [:stop, :delete]
 end
 
 iis_site 'OEM_DX' do
-  action [:stop, :delete]
+	action [:stop, :delete]
 end
 
 execute "iisreset" do
-  command "iisreset"
+	command "iisreset"
 end
 
 directory "#{dx_dir}" do

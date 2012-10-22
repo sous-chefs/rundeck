@@ -6,5 +6,5 @@ description      "Installs/Configures Roadrunner GPU acceleration service"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
 version          "1.0.1"
 supports         "windows"
-depends           "powershell"
+depends					 "powershell"
 depends          "wt_base"
