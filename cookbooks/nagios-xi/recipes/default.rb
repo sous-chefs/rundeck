@@ -12,9 +12,9 @@
 if node.platform == "centos"
 
 %w{php-ldap procmail }.each do |pkg|
-    package pkg do
-      action :install
-    end
-  end
+		package pkg do
+			action :install
+		end
+	end
 
 end

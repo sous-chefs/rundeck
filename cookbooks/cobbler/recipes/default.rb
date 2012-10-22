@@ -105,7 +105,7 @@ link "/var/www/validation.pem" do
   to Chef::Config[:validation_key]
 end
 file Chef::Config[:validation_key] do
-  mode 00644
+	mode 00644
 end
 
 # firstboot script

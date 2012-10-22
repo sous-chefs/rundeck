@@ -37,7 +37,7 @@ storm_nimbus = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluste
 # search for zookeeper servers
 zookeeper_quorum = Array.new
 search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-  zookeeper_quorum << n[:fqdn]
+	zookeeper_quorum << n[:fqdn]
 end
 
 install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
@@ -85,7 +85,7 @@ end
 
 # create a link from the specific version to a generic current folder
 link "#{node['storm']['install_dir']}/current" do
-  to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
+	to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
 end
 
 # storm.yaml

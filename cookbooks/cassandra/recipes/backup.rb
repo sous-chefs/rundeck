@@ -20,7 +20,7 @@
 package "nfs-common"
 
 directory node['cassandra']['backup']['mount_path'] do
-  action :create
+	action :create
 end
 
 mount node['cassandra']['backup']['mount_path'] do
