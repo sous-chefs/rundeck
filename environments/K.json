@@ -1,6 +1,8 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {}, 
+    "cookbook_versions": {
+		  "windows": "= 1.3.6"
+		}, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -230,7 +232,7 @@
             "search_hostname": "ksearch.englab.webtrends.corp"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/28988:id/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt292/37917:id/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "kusagedb01.englab.webtrends.corp", 
