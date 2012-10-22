@@ -76,7 +76,7 @@ drpc.request.timeout.secs: <%= @storm_config[:drpc][:request_timeout_secs] %>
 
 ### transactional.* configs
 transactional.zookeeper.servers:
-<% @storm_config[:zookeeper_quorum].each do |host| -%>
+<% @zookeeper_quorum.each do |host| -%>
     - "<%= host %>"
 <% end -%>
 transactional.zookeeper.root: "<%= @storm_config[:transactional][:zookeeper][:root] %>"
