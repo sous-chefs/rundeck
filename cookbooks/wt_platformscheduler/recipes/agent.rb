@@ -9,7 +9,7 @@
 # This recipe installs VDM Scheduler Agent
 #
 if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploy first"
+  log "The deploy_build value is true so un-deploy first"  
   include_recipe "wt_platformscheduler::agent_uninstall"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
@@ -34,14 +34,14 @@ log "Source URL: #{node['wt_platformscheduler']['agent']['download_url']}"
 msi = node['wt_platformscheduler']['agent']['msi']
 # create the log directory
 directory log_dir do
-  recursive true
-  action :create
+	recursive true
+	action :create
 end
 
 # create the install directory
 directory install_dir do
-  recursive true
-  action :create
+	recursive true
+	action :create
 end
 
 if ENV["deploy_build"] == "true" then
@@ -51,18 +51,18 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-  # execute the VDM scheduler Agent MSI
+	# execute the VDM scheduler Agent MSI
   windows_package "Webtrends VDM Scheduler Agent" do
     source "#{Chef::Config[:file_cache_path]}/#{msi}"
     options "/l*v \"#{log_dir}\\PlatformSchedulerAgent-Install.log\" SERVICEACCT=#{svcuser} SERVICEPASS=#{svcpass} AGENTMANAGERADDRESS=agentmanager.1@#{sched_host} BASEFOLDER=#{install_dir} LOGTOFILE=true FILELOGGINGLEVEL=4 SCHEDULERADDRESS=scheduler2@#{sched_host} MASTER_HOST=#{master_host} STANDALONE=TRUE INSTALLDIR=\"#{install_dir}\\agent\\common\""
     action :install
-  end
+  end	
 
-  wt_base_icacls install_dir do
-    user svcuser
-    perm :modify
-    action :grant
-  end
-
-  share_wrs
+	wt_base_icacls install_dir do
+		user svcuser
+		perm :modify
+		action :grant
+	end
+	
+	share_wrs
 end
