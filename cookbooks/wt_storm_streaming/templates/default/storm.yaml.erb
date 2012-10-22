@@ -10,7 +10,7 @@ storm.cluster.mode: "<%= @storm_config[:cluster_mode] %>"
 
 ### zookeeper.*
 storm.zookeeper.servers:
-<% @storm_config[:zookeeper_quorum].each do |host| -%>
+<% @zookeeper_quorum.each do |host| -%>
     - "<%= host %>"
 <% end -%>
 storm.zookeeper.port: <%= @storm_config[:zookeeper][:port] %>
