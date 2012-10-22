@@ -16,49 +16,49 @@ svcuser = auth_data['wt_common']['loader_user']
 
 # determine root drive of install_dir - ENG390500
 if (install_dir =~ /^(\w:)\\.*$/)
-  install_dir_drive = $1
+	install_dir_drive = $1
 end
 
 sc_cmd = "\"%WINDIR%\\System32\\sc.exe delete \"#{node['wt_roadrunner']['service_name']}\""
 netsh_cmd = "netsh http delete urlacl url=http://+:8097/"
 
 service node['wt_roadrunner']['service_name'] do
-  action :stop
-  ignore_failure true
+	action :stop
+	ignore_failure true
 end
 
 execute "sc" do
-  command sc_cmd
-  ignore_failure true
+	command sc_cmd
+	ignore_failure true
 end
 
 # delete service with old service name
 execute "sc" do
-  command "\"%WINDIR%\\System32\\sc.exe delete \"WebtrendsRoadRunnerService\""
-  ignore_failure true
+	command "\"%WINDIR%\\System32\\sc.exe delete \"WebtrendsRoadRunnerService\""
+	ignore_failure true
 end
 
 execute "netsh" do
-  command netsh_cmd
-  ignore_failure true
+	command netsh_cmd
+	ignore_failure true
 end
 
 # delete install folder
 directory install_dir do
-  recursive true
-  action :delete
+	recursive true
+	action :delete
 end
 
 # remove service account from root directory - ENG390500
 wt_base_icacls install_dir_drive do
-  action :remove
-  user svcuser
+	action :remove
+	user svcuser
 end
 
 # remove firewall rule
 execute "netsh" do
-  command "netsh advfirewall firewall delete rule name=\"Webtrends RoadRunner port 8097\""
-  ignore_failure true
+	command "netsh advfirewall firewall delete rule name=\"Webtrends RoadRunner port 8097\""
+	ignore_failure true
 end
 
 unshare_wrs
