@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-actions :add, :delete, :start, :stop, :restart
+actions :add, :delete, :start, :stop, :restart, :config
 
 attribute :site_name, :kind_of => String, :name_attribute => true
 attribute :site_id, :kind_of => Integer
@@ -30,3 +30,8 @@ attribute :bindings, :kind_of => String, :default => nil
 attribute :application_pool, :kind_of => String, :default => nil
 
 attr_accessor :exists, :running
+
+def initialize(*args)
+  super
+  @action = :add
+end
