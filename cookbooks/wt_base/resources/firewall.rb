@@ -31,4 +31,4 @@ attr_accessor :exists
 def initialize(*args)
   super
   @action = :install
-end1
+end
