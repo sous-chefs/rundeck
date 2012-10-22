@@ -6,7 +6,7 @@
 # Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
-# This recipe installs the Portfolio Admin IIS app
+# This recipe installs the Portfolio MC IIS app
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploy first"

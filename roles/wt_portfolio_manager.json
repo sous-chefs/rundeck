@@ -10,6 +10,7 @@
   "run_list": [
     "recipe[ms_dotnet4]",
     "role[iis]",
+    "recipe[iis:mod_auth_windows]",
     "recipe[wt_portfolio_manager]"
   ],
   "env_run_lists": {
