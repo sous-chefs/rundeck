@@ -10,10 +10,10 @@ storm.cluster.mode: "<%= @storm_config[:cluster_mode] %>"
 
 ### zookeeper.*
 storm.zookeeper.servers:
-<% @storm_config[:zookeeper_quorum].each do |host| -%>
+<% @zookeeper_quorum.each do |host| -%>
     - "<%= host %>"
 <% end -%>
-storm.zookeeper.port: <%= @storm_config[:zookeeper][:port] %>
+storm.zookeeper.port: <%= @zookeeper_clientport %>
 storm.zookeeper.root: "<%= @storm_config[:zookeeper][:root] %>"
 storm.zookeeper.session.timeout: <%= @storm_config[:zookeeper][:session_timeout] %>
 storm.zookeeper.retry.times: <%= @storm_config[:zookeeper][:retry_times] %>
@@ -47,7 +47,7 @@ zmq.linger.millis: <%= @storm_config[:zmq][:longer_millis] %>
 
 
 ### nimbus.* configs are for the master
-nimbus.host: "<%= @storm_config[:nimbus][:host] %>"
+nimbus.host: "<%= @nimbus_host %>"
 nimbus.thrift.port: <%= @storm_config[:nimbus][:thrift_port] %>
 nimbus.childopts: "<%= @storm_config[:nimbus][:childopts] %>"
 nimbus.task.timeout.secs: <%= @storm_config[:nimbus][:task_timeout_secs] %>
