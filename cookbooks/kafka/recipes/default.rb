@@ -1,7 +1,7 @@
 #
 # Cookbook Name::	kafka
-# Description::     Base configuration for Kafka
-# Recipe::			default
+# Description:: Base configuration for Kafka
+# Recipe:: default
 #
 # Copyright 2012, Webtrends, Inc.
 #
@@ -112,28 +112,21 @@ template "#{install_dir}/bin/service-control" do
   group "root"
   mode  00755
   variables({
-        :install_dir => install_dir,
-        :log_dir => node[:kafka][:log_dir],
-        :java_home => java_home,
-        :java_jmx_port => node[:kafka][:jmx_port],
-        :java_class => "kafka.Kafka",
-        :user => user
+    :install_dir => install_dir,
+    :log_dir => node[:kafka][:log_dir],
+    :java_home => java_home,
+    :java_jmx_port => node[:kafka][:jmx_port],
+    :java_class => "kafka.Kafka",
+    :user => user
   })
 end
 
 # grab the zookeeper nodes that are currently available
 zookeeper_pairs = Array.new
 if not Chef::Config.solo
-    search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-		zookeeper_pairs << n[:fqdn]
-	end
-end
-
-# fall back to attribs if search doesn't come up with any zookeeper roles
-if zookeeper_pairs.count == 0
-	node[:zookeeper][:quorum].each do |i|
-		zookeeper_pairs << i
-	end
+  search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+    zookeeper_pairs << n[:fqdn]
+  end
 end
 
 # append the zookeeper client port (defaults to 2181)
@@ -145,27 +138,29 @@ end
 
 %w[server.properties log4j.properties].each do |template_file|
   template "#{install_dir}/config/#{template_file}" do
-        source	"#{template_file}.erb"
-        owner user
-        group group
-        mode  00755
-        variables({
-            :kafka => node[:kafka],
-            :zookeeper_pairs => zookeeper_pairs,
-            :client_port => node[:zookeeper][:client_port]
-        })
-    end
+    source	"#{template_file}.erb"
+    owner user
+    group group
+    mode  00755
+    variables({
+      :kafka => node[:kafka],
+      :zookeeper_pairs => zookeeper_pairs,
+      :client_port => node[:zookeeper][:client_port]
+    })
+  end
 end
 
 # fix perms and ownership
 execute "chmod" do
-	command "find #{install_dir} -name bin -prune -o -type f -exec chmod 644 {} \\; && find #{install_dir} -type d -exec chmod 755 {} \\;"
-	action :run
+  command "find #{install_dir} -name bin -prune -o -type f -exec chmod 644 {} \\; && find #{install_dir} -type d -exec chmod 755 {} \\;"
+  action :run
 end
+
 execute "chown" do
-	command "chown -R root:root #{install_dir}"
-	action :run
+  command "chown -R root:root #{install_dir}"
+  action :run
 end
+
 execute "chmod" do
 	command "chmod -R 755 #{install_dir}/bin"
 	action :run
@@ -173,20 +168,20 @@ end
 
 # delete the application tarball
 execute "delete_install_source" do
-    user "root"
-    group "root"
-    command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
-    action :run
+  user "root"
+  group "root"
+  command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
+  action :run
 end
 
 # create the runit service
 runit_service "kafka" do
-    options({
-        :log_dir => node[:kafka][:log_dir],
-        :install_dir => install_dir,
-        :java_home => java_home,
-        :user => user
-      })
+  options({
+    :log_dir => node[:kafka][:log_dir],
+    :install_dir => install_dir,
+    :java_home => java_home,
+    :user => user
+  })
 end
 
 # create collectd plugin for kafka JMX objects if collectd has been applied.
