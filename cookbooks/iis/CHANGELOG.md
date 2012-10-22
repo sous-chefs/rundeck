@@ -4,6 +4,8 @@
 * resource/provider for managing IIS virtual directories
 * IIS 6.0 support
 
+## 1.1.3(Webtrends)
+* Merged in https://github.com/opscode-cookbooks/iis/pull/13
 ## 1.1.2
 
 * add config resource attribute :returns to accept non-zero return codes.
