@@ -55,6 +55,24 @@ iis_site 'PortfolioManager' do
 	retries 2
 end
 
+#configure IIS
+appcmds = Array.new
+
+#enable windows authentication, disable anonymous+forms auth
+appcmds << "/section:anonymousAuthentication /enabled:false"
+appcmds << "/section:windowsAuthentication /enabled:true"
+appcmds << "/commit:WEBROOT /section:system.web/authentication /mode:Windows"
+appcmds << "/section:system.web/authentication /mode:Windows"
+
+#commit IIS
+appcmds.each do |thiscmd|
+     iis_config "Webtrends IIS Configurations" do
+             cfg_cmd thiscmd
+             action :config
+             returns [0, 183]
+     end
+end
+
 wt_base_firewall 'PortfolioManager' do
 	protocol "TCP"
 	port http_port
