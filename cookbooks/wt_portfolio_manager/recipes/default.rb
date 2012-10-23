@@ -62,6 +62,7 @@ appcmds = Array.new
 appcmds << "/section:anonymousAuthentication /enabled:false"
 appcmds << "/section:windowsAuthentication /enabled:true"
 appcmds << "/commit:WEBROOT /section:system.web/authentication /mode:Windows"
+appcmds << "/section:system.web/authentication /mode:Windows"
 
 #commit IIS
 appcmds.each do |thiscmd|
