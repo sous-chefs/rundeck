@@ -9,7 +9,7 @@
 # This recipe installs the Portfolio MC IIS app
 
 if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploy first"
+  log "The deploy_build value is true so un-deploying first"
   include_recipe "ms_dotnet4::regiis"
   include_recipe "wt_portfolio_manager::uninstall"
 else
@@ -84,7 +84,7 @@ if ENV["deploy_build"] == "true" then
   windows_zipfile install_dir do
 		source node['wt_portfolio_manager']['download_url']
 		action :unzip
-  end  
+  end
 
   iis_config auth_cmd do
   	action :config
@@ -97,8 +97,8 @@ template "#{install_dir}\\appSettings.config" do
 	variables(
 		:cam_url => node['wt_cam']['cam_service_url'],
 		:cam_url_base => node['wt_portfolio_manager']['cam_service_url_base'],
-        :config_url => node['wt_streamingconfigservice']['config_service_url'],
-        :ad_network => node['authorization']['ad_auth']['ad_network']
+		:config_url => node['wt_streamingconfigservice']['config_service_url'],
+		:ad_network => node['authorization']['ad_auth']['ad_network']
 	)
 end
 
