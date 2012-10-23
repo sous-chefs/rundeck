@@ -4,4 +4,5 @@
 * Adds NTLM security groups, APS endpoint
 ## 1.1.2
 * Reconfigured IIS to add WindowsAuth, remove forms auth and disable anonymous access.
-
+## 1.1.3
+* Fixed glitch in forms auth removal.
