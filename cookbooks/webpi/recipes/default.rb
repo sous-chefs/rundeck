@@ -24,14 +24,14 @@ installdir = node['webpi']['home']
 remote_file "#{Chef::Config[:file_cache_path]}/#{file_name}" do
   source node['webpi']['url']
   checksum node['webpi']['checksum']
-  notifies :delete, "directory[installdir]", :immediately
+  #notifies :delete, "directory[#{installdir}]", :immediately
   notifies :unzip, "windows_zipfile[webpicmdline]", :immediately
 end
 
-directory installdir do
-  action :nothing
-  recursive true
-end
+#directory installdir do
+#  action :nothing
+#  recursive true
+#end
 
 windows_zipfile "webpicmdline" do
   path installdir
