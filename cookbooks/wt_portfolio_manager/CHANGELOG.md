@@ -6,3 +6,5 @@
 * Reconfigured IIS to add WindowsAuth, remove forms auth and disable anonymous access.
 ## 1.1.3
 * Fixed glitch in forms auth removal.
+## 1.1.4
+* Site level assignment of disabled auth.
