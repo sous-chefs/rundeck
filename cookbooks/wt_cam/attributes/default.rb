@@ -7,7 +7,7 @@
 #
 
 default['wt_cam']['app_pool'] = "CAM"
-default['wt_cam'][['cam']'download_url'] = ""
+default['wt_cam']['download_url'] = ""
 default['wt_cam']['cam_plugins']['download_url'] = ""
 default['wt_cam']['db_server'] = "(local)"
 default['wt_cam']['db_name'] = "Cam"
