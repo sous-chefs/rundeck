@@ -61,7 +61,7 @@ appcmds = Array.new
 #enable windows authentication, disable anonymous+forms auth
 appcmds << "/section:anonymousAuthentication /enabled:false"
 appcmds << "/section:windowsAuthentication /enabled:true"
-appcmds << "/commit:WEBROOT /section:system.web/authentication /mode:None"
+appcmds << "/commit:WEBROOT /section:system.web/authentication /mode:Windows"
 
 #commit IIS
 appcmds.each do |thiscmd|
