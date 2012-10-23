@@ -9,7 +9,7 @@
 # This recipe installs the Portfolio Admin IIS app
 
 if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploy first"
+  log "The deploy_build value is true so un-deploying first"
   include_recipe "ms_dotnet4::regiis"
   include_recipe "wt_portfolio_admin::uninstall"
 else
@@ -21,8 +21,7 @@ install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Portfolio.
 install_logdir = node['wt_common']['install_log_dir_windows']
 log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
 app_pool = node['wt_portfolio_admin']['app_pool']
-pod = node.chef_environment
-user_data = data_bag_item('authorization', pod)
+user_data = data_bag_item('authorization', node.chef_environment)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
 http_port = node['wt_portfolio_admin']['port']
 
@@ -84,7 +83,7 @@ if ENV["deploy_build"] == "true" then
   windows_zipfile install_dir do
 		source node['wt_portfolio_admin']['download_url']
 		action :unzip
-  end  
+  end
 
   iis_config auth_cmd do
   	action :config
