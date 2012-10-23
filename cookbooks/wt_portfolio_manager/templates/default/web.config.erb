@@ -18,10 +18,6 @@
   <system.web>
     <compilation debug="false" targetFramework="4.0" />
     <customErrors mode="<%= @custom_errors %>"/>
-    <authentication mode="Forms">
-      <forms loginUrl="~/signin" timeout="2880" name="_sauth" domain=".webtrends.com">
-      </forms>
-    </authentication>
     <machineKey 
       validationKey="<%= @machine_validation_key %>" 
       decryptionKey="<%= @machine_decryption_key %>" 
