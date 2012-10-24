@@ -10,22 +10,22 @@
 # This recipe installs the needed components to full setup/configure the Device Data Updater executeable
 #
 
-include_recipe "wt_devicedataupdater::uninstall" if deploy_mode?
-
-# source build
-build_url = "#{node['wt_devicedataupdater']['build_url']}#{node['wt_devicedataupdater']['zip_file']}"
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so un-deploying first"
+  include_recipe "wt_devicedataupdater::uninstall"
+else
+  log "The deploy_build value is not set or is false so we will only update the configuration"
+end
 
 # get parameters
+download_url = node['wt_devicedataupdater']['download_url']
 master_host = node['wt_masterdb']['master_host']
 
 # destinations
-install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_devicedataupdater']['install_dir']}"
-log_dir     = "#{node['wt_common']['install_dir_windows']}#{node['wt_devicedataupdater']['log_dir']}"
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_devicedataupdater']['install_dir'].gsub(/[\\\/]+/,"\\"))
+log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_devicedataupdater']['log_dir'].gsub(/[\\\/]+/,"\\"))
 
-# get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
-
-gac_cmd = "#{install_dir}\\gacutil.exe /i \"#{install_dir}\\Webtrends.RoadRunner.SSISPackageRunner.dll\""
 
 # determine root drive of install_dir - ENG390500
 if (install_dir =~ /^(\w:)\\.*$/)
@@ -85,11 +85,6 @@ if deploy_mode?
 	  variables(
 	  	:logdir => log_dir
 	  )
-	end
-
-	execute "gac" do
-	  command gac_cmd
-	  cwd install_dir
 	end
 
 	share_wrs

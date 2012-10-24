@@ -3,7 +3,7 @@
 # Cookbook Name:: iis
 # Resource:: app
 #
-# Copyright:: 2011, Webtrends Inc.
+# Copyright:: 2011, Webtrends
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,10 +18,15 @@
 # limitations under the License.
 #
 
-actions :add, :delete
+actions :add, :delete, :config
 
 attribute :app_name, :kind_of => String, :name_attribute => true
-attribute :path, :kind_of => String
+attribute :path, :kind_of => String, :default => '/'
 attribute :application_pool, :kind_of => String
 attribute :physical_path, :kind_of => String
 attr_accessor :exists, :running
+
+def initialize(*args)
+  super
+  @action = :add
+end

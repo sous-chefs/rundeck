@@ -46,13 +46,6 @@ def getZookeeperPairs(node, env)
 
 	log "#{zookeeper_pairs.size} instances of zookeeper found found in #{env}"
 
-	# fall back to attribs if search doesn't come up with any zookeeper roles
-	# if zookeeper_pairs.count == 0
-	#	node[:zookeeper][:quorum].each do |i|
-	#		zookeeper_pairs << i
-	#	end
-	# end
-
 	# append the zookeeper client port (defaults to 2181)
 
 	i = 0
@@ -66,21 +59,21 @@ end
 
 #update the config files
 def processConfTemplates (install_dir, node, log_dir)
- 
+
 	#Ugly - manually create the json string
 	srcEnvs = "{\"environments\":["
 	count = 0;
-	node['wt_kafka_mm']['sources'].each { |src_env|  
+	node['wt_kafka_mm']['sources'].each { |src_env|
 	  if count !=  0
 	    srcEnvs += ","
-	  end             	                                    
-	  srcEnvs += "{\"name\":\"#{src_env}\",\"zkconnect\":\"#{getZookeeperPairs(node, src_env).join(',')}\"}" 
+	  end
+	  srcEnvs += "{\"name\":\"#{src_env}\",\"zkconnect\":\"#{getZookeeperPairs(node, src_env).join(',')}\"}"
 	  count += 1
 	}
 	srcEnvs += "]}"
-	                                    
+
 	#zookeeper_pairs_target = getZookeeperPairs(node, node["wt_kafka_mm"]["target"])
-	tgtEnv = "{\"name\":\"#{node["wt_kafka_mm"]["target"]}\",\"zkconnect\":\"#{getZookeeperPairs(node, node["wt_kafka_mm"]["target"]).join(',')}\"}"	
+	tgtEnv = "{\"name\":\"#{node["wt_kafka_mm"]["target"]}\",\"zkconnect\":\"#{getZookeeperPairs(node, node["wt_kafka_mm"]["target"]).join(',')}\"}"
 
 	# Set up the main mirror monitor config
     	template "#{install_dir}/conf/mirrormonitor.properties" do
@@ -98,7 +91,7 @@ def processConfTemplates (install_dir, node, log_dir)
 	    :producerate => node["wt_kafka_mm"]["producerate"]
 	  })
 	end
-	
+
 	# Set up the monitor producer config
     	template "#{install_dir}/conf/producer.properties" do
 	  source  "monitor.producer.properties.erb"
@@ -108,7 +101,7 @@ def processConfTemplates (install_dir, node, log_dir)
 	  variables({
 	  })
 	end
-	
+
 	# Set up the monitor consumer config
     	template "#{install_dir}/conf/consumer.properties" do
 	  source  "monitor.consumer.properties.erb"
@@ -118,7 +111,7 @@ def processConfTemplates (install_dir, node, log_dir)
 	  variables({
 	  })
 	end
-	
+
 	# Set up the monitoring properties
     	template "#{install_dir}/conf/monitoring.properties" do
 	  source  "monitor.monitoring.properties.erb"
@@ -128,7 +121,7 @@ def processConfTemplates (install_dir, node, log_dir)
 	  variables({
 	  })
 	end
-	
+
 	# log4j
 	template "#{install_dir}/conf/log4j.xml" do
 	  source  "log4j.xml.erb"
@@ -214,7 +207,7 @@ if ENV["deploy_build"] == "true" then
 		recursive true
 		action :create
 	end
-	
+
 	# create the install conf directory
 	directory "#{install_dir}/conf" do
 		owner "root"
@@ -253,7 +246,7 @@ if ENV["deploy_build"] == "true" then
 	end
 
 	runit_service "mirrormonitor" do
-	  template_name "mirrormonitor"	
+	  template_name "mirrormonitor"
 	    options({
 	      :install_dir => install_dir,
 	      :user => user,

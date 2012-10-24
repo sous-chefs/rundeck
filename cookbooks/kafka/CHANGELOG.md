@@ -1,3 +1,6 @@
+## 1.0.17
+* Don't fall back to attributes if the search for ZK nodes fails
+
 ## 1.0.16
 * Start Kafka at the end of the recipe
 * Use objects instead of strings where appropriate (reduce food critic warnings)
