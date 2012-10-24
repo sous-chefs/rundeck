@@ -36,6 +36,7 @@ java_home   = node['java']['java_home']
 java_opts = node['wt_streaminganalysis_monitor']['java_opts']
 user = node['wt_streaminganalysis_monitor']['user']
 group = node['wt_streaminganalysis_monitor']['group']
+nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -67,7 +68,7 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
-def processTemplates (install_dir, node, zookeeper_quorum)
+def processTemplates (install_dir, node, zookeeper_quorum, nimbus_host)
   log "Updating the template files"
 
 	%w[log4j.xml config.properties kafka.properties].each do | template_file|
@@ -79,7 +80,8 @@ def processTemplates (install_dir, node, zookeeper_quorum)
       variables({
         :install_dir => install_dir,
         :wt_monitoring => node[:wt_monitoring],
-        :zookeeper_quorum => zookeeper_quorum * ","
+        :zookeeper_quorum => zookeeper_quorum * ",",
+        :nimbus_host => nimbus_host
       })
     end
   end
@@ -138,7 +140,7 @@ if ENV["deploy_build"] == "true" then
   end
 
 else
-  processTemplates(install_dir, node, zookeeper_quorum)
+  processTemplates(install_dir, node, zookeeper_quorum, nimbus_host)
 end
 
 if node.attribute?("nagios")
