@@ -26,6 +26,7 @@
         "wt_streamingcollection": "= 0.0.30",
         "wt_streamingconfigservice": "= 1.0.2",
         "wt_streaminglogreplayer": "= 1.1.1",
+        "wt_streaminganalysis_monitor": "=1.0.0",
         "zookeeper": "= 1.1.5"
     },
     "default_attributes": {
@@ -278,6 +279,9 @@
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
+        },
+        "wt_streaminganalysis_monitor" : {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/38427:id/webtrends-streaming-analysis-monitor-bin.tar.gz"
         },
         "wt_streaming_viz": {
             "custom_errors": "Off",
