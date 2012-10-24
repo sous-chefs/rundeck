@@ -6,10 +6,10 @@
 # Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
-# This recipe installs the Portfolio Admin IIS app
+# This recipe installs the Portfolio MC IIS app
 
 if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploy first"
+  log "The deploy_build value is true so un-deploying first"
   include_recipe "ms_dotnet4::regiis"
   include_recipe "wt_portfolio_manager::uninstall"
 else
@@ -55,6 +55,24 @@ iis_site 'PortfolioManager' do
 	retries 2
 end
 
+#configure IIS
+appcmds = Array.new
+
+#enable windows authentication, disable anonymous+forms auth
+appcmds << "/section:anonymousAuthentication /enabled:false"
+appcmds << "/section:windowsAuthentication /enabled:true"
+appcmds << "/commit:WEBROOT /section:system.web/authentication /mode:Windows"
+appcmds << "/section:system.web/authentication /mode:Windows"
+
+#commit IIS
+appcmds.each do |thiscmd|
+     iis_config "Webtrends IIS Configurations" do
+             cfg_cmd thiscmd
+             action :config
+             returns [0, 183]
+     end
+end
+
 wt_base_firewall 'PortfolioManager' do
 	protocol "TCP"
 	port http_port
@@ -84,7 +102,7 @@ if ENV["deploy_build"] == "true" then
   windows_zipfile install_dir do
 		source node['wt_portfolio_manager']['download_url']
 		action :unzip
-  end  
+  end
 
   iis_config auth_cmd do
   	action :config
@@ -97,8 +115,8 @@ template "#{install_dir}\\appSettings.config" do
 	variables(
 		:cam_url => node['wt_cam']['cam_service_url'],
 		:cam_url_base => node['wt_portfolio_manager']['cam_service_url_base'],
-        :config_url => node['wt_streamingconfigservice']['config_service_url'],
-        :ad_network => node['authorization']['ad_auth']['ad_network']
+		:config_url => node['wt_streamingconfigservice']['config_service_url'],
+		:ad_network => node['authorization']['ad_auth']['ad_network']
 	)
 end
 

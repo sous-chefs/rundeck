@@ -20,7 +20,15 @@
 
 actions :open_port, :enable
 
+default_action :open_port
+
 attribute :rule_name, :kind_of => String, :name_attribute => true
 attribute :port, :kind_of => Integer
 attribute :protocol, :kind_of => String
 attr_accessor :exists
+
+# Covers 0.10.8 and earlier and COOK-1251
+def initialize(*args)
+  super
+  @action = :install
+end

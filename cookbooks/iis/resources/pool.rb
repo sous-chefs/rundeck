@@ -3,7 +3,7 @@
 # Cookbook Name:: iis
 # Resource:: pool
 #
-# Copyright:: 2011, Webtrends Inc.
+# Copyright:: 2011, Webtrends
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,3 +30,8 @@ attribute :pool_username, :kind_of => String, :default => nil
 attribute :pool_password, :kind_of => String, :default => nil
 
 attr_accessor :exists, :running
+
+def initialize(*args)
+  super
+  @action = :add
+end
