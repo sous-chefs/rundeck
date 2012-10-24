@@ -9,7 +9,6 @@
 	}
   },
   "run_list": [
-    "recipe[wt_storm_streaming]",
-    "recipe[wt_streaminganalysis_monitor]"
+    "recipe[wt_storm_streaming]"
   ]
 }

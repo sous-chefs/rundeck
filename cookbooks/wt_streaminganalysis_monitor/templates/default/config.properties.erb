@@ -29,7 +29,7 @@ metricslistener.enabled=<%= node[:wt_streaminganalysis_monitor][:metricslistener
 metricslistener.topic=<%= node[:wt_streaminganalysis_monitor][:metricslistener.topic] %>
 
 # This is the machine for the Nimbus box
-storm.host=localhost
+storm.host=<%= @nimbus_host  %>
 # This is the thrift port in Nimbus
 storm.port=<%= node[:wt_storm_streaming][:nimbus][:thrift_port] %>
 # This is how often to call (seconds) Nimbus to retrieve statistics
