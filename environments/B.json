@@ -230,7 +230,7 @@
             "proxy_enabled": "true"
         },
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/38033:id/Portfolio.Manager.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/38400:id/Portfolio.Manager.zip",
             "manager_ui_url": ""
         },
         "wt_realtime_hadoop": {
