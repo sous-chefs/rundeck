@@ -1,0 +1,8 @@
+# zk connection string
+zk.connect=<%= @zookeeper_quorum  %>
+
+# timeout in ms for connecting to zookeeper
+zk.connectiontimeout.ms=1000000
+groupid=storm-metrics-group
+consumer.timeout.ms=-1
+autocommit.enable=false
