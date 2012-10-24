@@ -24,3 +24,22 @@ cron "PDXSTORE06_Metrics" do
   command "/opt/webtrends/storage_metrics/pdxstore06_metrics.sh"
 end
 
+cron "PDXSTORE07_Metrics" do
+  minute "*/5"
+  command "/opt/webtrends/storage_metrics/pdxstore07_metrics.sh"
+end
+
+cron "PDXSTORE08_Metrics" do
+  minute "*/5"
+  command "/opt/webtrends/storage_metrics/pdxstore08_metrics.sh"
+end
+
+cron "PDXSTORE09_Metrics" do
+  minute "*/5"
+  command "/opt/webtrends/storage_metrics/pdxstore09_metrics.sh"
+end
+
+cron "PDXSTORE10_Metrics" do
+  minute "*/5"
+  command "/opt/webtrends/storage_metrics/pdxstore10_metrics.sh"
+end
