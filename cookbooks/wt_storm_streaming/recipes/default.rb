@@ -201,7 +201,10 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
-    :storm_config => node['wt_storm_streaming']
+    :storm_config => node['wt_storm_streaming'],
+    :zookeeper_quorum => zookeeper_quorum,
+    :zookeeper_clientport  => zookeeper_clientport,
+    :nimbus_host => nimbus_host
   )
 end
 
