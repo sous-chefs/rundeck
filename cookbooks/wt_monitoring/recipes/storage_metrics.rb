@@ -43,3 +43,8 @@ cron "PDXSTORE10_Metrics" do
   minute "*/5"
   command "/opt/webtrends/storage_metrics/pdxstore10_metrics.sh"
 end
+
+cron "BlueArc_Metrics" do
+  minute "*/5"
+  command "/opt/webtrends/storage_metrics/bluearc_metrics.sh"
+end
