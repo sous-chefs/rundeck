@@ -16,8 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Install nfs-common for the mount
-package nfs-common
+%w{ nfs-common rsync }.each do |pkg|
+  package pkg
+end
 
 # create the repo directory
 directory node['multi_repo']['repo_path'] do
@@ -55,5 +56,7 @@ apache_site "repo" do
   ignore_failure true
   enable true
 end
+
+master_repo = search(:node, 'role:multi_repo_master').fqdn
 
 ##Rsync logic will go here##
