@@ -35,11 +35,13 @@ directory install_dir do
 	action :create
 end
 
+# create product log directory
 directory log_dir do
 	recursive true
 	action :create
 end
 
+# grant the service user modify rights on the install directory
 wt_base_icacls node['wt_common']['install_dir_windows'] do
 	action :grant
 	user svcuser

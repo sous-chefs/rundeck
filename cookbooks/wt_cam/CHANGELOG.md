@@ -1,3 +1,7 @@
+## 1.0.29
+* Removed remaining references to auth in recipe, attributes and templates
+* Updated readme (str-129)
+
 ## 1.0.28
 * Added template entries for audit logging
 
