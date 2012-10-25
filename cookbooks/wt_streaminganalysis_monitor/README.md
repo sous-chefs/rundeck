@@ -18,5 +18,6 @@ Installs Streaming Analysis Monitor Service
 * metricslistener.enabled: Are we listening to metrics
 * metricslistener.topic: The topic used for auditing (defaults to stream-audit)
 * stats_interval: This is how often to call (seconds) Nimbus to retrieve statistics
-
+* healthcheck_enabled: Are health checks enabled
+* healthcheck_port: Which port will health checks be exposed
 = USAGE:
