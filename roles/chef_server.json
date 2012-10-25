@@ -1,20 +1,22 @@
 {
-  "name": "chef_server",
-  "description": "Chef Server",
-  "json_class": "Chef::Role",
-  "default_attributes": {
-  },
-  "override_attributes": {"chef_server": {
-						"webui_enabled": true,
-						"solr_heap_size": "1536M"
-				}, "solr":{"max_field_size":200000}
-  },
-  "chef_type": "role",
-  "run_list": [
-    "recipe[chef-server]",
-    "recipe[chef-server::config-solr]",
-    "recipe[rundeck::chef-rundeck]"
-  ],
-  "env_run_lists": {
-  }
+    "chef_type": "role", 
+    "default_attributes": {}, 
+    "description": "Chef Server", 
+    "env_run_lists": {}, 
+    "json_class": "Chef::Role", 
+    "name": "chef_server", 
+    "override_attributes": {
+        "chef_server": {
+            "solr": {
+                "max_field_size": 2000000
+            }, 
+            "solr_heap_size": "2048M", 
+            "webui_enabled": true
+        }
+    }, 
+    "run_list": [
+        "recipe[chef-server]", 
+        "recipe[chef-server::config-solr]", 
+        "recipe[rundeck::chef-rundeck]"
+    ]
 }

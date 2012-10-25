@@ -29,7 +29,6 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{file_name}" do
 end
 
 directory installdir do
-  action :nothing
   recursive true
 end
 
