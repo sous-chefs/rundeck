@@ -3,7 +3,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
     <!-- FileLog is set to be a RollingFileAppender -->
     <appender name="FileLog" class="org.apache.log4j.RollingFileAppender">
-        <param name="file" value="<%= node['wt_streamingapi']['log_dir'] %>/monitor.log"/>
+        <param name="file" value="<%= node['wt_streaminganalysis_monitor']['log_dir'] %>/monitor.log"/>
         <param name="MaxFileSize" value="100MB"/>
         <param name="MaxBackupIndex" value="10"/>
         <param name="append" value="true"/>
