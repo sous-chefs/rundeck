@@ -7,7 +7,6 @@
 #
 
 default['wt_datadeleter']['artifact'] = "DataDeleter.zip"
-default['wt_datadeleter']['tc_proj'] = "Data Deleter"
 default['wt_datadeleter']['service_name'] = "Webtrends Data Deleter Service"
 default['wt_datadeleter']['service_binary'] = "DataDeleter.exe"
 default['wt_datadeleter']['datadeleter_binary'] = "DataDeleter.exe"
