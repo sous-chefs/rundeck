@@ -4,6 +4,7 @@
 
 ## 1.8.7
  * Remove ability to disable NRPE install on CentOS.
+ * Update the updater version to 10.14.4
 
 ## 1.8.6
  * Removed the force install of rubyzip
