@@ -74,10 +74,10 @@ file "/etc/sudoers.d/nagios" do
 end
 
 # install nagios from package only
-if node['nagios']['client']['install_method'] == "package" and node['nagios']['client']['skip_install'] !~ /^true$/i
+if node['nagios']['client']['install_method']
   include_recipe "nagios::client"
 else
-  log "skipping nagios::client"
+  log "skipping nagios::client because package install was not set in the environment"
 end
 
 # Sets up rundeck private keys
@@ -160,6 +160,15 @@ else
   file "/etc/sudoers.d/devAccess" do
     action :delete
   end
+end
+
+# Create the sudoers file to allow for passwordless sudo with chef-client
+file "/etc/sudoers.d/devAccess" do
+  owner "root"
+  group "root"
+  mode 00440
+  content "%#{node['webtrend_server']['passwordless_sudo_chef_group']}-	ALL=(ALL) ALL\n"
+  action :create
 end
 
 #Now that the local user is created attach the system to AD
