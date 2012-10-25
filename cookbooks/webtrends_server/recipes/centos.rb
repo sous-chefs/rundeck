@@ -10,24 +10,24 @@
 
 #Make sure that this recipe only runs on ubuntu systems
 if not platform?("centos")
-	Chef::Log.info("CentOS required for the CentOS recipe.")
-	return
+  Chef::Log.info("CentOS required for the CentOS recipe.")
+  return
 end
 
 #Save the node to prevent empty run lists on failures
 unless Chef::Config['solo']
-	ruby_block "save node data" do
-		block do
-			node.save
-		end
-		action :create
-	end
+  ruby_block "save node data" do
+    block do
+      node.save
+    end
+    action :create
+  end
 end
 
 #Make sure someone didn't set the _default environment
 if node.chef_environment == "_default"
-	Chef::Log.info("Set a Chef environment. We don't want to use _default")
-	exit(true)
+  Chef::Log.info("Set a Chef environment. We don't want to use _default")
+  exit(true)
 end
 
 #Fix the host file as CentOS ships with a bad hostfile
@@ -69,7 +69,7 @@ file "/etc/sudoers.d/nagios" do
   owner "root"
   group "root"
   mode 00440
-  content "nagios	ALL=NOPASSWD: ALL"
+  content "nagios  ALL=NOPASSWD: ALL"
   action :create
 end
 
@@ -105,7 +105,7 @@ end
 
 #fprintd crashes every time someone tries to sudo.  Uninstall it
 %w{ fprintd libfprint }.each do |pkg|
-	package pkg
+  package pkg
 end
 
 # Used for password string generation
@@ -152,7 +152,7 @@ if node.run_list.include?("role[ea_server]")
     owner "root"
     group "root"
     mode 00440
-    content "%netiqdmz\\\\devAccess	ALL=(ALL) ALL\n"
+    content "%netiqdmz\\\\devAccess  ALL=(ALL) ALL\n"
     action :create
   end
 else
@@ -167,7 +167,7 @@ file "/etc/sudoers.d/devAccess" do
   owner "root"
   group "root"
   mode 00440
-  content "%#{node['webtrend_server']['passwordless_sudo_chef_group']}-	ALL=(ALL) ALL\n"
+  content "%#{node['webtrend_server']['passwordless_sudo_chef_group']}-  ALL=(ALL) ALL\n"
   action :create
 end
 
