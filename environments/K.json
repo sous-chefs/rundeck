@@ -181,7 +181,7 @@
             "wrsread_group": "WTENGLAB\\K.WRS.Read"
         }, 
         "wt_datadeleter": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt267/36375:id/DataDeleter.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/.lastSuccessful/DataDeleter.zip"
         }, 
         "wt_dx": {
             "app_settings_section": {
