@@ -72,7 +72,7 @@ end
 def processTemplates (install_dir, log_dir, node, zookeeper_quorum, nimbus_host, thrift_port)
   log "Updating the template files"
 
-	%w[log4j.xml config.properties kafka.properties].each do | template_file|
+  %w[log4j.xml config.properties kafka.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source    "#{template_file}.erb"
       owner "root"
@@ -148,17 +148,17 @@ else
 end
 
 if node.attribute?("nagios")
-    #Create a nagios nrpe check for the healthcheck page
-    nagios_nrpecheck "wt_healthcheck_page" do
-        command "#{node['nagios']['plugin_dir']}/check_http"
-        parameters "-H #{node[:fqdn]} -u /healthcheck -p #{node['wt_streaminganalysis_monitor']['healthcheck_port']} -r \"\\\"all_services\\\": \\\"ok\\\"\""
-        action :add
-    end
+  #Create a nagios nrpe check for the healthcheck page
+  nagios_nrpecheck "wt_healthcheck_page" do
+    command "#{node['nagios']['plugin_dir']}/check_http"
+    parameters "-H #{node[:fqdn]} -u /healthcheck -p #{node['wt_streaminganalysis_monitor']['healthcheck_port']} -r \"\\\"all_services\\\": \\\"ok\\\"\""
+    action :add
+  end
 
-    # Create a nagios nrpe check for the overall Storm health
-	nagios_nrpecheck "wt_storm_healthcheck" do
-		command "#{node['nagios']['plugin_dir']}/check_http"
-		parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_streaminganalysis_monitor']['healthcheck_port']} -r \"\\\"storm_healthcheck\\\":\\{\\\"healthy\\\": \\\"true\\\"\""
-		action :add
-	end
+  # Create a nagios nrpe check for the overall Storm health
+  nagios_nrpecheck "wt_storm_healthcheck" do
+    command "#{node['nagios']['plugin_dir']}/check_http"
+    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_streaminganalysis_monitor']['healthcheck_port']} -r \"\\\"storm_healthcheck\\\":\\{\\\"healthy\\\": \\\"true\\\"\""
+    action :add
+  end
 end
