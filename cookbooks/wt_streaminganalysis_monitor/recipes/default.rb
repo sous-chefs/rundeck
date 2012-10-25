@@ -37,6 +37,7 @@ java_opts = node['wt_streaminganalysis_monitor']['java_opts']
 user = node['wt_streaminganalysis_monitor']['user']
 group = node['wt_streaminganalysis_monitor']['group']
 nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
+thrift_port = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:storm][:nimbus][:thrift_port]
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -68,7 +69,7 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
-def processTemplates (install_dir, node, zookeeper_quorum, nimbus_host)
+def processTemplates (install_dir, node, zookeeper_quorum, nimbus_host, thrift_port)
   log "Updating the template files"
 
 	%w[log4j.xml config.properties kafka.properties].each do | template_file|
@@ -79,9 +80,11 @@ def processTemplates (install_dir, node, zookeeper_quorum, nimbus_host)
       mode  00644
       variables({
         :install_dir => install_dir,
-        :wt_monitoring => node[:wt_monitoring],
+        :wt_streaminganalysis_monitor => node['wt_streaminganalysis_monitor'],
+        :wt_monitoring => node['wt_monitoring'],
         :zookeeper_quorum => zookeeper_quorum * ",",
-        :nimbus_host => nimbus_host
+        :nimbus_host => nimbus_host,
+        :thrift_port => thrift_port
       })
     end
   end
@@ -119,7 +122,7 @@ if ENV["deploy_build"] == "true" then
     })
   end
 
-  processTemplates(install_dir, node, zookeeper_quorum)
+  processTemplates(install_dir, node, zookeeper_quorum, nimbus_host, thrift_port)
 
   # delete the install tar ball
   execute "delete_install_source" do
@@ -130,7 +133,7 @@ if ENV["deploy_build"] == "true" then
   end
 
   # create the runit service
-  runit_service "streaminganalysis_monitor" do
+  runit_service "streaminganalysis-monitor" do
     options({
       :log_dir => log_dir,
       :install_dir => install_dir,
@@ -140,7 +143,7 @@ if ENV["deploy_build"] == "true" then
   end
 
 else
-  processTemplates(install_dir, node, zookeeper_quorum, nimbus_host)
+  processTemplates(install_dir, node, zookeeper_quorum, nimbus_host, thrift_port)
 end
 
 if node.attribute?("nagios")
