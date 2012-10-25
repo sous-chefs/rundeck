@@ -1,4 +1,4 @@
-maintainer       "Webtrends Inc"
+maintainer       "Webtrends Inc."
 maintainer_email "hostedops@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures the base Webtrends server setup"
