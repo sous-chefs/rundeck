@@ -42,17 +42,7 @@ cron "LASLBB_Metrics" do
   command "/opt/webtrends/loadbalancer_metrics/snmp-poll_laslbb.sh"
 end
 
-cron "PDXLBA01_Metrics" do
-  minute "*/5"
-  command "/opt/webtrends/loadbalancer_metrics/snmp-poll_pdxlba01.sh"
-end
-
 cron "PDXLBB_Metrics" do
   minute "*/5"
   command "/opt/webtrends/loadbalancer_metrics/snmp-poll_pdxlbb.sh"
-end
-
-cron "PDXLBE01_Metrics" do
-  minute "*/5"
-  command "/opt/webtrends/loadbalancer_metrics/snmp-poll_pdxlbe01.sh"
 end
