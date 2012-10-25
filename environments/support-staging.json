@@ -36,12 +36,6 @@
                 ]
             }
         }, 
-        "chef_server": {
-            "solr": {
-                "max_field_size": 2000000
-            }, 
-            "solr_heap_size": "2G"
-        }, 
         "cobbler": {
             "manage_dhcp": 1, 
             "pxe_just_once": 1, 
