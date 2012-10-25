@@ -7,13 +7,13 @@
 # All rights reserved - Do Not Redistribute
 #
 
-case node.platform
-  when "ubuntu", "debian"
+case node['platform_family']
+  when "debian"
     include_recipe "webtrends_server::ubuntu"
-  when "centos", "redhat"
+  when "rhel"
     include_recipe "webtrends_server::centos"
-  when "windows", "mswin", "mingw32"
+  when "windows"
     include_recipe "webtrends_server::windows"
   else
-    log "unknown platform => #{node.platform} #{node.platform_version}"
+    log "unknown platform family => #{node['platform_family']}"
 end
