@@ -17,9 +17,9 @@ monitoring.graphite.port=<%= node[:wt_monitoring][:graphite_port] %>
 monitoring.graphite.interval=<%= node[:wt_streaminganalysis_monitor][:graphite_interval] %>
 
 # Are health checks enabled
-healthcheck.enabled=<%= node[:wt_monitoring][:healthcheck_enabled] %>
-# This is for future use for having health checks bound to an alternative port
-healthcheck.port=<%= node[:wt_monitoring][:healthcheck_port] %>
+healthcheck.enabled=<%= node[:wt_streaminganalysis_monitor][:healthcheck_enabled] %>
+# Which port will health checks be exposed
+healthcheck.port=<%= node[:wt_streaminganalysis_monitor][:healthcheck_port] %>
 
 # Are we listening to Storm status
 statuslistener.enabled=<%= node[:wt_streaminganalysis_monitor][:statuslistener_enabled] %>
