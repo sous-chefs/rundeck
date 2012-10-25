@@ -1,6 +1,6 @@
 #
 # Author:: Sean McNamara (<sean.mcnamara@webtrends.com>)
-# Cookbook Name:: storm
+# Cookbook Name:: spark
 # Attribute:: default
 #
 # Copyright 2012, Webtrends Inc.

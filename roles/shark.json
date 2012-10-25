@@ -1,11 +1,10 @@
 {
-  "name": "spark_master",
+  "name": "shark",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Spark Master",
+  "description": "Shark",
   "run_list": [
-    "recipe[spark::master]",
-    "role[shark]"
+    "recipe[shark]"
   ],
   "override_attributes": {
   }
