@@ -69,7 +69,7 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
-def processTemplates (install_dir, node, zookeeper_quorum, nimbus_host, thrift_port)
+def processTemplates (install_dir, log_dir, node, zookeeper_quorum, nimbus_host, thrift_port)
   log "Updating the template files"
 
 	%w[log4j.xml config.properties kafka.properties].each do | template_file|
@@ -80,6 +80,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, nimbus_host, thrift_p
       mode  00644
       variables({
         :install_dir => install_dir,
+        :log_dir => log_dir,
         :wt_streaminganalysis_monitor => node['wt_streaminganalysis_monitor'],
         :wt_monitoring => node['wt_monitoring'],
         :zookeeper_quorum => zookeeper_quorum * ",",
@@ -122,7 +123,7 @@ if ENV["deploy_build"] == "true" then
     })
   end
 
-  processTemplates(install_dir, node, zookeeper_quorum, nimbus_host, thrift_port)
+  processTemplates(install_dir, log_dir, node, zookeeper_quorum, nimbus_host, thrift_port)
 
   # delete the install tar ball
   execute "delete_install_source" do
@@ -143,7 +144,7 @@ if ENV["deploy_build"] == "true" then
   end
 
 else
-  processTemplates(install_dir, node, zookeeper_quorum, nimbus_host, thrift_port)
+  processTemplates(install_dir, log_dir, node, zookeeper_quorum, nimbus_host, thrift_port)
 end
 
 if node.attribute?("nagios")
