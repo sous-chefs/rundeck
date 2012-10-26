@@ -67,13 +67,13 @@ def processConfTemplates (install_dir, node, log_dir)
 	  if count !=  0
 	    srcEnvs += ","
 	  end
-	  srcEnvs += "{\"name\":\"#{src_env}\",\"zkconnect\":\"#{getZookeeperPairs(node, src_env).join(',')}\"}"
+	  srcEnvs += "{\"name\":\"#{src_env}\",\"zkConnect\":\"#{getZookeeperPairs(node, src_env).join(',')}\"}"
 	  count += 1
 	}
 	srcEnvs += "]}"
 
 	#zookeeper_pairs_target = getZookeeperPairs(node, node["wt_kafka_mm"]["target"])
-	tgtEnv = "{\"name\":\"#{node["wt_kafka_mm"]["target"]}\",\"zkconnect\":\"#{getZookeeperPairs(node, node["wt_kafka_mm"]["target"]).join(',')}\"}"
+	tgtEnv = "{\"name\":\"#{node["wt_kafka_mm"]["target"]}\",\"zkConnect\":\"#{getZookeeperPairs(node, node["wt_kafka_mm"]["target"]).join(',')}\"}"
 
 	# Set up the main mirror monitor config
     	template "#{install_dir}/conf/mirrormonitor.properties" do
