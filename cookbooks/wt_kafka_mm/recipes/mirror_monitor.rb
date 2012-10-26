@@ -76,8 +76,8 @@ def processConfTemplates (install_dir, node, log_dir)
     tgtEnv = "{\"name\":\"#{node["wt_kafka_mm"]["target"]}\",\"zkConnect\":\"#{getZookeeperPairs(node, node["wt_kafka_mm"]["target"]).join(',')}\"}"
 
     # Set up the main mirror monitor config
-        template "#{install_dir}/conf/mirrormonitor.properties" do
-      source  "monitor.mirrormonitor.properties.erb"
+        template "#{install_dir}/conf/config.properties" do
+      source  "mirrormonitor.config.properties.erb"
       owner   "root"
       group   "root"
       mode    00644
