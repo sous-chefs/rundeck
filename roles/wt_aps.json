@@ -1,0 +1,14 @@
+{
+  "name": "wt_aps",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+  ],
+  "description": "Webtrends Account Provisioning Service",
+  "chef_type": "role"
+}
