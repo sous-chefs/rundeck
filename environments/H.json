@@ -281,7 +281,7 @@
             }
         },
         "wt_streaminganalysis_monitor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/38766:id/webtrends-streaming-analysis-monitor-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/38841:id/webtrends-streaming-analysis-monitor-bin.tar.gz",
             "jmx_port": 9998,
             "healthcheck_port": 9001
         },
