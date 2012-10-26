@@ -198,7 +198,7 @@
             "heatmap_reducers": -1
         },
         "wt_kafka_mm": {
-            "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38782:id/MirrorMonitor-bin.tar.gz"
+            "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38875:id/MirrorMonitor-bin.tar.gz"
         },
         "wt_masterdb": {
             "master_db": "wtmaster",
