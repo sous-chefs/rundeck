@@ -76,7 +76,7 @@ def processConfTemplates (install_dir, node, log_dir)
     tgtEnv = "{\"name\":\"#{node["wt_kafka_mm"]["target"]}\",\"zkConnect\":\"#{getZookeeperPairs(node, node["wt_kafka_mm"]["target"]).join(',')}\"}"
 
     # Set up the main mirror monitor config
-        template "#{install_dir}/conf/config.properties" do
+    template "#{install_dir}/conf/config.properties" do
       source  "mirrormonitor.config.properties.erb"
       owner   "root"
       group   "root"
@@ -93,7 +93,7 @@ def processConfTemplates (install_dir, node, log_dir)
     end
 
     # Set up the monitor producer config
-        template "#{install_dir}/conf/producer.properties" do
+    template "#{install_dir}/conf/producer.properties" do
       source  "monitor.producer.properties.erb"
       owner   "root"
       group   "root"
@@ -103,7 +103,7 @@ def processConfTemplates (install_dir, node, log_dir)
     end
 
     # Set up the monitor consumer config
-        template "#{install_dir}/conf/consumer.properties" do
+    template "#{install_dir}/conf/consumer.properties" do
       source  "monitor.consumer.properties.erb"
       owner   "root"
       group   "root"
@@ -113,7 +113,7 @@ def processConfTemplates (install_dir, node, log_dir)
     end
 
     # Set up the monitoring properties
-        template "#{install_dir}/conf/monitoring.properties" do
+    template "#{install_dir}/conf/monitoring.properties" do
       source  "monitor.monitoring.properties.erb"
       owner   "root"
       group   "root"
