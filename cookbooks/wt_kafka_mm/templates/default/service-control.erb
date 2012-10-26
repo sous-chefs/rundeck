@@ -47,7 +47,7 @@ MM_OPTS="--producer.config $HOME_DIR/conf/$2/producer.config --consumer.config $
 CMD="$JAVA_HOME/bin/java -cp $CP $JAVA_OPTS $JMX_OPTS"
 
 # Find current PID if any.
-FOUND_PID=`ps -ef |grep $MAIN |grep -v grep |grep $2 |awk '{print $2}'`
+FOUND_PID=`ps -ef |grep $MAIN |grep -v grep |grep "conf/$2" |awk '{print $2}'`
 
 # Check what the caller wants.
 case "$1" in
