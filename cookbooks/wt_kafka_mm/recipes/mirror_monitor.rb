@@ -77,7 +77,7 @@ def processConfTemplates (install_dir, node, log_dir)
 
     # Set up the main mirror monitor config
     template "#{install_dir}/conf/config.properties" do
-      source  "mirrormonitor.config.properties.erb"
+      source  "monitor.config.properties.erb"
       owner   "root"
       group   "root"
       mode    00644
