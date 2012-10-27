@@ -21,8 +21,8 @@ else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-log_dir      = File.join("#{node['wt_common']['log_dir_linux']}", "streaminglogreplayer")
-install_dir  = File.join("#{node['wt_common']['install_dir_linux']}", "streaminglogreplayer")
+log_dir      = File.join(node['wt_common']['log_dir_linux'], "streaminglogreplayer")
+install_dir  = File.join(node['wt_common']['install_dir_linux'], "streaminglogreplayer")
 
 java_home    = node['java']['java_home']
 download_url = node['wt_streaminglogreplayer']['download_url']
@@ -31,8 +31,8 @@ user = node['wt_streaminglogreplayer']['user']
 group = node['wt_streaminglogreplayer']['group']
 java_opts = node['wt_streaminglogreplayer']['java_opts']
 
-pod = node[:wt_realtime_hadoop][:pod]
-datacenter = node[:wt_realtime_hadoop][:datacenter]
+pod = node['wt_realtime_hadoop']['pod']
+datacenter = node['wt_realtime_hadoop']['datacenter']
 
 kafka_topic = "#{datacenter}_#{pod}_lrRawHits"
 configservice_url = "#{node['wt_streamingconfigservice']['config_service_url']}/whitelist/logreplayer"
@@ -42,7 +42,7 @@ log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
 
 # create the log directory
-directory "#{log_dir}" do
+directory log_dir do
   owner   user
   group   group
   mode    00755
@@ -69,13 +69,13 @@ directory "#{install_dir}/conf" do
 end
 
 # create the share mount dir
-directory "#{node['wt_streaminglogreplayer']['share_mount_dir']}" do
+directory node['wt_streaminglogreplayer']['share_mount_dir'] do
   action :create
 end
 
 # mount the NFS mount and add to /etc/fstab
-mount "#{node['wt_streaminglogreplayer']['share_mount_dir']}" do
-  device "#{node['wt_streaminglogreplayer']['log_share_mount']}"
+mount node['wt_streaminglogreplayer']['share_mount_dir'] do
+  device node['wt_streaminglogreplayer']['log_share_mount']
   fstype "nfs"
   options "rw"
   action [:mount, :enable]
@@ -85,7 +85,7 @@ def getZookeeperPairs(node)
 
   # get the correct environment for the zookeeper nodes
   zookeeper_port = node['zookeeper']['client_port']
-  zookeeper_env = "#{node.chef_environment}"
+  zookeeper_env = node['chef_environment']
   unless node['wt_streaminglogreplayer']['zookeeper_env'].nil? || node['wt_streaminglogreplayer']['zookeeper_env'].empty?
     zookeeper_env = node['wt_streaminglogreplayer']['zookeeper_env']
   end
@@ -94,7 +94,7 @@ def getZookeeperPairs(node)
   zookeeper_pairs = Array.new
   if not Chef::Config.solo
     search(:node, "role:zookeeper AND chef_environment:#{zookeeper_env}").each do |n|
-      zookeeper_pairs << n[:fqdn]
+      zookeeper_pairs << n['fqdn']
     end
   end
 
@@ -128,9 +128,9 @@ def processTemplates (install_dir, node, user, group, datacenter, pod, configser
       group group
       mode  00755
       variables({
-        :wt_streaminglogreplayer => node[:wt_streaminglogreplayer],
+        :wt_streaminglogreplayer => node['wt_streaminglogreplayer'],
         :zookeeper_pairs => zookeeper_pairs,
-        :wt_monitoring => node[:wt_monitoring],
+        :wt_monitoring => node['wt_monitoring'],
         :configservice_url => configservice_url,
         :kafka_topic => kafka_topic,
         :log_dir => log_dir
@@ -144,7 +144,7 @@ if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so we will grab the tar ball and install"
 
     # download the application tarball
-    remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+    remote_file "#{Chef::Config['file_cache_path']}/#{tarball}" do
     source download_url
     mode 00644
     end
@@ -154,7 +154,7 @@ if ENV["deploy_build"] == "true" then
     user  "root"
     group "root"
     cwd install_dir
-    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+    command "tar zxf #{Chef::Config['file_cache_path']}/#{tarball}"
     end
 
     template "#{install_dir}/bin/service-control" do
@@ -166,8 +166,6 @@ if ENV["deploy_build"] == "true" then
             :log_dir => log_dir,
             :install_dir => install_dir,
             :java_home => java_home,
-            :user => user,
-            :java_class => "com.webtrends.streaming.LogReplayer",
             :java_jmx_port => node['wt_streaminglogreplayer']['jmx_port'],
             :java_opts => java_opts
         })
@@ -179,7 +177,7 @@ if ENV["deploy_build"] == "true" then
     execute "delete_install_source" do
         user "root"
         group "root"
-        command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
+        command "rm -f #{Chef::Config['file_cache_path']}/#{tarball}"
         action :run
     end
 
@@ -220,7 +218,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
   nagios_nrpecheck "wt_healthcheck_page" do
     command "#{node['nagios']['plugin_dir']}/check_http"
-    parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
+    parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
     action :add
   end
   #Create a nagios nrpe check for the log file
