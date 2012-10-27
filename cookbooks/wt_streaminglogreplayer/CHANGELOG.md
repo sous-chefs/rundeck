@@ -1,3 +1,9 @@
+## 1.1.2
+* Remove an unused "user" variable being passed into the service control erb
+* Remove the hardcoded value for MAIN that was passed into the service control erb as a variable
+* Resolve food critic warnings
+* Use the same method of determining install_dir/log_dir in the uninstall as we use in the install
+
 ## 1.1.1
 * Changed how the service-control script finds the LR process since it was
   broken.
