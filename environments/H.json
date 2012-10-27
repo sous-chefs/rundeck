@@ -13,7 +13,7 @@
         "wt_base": "= 1.0.2",
         "wt_cam": "= 1.0.28",
         "wt_kafka_mm": "= 0.0.17",
-        "wt_netacuity": "= 1.0.9",
+        "wt_netacuity": "= 1.0.10",
         "wt_portfolio_admin": "= 1.1.7",
         "wt_realtime_hadoop": "= 1.0.4",
         "wt_realtimeapi": "= 1.0.1",
@@ -218,9 +218,9 @@
             "monitoring_enabled": "true"
         },
         "wt_netacuity": {
-            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/",
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz",
             "geo_url": "hgeo.staging.dmz",
-            "version": "460"
+            "version": "502"
         },
         "wt_portfolio_admin": {
             "account_ui_url": "https://haccount.webtrends.com",
