@@ -57,7 +57,6 @@ if ENV["deploy_build"] == "true" then
   template "#{install_dir}\\DataDeleter.exe.config" do
     source "DataDeleter.erb"
     variables(
-      :master_host => node['wt_masterdb']['master_host'],
       :hbase_location => node['hbase']['location'],
       :hbase_dc_id => node['wt_analytics_ui']['fb_data_center_id'],
       :hbase_pod_id => node['wt_common']['pod_id'],
