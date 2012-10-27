@@ -20,5 +20,5 @@ end
 
 # get current cookbook attributes
 def cb_config
-	node["#{cookbook_name}"]
+	node[cookbook_name]
 end
