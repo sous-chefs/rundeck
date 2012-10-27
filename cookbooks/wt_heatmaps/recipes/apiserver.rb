@@ -16,11 +16,11 @@ end
 thriftservers = Array.new
 
 # determine chef environment to search
-search_environment = ( node['wt_heatmaps']['alt_chef_environment'].length >= 1 ) ? node['wt_heatmaps']['alt_chef_environment'] : node.chef_environment
+search_environment = ( node['wt_heatmaps']['alt_chef_environment'].length >= 1 ) ? node['wt_heatmaps']['alt_chef_environment'] : node['chef_environment']
 
 # search for data nodes
 search(:node, "role:hadoop_datanode AND chef_environment:#{search_environment}").each do |n|
-	thriftservers << n[:fqdn]
+	thriftservers << n['fqdn']
 end
 
 # throw error if none are found
@@ -77,7 +77,7 @@ end
 
 #Create collectd plugin for nginx if collectd has been applied.
 if node.attribute?("collectd")
-	cookbook_file "#{node[:collectd][:plugin_conf_dir]}/nginx.conf" do
+	cookbook_file "#{node['collectd']['plugin_conf_dir']}/nginx.conf" do
 		source "nginx.conf"
 		owner "root"
 		group "root"

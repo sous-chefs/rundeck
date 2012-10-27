@@ -102,7 +102,8 @@ def processConfTemplates (install_dir, node, log_dir)
     group   "root"
     mode    00644
     variables({
-      :log_file => "#{log_dir}/mirrormaker_#{src_env}.log",
+      :log_nom_file => "#{log_dir}/mirrormaker_#{src_env}.log",
+      :log_err_file => "#{log_dir}/mirrormaker_#{src_env}.error.log",
       :log_level => node['wt_kafka_mm']['log_level']
     })
   end

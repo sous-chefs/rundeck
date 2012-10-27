@@ -15,7 +15,7 @@ log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
 # remove the app
 iis_app 'CAM' do
 	path "/Cam"
-	application_pool "#{app_pool}"
+	application_pool app_pool
 	action :delete
 	ignore_failure true
 end

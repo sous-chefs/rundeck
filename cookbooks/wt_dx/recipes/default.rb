@@ -87,7 +87,7 @@ wt_base_firewall 'OEM_DXWS' do
 end
 
 if deploy_mode?
-  windows_zipfile "#{Chef::Config[:file_cache_path]}" do
+  windows_zipfile Chef::Config[:file_cache_path] do
     source node['wt_dx']['download_url']
     action :unzip
   end
@@ -130,7 +130,7 @@ if deploy_mode?
   end
 
   search_server = search(:node, "chef_environment:#{node.chef_environment} AND role:wt_search")
-  search_host = "#{search_server[0][:fqdn]}"
+  search_host = search_server[0][:fqdn]
 
   template "#{install_dir_v3}\\Web Services\\Web.config" do
   	source "webConfigv3Web.erb"
@@ -146,12 +146,12 @@ if deploy_mode?
   	)
   end
 
-  iis_pool "#{streamingservices_pool}" do
+  iis_pool streamingservices_pool do
   	pipeline_mode :Integrated
     action [:add, :config]
   end
 
-  iis_pool "#{webservices_pool}" do
+  iis_pool webservices_pool do
   	pipeline_mode :Integrated
   	runtime_version "4.0"
     action [:add, :config]
@@ -159,14 +159,14 @@ if deploy_mode?
 
   iis_app "DX" do
   	path "/StreamingServices_v3"
-  	application_pool "#{streamingservices_pool}"
+  	application_pool streamingservices_pool
   	physical_path "#{install_dir_v3}\\StreamingServices"
   	action :add
   end
 
   iis_app "DX" do
   	path "/v3"
-  	application_pool "#{webservices_pool}"
+  	application_pool webservices_pool
   	physical_path "#{install_dir_v3}\\Web Services"
   	action :add
   end
@@ -182,8 +182,8 @@ if deploy_mode?
   #DX 2.0 really just uses the DX 2.1 installations
   iis_app "DX" do
   	path "/v2"
-  	application_pool "#{app_pool_v21}"
-  	physical_path "#{install_dir_v21}"
+  	application_pool app_pool_v21
+  	physical_path install_dir_v21
   	action :add
   end
 
@@ -191,12 +191,12 @@ if deploy_mode?
   iis_app "OEM_DX" do
   	path "/v2_2"
   	application_pool streamingservices_pool
-  	physical_path "#{install_dir_v3}"
+  	physical_path install_dir_v3
   	action :add
   end
 
   cfg_cmds.each do |cmd|
-    iis_config "#{cmd}" do
+    iis_config cmd do
 		action :config
 	end
   end
@@ -204,7 +204,7 @@ end
 
 #Post Install
 
-wt_base_icacls "#{install_dir}" do
+wt_base_icacls install_dir do
 	action :grant
 	user user_data['wt_common']['ui_user']
 	perm :read
@@ -217,6 +217,6 @@ wt_base_icacls node['wt_common']['install_dir_windows'] do
 end
 
 execute "ServiceModelReg" do
-        command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\ServiceModelReg.exe -r"
-        action :run
+	command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\ServiceModelReg.exe -r"
+	action :run
 end

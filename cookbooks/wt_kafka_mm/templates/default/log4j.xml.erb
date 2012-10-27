@@ -3,7 +3,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
    <!-- FileLog is set to be a RollingFileAppender -->
    <appender name="FileLog" class="org.apache.log4j.DailyRollingFileAppender">
-       <param name="file" value="${com.webtrends.log.dir}/streaming.log" />
+       <param name="file" value="<%= @log_nom_file %>" />
        <param name="datePattern" value="'.'yyyy-MM-dd" />
        <param name="append" value="true" />
        <layout class="org.apache.log4j.PatternLayout">
@@ -13,7 +13,7 @@
 
    <!-- ErrorLog is set to be a RollingFileAppender -->
    <appender name="ErrorLog" class="org.apache.log4j.DailyRollingFileAppender">
-       <param name="file" value="${com.webtrends.log.dir}/error.log" />
+       <param name="file" value="<%= @log_err_file %>" />
        <param name="datePattern" value="'.'yyyy-MM-dd" />
        <param name="append" value="true" />
        <param name="Threshold" value="ERROR"/>
@@ -23,7 +23,7 @@
    </appender>
    <root>
        <!-- Set root logger level -->
-       <level value="<%= node['wt_streamingcollection']['log4j_root_logging_level'] %>"/>
+       <level value="<%= @log_level %>"/>
        <appender-ref ref="FileLog" />
        <appender-ref ref="ErrorLog" />
    </root>
