@@ -29,7 +29,7 @@ if thriftservers.count == 0
 end
 
 template "/var/lib/php5/thriftservers.php" do
-	source "apiserver/thriftservers.php"
+	source "apiserver/thriftservers.php.erb"
 	owner "www-data"
 	group "www-data"
 	mode 00744
@@ -40,7 +40,7 @@ end
 
 # setup webserver
 template "#{node[:nginx][:dir]}/sites-available/apiserver" do
-	source "apiserver/apiserver"
+	source "apiserver/apiserver.erb"
 	owner "root"
 	group "root"
 	mode 00644
