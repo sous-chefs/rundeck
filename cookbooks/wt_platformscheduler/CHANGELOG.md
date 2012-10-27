@@ -1,3 +1,7 @@
+## 1.0.10
+* Add service account to "Performance Monitor Users"
+* Changed windows_package name to "WebtrendsVDMSchedulerAgent"
+
 ## 1.0.9
 * Correctly named attribute
 
