@@ -34,13 +34,13 @@ end
 
 iis_app "DX" do
 	path "/v2"
-	application_pool "#{v21pool}"
+	application_pool v21pool
 	action :delete
 end
 
 iis_app "DX" do
 	path "/v2_1"
-	application_pool "#{v21pool}"
+	application_pool v21pool
 	action :delete
 end
 
@@ -57,21 +57,21 @@ end
 
 iis_app "DX" do
 	path "/StreamingServices_v3"
-	application_pool "#{streamingservices_pool}"
+	application_pool streamingservices_pool
 	action :delete
 end
 
 iis_app "DX" do
 	path "/v3"
-	application_pool "#{webservices_pool}"
+	application_pool webservices_pool
 	action :delete
 end
 
-iis_pool "#{streamingservices_pool}" do
+iis_pool streamingservices_pool do
 	action [:stop, :delete]
 end
 
-iis_pool "#{webservices_pool}" do
+iis_pool webservices_pool do
 	action [:stop, :delete]
 end
 
@@ -87,12 +87,12 @@ execute "iisreset" do
 	command "iisreset"
 end
 
-directory "#{dx_dir}" do
+directory dx_dir do
   recursive true
   action :delete
 end
 
-directory "#{oem_dir}" do
+directory oem_dir do
   recursive true
   action :delete
 end

@@ -87,7 +87,7 @@ wt_base_firewall 'OEM_DXWS' do
 end
 
 if deploy_mode?
-  windows_zipfile "#{Chef::Config[:file_cache_path]}" do
+  windows_zipfile Chef::Config[:file_cache_path] do
     source node['wt_dx']['download_url']
     action :unzip
   end
@@ -166,7 +166,7 @@ if deploy_mode?
 
   iis_app "DX" do
   	path "/v3"
-  	application_pool "#{webservices_pool}"
+  	application_pool webservices_pool
   	physical_path "#{install_dir_v3}\\Web Services"
   	action :add
   end
