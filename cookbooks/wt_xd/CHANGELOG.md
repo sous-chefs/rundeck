@@ -1,3 +1,7 @@
+# 1.0.0
+* Remove the ZooKeeper fallback if search fails
+* Food critic warnings addressed
+
 # 0.0.6
 *  adding template changes for max hours processed
 
