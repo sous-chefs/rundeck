@@ -1,9 +1,13 @@
-## 1.0.1
+## 1.0.2:
+* Address food critic warnings
+
+## 1.0.1:
 * Added initialize
-## 0.10.6
+
+## 0.10.6:
 * Typo in firewall command (missing space between arguments)
 
-## 0.10.53
+## 0.10.53:
 * Add support for 'net localgroup' command on windows
 * Add iis configuration
 
