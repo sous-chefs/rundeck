@@ -8,7 +8,7 @@
 #
 
 package "heatmaps" do
-	version "#{node['wt_heatmaps']['heatmaps_version']}"
+	version node['wt_heatmaps']['heatmaps_version']
 	options "--force-yes"
 	action :install
 end
@@ -39,7 +39,7 @@ template "/var/lib/php5/thriftservers.php" do
 end
 
 # setup webserver
-template "#{node[:nginx][:dir]}/sites-available/apiserver" do
+template "#{node['nginx']['dir']}/sites-available/apiserver" do
 	source "apiserver/apiserver.erb"
 	owner "root"
 	group "root"
