@@ -1,5 +1,6 @@
 ## 1.0.2:
 * Address food critic warnings
+* Remove unused win_uninstall and iis_config recipes
 
 ## 1.0.1:
 * Added initialize
