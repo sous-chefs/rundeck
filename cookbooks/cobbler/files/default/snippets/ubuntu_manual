@@ -16,7 +16,7 @@ d-i partman-auto/expert_recipe string                         \
               .                                               \
               1024 2000 1024 linux-swap                       \
                       method{ swap } format{ }                \
-              .
+              .                                               \
 d-i partman/confirm_write_new_label boolean true
 d-i partman/choose_partition select Finish partitioning and write changes to disk
 d-i partman/confirm boolean true
