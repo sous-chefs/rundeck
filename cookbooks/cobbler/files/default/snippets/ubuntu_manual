@@ -8,13 +8,13 @@ d-i partman-lvm/confirm boolean true
 d-i partman-auto/choose_recipe select atomic
 d-i partman-auto/expert_recipe string                         \
       boot-root ::                                            \                              
-              500 20 1000000000 ext4                          \
+              500 10000 1000000000 ext4                       \
                       $primary{ } $bootable{ }                \
                       method{ format } format{ }              \
                       use_filesystem{ } filesystem{ ext4 }    \
                       mountpoint{ / }                         \
               .                                               \
-              1024 10 1024 linux-swap                         \
+              1024 2000 1024 linux-swap                       \
                       method{ swap } format{ }                \
               .
 d-i partman/confirm_write_new_label boolean true
