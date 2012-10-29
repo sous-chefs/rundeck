@@ -15,4 +15,3 @@ default['wt_devicedataupdater']['devicedatacheduler_binary'] = "DeviceDataUpdate
 default['wt_devicedataupdater']['install_dir'] = "\\DeviceDataUpdater\\bin"
 default['wt_devicedataupdater']['log_dir'] = "\\DeviceDataUpdater\\logs"
 default['wt_devicedataupdater']['download_url'] = ""
-

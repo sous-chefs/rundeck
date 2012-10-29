@@ -1,0 +1,14 @@
+{
+    "chef_type": "role", 
+    "default_attributes": {}, 
+    "description": "Webtrends Platform Scheduler Agent", 
+    "env_run_lists": {}, 
+    "json_class": "Chef::Role", 
+    "name": "wt_platformscheduler_agent", 
+    "override_attributes": {}, 
+    "run_list": [
+        "recipe[ms_dotnet4]", 
+        "recipe[ms_messagequeue]", 
+        "recipe[wt_platformscheduler::agent]"
+    ]
+}

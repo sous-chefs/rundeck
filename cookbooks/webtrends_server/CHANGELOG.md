@@ -1,11 +1,18 @@
 ## Future
  * Set chef-client to run under runit
  * Include the delete-validation recipe with chef-client to delete the validation.pem file
+ * Use platform_family not platform to determine the platform
+
+## 1.8.7
+ * Remove ability to disable NRPE install on CentOS.
+ * Update the updater version to 10.14.4
+
 ## 1.8.6
  * Removed the force install of rubyzip
+
 ## 1.8.5
  * Fixed ordering of correctly setting gem repo
- 
+
 ## 1.8.4
  * Update the updatechef cookbook to update to the new current version of 10.14.2
  * Add supports for ubuntu/centos/windows in the metadata

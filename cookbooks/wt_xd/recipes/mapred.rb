@@ -16,7 +16,7 @@ install_dir = File.join(node['wt_common']['install_dir_linux'], 'wt_xd')
 log_dir     = node['wt_common']['log_dir_linux']
 
 # paths for jobtracker
-job_tracker_uri = search(:node, "role:hadoop_jobtracker AND chef_environment:#{node['wt_xd']['environment']}").first[:fqdn]
+job_tracker_uri = search(:node, "role:hadoop_jobtracker AND chef_environment:#{node['wt_xd']['environment']}").first['fqdn']
 
 # clean up old deploy
 include_recipe 'wt_xd::mapred_undeploy' if deploy_mode?
@@ -79,15 +79,9 @@ end
 # get zookeeper nodes
 zookeeper_quorum = Array.new
 if not Chef::Config.solo
-	search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-  zookeeper_quorum << n[:fqdn]
-	end
-end
-# fall back to attribs if search doesn't come up with any zookeeper nodes
-if zookeeper_quorum.count == 0
-	node[:zookeeper][:quorum].each do |i|
-  zookeeper_quorum << i
-	end
+  search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+    zookeeper_quorum << n['fqdn']
+  end
 end
 
 # configure templates

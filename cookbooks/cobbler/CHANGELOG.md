@@ -1,3 +1,6 @@
+## 1.0.4
+* Update the precise partition snippet to create a 1024MB swap and use the rest for /
+
 ## 1.0.3:
 * Switch to gems to install Chef on CentOS
 * Allow controlling the version of Chef to install (with Gems) via a new deploy_chef_version attribute
