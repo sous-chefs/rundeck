@@ -16,7 +16,7 @@ end
 thriftservers = Array.new
 
 # determine chef environment to search
-search_environment = ( node['wt_heatmaps']['alt_chef_environment'].length >= 1 ) ? node['wt_heatmaps']['alt_chef_environment'] : node['chef_environment']
+search_environment = ( node['wt_heatmaps']['alt_chef_environment'].length >= 1 ) ? node['wt_heatmaps']['alt_chef_environment'] : node.chef_environment
 
 # search for data nodes
 search(:node, "role:hadoop_datanode AND chef_environment:#{search_environment}").each do |n|

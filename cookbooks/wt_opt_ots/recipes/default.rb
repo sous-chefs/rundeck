@@ -77,19 +77,19 @@ end
 package "nfs-common"
 
 # create the mount point
-directory "#{node['wt_opt_ots']['mount_dir_prefix']}-#{node['chef_environment']}" do
+directory "#{node['wt_opt_ots']['mount_dir_prefix']}-#{node.chef_environment}" do
   action :create
 end
 
 # mount the file store
-mount "#{node['wt_opt_ots']['mount_dir_prefix']}-#{node['chef_environment']}" do
+mount "#{node['wt_opt_ots']['mount_dir_prefix']}-#{node.chef_environment}" do
   device "#{node['wt_opt_ots']['nfs_mount']}"
   fstype nfs
   action [ :mount, :enable ]
   options "rw,hard,intr"
   dump 0
   pass 0
-  only_if do File.directory?("#{node['wt_opt_ots']['mount_dir_prefix']}-#{node['chef_environment']}") end
+  only_if do File.directory?("#{node['wt_opt_ots']['mount_dir_prefix']}-#{node.chef_environment}") end
 end
 
 # disable the default Apache site
