@@ -85,7 +85,7 @@ def getZookeeperPairs(node)
 
   # get the correct environment for the zookeeper nodes
   zookeeper_port = node['zookeeper']['client_port']
-  zookeeper_env = node['chef_environment']
+  zookeeper_env = node.chef_environment
   unless node['wt_streaminglogreplayer']['zookeeper_env'].nil? || node['wt_streaminglogreplayer']['zookeeper_env'].empty?
     zookeeper_env = node['wt_streaminglogreplayer']['zookeeper_env']
   end
