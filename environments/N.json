@@ -163,7 +163,7 @@
         }, 
         "webpi": {
             "url": "http://repo.staging.dmz/repo/windows/webpi/WebPICMD.zip", 
-            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/WebPI40ProductList.xml"
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webpi40productlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
