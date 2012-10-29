@@ -1,3 +1,6 @@
+## 1.1.10
+* Remove unnecessary "pod" attribute
+
 ## 1.1.9
 * Add application/x-javascript to httpCompression section in web.config template
 
