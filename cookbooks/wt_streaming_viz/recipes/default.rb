@@ -20,8 +20,7 @@ install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Streaming.
 install_logdir = node['wt_common']['install_log_dir_windows']
 log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
 app_pool = node['wt_streaming_viz']['app_pool']
-pod = node.chef_environment
-user_data = data_bag_item('authorization', pod)
+user_data = data_bag_item('authorization', node.chef_environment)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
 http_port = node['wt_streaming_viz']['port']
 
