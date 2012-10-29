@@ -26,6 +26,8 @@ install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_devic
 log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_devicedataupdater']['log_dir'].gsub(/[\\\/]+/,"\\"))
 
 auth_data = data_bag_item('authorization', node.chef_environment)
+svcuser = auth_data['wt_common']['system_user']
+svcpass = auth_data['wt_common']['system_pass']
 
 # determine root drive of install_dir - ENG390500
 if (install_dir =~ /^(\w:)\\.*$/)
