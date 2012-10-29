@@ -10,7 +10,7 @@
 
 # get authorization data bag
 def wt_auth
-	data_bag_item('authorization', node['chef_environment'])
+	data_bag_item('authorization', node.chef_environment)
 end
 
 # get wt_common data from attributes and data bag
