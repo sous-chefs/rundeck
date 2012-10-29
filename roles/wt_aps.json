@@ -1,5 +1,5 @@
 {
-  "name": "wt_lfm_ftp",
+  "name": "wt_aps",
   "default_attributes": {
   },
   "override_attributes": {
@@ -8,9 +8,7 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[vsftp]",
-    "recipe[wt_lfm_ftp]"
   ],
-  "description": "Webtrends LFM FTP Server",
+  "description": "Webtrends Account Provisioning Service",
   "chef_type": "role"
 }

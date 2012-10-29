@@ -1,0 +1,5 @@
+{
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -H localhost -u / -s 'product'",
+    "hostgroup_name": "multi_repo_master",
+    "id": "multi_repo"
+}
