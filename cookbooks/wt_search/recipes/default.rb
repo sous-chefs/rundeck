@@ -10,7 +10,7 @@
 # This recipe installs the needed components to full setup/configure the Search service
 #
 if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploy first"  
+  log "The deploy_build value is true so un-deploy first"
   include_recipe "wt_search::uninstall"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
@@ -24,7 +24,7 @@ master_host = node['wt_masterdb']['master_host']
 install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['install_dir'].gsub(/[\\\/]+/,"\\"))
 log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['log_dir'].gsub(/[\\\/]+/,"\\"))
 
-# get data bag items 
+# get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
 svcuser = auth_data['wt_common']['system_user']
 svcpass = auth_data['wt_common']['system_pass']
@@ -42,7 +42,7 @@ end
 
 wt_base_icacls node['wt_common']['install_dir_windows'] do
 	action :grant
-	user svcuser 
+	user svcuser
 	perm :modify
 end
 
@@ -57,12 +57,12 @@ if ENV["deploy_build"] == "true" then
 	# unzip the install package
 	windows_zipfile install_dir do
 		source download_url
-		action :unzip	
+		action :unzip
 	end
-	
+
 	template "#{install_dir}\\Webtrends.Search.Service.exe.config" do
 	  source "searchConfig.erb"
-	  variables(		
+	  variables(
 		  :master_host => master_host,
 		  :cass_host => node['cassandra']['cassandra_host'],
 		  :cass_thrift_port => node['cassandra']['cassandra_thrift_port'],
@@ -70,21 +70,10 @@ if ENV["deploy_build"] == "true" then
 		  :metadata_column => node['cassandra']['cassandra_meta_column']
 	  )
 	end
-	
+
 	template "#{install_dir}\\Webtrends.Search.Bulkload.exe.config" do
 	  source "bulkloadConfig.erb"
-	  variables(		
-		  :master_host => master_host,
-		  :cass_host => node['cassandra']['cassandra_host'],
-		  :report_column => node['cassandra']['cassandra_report_column'],
-		  :thrift_port => node['cassandra']['cassandra_thrift_port'],
-		  :metadata_column => node['cassandra']['cassandra_meta_column']
-	  )
-	end
-	
-	template "#{install_dir}\\LocalStateRetriever.exe.config" do
-	  source "localStateRetrieverConfig.erb"
-	  variables(		
+	  variables(
 		  :master_host => master_host,
 		  :cass_host => node['cassandra']['cassandra_host'],
 		  :report_column => node['cassandra']['cassandra_report_column'],
@@ -93,8 +82,18 @@ if ENV["deploy_build"] == "true" then
 	  )
 	end
 
+	template "#{install_dir}\\LocalStateRetriever.exe.config" do
+	  source "localStateRetrieverConfig.erb"
+	  variables(
+		  :master_host => master_host,
+		  :cass_host => node['cassandra']['cassandra_host'],
+		  :report_column => node['cassandra']['cassandra_report_column'],
+		  :metadata_column => node['cassandra']['cassandra_meta_column']
+	  )
+	end
+
 	powershell "create service" do
-		environment({'serviceName' => node['wt_search']['service_name'], 'serviceBinary' => node['wt_search']['service_binary'], 'install_dir' => install_dir, 'svcuser' => svcuser, 'svcpass' => svcpass})	
+		environment({'serviceName' => node['wt_search']['service_name'], 'serviceBinary' => node['wt_search']['service_binary'], 'install_dir' => install_dir, 'svcuser' => svcuser, 'svcpass' => svcpass})
 		code <<-EOH
  		# $computer = gc env:computername
  		$class = "Win32_Service"

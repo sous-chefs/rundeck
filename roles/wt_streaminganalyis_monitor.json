@@ -1,0 +1,11 @@
+{
+  "name": "wt_streaminganalysis_monitor",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Streaming Analysis Monitor",
+  "run_list": [
+    "recipe[wt_streaminganalysis_monitor]"
+  ],
+  "override_attributes": {
+  }
+}

@@ -31,7 +31,7 @@ module WtBase
 			if (source =~ /^https?:\/.*\/([^\/]*)$/)
 				if ($1 =~ /^#{URI::encode(target)}$/i)
 					source = URI::encode(source)
-				else 
+				else
 					source = URI::encode(source + "/" + target)
 					source =~ /^(https?:\/\/)(.*)$?/
 					source = $1 + $2.gsub(/\/+/, "/")
@@ -87,7 +87,7 @@ module WtBase
 				if non_target_zip
 					shell_out('copy /y "' + source + '" "' + Chef::Config[:file_cache_path] +'"')
 					use_target = "#{Chef::Config[:file_cache_path]}/#{src_basename}"
-				else 
+				else
 					shell_out('copy /y "' + source + '" "' + cache_dest + '"')
 					use_target = cache_dest
 				end
@@ -95,7 +95,7 @@ module WtBase
 			# local
 			else
 				log("copy #{source} to #{cache_dest}") { level :debug }
-				case node.platform
+				case node['platform']
 					when "windows", "mswin", "mingw32"
 						shell_out('copy /y "' + source + '" "' + cache_dest + '"')
 					else
@@ -103,12 +103,12 @@ module WtBase
 						FileUtils::cp(source, cache_dest) unless source == cache_dest
 				end
 				use_target = cache_dest
-			end	
+			end
 
 			# search zip for target (i.e. teamcity artifacts zip)
 			if non_target_zip
 
-				case node.platform
+				case node['platform']
 					when "windows", "mswin", "mingw32"
 						tmpdir = "#{Chef::Config[:file_cache_path]}/" + cookbook_name + "-tmp"
 						z = Chef::Resource::WindowsZipfile.new(tmpdir, run_context)
@@ -153,7 +153,7 @@ module WtBase
 
 		# find the full path of a file
 		def find(dir, filename="*.*", subdirs=true)
-			case node.platform
+			case node['platform']
 				when "windows", "mswin", "mingw32"
 					#cmd = Chef::ShellOut.new('dir /o:n /s /b "' + dir + '\*' + filename + '"')
 					cmd = shell_out('dir /o:n /s /b "' + dir + '\*' + filename + '"')
@@ -180,7 +180,7 @@ module WtBase
 		# this currently does not work in unix
 		# a child process cannot change a parent's environment
 		def disable_deploy_mode
-			return unless node.platform == "windows"
+			return unless node['platform'] == "windows"
 			log "disabling deploy mode"
 			env "deploy_build" do
 				value "false"
@@ -194,7 +194,7 @@ module WtBase
 
 		# grant share/file system access to "log" readers
 		def share_wrs
-			return unless node.platform == "windows"
+			return unless node['platform'] == "windows"
 			log "sharing wrs"
 			wt_base_netshare "wrs" do
 				action :grant
@@ -222,7 +222,7 @@ module WtBase
 
 		# unshare wrs folder
 		def unshare_wrs
-			return unless node.platform == "windows"
+			return unless node['platform'] == "windows"
 			log "unsharing wrs"
 			wt_base_netshare "wrs" do
 				action :remove
@@ -241,7 +241,7 @@ module WtBase
 				end
 			end
 		end
-	
+
 	end
 end
 

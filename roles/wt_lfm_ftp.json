@@ -8,7 +8,8 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[vsftp]"
+    "recipe[vsftp]",
+    "recipe[wt_lfm_ftp]"
   ],
   "description": "Webtrends LFM FTP Server",
   "chef_type": "role"
