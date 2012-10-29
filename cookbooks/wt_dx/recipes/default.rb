@@ -17,8 +17,7 @@ end
 install_dir = node['wt_common']['install_dir_windows']
 install_logdir = node['wt_common']['install_log_dir_windows']
 cfg_cmds = node['wt_dx']['cfg_cmd']
-pod = node.chef_environment
-user_data = data_bag_item('authorization', pod)
+user_data = data_bag_item('authorization', node.chef_environment)
 ui_user = user_data['wt_common']['ui_user']
 ui_password = user_data['wt_common']['ui_pass']
 msi_name = node['wt_dx']['commonlib_msi']
