@@ -67,13 +67,20 @@ if deploy_mode?
 
   ENV['deploy_build'] = 'false'
   # log("Source URL: #{build_url}") { level :info}
-  this_zipfile = get_build node['wt_devicedataupdater']['zip_file']
+  #this_zipfile = get_build node['wt_devicedataupdater']['zip_file']
 
   # unzip the install package
   windows_zipfile install_dir do
-    source "#{this_zipfile}"
-    action :unzip
+      source download_url
+      action :unzip
   end
+
+
+  # unzip the install package
+  #windows_zipfile install_dir do
+   # source "#{this_zipfile}"
+    #action :unzip
+  #end
 
   template "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config" do
     source "RRServiceConfig.erb"
