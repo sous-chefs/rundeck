@@ -16,7 +16,9 @@
         "system_user": "STAGINGDMZ\\wtSystem", 
         "ui_acct": "wtUI", 
         "ui_pass": "Bijoux1", 
-        "ui_user": "STAGINGDMZ\\wtUI"
+        "ui_user": "STAGINGDMZ\\wtUI",
+        "ldap_user": "cn=admin,dc=webtrends,dc=com",
+        "ldap_password": "Bijoux01"
     }, 
     "wt_iis": {
         "machine_validation_key": "7FAB532C7D9A7E3EBE4A891BFAEC6B554E0228E0167891F3C6382249455C3524ACE13309FB9F83E6522152E6C1CC1D645ACCDACFFF72ADCB9C9C56396905EAEA",
