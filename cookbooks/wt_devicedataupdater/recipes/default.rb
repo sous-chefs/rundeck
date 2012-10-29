@@ -73,12 +73,32 @@ if deploy_mode?
 		action :unzip
 	end
 
-	template "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config" do
-	  source "RRServiceConfig.erb"
-	  variables(
-		  :master_host => master_host
+ # unzip the install package
+        windows_zipfile install_dir do
+                source download_url
+                action :unzip
+        end
+
+        template "#{install_dir}\\DDU.exe.config" do
+          source "DeviceDataUpdater.erb"
+          variables(
 	  )
-	end
+        end
+
+        template "#{install_dir}\\DeviceDataScheduler.exe.config" do
+          source "DeviceDataScheduler.erb"
+          variables(
+                  :master_host => master_host
+          )
+        end
+
+        powershell "install device data updater" do
+                environment({'install_dir' => install_dir, 'service_binary' => node['wt_devicedataupdater']['devicedata_binary']})
+                code <<-EOH
+                $binary_path = $env:install_dir + "\\" + $env:service_binary
+                &$binary_path --install
+                EOH
+        end
 
 	template "#{install_dir}\\log4net.config" do
 	  source "log4net.erb"
