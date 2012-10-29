@@ -79,7 +79,7 @@ end
 # get zookeeper nodes
 zookeeper_quorum = Array.new
 if not Chef::Config.solo
-  search(:node, "role:zookeeper AND chef_environment:#{node['chef_environment']}").each do |n|
+  search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
     zookeeper_quorum << n['fqdn']
   end
 end
