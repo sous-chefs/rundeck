@@ -1,4 +1,5 @@
 ## 0.10.53
+* Food critic warnings
 * Removed last successful build default download URL
 * Use the website port and oem website port from attributes instead of hardcoded values
 

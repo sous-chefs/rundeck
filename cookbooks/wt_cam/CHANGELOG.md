@@ -1,3 +1,6 @@
+## 1.0.30
+* Address a food critic warning
+
 ## 1.0.29
 * Removed remaining references to auth in recipe, attributes and templates
 * Updated readme (str-129)

@@ -7,8 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-log_dir      = "#{node['wt_common']['log_dir_linux']}/streaminglogreplayer"
-install_dir  = "#{node['wt_common']['install_dir_linux']}/streaminglogreplayer"
+log_dir = File.join(node['wt_common']['log_dir_linux'], "streaminglogreplayer")
+install_dir = File.join(node['wt_common']['install_dir_linux'], "streaminglogreplayer")
 
 runit_service "streaminglogreplayer" do
   action :disable
@@ -21,12 +21,12 @@ service "streaminglogreplayer" do
   ignore_failure true
 end
 
-directory "#{log_dir}" do
+directory log_dir do
   recursive true
   action :delete
 end
 
-directory "#{install_dir}" do
+directory install_dir do
   recursive true
   action :delete
 end

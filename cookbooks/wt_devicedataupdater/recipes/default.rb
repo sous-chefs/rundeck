@@ -26,39 +26,41 @@ install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_devic
 log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_devicedataupdater']['log_dir'].gsub(/[\\\/]+/,"\\"))
 
 auth_data = data_bag_item('authorization', node.chef_environment)
+svcuser = auth_data['wt_common']['system_user']
+svcpass = auth_data['wt_common']['system_pass']
 
 # determine root drive of install_dir - ENG390500
 if (install_dir =~ /^(\w:)\\.*$/)
-	install_dir_drive = $1
+  install_dir_drive = $1
 else
-	raise Chef::Exceptions::AttributeNotFound,
-		"could not determine install_dir_drive, please verify value of install_dir: #{install_dir}"
+  raise Chef::Exceptions::AttributeNotFound,
+    "could not determine install_dir_drive, please verify value of install_dir: #{install_dir}"
 end
 
 # create the install directory
 directory install_dir do
-	recursive true
-	action :create
+  recursive true
+  action :create
 end
 
 # set permissions for the service user to have read access to the install drive - ENG390500
 wt_base_icacls install_dir_drive do
-	action :grant
-	user svcuser
-	perm :read
+  action :grant
+  user svcuser
+  perm :read
 end
 
 # create the log directory
 directory log_dir do
-	recursive true
-	action :create
+  recursive true
+  action :create
 end
 
 # allow the service account to modify files in the log directory
 wt_base_icacls log_dir do
-	action :grant
-	user svcuser
-	perm :modify
+  action :grant
+  user svcuser
+  perm :modify
 end
 
 if deploy_mode?
@@ -107,6 +109,6 @@ if deploy_mode?
 	  )
 	end
 
-	share_wrs
+  share_wrs
 end
 

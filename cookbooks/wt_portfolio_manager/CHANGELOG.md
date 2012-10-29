@@ -9,4 +9,6 @@
 ## 1.1.4
 * Site level assignment of disabled auth
 ## 1.1.5
-* Remove entries from web.config template..
+* Remove entries from web.config template.
+## 1.1.6
+* Add entry for mc.url to appSettings.config template..

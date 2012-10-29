@@ -1,3 +1,6 @@
+## 1.0.12
+* Changed 'webtrends.cam.streamType' to use the plural
+
 ## 1.0.11
 * Resolved issues with the collectd configuration that pulls from JMX
 
