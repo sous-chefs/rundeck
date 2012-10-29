@@ -1,0 +1,5 @@
+{
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -a '-H localhost -u /cobbler_web -s 'Cobbler''",
+    "hostgroup_name": "cobbler",
+    "id": "cobbler_web_ui_check"
+}

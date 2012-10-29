@@ -1,13 +1,15 @@
 #
 # Cookbook Name:: wt_platformscheduler
-# Recipe:: default
+# Recipe:: agent
 # Author:: Kendrick Martin
 #
-# Copyright 2012, Webtrends
+# Copyright 2012, Webtrends Inc.
 #
 # All rights reserved - Do Not Redistribute
+#
 # This recipe installs VDM Scheduler Agent
 #
+
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploy first"  
   include_recipe "wt_platformscheduler::agent_uninstall"
@@ -16,10 +18,9 @@ else
 end
 
 # destinations
-install_dir = node['wt_common']['install_dir_windows']
-log_dir     = node['wt_common']['install_log_dir_windows']
-
-
+base_dir        = node['wt_common']['install_dir_windows']
+install_dir     = "#{base_dir}\\common\\agent"
+install_log_dir = node['wt_common']['install_log_dir_windows']
 
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
@@ -28,20 +29,28 @@ svcpass = auth_data['wt_common']['system_pass']
 
 # get parameters
 master_host = node['wt_masterdb']['master_host']
-sched_host = node['wt_masterdb']['sched_host']
+sched_host  = node['wt_masterdb']['sched_host']
 
 log "Source URL: #{node['wt_platformscheduler']['agent']['download_url']}"
+
 msi = node['wt_platformscheduler']['agent']['msi']
+
 # create the log directory
-directory log_dir do
-	recursive true
-	action :create
+directory install_log_dir do
+  recursive true
+  action :create
 end
 
 # create the install directory
 directory install_dir do
-	recursive true
-	action :create
+  recursive true
+  action :create
+end
+
+wt_base_netlocalgroup 'Performance Monitor Users' do
+  user svcuser
+  returns [0, 2]
+  action :add
 end
 
 if ENV["deploy_build"] == "true" then
@@ -51,18 +60,26 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-	# execute the VDM scheduler Agent MSI
-  windows_package "Webtrends VDM Scheduler Agent" do
+  msi_options =  "/l*v \"#{install_log_dir}\\#{msi}-Install.log\""
+  msi_options << " INSTALLDIR=\"#{install_dir}\""
+  msi_options << " MASTER_HOST=#{master_host} STANDALONE=True"
+  msi_options << " SERVICEACCT=\"#{svcuser}\" SERVICEPASS=\"#{svcpass}\""
+  msi_options << " SCHEDULERADDRESS=scheduler2@#{sched_host}"
+  msi_options << " AGENTMANAGERADDRESS=agentmanager.1@#{sched_host}"
+  msi_options << " BASEFOLDER=\"#{base_dir}\" LOGTOFILE=True FILELOGGINGLEVEL=4"
+
+  # execute the VDM scheduler Agent MSI
+  windows_package "WebtrendsVDMSchedulerAgent" do
     source "#{Chef::Config[:file_cache_path]}/#{msi}"
-    options "/l*v \"#{log_dir}\\PlatformSchedulerAgent-Install.log\" SERVICEACCT=#{svcuser} SERVICEPASS=#{svcpass} AGENTMANAGERADDRESS=agentmanager.1@#{sched_host} BASEFOLDER=#{install_dir} LOGTOFILE=true FILELOGGINGLEVEL=4 SCHEDULERADDRESS=scheduler2@#{sched_host} MASTER_HOST=#{master_host} STANDALONE=TRUE INSTALLDIR=\"#{install_dir}\\agent\\common\""
+    options msi_options
     action :install
   end	
 
-	wt_base_icacls install_dir do
-		user svcuser
-		perm :modify
-		action :grant
-	end
+  wt_base_icacls install_dir do
+    user svcuser
+    perm :modify
+    action :grant
+  end
 	
-	share_wrs
+  share_wrs
 end

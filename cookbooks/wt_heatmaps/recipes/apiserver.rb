@@ -8,7 +8,7 @@
 #
 
 package "heatmaps" do
-	version "#{node['wt_heatmaps']['heatmaps_version']}"
+	version node['wt_heatmaps']['heatmaps_version']
 	options "--force-yes"
 	action :install
 end
@@ -20,7 +20,7 @@ search_environment = ( node['wt_heatmaps']['alt_chef_environment'].length >= 1 )
 
 # search for data nodes
 search(:node, "role:hadoop_datanode AND chef_environment:#{search_environment}").each do |n|
-	thriftservers << n[:fqdn]
+	thriftservers << n['fqdn']
 end
 
 # throw error if none are found
@@ -29,7 +29,7 @@ if thriftservers.count == 0
 end
 
 template "/var/lib/php5/thriftservers.php" do
-	source "apiserver/thriftservers.php"
+	source "apiserver/thriftservers.php.erb"
 	owner "www-data"
 	group "www-data"
 	mode 00744
@@ -39,8 +39,8 @@ template "/var/lib/php5/thriftservers.php" do
 end
 
 # setup webserver
-template "#{node[:nginx][:dir]}/sites-available/apiserver" do
-	source "apiserver/apiserver"
+template "#{node['nginx']['dir']}/sites-available/apiserver" do
+	source "apiserver/apiserver.erb"
 	owner "root"
 	group "root"
 	mode 00644
@@ -77,7 +77,7 @@ end
 
 #Create collectd plugin for nginx if collectd has been applied.
 if node.attribute?("collectd")
-	cookbook_file "#{node[:collectd][:plugin_conf_dir]}/nginx.conf" do
+	cookbook_file "#{node['collectd']['plugin_conf_dir']}/nginx.conf" do
 		source "nginx.conf"
 		owner "root"
 		group "root"
