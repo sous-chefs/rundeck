@@ -69,7 +69,7 @@ if deploy_mode?
   # log("Source URL: #{build_url}") { level :info}
   #this_zipfile = get_build node['wt_devicedataupdater']['zip_file']
 
-  # unzip the install package
+ # unzip the install package
   windows_zipfile install_dir do
       source download_url
       action :unzip
@@ -82,19 +82,33 @@ if deploy_mode?
     #action :unzip
   #end
 
-  template "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config" do
-    source "RRServiceConfig.erb"
+template "#{install_dir}\\DDU.exe.config" do
+    source "DeviceDataUpdater.erb"
     variables(
-      :master_host => master_host
     )
-  end
+end
 
-  template "#{install_dir}\\log4net.config" do
+template "#{install_dir}\\DeviceDataScheduler.exe.config" do
+    source "DeviceDataScheduler.erb"
+    variables(
+        :master_host => master_host
+    )
+end
+
+powershell "install device data updater" do
+    environment({'install_dir' => install_dir, 'service_binary' => node['wt_devicedataupdater']['devicedata_binary']})
+        code <<-EOH
+        $binary_path = $env:install_dir + "\\" + $env:service_binary
+        &$binary_path --install
+        EOH
+end
+
+template "#{install_dir}\\log4net.config" do
     source "log4net.erb"
     variables(
-      :logdir => log_dir
+        :logdir => log_dir
     )
-  end
+end
 
   share_wrs
 end
