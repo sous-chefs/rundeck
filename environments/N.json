@@ -203,7 +203,7 @@
              }, 
             "cam_service_url": "http://ncam01.staging.dmz", 
             "db_name": "cam", 
-            "db_server": "hcamdb01.staging.dmz"
+            "db_server": "ncamdb01.staging.dmz"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
