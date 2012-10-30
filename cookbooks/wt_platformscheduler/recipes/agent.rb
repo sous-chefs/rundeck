@@ -47,6 +47,12 @@ directory install_dir do
   action :create
 end
 
+wt_base_icacls install_dir do
+  user svcuser
+  perm :modify
+  action :grant
+end
+
 wt_base_netlocalgroup 'Performance Monitor Users' do
   user svcuser
   returns [0, 2]
@@ -68,18 +74,16 @@ if ENV["deploy_build"] == "true" then
   msi_options << " AGENTMANAGERADDRESS=agentmanager.1@#{sched_host}"
   msi_options << " BASEFOLDER=\"#{base_dir}\" LOGTOFILE=True FILELOGGINGLEVEL=4"
 
-  # execute the VDM scheduler Agent MSI
-  windows_package "WebtrendsVDMSchedulerAgent" do
+  # execute the VDM Scheduler Agent MSI
+  windows_package 'WebtrendsVDMSchedulerAgent' do
     source "#{Chef::Config[:file_cache_path]}/#{msi}"
     options msi_options
     action :install
+    notifies :start, 'service[WebtrendsAgent]', :immediately
   end	
 
-  wt_base_icacls install_dir do
-    user svcuser
-    perm :modify
-    action :grant
-  end
-	
+  service 'WebtrendsAgent'
+
   share_wrs
+
 end

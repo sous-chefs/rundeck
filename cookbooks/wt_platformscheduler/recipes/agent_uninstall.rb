@@ -10,7 +10,8 @@
 # This recipe uninstalls scheduler agent.
 #
 
-windows_package "WebtrendsVDMSchedulerAgent" do
+windows_package 'WebtrendsVDMSchedulerAgent-Uninstall' do
+    package_name 'WebtrendsVDMSchedulerAgent'
 	action :remove
 	ignore_failure true
 end
