@@ -202,6 +202,9 @@
         "wt_data_deleter": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/37684:id/DataDeleter.zip"
         }, 
+        "wt_devicedataupdater": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt284/39571:id/DeviceDataUpdater.zip"
+        }, 
         "wt_dx": {
             "app_settings_section": {
                 "streamingServiceRoot": "https://ddx.webtrends.com/StreamingServices_v3/"
