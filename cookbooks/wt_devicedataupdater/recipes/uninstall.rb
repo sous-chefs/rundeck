@@ -12,8 +12,9 @@ install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_devic
 
 # full path to DDU.exe
 ddu = File.join(install_dir, node['wt_devicedataupdater']['service_binary']).gsub(/[\\\/]+/,"\\")
-execute "#{node['wt_devicedataupdater']['service_binary']}_uninstall" do
+execute "#{node['wt_devicedataupdater']['service_binary']} uninstall" do
   command "#{ddu} -uninstall"
+  only_if { File.exists?(ddu) }
 end
 
 # delete install folder
