@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
+def whyrun_supported?
+  true
+end
+
 # install apt key from keyserver
 def install_key_from_keyserver(key, keyserver)
   unless system("apt-key list | grep #{key}")
@@ -24,7 +28,6 @@ def install_key_from_keyserver(key, keyserver)
       command "apt-key adv --keyserver #{keyserver} --recv #{key}"
       action :nothing
     end.run_action(:run)
-    new_resource.updated_by_last_action(true)
   end
 end
 
@@ -43,7 +46,7 @@ end
 def install_key_from_uri(uri)
   key_name = uri.split(/\//).last
   cached_keyfile = "#{Chef::Config[:file_cache_path]}/#{key_name}"
-  if (new_resource.key =~ /http/)
+  if new_resource.key =~ /http/
     r = remote_file cached_keyfile do
       source new_resource.key
       mode "0644"
@@ -62,12 +65,11 @@ def install_key_from_uri(uri)
 
   installed_ids = extract_gpg_ids_from_cmd("apt-key finger")
   key_ids = extract_gpg_ids_from_cmd("gpg --with-fingerprint #{cached_keyfile}")
-  unless installed_ids & key_ids == key_ids
+  unless (installed_ids & key_ids).sort == key_ids.sort
     execute "install-key #{key_name}" do
       command "apt-key add #{cached_keyfile}"
       action :nothing
     end.run_action(:run)
-    new_resource.updated_by_last_action(true)
   end
 end
 
@@ -81,39 +83,40 @@ def build_repo(uri, distribution, components, add_deb_src)
 end
 
 action :add do
-    new_resource.updated_by_last_action(false)
+  new_resource.updated_by_last_action(false)
 
-    # add key
-    if new_resource.keyserver && new_resource.key
-      install_key_from_keyserver(new_resource.key, new_resource.keyserver)
-    elsif new_resource.key
-      install_key_from_uri(new_resource.key)
-    end
+  # add key
+  if new_resource.keyserver && new_resource.key
+    install_key_from_keyserver(new_resource.key, new_resource.keyserver)
+  elsif new_resource.key
+    install_key_from_uri(new_resource.key)
+  end
 
-    execute "apt-get update" do
-      ignore_failure true
-      action :nothing
-    end
+  execute "apt-get update" do
+    ignore_failure true
+    action :nothing
+  end
 
   file "/var/lib/apt/periodic/update-success-stamp" do
     action :nothing
   end
 
-    # build repo file
-    repository = build_repo(new_resource.uri,
-                            new_resource.distribution,
-                            new_resource.components,
-                            new_resource.deb_src)
+  # build repo file
+  repository = build_repo(new_resource.uri,
+                           new_resource.distribution,
+                           new_resource.components,
+                           new_resource.deb_src)
 
-    file "/etc/apt/sources.list.d/#{new_resource.repo_name}-source.list" do
-      owner "root"
-      group "root"
-      mode 0644
-      content repository
-      action :create
+  f = file "/etc/apt/sources.list.d/#{new_resource.repo_name}-source.list" do
+    owner "root"
+    group "root"
+    mode 0644
+    content repository
+    action :create
     notifies :delete, resources(:file => "/var/lib/apt/periodic/update-success-stamp"), :immediately
-    notifies :run, resources(:execute => "apt-get update"), :immediately
-    end
+    notifies :run, resources(:execute => "apt-get update"), :immediately if new_resource.cache_rebuild
+  end
+  new_resource.updated_by_last_action(f.updated?)
 end
 
 action :remove do
@@ -122,6 +125,5 @@ action :remove do
     file "/etc/apt/sources.list.d/#{new_resource.repo_name}-source.list" do
       action :delete
     end
-    new_resource.updated_by_last_action(true)
   end
 end
