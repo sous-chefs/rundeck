@@ -180,9 +180,12 @@
             "wrsmodify_group": "WTENGLAB\\K.WRS.Modify", 
             "wrsread_group": "WTENGLAB\\K.WRS.Read"
         }, 
-        "wt_datadeleter": {
+        "wt_data_deleter": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/.lastSuccessful/DataDeleter.zip"
-        }, 
+        },
+	"wt_devicedataupdater": {
+	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt284/.lastSuccessful/artifacts.zip"
+	}, 
         "wt_dx": {
             "app_settings_section": {
                 "streamingServiceRoot": "https://kdx.englab.webtrends.corp/StreamingServices_v3/"
@@ -218,7 +221,7 @@
         }, 
         "wt_platformscheduler": {
             "agent": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt24/37178:id/WebTrendsVDMSchedulerAgent.msi"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt289/39353:id/WebTrendsVDMSchedulerAgent.msi"
             }
         }, 
         "wt_roadrunner": {
