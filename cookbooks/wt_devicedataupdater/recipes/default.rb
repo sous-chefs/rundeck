@@ -88,13 +88,6 @@ template "#{install_dir}\\DDU.exe.config" do
     )
 end
 
-template "#{install_dir}\\DeviceDataScheduler.exe.config" do
-    source "DeviceDataScheduler.erb"
-    variables(
-        :master_host => master_host
-    )
-end
-
 powershell "install device data updater" do
     environment({'install_dir' => install_dir, 'service_binary' => node['wt_devicedataupdater']['devicedata_binary']})
         code <<-EOH
