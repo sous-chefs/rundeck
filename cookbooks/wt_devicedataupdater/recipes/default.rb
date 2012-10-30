@@ -89,7 +89,7 @@ template "#{install_dir}\\DDU.exe.config" do
 end
 
 powershell "install device data updater" do
-    environment({'install_dir' => install_dir, 'service_binary' => node['wt_devicedataupdater']['devicedata_binary']})
+    environment({'install_dir' => install_dir, 'service_binary' => node['wt_devicedataupdater']['service_binary']})
         code <<-EOH
         $binary_path = $env:install_dir + "\\" + $env:service_binary
         &$binary_path --install
