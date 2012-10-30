@@ -9,7 +9,7 @@
         "nagios": "= 1.6.1", 
         "storm": "= 1.0.28", 
         "webpi": "= 1.0.13", 
-        "webtrends_server": "= 1.8.6", 
+        "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
         "wt_base": "= 1.0.1", 
         "wt_cam": "= 1.0.28", 
@@ -258,7 +258,7 @@
         "wt_portfolio_admin": {
             "cam_auth_url": "https://hsauth.webtrends.com", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/37911:id/Portfolio.Admin.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/39588:id/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true", 
@@ -335,7 +335,8 @@
         }, 
         "wt_streaminglogreplayer": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/37902:id/webtrends-streaminglogreplayer-bin.tar.gz", 
-            "log_share_mount": "sstore02.staging.dmz:/ifs/nstore/logreplay"
+            "log_share_mount": "sstore02.staging.dmz:/ifs/nstore/logreplay",
+            "zookeeper_env" : "N"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "nusagedb01.staging.dmz", 
