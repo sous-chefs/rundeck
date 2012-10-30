@@ -55,7 +55,7 @@ end
 
 if deploy_mode?
 
-  # the Platform Scheduler Agent must be running
+  # Platform Scheduler Agent must be running
   ruby_block 'WebtrendsAgent_status' do
     block do
       raise 'WebtrendsAgent is not running' unless Win32::Service.status('WebtrendsAgent').current_state == 'running' 
