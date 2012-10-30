@@ -5,6 +5,7 @@
 
 ## 1.1.7
 * added additional hbase and hadoop counters to collectd_hadoop_DataNode.conf.erb template
+* includes removal of some counters that never log anything, switching some counters to gauges, and adding a couple of replication specific counters
 
 
 ## 1.1.6
