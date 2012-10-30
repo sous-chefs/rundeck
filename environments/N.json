@@ -258,7 +258,7 @@
         "wt_portfolio_admin": {
             "cam_auth_url": "https://hsauth.webtrends.com", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/37911:id/Portfolio.Admin.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/39588:id/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true", 
