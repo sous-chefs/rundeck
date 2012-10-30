@@ -9,8 +9,11 @@
         "wt_analytics_ui": "= 1.0.9", 
         "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.9", 
+	"wt_data_deleter": "= 1.0.1",
         "wt_monitoring": "= 0.0.2", 
-        "wt_search": "= 1.0.7", 
+	"wt_netacuity": "= 1.0.10",
+	"wt_platformscheduler": "= 1.0.10",
+        "wt_search": "= 1.0.8", 
         "wt_sync": "= 1.0.4", 
         "wt_xd": "= 0.0.6"
     }, 
@@ -200,8 +203,8 @@
             "wrsmodify_group": "STAGINGDMZ\\F.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\F.WRS.Read"
         }, 
-        "wt_datadeleter": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/39376:id/DataDeleter.zip"
+        "wt_data_deleter": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/39505:id/DataDeleter.zip"
         }, 
         "wt_dx": {
             "app_settings_section": {
