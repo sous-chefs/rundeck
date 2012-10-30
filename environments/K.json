@@ -184,7 +184,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/.lastSuccessful/DataDeleter.zip"
         },
 	"wt_devicedataupdater": {
-	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt284/.lastSuccessful/artifacts.zip"
+	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt284/.lastSuccessful/DeviceDataUpdater.zip"
 	}, 
         "wt_dx": {
             "app_settings_section": {
