@@ -9,33 +9,19 @@
 #
 
 # destinations
-install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_data_deleter']['install_dir'].gsub(/[\\\/]+/,"\\"))
-log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_data_deleter']['log_dir'].gsub(/[\\\/]+/,"\\"))
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_data_deleter']['install_dir']).gsub(/[\\\/]+/,"\\")
+log_dir     = File.join(node['wt_common']['install_dir_windows'], node['wt_data_deleter']['log_dir']).gsub(/[\\\/]+/,"\\")
 
-# get data bag items
-auth_data = data_bag_item('authorization', node.chef_environment)
-svcuser = auth_data['wt_common']['system_user']
-
-powershell "uninstall data deleter" do
-  environment({'install_dir' => install_dir, 'service_binary' => node['wt_data_deleter']['datadeleter_binary']})
-  code <<-EOH
-    $binary_path = $env:install_dir + "\\" + $env:service_binary
-    $binary_path_exists = Test-Path $binary_path
-    if ($binary_path_exists) {
-      &$binary_path --uninstall
-    }
-  EOH
+datadeleter = File.join(install_dir, node['wt_data_deleter']['datadeleter_binary']).gsub(/[\\\/]+/,"\\")
+execute "#{node['wt_data_deleter']['datadeleter_binary']} uninstall" do
+  command "#{datadeleter} --uninstall"
+  only_if { File.exists?(datadeleter) }
 end
 
-powershell "uninstall deletion scheduler" do
-  environment({'install_dir' => install_dir, 'service_binary' => node['wt_data_deleter']['deletionscheduler_binary']})
-  code <<-EOH
-    $binary_path = $env:install_dir + "\\" + $env:service_binary
-    $binary_path_exists = Test-Path $binary_path
-    if ($binary_path_exists) {
-      &$binary_path --uninstall
-    }
-  EOH
+deletionscheduler = File.join(install_dir, node['wt_data_deleter']['deletionscheduler_binary']).gsub(/[\\\/]+/,"\\")
+execute "#{node['wt_data_deleter']['deletionscheduler_binary']} uninstall" do
+  command "#{deletionscheduler} --uninstall"
+  only_if { File.exists?(deletionscheduler) }
 end
 
 # delete install folder
@@ -44,8 +30,4 @@ directory install_dir do
   action :delete
 end
 
-# delete log folder
-directory log_dir do
-  recursive true
-  action :delete
-end
+unshare_wrs
