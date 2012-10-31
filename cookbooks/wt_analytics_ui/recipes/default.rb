@@ -23,7 +23,7 @@ install_url = node['wt_analytics_ui']['download_url']
 user_data = data_bag_item('authorization', node.chef_environment)
 ui_user   = user_data['wt_common']['ui_user']
 ui_pass   = user_data['wt_common']['ui_pass']
-
+rsa_user = user_data['wt_common']['system_acct']
 app_pool_name = node['wt_analytics_ui']['app_pool_name']
 
 # configure IIS
@@ -215,6 +215,21 @@ if ENV["deploy_build"] == "true" then
 		)
 	end
 
+
+        template "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
+                source "PublicPrivateKeys.rsa.erb"
+                variables(
+                        :modulus => user_data['wt_analytics_ui']['rsa']['modulus'],
+                        :exponent => user_data['wt_analytics_ui']['rsa']['exponent'],
+                        :p => user_data['wt_analytics_ui']['rsa']['p'],
+	                :q => user_data['wt_analytics_ui']['rsa']['q'],
+	                :dp => user_data['wt_analytics_ui']['rsa']['dp'],
+                        :dq => user_data['wt_analytics_ui']['rsa']['dq'],
+                        :inverse_q => user_data['wt_analytics_ui']['rsa']['inverse_q'],
+                        :d => user_data['wt_analytics_ui']['rsa']['d']
+                )
+        end
+
 	template "#{install_dir}\\App_Data\\brands\\mapping.xml" do
 		source "mapping.xml.erb"
 		variables(
@@ -236,6 +251,21 @@ if ENV["deploy_build"] == "true" then
 			:log_level => node['wt_analytics_ui']['log_level']
 		)
 	end
+
+        # run iss command on the .rsa file
+        
+        execute "asp_regiis_pi" do
+             command:  "aspnet_regiis pi WebTrends.UI.Reporting #{install_dir}\\bin\\PublicPrivateKeys.rsa"
+        end 
+
+        execute "asp_regiis_pa" do
+             command:  "aspnet_regiis pa WebTrends.UI.Reporting #{rsa_user}"
+        end
+
+        # delete the .rsa file
+        file "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
+          action :delete
+        end
 
 	share_wrs
 end
