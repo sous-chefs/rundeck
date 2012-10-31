@@ -27,6 +27,6 @@ when "0xE72C0"
   default['esx']['checksum'] = ""
 when "0xEA0C0"
   default['esx']['version'] = "5.1"
-  default['esx']['tarball'] = ""
-  default['esx']['checksum'] = ""
+  default['esx']['tarball'] = "VMwareTools-9.0.0-782409.tar.gz"
+  default['esx']['checksum'] = "be9ff564870ea98597b2e1f6965d8416f7708eeeb1b372be5f42ac4376d8336d"
 end
