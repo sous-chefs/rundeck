@@ -1,6 +1,8 @@
 Future
 	Change IIS site bindings
 	Search alternate/current environment for cache_hosts
+## 1.0.10
+	* Added rsa file data to template/databag and updated recipe to consume
 ## 1.0.9
 	* Removed Chomp
 ## 1.0.8
