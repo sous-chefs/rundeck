@@ -256,7 +256,7 @@
             "rta_host": "drta01.staging.dmz"
         }, 
         "wt_search": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt291/38989:id/Search.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt291/39663:id/Search.zip", 
             "search_hostname": "dsearch.staging.dmz"
         }, 
         "wt_sync": {
