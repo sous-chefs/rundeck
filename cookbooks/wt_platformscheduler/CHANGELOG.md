@@ -1,6 +1,8 @@
 ## 1.0.10
 * Add service account to "Performance Monitor Users"
 * Changed windows_package name to "WebtrendsVDMSchedulerAgent"
+* Added service start after install
+* Changed windows_package resource name in the uninstall so it doesn't conflict with the install resource.
 
 ## 1.0.9
 * Correctly named attribute

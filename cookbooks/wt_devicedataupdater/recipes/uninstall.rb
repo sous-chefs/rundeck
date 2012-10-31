@@ -1,18 +1,20 @@
+#
 # Cookbook Name:: wt_devicedataupdater
 # Recipe:: uninstall
-# Author:: Tim Smith
 #
-# Copyright 2012, Webtrends, Inc.
+# Copyright 2012, Webtrends Inc.
 #
 # All rights reserved - Do Not Redistribute
-# This recipe uninstalls existing RoadRunner installs.
+#
 
 # destinations
-install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_devicedataupdater']['install_dir']}"
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_devicedataupdater']['install_dir']).gsub(/[\\\/]+/,"\\")
 
-# determine root drive of install_dir - ENG390500
-if (install_dir =~ /^(\w:)\\.*$/)
-  install_dir_drive = $1
+# full path to DDU.exe
+ddu = File.join(install_dir, node['wt_devicedataupdater']['service_binary']).gsub(/[\\\/]+/,"\\")
+execute "#{node['wt_devicedataupdater']['service_binary']} uninstall" do
+  command "#{ddu} -uninstall"
+  only_if { File.exists?(ddu) }
 end
 
 # delete install folder
