@@ -25,4 +25,8 @@ when "0xE72C0"
   default['esx']['version'] = "5.0"
   default['esx']['tarball'] = ""
   default['esx']['checksum'] = ""
+when "0xEA0C0"
+  default['esx']['version'] = "5.1"
+  default['esx']['tarball'] = ""
+  default['esx']['checksum'] = ""
 end
