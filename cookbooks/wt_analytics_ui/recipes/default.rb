@@ -264,9 +264,9 @@ if ENV["deploy_build"] == "true" then
   end
 
   # delete the .rsa file
-  # file "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
-    # action :delete
-  # end
+  file "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
+    action :delete
+  end
 
 	share_wrs
 end

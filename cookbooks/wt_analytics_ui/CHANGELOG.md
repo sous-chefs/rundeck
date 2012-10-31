@@ -1,6 +1,9 @@
 Future
 	Change IIS site bindings
 	Search alternate/current environment for cache_hosts
+## 1.0.14
+  * Added delete back in
+	* Fixed templates
 ## 1.0.13
   * Commented out file delete
 ## 1.0.12
