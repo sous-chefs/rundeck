@@ -308,11 +308,11 @@
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz"
         },
-        "wt_streamingconfigservice": {
+        "wt_streamingconfigservice": { 
             "camdbname": "CAM",
             "camdbserver": "hcamdb01.staging.dmz",
             "config_service_url": "http://hconfigsvc.staging.dmz",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/37723:id/webtrends-streaming-configservice-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/39601:id/webtrends-streaming-configservice-bin.tar.gz"
         },
         "wt_streaminglogreplayer": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/37547:id/webtrends-streaminglogreplayer-bin.tar.gz",
