@@ -255,11 +255,11 @@ if ENV["deploy_build"] == "true" then
         # run iss command on the .rsa file
         
         execute "asp_regiis_pi" do
-             command:  "aspnet_regiis pi WebTrends.UI.Reporting #{install_dir}\\bin\\PublicPrivateKeys.rsa"
+             command  "aspnet_regiis pi WebTrends.UI.Reporting #{install_dir}\\bin\\PublicPrivateKeys.rsa"
         end 
 
         execute "asp_regiis_pa" do
-             command:  "aspnet_regiis pa WebTrends.UI.Reporting #{rsa_user}"
+             command  "aspnet_regiis pa WebTrends.UI.Reporting #{rsa_user}"
         end
 
         # delete the .rsa file
