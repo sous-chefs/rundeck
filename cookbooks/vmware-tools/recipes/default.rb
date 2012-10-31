@@ -8,7 +8,7 @@
 #
 
 if node['virtualization']['system'] == 'vmware'
-  
+
   bash "remove_vmware_tools" do
     code <<-EOH
     yum remove -y 'vmware*'
@@ -29,7 +29,7 @@ if node['virtualization']['system'] == 'vmware'
   remote_file "#{Chef::Config[:file_cache_path]}/#{node['esx']['tarball']}" do
     source "#{node['esx']['repo']}/#{node['esx']['tarball']}"
     checksum "#{node['esx']['checksum']}"
-    mode "0644"
+    mode 00644
     only_if "test ! -d /usr/lib/vmware-tools"
   end
 
