@@ -1,3 +1,7 @@
+## 1.1.8
+* Add compatibilityMode attribute for machineKey in web.config
+* Remove formsAuthentication credentials
+
 ## 1.1.7:
 * Change log4net template to use correct log location.
 
