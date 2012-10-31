@@ -36,8 +36,8 @@ java_home   = node['java']['java_home']
 java_opts = node['wt_streaminganalysis_monitor']['java_opts']
 user = node['wt_streaminganalysis_monitor']['user']
 group = node['wt_streaminganalysis_monitor']['group']
-nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
-thrift_port = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:storm][:nimbus][:thrift_port]
+nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['wt_streaminganalysis_monitor']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
+thrift_port = search(:node, "role:storm_nimbus AND role:#{node['wt_streaminganalysis_monitor']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:storm][:nimbus][:thrift_port]
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
