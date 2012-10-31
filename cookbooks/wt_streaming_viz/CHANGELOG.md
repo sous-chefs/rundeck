@@ -1,3 +1,7 @@
+## 1.1.11
+* Add compatibilityMode attribute for machineKey in web.config
+* Remove formsAuthentication credentials
+
 ## 1.1.10
 * Remove unnecessary "pod" attribute
 
