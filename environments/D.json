@@ -9,7 +9,7 @@
         "wt_analytics_ui": "= 1.0.9", 
         "wt_base": "= 0.10.53", 
         "wt_cam": "= 1.0.9", 
-        "wt_data_deleter": "= 1.0.1", 
+        "wt_data_deleter": "= 1.0.2", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.10", 
         "wt_platformscheduler": "= 1.0.10", 
@@ -200,7 +200,7 @@
             "wrsread_group": "STAGINGDMZ\\D.WRS.Read"
         }, 
         "wt_data_deleter": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/37684:id/DataDeleter.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/39654:id/DataDeleter.zip"
         }, 
         "wt_devicedataupdater": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt284/39571:id/DeviceDataUpdater.zip"
