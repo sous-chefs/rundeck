@@ -190,6 +190,31 @@ LoadPlugin java
 			InstancePrefix "getMaxTime"
 			Attribute "getMaxTime"
 		</Value>
+		<Value>
+			Type "gauge"
+			InstancePrefix "get.aboveOneSec.AvgTime"
+			Attribute "get.aboveOneSec.AvgTime"
+		</Value>
+		<Value>
+			Type "gauge"
+			InstancePrefix "get.aboveOneSec.NumOps"
+			Attribute "get.aboveOneSec.NumOps"
+		</Value>
+		<Value>
+			Type "gauge"
+			InstancePrefix "replicateLogEntries.aboveOneSec.AvgTime"
+			Attribute "replicateLogEntries.aboveOneSec.AvgTime"
+		</Value>
+		<Value>
+			Type "gauge"
+			InstancePrefix "replicateLogEntries.aboveOneSec.NumOps"
+			Attribute "replicateLogEntries.aboveOneSec.NumOps"
+		</Value>
+		<Value>
+			Type "gauge"
+			InstancePrefix "rollHLogWriterAvgTime"
+			Attribute "rollHLogWriterAvgTime"
+		</Value>
 	</MBean>
 	#WT Region Server Statistics
 	<MBean "region_server_statistics">
@@ -226,31 +251,7 @@ LoadPlugin java
 			InstancePrefix "stores"
 			Attribute "stores"
 		</Value>
-		<Value>
-			Type "gauge"
-			InstancePrefix "get.aboveOneSec.AvgTime"
-			Attribute "get.aboveOneSec.AvgTime"
-		</Value>
-		<Value>
-			Type "gauge"
-			InstancePrefix "get.aboveOneSec.NumOps"
-			Attribute "get.aboveOneSec.NumOps"
-		</Value>
-		<Value>
-			Type "gauge"
-			InstancePrefix "replicateLogEntries.aboveOneSec.AvgTime"
-			Attribute "replicateLogEntries.aboveOneSec.AvgTime"
-		</Value>
-		<Value>
-			Type "gauge"
-			InstancePrefix "replicateLogEntries.aboveOneSec.NumOps"
-			Attribute "replicateLogEntries.aboveOneSec.NumOps"
-		</Value>
-		<Value>
-			Type "gauge"
-			InstancePrefix "rollHLogWriterAvgTime"
-			Attribute "rollHLogWriterAvgTime"
-		</Value>
+
 		<Value>
 			Type "counter"
 			InstancePrefix "readRequestsCount"
