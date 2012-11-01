@@ -1,7 +1,7 @@
 {
     "chef_type": "environment",
     "cookbook_versions": {
-        "webtrends_server": "= 1.8.6",
+        "webtrends_server": "= 1.8.8",
         "wt_base": "= 1.0.1"
     },
     "default_attributes": {

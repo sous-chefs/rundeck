@@ -3,6 +3,7 @@
     "cookbook_versions": {
 		  "windows": "= 1.3.6",
       "wt_base": "= 1.0.1",
+      "webtrend_server": "= 1.8.8"
 		},
     "default_attributes": {
         "authorization": {
