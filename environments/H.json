@@ -1,7 +1,7 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "hadoop": "= 1.0.3", 
+        "hadoop": "= 1.0.3",  
         "hbase": "= 1.0.3", 
         "hive": "= 1.0.2", 
         "java": "= 1.6.0", 
@@ -161,7 +161,7 @@
             ]
         }, 
         "wt_analytics_ui": {}, 
-        "wt_aps": {
+        "wt_aps": { 
             "service_url": "http://daps01.staging.dmz",
             "aps_url_base": "/AccountProvisioning/"
         },
@@ -275,7 +275,7 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/37737:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/39987:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augmentation_bolt_count": 40, 
             "streaming_topology_field_grouping_local": "false", 
             "streaming_topology_in_session_bolt_count": 0, 
@@ -284,7 +284,7 @@
             "topic_list": [
                 "Lab_H_lrRawHits:3", 
                 "Lab_H_scsRawHits:12"
-            ], 
+            ],  
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
@@ -302,7 +302,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/39909:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/39984:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "sapi_service_url": "ws://hsapi01.staging.dmz:8080", 
             "usagedbname": "Streaming", 
