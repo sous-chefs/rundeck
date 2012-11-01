@@ -1,8 +1,8 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-		  "windows": "= 1.3.6"
-		}, 
+        "windows": "= 1.3.6"
+    }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -102,6 +102,11 @@
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
+        "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
+        }, 
         "webtrends_server": {
             "apt": [
                 {
@@ -182,10 +187,10 @@
         }, 
         "wt_data_deleter": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/.lastSuccessful/DataDeleter.zip"
-        },
-	"wt_devicedataupdater": {
-	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt284/.lastSuccessful/DeviceDataUpdater.zip"
-	}, 
+        }, 
+        "wt_devicedataupdater": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt284/.lastSuccessful/DeviceDataUpdater.zip"
+        }, 
         "wt_dx": {
             "app_settings_section": {
                 "streamingServiceRoot": "https://kdx.englab.webtrends.corp/StreamingServices_v3/"
