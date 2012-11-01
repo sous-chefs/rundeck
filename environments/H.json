@@ -159,6 +159,9 @@
             ]
         },
         "wt_analytics_ui": {},
+        "wt_aps": {
+            "service_url": "http://daps01.staging.dmz"
+        },
         "wt_cam": {
             "cam": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/.lastSuccessful/Cam.zip"
@@ -199,6 +202,9 @@
         },
         "wt_kafka_mm": {
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38875:id/MirrorMonitor-bin.tar.gz"
+        },
+        "wt_management_console": {
+            "service_url": "https://dmc.staging.dmz"
         },
         "wt_masterdb": {
             "master_db": "wtmaster",
@@ -308,7 +314,7 @@
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz"
         },
-        "wt_streamingconfigservice": { 
+        "wt_streamingconfigservice": {
             "camdbname": "CAM",
             "camdbserver": "hcamdb01.staging.dmz",
             "config_service_url": "http://hconfigsvc.staging.dmz",
