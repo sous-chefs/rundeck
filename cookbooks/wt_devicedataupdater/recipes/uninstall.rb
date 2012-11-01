@@ -14,6 +14,7 @@ install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_devic
 ddu = File.join(install_dir, node['wt_devicedataupdater']['service_binary']).gsub(/[\\\/]+/,"\\")
 execute "#{node['wt_devicedataupdater']['service_binary']} uninstall" do
   command "#{ddu} -uninstall"
+  ignore_failure true
   only_if { File.exists?(ddu) }
 end
 
