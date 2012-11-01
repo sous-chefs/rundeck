@@ -8,7 +8,6 @@
   },
   "chef_type": "role",
   "run_list": [
-    "recipe[ms_dotnet35]",
     "recipe[ms_dotnet4]",
     "role[iis]",
     "recipe[wt_portfolio_admin]"
