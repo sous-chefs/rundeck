@@ -16,7 +16,7 @@
         "webpi": "= 1.0.3",
         "webtrends_server": "= 1.8.6",
         "windows": "= 1.2.12",
-        "wt_base": "= 0.10.53",
+        "wt_base": "= 1.0.1",
         "zookeeper": "= 1.1.6"
     },
     "default_attributes": {
