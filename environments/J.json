@@ -3,7 +3,7 @@
     "cookbook_versions": {
         "java": "= 1.5.4", 
         "nagios": "= 1.6.1", 
-        "webpi": "= 1.0.3", 
+        "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.6", 
         "windows": "= 1.2.12", 
         "wt_analytics_ui": "= 1.0.1", 
@@ -116,6 +116,11 @@
             "x86": {
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
+        }, 
+        "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
