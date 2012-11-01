@@ -2,7 +2,7 @@
 # Cookbook Name:: wt_portfolio_manager
 # Recipe:: default
 #
-# Copyright 2012, Webtrends Inc.
+# Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
 # This recipe installs the Portfolio MC IIS app

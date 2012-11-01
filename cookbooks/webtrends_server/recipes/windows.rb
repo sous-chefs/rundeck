@@ -9,7 +9,7 @@
 #
 
 # make sure that this recipe only runs on Windows systems
-if not node.platform?("windows")
+if not platform?("windows")
   Chef::Log.info("Windows required for the Windows recipe.")
   return
 end

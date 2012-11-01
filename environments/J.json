@@ -3,11 +3,11 @@
     "cookbook_versions": {
         "java": "= 1.5.4", 
         "nagios": "= 1.6.1", 
-        "webpi": "= 1.0.3", 
-        "webtrends_server": "= 1.8.6", 
-        "windows": "= 1.2.12", 
+        "webpi": "= 1.0.16", 
+        "webtrends_server": "= 1.8.8", 
+        "windows": "= 1.3.6", 
         "wt_analytics_ui": "= 1.0.1", 
-        "wt_base": "= 0.10.53", 
+        "wt_base": "= 1.0.1", 
         "wt_cam": "= 1.0.9", 
         "wt_monitoring": "= 0.0.2", 
         "wt_search": "= 1.0.7", 
@@ -116,6 +116,11 @@
             "x86": {
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
+        }, 
+        "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
@@ -238,9 +243,6 @@
         "wt_xd": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/09122012/XD_Map_Reduce_master_1.0.0-SNAPSHOT.102_artifacts.zip", 
             "environment": "support-staging"
-        }, 
-        "yum": {
-            "epel_release": "6-7"
         }, 
         "zookeeper": {
             "client_port": 2181, 
