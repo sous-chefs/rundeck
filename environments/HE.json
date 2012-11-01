@@ -10,10 +10,11 @@
         "nginx": "= 0.101.0", 
         "php5-cgi": "= 1.0.2", 
         "sudo": "= 1.0.0", 
-        "webpi": "= 1.0.3", 
-        "webtrends_server": "= 1.8.6", 
+        "webpi": "= 1.0.16", 
+        "webtrends_server": "= 1.8.8", 
+        "windows": "= 1.3.6", 
         "wt_analytics_ui": "= 1.0.1", 
-        "wt_base": "= 0.10.53", 
+        "wt_base": "= 1.0.1", 
         "wt_commonlib": "= 0.10.3", 
         "wt_dx": "= 0.10.3", 
         "wt_heatmaps": "= 0.10.45", 
@@ -174,8 +175,9 @@
             }
         }, 
         "webpi": {
-            "url": "http://repo.staging.dmz/repo/windows/webpi/webpicmd_x86.zip", 
-            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/WebProductList.xml"
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
@@ -240,9 +242,6 @@
             "jmx_port": 9999, 
             "metric_prefix": "support-staging.servers", 
             "monitoring_enabled": "true"
-        }, 
-        "yum": {
-            "epel_release": "6-7"
         }, 
         "zookeeper": {
             "clientPort": 2181, 

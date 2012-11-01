@@ -248,9 +248,6 @@
             "metric_prefix": "hadoop-clusters.servers", 
             "monitoring_enabled": "true"
         }, 
-        "yum": {
-            "epel_release": "6-7"
-        }, 
         "zookeeper": {
             "y_cluster": {
                 "download_url": "http://repo.staging.dmz/repo/linux/zookeeper/zookeeper-3.3.5.tar.gz", 
