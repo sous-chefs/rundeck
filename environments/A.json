@@ -244,9 +244,6 @@
             "download_url": "http://teamcity/guestAuth/repository/downloadAll/bt134/.lastSuccessful/artifacts.zip",
             "environment": "support-staging"
         },
-        "yum": {
-            "epel_release": "6-7"
-        },
         "zookeeper": {
             "client_port": 2181,
             "init_limit": 10,

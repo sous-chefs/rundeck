@@ -175,9 +175,6 @@
             "masterdbname": "wtmaster",
             "masterdbserver": "jmasterdb01.englab.webtrends.corp"
         },
-        "yum": {
-            "epel_release": "6-7"
-        },
         "zookeeper": {
             "client_port": 2181,
             "init_limit": 10,
