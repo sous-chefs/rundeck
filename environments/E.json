@@ -6,8 +6,10 @@
         "hive": "= 1.0.2", 
         "kafka": "= 1.0.10", 
         "storm": "= 1.0.19", 
-        "webpi": "= 1.0.3", 
-        "webtrends_server": "= 1.8.6", 
+        "webpi": "= 1.0.16", 
+        "webtrends_server": "= 1.8.8", 
+        "windows": "= 1.3.6", 
+        "wt_base": "= 1.0.1", 
         "wt_cam": "= 1.0.4", 
         "wt_heatmaps": "= 0.10.42", 
         "wt_realtime_hadoop": "= 1.0.2", 
@@ -101,6 +103,11 @@
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
+        "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
+        }, 
         "webtrends_server": {
             "apt": [
                 {
@@ -190,9 +197,6 @@
             "masterdbname": "wtmaster", 
             "masterdbserver": "dmasterdb01.englab.webtrends.corp", 
             "port": "8080"
-        }, 
-        "yum": {
-            "epel_release": "6-7"
         }, 
         "zookeeper": {
             "client_port": 2181, 
