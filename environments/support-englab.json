@@ -132,9 +132,6 @@
             "jmx_port": 9999,
             "metric_prefix": "support-englab.servers",
             "monitoring_enabled": "true"
-        },
-        "yum": {
-            "epel_release": "6-7"
         }
     },
     "description": "Englab Servers",
