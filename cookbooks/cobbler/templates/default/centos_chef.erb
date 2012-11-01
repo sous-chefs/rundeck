@@ -7,7 +7,7 @@
 ntpdate <%= @node[:ntp][:servers][0] %>
 
 # install chef
-yum -y --nogpgcheck install gcc make ruby-devel
+yum -y --nogpgcheck install gcc make ruby-devel ruby rubygems
 gem sources -a <%= @node[:wt_common][:gem_repo] %>
 gem install chef -v <%= @node[:cobbler][:deploy_chef_version] %>
 gem install ohai
