@@ -95,6 +95,11 @@
             ],
             "search": "englab.webtrends.corp webtrends.corp staging.dmz"
         },
+        "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078",
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebPICMD.zip",
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webpi40productlist.xml"
+        },
         "webtrends_server": {
             "apt": [
                 {
