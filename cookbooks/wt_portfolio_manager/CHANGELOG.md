@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## 1.1.10
 * Add aps_url_base to appSettings.config template.
 
