@@ -62,7 +62,7 @@ if ENV["deploy_build"] == "true" then
     end
   end
 
-  ENV['deploy_build'] = 'false'
+  #ENV['deploy_build'] = 'false'
   log "Source URL: #{download_url}"
 
   # unzip the install package

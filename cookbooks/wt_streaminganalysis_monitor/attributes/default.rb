@@ -21,3 +21,4 @@ default['wt_streaminganalysis_monitor']['metricslistener_topic'] = "storm-metric
 default['wt_streaminganalysis_monitor']['stats_interval'] = 30
 default['wt_streaminganalysis_monitor']['healthcheck_enabled'] = "true"
 default['wt_streaminganalysis_monitor']['healthcheck_port'] = 9000
+default['wt_streaminganalysis_monitor']['cluster_role'] = "wt_storm_streaming_topo"
