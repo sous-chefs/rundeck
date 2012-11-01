@@ -144,9 +144,6 @@
         "wt_streamingconfigservice": {
             "config_service_url": "http://butil01.staging.dmz:8080"
         },
-        "yum": {
-            "epel_release": "6-7"
-        },
         "zookeeper": {
             "client_port": 2181,
             "init_limit": 10,

@@ -270,9 +270,6 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36325:id/artifacts.zip",
             "environment": "support-staging"
         },
-        "yum": {
-            "epel_release": "6-7"
-        },
         "zookeeper": {
             "client_port": 2181,
             "init_limit": 10,
