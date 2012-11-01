@@ -1,4 +1,7 @@
-## 1.8.8:
+## 1.1.9
+* Add elmah entry to handlers section of web.config template.
+
+## 1.1.8:
 * Add aps and mc URLs
 
 ## 1.1.7:
