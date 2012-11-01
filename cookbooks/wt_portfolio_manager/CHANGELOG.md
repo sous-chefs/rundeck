@@ -1,3 +1,6 @@
+## 1.1.10
+* Add aps_url_base to appSettings.config template.
+
 ## 1.1.9
 * Add elmah entry to handlers section of web.config template.
 
