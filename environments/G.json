@@ -8,6 +8,7 @@
         "storm": "= 1.0.19",
         "webpi": "= 1.0.16",
         "webtrends_server": "= 1.8.8",
+        "windows": "= 1.3.6",
         "wt_base": "= 1.0.1",
         "wt_cam": "= 1.0.4",
         "wt_heatmaps": "= 0.10.42",
