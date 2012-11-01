@@ -256,13 +256,11 @@
             "version": "502"
         },
         "wt_portfolio_admin": {
-            "cam_auth_url": "https://hsauth.webtrends.com",
+            "account_ui_url": "https://haccount.webtrends.com",
             "custom_errors": "Off",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/39588:id/Portfolio.Admin.zip",
             "elmah_remote_access": "yes",
-            "proxy_address": "http://sproxy02.staging.dmz:3128",
-            "proxy_enabled": "true",
-            "sapi_url": "ws://hsapi01.staging.dmz:8080"
+            "proxy_enabled": "true"
         },
         "wt_portfolio_manager": {
            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/38679:id/Portfolio.Manager.zip",
@@ -301,9 +299,8 @@
             "custom_errors": "Off",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/38616:id/Streaming.Viz.zip",
             "elmah_remote_access": "yes",
-            "port": 80,
             "proxy_enabled": "true",
-            "streams_ui_url": "https://nstreams.webtrends.com/"
+            "streams_ui_url": "https://nstreams.webtrends.com"
         },
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/39090:id/webtrends-streamingapi-bin.tar.gz",
