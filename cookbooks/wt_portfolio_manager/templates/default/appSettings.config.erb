@@ -5,7 +5,7 @@
     <add key="PreserveLoginUrl" value="true" />
     <add key="ClientValidationEnabled" value="true" />
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
-  
+
     <!-- ELMAH -->
     <add key="elmah.mvc.disableHandler" value="false" />
     <add key="elmah.mvc.requiresAuthentication" value="false" />
@@ -15,7 +15,7 @@
     <!-- Licensing -->
     <add key="aps.url" value="<%= @aps_url %>"/>
     <add key="aps.url.base" value=""/>
-    <add key="mc.url" value="https://mc"/>
+    <add key="mc.url" value="<%= @management_console_url %>"/>
 
     <!-- streaming locations -->
     <add key="cam.url" value="<%= @cam_url %>"/>
