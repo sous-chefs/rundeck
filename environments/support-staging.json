@@ -14,7 +14,7 @@
         "ondemand_base": "= 1.7.12",
         "rundeck": "= 1.0.4",
         "webpi": "= 1.0.3",
-        "webtrends_server": "= 1.8.6",
+        "webtrends_server": "= 1.8.8",
         "windows": "= 1.2.12",
         "wt_base": "= 1.0.1",
         "zookeeper": "= 1.1.6"

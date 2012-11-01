@@ -4,7 +4,7 @@
         "java": "= 1.5.4",
         "nagios": "= 1.6.1",
         "webpi": "= 1.0.3",
-        "webtrends_server": "= 1.8.6",
+        "webtrends_server": "= 1.8.8",
         "windows": "= 1.2.12",
         "wt_analytics_ui": "= 1.0.9",
         "wt_base": "= 1.0.1",
