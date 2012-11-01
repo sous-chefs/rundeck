@@ -162,14 +162,9 @@
         }, 
         "wt_analytics_ui": {}, 
         "wt_aps": {
-<<<<<<< HEAD
             "service_url": "http://daps01.staging.dmz",
             "aps_url_base": "/AccountProvisioning/"
         },
-=======
-            "service_url": "http://daps01.staging.dmz"
-        }, 
->>>>>>> 1f5c1fb39a3990e1093d5935c929f06b4fbc80a4
         "wt_cam": {
             "cam": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/.lastSuccessful/Cam.zip"
