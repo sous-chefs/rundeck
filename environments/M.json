@@ -87,6 +87,7 @@
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
         "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
             "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
             "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
