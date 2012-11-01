@@ -241,9 +241,6 @@
             "metric_prefix": "support-staging.servers",
             "monitoring_enabled": "true"
         },
-        "yum": {
-            "epel_release": "6-7"
-        },
         "zookeeper": {
             "clientPort": 2181,
             "client_port": 2181,
