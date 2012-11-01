@@ -260,7 +260,7 @@
             "custom_errors": "Off",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/39588:id/Portfolio.Admin.zip",
             "elmah_remote_access": "yes",
-            "proxy_enabled": "true",
+            "proxy_enabled": "true"
         },
         "wt_portfolio_manager": {
            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/38679:id/Portfolio.Manager.zip",
