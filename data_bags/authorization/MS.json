@@ -1,0 +1,24 @@
+{
+    "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "alternate_uid": "2001", 
+    "alternate_user": "bobo", 
+    "id": "MS", 
+    "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "wt_common": {
+        "install_acct": "wtInstaller", 
+        "install_pass": "Bijoux1", 
+        "install_user": "STAGINGDMZ\\wtInstaller", 
+        "loader_acct": "wtLoader", 
+        "loader_pass": "Bijoux1", 
+        "loader_user": "STAGINGDMZ\\wtLoader", 
+        "system_acct": "wtSystem", 
+        "system_pass": "Bijoux1", 
+        "system_user": "STAGINGDMZ\\wtSystem", 
+        "ui_acct": "wtUI", 
+        "ui_pass": "Bijoux1", 
+        "ui_user": "STAGINGDMZ\\wtUI"
+    }, 
+    "wt_netacuity": {
+        "admin_password": "Bijoux01"
+    }
+}
