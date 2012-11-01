@@ -2,7 +2,8 @@
     "chef_type": "environment",
     "cookbook_versions": {
         "cobbler": "= 1.0.4",
-        "webtrends_server": "= 1.8.6"
+        "webtrends_server": "= 1.8.6",
+        "wt_base": "= 1.0.1"
     },
     "default_attributes": {
         "authorization": {
