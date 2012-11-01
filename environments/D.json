@@ -117,8 +117,9 @@
             }
         },
         "webpi": {
-            "url": "http://repo.staging.dmz/repo/windows/webpi/webpicmd_x86.zip",
-            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/WebProductList.xml"
+            "checksum": "fc763c31be35e50fea3381082ddbb078",
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebPICMD.zip",
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webpi40productlist.xml"
         },
         "webtrends_server": {
             "apt": [
