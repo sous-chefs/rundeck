@@ -13,7 +13,7 @@
         "nagios": "= 1.6.1", 
         "ondemand_base": "= 1.7.12", 
         "rundeck": "= 1.0.4", 
-        "webpi": "= 1.0.3", 
+        "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.6", 
         "windows": "= 1.2.12", 
         "wt_base": "= 0.10.53", 
@@ -232,6 +232,11 @@
             "x86": {
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
+        }, 
+        "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
