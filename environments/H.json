@@ -160,7 +160,8 @@
         },
         "wt_analytics_ui": {},
         "wt_aps": {
-            "service_url": "http://daps01.staging.dmz"
+            "service_url": "http://daps01.staging.dmz",
+            "aps_url_base": "/AccountProvisioning/"
         },
         "wt_cam": {
             "cam": {
