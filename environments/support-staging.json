@@ -36,6 +36,7 @@
             }
         },
         "cobbler": {
+            "deploy_chef_version": "10.16.2",
             "manage_dhcp": 1,
             "pxe_just_once": 1,
             "subnets": {
