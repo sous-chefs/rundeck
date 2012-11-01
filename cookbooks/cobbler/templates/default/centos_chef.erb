@@ -13,6 +13,9 @@ gem install chef -v <%= @node[:cobbler][:deploy_chef_version] %>
 gem install ohai
 chkconfig chef-client on
 
+# create chef config dir
+mkdir /etc/chef
+
 # fetch validation.pem
 wget -O /etc/chef/validation.pem http://$http_server/validation.pem
 
