@@ -2,7 +2,7 @@
 # Cookbook Name:: wt_portfolio_manager
 # Recipe:: default
 #
-# Copyright 2012, Webtrends
+# Copyright 2012, Webtrends Inc.
 #
 # All rights reserved - Do Not Redistribute
 # This recipe installs the Portfolio MC IIS app
@@ -114,7 +114,9 @@ template "#{install_dir}\\appSettings.config" do
 		:cam_url => node['wt_cam']['cam_service_url'],
 		:cam_url_base => node['wt_portfolio_manager']['cam_service_url_base'],
 		:config_url => node['wt_streamingconfigservice']['config_service_url'],
-		:ad_network => node['authorization']['ad_auth']['ad_network']
+		:ad_network => node['authorization']['ad_auth']['ad_network'],
+		:aps_url => node['wt_aps']['service_url'],
+		:management_console_url => node['wt_management_console']['service_url']
 	)
 end
 
