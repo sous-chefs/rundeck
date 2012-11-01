@@ -11,7 +11,7 @@
         "php5-cgi": "= 1.0.2",
         "sudo": "= 1.0.0",
         "webpi": "= 1.0.3",
-        "webtrends_server": "= 1.8.6",
+        "webtrends_server": "= 1.8.8",
         "wt_analytics_ui": "= 1.0.1",
         "wt_base": "= 1.0.1",
         "wt_commonlib": "= 0.10.3",
