@@ -1,3 +1,6 @@
+## 1.0.31
+* Added ui user to the Performance Monitor Users group
+
 ## 1.0.30
 * Address a food critic warning
 
