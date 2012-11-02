@@ -1,6 +1,6 @@
 name 'wt_devicedataupdater'
-maintainer       "Kendrick"
-maintainer_email "kendrick.martin@webtrends.com"
+maintainer       "John Easterday"
+maintainer_email "John.Easterday@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures Webtrends Device Data Updater"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
