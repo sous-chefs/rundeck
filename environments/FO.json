@@ -6,8 +6,11 @@
         "hbase": "= 1.1.3", 
         "hive": "= 1.1.0", 
         "java": "= 1.5.2", 
-        "ondemand_base": "= 1.7.12", 
         "rundeck": "= 1.0.4", 
+        "webpi": "= 1.0.16", 
+        "webtrends_server": "= 1.8.8", 
+        "windows": "= 1.3.6", 
+        "wt_base": "= 1.0.1", 
         "zookeeper": "= 1.1.4"
     }, 
     "default_attributes": {
@@ -138,34 +141,6 @@
             "sysadmin_email": "trent.white@webtrends.com", 
             "users_databag_group": "staging"
         }, 
-        "ondemand_base": {
-            "apt": [
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
-                }, 
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "distribution_suffix": "-0.10", 
-                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
-                    "name": "wtlab-opscode", 
-                    "url": "http://repo.staging.dmz/repo/apt/opscode"
-                }
-            ], 
-            "yum": [
-                {
-                    "description": "Webtrends Repo", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
-                }
-            ]
-        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -188,6 +163,11 @@
             "x86": {
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
+        }, 
+        "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
@@ -240,9 +220,6 @@
             "jmx_port": 9999, 
             "metric_prefix": "support-staging.servers", 
             "monitoring_enabled": "true"
-        }, 
-        "yum": {
-            "epel_release": "6-7"
         }
     }, 
     "description": "Test environment for HBase", 

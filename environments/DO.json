@@ -133,8 +133,9 @@
             }
         }, 
         "webpi": {
-            "url": "http://chefclient02.devops.dmz/windows/webpi/webpicmd_x86.zip", 
-            "xmlpath": "http://chefclient02.devops.dmz/windows/webpi/WebProductList.xml"
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
@@ -256,9 +257,6 @@
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/18842:id/streamingcollection-bin.tar.gz", 
             "port": 8080
-        }, 
-        "yum": {
-            "epel_release": "6-7"
         }, 
         "zookeeper": {
             "client_port": 2181, 
