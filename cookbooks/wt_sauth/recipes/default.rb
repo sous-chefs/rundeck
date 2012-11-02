@@ -135,18 +135,17 @@ if ENV["deploy_build"] == "true" then
         user user_data['wt_common']['ui_user']
         returns [0, 2]
         action :add
+  end  
+
+	ruby_block "prehead app pool" do
+	  block do
+		  require 'net/http'
+      uri = URI(url)
+      puts Net::HTTP.get(uri)
+	  end
+		action :create
   end
-
-  #hit the site to trigger the perfmon counters creation
-
-  def http_get(url)
-    uri = URI(url)
-    puts Net::HTTP.get(uri)
-  end
-
-  require 'net/http'
-  http_get('http://localhost/')
-
+	
   #remove the user from the admin group
   wt_base_netlocalgroup "Administrators" do
         user user_data['wt_common']['ui_user']

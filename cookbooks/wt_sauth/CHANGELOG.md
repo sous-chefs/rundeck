@@ -1,3 +1,6 @@
+## 1.0.9
+* Added ruby block to call the preload of site before removing from function. 
+
 ## 1.0.8
 * Added wtUI user to Performance Monitor Users group
 
