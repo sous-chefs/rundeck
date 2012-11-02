@@ -114,9 +114,9 @@ template "#{install_dir}\\appSettings.config" do
 		:cam_url => node['wt_cam']['cam_service_url'],
 		:cam_url_base => node['wt_portfolio_manager']['cam_service_url_base'],
 		:config_url => node['wt_streamingconfigservice']['config_service_url'],
-		:ad_network => node['authorization']['ad_auth']['ad_network'],
+		:domain => node['domain'],
 		:aps_url => node['wt_aps']['service_url'],
-                :aps_url_base => node['wt_aps']['aps_url_base'],
+		:aps_url_base => node['wt_aps']['aps_url_base'],
 		:management_console_url => node['wt_management_console']['service_url']
 	)
 end
