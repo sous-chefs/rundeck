@@ -282,7 +282,7 @@
             "streaming_topology_validation_bolt_count": 100, 
             "streaming_topology_zmq_emitter_bolt_count": 50, 
             "topic_list": [
-                "Lab_H_lrRawHits:3", 
+                "Lab_H_lrRawHits:12", 
                 "Lab_H_scsRawHits:12"
             ],  
             "worker": {
