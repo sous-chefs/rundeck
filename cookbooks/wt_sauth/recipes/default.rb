@@ -80,6 +80,13 @@ wt_base_icacls log_dir do
 	perm :modify
 end
 
+wt_base_netlocalgroup "Performance Monitor Users" do
+        user user_data['wt_common']['ui_user']
+        returns [0, 2]
+        action :add
+end
+
+
 if ENV["deploy_build"] == "true" then
   windows_zipfile install_dir do
     source node['wt_sauth']['download_url']

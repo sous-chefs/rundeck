@@ -1,3 +1,6 @@
+## 1.0.8
+* Added wtUI user to Performance Monitor Users group
+
 ## 1.0.7:
 * Update request handlers to MVC4 versions
 
