@@ -109,13 +109,6 @@ if deploy_mode?
   # add the plugins here
   include_recipe "wt_cam::cam_plugins"
 
-  iis_app "CAM" do
-  	path "/Cam"
-  	application_pool app_pool
-  	physical_path install_dir
-  	action :add
-  end
-
   iis_config auth_cmd do
   	action :config
   end
