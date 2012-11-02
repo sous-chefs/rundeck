@@ -283,7 +283,7 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/37737:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/40061:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augmentation_bolt_count": 10, 
             "streaming_topology_in_session_bolt_count": 0, 
             "streaming_topology_validation_bolt_count": 10, 
@@ -309,7 +309,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/39090:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/40121:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "sapi_service_url": "ws://nsapi01.staging.dmz:8080", 
             "usagedbname": "Streaming", 
