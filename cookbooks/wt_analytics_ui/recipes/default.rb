@@ -255,7 +255,12 @@ if ENV["deploy_build"] == "true" then
   # run iss command on the .rsa file
 
   execute "asp_regiis_pi" do
-    command  "aspnet_regiis pi WebTrends.UI.Reporting #{install_dir}\\bin\\PublicPrivateKeys.rsa"
+    user ui_user
+		command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi WebTrends.UI.Reporting #{install_dir}\\bin\\PublicPrivateKeys.rsa"
+  end
+
+  execute "asp_regiis_pa" do
+    command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pa WebTrends.UI.Reporting #{rsa_user}"
   end
 
   execute "asp_regiis_pa" do
