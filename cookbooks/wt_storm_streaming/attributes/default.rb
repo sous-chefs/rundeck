@@ -8,10 +8,10 @@
 
 # wt specific parameters
 default['wt_storm_streaming']['download_url'] = ""
-default['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'] = 10
+default['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'] = 100
 default['wt_storm_streaming']['streaming_topology_in_session_bolt_count'] = 0
-default['wt_storm_streaming']['streaming_topology_validation_bolt_count'] = 10
-default['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'] = 1
+default['wt_storm_streaming']['streaming_topology_validation_bolt_count'] = 100
+default['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'] = 50
 default['wt_storm_streaming']['streaming_topology_field_grouping_local'] = "true"
 default['wt_storm_streaming']['streaming_topology_mode_local'] = "false"
 default['wt_storm_streaming']['topic_list'] = []
@@ -41,7 +41,7 @@ default['wt_storm_streaming']['supervisor']['heartbeat_frequency_secs'] = 5
 default['wt_storm_streaming']['supervisor']['enable'] = true
 
 # worker attributes
-default['wt_storm_streaming']['worker']['childopts'] = "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+default['wt_storm_streaming']['worker']['childopts'] = "-Xmx2048m -Xms2048m -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled -Dcom.sun.management.jmxremote"
 default['wt_storm_streaming']['worker']['heartbeat_frequency_secs'] = 1
 default['wt_storm_streaming']['task']['heartbeat_frequency_secs'] = 3
 default['wt_storm_streaming']['task']['refresh_poll_secs'] = 10
