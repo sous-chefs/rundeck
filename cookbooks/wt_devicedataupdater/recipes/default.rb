@@ -38,7 +38,7 @@ end
 wt_base_icacls install_dir do
   user svcuser
   perm :read
-  action :grant
+  action :full
 end
 
 # create the log directory
