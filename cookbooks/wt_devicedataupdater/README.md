@@ -8,6 +8,7 @@ Windows cookbook
 
 Attributes
 ==========
+['wt_common']['config_share'] must be added to enviroment file and set accordingly.
 
 
 Data Bag Items
