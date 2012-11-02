@@ -140,7 +140,7 @@ if ENV["deploy_build"] == "true" then
 	ruby_block "prehead app pool" do
 	  block do
 		  require 'net/http'
-      uri = URI(url)
+      uri = URI("http://localhost/v1/healthcheck")
       puts Net::HTTP.get(uri)
 	  end
 		action :create
