@@ -73,6 +73,12 @@ wt_base_icacls log_dir do
 	perm :modify
 end
 
+wt_base_netlocalgroup "Performance Monitor Users" do
+        user user_data['wt_common']['ui_user']
+        returns [0, 2]
+        action :add
+end
+
 if deploy_mode?
   windows_zipfile install_dir do
     source node['wt_cam']['cam']['download_url']
@@ -102,13 +108,6 @@ if deploy_mode?
 
   # add the plugins here
   include_recipe "wt_cam::cam_plugins"
-
-  iis_app "CAM" do
-  	path "/Cam"
-  	application_pool app_pool
-  	physical_path install_dir
-  	action :add
-  end
 
   iis_config auth_cmd do
   	action :config
