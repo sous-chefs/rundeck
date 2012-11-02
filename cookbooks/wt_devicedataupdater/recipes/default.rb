@@ -37,8 +37,8 @@ end
 
 wt_base_icacls install_dir do
   user svcuser
-  perm :read
-  action :full
+  perm :full
+  action :grant
 end
 
 # create the log directory
@@ -81,8 +81,8 @@ if deploy_mode?
 
 end
 
-template "#{install_dir}\\bin" do
-	source "DeviceDataUpdater.erb"
+template "#{install_dir}\\DDU.exe.config" do
+	source "DeviceDataUpdater.exe.config.erb"
 	variables ({
 		:archivedir => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin\\archive",
 		:outputdir => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin"
