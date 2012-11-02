@@ -18,7 +18,7 @@
         "wt_portfolio_admin": "= 1.1.8", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_realtimeapi": "= 1.0.1", 
-        "wt_sauth": "= 1.0.8", 
+        "wt_sauth": "= 1.0.9", 
         "wt_storm_realtime": "= 2.1.6", 
         "wt_storm_streaming": "= 2.1.16", 
         "wt_streaming_viz": "= 1.1.11", 
