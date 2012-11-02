@@ -8,27 +8,28 @@
         "kafka": "= 1.0.13", 
         "nagios": "= 1.6.1", 
         "storm": "= 1.0.28", 
-        "webtrends_server": "= 1.8.6", 
+        "webpi": "= 1.0.16", 
+        "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
         "wt_base": "= 1.0.1", 
         "wt_cam": "= 1.0.28", 
         "wt_kafka_mm": "= 0.0.17", 
         "wt_netacuity": "= 1.0.9", 
         "wt_portfolio_admin": "= 1.1.7", 
-        "wt_portfolio_manager": "= 1.1.5", 
+        "wt_portfolio_manager": "= 1.1.10", 
         "wt_realtime_hadoop": "= 1.0.1", 
         "wt_realtimeapi": "= 0.0.23", 
         "wt_sauth": "= 1.0.7", 
         "wt_storm_realtime": "= 2.1.1", 
         "wt_storm_streaming": "= 2.1.14", 
         "wt_streaming_viz": "= 1.1.9", 
+        "wt_streaminganalysis_monitor": "= 1.0.0", 
         "wt_streamingapi": "= 1.0.11", 
         "wt_streamingauditor": "= 1.0.8", 
         "wt_streamingcollection": "= 0.0.28", 
         "wt_streamingconfigservice": "= 1.0.2", 
-        "wt_streaminglogreplayer": "= 1.1.1",
-	"wt_streaminganalysis_monitor": "= 1.0.0",        
-	 "zookeeper": "= 1.1.5"
+        "wt_streaminglogreplayer": "= 1.1.1", 
+        "zookeeper": "= 1.1.5"
     }, 
     "default_attributes": {
         "authorization": {
@@ -89,8 +90,8 @@
             "log_flush_scheduler_time_interval": "500", 
             "log_flush_time_interval": "500", 
             "log_retention_hours": "2", 
-            "num_partitions": "3", 
-            "threads": "8", 
+            "num_partitions": "12", 
+            "threads": "16", 
             "version": "0.7.1"
         }, 
         "memcached": {}, 
@@ -128,8 +129,9 @@
             }
         }, 
         "webpi": {
-            "url": "http://repo.staging.dmz/repo/windows/webpi/WebPICMD.zip", 
-            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webpi40productlist.xml"
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
@@ -231,9 +233,16 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/39761:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/40019:id/Portfolio.Manager.zip", 
             "manager_ui_url": ""
         }, 
+            "wt_management_console": {
+            "service_url": "https://dmc.staging.dmz"
+        },
+        "wt_aps": {
+            "service_url": "http://daps01.staging.dmz",
+            "aps_url_base": "/AccountProvisioning/"
+        },
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
             "environment": "support-staging", 
@@ -266,14 +275,14 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/37737:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augmentation_bolt_count": 10, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/40061:id/streaming-analysis-bin.tar.gz", 
+            "streaming_topology_augmentation_bolt_count": 25, 
             "streaming_topology_in_session_bolt_count": 0, 
-            "streaming_topology_validation_bolt_count": 10, 
-            "streaming_topology_zmq_emitter_bolt_count": 1, 
+            "streaming_topology_validation_bolt_count": 25, 
+            "streaming_topology_zmq_emitter_bolt_count": 5, 
             "topic_list": [
-                "Lab_B_scsRawHits:3", 
-                "Lab_B_lrRawHits:3"
+                "Lab_B_scsRawHits:6", 
+                "Lab_B_lrRawHits:6"
             ], 
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
@@ -287,17 +296,17 @@
             "proxy_enabled": "true", 
             "streams_ui_url": "https://bstreams.webtrends.com/"
         }, 
+        "wt_streaminganalysis_monitor": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/38846:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
+            "healthcheck_port": 9001, 
+            "jmx_port": 9998
+        }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/39090:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/39984:id/webtrends-streamingapi-bin.tar.gz", 
             "sapi_service_url": "ws://bsapi.webtrends.com", 
             "usagedbname": "Streaming", 
             "usagedbserver": "bcamdb01.staging.dmz"
-        },
-	"wt_streaminganalysis_monitor": {
-    	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/38846:id/webtrends-streaming-analysis-monitor-bin.tar.gz",
-    	    "jmx_port": 9998,
-    	    "healthcheck_port": 9001
-	},
+        }, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/39187:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://bscs.webtrends.com,http://bscs01.staging.dmz:8080", 
