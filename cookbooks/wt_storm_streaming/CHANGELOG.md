@@ -1,3 +1,6 @@
+## 2.1.17
+* Changed the jvm setting for child opts and up the bolt counts.
+
 ## 2.1.16
 * Never set node attributes directly.  Then we have to fix stuff later
 
