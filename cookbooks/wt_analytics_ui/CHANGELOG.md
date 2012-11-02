@@ -1,6 +1,11 @@
 Future
 	Change IIS site bindings
 	Search alternate/current environment for cache_hosts
+## 1.0.16
+  * Adding ui user to run as
+	* Fixing d line
+## 1.0.15
+  * Adding - in command
 ## 1.0.14
   * Added delete back in
 	* Fixed templates
