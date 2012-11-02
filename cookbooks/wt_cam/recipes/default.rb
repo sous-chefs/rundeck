@@ -112,5 +112,27 @@ if deploy_mode?
   iis_config auth_cmd do
   	action :config
   end
+	
+  #add the user to the admin group to create perfmon counters
+  wt_base_netlocalgroup "Administrators" do
+        user user_data['wt_common']['ui_user']
+        returns [0, 2]
+        action :add
+  end  
 
+	ruby_block "prehead app pool" do
+	  block do
+		  require 'net/http'
+      uri = URI("http://localhost/")
+      puts Net::HTTP.get(uri)
+	  end
+		action :create
+  end
+	
+  #remove the user from the admin group
+  wt_base_netlocalgroup "Administrators" do
+        user user_data['wt_common']['ui_user']
+        returns [0, 2]
+        action :remove
+  end
 end
