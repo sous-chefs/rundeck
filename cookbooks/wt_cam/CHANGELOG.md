@@ -1,3 +1,5 @@
+## 1.0.32
+* Added ruby block to prewarm app pool
 ## 1.0.31
 * Added ui user to the Performance Monitor Users group
 
