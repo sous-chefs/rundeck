@@ -80,3 +80,12 @@ if deploy_mode?
   share_wrs
 
 end
+
+template "#{install_dir}\\bin" do
+	source "DeviceDataUpdater.erb"
+	variables ({
+		:archivedir => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin\\archive",
+		:outputdir => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin"
+	})
+end
+
