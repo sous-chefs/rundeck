@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 if platform?("windows")
-    windows_package "Mozilla Firefox 16.0.1 (x86 en-US)" do
+    windows_package "Mozilla Firefox 16.0.2 (x86 en-US)" do
         source node['firefox']['http_url']
         installer_type :custom
         options "-ms"
