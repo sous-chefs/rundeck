@@ -201,7 +201,7 @@
             "wrsread_group": "STAGINGDMZ\\D.WRS.Read"
         }, 
         "wt_data_deleter": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/39654:id/DataDeleter.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/40174:id/DataDeleter.zip"
         }, 
         "wt_devicedataupdater": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt284/39953:id/DeviceDataUpdater.zip"
