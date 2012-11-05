@@ -262,6 +262,7 @@ region_codes.csv
 keywords.ini
 device-atlas-20120813.json
 browsers.ini
+convert_searchstr.ini
 }.each do |ini_file|
     cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/#{ini_file}" do
       source ini_file
