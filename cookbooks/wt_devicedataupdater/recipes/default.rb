@@ -37,7 +37,7 @@ end
 
 wt_base_icacls install_dir do
   user svcuser
-  perm :full
+  perm :modify
   action :grant
 end
 
@@ -82,10 +82,10 @@ if deploy_mode?
 end
 
 template "#{install_dir}\\DDU.exe.config" do
-	source "DeviceDataUpdater.exe.config.erb"
-	variables ({
-		:archivedir => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin\\archive",
-		:outputdir => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin"
-	})
+  source 'DDU.exe.config.erb'
+  variables ({
+    :archivedir => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin\\archive",
+    :outputdir  => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin"
+  })
 end
 
