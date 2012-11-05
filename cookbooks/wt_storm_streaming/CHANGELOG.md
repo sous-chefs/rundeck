@@ -1,3 +1,6 @@
+## 2.1.18
+* Added convert_searchstr.ini to list of files installed in conf dir
+
 ## 2.1.17
 * Changed the jvm setting for child opts and up the bolt counts.
 
