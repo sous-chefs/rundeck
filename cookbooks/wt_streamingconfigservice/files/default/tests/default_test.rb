@@ -3,6 +3,7 @@ class Wt_streamingconfigserviceTest < MiniTest::Chef::TestCase
   require 'yajl'
 
   def test_healthcheck
+    sleep(15)
     res = Net::HTTP.get(node['fqdn'],"/healthcheck",9000)
     status = Yajl::Parser.parse(res)
     status["checks"].each do |check, value|
