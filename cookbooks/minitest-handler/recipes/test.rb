@@ -25,13 +25,8 @@ require 'minitest-chef-handler'
 
 if deploy && !skip
   log " the deploy_build value is true, copying cookbooks to node."
-
-  # Loop through all recipes on the node
-  node['recipes'].each do |recipe|
-   cookbook_name = recipe.split('::').first
-   recipe_name = recipe[/::/] ? recipe.split('::').last : "default"
    
-   directory "#{install_path}/#{cookbook_name}" do
+   directory "tests/" do
      owner     user
      group     group
      mode      00755
@@ -39,16 +34,15 @@ if deploy && !skip
      action    :create
    end
 
-   cookbook_file "#{recipe_name}_#{type}.rb" do
-     source   "tests/#{recipe_name}_#{type}.rb"
-     path     "#{install_path}/#{cookbook_name}/tests/#{recipe_name}_#{type}.rb" 
+
+   cookbook_file "recipe_#{type}.rb" do
+     source   "tests/recipe_#{type}.rb"
      cookbook cookbook_name
    end
 
    chef_handler "MiniTest::Chef::Handler" do
      source "minitest-chef-handler"
-     arguments :path => "#{install_path}/#{cookbook_name}/tests/#{recipe_name}_#{type}.rb"
+     arguments :path => "**/tests/recipe_#{type}.rb"
      action :enable
    end
-  end
 end

@@ -1,3 +1,6 @@
+## 1.1.0
+* Fixed whitespace and typos
+
 ## 1.0.32
 * Added ruby block to prewarm app pool
 ## 1.0.31

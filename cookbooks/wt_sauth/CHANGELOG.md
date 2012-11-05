@@ -1,3 +1,6 @@
+## 1.1.0
+* Fixed whitespace, typos, and food critic errors
+
 ## 1.0.9
 * Added ruby block to call the preload of site before removing from function. 
 
