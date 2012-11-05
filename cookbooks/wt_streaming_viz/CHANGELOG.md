@@ -1,3 +1,6 @@
+## 1.1.12
+* Add bindingRedierect for Autofac
+
 ## 1.1.11
 * Add compatibilityMode attribute for machineKey in web.config
 * Remove formsAuthentication credentials
