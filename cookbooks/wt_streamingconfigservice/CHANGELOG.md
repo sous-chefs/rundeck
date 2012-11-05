@@ -1,3 +1,6 @@
+## 1.0.3
+* Added minitest-handler and a preliminary test that verifies healthcheck returns true
+
 ## 1.0.2
 * Moved log config from code to cookbook.
 
