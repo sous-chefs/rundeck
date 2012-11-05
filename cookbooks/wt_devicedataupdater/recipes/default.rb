@@ -83,9 +83,9 @@ end
 
 template "#{install_dir}\\DDU.exe.config" do
   source 'DDU.exe.config.erb'
-  variables ({
+  variables(
     :archivedir => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin\\archive",
     :outputdir  => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin"
-  })
+  )
 end
 
