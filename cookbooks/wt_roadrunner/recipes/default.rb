@@ -10,10 +10,17 @@
 # This recipe installs the needed components to full setup/configure the RoadRunner service
 #
 
-include_recipe "wt_roadrunner::uninstall" if deploy_mode?
+log "Deploy build is #{ENV["deploy_build"]}"
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so un-deploy first"
+  include_recipe "wt_roadrunner::uninstall"
+else
+  log "The deploy_build value is not set or is false so we will only update the configuration"
+end
 
 # source build
-build_url = "#{node['wt_roadrunner']['build_url']}#{node['wt_roadrunner']['zip_file']}"
+tarball      = node['wt_roadrunner']['download_url'].split("/")[-1]
+download_url = node['wt_roadrunner']['download_url']
 
 # get parameters
 master_host = node['wt_masterdb']['master_host']
@@ -66,27 +73,23 @@ wt_base_icacls log_dir do
 	perm :modify
 end
 
-if deploy_mode?
-
-	ENV['deploy_build'] = 'false'
-	# log("Source URL: #{build_url}") { level :info}
-	this_zipfile = get_build node['wt_roadrunner']['zip_file']
+if ENV["deploy_build"] == "true" then
 
 	# unzip the install package
 	windows_zipfile install_dir do
-		source "#{this_zipfile}"
+		source "#{Chef::Config[:file_cache_path]}/#{tarball}"
 		action :unzip
 	end
 
 	template "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config" do
-	  source "RRServiceConfig.erb"
+	  source "Webtrends.RoadRunner.Service.exe.config.erb"
 	  variables(
 		  :master_host => master_host
 	  )
 	end
 
 	template "#{install_dir}\\log4net.config" do
-	  source "log4net.erb"
+	  source "log4net.config.erb"
 	  variables(
 	  	:logdir => log_dir
 	  )
