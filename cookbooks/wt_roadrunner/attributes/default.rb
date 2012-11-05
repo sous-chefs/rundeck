@@ -6,8 +6,7 @@
 # Copyright 2012, Webtrends Inc.
 #
 
-default['wt_roadrunner']['zip_file'] = "RoadRunner.zip"
-default['wt_roadrunner']['build_url'] = ""
+default['wt_roadrunner']['download_url'] = ""
 default['wt_roadrunner']['service_name'] = "Webtrends RoadRunner Service"
 default['wt_roadrunner']['install_dir'] = "\\RoadRunner"
 default['wt_roadrunner']['log_dir'] = "\\logs"
