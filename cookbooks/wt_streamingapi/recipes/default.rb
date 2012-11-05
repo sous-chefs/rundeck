@@ -35,8 +35,8 @@ else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-log_dir     = File.join("#{node['wt_common']['log_dir_linux']}", "streamingapi")
-install_dir = File.join("#{node['wt_common']['install_dir_linux']}", "streamingapi")
+log_dir     = File.join(node['wt_common']['log_dir_linux'], "streamingapi")
+install_dir = File.join(node['wt_common']['install_dir_linux'], "streamingapi")
 tarball      = node['wt_streamingapi']['download_url'].split("/")[-1]
 download_url = node['wt_streamingapi']['download_url']
 java_home   = node['java']['java_home']
@@ -85,20 +85,20 @@ end
 def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix, usagedbuser, usagedbpwd)
   log "Updating the template files"
 
-    auth_url = node['wt_sauth']['auth_service_url']
+	auth_url = node['wt_sauth']['auth_service_url']
 
-    auth_uri = URI(auth_url)
-    auth_host = auth_uri.host
+	auth_uri = URI(auth_url)
+	auth_host = auth_uri.host
 
-    proxy_uri = URI(node['wt_common']['http_proxy_url'])
-    proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
-    
-    cam_url = node['wt_cam']['cam_service_url']
-    port = node['wt_streamingapi']['port']
-    usagedbserver = node['wt_streamingapi']['usagedbserver']
-    usagedbname = node['wt_streamingapi']['usagedbname']
+	proxy_uri = URI(node['wt_common']['http_proxy_url'])
+	proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
+	
+	cam_url = node['wt_cam']['cam_service_url']
+	port = node['wt_streamingapi']['port']
+	usagedbserver = node['wt_streamingapi']['usagedbserver']
+	usagedbname = node['wt_streamingapi']['usagedbname']
 
-    %w[log4j.xml monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
+	%w[log4j.xml monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source    "#{template_file}.erb"
       owner "root"
@@ -113,7 +113,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
         :install_dir => install_dir,
         :port => port,
         :wt_monitoring => node[:wt_monitoring],
-        :writeBufferHighWaterMark => node[:wt_streamingapi][:writeBufferHighWaterMark],
+        :writeBufferHighWaterMark => node['wt_streamingapi']['writeBufferHighWaterMark'],
         :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
 
         # usage db parameters
@@ -202,7 +202,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
     nagios_nrpecheck "wt_healthcheck_page" do
         command "#{node['nagios']['plugin_dir']}/check_http"
-        parameters "-H #{node[:fqdn]} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
+        parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
         action :add
     end
   #Create a nagios nrpe check for the log file
