@@ -181,3 +181,8 @@ if node.attribute?("nagios")
 	end
 
 end
+
+minitest_handler cookbook_name do
+  recipe_name recipe_name
+  action :run
+end
