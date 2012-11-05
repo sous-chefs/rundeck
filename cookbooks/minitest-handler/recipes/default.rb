@@ -1,1 +1,6 @@
-include_recipe "minitest-handler::test"
+minitest_handler "minitest-handler" do
+  recipe_name   "default"
+  owner         "sinneta"
+  group         "Users"
+  action :run
+end
