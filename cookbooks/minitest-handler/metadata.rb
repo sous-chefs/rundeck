@@ -1,8 +1,8 @@
-maintainer       "Bryan Berry"
-maintainer_email "bryan.berry@gmail.com"
-license          "Apache 2.0"
-description      "Installs and configures minitest-chef-handler"
+maintainer       "Webtrends, Inc."
+maintainer_email "adam.sinnet@webtrends.com"
+license          "All rights reserved"
+description      "Collection of meta-recipes to include testing in other cookbooks."
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.1.3"
+version          "0.2.0"
 
 depends "chef_handler"
