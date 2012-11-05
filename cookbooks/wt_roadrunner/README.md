@@ -1,16 +1,16 @@
-= DESCRIPTION:
-
+Description
+===========
 Installs the configures the Webtrends Roadrunner service for VDM GPU acceleration
 
-= REQUIREMENTS:
-
+Requirements
+============
 Windows cookbook
 
-= ATTRIBUTES:
-
+Attributes
+==========
 Uses attributes for the master DB hostname and the DB name from the wt_common
 
-= USAGE:
-
+Usage
+=====
 Apply the wt_roadrunner role and apply a valid environment with wt_common attributes
 
