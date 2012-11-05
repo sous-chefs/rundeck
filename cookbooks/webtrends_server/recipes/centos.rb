@@ -163,13 +163,13 @@ else
 end
 
 # Create the sudoers file to allow for passwordless sudo with chef-client
-file "/etc/sudoers.d/devAccess" do
-  owner "root"
-  group "root"
-  mode 00440
-  content "%#{node['webtrend_server']['passwordless_sudo_chef_group']}-  ALL=(ALL) ALL\n"
-  action :create
-end
+#file "/etc/sudoers.d/devAccess" do
+#  owner "root"
+#  group "root"
+#  mode 00440
+#  content "%#{node['webtrend_server']['passwordless_sudo_chef_group']}-  ALL=(ALL) ALL\n"
+#  action :create
+#end
 
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
