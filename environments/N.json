@@ -77,12 +77,12 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
             }
