@@ -286,7 +286,7 @@
                 "Lab_H_scsRawHits:12"
             ],  
             "worker": {
-                "childopts": "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC –XX:SurvivorRatio=8 –XX:-UseAdaptiveSizePolicy –XX:PermSize=128m –XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
+                "childopts": "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
             }
         }, 
         "wt_streaming_viz": {
