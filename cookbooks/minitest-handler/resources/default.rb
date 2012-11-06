@@ -6,8 +6,8 @@
 
 actions :run, :nothing
 
-attribute :cookbook_name, :kind_of => String,       :name_attribute => true
-attribute :test_name,     :kind_of => String,       :default => "default"
+attribute :cookbook,      :kind_of => String,       :name_attribute => true
+attribute :test_name,     :kind_of => Array,        :default => %w{default}
 attribute :test_type,     :kind_of => String,       :default => "test"
 attribute :mode,          :kind_of => /^0\d{3,4}$/, :default => 00755
 attribute :owner,         :kind_of => String,       :default => "root"
