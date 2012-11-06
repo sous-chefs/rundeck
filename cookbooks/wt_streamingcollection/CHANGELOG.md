@@ -1,3 +1,6 @@
+## 1.0.4
+* added a minitest-handler based healtcheck
+
 ## 1.0.3
 * Remove file response.txt added in 1.0.2
 
