@@ -80,22 +80,6 @@
             "full_systemview": "true",
             "syscontact": "trent.white@webtrends.com"
         },
-        "storm": {
-            "download_url": "http://repo.staging.dmz/repo/linux/storm/"
-        },
-        "vc2010": {
-            "x64": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-            },
-            "x86": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-            }
-        },
-        "webpi": {
-            "checksum": "fc763c31be35e50fea3381082ddbb078",
-            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip",
-            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
-        },
         "webtrends_server": {
             "apt": [
                 {
@@ -124,16 +108,6 @@
                 }
             ]
         },
-        "wt_analytics_ui": {},
-        "wt_cam": {
-            "auth_port": 8081,
-            "auth_service_url": "http://bcam01.staging.dmz:8081",
-            "cam_port": 81,
-            "cam_server_url": "http://bcam01.staging.dmz/camservice",
-            "camlite_port": 80,
-            "db_name": "cam",
-            "db_server": "bcamdb01.staging.dmz"
-        },
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp",
             "common_resource_environment": "support-staging",
@@ -150,9 +124,6 @@
             "smtp_server": "pdxengmta01.webtrends.corp",
             "wrsmodify_group": "STAGINGDMZ\\E.WRS.Modify",
             "wrsread_group": "STAGINGDMZ\\E.WRS.Read"
-        },
-        "wt_configdistrib": {
-            "dcsid_url": "http://dcd01.staging.dmz:8097/config/dcsid2account"
         },
         "wt_monitoring": {
             "audit_bucket_timespan": 10,
@@ -173,8 +144,7 @@
             "pod": "B"
         },
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt204/30730:id/webtrends-streamingcollection-bin.tar.gz",
-            "port": 8080
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt204/30730:id/webtrends-streamingcollection-bin.tar.gz"
         },
         "wt_streamingconfigservice": {
             "camdbname": "CAM",
@@ -183,8 +153,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/webtrends-streaming-configservice-bin.tar.gz",
             "includeUnmappedAnalyticsIds": "true",
             "masterdbname": "wtmaster",
-            "masterdbserver": "dmasterdb01.englab.webtrends.corp",
-            "port": "8080"
+            "masterdbserver": "dmasterdb01.englab.webtrends.corp"
         },
         "zookeeper": {
             "client_port": 2181,
