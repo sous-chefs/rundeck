@@ -1,3 +1,11 @@
+## 1.0.19
+* Use a notify from the download of the Kafka build to the untar so we don't untar over the server contents on every run
+* Switch from an rdoc to a md for the README
+
+## 1.0.18
+* If we use create_if_missing and checksum then only create_if_missing gets used.  We want to use checksum
+* Remove the deletion of the tarball
+
 ## 1.0.17
 * Don't fall back to attributes if the search for ZK nodes fails
 
