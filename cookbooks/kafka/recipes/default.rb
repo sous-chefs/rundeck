@@ -85,12 +85,6 @@ end
 tarball = "kafka-#{node[:kafka][:version]}.tar.gz"
 download_file = "#{node[:kafka][:download_url]}/#{tarball}"
 
-remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-  source download_file
-  mode 00644
-  checksum node[:kafka][:checksum]
-end
-
 directory install_dir do
   owner "root"
   group "root"
@@ -98,10 +92,18 @@ directory install_dir do
   action :create
 end
 
+remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+  source download_file
+  mode 00644
+  checksum node[:kafka][:checksum]
+  notifies :run, "execute[tar]", :immediately
+end
+
 execute "tar" do
   user  "root"
   group "root"
   cwd install_dir
+  action :nothing
   command "tar zxvf #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
 
