@@ -12,6 +12,8 @@
     "ubuntu": ">= 0.0.0",
     "debian": ">= 0.0.0",
     "amazon": ">= 0.0.0",
+    "suse": ">= 0.0.0",
+    "scientific": ">= 0.0.0",
     "mac_os_x": ">= 10.6.0"
   },
   "dependencies": {
@@ -33,5 +35,5 @@
   "recipes": {
     "build-essential": "Installs packages required for compiling C software from source."
   },
-  "version": "1.1.2"
+  "version": "1.2.0"
 }
