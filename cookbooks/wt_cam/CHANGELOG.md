@@ -1,3 +1,6 @@
+## 1.1.1
+* Changed the wt_base icacls calls to be directory rights calls
+
 ## 1.1.0
 * Fixed whitespace and typos
 
