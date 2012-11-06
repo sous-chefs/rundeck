@@ -131,6 +131,13 @@ LoadPlugin java
 				Table false
 				Attribute "Mean"
 			</Value>
+            <Value>
+				Type "gauge"
+				InstancePrefix "MovingAverage"
+				#InstanceFrom ""
+				Table false
+				Attribute "999thPercentile"
+			</Value>
         </MBean>
         <MBean "tag-server-latency">
 			ObjectName "streamingauditor:type=latency,name=tag-server-latency"
@@ -156,6 +163,13 @@ LoadPlugin java
 				#InstanceFrom ""
 				Table false
 				Attribute "Mean"
+			</Value>
+            <Value>
+				Type "gauge"
+				InstancePrefix "MovingAverage"
+				#InstanceFrom ""
+				Table false
+				Attribute "999thPercentile"
 			</Value>
         </MBean>
         #####################
@@ -183,6 +197,13 @@ LoadPlugin java
                     InstancePrefix "Mean"
                     Table false
                     Attribute "Mean"
+                </Value>
+                <Value>
+                    Type "gauge"
+                    InstancePrefix "MovingAverage"
+                    #InstanceFrom ""
+                    Table false
+                    Attribute "999thPercentile"
                 </Value>
             </MBean>
         <% end %>
