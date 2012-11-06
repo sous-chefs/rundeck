@@ -249,7 +249,8 @@
         "wt_platformscheduler": {
             "agent": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt289/40338:id/WebTrendsVDMSchedulerAgent.msi"
-            }
+            }, 
+            "host": "mssched01.staging.dmz"
         }, 
         "wt_roadrunner": {
             "build_url": "\\\\sstore02.staging.dmz\\install\\ReleasedBuilds\\10.3.0\\10.3HF bundle build\\RoadRunner_10.3_10.3.0.11_artifacts.zip"
