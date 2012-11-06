@@ -6,7 +6,7 @@ action :run do
   end
   require 'minitest-chef-handler'
 
-  test_dir  = "#{new_resource.path}/cookbooks/#{new_resource.cookbook_name}/files/default/tests"
+  test_dir  = "#{new_resource.path}/cookbooks/#{new_resource.cookbook}/files/default/tests"
 
   test_files = new_resource.test_name.inject([]) do |memo, test|
     memo << "#{test}_#{new_resource.test_type}.rb" 
@@ -22,13 +22,13 @@ action :run do
   test_files.each do |test_file|
     cookbook_file "#{test_dir}/#{test_file}" do
       source "tests/#{test_file}"
-      cookbook new_resource.cookbook_name
+      cookbook new_resource.cookbook
     end
   end
 
   chef_handler "MiniTest::Chef::Handler" do
     source    "minitest-chef-handler"
-    arguments :path => "#{test_dir}/*_#{test_type}.rb"
+    arguments :path => "#{test_dir}/*_#{new_resource.test_type}.rb"
     action    :enable
   end
 end
