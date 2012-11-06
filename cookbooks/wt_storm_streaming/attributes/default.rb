@@ -41,7 +41,7 @@ default['wt_storm_streaming']['supervisor']['heartbeat_frequency_secs'] = 5
 default['wt_storm_streaming']['supervisor']['enable'] = true
 
 # worker attributes
-default['wt_storm_streaming']['worker']['childopts'] = "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC –XX:SurvivorRatio=8 –XX:-UseAdaptiveSizePolicy –XX:PermSize=128m –XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
+default['wt_storm_streaming']['worker']['childopts'] = "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
 default['wt_storm_streaming']['worker']['heartbeat_frequency_secs'] = 1
 default['wt_storm_streaming']['task']['heartbeat_frequency_secs'] = 3
 default['wt_storm_streaming']['task']['refresh_poll_secs'] = 10
