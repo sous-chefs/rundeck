@@ -88,7 +88,6 @@ download_file = "#{node[:kafka][:download_url]}/#{tarball}"
 remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
   source download_file
   mode 00644
-  action :create_if_missing
   checksum node[:kafka][:checksum]
 end
 
@@ -164,14 +163,6 @@ end
 execute "chmod" do
 	command "chmod -R 755 #{install_dir}/bin"
 	action :run
-end
-
-# delete the application tarball
-execute "delete_install_source" do
-  user "root"
-  group "root"
-  command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
-  action :run
 end
 
 # create the runit service
