@@ -79,10 +79,11 @@ end
 # get zookeeper nodes
 zookeeper_quorum = Array.new
 if not Chef::Config.solo
-  search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-    zookeeper_quorum << n['fqdn']
+    search(:node, "role:zookeeper AND chef_environment:#{node['wt_xd']['environment']}").each do |n|
+        zookeeper_quorum << n['fqdn']
   end
 end
+zookeeper_quorum=zookeeper_quorum.sort
 
 # configure templates
 %w[environment.properties hbase.properties log4j.mapreduce.fb.xml log4j.mapreduce.tw.xml].each do |template_file|
