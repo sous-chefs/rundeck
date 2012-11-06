@@ -1,3 +1,12 @@
+## 2.1.21
+* Remove extra streaming.topology.mode.local config.properties
+
+## 2.1.20
+* Fixed a bad character that looked like a -
+
+## 2.1.19
+* Changed the jvm setting defaults for the storm.yaml file
+
 ## 2.1.18
 * Added convert_searchstr.ini to list of files installed in conf dir
 
