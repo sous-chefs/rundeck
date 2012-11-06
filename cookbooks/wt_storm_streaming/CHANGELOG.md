@@ -1,3 +1,6 @@
+## 2.1.20
+* Fixed a bad character that looked like a -
+
 ## 2.1.19
 * Changed the jvm setting defaults for the storm.yaml file
 
