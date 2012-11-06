@@ -147,13 +147,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt204/30730:id/webtrends-streamingcollection-bin.tar.gz"
         },
         "wt_streamingconfigservice": {
-            "camdbname": "CAM",
-            "camdbserver": "bcamdb01.staging.dmz",
-            "config_service_url": "http://butil01.staging.dmz:8080",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/webtrends-streaming-configservice-bin.tar.gz",
-            "includeUnmappedAnalyticsIds": "true",
-            "masterdbname": "wtmaster",
-            "masterdbserver": "dmasterdb01.englab.webtrends.corp"
+            "config_service_url": "http://butil01.staging.dmz:8080"
         },
         "zookeeper": {
             "client_port": 2181,
