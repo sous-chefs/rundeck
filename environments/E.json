@@ -126,7 +126,6 @@
                 }
             ]
         }, 
-        "wt_analytics_ui": {}, 
         "wt_cam": {
             "auth_port": 8081, 
             "auth_service_url": "http://bcam01.staging.dmz:8081", 
