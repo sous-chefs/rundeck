@@ -1,3 +1,7 @@
+## 1.0.18
+* If we use create_if_missing and checksum then only create_if_missing gets used.  We want to use checksum
+* Remove the deletion of the tarball
+
 ## 1.0.17
 * Don't fall back to attributes if the search for ZK nodes fails
 
