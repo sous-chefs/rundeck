@@ -75,10 +75,10 @@
             ],
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         },
-        "webpi": {
-            "checksum": "fc763c31be35e50fea3381082ddbb078",
-            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip",
-            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
+        "snmp": {
+            "community": "DevOps",
+            "full_systemview": "true",
+            "syscontact": "trent.white@webtrends.com"
         },
         "webtrends_server": {
             "apt": [
@@ -125,9 +125,6 @@
             "wrsmodify_group": "STAGINGDMZ\\L.WRS.Modify",
             "wrsread_group": "STAGINGDMZ\\L.WRS.Read"
         },
-        "wt_configdistrib": {
-            "dcsid_url": "http://acd01.staging.dmz:8097/config/dcsid2account"
-        },
         "wt_monitoring": {
             "audit_bucket_timespan": 10,
             "audit_topic": "stream-audit",
@@ -147,8 +144,7 @@
             "pod": "L"
         },
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/27350:id/webtrends-streamingcollection-bin.tar.gz",
-            "port": 8080
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt204/30730:id/webtrends-streamingcollection-bin.tar.gz"
         },
         "wt_streamingconfigservice": {
             "config_service_url": "http://butil01.staging.dmz:8080"
