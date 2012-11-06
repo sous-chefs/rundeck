@@ -1,7 +1,7 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "kafka": "= 1.0.20",
+        "kafka": "= 1.0.20", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "wt_base": "= 1.0.1", 
@@ -34,13 +34,13 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "checksum": "930645bcb3bacecb510a25cd733e1ae607ed2485", 
+                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
-                        "checksum": "1a641a847d174dbb6ff3f443cbde28cfec040942", 
+                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
@@ -147,7 +147,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt188/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz"
         }, 
         "wt_streamingconfigservice": {
-            "config_service_url": "http://hutil01.staging.dmz:8080", 
+            "config_service_url": "http://hutil01.staging.dmz:8080"
         }
     }, 
     "description": "M Pod", 
