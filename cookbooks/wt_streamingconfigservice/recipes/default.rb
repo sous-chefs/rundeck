@@ -182,7 +182,6 @@ if node.attribute?("nagios")
 
 end
 
-minitest_handler cookbook_name do
-  recipe_name recipe_name
-  action :run
+minitest_handler "wt_unittests" do
+  test_name %w{healthcheck}
 end
