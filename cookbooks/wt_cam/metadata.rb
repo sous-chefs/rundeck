@@ -1,9 +1,9 @@
 maintainer       "Webtrends"
-maintainer_email "kendrick.martin@webtrends.com"
+maintainer_email "mark.alexander@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures CAM IIS site"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.1.0"
+version          "1.1.1"
 supports         "windows"
 depends          "iis"
 depends          "windows"
