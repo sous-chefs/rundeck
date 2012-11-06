@@ -1,3 +1,6 @@
+## 2.1.21
+* Remove extra streaming.topology.mode.local config.properties
+
 ## 2.1.20
 * Fixed a bad character that looked like a -
 
