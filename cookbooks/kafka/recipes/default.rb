@@ -88,7 +88,6 @@ download_file = "#{node[:kafka][:download_url]}/#{tarball}"
 remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
   source download_file
   mode 00644
-  action :create_if_missing
   checksum node[:kafka][:checksum]
 end
 
