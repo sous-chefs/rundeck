@@ -1,3 +1,6 @@
+## 2.1.19
+* Changed the jvm setting defaults for the storm.yaml file
+
 ## 2.1.18
 * Added convert_searchstr.ini to list of files installed in conf dir
 
