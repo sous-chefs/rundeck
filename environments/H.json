@@ -24,7 +24,7 @@
         "wt_streaming_viz": "= 1.1.12", 
         "wt_streaminganalysis_monitor": "= 1.0.1", 
         "wt_streamingapi": "= 1.0.11", 
-        "wt_streamingauditor": "= 1.0.8", 
+        "wt_streamingauditor": "= 1.0.9", 
         "wt_streamingcollection": "= 1.0.3", 
         "wt_streamingconfigservice": "= 1.0.2", 
         "wt_streaminglogreplayer": "= 1.1.2", 
@@ -286,7 +286,7 @@
                 "Lab_H_scsRawHits:12"
             ],  
             "worker": {
-                "childopts": "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC –XX:SurvivorRatio=8 –XX:-UseAdaptiveSizePolicy –XX:PermSize=128m –XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
+                "childopts": "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
             }
         }, 
         "wt_streaming_viz": {
