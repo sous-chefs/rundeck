@@ -74,12 +74,12 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
             }
@@ -162,6 +162,10 @@
             ]
         }, 
         "wt_analytics_ui": {}, 
+        "wt_aps": {
+            "aps_url_base": "/AccountProvisioning/", 
+            "service_url": "http://daps01.staging.dmz"
+        }, 
         "wt_cam": {
             "cam": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/37418:id/CAM.zip"
@@ -203,6 +207,9 @@
         "wt_kafka_mm": {
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38950:id/MirrorMonitor-bin.tar.gz"
         }, 
+        "wt_management_console": {
+            "service_url": "https://dmc.staging.dmz"
+        }, 
         "wt_masterdb": {
             "master_db": "wtmaster", 
             "master_host": "dmasterdb01.staging.dmz", 
@@ -236,13 +243,6 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/40019:id/Portfolio.Manager.zip", 
             "manager_ui_url": ""
         }, 
-            "wt_management_console": {
-            "service_url": "https://dmc.staging.dmz"
-        },
-        "wt_aps": {
-            "service_url": "http://daps01.staging.dmz",
-            "aps_url_base": "/AccountProvisioning/"
-        },
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
             "environment": "support-staging", 
