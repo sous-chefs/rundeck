@@ -35,7 +35,7 @@ class HBaseTable:
 		return HBaseTable.dc + "_" + HBaseTable.pod + "_" + self.table()
 	
 	def hbaseShell(self, cmd):
-		p = Popen(['/usr/local/hbase/bin/hbase','shell'], bufsize=1, stdin=PIPE, stdout=PIPE)
+		p = Popen(['/usr/share/hbase/bin/hbase','shell'], bufsize=1, stdin=PIPE, stdout=PIPE)
 		p.stdin.write(cmd+"\n")
 		p.stdin.close()
 		return p.stdout.read()
