@@ -165,14 +165,6 @@ execute "chmod" do
 	action :run
 end
 
-# delete the application tarball
-execute "delete_install_source" do
-  user "root"
-  group "root"
-  command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
-  action :run
-end
-
 # create the runit service
 runit_service "kafka" do
   options({
