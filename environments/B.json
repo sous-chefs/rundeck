@@ -74,11 +74,13 @@
             "jdk": {
                 "6": {
                     "x86_64": {
+                        "checksum": "930645bcb3bacecb510a25cd733e1ae607ed2485", 
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
+                        "checksum": "1a641a847d174dbb6ff3f443cbde28cfec040942", 
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
