@@ -39,11 +39,13 @@ end
 directory install_dir do
 	recursive true
 	action :create
+	rights :write, user_data['wt_common']['ui_user']
 end
 
 directory log_dir do
 	recursive true
 	action :create
+	rights :write, user_data['wt_common']['ui_user']
 end
 
 iis_site 'CAM' do
@@ -58,19 +60,7 @@ end
 wt_base_firewall 'CAMWS' do
   protocol "TCP"
   port http_port
-  action [:open_port]
-end
-
-wt_base_icacls install_dir do
-	action :grant
-	user user_data['wt_common']['ui_user']
-	perm :modify
-end
-
-wt_base_icacls log_dir do
-	action :grant
-	user user_data['wt_common']['ui_user']
-	perm :modify
+  action :open_port
 end
 
 wt_base_netlocalgroup "Performance Monitor Users" do
