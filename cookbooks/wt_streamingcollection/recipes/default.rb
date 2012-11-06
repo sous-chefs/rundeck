@@ -196,3 +196,7 @@ if node.attribute?("nagios")
 		action :add
 	end
 end
+
+minitest_handler "unit-tests" do
+  test_name %w{healthcheck}
+end
