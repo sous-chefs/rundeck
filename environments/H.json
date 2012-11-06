@@ -1,7 +1,7 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "hadoop": "= 1.0.3",  
+        "hadoop": "= 1.0.3", 
         "hbase": "= 1.0.3", 
         "hive": "= 1.0.2", 
         "java": "= 1.6.0", 
@@ -73,12 +73,12 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
             }
@@ -161,10 +161,10 @@
             ]
         }, 
         "wt_analytics_ui": {}, 
-        "wt_aps": { 
-            "service_url": "http://daps01.staging.dmz",
-            "aps_url_base": "/AccountProvisioning/"
-        },
+        "wt_aps": {
+            "aps_url_base": "/AccountProvisioning/", 
+            "service_url": "http://daps01.staging.dmz"
+        }, 
         "wt_cam": {
             "cam": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Cam.zip"
@@ -284,7 +284,7 @@
             "topic_list": [
                 "Lab_H_lrRawHits:12", 
                 "Lab_H_scsRawHits:12"
-            ],  
+            ], 
             "worker": {
                 "childopts": "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
             }

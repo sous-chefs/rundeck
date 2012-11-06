@@ -54,12 +54,12 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
             }
@@ -249,8 +249,8 @@
         "wt_platformscheduler": {
             "agent": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt289/39511:id/WebTrendsVDMSchedulerAgent.msi"
-            },
-					  "host": "fmasterdb01.staging.dmz"
+            }, 
+            "host": "fmasterdb01.staging.dmz"
         }, 
         "wt_roadrunner": {
             "build_url": "\\\\sstore02.staging.dmz\\install\\ReleasedBuilds\\10.3.0\\10.3HF bundle build\\RoadRunner_10.3_10.3.0.11_artifacts.zip"
