@@ -1,3 +1,6 @@
+# 1.0.1
+* the path to hbase was corrected in the file hbasetable.py
+
 # 1.0.0
 * Remove the ZooKeeper fallback if search fails
 * Food critic warnings addressed
