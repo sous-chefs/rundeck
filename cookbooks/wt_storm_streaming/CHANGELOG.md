@@ -1,3 +1,6 @@
+## 2.1.22
+* Updated the device-atlas file name and the file content.
+
 ## 2.1.21
 * Remove extra streaming.topology.mode.local config.properties
 
