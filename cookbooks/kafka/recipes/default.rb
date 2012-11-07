@@ -55,7 +55,23 @@ end
 # create the install directory
 install_dir = node[:kafka][:install_dir]
 
+directory "#{install_dir}" do
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
+end
+
 directory "#{install_dir}/bin" do
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
+end
+
+directory "#{install_dir}/config" do
   owner "root"
   group "root"
   mode 00755
@@ -85,13 +101,6 @@ end
 tarball = "kafka-#{node[:kafka][:version]}.tar.gz"
 download_file = "#{node[:kafka][:download_url]}/#{tarball}"
 
-remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-  source download_file
-  mode 00644
-  action :create_if_missing
-  checksum node[:kafka][:checksum]
-end
-
 directory install_dir do
   owner "root"
   group "root"
@@ -99,10 +108,18 @@ directory install_dir do
   action :create
 end
 
+remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+  source download_file
+  mode 00644
+  checksum node[:kafka][:checksum]
+  notifies :run, "execute[tar]", :immediately
+end
+
 execute "tar" do
   user  "root"
   group "root"
   cwd install_dir
+  action :nothing
   command "tar zxvf #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
 
@@ -164,14 +181,6 @@ end
 execute "chmod" do
 	command "chmod -R 755 #{install_dir}/bin"
 	action :run
-end
-
-# delete the application tarball
-execute "delete_install_source" do
-  user "root"
-  group "root"
-  command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
-  action :run
 end
 
 # create the runit service

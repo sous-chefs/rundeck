@@ -1,14 +1,18 @@
-= DESCRIPTION:
+Description
+===========
+
 Installs kafka 0.7.1
 
-= REQUIREMENTS:
+Requirements
+============
 * Java cookbook version >= 1.5
 * Runit cookbook
 * Zookeeper cookbook - The Kafka cookbook will utilize the clientPort from the Zookeeper cookbook
   as well as look for a role called "zookeeper" that is applied to nodes. All nodes with the role applied
   to them will be used as the Zookeeper quorum that Kafka connects to.
 
-= ATTRIBUTES:
+Attributes
+==========
 
 * kafa.version - The Kafka version to pull and use
 * kafa.install_dir - Location for Kafka to be installed
@@ -23,7 +27,8 @@ Installs kafka 0.7.1
 * kafa.log_flush_scheduler_time_interval - The interval (in ms) at which logs are checked to see if they need to be flushed to disk
 * kafa.log_retention_hours - The minimum age of a log file to be eligible for deletion
 
-= USAGE:
+Usage
+=====
 
 * kafka - Install a Kafka broker.
 

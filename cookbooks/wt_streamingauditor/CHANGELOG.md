@@ -1,3 +1,6 @@
+## 1.0.9
+* Change the metrics being captured for graphite
+
 ## 1.0.8
 * Added 'sauth_version'
 
