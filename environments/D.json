@@ -222,6 +222,9 @@
             "website_name": "DX", 
             "website_port": "80"
         }, 
+        "wt_management_console": {
+            "mc_service_url": "https://dmc.staging.dmz"
+        }, 
         "wt_masterdb": {
             "master_db": "wtMaster", 
             "master_host": "dmasterdb01.staging.dmz", 
