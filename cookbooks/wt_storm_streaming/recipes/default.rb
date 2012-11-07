@@ -260,7 +260,7 @@ country_codes.csv
 metro_codes.csv
 region_codes.csv
 keywords.ini
-device-atlas-20120813.json
+device-atlas.json
 browsers.ini
 convert_searchstr.ini
 }.each do |ini_file|
