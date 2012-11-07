@@ -186,6 +186,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "common_resource_environment": "support-staging", 
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
@@ -218,6 +219,9 @@
             "rest_base_uri": "https://cdx.webtrends.com/v3", 
             "website_name": "DX", 
             "website_port": "80"
+        }, 
+        "wt_management_console": {
+            "mc_service_url": "https://cmc.staging.dmz"
         }, 
         "wt_masterdb": {
             "master_host": "cmasterdb01.staging.dmz", 
