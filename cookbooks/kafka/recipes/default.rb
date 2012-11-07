@@ -55,7 +55,23 @@ end
 # create the install directory
 install_dir = node[:kafka][:install_dir]
 
+directory "#{install_dir}" do
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
+end
+
 directory "#{install_dir}/bin" do
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
+end
+
+directory "#{install_dir}/config" do
   owner "root"
   group "root"
   mode 00755

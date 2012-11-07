@@ -1,4 +1,4 @@
-broker.list=localhost
+broker.list=<%=node["kafka"]["broker_id"]%>:localhost:9092
 serializer.class=kafka.serializer.StringEncoder
 producer.type=sync
 router.topic=<%= @kafka_topic %>
