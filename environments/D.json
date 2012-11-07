@@ -9,7 +9,7 @@
         "wt_analytics_ui": "= 1.0.9", 
         "wt_base": "= 1.0.1", 
         "wt_cam": "= 1.0.9", 
-        "wt_data_deleter": "= 1.0.2", 
+        "wt_data_deleter": "= 1.0.3", 
         "wt_devicedataupdater": "= 0.1.1", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.10", 
