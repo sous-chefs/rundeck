@@ -20,7 +20,7 @@
 if platform?("windows")
   if (win_version.windows_server_2008? || win_version.windows_server_2008_r2? || win_version.windows_7? || win_version.windows_vista?)
     if !File.exists?("C:/Windows/Microsoft.NET/Framework/v4.0.30319/_Networkingperfcounters_v2.ini")
-      windows_package "Microsoft .NET Framework 4.5 RC" do
+      windows_package "Microsoft .NET Framework 4.5" do
         source node['ms_dotnet45']['http_url']
         installer_type :custom
         options "/quiet /norestart"
