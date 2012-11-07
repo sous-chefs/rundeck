@@ -141,7 +141,7 @@
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
-            "pod": "M"
+            "pod": "H"
         }, 
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/40656:id/webtrends-streamingcollection-bin.tar.gz"
