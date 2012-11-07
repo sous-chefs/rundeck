@@ -1,13 +1,16 @@
 action :run do
-  %w{minitest minitest-chef-handler}.each do |gem|
+  %w{json_pure minitest minitest-chef-handler}.each do |gem|
     chef_gem gem do
       action :install
     end
   end
   require 'minitest-chef-handler'
 
-  test_dir  = "#{new_resource.path}/cookbooks/#{new_resource.cookbook_name}/files/#{new_resource.recipe_name}/tests"
-  test_file = "#{new_resource.recipe_name}_#{new_resource.recipe_type}.rb" 
+  test_dir  = "#{new_resource.path}/cookbooks/#{new_resource.cookbook}/files/default/tests"
+
+  test_files = new_resource.test_name.inject([]) do |memo, test|
+    memo << "#{test}_#{new_resource.test_type}.rb" 
+  end
   directory test_dir do
     owner     new_resource.owner
     group     new_resource.group
@@ -16,14 +19,16 @@ action :run do
     action    :create
   end
 
-  cookbook_file "#{test_dir}/#{test_file}" do
-    source "tests/#{test_file}"
-    cookbook new_resource.cookbook_name
+  test_files.each do |test_file|
+    cookbook_file "#{test_dir}/#{test_file}" do
+      source "tests/#{test_file}"
+      cookbook new_resource.cookbook
+    end
   end
 
   chef_handler "MiniTest::Chef::Handler" do
     source    "minitest-chef-handler"
-    arguments :path => "#{test_dir}/#{test_file}"
+    arguments :path => "#{test_dir}/*_#{new_resource.test_type}.rb"
     action    :enable
   end
 end
