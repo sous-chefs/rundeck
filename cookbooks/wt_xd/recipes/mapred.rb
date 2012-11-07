@@ -83,7 +83,7 @@ if not Chef::Config.solo
         zookeeper_quorum << n['fqdn']
   end
 end
-zookeeper_quorum=zookeeper_quorum.sort
+zookeeper_quorum = zookeeper_quorum.sort
 
 # configure templates
 %w[environment.properties hbase.properties log4j.mapreduce.fb.xml log4j.mapreduce.tw.xml].each do |template_file|
