@@ -7,5 +7,5 @@
 #
 
 default['spark']['version'] = "0.6.0"
-default['spark']['download_url'] = "http://github.com/downloads/mesos/spark/"
+default['spark']['download_url'] = "http://github.com/downloads/mesos/spark"
 default['spark']['install_dir'] = "/opt/spark"
