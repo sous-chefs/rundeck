@@ -22,10 +22,20 @@ topology=streaming-topology
 # Streaming parameters, should have blank values in streaming
 streaming.topology.in.session.bolt.count=<%= @streaming_topology_in_session_bolt_count %>
 streaming.topology.zmq.emitter.bolt.count=<%= @streaming_topology_zmq_emitter_bolt_count %>
-streaming.topology.zmq.emitter.znodeRoot=/StreamingZMQ
 streaming.topology.validation.bolt.count=<%= @streaming_topology_validation_bolt_count %>
 streaming.topology.augmentation.bolt.count=<%= @streaming_topology_augmentation_bolt_count %>
+
+streaming.topology.in.session.bolt.tasks=<%= @streaming_topology_in_session_bolt_tasks %>
+streaming.topology.zmq.emitter.bolt.tasks=<%= @streaming_topology_zmq_emitter_bolt_tasks %>
+streaming.topology.validation.bolt.tasks=<%= @streaming_topology_validation_bolt_tasks %>
+streaming.topology.augmentation.bolt.tasks=<%= @streaming_topology_augmentation_bolt_tasks %>
+
+
+streaming.topology.zmq.emitter.znodeRoot=/StreamingZMQ
 streaming.topology.field.grouping.local=<%= @streaming_topology_field_grouping_local %>
+
+
+
 
 # Zookeeper connection info (use this or audit.broker.list)
 audit.zk.connect=<%= @zookeeper_pairs %>
