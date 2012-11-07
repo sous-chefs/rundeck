@@ -8,15 +8,21 @@
 
 # wt specific parameters
 default['wt_storm_streaming']['download_url'] = ""
-default['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'] = 100
+default['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'] = 25
+default['wt_storm_streaming']['streaming_topology_augmentation_bolt_tasks'] = 100
 default['wt_storm_streaming']['streaming_topology_in_session_bolt_count'] = 0
-default['wt_storm_streaming']['streaming_topology_validation_bolt_count'] = 100
-default['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'] = 50
+default['wt_storm_streaming']['streaming_topology_in_session_bolt_tasks'] = 0
+default['wt_storm_streaming']['streaming_topology_validation_bolt_count'] = 25
+default['wt_storm_streaming']['streaming_topology_validation_bolt_tasks'] = 60
+default['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'] = 5
+default['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_tasks'] = 5
+
 default['wt_storm_streaming']['streaming_topology_field_grouping_local'] = "true"
+# debug setting, setting this to true in a pod would run the system on only one host
 default['wt_storm_streaming']['streaming_topology_mode_local'] = "false"
 default['wt_storm_streaming']['topic_list'] = []
 
-# debug setting, setting this to true in a pod would run the system on only one host
+# debug setting, setting this to true will result in more debugging by the storm infrastructure
 default['wt_storm_streaming']['debug'] = false
 
 # general storm attributes
