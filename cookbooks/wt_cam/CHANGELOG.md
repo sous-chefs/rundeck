@@ -1,3 +1,7 @@
+## 1.1.1
+* Fixed incorrect assembly name in log4net.config template
+* Added activity log entry to log4net template
+
 ## 1.1.0
 * Fixed whitespace and typos
 
