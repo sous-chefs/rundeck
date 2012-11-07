@@ -27,7 +27,8 @@
         "wt_streamingauditor": "= 1.0.9", 
         "wt_streamingcollection": "= 1.0.3", 
         "wt_streamingconfigservice": "= 1.0.2", 
-        "wt_streaminglogreplayer": "= 1.1.2", 
+        "wt_streaminglogreplayer": "= 1.1.2",
+        "wt_streaming_topagg": "= 1.0.0",
         "zookeeper": "= 1.1.6"
     }, 
     "default_attributes": {
@@ -329,7 +330,20 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/37547:id/webtrends-streaminglogreplayer-bin.tar.gz", 
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay", 
             "thread_pool_size": 200
-        }, 
+        },
+        "wt_streaming_topagg": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/40732:id/TopicAggregator-bin.tar.gz",
+            "edge_kafka_sources": [
+                {
+                    "host": "mscs01.staging.dmz",
+                    "topic": "Lab_H_scsRawHits"
+                },
+                {
+                    "host": "mscs02.staging.dmz",
+                    "topic": "Lab_H_scsRawHits"
+                }
+            ]
+        },
         "wt_usagedb": {}, 
         "zookeeper": {
             "client_port": 2181, 
