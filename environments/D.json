@@ -251,7 +251,7 @@
         }, 
         "wt_platformscheduler": {
             "agent": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt289/40338:id/WebTrendsVDMSchedulerAgent.msi"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt289/40153:id/WebTrendsVDMSchedulerAgent.msi"
             }, 
             "host": "dsched01.staging.dmz"
         }, 
@@ -266,7 +266,7 @@
             "search_hostname": "dsearch.staging.dmz"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt292/39581:id/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt292/39692:id/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "dusagedb01.staging.dmz", 
