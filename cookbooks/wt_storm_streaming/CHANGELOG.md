@@ -1,3 +1,6 @@
+## 2.1.23
+* Updated configuration, so that the tasks for each of the bolts is also now configurable and out of code.
+
 ## 2.1.22
 * Updated the device-atlas file name and the file content.
 
