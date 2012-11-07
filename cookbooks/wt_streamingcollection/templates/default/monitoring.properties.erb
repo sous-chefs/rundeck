@@ -6,7 +6,7 @@ monitoring.jmx.enabled = <%= node['wt_monitoring']['jmx_enabled'] %>
 monitoring.metric.prefix = <%= node['wt_monitoring']['metric_prefix'] %>
 
 # Zookeeper connection info (use this or audit.broker.list)
-audit.zk.connect=<%= @zookeeper_pairs.join(",") %>
+audit.broker.list=<%=node["kafka"]["broker_id"]%>:localhost:9092
 # The kafka producer type (defaults to async)
 audit.producer.type=async
 # The time span (in minutes) between each audit flush (defaults to 10)
