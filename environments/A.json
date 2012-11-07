@@ -37,6 +37,11 @@
             "cassandra_report_column": "A_Report", 
             "cassandra_thrift_port": 9160
         }, 
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
         "hbase": {
             "location": "sdata.staging.dmz", 
             "site": {
@@ -50,17 +55,18 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
             }
         }, 
-        "kafka": {}, 
         "memcached": {
             "cache_hosts": [
                 {
@@ -92,6 +98,13 @@
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -202,6 +215,9 @@
             "website_name": "DX", 
             "website_port": "80"
         }, 
+        "wt_management_console": {
+            "mc_service_url": "https://amc.staging.dmz"
+        }, 
         "wt_masterdb": {
             "master_host": "amasterdb01.staging.dmz", 
             "sched_host": "amasterdb01.staging.dmz"
@@ -261,22 +277,10 @@
     "json_class": "Chef::Environment", 
     "name": "A", 
     "override_attributes": {
-        "esx": {
-            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
-            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
-        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
             ]
-        }, 
-        "resolver": {
-            "nameservers": [
-                "10.164.0.11", 
-                "10.164.0.12"
-            ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }
     }
 }

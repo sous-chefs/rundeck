@@ -26,7 +26,7 @@ example:
   recipe_name recipe_name
 end`
 
-Finally, for that recipe, include all the tests you've written in your files/<recipe>/tests.
+Finally, for that recipe, include all the tests you've written in your files/default/tests.
 
 (for a default recipe, for instance, it would be <cookbook_dir>/files/default/default\_test.rb
 
