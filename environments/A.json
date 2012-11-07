@@ -37,6 +37,11 @@
             "cassandra_report_column": "A_Report", 
             "cassandra_thrift_port": 9160
         }, 
+        "esx": {
+            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
+            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
+            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
         "hbase": {
             "location": "sdata.staging.dmz", 
             "site": {
@@ -62,7 +67,6 @@
                 }
             }
         }, 
-        "kafka": {}, 
         "memcached": {
             "cache_hosts": [
                 {
@@ -94,6 +98,13 @@
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -204,6 +215,9 @@
             "website_name": "DX", 
             "website_port": "80"
         }, 
+        "wt_management_console": {
+            "mc_service_url": "https://amc.staging.dmz"
+        }, 
         "wt_masterdb": {
             "master_host": "amasterdb01.staging.dmz", 
             "sched_host": "amasterdb01.staging.dmz"
@@ -263,22 +277,10 @@
     "json_class": "Chef::Environment", 
     "name": "A", 
     "override_attributes": {
-        "esx": {
-            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
-            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
-        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
             ]
-        }, 
-        "resolver": {
-            "nameservers": [
-                "10.164.0.11", 
-                "10.164.0.12"
-            ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }
     }
 }
