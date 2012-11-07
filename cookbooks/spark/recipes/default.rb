@@ -21,9 +21,15 @@ include_recipe "java"
 package "scala"
 
 spark_slaves = search(:node, "role:spark_slave AND chef_environment:#{node.chef_environment}")
+spark_master = search(:node, "role:spark_master AND chef_environment:#{node.chef_environment}").first
 
 
 install_dir = "#{node['spark']['install_dir']}/spark-#{node['spark']['version']}"
+
+mem = "30g"
+if node.run_list.include?("role[spark_master]")
+  mem = "15g"
+end
 
 # setup spark group
 group "spark"
@@ -96,7 +102,8 @@ end
     source "#{name}"
     mode 00755
     variables(
-      :spark_slaves => spark_slaves
+      :spark_slaves => spark_slaves,
+      :mem => mem
     )
   end
 end
