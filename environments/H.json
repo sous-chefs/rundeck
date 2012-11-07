@@ -12,18 +12,18 @@
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
         "wt_base": "= 1.0.2", 
-        "wt_cam": "= 1.0.32", 
+        "wt_cam": "= 1.1.1", 
         "wt_kafka_mm": "= 0.0.17", 
         "wt_netacuity": "= 1.0.10", 
         "wt_portfolio_admin": "= 1.1.8", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_realtimeapi": "= 1.0.1", 
-        "wt_sauth": "= 1.0.9", 
+        "wt_sauth": "= 1.1.0", 
         "wt_storm_realtime": "= 2.1.6", 
         "wt_storm_streaming": "= 2.1.18", 
         "wt_streaming_viz": "= 1.1.12", 
         "wt_streaminganalysis_monitor": "= 1.0.1", 
-        "wt_streamingapi": "= 1.0.11", 
+        "wt_streamingapi": "= 1.1.0", 
         "wt_streamingauditor": "= 1.0.9", 
         "wt_streamingcollection": "= 1.0.3", 
         "wt_streamingconfigservice": "= 1.0.2", 
@@ -277,7 +277,7 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/39792:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/40647:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augmentation_bolt_count": 100, 
             "streaming_topology_field_grouping_local": "false", 
             "streaming_topology_in_session_bolt_count": 0, 
@@ -299,7 +299,7 @@
             "streams_ui_url": "https://hstreams.webtrends.com"
         }, 
         "wt_streaminganalysis_monitor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/38846:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/40436:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
             "healthcheck_port": 9001, 
             "jmx_port": 9998
         }, 
@@ -311,7 +311,7 @@
             "usagedbserver": "hcamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/39187:id/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/40440:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://hscs.webtrends.com", 
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
