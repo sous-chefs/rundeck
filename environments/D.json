@@ -9,14 +9,14 @@
         "wt_analytics_ui": "= 1.0.9", 
         "wt_base": "= 1.0.1", 
         "wt_cam": "= 1.0.9", 
-        "wt_data_deleter": "= 1.0.2", 
+        "wt_data_deleter": "= 1.0.3", 
         "wt_devicedataupdater": "= 0.1.1", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.10", 
         "wt_platformscheduler": "= 1.0.11", 
         "wt_search": "= 1.0.8", 
         "wt_sync": "= 1.0.4", 
-        "wt_xd": "= 1.0.0"
+        "wt_xd": "= 1.0.2"
     }, 
     "default_attributes": {
         "authorization": {
@@ -55,12 +55,14 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
             }
@@ -156,7 +158,7 @@
             "bba_domain": "dbba.webtrends.com", 
             "cache_region": "D_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/40325:id/AnalyticsUI.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/40526:id/AnalyticsUI.zip", 
             "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
@@ -220,6 +222,9 @@
             "website_name": "DX", 
             "website_port": "80"
         }, 
+        "wt_management_console": {
+            "mc_service_url": "https://dmc.staging.dmz"
+        }, 
         "wt_masterdb": {
             "master_db": "wtMaster", 
             "master_host": "dmasterdb01.staging.dmz", 
@@ -249,7 +254,7 @@
         }, 
         "wt_platformscheduler": {
             "agent": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt289/40338:id/WebTrendsVDMSchedulerAgent.msi"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt289/40153:id/WebTrendsVDMSchedulerAgent.msi"
             }, 
             "host": "dsched01.staging.dmz"
         }, 
@@ -264,7 +269,7 @@
             "search_hostname": "dsearch.staging.dmz"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt292/39581:id/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt292/39692:id/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "dusagedb01.staging.dmz", 
