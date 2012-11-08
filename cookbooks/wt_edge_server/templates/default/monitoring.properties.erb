@@ -1,6 +1,6 @@
 # are we monitoring at all
-monitoring.enabled = true
+monitoring.enabled = <%= node['wt_monitoring']['monitoring_enabled'] %>
 # should we publish to jmx
-monitoring.jmx.enabled = true
+monitoring.jmx.enabled = <%= node['wt_monitoring']['jmx_enabled'] %>
 # the prefix to append metrics being sent to graphite
-monitoring.metric.prefix = staging.foo.servers
+monitoring.metric.prefix = <%= node['wt_monitoring']['metric_prefix'] %>
