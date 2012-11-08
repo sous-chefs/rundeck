@@ -215,11 +215,11 @@
 	    "edge_kafka_sources": [
 		    {
 			 "host":"LSCS01.staging.dmz",
-			 "topic":"Lab_L_scsRawHits"
+			 "topic":"Lab_B_scsRawHits"
 		    },
 		    {
 			 "host":"ESCS01.staging.dmz",
-			 "topic":"Lab_E_scsRawHits"
+			 "topic":"Lab_B_scsRawHits"
 		    }
 		]
 	}, 
