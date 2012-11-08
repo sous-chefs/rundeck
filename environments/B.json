@@ -14,7 +14,7 @@
         "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.1.0", 
         "wt_kafka_mm": "= 0.0.17",
-	"wt_kafka_topagg"": "= 1.0.0", 
+	"wt_kafka_topagg": "= 1.0.0", 
         "wt_netacuity": "= 1.0.9", 
         "wt_portfolio_admin": "= 1.1.8", 
         "wt_portfolio_manager": "= 1.1.10", 
