@@ -167,7 +167,7 @@
             "dcsid_url": "http://jcd01.englab.webtrends.corp:8097/config/dcsid2account"
         }, 
 	"wt_edge_server": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt299/.lastSuccessful/<filename>-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt299/.lastSuccessful/Edge-Server-Distribution-wModules-all.tar.gz", 
             "port": 8081,
 	    "config_service_rule_url_template":"https://rcs.webtrends.com/rcs/v1/rule/{configid}",
 	    "active_configs_url_template":"https://rcs.webtrends.com/rcs/v1/activeRules/"
