@@ -12,23 +12,23 @@
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
         "wt_base": "= 1.0.2", 
-        "wt_cam": "= 1.1.1", 
-        "wt_kafka_mm": "= 0.0.17", 
+        "wt_cam": "= 1.1.2", 
+        "wt_kafka_mm": "= 0.0.17",
+        "wt_kafka_topagg": "= 1.0.0",
         "wt_netacuity": "= 1.0.10", 
         "wt_portfolio_admin": "= 1.1.8", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_realtimeapi": "= 1.0.1", 
-        "wt_sauth": "= 1.1.0", 
+        "wt_sauth": "= 1.1.1", 
         "wt_storm_realtime": "= 2.1.6", 
         "wt_storm_streaming": "= 2.1.18", 
         "wt_streaming_viz": "= 1.1.12", 
-        "wt_streaminganalysis_monitor": "= 1.0.1", 
+        "wt_streaminganalysis_monitor": "= 1.0.2", 
         "wt_streamingapi": "= 1.1.0", 
         "wt_streamingauditor": "= 1.0.9", 
         "wt_streamingcollection": "= 1.0.3", 
         "wt_streamingconfigservice": "= 1.0.2", 
         "wt_streaminglogreplayer": "= 1.1.2",
-        "wt_streaming_topagg": "= 1.0.0",
         "zookeeper": "= 1.1.6"
     }, 
     "default_attributes": {
@@ -300,12 +300,12 @@
             "streams_ui_url": "https://hstreams.webtrends.com"
         }, 
         "wt_streaminganalysis_monitor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/40436:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/40856:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
             "healthcheck_port": 9001, 
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/.lastSuccessful/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/40864:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "sapi_service_url": "ws://hsapi01.staging.dmz:8080", 
             "usagedbname": "Streaming", 
@@ -331,7 +331,7 @@
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay", 
             "thread_pool_size": 200
         },
-        "wt_streaming_topagg": {
+        "wt_kafka_topagg": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/40732:id/TopicAggregator-bin.tar.gz",
             "edge_kafka_sources": [
                 {
