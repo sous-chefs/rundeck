@@ -1,5 +1,5 @@
 {
-  "name": "wt_streaming_topagg",
+  "name": "wt_kafka_topagg",
   "default_attributes": {
   },
   "override_attributes": {
