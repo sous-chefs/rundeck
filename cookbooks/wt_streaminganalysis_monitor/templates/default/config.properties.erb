@@ -37,5 +37,5 @@ storm.port=<%= @thrift_port %>
 # This is how often to call (seconds) Nimbus to retrieve statistics
 storm.stats.interval=<%= node[:wt_streaminganalysis_monitor][:stats_interval] %>
 # This is a regular expression for which metrics should be sent on to graphite. All metrics are still exposed via JMX or the metrics endpoint
-storm.stats.graphite.regex=<%= node[:wt_streaminganalysis_monitor][:stats.graphite.regex] %>
+storm.stats.graphite.regex=<%= node[:wt_streaminganalysis_monitor][:stats_graphite_regex] %>
 
