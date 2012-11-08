@@ -17,5 +17,8 @@
         "ui_acct": "wtUI", 
         "ui_pass": "Bijoux1", 
         "ui_user": "STAGINGDMZ\\wtUI"
+    }, 
+    "wt_netacuity": {
+        "admin_password": "Bijoux01"
     }
 }
