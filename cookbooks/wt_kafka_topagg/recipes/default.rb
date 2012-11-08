@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_streaming_topagg
+# Cookbook Name:: wt_kafka_topagg
 # Recipe:: default
 #
 # Copyright 2012, Webtrends
@@ -9,24 +9,24 @@
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploying first"
-  include_recipe "wt_streaming_topagg::undeploy"
+  include_recipe "wt_kafka_topagg::undeploy"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-name  = node['wt_streaming_topagg']['name']
+name  = node['wt_kafka_topagg']['name']
 
 log_dir      = File.join(node['wt_common']['log_dir_linux'], name)
 install_dir  = File.join(node['wt_common']['install_dir_linux'], name)
 
-tarball      = node['wt_streaming_topagg']['download_url'].split("/")[-1]
-download_url = node['wt_streaming_topagg']['download_url']
+tarball      = node['wt_kafka_topagg']['download_url'].split("/")[-1]
+download_url = node['wt_kafka_topagg']['download_url']
 
 java_home    = node['java']['java_home']
-java_opts = node['wt_streaming_topagg']['java_opts']
+java_opts = node['wt_kafka_topagg']['java_opts']
 
-user = node['wt_streaming_topagg']['user']
-group = node['wt_streaming_topagg']['group']
+user = node['wt_kafka_topagg']['user']
+group = node['wt_kafka_topagg']['group']
 
 pod = node['wt_realtime_hadoop']['pod']
 datacenter = node['wt_realtime_hadoop']['datacenter']
@@ -117,10 +117,10 @@ template "#{install_dir}/conf/config.json" do
     mode  00644
     variables({
         :agg_bkr_zk_connect => zookeeper_pairs * ",",
-        :agg_bkr_zk_timeout_ms => node[:wt_streaming_topagg][:agg_bkr_zk_timeout_ms],
+        :agg_bkr_zk_timeout_ms => node[:wt_kafka_topagg][:agg_bkr_zk_timeout_ms],
         :dc => datacenter,
         :pod => pod,
-        :edge_kafka_sources => node[:wt_streaming_topagg][:edge_kafka_sources].to_json().gsub("[{", "[\n         {").gsub("}]", "}\n    ]").gsub("},{", "},\n         {")
+        :edge_kafka_sources => node[:wt_kafka_topagg][:edge_kafka_sources].to_json().gsub("[{", "[\n         {").gsub("}]", "}\n    ]").gsub("},{", "},\n         {")
     })
 end
 
@@ -150,7 +150,7 @@ if ENV["deploy_build"] == "true" then
             :log_dir => log_dir,
             :install_dir => install_dir,
             :java_home => java_home,
-            :java_jmx_port => node['wt_streaming_topagg']['jmx_port'],
+            :java_jmx_port => node['wt_kafka_topagg']['jmx_port'],
             :java_opts => java_opts
         })
     end
@@ -176,8 +176,8 @@ end
 
 #Create collectd plugin for topagg JMX objects if collectd has been applied.
 if node.attribute?("collectd")
-    template "#{node['collectd']['plugin_conf_dir']}/collectd_streaming_topagg.conf" do
-        source "collectd_streaming_topagg.conf.erb"
+    template "#{node['collectd']['plugin_conf_dir']}/collectd_topagg.conf" do
+        source "collectd_topagg.conf.erb"
         owner "root"
         group "root"
         mode 00644
@@ -196,7 +196,7 @@ if node.attribute?("nagios")
     #Create a nagios nrpe check for the log file
     nagios_nrpecheck "wt_garbage_collection_limit_reached" do
         command "#{node['nagios']['plugin_dir']}/check_log"
-        parameters "-F /var/log/webtrends/topagg/streaming.log -O /tmp/streaming_old.log -q 'GC overhead limit exceeded'"
+        parameters "-F /var/log/webtrends/topagg/#{node[:wt_kafka_topagg][:name]}.log -O /tmp/#{node[:wt_kafka_topagg][:name]}_old.log -q 'GC overhead limit exceeded'"
         action :add
     end
 end
