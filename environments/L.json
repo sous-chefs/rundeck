@@ -1,14 +1,13 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "kafka": "= 1.0.19", 
+        "kafka": "= 1.0.20", 
         "nagios": "= 1.6.0", 
         "sudo": "= 1.0.0", 
         "webtrends_server": "= 1.8.8", 
         "wt_base": "= 1.0.2", 
-        "wt_streamingcollection": "= 0.0.28", 
-        "zookeeper": "= 1.0.5"
-    }, 
+        "wt_streamingcollection": "= 1.1.0", 
+     }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -149,7 +148,7 @@
             "pod": "L"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/27350:id/webtrends-streamingcollection-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/40656:id/webtrends-streamingcollection-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingconfigservice": {
