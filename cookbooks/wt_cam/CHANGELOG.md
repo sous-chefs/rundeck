@@ -1,3 +1,6 @@
+## 1.1.2
+* Allowed double escaping for email handling via url
+
 ## 1.1.1
 * Fixed incorrect assembly name in log4net.config template
 * Added activity log entry to log4net template

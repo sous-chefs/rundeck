@@ -1,3 +1,6 @@
+## 1.1.1
+* Allowed double escaping for email address handling via url
+
 ## 1.1.0
 * Fixed whitespace, typos, and food critic errors
 
