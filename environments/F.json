@@ -248,7 +248,7 @@
         }, 
         "wt_netacuity": {
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz", 
-            "geo_url": "dgeo.staging.dmz", 
+            "geo_url": "fgeo.staging.dmz", 
             "version": "502"
         }, 
         "wt_platformscheduler": {
