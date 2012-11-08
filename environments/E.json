@@ -177,7 +177,7 @@
             "port": 8080
         }, 
         "wt_streamingconfigservice": {
-	    "config_Service_url": "config_service_url": "http://butil01.staging.dmz:8080"
+	    "config_Service_url": "http://butil01.staging.dmz:8080"
         }, 
         "zookeeper": {
             "client_port": 2181, 
