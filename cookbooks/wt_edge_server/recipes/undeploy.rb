@@ -7,8 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-log_dir      = File.join(node['wt_common']['log_dir_linux'], "collection_services")
-install_dir  = File.join(node['wt_common']['install_dir_linux'], "collection_services")
+log_dir      = File.join(node['wt_common']['log_dir_linux'], "edge_server")
+install_dir  = File.join(node['wt_common']['install_dir_linux'], "edge_server")
 
 runit_service "edge_server" do
     action :disable
