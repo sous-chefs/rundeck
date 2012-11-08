@@ -1,0 +1,20 @@
+{
+  "name": "wt_streaming_topagg",
+  "default_attributes": {
+  },
+  "override_attributes": {
+      "java" : {
+        "install_flavor": "oracle",
+        "jdk_version": "7"
+      }
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[java]",
+    "recipe[wt_kafka_topagg]"
+  ],
+  "description": "Webtrends Kafka Topic Aggregator",
+  "chef_type": "role"  
+}
