@@ -5,7 +5,6 @@
   CustomLog       <%= node['apache']['log_dir'] %>/multi_repo_access.log combined
   ErrorLog        <%= node['apache']['log_dir'] %>/multi_repo_error.log
   <Directory />
-    Options Indexes
-    Options FollowSymLinks
+    Options Indexes FollowSymLinks
   </Directory>
 </VirtualHost>
