@@ -1,3 +1,6 @@
+## 1.0.6:
+* Take out the check to see if running on Chef 0.9.X
+
 ## 1.0.5:
 * Ensure ruby is installed on CentOS
 
