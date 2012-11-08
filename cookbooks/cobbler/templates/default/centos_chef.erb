@@ -32,8 +32,8 @@ runlist=$run_list
 realrunlist=\$(for item in \${runlist//,/ }; do echo -n "\"${item}\","; done | sed 's/,$//')
 echo "{ \"run_list\": [ $realrunlist ] }" > /etc/chef/first-boot.json
 
-# set chef environment if running chef 0.10+ and environment is specified
-if [[ ! `chef-client --version` =~ 0\.9\.* && -n "$environment" ]] ; then
+# set chef environment if environment is specified
+if [[ -n "$environment" ]] ; then
   chef_environment="-E $environment"
 fi
 
