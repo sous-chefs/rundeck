@@ -1,4 +1,7 @@
-## 1.1.11:
+## 1.1.12
+* Assign ad.network as NETIQDMZ and groups to PortMgr.Admin and PortMgr.User.
+
+## 1.1.11
 * Use node['domain'] to find the domain its in
 
 ## 1.1.10:
@@ -15,7 +18,6 @@
 
 ## 1.1.6:
 * Add entry for mc.url to appSettings.config template..
-
 ## 1.1.5:
 * Remove entries from web.config template.
 
