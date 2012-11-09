@@ -218,9 +218,17 @@
 			 "topic":"Lab_B_scsRawHits"
 		    },
 		    {
-			 "host":"ESCS01.staging.dmz",
+			 "host":"LSCS02.staging.dmz",
 			 "topic":"Lab_B_scsRawHits"
 		    }
+                    {
+                         "host":"ESCS01.staging.dmz",
+                         "topic":"Lab_B_scsRawHits"
+                    }
+                    {
+                         "host":"ESCS02.staging.dmz",
+                         "topic":"Lab_B_scsRawHits"
+                    }
 		]
 	}, 
         "wt_management_console": {
