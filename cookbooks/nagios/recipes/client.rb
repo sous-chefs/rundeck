@@ -74,8 +74,8 @@ template "#{node['nagios']['nrpe']['conf_dir']}/nrpe.cfg" do
 end
 
 service "nagios-nrpe-server" do
-  case node[:platform]
-   when "centos", "redhat", "fedora", "scientific", "amazon"
+  case node['platform_family]
+   when 'rhel'
      if node['nagios']['client']['install_method'] == "package"
        service_name "nrpe"
      end
