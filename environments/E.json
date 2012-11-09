@@ -6,7 +6,8 @@
         "sudo": "= 1.0.0", 
         "webtrends_server": "= 1.8.8", 
         "wt_base": "= 1.0.2", 
-        "wt_streamingcollection": "= 1.1.0"
+        "wt_streamingcollection": "= 1.1.0", 
+        "zookeeper": "= 1.1.6"
     }, 
     "default_attributes": {
         "authorization": {
@@ -76,21 +77,10 @@
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
-        "snmp": {
-            "community": "DevOps", 
-            "full_systemview": "true", 
-            "syscontact": "trent.white@webtrends.com"
-        }, 
-        "storm": {
-            "download_url": "http://repo.staging.dmz/repo/linux/storm/"
-        }, 
-        "vc2010": {
-            "x64": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-            }, 
-            "x86": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-            }
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }, 
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
@@ -125,15 +115,6 @@
                 }
             ]
         }, 
-        "wt_cam": {
-            "auth_port": 8081, 
-            "auth_service_url": "http://bcam01.staging.dmz:8081", 
-            "cam_port": 81, 
-            "cam_server_url": "http://bcam01.staging.dmz/camservice", 
-            "camlite_port": 80, 
-            "db_name": "cam", 
-            "db_server": "bcamdb01.staging.dmz"
-        }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
@@ -150,9 +131,6 @@
             "smtp_server": "pdxengmta01.webtrends.corp", 
             "wrsmodify_group": "STAGINGDMZ\\E.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\E.WRS.Read"
-        }, 
-        "wt_configdistrib": {
-            "dcsid_url": "http://dcd01.staging.dmz:8097/config/dcsid2account"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
@@ -177,7 +155,7 @@
             "port": 8080
         }, 
         "wt_streamingconfigservice": {
-	    "config_Service_url": "http://butil01.staging.dmz:8080"
+            "config_service_url": "http://butil01.staging.dmz:8080"
         }, 
         "zookeeper": {
             "client_port": 2181, 

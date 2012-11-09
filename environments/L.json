@@ -6,8 +6,9 @@
         "sudo": "= 1.0.0", 
         "webtrends_server": "= 1.8.8", 
         "wt_base": "= 1.0.2", 
-        "wt_streamingcollection": "= 1.1.0" 
-     }, 
+        "wt_streamingcollection": "= 1.1.0", 
+        "zookeeper": "= 1.1.6"
+    }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -76,6 +77,11 @@
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
+        }, 
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
             "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
@@ -125,9 +131,6 @@
             "smtp_server": "pdxengmta01.webtrends.corp", 
             "wrsmodify_group": "STAGINGDMZ\\L.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\L.WRS.Read"
-        }, 
-        "wt_configdistrib": {
-            "dcsid_url": "http://acd01.staging.dmz:8097/config/dcsid2account"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 

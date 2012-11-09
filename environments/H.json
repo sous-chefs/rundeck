@@ -13,8 +13,8 @@
         "windows": "= 1.3.6", 
         "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.1.2", 
-        "wt_kafka_mm": "= 0.0.17",
-        "wt_kafka_topagg": "= 1.0.0",
+        "wt_kafka_mm": "= 0.0.17", 
+        "wt_kafka_topagg": "= 1.0.0", 
         "wt_netacuity": "= 1.0.10", 
         "wt_portfolio_admin": "= 1.1.8", 
         "wt_realtime_hadoop": "= 1.0.4", 
@@ -28,7 +28,7 @@
         "wt_streamingauditor": "= 1.0.9", 
         "wt_streamingcollection": "= 1.0.3", 
         "wt_streamingconfigservice": "= 1.0.2", 
-        "wt_streaminglogreplayer": "= 1.1.2",
+        "wt_streaminglogreplayer": "= 1.1.2", 
         "zookeeper": "= 1.1.6"
     }, 
     "default_attributes": {
@@ -209,6 +209,19 @@
         "wt_kafka_mm": {
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38875:id/MirrorMonitor-bin.tar.gz"
         }, 
+        "wt_kafka_topagg": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/40732:id/TopicAggregator-bin.tar.gz", 
+            "edge_kafka_sources": [
+                {
+                    "host": "mscs01.staging.dmz", 
+                    "topic": "Lab_H_scsRawHits"
+                }, 
+                {
+                    "host": "mscs02.staging.dmz", 
+                    "topic": "Lab_H_scsRawHits"
+                }
+            ]
+        }, 
         "wt_management_console": {
             "service_url": "https://dmc.staging.dmz"
         }, 
@@ -330,20 +343,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/37547:id/webtrends-streaminglogreplayer-bin.tar.gz", 
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay", 
             "thread_pool_size": 200
-        },
-        "wt_kafka_topagg": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/40732:id/TopicAggregator-bin.tar.gz",
-            "edge_kafka_sources": [
-                {
-                    "host": "mscs01.staging.dmz",
-                    "topic": "Lab_H_scsRawHits"
-                },
-                {
-                    "host": "mscs02.staging.dmz",
-                    "topic": "Lab_H_scsRawHits"
-                }
-            ]
-        },
+        }, 
         "wt_usagedb": {}, 
         "zookeeper": {
             "client_port": 2181, 
@@ -373,6 +373,11 @@
                 "10.164.0.12"
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
 }
