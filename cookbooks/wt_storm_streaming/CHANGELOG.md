@@ -1,3 +1,6 @@
+## 2.1.24
+* Added the tasks parameters so the cookbook actually will work.
+
 ## 2.1.23
 * Updated configuration, so that the tasks for each of the bolts is also now configurable and out of code.
 
