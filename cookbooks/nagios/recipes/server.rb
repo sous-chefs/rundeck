@@ -141,23 +141,6 @@ if eventhandlers.nil? || eventhandlers.empty?
   eventhandlers = Array.new
 end
 
-# Load search defined Nagios hostgroups from the nagios_hostgroups data bag and find nodes
-begin
-  hostgroup_nodes= Hash.new
-  hostgroup_list = Array.new
-  search(:nagios_hostgroups, '*:*') do |hg|
-    hostgroup_list << hg['hostgroup_name']
-    temp_hostgroup_array= Array.new
-    search(:node, "#{hg['search_query']}") do |n|
-       temp_hostgroup_array << n['hostname']
-    end
-    hostgroup_nodes[hg['hostgroup_name']] = temp_hostgroup_array.join(",")
-  end
-rescue Net::HTTPServerException
-  Chef::Log.info("Search for nagios_hostgroups data bag failed, so we'll just move on.")
-end
-
-
 # find all unique hostgroups in the nagios_unmanagedhosts data bag
 begin
   unmanaged_hosts = search(:nagios_unmanagedhosts, '*:*')
@@ -178,15 +161,31 @@ else
   end
 end
 
-if node['public_domain']
-  public_domain = node['public_domain']
-else
-  public_domain = node['domain']
+# Load search defined Nagios hostgroups from the nagios_hostgroups data bag and find nodes
+begin
+  hostgroup_nodes= Hash.new
+  hostgroup_list = Array.new
+  search(:nagios_hostgroups, '*:*') do |hg|
+    hostgroup_list << hg['hostgroup_name']
+    temp_hostgroup_array= Array.new
+    search(:node, "#{hg['search_query']}") do |n|
+       temp_hostgroup_array << n['hostname']
+    end
+    hostgroup_nodes[hg['hostgroup_name']] = temp_hostgroup_array.join(",")
+  end
+rescue Net::HTTPServerException
+  Chef::Log.info("Search for nagios_hostgroups data bag failed, so we'll just move on.")
 end
 
 members = Array.new
 sysadmins.each do |s|
   members << s['id']
+end
+
+if node['public_domain']
+  public_domain = node['public_domain']
+else
+  public_domain = node['domain']
 end
 
 nagios_conf "nagios" do
