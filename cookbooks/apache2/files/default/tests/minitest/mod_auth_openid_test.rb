@@ -1,4 +1,4 @@
-require File.expand_path('../helpers', __FILE__)
+require File.expand_path('../support/helpers', __FILE__)
 require 'pathname'
 
 describe 'apache2::mod_auth_openid' do
@@ -10,7 +10,15 @@ describe 'apache2::mod_auth_openid' do
   end
 
   it "does not add the module to httpd.conf" do
-    httpd_config = File.read("#{node['apache']['dir']}/conf/httpd.conf")
+    conffile = case node['platform']
+               when 'debian', 'ubuntu'
+                 "apache2.conf"
+               when "redhat", "centos", "scientific", "fedora", "arch", "amazon"
+                 "conf/httpd.conf"
+               when "freebsd"
+                 "httpd.conf"
+               end
+    httpd_config = File.read(File.join(node['apache']['dir'], conffile))
     refute_match /^LoadModule authopenid_module /, httpd_config
   end
 
@@ -20,6 +28,10 @@ describe 'apache2::mod_auth_openid' do
 
   it "ensures the db file is writable by apache" do
     file(node['apache']['mod_auth_openid']['dblocation']).must_exist.with(:owner, node['apache']['user']).and(:mode, "644")
+  end
+
+  it 'enables authopenid_module' do
+    apache_enabled_modules.must_include "authopenid_module"
   end
 
 end
