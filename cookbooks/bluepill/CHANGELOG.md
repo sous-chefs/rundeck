@@ -1,3 +1,8 @@
+## v1.1.2:
+
+* [COOK-1730] - Add ability to specify which version of bluepill to
+  install
+
 ## v1.1.0:
 
 * [COOK-1592] - use mixlib-shellout instead of execute, add test-kitchen
