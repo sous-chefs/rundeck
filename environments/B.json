@@ -14,7 +14,7 @@
         "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.1.0", 
         "wt_kafka_mm": "= 0.0.17",
-	"wt_kafka_topagg": "= 1.0.0", 
+        "wt_kafka_topagg": "= 1.0.0",
         "wt_netacuity": "= 1.0.9", 
         "wt_portfolio_admin": "= 1.1.8", 
         "wt_portfolio_manager": "= 1.1.10", 
@@ -210,27 +210,27 @@
         "wt_kafka_mm": {
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38950:id/MirrorMonitor-bin.tar.gz"
         },
-	"wt_kafka_topagg": {
-	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/40732:id/TopicAggregator-bin.tar.gz",
-	    "edge_kafka_sources": [
-		    {
-			 "host":"LSCS01.staging.dmz",
-			 "topic":"Lab_B_scsRawHits"
-		    },
-		    {
-			 "host":"LSCS02.staging.dmz",
-			 "topic":"Lab_B_scsRawHits"
-		    },
-                    {
-                         "host":"ESCS01.staging.dmz",
-                         "topic":"Lab_B_scsRawHits"
-                    },
-                    {
-                         "host":"ESCS02.staging.dmz",
-                         "topic":"Lab_B_scsRawHits"
-                    }
-		]
-	}, 
+        "wt_kafka_topagg": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/40985:id/TopicAggregator-bin.tar.gz",
+            "edge_kafka_sources": [
+                {
+                    "host":"lscs01.staging.dmz",
+                    "topic":"Lab_B_scsRawHits"
+                },
+                {
+                    "host":"lscs02.staging.dmz",
+                    "topic":"Lab_B_scsRawHits"
+                },
+                {
+                    "host":"escs01.staging.dmz",
+                    "topic":"Lab_B_scsRawHits"
+                },
+                {
+                    "host":"escs02.staging.dmz",
+                    "topic":"Lab_B_scsRawHits"
+                }
+            ]
+        }, 
         "wt_management_console": {
             "service_url": "https://dmc.staging.dmz"
         }, 
