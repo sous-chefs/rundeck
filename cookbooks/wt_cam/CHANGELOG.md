@@ -1,3 +1,18 @@
+## 1.1.2
+* Allowed double escaping for email handling via url
+
+## 1.1.1
+* Fixed incorrect assembly name in log4net.config template
+* Added activity log entry to log4net template
+
+## 1.1.0
+* Fixed whitespace and typos
+
+## 1.0.32
+* Added ruby block to prewarm app pool
+## 1.0.31
+* Added ui user to the Performance Monitor Users group
+
 ## 1.0.30
 * Address a food critic warning
 

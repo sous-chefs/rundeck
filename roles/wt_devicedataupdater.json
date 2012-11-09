@@ -1,14 +1,16 @@
 {
-    "chef_type": "role", 
-    "default_attributes": {}, 
-    "description": "Webtrends Device Data Updater", 
-    "env_run_lists": {}, 
-    "json_class": "Chef::Role", 
-    "name": "wt_devicedataupdater", 
-    "override_attributes": {}, 
+    "chef_type": "role",
+    "default_attributes": {},
+    "description": "Webtrends Device Data Updater",
+    "env_run_lists": {},
+    "json_class": "Chef::Role",
+    "name": "wt_devicedataupdater",
+    "override_attributes": {},
     "run_list": [
-        "recipe[vc2010]", 
-        "role[wt_platformscheduler_agent]", 
+        "recipe[vc2010]",
+        "recipe[ms_dotnet4]",
+        "recipe[ms_messagequeue]",
+        "role[wt_platformscheduler_agent]",
         "recipe[wt_devicedataupdater]"
     ]
 }

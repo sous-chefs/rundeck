@@ -1,7 +1,7 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "cobbler": "= 1.0.4", 
+        "cobbler": "= 1.0.5", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
@@ -149,6 +149,11 @@
             "servers": [
                 "time.webtrends.corp"
             ]
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
 }

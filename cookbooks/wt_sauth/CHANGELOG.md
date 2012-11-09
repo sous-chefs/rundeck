@@ -1,3 +1,15 @@
+## 1.1.1
+* Allowed double escaping for email address handling via url
+
+## 1.1.0
+* Fixed whitespace, typos, and food critic errors
+
+## 1.0.9
+* Added ruby block to call the preload of site before removing from function. 
+
+## 1.0.8
+* Added wtUI user to Performance Monitor Users group
+
 ## 1.0.7:
 * Update request handlers to MVC4 versions
 

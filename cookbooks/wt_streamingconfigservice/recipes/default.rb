@@ -181,3 +181,7 @@ if node.attribute?("nagios")
 	end
 
 end
+
+minitest_handler "unit-tests" do
+  test_name %w{healthcheck}
+end
