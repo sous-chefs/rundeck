@@ -299,15 +299,15 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/40061:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augmentation_bolt_count": 100,
-	     "streaming_topology_field_grouping_local": "false", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/40992:id/streaming-analysis-bin.tar.gz", 
+            "streaming_topology_augmentation_bolt_count": 20,
+            "streaming_topology_field_grouping_local": "false",
             "streaming_topology_in_session_bolt_count": 0, 
-            "streaming_topology_validation_bolt_count": 100, 
-            "streaming_topology_zmq_emitter_bolt_count": 50, 
+            "streaming_topology_validation_bolt_count": 20, 
+            "streaming_topology_zmq_emitter_bolt_count": 2, 
             "topic_list": [
-                "Lab_B_scsRawHits:12", 
-                "Lab_B_lrRawHits:12"
+                "Lab_B_scsRawHits:3",
+                "Lab_B_lrRawHits:3"
             ], 
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
