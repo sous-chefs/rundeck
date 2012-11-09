@@ -11,6 +11,7 @@
         "windows": "= 1.3.6", 
         "wt_base": "= 1.0.1", 
         "wt_cam": "= 1.0.4", 
+        "wt_edge_server": "0.1.0", 
         "wt_heatmaps": "= 0.10.42", 
         "wt_realtime_hadoop": "= 1.0.2", 
         "wt_realtimeapi": "= 0.0.20", 
@@ -48,12 +49,14 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
             }
@@ -163,6 +166,12 @@
         "wt_configdistrib": {
             "dcsid_url": "http://jcd01.englab.webtrends.corp:8097/config/dcsid2account"
         }, 
+        "wt_edge_server": {
+            "active_configs_url_template": "https://rcs.webtrends.com/rcs/v1/activeRules/", 
+            "config_service_rule_url_template": "https://rcs.webtrends.com/rcs/v1/rule/{configid}", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt299/.lastSuccessful/Edge-Server-Distribution-wModules-all.tar.gz", 
+            "port": 8081
+        }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 
@@ -214,6 +223,11 @@
             "servers": [
                 "time.webtrends.corp"
             ]
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
 }
