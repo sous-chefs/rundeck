@@ -1,6 +1,21 @@
 Future
 	Change IIS site bindings
 	Search alternate/current environment for cache_hosts
+## 1.0.16
+  * Adding ui user to run as
+	* Fixing d line
+## 1.0.15
+  * Adding - in command
+## 1.0.14
+  * Added delete back in
+	* Fixed templates
+## 1.0.13
+  * Commented out file delete
+## 1.0.12
+  * Hard coded path to aspnet_regiis
+## 1.0.11
+  * Moved rsa key from the authorization databag
+	* Changed path for calling asp command
 ## 1.0.10
 	* Added rsa file data to template/databag and updated recipe to consume
 ## 1.0.9

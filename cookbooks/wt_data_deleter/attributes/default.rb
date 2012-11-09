@@ -1,5 +1,5 @@
 #
-# Author:: Kendrick Martin(<kendrick.martin@webtrends.com>)
+# Author:: Michael Parsons(<Michael.Parsons@webtrends.com>)
 # Cookbook Name:: wt_data_deleter
 # Attribute:: default
 #

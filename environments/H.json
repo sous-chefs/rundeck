@@ -5,26 +5,27 @@
         "hbase": "= 1.0.3", 
         "hive": "= 1.0.2", 
         "java": "= 1.6.0", 
-        "kafka": "= 1.0.13", 
+        "kafka": "= 1.0.20", 
         "nagios": "= 1.6.1", 
         "storm": "= 1.0.28", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
         "wt_base": "= 1.0.2", 
-        "wt_cam": "= 1.0.30", 
+        "wt_cam": "= 1.1.2", 
         "wt_kafka_mm": "= 0.0.17", 
+        "wt_kafka_topagg": "= 1.0.0", 
         "wt_netacuity": "= 1.0.10", 
         "wt_portfolio_admin": "= 1.1.8", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_realtimeapi": "= 1.0.1", 
-        "wt_sauth": "= 1.0.7", 
+        "wt_sauth": "= 1.1.1", 
         "wt_storm_realtime": "= 2.1.6", 
-        "wt_storm_streaming": "= 2.1.16", 
-        "wt_streaming_viz": "= 1.1.11", 
-        "wt_streaminganalysis_monitor": "= 1.0.1", 
-        "wt_streamingapi": "= 1.0.11", 
-        "wt_streamingauditor": "= 1.0.8", 
+        "wt_storm_streaming": "= 2.1.18", 
+        "wt_streaming_viz": "= 1.1.12", 
+        "wt_streaminganalysis_monitor": "= 1.0.2", 
+        "wt_streamingapi": "= 1.1.0", 
+        "wt_streamingauditor": "= 1.0.9", 
         "wt_streamingcollection": "= 1.0.3", 
         "wt_streamingconfigservice": "= 1.0.2", 
         "wt_streaminglogreplayer": "= 1.1.2", 
@@ -73,12 +74,14 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
             }
@@ -162,15 +165,15 @@
         }, 
         "wt_analytics_ui": {}, 
         "wt_aps": {
-            "service_url": "http://daps01.staging.dmz",
-            "aps_url_base": "/AccountProvisioning/"
-        },
+            "aps_url_base": "/AccountProvisioning/", 
+            "service_url": "http://daps01.staging.dmz"
+        }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/.lastSuccessful/Cam.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Cam.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/.lastSuccessful/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Plugins.zip"
             }, 
             "cam_service_url": "http://hcam.staging.dmz", 
             "db_name": "cam", 
@@ -206,6 +209,19 @@
         "wt_kafka_mm": {
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38875:id/MirrorMonitor-bin.tar.gz"
         }, 
+        "wt_kafka_topagg": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/40732:id/TopicAggregator-bin.tar.gz", 
+            "edge_kafka_sources": [
+                {
+                    "host": "mscs01.staging.dmz", 
+                    "topic": "Lab_H_scsRawHits"
+                }, 
+                {
+                    "host": "mscs02.staging.dmz", 
+                    "topic": "Lab_H_scsRawHits"
+                }
+            ]
+        }, 
         "wt_management_console": {
             "service_url": "https://dmc.staging.dmz"
         }, 
@@ -234,7 +250,7 @@
         "wt_portfolio_admin": {
             "account_ui_url": "https://haccount.webtrends.com", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lastSuccessful/Portfolio.Admin.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/40894:id/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true"
@@ -255,7 +271,7 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://hsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt277/.lastSuccessful/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/41004:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_realtime": {
@@ -275,41 +291,41 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/37737:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augmentation_bolt_count": 40, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/40647:id/streaming-analysis-bin.tar.gz", 
+            "streaming_topology_augmentation_bolt_count": 100, 
             "streaming_topology_field_grouping_local": "false", 
             "streaming_topology_in_session_bolt_count": 0, 
-            "streaming_topology_validation_bolt_count": 40, 
-            "streaming_topology_zmq_emitter_bolt_count": 3, 
+            "streaming_topology_validation_bolt_count": 100, 
+            "streaming_topology_zmq_emitter_bolt_count": 50, 
             "topic_list": [
-                "Lab_H_lrRawHits:3", 
+                "Lab_H_lrRawHits:12", 
                 "Lab_H_scsRawHits:12"
             ], 
             "worker": {
-                "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                "childopts": "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
             }
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/40806:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true", 
             "streams_ui_url": "https://hstreams.webtrends.com"
         }, 
         "wt_streaminganalysis_monitor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/38846:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/40940:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
             "healthcheck_port": 9001, 
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/39909:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/40983:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "sapi_service_url": "ws://hsapi01.staging.dmz:8080", 
             "usagedbname": "Streaming", 
             "usagedbserver": "hcamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/39187:id/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/40440:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://hscs.webtrends.com", 
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
@@ -357,6 +373,11 @@
                 "10.164.0.12"
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
 }
