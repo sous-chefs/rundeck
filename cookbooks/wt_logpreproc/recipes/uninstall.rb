@@ -15,15 +15,10 @@ log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_logprepro
 auth_data = data_bag_item('authorization', node.chef_environment)
 svcuser = auth_data['wt_common']['system_user']
 
-powershell "uninstall log preprocessor" do
-	environment({'install_dir' => install_dir, 'service_binary' => node['wt_logpreproc']['logpreproc_binary']})
-	code <<-EOH
-        $binary_path = $env:install_dir + "\\" + $env:service_binary
-	$binary_path_exists = Test-Path $binary_path
-	if ($binary_path_exists) {
-		&$binary_path --uninstall
-	}	
-	EOH
+logpreproc = File.join(install_dir, node['wt_logpreproc']['service_binary']).gsub(/[\\\/]+/,"\\")
+execute "#{node['wt_logpreproc']['service_binary']} uninstall" do
+  command "#{logpreproc} --uninstall"
+  only_if { File.exists?(logpreproc) }
 end
 
 # delete install folder
