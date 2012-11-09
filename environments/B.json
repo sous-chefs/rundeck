@@ -22,7 +22,7 @@
         "wt_realtimeapi": "= 0.0.23", 
         "wt_sauth": "= 1.1.0", 
         "wt_storm_realtime": "= 2.1.1", 
-        "wt_storm_streaming": "= 2.1.23", 
+        "wt_storm_streaming": "= 2.1.24",
         "wt_streaming_viz": "= 1.1.12", 
         "wt_streaminganalysis_monitor": "= 1.0.1", 
         "wt_streamingapi": "= 1.1.0", 
@@ -299,9 +299,9 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/40992:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augmentation_bolt_count": 20, 
-            "streaming_topology_field_grouping_local": "false", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/41012:id/streaming-analysis-bin.tar.gz", 
+            "streaming_topology_augmentation_bolt_count": 20,
+            "streaming_topology_field_grouping_local": "false",
             "streaming_topology_in_session_bolt_count": 0, 
             "streaming_topology_validation_bolt_count": 20, 
             "streaming_topology_zmq_emitter_bolt_count": 2, 
