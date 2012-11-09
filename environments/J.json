@@ -211,6 +211,9 @@
             "cachename": "J_DX", 
             "rest_base_uri": "https://jdx.englab.webtrends.corp/v3"
         }, 
+	"wt_logpreproc": {
+	    "download_url": "http://pdxchartrandj06/logpreproc.zip"
+	},
         "wt_management_console": {
             "mc_service_url": "https://jmc.englab.webtrends.corp"
         }, 

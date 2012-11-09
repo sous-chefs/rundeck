@@ -1,0 +1,135 @@
+#
+# wtlogpreproc.ini - WebTrends Log Preprocessor Service
+#
+[defaults]
+# 3 is the normal debugging level is 3. 7 is the most intense debugging level.
+debuglevel=<%= @debuglevel %>
+
+# Time to sleep between re-searching for files (in seconds)
+sleepinterval=<%= @sleepinterval %>
+
+# Enable reverse DNS lookups
+dnsenabled=<%= @dnsenabled %>
+
+# Enable GeoTrends lookups
+geotrendsenabled=<%= @geotrendsenabled %>
+
+# Add the Geotrends field to log files.  This setting is ignored if Geotrends is disabled.
+addgeofield=<%= @addgeofield %>
+
+# Add Geotrends values as query parameters.  This setting is ignored if Geotrends is disabled.
+addgeoqueryparams=<%= @addgeoqueryparams %>
+
+# Retry timeout when GeoTrends server is not installed or not responding (in seconds)
+geotrendsretrytimeout=<%= @geotrendsretrytimeout %>
+
+# Number of files to process at a time
+logfilebatchsize=<%= @logfilebatchsize %>
+
+# At debug level 4, log stats every time we finish this number of batches
+debugmsgsbatchcount=<%= @debugmsgsbatchcount %>
+
+[wtlogpreproc1]
+# Active must be set to TRUE!
+active=true
+
+# Label for reference
+label=<%= @wtlogpreproc1_label %>
+
+# Pick up these file extensions
+fileextension=<%= @wtlogpreproc1_fileextension %>
+
+# File extension for files output by this tool
+doneextension=<%= @wtlogpreproc1_doneextension %>
+
+# Override source path(s) from database
+sourcepath=<%= @wtlogpreproc1_sourcepath %>
+sourcepath1=<%= @wtlogpreproc1_sourcepath1 %>
+
+# Compress Logs. Compression level (only used if compresslogfile=true) can be from 1-9. See ENG 304856.
+#     1 - Maximum speed, no lazy matches. Default used by most LumberJack 7.1 tools (except LogCat).
+#     4 - Lazy matches
+#     5 - Default used in DynaZip. Default used by LumberJack 8.0 LogCat.
+#     6 - Default used in CryptoPP. See BASE_Shared\crypto\zdeflate.h, Deflator::enum {DEFAULT_DEFLATE_LEVEL}
+#     9 - Maximum compression
+compresslogfile=<%= @wtlogpreproc1_compresslogfile %>
+compresslogfile_level=<%= @wtlogpreproc1_compresslogfile_level %>
+
+# Delete the orignal lfr logs when finished
+deleteoriginallogs=<%= @wtlogpreproc1_deleteoriginallogs %>
+
+# Web Logs default to IIS Logs
+webserver=IIS
+
+# This will make all logfiles contain same fields, by adding these fields if they're missing.
+# Do not change these settings. Even if DNS or GEO looukp is disabled, these settings should still be here.
+ensurefield=dcs-dns
+ensurefield1=dcs-geo
+ensurefield2=origin-id
+
+[dns]
+# List of DNS server IP addresses (semi-colon delimited) 
+# Use if you need to override the system default DNS server.
+#serverlist=10.90.17.45;10.90.17.46;10.90.17.47
+serverlist=<%= @dns_serverlist %>
+
+# Retry count
+retrycount=<%= @dns_retrycount %>
+
+# Retry timeout (in milliseconds)
+retrytimeout=<%= @dns_retrytimeout %>
+
+# Server selection method (round robin=1, load balanced=2, ip affinity=3)
+# ip affinity is recommended for best performance. 
+# If you configure multiple instances of LPP, ip affinity performance needs the DNS server list in the same order for all instances.
+servermethod=<%= @dns_servermethod %>
+
+# Error log
+logfile=<%= @dns_logfile %>
+
+# Reserved
+# max total requests pending for all DNS servers
+maxpending=16384
+# max requests pending to a single DNS server
+maxserver=8192
+maxreq=4096
+maxrep=4096
+
+[wtda]
+# Numthreads should be 1 for LPP 
+numthreads=<%= @wtda_numthreads %>
+
+# compressed filename extensions (comma separated list)
+# Any "fileextension" values which are in this list are compressed files:
+compressedext=<%= @wtda_compressedext %>
+
+# encrypted filename extensions (comma separated list)
+# Any "fileextension" values which are in this list are encrypted files:
+encryptedext=<%= @wtda_encryptedext %>
+
+# Size in bytes of the read buffer
+# readbuffersize should be 131072 * 2 for production
+readbuffersize=262144
+
+# Maximum number of invalid records allowed in a logfile
+maxconsecutiveinvalidentries=<%= @wtda_maxconsecutiveinvalidentries %>
+
+# maximum number of LPP records with outstanding Geo or DNS lookups
+maxrecordqueuesize=50000
+maxoutoforderqueuesize=100
+
+# Set to false when there is no secondary IFR share
+allowoutofsync=<%= @wtda_allowoutofsync %>
+
+[auditlog]
+auditlimitbysize=<%= @auditlog_limitbysize %>
+auditlimitbysizemethod=<%= @auditlog_limitbysizemethod %>
+auditmaxsize=<%= @auditlog_maxsize %>
+audittrimsize=<%= @auditlog_trimsize %>
+auditfilenameprefix=<%= @auditlog_filenameprefix %>
+auditfilenameext=<%= @auditlog_filenameext %>
+
+[hostedmodel]
+# Connect to the database for status and sourcepath(s) when hostedmodel=true
+hostedmodel=<%= @hostedmodel %>
+
