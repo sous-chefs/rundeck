@@ -18,8 +18,44 @@ end
 
 # get parameters
 download_url = node['wt_logpreproc']['download_url']
-master_host = node['wt_masterdb']['master_host']
 netacuity_host = node['wt_logpreproc']['netacuity_host']
+
+debuglevel = node['wt_logpreproc']['debuglevel']
+sleepinterval = node['wt_logpreproc']['sleepinterval']
+dnsenabled = node['wt_logpreproc']['dnsenabled']
+geotrendsenabled = node['wt_logpreproc']['geotrendsenabled']
+addgeofield = node['wt_logpreproc']['addgeofield']
+addgeoqueryparams = node['wt_logpreproc']['addgeoqueryparams']
+geotrendsretrytimeout = node['wt_logpreproc']['geotrendsretrytimeout']
+logfilebatchsize = node['wt_logpreproc']['logfilebatchsize']
+debugmsgsbatchcount = node['wt_logpreproc']['debugmsgsbatchcount']
+wtlogpreproc1_label = node['wt_logpreproc']['wtlogpreproc1_label']
+wtlogpreproc1_fileextension = node['wt_logpreproc']['wtlogpreproc1_fileextension']
+wtlogpreproc1_doneextension = node['wt_logpreproc']['wtlogpreproc1_doneextension']
+wtlogpreproc1_sourcepath = node['wt_logpreproc']['wtlogpreproc1_sourcepath']
+wtlogpreproc1_sourcepath1 = node['wt_logpreproc']['wt_logpreproc1_sourcepath1']
+wtlogpreproc1_compresslogfile = node['wt_logpreproc']['wtlogpreproc1_compresslogfile']
+wtlogpreproc1_compresslogfile_level = node['wt_logpreproc']['wtlogpreproc1_compresslogfile_level']
+wtlogpreproc1_deleteoriginallogs = node['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs']
+dns_serverlist = node['wt_logpreproc']['dns_serverlist']
+dns_retrycount = node['wt_logpreproc']['dns_retrycount']
+dns_retrytimeout = node['wt_logpreproc']['dns_retrytimeout']
+dns_servermethod = node['wt_logpreproc']['dns_servermethod']
+dns_logfile = node['wt_logpreproc']['dns_logfile']
+wtda_numthreads = node['wt_logpreproc']['wtda_numthreads']
+wtda_compressedext = node['wt_logpreproc']['wtda_compressedext']
+wtda_encryptedext = node['wt_logpreproc']['wtda_encryptedext']
+wtda_maxconsecutiveinvalidentries = node['wt_logpreproc']['wtda_maxconsecutiveinvalidentries']
+wtda_maxrecordqueuesize = node['wt_logpreproc']['wtda_maxrecordqueuesize']
+wtda_allowoutofsync = node['wt_logpreproc']['wtda_allowoutofsync']
+auditlog_limitbysize = node['wt_logpreproc']['auditlog_limitbysize']
+auditlog_limitbysizemethod = node['wt_logpreproc']['auditlog_limitbysizemethod']
+auditlog_maxsize = node['wt_logpreproc']['auditlog_maxsize']
+auditlog_trimsize = node['wt_logpreproc']['auditlog_trimsize']
+auditlog_filenameprefix = node['wt_logpreproc']['auditlog_filenameprefix']
+auditlog_filenameext = node['wt_logpreproc']['auditlog_filenameext']
+wtda_allowoutofsync = node['wt_logpreproc']['wtda_allowoutofsync']
+hostedmodel = node['wt_logpreproc']['hostedmodel']
 
 # destinations
 install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_logpreproc']['install_dir'].gsub(/[\\\/]+/,"\\"))
@@ -57,17 +93,48 @@ if ENV["deploy_build"] == "true" then
 	  )
 	end
 
-	template "#{install_dir}\\wtliveglue.ini" do
-	  source "wtLiveGlue.erb"
+	template "#{install_dir}\\wtlogpreproc.ini" do
+	  source "wtLogpreproc.erb"
 	  variables(
-		  :master_host => master_host,
-                  :log_dir => node['cassandra']['cassandra_meta_column']
-
+                :debuglevel => debuglevel,
+                :sleepinterval => sleepinterval,
+                :dnsenabled => dnsenabled,
+                :geotrendsenabled => geotrendsenabled,
+                :addgeofield => addgeofield,
+                :addgeoqueryparams => addgeoqueryparams,
+                :geotrendsretrytimeout => geotrendsretrytimeout,
+                :logfilebatchsize => logfilebatchsize,
+                :debugmsgsbatchcount => debugmsgsbatchcount,
+                :wtlogpreproc1_label => wtlogpreproc1_label,
+                :wtlogpreproc1_fileextension => wtlogpreproc1_fileextension,
+                :wtlogpreproc1_doneextension => wtlogpreproc1_doneextension,
+                :wtlogpreproc1_sourcepath => wtlogpreproc1_sourcepath,
+                :wtlogpreproc1_sourcepath1 => wtlogpreproc1_sourcepath1,
+                :wtlogpreproc1_compresslogfile => wtlogpreproc1_compresslogfile,
+                :wtlogpreproc1_compresslogfile_level => wtlogpreproc1_compresslogfile_level,
+                :wtlogpreproc1_deleteoriginallogs => wtlogpreproc1_deleteoriginallogs,
+                :dns_serverlist => dns_serverlist,
+                :dns_retrycount => dns_retrycount,
+                :dns_retrytimeout => dns_retrytimeout,
+                :dns_servermethod => dns_servermethod,
+                :dns_logfile => dns_logfile,
+                :wtda_numthreads => wtda_numthreads,
+                :wtda_compressedext => wtda_compressedext,
+                :wtda_encryptedext => wtda_encryptedext,
+                :wtda_maxconsecutiveinvalidentries => wtda_maxconsecutiveinvalidentries,
+                :wtda_allowoutofsync => wtda_allowoutofsync,
+                :auditlog_limitbysize => auditlog_limitbysize,
+                :auditlog_limitbysizemethod => auditlog_limitbysizemethod,
+                :auditlog_maxsize => auditlog_maxsize,
+                :auditlog_trimsize => auditlog_trimsize,
+                :auditlog_filenameprefix => auditlog_filenameprefix,
+                :auditlog_filenameext => auditlog_filenameext,
+                :hostedmodel => hostedmodel
 	  )
 	end
 
 	powershell "install wt_logpreproc" do
-		environment({'install_dir' => install_dir, 'service_binary' => node['wt_logpreproc']['logpreproc_binary']})
+		environment({'install_dir' => install_dir, 'service_binary' => node['wt_logpreproc']['service_binary']})
 		code <<-EOH
 		$binary_path = $env:install_dir + "\\" + $env:service_binary
 	        &$binary_path --install
