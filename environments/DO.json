@@ -283,6 +283,11 @@
                 "192.168.2.100"
             ], 
             "search": "devops.dmz staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
 }

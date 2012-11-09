@@ -157,6 +157,11 @@
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
         }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
+        }, 
         "vc2010": {
             "x64": {
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
