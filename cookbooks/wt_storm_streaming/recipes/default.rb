@@ -219,6 +219,10 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :streaming_topology_zmq_emitter_bolt_count   => node['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'],
     :streaming_topology_validation_bolt_count    => node['wt_storm_streaming']['streaming_topology_validation_bolt_count'],
     :streaming_topology_augmentation_bolt_count  => node['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'],
+    :streaming_topology_in_session_bolt_tasks    => node['wt_storm_streaming']['streaming_topology_in_session_bolt_tasks'],
+    :streaming_topology_zmq_emitter_bolt_tasks   => node['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_tasks'],
+    :streaming_topology_validation_bolt_tasks    => node['wt_storm_streaming']['streaming_topology_validation_bolt_tasks'],
+    :streaming_topology_augmentation_bolt_tasks  => node['wt_storm_streaming']['streaming_topology_augmentation_bolt_tasks'],
     :streaming_topology_mode_local => node['wt_storm_streaming']['streaming_topology_mode_local'],
     :streaming_topology_field_grouping_local => node['wt_storm_streaming']['streaming_topology_field_grouping_local'],
     # kafka consumer settings
