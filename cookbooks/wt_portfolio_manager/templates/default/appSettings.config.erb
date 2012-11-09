@@ -23,10 +23,13 @@
     <add key="config.url" value="<%= @config_url%>"/>
     <add key="ad.network" value="<%= @domain %>"/>
 
-    <!-- User Access GruopNames -->
-    <add key="ad.group.admin" value="*"/>
-    <add key="ad.group.user" value="*"/>
+    <!-- User Access GroupNames -->
+    <add key="ad.group.admin" value="PortMgr.Admin"/>
+    <add key="ad.group.user" value="PortMgr.User"/>
     <add key="reauth.minutes" value="90"/>
+
+    <!-- New Account Notification -->
+    <add key="injected.user" value="StreamingConfirmation@webtrends.com"/>
 
 </appSettings>
 
