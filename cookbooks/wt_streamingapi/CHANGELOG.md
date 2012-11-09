@@ -1,3 +1,6 @@
+## 1.1.0
+* Fixed food critic issues
+
 ## 1.0.12
 * Changed 'webtrends.cam.streamType' to use the plural
 

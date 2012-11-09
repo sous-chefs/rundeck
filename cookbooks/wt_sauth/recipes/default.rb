@@ -80,11 +80,18 @@ wt_base_icacls log_dir do
 	perm :modify
 end
 
+wt_base_netlocalgroup "Performance Monitor Users" do
+        user user_data['wt_common']['ui_user']
+        returns [0, 2]
+        action :add
+end
+
 if ENV["deploy_build"] == "true" then
   windows_zipfile install_dir do
     source node['wt_sauth']['download_url']
     action :unzip
   end  
+
 end
 
 template "#{install_dir}\\web.config" do
@@ -119,3 +126,32 @@ end
 iis_config auth_cmd do
 	action :config
 end
+
+
+if ENV["deploy_build"] == "true" then
+
+  #add the user to the admin group to create perfmon counters
+  wt_base_netlocalgroup "Administrators" do
+    user user_data['wt_common']['ui_user']
+    returns [0, 2]
+    action :add
+  end  
+
+	ruby_block "preheat app pool" do
+    block do
+      require 'net/http'
+      uri = URI("http://localhost/")
+      puts Net::HTTP.get(uri)
+	  end
+		action :create
+  end
+	
+  #remove the user from the admin group
+  wt_base_netlocalgroup "Administrators" do
+    user user_data['wt_common']['ui_user']
+    returns [0, 2]
+    action :remove
+  end
+
+end
+
