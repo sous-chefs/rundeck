@@ -28,7 +28,7 @@ case node['platform_family']
 when 'debian'
 default['nagios']['plugin_dir'] = '/usr/lib/nagios/plugins'
 when 'rhel'
-  default['nagios']['plugin_dir'] = "/usr/lib64/nagios/plugins"
+  default['nagios']['plugin_dir'] = '/usr/lib64/nagios/plugins'
 else
-  default['nagios']['plugin_dir'] = "/usr/lib/nagios/plugins"
+  default['nagios']['plugin_dir'] = '/usr/lib/nagios/plugins'
 end

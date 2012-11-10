@@ -257,7 +257,10 @@
         }, 
         "wt_portfolio_manager": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-            "manager_ui_url": ""
+            "manager_ui_url": "",
+            "portmgr_group_user": "H.PortMgr.Users",
+            "portmgr_group_admin": "H.PortMgr.Admins",
+            "portmgr_injected_user": "toby.mosby@webtrends.com"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
