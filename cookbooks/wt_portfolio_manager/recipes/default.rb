@@ -12,7 +12,7 @@ if ENV["deploy_build"] == "true" then
   include_recipe "ms_dotnet4::regiis"
   include_recipe "wt_portfolio_manager::uninstall"
 else
-    log "The deploy_build value is not set or is false so we will only update the configuration"
+	log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
 #Properties
@@ -64,11 +64,11 @@ appcmds << "/section:system.web/authentication /mode:Windows"
 
 #commit IIS
 appcmds.each do |thiscmd|
-     iis_config "Webtrends IIS Configurations" do
-             cfg_cmd thiscmd
-             action :config
-             returns [0, 183]
-     end
+	iis_config "Webtrends IIS Configurations" do
+		cfg_cmd thiscmd
+		action :config
+		returns [0, 183]
+	end
 end
 
 wt_base_firewall 'PortfolioManager' do
@@ -97,14 +97,14 @@ wt_base_icacls log_dir do
 end
 
 if ENV["deploy_build"] == "true" then
-  windows_zipfile install_dir do
+	windows_zipfile install_dir do
 		source node['wt_portfolio_manager']['download_url']
 		action :unzip
-  end
+	end
 
-  iis_config auth_cmd do
-  	action :config
-  end
+	iis_config auth_cmd do
+		action :config
+	end
 
 end
 
@@ -118,10 +118,9 @@ template "#{install_dir}\\appSettings.config" do
 		:aps_url => node['wt_aps']['service_url'],
 		:aps_url_base => node['wt_aps']['aps_url_base'],
 		:management_console_url => node['wt_management_console']['service_url'],
-                :portmgr_group_admin => node['wt_portfolio_manager']['portmgr_group_admin'],
-                :portmgr_group_user => node['wt_portfolio_manager']['portmgr_group_user'],
-                :portmgr_injected_user => node['wt_portfolio_manager']['portmgr_group_user']
-
+		:portmgr_group_admin => node['wt_portfolio_manager']['portmgr_group_admin'],
+		:portmgr_group_user => node['wt_portfolio_manager']['portmgr_group_user'],
+		:portmgr_injected_user => node['wt_portfolio_manager']['portmgr_group_user']
 	)
 end
 
