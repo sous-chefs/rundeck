@@ -24,12 +24,12 @@
     <add key="ad.network" value="<%= @domain %>"/>
 
     <!-- User Access GroupNames -->
-    <add key="ad.group.admin" value="PortMgr.Admin"/>
-    <add key="ad.group.user" value="PortMgr.User"/>
+    <add key="ad.group.admin" value="<%= @portmgr_group_admin%>"/>
+    <add key="ad.group.user" value="<%= @portmgr_group_user%>"/>
     <add key="reauth.minutes" value="90"/>
 
     <!-- New Account Notification -->
-    <add key="injected.user" value="StreamingConfirmation@webtrends.com"/>
+    <add key="injected.user" value="<%= @portmgr_injected_user%>"/>
 
 </appSettings>
 
