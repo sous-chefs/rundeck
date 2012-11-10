@@ -17,5 +17,4 @@ default['wt_portfolio_manager']['cam_service_url_base'] = ""
 default['wt_portfolio_manager']['manager_ui_url'] = ""
 default['wt_portfolio_manager']['portmgr_group_admin']="PortMgr.Admin"
 default['wt_portfolio_manager']['portmgr_group_user']="PortMgr.User"
-default['wt_portfolio_manager']['portmgr_injected_user']="StreamingConfirmation@webtrends.com"
-
+dfault['wt_portfolio_manager']['portmgr_injected_user']=""

@@ -1,3 +1,6 @@
+## 1.1.13
+* Assign as attributes and environment vars (better for everyone)
+
 ## 1.1.12
 * Assign ad.network as NETIQDMZ and groups to PortMgr.Admin and PortMgr.User.
 
