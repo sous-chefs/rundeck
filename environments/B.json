@@ -266,8 +266,8 @@
         "wt_portfolio_manager": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/40019:id/Portfolio.Manager.zip", 
             "manager_ui_url": "",
-            "portmgr_group_user": "B.PortMgr.Users"
-            "portmgr_group_admin": "B.PortMgr.Admins"
+            "portmgr_group_user": "B.PortMgr.Users",
+            "portmgr_group_admin": "B.PortMgr.Admins",
             "portmgr_injected_user": "tomomi.ioffe@webtrends.com"
         }, 
         "wt_realtime_hadoop": {
