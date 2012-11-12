@@ -1,3 +1,6 @@
+## 1.1.2
+* Added share_wrs
+
 ## 1.1.1
 * Allowed double escaping for email address handling via url
 

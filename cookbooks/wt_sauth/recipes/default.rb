@@ -155,3 +155,4 @@ if ENV["deploy_build"] == "true" then
 
 end
 
+share_wrs
