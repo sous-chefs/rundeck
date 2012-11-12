@@ -1,14 +1,14 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "java": "= 1.5.4", 
+        "java": "= 1.6.0", 
         "kafka": "= 1.0.5", 
-        "nagios": "= 1.6.1", 
+        "nagios": "= 1.6.2",  
         "storm": "= 1.0.16", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
-        "wt_base": "= 1.0.1", 
+        "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 1.0.0", 
         "wt_realtimeapi": "= 0.0.17", 
