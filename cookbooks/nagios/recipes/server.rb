@@ -68,6 +68,8 @@ else
   end
 end
 
+Chef::Log.info("Beginning search for nodes.  This may take some time depending on your node count")
+
 # find nodes to monitor.  Search in all environments if multi_environment_monitoring is enabled
 if node['nagios']['multi_environment_monitoring']
   nodes = search(:node, "hostname:[* TO *]")
