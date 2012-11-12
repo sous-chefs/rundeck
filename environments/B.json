@@ -6,7 +6,7 @@
         "hive": "= 1.0.2", 
         "java": "= 1.6.0", 
         "kafka": "= 1.0.20", 
-        "nagios": "= 1.6.1", 
+        "nagios": "= 1.6.2",  
         "storm": "= 1.0.28", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
@@ -264,7 +264,7 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41050:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41105:id/Portfolio.Manager.zip", 
             "manager_ui_url": "",
             "portmgr_group_user": "B.PortMgr.Users",
             "portmgr_group_admin": "B.PortMgr.Admins",
@@ -330,7 +330,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/41065:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/41172:id/webtrends-streamingapi-bin.tar.gz",
             "sapi_service_url": "ws://bsapi.webtrends.com", 
             "usagedbname": "Streaming", 
             "usagedbserver": "bcamdb01.staging.dmz"
