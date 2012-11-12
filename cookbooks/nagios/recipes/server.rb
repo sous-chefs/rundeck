@@ -72,9 +72,9 @@ Chef::Log.info("Beginning search for nodes.  This may take some time depending o
 
 # find nodes to monitor.  Search in all environments if multi_environment_monitoring is enabled
 if node['nagios']['multi_environment_monitoring']
-  nodes = search(:node, "*:*")
+  nodes = search(:node, "hostname:[* TO *]")
 else
-  nodes = search(:node, "chef_environment:#{node.chef_environment}")
+  nodes = search(:node, "hostname:[* TO *] AND chef_environment:#{node.chef_environment}")
 end
 
 if nodes.empty?
