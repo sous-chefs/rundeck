@@ -260,7 +260,8 @@
             "manager_ui_url": "",
             "portmgr_group_user": "H.PortMgr.Users",
             "portmgr_group_admin": "H.PortMgr.Admins",
-            "portmgr_injected_user": "toby.mosby@webtrends.com"
+            "portmgr_injected_user": "toby.mosby@webtrends.com",
+            "portmgr_domain": "STAGINGDMZ"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
