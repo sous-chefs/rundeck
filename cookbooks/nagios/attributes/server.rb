@@ -39,18 +39,18 @@ else
   default['nagios']['server']['mail_command']   = '/bin/mail'
 end
 
-default['nagios']['home']       = '/usr/lib/nagios3'
-default['nagios']['conf_dir']   = '/etc/nagios3'
-default['nagios']['config_dir'] = '/etc/nagios3/conf.d'
-default['nagios']['log_dir']    = '/var/log/nagios3'
-default['nagios']['cache_dir']  = '/var/cache/nagios3'
-default['nagios']['state_dir']  = '/var/lib/nagios3'
-default['nagios']['run_dir']    = '/var/run/nagios3'
-default['nagios']['docroot']    = '/usr/share/nagios3/htdocs'
-default['nagios']['enable_ssl'] = false
-default['nagios']['http_port']  = node['nagios']['enable_ssl'] ? '443' : '80'
+default['nagios']['home']        = '/usr/lib/nagios3'
+default['nagios']['conf_dir']    = '/etc/nagios3'
+default['nagios']['config_dir']  = '/etc/nagios3/conf.d'
+default['nagios']['log_dir']     = '/var/log/nagios3'
+default['nagios']['cache_dir']   = '/var/cache/nagios3'
+default['nagios']['state_dir']   = '/var/lib/nagios3'
+default['nagios']['run_dir']     = '/var/run/nagios3'
+default['nagios']['docroot']     = '/usr/share/nagios3/htdocs'
+default['nagios']['enable_ssl']  = false
+default['nagios']['http_port']   = node['nagios']['enable_ssl'] ? '443' : '80'
 default['nagios']['server_name'] = node.has_key?(:domain) ? "nagios.#{domain}" : "nagios"
-default['nagios']['ssl_req'] = "/C=US/ST=Several/L=Locality/O=Example/OU=Operations/" +
+default['nagios']['ssl_req']     = "/C=US/ST=Several/L=Locality/O=Example/OU=Operations/" +
   "CN=#{node['nagios']['server_name']}/emailAddress=ops@#{node['nagios']['server_name']}"
 
 # for server from source installation
@@ -73,20 +73,18 @@ default['nagios']['templates'] = Mash.new
 default['nagios']['interval_length'] = 1
 
 # Provide all interval values in seconds
-default['nagios']['default_host']['check_interval']     = 15
-default['nagios']['default_host']['retry_interval']     = 15
-default['nagios']['default_host']['max_check_attempts'] = 1
+default['nagios']['default_host']['check_interval']        = 15
+default['nagios']['default_host']['retry_interval']        = 15
+default['nagios']['default_host']['max_check_attempts']    = 1
 default['nagios']['default_host']['notification_interval'] = 300
-default['nagios']['default_host']['flap_detection'] = true
+default['nagios']['default_host']['flap_detection']        = true
 
-default['nagios']['default_service']['check_interval']     = 60
-default['nagios']['default_service']['retry_interval']     = 15
-default['nagios']['default_service']['max_check_attempts'] = 3
+default['nagios']['default_service']['check_interval']        = 60
+default['nagios']['default_service']['retry_interval']        = 15
+default['nagios']['default_service']['max_check_attempts']    = 3
 default['nagios']['default_service']['notification_interval'] = 1200
-default['nagios']['default_service']['flap_detection'] = true
+default['nagios']['default_service']['flap_detection']        = true
 
-default['nagios']['server']['web_server'] = :apache
+default['nagios']['server']['web_server']     = :apache
 default['nagios']['server']['nginx_dispatch'] = :cgi
-default['nagios']['server']['stop_apache'] = false
-
-default['nagios']['non_alerting_environments'] = []
+default['nagios']['server']['stop_apache']    = false
