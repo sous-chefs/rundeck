@@ -19,19 +19,6 @@ LoadPlugin java
         ################
         # MBean blocks #
         ################
-		# Memory usage by memory pool.
-		<MBean "memory_pool">
-			ObjectName "java.lang:type=MemoryPool,*"
-			InstancePrefix "memory_pool_"
-			InstanceFrom "name"
-			<Value>
-				Type "memory"
-				#InstancePrefix ""
-				#InstanceFrom ""
-				Table true
-				Attribute "Usage"
-			</Value>
-		</MBean>
 		# Heap memory usage
 		<MBean "memory_heap">
 			ObjectName "java.lang:type=Memory"
@@ -202,7 +189,7 @@ LoadPlugin java
         <% @scs_urls.each_with_index do |host,index| %>
             <MBean "scs_latency_host_<%=index%>">
                 ObjectName "streamingauditor:type=latency,scope=scs_latency_host,name=<%=URI(host).host%>"
-                InstancePrefix "scs_latency_host."
+                InstancePrefix "scs_latency_host_"
                 InstanceFrom "name"
                 <Value>
                     Type "gauge"
@@ -234,7 +221,7 @@ LoadPlugin java
         <% @ts_urls.each_with_index do |host,index| %>
             <MBean "tag_server_latency_host_<%=index%>">
                 ObjectName "streamingauditor:type=latency,scope=tag_server_latency_host,name=<%=URI(host).host%>"
-                InstancePrefix "tag_server_latency_host."
+                InstancePrefix "tag_server_latency_host_"
                 InstanceFrom "name"
                 <Value>
                     Type "gauge"
@@ -273,7 +260,6 @@ LoadPlugin java
 			Collect "classes"
 			Collect "garbage_collector"
 			Collect "java_threads"
-            Collect "memory_pool"
 			Collect "memory_heap"
 			Collect "memory_nonheap"
             Collect "scs_latency"
