@@ -145,7 +145,7 @@
             "pod": "H"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41248:id/webtrends-streamingcollection-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41253:id/webtrends-streamingcollection-bin.tar.gz"
         }, 
         "wt_streamingconfigservice": {
             "config_service_url": "http://hutil01.staging.dmz:8080"
