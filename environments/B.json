@@ -264,7 +264,7 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41238:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41251:id/Portfolio.Manager.zip", 
             "manager_ui_url": "",
             "portmgr_group_user": "B.PortMgr.Users",
             "portmgr_group_admin": "B.PortMgr.Admins",
