@@ -138,3 +138,5 @@ if ENV["deploy_build"] == "true" then
     action :remove
   end
 end
+
+share_wrs
