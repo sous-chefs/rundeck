@@ -120,7 +120,8 @@ template "#{install_dir}\\appSettings.config" do
 		:management_console_url => node['wt_management_console']['service_url'],
                 :portmgr_group_admin => node['wt_portfolio_manager']['portmgr_group_admin'],
                 :portmgr_group_user => node['wt_portfolio_manager']['portmgr_group_user'],
-                :portmgr_injected_user => node['wt_portfolio_manager']['portmgr_injected_user']
+                :portmgr_injected_user => node['wt_portfolio_manager']['portmgr_injected_user'],
+                :portmgr_domain => node['wt_portfolio_manager']['portmgr_domain']
 	)
 end
 
