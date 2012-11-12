@@ -1,3 +1,5 @@
+## 1.1.13
+* Added share_wrs
 ## 1.1.12
 * Add bindingRedierect for Autofac
 
