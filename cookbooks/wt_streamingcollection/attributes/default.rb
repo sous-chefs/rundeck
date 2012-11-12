@@ -13,4 +13,4 @@ default['wt_streamingcollection']['download_url'] = ""
 default['wt_streamingcollection']['port']         = 8080
 default['wt_streamingcollection']['java_opts']    = "-Xms1024m -Djava.net.preferIPv4Stack=true"
 default['wt_streamingcollection']['jmx_port']     = 10000
-default['wt_streamingcollection']['kafka_connect_timeout_ms'] = 1000
+default['wt_streamingcollection']['kafka_connect_timeout_ms'] = 100
