@@ -1,3 +1,5 @@
+## 1.1.1
+  * Updated the data bag used for rsa keys
 ## 1.1.0
   * Fixed rsa key name.
 ## 1.0.17
