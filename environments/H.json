@@ -24,7 +24,7 @@
         "wt_storm_streaming": "= 2.1.24",
         "wt_streaming_viz": "= 1.1.13", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
-        "wt_streamingapi": "= 1.1.0", 
+        "wt_streamingapi": "= 1.1.1", 
         "wt_streamingauditor": "= 1.0.10", 
         "wt_streamingcollection": "= 1.0.3", 
         "wt_streamingconfigservice": "= 1.0.2", 
@@ -210,7 +210,7 @@
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38875:id/MirrorMonitor-bin.tar.gz"
         }, 
         "wt_kafka_topagg": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/40732:id/TopicAggregator-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41458:id/TopicAggregator-bin.tar.gz",
             "edge_kafka_sources": [
                 {
                     "host": "mscs01.staging.dmz", 
@@ -255,9 +255,11 @@
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true"
         }, 
+
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-            "manager_ui_url": "",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41431:id/Portfolio.Manager.zip",
+            "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
+            "manager_ui_url": "http://hportmc01.staging.dmz",
             "portmgr_group_user": "H.PortMgr.Users",
             "portmgr_group_admin": "H.PortMgr.Admins",
             "portmgr_injected_user": "toby.mosby@webtrends.com",
@@ -329,7 +331,7 @@
             "usagedbserver": "hcamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/41276:id/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/41427:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://hscs.webtrends.com", 
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
