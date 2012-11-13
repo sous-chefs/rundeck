@@ -25,6 +25,7 @@ ui_user   = user_data['wt_common']['ui_user']
 ui_pass   = user_data['wt_common']['ui_pass']
 rsa_user = user_data['wt_common']['system_acct']
 app_pool_name = node['wt_analytics_ui']['app_pool_name']
+googleplay_key = data_bag_item('rsa_keys', 'googleplay')
 
 # configure IIS
 appcmds = Array.new
@@ -219,14 +220,14 @@ if ENV["deploy_build"] == "true" then
   template "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
     source "PublicPrivateKeys.rsa.erb"
     variables(
-      :modulus => user_data['wt_analytics_ui']['rsa']['modulus'],
-      :exponent => user_data['wt_analytics_ui']['rsa']['exponent'],
-      :p => user_data['wt_analytics_ui']['rsa']['p'],
-      :q => user_data['wt_analytics_ui']['rsa']['q'],
-      :dp => user_data['wt_analytics_ui']['rsa']['dp'],
-      :dq => user_data['wt_analytics_ui']['rsa']['dq'],
-      :inverse_q => user_data['wt_analytics_ui']['rsa']['inverse_q'],
-      :d => user_data['wt_analytics_ui']['rsa']['d']
+      :modulus => googleplay_key['modulus'],
+      :exponent => googleplay_key['exponent'],
+      :p => googleplay_key['p'],
+      :q => googleplay_key['q'],
+      :dp => googleplay_key['dp'],
+      :dq => googleplay_key['dq'],
+      :inverse_q => googleplay_key['inverse_q'],
+      :d => googleplay_key['d']
     )
   end
 
