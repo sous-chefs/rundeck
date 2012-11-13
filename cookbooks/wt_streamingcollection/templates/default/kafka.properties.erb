@@ -1,4 +1,4 @@
-broker.list=<%=node["kafka"]["broker_id"]%>:localhost:9092
-serializer.class=kafka.serializer.StringEncoder
-producer.type=sync
+host=localhost
+port=9092
+connect.timeout.ms=<%=node["wt_streamingcollection"]["kafka_connect_timeout_ms"]%>
 router.topic=<%= @kafka_topic %>
