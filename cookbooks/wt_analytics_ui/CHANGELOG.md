@@ -1,3 +1,5 @@
+## 1.1.0
+  * Fixed rsa key name.
 ## 1.0.17
   * Added process to add user permissions to machinekey folder before adding key
 ## 1.0.16

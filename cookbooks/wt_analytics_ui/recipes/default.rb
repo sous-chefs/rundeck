@@ -261,11 +261,11 @@ if ENV["deploy_build"] == "true" then
 end
 
   execute "asp_regiis_pi" do   
-    command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi WebTrends.UI.Reporting #{install_dir}\\bin\\PublicPrivateKeys.rsa"
+    command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi WebTrends.ExternalData.Plugins.AndroidConnector #{install_dir}\\bin\\PublicPrivateKeys.rsa"
   end
 
   execute "asp_regiis_pa" do
-    command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pa WebTrends.UI.Reporting #{rsa_user}"
+    command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pa WebTrends.ExternalData.Plugins.AndroidConnector #{rsa_user}"
   end
 
   # delete the .rsa file
