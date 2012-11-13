@@ -1,3 +1,6 @@
+## 1.1.14
+* Added share_wrs
+
 ## 1.1.13
 * Assign as attributes and environment vars (better for everyone)
 
