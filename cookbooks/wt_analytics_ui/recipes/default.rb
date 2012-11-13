@@ -252,24 +252,31 @@ if ENV["deploy_build"] == "true" then
 		)
 	end
 
-  # run iss command on the .rsa file
+  # run iss command on the .rsa file  
 
-  execute "asp_regiis_pi" do
-    user ui_user
-		command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi WebTrends.UI.Reporting #{install_dir}\\bin\\PublicPrivateKeys.rsa"
+  wt_base_icacls "C:\\ProgramData\\Microsoft\\Crypto\\RSA\\MachineKeys" do
+	user node['current_user']
+	perm :modify
+	action :grant
+end
+
+  execute "asp_regiis_pi" do   
+    command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi WebTrends.UI.Reporting #{install_dir}\\bin\\PublicPrivateKeys.rsa"
   end
 
   execute "asp_regiis_pa" do
     command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pa WebTrends.UI.Reporting #{rsa_user}"
   end
 
-  execute "asp_regiis_pa" do
-    command  "aspnet_regiis pa WebTrends.UI.Reporting #{rsa_user}"
-  end
-
   # delete the .rsa file
   file "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
     action :delete
+  end
+
+  wt_base_icacls "C:\\ProgramData\\Microsoft\\Crypto\\RSA\\MachineKeys" do
+	user node['current_user']
+	perm :modify
+	action :remove
   end
 
 	share_wrs
