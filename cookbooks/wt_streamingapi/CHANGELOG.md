@@ -1,3 +1,6 @@
+## 1.1.1
+* Added a check when ['wt_common']['http_proxy_url'] is not set to SAPI will work in environments where there is no proxy
+
 ## 1.1.0
 * Fixed food critic issues
 
