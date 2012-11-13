@@ -1,3 +1,5 @@
+## 1.1.9
+* Added share_wrs
 ## 1.1.8
 * Add compatibilityMode attribute for machineKey in web.config
 * Remove formsAuthentication credentials

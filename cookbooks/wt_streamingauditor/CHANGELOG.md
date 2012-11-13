@@ -1,3 +1,6 @@
+## 1.0.10
+* Added additional capture of metrics for collectd/graphite
+
 ## 1.0.9
 * Change the metrics being captured for graphite
 
