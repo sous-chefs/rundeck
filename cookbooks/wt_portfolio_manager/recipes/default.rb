@@ -19,7 +19,7 @@ end
 install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Portfolio.Manager"
 install_logdir = node['wt_common']['install_log_dir_windows']
 log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
-dotnet_tempfolder = "%WINDIR%\\Microsft.Net\\Framework64\\v4.0.30319\\Temporary ASP.NET Files"
+dotnet_tempfolder = "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\Temporary ASP.NET Files"
 app_pool = node['wt_portfolio_manager']['app_pool']
 user_data = data_bag_item('authorization', node.chef_environment)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
