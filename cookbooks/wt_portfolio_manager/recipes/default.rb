@@ -61,8 +61,9 @@ appcmds << "/section:anonymousAuthentication /enabled:false"
 appcmds << "/section:windowsAuthentication /enabled:true"
 appcmds << "/commit:WEBROOT /section:system.web/authentication /mode:Windows"
 appcmds << "/section:system.web/authentication /mode:Windows"
+appcmds << "/section:system.applicationHost/sites /\"[name='PortfolioManager'].virtualDirectoryDefaults.userName\":\"#{user_data['wt_common']['ui_user']}\" /\"[name='PortfolioManager'].virtualDirectoryDefaults.password\":\"#{user_data['wt_common']['ui_pass']}\""
 
-#commit IIS
+#configure IIS
 appcmds.each do |thiscmd|
 	iis_config "Webtrends IIS Configurations" do
 		cfg_cmd thiscmd
