@@ -255,9 +255,11 @@
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true"
         }, 
+
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-            "manager_ui_url": "",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41431:id/Portfolio.Manager.zip",
+            "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
+            "manager_ui_url": "http://hportmc01.staging.dmz",
             "portmgr_group_user": "H.PortMgr.Users",
             "portmgr_group_admin": "H.PortMgr.Admins",
             "portmgr_injected_user": "toby.mosby@webtrends.com",
