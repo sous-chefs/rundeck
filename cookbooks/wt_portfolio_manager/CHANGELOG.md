@@ -1,3 +1,6 @@
+## 1.1.15
+* Added wtUI to .NET Temp and IIS physical folder perms.
+
 ## 1.1.14
 * Added share_wrs
 
