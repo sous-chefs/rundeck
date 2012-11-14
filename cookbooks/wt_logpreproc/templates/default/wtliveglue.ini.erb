@@ -1,0 +1,10 @@
+[wtliveglue]
+dbtype=sqlserver
+connect=DRIVER={SQL Server};DATABASE=<%= @masterdb_name %>;SERVER=<%= @masterdb_host %>;Trusted_Connection=Yes;
+Api_trace=0
+Api_profile=0
+logdir=<%= @log_dir %>
+
+[scheddb]
+dbtype=sqlserver
+connect=DRIVER={SQL Server};DATABASE=<%= @scheddb_name %>;SERVER=<%= @scheddb_host %>;Trusted_Connection=Yes;
