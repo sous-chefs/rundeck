@@ -1,6 +1,7 @@
 #
 # wtlogpreproc.ini - WebTrends Log Preprocessor Service
 #
+
 [defaults]
 # 3 is the normal debugging level is 3. 7 is the most intense debugging level.
 debuglevel=<%= @debuglevel %>
@@ -70,7 +71,6 @@ ensurefield2=origin-id
 [dns]
 # List of DNS server IP addresses (semi-colon delimited) 
 # Use if you need to override the system default DNS server.
-#serverlist=10.90.17.45;10.90.17.46;10.90.17.47
 serverlist=<%= @dns_serverlist %>
 
 # Retry count
