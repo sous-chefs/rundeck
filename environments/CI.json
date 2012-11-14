@@ -222,6 +222,9 @@
             "config_distrib": "jcd01.englab.webtrends.corp:8097", 
             "heatmap_reducers": -1
         }, 
+        "wt_management_console": {
+            "service_url": "https://dmc.staging.dmz"
+        },
         "wt_masterdb": {
             "master_db": "wtmaster", 
             "master_host": "dmasterdb01.staging.dmz", 
@@ -251,6 +254,15 @@
             "elmah_remote_access": "yes", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true"
+        }, 
+        "wt_portfolio_manager": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip",
+            "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
+            "manager_ui_url": "http://hportmc01.staging.dmz",
+            "portmgr_group_user": "H.PortMgr.Users",
+            "portmgr_group_admin": "H.PortMgr.Admins",
+            "portmgr_injected_user": "toby.mosby@webtrends.com",
+            "portmgr_domain": "STAGINGDMZ"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
