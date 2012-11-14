@@ -257,7 +257,7 @@
         }, 
 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41518:id/Portfolio.Manager.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip",
             "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
             "manager_ui_url": "http://hportmc01.staging.dmz",
             "portmgr_group_user": "H.PortMgr.Users",
