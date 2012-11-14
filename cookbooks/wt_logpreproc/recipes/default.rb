@@ -35,16 +35,17 @@ directory install_dir do
 	action :create
 end
 
-wt_base_icacls node['wt_common']['install_dir_windows'] do
-	action :grant
-	user svcuser
-	perm :modify
-end
-
 # create log directory
 directory log_dir do
 	recursive true
 	action :create
+end
+
+# grant service account access
+wt_base_icacls node['wt_common']['install_dir_windows'] do
+	action :grant
+	user svcuser
+	perm :modify
 end
 
 if ENV["deploy_build"] == "true" then
@@ -69,6 +70,24 @@ template "#{install_dir}\\geoclient.ini" do
 	source "geoclient.ini.erb"
 	variables(
 		:netacuity_host => node['wt_netacuity']['geo_url']
+	)
+end
+
+template "#{install_dir}\\wtliveglue.ini" do
+	source "wtliveglue.ini.erb"
+#	variables(
+#		:masterdb_host => node['wt_masterdb']['host'],
+#		:masterdb_name => node['wt_masterdb']['dbname'],
+#		:scheddb_host  => node['wt_scheddb']['host'],
+#		:scheddb_name  => node['wt_scheddb']['dbname'],
+#		:log_dir       => log_dir
+#	)
+	variables(
+		:masterdb_host => node['wt_masterdb']['master_host'],
+		:masterdb_name => node['wt_masterdb']['master_db'],
+		:scheddb_host  => node['wt_masterdb']['sched_host'],
+		:scheddb_name  => node['wt_masterdb']['sched_db'],
+		:log_dir       => log_dir
 	)
 end
 
@@ -113,7 +132,8 @@ template "#{install_dir}\\wtlogpreproc.ini" do
 		:auditlog_filenameprefix    => node['wt_logpreproc']['auditlog_filenameprefix'],
 		:auditlog_filenameext       => node['wt_logpreproc']['auditlog_filenameext'],
 
-		:hostedmodel => node['wt_logpreproc']['hostedmodel']
+		:hostedmodel => node['wt_logpreproc']['hostedmodel'],
+		:install_dir => install_dir
 	)
 end
 
