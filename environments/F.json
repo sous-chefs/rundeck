@@ -10,7 +10,7 @@
         "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.0.9", 
         "wt_data_deleter": "= 1.0.1", 
-        "wt_logpreproc": "= 1.0.6", 
+        "wt_logpreproc": "= 1.0.7", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.10", 
         "wt_platformscheduler": "= 1.0.11", 
@@ -237,6 +237,7 @@
         "wt_masterdb": {
             "master_db": "wtMaster", 
             "master_host": "fmasterdb01.staging.dmz", 
+            "sched_db": "wt_Sched", 
             "sched_host": "fmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {
