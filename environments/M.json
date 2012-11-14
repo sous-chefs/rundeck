@@ -6,7 +6,7 @@
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "wt_base": "= 1.0.2", 
-        "wt_streamingcollection": "= 1.1.0"
+        "wt_streamingcollection": "= 1.1.1"
     }, 
     "default_attributes": {
         "authorization": {
