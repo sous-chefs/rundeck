@@ -17,18 +17,5 @@
         "ui_acct": "wtUI", 
         "ui_pass": "Bijoux1", 
         "ui_user": "WTENGLAB\\wtUI"
-    },
-    "wt_analytics_ui": {
-        "rsa": {
-             "modulus": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==",
-             "exponent": "AQAB",
-             "p": "yI1u6scneeSLo/zNgKXLkgL9/Kj8WEe/3zPwO/441SG3XVwQV8XEkTrTIuY2AWU3nwvdtZBuqBr4iPzBkzDnVIg2zEdmjehefAPgsx/o8EDKj62+0O4bUDLM9c/3vdv1EFzXuw/12J0Vuk/KngCWVwLg9ofiTmbleqvLb+5Wb4s=",
-             "q": "xJZ/rIaNRJD2kU2HVNBB9chsuRA+OBACDlem5eZa/gEi3dSFz6vaPWC7EoWXjqGRVwGJJ2RyQTZAbdPdgmjy5w2Ge3ADKLHz1QMQKpAJ2yB35H8ymImajrVvjwazkgKbWAJFoMgW3T4GdjjZMhKgcvfn7j0XRnB5dG/Va8OZy3k=",
-             "dp": "wZG5J8QXNxA/M4VyeCQOKxzWNsKH5VFDQVTpH46NHjGPwP12DLGmuyIS3ZFjOM+P8uPKF0+Tbo+xqM6Eq+O8s5tRgLO9qWRJpds8SseW1iVDHZBuJ0xacnrF1s/m54pgq21hD30lJfDgItaW0w/wC4WMyoZ3CINKJK+iCKP7K2c=",
-             "dq": "N8mVtboBQOH6dsWPkAwBi+QyplnrrjEsxDEvlbJHRCnCYT08M/DK3/whWmI63ikPe6dd6qXgnozsv74N8EIkHFmEPmdNHjFRxrM11T5G7b5LB7bo/syd5b2rSOVX9Cl1OAZ9B+GAS4ycfNQpHsKWccnUMZF4l263qMlLwWcir9E=",
-             "inverse_q": "cpnM6akIYjep44WgPmaV5luvr6ozH05Vs8zq/docj1ackA9bxTOkAc38OgYW19kRR8roboSV/q99HZJokMUfOC+KZvPtf1Ejhcopc61+ZlZz3pCPvsjx7mYqowMPq7arfnVXE/Djhh1HClJa8VSGBvKowS86pXPO36yJ3kzJqDo=",
-             "d": "WcLOhTEpFKbUFkGRmNtxB5IZOIWdVIvafHpBJX1s7jRcWY2aVr5h6qvDNyhv0NNRnpDhaD/zBw3vOVbfxV4piuuqYGhdIBsTy+mYIPGP9AJyMl4CzOFtzWBQjorB/GDwcSC0fK4pptWwzu6VhPlhme9Njg0/e/KHSYk4/ovYT6LimN6oFq1z7pEcCAjbsfSWdOicjiceMl6D+KWUCOI2T5l0UzOXU69Bm68y9bnn4lxWa8Iiq6Ta/i6WTuNv9T2KRIvGJagD8G+G0bscL5Ul9JTdXN9aSAwE9O8hqDvGj3q/17WjF30f628a5IciGnN4ddgPA895TkIsa687gTlCcQ=="
-        }
-    
     }
 }
