@@ -1,3 +1,6 @@
+## 1.1.1
+* Same as 1.1.0, it was a failed experiment.
+
 ## 1.1.0
 * Changed to use localhost kafka and no zookeeper rather in line
   with the "end state for collection" vision.
