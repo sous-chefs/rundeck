@@ -1,3 +1,7 @@
+## 1.1.1
+* Changed the collectd configuration of streaming-collection to see
+  if it can exist alongside the kafka collectd configuration.
+
 ## 1.1.0
 * Changed to use localhost kafka and no zookeeper rather in line
   with the "end state for collection" vision.
