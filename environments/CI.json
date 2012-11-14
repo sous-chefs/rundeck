@@ -181,6 +181,7 @@
         "wt_aps": {
             "aps_url_base": "/AccountProvisioning/", 
             "service_url": "http://daps01.staging.dmz"
+        },
         "wt_cam": {
             "cam": {
                 "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/CAM.zip"
