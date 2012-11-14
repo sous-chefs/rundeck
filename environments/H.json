@@ -210,7 +210,7 @@
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38875:id/MirrorMonitor-bin.tar.gz"
         }, 
         "wt_kafka_topagg": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41436:id/TopicAggregator-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41474:id/TopicAggregator-bin.tar.gz",
             "edge_kafka_sources": [
                 {
                     "host": "mscs01.staging.dmz", 
@@ -297,7 +297,7 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/41229:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/41512:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augmentation_bolt_count": 100, 
             "streaming_topology_field_grouping_local": "false", 
             "streaming_topology_in_session_bolt_count": 0, 
