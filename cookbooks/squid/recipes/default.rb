@@ -38,10 +38,8 @@ service "squid" do
     provider Chef::Provider::Service::Redhat
   when "debian"
     provider Chef::Provider::Service::Upstart
-    if node[:platform_version].to_f >= 11.10
-      service_name node['squid']['service_name']
-    end
   end
+  service_name node['squid']['service_name']
   action [ :enable, :start ]
 end
 
@@ -104,6 +102,6 @@ template "/etc/#{node['squid']['service_name']}/chef.acl.config" do
     :host_acl => host_acl,
     :url_acl => url_acl
     )
-  notifies :reload, "service[#{node['squid']['service_name']}]"
+  notifies :reload, "service[squid]"
 end
 
