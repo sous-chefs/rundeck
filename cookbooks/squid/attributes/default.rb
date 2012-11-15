@@ -24,3 +24,9 @@ default['squid']['config_file'] = "/etc/squid/squid.conf"
 default['squid']['timeout'] = "10"
 default['squid']['opts'] = ""
 default['squid']['version'] = ""
+
+if node['platform_family'] = "debian" and node['platform_version'].to_f >= 11.10
+    default['squid']['service_name'] = "squid3"
+else
+	default['squid']['service_name'] = "squid"
+end
