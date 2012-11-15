@@ -250,7 +250,7 @@
             "search_hostname": "ksearch.englab.webtrends.corp"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt292/37917:id/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt18/.lastSuccessful/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "kusagedb01.englab.webtrends.corp", 
