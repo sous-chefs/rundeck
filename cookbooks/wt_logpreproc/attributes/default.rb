@@ -1,14 +1,14 @@
 #
-# Author:: Jeremy Chartrand
 # Cookbook Name:: wt_logpreproc
 # Attribute:: default
+# Author:: Jeremy Chartrand
 #
 # Copyright 2012, Webtrends Inc.
 #
 
 default['wt_logpreproc']['service_binary'] = "wtlogpreproc.exe"
-default['wt_logpreproc']['install_dir'] = "\\modules\\logpreproc\\"
-default['wt_logpreproc']['log_dir'] = "\\logs\\"
+default['wt_logpreproc']['install_dir'] = "modules\\logpreproc"
+default['wt_logpreproc']['log_dir'] = "logs"
 default['wt_logpreproc']['download_url'] = ""
 default['wt_logpreproc']['netacuity_host'] = "localhost"
 
@@ -49,8 +49,8 @@ default['wt_logpreproc']['wtlogpreproc1_fileextension'] = "*.log.gz.rt"
 default['wt_logpreproc']['wtlogpreproc1_doneextension'] = "*.log.gz.rt.pp"
 
 # Source path(s)
-default['wt_logpreproc']['wtlogpreproc1_sourcepath'] = "\\\\sifr02.staging.dmz\\ifr"
-default['wt_lgopreproc']['wtlogpreproc1_sourcepath1'] = "\\\\sifr02.staging.dmz\\ifr2"
+default['wt_logpreproc']['wtlogpreproc1_sourcepath'] = nil
+default['wt_logpreproc']['wtlogpreproc1_sourcepath1'] = nil
 
 # Compress Logs. Compression level (only used if compresslogfile=true) can be from 1-9. See ENG 304856.
 #     1 - Maximum speed, no lazy matches. Default used by most LumberJack 7.1 tools (except LogCat).
@@ -66,7 +66,7 @@ default['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'] = "false"
 
 # List of DNS server IP addresses (semi-colon delimited) 
 # Use if you need to override the system default DNS server.
-default['wt_logpreproc']['dns_serverlist'] = "10.60.68.13;10.60.68.14"
+default['wt_logpreproc']['dns_serverlist'] = "10.164.0.5;10.164.0.6"
 
 # DNS Lookup Retry count
 default['wt_logpreproc']['dns_retrycount'] = "0"
