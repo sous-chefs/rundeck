@@ -30,7 +30,7 @@
 #  from causing Squid entering an infinite loop whilst trying to load
 #  configuration files.
 
-include /etc/squid/chef.acl.config
+include /etc/<%= node['squid']['service_name'] %>/chef.acl.config
 
 # OPTIONS FOR AUTHENTICATION
 # -----------------------------------------------------------------------------
