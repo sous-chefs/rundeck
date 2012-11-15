@@ -50,7 +50,7 @@ else
 end
 Chef::Log.info "Squid network #{network}"
 
-template "/etc/squid/squid.conf" do
+template "/etc/#{node['squid']['service_name']}/squid.conf" do
   source "#{node['squid']['service_name']}.conf.erb"
   notifies :reload, "service[squid]"
   mode 00644
