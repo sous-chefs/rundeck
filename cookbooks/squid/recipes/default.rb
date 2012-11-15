@@ -39,7 +39,7 @@ service "squid" do
   when "debian"
     provider Chef::Provider::Service::Upstart
     if node[:platform_version].to_f >= 11.10
-      service_name "squid3"
+      service_name node['squid']['service_name']
     end
   end
   action [ :enable, :start ]
@@ -97,13 +97,13 @@ rescue
   Chef::Log.info "no 'squid_acls' data bag"
 end
 
-template "/etc/squid/chef.acl.config" do
+template "/etc/#{node['squid']['service_name']}/chef.acl.config" do
   source "chef.acl.config.erb"
   variables(
     :acls => acls,
     :host_acl => host_acl,
     :url_acl => url_acl
     )
-  notifies :reload, "service[squid]"
+  notifies :reload, "service[#{node['squid']['service_name']}]"
 end
 
