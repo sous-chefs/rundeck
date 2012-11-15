@@ -50,11 +50,8 @@ else
 end
 Chef::Log.info "Squid network #{network}"
 
-version = node['squid']['version']
-Chef::Log.info "Squid version number (unknown if blank): #{version}"
-
-template "/etc/#{node['squid']['service_name']}/squid.conf" do
-  source "squid#{version}.conf.erb"
+template "/etc/squid/squid.conf" do
+  source "#{node['squid']['service_name']}.conf.erb"
   notifies :reload, "service[squid]"
   mode 00644
 end
