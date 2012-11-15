@@ -53,7 +53,7 @@ Chef::Log.info "Squid network #{network}"
 version = node['squid']['version']
 Chef::Log.info "Squid version number (unknown if blank): #{version}"
 
-template "/etc/squid/squid.conf" do
+template "/etc/#{node['squid']['service_name']}/squid.conf" do
   source "squid#{version}.conf.erb"
   notifies :reload, "service[squid]"
   mode 00644
