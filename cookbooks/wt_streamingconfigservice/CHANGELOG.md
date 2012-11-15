@@ -1,3 +1,6 @@
+## 1.0.4
+* Create attribute for the healthcheck_port so this service can coexist with others that try to use 9000
+
 ## 1.0.3
 * Added minitest-handler and a preliminary test that verifies healthcheck returns true
 
