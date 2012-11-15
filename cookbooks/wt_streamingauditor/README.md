@@ -1,11 +1,9 @@
 = DESCRIPTION:
-Installs Streaming Auditor Service
+Installs Webtrends Streaming Auditor Service
 
 = REQUIREMENTS:
 * java
 * runit
-* nagios
-* collectd
 
 = ATTRIBUTES:
 * user: The user to run the service under. Defaults to "webtrends"

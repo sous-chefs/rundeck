@@ -1,6 +1,7 @@
 #
 # wtlogpreproc.ini - WebTrends Log Preprocessor Service
 #
+
 [defaults]
 # 3 is the normal debugging level is 3. 7 is the most intense debugging level.
 debuglevel=<%= @debuglevel %>
@@ -70,7 +71,6 @@ ensurefield2=origin-id
 [dns]
 # List of DNS server IP addresses (semi-colon delimited) 
 # Use if you need to override the system default DNS server.
-#serverlist=10.90.17.45;10.90.17.46;10.90.17.47
 serverlist=<%= @dns_serverlist %>
 
 # Retry count
@@ -133,3 +133,7 @@ auditfilenameext=<%= @auditlog_filenameext %>
 # Connect to the database for status and sourcepath(s) when hostedmodel=true
 hostedmodel=<%= @hostedmodel %>
 
+[wtliveglue]
+GlueDll=<%= @install_dir %>\wtliveglue2.dll
+GlueIni=<%= @install_dir %>\wtliveglue.ini
+glue.properties=<%= @install_dir %>\glue_sql.properties
