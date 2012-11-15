@@ -38,6 +38,9 @@ service "squid" do
     provider Chef::Provider::Service::Redhat
   when "debian"
     provider Chef::Provider::Service::Upstart
+    if node[:platform_version].to_f >= 11.10
+      service_name "squid3"
+    end
   end
   action [ :enable, :start ]
 end
