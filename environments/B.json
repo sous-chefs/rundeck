@@ -264,7 +264,7 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41880:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41921:id/Portfolio.Manager.zip", 
             "manager_ui_url": "",
             "portmgr_group_user": "B.PortMgr.Users",
             "portmgr_group_admin": "B.PortMgr.Admins",
@@ -303,7 +303,7 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/41755:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/41908:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augmentation_bolt_count": 20,
             "streaming_topology_field_grouping_local": "false",
             "streaming_topology_in_session_bolt_count": 0, 
