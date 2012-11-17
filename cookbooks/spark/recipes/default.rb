@@ -26,9 +26,9 @@ spark_master = search(:node, "role:spark_master AND chef_environment:#{node.chef
 
 install_dir = "#{node['spark']['install_dir']}/spark-#{node['spark']['version']}"
 
-mem = "30g"
+mem = "6g"
 if node.run_list.include?("role[spark_master]")
-  mem = "15g"
+  mem = "6g"
 end
 
 # setup spark group
@@ -106,6 +106,24 @@ end
       :mem => mem
     )
   end
+end
+
+
+# dirty hack for playing
+remote_file "/opt/spark/current/lib_managed/bundles/hbase-0.92.2.jar" do
+  source "http://repo1.maven.org/maven2/org/apache/hbase/hbase/0.92.2/hbase-0.92.2.jar"
+  owner  "spark"
+  group  "spark"
+  mode   00744
+  not_if "test -f /opt/spark/current/lib_managed/bundles/hbase-0.92.2.jar"
+end
+
+remote_file "/opt/spark/current/lib_managed/bundles/zookeeper-3.4.3.jar" do
+  source "http://repo1.maven.org/maven2/org/apache/zookeeper/zookeeper/3.4.3/zookeeper-3.4.3.jar"
+  owner  "spark"
+  group  "spark"
+  mode   00744
+  not_if "test -f /opt/spark/current/lib_managed/bundles/zookeeper-3.4.3.jar"
 end
 
 
