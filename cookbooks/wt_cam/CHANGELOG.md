@@ -1,11 +1,14 @@
+## 1.1.4
+* Changed the wt_base icacls call to be directory rights calls
+
 ## 1.1.3
 * Added share_wrs 
+
 ## 1.1.2
 * Allowed double escaping for email handling via url
 
 ## 1.1.1
 * Fixed incorrect assembly name in log4net.config template
-* Added activity log entry to log4net template
 
 ## 1.1.0
 * Fixed whitespace and typos
