@@ -1,7 +1,6 @@
 action :run do
-  %w{builder ci_reporter minitest minitest-chef-handler}.each do |gem|
+  %w{minitest-chef-handler}.each do |gem|
     chef_gem gem do
-      options :ignore_dependencies => true
       action :install
     end
   end
