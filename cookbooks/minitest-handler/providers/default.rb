@@ -1,6 +1,7 @@
 action :run do
-  %w{json_pure minitest minitest-chef-handler}.each do |gem|
+  %w{builder ci_reporter minitest minitest-chef-handler}.each do |gem|
     chef_gem gem do
+      options :ignore_dependencies => true
       action :install
     end
   end
