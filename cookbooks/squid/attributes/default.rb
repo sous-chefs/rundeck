@@ -23,4 +23,20 @@ default['squid']['network'] = nil
 default['squid']['config_file'] = "/etc/squid/squid.conf"
 default['squid']['timeout'] = "10"
 default['squid']['opts'] = ""
-default['squid']['version'] = ""
+
+case node['platform_family']
+when "debian"
+	if node['platform_version'].to_f >= 11.10
+    default['squid']['service_name'] = "squid3"
+  else
+    default['squid']['service_name'] = "squid"
+  end
+when "rhel" 
+  if node['platform_version'].to_f >= 6.0
+	  default['squid']['service_name'] = "squid3"
+  else
+	  default['squid']['service_name'] = "squid"
+  end
+else
+  default['squid']['service_name'] = "squid"
+end

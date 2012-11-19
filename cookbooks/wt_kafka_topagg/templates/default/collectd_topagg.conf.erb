@@ -311,7 +311,7 @@ LoadPlugin java
         #Connection Block
         <Connection>
 			Host "<%= @node[:hostname] %>"
-			ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:<%= @node['wt_streamingcollection']['jmx_port'] %>/jmxrmi"
+			ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:<%= @node['wt_kafka_topagg']['jmx_port'] %>/jmxrmi"
 			Collect "classes"
 			Collect "garbage_collector"
 			Collect "java_threads"
