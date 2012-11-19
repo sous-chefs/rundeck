@@ -1,12 +1,5 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {
-        "nagios": "= 1.6.2",
-        "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.8", 
-        "windows": "= 1.3.6", 
-        "wt_base": "= 1.0.1"
-    }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -35,6 +28,9 @@
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
+        "firefox": {
+            "http_url":"http://repo.staging.dmz/repo/windows/firefox/FirefoxSetup16.0.2.exe"
+        },
         "hbase": {
             "location": "sdata.staging.dmz", 
             "thrift_port": 9090
@@ -251,7 +247,7 @@
             "search_hostname": "ksearch.englab.webtrends.corp"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt292/37917:id/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt18/.lastSuccessful/SyncService.zip"
         }, 
         "wt_usagedb": {
             "schedulerdb_host": "kusagedb01.englab.webtrends.corp", 
