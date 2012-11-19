@@ -105,8 +105,10 @@ def processTemplates (install_dir, node, log_dir)
     group   "root"
     mode    00644
     variables({
-      :rules_url => node['wt_edge_server']['config_service_rule_url_template'],
-      :active_configs_url => node['wt_edge_server']['active_configs_url_template']
+      :rules_url => File.join(node["wt_streamingconfigservice"]["config_service_url"], 
+			node['wt_edge_server']['config_service_rule_endpoint']),
+      :active_configs_url => File.join(node["wt_streamingconfigservice"]["config_service_url"], 
+			node['wt_edge_server']['active_configs_endpoint'])
     })
   end
 
