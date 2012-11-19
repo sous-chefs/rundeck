@@ -1,3 +1,5 @@
+## 1.1.14
+* Add current node domain to proxy bypass list
 ## 1.1.13
 * Added share_wrs
 ## 1.1.12
