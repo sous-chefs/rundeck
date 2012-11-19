@@ -1,3 +1,5 @@
+## 1.1.2
+  * Fixed the template for the rsa key
 ## 1.1.1
   * Updated the data bag used for rsa keys
 ## 1.1.0
