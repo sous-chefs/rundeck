@@ -14,7 +14,7 @@
         "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.1.3", 
         "wt_kafka_mm": "= 0.0.17", 
-        "wt_kafka_topagg": "= 1.0.0", 
+        "wt_kafka_topagg": "= 1.0.1",
         "wt_netacuity": "= 1.0.10", 
         "wt_portfolio_admin": "= 1.1.9", 
         "wt_realtime_hadoop": "= 1.0.4", 
@@ -170,10 +170,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/41004:id/Cam.zip"
+               "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt315/41802:id/Cam.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/41004:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt315/41802:id/Plugins.zip"
             }, 
             "cam_service_url": "http://hcam.staging.dmz", 
             "db_name": "cam", 
@@ -210,7 +210,7 @@
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38875:id/MirrorMonitor-bin.tar.gz"
         }, 
         "wt_kafka_topagg": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41474:id/TopicAggregator-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41942:id/TopicAggregator-bin.tar.gz",
             "edge_kafka_sources": [
                 {
                     "host": "mscs01.staging.dmz", 
@@ -257,7 +257,7 @@
         }, 
 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41921:id/Portfolio.Manager.zip",
             "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
             "manager_ui_url": "http://hportmc01.staging.dmz",
             "portmgr_group_user": "H.PortMgr.Users",
@@ -277,7 +277,7 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://hsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/41004:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt315/41802:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_realtime": {
@@ -297,7 +297,7 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/41554:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/41957:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augmentation_bolt_count": 100, 
             "streaming_topology_field_grouping_local": "false", 
             "streaming_topology_in_session_bolt_count": 0, 
@@ -313,7 +313,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/40806:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/41835:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true", 
             "streams_ui_url": "https://hstreams.webtrends.com"
@@ -324,7 +324,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/41515:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/41730:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "sapi_service_url": "ws://hsapi01.staging.dmz:8080", 
             "usagedbname": "Streaming", 
