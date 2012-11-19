@@ -35,7 +35,7 @@
     "wt_storm_streaming": "= 2.1.24",
     "wt_portfolio_admin": "= 1.1.10",
     "wt_streamingauditor": "= 1.0.10",
-    "wt_streaming_viz": "= 1.1.13",
+    "wt_streaming_viz": "= 1.1.14",
     "hadoop": "= 1.0.3",
     "wt_streamingapi": "= 1.1.0",
     "wt_streamingconfigservice": "= 1.0.2",
