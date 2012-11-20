@@ -130,7 +130,7 @@ template "#{install_dir}\\appSettings.config" do
                 :portmgr_group_admin => node['wt_portfolio_manager']['portmgr_group_admin'],
                 :portmgr_group_user => node['wt_portfolio_manager']['portmgr_group_user'],
                 :portmgr_injected_user => node['wt_portfolio_manager']['portmgr_injected_user'],
-                :portmgr_domain => node['wt_portfolio_manager']['portmgr_domain']
+                :portmgr_domain => node['domain'].gsub(".", "").upcase
 	)
 end
 
