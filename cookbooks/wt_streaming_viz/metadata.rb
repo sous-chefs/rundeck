@@ -3,7 +3,7 @@ maintainer_email "kendrick.martin@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures Streaming Dataviz IIS site"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.1.13"
+version          "1.1.14"
 supports         "windows"
 depends          "iis"
 depends          "windows"
