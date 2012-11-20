@@ -21,6 +21,10 @@
 # note that deletion does not remove GPG keys, either from the repo or
 # /etc/pki/rpm-gpg; this is a design decision.
 
+def whyrun_supported?
+  true
+end
+
 action :add do
   unless ::File.exists?("/etc/yum.repos.d/#{new_resource.repo_name}.repo")
     Chef::Log.info "Adding #{new_resource.repo_name} repository to /etc/yum.repos.d/#{new_resource.repo_name}.repo"
@@ -43,18 +47,18 @@ action :update do
   # If the repo is already enabled/disabled as per the resource, we don't want to converge the template resource.
   if ::File.exists?("/etc/yum.repos.d/#{new_resource.repo_name}.repo")
     ::File.open("/etc/yum.repos.d/#{new_resource.repo_name}.repo") do |file|
-      repo_name ||= nil 
+      repo_name ||= nil
       file.each_line do |line|
         case line
         when /^\[(\S+)\]/
           repo_name = $1
           repos[repo_name] ||= {}
-        when /^(\S+?)=(.*)$/                                                                                                                                                           
+        when /^(\S+?)=(.*)$/
           param, value = $1, $2
           repos[repo_name][param] = value
         else
-        end 
-      end 
+        end
+      end
     end
   else
     Chef::Log.error "Repo /etc/yum.repos.d/#{new_resource.repo_name}.repo does not exist, you must create it first"
