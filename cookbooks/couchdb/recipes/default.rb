@@ -17,7 +17,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "erlang"
+if node['couch_db']['install_erlang']
+  include_recipe "erlang"
+end
 
 case node['platform']
 when "redhat","centos","fedora","amazon"
