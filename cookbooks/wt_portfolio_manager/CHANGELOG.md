@@ -1,3 +1,6 @@
+## 1.1.16
+* Add current node domain to proxy bypass list
+
 ## 1.1.15
 * Added wtUI to .NET Temp and IIS physical folder perms.
 

@@ -20,35 +20,34 @@
   },
   "name": "H",
   "cookbook_versions": {
-    "wt_kafka_mm": "= 0.0.17",
-    "wt_netacuity": "= 1.0.10",
-    "wt_cam": "= 1.1.3",
+    "hive": "= 1.0.2",
+    "java": "= 1.6.0",
+    "webpi": "= 1.0.16",
     "storm": "= 1.0.28",
-    "webtrends_server": "= 1.8.8",
     "kafka": "= 1.0.20",
+    "hbase": "= 1.0.3",
+    "nagios": "= 1.6.2",
+    "hadoop": "= 1.0.3",
+    "windows": "= 1.3.6",
     "zookeeper": "= 1.1.6",
-    "wt_streamingcollection": "= 1.0.3",
-    "wt_streaminglogreplayer": "= 1.1.2",
-    "wt_streaminganalysis_monitor": "= 1.0.2",
+    "webtrends_server": "= 1.8.8",
+    "wt_cam": "= 1.1.3",
+    "wt_base": "= 1.0.2",
+    "wt_sauth": "= 1.1.2",
+    "wt_netacuity": "= 1.0.10",
+    "wt_realtimeapi": "= 1.0.1",
+    "wt_streamingapi": "= 1.1.0",
     "wt_kafka_topagg": "= 1.0.1",
+    "wt_streaming_viz": "= 1.1.14",
+    "wt_storm_realtime": "= 2.1.6",
     "wt_realtime_hadoop": "= 1.0.4",
     "wt_storm_streaming": "= 2.1.24",
-    "wt_portfolio_admin": "= 1.1.9",
+    "wt_portfolio_admin": "= 1.1.10",
     "wt_streamingauditor": "= 1.0.10",
-    "wt_streaming_viz": "= 1.1.13",
-    "hadoop": "= 1.0.3",
-    "wt_streamingapi": "= 1.1.0",
+    "wt_streamingcollection": "= 1.0.3",
+    "wt_streaminglogreplayer": "= 1.1.2",
     "wt_streamingconfigservice": "= 1.0.2",
-    "webpi": "= 1.0.16",
-    "hive": "= 1.0.2",
-    "wt_realtimeapi": "= 1.0.1",
-    "hbase": "= 1.0.3",
-    "wt_storm_realtime": "= 2.1.6",
-    "wt_sauth": "= 1.1.2",
-    "nagios": "= 1.6.2",
-    "windows": "= 1.3.6",
-    "java": "= 1.6.0",
-    "wt_base": "= 1.0.2"
+    "wt_streaminganalysis_monitor": "= 1.0.2"   
   },
   "json_class": "Chef::Environment",
   "description": "H Pod",
@@ -60,7 +59,7 @@
       "portmgr_injected_user": "toby.mosby@webtrends.com",
       "portmgr_domain": "STAGINGDMZ",
       "portmgr_group_user": "H.PortMgr.Users",
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41921:id/Portfolio.Manager.zip",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/42268:id/Portfolio.Manager.zip",
       "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip",
       "portmgr_group_admin": "H.PortMgr.Admins",
       "manager_ui_url": "http://hportmc01.staging.dmz"
@@ -202,19 +201,19 @@
       "pod": "H"
     },
     "wt_storm_streaming": {
-      "streaming_topology_validation_bolt_count": 100,
       "streaming_topology_field_grouping_local": "false",
-      "worker": {
-        "childopts": "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
-      },
-      "streaming_topology_augmentation_bolt_count": 100,
-      "streaming_topology_in_session_bolt_count": 0,
-      "streaming_topology_zmq_emitter_bolt_count": 50,
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/41957:id/streaming-analysis-bin.tar.gz",
+      "streaming_topology_validation_bolt_count": 10,
+      "streaming_topology_augmentation_bolt_count": 10,
+      "streaming_topology_in_session_bolt_count": 10,
+      "streaming_topology_zmq_emitter_bolt_count": 1,
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/42315:id/streaming-analysis-bin.tar.gz",
       "topic_list": [
         "Lab_H_lrRawHits:12",
         "Lab_H_scsRawHits:12"
-      ]
+      ],
+      "worker": {
+        "childopts": "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
+      }
     },
     "wt_usagedb": {
     },
