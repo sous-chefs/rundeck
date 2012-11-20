@@ -1,3 +1,8 @@
+## 1.0.8
+* removed wtliveglue.ini
+* added service stop to uninstall
+* added service start to install
+
 ## 1.0.7
 * add wtliveglue configuration
 
