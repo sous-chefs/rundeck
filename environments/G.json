@@ -6,7 +6,8 @@
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "wt_base": "= 1.0.2", 
-        "wt_streamingcollection": "= 1.1.0"
+        "wt_streamingcollection": "= 1.1.0",
+	"wt_edge_server": "= 0.1.0"
     }, 
     "default_attributes": {
         "authorization": {
@@ -139,9 +140,15 @@
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
-            "wrsmodify_group": "STAGINGDMZ\\M.WRS.Modify", 
-            "wrsread_group": "STAGINGDMZ\\M.WRS.Read"
+            "wrsmodify_group": "STAGINGDMZ\\G.WRS.Modify", 
+            "wrsread_group": "STAGINGDMZ\\G.WRS.Read"
         }, 
+	"wt_edge_server": {
+            "active_configs_endpoint": "/rcs/v1/activeRules/",
+            "config_service_rule_endpoint": "/rcs/v1/rule/{configid}",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt299/.lastSuccessful/Edge-Server-Distribution-wModules-all.tar.gz",
+            "port": 8081
+        },
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 
