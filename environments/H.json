@@ -57,7 +57,7 @@
     },
     "wt_portfolio_manager": {
       "portmgr_injected_user": "toby.mosby@webtrends.com",
-      "portmgr_domain": "STAGINGDMZ",
+      "portmgr_domain": "DEPRECATED",
       "portmgr_group_user": "H.PortMgr.Users",
       "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/42268:id/Portfolio.Manager.zip",
       "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip",
