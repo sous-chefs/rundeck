@@ -201,15 +201,19 @@
       "pod": "H"
     },
     "wt_storm_streaming": {
-      "streaming_topology_field_grouping_local": "false",
       "streaming_topology_validation_bolt_count": 10,
       "streaming_topology_augmentation_bolt_count": 10,
       "streaming_topology_in_session_bolt_count": 10,
       "streaming_topology_zmq_emitter_bolt_count": 1,
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/42315:id/streaming-analysis-bin.tar.gz",
+      "streaming_topology_field_grouping_local": "false",
+      "streaming_topology_validation_bolt_tasks": 10,
+      "streaming_topology_augmentation_bolt_tasks": 10,
+      "streaming_topology_in_session_bolt_tasks": 10,
+      "streaming_topology_zmq_emitter_bolt_tasks": 1,
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/42353:id/streaming-analysis-bin.tar.gz",
       "topic_list": [
-        "Lab_H_lrRawHits:12",
-        "Lab_H_scsRawHits:12"
+        "Lab_H_lrRawHits:1",
+        "Lab_H_scsRawHits:1"
       ],
       "worker": {
         "childopts": "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
