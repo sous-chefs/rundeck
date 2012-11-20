@@ -35,5 +35,5 @@
     "couchdb": "Installs and configures CouchDB package",
     "couchdb::source": "Installs and configures CouchDB from source"
   },
-  "version": "1.0.2"
+  "version": "1.0.4"
 }
