@@ -7,12 +7,6 @@
 * WindowsRebootHandler/`windows_reboot` LWRP should support kicking off subsequent chef run on reboot.
 * Support all types of registry keys with `type` parameter in `windows_registry`.
 
-## v1.3.6(Webtrends):
-* Merged in https://github.com/opscode-cookbooks/windows/pull/11 to fix ruby error
-
-## v1.3.5(Webtrends):
-* Removed version hard code for rubyzip
-
 ## v1.3.4:
 
 * [COOK-1173] - windows_registry throws Win32::Registry::Error for
