@@ -43,9 +43,9 @@ end
 
 # grant service account access
 wt_base_icacls node['wt_common']['install_dir_windows'] do
-	action :grant
 	user svcuser
 	perm :modify
+	action :grant
 end
 
 if ENV["deploy_build"] == "true" then
@@ -61,6 +61,7 @@ if ENV["deploy_build"] == "true" then
 	svcbin =  File.join(install_dir, node['wt_logpreproc']['service_binary']).gsub(/[\\\/]+/,"\\")
 	execute node['wt_logpreproc']['service_binary'] do
 		command "#{svcbin} --install startup=auto username=#{svcuser} password=\"#{svcpass}\""
+		notifies :start, "service[#{node['wt_logpreproc']['service_name']}]"
 	end
 
 	share_wrs
@@ -70,24 +71,6 @@ template "#{install_dir}\\geoclient.ini" do
 	source "geoclient.ini.erb"
 	variables(
 		:netacuity_host => node['wt_netacuity']['geo_url']
-	)
-end
-
-template "#{install_dir}\\wtliveglue.ini" do
-	source "wtliveglue.ini.erb"
-#	variables(
-#		:masterdb_host => node['wt_masterdb']['host'],
-#		:masterdb_name => node['wt_masterdb']['dbname'],
-#		:scheddb_host  => node['wt_scheddb']['host'],
-#		:scheddb_name  => node['wt_scheddb']['dbname'],
-#		:log_dir       => log_dir
-#	)
-	variables(
-		:masterdb_host => node['wt_masterdb']['master_host'],
-		:masterdb_name => node['wt_masterdb']['master_db'],
-		:scheddb_host  => node['wt_masterdb']['sched_host'],
-		:scheddb_name  => node['wt_masterdb']['sched_db'],
-		:log_dir       => log_dir
 	)
 end
 
@@ -137,9 +120,11 @@ template "#{install_dir}\\wtlogpreproc.ini" do
 	)
 end
 
-service 'wtlogpreproc' do
+service node['wt_logpreproc']['service_name'] do
+	supports :start => true, :restart => true
 	subscribes :restart, resources(
 		:template => "#{install_dir}\\geoclient.ini",
 		:template => "#{install_dir}\\wtlogpreproc.ini"
 	)
+	action :nothing
 end
