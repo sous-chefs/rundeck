@@ -115,7 +115,6 @@ template "#{install_dir}\\wtlogpreproc.ini" do
 		:auditlog_filenameprefix    => node['wt_logpreproc']['auditlog_filenameprefix'],
 		:auditlog_filenameext       => node['wt_logpreproc']['auditlog_filenameext'],
 
-		:hostedmodel => node['wt_logpreproc']['hostedmodel'],
 		:install_dir => install_dir
 	)
 end
