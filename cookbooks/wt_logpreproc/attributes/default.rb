@@ -47,7 +47,7 @@ default['wt_logpreproc']['wtlogpreproc1_label'] = 'defaultlogpreproc'
 default['wt_logpreproc']['wtlogpreproc1_fileextension'] = '*.log.gz.rt'
 
 # File extension for files output by this tool
-default['wt_logpreproc']['wtlogpreproc1_doneextension'] = '*.log.gz.rt.pp'
+default['wt_logpreproc']['wtlogpreproc1_doneextension'] = '.log.gz.rt.pp'
 
 # Source path(s)
 default['wt_logpreproc']['wtlogpreproc1_sourcepath'] = nil
@@ -112,6 +112,4 @@ default['wt_logpreproc']['auditlog_trimsize'] = '10'
 # Audit log filename and extension
 default['wt_logpreproc']['auditlog_filenameprefix'] = 'logpreproc'
 default['wt_logpreproc']['auditlog_filenameext'] = 'audit'
-
-default['wt_logpreproc']['hostedmodel'] = 'true'
 
