@@ -229,7 +229,8 @@
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/lpp/LPP.zip", 
             "wtda_allowoutofsync": true, 
             "wtlogpreproc1_doneextension": "*.log.gz.pp", 
-            "wtlogpreproc1_fileextension": "*.log.gz"
+            "wtlogpreproc1_fileextension": "*.log.gz", 
+            "wtlogpreproc1_sourcepath": "\\\\sstore03.staging.dmz\\fstore\\ifr"
         }, 
         "wt_management_console": {
             "mc_service_url": "https://fmc.staging.dmz"
