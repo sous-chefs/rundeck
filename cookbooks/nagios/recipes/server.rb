@@ -274,7 +274,7 @@ end
 
 nagios_conf "hostgroups" do
   variables(
-    :hostgroup => hostgroups,
+    :hostgroups => hostgroups,
     :search_hostgroups => hostgroup_list,
     :search_nodes => hostgroup_nodes
   )
