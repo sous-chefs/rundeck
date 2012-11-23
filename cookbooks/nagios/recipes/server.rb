@@ -21,6 +21,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# configure either Apache2 or NGINX
 web_srv = node['nagios']['server']['web_server'].to_sym
 
 case web_srv
@@ -41,7 +42,7 @@ else
   raise 'Unknown web server option provided for Nagios server'
 end
 
-# Install nagios either from source of package
+# install nagios service either from source of package
 include_recipe "nagios::server_#{node['nagios']['server']['install_method']}"
 
 group = "#{node['nagios']['users_databag_group']}"
@@ -68,11 +69,23 @@ else
   end
 end
 
+# load Nagios alert contacts from the nagios_contacts data bag
+begin
+  contacts = search(:nagios_contacts, '*:*')
+rescue Net::HTTPServerException
+  Chef::Log.info("Could not search for nagios_contacts data bag items, not adding addition contact groups")
+end
+
+if contacts.nil? || contacts.empty?
+  Chef::Log.info("No contacts returned from data bag search.")
+  contacts = Array.new
+end
+
+# find nodes to monitor.  Search in all environments if multi_environment_monitoring is enabled
 Chef::Log.info("Beginning search for nodes.  This may take some time depending on your node count")
 nodes = Array.new
 hostgroups = Array.new
 
-# find nodes to monitor.  Search in all environments if multi_environment_monitoring is enabled
 if node['nagios']['multi_environment_monitoring']
   nodes = search(:node, "hostname:[* TO *]")
 else
@@ -181,11 +194,7 @@ sysadmins.each do |s|
   members << s['id']
 end
 
-if node['public_domain']
-  public_domain = node['public_domain']
-else
-  public_domain = node['domain']
-end
+public_domain = node['public_domain'] || node['domain']
 
 nagios_conf "nagios" do
   config_subdir false
@@ -256,7 +265,11 @@ nagios_conf "services" do
 end
 
 nagios_conf "contacts" do
-  variables :admins => sysadmins, :members => members
+  variables( 
+    :admins => sysadmins,
+    :members => members,
+    :contacts => contacts
+  )
 end
 
 nagios_conf "hostgroups" do
