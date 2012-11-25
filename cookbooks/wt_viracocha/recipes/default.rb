@@ -24,6 +24,6 @@ include_recipe "build-essential"
   package pkg
 end
 
-%w{ ruby-odbc dbd-odbc dbi aws}.each do |gem|
+%w{ ruby-odbc dbd-odbc dbi aws trollop}.each do |gem|
   gem_package gem
 end
