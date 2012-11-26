@@ -59,7 +59,7 @@ default['wt_logpreproc']['wtlogpreproc1_sourcepath1'] = nil
 #     5 - Default used in DynaZip. Default used by LumberJack 8.0 LogCat.
 #     6 - Default used in CryptoPP. See BASE_Shared\crypto\zdeflate.h, Deflator::enum {DEFAULT_DEFLATE_LEVEL}
 #     9 - Maximum compression
-default['wt_logpreproc']['wtlogpreproc1_compresslogfile'] = 'false'
+default['wt_logpreproc']['wtlogpreproc1_compresslogfile'] = 'true'
 default['wt_logpreproc']['wtlogpreproc1_compresslogfile_level'] = '1'
 
 # Delete the orignal lfr logs when finished
