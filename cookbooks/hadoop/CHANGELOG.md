@@ -3,6 +3,10 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+
+## 1.1.9
+* adding attributes for mapred-queue-acls.xml
+
 ## 1.1.8
 * setting JAVA_LIBRARY_PATH so native hadoop and snappy libraries can be used
 

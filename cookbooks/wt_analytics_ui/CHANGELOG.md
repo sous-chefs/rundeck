@@ -1,5 +1,7 @@
-## 1.1.3
+## 1.1.4
   * Fixing user 
+## 1.1.3
+  * Added .html to allowed extension list.
 ## 1.1.2
   * Fixed the template for the rsa key
 ## 1.1.1

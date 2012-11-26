@@ -5,12 +5,12 @@
         "cassandra": "= 1.0.10", 
         "cobbler": "= 1.0.5", 
         "graphite": "= 0.3.0", 
-        "hadoop": "= 1.1.8", 
+        "hadoop": "= 1.1.9", 
         "hbase": "= 1.1.4", 
         "hive": "= 1.1.0", 
         "java": "= 1.6.0", 
         "memcached": "= 1.0.4", 
-        "nagios": "= 1.6.2",  
+        "nagios": "= 1.6.3",  
         "rundeck": "= 1.0.4", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
@@ -76,7 +76,8 @@
                     "reduce_tasks": 26, 
                     "submit_replication": 3, 
                     "tasktracker_map_tasks_maximum": 6, 
-                    "tasktracker_reduce_tasks_maximum": 3
+                    "tasktracker_reduce_tasks_maximum": 3,
+                    "acls_enabled": "false"
                 }
             }
         }, 

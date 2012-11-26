@@ -5,7 +5,7 @@
 
 # What ports/sockets to listen on, and what options for them.
 <%- @listen.each do |port, options| %>
-listen <%= port %>, <%= options %>
+listen "<%= port %>", <%= options %>
 <%- end %>
 
 <%- if @working_directory %>
@@ -20,6 +20,14 @@ preload_app <%= @preload_app %>
 
 # How many worker processes
 worker_processes <%= @worker_processes %>
+
+<%- if @before_exec %>
+# What to do right before exec()-ing the new unicorn binary
+before_exec do |server|
+  <%= @before_exec %>
+end
+
+<%- end %>
 
 <%- if @before_fork %>
 # What to do before we fork a worker
