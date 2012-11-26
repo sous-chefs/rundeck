@@ -47,7 +47,8 @@
     "wt_streamingcollection": "= 1.0.3",
     "wt_streaminglogreplayer": "= 1.1.2",
     "wt_streamingconfigservice": "= 1.0.2",
-    "wt_streaminganalysis_monitor": "= 1.0.2"   
+    "wt_streaminganalysis_monitor": "= 1.0.2",
+    "wt_streamingmanagementservice": "= 1.0.0"
   },
   "json_class": "Chef::Environment",
   "description": "H Pod",
@@ -174,6 +175,14 @@
       "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/41274:id/webtrends-streaming-analysis-monitor-bin.tar.gz",
       "healthcheck_port": 9001,
       "jmx_port": 9998
+    },
+    "wt_streamingmanagementservice": {
+        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42736:id/webtrends-streaming-managementservice-bin.tar.gz",
+        "port": 8081,
+        "healthcheck_port": 9002,
+        "jmx_port": 9997,
+        "camdbname": "CAM",
+        "camdbserver": "hcamdb01.staging.dmz"
     },
     "wt_kafka_topagg": {
       "edge_kafka_sources": [
