@@ -1,3 +1,7 @@
+## 1.0.10
+* ini sourcepath(s) now come from array, node['wt_common']['ifr_locations']
+* ini allowoutofsync is determined by number of items in node['wt_common']['ifr_locations']
+
 ## 1.0.8
 * removed wtliveglue.ini
 * added service stop to uninstall
