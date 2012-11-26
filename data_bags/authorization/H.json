@@ -33,6 +33,10 @@
         "masterdbuser": "ConfigSvc",
         "masterdbpwd": "bijoux"
     },
+    "wt_streamingmanagementservice": {
+        "camdbuser": "wtUI",
+        "camdbpwd": "bijoux"
+    },
     "wt_streamingapi": {
         "usagedbuser": "wtUI",
         "usagedbpwd": "bijoux"
