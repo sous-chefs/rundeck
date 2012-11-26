@@ -34,27 +34,49 @@ default["chef_client"]["cron"] = { "minute" => "0", "hour" => "*/4", "path" => n
 default["chef_client"]["environment"] = nil
 default["chef_client"]["load_gems"] = {}
 
-case platform
+case node['platform_family']
 when "arch"
   default["chef_client"]["init_style"]  = "arch"
   default["chef_client"]["run_path"]    = "/var/run/chef"
   default["chef_client"]["cache_path"]  = "/var/cache/chef"
   default["chef_client"]["backup_path"] = "/var/lib/chef"
-when "debian","ubuntu","redhat","centos","fedora","suse"
+when "debian","rhel","fedora","suse"
   default["chef_client"]["init_style"]  = "init"
   default["chef_client"]["run_path"]    = "/var/run/chef"
   default["chef_client"]["cache_path"]  = "/var/cache/chef"
   default["chef_client"]["backup_path"] = "/var/lib/chef"
-when "openbsd","freebsd","mac_os_x","mac_os_x_server"
+when "openbsd","freebsd"
   default["chef_client"]["init_style"]  = "bsd"
   default["chef_client"]["run_path"]    = "/var/run"
   default["chef_client"]["cache_path"]  = "/var/chef/cache"
   default["chef_client"]["backup_path"] = "/var/chef/backup"
+# don't use bsd paths per COOK-1379
+when "mac_os_x","mac_os_x_server"
+  default["chef_client"]["init_style"]  = "launchd"
+  default["chef_client"]["log_dir"]     = "/Library/Logs/Chef"
+  # Launchd doesn't use pid files
+  default["chef_client"]["run_path"]    = nil
+  default["chef_client"]["cache_path"]  = "/Library/Caches/Chef"
+  default["chef_client"]["backup_path"] = "/Library/Caches/Chef/Backup"
+  # Set to "daemon" if you want chef-client to run
+  # continuously with the -d and -s options, or leave
+  # as "interval" if you want chef-client to be run
+  # periodically by launchd
+  default["chef_client"]["launchd_mode"] = "interval"
 when "openindiana","opensolaris","nexentacore","solaris2"
   default["chef_client"]["init_style"]  = "smf"
   default["chef_client"]["run_path"]    = "/var/run/chef"
   default["chef_client"]["cache_path"]  = "/var/chef/cache"
   default["chef_client"]["backup_path"] = "/var/chef/backup"
+  default["chef_client"]["method_dir"] = "/lib/svc/method"
+  default["chef_client"]["bin_dir"] = "/usr/bin"
+when "smartos"
+  default["chef_client"]["init_style"]  = "smf"
+  default["chef_client"]["run_path"]    = "/var/run/chef"
+  default["chef_client"]["cache_path"]  = "/var/chef/cache"
+  default["chef_client"]["backup_path"] = "/var/chef/backup"
+  default["chef_client"]["method_dir"] = "/opt/local/lib/svc/method"
+  default["chef_client"]["bin_dir"] = "/opt/local/bin"
 when "windows"
   default["chef_client"]["init_style"]  = "winsw"
   default["chef_client"]["conf_dir"]    = "C:/chef"
