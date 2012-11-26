@@ -87,11 +87,10 @@ template "#{install_dir}\\wtlogpreproc.ini" do
 		:logfilebatchsize      => node['wt_logpreproc']['logfilebatchsize'],
 		:debugmsgsbatchcount   => node['wt_logpreproc']['debugmsgsbatchcount'],
 
+		:source_paths                        => node['wt_common']['ifr_locations'],
 		:wtlogpreproc1_label                 => node['wt_logpreproc']['wtlogpreproc1_label'],
 		:wtlogpreproc1_fileextension         => node['wt_logpreproc']['wtlogpreproc1_fileextension'],
 		:wtlogpreproc1_doneextension         => node['wt_logpreproc']['wtlogpreproc1_doneextension'],
-		:wtlogpreproc1_sourcepath            => node['wt_logpreproc']['wtlogpreproc1_sourcepath'],
-		:wtlogpreproc1_sourcepath1           => node['wt_logpreproc']['wtlogpreproc1_sourcepath1'],
 		:wtlogpreproc1_compresslogfile       => node['wt_logpreproc']['wtlogpreproc1_compresslogfile'],
 		:wtlogpreproc1_compresslogfile_level => node['wt_logpreproc']['wtlogpreproc1_compresslogfile_level'],
 		:wtlogpreproc1_deleteoriginallogs    => node['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'],
@@ -106,7 +105,6 @@ template "#{install_dir}\\wtlogpreproc.ini" do
 		:wtda_compressedext                => node['wt_logpreproc']['wtda_compressedext'],
 		:wtda_encryptedext                 => node['wt_logpreproc']['wtda_encryptedext'],
 		:wtda_maxconsecutiveinvalidentries => node['wt_logpreproc']['wtda_maxconsecutiveinvalidentries'],
-		:wtda_allowoutofsync               => node['wt_logpreproc']['wtda_allowoutofsync'],
 
 		:auditlog_limitbysize       => node['wt_logpreproc']['auditlog_limitbysize'],
 		:auditlog_limitbysizemethod => node['wt_logpreproc']['auditlog_limitbysizemethod'],
@@ -115,7 +113,7 @@ template "#{install_dir}\\wtlogpreproc.ini" do
 		:auditlog_filenameprefix    => node['wt_logpreproc']['auditlog_filenameprefix'],
 		:auditlog_filenameext       => node['wt_logpreproc']['auditlog_filenameext'],
 
-		:install_dir => install_dir
+		:install_dir  => install_dir
 	)
 end
 
