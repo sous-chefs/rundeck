@@ -97,9 +97,6 @@ default['wt_logpreproc']['wtda_encryptedext'] = '.log.gpg,.log.asc'
 # Maximum number of invalid records allowed in a logfile
 default['wt_logpreproc']['wtda_maxconsecutiveinvalidentries'] = '100'
 
-# Set to true if there is only one IFR location
-default['wt_logpreproc']['wtda_allowoutofsync'] = 'false'
-
 # maximum number of LPP records with outstanding Geo or DNS lookups
 default['wt_logpreproc']['wtda_maxrecordqueuesize'] = '50000'
 

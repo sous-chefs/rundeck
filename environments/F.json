@@ -10,7 +10,7 @@
         "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.0.9", 
         "wt_data_deleter": "= 1.0.1", 
-        "wt_logpreproc": "= 1.0.9", 
+        "wt_logpreproc": "= 1.0.10", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.10", 
         "wt_platformscheduler": "= 1.0.11", 
@@ -185,6 +185,9 @@
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
+            "ifr_locations": [
+                "\\\\sstore03.staging.dmz\\fstore\\ifr"
+            ], 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
@@ -229,8 +232,7 @@
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/lpp/LPP.zip", 
             "wtda_allowoutofsync": true, 
             "wtlogpreproc1_doneextension": ".log.gz.pp", 
-            "wtlogpreproc1_fileextension": "*.log.gz", 
-            "wtlogpreproc1_sourcepath": "\\\\sstore03.staging.dmz\\fstore\\ifr"
+            "wtlogpreproc1_fileextension": "*.log.gz"
         }, 
         "wt_management_console": {
             "mc_service_url": "https://fmc.staging.dmz"
