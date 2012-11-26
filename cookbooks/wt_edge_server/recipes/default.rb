@@ -167,17 +167,6 @@ else
   processTemplates(install_dir, node, log_dir)
 end
 
-#Create collectd plugin for streamingcollection JMX objects if collectd has been applied.
-if node.attribute?("collectd")
-  template "#{node['collectd']['plugin_conf_dir']}/collectd_edge_server.conf" do
-    source "collectd_edge_server.conf.erb"
-    owner "root"
-    group "root"
-    mode 00644
-    notifies :restart, resources(:service => "collectd")
-  end
-end
-
 #if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page for RCS
 #	nagios_nrpecheck "wt_healthcheck_page" do
