@@ -49,10 +49,6 @@ default['wt_logpreproc']['wtlogpreproc1_fileextension'] = '*.log.gz.rt'
 # File extension for files output by this tool
 default['wt_logpreproc']['wtlogpreproc1_doneextension'] = '.log.gz.rt.pp'
 
-# Source path(s)
-default['wt_logpreproc']['wtlogpreproc1_sourcepath'] = nil
-default['wt_logpreproc']['wtlogpreproc1_sourcepath1'] = nil
-
 # Compress Logs. Compression level (only used if compresslogfile=true) can be from 1-9. See ENG 304856.
 #     1 - Maximum speed, no lazy matches. Default used by most LumberJack 7.1 tools (except LogCat).
 #     4 - Lazy matches
