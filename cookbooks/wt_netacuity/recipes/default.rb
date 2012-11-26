@@ -123,7 +123,11 @@ if node.attribute?('nagios')
   #Create a nagios nrpe check for the netacuity page
 	nagios_nrpecheck 'wt_netacuity_web_ui_check' do
 		command "#{node['nagios']['plugin_dir']}/check_http"
-		parameters '-H localhost -p 5500 -s "Digital Envoy"'
+		if node['wt_netacuity']['version'].to_i >= 500
+      parameters '-H localhost -p 5500 -s "Authorization Required"'
+    else
+      parameters '-H localhost -p 5500 -s "Digital Envoy"'
+    end
 		action :add
 	end
 

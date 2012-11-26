@@ -76,6 +76,7 @@ extensions = [
 	'.eot',
 	'.gif',
 	'.htm',
+	'.html',
 	'.ico',
 	'.jpeg',
 	'.jpg',
