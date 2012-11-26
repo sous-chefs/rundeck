@@ -1,6 +1,26 @@
+####################################################################
+# Graphite options
+####################################################################
 # are we monitoring at all
 monitoring.enabled = <%= node['wt_monitoring']['monitoring_enabled'] %>
 # should we publish to jmx
 monitoring.jmx.enabled = <%= node['wt_monitoring']['jmx_enabled'] %>
 # the prefix to append metrics being sent to graphite
 monitoring.metric.prefix = <%= node['wt_monitoring']['metric_prefix'] %>
+
+
+####################################################################
+# Graphite options
+####################################################################
+# Should we push metrics to graphite
+monitoring.graphite.enabled=<%= node[:wt_edge_server][:graphite_enabled] %>
+# Should we include JVM metrics in Graphite
+monitoring.graphite.vmmetrics=true
+#Should the application name being included in the path within Graphite?
+monitoring.graphite.includeappnameinpath=true
+# What is the host of graphite
+monitoring.graphite.host=<%= node[:wt_monitoring][:graphite_server] %>
+# What port is graphite listening on
+monitoring.graphite.port=<%= node[:wt_monitoring][:graphite_port] %>
+# How often (minutes) should we flush metrics to graphite
+monitoring.graphite.interval=<%= node[:wt_edge_server][:graphite_interval] %>
