@@ -44,8 +44,14 @@ fileextension=<%= @wtlogpreproc1_fileextension %>
 doneextension=<%= @wtlogpreproc1_doneextension %>
 
 # Override source path(s) from database
-sourcepath=<%= @wtlogpreproc1_sourcepath %>
-sourcepath1=<%= @wtlogpreproc1_sourcepath1 %>
+sourcepath=<%= @source_paths[0] %>
+<% @source_paths.each_with_index do |item, i|
+      if i != 0
+%>
+sourcepath<%= i %>=<%= item %>
+<%    end
+   end
+%>
 
 # Compress Logs. Compression level (only used if compresslogfile=true) can be from 1-9. See ENG 304856.
 #     1 - Maximum speed, no lazy matches. Default used by most LumberJack 7.1 tools (except LogCat).
@@ -118,8 +124,12 @@ maxconsecutiveinvalidentries=<%= @wtda_maxconsecutiveinvalidentries %>
 maxrecordqueuesize=50000
 maxoutoforderqueuesize=100
 
-# Set to false when there is no secondary IFR share
-allowoutofsync=<%= @wtda_allowoutofsync %>
+# Set to true when there is only one IFR location
+<% if @source_paths.count == 1 %>
+allowoutofsync=true
+<% else %>
+allowoutofsync=false
+<% end %>
 
 [auditlog]
 auditlimitbysize=<%= @auditlog_limitbysize %>
