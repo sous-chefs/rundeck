@@ -23,7 +23,7 @@ install_url = node['wt_analytics_ui']['download_url']
 user_data = data_bag_item('authorization', node.chef_environment)
 ui_user   = user_data['wt_common']['ui_user']
 ui_pass   = user_data['wt_common']['ui_pass']
-rsa_user = user_data['wt_common']['system_acct']
+rsa_user = user_data['wt_common']['system_user']
 app_pool_name = node['wt_analytics_ui']['app_pool_name']
 googleplay_key = data_bag_item('rsa_keys', 'googleplay')
 
