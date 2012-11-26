@@ -21,3 +21,5 @@ Data Bag Items
 
 Usage
 =====
+
+Apply the wt_devicedataupdater role to the system and run chef-client with deploy_build=true set
