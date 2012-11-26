@@ -177,7 +177,7 @@
       "jmx_port": 9998
     },
     "wt_streamingmanagementservice": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42734:id/webtrends-streaming-managementservice-bin.tar.gz",
+        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42736:id/webtrends-streaming-managementservice-bin.tar.gz",
         "healthcheck_port": 9002,
         "jmx_port": 9997,
         "camdbname": "CAM",
