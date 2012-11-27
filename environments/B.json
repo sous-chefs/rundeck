@@ -1,6 +1,7 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
+	"wt_streamingmanamgementservice": "= 1.0.1",
         "hadoop": "= 1.0.3", 
         "hbase": "= 1.0.3", 
         "hive": "= 1.0.2", 
@@ -210,6 +211,12 @@
         "wt_kafka_mm": {
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38950:id/MirrorMonitor-bin.tar.gz"
         }, 
+	"wt_streamingmanagementservice": {
+        	"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42811:id/webtrends-streaming-management$
+	        "port": 8081,
+        	"healthcheck_port": 9002,
+	        "jmx_port": 9997
+	},
         "wt_kafka_topagg": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41969:id/TopicAggregator-bin.tar.gz", 
             "edge_kafka_sources": [
