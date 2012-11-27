@@ -46,8 +46,8 @@ default['wt_logpreproc']['wtlogpreproc1_label'] = 'defaultlogpreproc'
 # Pick up these file extensions
 default['wt_logpreproc']['wtlogpreproc1_fileextension'] = '*.log.gz.rt'
 
-# File extension for files output by this tool
-default['wt_logpreproc']['wtlogpreproc1_doneextension'] = '.log.gz.rt.pp'
+# File extension to be added to original files after processing, when deleteoriginallogs = false
+default['wt_logpreproc']['wtlogpreproc1_doneextension'] = '.done'
 
 # Compress Logs. Compression level (only used if compresslogfile=true) can be from 1-9. See ENG 304856.
 #     1 - Maximum speed, no lazy matches. Default used by most LumberJack 7.1 tools (except LogCat).
@@ -58,7 +58,7 @@ default['wt_logpreproc']['wtlogpreproc1_doneextension'] = '.log.gz.rt.pp'
 default['wt_logpreproc']['wtlogpreproc1_compresslogfile'] = 'true'
 default['wt_logpreproc']['wtlogpreproc1_compresslogfile_level'] = '1'
 
-# Delete the orignal lfr logs when finished
+# Delete the original lfr logs when finished
 default['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'] = 'false'
 
 # List of DNS server IP addresses (semi-colon delimited) 
