@@ -180,9 +180,7 @@
         "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42736:id/webtrends-streaming-managementservice-bin.tar.gz",
         "port": 8081,
         "healthcheck_port": 9002,
-        "jmx_port": 9997,
-        "camdbname": "CAM",
-        "camdbserver": "hcamdb01.staging.dmz"
+        "jmx_port": 9997
     },
     "wt_kafka_topagg": {
       "edge_kafka_sources": [
