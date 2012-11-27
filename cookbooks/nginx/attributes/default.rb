@@ -41,6 +41,8 @@ else
   default['nginx']['init_style'] = "init"
 end
 
+default['nginx']['group'] = node['nginx']['user']
+
 default['nginx']['pid'] = "/var/run/nginx.pid"
 
 default['nginx']['gzip']              = "on"
@@ -61,10 +63,15 @@ default['nginx']['gzip_types']        = [
 
 default['nginx']['keepalive']          = "on"
 default['nginx']['keepalive_timeout']  = 65
-default['nginx']['worker_processes']   = cpu['total']
+default['nginx']['worker_processes']   = node['cpu'] && node['cpu']['total'] ? node['cpu']['total'] : 1
 default['nginx']['worker_connections'] = 1024
+default['nginx']['worker_rlimit_nofile'] = nil
+default['nginx']['multi_accept']       = false
+default['nginx']['event']              = nil
 default['nginx']['server_names_hash_bucket_size'] = 64
 
 default['nginx']['disable_access_log'] = false
 default['nginx']['install_method'] = 'package'
 default['nginx']['default_site_enabled'] = true
+default['nginx']['types_hash_max_size'] = 2048
+default['nginx']['types_hash_bucket_size'] = 64
