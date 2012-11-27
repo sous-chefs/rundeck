@@ -212,7 +212,7 @@
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38950:id/MirrorMonitor-bin.tar.gz"
         }, 
 	"wt_streamingmanagementservice": {
-        	"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42811:id/webtrends-streaming-management-bin.tar.gz",
+        	"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42811:id/webtrends-streaming-managementservice-bin.tar.gz",
 	        "port": 8081,
         	"healthcheck_port": 9002,
 	        "jmx_port": 9997
