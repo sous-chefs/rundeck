@@ -6,7 +6,7 @@
         "hive": "= 1.0.2", 
         "java": "= 1.6.0", 
         "kafka": "= 1.0.17", 
-        "nagios": "= 1.6.2",  
+        "nagios": "= 1.6.3",  
         "storm": "= 1.0.28", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
