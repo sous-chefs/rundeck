@@ -48,7 +48,7 @@
     "wt_streaminglogreplayer": "= 1.1.2",
     "wt_streamingconfigservice": "= 1.0.2",
     "wt_streaminganalysis_monitor": "= 1.0.2",
-    "wt_streamingmanagementservice": "= 1.0.0"
+    "wt_streamingmanagementservice": "= 1.0.1"
   },
   "json_class": "Chef::Environment",
   "description": "H Pod",
