@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_collection_services
+# Cookbook Name:: wt_edge_server
 # Recipe:: undeploy
 #
 # Copyright 2012, Webtrends
