@@ -45,6 +45,24 @@ when 'ubuntu','debian'
     action :upgrade
   end
 
+when 'redhat','centos','fedora','scientific'
+
+  if (platform?("redhat") || platform?("centos") || platform?("scientific"))
+    if node.platform_version.to_f < 6.0
+      raise "This recipe does not yet support installing Gecode 3.5.0+ from packages on your platform"
+    else
+      include_recipe 'yum::epel'
+    end
+  end
+
+  if (platform?("fedora") && (node.platform_version.to_f < 16.0))
+      raise "This recipe does not yet support installing Gecode 3.5.0+ from packages on your platform"
+  end
+
+  package 'gecode-devel' do
+    action :install
+  end
+
 else
   raise "This recipe does not yet support installing Gecode 3.5.0+ from packages on your platform"
 end

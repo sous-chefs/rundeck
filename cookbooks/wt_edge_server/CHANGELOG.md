@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of wt_edge_server.
 
+## 0.1.1:
+
+* Update monitoring template to include Graphite options and remove collectd plugin file creation
+
 ## 0.1.0:
 
 * Initial release of wt_edge_server

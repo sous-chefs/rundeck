@@ -1,27 +1,13 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "hadoop": "= 1.0.3", 
-        "hbase": "= 1.0.3", 
-        "hive": "= 1.0.2", 
-        "kafka": "= 1.0.10",
-        "nagios": "= 1.6.2", 
-        "storm": "= 1.0.19", 
+        "kafka": "= 1.0.20",
+        "nagios": "= 1.6.3", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
-        "windows": "= 1.3.6", 
         "wt_base": "= 1.0.2", 
-        "wt_cam": "= 1.0.4", 
-        "wt_edge_server": "0.1.0", 
-        "wt_heatmaps": "= 0.10.42", 
-        "wt_realtime_hadoop": "= 1.0.2", 
-        "wt_realtimeapi": "= 0.0.20", 
-        "wt_storm": "= 1.0.38", 
-        "wt_streamingapi": "= 0.0.21", 
-        "wt_streamingauditor": "= 0.0.10", 
-        "wt_streamingcollection": "= 0.0.26", 
-        "wt_streaminglogreplayer": "= 0.0.23", 
-        "zookeeper": "= 1.0.6"
+        "wt_edge_server": "= 0.1.1",
+        "wt_streamingcollection": "= 1.1.0"
     }, 
     "default_attributes": {
         "authorization": {
@@ -140,13 +126,6 @@
                 }
             ]
         }, 
-        "wt_analytics_ui": {}, 
-        "wt_cam": {
-            "auth_service_url": "http://hcam01.staging.dmz:8081", 
-            "cam_server_url": "http://hcam01.staging.dmz/camservice", 
-            "db_name": "cam", 
-            "db_server": "hcamdb01.staging.dmz"
-        }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
@@ -164,15 +143,14 @@
             "wrsmodify_group": "STAGINGDMZ\\G.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\G.WRS.Read"
         }, 
-        "wt_configdistrib": {
-            "dcsid_url": "http://jcd01.englab.webtrends.corp:8097/config/dcsid2account"
-        }, 
-        "wt_edge_server": {
-            "active_configs_endpoint": "/rcs/v1/activeRules/", 
-            "config_service_rule_endpoint": "/rcs/v1/rule/{configid}", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt299/.lastSuccessful/Edge-Server-Distribution-wModules-all.tar.gz", 
-            "port": 8081
-        }, 
+	"wt_edge_server": {
+            "active_configs_endpoint": "/rcs/v1/activeRules/",
+            "config_service_rule_endpoint": "/rcs/v1/rule/{configid}",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt320/.lastSuccessful/Edge-Server-Distribution-wModules-all.tar.gz",
+            "port": 8081,
+	    "graphite_enabled":"true",
+	    "graphite_interval":"5"
+        },
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 
@@ -189,31 +167,13 @@
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
-            "pod": "G"
+            "pod": "H"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt188/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz", 
-            "port": 8080
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41502:id/webtrends-streamingcollection-bin.tar.gz"
         }, 
         "wt_streamingconfigservice": {
-            "camdbname": "CAM", 
-            "camdbserver": "hcamdb01.staging.dmz", 
-            "config_service_url": "http://hutil01.staging.dmz:8080", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/webtrends-streaming-configservice-bin.tar.gz", 
-            "includeUnmappedAnalyticsIds": "true", 
-            "masterdbname": "wtmaster", 
-            "masterdbserver": "jmasterdb01.englab.webtrends.corp", 
-            "port": "8080"
-        }, 
-        "zookeeper": {
-            "client_port": 2181, 
-            "init_limit": 10, 
-            "quorum": [
-                "gzoo01.staging.dmz"
-            ], 
-            "snapshot_num": 3, 
-            "sync_limit": 5, 
-            "tick_time": 2000
+            "config_service_url": "http://hutil01.staging.dmz:8080"
         }
     }, 
     "description": "G Pod", 
