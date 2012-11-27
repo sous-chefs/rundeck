@@ -59,7 +59,7 @@ default['wt_logpreproc']['wtlogpreproc1_compresslogfile'] = 'true'
 default['wt_logpreproc']['wtlogpreproc1_compresslogfile_level'] = '1'
 
 # Delete the original lfr logs when finished
-default['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'] = 'false'
+default['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'] = 'true'
 
 # List of DNS server IP addresses (semi-colon delimited) 
 # Use if you need to override the system default DNS server.
