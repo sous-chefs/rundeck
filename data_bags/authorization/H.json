@@ -34,8 +34,8 @@
         "masterdbpwd": "bijoux"
     },
     "wt_streamingmanagementservice": {
-        "camdbuser": "wtUI",
-        "camdbpwd": "bijoux"
+        "db_user": "wtUI",
+        "db_pwd": "bijoux"
     },
     "wt_streamingapi": {
         "usagedbuser": "wtUI",
