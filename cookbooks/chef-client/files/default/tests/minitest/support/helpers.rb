@@ -1,8 +1,5 @@
 #
-# Author:: Kendrick Martin <kendrick.martin@webtrends.com>
-# Cookbook Name:: chef-server
-# Recipe:: config-solr
-#
+# Copyright 2012, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,17 +12,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-
-template node['chef_server']['solr']['config_path'] do
-  owner "chef"
-  group "chef"
-  variables(
-    :maxFieldLength => node['chef_server']['solr']['max_field_size']
-  )
-  notifies :restart, "service[chef-solr]"
-end
-
-service "chef-solr" do
-  action :nothing
+module Helpers
+  module ChefClient
+    include MiniTest::Chef::Assertions
+    include MiniTest::Chef::Context
+    include MiniTest::Chef::Resources
+  end
 end

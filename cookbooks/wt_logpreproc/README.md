@@ -24,7 +24,7 @@ Attributes
 * node['wt_logpreproc']['debugmsgsbatchcount'] - At debug level 4 or higher, log stats every time we finish this number of batches
 * node['wt_logpreproc']['wtlogpreproc1_label'] - Reference label for the logpreproc section
 * node['wt_logpreproc']['wtlogpreproc1_fileextension'] = "*.log.gz.rt" - Pick up these file extensions
-* node['wt_logpreproc']['wtlogpreproc1_doneextension'] = "*.log.gz.rt.pp" - File extension for files output by wt_logpreproc
+* node['wt_logpreproc']['wtlogpreproc1_doneextension'] = ".done" - File extension to be added to original files after processing, when deleteoriginallogs = false
 * node['wt_logpreproc']['wtlogpreproc1_compresslogfile'] - Compress logs (true/false)
 * node['wt_logpreproc']['wtlogpreproc1_compresslogfile_level'] - Compression level (only used if compresslogfile=true) can be from 1-9. See ENG 304856.
 * node['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'] - Delete the orignal lfr logs when finished (true/false)
@@ -46,7 +46,6 @@ Attributes
 * node['wt_logpreproc']['auditlog_trimsize'] - Audit log trim size
 * node['wt_logpreproc']['auditlog_filenameprefix'] - Audit log filename prefix
 * node['wt_logpreproc']['auditlog_filenameext'] - Audit log filename etension
-* node['wt_logpreproc']['hostedmodel'] - Hosted mode (true/false)
 
 Data Bag Items
 ===============

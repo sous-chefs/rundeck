@@ -2,7 +2,7 @@
 # Cookbook Name:: wt_edge_server
 # Recipe:: default
 #
-# Copyright 2012, YOUR_COMPANY_NAME
+# Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
 #
@@ -165,17 +165,6 @@ if ENV["deploy_build"] == "true" then
 
 else
   processTemplates(install_dir, node, log_dir)
-end
-
-#Create collectd plugin for streamingcollection JMX objects if collectd has been applied.
-if node.attribute?("collectd")
-  template "#{node['collectd']['plugin_conf_dir']}/collectd_edge_server.conf" do
-    source "collectd_edge_server.conf.erb"
-    owner "root"
-    group "root"
-    mode 00644
-    notifies :restart, resources(:service => "collectd")
-  end
 end
 
 #if node.attribute?("nagios")

@@ -11,7 +11,7 @@
 #
 
 if ENV["deploy_build"] == "true" then
-	log "The deploy_build value is true so un-deploy first"
+	log "The deploy_build value is true so un-deploying first"
 	include_recipe "wt_logpreproc::uninstall"
 else
 	log "The deploy_build value is not set or is false so we will only update the configuration"
@@ -43,9 +43,9 @@ end
 
 # grant service account access
 wt_base_icacls node['wt_common']['install_dir_windows'] do
-	action :grant
 	user svcuser
 	perm :modify
+	action :grant
 end
 
 if ENV["deploy_build"] == "true" then
@@ -61,6 +61,7 @@ if ENV["deploy_build"] == "true" then
 	svcbin =  File.join(install_dir, node['wt_logpreproc']['service_binary']).gsub(/[\\\/]+/,"\\")
 	execute node['wt_logpreproc']['service_binary'] do
 		command "#{svcbin} --install startup=auto username=#{svcuser} password=\"#{svcpass}\""
+		notifies :start, "service[#{node['wt_logpreproc']['service_name']}]"
 	end
 
 	share_wrs
@@ -70,24 +71,6 @@ template "#{install_dir}\\geoclient.ini" do
 	source "geoclient.ini.erb"
 	variables(
 		:netacuity_host => node['wt_netacuity']['geo_url']
-	)
-end
-
-template "#{install_dir}\\wtliveglue.ini" do
-	source "wtliveglue.ini.erb"
-#	variables(
-#		:masterdb_host => node['wt_masterdb']['host'],
-#		:masterdb_name => node['wt_masterdb']['dbname'],
-#		:scheddb_host  => node['wt_scheddb']['host'],
-#		:scheddb_name  => node['wt_scheddb']['dbname'],
-#		:log_dir       => log_dir
-#	)
-	variables(
-		:masterdb_host => node['wt_masterdb']['master_host'],
-		:masterdb_name => node['wt_masterdb']['master_db'],
-		:scheddb_host  => node['wt_masterdb']['sched_host'],
-		:scheddb_name  => node['wt_masterdb']['sched_db'],
-		:log_dir       => log_dir
 	)
 end
 
@@ -104,11 +87,10 @@ template "#{install_dir}\\wtlogpreproc.ini" do
 		:logfilebatchsize      => node['wt_logpreproc']['logfilebatchsize'],
 		:debugmsgsbatchcount   => node['wt_logpreproc']['debugmsgsbatchcount'],
 
+		:source_paths                        => node['wt_common']['ifr_locations'],
 		:wtlogpreproc1_label                 => node['wt_logpreproc']['wtlogpreproc1_label'],
 		:wtlogpreproc1_fileextension         => node['wt_logpreproc']['wtlogpreproc1_fileextension'],
 		:wtlogpreproc1_doneextension         => node['wt_logpreproc']['wtlogpreproc1_doneextension'],
-		:wtlogpreproc1_sourcepath            => node['wt_logpreproc']['wtlogpreproc1_sourcepath'],
-		:wtlogpreproc1_sourcepath1           => node['wt_logpreproc']['wtlogpreproc1_sourcepath1'],
 		:wtlogpreproc1_compresslogfile       => node['wt_logpreproc']['wtlogpreproc1_compresslogfile'],
 		:wtlogpreproc1_compresslogfile_level => node['wt_logpreproc']['wtlogpreproc1_compresslogfile_level'],
 		:wtlogpreproc1_deleteoriginallogs    => node['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'],
@@ -123,7 +105,6 @@ template "#{install_dir}\\wtlogpreproc.ini" do
 		:wtda_compressedext                => node['wt_logpreproc']['wtda_compressedext'],
 		:wtda_encryptedext                 => node['wt_logpreproc']['wtda_encryptedext'],
 		:wtda_maxconsecutiveinvalidentries => node['wt_logpreproc']['wtda_maxconsecutiveinvalidentries'],
-		:wtda_allowoutofsync               => node['wt_logpreproc']['wtda_allowoutofsync'],
 
 		:auditlog_limitbysize       => node['wt_logpreproc']['auditlog_limitbysize'],
 		:auditlog_limitbysizemethod => node['wt_logpreproc']['auditlog_limitbysizemethod'],
@@ -132,14 +113,15 @@ template "#{install_dir}\\wtlogpreproc.ini" do
 		:auditlog_filenameprefix    => node['wt_logpreproc']['auditlog_filenameprefix'],
 		:auditlog_filenameext       => node['wt_logpreproc']['auditlog_filenameext'],
 
-		:hostedmodel => node['wt_logpreproc']['hostedmodel'],
-		:install_dir => install_dir
+		:install_dir  => install_dir
 	)
 end
 
-service 'wtlogpreproc' do
+service node['wt_logpreproc']['service_name'] do
+	supports :start => true, :restart => true
 	subscribes :restart, resources(
 		:template => "#{install_dir}\\geoclient.ini",
 		:template => "#{install_dir}\\wtlogpreproc.ini"
 	)
+	action :nothing
 end

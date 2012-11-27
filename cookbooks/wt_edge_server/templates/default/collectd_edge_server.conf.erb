@@ -117,13 +117,13 @@ LoadPlugin java
 				Attribute "Uptime"
 			</Value>
 		</MBean>
-       
+
         #####################
         # Connection blocks #
         #####################
         #Connection Block
         <Connection>
-			Host "<%= @node[:hostname] %>"
+			Host "<%= @node['hostname'] %>"
 			ServiceURL "service:jmx:rmi:///jndi/rmi://localhost:<%= @node['wt_edge_server']['jmx_port'] %>/jmxrmi"
 			Collect "classes"
 			Collect "garbage_collector"
