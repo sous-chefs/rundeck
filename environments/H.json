@@ -26,7 +26,7 @@
     "storm": "= 1.0.28",
     "kafka": "= 1.0.20",
     "hbase": "= 1.0.3",
-    "nagios": "= 1.6.2",
+    "nagios": "= 1.6.3",
     "hadoop": "= 1.0.3",
     "windows": "= 1.3.6",
     "zookeeper": "= 1.1.6",
@@ -46,8 +46,9 @@
     "wt_streamingauditor": "= 1.0.10",
     "wt_streamingcollection": "= 1.0.3",
     "wt_streaminglogreplayer": "= 1.1.2",
-    "wt_streamingconfigservice": "= 1.0.2",
-    "wt_streaminganalysis_monitor": "= 1.0.2"   
+    "wt_streamingconfigservice": "= 1.0.5",
+    "wt_streaminganalysis_monitor": "= 1.0.2",
+    "wt_streamingmanagementservice": "= 1.0.1"
   },
   "json_class": "Chef::Environment",
   "description": "H Pod",
@@ -175,6 +176,12 @@
       "healthcheck_port": 9001,
       "jmx_port": 9998
     },
+    "wt_streamingmanagementservice": {
+        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42811:id/webtrends-streaming-managementservice-bin.tar.gz",
+        "port": 8081,
+        "healthcheck_port": 9002,
+        "jmx_port": 9997
+    },
     "wt_kafka_topagg": {
       "edge_kafka_sources": [
         {
@@ -201,15 +208,19 @@
       "pod": "H"
     },
     "wt_storm_streaming": {
-      "streaming_topology_field_grouping_local": "false",
       "streaming_topology_validation_bolt_count": 10,
       "streaming_topology_augmentation_bolt_count": 10,
       "streaming_topology_in_session_bolt_count": 10,
       "streaming_topology_zmq_emitter_bolt_count": 1,
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/42315:id/streaming-analysis-bin.tar.gz",
+      "streaming_topology_field_grouping_local": "false",
+      "streaming_topology_validation_bolt_tasks": 10,
+      "streaming_topology_augmentation_bolt_tasks": 10,
+      "streaming_topology_in_session_bolt_tasks": 10,
+      "streaming_topology_zmq_emitter_bolt_tasks": 1,
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/42457:id/streaming-analysis-bin.tar.gz",
       "topic_list": [
-        "Lab_H_lrRawHits:12",
-        "Lab_H_scsRawHits:12"
+        "Lab_H_lrRawHits:1",
+        "Lab_H_scsRawHits:1"
       ],
       "worker": {
         "childopts": "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
@@ -262,7 +273,7 @@
     },
     "wt_streamingconfigservice": {
       "config_service_url": "http://hconfigsvc.staging.dmz",
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/39601:id/webtrends-streaming-configservice-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42693:id/webtrends-streaming-configservice-bin.tar.gz",
       "camdbname": "CAM",
       "camdbserver": "hcamdb01.staging.dmz"
     },

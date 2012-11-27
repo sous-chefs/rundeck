@@ -40,12 +40,18 @@ label=<%= @wtlogpreproc1_label %>
 # Pick up these file extensions
 fileextension=<%= @wtlogpreproc1_fileextension %>
 
-# File extension for files output by this tool
+# File extension to be added to original files after processing, when deleteoriginallogs = false
 doneextension=<%= @wtlogpreproc1_doneextension %>
 
 # Override source path(s) from database
-sourcepath=<%= @wtlogpreproc1_sourcepath %>
-sourcepath1=<%= @wtlogpreproc1_sourcepath1 %>
+sourcepath=<%= @source_paths[0] %>
+<% @source_paths.each_with_index do |item, i|
+      if i != 0
+%>
+sourcepath<%= i %>=<%= item %>
+<%    end
+   end
+%>
 
 # Compress Logs. Compression level (only used if compresslogfile=true) can be from 1-9. See ENG 304856.
 #     1 - Maximum speed, no lazy matches. Default used by most LumberJack 7.1 tools (except LogCat).
@@ -69,7 +75,7 @@ ensurefield1=dcs-geo
 ensurefield2=origin-id
 
 [dns]
-# List of DNS server IP addresses (semi-colon delimited) 
+# List of DNS server IP addresses (semi-colon delimited)
 # Use if you need to override the system default DNS server.
 serverlist=<%= @dns_serverlist %>
 
@@ -80,7 +86,7 @@ retrycount=<%= @dns_retrycount %>
 retrytimeout=<%= @dns_retrytimeout %>
 
 # Server selection method (round robin=1, load balanced=2, ip affinity=3)
-# ip affinity is recommended for best performance. 
+# ip affinity is recommended for best performance.
 # If you configure multiple instances of LPP, ip affinity performance needs the DNS server list in the same order for all instances.
 servermethod=<%= @dns_servermethod %>
 
@@ -96,7 +102,7 @@ maxreq=4096
 maxrep=4096
 
 [wtda]
-# Numthreads should be 1 for LPP 
+# Numthreads should be 1 for LPP
 numthreads=<%= @wtda_numthreads %>
 
 # compressed filename extensions (comma separated list)
@@ -118,8 +124,12 @@ maxconsecutiveinvalidentries=<%= @wtda_maxconsecutiveinvalidentries %>
 maxrecordqueuesize=50000
 maxoutoforderqueuesize=100
 
-# Set to false when there is no secondary IFR share
-allowoutofsync=<%= @wtda_allowoutofsync %>
+# Set to true when there is only one IFR location
+<% if @source_paths.count == 1 %>
+allowoutofsync=true
+<% else %>
+allowoutofsync=false
+<% end %>
 
 [auditlog]
 auditlimitbysize=<%= @auditlog_limitbysize %>
@@ -128,12 +138,3 @@ auditmaxsize=<%= @auditlog_maxsize %>
 audittrimsize=<%= @auditlog_trimsize %>
 auditfilenameprefix=<%= @auditlog_filenameprefix %>
 auditfilenameext=<%= @auditlog_filenameext %>
-
-[hostedmodel]
-# Connect to the database for status and sourcepath(s) when hostedmodel=true
-hostedmodel=<%= @hostedmodel %>
-
-[wtliveglue]
-GlueDll=<%= @install_dir %>\wtliveglue2.dll
-GlueIni=<%= @install_dir %>\wtliveglue.ini
-glue.properties=<%= @install_dir %>\glue_sql.properties

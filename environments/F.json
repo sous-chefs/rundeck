@@ -2,7 +2,7 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "java": "= 1.6.0", 
-        "nagios": "= 1.6.2", 
+        "nagios": "= 1.6.3", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
@@ -10,7 +10,7 @@
         "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.0.9", 
         "wt_data_deleter": "= 1.0.1", 
-        "wt_logpreproc": "= 1.0.7", 
+        "wt_logpreproc": "= 1.0.12", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.10", 
         "wt_platformscheduler": "= 1.0.11", 
@@ -158,7 +158,7 @@
             "bba_domain": "fbba.webtrends.com", 
             "cache_region": "F_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/40526:id/AnalyticsUI.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/41398:id/AnalyticsUI.zip", 
             "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
@@ -185,6 +185,9 @@
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
+            "ifr_locations": [
+                "\\\\sstore03.staging.dmz\\fstore\\ifr-10.6"
+            ], 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
@@ -226,9 +229,7 @@
             "website_port": "80"
         }, 
         "wt_logpreproc": {
-            "download_url": "http://pdxchartrandj06/logpreproc.zip", 
-            "wtda_allowoutofsync": true, 
-            "wtlogpreproc1_doneextension": "*.log.gz.pp", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/lpp/LPP.zip", 
             "wtlogpreproc1_fileextension": "*.log.gz"
         }, 
         "wt_management_console": {
