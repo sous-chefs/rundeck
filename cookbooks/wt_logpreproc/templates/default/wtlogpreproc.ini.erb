@@ -75,7 +75,7 @@ ensurefield1=dcs-geo
 ensurefield2=origin-id
 
 [dns]
-# List of DNS server IP addresses (semi-colon delimited) 
+# List of DNS server IP addresses (semi-colon delimited)
 # Use if you need to override the system default DNS server.
 serverlist=<%= @dns_serverlist %>
 
@@ -86,7 +86,7 @@ retrycount=<%= @dns_retrycount %>
 retrytimeout=<%= @dns_retrytimeout %>
 
 # Server selection method (round robin=1, load balanced=2, ip affinity=3)
-# ip affinity is recommended for best performance. 
+# ip affinity is recommended for best performance.
 # If you configure multiple instances of LPP, ip affinity performance needs the DNS server list in the same order for all instances.
 servermethod=<%= @dns_servermethod %>
 
@@ -102,7 +102,7 @@ maxreq=4096
 maxrep=4096
 
 [wtda]
-# Numthreads should be 1 for LPP 
+# Numthreads should be 1 for LPP
 numthreads=<%= @wtda_numthreads %>
 
 # compressed filename extensions (comma separated list)
@@ -138,4 +138,3 @@ auditmaxsize=<%= @auditlog_maxsize %>
 audittrimsize=<%= @auditlog_trimsize %>
 auditfilenameprefix=<%= @auditlog_filenameprefix %>
 auditfilenameext=<%= @auditlog_filenameext %>
-
