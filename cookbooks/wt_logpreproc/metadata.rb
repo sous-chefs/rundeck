@@ -1,3 +1,4 @@
+name             "wt_logpreproc"
 maintainer       "Webtrends"
 maintainer_email "Jeremy.Chartrand@WebTrends.com"
 license          "All rights reserved"
