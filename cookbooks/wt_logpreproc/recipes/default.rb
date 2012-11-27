@@ -22,7 +22,6 @@ download_url   = node['wt_logpreproc']['download_url']
 
 # destinations
 install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_logpreproc']['install_dir']).gsub(/[\\\/]+/,"\\")
-log_dir     = File.join(node['wt_common']['install_dir_windows'], node['wt_logpreproc']['log_dir']).gsub(/[\\\/]+/,"\\")
 
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
@@ -31,12 +30,6 @@ svcpass = auth_data['wt_common']['system_pass']
 
 # create the install directory
 directory install_dir do
-	recursive true
-	action :create
-end
-
-# create log directory
-directory log_dir do
 	recursive true
 	action :create
 end
