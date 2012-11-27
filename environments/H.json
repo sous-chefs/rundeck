@@ -177,7 +177,7 @@
       "jmx_port": 9998
     },
     "wt_streamingmanagementservice": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42748:id/webtrends-streaming-managementservice-bin.tar.gz",
+        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42811:id/webtrends-streaming-managementservice-bin.tar.gz",
         "port": 8081,
         "healthcheck_port": 9002,
         "jmx_port": 9997
@@ -273,7 +273,7 @@
     },
     "wt_streamingconfigservice": {
       "config_service_url": "http://hconfigsvc.staging.dmz",
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/39601:id/webtrends-streaming-configservice-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42687:id/webtrends-streaming-configservice-bin.tar.gz",
       "camdbname": "CAM",
       "camdbserver": "hcamdb01.staging.dmz"
     },
