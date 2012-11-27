@@ -17,6 +17,8 @@ Platform
 * Windows 7
 * Windows Server 2008 (R1, R2)
 
+The `windows_task` LWRP requires Windows Server 2008 due to its API usage.
+
 Cookbooks
 ---------
 
@@ -278,7 +280,17 @@ Creates and modifies Windows registry keys.
 
 - key_name: name attribute. The registry key to create/modify.
 - values: hash of the values to set under the registry key. The individual hash items will become respective 'Value name' => 'Value data' items in the registry key.
-- type: Type of key to create, currently only used for :binary to create `REG_BINARY` registry keys. Must be a symbol. See __Roadmap__ for future plans.
+- type: Type of key to create, defaults to REG_SZ. Must be a symbol, see the overview below for valid values.
+
+### Registry key types
+
+- :binary: REG_BINARY
+- :string: REG_SZ
+- :multi_string: REG_MULTI_SZ
+- :expand_string: REG_EXPAND_SZ
+- :dword: REG_DWORD
+- :dword_big_endian: REG_DWORD_BIG_ENDIAN
+- :qword: REG_QWORD
 
 ### Examples
 
@@ -298,6 +310,12 @@ Creates and modifies Windows registry keys.
       #Key is the name of the value that you want to delete the value is always empty
       values 'ValueToDelete' => ''
       action :remove
+    end
+
+    # Add a REG_MULTI_SZ value to the registry
+    windows_registry 'HKCU\Software\Test' do
+      values 'MultiString' => ['line 1', 'line 2', 'line 3']
+      type :multi_string
     end
 
 ### Library Methods
@@ -330,6 +348,46 @@ windows\_path
       action :remove
     end
 
+windows\_task
+-------------
+
+Creates, deletes or runs a Windows scheduled task. Requires Windows
+Server 2008 due to API usage.
+
+### Actions
+
+- :create: creates a task
+- :delete: deletes a task
+- :run: runs a task
+
+### Attribute Parameters
+
+- name: name attribute, The task name.
+- command: The command the task will run.
+- cwd: The directory the task will be run from.
+- user: The user to run the task as. (requires password)
+- password: The user's password. (requires user)
+- run_level: Run with limited or highest privileges.
+- frequency: Frequency with which to run the task. (hourly, daily, ect.)
+- frequency_modifier: Multiple for frequency. (15 minutes, 2 days)
+
+### Examples
+
+    # Run Chef every 15 minutes
+    windows_task "Chef client" do
+      user "Administrator"
+      password "$ecR3t"
+      cwd "C:\chef\bin"
+      command "chef-client -L C:\tmp\"
+      run_level :highest
+      frequency :minute
+      frequency_modifier 15
+    end
+
+    # Delete a taks named "old task"
+    windows_task "old task" do
+      action :delete
+    end
 
 windows\_zipfile
 ----------------
