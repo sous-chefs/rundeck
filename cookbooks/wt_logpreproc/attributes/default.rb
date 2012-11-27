@@ -9,7 +9,6 @@
 default['wt_logpreproc']['service_binary'] = 'wtlogpreproc.exe'
 default['wt_logpreproc']['service_name'] = 'wtlogpreproc'
 default['wt_logpreproc']['install_dir'] = 'modules\\logpreproc'
-default['wt_logpreproc']['log_dir'] = 'logs'
 default['wt_logpreproc']['download_url'] = ''
 default['wt_logpreproc']['netacuity_host'] = 'localhost'
 

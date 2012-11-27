@@ -12,7 +12,6 @@
 
 # destinations
 install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_logpreproc']['install_dir']).gsub(/[\\\/]+/,"\\")
-log_dir     = File.join(node['wt_common']['install_dir_windows'], node['wt_logpreproc']['log_dir']).gsub(/[\\\/]+/,"\\")
 
 # full path to service binary
 svcbin = File.join(install_dir, node['wt_logpreproc']['service_binary']).gsub(/[\\\/]+/,"\\")
@@ -41,8 +40,3 @@ directory install_dir do
 	action :delete
 end
 
-# delete log folder
-directory log_dir do
-	recursive true
-	action :delete
-end
