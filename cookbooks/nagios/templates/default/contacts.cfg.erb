@@ -27,15 +27,16 @@ define contactgroup {
 }
 
 <% @admins.each do |a| -%>
+
 define contact {
   use          default-contact
   contact_name <%= a['id'] %>
   <%= "email  #{a['nagios']['email']}" unless a['nagios'].nil? || a['nagios']['email'].nil? %>
 }
-
 <% end -%>
 
 <% @contacts.each do |c| -%>
+
 define contact {
   contact_name  <%= c['id'] %>
   use <% if c['contact_template'].nil? -%>default-service<% else -%><%= c['contact_template'] %> <% end -%>
@@ -43,3 +44,4 @@ define contact {
   <%= "email  #{c['email']}" unless c['email'].nil? -%>
   <%= "pager  #{c['pager']}" unless c['pager'].nil? -%>
 }
+<% end -%>

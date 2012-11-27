@@ -7,7 +7,7 @@
 
 <property>
   <name>mapred.queue.default.acl-submit-job</name>
-  <value>hadoop</value>
+  <value><%= node.hadoop_attrib(:mapred_queue, :acl_submit_job) %></value>
   <description> Comma separated list of user and group names that are allowed
     to submit jobs to the 'default' queue. The user list and the group list
     are separated by a blank. For e.g. user1,user2 group1,group2.
@@ -26,7 +26,7 @@
 
 <property>
   <name>mapred.queue.default.acl-administer-jobs</name>
-  <value>Dr.Who</value>
+  <value><%= node.hadoop_attrib(:mapred_queue, :acl_administer_jobs) %></value>
   <description> Comma separated list of user and group names that are allowed
     to view job details, kill jobs or modify job's priority for all the jobs
     in the 'default' queue. The user list and the group list

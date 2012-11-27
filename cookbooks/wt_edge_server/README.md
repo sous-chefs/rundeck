@@ -11,11 +11,13 @@ Attributes
 Environment attributes:
 
 "wt_edge_server": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/<branchid>/.lastSuccessful/<filename>-bin.tar.gz", 
+            "active_configs_endpoint": "/rcs/v1/activeRules/",
+            "config_service_rule_endpoint": "/rcs/v1/rule/{configid}",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt299/.lastSuccessful/Edge-Server-Distribution-wModules-all.tar.gz",
             "port": 8081,
-	    "config_service_rule_url_template":"https://rcs.configServer.host/rcs/v1/rule/{configid}",
-	    "active_configs_url_template":"https://rcs.configServer.host/rcs/v1/activeRules/"
-        },  
+	    "graphite_enabled":"true",
+	    "graphite_interval":"5"
+        },
 
 Cookbook attributes:
 
