@@ -219,7 +219,7 @@
       "streaming_topology_in_session_bolt_tasks": 12,
       "streaming_topology_filter_bolt_tasks": 12, 
       "streaming_topology_zmq_emitter_bolt_tasks": 1,
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43044:id/streaming-analysis-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43048:id/streaming-analysis-bin.tar.gz",
       "topic_list": [
         "Lab_H_lrRawHits:1",
         "Lab_H_scsRawHits:1"
