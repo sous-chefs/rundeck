@@ -20,3 +20,5 @@ default['wt_streaming_viz']['auth_service_url_base'] = "/token"
 default['wt_streaming_viz']['auth_service_version'] = "v1"
 default['wt_streaming_viz']['cam_service_url_base'] = ""
 default['wt_streaming_viz']['streams_ui_url'] = ""
+default['wt_streaming_viz']['sms_url'] = ""
+
