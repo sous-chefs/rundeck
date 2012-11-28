@@ -1,3 +1,6 @@
+## 1.1.11
+* added the sms_url attribute to the appSettings.config template
+
 ## 1.1.10
 * Remove unnecessary "pod" attribute
 
