@@ -1,5 +1,5 @@
 {
-  "name": "wt_streaming_collection_server",
+  "name": "wt_edge_server",
   "default_attributes": {
   },
   "override_attributes": {
@@ -13,9 +13,9 @@
   },
   "run_list": [
     "recipe[java]",
-    "recipe[kafka]",
-    "recipe[wt_streamingcollection]"
+    "recipe[wt_edge_server]"
   ],
-  "description": "Webtrends Streaming Collection Server",
+  "description": "Webtrends Edge Server Harness",
   "chef_type": "role"  
 }
+
