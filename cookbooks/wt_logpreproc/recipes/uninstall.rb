@@ -14,10 +14,10 @@
 install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_logpreproc']['install_dir']).gsub(/[\\\/]+/,"\\")
 
 # full path to service binary
-svcbin = File.join(install_dir, node['wt_logpreproc']['service_binary']).gsub(/[\\\/]+/,"\\")
+svcbin = "#{install_dir}\\wtlogpreproc.exe"
 
 # stop service
-service node['wt_logpreproc']['service_name'] do
+service 'wtlogpreproc' do
 	action :stop
 	ignore_failure true
 end
@@ -29,7 +29,7 @@ ruby_block 'wait' do
 	end
 end
 
-execute "#{node['wt_logpreproc']['service_binary']} uninstall" do
+execute 'wtlogpreproc.exe uninstall' do
   command "#{svcbin} --uninstall"
   only_if { File.exists?(svcbin) }
 end
