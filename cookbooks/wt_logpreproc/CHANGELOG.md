@@ -1,3 +1,7 @@
+## 1.0.13
+* remove log_dir
+* remove service_binary and service_name
+
 ## 1.0.10
 * ini sourcepath(s) now come from array, node['wt_common']['ifr_locations']
 * ini allowoutofsync is determined by number of items in node['wt_common']['ifr_locations']

@@ -2,7 +2,7 @@
 # Cookbook Name:: wt_edge_server
 # Recipe:: default
 #
-# Copyright 2012, YOUR_COMPANY_NAME
+# Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
 #
