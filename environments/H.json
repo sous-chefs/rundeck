@@ -41,12 +41,12 @@
     "wt_streaming_viz": "= 1.1.14",
     "wt_storm_realtime": "= 2.1.6",
     "wt_realtime_hadoop": "= 1.0.4",
-    "wt_storm_streaming": "= 2.1.24",
+    "wt_storm_streaming": "= 2.2.0",
     "wt_portfolio_admin": "= 1.1.10",
     "wt_streamingauditor": "= 1.0.10",
     "wt_streamingcollection": "= 1.0.3",
     "wt_streaminglogreplayer": "= 1.1.2",
-    "wt_streamingconfigservice": "= 1.0.2",
+    "wt_streamingconfigservice": "= 1.0.5",
     "wt_streaminganalysis_monitor": "= 1.0.2",
     "wt_streamingmanagementservice": "= 1.0.1"
   },
@@ -60,7 +60,7 @@
       "portmgr_injected_user": "toby.mosby@webtrends.com",
       "portmgr_domain": "DEPRECATED",
       "portmgr_group_user": "H.PortMgr.Users",
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/42268:id/Portfolio.Manager.zip",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/42861:id/Portfolio.Manager.zip",
       "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip",
       "portmgr_group_admin": "H.PortMgr.Admins",
       "manager_ui_url": "http://hportmc01.staging.dmz"
@@ -208,16 +208,18 @@
       "pod": "H"
     },
     "wt_storm_streaming": {
-      "streaming_topology_validation_bolt_count": 10,
-      "streaming_topology_augmentation_bolt_count": 10,
-      "streaming_topology_in_session_bolt_count": 10,
+      "streaming_topology_validation_bolt_count": 12,
+      "streaming_topology_augmentation_bolt_count": 12,
+      "streaming_topology_in_session_bolt_count": 12,
+      "streaming_topology_filter_bolt_count": 12, 
       "streaming_topology_zmq_emitter_bolt_count": 1,
       "streaming_topology_field_grouping_local": "false",
-      "streaming_topology_validation_bolt_tasks": 10,
-      "streaming_topology_augmentation_bolt_tasks": 10,
-      "streaming_topology_in_session_bolt_tasks": 10,
+      "streaming_topology_validation_bolt_tasks": 12,
+      "streaming_topology_augmentation_bolt_tasks": 12,
+      "streaming_topology_in_session_bolt_tasks": 12,
+      "streaming_topology_filter_bolt_tasks": 12, 
       "streaming_topology_zmq_emitter_bolt_tasks": 1,
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/42457:id/streaming-analysis-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/42994:id/streaming-analysis-bin.tar.gz",
       "topic_list": [
         "Lab_H_lrRawHits:1",
         "Lab_H_scsRawHits:1"
@@ -273,7 +275,7 @@
     },
     "wt_streamingconfigservice": {
       "config_service_url": "http://hconfigsvc.staging.dmz",
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42687:id/webtrends-streaming-configservice-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42693:id/webtrends-streaming-configservice-bin.tar.gz",
       "camdbname": "CAM",
       "camdbserver": "hcamdb01.staging.dmz"
     },
