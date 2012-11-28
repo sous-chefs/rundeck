@@ -36,7 +36,7 @@
     "wt_sauth": "= 1.1.2",
     "wt_netacuity": "= 1.0.10",
     "wt_realtimeapi": "= 1.0.1",
-    "wt_streamingapi": "= 1.1.0",
+    "wt_streamingapi": "= 1.1.1",
     "wt_kafka_topagg": "= 1.0.1",
     "wt_streaming_viz": "= 1.1.14",
     "wt_storm_realtime": "= 2.1.6",
