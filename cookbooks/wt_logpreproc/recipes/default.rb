@@ -51,10 +51,10 @@ if ENV["deploy_build"] == "true" then
 		action :unzip
 	end
 
-	svcbin =  File.join(install_dir, node['wt_logpreproc']['service_binary']).gsub(/[\\\/]+/,"\\")
-	execute node['wt_logpreproc']['service_binary'] do
+	svcbin = "#{install_dir}\\wtlogpreproc.exe"
+	execute 'wtlogpreproc.exe' do
 		command "#{svcbin} --install startup=auto username=#{svcuser} password=\"#{svcpass}\""
-		notifies :start, "service[#{node['wt_logpreproc']['service_name']}]"
+		notifies :start, 'service[wtlogpreproc]'
 	end
 
 	share_wrs
@@ -110,7 +110,7 @@ template "#{install_dir}\\wtlogpreproc.ini" do
 	)
 end
 
-service node['wt_logpreproc']['service_name'] do
+service 'wtlogpreproc' do
 	supports :start => true, :restart => true
 	subscribes :restart, resources(
 		:template => "#{install_dir}\\geoclient.ini",
