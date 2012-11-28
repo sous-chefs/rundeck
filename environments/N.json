@@ -284,12 +284,18 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/42903:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augmentation_bolt_count": 12, 
-            "streaming_topology_in_session_bolt_count": 12, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/42979:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_validation_bolt_count": 12,
+            "streaming_topology_augmentation_bolt_count": 12,
+            "streaming_topology_in_session_bolt_count": 12,
             "streaming_topology_filter_bolt_count": 12, 
-            "streaming_topology_zmq_emitter_bolt_count": 2, 
+            "streaming_topology_zmq_emitter_bolt_count": 1,
+            "streaming_topology_field_grouping_local": "false",
+            "streaming_topology_validation_bolt_tasks": 12,
+            "streaming_topology_augmentation_bolt_tasks": 12,
+            "streaming_topology_in_session_bolt_tasks": 12,
+            "streaming_topology_filter_bolt_tasks": 12, 
+            "streaming_topology_zmq_emitter_bolt_tasks": 1, 
             "topic_list": [
                 "Lab_N_lrRawHits:1", 
                 "Lab_N_scsRawHits:1"
