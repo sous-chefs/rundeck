@@ -6,10 +6,7 @@
 # Copyright 2012, Webtrends Inc.
 #
 
-default['wt_logpreproc']['service_binary'] = 'wtlogpreproc.exe'
-default['wt_logpreproc']['service_name'] = 'wtlogpreproc'
 default['wt_logpreproc']['install_dir'] = 'modules\\logpreproc'
-default['wt_logpreproc']['log_dir'] = 'logs'
 default['wt_logpreproc']['download_url'] = ''
 default['wt_logpreproc']['netacuity_host'] = 'localhost'
 
@@ -59,7 +56,7 @@ default['wt_logpreproc']['wtlogpreproc1_compresslogfile'] = 'true'
 default['wt_logpreproc']['wtlogpreproc1_compresslogfile_level'] = '1'
 
 # Delete the original lfr logs when finished
-default['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'] = 'false'
+default['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'] = 'true'
 
 # List of DNS server IP addresses (semi-colon delimited) 
 # Use if you need to override the system default DNS server.
