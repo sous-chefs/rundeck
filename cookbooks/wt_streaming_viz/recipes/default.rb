@@ -103,6 +103,7 @@ template "#{install_dir}\\appSettings.config" do
 		:streams_url => node['wt_streaming_viz']['streams_ui_url'],
 		:stream_client_id => user_data['wt_streaming_viz']['client_id'],
 		:stream_client_secret => user_data['wt_streaming_viz']['client_secret']
+                :sms_url => node['wt_streaming_viz']['sms_url']
 	)
 end
 
