@@ -96,7 +96,9 @@
   <system.net>
     <defaultProxy enabled="<%= @proxy_enabled %>">
       <proxy proxyaddress="<%= @proxy_address %>" />
-      <bypasslist />
+      <bypasslist>
+        <add address="[a-zA-Z0-9-]+\.<%= node['domain'].gsub(/\./,'\.') %>" />
+      </bypasslist>
     </defaultProxy>
   </system.net>
 </configuration>

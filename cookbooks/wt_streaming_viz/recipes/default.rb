@@ -128,3 +128,5 @@ template "#{install_dir}\\log4net.config" do
 		:log_dir => log_dir
 	)
 end
+
+share_wrs

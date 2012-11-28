@@ -1,7 +1,7 @@
 Description
 ===========
 
-Installs dependencies for the Viracocha tool
+Installs dependencies for the Viracocha 1.0 tool
 
 Requirements
 ============

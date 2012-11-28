@@ -48,6 +48,11 @@ default[:hadoop][:default][:mapred][:job_acl_modify] = 'hadoop'
 default[:hadoop][:default][:mapred][:job_acl_view] = 'Dr.Who' # The jobtracker webui requires Dr.Who
 
 
+# mapred-queue-acls.xml
+default[:hadoop][:default][:mapred_queue][:acl_submit_job] = 'hadoop'
+default[:hadoop][:default][:mapred_queue][:acl_administer_jobs] = 'Dr.Who' # The jobtracker webui requires Dr.Who
+
+
 # core-site.xml
 # see: http://hadoop.apache.org/common/docs/current/core-default.html
 default[:hadoop][:default][:core][:io_file_buffer_size] = 4096

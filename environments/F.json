@@ -1,21 +1,22 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "java": "= 1.5.4", 
-        "nagios": "= 1.6.1", 
-        "webpi": "= 1.0.3", 
-        "webtrends_server": "= 1.8.6", 
+        "java": "= 1.6.0", 
+        "nagios": "= 1.6.3", 
+        "webpi": "= 1.0.16", 
+        "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
         "wt_analytics_ui": "= 1.0.9", 
-        "wt_base": "= 0.10.53", 
+        "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.0.9", 
-	"wt_data_deleter": "= 1.0.1",
+        "wt_data_deleter": "= 1.0.1", 
+        "wt_logpreproc": "= 1.0.13", 
         "wt_monitoring": "= 0.0.2", 
-	"wt_netacuity": "= 1.0.10",
-	"wt_platformscheduler": "= 1.0.10",
+        "wt_netacuity": "= 1.0.10", 
+        "wt_platformscheduler": "= 1.0.11", 
         "wt_search": "= 1.0.8", 
         "wt_sync": "= 1.0.4", 
-        "wt_xd": "= 0.0.6"
+        "wt_xd": "= 1.0.2"
     }, 
     "default_attributes": {
         "authorization": {
@@ -54,12 +55,14 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
             }
@@ -117,8 +120,9 @@
             }
         }, 
         "webpi": {
-            "url": "http://repo.staging.dmz/repo/windows/webpi/webpicmd_x86.zip", 
-            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/WebProductList.xml"
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
@@ -154,13 +158,13 @@
             "bba_domain": "fbba.webtrends.com", 
             "cache_region": "F_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/39633:id/AnalyticsUI.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/41398:id/AnalyticsUI.zip", 
             "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
             "fb_data_center_id": "Lab", 
             "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
-            "hmap_url": "", 
+            "hmap_url": "http://hehmapi01.staging.dmz/", 
             "ios_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "ondemand_base_domain": "fod.webtrends.com", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
@@ -181,6 +185,9 @@
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
+            "ifr_locations": [
+                "\\\\sstore03.staging.dmz\\fstore\\ifr-10.6"
+            ], 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
@@ -206,6 +213,9 @@
         "wt_data_deleter": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/39505:id/DataDeleter.zip"
         }, 
+        "wt_devicedataupdater": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt284/39953:id/DeviceDataUpdater.zip"
+        }, 
         "wt_dx": {
             "app_settings_section": {
                 "streamingServiceRoot": "https://fdx.webtrends.com/StreamingServices_v3/"
@@ -218,9 +228,17 @@
             "website_name": "DX", 
             "website_port": "80"
         }, 
+        "wt_logpreproc": {
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/lpp/LPP.zip", 
+            "wtlogpreproc1_fileextension": "*.log.gz"
+        }, 
+        "wt_management_console": {
+            "mc_service_url": "https://fmc.staging.dmz"
+        }, 
         "wt_masterdb": {
             "master_db": "wtMaster", 
             "master_host": "fmasterdb01.staging.dmz", 
+            "sched_db": "wt_Sched", 
             "sched_host": "fmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {
@@ -239,17 +257,18 @@
             "jmx_port": 9999, 
             "metric_prefix": "staging.fpod.servers", 
             "monitoring_enabled": "true"
-        },
-	"wt_netacuity": {
-            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz",
-            "geo_url": "dgeo.staging.dmz",
+        }, 
+        "wt_netacuity": {
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz", 
+            "geo_url": "fgeo.staging.dmz", 
             "version": "502"
-        },
-	"wt_platformscheduler": {
+        }, 
+        "wt_platformscheduler": {
             "agent": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt289/39511:id/WebTrendsVDMSchedulerAgent.msi"
-            }
-        },
+            }, 
+            "host": "fsched01.staging.dmz"
+        }, 
         "wt_roadrunner": {
             "build_url": "\\\\sstore02.staging.dmz\\install\\ReleasedBuilds\\10.3.0\\10.3HF bundle build\\RoadRunner_10.3_10.3.0.11_artifacts.zip"
         }, 
@@ -270,9 +289,6 @@
         "wt_xd": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36325:id/artifacts.zip", 
             "environment": "support-staging"
-        }, 
-        "yum": {
-            "epel_release": "6-7"
         }, 
         "zookeeper": {
             "client_port": 2181, 
@@ -295,6 +311,11 @@
             "servers": [
                 "time.webtrends.corp"
             ]
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
 }

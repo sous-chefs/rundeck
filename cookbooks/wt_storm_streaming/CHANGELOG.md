@@ -1,3 +1,33 @@
+## 2.2.1
+* Added "streaming.topology.zmq.data.znodeRoot" in config.properties.erb
+
+## 2.2.0
+* Adding new session stream code.
+
+## 2.1.24
+* Added the tasks parameters so the cookbook actually will work.
+
+## 2.1.23
+* Updated configuration, so that the tasks for each of the bolts is also now configurable and out of code.
+
+## 2.1.22
+* Updated the device-atlas file name and the file content.
+
+## 2.1.21
+* Remove extra streaming.topology.mode.local config.properties
+
+## 2.1.20
+* Fixed a bad character that looked like a -
+
+## 2.1.19
+* Changed the jvm setting defaults for the storm.yaml file
+
+## 2.1.18
+* Added convert_searchstr.ini to list of files installed in conf dir
+
+## 2.1.17
+* Changed the jvm setting for child opts and up the bolt counts.
+
 ## 2.1.16
 * Never set node attributes directly.  Then we have to fix stuff later
 

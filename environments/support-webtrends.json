@@ -1,8 +1,11 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "cobbler": "= 1.0.1", 
-        "webtrends_server": "= 1.8.6"
+        "cobbler": "= 1.0.5",
+        "nagios": "= 1.6.3", 
+        "webpi": "= 1.0.16", 
+        "webtrends_server": "= 1.8.8", 
+        "windows": "= 1.3.6"
     }, 
     "default_attributes": {
         "authorization": {
@@ -22,6 +25,7 @@
             }
         }, 
         "cobbler": {
+            "deploy_chef_version": "10.16.2", 
             "manage_dhcp": 1, 
             "pxe_just_once": 1, 
             "subnets": {
@@ -93,6 +97,11 @@
             ], 
             "search": "englab.webtrends.corp webtrends.corp staging.dmz"
         }, 
+        "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
+        }, 
         "webtrends_server": {
             "apt": [
                 {
@@ -130,9 +139,6 @@
             "jmx_port": 9999, 
             "metric_prefix": "support-webtrends.servers", 
             "monitoring_enabled": "true"
-        }, 
-        "yum": {
-            "epel_release": "6-7"
         }
     }, 
     "description": "Webtrends Servers", 
@@ -143,6 +149,11 @@
             "servers": [
                 "time.webtrends.corp"
             ]
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
 }

@@ -18,7 +18,7 @@ Attributes
 * `node['wt_common']['install_dir_windows']` - Base location for all windows products to be installed(ie. "D:\\wrs")
 * `node['wt_common']['wrsmodify_group']` - Windows AD group that should have modify access to the install dir
 * `node['wt_common']['wrsread_group']` - Windows AD group that should have read access to the install dir
-* `node['wt_search']['download_url']` - Http path to where the zip file to deploy is located
+* `node['wt_data_deleter']['download_url']` - Http path to where the zip file to deploy is located
 * `node['wt_masterdb']['master_host']` - Host name of masterdb
 * `node['hbase']['location']` - Hostname for hbase
 * `node['wt_analytics_ui']['fb_data_center_id']` - Data center id for hbase

@@ -83,12 +83,14 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
             }
@@ -142,6 +144,11 @@
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
             }
         }, 
+        "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
+        }, 
         "webtrends_server": {
             "apt": [
                 {
@@ -171,6 +178,10 @@
             ]
         }, 
         "wt_analytics_ui": {}, 
+        "wt_aps": {
+            "aps_url_base": "/AccountProvisioning/", 
+            "service_url": "http://daps01.staging.dmz"
+        },
         "wt_cam": {
             "cam": {
                 "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/CAM.zip"
@@ -212,6 +223,9 @@
             "config_distrib": "jcd01.englab.webtrends.corp:8097", 
             "heatmap_reducers": -1
         }, 
+        "wt_management_console": {
+            "service_url": "https://dmc.staging.dmz"
+        },
         "wt_masterdb": {
             "master_db": "wtmaster", 
             "master_host": "dmasterdb01.staging.dmz", 
@@ -241,6 +255,15 @@
             "elmah_remote_access": "yes", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
             "proxy_enabled": "true"
+        }, 
+        "wt_portfolio_manager": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip",
+            "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
+            "manager_ui_url": "http://hportmc01.staging.dmz",
+            "portmgr_group_user": "H.PortMgr.Users",
+            "portmgr_group_admin": "H.PortMgr.Admins",
+            "portmgr_injected_user": "toby.mosby@webtrends.com",
+            "portmgr_domain": "STAGINGDMZ"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
@@ -325,9 +348,6 @@
             "thread_pool_size": 200
         }, 
         "wt_usagedb": {}, 
-        "yum": {
-            "epel_release": "6-7"
-        }, 
         "zookeeper": {
             "client_port": 2181, 
             "init_limit": 10, 
@@ -356,6 +376,11 @@
                 "10.164.0.12"
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
 }

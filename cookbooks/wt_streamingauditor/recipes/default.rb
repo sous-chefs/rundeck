@@ -171,7 +171,8 @@ if node.attribute?("collectd")
     mode 00644
     notifies :restart, resources(:service => "collectd")
     variables({
-        :scs_urls => node['wt_streamingauditor']['roundtrip_scs_urls'].split(',')
+        :scs_urls => node['wt_streamingauditor']['roundtrip_scs_urls'].split(','),
+        :ts_urls => node['wt_streamingauditor']['roundtrip_tagserver_url'].split(',')
     })
   end
 end

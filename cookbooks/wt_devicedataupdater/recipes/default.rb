@@ -37,7 +37,7 @@ end
 
 wt_base_icacls install_dir do
   user svcuser
-  perm :read
+  perm :modify
   action :grant
 end
 
@@ -58,7 +58,7 @@ if deploy_mode?
   # Platform Scheduler Agent must be running
   ruby_block 'WebtrendsAgent_status' do
     block do
-      raise 'WebtrendsAgent is not running' unless Win32::Service.status('WebtrendsAgent').current_state == 'running' 
+      raise 'WebtrendsAgent is not running' unless Win32::Service.status('WebtrendsAgent').current_state == 'running'
     end
   end
 
@@ -79,5 +79,13 @@ if deploy_mode?
 
   share_wrs
 
+end
+
+template "#{install_dir}\\DDU.exe.config" do
+  source 'DDU.exe.config.erb'
+  variables(
+    :archivedir => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin\\archive",
+    :outputdir  => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin"
+  )
 end
 
