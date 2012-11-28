@@ -105,4 +105,5 @@ fi
 # Set Hadoop-related environment variables
 export HADOOP_CONF_DIR=/etc/hadoop
 export HADOOP_CLASSPATH=/usr/share/hadoop
+export JAVA_LIBRARY_PATH="$JAVA_LIBRARY_PATH:/usr/lib64/" # for hadoop native and snappy compression support
 

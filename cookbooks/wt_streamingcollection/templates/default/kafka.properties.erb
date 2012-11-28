@@ -1,4 +1,4 @@
-zk.connect=<%= @zookeeper_pairs.join(",") %>
-serializer.class=kafka.serializer.StringEncoder
-producer.type=async
+host=localhost
+port=9092
+connect.timeout.ms=<%=node["wt_streamingcollection"]["kafka_connect_timeout_ms"]%>
 router.topic=<%= @kafka_topic %>

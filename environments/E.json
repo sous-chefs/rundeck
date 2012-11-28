@@ -1,23 +1,13 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "hadoop": "= 1.0.3", 
-        "hbase": "= 1.0.3", 
-        "hive": "= 1.0.2", 
-        "kafka": "= 1.0.10", 
-        "storm": "= 1.0.19", 
-        "webpi": "= 1.0.3", 
-        "webtrends_server": "= 1.8.6", 
-        "wt_cam": "= 1.0.4", 
-        "wt_heatmaps": "= 0.10.42", 
-        "wt_realtime_hadoop": "= 1.0.2", 
-        "wt_realtimeapi": "= 0.0.20", 
-        "wt_storm": "= 1.0.38", 
-        "wt_streamingapi": "= 0.0.29", 
-        "wt_streamingauditor": "= 0.0.14", 
-        "wt_streamingcollection": "= 0.0.26", 
-        "wt_streaminglogreplayer": "= 0.0.24", 
-        "zookeeper": "= 1.0.6"
+        "kafka": "= 1.0.20", 
+        "nagios": "= 1.6.3",  
+        "webtrends_server": "= 1.8.8", 
+        "wt_base": "= 1.0.2", 
+        "wt_edge_server": "= 0.1.1",
+        "wt_streamingcollection": "= 1.1.0", 
+        "zookeeper": "= 1.1.6"
     }, 
     "default_attributes": {
         "authorization": {
@@ -46,12 +36,14 @@
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
                 }, 
                 "7": {
                     "x86_64": {
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
             }
@@ -85,21 +77,15 @@
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
-        "snmp": {
-            "community": "DevOps", 
-            "full_systemview": "true", 
-            "syscontact": "trent.white@webtrends.com"
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }, 
-        "storm": {
-            "download_url": "http://repo.staging.dmz/repo/linux/storm/"
-        }, 
-        "vc2010": {
-            "x64": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
-            }, 
-            "x86": {
-                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-            }
+        "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
@@ -129,16 +115,6 @@
                 }
             ]
         }, 
-        "wt_analytics_ui": {}, 
-        "wt_cam": {
-            "auth_port": 8081, 
-            "auth_service_url": "http://bcam01.staging.dmz:8081", 
-            "cam_port": 81, 
-            "cam_server_url": "http://bcam01.staging.dmz/camservice", 
-            "camlite_port": 80, 
-            "db_name": "cam", 
-            "db_server": "bcamdb01.staging.dmz"
-        }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
@@ -156,8 +132,13 @@
             "wrsmodify_group": "STAGINGDMZ\\E.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\E.WRS.Read"
         }, 
-        "wt_configdistrib": {
-            "dcsid_url": "http://dcd01.staging.dmz:8097/config/dcsid2account"
+	"wt_edge_server": {
+            "active_configs_endpoint": "/rcs/v1/activeRules/",
+            "config_service_rule_endpoint": "/rcs/v1/rule/{configid}",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt320/.lastSuccessful/Edge-Server-Distribution-wModules-all.tar.gz",
+            "port": 8081,
+	    "graphite_enabled":"true",
+	    "graphite_interval":"5"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
@@ -178,21 +159,11 @@
             "pod": "B"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt204/30730:id/webtrends-streamingcollection-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41444:id/webtrends-streamingcollection-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingconfigservice": {
-            "camdbname": "CAM", 
-            "camdbserver": "bcamdb01.staging.dmz", 
-            "config_service_url": "http://butil01.staging.dmz:8080", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt164/26199:id/webtrends-streaming-configservice-bin.tar.gz", 
-            "includeUnmappedAnalyticsIds": "true", 
-            "masterdbname": "wtmaster", 
-            "masterdbserver": "dmasterdb01.englab.webtrends.corp", 
-            "port": "8080"
-        }, 
-        "yum": {
-            "epel_release": "6-7"
+            "config_service_url": "http://butil01.staging.dmz:8080"
         }, 
         "zookeeper": {
             "client_port": 2181, 

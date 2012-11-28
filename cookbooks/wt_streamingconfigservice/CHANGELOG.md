@@ -1,3 +1,12 @@
+## 1.0.5
+* Added an erb file for rcsrules.config.caches.json in the config folder.
+
+## 1.0.4
+* Create attribute for the healthcheck_port so this service can coexist with others that try to use 9000
+
+## 1.0.3
+* Added minitest-handler and a preliminary test that verifies healthcheck returns true
+
 ## 1.0.2
 * Moved log config from code to cookbook.
 

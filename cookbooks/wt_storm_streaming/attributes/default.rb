@@ -8,15 +8,23 @@
 
 # wt specific parameters
 default['wt_storm_streaming']['download_url'] = ""
-default['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'] = 10
+default['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'] = 25
+default['wt_storm_streaming']['streaming_topology_augmentation_bolt_tasks'] = 100
 default['wt_storm_streaming']['streaming_topology_in_session_bolt_count'] = 0
-default['wt_storm_streaming']['streaming_topology_validation_bolt_count'] = 10
-default['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'] = 1
+default['wt_storm_streaming']['streaming_topology_in_session_bolt_tasks'] = 0
+default['wt_storm_streaming']['streaming_topology_validation_bolt_count'] = 25
+default['wt_storm_streaming']['streaming_topology_validation_bolt_tasks'] = 60
+default['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'] = 5
+default['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_tasks'] = 5
+default['wt_storm_streaming']['streaming_topology_filter_bolt_count'] = 5
+default['wt_storm_streaming']['streaming_topology_filter_bolt_tasks'] = 5
+
 default['wt_storm_streaming']['streaming_topology_field_grouping_local'] = "true"
+# debug setting, setting this to true in a pod would run the system on only one host
 default['wt_storm_streaming']['streaming_topology_mode_local'] = "false"
 default['wt_storm_streaming']['topic_list'] = []
 
-# debug setting, setting this to true in a pod would run the system on only one host
+# debug setting, setting this to true will result in more debugging by the storm infrastructure
 default['wt_storm_streaming']['debug'] = false
 
 # general storm attributes
@@ -41,7 +49,7 @@ default['wt_storm_streaming']['supervisor']['heartbeat_frequency_secs'] = 5
 default['wt_storm_streaming']['supervisor']['enable'] = true
 
 # worker attributes
-default['wt_storm_streaming']['worker']['childopts'] = "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+default['wt_storm_streaming']['worker']['childopts'] = "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
 default['wt_storm_streaming']['worker']['heartbeat_frequency_secs'] = 1
 default['wt_storm_streaming']['task']['heartbeat_frequency_secs'] = 3
 default['wt_storm_streaming']['task']['refresh_poll_secs'] = 10

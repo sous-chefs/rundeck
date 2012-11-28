@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- FileLog is set to be a RollingFileAppender -->
+    <appender name="FileLog" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="<%= @log_dir %>/EdgeServer.log" />
+        <param name="datePattern" value="'.'yyyy-MM-dd" />
+        <param name="append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%t] %-5p %C{6} (%F:%L) - %m%n"/>
+        </layout>
+    </appender>
+    
+    <!-- ErrorLog is set to be a RollingFileAppender -->
+    <appender name="ErrorLog" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="<%= @log_dir %>/EdgeServer.error.log" />
+        <param name="datePattern" value="'.'yyyy-MM-dd" />
+        <param name="append" value="true" />
+        <param name="Threshold" value="ERROR"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%t] %-5p %C{6} (%F:%L) - %m%n"/>
+        </layout>
+    </appender>
+
+    <root>
+        <level value="<%= @log_level %>" />
+        <appender-ref ref="FileLog" />
+        <appender-ref ref="ErrorLog" />
+    </root>
+</log4j:configuration>

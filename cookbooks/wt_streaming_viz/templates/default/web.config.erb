@@ -21,22 +21,10 @@
     <compilation debug="false" targetFramework="4.0" />
     <customErrors mode="<%= @custom_errors %>"/>
     <authentication mode="Forms">
-      <forms loginUrl="~/signin" timeout="2880" name="_sauth" domain=".webtrends.com">
-        <credentials passwordFormat="SHA1">
-          <user name="asos@webtrends.com" password="1B899C78B7189531B8B98FC38BE0C6DACBEB3470" />
-          <user name="burberry@webtrends.com" password="1B899C78B7189531B8B98FC38BE0C6DACBEB3470" />
-          <user name="telegraph@webtrends.com" password="1B899C78B7189531B8B98FC38BE0C6DACBEB3470" />
-          <user name="musa@webtrends.com" password="1B899C78B7189531B8B98FC38BE0C6DACBEB3470" />
-          <user name="laterooms@webtrends.com" password="1B899C78B7189531B8B98FC38BE0C6DACBEB3470" />
-          <user name="nytimes@webtrends.com" password="1B899C78B7189531B8B98FC38BE0C6DACBEB3470" />
-          <user name="lloyds@webtrends.com" password="1B899C78B7189531B8B98FC38BE0C6DACBEB3470" />
-          <user name="webtrends@webtrends.com" password="1B899C78B7189531B8B98FC38BE0C6DACBEB3470" />
-          <user name="webtrendsmktg@webtrends.com" password="1B899C78B7189531B8B98FC38BE0C6DACBEB3470" />
-          <user name="insideanalytics@webtrends.com" password="1B899C78B7189531B8B98FC38BE0C6DACBEB3470" />
-        </credentials>
-      </forms>
+      <forms loginUrl="~/signin" timeout="2880" name="_sauth" domain=".webtrends.com" />
     </authentication>
     <machineKey 
+      compatibilityMode="Framework20SP2"
       validationKey="<%= @machine_validation_key %>" 
       decryptionKey="<%= @machine_decryption_key %>" 
       validation="HMACSHA256" 
@@ -113,6 +101,10 @@
         <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35" />
         <bindingRedirect oldVersion="1.0.0.0-2.0.0.0" newVersion="2.0.0.0" />
       </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Autofac" publicKeyToken="17863af14b0044da" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.6.3.862" newVersion="2.6.3.862" />
+      </dependentAssembly>
     </assemblyBinding>
   </runtime>
   <elmah>
@@ -126,7 +118,9 @@
   <system.net>
     <defaultProxy enabled="<%= @proxy_enabled %>">
       <proxy proxyaddress="<%= @proxy_address %>" />
-      <bypasslist />
+      <bypasslist>
+        <add address="[a-zA-Z0-9-]+\.<%= node['domain'].gsub(/\./,'\.') %>" />
+      </bypasslist>
     </defaultProxy>
   </system.net>
 </configuration>

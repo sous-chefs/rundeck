@@ -1,3 +1,13 @@
+## 1.1.1
+* Same as 1.1.0, it was a failed experiment.
+
+## 1.1.0
+* Changed to use localhost kafka and no zookeeper rather in line
+  with the "end state for collection" vision.
+
+## 1.0.4
+* added a minitest-handler based healtcheck
+  
 ## 1.0.3
 * Remove file response.txt added in 1.0.2
 

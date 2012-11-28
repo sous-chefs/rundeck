@@ -70,6 +70,9 @@
   <system.webServer>
     <validation validateIntegratedModeConfiguration="false" />
     <modules runAllManagedModulesForAllRequests="true" />
+    <security>
+      <requestFiltering allowDoubleEscaping="true"/>
+    </security>
   </system.webServer>
   <runtime>
     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
