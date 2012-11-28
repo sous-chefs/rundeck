@@ -138,6 +138,16 @@ template "#{install_dir}/conf/log4j.xml" do
   })
 end
 
+template "#{install_dir}/conf/rcsrules.config.caches.json" do
+  source "rcsrules.config.caches.json.erb"
+  owner "webtrends"
+  group "webtrends"
+  mode 00640
+  variables({
+    #TODO if you switch to memcached as the cache, youll need to insert the expires-time, servers and ports.
+  })
+end
+
 template "#{install_dir}/conf/config.properties" do
   source "config.properties.erb"
   owner "webtrends"

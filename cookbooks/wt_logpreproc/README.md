@@ -10,6 +10,7 @@ These need to be installed prior to this cookbook.
 Attributes
 ==========
 * node['wt_common']['install_dir_windows'] - Base location for all windows products to be installed(ie. "D:\\wrs")
+* node['wt_common']['ifr_locations'] - List of all IFR data locations in environment.
 * node['wt_logpreproc']['netacuity_host'] - Name(s) of the NetAcuity server(s). Semi-colon delimited
 * node['wt_logpreproc']['install_dir'] - Subdirectory to install to, such as "\\modules\\logpreproc"
 * node['wt_logpreproc']['download_url'] - Http path to where the zip file to deploy is located
