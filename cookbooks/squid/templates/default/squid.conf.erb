@@ -1,4 +1,4 @@
-# This file managed by Chef
+#This file generated via template by Chef.
 
 #	WELCOME TO SQUID 2.7.STABLE7
 #	----------------------------
@@ -30,7 +30,7 @@
 #  from causing Squid entering an infinite loop whilst trying to load
 #  configuration files.
 
-include /etc/squid/chef.acl.config
+include /etc/<%= node['squid']['service_name'] %>/chef.acl.config
 
 # OPTIONS FOR AUTHENTICATION
 # -----------------------------------------------------------------------------

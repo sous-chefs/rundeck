@@ -215,10 +215,19 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
+    # executor counts, ie: executor threads
     :streaming_topology_in_session_bolt_count    => node['wt_storm_streaming']['streaming_topology_in_session_bolt_count'],
     :streaming_topology_zmq_emitter_bolt_count   => node['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'],
     :streaming_topology_validation_bolt_count    => node['wt_storm_streaming']['streaming_topology_validation_bolt_count'],
     :streaming_topology_augmentation_bolt_count  => node['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'],
+    :streaming_topology_filter_bolt_count        => node['wt_storm_streaming']['streaming_topology_filter_bolt_count'],
+    # task counts, ie: logical parallelism
+    :streaming_topology_in_session_bolt_tasks    => node['wt_storm_streaming']['streaming_topology_in_session_bolt_tasks'],
+    :streaming_topology_zmq_emitter_bolt_tasks   => node['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_tasks'],
+    :streaming_topology_validation_bolt_tasks    => node['wt_storm_streaming']['streaming_topology_validation_bolt_tasks'],
+    :streaming_topology_augmentation_bolt_tasks  => node['wt_storm_streaming']['streaming_topology_augmentation_bolt_tasks'],
+    :streaming_topology_filter_bolt_tasks        => node['wt_storm_streaming']['streaming_topology_filter_bolt_tasks'],
+    # other topology options
     :streaming_topology_mode_local => node['wt_storm_streaming']['streaming_topology_mode_local'],
     :streaming_topology_field_grouping_local => node['wt_storm_streaming']['streaming_topology_field_grouping_local'],
     # kafka consumer settings
@@ -260,8 +269,9 @@ country_codes.csv
 metro_codes.csv
 region_codes.csv
 keywords.ini
-device-atlas-20120813.json
+device-atlas.json
 browsers.ini
+convert_searchstr.ini
 }.each do |ini_file|
     cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/#{ini_file}" do
       source ini_file

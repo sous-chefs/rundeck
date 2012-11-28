@@ -29,7 +29,7 @@ svcpass = auth_data['wt_common']['system_pass']
 
 # get parameters
 master_host = node['wt_masterdb']['master_host']
-sched_host  = node['wt_masterdb']['sched_host']
+sched_host  = node['wt_platformscheduler']['host']
 
 log "Source URL: #{node['wt_platformscheduler']['agent']['download_url']}"
 

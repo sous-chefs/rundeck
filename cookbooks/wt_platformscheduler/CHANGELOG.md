@@ -1,3 +1,6 @@
+## 1.0.11
+* Fixed sched host to correctly pull from wt_platformscheduler and not the database location
+
 ## 1.0.10
 * Add service account to "Performance Monitor Users"
 * Changed windows_package name to "WebtrendsVDMSchedulerAgent"

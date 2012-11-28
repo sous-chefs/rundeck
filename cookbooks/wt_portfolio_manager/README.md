@@ -7,6 +7,8 @@ Requirements
 
 Attributes
 ==========
+Assign appropriate ad.network and ad.groups for security in appSettings.config.
+
 
 Usage
 =====

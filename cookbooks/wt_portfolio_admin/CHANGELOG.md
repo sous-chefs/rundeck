@@ -1,3 +1,13 @@
+## 1.1.10
+* Add node domain to http proxy bypass list.
+
+## 1.1.9
+* Added share_wrs
+
+## 1.1.8
+* Add compatibilityMode attribute for machineKey in web.config
+* Remove formsAuthentication credentials
+
 ## 1.1.7:
 * Change log4net template to use correct log location.
 

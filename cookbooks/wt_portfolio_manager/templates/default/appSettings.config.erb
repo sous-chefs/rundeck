@@ -5,7 +5,7 @@
     <add key="PreserveLoginUrl" value="true" />
     <add key="ClientValidationEnabled" value="true" />
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
-  
+
     <!-- ELMAH -->
     <add key="elmah.mvc.disableHandler" value="false" />
     <add key="elmah.mvc.requiresAuthentication" value="false" />
@@ -14,19 +14,22 @@
 
     <!-- Licensing -->
     <add key="aps.url" value="<%= @aps_url %>"/>
-    <add key="aps.url.base" value=""/>
-    <add key="mc.url" value="https://mc"/>
+    <add key="aps.url.base" value="<%= @aps_url_base %>"/>
+    <add key="mc.url" value="<%= @management_console_url %>"/>
 
     <!-- streaming locations -->
     <add key="cam.url" value="<%= @cam_url %>"/>
     <add key="cam.url.base" value="<%= @cam_url_base %>"/>
     <add key="config.url" value="<%= @config_url%>"/>
-    <add key="ad.network" value="<%= @ad_network %>"/>
+    <add key="ad.network" value="<%= @portmgr_domain %>"/>
 
-    <!-- User Access GruopNames -->
-    <add key="ad.group.admin" value="*"/>
-    <add key="ad.group.user" value="*"/>
+    <!-- User Access GroupNames -->
+    <add key="ad.group.admin" value="<%= @portmgr_group_admin%>"/>
+    <add key="ad.group.user" value="<%= @portmgr_group_user%>"/>
     <add key="reauth.minutes" value="90"/>
+
+    <!-- New Account Notification -->
+    <add key="injected.user" value="<%= @portmgr_injected_user%>"/>
 
 </appSettings>
 

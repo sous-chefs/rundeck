@@ -8,7 +8,7 @@
 # All rights reserved - Do Not Redistribute
 # This recipe installs the CAM IIS app
 
-if deploy_mode?
+if ENV["deploy_build"] == "true" then
   include_recipe "ms_dotnet4::regiis"
   include_recipe "wt_cam::uninstall"
 end
@@ -23,9 +23,9 @@ auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identit
 http_port = node['wt_cam']['port']
 
 iis_pool app_pool do
-    pipeline_mode :Integrated
-    runtime_version "4.0"
-    action [:add, :config]
+  pipeline_mode :Integrated
+  runtime_version "4.0"
+  action [:add, :config]
 end
 
 iis_site 'Default Web Site' do
@@ -39,11 +39,13 @@ end
 directory install_dir do
 	recursive true
 	action :create
+	rights :write, user_data['wt_common']['ui_user']
 end
 
 directory log_dir do
 	recursive true
 	action :create
+	rights :write, user_data['wt_common']['ui_user']
 end
 
 iis_site 'CAM' do
@@ -58,60 +60,73 @@ end
 wt_base_firewall 'CAMWS' do
   protocol "TCP"
   port http_port
-  action [:open_port]
+  action :open_port
 end
 
-wt_base_icacls install_dir do
-	action :grant
-	user user_data['wt_common']['ui_user']
-	perm :modify
+wt_base_netlocalgroup "Performance Monitor Users" do
+  user user_data['wt_common']['ui_user']
+  returns [0, 2]
+  action :add
 end
 
-wt_base_icacls log_dir do
-	action :grant
-	user user_data['wt_common']['ui_user']
-	perm :modify
-end
-
-if deploy_mode?
+if ENV["deploy_build"] == "true" then
   windows_zipfile install_dir do
     source node['wt_cam']['cam']['download_url']
     action :unzip
   end
-
-  template "#{install_dir}\\web.config" do
-    source "web.config.erb"
-    variables(
-      :db_server => node['wt_cam']['db_server'],
-      :db_name   => node['wt_cam']['db_name'],
-      :ldap_host => node['wt_common']['ldap_host'],
-      :ldap_port => node['wt_common']['ldap_port'],
-      :ldap_user => user_data['wt_common']['ldap_user'],
-      :ldap_password => user_data['wt_common']['ldap_password'],
-      :smtp_host => node['wt_common']['smtp_server'],
-      :streams_ui_url => node['wt_streaming_viz']['streams_ui_url']
-  	)
-  end
-
-  template "#{install_dir}\\log4net.config" do
-    source "log4net.config.erb"
-    variables(
-      :log_level => node['wt_cam']['log_level']
-    )
-  end
-
-  # add the plugins here
-  include_recipe "wt_cam::cam_plugins"
-
-  iis_app "CAM" do
-  	path "/Cam"
-  	application_pool app_pool
-  	physical_path install_dir
-  	action :add
-  end
-
-  iis_config auth_cmd do
-  	action :config
-  end
-
 end
+
+template "#{install_dir}\\web.config" do
+	source "web.config.erb"
+	variables(
+		:db_server => node['wt_cam']['db_server'],
+		:db_name   => node['wt_cam']['db_name'],
+		:ldap_host => node['wt_common']['ldap_host'],
+		:ldap_port => node['wt_common']['ldap_port'],
+		:ldap_user => user_data['wt_common']['ldap_user'],
+		:ldap_password => user_data['wt_common']['ldap_password'],
+		:smtp_host => node['wt_common']['smtp_server'],
+		:streams_ui_url => node['wt_streaming_viz']['streams_ui_url']
+	)
+end
+
+template "#{install_dir}\\log4net.config" do
+	source "log4net.config.erb"
+	variables(
+		:log_level => node['wt_cam']['log_level']
+	)
+end
+
+# add the plugins here
+include_recipe "wt_cam::cam_plugins"
+
+iis_config auth_cmd do
+	action :config
+end
+
+if ENV["deploy_build"] == "true" then	
+  #add the user to the admin group to create perfmon counters
+  wt_base_netlocalgroup "Administrators" do
+    user user_data['wt_common']['ui_user']
+    returns [0, 2]
+    action :add
+  end  
+
+	ruby_block "preheat app pool" do
+    block do
+      require 'net/http'
+      uri = URI("http://localhost/")
+      puts Net::HTTP.get(uri)
+	  end
+		action :create
+  end
+	
+  #remove the user from the admin group
+  wt_base_netlocalgroup "Administrators" do
+    user user_data['wt_common']['ui_user']
+    returns [0, 2]
+    action :remove
+  end
+end
+
+share_wrs

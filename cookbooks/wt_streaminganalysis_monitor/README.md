@@ -20,4 +20,5 @@ Installs Streaming Analysis Monitor Service
 * stats_interval: This is how often to call (seconds) Nimbus to retrieve statistics
 * healthcheck_enabled: Are health checks enabled
 * healthcheck_port: Which port will health checks be exposed
+* cluster_role: The Storm cluster to to use when searching for the Nimbus box. Defaults to "wt_storm_streaming_topo".
 = USAGE:

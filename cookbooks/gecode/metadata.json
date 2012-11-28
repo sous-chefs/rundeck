@@ -1,7 +1,7 @@
 {
   "name": "gecode",
   "description": "Installs gecode",
-  "long_description": "Description\n===========\n\nInstalls Gecode 3.5.0+ development package.\n\nRequirements\n============\n\nPlatform\n--------\n\n* Debian, Ubuntu\n* Red Hat, CentOS, Fedora\n* Mac OS X 10.6+\n\nCookbooks\n---------\n\n* apt - for installing packages from apt.opscode.com\n* build-essential - for compiling from source\n\nAttributes\n==========\n\n* `node['gecode']['install_method']` - Specifies the recipe to use for installing gecode.\n* `node['gecode']['url']` - base url to download from. Default is the Gecode distribution server.\n* `node['gecode']['version']` - version of gecode to install.\n* `node['gecode']['checksum']` - checksum of the source tarball.\n* `node['gecode']['configure_options']` - array of options to pass to ./configure for compiling gecode.\n\nUsage\n=====\n\ndefault\n-------\n\nInclude default recipe in a run list, to get some Gecode installed. Installs Gecode by package or source depending on the platform. The recipe is primarily used to install gecode's development package or from source in order to install the `dep_selector` gem, which needs to compile native extensions.\n\npackage\n-------\n\nInstalls Gecode from packages.  On Debian and Ubuntu systems, the recipe will attempt to install packages from apt.opscode.com. It uses the apt repository LWRP in Opscode's apt cookbook to enable the repository.  For releases after Debian 7.0 (Wheezy) and Ubuntu 11.04 (Natty), Gecode 3.5.0+ exists in the main repositories.\n\nsource\n------\n\nInstalls Gecode from source.  Note that compiling gecode takes a long time, up to ~30 minutes on a 4 core Macbook Pro.\n\nChanges/Roadmap\n===============\n\n## v1.2.0:\n\n* [COOK-663] - upgrade libgecode-dev package\n* [COOK-778] - update ld.so.conf\n\n## 1.0.2\n\n* split default recipe into source and package recipe (follows pattern of other cookbooks)\n* externalize source installation metadata into attributes\n* verify mac os x platform support\n\n## 1.0.0\n\n* [COOK-538] fix gecode install on newer ubuntu and debian releases\n* [COOK-680] don't rebuild gecode if it is already installed\n\n## 0.99.0\n\n* initial release\n\nLicense and Author\n==================\n\nAuthor:: Chris Walters (<cw@opscode.com>)\nAuthor:: Nuo Yan (<nuo@opscode.com>)\nAuthor:: Joshua Timberman (<joshua@opscode.com>)\nAuthor:: Seth Chisamore (<schisamo@opscode.com>)\n\nCopyright 2009-2011, Opscode, Inc.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
+  "long_description": "Description\n===========\n\nInstalls Gecode 3.5.0+ development package.\n\nRequirements\n============\n\nPlatform\n--------\n\n* Debian, Ubuntu\n* Red Hat, CentOS, Scientific, Fedora\n* Mac OS X 10.6+\n\nCookbooks\n---------\n\n* apt - for installing packages from apt.opscode.com\n* build-essential - for compiling from source\n\nAttributes\n==========\n\n* `node['gecode']['install_method']` - Specifies the recipe to use for installing gecode.\n* `node['gecode']['url']` - base url to download from. Default is the Gecode distribution server.\n* `node['gecode']['version']` - version of gecode to install.\n* `node['gecode']['checksum']` - checksum of the source tarball.\n* `node['gecode']['configure_options']` - array of options to pass to ./configure for compiling gecode.\n\nUsage\n=====\n\ndefault\n-------\n\nInclude default recipe in a run list, to get some Gecode installed. Installs Gecode by package or source depending on the platform. The recipe is primarily used to install gecode's development package or from source in order to install the `dep_selector` gem, which needs to compile native extensions.\n\npackage\n-------\n\nInstalls Gecode from packages.  On Debian and Ubuntu systems, the recipe will attempt to install packages from apt.opscode.com. It uses the apt repository LWRP in Opscode's apt cookbook to enable the repository.  For releases after Debian 7.0 (Wheezy) and Ubuntu 11.04 (Natty), Gecode 3.5.0+ exists in the main repositories.\n\nsource\n------\n\nInstalls Gecode from source.  Note that compiling gecode takes a long time, up to ~30 minutes on a 4 core Macbook Pro.\n\nLicense and Author\n==================\n\nAuthor:: Chris Walters (<cw@opscode.com>)\nAuthor:: Nuo Yan (<nuo@opscode.com>)\nAuthor:: Joshua Timberman (<joshua@opscode.com>)\nAuthor:: Seth Chisamore (<schisamo@opscode.com>)\n\nCopyright 2009-2011, Opscode, Inc.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
   "maintainer": "Opscode, Inc.",
   "maintainer_email": "cookbooks@opscode.com",
   "license": "Apache 2.0",
@@ -10,12 +10,14 @@
     "ubuntu": ">= 0.0.0",
     "redhat": ">= 0.0.0",
     "centos": ">= 0.0.0",
+    "scientific": ">= 0.0.0",
     "fedora": ">= 0.0.0",
     "mac_os_x": ">= 0.0.0"
   },
   "dependencies": {
     "build-essential": ">= 0.0.0",
-    "apt": ">= 0.0.0"
+    "apt": ">= 0.0.0",
+    "yum": ">= 0.0.0"
   },
   "recommendations": {
   },
@@ -33,5 +35,5 @@
   },
   "recipes": {
   },
-  "version": "1.2.0"
+  "version": "1.3.0"
 }

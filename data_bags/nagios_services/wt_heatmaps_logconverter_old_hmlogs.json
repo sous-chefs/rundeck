@@ -1,5 +1,5 @@
 {
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_file_ages_in_dirs -a '-d /heatmap-logprocessing/hmifr/HMLogs -w 30 -c 40 -t minutes'",
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_file_ages_in_dirs -a '-d /heatmap-logprocessing/hmifr/HMLogs -w 75 -c 85 -t minutes'",
     "hostgroup_name": "wt_heatmaps_logconverter",
     "id": "wt_heatmaps_logconverter_old_hmlogs"
 }
