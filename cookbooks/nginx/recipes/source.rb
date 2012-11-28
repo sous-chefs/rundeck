@@ -41,11 +41,13 @@ node.set['nginx']['binary']          = "#{node['nginx']['source']['prefix']}/sbi
 node.set['nginx']['daemon_disable']  = true
 
 include_recipe "nginx::ohai_plugin"
+include_recipe "nginx::commons_dir"
+include_recipe "nginx::commons_script"
 include_recipe "build-essential"
 
 src_filepath  = "#{Chef::Config['file_cache_path'] || '/tmp'}/nginx-#{node['nginx']['version']}.tar.gz"
 packages = value_for_platform(
-    ["centos","redhat","fedora"] => {'default' => ['pcre-devel', 'openssl-devel']},
+    ["centos","redhat","fedora","amazon","scientific"] => {'default' => ['pcre-devel', 'openssl-devel']},
     "default" => ['libpcre3', 'libpcre3-dev', 'libssl-dev']
   )
 
@@ -106,14 +108,14 @@ when "runit"
 
   service "nginx" do
     supports :status => true, :restart => true, :reload => true
-    reload_command "[[ -f #{node['nginx']['pid']} ]] && kill -HUP `cat #{node['nginx']['pid']}` || true"
+    reload_command "#{node['runit']['sv_bin']} hup #{node['runit']['service_dir']}/nginx"
   end
 when "bluepill"
   include_recipe "bluepill"
 
   template "#{node['bluepill']['conf_dir']}/nginx.pill" do
     source "nginx.pill.erb"
-    mode 0644
+    mode 00644
     variables(
       :working_dir => node['nginx']['source']['prefix'],
       :src_binary => node['nginx']['binary'],
@@ -139,7 +141,7 @@ else
     source "nginx.init.erb"
     owner "root"
     group "root"
-    mode "0755"
+    mode 00755
     variables(
       :src_binary => node['nginx']['binary'],
       :pid => node['nginx']['pid']
@@ -156,7 +158,7 @@ else
     source "nginx.sysconfig.erb"
     owner "root"
     group "root"
-    mode "0644"
+    mode 00644
   end
 
   service "nginx" do
@@ -165,22 +167,13 @@ else
   end
 end
 
-%w{nxensite nxdissite}.each do |nxscript|
-  template "/usr/sbin/#{nxscript}" do
-    source "#{nxscript}.erb"
-    mode "0755"
-    owner "root"
-    group "root"
-  end
-end
-
-include_recipe 'nginx::commons'
+include_recipe "nginx::commons_conf"
 
 cookbook_file "#{node['nginx']['dir']}/mime.types" do
   source "mime.types"
   owner "root"
   group "root"
-  mode "0644"
+  mode 00644
   notifies :reload, 'service[nginx]', :immediately
 end
 

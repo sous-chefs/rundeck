@@ -21,8 +21,10 @@ when "0xEA2E0"
   default['esx']['version'] = "4.1"
   default['esx']['tarball'] = "VMwareTools-8.3.7-341836.tar.gz"
   default['esx']['checksum'] = "112092df38d3e82e41bbeda2cf0e97a6ccfae845d6e8dd0d058d635aa994365f"
-when "0xE72C0"
+when "0xE72C0" 
   default['esx']['version'] = "5.0"
-  default['esx']['tarball'] = ""
-  default['esx']['checksum'] = ""
+  default['esx']['tarball'] = "VMwareTools-8.6.0-446312.tar.gz"
+  default['esx']['checksum'] = "5118df75830e416ca20e2939e4934b4ebb8b9e29160e3fbed225aaa832345712"
 end
+
+Chef::Log.debug("esx tarball is #{node['esx']['tarball']}")

@@ -1,4 +1,10 @@
-## 1.0.4
+## 1.0.6:
+* Take out the check to see if running on Chef 0.9.X
+
+## 1.0.5:
+* Ensure ruby is installed on CentOS
+
+## 1.0.4:
 * Update the precise partition snippet to create a 1024MB swap and use the rest for /
 
 ## 1.0.3:

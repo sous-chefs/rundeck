@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: wt_data_deleter
 # Recipe:: uninstall
-# Author:: Kendrick Martin
+# Author:: Michael Parsons
 #
 # Copyright 2012, Webtrends Inc.
 #

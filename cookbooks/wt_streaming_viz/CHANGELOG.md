@@ -1,5 +1,15 @@
-## 1.1.11
+## 1.1.15
 * added the sms_url attribute to the appSettings.config template
+## 1.1.14
+* Add current node domain to proxy bypass list
+## 1.1.13
+* Added share_wrs
+## 1.1.12
+* Add bindingRedierect for Autofac
+
+## 1.1.11
+* Add compatibilityMode attribute for machineKey in web.config
+* Remove formsAuthentication credentials
 
 ## 1.1.10
 * Remove unnecessary "pod" attribute

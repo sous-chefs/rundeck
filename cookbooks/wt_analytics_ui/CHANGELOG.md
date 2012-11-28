@@ -1,6 +1,32 @@
-Future
-	Change IIS site bindings
-	Search alternate/current environment for cache_hosts
+## 1.1.5
+  * Changing RSA key to be added by UI user.
+## 1.1.4
+  * Fixing user 
+## 1.1.3
+  * Added .html to allowed extension list.
+## 1.1.2
+  * Fixed the template for the rsa key
+## 1.1.1
+  * Updated the data bag used for rsa keys
+## 1.1.0
+  * Fixed rsa key name.
+## 1.0.17
+  * Added process to add user permissions to machinekey folder before adding key
+## 1.0.16
+  * Adding ui user to run as
+	* Fixing d line
+## 1.0.15
+  * Adding - in command
+## 1.0.14
+  * Added delete back in
+	* Fixed templates
+## 1.0.13
+  * Commented out file delete
+## 1.0.12
+  * Hard coded path to aspnet_regiis
+## 1.0.11
+  * Moved rsa key from the authorization databag
+	* Changed path for calling asp command
 ## 1.0.10
 	* Added rsa file data to template/databag and updated recipe to consume
 ## 1.0.9

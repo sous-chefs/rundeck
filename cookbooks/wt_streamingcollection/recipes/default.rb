@@ -39,6 +39,15 @@ directory log_dir do
 end
 
 # create the install directory
+directory "#{install_dir}" do
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
+end
+
+# create the bin directory
 directory "#{install_dir}/bin" do
   owner "root"
   group "root"
@@ -97,7 +106,6 @@ def processTemplates (install_dir, node, datacenter, pod)
         :configservice => configservice_url,
         :install_dir => install_dir,
         :port => port,
-        :zookeeper_pairs => zookeeper_pairs,
         :wt_monitoring => node[:wt_monitoring]
       })
     end
@@ -109,7 +117,6 @@ def processTemplates (install_dir, node, datacenter, pod)
     group   "root"
     mode    00644
     variables({
-      :zookeeper_pairs => zookeeper_pairs,
       :kafka_topic => "#{datacenter}_#{pod}_scsRawHits"
     })
   end

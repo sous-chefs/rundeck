@@ -28,6 +28,8 @@ Cookbook attributes are named under the `couch_db` keyspace. The attributes spec
 * `node['couch_db']['src_mirror']` - full URL to download.
 * `node['couch_db']['bind_address']` - specify address couchdb should
   bind to. nil by default, which will use couchdb's built in default, 5984.
+* `node['couch_db']['install_erlang'] - specify if erlang should be installed prior to
+  couchdb, true by default.
 
 RECIPES
 =======

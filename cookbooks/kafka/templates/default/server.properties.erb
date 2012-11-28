@@ -113,7 +113,7 @@ log.cleanup.interval.mins=1
 ############################# Zookeeper #############################
 
 # Enable connecting to zookeeper
-enable.zookeeper=<%= @zookeeper_pairs ? true : false %>
+enable.zookeeper=<%= @zookeeper_pairs ? (@zookeeper_pairs.length > 0 ? true : false) : false %>
 
 # Zk connection string (see zk docs for details).
 # This is a comma separated host:port pairs, each corresponding to a zk

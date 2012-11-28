@@ -25,8 +25,7 @@ wt_base_icacls plugin_install_dir do
 	perm :modify
 end
 
-if deploy_mode?
-
+if ENV["deploy_build"] == "true" then
     # Lay the files down
     windows_zipfile plugin_install_dir do
         source node['wt_cam']['cam_plugins']['download_url']

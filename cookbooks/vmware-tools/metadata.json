@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "yumrepo": ">= 0.0.0"
+  },
+  "name": "vmware-tools",
+  "maintainer_email": "bryan.berry@gmail.com",
+  "attributes": {
+  },
+  "license": "Apache 2.0",
+  "suggestions": {
+  },
+  "platforms": {
+  },
+  "maintainer": "Bryan W. Berry",
+  "long_description": "= DESCRIPTION:\nRecipes for installing paravirtualization tools within a guest system. Currently only support vmware-tools.\n\nCurrently supports vmware-tools\n\n= REQUIREMENTS:\n\nCurrently only tested on Centos/RHEL 5.x but should work on 6.x as well\n\n\n= ATTRIBUTES:\nnone\n\n",
+  "version": "0.0.1",
+  "recommendations": {
+  },
+  "recipes": {
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "Installs/Configures vmware-tools",
+  "providing": {
+  }
+}
