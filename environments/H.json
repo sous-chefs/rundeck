@@ -212,8 +212,8 @@
       "streaming_topology_zmq_emitter_bolt_tasks": 1,
       "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43069:id/streaming-analysis-bin.tar.gz",
       "topic_list": [
-        "Lab_H_lrRawHits:1",
-        "Lab_H_scsRawHits:1"
+        "Lab_H_lrRawHits:6",
+        "Lab_H_scsRawHits:6"
         ],
       "worker": {
         "childopts": "-Xmx1280m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
