@@ -19,7 +19,16 @@
 
 include_recipe 'java'
 
-%w[snappy-devel python-simplejson python-cjson].each do |pkg|
+case node['platform_family']
+when 'debian'
+	package_list   = %w[libsnappy1 python-simplejson python-cjson]
+	hadoop_version = node.hadoop_attrib(:version)[/(.*?)(-\d+)?$/, 1]  # strip out rpm revision
+when 'rhel'
+	package_list   = %w[snappy-devel python-simplejson python-cjson]
+	hadoop_version = node.hadoop_attrib(:version)
+end
+
+package_list.each do |pkg|
 	package pkg do
 		action :install
 	end
@@ -81,7 +90,7 @@ end
 # install the hadoop rpm from our repo
 package 'hadoop' do
 	action :install
-	version node.hadoop_attrib(:version)
+	version hadoop_version
 end
 
 # manage hadoop configs
