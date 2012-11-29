@@ -1,5 +1,5 @@
 name             "wt_viracocha"
-maintainer       "Webtrends"
+maintainer       "Webtrends, Inc."
 maintainer_email "hostedops@webtrends.com"
 license          "Apache 2.0"
 description      "Installs/Configures packages needed for Viracocha 1.0"
