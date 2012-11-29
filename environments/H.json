@@ -23,7 +23,7 @@
     "hive": "= 1.0.2",
     "java": "= 1.6.0",
     "webpi": "= 1.0.16",
-    "storm": "= 1.0.28",
+    "storm": "= 1.0.29",
     "kafka": "= 1.0.20",
     "hbase": "= 1.0.3",
     "nagios": "= 1.6.3",
@@ -223,10 +223,7 @@
       "topic_list": [
         "Lab_H_lrRawHits:1",
         "Lab_H_scsRawHits:1"
-      ],
-      "worker": {
-        "childopts": "-Xmx1280m -Xms1280m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
-      }
+      ]
     },
     "wt_usagedb": {
     },
