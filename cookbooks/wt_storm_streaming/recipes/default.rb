@@ -118,6 +118,7 @@ if ENV["deploy_build"] == "true" then
     fastutil-6.4.4.jar
     groovy-all-1.7.6.jar
     guice-3.0.jar
+    gson-2.2.2.jar
     hadoop-core-1.0.0.jar
     hamcrest-core-1.1.jar
     hbase-0.92.0.jar
@@ -192,6 +193,14 @@ end
 # storm looks for storm.yaml in ~/.storm/storm.yaml so make a link
 link "/home/storm/.storm" do
 	to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
+end
+
+# delete storm.yaml put in by storm cookbook
+file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
+  owner "root"
+  group "root"
+  mode "00644"
+  action :delete
 end
 
 # template the storm yaml file

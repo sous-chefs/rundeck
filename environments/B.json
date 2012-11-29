@@ -24,7 +24,7 @@
         "wt_sauth": "= 1.1.2", 
         "wt_storm_realtime": "= 2.1.1", 
         "wt_storm_streaming": "= 2.1.24",
-        "wt_streaming_viz": "= 1.1.13", 
+        "wt_streaming_viz": "= 1.1.16", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
         "wt_streamingapi": "= 1.1.0", 
         "wt_streamingauditor": "= 1.0.10", 
@@ -326,11 +326,12 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/42982:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/43073:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "port": 80, 
             "proxy_enabled": "true", 
-            "streams_ui_url": "https://bstreams.webtrends.com/"
+            "streams_ui_url": "https://bstreams.webtrends.com/",
+	    "sms_url": "http://bsms.staging.dmz"
         }, 
         "wt_streaminganalysis_monitor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/41274:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
