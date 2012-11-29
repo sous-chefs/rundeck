@@ -1,3 +1,6 @@
+## 1.0.11
+* Took out the depedency on nagios and collectd.  Both are optional
+
 ## 1.0.10
 * Added additional capture of metrics for collectd/graphite
 
