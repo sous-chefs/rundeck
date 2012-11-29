@@ -223,7 +223,10 @@
       "topic_list": [
         "Lab_H_lrRawHits:1",
         "Lab_H_scsRawHits:1"
-      ]
+      ],
+      "worker": {
+        "childopts": "-Xmx1280m -Xms1280m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
+      }
     },
     "wt_usagedb": {
     },
