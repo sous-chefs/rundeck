@@ -3,6 +3,8 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+## 1.1.10
+* added support for ubuntu packages
 
 ## 1.1.9
 * adding attributes for mapred-queue-acls.xml
