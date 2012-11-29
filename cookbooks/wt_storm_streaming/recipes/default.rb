@@ -39,10 +39,8 @@ end
 kafka = search(:node, "role:kafka_aggregator AND chef_environment:#{node.chef_environment}").first
 pod = node['wt_realtime_hadoop']['pod']
 datacenter = node['wt_realtime_hadoop']['datacenter']
-
-# Perform some really funky overrides that should never be done and need to be removed
-node['wt_storm_streaming']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-streaming"
-node['wt_storm_streaming']['transactional']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-streaming-transactional"
+zookeeper_root = "/#{datacenter}_#{pod}_storm-streaming"
+transactional_zookeeper_root = "/#{datacenter}_#{pod}_storm-streaming-transactional"
 
 #############################################################################
 # Storm jars
@@ -193,9 +191,8 @@ end
 # storm looks for storm.yaml in ~/.storm/storm.yaml so make a link
 link "/home/storm/.storm" do
 	to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
-end
+end 
 
-# delete storm.yaml put in by storm cookbook
 file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
   owner "root"
   group "root"
@@ -210,6 +207,9 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
+    :worker_childopts => node['wt_storm_streaming']['worker']['childopts'],
+    :zookeeper_root => zookeeper_root,
+    :transactional_zookeeper_root => transactional_zookeeper_root,
     :storm_config => node['wt_storm_streaming'],
     :zookeeper_quorum => zookeeper_quorum,
     :zookeeper_clientport  => zookeeper_clientport,
