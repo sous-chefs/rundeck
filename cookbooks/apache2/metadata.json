@@ -523,5 +523,5 @@
     "apache2::mod_status": "Apache module 'status' with config file",
     "apache2::mod_xsendfile": "Apache module 'xsendfile'"
   },
-  "version": "1.3.0"
+  "version": "1.3.2"
 }
