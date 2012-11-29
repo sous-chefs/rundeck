@@ -1,4 +1,5 @@
-maintainer       "Webtrends"
+name             "wt_sync"
+maintainer       "Webtrends, Inc."
 maintainer_email "kendrick.martin@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures Webtrends Sync Service"
