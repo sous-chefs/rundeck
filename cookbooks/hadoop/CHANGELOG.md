@@ -5,6 +5,7 @@
 
 ## 1.1.10
 * added support for ubuntu packages
+* set JAVA_HOME in hadoop-env.sh
 
 ## 1.1.9
 * adding attributes for mapred-queue-acls.xml
