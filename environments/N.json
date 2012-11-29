@@ -265,8 +265,11 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/42000:id/Portfolio.Manager.zip", 
-            "manager_ui_url": ""
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/42911:id/Portfolio.Manager.zip", 
+            "manager_ui_url": "",
+            "portmgr_group_user": "N.PortMgr.Users",
+            "portmgr_group_admin": "N.PortMgr.Admins",
+            "portmgr_injected_user": "tomomi.ioffe@webtrends.com"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
