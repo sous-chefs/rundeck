@@ -1,0 +1,15 @@
+{
+  "name": "wt_viracocha",
+  "default_attributes": {
+  },
+  "env_run_lists": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "description": "",
+  "chef_type": "role",
+  "run_list": [
+    "recipe[wt_viracocha]"
+  ]
+}

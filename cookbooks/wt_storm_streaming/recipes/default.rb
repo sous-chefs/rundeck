@@ -118,6 +118,7 @@ if ENV["deploy_build"] == "true" then
     fastutil-6.4.4.jar
     groovy-all-1.7.6.jar
     guice-3.0.jar
+    gson-2.2.2.jar
     hadoop-core-1.0.0.jar
     hamcrest-core-1.1.jar
     hbase-0.92.0.jar
@@ -215,14 +216,19 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
+    # executor counts, ie: executor threads
     :streaming_topology_in_session_bolt_count    => node['wt_storm_streaming']['streaming_topology_in_session_bolt_count'],
     :streaming_topology_zmq_emitter_bolt_count   => node['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'],
     :streaming_topology_validation_bolt_count    => node['wt_storm_streaming']['streaming_topology_validation_bolt_count'],
     :streaming_topology_augmentation_bolt_count  => node['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'],
+    :streaming_topology_filter_bolt_count        => node['wt_storm_streaming']['streaming_topology_filter_bolt_count'],
+    # task counts, ie: logical parallelism
     :streaming_topology_in_session_bolt_tasks    => node['wt_storm_streaming']['streaming_topology_in_session_bolt_tasks'],
     :streaming_topology_zmq_emitter_bolt_tasks   => node['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_tasks'],
     :streaming_topology_validation_bolt_tasks    => node['wt_storm_streaming']['streaming_topology_validation_bolt_tasks'],
     :streaming_topology_augmentation_bolt_tasks  => node['wt_storm_streaming']['streaming_topology_augmentation_bolt_tasks'],
+    :streaming_topology_filter_bolt_tasks        => node['wt_storm_streaming']['streaming_topology_filter_bolt_tasks'],
+    # other topology options
     :streaming_topology_mode_local => node['wt_storm_streaming']['streaming_topology_mode_local'],
     :streaming_topology_field_grouping_local => node['wt_storm_streaming']['streaming_topology_field_grouping_local'],
     # kafka consumer settings
