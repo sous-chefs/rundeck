@@ -23,9 +23,11 @@ case node['platform_family']
 when 'debian'
 	package_list   = %w[libsnappy1 python-simplejson python-cjson]
 	hadoop_version = node.hadoop_attrib(:version)[/(.*?)(-\d+)?$/, 1]  # strip out rpm revision
+	java_home      = '/usr/lib/jvm/default-java/jre'
 when 'rhel'
 	package_list   = %w[snappy-devel python-simplejson python-cjson]
 	hadoop_version = node.hadoop_attrib(:version)
+	java_home      = '/usr/lib/jvm/java/jre'
 end
 
 package_list.each do |pkg|
@@ -103,7 +105,8 @@ end
 			:jobtracker     => hadoop_jobtracker,
 			:backupnamenode => hadoop_backupnamenode,
 			:datanodes      => hadoop_datanodes,
-			:local_dir      => local_dir
+			:local_dir      => local_dir,
+			:java_home      => java_home
 		)
 	end
 end
