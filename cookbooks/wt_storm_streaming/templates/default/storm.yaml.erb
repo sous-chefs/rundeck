@@ -37,7 +37,7 @@ supervisor.enable: <%= @storm_config[:supervisor][:enable] %>
 
 
 ### worker.* configs are for task workers
-worker.childopts: "<%= @storm_config[:worker][:childopts] %>"
+worker.childopts: "<%= node[:wt_storm_streaming][:worker][:childopts] %>"
 worker.heartbeat.frequency.secs: <%= @storm_config[:worker][:heartbeat_frequency_secs] %>
 task.heartbeat.frequency.secs: <%= @storm_config[:task][:heartbeat_frequency_secs] %>
 task.refresh.poll.secs: <%= @storm_config[:task][:refresh_poll_secs] %>
