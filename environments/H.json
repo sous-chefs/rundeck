@@ -201,16 +201,16 @@
     "wt_storm_streaming": {
       "streaming_topology_validation_bolt_count": 12,
       "streaming_topology_augmentation_bolt_count": 12,
-      "streaming_topology_in_session_bolt_count": 12,
+      "streaming_topology_in_session_bolt_count": 0,
       "streaming_topology_filter_bolt_count": 12,
       "streaming_topology_zmq_emitter_bolt_count": 1,
       "streaming_topology_field_grouping_local": "false",
       "streaming_topology_validation_bolt_tasks": 12,
       "streaming_topology_augmentation_bolt_tasks": 12,
-      "streaming_topology_in_session_bolt_tasks": 12,
+      "streaming_topology_in_session_bolt_tasks": 0,
       "streaming_topology_filter_bolt_tasks": 12,
       "streaming_topology_zmq_emitter_bolt_tasks": 1,
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43131:id/streaming-analysis-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43181:id/streaming-analysis-bin.tar.gz",
       "topic_list": [
         "Lab_H_lrRawHits:6",
         "Lab_H_scsRawHits:6"
