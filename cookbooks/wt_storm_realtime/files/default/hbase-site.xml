@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
-<configuration>
-  <property>
-    <name>hbase.zookeeper.quorum</name>
-    <value>vzookeeper01.staging.dmz,vzookeeper02.staging.dmz,vzookeeper03.staging.dmz,vzookeeper04.staging.dmz,vzookeeper05.staging.dmz</value>
-    <description>The zookeeper quorum </description>
-  </property>
-</configuration>
