@@ -1,3 +1,9 @@
+## 2.2.1
+* Added "streaming.topology.zmq.data.znodeRoot" in config.properties.erb
+
+## 2.2.0
+* Adding new session stream code.
+
 ## 2.1.24
 * Added the tasks parameters so the cookbook actually will work.
 
