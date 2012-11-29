@@ -22,7 +22,6 @@ download_url   = node['wt_logpreproc']['download_url']
 
 # destinations
 install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_logpreproc']['install_dir']).gsub(/[\\\/]+/,"\\")
-log_dir     = File.join(node['wt_common']['install_dir_windows'], node['wt_logpreproc']['log_dir']).gsub(/[\\\/]+/,"\\")
 
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
@@ -31,12 +30,6 @@ svcpass = auth_data['wt_common']['system_pass']
 
 # create the install directory
 directory install_dir do
-	recursive true
-	action :create
-end
-
-# create log directory
-directory log_dir do
 	recursive true
 	action :create
 end
@@ -58,10 +51,10 @@ if ENV["deploy_build"] == "true" then
 		action :unzip
 	end
 
-	svcbin =  File.join(install_dir, node['wt_logpreproc']['service_binary']).gsub(/[\\\/]+/,"\\")
-	execute node['wt_logpreproc']['service_binary'] do
+	svcbin = "#{install_dir}\\wtlogpreproc.exe"
+	execute 'wtlogpreproc.exe' do
 		command "#{svcbin} --install startup=auto username=#{svcuser} password=\"#{svcpass}\""
-		notifies :start, "service[#{node['wt_logpreproc']['service_name']}]"
+		notifies :start, 'service[wtlogpreproc]'
 	end
 
 	share_wrs
@@ -117,7 +110,7 @@ template "#{install_dir}\\wtlogpreproc.ini" do
 	)
 end
 
-service node['wt_logpreproc']['service_name'] do
+service 'wtlogpreproc' do
 	supports :start => true, :restart => true
 	subscribes :restart, resources(
 		:template => "#{install_dir}\\geoclient.ini",

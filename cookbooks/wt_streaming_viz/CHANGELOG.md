@@ -1,3 +1,8 @@
+## 1.1.16
+* replaced missing comma in recipe
+
+## 1.1.15
+* added the sms_url attribute to the appSettings.config template
 ## 1.1.14
 * Add current node domain to proxy bypass list
 ## 1.1.13
