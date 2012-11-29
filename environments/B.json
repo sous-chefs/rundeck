@@ -1,7 +1,7 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-	"wt_streamingmanamgementservice": "= 1.1.16",
+	"wt_streamingmanamgementservice": "= 1.0.1",
         "hadoop": "= 1.0.3", 
         "hbase": "= 1.0.3", 
         "hive": "= 1.0.2", 
@@ -24,7 +24,7 @@
         "wt_sauth": "= 1.1.2", 
         "wt_storm_realtime": "= 2.1.1", 
         "wt_storm_streaming": "= 2.1.24",
-        "wt_streaming_viz": "= 1.1.15", 
+        "wt_streaming_viz": "= 1.1.16", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
         "wt_streamingapi": "= 1.1.0", 
         "wt_streamingauditor": "= 1.0.10", 
