@@ -195,6 +195,14 @@ link "/home/storm/.storm" do
 	to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
 end
 
+# delete storm.yaml put in by storm cookbook
+file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
+  owner "root"
+  group "root"
+  mode "00644"
+  action :delete
+end
+
 # template the storm yaml file
 template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
   source "storm.yaml.erb"
