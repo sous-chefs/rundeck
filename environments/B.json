@@ -330,7 +330,8 @@
             "elmah_remote_access": "yes", 
             "port": 80, 
             "proxy_enabled": "true", 
-            "streams_ui_url": "https://bstreams.webtrends.com/"
+            "streams_ui_url": "https://bstreams.webtrends.com/",
+	    "sms_url": "http://bsms.staging.dmz"
         }, 
         "wt_streaminganalysis_monitor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/41274:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
