@@ -36,12 +36,12 @@
     "wt_sauth": "= 1.1.2",
     "wt_netacuity": "= 1.0.10",
     "wt_realtimeapi": "= 1.0.1",
-    "wt_streamingapi": "= 1.1.0",
+    "wt_streamingapi": "= 1.1.1",
     "wt_kafka_topagg": "= 1.0.1",
     "wt_streaming_viz": "= 1.1.14",
     "wt_storm_realtime": "= 2.1.6",
     "wt_realtime_hadoop": "= 1.0.4",
-    "wt_storm_streaming": "= 2.1.24",
+    "wt_storm_streaming": "= 2.2.1",
     "wt_portfolio_admin": "= 1.1.10",
     "wt_streamingauditor": "= 1.0.10",
     "wt_streamingcollection": "= 1.0.3",
@@ -208,22 +208,24 @@
       "pod": "H"
     },
     "wt_storm_streaming": {
-      "streaming_topology_validation_bolt_count": 10,
-      "streaming_topology_augmentation_bolt_count": 10,
-      "streaming_topology_in_session_bolt_count": 10,
+      "streaming_topology_validation_bolt_count": 12,
+      "streaming_topology_augmentation_bolt_count": 12,
+      "streaming_topology_in_session_bolt_count": 12,
+      "streaming_topology_filter_bolt_count": 12, 
       "streaming_topology_zmq_emitter_bolt_count": 1,
       "streaming_topology_field_grouping_local": "false",
-      "streaming_topology_validation_bolt_tasks": 10,
-      "streaming_topology_augmentation_bolt_tasks": 10,
-      "streaming_topology_in_session_bolt_tasks": 10,
+      "streaming_topology_validation_bolt_tasks": 12,
+      "streaming_topology_augmentation_bolt_tasks": 12,
+      "streaming_topology_in_session_bolt_tasks": 12,
+      "streaming_topology_filter_bolt_tasks": 12, 
       "streaming_topology_zmq_emitter_bolt_tasks": 1,
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/42457:id/streaming-analysis-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43059:id/streaming-analysis-bin.tar.gz",
       "topic_list": [
         "Lab_H_lrRawHits:1",
         "Lab_H_scsRawHits:1"
       ],
       "worker": {
-        "childopts": "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
+        "childopts": "-Xmx1280m -Xms1280m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
       }
     },
     "wt_usagedb": {
@@ -268,7 +270,7 @@
       "usagedbname": "Streaming",
       "usagedbserver": "hcamdb01.staging.dmz",
       "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/42249:id/webtrends-streamingapi-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/43036:id/webtrends-streamingapi-bin.tar.gz",
       "sapi_service_url": "ws://hsapi01.staging.dmz:8080"
     },
     "wt_streamingconfigservice": {

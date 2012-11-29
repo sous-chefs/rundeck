@@ -24,12 +24,12 @@
         "wt_sauth": "= 1.1.2", 
         "wt_storm_realtime": "= 2.1.1", 
         "wt_storm_streaming": "= 2.1.24",
-        "wt_streaming_viz": "= 1.1.13", 
+        "wt_streaming_viz": "= 1.1.15", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
         "wt_streamingapi": "= 1.1.0", 
         "wt_streamingauditor": "= 1.0.10", 
         "wt_streamingcollection": "= 1.1.0", 
-        "wt_streamingconfigservice": "= 1.0.2", 
+        "wt_streamingconfigservice": "= 1.0.5", 
         "wt_streaminglogreplayer": "= 1.1.1", 
         "zookeeper": "= 1.1.6"
     }, 
@@ -326,7 +326,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/42830:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/43055:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "port": 80, 
             "proxy_enabled": "true", 
@@ -356,7 +356,8 @@
             "camdbname": "CAM", 
             "camdbserver": "bcamdb01.staging.dmz", 
             "config_service_url": "http://bconfigsvc.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/40038:id/webtrends-streaming-configservice-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz",
+	    "config_service_url": "http://bconfigsvc.staging.dmz"
         }, 
         "wt_streaminglogreplayer": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/41876:id/webtrends-streaminglogreplayer-bin.tar.gz", 
