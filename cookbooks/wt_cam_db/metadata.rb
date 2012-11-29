@@ -1,7 +1,7 @@
 maintainer       "Webtrends, Inc"
 maintainer_email "adam.sinnet@webtrends.com"
 license          "All rights reserved"
-description      "Installs/Configures wt_cam_db"
+description      "Installs/Configures the Webtrends CAM database"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.1.3"
 depends          "database"
