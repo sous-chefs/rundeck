@@ -1,8 +1,9 @@
+name              "sudo"
 maintainer        "Opscode, Inc."
 maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
 description       "Installs sudo and configures /etc/sudoers"
-version           "1.2.0"
+version           "1.2.2"
 
 recipe "sudo", "Installs sudo and configures /etc/sudoers"
 
