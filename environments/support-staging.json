@@ -10,7 +10,7 @@
         "hive": "= 1.1.0", 
         "java": "= 1.6.0", 
         "memcached": "= 1.0.4", 
-        "nagios": "= 1.6.3",  
+        "nagios": "= 1.6.3", 
         "rundeck": "= 1.0.4", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
@@ -72,12 +72,12 @@
                     "HADOOP_HEAPSIZE": 2000
                 }, 
                 "mapred": {
+                    "acls_enabled": "false", 
                     "local_dir": "/mnt/hdfs/hdfs01/data1/mapred,/mnt/hdfs/hdfs01/data2/mapred,/mnt/hdfs/hdfs01/data3/mapred,/mnt/hdfs/hdfs01/data4/mapred,/mnt/hdfs/hdfs01/data5/mapred,/mnt/hdfs/hdfs01/data6/mapred,/mnt/hdfs/hdfs01/data7/mapred,/mnt/hdfs/hdfs01/data8/mapred,/mnt/hdfs/hdfs01/data9/mapred,/mnt/hdfs/hdfs01/data10/mapred,/mnt/hdfs/hdfs01/data11/mapred,/mnt/hdfs/hdfs01/data12/mapred", 
                     "reduce_tasks": 26, 
                     "submit_replication": 3, 
                     "tasktracker_map_tasks_maximum": 6, 
-                    "tasktracker_reduce_tasks_maximum": 3,
-                    "acls_enabled": "false"
+                    "tasktracker_reduce_tasks_maximum": 3
                 }
             }
         }, 
@@ -175,34 +175,6 @@
             "server_role": "nagios_xi", 
             "sysadmin_email": "trent.white@webtrends.com", 
             "users_databag_group": "staging"
-        }, 
-        "ondemand_base": {
-            "apt": [
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
-                }, 
-                {
-                    "components": [
-                        "main"
-                    ], 
-                    "distribution_suffix": "-0.10", 
-                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
-                    "name": "wtlab-opscode", 
-                    "url": "http://repo.staging.dmz/repo/apt/opscode"
-                }
-            ], 
-            "yum": [
-                {
-                    "description": "Webtrends Repo", 
-                    "name": "wtlab", 
-                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
-                }
-            ]
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
