@@ -14,23 +14,23 @@ log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
 
 # remove the app
 iis_app 'CAM' do
-	path "/Cam"
-	application_pool app_pool
-	action :delete
-	ignore_failure true
+  path "/Cam"
+  application_pool app_pool
+  action :delete
+  ignore_failure true
 end
 
 # remove the site
 iis_site 'CAM' do
-	action [:stop, :delete]
-	ignore_failure true
+  action [:stop, :delete]
+  ignore_failure true
 end
 
 # remove the pool
 iis_pool app_pool do
-    action [:stop, :delete]
-    # ignore errors for now since the resource search will match CAMService when searching for CAM (this is fixed in IIS cookbook v1.2)
-    ignore_failure true
+  action [:stop, :delete]
+  # ignore errors for now since the resource search will match CAMService when searching for CAM (this is fixed in IIS cookbook v1.2)
+  ignore_failure true
 end
 
 directory install_dir do
