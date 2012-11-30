@@ -18,15 +18,15 @@ svcbin = "#{install_dir}\\wtlogpreproc.exe"
 
 # stop service
 service 'wtlogpreproc' do
-	action :stop
-	ignore_failure true
+  action :stop
+  ignore_failure true
 end
 
 # sleep to allow service to stop
 ruby_block 'wait' do
-	block do
-		sleep(10)
-	end
+  block do
+    sleep(10)
+  end
 end
 
 execute 'wtlogpreproc.exe uninstall' do
@@ -36,7 +36,7 @@ end
 
 # delete install folder
 directory install_dir do
-	recursive true
-	action :delete
+  recursive true
+  action :delete
 end
 
