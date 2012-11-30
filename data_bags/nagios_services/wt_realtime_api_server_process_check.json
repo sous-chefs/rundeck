@@ -1,5 +1,0 @@
-{
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jps -a 'RealtimeApiDaemon'", 
-    "hostgroup_name": "wt_realtime_api_server", 
-    "id": "wt_realtime_api_server_process_check"
-}
