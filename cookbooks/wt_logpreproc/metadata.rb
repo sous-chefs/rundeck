@@ -6,3 +6,5 @@ description      "Installs/Configures Webtrends Log Preprocessor"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "1.0.13"
 depends          "wt_base"
+depends          "windows"
+supports         "windows"
