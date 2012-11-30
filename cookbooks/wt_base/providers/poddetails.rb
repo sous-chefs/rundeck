@@ -11,6 +11,5 @@
 # include Chef::Mixin::ShellOut
 
 action :run do
-	return unless node['wt_base']['pod_details']
+  return unless node['wt_base']['pod_details']
 end
-
