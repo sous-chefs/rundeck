@@ -88,4 +88,3 @@ template "#{install_dir}\\DDU.exe.config" do
     :outputdir  => "#{node['wt_common']['config_share']}\\WTL021014000002\\component\\plugins\\DeviceLookupPlugin"
   )
 end
-
