@@ -24,6 +24,6 @@ when "centos", "redhat", "fedora"
   # enabled by default in php53
 when "debian", "ubuntu"
   package "php5-fileinfo" do
-    action :upgrade
+    action :install
   end
 end
