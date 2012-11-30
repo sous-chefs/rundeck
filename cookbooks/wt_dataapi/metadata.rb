@@ -1,3 +1,4 @@
+name                "wt_dataapi"
 maintainer          "Webtrends, Inc."
 maintainer_email    "ivan.vonnagy@webtrends.com"
 license             "All rights reserved"
