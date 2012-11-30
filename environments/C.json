@@ -245,7 +245,7 @@
             "monitoring_enabled": "true"
         }, 
         "wt_roadrunner": {
-            "build_url": "\\\\sstore02.staging.dmz\\install\\ReleasedBuilds\\10.3.0\\10.3HF bundle build\\RoadRunner_10.3_10.3.0.11_artifacts.zip"
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.31/rtm/roadrunner/RoadRunner.zip"
         }, 
         "wt_rta": {
             "rta_host": "crta01.staging.dmz"
