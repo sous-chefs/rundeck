@@ -17,7 +17,7 @@
         "wt_sauth": "= 1.1.2",
         "wt_netacuity": "= 1.0.10",
         "wt_realtimeapi": "= 1.0.1",
-        "wt_streamingapi": "= 1.1.0",
+        "wt_streamingapi": "= 1.1.2",
         "wt_kafka_topagg": "= 1.0.1",
         "wt_streaming_viz": "= 1.1.14",
         "wt_realtime_hadoop": "= 1.0.4",
@@ -323,7 +323,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/41954:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/43344:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "sapi_service_url": "ws://nsapi01.staging.dmz:8080", 
             "usagedbname": "Streaming", 
