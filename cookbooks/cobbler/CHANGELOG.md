@@ -1,3 +1,6 @@
+## 1.0.7:
+* Added DBAN-2.2.6 profile
+
 ## 1.0.6:
 * Take out the check to see if running on Chef 0.9.X
 

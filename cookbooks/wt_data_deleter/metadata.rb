@@ -1,3 +1,4 @@
+name             "wt_data_deleter"
 maintainer       "Webtrends Inc."
 maintainer_email "Michael.Parsons@webtrends.com"
 license          "All rights reserved"

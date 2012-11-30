@@ -1,3 +1,4 @@
+name             "wt_base"
 maintainer       "Webtrends Inc."
 maintainer_email "david.dvorak@webtrends.com"
 license          "All rights reserved"

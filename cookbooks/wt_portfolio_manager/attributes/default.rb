@@ -1,6 +1,6 @@
 
-# Author:: Kendrick Martin(<kendrick.martin@webtrends.com>)
-# Cookbook Name:: wt_portfolio_admin
+# Author:: Toby Mosby(<toby.mosby@webtrends.com>)
+# Cookbook Name:: wt_portfolio_manager
 # Attribute:: default
 #
 # Copyright 2012, Webtrends Inc.
