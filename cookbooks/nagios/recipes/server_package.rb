@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-if platform_family?(debian)
+if node['platform_family'] == 'debian'
 
   # Nagios package requires to enter the admin password
   # We generate it randomly as it's overwritten later in the config templates
