@@ -129,6 +129,10 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
         :zookeeper_quorum => zookeeper_quorum * ",",
         :pod              => pod,
         :datacenter       => datacenter,
+
+        # exploratory parameters
+        :exploreTimeout => node['wt_streamingapi']['explore_timeout'],
+        :exploreQuietPeriod => node['wt_streamingapi']['explore_quietperiod']
       })
     end
   end
