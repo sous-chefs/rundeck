@@ -9,7 +9,7 @@
 
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploy first"
+  log "The deploy_build value is true so un-deploying first"
 #  include_recipe "wt_opt_hornetq::undeploy"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
@@ -31,7 +31,7 @@ include_recipe "java"
 package "libaio1"
 
 user "jboss" do
-  home "#{install_dir}"
+  home install_dir
   uid node['wt_opt_hornetq']['jboss_uid']
 end
 
@@ -40,17 +40,17 @@ group "jboss" do
 end
 
 # create the install directory
-directory "#{install_dir}" do
+directory install_dir do
   recursive true
   owner "jboss"
   group "jboss"
 end
 
 # create the log directory
-directory "#{log_dir}" do
+directory log_dir do
   owner   user
   group   group
-  mode    00755
+  mode    000755
   recursive true
   action :create
 end
