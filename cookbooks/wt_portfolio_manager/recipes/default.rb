@@ -1,5 +1,6 @@
 #
 # Cookbook Name:: wt_portfolio_manager
+# Author: Toby Mosby(<toby.mosby@webtrends.com>)
 # Recipe:: default
 #
 # Copyright 2012, Webtrends
