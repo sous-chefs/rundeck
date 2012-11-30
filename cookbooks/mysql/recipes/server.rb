@@ -21,12 +21,27 @@
 
 include_recipe "mysql::client"
 
-# generate all passwords
-node.set_unless['mysql']['server_debian_password'] = secure_password
-node.set_unless['mysql']['server_root_password']   = secure_password
-node.set_unless['mysql']['server_repl_password']   = secure_password
+if Chef::Config[:solo]
+  missing_attrs = %w{
+    server_debian_password server_root_password server_repl_password
+  }.select do |attr|
+    node["mysql"][attr].nil?
+  end.map { |attr| "node['mysql']['#{attr}']" }
 
-if platform?(%w{debian ubuntu})
+  if !missing_attrs.empty?
+    Chef::Application.fatal!([
+      "You must set #{missing_attrs.join(', ')} in chef-solo mode.",
+      "For more information, see https://github.com/opscode-cookbooks/mysql#chef-solo-note"
+    ].join(' '))
+  end
+else
+  # generate all passwords
+  node.set_unless['mysql']['server_debian_password'] = secure_password
+  node.set_unless['mysql']['server_root_password']   = secure_password
+  node.set_unless['mysql']['server_repl_password']   = secure_password
+end
+
+if platform_family?(%w{debian})
 
   directory "/var/cache/local/preseeding" do
     owner "root"
@@ -57,7 +72,7 @@ if platform?(%w{debian ubuntu})
 
 end
 
-if platform? 'windows'
+if platform_family?('windows')
   package_file = node['mysql']['package_file']
 
   remote_file "#{Chef::Config[:file_cache_path]}/#{package_file}" do
@@ -80,16 +95,16 @@ node['mysql']['server']['packages'].each do |package_name|
   end
 end
 
-unless platform?(%w{mac_os_x})
+unless platform_family?(%w{mac_os_x})
 
   directory node['mysql']['confd_dir'] do
-    owner "mysql" unless platform? 'windows'
-    group "mysql" unless platform? 'windows'
+    owner "mysql" unless platform_family? 'windows'
+    group "mysql" unless platform_family? 'windows'
     action :create
     recursive true
   end
 
-  if platform? 'windows'
+  if platform_family? 'windows'
     require 'win32/service'
 
     windows_path node['mysql']['bin_dir'] do
@@ -110,7 +125,7 @@ unless platform?(%w{mac_os_x})
       start_command "start mysql"
     end
     supports :status => true, :restart => true, :reload => true
-    action :nothing
+    action :enable
   end
 
   skip_federated = case node['platform']
@@ -124,8 +139,8 @@ unless platform?(%w{mac_os_x})
 
   template "#{node['mysql']['conf_dir']}/my.cnf" do
     source "my.cnf.erb"
-    owner "root" unless platform? 'windows'
-    group node['mysql']['root_group'] unless platform? 'windows'
+    owner "root" unless platform_family? 'windows'
+    group node['mysql']['root_group'] unless platform_family? 'windows'
     mode "0644"
     case node['mysql']['reload_action']
     when 'restart'
@@ -148,20 +163,16 @@ unless Chef::Config[:solo]
   end
 end
 
-# set the root password on platforms
-# that don't support pre-seeding
-unless platform?(%w{debian ubuntu})
-
-  execute "assign-root-password" do
-    command "\"#{node['mysql']['mysqladmin_bin']}\" -u root password \"#{node['mysql']['server_root_password']}\""
-    action :run
-    only_if "\"#{node['mysql']['mysql_bin']}\" -u root -e 'show databases;'"
-  end
-
+# set the root password for situations that don't support pre-seeding.
+# (eg. platforms other than debian/ubuntu & drop-in mysql replacements)
+execute "assign-root-password" do
+  command "\"#{node['mysql']['mysqladmin_bin']}\" -u root password \"#{node['mysql']['server_root_password']}\""
+  action :run
+  only_if "\"#{node['mysql']['mysql_bin']}\" -u root -e 'show databases;'"
 end
 
 # Homebrew has its own way to do databases
-if platform?(%w{mac_os_x})
+if platform_family?(%w{mac_os_x})
 
   execute "mysql-install-db" do
     command "mysql_install_db --verbose --user=`whoami` --basedir=\"$(brew --prefix mysql)\" --datadir=#{node['mysql']['data_dir']} --tmpdir=/tmp"
@@ -178,14 +189,14 @@ else
     Chef::Log.info("Could not find previously defined grants.sql resource")
     t = template grants_path do
       source "grants.sql.erb"
-      owner "root" unless platform? 'windows'
-      group node['mysql']['root_group'] unless platform? 'windows'
+      owner "root" unless platform_family? 'windows'
+      group node['mysql']['root_group'] unless platform_family? 'windows'
       mode "0600"
       action :create
     end
   end
 
-  if platform? 'windows'
+  if platform_family? 'windows'
     windows_batch "mysql-install-privileges" do
       command "\"#{node['mysql']['mysql_bin']}\" -u root #{node['mysql']['server_root_password'].empty? ? '' : '-p' }\"#{node['mysql']['server_root_password']}\" < \"#{grants_path}\""
       action :nothing
@@ -197,5 +208,9 @@ else
       action :nothing
       subscribes :run, resources("template[#{grants_path}]"), :immediately
     end
+  end
+
+  service "mysql" do
+    action :start
   end
 end
