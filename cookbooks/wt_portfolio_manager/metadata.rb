@@ -1,6 +1,6 @@
 name             "wt_portfolio_manager"
 maintainer       "Webtrends, Inc."
-maintainer_email "kendrick.martin@webtrends.com"
+maintainer_email "toby.mosby@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures Portfolio Manager IIS site"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
