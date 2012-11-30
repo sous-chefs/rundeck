@@ -36,7 +36,7 @@
     "wt_sauth": "= 1.1.2",
     "wt_netacuity": "= 1.0.10",
     "wt_realtimeapi": "= 1.0.1",
-    "wt_streamingapi": "= 1.1.1",
+    "wt_streamingapi": "= 1.1.2",
     "wt_kafka_topagg": "= 1.0.1",
     "wt_streaming_viz": "= 1.1.14",
     "wt_storm_realtime": "= 2.1.6",
@@ -255,7 +255,7 @@
       "usagedbname": "Streaming",
       "usagedbserver": "hcamdb01.staging.dmz",
       "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
-      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/43036:id/webtrends-streamingapi-bin.tar.gz",
+      "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/43303:id/webtrends-streamingapi-bin.tar.gz",
       "sapi_service_url": "ws://hsapi01.staging.dmz:8080"
     },
     "wt_streamingconfigservice": {
