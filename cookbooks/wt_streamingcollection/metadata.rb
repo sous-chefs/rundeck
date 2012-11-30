@@ -1,3 +1,4 @@
+name                "wt_streamingcollection"
 maintainer          "Webtrends, Inc"
 maintainer_email    "marek.dolgos@webtrends.com"
 license             "All rights reserved"

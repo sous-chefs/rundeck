@@ -30,12 +30,12 @@ if ENV["deploy_build"] then
   log "Camdbname: #{camdbname}"
 
   sql_server_database camdbname do
-      connection ({:host => camdbhost,
+    connection ({:host => camdbhost,
                    :port => camdbport,
                    :username => camdbuser,
                    :password => camdbpwd})
-	  drop_users :true
-      action :drop 
+    drop_users :true
+    action :drop 
   end
 
   windows_zipfile Chef::Config[:file_cache_path] do

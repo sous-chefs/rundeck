@@ -9,10 +9,10 @@
 #
 
 node['wt_base']['yum'].each do |yumrepo|
-	yum_repository yumrepo['name'] do
-		repo_name yumrepo['name']
-		description yumrepo['description']
-		url yumrepo['url']
-		action :add
-	end
+  yum_repository yumrepo['name'] do
+    repo_name yumrepo['name']
+    description yumrepo['description']
+    url yumrepo['url']
+    action :add
+  end
 end
