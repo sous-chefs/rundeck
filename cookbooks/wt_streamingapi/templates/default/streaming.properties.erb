@@ -21,6 +21,11 @@ zookeeper.quorum=<%= @zookeeper_quorum  %>
 streaming.zmq.znodeRoot=/StreamingZMQ
 streaming.zmq.port=1543
 
+# The amount of time (minutes) an exploratory session will run
+streaming.explore.timeout=<%= @exploreTimeout %>
+# The amount of time (minutes) between exploratory sessions
+streaming.explore.quietPeriod=<%= @exploreQuietPeriod %>
+
 # Proxy properties. Lease this section blank if you dont need proxy support.
 <% if @auth_host.to_s != '' && @proxy_host.to_s != '' %>
 easy.proxy.1 = <%= @auth_host %> -> <%= @proxy_host %>
