@@ -1,3 +1,9 @@
+## 1.1.1
+* changed windows_zipfile source
+* moved templates out of deploy section
+* added notifications to service resource when service is deployed or templates change
+* fixed misplaced quote sc delete command
+
 ## 1.1.0
 * Change README from rdoc to md
 * Don't use wt_base to pull the build.  Just use the windows_zipfile resource
