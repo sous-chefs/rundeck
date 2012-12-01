@@ -14,7 +14,6 @@ install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_roadr
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
 svcuser   = auth_data['wt_common']['loader_user']
-svcpass   = auth_data['wt_common']['loader_pass']
 
 # determine root drive of install_dir - ENG390500
 if (install_dir =~ /^(\w:)\\.*$/)
