@@ -1,3 +1,5 @@
+## 1.0.6
+	* renamed system database attributes
 ## 1.0.5
     * Corrected slash substitution in paths.
 ## 1.0.4

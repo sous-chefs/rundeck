@@ -4,7 +4,7 @@ maintainer_email    "mark.alexander@webtrends.com"
 license             "All rights reserved"
 description         "Installs/Configures the Webtrends Streaming Config Service"
 long_description    IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version             "1.0.5"
+version             "1.0.6"
 depends             "java"
 depends             "runit"
 depends             "minitest-handler"

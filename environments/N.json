@@ -1,34 +1,34 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "hive": "= 1.0.2",
-        "java": "= 1.6.0",
-        "webpi": "= 1.0.16",
-        "storm": "= 1.0.28",
-        "kafka": "= 1.0.20",
-        "hbase": "= 1.0.3",
-        "nagios": "= 1.6.3",
-        "hadoop": "= 1.0.3",
-        "windows": "= 1.3.6",
-        "zookeeper": "= 1.1.6",
-        "webtrends_server": "= 1.8.8",
-        "wt_cam": "= 1.1.3",
-        "wt_base": "= 1.0.2",
-        "wt_sauth": "= 1.1.2",
-        "wt_netacuity": "= 1.0.10",
-        "wt_realtimeapi": "= 1.0.1",
-        "wt_streamingapi": "= 1.1.2",
-        "wt_kafka_topagg": "= 1.0.1",
-        "wt_streaming_viz": "= 1.1.14",
-        "wt_realtime_hadoop": "= 1.0.4",
-        "wt_storm_streaming": "= 2.2.1",
-        "wt_portfolio_admin": "= 1.1.10",
-        "wt_streamingauditor": "= 1.0.10",
-        "wt_streamingcollection": "= 1.0.3",
-        "wt_streaminglogreplayer": "= 1.1.2",
-        "wt_streamingconfigservice": "= 1.0.5",
-        "wt_streaminganalysis_monitor": "= 1.0.2",
-        "wt_streamingmanagementservice": "= 1.0.1"
+        "hadoop": "= 1.0.3", 
+        "hbase": "= 1.0.3", 
+        "hive": "= 1.0.2", 
+        "java": "= 1.6.0", 
+        "kafka": "= 1.0.20", 
+        "nagios": "= 1.6.3", 
+        "storm": "= 1.0.28", 
+        "webpi": "= 1.0.16", 
+        "webtrends_server": "= 1.8.8", 
+        "windows": "= 1.3.6", 
+        "wt_base": "= 1.0.2", 
+        "wt_cam": "= 1.1.3", 
+        "wt_kafka_topagg": "= 1.0.1", 
+        "wt_netacuity": "= 1.0.10", 
+        "wt_portfolio_admin": "= 1.1.10", 
+        "wt_realtime_hadoop": "= 1.0.4", 
+        "wt_realtimeapi": "= 1.0.1", 
+        "wt_sauth": "= 1.1.2", 
+        "wt_storm_streaming": "= 2.2.1", 
+        "wt_streaming_viz": "= 1.1.14", 
+        "wt_streaminganalysis_monitor": "= 1.0.2", 
+        "wt_streamingapi": "= 1.1.2", 
+        "wt_streamingauditor": "= 1.0.10", 
+        "wt_streamingcollection": "= 1.0.3", 
+        "wt_streamingconfigservice": "= 1.0.6", 
+        "wt_streaminglogreplayer": "= 1.1.2", 
+        "wt_streamingmanagementservice": "= 1.0.1", 
+        "zookeeper": "= 1.1.6"
     }, 
     "default_attributes": {
         "authorization": {
@@ -89,14 +89,14 @@
             }
         }, 
         "kafka": {
-            "num_partitions": 12,
-            "log_flush_scheduler_time_interval": "500",
-            "chroot_suffix": "brokers",
-            "download_url": "http://repo.staging.dmz/repo/linux/kafka/",
-            "threads": "16",
-            "version": "0.7.1",
-            "log_retention_hours": "2",
-            "log_flush_time_interval": "500"
+            "chroot_suffix": "brokers", 
+            "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
+            "log_flush_scheduler_time_interval": "500", 
+            "log_flush_time_interval": "500", 
+            "log_retention_hours": "2", 
+            "num_partitions": 12, 
+            "threads": "16", 
+            "version": "0.7.1"
         }, 
         "memcached": {}, 
         "ms_dotnet4": {
@@ -207,9 +207,8 @@
             "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38950:id/MirrorMonitor-bin.tar.gz"
         }, 
         "wt_masterdb": {
-            "master_db": "wtmaster", 
-            "master_host": "dmasterdb01.staging.dmz", 
-            "sched_host": "dmasterdb01.staging.dmz"
+            "dbname": "wtMaster", 
+            "host": "dmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
@@ -238,9 +237,9 @@
         }, 
         "wt_portfolio_manager": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/42911:id/Portfolio.Manager.zip", 
-            "manager_ui_url": "",
-            "portmgr_group_user": "N.PortMgr.Users",
-            "portmgr_group_admin": "N.PortMgr.Admins",
+            "manager_ui_url": "", 
+            "portmgr_group_admin": "N.PortMgr.Admins", 
+            "portmgr_group_user": "N.PortMgr.Users", 
             "portmgr_injected_user": "tomomi.ioffe@webtrends.com"
         }, 
         "wt_realtime_hadoop": {
@@ -259,25 +258,25 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43376:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_validation_bolt_count": 24,
-            "streaming_topology_augmentation_bolt_count": 24,
-            "streaming_topology_in_session_bolt_count": 24,
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43373:id/streaming-analysis-bin.tar.gz", 
+            "streaming_topology_augmentation_bolt_count": 24, 
+            "streaming_topology_augmentation_bolt_tasks": 24, 
+            "streaming_topology_field_grouping_local": "false", 
             "streaming_topology_filter_bolt_count": 24, 
-            "streaming_topology_zmq_emitter_bolt_count": 4,
-            "streaming_topology_field_grouping_local": "false",
-            "streaming_topology_validation_bolt_tasks": 24,
-            "streaming_topology_augmentation_bolt_tasks": 24,
-            "streaming_topology_in_session_bolt_tasks": 12,
             "streaming_topology_filter_bolt_tasks": 24, 
+            "streaming_topology_in_session_bolt_count": 24, 
+            "streaming_topology_in_session_bolt_tasks": 12, 
+            "streaming_topology_validation_bolt_count": 24, 
+            "streaming_topology_validation_bolt_tasks": 24, 
+            "streaming_topology_zmq_emitter_bolt_count": 4, 
             "streaming_topology_zmq_emitter_bolt_tasks": 4, 
-            "topic_list": [
-                "Lab_N_lrRawHits:12", 
-                "Lab_N_scsRawHits:12"
-            ],
             "supervisor": {
                 "workers": 1
             }, 
+            "topic_list": [
+                "Lab_N_lrRawHits:12", 
+                "Lab_N_scsRawHits:12"
+            ], 
             "worker": {
                 "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
@@ -322,10 +321,7 @@
             "log_share_mount": "sstore02.staging.dmz:/ifs/nstore/logreplay", 
             "zookeeper_env": "N"
         }, 
-        "wt_usagedb": {
-            "schedulerdb_host": "nusagedb01.staging.dmz", 
-            "usage_host": "nusagedb01.staging.dmz"
-        }, 
+        "wt_usagedb": {}, 
         "zookeeper": {
             "client_port": 2181, 
             "init_limit": 10, 

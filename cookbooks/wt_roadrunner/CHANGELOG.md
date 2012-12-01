@@ -1,3 +1,6 @@
+## 1.1.2
+* renamed system database attributes
+
 ## 1.1.1
 * changed windows_zipfile source
 * moved templates out of deploy section

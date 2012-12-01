@@ -2,16 +2,16 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "java": "= 1.6.0", 
-        "nagios": "= 1.6.3",  
+        "nagios": "= 1.6.3", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
-        "wt_analytics_ui": "= 1.0.1", 
+        "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.0.9", 
         "wt_monitoring": "= 0.0.2", 
-        "wt_search": "= 1.0.7", 
-        "wt_sync": "= 1.0.4", 
+        "wt_search": "= 1.0.10", 
+        "wt_sync": "= 1.0.6", 
         "wt_xd": "= 0.0.6"
     }, 
     "default_attributes": {
@@ -218,8 +218,8 @@
             "mc_service_url": "https://jmc.englab.webtrends.corp"
         }, 
         "wt_masterdb": {
-            "master_host": "jmasterdb01.englab.webtrends.corp", 
-            "sched_host": "jmasterdb01.englab.webtrends.corp"
+            "dbname": "wtMaster", 
+            "host": "jmasterdb01.englab.webtrends.corp"
         }, 
         "wt_messaging_monitoring": {
             "monitor_hostname": "jds01.staging.dmz"
@@ -237,6 +237,14 @@
         "wt_rta": {
             "rta_host": "jrta01.englab.webtrends.corp"
         }, 
+        "wt_scheddb": {
+            "dbname": "wt_Sched", 
+            "host": "jmasterdb01.englab.webtrends.corp"
+        }, 
+        "wt_schedulerdb": {
+            "dbname": "wtScheduler", 
+            "host": "jusagedb01.englab.webtrends.corp"
+        }, 
         "wt_search": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/0829/Search.zip", 
             "search_hostname": "jsearch.englab.webtrends.corp"
@@ -245,8 +253,8 @@
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/0829/SyncService.zip"
         }, 
         "wt_usagedb": {
-            "schedulerdb_host": "jusagedb01.englab.webtrends.corp", 
-            "usage_host": "jusagedb01.englab.webtrends.corp"
+            "dbname": "wtUsage", 
+            "host": "jusagedb01.englab.webtrends.corp"
         }, 
         "wt_xd": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/09122012/XD_Map_Reduce_master_1.0.0-SNAPSHOT.102_artifacts.zip", 

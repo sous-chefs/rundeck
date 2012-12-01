@@ -48,7 +48,7 @@ Attributes
 * `node['wt_common']['wrsmodify_group']` - Windows AD group that should have modify access to the install dir
 * `node['wt_common']['wrsread_group']` - Windows AD group that should have read access to the install dir
 * `node['wt_dx']['rest_base_uri']` - URL to DX box to make REST calls to(ie. https://ws.webtrends.com/v3)
-* `node['wt_masterdb']['master_host']` - Host name of masterdb
+* `node['wt_masterdb']['host']` - Host name of masterdb
 * `node['wt_messaging_monitoring']['monitor_hostname'] - 
 * `node['wt_search']['search_hostname']` - Load balanced address of search boxes
 
