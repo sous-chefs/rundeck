@@ -123,7 +123,7 @@ end
 template "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config" do
 	source 'Webtrends.RoadRunner.Service.exe.config.erb'
 	variables(
-		:master_host => node['wt_masterdb']['master_host']
+		:master_host => node['wt_masterdb']['host']
 	)
 end
 
