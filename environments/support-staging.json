@@ -3,7 +3,7 @@
     "cookbook_versions": {
         "bluepill": "= 1.0.6", 
         "cassandra": "= 1.0.10", 
-        "cobbler": "= 1.0.5", 
+        "cobbler": "= 1.0.7", 
         "graphite": "= 0.3.0", 
         "hadoop": "= 1.1.9", 
         "hbase": "= 1.1.4", 
