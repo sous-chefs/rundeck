@@ -19,7 +19,7 @@ Attributes
 * `node['wt_common']['wrsmodify_group']` - Windows AD group that should have modify access to the install dir
 * `node['wt_common']['wrsread_group']` - Windows AD group that should have read access to the install dir
 * `node['wt_search']['download_url']` - Http path to where the zip file to deploy is located
-* `node['wt_masterdb']['master_host']` - Host name of masterdb
+* `node['wt_masterdb']['host']` - Host name of masterdb
 
 Data Bag Items
 ===============

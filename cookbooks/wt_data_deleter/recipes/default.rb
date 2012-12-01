@@ -87,7 +87,7 @@ if ENV["deploy_build"] == "true" then
   template "#{install_dir}\\DeletionScheduler.exe.config" do
     source "DeletionScheduler.exe.config.erb"
     variables(
-      :master_host      => node['wt_masterdb']['master_host'],
+      :master_host      => node['wt_masterdb']['host'],
       :report_column    => node['cassandra']['cassandra_report_column'],
       :metadata_column  => node['cassandra']['cassandra_meta_column'],
       :cass_thrift_port => node['cassandra']['cassandra_thrift_port'],
