@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-default['notepadplusplus']['http_url'] = "http://download.tuxfamily.org/notepadplus/6.1.6/npp.6.1.6.Installer.exe"
+default['notepadplusplus']['http_url'] = "http://download.tuxfamily.org/notepadplus/6.2.2/npp.6.2.2.Installer.exe"
