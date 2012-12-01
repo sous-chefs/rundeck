@@ -92,4 +92,13 @@ Enable authorization for different protocols.
 <value><%= node.hadoop_attrib(:core, :fs_checkpoint_period) %></value>
 </property>
 
+<!-- OOZIE -->
+  <property>
+    <name>hadoop.proxyuser.hadoop.hosts</name>
+    <value>sworkflow01</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hadoop.groups</name>
+    <value>hadoop</value>
+  </property>
 </configuration>

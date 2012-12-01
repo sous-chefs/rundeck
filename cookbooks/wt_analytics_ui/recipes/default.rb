@@ -166,7 +166,7 @@ if ENV["deploy_build"] == "true" then
     source "webConfig.erb"
      variables(
       # master database host
-      :master_host => node['wt_masterdb']['master_host'],
+      :master_host => node['wt_masterdb']['host'],
 
       # cache config
       :cache_enabled => node['wt_analytics_ui']['cache_enabled'],
