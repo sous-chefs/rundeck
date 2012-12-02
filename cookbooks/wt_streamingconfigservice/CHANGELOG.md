@@ -1,3 +1,6 @@
+## 1.0.6
+* renamed system database attributes
+
 ## 1.0.5
 * Added an erb file for rcsrules.config.caches.json in the config folder.
 

@@ -11,7 +11,7 @@
 logdir = node['wt_common']['log_dir_windows']
 installdir = node['wt_common']['install_dir_windows']
 archive_url = node['wt_common']['archive_server']
-master_host = node['wt_masterdb']['master_host']
+master_host = node['wt_masterdb']['host']
 common_install_url = node['wt_commonlib']['common_install_url']
 msi_name = node['wt_commonlib']['commonlib_msi']
 

@@ -1,3 +1,6 @@
+## 1.0.8
+* Use our internal mirrors for security updates during the install
+
 ## 1.0.7:
 * Added DBAN-2.2.6 profile
 
