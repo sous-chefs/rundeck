@@ -18,7 +18,7 @@ end
 
 # get parameters
 download_url = node['wt_search']['download_url']
-master_host = node['wt_masterdb']['master_host']
+master_host = node['wt_masterdb']['host']
 
 # destinations
 install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['install_dir']).gsub(/[\\\/]+/,"\\")
