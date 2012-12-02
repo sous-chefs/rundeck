@@ -26,7 +26,7 @@ d-i partman/confirm_nooverwrite boolean true
 # System keyboard
 d-i     console-setup/ask_detect        boolean false
 d-i     console-setup/layoutcode        string us
-d-i     console-setup/variantcode       string 
+d-i     console-setup/variantcode       string
 d-i	console-keymaps-at/keymap	select	us
 # System language
 
@@ -38,9 +38,11 @@ d-i	mirror/http/hostname	string	$mirror_hostname
 d-i	mirror/http/directory	string	$mirror_path
 $SNIPPET('ubuntu_proxy')
 d-i     mirror/codename         string  $os_version
-# If any cobbler repo definitions were referenced in the kickstart profile, include them here.
-#apt-setup-udeb	apt-setup/services-select multiselect	security
-d-i	apt-setup/services-select multiselect	security
+
+# Make sure security updates get fetched from the mirror as well
+d-i	apt-setup/services-select multiselect security
+d-i apt-setup/security_host string $mirror_hostname
+d-i apt-setup/security_path string $mirror_path
 
 # Local apt repo
 $SNIPPET('ubuntu_apt_repo')
@@ -49,11 +51,11 @@ $SNIPPET('ubuntu_apt_repo')
 $SNIPPET('ubuntu_netcfg')
 
 # Reboot after installation
-finish-install	finish-install/reboot_in_progress	note	
+finish-install	finish-install/reboot_in_progress	note
 
 #Root password
 d-i	passwd/root-password-crypted	password	$1$fnrC8kYM$OJAu5hZ0DPTi.X1QyWfE9.
-user-setup-udeb	passwd/root-login	boolean	true    
+user-setup-udeb	passwd/root-login	boolean	true
 user-setup-udeb	passwd/make-user	boolean	false
 
 # System timezone

@@ -181,7 +181,7 @@
         "wt_aps": {
             "aps_url_base": "/AccountProvisioning/", 
             "service_url": "http://daps01.staging.dmz"
-        },
+        }, 
         "wt_cam": {
             "cam": {
                 "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/CAM.zip"
@@ -225,11 +225,10 @@
         }, 
         "wt_management_console": {
             "service_url": "https://dmc.staging.dmz"
-        },
+        }, 
         "wt_masterdb": {
-            "master_db": "wtmaster", 
-            "master_host": "dmasterdb01.staging.dmz", 
-            "sched_host": "dmasterdb01.staging.dmz"
+            "dbname": "wtMaster", 
+            "host": "dmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
@@ -257,13 +256,13 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip",
             "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-            "manager_ui_url": "http://hportmc01.staging.dmz",
-            "portmgr_group_user": "H.PortMgr.Users",
-            "portmgr_group_admin": "H.PortMgr.Admins",
-            "portmgr_injected_user": "toby.mosby@webtrends.com",
-            "portmgr_domain": "STAGINGDMZ"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip", 
+            "manager_ui_url": "http://hportmc01.staging.dmz", 
+            "portmgr_domain": "STAGINGDMZ", 
+            "portmgr_group_admin": "H.PortMgr.Admins", 
+            "portmgr_group_user": "H.PortMgr.Users", 
+            "portmgr_injected_user": "toby.mosby@webtrends.com"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
