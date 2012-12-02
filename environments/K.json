@@ -29,8 +29,8 @@
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
         "firefox": {
-            "http_url":"http://repo.staging.dmz/repo/windows/firefox/FirefoxSetup16.0.2.exe"
-        },
+            "http_url": "http://repo.staging.dmz/repo/windows/firefox/FirefoxSetup16.0.2.exe"
+        }, 
         "hbase": {
             "location": "sdata.staging.dmz", 
             "thrift_port": 9090
@@ -211,8 +211,8 @@
             "mc_service_url": "https://kmc.englab.webtrends.corp"
         }, 
         "wt_masterdb": {
-            "master_host": "kmasterdb01.englab.webtrends.corp", 
-            "sched_host": "kmasterdb01.englab.webtrends.corp"
+            "dbname": "wtMaster", 
+            "host": "kmasterdb01.englab.webtrends.corp"
         }, 
         "wt_messaging_monitoring": {
             "monitor_hostname": "kds01.englab.webtrends.corp"
@@ -242,6 +242,14 @@
         "wt_rta": {
             "rta_host": "krta01.englab.webtrends.corp"
         }, 
+        "wt_scheddb": {
+            "dbname": "wt_Sched", 
+            "host": "kmasterdb01.englab.webtrends.corp"
+        }, 
+        "wt_schedulerdb": {
+            "dbname": "wtScheduler", 
+            "host": "kusagedb01.englab.webtrends.corp"
+        }, 
         "wt_search": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt20/.lastSuccessful/Search.zip", 
             "search_hostname": "ksearch.englab.webtrends.corp"
@@ -250,8 +258,8 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt18/.lastSuccessful/SyncService.zip"
         }, 
         "wt_usagedb": {
-            "schedulerdb_host": "kusagedb01.englab.webtrends.corp", 
-            "usage_host": "kusagedb01.englab.webtrends.corp"
+            "dbname": "wtUsage", 
+            "host": "kusagedb01.englab.webtrends.corp"
         }, 
         "wt_xd": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36325:id/artifacts.zip", 

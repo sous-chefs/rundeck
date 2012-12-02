@@ -186,12 +186,8 @@
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
-            "master_host": "masterdb01", 
             "rta_host": "rta01.devops.dmz", 
-            "sched_host": "masterdb01", 
-            "schedulerdb_host": "masterdb01", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
-            "usage_host": "masterdb01", 
             "velocitycache_hosts": [
                 {
                     "name": "dxweb01.devops.dmz", 
@@ -215,6 +211,10 @@
             "endpoint_address": "net.tcp://search.devops.dmz:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
+        }, 
+        "wt_masterdb": {
+            "dbname": "wtMaster", 
+            "host": "masterdb01"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
@@ -248,6 +248,14 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/18442:id/realtimeapi-bin.tar.gz", 
             "port": 8082
         }, 
+        "wt_scheddb": {
+            "dbname": "wt_Sched", 
+            "host": "masterdb01"
+        }, 
+        "wt_schedulerdb": {
+            "dbname": "wtScheduler", 
+            "host": "masterdb01"
+        }, 
         "wt_storm": {
             "download_url": "http://repo.staging.dmz/repo/linux/storm/jars/"
         }, 
@@ -259,6 +267,10 @@
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/18842:id/streamingcollection-bin.tar.gz", 
             "port": 8080
+        }, 
+        "wt_usagedb": {
+            "dbname": "wtUsage", 
+            "host": "masterdb01"
         }, 
         "zookeeper": {
             "client_port": 2181, 
