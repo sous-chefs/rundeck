@@ -133,8 +133,8 @@
             "wrsread_group": "STAGINGDMZ\\L.WRS.Read"
         }, 
 	"wt_edge_server": {
-            "active_configs_endpoint": "/rcs/v1/activeRules/",
-            "config_service_rule_endpoint": "/rcs/v1/rule/{configid}",
+            "active_configs_endpoint": "/v1/rulesdata/",
+            "config_service_rule_endpoint": "/v1/rulesdata/{configid}",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt320/.lastSuccessful/Edge-Server-Distribution-wModules-all.tar.gz",
             "port": 8081,
 	    "graphite_enabled":"true",
