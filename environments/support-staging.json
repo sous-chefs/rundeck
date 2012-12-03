@@ -77,7 +77,9 @@
                     "reduce_tasks": 26, 
                     "submit_replication": 3, 
                     "tasktracker_map_tasks_maximum": 6, 
-                    "tasktracker_reduce_tasks_maximum": 3
+                    "tasktracker_reduce_tasks_maximum": 3,
+                    "io_sort_factor": 32,
+                    "io_sort_mb": 320
                 }
             }
         }, 
