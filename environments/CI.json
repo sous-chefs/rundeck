@@ -201,7 +201,7 @@
             "common_resource_environment": "support-staging", 
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
-            "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
+            "http_proxy_url": "", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
@@ -253,7 +253,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lasSuccessful/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
-            "proxy_enabled": "true"
+            "proxy_enabled": "false"
         }, 
         "wt_portfolio_manager": {
             "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
@@ -316,7 +316,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
-            "proxy_enabled": "true", 
+            "proxy_enabled": "false", 
             "sapi_url": "ws://cisapi01.staging.dmz:8080"
         }, 
         "wt_streamingapi": {
