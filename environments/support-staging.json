@@ -77,9 +77,11 @@
                     "reduce_tasks": 26, 
                     "submit_replication": 3, 
                     "tasktracker_map_tasks_maximum": 6, 
-                    "tasktracker_reduce_tasks_maximum": 3,
-                    "io_sort_factor": 32,
-                    "io_sort_mb": 320
+                    "tasktracker_reduce_tasks_maximum": 4,
+                    "io_sort_factor": 100,
+                    "io_sort_mb": 500,
+                    "job_reuse_jvm_num_tasks": 5,
+                    "child_java_opts": "-server -Xmx2000m -Djava.net.preferIPv4Stack=true"
                 }
             }
         }, 
