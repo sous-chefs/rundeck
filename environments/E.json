@@ -5,7 +5,7 @@
         "nagios": "= 1.6.3",  
         "webtrends_server": "= 1.8.8", 
         "wt_base": "= 1.0.2", 
-        "wt_edge_server": "= 0.1.1",
+        "wt_edge_server": "= 0.1.2",
         "wt_streamingcollection": "= 1.1.0", 
         "zookeeper": "= 1.1.6"
     }, 
@@ -133,12 +133,7 @@
             "wrsread_group": "STAGINGDMZ\\E.WRS.Read"
         }, 
 	"wt_edge_server": {
-            "active_configs_endpoint": "/v1/rulesdata/",
-            "config_service_rule_endpoint": "/v1/rulesdata/{configid}",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt320/.lastSuccessful/Edge-Server-Distribution-wModules-all.tar.gz",
-            "port": 8081,
-	    "graphite_enabled":"true",
-	    "graphite_interval":"5"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt320/43589:id/Edge-Server-Distribution-wModules-all.tar.gz"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
@@ -163,7 +158,7 @@
             "port": 8080
         }, 
         "wt_streamingconfigservice": {
-            "config_service_url": "http://butil01.staging.dmz:8080"
+            "config_service_url": "http://bconfigsvc.staging.dmz"
         }, 
         "zookeeper": {
             "client_port": 2181, 
