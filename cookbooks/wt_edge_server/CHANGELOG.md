@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of wt_edge_server.
 
+## 0.1.2:
+
+* Move default attributes from environment file to cookbook
+
 ## 0.1.1:
 
 * Update monitoring template to include Graphite options and remove collectd plugin file creation
