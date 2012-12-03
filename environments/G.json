@@ -6,7 +6,7 @@
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "wt_base": "= 1.0.2", 
-        "wt_edge_server": "= 0.1.1",
+        "wt_edge_server": "= 0.1.2",
         "wt_streamingcollection": "= 1.1.0"
     }, 
     "default_attributes": {
@@ -144,12 +144,7 @@
             "wrsread_group": "STAGINGDMZ\\G.WRS.Read"
         }, 
 	"wt_edge_server": {
-            "active_configs_endpoint": "/rcs/v1/activeRules/",
-            "config_service_rule_endpoint": "/rcs/v1/rule/{configid}",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt320/.lastSuccessful/Edge-Server-Distribution-wModules-all.tar.gz",
-            "port": 8081,
-	    "graphite_enabled":"true",
-	    "graphite_interval":"5"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt320/43589:id/Edge-Server-Distribution-wModules-all.tar.gz"
         },
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
