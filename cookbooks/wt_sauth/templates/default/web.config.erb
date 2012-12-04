@@ -18,7 +18,8 @@
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
     <!-- todo: create new config section for these -->
     <add key="TokenExpirationMinutes" value="<%= @tokenExpirationMinutes %>" />
-    <!--<add key="AuthCodeExpirationMinutes" value="10" />-->
+    <add key="AuthCodeExpirationMinutes" value="<%= @authCodeExpirationMinutes %>" />
+    <add key="InternalDomains" value="<%= @internal_domains %>" />
     <add key="ldapHostName" value="<%= @ldap_host %>" />
     <add key="ldapPort" value="<%= @ldap_port %>" />
     <add key="ldapAdminName" value="<%= @ldap_user %>" />
