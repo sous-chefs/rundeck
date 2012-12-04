@@ -18,7 +18,7 @@
         "wt_portfolio_admin": "= 1.1.10", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_realtimeapi": "= 1.0.1", 
-        "wt_sauth": "= 1.1.2", 
+        "wt_sauth": "= 1.1.3", 
         "wt_storm_realtime": "= 2.1.6", 
         "wt_storm_streaming": "= 2.2.1", 
         "wt_streaming_viz": "= 1.1.14", 
@@ -275,7 +275,7 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://hsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt315/41802:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/43780:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_realtime": {
