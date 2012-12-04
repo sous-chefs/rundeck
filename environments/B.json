@@ -303,25 +303,22 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43767:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augmentation_bolt_count": 24,
-            "streaming_topology_augmentation_bolt_tasks": 24,
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43816:id/streaming-analysis-bin.tar.gz", 
+            "streaming_topology_augment_bolt_count": 24,
+            "streaming_topology_augment_bolt_tasks": 24,
             "streaming_topology_filter_bolt_count": 24,
             "streaming_topology_filter_bolt_tasks": 24,
-            "streaming_topology_emitter_bolt_count": 24,
-            "streaming_topology_emitter_bolt_tasks": 24,
+            "streaming_topology_emitter_bolt_count": 4,
+            "streaming_topology_emitter_bolt_tasks": 4,
             "streaming_topology_field_grouping_local": "false", 
-            "streaming_topology_in_session_bolt_count": 0, 
-            "streaming_topology_validation_bolt_count": 20, 
-            "streaming_topology_zmq_emitter_bolt_count": 2, 
             "topic_list": [
                 "Lab_B_scsRawHits:12", 
                 "Lab_B_lrRawHits:12"
             ], 
             "worker": {
-                "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             },
-            "supervisors":{
+            "supervisor":{
                 "workers":1
             }
         }, 
