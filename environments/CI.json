@@ -252,7 +252,6 @@
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lasSuccessful/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
-            "proxy_address": "", 
             "proxy_enabled": "false"
         }, 
         "wt_portfolio_manager": {
@@ -315,7 +314,6 @@
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
-            "proxy_address": "", 
             "proxy_enabled": "false", 
             "sapi_url": "ws://cisapi01.staging.dmz:8080"
         }, 
