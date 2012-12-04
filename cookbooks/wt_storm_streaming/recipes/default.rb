@@ -234,8 +234,9 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :streaming_topology_filter_bolt_tasks  => node['wt_storm_streaming']['streaming_topology_filter_bolt_tasks'],
     # kafka consumer settings
     :kafka_consumer_topic       => node['wt_storm_streaming']['topic_list'].join(','),
-    :kafka_consumer_group_id    => 'kafka-streaming',
-    :kafka_zookeeper_timeout_ms => 1000000,
+    :kafka_consumer_group_id    => node['wt_storm_streaming']['kafka']['consumer_group_id'],
+    :kafka_zookeeper_timeout_ms => node['wt_storm_streaming']['kafka']['zookeeper_timeout_ms'],
+    :kafka_auto_offset_reset    => node['wt_storm_streaming']['kafka']['auto_offset_reset'],
     # non-storm parameters
     :zookeeper_quorum      => zookeeper_quorum * ",",
     :zookeeper_clientport  => zookeeper_clientport,
