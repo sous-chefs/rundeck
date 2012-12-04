@@ -13,6 +13,7 @@ zookeeper.quorum=<%= @zookeeper_quorum %>
 kafka.zookeeper.timeout.milliseconds=<%= @kafka_zookeeper_timeout_ms %>
 kafka.consumer.topic=<%= @kafka_consumer_topic %>
 kafka.consumer.group.id=<%= @kafka_consumer_group_id %>
+kafka.auto.offset.reset=largest=<%= @kafka_auto_offset_reset %>
 
 # Streaming parameters, should have blank values in streaming
 streaming.topology.emitter.bolt.count=<%= @streaming_topology_emitter_bolt_count %>
