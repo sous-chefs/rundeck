@@ -224,7 +224,7 @@
         "heatmap_reducers": -1
       }, 
       "wt_kafka_topagg": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41969:id/TopicAggregator-bin.tar.gz"
+        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41969:id/TopicAggregator-bin.tar.gz",
         "edge_kafka_sources": [
           {
             "topic": "Lab_CI_scsRawHits",
