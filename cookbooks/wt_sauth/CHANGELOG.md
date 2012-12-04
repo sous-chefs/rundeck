@@ -1,3 +1,6 @@
+## 1.1.3
+* Added new template attribute and recipe entries for new oauth config fields
+
 ## 1.1.2
 * Added share_wrs
 
