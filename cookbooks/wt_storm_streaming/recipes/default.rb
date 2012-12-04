@@ -237,6 +237,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :kafka_consumer_group_id    => node['wt_storm_streaming']['kafka']['consumer_group_id'],
     :kafka_zookeeper_timeout_ms => node['wt_storm_streaming']['kafka']['zookeeper_timeout_ms'],
     :kafka_auto_offset_reset    => node['wt_storm_streaming']['kafka']['auto_offset_reset'],
+    :kafka_auto_commit_enable   => node['wt_storm_streaming']['kafka']['auto_commit_enable'],
     # non-storm parameters
     :zookeeper_quorum      => zookeeper_quorum * ",",
     :zookeeper_clientport  => zookeeper_clientport,
