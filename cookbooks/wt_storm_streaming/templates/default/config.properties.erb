@@ -1,46 +1,34 @@
-debug=<%= @debug %>
+# Datacenter and pod names
 datacenter=<%= @datacenter %>
 pod=<%= @pod %>
-kafka.host=<%= @kafka %>
+
+# Geo and config services
 geo.host=<%= @netacuity %>
 cs.url=<%= @configservice %>/dcsid/streaming
 
+# Zookeeper hosts
+zookeeper.quorum=<%= @zookeeper_quorum %>
+
 # Kafka consumer parameters
-kafka.zookeeper.quorum=<%= @kafka_zookeeper_quorum %>
-kafka.zookeeper.timeout.milliseconds=<%= @kafka_zookeeper_timeout_milliseconds %>
+kafka.zookeeper.timeout.milliseconds=<%= @kafka_zookeeper_timeout_ms %>
 kafka.consumer.topic=<%= @kafka_consumer_topic %>
 kafka.consumer.group.id=<%= @kafka_consumer_group_id %>
 
-# Hbase and zookeeper parameters
-hbase.pool.size=80
-hbase.zookeeper.quorum=<%= @zookeeper_quorum  %><%= @zookeeper_quorum_path %>
-hbase.zookeeper.property.clientPort=<%=@zookeeper_clientport%>
-
-# Topology should be streaming
-topology=streaming-topology
-
 # Streaming parameters, should have blank values in streaming
-streaming.topology.in.session.bolt.count=<%= @streaming_topology_in_session_bolt_count %>
-streaming.topology.zmq.emitter.bolt.count=<%= @streaming_topology_zmq_emitter_bolt_count %>
-streaming.topology.validation.bolt.count=<%= @streaming_topology_validation_bolt_count %>
-streaming.topology.augmentation.bolt.count=<%= @streaming_topology_augmentation_bolt_count %>
+streaming.topology.zmq.emitter.bolt.count=<%= @streaming_topology_emitter_bolt_count %>
+streaming.topology.augment.bolt.count=<%= @streaming_topology_augment_bolt_count %>
 streaming.topology.filter.bolt.count=<%= @streaming_topology_filter_bolt_count %>
 
-streaming.topology.in.session.bolt.tasks=<%= @streaming_topology_in_session_bolt_tasks %>
-streaming.topology.zmq.emitter.bolt.tasks=<%= @streaming_topology_zmq_emitter_bolt_tasks %>
-streaming.topology.validation.bolt.tasks=<%= @streaming_topology_validation_bolt_tasks %>
-streaming.topology.augmentation.bolt.tasks=<%= @streaming_topology_augmentation_bolt_tasks %>
+streaming.topology.zmq.emitter.bolt.tasks=<%= @streaming_topology_emitter_bolt_tasks %>
+streaming.topology.augment.bolt.tasks=<%= @streaming_topology_augment_bolt_tasks %>
 streaming.topology.filter.bolt.tasks=<%= @streaming_topology_filter_bolt_tasks %>
 
+# Roots for zookeeper data
 streaming.topology.zmq.emitter.znodeRoot=/StreamingZMQ
 streaming.topology.zmq.data.znodeRoot=/DataAPIZMQ
-streaming.topology.field.grouping.local=<%= @streaming_topology_field_grouping_local %>
-
-
-
 
 # Zookeeper connection info (use this or audit.broker.list)
-audit.zk.connect=<%= @zookeeper_pairs %>
+audit.zk.connect=<%= @audit_zookeeper_pairs %>
 # The kafka producer type (defaults to async)
 audit.producer.type=async
 # The time span (in minutes) between each audit flush (defaults to 10)
