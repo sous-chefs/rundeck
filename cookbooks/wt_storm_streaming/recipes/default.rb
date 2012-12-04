@@ -225,35 +225,27 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   mode   00644
   variables(
     # executor counts, ie: executor threads
-    :streaming_topology_in_session_bolt_count    => node['wt_storm_streaming']['streaming_topology_in_session_bolt_count'],
-    :streaming_topology_zmq_emitter_bolt_count   => node['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'],
-    :streaming_topology_validation_bolt_count    => node['wt_storm_streaming']['streaming_topology_validation_bolt_count'],
-    :streaming_topology_augmentation_bolt_count  => node['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'],
-    :streaming_topology_filter_bolt_count        => node['wt_storm_streaming']['streaming_topology_filter_bolt_count'],
+    :streaming_topology_emitter_bolt_count => node['wt_storm_streaming']['streaming_topology_emitter_bolt_count'],
+    :streaming_topology_augment_bolt_count => node['wt_storm_streaming']['streaming_topology_augment_bolt_count'],
+    :streaming_topology_filter_bolt_count  => node['wt_storm_streaming']['streaming_topology_filter_bolt_count'],
     # task counts, ie: logical parallelism
-    :streaming_topology_in_session_bolt_tasks    => node['wt_storm_streaming']['streaming_topology_in_session_bolt_tasks'],
-    :streaming_topology_zmq_emitter_bolt_tasks   => node['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_tasks'],
-    :streaming_topology_validation_bolt_tasks    => node['wt_storm_streaming']['streaming_topology_validation_bolt_tasks'],
-    :streaming_topology_augmentation_bolt_tasks  => node['wt_storm_streaming']['streaming_topology_augmentation_bolt_tasks'],
-    :streaming_topology_filter_bolt_tasks        => node['wt_storm_streaming']['streaming_topology_filter_bolt_tasks'],
-    # other topology options
-    :streaming_topology_mode_local => node['wt_storm_streaming']['streaming_topology_mode_local'],
-    :streaming_topology_field_grouping_local => node['wt_storm_streaming']['streaming_topology_field_grouping_local'],
+    :streaming_topology_emitter_bolt_tasks => node['wt_storm_streaming']['streaming_topology_emitter_bolt_tasks'],
+    :streaming_topology_augment_bolt_tasks => node['wt_storm_streaming']['streaming_topology_augment_bolt_tasks'],
+    :streaming_topology_filter_bolt_tasks  => node['wt_storm_streaming']['streaming_topology_filter_bolt_tasks'],
     # kafka consumer settings
-    :kafka_consumer_topic                 => node['wt_storm_streaming']['topic_list'].join(','),
-    :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
-    :kafka_consumer_group_id              => 'kafka-streaming',
-    :kafka_zookeeper_timeout_milliseconds => 1000000,
+    :kafka_consumer_topic       => node['wt_storm_streaming']['topic_list'].join(','),
+    :kafka_consumer_group_id    => node['wt_storm_streaming']['kafka']['consumer_group_id'],
+    :kafka_zookeeper_timeout_ms => node['wt_storm_streaming']['kafka']['zookeeper_timeout_ms'],
+    :kafka_auto_offset_reset    => node['wt_storm_streaming']['kafka']['auto_offset_reset'],
+    :kafka_auto_commit_enable   => node['wt_storm_streaming']['kafka']['auto_commit_enable'],
     # non-storm parameters
     :zookeeper_quorum      => zookeeper_quorum * ",",
     :zookeeper_clientport  => zookeeper_clientport,
-    :zookeeper_pairs       => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
     :configservice         => node['wt_streamingconfigservice']['config_service_url'],
     :netacuity             => node['wt_netacuity']['geo_url'],
-    :kafka                 => kafka['fqdn'],
     :pod                   => pod,
     :datacenter            => datacenter,
-    :debug                 => node['wt_storm_streaming']['debug'],
+    :audit_zookeeper_pairs => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
     :audit_bucket_timespan => node['wt_monitoring']['audit_bucket_timespan'],
     :audit_topic           => node['wt_monitoring']['audit_topic'],
     :cam_url               => node['wt_cam']['cam_service_url']
