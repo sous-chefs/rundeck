@@ -92,4 +92,15 @@ Enable authorization for different protocols.
 <value><%= node.hadoop_attrib(:core, :fs_checkpoint_period) %></value>
 </property>
 
+
+<property>
+<name>hadoop.proxyuser.<%= node.hadoop_attrib(:mapred, :cluster_administrators) %>.hosts</name>
+<value><%= node.hadoop_attrib(:core, :oozie_proxy_hosts) %></value>
+</property>
+
+<property>
+<name>hadoop.proxyuser.<%= node.hadoop_attrib(:mapred, :cluster_administrators) %>.groups</name>
+<value><%= node.hadoop_attrib(:mapred, :cluster_administrators) %></value>
+</property>
+
 </configuration>
