@@ -15,11 +15,11 @@ kafka.consumer.topic=<%= @kafka_consumer_topic %>
 kafka.consumer.group.id=<%= @kafka_consumer_group_id %>
 
 # Streaming parameters, should have blank values in streaming
-streaming.topology.zmq.emitter.bolt.count=<%= @streaming_topology_emitter_bolt_count %>
+streaming.topology.emitter.bolt.count=<%= @streaming_topology_emitter_bolt_count %>
 streaming.topology.augment.bolt.count=<%= @streaming_topology_augment_bolt_count %>
 streaming.topology.filter.bolt.count=<%= @streaming_topology_filter_bolt_count %>
 
-streaming.topology.zmq.emitter.bolt.tasks=<%= @streaming_topology_emitter_bolt_tasks %>
+streaming.topology.emitter.bolt.tasks=<%= @streaming_topology_emitter_bolt_tasks %>
 streaming.topology.augment.bolt.tasks=<%= @streaming_topology_augment_bolt_tasks %>
 streaming.topology.filter.bolt.tasks=<%= @streaming_topology_filter_bolt_tasks %>
 
