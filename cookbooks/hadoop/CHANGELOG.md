@@ -3,6 +3,10 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+## 1.1.11
+* adding hadoop proxy properties for Oozie
+
+
 ## 1.1.10
 * added support for ubuntu packages
 * set JAVA_HOME in hadoop-env.sh

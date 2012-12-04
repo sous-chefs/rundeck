@@ -1,3 +1,7 @@
+## 2.3.0
+* Made changes to actual attribute names and removed no longer used
+  attributes to reflect code clean up in the topo code itself.
+
 ## 2.2.1
 * Added "streaming.topology.zmq.data.znodeRoot" in config.properties.erb
 
