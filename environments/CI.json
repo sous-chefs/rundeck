@@ -225,9 +225,15 @@
       }, 
       "wt_kafka_topagg": {
         "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41969:id/TopicAggregator-bin.tar.gz"
+        "edge_kafka_sources": [
+          {
+            "topic": "Lab_CI_scsRawHits",
+            "host": "ciscs01.staging.dmz"
+          }
+        ]
       },
       "wt_management_console": {
-        "service_url": "https://dmc.staging.dmz"
+        "service_url": "https://cisviz01.staging.dmz"
       }, 
       "wt_masterdb": {
         "dbname": "wtMaster", 
@@ -320,6 +326,11 @@
         "proxy_enabled": "false", 
         "sapi_url": "ws://cisapi01.staging.dmz:8080"
       }, 
+      "wt_streaminganalysis_monitor": {
+        "healthcheck_port": 9001,
+        "jmx_port": 9998,
+        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/.lastSuccessful/webtrends-streaming-analysis-monitor-bin.tar.gz" 
+      },
       "wt_streamingapi": {
         "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt192/.lastSuccessful/webtrends-streamingapi-bin.tar.gz", 
         "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
@@ -347,6 +358,12 @@
         "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay", 
         "thread_pool_size": 200
       }, 
+      "wt_streamingmanagementservice": {
+        "healthcheck_port": 9002,
+        "port": 8081,
+        "jmx_port": 9997,
+        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42811:id/webtrends-streaming-managementservice-bin.tar.gz"
+      },
       "wt_usagedb": {}, 
       "zookeeper": {
         "client_port": 2181, 
