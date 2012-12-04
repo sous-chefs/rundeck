@@ -59,6 +59,8 @@ default[:hadoop][:default][:core][:io_file_buffer_size] = 4096
 default[:hadoop][:default][:core][:fs_checkpoint_dir] = '/var/lib/hadoop/hdfs/backupnamenode'
 default[:hadoop][:default][:core][:fs_checkpoint_period] = 3600
 default[:hadoop][:default][:core][:fs_trash_interval] = 360
+#server running oozie
+default[:hadoop][:default][:core][:oozie_proxy_hosts] = 'sworkflow01'
 
 
 # hadoop-env.sh
