@@ -21,6 +21,7 @@ default['wt_storm_streaming']['topic_list'] = []
 default['wt_storm_streaming']['kafka']['consumer_group_id'] = "kafka-streaming"
 default['wt_storm_streaming']['kafka']['zookeeper_timeout_ms'] = 100000
 default['wt_storm_streaming']['kafka']['auto_offset_reset'] = "largest"
+default['wt_storm_streaming']['kafka']['auto_commit_enable'] = "false"
 
 # general storm attributes
 default['wt_storm_streaming']['java_lib_path'] = "/usr/local/lib:/opt/local/lib:/usr/lib"
