@@ -2,14 +2,18 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "java": "= 1.6.0", 
-        "nagios": "= 1.6.3", 
+        "nagios": "= 1.6.2", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.0.2", 
-        "wt_cam": "= 1.0.9", 
+        "wt_data_deleter": "= 1.0.4", 
+        "wt_devicedataupdater": "= 0.1.1", 
         "wt_monitoring": "= 0.0.2", 
+        "wt_netacuity": "= 1.0.10", 
+        "wt_platformscheduler": "= 1.0.12", 
+        "wt_roadrunner": "= 1.1.2", 
         "wt_search": "= 1.0.10", 
         "wt_sync": "= 1.0.6", 
         "wt_xd": "= 0.0.6"
@@ -44,10 +48,6 @@
         }, 
         "hbase": {
             "location": "sdata.staging.dmz", 
-            "site": {
-                "zookeeper_clientport": 2181, 
-                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
-            }, 
             "thrift_port": 9090
         }, 
         "java": {
@@ -158,13 +158,13 @@
             "bba_domain": "cbba.webtrends.com", 
             "cache_region": "C_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/41398:id/AnalyticsUI.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/hotfix/1115/AnalyticsUI.zip", 
             "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
             "fb_data_center_id": "Lab", 
             "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
-            "hmap_url": "", 
+            "hmap_url": "http://hehmapi01.staging.dmz/", 
             "ios_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "ondemand_base_domain": "cod.webtrends.com", 
             "proxy_address": "http://sproxy02.staging.dmz:3128", 
@@ -179,34 +179,29 @@
             "twitter_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "youtube_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw=="
         }, 
-        "wt_cam": {
-            "cam_server_url": "http://ccam01.staging.dmz/camservice", 
-            "db_server": "ccamdb01.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/20989:id/CAM.zip"
-        }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
             "config_dir_linux": "/etc/webtrends/", 
+            "config_share": "\\\\sstore02.staging.dmz\\cstore\\config", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
             "install_log_dir_windows": "d:\\logs", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
             "pod_id": "C", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
-            "velocitycache_hosts": [
-                {
-                    "name": "cdxweb01.staging.dmz", 
-                    "port": "22233"
-                }
-            ], 
             "wrsmodify_group": "STAGINGDMZ\\C.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\C.WRS.Read"
+        }, 
+        "wt_data_deleter": {
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/DataDeleter.zip"
+        }, 
+        "wt_devicedataupdater": {
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/DeviceDataUpdater.zip"
         }, 
         "wt_dx": {
             "app_settings_section": {
@@ -220,6 +215,7 @@
             "website_name": "DX", 
             "website_port": "80"
         }, 
+        "wt_logpreproc": {}, 
         "wt_management_console": {
             "mc_service_url": "https://cmc.staging.dmz"
         }, 
@@ -233,7 +229,7 @@
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 
-            "graphite_flush_enabled": "true", 
+            "graphite_flush_enabled": "false", 
             "graphite_flush_interval": "1", 
             "graphite_port": 2003, 
             "graphite_server": "sgraph01.staging.dmz", 
@@ -243,6 +239,17 @@
             "jmx_port": 9999, 
             "metric_prefix": "staging.cpod.servers", 
             "monitoring_enabled": "true"
+        }, 
+        "wt_netacuity": {
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.gz", 
+            "geo_url": "cgeo.staging.dmz", 
+            "version": "502"
+        }, 
+        "wt_platformscheduler": {
+            "agent": {
+                "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/WebTrendsVDMSchedulerAgent.msi"
+            }, 
+            "host": "csched01.staging.dmz"
         }, 
         "wt_roadrunner": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.31/rtm/roadrunner/RoadRunner.zip"
@@ -259,31 +266,20 @@
             "host": "cusagedb01.staging.dmz"
         }, 
         "wt_search": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt157/27943:id/Search.zip", 
-            "search_hostname": "csearch.staging.dmz"
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/Search.zip", 
+            "search_hostname": "csearch.staging.dmz", 
+            "search_service": "net.tcp://csearch.staging.dmz:8096/Search/Service"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt158/28988:id/SyncService.zip"
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/SyncService.zip"
         }, 
         "wt_usagedb": {
             "dbname": "wtUsage", 
             "host": "cusagedb01.staging.dmz"
         }, 
         "wt_xd": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36325:id/artifacts.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/XD_Map_Reduce_master_1.0.0-SNAPSHOT.118_artifacts.zip", 
             "environment": "support-staging"
-        }, 
-        "zookeeper": {
-            "client_port": 2181, 
-            "init_limit": 10, 
-            "quorum": [
-                "szoo01.staging.dmz", 
-                "szoo02.staging.dmz", 
-                "szoo03.staging.dmz"
-            ], 
-            "snapshot_num": 3, 
-            "sync_limit": 5, 
-            "tick_time": 2000
         }
     }, 
     "description": "C Pod", 
