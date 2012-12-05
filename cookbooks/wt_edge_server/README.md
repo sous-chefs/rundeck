@@ -31,4 +31,3 @@ default['wt_edge_server']['graphite_interval'] = "5"
 
 Usage
 =====
-
