@@ -23,6 +23,12 @@ user = node['wt_heatmaps_logconverter']['user']
 group = node['wt_heatmaps_logconverter']['group']
 java_opts = node['wt_heatmaps_logconverter']['java_opts']
 
+hadoop_datanodes = Array.new
+search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment}").each do |n|
+  hadoop_datanodes << n[:fqdn]
+end
+hadoop_datanodes.sort!
+
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -54,15 +60,41 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
+# create the log_pusher directory
+directory "#{install_dir}/log_pusher" do
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
+  variables(
+    :install_dir => install_dir
+  )
+end
+
+template "#{install_dir}/log_pusher/log_pusher.sh" do
+  source  "log_pusher.sh.erb"
+  owner "root"
+  group "root"
+  mode  00755
+end
+
+cron "log_pusher" do
+  owner   user
+  group   group
+  command "#{install_dir}/log_pusher/log_pusher.sh"
+end
+
 %w[logconverter.properties log4j.properties datanodes.conf ].each do | template_file|
   template "#{install_dir}/conf/#{template_file}" do
     source  "#{template_file}.erb"
     owner "root"
     group "root"
     mode  00644
-    variables({
-      :install_dir => install_dir
-    })
+    variables(
+      :install_dir => install_dir,
+      :datanodes => hadoop_datanodes
+    )
   end
 end
 
@@ -97,6 +129,8 @@ if ENV["deploy_build"] == "true" then
   service "hmlc" do
     action :create
   end
+
+end
 
 #Create collectd plugin for JMX
 if node.attribute?("collectd")
