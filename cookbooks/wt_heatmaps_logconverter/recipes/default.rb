@@ -60,16 +60,35 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
+# create the log_pusher directory
+directory "#{install_dir}/log_pusher" do
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
+  variables(
+    :install_dir => install_dir
+  )
+end
+
+template "#{install_dir}/log_pusher/log_pusher.sh" do
+  source  "log_pusher.sh.erb"
+  owner "root"
+  group "root"
+  mode  00755
+end
+
 %w[logconverter.properties log4j.properties datanodes.conf ].each do | template_file|
   template "#{install_dir}/conf/#{template_file}" do
     source  "#{template_file}.erb"
     owner "root"
     group "root"
     mode  00644
-    variables({
+    variables(
       :install_dir => install_dir,
       :datanodes => hadoop_datanodes
-    })
+    )
   end
 end
 
