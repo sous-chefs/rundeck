@@ -344,7 +344,7 @@
         "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
       }, 
       "wt_streamingcollection": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt188/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz"
+        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41502:id/webtrends-streamingcollection-bin.tar.gz"
       }, 
       "wt_streamingconfigservice": {
         "camdbname": "CAM", 
