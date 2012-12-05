@@ -5,6 +5,7 @@
     "name": "oozie", 
     "override_attributes": {}, 
     "run_list": [
-        "recipe[hadoop]"
+        "recipe[hadoop]",
+		"recipe[hive]"
     ]
 }
