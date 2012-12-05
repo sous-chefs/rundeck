@@ -23,6 +23,12 @@ user = node['wt_heatmaps_logconverter']['user']
 group = node['wt_heatmaps_logconverter']['group']
 java_opts = node['wt_heatmaps_logconverter']['java_opts']
 
+hadoop_datanodes = Array.new
+search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment}").each do |n|
+  hadoop_datanodes << n[:fqdn]
+end
+hadoop_datanodes.sort!
+
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -61,7 +67,8 @@ end
     group "root"
     mode  00644
     variables({
-      :install_dir => install_dir
+      :install_dir => install_dir,
+      :datanodes => hadoop_datanodes
     })
   end
 end
