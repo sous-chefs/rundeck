@@ -1,0 +1,29 @@
+#dcsids to include hits from, all others will be dropped.
+dcsidWhiteList= <%= @node['wt_heatmaps_logconverter']['dcsidWhiteList'] %>
+
+#sdc log location
+inputLogDir=<%= @node['wt_heatmaps_logconverter']['nfs_mount_dir'] %>/HMLogs
+
+#bizip settings
+bzipOutDir = <%= @node['wt_heatmaps_logconverter']['nfs_mount_dir'] %>/bziplogs
+
+deleteLogs = <%= @node['wt_heatmaps_logconverter']['deleteLogs'] %>
+
+#renameExtension = .done
+
+#size in MB to aggregate source log files to, this is the gzip size, not to the bz2 or raw.
+aggregateSmallFileRollSize = <%= @node['wt_heatmaps_logconverter']['aggregateSmallFileRollSize'] %>
+
+#minimum size of a source file for it to go directly to bz and not aggregated.
+minimumFileSize = <%= @node['wt_heatmaps_logconverter']['minimumFileSize'] %>
+
+#these control the whitelist merging....
+#how long to wait before the first merge
+initialMergerDelay = <%= @node['wt_heatmaps_logconverter']['initialMergerDelay'] %>
+
+#the frequency to do the merging
+mergerInterval = <%= @node['wt_heatmaps_logconverter']['mergerInterval'] %>
+
+#If the aggregateSmallFileRollSize is not reached the time in minutes that
+#should pass before small logs files are converted. Default is 60 minutes.
+smallFileWaitTimeMinutes = <%= @node['wt_heatmaps_logconverter']['smallFileWaitTimeMinutes'] %>
