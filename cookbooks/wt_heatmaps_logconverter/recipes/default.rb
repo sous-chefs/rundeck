@@ -79,6 +79,12 @@ template "#{install_dir}/log_pusher/log_pusher.sh" do
   mode  00755
 end
 
+cron "log_pusher" do
+  owner   user
+  group   group
+  command "#{install_dir}/log_pusher/log_pusher.sh"
+end
+
 %w[logconverter.properties log4j.properties datanodes.conf ].each do | template_file|
   template "#{install_dir}/conf/#{template_file}" do
     source  "#{template_file}.erb"
