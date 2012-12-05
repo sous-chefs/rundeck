@@ -1,0 +1,10 @@
+{
+    "chef_type": "role", 
+    "description": "Oozie", 
+    "json_class": "Chef::Role", 
+    "name": "oozie", 
+    "override_attributes": {}, 
+    "run_list": [
+        "recipe[hadoop]"
+    ]
+}
