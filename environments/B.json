@@ -20,12 +20,12 @@
         "wt_portfolio_manager": "= 1.1.15", 
         "wt_realtime_hadoop": "= 1.0.1", 
         "wt_realtimeapi": "= 0.0.23", 
-        "wt_sauth": "= 1.1.2", 
+        "wt_sauth": "= 1.1.3", 
         "wt_storm_realtime": "= 2.1.1", 
-        "wt_storm_streaming": "= 2.1.24", 
+        "wt_storm_streaming": "= 2.3.0", 
         "wt_streaming_viz": "= 1.1.16", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
-        "wt_streamingapi": "= 1.1.0", 
+        "wt_streamingapi": "= 1.1.2", 
         "wt_streamingauditor": "= 1.0.10", 
         "wt_streamingcollection": "= 1.1.0", 
         "wt_streamingconfigservice": "= 1.0.6", 
@@ -283,7 +283,7 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://bsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/41004:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/43801:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_realtime": {
@@ -303,18 +303,23 @@
             }
         }, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/41957:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augmentation_bolt_count": 20, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43816:id/streaming-analysis-bin.tar.gz", 
+            "streaming_topology_augment_bolt_count": 24,
+            "streaming_topology_augment_bolt_tasks": 24,
+            "streaming_topology_filter_bolt_count": 24,
+            "streaming_topology_filter_bolt_tasks": 24,
+            "streaming_topology_emitter_bolt_count": 4,
+            "streaming_topology_emitter_bolt_tasks": 4,
             "streaming_topology_field_grouping_local": "false", 
-            "streaming_topology_in_session_bolt_count": 0, 
-            "streaming_topology_validation_bolt_count": 20, 
-            "streaming_topology_zmq_emitter_bolt_count": 2, 
             "topic_list": [
-                "Lab_B_scsRawHits:3", 
-                "Lab_B_lrRawHits:3"
+                "Lab_B_scsRawHits:12", 
+                "Lab_B_lrRawHits:12"
             ], 
             "worker": {
-                "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+            },
+            "supervisor":{
+                "workers":1
             }
         }, 
         "wt_streaming_viz": {
@@ -332,7 +337,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/42256:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/43770:id/webtrends-streamingapi-bin.tar.gz", 
             "sapi_service_url": "ws://bsapi.webtrends.com", 
             "usagedbname": "Streaming", 
             "usagedbserver": "bcamdb01.staging.dmz"

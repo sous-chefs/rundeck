@@ -8,9 +8,9 @@
 
 
 # hive cluster attributes
-default[:oozie][:default][:path] = '/usr/share/oozie'
-default[:oozie[:default][:version] = '3.2.0'
-default[:oozie][:default][:download_url] = 'http://repo.staging.dmz/repo/linux/oozie/oozie-3.2.0-incubating.tar.gz'
+default['oozie']['default']['path'] = '/usr/share/oozie'
+default['oozie']['default']['version'] = '3.2.0'
+default['oozie']['default']['download_url'] = 'http://repo.staging.dmz/repo/linux/oozie/oozie-3.2.0-incubating.tar.gz'
 
 # oozie-site.xml 
 
