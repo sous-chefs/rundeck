@@ -98,6 +98,8 @@ if ENV["deploy_build"] == "true" then
     action :create
   end
 
+end
+
 #Create collectd plugin for JMX
 if node.attribute?("collectd")
   template "#{node['collectd']['plugin_conf_dir']}/collectd_heatmapslogconverter.conf" do
