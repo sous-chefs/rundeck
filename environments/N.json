@@ -270,8 +270,8 @@
                 "workers": 1
             }, 
             "topic_list": [
-                "Lab_N_lrRawHits:24", 
-                "Lab_N_scsRawHits:24"
+                "Lab_N_lrRawHits:2", 
+                "Lab_N_scsRawHits:2"
             ], 
             "worker": {
                 "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
