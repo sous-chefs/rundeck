@@ -1,3 +1,6 @@
+## 0.1.5
+* Removed outdated camdbname
+
 ## 0.1.4
 * Removed support to drop database
 
