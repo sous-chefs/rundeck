@@ -17,7 +17,6 @@
         "wt_netacuity": "= 1.0.10", 
         "wt_portfolio_admin": "= 1.1.10", 
         "wt_realtime_hadoop": "= 1.0.4", 
-        "wt_realtimeapi": "= 1.0.1", 
         "wt_sauth": "= 1.1.2", 
         "wt_storm_streaming": "= 2.3.0", 
         "wt_streaming_viz": "= 1.1.14", 
@@ -246,10 +245,6 @@
             "datacenter": "Lab", 
             "environment": "support-staging", 
             "pod": "N"
-        }, 
-        "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt207/30613:id/webtrends-realtimeapi-bin.tar.gz", 
-            "port": 8082
         }, 
         "wt_rta": {}, 
         "wt_sauth": {
