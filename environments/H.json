@@ -17,9 +17,7 @@
         "wt_netacuity": "= 1.0.10", 
         "wt_portfolio_admin": "= 1.1.10", 
         "wt_realtime_hadoop": "= 1.0.4", 
-        "wt_realtimeapi": "= 1.0.1", 
         "wt_sauth": "= 1.1.3", 
-        "wt_storm_realtime": "= 2.1.6", 
         "wt_storm_streaming": "= 2.2.1", 
         "wt_streaming_viz": "= 1.1.16", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
@@ -268,32 +266,12 @@
             "environment": "support-staging", 
             "pod": "H"
         }, 
-        "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt207/30613:id/webtrends-realtimeapi-bin.tar.gz", 
-            "port": 8082
-        }, 
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://hsauth.webtrends.com", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/44170:id/auth.zip"
         }, 
         "wt_search": {}, 
-        "wt_storm_realtime": {
-            "dcsid_whitelist": "dcskf5ra3wievv2j7rl2dzj9r_8m4t,dcssd1hl110000o65n6wko6yv_3f5i,dcscyjdor000004fu02p6j55k_7z2q,dcss1s1qz00000cpfqm6c3uzk_2u3x,dcsivypwnvz5bdaurmxdcu8oe_4w6t,dcskzwq0z6bv0hgc5x3drmdhl_6b2w,dcs0k3bfw9bv0h43mmbfafa4r_3d3d,dcsx80onvuz5bda0arxz7nuj4_1h7u,dcs4ns4a46bv0hkbj2mbl4kz4_2f9c,dcs679u7gvz5bdvketfrwpqz4_3d8d,dcsg1ip8ouz5bd7ikdlfzxsz4_1h9c,dcsz02wc3wz5bdfq1x2cjvqtf_7p2r,dcs5oiviquz5bdmb1vby0bq0m_8d3h,dcsvx0uq4wz5bdn4q716fat5p_1d8n,dcsy2qt14vz5bd6pu8n9w1l6p_3d5v,dcscp3a1u00000g4ytyr08udx_6d4d,dcsb74cqw5twkfv2wugx2apfw_5f3v,dcsa6u6c06twkfwu94rpvdf54_6d9x,dcswd1aevuievvvtcqup1xi7e_9c3n,dcspkm2ur00000gcsmbjb49hw_8u9c,dcs6tjh57100000439wqk6ahw_7k7l,dcssxgup410000gc09m4bipft_2o3z,dcs2su69w000004fa9fprpovh_9l4d,dcs3gph2p00000kz4vhhgdjdt_1i5h,dcsmky632100008q5co8ux5re_3u3k,dcs5c1q1k100000oasrcvxny9_9y7p,dcsehhbtsvz5bdiav0m1b8akn_2m2n,dcskwbwypuz5bdurwm94ciakn_4j8j,dcs500j24vz5bdezn8993kakn_3h5n,dcs4xi0pgvz5bdqcujokwj2l2_3p8t,dcsmzkhfj10000g856ggp3ov8_2c8z,dcs5b71nmuz5bd05xhq8bq4q9_4k9u,dcskugcufvz5bdjv6xlluvutq_3s1f,dcs5ayx17wz5bdjrnzzdbyutq_5z7k,dcsyzsuwrvz5bdv8tcntgzutq_9g1b,dcs0oy2sj9dv0h4bkmkv4xnvu_6k3z,dcsch13he5dv0hwg3zw9iggwu_5b4m,dcscxtmrk3dv0hc9gok1uql67_2m3c,dcs92jn69wz5bdvu3mscmc99c_5f7f,dcswgm452adv0h001hxga527f_4k1e,dcsc1tzop6dv0hs50irx9i4lk_1o9t,dcsvlof4r10000kb6clcjlsqr_9p5t,dcs44gze000000gs0g0idtsqr_9b3n,dcs11bs6b10000oa0ymlc3tqr_5i1u,dcseh1f9f1000047ctx7q191n_6y8f", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/.lastSuccessful/streaming-analysis-bin.tar.gz", 
-            "realtime_topology_dimensions_bolt_count": 6, 
-            "realtime_topology_parsing_bolt_count": 3, 
-            "realtime_topology_writing_bolt_count": 96, 
-            "topic_list": [
-                "Lab_H_scsRawHits:3", 
-                "Lab_H_lrRawHits:3"
-            ], 
-            "topology_override_max_spout_pending": 100, 
-            "topology_override_msg_timeout_seconds": 30, 
-            "worker": {
-                "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
-            }
-        }, 
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43181:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augmentation_bolt_count": 12, 
