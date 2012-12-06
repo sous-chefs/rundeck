@@ -19,9 +19,7 @@
         "wt_portfolio_admin": "= 1.1.9", 
         "wt_portfolio_manager": "= 1.1.16", 
         "wt_realtime_hadoop": "= 1.0.1", 
-        "wt_realtimeapi": "= 0.0.23", 
         "wt_sauth": "= 1.1.3", 
-        "wt_storm_realtime": "= 2.1.1", 
         "wt_storm_streaming": "= 2.3.0", 
         "wt_streaming_viz": "= 1.1.16", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
@@ -276,32 +274,12 @@
             "environment": "support-staging", 
             "pod": "B"
         }, 
-        "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt207/30613:id/webtrends-realtimeapi-bin.tar.gz", 
-            "port": 8082
-        }, 
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://bsauth.webtrends.com", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/43801:id/auth.zip"
         }, 
         "wt_search": {}, 
-        "wt_storm_realtime": {
-            "dcsid_whitelist": "dcsyzsuwrvz5bdv8tcntgzutq_9g1b,dcspqo4cm10000s1g3ohltw6k_8h8m,dcse1dpwv00000cdisgddy37k_8u5q,dcs34vb8400000kjwxl69ttnn_7n2v,dcsuejun910000s9ujgc67unn_9c8t,dcsg66lds00000s1so8x3cunn_5c1j,dcs1qap5e10000kflmi2xhunn_1v1d,dcse70k3c10000g0znjfanunn_1x9y,dcsn54vyw000000woc740sunn_7y4o,dcsoxh6ge10000k7v4t360vnn_6w1n,dcs5aiq8l000000s1oljc3vnn_4j4o,dcsibz3qs10000gk6bm1havnn_7e5h,dcsnucutr1000008a9k4kovnn_4n4y,dcs0s2y5510000w8o91zxsvnn_5e6s,dcspes3mn10000g0fwkmovvnn_6t5r,dcsae9ion10000g0v03g40wnn_8u6e,dcsj0gzli10000oa8szxgjwnn_6o6j,dcsov28f00000004v6hn3mwnn_5k1b,dcspjti7p10000wsr5480pwnn_7k9g,dcsmww65k00000sx48p3dvwnn_3k9w,dcsrns95v1000043haj6olxnn_4f6f,dcs8ozrta00000golpansoxnn_4l8x,dcsdzq7wp1000004bfiuhuxnn_4i9q,dcsiquz4000000oe37nz9yxnn_3z8v,dcsfzq2wn10000oiid9uo4ynn_8w7f,dcsku18tl10000kruhyq0dynn_7d4c,dcsxvu4x910000sxwt8r2hynn_7j3b,dcsuc9ypv10000o6ttfuykynn_4o3l,dcsjnp2u3000008yjgzhpnynn_1t2z,dcskjiakf100000wwabc2qynn_4c5m,dcs1gyhv610000k3owahtrynn_3n4l,dcs245tu510000kf5y4ratynn_7u7b,dcszkj9dc1000008ugnfzvynn_1e5m,dcss6f9mk00000kraqzxelznn_4e9d,dcs5k9hvz00000oqsyiqwpznn_7k1j,dcsazrqn910000g0nuouqtznn_1u4f,dcsb72n2r10000ch1ul65xznn_3s1w,dcsh646dq00000clw4quz70on_6q3p,dcserhkmf00000047wk8ab0on_8z5i,dcs710mic000008qpbtjsi0on_2b6q,dcssgd2je10000kjsus2vp0on_7f2l,dcsxfzp1x100004fijgrku0on_4r4u,dcs2b2yk01000000wkh4yz0on_8v6g,dcs3nbznq10000gk24ak431on_8p4c,dcsc1oz2v10000clg4rei71on_2v4o,dcs5flvyp000000spy9crd1on_7n1v,dcsi809po10000gwvimaxh1on_6m7l,dcsbez9lj00000w8k2phll1on_6h7u,dcs0hhch6100008q5kuq6r1on_4f5k,dcs9bqd2110000shw6eext1on_5y2d,dcshg49en00000kn7dcbwwsar_2p9l,dcs47s6qjvz5bdnkeht20izhr_5l4t,dcslj023muz5bdrvxmobjjzhr_6j4c,dcsq6p77iuz5bdb7wokzb0sir_5b4k,dcspa42wa00000sxseqn2pksw_7r1r,dcsmd3yy6vz5bd3b4psfl64n7_4s7f,dcsn51xppuz5bdvwvut0bk5n7_4f2g,dcsohahltuz5bdz34pl5ia6n7_5d4m,dcswgm2oluz5bdv6e1rrii1ba_9x4r,dcsgdjl1luz5bdj1m2pk4laia_3c6f,dcs5wls3mvz5bdrbnkmz3vbia_8y4l,dcslb2astvz5bdr7gkazao10c_2k3j,dcs74v7l7wz5bdaowgr5drbrw_3s3j,dcsgscitbvz5bd8n0vjdd9tqy_4b7o,dcs5o60j5wz5bdfyozcs4bp6l_8c6z,dcs0kruhf6dv0hwgnqv6b8b8m_6d3l,dcs0hrta40000000k3szf256c_2e1q,dcs2p9t6b10000st9dlarpbbm_4n3j,dcs2gwi0t00000s10v2fpacp4_4j3b,dcs7jxiwo100004jl0v1v6ep6_6s6j,dcsflof4r10000g0zz0tdg26f_9i3n,dcsy7wari10000kv9g2qgaxnl_8v7x,dcsfhisnz00000oyed7za00a8_5h1h,dcstxcr8i00000omtguyi9uvn_1x1c,dcsxbyqii00000kjg1qf86jxv_7j9z,dcspagvqr000008at3dzb84s7_6o4v,dcs1639qu00000slv8ma7sjkp_3j4h,dcsexxefe00000wg6dug0ibgq_9l6n,dcsmxxuzs10000s189f47cyep_3j1x,dcsxsf1syuz5bdygt9m66qtjt_7z2j,dcs0hrta40000000k3szf256c_2e1q,dcs2p9t6b10000st9dlarpbbm_4n3j,dcs2gwi0t00000s10v2fpacp4_4j3b,dcs7jxiwo100004jl0v1v6ep6_6s6j,dcsflof4r10000g0zz0tdg26f_9i3n,dcsy7wari10000kv9g2qgaxnl_8v7x,dcsfhisnz00000oyed7za00a8_5h1h,dcstxcr8i00000omtguyi9uvn_1x1c,dcsxbyqii00000kjg1qf86jxv_7j9z,dcspagvqr000008at3dzb84s7_6o4v,dcs1639qu00000slv8ma7sjkp_3j4h,dcsexxefe00000wg6dug0ibgq_9l6n,dcsmxxuzs10000s189f47cyep_3j1x,dcsxsf1syuz5bdygt9m66qtjt_7z2j,dcskf5ra3wievv2j7rl2dzj9r_8m4t,dcssd1hl110000o65n6wko6yv_3f5i,dcscyjdor000004fu02p6j55k_7z2q,dcss1s1qz00000cpfqm6c3uzk_2u3x,dcsivypwnvz5bdaurmxdcu8oe_4w6t,dcskzwq0z6bv0hgc5x3drmdhl_6b2w,dcs0k3bfw9bv0h43mmbfafa4r_3d3d,dcsx80onvuz5bda0arxz7nuj4_1h7u,dcs4ns4a46bv0hkbj2mbl4kz4_2f9c,dcs679u7gvz5bdvketfrwpqz4_3d8d,dcsg1ip8ouz5bd7ikdlfzxsz4_1h9c,dcsz02wc3wz5bdfq1x2cjvqtf_7p2r,dcs5oiviquz5bdmb1vby0bq0m_8d3h,dcsvx0uq4wz5bdn4q716fat5p_1d8n,dcsy2qt14vz5bd6pu8n9w1l6p_3d5v,dcsshgbi400000gscd62rrg43_4o2o,dcs067c7h10000k3k5zmvwaj5_8c4n,dcscdq79k10000ws33akfryho_9g9w,dcsc9nqmj10000cd6rrr6kul8_2v1o,dcsifulp900000gol5vd3ocer_2j8b,dcs4jxi4zuz5bdn8i3a7617hw_9f7j,dcs19pwlvvz5bdigu9pwxx9l2_6y3o,dcsf1yuljuz5bdudkxuyg48f5_3g2u,dcs29w0rnvz5bdnctay4sq3jc_3u3s,dcsg8p0h45dv0h4v7mnq5jkkl_8r9z,dcswsvx32wz5bdqw99esr3w6n_5k5l,dcsvjsbpruz5bdvegwia9qsvt_7z8v,dcshgveaiuz5bdfussc3bris0_9s9o,dcso385e9wz5bdrjwxeu4kps0_5h3e,dcsz8d3revz5bdaez1q24pfc4_7k6c,dcs08qllk7dv0h04wzra57hqa_6h6w,dcsemnbegvz5bdvcwlvt0lrnk_5s9i,dcs47025tabv0hk3xrgk0tslo_2l6w,dcs8yzs3x2dv0hw4acycjgugu_1c5x,dcso2us69adv0h0cimie32sq3_5k9s,dcswifnc8vz5bdgl4fz966ht3_6q3g,dcs1mcf6vuz5bdov5tdb7cht3_9o2t,dcsao7pyvvz5bd0tr9z1tght3_6w6k,dcsb0dgv5vz5bdkohymqilht3_8m1b,dcs07qrphvz5bd0h6h5f7oht3_6p6w,dcsp592meuz5bdovxaelytht3_1k8b,dcsivnryzvz5bdsqghtchwht3_7v7l,dcsr5hdheuz5bd4k3wa24zht3_9n3y,dcsm75cbawz5bd87wk0vvjit3_5d6j,dcs353ienuz5bdsufngre2jt3_7e7p,dcsc3395nvz5bdorultkt4jt3_4u9k,dcsxaep7pvz5bd4s142i07jt3_2d4y,dcsej7k6muz5bdk0rl0op8jt3_8h9m,dcs7h82lruz5bds2uv6nsajt3_3j9k,dcs46xtmivz5bd0xe6ndddjt3_9h9i,dcst831r9vz5bdkskzsvimjt3_9y2g,dcsytaax5wz5bde1suuhad937_4w3c,dcsn0o5s1wz5bdygxokifn937_1u6q,dcsceg97uvz5bdmz7ckl17lwe_7c7g,dcs0j5koeuz5bdmvo64t7l4yh_2u1u,dcs15xobcvz5bdjbv66g8usqj_8f1z,dcsstljbf5dv0hcldijadb1go_1f8r,dcspm9u2fuz5bdjx58hagqhmp_5j2w,dcsvawr2v10000c9zqfbp3wdt_1l8p,dcs2i0d1x00000wwmoann0bpt_3y3z,dcsgs0dqv8bv0h8ud5z2yrxxv_5c4y,dcsoqwl14adv0h8iwb3h429lb_5l1t,dcs43l8ue5dv0hc9cttwihinf_9n4v,dcsgcok054dv0hkn4rc9m885n_6i7u,dcswgyr5n7dv0h08ruzm4fxvq_5c9u,dcs8ir0f0100004700jz6ln22_6m5t,dcsdl4wvf10000s9awcivsgt4_1b9z,dcs4sd6z700000wc30newmmjg_8h7y,dcs93136b10000004rrmeb3jo_5u5i,dcsrsdo9p00000shcnx8we3sl_8w7o,dcs3p47op00000wc3w7w4ov8d_8u6e,dcsg07k8yabv0h0481l7zxtyk_8e9c", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt205/31032:id/streaming-analysis-bin.tar.gz", 
-            "realtime_topology_dimensions_bolt_count": 6, 
-            "realtime_topology_parsing_bolt_count": 3, 
-            "realtime_topology_writing_bolt_count": 48, 
-            "topic_list": [
-                "Lab_B_scsRawHits:0", 
-                "Lab_B_lrRawHits:0"
-            ], 
-            "topology_override_max_spout_pending": 3000, 
-            "topology_override_msg_timeout_seconds": 120, 
-            "worker": {
-                "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
-            }
-        }, 
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43816:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augment_bolt_count": 24,
