@@ -20,8 +20,6 @@ download_url = node['wt_cam_db']['download_url']
 if ENV["deploy_build"] then
   log "The deploy_build value is true, so we will grab the camdb zip and install"
 
-  log "Camdbname: #{camdbname}"
-
   windows_zipfile Chef::Config[:file_cache_path] do
     source download_url
     overwrite true
