@@ -74,6 +74,9 @@ template "#{install_dir}/log_pusher/log_pusher.sh" do
   owner "root"
   group "root"
   mode  00755
+  variables(
+    :install_dir => install_dir
+  )
 end
 
 cron "log_pusher" do
