@@ -258,7 +258,7 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44074:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44150:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_augment_bolt_count": 24, 
             "streaming_topology_augment_bolt_tasks": 24,  
             "streaming_topology_filter_bolt_count": 24, 
@@ -270,8 +270,8 @@
                 "workers": 1
             }, 
             "topic_list": [
-                "Lab_N_lrRawHits:12", 
-                "Lab_N_scsRawHits:12"
+                "Lab_N_lrRawHits:1", 
+                "Lab_N_scsRawHits:1"
             ], 
             "worker": {
                 "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
