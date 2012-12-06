@@ -17,20 +17,15 @@ windows_registry 'HKLM\SOFTWARE\Microsoft\MSDTC\Security' do
   notifies :restart, "service[MSDTC]", :immediately
 end
 
-wt_base_firewall "Distributed Transaction Coordinator (RPC)" do
-  action :enable
-end
-
-wt_base_firewall "Distributed Transaction Coordinator (RPC-EPMAP)" do
-  action :enable
-end
-
-wt_base_firewall "Distributed Transaction Coordinator (TCP-In)" do
-  action :enable
-end
-
-wt_base_firewall "Distributed Transaction Coordinator (TCP-In)" do
-  action :enable
+[
+ "Distributed Transaction Coordinator (RPC)",
+ "Distributed Transaction Coordinator (RPC-EPMAP)",
+ "Distributed Transaction Coordinator (TCP-In)",
+ "Distributed Transaction Coordinator (TCP-In)"
+].each do |firewall|
+  wt_base_firewall firewall do
+    action :enable
+  end
 end
 
 service "MSDTC" do
