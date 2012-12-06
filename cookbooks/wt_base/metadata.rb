@@ -4,7 +4,7 @@ maintainer_email "david.dvorak@webtrends.com"
 license          "All rights reserved"
 description      "Base Webtrends libraries and resources"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.0.2"
+version "1.0.3"
 supports         "ubuntu", ">= 10.04"
 supports         "centos", ">= 6.0"
 supports         "windows", ">= 6.1"

@@ -9,6 +9,7 @@
 #
 
 actions :run
+default_action :run
 
 attribute :hostname,       :kind_of => String, :name_attribute => true
 attribute :pod,            :kind_of => String, :required => true
