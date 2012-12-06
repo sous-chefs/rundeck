@@ -320,7 +320,7 @@
             "usagedbname": "Streaming", 
             "usagedbserver": "bcamdb01.staging.dmz",
             "streaming.explore.timeout": "2",  
-            "streaming.explore.quietPeriod:: "5"
+            "streaming.explore.quietPeriod": "5"
         }, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/41427:id/webtrends-streamingauditor-bin.tar.gz", 
