@@ -1,3 +1,8 @@
+## v2.0.0:
+
+* [COOK-1868] - use `node['platform_family']` to handle multiple
+  platforms better
+
 ## v1.3.0:
 
 * [COOK-1713] - switch to gecode package in Fedora, EPEL >= 6
