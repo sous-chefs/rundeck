@@ -1,3 +1,7 @@
+## 1.0.12
+* introduced template for cassandra-env.sh
+* restart service if cassandra-env.sh changes
+
 ## 1.0.11
 * Added cron based backup system to the backup recipe
 

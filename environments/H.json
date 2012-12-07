@@ -90,7 +90,7 @@
             "log_flush_scheduler_time_interval": "500", 
             "log_flush_time_interval": "500", 
             "log_retention_hours": "2", 
-            "num_partitions": 12, 
+            "num_partitions": 60, 
             "threads": "16", 
             "version": "0.7.1"
         }, 
@@ -273,7 +273,7 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44417:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44427:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_tasks": 24, 
             "query_bolt_executors": 24,  
             "streaming_topology_field_grouping_local": "false",
