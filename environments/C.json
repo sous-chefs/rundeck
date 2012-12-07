@@ -16,7 +16,7 @@
         "wt_roadrunner": "= 1.1.2", 
         "wt_search": "= 1.0.10", 
         "wt_sync": "= 1.0.6", 
-        "wt_xd": "= 0.0.6"
+        "wt_xd": "= 1.0.2"
     }, 
     "default_attributes": {
         "authorization": {
