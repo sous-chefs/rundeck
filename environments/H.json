@@ -285,7 +285,7 @@
                 "Lab_H_scsRawHits:24"
             ], 
             "worker": {
-                "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
         }, 
         "wt_streaming_viz": {
