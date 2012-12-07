@@ -18,7 +18,7 @@
         "wt_portfolio_admin": "= 1.1.10", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.2", 
-        "wt_storm_streaming": "= 2.3.1", 
+        "wt_storm_streaming": "= 2.3.2", 
         "wt_streaming_viz": "= 1.1.14", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
         "wt_streamingapi": "= 1.1.2", 
@@ -253,7 +253,7 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44417:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44484:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_tasks": 24, 
             "query_bolt_executors": 24,  
             "streaming_topology_field_grouping_local": "false",
@@ -266,7 +266,8 @@
             ], 
             "worker": {
                 "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
-            }
+            },
+            "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f"
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 

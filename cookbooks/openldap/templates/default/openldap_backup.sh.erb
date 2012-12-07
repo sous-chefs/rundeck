@@ -1,0 +1,9 @@
+#! /bin/bash
+# OpenLDAP backup script generated for <%= node['hostname'] %>
+#
+# Managed by Chef
+#
+FILE=ldap-backup-<%= node['fqdn'] %>-$( date +%y%m%d-%H%M ).ldiff
+DIR=<%= node['openldap']['server_backup']['mount_path'] %>/ldap/<%= node['fqdn'] %>
+/usr/sbin/slapcat -v -l $DIR/$FILE
+find $DIR -mtime +<%= node['openldap']['server_backup']['num_backups_retained'] %> -delete

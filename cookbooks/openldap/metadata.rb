@@ -9,7 +9,7 @@ recipe            "openldap::auth", "Set up openldap for user authentication"
 recipe            "openldap::client", "Install openldap client packages"
 recipe            "openldap::server", "Set up openldap to be a slapd server"
 
-%w{ ubuntu debian }.each do |os|
+%w{ ubuntu debian redhat centos amazon scientific}.each do |os|
   supports os
 end
 
