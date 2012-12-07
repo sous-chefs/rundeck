@@ -254,19 +254,15 @@
         "wt_search": {}, 
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44163:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augment_bolt_count": 24, 
-            "streaming_topology_augment_bolt_tasks": 24,  
-            "streaming_topology_filter_bolt_count": 24, 
-            "streaming_topology_filter_bolt_tasks": 24,
-            "streaming_topology_emitter_bolt_count": 4, 
-            "streaming_topology_emitter_bolt_tasks": 4, 
+            "query_bolt_tasks": 24, 
+            "query_bolt_executors": 24,  
             "streaming_topology_field_grouping_local": "false",
             "supervisor": {
                 "workers": 1
             }, 
             "topic_list": [
-                "Lab_N_lrRawHits:2", 
-                "Lab_N_scsRawHits:2"
+                "Lab_N_lrRawHits:4", 
+                "Lab_N_scsRawHits:4"
             ], 
             "worker": {
                 "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
