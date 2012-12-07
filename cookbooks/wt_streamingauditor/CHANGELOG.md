@@ -1,3 +1,8 @@
+## 1.0.12
+* Fixed food critic complaints
+  * Removed unused template variables
+* Changed while loop to idiomatic ruby
+
 ## 1.0.11
 * Took out the depedency on nagios and collectd.  Both are optional
 
