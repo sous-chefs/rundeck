@@ -12,8 +12,12 @@ default['cassandra']['jna_url'] = "http://java.net/projects/jna/sources/svn/cont
 
 default['cassandra']['version'] = "1.0.7-1"
 
+# cassandra configuration
+default['cassandra']['max_heap_size'] = "10G"
+default['cassandra']['heap_newsize'] = "800M"
+
 # array of environments used if you have multiple cassandra clusters and you want to define a cluster's environments for building the Nagios NRPE monitor
-default['cassandra']['cluster_chef_environments']=[]
+default['cassandra']['cluster_chef_environments'] = []
 
 # Currently unused attributes that will be part of the new full configuration recipe
 default['cassandra']['auto_bootstrap'] = false
@@ -60,8 +64,6 @@ default['cassandra']['index_interval'] = 128
 default['cassandra']['memtable_total_space_in_mb'] = 4096
 default['cassandra']['multithreaded_compaction'] = false
 default['cassandra']['commitlog_total_space_in_mb'] = 3072
-default['cassandra']['MAX_HEAP_SIZE'] = "10G"
-default['cassandra']['HEAP_NEWSIZE'] = "800M"
 default['cassandra']['jna_location'] = "800M"
 
 # Cassandra data backup attributes

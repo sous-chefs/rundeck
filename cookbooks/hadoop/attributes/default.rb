@@ -48,12 +48,19 @@ default[:hadoop][:default][:mapred][:job_acl_modify] = 'hadoop'
 default[:hadoop][:default][:mapred][:job_acl_view] = 'Dr.Who' # The jobtracker webui requires Dr.Who
 
 
+# mapred-queue-acls.xml
+default[:hadoop][:default][:mapred_queue][:acl_submit_job] = 'hadoop'
+default[:hadoop][:default][:mapred_queue][:acl_administer_jobs] = 'Dr.Who' # The jobtracker webui requires Dr.Who
+
+
 # core-site.xml
 # see: http://hadoop.apache.org/common/docs/current/core-default.html
 default[:hadoop][:default][:core][:io_file_buffer_size] = 4096
 default[:hadoop][:default][:core][:fs_checkpoint_dir] = '/var/lib/hadoop/hdfs/backupnamenode'
 default[:hadoop][:default][:core][:fs_checkpoint_period] = 3600
 default[:hadoop][:default][:core][:fs_trash_interval] = 360
+#server running oozie
+default[:hadoop][:default][:core][:oozie_proxy_hosts] = 'soozie01'
 
 
 # hadoop-env.sh

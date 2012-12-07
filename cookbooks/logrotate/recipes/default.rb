@@ -18,5 +18,5 @@
 #
 
 package "logrotate" do
-  action :upgrade
+  action :install
 end

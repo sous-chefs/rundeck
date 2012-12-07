@@ -34,7 +34,7 @@ default['storm']['supervisor']['heartbeat_frequency_secs'] = 5
 default['storm']['supervisor']['enable'] = true
 
 # worker attributes
-default['storm']['worker']['childopts'] = "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+default['storm']['worker']['childopts'] = "-Xmx1280m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
 default['storm']['worker']['heartbeat_frequency_secs'] = 1
 default['storm']['task']['heartbeat_frequency_secs'] = 3
 default['storm']['task']['refresh_poll_secs'] = 10

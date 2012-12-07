@@ -1,4 +1,22 @@
-## 1.1.11:
+## 1.1.17
+* Removed unused template variable
+
+## 1.1.16
+* Add current node domain to proxy bypass list
+
+## 1.1.15
+* Added wtUI to .NET Temp and IIS physical folder perms.
+
+## 1.1.14
+* Added share_wrs
+
+## 1.1.13
+* Assign as attributes and environment vars (better for everyone)
+
+## 1.1.12
+* Assign ad.network as NETIQDMZ and groups to PortMgr.Admin and PortMgr.User.
+
+## 1.1.11
 * Use node['domain'] to find the domain its in
 
 ## 1.1.10:
@@ -15,7 +33,6 @@
 
 ## 1.1.6:
 * Add entry for mc.url to appSettings.config template..
-
 ## 1.1.5:
 * Remove entries from web.config template.
 

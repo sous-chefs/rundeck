@@ -29,21 +29,23 @@ iis_pool app_pool do
 end
 
 iis_site 'Default Web Site' do
-	action [:stop, :delete]
+  action [:stop, :delete]
 end
 
 iis_pool 'DefaultAppPool' do
-    action [:stop, :delete]
+  action [:stop, :delete]
 end
 
 directory install_dir do
-	recursive true
-	action :create
+  recursive true
+  action :create
+  rights :write, user_data['wt_common']['ui_user']
 end
 
 directory log_dir do
-	recursive true
-	action :create
+  recursive true
+  action :create
+  rights :write, user_data['wt_common']['ui_user']
 end
 
 iis_site 'CAM' do
@@ -58,19 +60,7 @@ end
 wt_base_firewall 'CAMWS' do
   protocol "TCP"
   port http_port
-  action [:open_port]
-end
-
-wt_base_icacls install_dir do
-	action :grant
-	user user_data['wt_common']['ui_user']
-	perm :modify
-end
-
-wt_base_icacls log_dir do
-	action :grant
-	user user_data['wt_common']['ui_user']
-	perm :modify
+  action :open_port
 end
 
 wt_base_netlocalgroup "Performance Monitor Users" do
@@ -87,34 +77,34 @@ if ENV["deploy_build"] == "true" then
 end
 
 template "#{install_dir}\\web.config" do
-	source "web.config.erb"
-	variables(
-		:db_server => node['wt_cam']['db_server'],
-		:db_name   => node['wt_cam']['db_name'],
-		:ldap_host => node['wt_common']['ldap_host'],
-		:ldap_port => node['wt_common']['ldap_port'],
-		:ldap_user => user_data['wt_common']['ldap_user'],
-		:ldap_password => user_data['wt_common']['ldap_password'],
-		:smtp_host => node['wt_common']['smtp_server'],
-		:streams_ui_url => node['wt_streaming_viz']['streams_ui_url']
-	)
+  source "web.config.erb"
+  variables(
+    :db_server => node['wt_cam']['db_server'],
+    :db_name   => node['wt_cam']['db_name'],
+    :ldap_host => node['wt_common']['ldap_host'],
+    :ldap_port => node['wt_common']['ldap_port'],
+    :ldap_user => user_data['wt_common']['ldap_user'],
+    :ldap_password => user_data['wt_common']['ldap_password'],
+    :smtp_host => node['wt_common']['smtp_server'],
+    :streams_ui_url => node['wt_streaming_viz']['streams_ui_url']
+  )
 end
 
 template "#{install_dir}\\log4net.config" do
-	source "log4net.config.erb"
-	variables(
-		:log_level => node['wt_cam']['log_level']
-	)
+  source "log4net.config.erb"
+  variables(
+    :log_level => node['wt_cam']['log_level']
+  )
 end
 
 # add the plugins here
 include_recipe "wt_cam::cam_plugins"
 
 iis_config auth_cmd do
-	action :config
+  action :config
 end
 
-if ENV["deploy_build"] == "true" then	
+if ENV["deploy_build"] == "true" then 
   #add the user to the admin group to create perfmon counters
   wt_base_netlocalgroup "Administrators" do
     user user_data['wt_common']['ui_user']
@@ -122,15 +112,15 @@ if ENV["deploy_build"] == "true" then
     action :add
   end  
 
-	ruby_block "preheat app pool" do
+  ruby_block "preheat app pool" do
     block do
       require 'net/http'
       uri = URI("http://localhost/")
       puts Net::HTTP.get(uri)
-	  end
-		action :create
+    end
+    action :create
   end
-	
+  
   #remove the user from the admin group
   wt_base_netlocalgroup "Administrators" do
     user user_data['wt_common']['ui_user']
@@ -138,3 +128,5 @@ if ENV["deploy_build"] == "true" then
     action :remove
   end
 end
+
+share_wrs

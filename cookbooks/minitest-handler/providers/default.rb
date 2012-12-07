@@ -1,5 +1,5 @@
 action :run do
-  %w{json_pure minitest minitest-chef-handler}.each do |gem|
+  %w{minitest-chef-handler}.each do |gem|
     chef_gem gem do
       action :install
     end

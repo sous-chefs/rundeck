@@ -9,11 +9,11 @@
 #
 
 node['wt_base']['apt'].each do |aptrepo|
-	apt_repository aptrepo['name'] do
-		repo_name aptrepo['name']
-		distribution aptrepo['distribution']
-		uri aptrepo['url']
-		components aptrepo['components']
-		action :add
-	end
+  apt_repository aptrepo['name'] do
+    repo_name aptrepo['name']
+    distribution aptrepo['distribution']
+    uri aptrepo['url']
+    components aptrepo['components']
+    action :add
+  end
 end

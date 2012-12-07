@@ -1,5 +1,6 @@
 #
 # Cookbook Name:: wt_analytics_ui
+# Author:: Kendrick Martin(<kendrick.martin@webtrends.com>)
 # Recipe:: default
 #
 # Copyright 2012, Webtrends Inc.
@@ -23,8 +24,9 @@ install_url = node['wt_analytics_ui']['download_url']
 user_data = data_bag_item('authorization', node.chef_environment)
 ui_user   = user_data['wt_common']['ui_user']
 ui_pass   = user_data['wt_common']['ui_pass']
-rsa_user = user_data['wt_common']['system_acct']
+rsa_user = user_data['wt_common']['ui_user']
 app_pool_name = node['wt_analytics_ui']['app_pool_name']
+googleplay_key = data_bag_item('rsa_keys', 'googleplay')
 
 # configure IIS
 appcmds = Array.new
@@ -53,218 +55,220 @@ appcmds << "/section:system.applicationHost/sites /siteDefaults.logfile.logExtFi
 appcmds << "/section:system.applicationHost/sites /siteDefaults.logfile.directory:\"#{node['wt_common']['install_dir_windows']}\\logs\""
 
 appcmds.each do |thiscmd|
-	iis_config "Webtrends IIS Configurations" do
-		cfg_cmd thiscmd
-		action :config
-		returns [0, 183]
-	end
+  iis_config "Webtrends IIS Configurations" do
+    cfg_cmd thiscmd
+    action :config
+    returns [0, 183]
+  end
 end
 
 # remove default web site
 iis_site 'Default Web Site' do
-	action [:stop, :delete]
+  action [:stop, :delete]
 end
 
 # set IIS to allow just these extensions
 extensions = [
-	'.',
-	'.asp',
-	'.aspx',
-	'.axd',
-	'.css',
-	'.eot',
-	'.gif',
-	'.htm',
-	'.ico',
-	'.jpeg',
-	'.jpg',
-	'.js',
-	'.jslang',
-	'.less',
-	'.png',
-	'.svg',
-	'.tmpl',
-	'.ttf',
-	'.woff'
+  '.',
+  '.asp',
+  '.aspx',
+  '.axd',
+  '.css',
+  '.eot',
+  '.gif',
+  '.htm',
+  '.html',
+  '.ico',
+  '.jpeg',
+  '.jpg',
+  '.js',
+  '.jslang',
+  '.less',
+  '.png',
+  '.svg',
+  '.tmpl',
+  '.ttf',
+  '.woff'
 ]
 
 iis_config "/section:system.webServer/security/requestfiltering /fileExtensions.allowunlisted:false" do
-	action :config
+  action :config
 end
 
 iis_config "/section:system.webServer/security/requestfiltering /fileExtensions.applyToWebDAV:false" do
-	action :config
+  action :config
 end
 
 extensions.each do |ext|
-	iis_config "Allow Extensions" do
-		cfg_cmd "/section:system.webServer/security/requestFiltering \"/+fileExtensions.[fileExtension='#{ext}',allowed='true']\""
-		action :config
-		returns [0, 183]
-	end
+  iis_config "Allow Extensions" do
+    cfg_cmd "/section:system.webServer/security/requestFiltering \"/+fileExtensions.[fileExtension='#{ext}',allowed='true']\""
+    action :config
+    returns [0, 183]
+  end
 end
 
 directory install_dir do
-	action :create
-	recursive true
+  action :create
+  recursive true
 end
 
 iis_pool app_pool_name do
-	pipeline_mode :Integrated
-	runtime_version "4.0"
-	private_mem node['wt_analytics_ui']['app_pool_private_memory']
-	max_proc 1
-	pool_username ui_user
-	pool_password ui_pass
-	action [:add, :config]
+  pipeline_mode :Integrated
+  runtime_version "4.0"
+  private_mem node['wt_analytics_ui']['app_pool_private_memory']
+  max_proc 1
+  pool_username ui_user
+  pool_password ui_pass
+  action [:add, :config]
 end
 
 iis_site 'Analytics' do
-	protocol :http
-	port node['wt_analytics_ui']['website_port']
-	path install_dir
-	application_pool app_pool_name
-	action [:add, :start]
+  protocol :http
+  port node['wt_analytics_ui']['website_port']
+  path install_dir
+  application_pool app_pool_name
+  action [:add, :start]
 end
 
 wt_base_icacls install_dir do
-	user ui_user
-	perm :modify
-	action :grant
+  user ui_user
+  perm :modify
+  action :grant
 end
 
 wt_base_icacls install_dir do
-	user "IUSR"
-	perm :read
-	action :grant
+  user "IUSR"
+  perm :read
+  action :grant
 end
 
 # resolves "Unable to obtain public key for StrongNameKeyPair" error
 wt_base_icacls "C:\\ProgramData\\Microsoft\\Crypto\\RSA\\MachineKeys" do
-	user ui_user
-	perm :modify
-	action :grant
+  user ui_user
+  perm :modify
+  action :grant
 end
 
 wt_base_netlocalgroup "Performance Monitor Users" do
-	user ui_user
-	returns [0, 2]
-	action :add
+  user ui_user
+  returns [0, 2]
+  action :add
 end
 
 if ENV["deploy_build"] == "true" then
 
-	windows_zipfile install_dir do
-		source install_url
-		action :unzip
-	end
+  windows_zipfile install_dir do
+    source install_url
+    action :unzip
+  end
 
-	template "#{install_dir}\\Web.config" do
-		source "webConfig.erb"
-		 variables(
-			# master database host
-			:master_host => node['wt_masterdb']['master_host'],
+  template "#{install_dir}\\Web.config" do
+    source "webConfig.erb"
+     variables(
+      # master database host
+      :master_host => node['wt_masterdb']['host'],
 
-			# cache config
-			:cache_enabled => node['wt_analytics_ui']['cache_enabled'],
-			:cache_hosts   => node['memcached']['cache_hosts'],
-			:cache_region  => node['wt_analytics_ui']['cache_region'],
+      # cache config
+      :cache_enabled => node['wt_analytics_ui']['cache_enabled'],
+      :cache_hosts   => node['memcached']['cache_hosts'],
+      :cache_region  => node['wt_analytics_ui']['cache_region'],
 
-			# hbase config
-			:hbase_location    => node['hbase']['location'],
-			:hbase_dc_id       => node['wt_analytics_ui']['fb_data_center_id'],
-			:hbase_pod_id      => node['wt_common']['pod_id'],
+      # hbase config
+      :hbase_location    => node['hbase']['location'],
+      :hbase_dc_id       => node['wt_analytics_ui']['fb_data_center_id'],
+      :hbase_pod_id      => node['wt_common']['pod_id'],
 
-			# cassandra config
-			:cass_host            => node['cassandra']['cassandra_host'],
-			:cass_report_column   => node['cassandra']['cassandra_report_column'],
-			:cass_metadata_column => node['cassandra']['cassandra_meta_column'],
-			:cass_thrift_port     => node['cassandra']['cassandra_thrift_port'],
+      # cassandra config
+      :cass_host            => node['cassandra']['cassandra_host'],
+      :cass_report_column   => node['cassandra']['cassandra_report_column'],
+      :cass_metadata_column => node['cassandra']['cassandra_meta_column'],
+      :cass_thrift_port     => node['cassandra']['cassandra_thrift_port'],
 
-			# app setting section
-			:rest_base_uri           => node['wt_dx']['rest_base_uri'],
-			:ondemand_base_domain    => node['wt_analytics_ui']['ondemand_base_domain'],
-			:fb_app_clientid         => node['wt_analytics_ui']['fb_app_clientid'],
-			:fb_app_clientsecret     => node['wt_analytics_ui']['fb_app_clientsecret'],
-			:beta                    => node['wt_analytics_ui']['beta'],
-			:branding                => node['wt_analytics_ui']['branding'],
-			:ios_public_key			 => node['wt_analytics_ui']['ios_public_key'],
-			:facebook_public_key	 => node['wt_analytics_ui']['facebook_public_key'],
-			:android_public_key		 => node['wt_analytics_ui']['android_public_key'],
-			:youtube_public_key		 => node['wt_analytics_ui']['youtube_public_key'],
-			:twitter_public_key		 => node['wt_analytics_ui']['twitter_public_key'],
-			:tagbuilder_download_url => node['wt_analytics_ui']['tagbuilder_download_url'],
-			:tagbuilder_url_template => node['wt_analytics_ui']['tagbuilder_url_template'],
-			:tagbuilder_domain       => node['wt_analytics_ui']['tagbuilder_domain'],
-			:tagbuilder_domainmobile => node['wt_analytics_ui']['tagbuilder_domainmobile'],
-			:help_link               => node['wt_analytics_ui']['help_link'],
-			:hmap_url                => node['wt_analytics_ui']['hmap_url'],
-			:reinvigorate_code       => node['wt_analytics_ui']['reinvigorate_tracking_code'],
-			:show_profiling          => node['wt_analytics_ui']['show_profiling'],
+      # app setting section
+      :rest_base_uri           => node['wt_dx']['rest_base_uri'],
+      :ondemand_base_domain    => node['wt_analytics_ui']['ondemand_base_domain'],
+      :fb_app_clientid         => node['wt_analytics_ui']['fb_app_clientid'],
+      :fb_app_clientsecret     => node['wt_analytics_ui']['fb_app_clientsecret'],
+      :beta                    => node['wt_analytics_ui']['beta'],
+      :branding                => node['wt_analytics_ui']['branding'],
+      :ios_public_key      => node['wt_analytics_ui']['ios_public_key'],
+      :facebook_public_key   => node['wt_analytics_ui']['facebook_public_key'],
+      :android_public_key    => node['wt_analytics_ui']['android_public_key'],
+      :youtube_public_key    => node['wt_analytics_ui']['youtube_public_key'],
+      :twitter_public_key    => node['wt_analytics_ui']['twitter_public_key'],
+      :tagbuilder_download_url => node['wt_analytics_ui']['tagbuilder_download_url'],
+      :tagbuilder_url_template => node['wt_analytics_ui']['tagbuilder_url_template'],
+      :tagbuilder_domain       => node['wt_analytics_ui']['tagbuilder_domain'],
+      :tagbuilder_domainmobile => node['wt_analytics_ui']['tagbuilder_domainmobile'],
+      :help_link               => node['wt_analytics_ui']['help_link'],
+      :hmap_url                => node['wt_analytics_ui']['hmap_url'],
+      :reinvigorate_code       => node['wt_analytics_ui']['reinvigorate_tracking_code'],
+      :show_profiling          => node['wt_analytics_ui']['show_profiling'],
 
-			# proxy
-			:proxy_enabled => node['wt_analytics_ui']['proxy_enabled'],
-			:proxy_address => node['wt_analytics_ui']['proxy_address'],
+      # proxy
+      :proxy_enabled => node['wt_analytics_ui']['proxy_enabled'],
+      :proxy_address => node['wt_analytics_ui']['proxy_address'],
 
-			# other settings
-			:custom_errors => node['wt_analytics_ui']['custom_errors'],
-			:search_host   => node['wt_search']['search_hostname'],
-			:monitor_host  => node['wt_messaging_monitoring']['monitor_hostname'],
-			:remote_access => node['wt_analytics_ui']['remote_access']
+      # other settings
+      :custom_errors => node['wt_analytics_ui']['custom_errors'],
+      :search_host   => node['wt_search']['search_hostname'],
+      :monitor_host  => node['wt_messaging_monitoring']['monitor_hostname'],
+      :remote_access => node['wt_analytics_ui']['remote_access']
 
-		)
-	end
+    )
+  end
 
 
   template "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
     source "PublicPrivateKeys.rsa.erb"
     variables(
-      :modulus => user_data['wt_analytics_ui']['rsa']['modulus'],
-      :exponent => user_data['wt_analytics_ui']['rsa']['exponent'],
-      :p => user_data['wt_analytics_ui']['rsa']['p'],
-      :q => user_data['wt_analytics_ui']['rsa']['q'],
-      :dp => user_data['wt_analytics_ui']['rsa']['dp'],
-      :dq => user_data['wt_analytics_ui']['rsa']['dq'],
-      :inverse_q => user_data['wt_analytics_ui']['rsa']['inverse_q'],
-      :d => user_data['wt_analytics_ui']['rsa']['d']
+      :modulus => googleplay_key['modulus'],
+      :exponent => googleplay_key['exponent'],
+      :p => googleplay_key['p'],
+      :q => googleplay_key['q'],
+      :dp => googleplay_key['dp'],
+      :dq => googleplay_key['dq'],
+      :inverse_q => googleplay_key['inverse_q'],
+      :d => googleplay_key['d']
     )
   end
 
-	template "#{install_dir}\\App_Data\\brands\\mapping.xml" do
-		source "mapping.xml.erb"
-		variables(
-			:bba_domain => node['wt_analytics_ui']['bba_domain']
-		)
-	end
+  template "#{install_dir}\\App_Data\\brands\\mapping.xml" do
+    source "mapping.xml.erb"
+    variables(
+      :bba_domain => node['wt_analytics_ui']['bba_domain']
+    )
+  end
 
-	template "#{install_dir}\\App_Data\\brands\\webtrends\\brand.xml" do
-		source "webtrends-brand.xml.erb"
-		variables(
-			:help_link            => node['wt_analytics_ui']['help_link'],
-			:ondemand_base_domain => node['wt_analytics_ui']['ondemand_base_domain']
-		)
-	end
+  template "#{install_dir}\\App_Data\\brands\\webtrends\\brand.xml" do
+    source "webtrends-brand.xml.erb"
+    variables(
+      :help_link            => node['wt_analytics_ui']['help_link'],
+      :ondemand_base_domain => node['wt_analytics_ui']['ondemand_base_domain']
+    )
+  end
 
-	template "#{install_dir}\\log4net.config" do
-		source "log4net.config.erb"
-		variables(
-			:log_level => node['wt_analytics_ui']['log_level']
-		)
-	end
+  template "#{install_dir}\\log4net.config" do
+    source "log4net.config.erb"
+    variables(
+      :log_level => node['wt_analytics_ui']['log_level']
+    )
+  end
 
-  # run iss command on the .rsa file
+  # run iss command on the .rsa file  
 
-  execute "asp_regiis_pi" do
-    user ui_user
-		command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi WebTrends.UI.Reporting #{install_dir}\\bin\\PublicPrivateKeys.rsa"
+  wt_base_icacls "C:\\ProgramData\\Microsoft\\Crypto\\RSA\\MachineKeys" do
+  user node['current_user']
+  perm :modify
+  action :grant
+end
+
+  execute "asp_regiis_pi" do   
+    command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi WebTrends.ExternalData.Plugins.AndroidConnector #{install_dir}\\bin\\PublicPrivateKeys.rsa"
   end
 
   execute "asp_regiis_pa" do
-    command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pa WebTrends.UI.Reporting #{rsa_user}"
-  end
-
-  execute "asp_regiis_pa" do
-    command  "aspnet_regiis pa WebTrends.UI.Reporting #{rsa_user}"
+    command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pa WebTrends.ExternalData.Plugins.AndroidConnector #{rsa_user}"
   end
 
   # delete the .rsa file
@@ -272,5 +276,11 @@ if ENV["deploy_build"] == "true" then
     action :delete
   end
 
-	share_wrs
+  wt_base_icacls "C:\\ProgramData\\Microsoft\\Crypto\\RSA\\MachineKeys" do
+  user node['current_user']
+  perm :modify
+  action :remove
+  end
+
+  share_wrs
 end

@@ -1,3 +1,20 @@
+## v1.3.2:
+
+* [COOK-1804] - fix `web_app` definition parameter so site can be
+  disabled.
+
+## v1.3.0:
+
+* [COOK-1738] - Better configuration for `mod_include` and some
+  overrides in `web_app` definition
+* [COOK-1470] - Change SSL Ciphers to Mitigate BEAST attack
+
+## v1.2.0:
+
+* [COOK-692] - delete package conf.d files in module recipes, for EL
+* [COOK-1693] - Foodcritic finding for unnecessary string interpolation
+* [COOK-1757] - platform_family and better style / usage practices
+
 ## v1.1.16:
 
 re-releasing as .16 due to error on tag 1.1.14

@@ -14,27 +14,27 @@ plugin_install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Cam
 
 # Make sure the plugin directory exists
 directory plugin_install_dir do
-	recursive true
-	action :create
+    recursive true
+    action :create
 end
 
 # Make sure the security is correct
 wt_base_icacls plugin_install_dir do
-	action :grant
-	user user_data['wt_common']['ui_user']
-	perm :modify
+  action :grant
+  user user_data['wt_common']['ui_user']
+  perm :modify
 end
 
 if ENV["deploy_build"] == "true" then
-    # Lay the files down
-    windows_zipfile plugin_install_dir do
-        source node['wt_cam']['cam_plugins']['download_url']
-        action :unzip
-        overwrite true
-    end
+  # Lay the files down
+  windows_zipfile plugin_install_dir do
+    source node['wt_cam']['cam_plugins']['download_url']
+    action :unzip
+    overwrite true
+  end
 
-    # Restart the CAM site
-    iis_site 'CAM' do
-        action [:restart]
-    end
+  # Restart the CAM site
+  iis_site 'CAM' do
+    action [:restart]
+  end
 end

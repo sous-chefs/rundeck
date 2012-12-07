@@ -8,5 +8,5 @@
 
 default['wt_roadrunner']['download_url'] = ""
 default['wt_roadrunner']['service_name'] = "Webtrends RoadRunner Service"
-default['wt_roadrunner']['install_dir'] = "\\RoadRunner"
-default['wt_roadrunner']['log_dir'] = "\\logs"
+default['wt_roadrunner']['install_dir'] = "RoadRunner"
+default['wt_roadrunner']['log_dir'] = "logs"

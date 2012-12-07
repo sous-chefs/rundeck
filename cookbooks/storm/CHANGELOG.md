@@ -1,3 +1,6 @@
+## 1.0.29
+* Changed the default worker memory size.
+
 ## 1.0.28
 * Add support for Ubuntu to the metadata
 * Add a Readme

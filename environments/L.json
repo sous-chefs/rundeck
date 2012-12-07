@@ -1,13 +1,13 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "kafka": "= 1.0.19", 
-        "nagios": "= 1.6.0", 
-        "sudo": "= 1.0.0", 
+        "kafka": "= 1.0.20", 
+        "nagios": "= 2.0.0",  
         "webtrends_server": "= 1.8.8", 
-        "wt_base": "= 1.0.2", 
-        "wt_streamingcollection": "= 0.0.28", 
-        "zookeeper": "= 1.0.5"
+        "wt_base": "= 1.0.2",         
+        "wt_edge_server": "= 0.1.2",
+        "wt_streamingcollection": "= 1.1.0", 
+        "zookeeper": "= 1.1.6"
     }, 
     "default_attributes": {
         "authorization": {
@@ -77,6 +77,11 @@
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
+        }, 
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
             "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
@@ -127,8 +132,8 @@
             "wrsmodify_group": "STAGINGDMZ\\L.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\L.WRS.Read"
         }, 
-        "wt_configdistrib": {
-            "dcsid_url": "http://acd01.staging.dmz:8097/config/dcsid2account"
+	"wt_edge_server": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt320/43619:id/Edge-Server-Distribution-wModules-all.tar.gz"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
@@ -146,14 +151,14 @@
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
-            "pod": "L"
+            "pod": "B"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt75/27350:id/webtrends-streamingcollection-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41444:id/webtrends-streamingcollection-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingconfigservice": {
-            "config_service_url": "http://butil01.staging.dmz:8080"
+            "config_service_url": "http://bconfigsvc.staging.dmz"
         }, 
         "zookeeper": {
             "client_port": 2181, 

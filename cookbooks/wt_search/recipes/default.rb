@@ -18,11 +18,11 @@ end
 
 # get parameters
 download_url = node['wt_search']['download_url']
-master_host = node['wt_masterdb']['master_host']
+master_host = node['wt_masterdb']['host']
 
 # destinations
-install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['install_dir'].gsub(/[\\\/]+/,"\\"))
-log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['log_dir'].gsub(/[\\\/]+/,"\\"))
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['install_dir']).gsub(/[\\\/]+/,"\\")
+log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_search']['log_dir']).gsub(/[\\\/]+/,"\\")
 
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)

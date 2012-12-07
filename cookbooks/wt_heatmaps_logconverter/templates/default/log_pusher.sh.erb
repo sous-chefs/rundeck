@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+exec 9><% @install_dir =%>/log_pusher/replicate.lock
+if ! flock -n 9  ; then
+        echo "another instance is running";
+        exit 1
+fi
+
+QUEUE="<% @node['wt_heatmaps_logconverter']['nfs_mount_dir'] =%>/bziplogs"
+DATANODES=($(< <% @install_dir =%>/conf/datanodes.conf))
+HOSTNAME=$(hostname)
+
+# transfer logs to a random datanode
+for LOG in $(ls $QUEUE | grep $(hostname).json.bz2$)
+do
+        SERVER=${DATANODES[$(($RANDOM % ${#DATANODES[@]}))]}
+
+
+        echo "$LOG -> $SERVER"
+        scp -oBatchMode=yes -B $QUEUE/$LOG hadoop@$SERVER:/home/hadoop/log-drop/$LOG.xfer > /dev/null 2>&1 \
+        && ssh -oBatchMode=yes -lhadoop $SERVER "mv /home/hadoop/log-drop/$LOG.xfer /home/hadoop/log-drop/$LOG" > /dev/null 2>&1 \
+        && mv $QUEUE/$LOG $QUEUE/$LOG.done > /dev/null 2>&1
+        [ "$?" != "0" ] && logger -s "Failed to upload $LOG -> $SERVER"
+done
+
+echo "Done"
+exit 0

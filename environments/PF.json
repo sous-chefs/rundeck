@@ -1,14 +1,14 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "java": "= 1.5.4", 
+        "java": "= 1.6.0", 
         "kafka": "= 1.0.5", 
-        "nagios": "= 1.6.1", 
+        "nagios": "= 2.0.0", 
         "storm": "= 1.0.16", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
-        "wt_base": "= 1.0.1", 
+        "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 1.0.0", 
         "wt_realtimeapi": "= 0.0.17", 
@@ -127,11 +127,7 @@
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
-            "master_host": "pfmasterdb01", 
             "rta_host": "pfrta01.staging.dmz", 
-            "sched_host": "pfmasterdb01", 
-            "schedulerdb_host": "pfusagedb01", 
-            "usage_host": "pfusagedb01", 
             "velocitycache_hosts": [
                 {
                     "name": "pfdxweb01.staging.dmz", 
@@ -155,6 +151,22 @@
             "endpoint_address": "net.tcp://pfsearch.staging.dmz:8096/SearchService/Search", 
             "website_name": "DX", 
             "website_port": "80"
+        }, 
+        "wt_masterdb": {
+            "dbname": "wtMaster", 
+            "host": "pfmasterdb01.staging.dmz"
+        }, 
+        "wt_scheddb": {
+            "dbname": "wt_Sched", 
+            "host": "pfmasterdb01.staging.dmz"
+        }, 
+        "wt_schedulerdb": {
+            "dbname": "wtScheduler", 
+            "host": "pfusagedb01.staging.dmz"
+        }, 
+        "wt_usagedb": {
+            "dbname": "wtUsage", 
+            "host": "pfusagedb01.staging.dmz"
         }
     }, 
     "description": "PF Pod", 
@@ -172,6 +184,11 @@
                 "10.164.0.12"
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
 }
