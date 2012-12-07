@@ -19,24 +19,11 @@ LoadPlugin java
         ################
         # MBean blocks #
         ################
-		# Memory usage by memory pool.
-		<MBean "memory_pool">
-			ObjectName "java.lang:type=MemoryPool,*"
-			InstancePrefix "memory_pool-"
-			InstanceFrom "name"
-			<Value>
-				Type "memory"
-				#InstancePrefix ""
-				#InstanceFrom ""
-				Table true
-				Attribute "Usage"
-			</Value>
-		</MBean>
 		# Heap memory usage
-		<MBean "memory-heap">
+		<MBean "memory_heap">
 			ObjectName "java.lang:type=Memory"
 			#InstanceFrom ""
-			InstancePrefix "memory-heap"
+			InstancePrefix "memory_heap"
 			# Creates four values: committed, init, max, used
 			<Value>
 				Type "memory"
@@ -50,7 +37,7 @@ LoadPlugin java
 		<MBean "memory_nonheap">
 			ObjectName "java.lang:type=Memory"
 			#InstanceFrom ""
-			InstancePrefix "memory-nonheap"
+			InstancePrefix "memory_nonheap"
 			# Creates four values: committed, init, max, used
 			<Value>
 				Type "memory"
@@ -75,7 +62,7 @@ LoadPlugin java
 		# Garbage Collector stats
 		<MBean "garbage_collector">
 			ObjectName "java.lang:type=GarbageCollector,*"
-			InstancePrefix "gc-"
+			InstancePrefix "gc_"
 			InstanceFrom "name"
 			<Value>
 				Type "invocations"
@@ -106,8 +93,8 @@ LoadPlugin java
 			</Value>
 		</MBean>
 		#Metrics
-        <MBean "scs-latency">
-			ObjectName "streamingauditor:type=latency,name=scs-latency"
+        <MBean "scs_latency">
+			ObjectName "streamingauditor:type=latency,name=scs_latency"
 			InstancePrefix ""
 			InstanceFrom "name"
 			<Value>
@@ -139,8 +126,20 @@ LoadPlugin java
 				Attribute "999thPercentile"
 			</Value>
         </MBean>
-        <MBean "tag-server-latency">
-			ObjectName "streamingauditor:type=latency,name=tag-server-latency"
+        <MBean "scs_latency_snapshot">
+			ObjectName "streamingauditor:type=latency,name=scs_latency_snapshot"
+			InstancePrefix ""
+			InstanceFrom "name"
+			<Value>
+				Type "gauge"
+				InstancePrefix "Value"
+				#InstanceFrom ""
+				Table false
+				Attribute "Value"
+			</Value>
+        </MBean>
+        <MBean "tag_server_latency">
+			ObjectName "streamingauditor:type=latency,name=tag_server_latency"
 			InstancePrefix ""
 			InstanceFrom "name"
 			<Value>
@@ -170,15 +169,59 @@ LoadPlugin java
 				#InstanceFrom ""
 				Table false
 				Attribute "999thPercentile"
+			</Value>
+        </MBean>
+            <MBean "tag_server_latency_snapshot">
+			ObjectName "streamingauditor:type=latency,name=tag_server_latency_snapshot"
+			InstancePrefix ""
+			InstanceFrom "name"
+			<Value>
+				Type "gauge"
+				InstancePrefix "Value"
+				#InstanceFrom ""
+				Table false
+				Attribute "Value"
 			</Value>
         </MBean>
         #####################
         # Loop through the individual hosts and pull the values
         #####################
         <% @scs_urls.each_with_index do |host,index| %>
-            <MBean "scs-latency-host-<%=index%>">
-                ObjectName "streamingauditor:type=latency,scope=scs-latency-host,name=<%=URI(host).host%>"
-                InstancePrefix ""
+            <MBean "scs_latency_host_<%=index%>">
+                ObjectName "streamingauditor:type=latency,scope=scs_latency_host,name=<%=URI(host).host%>"
+                InstancePrefix "scs_latency_host_"
+                InstanceFrom "name"
+                <Value>
+                    Type "gauge"
+                    InstancePrefix "Max"
+                    Table false
+                    Attribute "Max"
+                </Value>
+                <Value>
+                    Type "gauge"
+                    InstancePrefix "Min"
+                    Table false
+                    Attribute "Min"
+                </Value>
+                <Value>
+                    Type "gauge"
+                    InstancePrefix "Mean"
+                    Table false
+                    Attribute "Mean"
+                </Value>
+                <Value>
+                    Type "gauge"
+                    InstancePrefix "MovingAverage"
+                    #InstanceFrom ""
+                    Table false
+                    Attribute "999thPercentile"
+                </Value>
+            </MBean>
+        <% end %>
+        <% @ts_urls.each_with_index do |host,index| %>
+            <MBean "tag_server_latency_host_<%=index%>">
+                ObjectName "streamingauditor:type=latency,scope=tag_server_latency_host,name=<%=URI(host).host%>"
+                InstancePrefix "tag_server_latency_host_"
                 InstanceFrom "name"
                 <Value>
                     Type "gauge"
@@ -217,12 +260,17 @@ LoadPlugin java
 			Collect "classes"
 			Collect "garbage_collector"
 			Collect "java_threads"
-			Collect "memory-heap"
+			Collect "memory_heap"
 			Collect "memory_nonheap"
-            Collect "scs-latency"
-            Collect "tag-server-latency"
+            Collect "scs_latency"
+            Collect "scs_latency_snapshot"
+            Collect "tag_server_latency"
+            Collect "tag_server_latency_snapshot"
+            <% @ts_urls.each_with_index do |host,index| %>
+                Collect "tag_server_latency_host_<%=index%>"
+            <% end %>
             <% @scs_urls.each_with_index do |host,index| %>
-                Collect "scs-latency-host-<%=index%>"
+                Collect "scs_latency_host_<%=index%>"
             <% end %>
         </Connection>
     </Plugin>

@@ -1,3 +1,12 @@
+## 1.0.8
+* Use our internal mirrors for security updates during the install
+
+## 1.0.7:
+* Added DBAN-2.2.6 profile
+
+## 1.0.6:
+* Take out the check to see if running on Chef 0.9.X
+
 ## 1.0.5:
 * Ensure ruby is installed on CentOS
 

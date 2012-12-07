@@ -19,16 +19,16 @@
 #
 
 # Allow a Nagios server to monitor hosts in multiple environments.  Impacts NRPE configs as well
-default['nagios']['multi_environment_monitoring'] = "false"
+default['nagios']['multi_environment_monitoring'] = false
 
-default['nagios']['user'] = "nagios"
-default['nagios']['group'] = "nagios"
+default['nagios']['user']  = 'nagios'
+default['nagios']['group'] = 'nagios'
 
-case node['platform']
-when "ubuntu","debian"
-  default['nagios']['plugin_dir'] = "/usr/lib/nagios/plugins"
-when "redhat","centos","fedora","scientific","amazon"
-  default['nagios']['plugin_dir'] = "/usr/lib64/nagios/plugins"
+case node['platform_family']
+when 'debian'
+default['nagios']['plugin_dir']   = '/usr/lib/nagios/plugins'
+when 'rhel','fedora'
+  default['nagios']['plugin_dir'] = '/usr/lib64/nagios/plugins'
 else
-  default['nagios']['plugin_dir'] = "/usr/lib/nagios/plugins"
+  default['nagios']['plugin_dir'] = '/usr/lib/nagios/plugins'
 end

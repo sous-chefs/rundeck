@@ -120,13 +120,6 @@ if node.attribute?('nagios')
 		mode 00755
 	end
 
-  #Create a nagios nrpe check for the netacuity page
-	nagios_nrpecheck 'wt_netacuity_web_ui_check' do
-		command "#{node['nagios']['plugin_dir']}/check_http"
-		parameters '-H localhost -p 5500 -s "Digital Envoy"'
-		action :add
-	end
-
 	#Create a nagios nrpe command for the restart event handler
 	nagios_nrpecheck 'restart_netacuity' do
 		command "#{node['nagios']['plugin_dir']}/restart_netacuity"

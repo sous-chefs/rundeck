@@ -1,3 +1,4 @@
+name             "wt_opt_hornetq"
 maintainer       "Tim Smith - Webtrends, Inc."
 maintainer_email "hostedops@webtrends.com"
 license          "All rights reserved"

@@ -1,3 +1,22 @@
+## 2.3.2
+* Set default of saving the offset to ZK true.
+
+## 2.3.1
+* Fewer parameters and name changes to reflect code names.
+
+## 2.3.0
+* Made changes to actual attribute names and removed no longer used
+  attributes to reflect code clean up in the topo code itself.
+
+## 2.2.1
+* Added "streaming.topology.zmq.data.znodeRoot" in config.properties.erb
+
+## 2.2.0
+* Adding new session stream code.
+
+## 2.1.24
+* Added the tasks parameters so the cookbook actually will work.
+
 ## 2.1.23
 * Updated configuration, so that the tasks for each of the bolts is also now configurable and out of code.
 

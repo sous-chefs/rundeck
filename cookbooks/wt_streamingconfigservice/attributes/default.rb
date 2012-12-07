@@ -16,3 +16,4 @@ default['wt_streamingconfigservice']['camdbname'] = "cam"
 default['wt_streamingconfigservice']['camdbserver'] = ""
 default['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'] = "true"
 default['wt_streamingconfigservice']['jmx_port'] = 9999
+default['wt_streamingconfigservice']['healthcheck_port'] = 9000

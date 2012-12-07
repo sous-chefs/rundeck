@@ -1,3 +1,12 @@
+## 1.1.3
+* Added new template attribute and recipe entries for new oauth config fields
+
+## 1.1.2
+* Added share_wrs
+
+## 1.1.1
+* Allowed double escaping for email address handling via url
+
 ## 1.1.0
 * Fixed whitespace, typos, and food critic errors
 

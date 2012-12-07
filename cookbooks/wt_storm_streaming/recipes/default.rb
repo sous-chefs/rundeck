@@ -39,10 +39,8 @@ end
 kafka = search(:node, "role:kafka_aggregator AND chef_environment:#{node.chef_environment}").first
 pod = node['wt_realtime_hadoop']['pod']
 datacenter = node['wt_realtime_hadoop']['datacenter']
-
-# Perform some really funky overrides that should never be done and need to be removed
-node['wt_storm_streaming']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-streaming"
-node['wt_storm_streaming']['transactional']['zookeeper']['root'] = "/#{datacenter}_#{pod}_storm-streaming-transactional"
+zookeeper_root = "/#{datacenter}_#{pod}_storm-streaming"
+transactional_zookeeper_root = "/#{datacenter}_#{pod}_storm-streaming-transactional"
 
 #############################################################################
 # Storm jars
@@ -118,6 +116,7 @@ if ENV["deploy_build"] == "true" then
     fastutil-6.4.4.jar
     groovy-all-1.7.6.jar
     guice-3.0.jar
+    gson-2.2.2.jar
     hadoop-core-1.0.0.jar
     hamcrest-core-1.1.jar
     hbase-0.92.0.jar
@@ -192,6 +191,13 @@ end
 # storm looks for storm.yaml in ~/.storm/storm.yaml so make a link
 link "/home/storm/.storm" do
 	to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
+end 
+
+file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
+  owner "root"
+  group "root"
+  mode "00644"
+  action :delete
 end
 
 # template the storm yaml file
@@ -201,6 +207,9 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
+    :worker_childopts => node['wt_storm_streaming']['worker']['childopts'],
+    :zookeeper_root => zookeeper_root,
+    :transactional_zookeeper_root => transactional_zookeeper_root,
     :storm_config => node['wt_storm_streaming'],
     :zookeeper_quorum => zookeeper_quorum,
     :zookeeper_clientport  => zookeeper_clientport,
@@ -215,27 +224,25 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   group  "storm"
   mode   00644
   variables(
-    :streaming_topology_in_session_bolt_count    => node['wt_storm_streaming']['streaming_topology_in_session_bolt_count'],
-    :streaming_topology_zmq_emitter_bolt_count   => node['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'],
-    :streaming_topology_validation_bolt_count    => node['wt_storm_streaming']['streaming_topology_validation_bolt_count'],
-    :streaming_topology_augmentation_bolt_count  => node['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'],
-    :streaming_topology_mode_local => node['wt_storm_streaming']['streaming_topology_mode_local'],
-    :streaming_topology_field_grouping_local => node['wt_storm_streaming']['streaming_topology_field_grouping_local'],
+    # executor counts, ie: executor threads
+    :query_bolt_tasks => node['wt_storm_streaming']['query_bolt_tasks'],
+    :query_bolt_executors => node['wt_storm_streaming']['query_bolt_executors'],
     # kafka consumer settings
-    :kafka_consumer_topic                 => node['wt_storm_streaming']['topic_list'].join(','),
-    :kafka_zookeeper_quorum               => zookeeper_quorum * ",",
-    :kafka_consumer_group_id              => 'kafka-streaming',
-    :kafka_zookeeper_timeout_milliseconds => 1000000,
+    :kafka_consumer_topic       => node['wt_storm_streaming']['topic_list'].join(','),
+    :kafka_consumer_group_id    => node['wt_storm_streaming']['kafka']['consumer_group_id'],
+    :kafka_zookeeper_timeout_ms => node['wt_storm_streaming']['kafka']['zookeeper_timeout_ms'],
+    :kafka_auto_offset_reset    => node['wt_storm_streaming']['kafka']['auto_offset_reset'],
+    :kafka_auto_commit_enable   => node['wt_storm_streaming']['kafka']['auto_commit_enable'],
+    # tracer dcsid
+    :tracer_dcsid => node['wt_storm_streaming']['tracer_dcsid'],
     # non-storm parameters
     :zookeeper_quorum      => zookeeper_quorum * ",",
     :zookeeper_clientport  => zookeeper_clientport,
-    :zookeeper_pairs       => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
     :configservice         => node['wt_streamingconfigservice']['config_service_url'],
     :netacuity             => node['wt_netacuity']['geo_url'],
-    :kafka                 => kafka['fqdn'],
     :pod                   => pod,
     :datacenter            => datacenter,
-    :debug                 => node['wt_storm_streaming']['debug'],
+    :audit_zookeeper_pairs => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
     :audit_bucket_timespan => node['wt_monitoring']['audit_bucket_timespan'],
     :audit_topic           => node['wt_monitoring']['audit_topic'],
     :cam_url               => node['wt_cam']['cam_service_url']

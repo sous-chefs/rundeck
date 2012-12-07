@@ -21,12 +21,15 @@
     <add key="cam.url" value="<%= @cam_url %>"/>
     <add key="cam.url.base" value="<%= @cam_url_base %>"/>
     <add key="config.url" value="<%= @config_url%>"/>
-    <add key="ad.network" value="<%= @domain %>"/>
+    <add key="ad.network" value="<%= @portmgr_domain %>"/>
 
-    <!-- User Access GruopNames -->
-    <add key="ad.group.admin" value="*"/>
-    <add key="ad.group.user" value="*"/>
+    <!-- User Access GroupNames -->
+    <add key="ad.group.admin" value="<%= @portmgr_group_admin%>"/>
+    <add key="ad.group.user" value="<%= @portmgr_group_user%>"/>
     <add key="reauth.minutes" value="90"/>
+
+    <!-- New Account Notification -->
+    <add key="injected.user" value="<%= @portmgr_injected_user%>"/>
 
 </appSettings>
 

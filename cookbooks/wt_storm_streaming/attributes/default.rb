@@ -8,22 +8,16 @@
 
 # wt specific parameters
 default['wt_storm_streaming']['download_url'] = ""
-default['wt_storm_streaming']['streaming_topology_augmentation_bolt_count'] = 25
-default['wt_storm_streaming']['streaming_topology_augmentation_bolt_tasks'] = 100
-default['wt_storm_streaming']['streaming_topology_in_session_bolt_count'] = 0
-default['wt_storm_streaming']['streaming_topology_in_session_bolt_tasks'] = 0
-default['wt_storm_streaming']['streaming_topology_validation_bolt_count'] = 25
-default['wt_storm_streaming']['streaming_topology_validation_bolt_tasks'] = 60
-default['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_count'] = 5
-default['wt_storm_streaming']['streaming_topology_zmq_emitter_bolt_tasks'] = 5
+default['wt_storm_streaming']['query_bolt_executors'] = 0
+default['wt_storm_streaming']['query_bolt_tasks'] = 0
 
-default['wt_storm_streaming']['streaming_topology_field_grouping_local'] = "true"
-# debug setting, setting this to true in a pod would run the system on only one host
-default['wt_storm_streaming']['streaming_topology_mode_local'] = "false"
+default['wt_storm_streaming']['tracer_dcsid'] = ""
 default['wt_storm_streaming']['topic_list'] = []
 
-# debug setting, setting this to true will result in more debugging by the storm infrastructure
-default['wt_storm_streaming']['debug'] = false
+default['wt_storm_streaming']['kafka']['consumer_group_id'] = "kafka-streaming"
+default['wt_storm_streaming']['kafka']['zookeeper_timeout_ms'] = 100000
+default['wt_storm_streaming']['kafka']['auto_offset_reset'] = "smallest"
+default['wt_storm_streaming']['kafka']['auto_commit_enable'] = "true"
 
 # general storm attributes
 default['wt_storm_streaming']['java_lib_path'] = "/usr/local/lib:/opt/local/lib:/usr/lib"
@@ -39,7 +33,7 @@ default['wt_storm_streaming']['zookeeper']['retry_interval'] = 1000
 
 # supervisor attributes
 default['wt_storm_streaming']['supervisor']['workers'] = 4
-default['wt_storm_streaming']['supervisor']['childopts'] = "-Xmx1024m"
+default['wt_storm_streaming']['supervisor']['childopts'] = "-Xmx512m"
 default['wt_storm_streaming']['supervisor']['worker_start_timeout'] = 120
 default['wt_storm_streaming']['supervisor']['worker_timeout_secs'] = 30
 default['wt_storm_streaming']['supervisor']['monitor_frequecy_secs'] = 3
@@ -47,7 +41,7 @@ default['wt_storm_streaming']['supervisor']['heartbeat_frequency_secs'] = 5
 default['wt_storm_streaming']['supervisor']['enable'] = true
 
 # worker attributes
-default['wt_storm_streaming']['worker']['childopts'] = "-Xmx2048m -Xms2048m -XX:+UseParallelOldGC -XX:SurvivorRatio=8 -XX:-UseAdaptiveSizePolicy -XX:PermSize=128m -XX:MaxPermSize=128m -Xmn1g -Dcom.sun.management.jmxremote"
+default['wt_storm_streaming']['worker']['childopts'] = "-Xmx1280m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
 default['wt_storm_streaming']['worker']['heartbeat_frequency_secs'] = 1
 default['wt_storm_streaming']['task']['heartbeat_frequency_secs'] = 3
 default['wt_storm_streaming']['task']['refresh_poll_secs'] = 10
@@ -56,7 +50,7 @@ default['wt_storm_streaming']['zmq']['longer_millis'] = 5000
 
 # nimbus attributes
 default['wt_storm_streaming']['nimbus']['thrift_port'] = 6627
-default['wt_storm_streaming']['nimbus']['childopts'] = "-Xmx1024m"
+default['wt_storm_streaming']['nimbus']['childopts'] = "-Xmx768m"
 default['wt_storm_streaming']['nimbus']['task_timeout_secs'] = 30
 default['wt_storm_streaming']['nimbus']['supervisor_timeout_secs'] = 60
 default['wt_storm_streaming']['nimbus']['monitor_freq_secs'] = 10

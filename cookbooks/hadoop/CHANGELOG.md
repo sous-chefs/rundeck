@@ -3,10 +3,23 @@
 * Don't give the hadoop user a valid shell / home directory / bashrc
 * Format the data disks if they haven't been formated already
 
+## 1.1.11
+* adding hadoop proxy properties for Oozie
+
+
+## 1.1.10
+* added support for ubuntu packages
+* set JAVA_HOME in hadoop-env.sh
+
+## 1.1.9
+* adding attributes for mapred-queue-acls.xml
+
+## 1.1.8
+* setting JAVA_LIBRARY_PATH so native hadoop and snappy libraries can be used
+
 ## 1.1.7
 * added additional hbase and hadoop counters to collectd_hadoop_DataNode.conf.erb template
 * includes removal of some counters that never log anything, switching some counters to gauges, and adding a couple of replication specific counters
-
 
 ## 1.1.6
 * added more log messages to search method

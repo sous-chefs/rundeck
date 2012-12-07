@@ -8,8 +8,8 @@
 # This recipe uninstalls existing Search Service installs
 
 # destinations
-install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_sync']['install_dir'].gsub(/[\\\/]+/,"\\"))
-log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_sync']['log_dir'].gsub(/[\\\/]+/,"\\"))
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_sync']['install_dir']).gsub(/[\\\/]+/,"\\")
+log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_sync']['log_dir']).gsub(/[\\\/]+/,"\\")
 
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)

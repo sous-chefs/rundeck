@@ -12,39 +12,30 @@
 
 log "Deploy build is #{ENV["deploy_build"]}"
 if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploy first"
-  include_recipe "wt_roadrunner::uninstall"
+	log "The deploy_build value is true so un-deploy first"
+	include_recipe "wt_roadrunner::uninstall"
 else
-  log "The deploy_build value is not set or is false so we will only update the configuration"
+	log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
 # source build
-tarball      = node['wt_roadrunner']['download_url'].split("/")[-1]
 download_url = node['wt_roadrunner']['download_url']
 
-# get parameters
-master_host = node['wt_masterdb']['master_host']
-
 # destinations
-install_dir = "#{node['wt_common']['install_dir_windows']}#{node['wt_roadrunner']['install_dir']}"
-log_dir     = "#{node['wt_common']['install_dir_windows']}#{node['wt_roadrunner']['log_dir']}"
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_roadrunner']['install_dir']).gsub(/[\\\/]+/,"\\")
+log_dir     = File.join(node['wt_common']['install_dir_windows'], node['wt_roadrunner']['log_dir']).gsub(/[\\\/]+/,"\\")
 
 # get data bag items
 auth_data = data_bag_item('authorization', node.chef_environment)
 svcuser = auth_data['wt_common']['loader_user']
 svcpass = auth_data['wt_common']['loader_pass']
 
-rr_port = 8097
-gac_cmd = "#{install_dir}\\gacutil.exe /i \"#{install_dir}\\Webtrends.RoadRunner.SSISPackageRunner.dll\""
-urlacl_cmd = "netsh http add urlacl url=http://+:#{rr_port}/ user=\"#{svcuser}\""
-firewall_cmd="netsh advfirewall firewall add rule name=\"Webtrends RoadRunner port #{rr_port}\" dir=in action=allow protocol=TCP localport=#{$rr_port}"
-
 # determine root drive of install_dir - ENG390500
 if (install_dir =~ /^(\w:)\\.*$/)
 	install_dir_drive = $1
 else
 	raise Chef::Exceptions::AttributeNotFound,
-		"could not determine install_dir_drive, please verify value of install_dir: #{install_dir}"
+		"could not determine install_dir_drive, verify value of install_dir: #{install_dir}"
 end
 
 # create the install directory
@@ -75,36 +66,23 @@ end
 
 if ENV["deploy_build"] == "true" then
 
+	log "Source URL: #{download_url}"
+
 	# unzip the install package
 	windows_zipfile install_dir do
-		source "#{Chef::Config[:file_cache_path]}/#{tarball}"
+		source download_url
 		action :unzip
 	end
 
-	template "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config" do
-	  source "Webtrends.RoadRunner.Service.exe.config.erb"
-	  variables(
-		  :master_host => master_host
-	  )
+	execute 'gac' do
+		command "#{install_dir}\\gacutil.exe /i \"#{install_dir}\\Webtrends.RoadRunner.SSISPackageRunner.dll\""
 	end
 
-	template "#{install_dir}\\log4net.config" do
-	  source "log4net.config.erb"
-	  variables(
-	  	:logdir => log_dir
-	  )
-	end
-
-	execute "gac" do
-	  command gac_cmd
-	  cwd install_dir
-	end
-
-	powershell "create service" do
+	powershell 'create service' do
 		environment({'serviceName' => node['wt_roadrunner']['service_name'], 'install_dir' => install_dir, 'svcuser' => svcuser, 'svcpass' => svcpass})
 		code <<-EOH
- 		# $computer = gc env:computername
- 		$class = "Win32_Service"
+		# $computer = gc env:computername
+		$class = "Win32_Service"
 		$method = "Create"
 		# $mc = [wmiclass]"\\\\$computer\\ROOT\\CIMV2:$class"
 		$mc = [wmiclass]"\\\\.\\ROOT\\CIMV2:$class"
@@ -126,24 +104,42 @@ if ENV["deploy_build"] == "true" then
 		$result = $mc.PSBase.InvokeMethod($method,$inparams,$null)
 		$result | Format-List
 		EOH
+		notifies :start, "service[#{node['wt_roadrunner']['service_name']}]"
 	end
 
-	#Set the ACL up to allow http traffic on port 8097
-	execute "netsh_urlacl" do
-		command urlacl_cmd
-		cwd install_dir
+	# Set the ACL up to allow http traffic on port 8097
+	execute 'netsh_urlacl' do
+		command "netsh http add urlacl url=http://+:8097/ user=\"#{svcuser}\""
 	end
 
 	# Set the firewall to allow traffic into the system on port 8097
-	execute "netsh_firewall" do
-		command firewall_cmd
-		cwd install_dir
+	execute 'netsh_firewall' do
+		command 'netsh advfirewall firewall add rule name=\"Webtrends RoadRunner port 8097\" dir=in action=allow protocol=TCP localport=8097'
 	end
 
 	share_wrs
 end
 
+template "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config" do
+	source 'Webtrends.RoadRunner.Service.exe.config.erb'
+	variables(
+		:master_host => node['wt_masterdb']['host']
+	)
+end
+
+template "#{install_dir}\\log4net.config" do
+	source 'log4net.config.erb'
+	variables(
+		:log_dir => log_dir
+	)
+end
+
 service node['wt_roadrunner']['service_name'] do
-	action :start
+	supports :start => true, :restart => true
+	subscribes :restart, resources(
+		:template => "#{install_dir}\\Webtrends.RoadRunner.Service.exe.config",
+		:template => "#{install_dir}\\log4net.config"
+	)
+	action :nothing
 	ignore_failure true
 end
