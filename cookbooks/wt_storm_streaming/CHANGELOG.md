@@ -1,3 +1,6 @@
+## 2.3.2
+* Set default of saving the offset to ZK true.
+
 ## 2.3.1
 * Fewer parameters and name changes to reflect code names.
 
