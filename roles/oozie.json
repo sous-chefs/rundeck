@@ -8,5 +8,7 @@
         "recipe[hadoop]",
 	"recipe[hive]",
 	"recipe[oozie]"
+
     ]
 }
+
