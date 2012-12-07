@@ -117,10 +117,10 @@ template "#{install_dir}/conf/config.json" do
     mode  00644
     variables({
         :agg_bkr_zk_connect => zookeeper_pairs * ",",
-        :agg_bkr_zk_timeout_ms => node[:wt_kafka_topagg][:agg_bkr_zk_timeout_ms],
+        :agg_bkr_zk_timeout_ms => node['wt_kafka_topagg']['agg_bkr_zk_timeout_ms'],
         :dc => datacenter,
         :pod => pod,
-        :edge_kafka_sources => node[:wt_kafka_topagg][:edge_kafka_sources].to_json().gsub("[{", "[\n         {").gsub("}]", "}\n    ]").gsub("},{", "},\n         {")
+        :edge_kafka_sources => node['wt_kafka_topagg']['edge_kafka_sources'].to_json().gsub("[{", "[\n         {").gsub("}]", "}\n    ]").gsub("},{", "},\n         {")
     })
 end
 
