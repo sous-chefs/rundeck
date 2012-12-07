@@ -10,7 +10,7 @@
 CarbonServer="carbon.pdx.netiq.dmz"
 CarbonPort="2003"
 
-MetricRoot="tools.loadbalancers"
+MetricRoot="common.loadbalancers"
 Host="pdxlbe01"
 HostIP="10.90.19.253"
 
