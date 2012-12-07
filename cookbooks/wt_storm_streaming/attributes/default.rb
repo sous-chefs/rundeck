@@ -11,6 +11,7 @@ default['wt_storm_streaming']['download_url'] = ""
 default['wt_storm_streaming']['query_bolt_executors'] = 0
 default['wt_storm_streaming']['query_bolt_tasks'] = 0
 
+default['wt_storm_streaming']['tracer_dcsid'] = ""
 default['wt_storm_streaming']['topic_list'] = []
 
 default['wt_storm_streaming']['kafka']['consumer_group_id'] = "kafka-streaming"
