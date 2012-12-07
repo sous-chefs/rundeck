@@ -1,3 +1,8 @@
+## 1.0.3
+* Address food critic warning
+  * Removed reptitious resource declarations
+  * Added default actions to LWRP
+
 ## 1.0.2:
 * Address food critic warnings
 * Remove unused win_uninstall and iis_config recipes

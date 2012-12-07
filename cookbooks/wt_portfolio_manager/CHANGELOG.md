@@ -1,3 +1,6 @@
+## 1.1.17
+* Removed unused template variable
+
 ## 1.1.16
 * Add current node domain to proxy bypass list
 
