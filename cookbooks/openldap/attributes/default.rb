@@ -17,45 +17,50 @@
 #
 
 if domain.length > 0
-  default[:openldap][:basedn] = "dc=#{domain.split('.').join(",dc=")}"
-  default[:openldap][:server] = "ldap.#{domain}"
+  default['openldap']['basedn'] = "dc=#{domain.split('.').join(",dc=")}"
+  default['openldap']['server'] = "ldap.#{domain}"
 end
 
-openldap[:rootpw] = nil
+openldap['rootpw'] = nil
 
 # File and directory locations for openldap.
 case platform
-when "redhat","centos"
-  set[:openldap][:dir]        = "/etc/openldap"
-  set[:openldap][:run_dir]    = "/var/run/openldap"
-  set[:openldap][:module_dir] = "/usr/lib64/openldap"  
+when "redhat","centos","amazon","scientific"
+  default['openldap']['dir']        = "/etc/openldap"
+  default['openldap']['run_dir']    = "/var/run/openldap"
+  default['openldap']['module_dir'] = "/usr/lib64/openldap"
 when "debian","ubuntu"
-  set[:openldap][:dir]        = "/etc/ldap"
-  set[:openldap][:run_dir]    = "/var/run/slapd"
-  set[:openldap][:module_dir] = "/usr/lib/ldap"
+  default['openldap']['dir']        = "/etc/ldap"
+  default['openldap']['run_dir']    = "/var/run/slapd"
+  default['openldap']['module_dir'] = "/usr/lib/ldap"
 else
-  set[:openldap][:dir]        = "/etc/ldap"
-  set[:openldap][:run_dir]    = "/var/run/slapd"
-  set[:openldap][:module_dir] = "/usr/lib/ldap"
+  default['openldap']['dir']        = "/etc/ldap"
+  default['openldap']['run_dir']    = "/var/run/slapd"
+  default['openldap']['module_dir'] = "/usr/lib/ldap"
 end
 
-openldap[:ssl_dir] = "#{openldap[:dir]}/ssl"
-openldap[:cafile]  = "#{openldap[:ssl_dir]}/ca.crt"
+openldap['ssl_dir'] = "#{openldap['dir']}/ssl"
+openldap['cafile']  = "#{openldap['ssl_dir']}/ca.crt"
 
-# Server settings.
-openldap[:slapd_type] = nil
+# Server settings
+openldap['slapd_type'] = nil
 
-if openldap[:slapd_type] == "slave"
-  master = search(:nodes, 'openldap_slapd_type:master') 
-  default[:openldap][:slapd_master] = master
-  default[:openldap][:slapd_replpw] = nil
-  default[:openldap][:slapd_rid]    = 102
+if openldap['slapd_type'] == "slave"
+  master = search(:nodes, 'openldap_slapd_type:master')
+  default['openldap']['slapd_master'] = master
+  default['openldap']['slapd_replpw'] = nil
+  default['openldap']['slapd_rid']    = 102
 end
 
-# Auth settings for Apache.
-if openldap[:basedn] && openldap[:server]
-  default[:openldap][:auth_type]   = "openldap"
-  default[:openldap][:auth_binddn] = "ou=people,#{openldap[:basedn]}"
-  default[:openldap][:auth_bindpw] = nil
-  default[:openldap][:auth_url]    = "ldap://#{openldap[:server]}/#{openldap[:auth_binddn]}?uid?sub?(objecctClass=*)"
+# Auth settings for Apache
+if openldap['basedn'] && openldap['server']
+  default['openldap']['auth_type']   = "openldap"
+  default['openldap']['auth_binddn'] = "ou=people,#{openldap['basedn']}"
+  default['openldap']['auth_bindpw'] = nil
+  default['openldap']['auth_url']    = "ldap://#{openldap['server']}/#{openldap['auth_binddn']}?uid?sub?(objecctClass=*)"
 end
+
+# OpenLDAP backup attributes
+default['openldap']['server_backup']['num_backups_retained'] = 7
+default['openldap']['server_backup']['backup_nfs_mount'] = nil
+default['openldap']['server_backup']['mount_path'] = nil
