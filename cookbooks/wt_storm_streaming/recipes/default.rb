@@ -225,13 +225,8 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   mode   00644
   variables(
     # executor counts, ie: executor threads
-    :streaming_topology_emitter_bolt_count => node['wt_storm_streaming']['streaming_topology_emitter_bolt_count'],
-    :streaming_topology_augment_bolt_count => node['wt_storm_streaming']['streaming_topology_augment_bolt_count'],
-    :streaming_topology_filter_bolt_count  => node['wt_storm_streaming']['streaming_topology_filter_bolt_count'],
-    # task counts, ie: logical parallelism
-    :streaming_topology_emitter_bolt_tasks => node['wt_storm_streaming']['streaming_topology_emitter_bolt_tasks'],
-    :streaming_topology_augment_bolt_tasks => node['wt_storm_streaming']['streaming_topology_augment_bolt_tasks'],
-    :streaming_topology_filter_bolt_tasks  => node['wt_storm_streaming']['streaming_topology_filter_bolt_tasks'],
+    :query_bolt_tasks => node['wt_storm_streaming']['query_bolt_tasks'],
+    :query_bolt_executors => node['wt_storm_streaming']['query_bolt_executors'],
     # kafka consumer settings
     :kafka_consumer_topic       => node['wt_storm_streaming']['topic_list'].join(','),
     :kafka_consumer_group_id    => node['wt_storm_streaming']['kafka']['consumer_group_id'],
