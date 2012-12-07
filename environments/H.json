@@ -18,7 +18,7 @@
         "wt_portfolio_admin": "= 1.1.10", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.3", 
-        "wt_storm_streaming": "= 2.2.1", 
+        "wt_storm_streaming": "= 2.3.1", 
         "wt_streaming_viz": "= 1.1.16", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
         "wt_streamingapi": "= 1.1.2", 
@@ -269,28 +269,23 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://hsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/44170:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/44299:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/43181:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augmentation_bolt_count": 12, 
-            "streaming_topology_augmentation_bolt_tasks": 12, 
-            "streaming_topology_field_grouping_local": "false", 
-            "streaming_topology_filter_bolt_count": 12, 
-            "streaming_topology_filter_bolt_tasks": 12, 
-            "streaming_topology_in_session_bolt_count": 0, 
-            "streaming_topology_in_session_bolt_tasks": 0, 
-            "streaming_topology_validation_bolt_count": 12, 
-            "streaming_topology_validation_bolt_tasks": 12, 
-            "streaming_topology_zmq_emitter_bolt_count": 1, 
-            "streaming_topology_zmq_emitter_bolt_tasks": 1, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44427:id/streaming-analysis-bin.tar.gz", 
+            "query_bolt_tasks": 24, 
+            "query_bolt_executors": 24,  
+            "streaming_topology_field_grouping_local": "false",
+            "supervisor": {
+                "workers": 2
+            }, 
             "topic_list": [
-                "Lab_H_lrRawHits:6", 
-                "Lab_H_scsRawHits:6"
+                "Lab_H_lrRawHits:24", 
+                "Lab_H_scsRawHits:24"
             ], 
             "worker": {
-                "childopts": "-Xmx1280m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
         }, 
         "wt_streaming_viz": {

@@ -43,7 +43,7 @@ directory log_dir do
 end
 
 # create the install directory
-directory "#{install_dir}" do
+directory install_dir do
   owner "root"
   group "root"
   mode 00755
@@ -67,9 +67,6 @@ directory "#{install_dir}/log_pusher" do
   mode 00755
   recursive true
   action :create
-  variables(
-    :install_dir => install_dir
-  )
 end
 
 template "#{install_dir}/log_pusher/log_pusher.sh" do
@@ -77,6 +74,9 @@ template "#{install_dir}/log_pusher/log_pusher.sh" do
   owner "root"
   group "root"
   mode  00755
+  variables(
+    :install_dir => install_dir
+  )
 end
 
 cron "log_pusher" do
