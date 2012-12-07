@@ -1,6 +1,0 @@
-{
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_netacuity_web_ui_check", 
-    "hostgroup_name": "wt_netacuity", 
-    "id": "wt_netacuity_web_ui_check",
-    "event_handler": "restart_netacuity"
-}

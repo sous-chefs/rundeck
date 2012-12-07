@@ -12,5 +12,7 @@ Installs Streaming API Service
 * download_url: The fullpath, including the tarball, to the system build
 * authentication_url - The base REST url for authentication (Defaults to http://ec2-174-129-84-113.compute-1.amazonaws.com/camservice)
 * java_opts - Options to start java (e.g. "-Xms2048m -Djava.net.preferIPv4Stack=true")
+* explore_timeout - The amount of time (minutes) an exploratory session will run
+* explore_quietperiod - The amount of time (minutes) between exploratory sessions
 
 = USAGE:

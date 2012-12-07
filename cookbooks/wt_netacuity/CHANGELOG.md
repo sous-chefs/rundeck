@@ -1,3 +1,11 @@
+## 1.0.12
+* Remove old wt_netacuity_webui Nagios check.  This is no longer needed
+
+## 1.0.11
+* Update the nagios check to support both NetAcuity 5.X and 4.X versions
+* Change the default version to 502 not 460
+* Add name value to metadata
+
 ## 1.0.10
 * switch to run as non-root user: netacuity
 * changed data bag admin password, to be the password and not a password hash

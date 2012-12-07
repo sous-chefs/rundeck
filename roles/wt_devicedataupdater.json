@@ -8,8 +8,8 @@
     "override_attributes": {},
     "run_list": [
         "recipe[vc2010]",
-	"recipe[ms_dotnet4]",
-	"recipe[ms_messagequeue]",
+        "recipe[ms_dotnet4]",
+        "recipe[ms_messagequeue]",
         "role[wt_platformscheduler_agent]",
         "recipe[wt_devicedataupdater]"
     ]

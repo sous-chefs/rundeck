@@ -13,6 +13,7 @@
   },
   "run_list": [
     "recipe[java]",
+    "recipe[kafka]",
     "recipe[wt_streamingcollection]"
   ],
   "description": "Webtrends Streaming Collection Server",

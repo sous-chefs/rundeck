@@ -40,8 +40,8 @@ bash "build gecode from source" do
 end
 
 # configure the dynamic linker, redhat only
-case node['platform']
-when 'centos', 'redhat', 'fedora'
+case node['platform_family']
+when 'rhel', 'fedora'
   directory "/etc/ld.so.conf.d/" do
     owner "root"
     group "root"

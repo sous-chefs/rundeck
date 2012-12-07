@@ -1,3 +1,9 @@
+## 1.0.10
+  * renamed system database attributes
+
+## 1.0.9
+  * Corrected slash substitution in paths.
+
 ## 1.0.8
   * Removed unused thrift_port attribute being passed into the localStateRetrieverConfig template
 

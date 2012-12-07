@@ -1,11 +1,5 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {
-        "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.8", 
-        "windows": "= 1.3.6", 
-        "wt_base": "= 1.0.1"
-    }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -33,6 +27,9 @@
             "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
             "repo": "http://repo.staging.dmz/repo/linux/vmware", 
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+        }, 
+        "firefox": {
+            "http_url": "http://repo.staging.dmz/repo/windows/firefox/FirefoxSetup16.0.2.exe"
         }, 
         "hbase": {
             "location": "sdata.staging.dmz", 
@@ -214,8 +211,8 @@
             "mc_service_url": "https://kmc.englab.webtrends.corp"
         }, 
         "wt_masterdb": {
-            "master_host": "kmasterdb01.englab.webtrends.corp", 
-            "sched_host": "kmasterdb01.englab.webtrends.corp"
+            "dbname": "wtMaster", 
+            "host": "kmasterdb01.englab.webtrends.corp"
         }, 
         "wt_messaging_monitoring": {
             "monitor_hostname": "kds01.englab.webtrends.corp"
@@ -245,16 +242,24 @@
         "wt_rta": {
             "rta_host": "krta01.englab.webtrends.corp"
         }, 
+        "wt_scheddb": {
+            "dbname": "wt_Sched", 
+            "host": "kmasterdb01.englab.webtrends.corp"
+        }, 
+        "wt_schedulerdb": {
+            "dbname": "wtScheduler", 
+            "host": "kusagedb01.englab.webtrends.corp"
+        }, 
         "wt_search": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt20/.lastSuccessful/Search.zip", 
             "search_hostname": "ksearch.englab.webtrends.corp"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt292/37917:id/SyncService.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt18/.lastSuccessful/SyncService.zip"
         }, 
         "wt_usagedb": {
-            "schedulerdb_host": "kusagedb01.englab.webtrends.corp", 
-            "usage_host": "kusagedb01.englab.webtrends.corp"
+            "dbname": "wtUsage", 
+            "host": "kusagedb01.englab.webtrends.corp"
         }, 
         "wt_xd": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36325:id/artifacts.zip", 
@@ -281,6 +286,11 @@
             "servers": [
                 "time.webtrends.corp"
             ]
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
 }

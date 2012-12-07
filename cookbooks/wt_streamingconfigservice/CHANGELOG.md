@@ -1,3 +1,15 @@
+## 1.0.7
+* replace node attribute access with instance variable in template
+
+## 1.0.6
+* renamed system database attributes
+
+## 1.0.5
+* Added an erb file for rcsrules.config.caches.json in the config folder.
+
+## 1.0.4
+* Create attribute for the healthcheck_port so this service can coexist with others that try to use 9000
+
 ## 1.0.3
 * Added minitest-handler and a preliminary test that verifies healthcheck returns true
 

@@ -19,6 +19,7 @@ Default locations for bluepill are in "FHS compliant" locations.
 * `node["bluepill"]["pid_dir"]` - Location of pidfiles, default "/var/run/bluepill"
 * `node["bluepill"]["state_dir"]` - Location of state directory, default "/var/lib/bluepill"
 * `node["bluepill"]["init_dir"]` - Location of init script directory, default selected by platform.
+* `node["bluepill"]["version"]` - Version of bluepill to install, default is latest.
 
 Resources/Providers
 ===================

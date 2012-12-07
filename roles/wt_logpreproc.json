@@ -1,0 +1,13 @@
+{
+    "chef_type": "role", 
+    "default_attributes": {}, 
+    "description": "Webtrends Log Preprocessor Service", 
+    "env_run_lists": {}, 
+    "json_class": "Chef::Role", 
+    "name": "wt_logpreproc", 
+    "override_attributes": {}, 
+    "run_list": [
+        "recipe[vc2010]", 
+        "recipe[wt_logpreproc]"
+    ]
+}

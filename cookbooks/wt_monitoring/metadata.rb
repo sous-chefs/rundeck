@@ -1,3 +1,4 @@
+name             "wt_monitoring"
 maintainer       "Webtrends, Inc."
 maintainer_email "tim.smith@webtrends.com"
 license          "All rights reserved"
