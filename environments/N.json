@@ -18,7 +18,7 @@
         "wt_portfolio_admin": "= 1.1.10", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.2", 
-        "wt_storm_streaming": "= 2.3.0", 
+        "wt_storm_streaming": "= 2.3.1", 
         "wt_streaming_viz": "= 1.1.14", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
         "wt_streamingapi": "= 1.1.2", 
@@ -253,20 +253,16 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44163:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augment_bolt_count": 24, 
-            "streaming_topology_augment_bolt_tasks": 24,  
-            "streaming_topology_filter_bolt_count": 24, 
-            "streaming_topology_filter_bolt_tasks": 24,
-            "streaming_topology_emitter_bolt_count": 4, 
-            "streaming_topology_emitter_bolt_tasks": 4, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44427:id/streaming-analysis-bin.tar.gz", 
+            "query_bolt_tasks": 24, 
+            "query_bolt_executors": 24,  
             "streaming_topology_field_grouping_local": "false",
             "supervisor": {
                 "workers": 1
             }, 
             "topic_list": [
-                "Lab_N_lrRawHits:2", 
-                "Lab_N_scsRawHits:2"
+                "Lab_N_lrRawHits:4", 
+                "Lab_N_scsRawHits:4"
             ], 
             "worker": {
                 "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
