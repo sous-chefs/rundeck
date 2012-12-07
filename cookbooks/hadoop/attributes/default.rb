@@ -60,7 +60,7 @@ default[:hadoop][:default][:core][:fs_checkpoint_dir] = '/var/lib/hadoop/hdfs/ba
 default[:hadoop][:default][:core][:fs_checkpoint_period] = 3600
 default[:hadoop][:default][:core][:fs_trash_interval] = 360
 #server running oozie
-default[:hadoop][:default][:core][:oozie_proxy_hosts] = 'sworkflow01'
+default[:hadoop][:default][:core][:oozie_proxy_hosts] = 'soozie01'
 
 
 # hadoop-env.sh
