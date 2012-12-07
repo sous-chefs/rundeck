@@ -23,6 +23,8 @@ define host {
 }
 
 <% end -%>
+
+<% unless @unmanaged_hosts.nil? -%>
 <% @unmanaged_hosts.each do |n| -%>
 define host {
   use server
@@ -31,5 +33,5 @@ define host {
   hostgroups <%= n['hostgroups'].join(",") %>
   notifications_enabled <%= n['notifications'] %>
 }
-
+<% end -%>
 <% end -%>
