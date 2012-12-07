@@ -234,7 +234,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :kafka_auto_offset_reset    => node['wt_storm_streaming']['kafka']['auto_offset_reset'],
     :kafka_auto_commit_enable   => node['wt_storm_streaming']['kafka']['auto_commit_enable'],
     # tracer dcsid
-    :tracer_dcsid => node['wt_storm_streaming']['tracer_dcsid']
+    :tracer_dcsid => node['wt_storm_streaming']['tracer_dcsid'],
     # non-storm parameters
     :zookeeper_quorum      => zookeeper_quorum * ",",
     :zookeeper_clientport  => zookeeper_clientport,
