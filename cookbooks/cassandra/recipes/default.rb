@@ -41,4 +41,19 @@ user "root"
   EOH
 end
 
+# cassandra environment
+template '/etc/cassandra/conf/cassandra-env.sh' do
+  source 'cassandra-env.sh.erb'
+  variables(
+    :max_heap_size => node['cassandra']['max_heap_size'],
+    :heap_newsize  => node['cassandra']['heap_newsize']
+  )
+  notifies :restart, 'service[cassandra]'
+end
+
+service 'cassandra' do
+  supports :restart => true
+  action :nothing
+end
+
 include_recipe "cassandra::monitors"
