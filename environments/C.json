@@ -241,7 +241,7 @@
             "monitoring_enabled": "true"
         }, 
         "wt_netacuity": {
-            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.gz", 
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz", 
             "geo_url": "cgeo.staging.dmz", 
             "version": "502"
         }, 
