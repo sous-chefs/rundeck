@@ -57,7 +57,7 @@ remote_file "#{node['nagios']['plugin_dir']}/pagerduty_nagios.pl" do
 end
 
 cron "Flush Pagerduty" do
-  owner node['nagios']['user']
+  user node['nagios']['user']
   mailto "root@localhost"
   command "#{node['nagios']['plugin_dir']}/pagerduty_nagios.pl flush"
 end
