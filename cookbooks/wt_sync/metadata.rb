@@ -1,8 +1,11 @@
-maintainer       "Webtrends"
+name             "wt_sync"
+maintainer       "Webtrends, Inc."
 maintainer_email "kendrick.martin@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures Webtrends Sync Service"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.0.4"
+version          "1.0.6"
 depends          "wt_base"
 depends          "powershell"
+depends          "windows"
+supports         "windows"

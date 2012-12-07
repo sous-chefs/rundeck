@@ -11,11 +11,17 @@
         "loader_acct": "wtLoader", 
         "loader_pass": "Bijoux1", 
         "loader_user": "STAGINGDMZ\\wtLoader", 
+        "log_acct": "wtLog", 
+        "log_pass": "Bijoux1", 
+        "log_user": "STAGINGDMZ\\wtLog", 
         "system_acct": "wtSystem", 
         "system_pass": "Bijoux1", 
         "system_user": "STAGINGDMZ\\wtSystem", 
         "ui_acct": "wtUI", 
         "ui_pass": "Bijoux1", 
         "ui_user": "STAGINGDMZ\\wtUI"
+    }, 
+    "wt_netacuity": {
+        "admin_password": "Bijoux01"
     }
 }

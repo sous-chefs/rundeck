@@ -10,14 +10,8 @@ define host {
   <% if node['nagios']['multi_environment_monitoring'] -%>
   <% if n.run_list.roles.nil? || n.run_list.roles.length == 0 -%>
   hostgroups all,<%= n.os %>,<%= n.chef_environment %>
-  <% if node['nagios']['non_alerting_environments'].include?("#{n.chef_environment}") -%>
-  notifications_enabled 0
-  <% end -%>
   <% else -%>
-  hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n.os %>,<%= n.chef_environment %>
-  <% if node['nagios']['non_alerting_environments'].include?("#{n.chef_environment}") -%>
-  notifications_enabled 0
-  <% end -%>
+  hostgroups <%= (n.run_list.roles.to_a & @hostgroups).join(",") %>,<%= n.os %>,<%= n.chef_environment %>
   <% end -%>
   <% elsif -%>
   <% if n.run_list.roles.nil? || n.run_list.roles.length == 0 -%>
@@ -27,8 +21,10 @@ define host {
   <% end -%>
   <% end -%>
 }
+
 <% end -%>
 
+<% unless @unmanaged_hosts.nil? -%>
 <% @unmanaged_hosts.each do |n| -%>
 define host {
   use server
@@ -37,4 +33,5 @@ define host {
   hostgroups <%= n['hostgroups'].join(",") %>
   notifications_enabled <%= n['notifications'] %>
 }
+<% end -%>
 <% end -%>

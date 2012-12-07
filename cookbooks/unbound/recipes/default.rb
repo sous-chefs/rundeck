@@ -23,7 +23,7 @@ root_group = value_for_platform(
 )
 
 package "unbound" do
-  action :upgrade
+  action :install
 end
 
 directory "#{node['unbound']['directory']}/conf.d" do

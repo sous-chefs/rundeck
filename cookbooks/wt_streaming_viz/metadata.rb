@@ -1,9 +1,10 @@
+name             "wt_streaming_viz"
 maintainer       "Webtrends"
 maintainer_email "kendrick.martin@webtrends.com"
 license          "All rights reserved"
-description      "Installs/Configures Streaming Dataviz IIS site"
+description      "Installs/Configures Streams UI IIS site"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.1.12"
+version          "1.1.16"
 supports         "windows"
 depends          "iis"
 depends          "windows"

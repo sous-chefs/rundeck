@@ -14,7 +14,7 @@ storm.zookeeper.servers:
     - "<%= host %>"
 <% end -%>
 storm.zookeeper.port: <%= @zookeeper_clientport %>
-storm.zookeeper.root: "<%= @storm_config[:zookeeper][:root] %>"
+storm.zookeeper.root: "<%= @zookeeper_root %>"
 storm.zookeeper.session.timeout: <%= @storm_config[:zookeeper][:session_timeout] %>
 storm.zookeeper.retry.times: <%= @storm_config[:zookeeper][:retry_times] %>
 storm.zookeeper.retry.interval: <%= @storm_config[:zookeeper][:retry_interval] %>
@@ -37,7 +37,7 @@ supervisor.enable: <%= @storm_config[:supervisor][:enable] %>
 
 
 ### worker.* configs are for task workers
-worker.childopts: "<%= @storm_config[:worker][:childopts] %>"
+worker.childopts: "<%= @worker_childopts %>"
 worker.heartbeat.frequency.secs: <%= @storm_config[:worker][:heartbeat_frequency_secs] %>
 task.heartbeat.frequency.secs: <%= @storm_config[:task][:heartbeat_frequency_secs] %>
 task.refresh.poll.secs: <%= @storm_config[:task][:refresh_poll_secs] %>
@@ -79,7 +79,7 @@ transactional.zookeeper.servers:
 <% @zookeeper_quorum.each do |host| -%>
     - "<%= host %>"
 <% end -%>
-transactional.zookeeper.root: "<%= @storm_config[:transactional][:zookeeper][:root] %>"
+transactional.zookeeper.root: "<%= @transactional_zookeeper_root %>"
 transactional.zookeeper.port: <%= @storm_config[:transactional][:zookeeper][:port] %>
 
 

@@ -21,3 +21,5 @@ default['wt_streamingapi']['usagedbpwd'] = ""
 default['wt_streamingapi']['log_dir'] = "/var/log/webtrends/streamingapi"
 default['wt_streamingapi']['proxy_host']               = ""
 default['wt_streamingapi']['sauth_version'] = "v1"
+default['wt_streamingapi']['explore_timeout'] = 10
+default['wt_streamingapi']['explore_quietperiod'] = 0

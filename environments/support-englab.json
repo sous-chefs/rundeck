@@ -1,11 +1,12 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "cobbler": "= 1.0.5", 
+        "cobbler": "= 1.0.7", 
+        "nagios": "= 1.6.3",
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
-        "wt_base": "= 1.0.1"
+        "wt_base": "= 1.0.2"
     }, 
     "default_attributes": {
         "authorization": {
@@ -149,6 +150,11 @@
             "servers": [
                 "time.webtrends.corp"
             ]
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
 }

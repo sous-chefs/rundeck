@@ -1,7 +1,7 @@
 Description
 ===========
 
-This cookbook installs Firefox 16.0.2
+This cookbook installs Firefox 17.0.1
 
 Requirements
 ============

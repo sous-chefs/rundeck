@@ -1,3 +1,14 @@
+## 1.0.12
+* Fixed food critic complaints
+  * Removed unused template variables
+* Changed while loop to idiomatic ruby
+
+## 1.0.11
+* Took out the depedency on nagios and collectd.  Both are optional
+
+## 1.0.10
+* Added additional capture of metrics for collectd/graphite
+
 ## 1.0.9
 * Change the metrics being captured for graphite
 

@@ -9,7 +9,7 @@
 #
 
 unless ENV['CHEF_ENVIRONMENT'].nil?
-	log "changing environment #{node.chef_environment} to #{ENV['CHEF_ENVIRONMENT']}"
-	node.chef_environment(ENV['CHEF_ENVIRONMENT'])
-	node.save
+  log "changing environment #{node.chef_environment} to #{ENV['CHEF_ENVIRONMENT']}"
+  node.chef_environment(ENV['CHEF_ENVIRONMENT'])
+  node.save
 end
