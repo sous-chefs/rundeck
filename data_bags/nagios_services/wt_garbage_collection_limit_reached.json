@@ -1,6 +1,6 @@
 {
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_garbage_collection_limit_reached", 
-    "hostgroup_name": "wt_realtime_api_server", 
+    "hostgroup_name": "wt_streaming_api_server", 
     "id": "wt_garbage_collection_limit_reached",
     "service_template": "default-logfile"
 }
