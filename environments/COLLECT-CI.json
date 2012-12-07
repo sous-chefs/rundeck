@@ -344,7 +344,7 @@
         "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
       }, 
       "wt_streamingcollection": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt188/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz"
+        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41502:id/webtrends-streamingcollection-bin.tar.gz"
       }, 
       "wt_streamingconfigservice": {
         "camdbname": "CAM", 
@@ -355,7 +355,7 @@
       }, 
       "wt_streaminglogreplayer": {
         "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/26189:id/webtrends-streaminglogreplayer-bin.tar.gz", 
-        "log_share_mount": "sstore02.staging.dmz:/ifs/cistore/logreplay", 
+        "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay", 
         "thread_pool_size": 200
       }, 
       "wt_streamingmanagementservice": {
@@ -378,9 +378,9 @@
         "tick_time": 2000
       }
     }, 
-    "description": "CI Pod", 
+    "description": "CI Collection Pod", 
     "json_class": "Chef::Environment", 
-    "name": "CI", 
+    "name": "COLLECT-CI", 
     "override_attributes": {
       "ntp": {
         "servers": [

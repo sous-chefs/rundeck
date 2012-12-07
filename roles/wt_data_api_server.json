@@ -1,5 +1,5 @@
 {
-  "name": "wt_realtime_api_server",
+  "name": "wt_data_api_server",
   "default_attributes": {
   },
   "override_attributes": {
@@ -13,8 +13,8 @@
   },
   "run_list": [
     "recipe[java]",
-    "recipe[wt_realtimeapi]"
+    "recipe[wt_dataapi]"
   ],
-  "description": "Webtrends Realtime API Server",
+  "description": "Webtrends Data API Server",
   "chef_type": "role"
 }

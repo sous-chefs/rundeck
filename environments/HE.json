@@ -1,28 +1,16 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "cassandra": "= 1.0.7", 
         "hadoop": "= 0.0.2", 
         "hbase": "= 0.0.1", 
         "hive": "= 0.0.1", 
-        "java": "= 1.5.4", 
-        "nagios": "= 1.6.1", 
+        "java": "= 1.6.0", 
+        "nagios": "= 2.0.0",  
         "nginx": "= 0.101.0", 
         "php5-cgi": "= 1.0.2", 
-        "sudo": "= 1.0.0", 
-        "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
-        "windows": "= 1.3.6", 
-        "wt_analytics_ui": "= 1.0.1", 
-        "wt_base": "= 1.0.1", 
-        "wt_commonlib": "= 0.10.3", 
-        "wt_dx": "= 0.10.3", 
+        "wt_base": "= 1.0.2", 
         "wt_heatmaps": "= 0.10.45", 
-        "wt_roadrunner": "= 0.10.31", 
-        "wt_search": "= 1.0.1", 
-        "wt_storm": "= 1.0.34", 
-        "wt_streaminglogreplayer": "= 0.0.24", 
-        "wt_sync": "= 1.0.1", 
         "zookeeper": "= 0.0.1"
     }, 
     "default_attributes": {}, 
@@ -60,7 +48,7 @@
             }, 
             "dfs": {
                 "block_size": 67108864, 
-                "data_dir": "/mnt/hdfs/hdfs01/data1/hdfs,/mnt/hdfs/hdfs01/data2/hdfs,/mnt/hdfs/hdfs01/data3/hdfs,/mnt/hdfs/hdfs01/data4/hdfs,/mnt/hdfs/hdfs01/data5/hdfs,/mnt/hdfs/hdfs01/data6/hdfs,/mnt/hdfs/hdfs01/data7/hdfs,/mnt/hdfs/hdfs01/data8/hdfs,/mnt/hdfs/hdfs01/data9/hdfs,/mnt/hdfs/hdfs01/data10/hdfs,/mnt/hdfs/hdfs01/data11/hdfs,/mnt/hdfs/hdfs01/data12/hdfs", 
+                "data_dir": "/hdfs/data1/hdfs,/hdfs/data2/hdfs,/hdfs/data3/hdfs,/hdfs/data4/hdfs,/hdfs/data5/hdfs,/hdfs/data6/hdfs,/hdfs/data7/hdfs,/hdfs/data8/hdfs,/hdfs/data9/hdfs,/hdfs/data10/hdfs,/hdfs/data11/hdfs,/hdfs/data12/hdfs", 
                 "datanode_du_reserved": 10485760, 
                 "datanode_handler_count": 3, 
                 "datanode_max_xcievers": 4096, 
@@ -81,7 +69,7 @@
                 "io_sort_mb": 100, 
                 "job_reuse_jvm_num_tasks": 1, 
                 "job_tracker_handler_count": 10, 
-                "local_dir": "/mnt/hdfs/hdfs01/data1/mapred,/mnt/hdfs/hdfs01/data2/mapred,/mnt/hdfs/hdfs01/data3/mapred,/mnt/hdfs/hdfs01/data4/mapred,/mnt/hdfs/hdfs01/data5/mapred,/mnt/hdfs/hdfs01/data6/mapred,/mnt/hdfs/hdfs01/data7/mapred,/mnt/hdfs/hdfs01/data8/mapred,/mnt/hdfs/hdfs01/data9/mapred,/mnt/hdfs/hdfs01/data10/mapred,/mnt/hdfs/hdfs01/data11/mapred,/mnt/hdfs/hdfs01/data12/mapred", 
+                "local_dir": "/hdfs/data1/mapred,/hdfs/data2/mapred,/hdfs/data3/mapred,/hdfs/data4/mapred,/hdfs/data5/mapred,/hdfs/data6/mapred,/hdfs/data7/mapred,/hdfs/data8/mapred,/hdfs/data9/mapred,/hdfs/data10/mapred,/hdfs/data11/mapred,/hdfs/data12/mapred", 
                 "map_tasks_speculative_execution": "false", 
                 "reduce_tasks": 26, 
                 "reduce_tasks_speculative_execution": "false", 
@@ -115,7 +103,7 @@
                 "6": {
                     "x86_64": {
                         "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
-                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u30-linux-x64.bin"
                     }
                 }, 
                 "7": {
@@ -167,6 +155,11 @@
             "community": "DevOps", 
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }, 
         "vc2010": {
             "x64": {
@@ -228,7 +221,7 @@
             "smtp_server": "pdxengmta01.englab.webtrends.corp"
         }, 
         "wt_heatmaps": {
-            "config_distrib": "ccd01.staging.dmz:8097", 
+            "config_distrib": "dcd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
         "wt_monitoring": {

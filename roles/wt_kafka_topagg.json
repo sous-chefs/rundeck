@@ -1,5 +1,5 @@
 {
-  "name": "wt_streaming_collection_server",
+  "name": "wt_kafka_topagg",
   "default_attributes": {
   },
   "override_attributes": {
@@ -13,9 +13,8 @@
   },
   "run_list": [
     "recipe[java]",
-    "recipe[kafka]",
-    "recipe[wt_streamingcollection]"
+    "recipe[wt_kafka_topagg]"
   ],
-  "description": "Webtrends Streaming Collection Server",
+  "description": "Webtrends Kafka Topic Aggregator",
   "chef_type": "role"  
 }
