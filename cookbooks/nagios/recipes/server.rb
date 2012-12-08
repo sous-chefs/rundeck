@@ -260,7 +260,8 @@ end
 nagios_conf "services" do
   variables(
     :service_hosts => service_hosts,
-    :services => services
+    :services => services,
+    :hostgroups => hostgroups
   )
 end
 
