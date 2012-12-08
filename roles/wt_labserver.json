@@ -1,0 +1,12 @@
+{
+    "chef_type": "role", 
+    "default_attributes": {}, 
+    "description": "Webtrends Lab Server", 
+    "env_run_lists": {}, 
+    "json_class": "Chef::Role", 
+    "name": "wt_labserver", 
+    "override_attributes": {}, 
+    "run_list": [
+        "recipe[wt_labserver]"
+    ]
+}
