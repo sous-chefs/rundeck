@@ -294,7 +294,9 @@
             },
             "supervisor":{
                 "workers":1
-            }
+            },
+	    "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f"
+
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
