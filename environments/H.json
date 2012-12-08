@@ -269,7 +269,7 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://hsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/44299:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/44500:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
@@ -285,7 +285,7 @@
                 "Lab_H_scsRawHits:24"
             ], 
             "worker": {
-                "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
         }, 
         "wt_streaming_viz": {
