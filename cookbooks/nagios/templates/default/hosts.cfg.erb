@@ -5,7 +5,7 @@
 <% @nodes.each do |n| -%>
 define host {
   use server
-  address <%= n['ipaddress'] %>
+  address <%= (!n['cloud'].nil? && n['cloud'] != node['cloud']) ? n['cloud']['public_ipv4'] : n['ipaddress'] %>
   host_name <%= n['hostname'] %>
   <% if node['nagios']['multi_environment_monitoring'] -%>
   <% if n.run_list.roles.nil? || n.run_list.roles.length == 0 -%>
@@ -17,7 +17,7 @@ define host {
   <% if n.run_list.roles.nil? || n.run_list.roles.length == 0 -%>
   hostgroups all,<%= n.os %>
   <% else -%>
-  hostgroups <%= n.run_list.roles.to_a.join(",") %>,<%= n['os'] %>
+  hostgroups <%= (n.run_list.roles.to_a & @hostgroups).join(",") %>,<%= n['os'] %>
   <% end -%>
   <% end -%>
 }
