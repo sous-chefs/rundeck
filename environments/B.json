@@ -277,11 +277,11 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://bsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/44299:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/44508:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44417:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44484:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_tasks": 24,
             "query_bolt_executors": 24,
             "streaming_topology_field_grouping_local": "false", 
@@ -290,11 +290,13 @@
                 "Lab_B_lrRawHits:12"
             ], 
             "worker": {
-                "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             },
             "supervisor":{
                 "workers":1
-            }
+            },
+	    "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f"
+
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
