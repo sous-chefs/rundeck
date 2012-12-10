@@ -166,7 +166,7 @@
         "wt_analytics_ui": {}, 
         "wt_aps": {
             "aps_url_base": "/AccountProvisioning/", 
-            "service_url": "http://daps01.staging.dmz"
+            "service_url": "http://aaps01.staging.dmz"
         }, 
         "wt_cam": {
             "cam": {
@@ -198,9 +198,6 @@
             "wrsmodify_group": "STAGINGDMZ\\B.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\B.WRS.Read"
         }, 
-        "wt_configdistrib": {
-            "dcsid_url": "http://acd01.staging.dmz:8097/config/dcsid2account"
-        }, 
         "wt_heatmaps": {
             "alt_chef_environment": "support-staging", 
             "config_distrib": "acd01.staging.dmz:8097", 
@@ -231,11 +228,11 @@
             ]
         }, 
         "wt_management_console": {
-            "service_url": "https://dmc.staging.dmz"
+            "service_url": "https://amc.staging.dmz"
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
-            "host": "dmasterdb01.staging.dmz"
+            "host": "amasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
@@ -257,7 +254,7 @@
         "wt_portfolio_admin": {
             "account_ui_url": "https://baccount.webtrends.com", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/43852:id/Portfolio.Admin.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/44494:id/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true"
         }, 
@@ -282,25 +279,24 @@
         "wt_search": {}, 
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44602:id/streaming-analysis-bin.tar.gz", 
-            "query_bolt_tasks": 24,
-            "query_bolt_executors": 24,
+            "query_bolt_executors": 24, 
+            "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
+            "supervisor": {
+                "workers": 1
+            }, 
             "topic_list": [
                 "Lab_B_scsRawHits:12", 
                 "Lab_B_lrRawHits:12"
             ], 
+            "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
                 "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
-            },
-            "supervisor":{
-                "workers":1
-            },
-	    "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f"
-
+            }
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/44480:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/44527:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "port": 80, 
             "proxy_enabled": "true", 
@@ -313,12 +309,12 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/44453:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/44523:id/webtrends-streamingapi-bin.tar.gz", 
+            "explore_quietperiod": "5", 
+            "explore_timeout": "2", 
             "sapi_service_url": "ws://bsapi.webtrends.com", 
             "usagedbname": "Streaming", 
-            "usagedbserver": "bcamdb01.staging.dmz",
-            "explore_timeout": "2",  
-            "explore_quietperiod": "5"
+            "usagedbserver": "bcamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/41427:id/webtrends-streamingauditor-bin.tar.gz", 
@@ -345,10 +341,6 @@
             "healthcheck_port": 9002, 
             "jmx_port": 9997, 
             "port": 8081
-        }, 
-        "wt_usagedb": {
-            "schedulerdb_host": "busagedb01.staging.dmz", 
-            "usage_host": "busagedb01.staging.dmz"
         }, 
         "zookeeper": {
             "client_port": 2181, 

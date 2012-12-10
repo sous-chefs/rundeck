@@ -24,7 +24,7 @@
         "wt_streamingapi": "= 1.1.2", 
         "wt_streamingauditor": "= 1.0.10", 
         "wt_streamingcollection": "= 1.0.3", 
-        "wt_streamingconfigservice": "= 1.0.6", 
+        "wt_streamingconfigservice": "= 1.0.7", 
         "wt_streaminglogreplayer": "= 1.1.2", 
         "wt_streamingmanagementservice": "= 1.0.1", 
         "zookeeper": "= 1.1.6"
@@ -164,7 +164,7 @@
         "wt_analytics_ui": {}, 
         "wt_aps": {
             "aps_url_base": "/AccountProvisioning/", 
-            "service_url": "http://daps01.staging.dmz"
+            "service_url": "http://aaps01.staging.dmz"
         }, 
         "wt_cam": {
             "cam": {
@@ -221,11 +221,11 @@
             ]
         }, 
         "wt_management_console": {
-            "service_url": "https://dmc.staging.dmz"
+            "service_url": "https://amc.staging.dmz"
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
-            "host": "dmasterdb01.staging.dmz"
+            "host": "amasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
@@ -274,9 +274,9 @@
         "wt_search": {}, 
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44427:id/streaming-analysis-bin.tar.gz", 
+            "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
-            "query_bolt_executors": 24,  
-            "streaming_topology_field_grouping_local": "false",
+            "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 2
             }, 
@@ -290,14 +290,14 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip", 
-            "elmah_remote_access": "yes", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip",
+	    "elmah_remote_access": "yes", 
             "proxy_enabled": "true", 
-			"sms_url": "http://hsms.staging.dmz", 
+            "sms_url": "http://hsms.staging.dmz", 
             "streams_ui_url": "https://hstreams.webtrends.com"
         }, 
         "wt_streaminganalysis_monitor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/41274:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/44660:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
             "healthcheck_port": 9001, 
             "jmx_port": 9998
         }, 
@@ -321,7 +321,7 @@
             "camdbname": "CAM", 
             "camdbserver": "hcamdb01.staging.dmz", 
             "config_service_url": "http://hconfigsvc.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42693:id/webtrends-streaming-configservice-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streaminglogreplayer": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/37547:id/webtrends-streaminglogreplayer-bin.tar.gz", 
@@ -329,12 +329,11 @@
             "thread_pool_size": 200
         }, 
         "wt_streamingmanagementservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42811:id/webtrends-streaming-managementservice-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/44668:id/webtrends-streaming-managementservice-bin.tar.gz", 
             "healthcheck_port": 9002, 
             "jmx_port": 9997, 
             "port": 8081
         }, 
-        "wt_usagedb": {}, 
         "zookeeper": {
             "client_port": 2181, 
             "init_limit": 10, 
