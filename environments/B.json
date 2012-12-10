@@ -254,7 +254,7 @@
         "wt_portfolio_admin": {
             "account_ui_url": "https://baccount.webtrends.com", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/43852:id/Portfolio.Admin.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/44494:id/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true"
         }, 
