@@ -207,7 +207,7 @@
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
-            "host": "dmasterdb01.staging.dmz"
+            "host": "amasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
@@ -254,9 +254,9 @@
         "wt_search": {}, 
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44484:id/streaming-analysis-bin.tar.gz", 
+            "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
-            "query_bolt_executors": 24,  
-            "streaming_topology_field_grouping_local": "false",
+            "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 1
             }, 
@@ -264,10 +264,10 @@
                 "Lab_N_lrRawHits:4", 
                 "Lab_N_scsRawHits:4"
             ], 
+            "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
                 "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
-            },
-            "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f"
+            }
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
