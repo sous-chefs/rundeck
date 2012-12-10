@@ -1,0 +1,30 @@
+{
+  "comment": "Secure Disk Wipe Utility for HP systems",
+  "kernel": "/var/lib/cobbler/installer/hp-dban-2.2.6-i586/KERNEL",
+  "uid": "MTM1NDgxNDAzOC4xNTkxNTg4OTEuNTk0MTI",
+  "kernel_options_post": {},
+  "redhat_management_key": "<<inherit>>",
+  "kernel_options": {
+    "nuke": "dwipe",
+    "silent": null
+  },
+  "redhat_management_server": "<<inherit>>",
+  "initrd": "/var/lib/cobbler/installer/hp-dban-2.2.6-i586/INITRD",
+  "mtime": 1354814150.732445,
+  "template_files": {},
+  "ks_meta": {},
+  "boot_files": {},
+  "breed": "redhat",
+  "os_version": "generic26",
+  "mgmt_classes": [],
+  "fetchable_files": {},
+  "tree_build_time": 0,
+  "arch": "i386",
+  "name": "hp-dban-2.2.6-i586",
+  "owners": [
+    "admin"
+  ],
+  "ctime": 1354814038.14568,
+  "source_repos": [],
+  "depth": 0
+}

@@ -1,9 +1,15 @@
+# Production should always set these two false
+topology.in.debug.mode=false
+topology.in.developer.mode=false
+
 # Datacenter and pod names
 datacenter=<%= @datacenter %>
 pod=<%= @pod %>
 
-# Geo and config services
+# Geo host
 geo.host=<%= @netacuity %>
+
+# Config Service endpoing
 cs.url=<%= @configservice %>/dcsid/streaming
 
 # Zookeeper hosts
@@ -17,17 +23,21 @@ kafka.auto.offset.reset=<%= @kafka_auto_offset_reset %>
 kafka.auto.commit.enable=<%= @kafka_auto_commit_enable %>
 
 # Streaming parameters, should have blank values in streaming
-streaming.topology.emitter.bolt.count=<%= @streaming_topology_emitter_bolt_count %>
-streaming.topology.augment.bolt.count=<%= @streaming_topology_augment_bolt_count %>
-streaming.topology.filter.bolt.count=<%= @streaming_topology_filter_bolt_count %>
+query.bolt.tasks=<%= @query_bolt_tasks %>
+query.bolt.executors=<%= @query_bolt_executors %>
 
-streaming.topology.emitter.bolt.tasks=<%= @streaming_topology_emitter_bolt_tasks %>
-streaming.topology.augment.bolt.tasks=<%= @streaming_topology_augment_bolt_tasks %>
-streaming.topology.filter.bolt.tasks=<%= @streaming_topology_filter_bolt_tasks %>
+# Tracer dcsid, which will receive additional logging
+tracer.dcsid=<%= @tracer_dcsid %>
 
 # Roots for zookeeper data
 streaming.topology.zmq.emitter.znodeRoot=/StreamingZMQ
 streaming.topology.zmq.data.znodeRoot=/DataAPIZMQ
+
+# Endpoints to information in CAM
+cam.account.product.sapi.url.template=<%=@cam_url%>/account/{account_id}/product/sapi
+cam.product.sapi.blacklist.url=<%=@cam_url%>/product/sapi/blacklist
+cam.product.sapi.streamtype.url=<%=@cam_url%>/product/sapi/streamtype
+cam.product.sapi.account.url=<%=@cam_url%>/product/sapi/account
 
 # Zookeeper connection info (use this or audit.broker.list)
 audit.zk.connect=<%= @audit_zookeeper_pairs %>

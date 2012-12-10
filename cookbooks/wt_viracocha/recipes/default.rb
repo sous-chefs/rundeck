@@ -24,6 +24,64 @@ include_recipe "build-essential"
   package pkg
 end
 
-%w{ ruby-odbc dbd-odbc dbi aws trollop highline json }.each do |gem|
+%w{ ruby-odbc dbd-odbc dbi aws aws-s3 trollop highline json }.each do |gem|
   gem_package gem
 end
+
+directory "/home/bobo/.ec2/" do
+  owner "root"
+  group "root"
+  mode 00700
+  action :create
+  recursive true
+end
+
+auth_dbag = data_bag_item('authorization', node[:authorization][:ad_likewise][:ad_network])
+
+template "/home/bobo/.ec2/ec2rc" do
+  source "ec2rc.erb"
+  owner "root"
+  group "root"
+  mode 00700
+  variables(
+    :ec2_access_key => auth_dbag['ec2']['ec2_access_key'],
+    :ec2_secret_key => auth_dbag['ec2']['ec2_secret_key']
+  )
+end
+
+file "/home/bobo/.ec2/cert-ZO6RBYVDHGN57LV7N5UGQGQL7IJJEXCH.pem" do
+  owner "root"
+  group "root"
+  mode 00600
+  content "#{auth_dbag['ec2']['ec2_cert']}"
+end
+
+file "/home/bobo/.ec2/pk-ZO6RBYVDHGN57LV7N5UGQGQL7IJJEXCH.pem" do
+  owner "root"
+  group "root"
+  mode 00600
+  content "#{auth_dbag['ec2']['ec2_pk']}"
+end
+
+directory "/home/bobo/.ssh" do
+  owner "root"
+  group "root"
+  mode 00600
+  action :create
+  recursive true
+end
+
+file "/home/bobo/.ssh/wt-opt-prod" do
+  owner "root"
+  group "root"
+  mode 00600
+  content "#{auth_dbag['ec2']['ssh_pk']}"
+end
+
+file "/home/bobo/.ssh/wt-opt-prod.pub" do
+  owner "root"
+  group "root"
+  mode 00600
+  content "#{auth_dbag['ec2']['ssh_pub']}"
+end
+
