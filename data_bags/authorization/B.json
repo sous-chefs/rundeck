@@ -1,66 +1,65 @@
 {
-    "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/",
-    "alternate_uid": "2001",
-    "alternate_user": "bobo",
+    "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "alternate_uid": "2001", 
+    "alternate_user": "bobo", 
     "beyond_compare_v3": {
         "license_key": [
-            "--- BEGIN LICENSE KEY ---",
-            "E72PRdldttGI8NSbqeDsT6Vg0VRG82HYKNxaMYgFxu9Do7nhQ8Sie4kBs",
-            "PRBH6IJ9paf-R7HgnVzOX9OcoP277JzJXE6YVapYW7f+tRRXRFI4yn4Nj",
-            "jZ0RiiqGRCTVzwComUcXB-eiFWRBY6JpSsCNkmIxL5KsRCo442djHhTZE",
+            "--- BEGIN LICENSE KEY ---", 
+            "E72PRdldttGI8NSbqeDsT6Vg0VRG82HYKNxaMYgFxu9Do7nhQ8Sie4kBs", 
+            "PRBH6IJ9paf-R7HgnVzOX9OcoP277JzJXE6YVapYW7f+tRRXRFI4yn4Nj", 
+            "jZ0RiiqGRCTVzwComUcXB-eiFWRBY6JpSsCNkmIxL5KsRCo442djHhTZE", 
             "--- END LICENSE KEY -----"
         ]
-    },
-    "id": "B",
-    "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/",
+    }, 
+    "id": "B", 
+    "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "wt_common": {
-        "install_acct": "wtInstaller",
-        "install_pass": "Bijoux1",
-        "install_user": "STAGINGDMZ\\wtInstaller",
-        "loader_acct": "wtLoader",
-        "loader_pass": "Bijoux1",
-        "loader_user": "STAGINGDMZ\\wtLoader",
-        "system_acct": "wtSystem",
-        "system_pass": "Bijoux1",
-        "system_user": "STAGINGDMZ\\wtSystem",
-        "ui_acct": "wtUI",
-        "ui_pass": "Bijoux1",
-        "ui_user": "STAGINGDMZ\\wtUI",
-	"ldap_user": "cn=admin,dc=webtrends,dc=com",
-	"ldap_password": "Bijoux01"
-    },
+        "install_acct": "wtInstaller", 
+        "install_pass": "Bijoux1", 
+        "install_user": "STAGINGDMZ\\wtInstaller", 
+        "ldap_password": "Bijoux01", 
+        "ldap_user": "cn=admin,dc=webtrends,dc=com", 
+        "loader_acct": "wtLoader", 
+        "loader_pass": "Bijoux1", 
+        "loader_user": "STAGINGDMZ\\wtLoader", 
+        "system_acct": "wtSystem", 
+        "system_pass": "Bijoux1", 
+        "system_user": "STAGINGDMZ\\wtSystem", 
+        "ui_acct": "wtUI", 
+        "ui_pass": "Bijoux1", 
+        "ui_user": "STAGINGDMZ\\wtUI"
+    }, 
+    "wt_iis": {
+        "machine_decryption_key": "B0FCBEE38C05DCB5213655ACD722702DEACE441304FC02FE", 
+        "machine_validation_key": "7FAB532C7D9A7E3EBE4A891BFAEC6B554E0228E0167891F3C6382249455C3524ACE13309FB9F83E6522152E6C1CC1D645ACCDACFFF72ADCB9C9C56396905EAEA"
+    }, 
     "wt_netacuity": {
         "admin_password": "SHvWHezZSc7"
-    },
-    "wt_streamingconfigservice" : {
-        "camdbuser": "wtUI",
-        "camdbpwd": "bijoux",
-        "masterdbuser": "ConfigSvc",
-        "masterdbpwd": "bijoux"
-    },
-    "wt_streamingapi": {    
-    	"usagedbuser": "wtUI",   
-    	"usagedbpwd": "bijoux"   
-    },
-    "wt_streamingmanagementservice": {
-        "db_user": "wtUI",
-        "db_pwd": "bijoux"
-    },
-    "wt_streamingauditor": {
-        "client_id": "8BFF54F85A85413C915AC5EF61C9B851",
-        "client_secret": "C027E291A87E480D9069853823EFEB23"
-    },
-    "wt_iis": {
-        "machine_validation_key": "7FAB532C7D9A7E3EBE4A891BFAEC6B554E0228E0167891F3C6382249455C3524ACE13309FB9F83E6522152E6C1CC1D645ACCDACFFF72ADCB9C9C56396905EAEA",
-        "machine_decryption_key": "B0FCBEE38C05DCB5213655ACD722702DEACE441304FC02FE"
-    },
-    "wt_streaming_viz": {
-        "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com",
-        "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
-    },
+    }, 
     "wt_portfolio_admin": {
-        "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com",
+        "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
         "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
+    }, 
+    "wt_streaming_viz": {
+        "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
+        "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
+    }, 
+    "wt_streamingapi": {
+        "usagedbpwd": "bijoux", 
+        "usagedbuser": "wtUI"
+    }, 
+    "wt_streamingauditor": {
+        "client_id": "8BFF54F85A85413C915AC5EF61C9B851", 
+        "client_secret": "C027E291A87E480D9069853823EFEB23"
+    }, 
+    "wt_streamingconfigservice": {
+        "camdbpwd": "bijoux", 
+        "camdbuser": "wtUI", 
+        "masterdbpwd": "v87m-Rhv8TMogJ_j", 
+        "masterdbuser": "ConfigSvc"
+    }, 
+    "wt_streamingmanagementservice": {
+        "db_pwd": "bijoux", 
+        "db_user": "wtUI"
     }
-
 }
