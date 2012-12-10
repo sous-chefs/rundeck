@@ -164,7 +164,7 @@
         "wt_analytics_ui": {}, 
         "wt_aps": {
             "aps_url_base": "/AccountProvisioning/", 
-            "service_url": "http://daps01.staging.dmz"
+            "service_url": "http://aaps01.staging.dmz"
         }, 
         "wt_cam": {
             "cam": {
@@ -221,11 +221,11 @@
             ]
         }, 
         "wt_management_console": {
-            "service_url": "https://dmc.staging.dmz"
+            "service_url": "https://amc.staging.dmz"
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
-            "host": "dmasterdb01.staging.dmz"
+            "host": "amasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
@@ -274,9 +274,9 @@
         "wt_search": {}, 
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44427:id/streaming-analysis-bin.tar.gz", 
+            "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
-            "query_bolt_executors": 24,  
-            "streaming_topology_field_grouping_local": "false",
+            "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 2
             }, 
@@ -293,7 +293,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true", 
-			"sms_url": "http://hsms.staging.dmz", 
+            "sms_url": "http://hsms.staging.dmz", 
             "streams_ui_url": "https://hstreams.webtrends.com"
         }, 
         "wt_streaminganalysis_monitor": {
@@ -334,7 +334,6 @@
             "jmx_port": 9997, 
             "port": 8081
         }, 
-        "wt_usagedb": {}, 
         "zookeeper": {
             "client_port": 2181, 
             "init_limit": 10, 
