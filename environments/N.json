@@ -6,7 +6,7 @@
         "hive": "= 1.0.2", 
         "java": "= 1.6.0", 
         "kafka": "= 1.0.20", 
-        "nagios": "= 1.6.3", 
+        "nagios": "= 2.0.0", 
         "storm": "= 1.0.28", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
@@ -17,9 +17,8 @@
         "wt_netacuity": "= 1.0.10", 
         "wt_portfolio_admin": "= 1.1.10", 
         "wt_realtime_hadoop": "= 1.0.4", 
-        "wt_realtimeapi": "= 1.0.1", 
         "wt_sauth": "= 1.1.2", 
-        "wt_storm_streaming": "= 2.3.0", 
+        "wt_storm_streaming": "= 2.3.2", 
         "wt_streaming_viz": "= 1.1.14", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
         "wt_streamingapi": "= 1.1.2", 
@@ -208,7 +207,7 @@
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
-            "host": "dmasterdb01.staging.dmz"
+            "host": "amasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
@@ -247,10 +246,6 @@
             "environment": "support-staging", 
             "pod": "N"
         }, 
-        "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt207/30613:id/webtrends-realtimeapi-bin.tar.gz", 
-            "port": 8082
-        }, 
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://nsauth.webtrends.com", 
@@ -258,23 +253,20 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44163:id/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augment_bolt_count": 24, 
-            "streaming_topology_augment_bolt_tasks": 24,  
-            "streaming_topology_filter_bolt_count": 24, 
-            "streaming_topology_filter_bolt_tasks": 24,
-            "streaming_topology_emitter_bolt_count": 4, 
-            "streaming_topology_emitter_bolt_tasks": 4, 
-            "streaming_topology_field_grouping_local": "false",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44484:id/streaming-analysis-bin.tar.gz", 
+            "query_bolt_executors": 24, 
+            "query_bolt_tasks": 24, 
+            "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 1
             }, 
             "topic_list": [
-                "Lab_N_lrRawHits:2", 
-                "Lab_N_scsRawHits:2"
+                "Lab_N_lrRawHits:4", 
+                "Lab_N_scsRawHits:4"
             ], 
+            "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
-                "childopts": "-Xmx6144m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
         }, 
         "wt_streaming_viz": {

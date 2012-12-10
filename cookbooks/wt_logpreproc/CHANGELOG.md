@@ -1,3 +1,6 @@
+## 1.0.14
+* remove unused template variable
+
 ## 1.0.13
 * remove log_dir
 * remove service_binary and service_name
