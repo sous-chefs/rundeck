@@ -20,13 +20,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-case node['platform']
-when 'ubuntu','debian'
+case node['platform_family']
+when 'debian'
 
   include_recipe 'apt'
 
   # use opscode apt repo for older releases
-  if (platform?("debian") && (node.platform_version.to_f < 7.0)) || 
+  if (platform?("debian") && (node.platform_version.to_f < 7.0)) ||
       (platform?("ubuntu") && (node.platform_version.to_f < 11.0))
 
     # add Opscode's apt repo to sources
@@ -45,7 +45,7 @@ when 'ubuntu','debian'
     action :upgrade
   end
 
-when 'redhat','centos','fedora','scientific'
+when 'rhel','fedora'
 
   if (platform?("redhat") || platform?("centos") || platform?("scientific"))
     if node.platform_version.to_f < 6.0
@@ -53,9 +53,7 @@ when 'redhat','centos','fedora','scientific'
     else
       include_recipe 'yum::epel'
     end
-  end
-
-  if (platform?("fedora") && (node.platform_version.to_f < 16.0))
+  elsif (platform?("fedora") && (node.platform_version.to_f < 16.0))
       raise "This recipe does not yet support installing Gecode 3.5.0+ from packages on your platform"
   end
 

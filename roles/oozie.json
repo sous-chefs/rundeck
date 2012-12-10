@@ -6,6 +6,9 @@
     "override_attributes": {}, 
     "run_list": [
         "recipe[hadoop]",
-		"recipe[hive]"
+	"recipe[hive]",
+	"recipe[oozie]"
+
     ]
 }
+

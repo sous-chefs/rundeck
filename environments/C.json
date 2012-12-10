@@ -16,7 +16,7 @@
         "wt_roadrunner": "= 1.1.2", 
         "wt_search": "= 1.0.10", 
         "wt_sync": "= 1.0.6", 
-        "wt_xd": "= 0.0.6"
+        "wt_xd": "= 1.0.2"
     }, 
     "default_attributes": {
         "authorization": {
@@ -241,7 +241,7 @@
             "monitoring_enabled": "true"
         }, 
         "wt_netacuity": {
-            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.gz", 
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz", 
             "geo_url": "cgeo.staging.dmz", 
             "version": "502"
         }, 
@@ -280,6 +280,9 @@
         "wt_xd": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/XD_Map_Reduce_master_1.0.0-SNAPSHOT.118_artifacts.zip", 
             "environment": "support-staging"
+        }, 
+        "zookeeper": {
+            "client_port": 2181
         }
     }, 
     "description": "C Pod", 

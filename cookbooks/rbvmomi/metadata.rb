@@ -1,4 +1,4 @@
-maintainer       "Webtrends"
+maintainer       "Webtrends, Inc."
 maintainer_email "hostedops@webtrends.com"
 license          "Apache 2.0"
 description      "Installs/Configures rbvmomi"
