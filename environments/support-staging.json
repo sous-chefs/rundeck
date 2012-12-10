@@ -2,7 +2,7 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "bluepill": "= 1.0.6", 
-        "cassandra": "= 1.0.10", 
+        "cassandra": "= 1.0.12", 
         "cobbler": "= 1.0.7", 
         "graphite": "= 0.3.0", 
         "hadoop": "= 1.1.11", 
@@ -10,7 +10,7 @@
         "hive": "= 1.1.0", 
         "java": "= 1.6.0", 
         "memcached": "= 1.0.4", 
-        "nagios": "= 1.6.3", 
+        "nagios": "= 2.0.0", 
         "rundeck": "= 1.0.4", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
@@ -34,6 +34,9 @@
                     "bobo"
                 ]
             }
+        }, 
+        "cassandra": {
+            "max_heap_size": "6G"
         }, 
         "cobbler": {
             "deploy_chef_version": "10.16.2", 
@@ -73,15 +76,15 @@
                 }, 
                 "mapred": {
                     "acls_enabled": "false", 
+                    "child_java_opts": "-server -Xmx2000m -Djava.net.preferIPv4Stack=true", 
+                    "io_sort_factor": 100, 
+                    "io_sort_mb": 500, 
+                    "job_reuse_jvm_num_tasks": 5, 
                     "local_dir": "/mnt/hdfs/hdfs01/data1/mapred,/mnt/hdfs/hdfs01/data2/mapred,/mnt/hdfs/hdfs01/data3/mapred,/mnt/hdfs/hdfs01/data4/mapred,/mnt/hdfs/hdfs01/data5/mapred,/mnt/hdfs/hdfs01/data6/mapred,/mnt/hdfs/hdfs01/data7/mapred,/mnt/hdfs/hdfs01/data8/mapred,/mnt/hdfs/hdfs01/data9/mapred,/mnt/hdfs/hdfs01/data10/mapred,/mnt/hdfs/hdfs01/data11/mapred,/mnt/hdfs/hdfs01/data12/mapred", 
                     "reduce_tasks": 26, 
                     "submit_replication": 3, 
                     "tasktracker_map_tasks_maximum": 6, 
-                    "tasktracker_reduce_tasks_maximum": 4,
-                    "io_sort_factor": 100,
-                    "io_sort_mb": 500,
-                    "job_reuse_jvm_num_tasks": 5,
-                    "child_java_opts": "-server -Xmx2000m -Djava.net.preferIPv4Stack=true"
+                    "tasktracker_reduce_tasks_maximum": 4
                 }
             }
         }, 

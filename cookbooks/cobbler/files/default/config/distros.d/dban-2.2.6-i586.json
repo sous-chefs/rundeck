@@ -1,6 +1,6 @@
 {
 	"comment": "Secure Disk Wipe Utility",
-	"kernel": "/var/lib/cobbler/installer/dban-2.2.6/dban.bzi",
+	"kernel": "/var/lib/cobbler/installer/dban-2.2.6-i586/dban.bzi",
 	"uid": "MTM1NDIzNTg2OS4xNzg1NTkwMC41NDQzNg",
 	"kernel_options_post": {},
 	"redhat_management_key": "<<inherit>>",
@@ -9,7 +9,7 @@
 		"silent": null
 	},
 	"redhat_management_server": "<<inherit>>",
-	"initrd": "/var/lib/cobbler/installer/dban-2.2.6/dban.bzi",
+	"initrd": "/var/lib/cobbler/installer/dban-2.2.6-i586/dban.bzi",
 	"mtime": 1354235869.1041069,
 	"template_files": {},
 	"ks_meta": {},

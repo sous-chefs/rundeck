@@ -31,21 +31,21 @@ end
 
 template "/etc/ldap.conf" do
   source "ldap.conf.erb"
-  mode 0644
+  mode 00644
   owner "root"
   group "root"
-end    
+end
 
 template "#{node['openldap']['dir']}/ldap.conf" do
   source "ldap-ldap.conf.erb"
-  mode 0644
+  mode 00644
   owner "root"
   group "root"
 end
 
 cookbook_file "/etc/nsswitch.conf" do
   source "nsswitch.conf"
-  mode 0644
+  mode 00644
   owner "root"
   group "root"
   notifies :restart, resources(:service => "nscd"), :immediately
@@ -55,7 +55,7 @@ end
 %w{ account auth password session }.each do |pam|
   cookbook_file "/etc/pam.d/common-#{pam}" do
     source "common-#{pam}"
-    mode 0644
+    mode 00644
     owner "root"
     group "root"
     notifies :restart, resources(:service => "ssh"), :delayed
@@ -64,7 +64,7 @@ end
 
 template "/etc/security/login_access.conf" do
   source "login_access.conf.erb"
-  mode 0644
+  mode 00644
   owner "root"
   group "root"
 end

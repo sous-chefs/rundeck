@@ -39,18 +39,18 @@ else
   default['nagios']['server']['mail_command']   = '/bin/mail'
 end
 
-default['nagios']['home']        = '/usr/lib/nagios3'
-default['nagios']['conf_dir']    = '/etc/nagios3'
-default['nagios']['config_dir']  = '/etc/nagios3/conf.d'
-default['nagios']['log_dir']     = '/var/log/nagios3'
-default['nagios']['cache_dir']   = '/var/cache/nagios3'
-default['nagios']['state_dir']   = '/var/lib/nagios3'
-default['nagios']['run_dir']     = '/var/run/nagios3'
-default['nagios']['docroot']     = '/usr/share/nagios3/htdocs'
-default['nagios']['enable_ssl']  = false
-default['nagios']['http_port']   = node['nagios']['enable_ssl'] ? '443' : '80'
-default['nagios']['server_name'] = node.has_key?(:domain) ? "nagios.#{domain}" : "nagios"
-default['nagios']['ssl_req']     = "/C=US/ST=Several/L=Locality/O=Example/OU=Operations/" +
+default['nagios']['home']       = '/usr/lib/nagios3'
+default['nagios']['conf_dir']   = '/etc/nagios3'
+default['nagios']['config_dir'] = '/etc/nagios3/conf.d'
+default['nagios']['log_dir']    = '/var/log/nagios3'
+default['nagios']['cache_dir']  = '/var/cache/nagios3'
+default['nagios']['state_dir']  = '/var/lib/nagios3'
+default['nagios']['run_dir']    = '/var/run/nagios3'
+default['nagios']['docroot']    = '/usr/share/nagios3/htdocs'
+default['nagios']['enable_ssl'] = false
+default['nagios']['http_port']  = node['nagios']['enable_ssl'] ? '443' : '80'
+default['nagios']['server_name'] = node.has_key?(:domain) ? "nagios.#{domain}" : 'nagios'
+default['nagios']['ssl_req'] = '/C=US/ST=Several/L=Locality/O=Example/OU=Operations/' +
   "CN=#{node['nagios']['server_name']}/emailAddress=ops@#{node['nagios']['server_name']}"
 
 # for server from source installation
