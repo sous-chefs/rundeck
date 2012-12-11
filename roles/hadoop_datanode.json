@@ -4,6 +4,7 @@
   "json_class": "Chef::Role",
   "description": "Hadoop DataNode",
   "run_list": [
+    "recipe[sysctl]",
     "recipe[hadoop::datanode]",
     "role[hbase_regionserver]",
     "role[hive]",
