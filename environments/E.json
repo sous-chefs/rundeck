@@ -2,7 +2,7 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "kafka": "= 1.0.20", 
-        "nagios": "= 1.6.3",  
+        "nagios": "= 2.0.0",  
         "webtrends_server": "= 1.8.8", 
         "wt_base": "= 1.0.2", 
         "wt_edge_server": "= 1.0.0",

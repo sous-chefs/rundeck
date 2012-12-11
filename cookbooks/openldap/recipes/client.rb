@@ -21,8 +21,8 @@ package "ldap-utils" do
   action :install
 end
 
-directory node[:openldap][:ssl_dir] do
-  mode 0755
+directory node['openldap']['ssl_dir'] do
+  mode 00755
   owner "root"
   group "root"
 end

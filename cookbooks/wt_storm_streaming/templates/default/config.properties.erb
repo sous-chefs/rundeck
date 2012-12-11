@@ -26,6 +26,9 @@ kafka.auto.commit.enable=<%= @kafka_auto_commit_enable %>
 query.bolt.tasks=<%= @query_bolt_tasks %>
 query.bolt.executors=<%= @query_bolt_executors %>
 
+# Tracer dcsid, which will receive additional logging
+tracer.dcsid=<%= @tracer_dcsid %>
+
 # Roots for zookeeper data
 streaming.topology.zmq.emitter.znodeRoot=/StreamingZMQ
 streaming.topology.zmq.data.znodeRoot=/DataAPIZMQ
