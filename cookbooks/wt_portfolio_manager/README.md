@@ -40,6 +40,11 @@ Data Bag Items
 
 Usage
 =====
+Installation:
+   set deploy_build=true
+   chef-client
+
+Runtime:
 ActiveDirectory users on the network, who are members of a declared security group, gain the warranted level of access. Users outside of the declared security group(s) are denied access.
 
 Members of security groups declared in ['wt_portfolio_manager']['portmgr_group_admin'] may:
