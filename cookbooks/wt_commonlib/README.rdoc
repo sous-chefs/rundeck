@@ -1,9 +1,0 @@
-= DESCRIPTION:
-Installs the Webtrends Commonlib MSI
-
-= REQUIREMENTS:
-
-= ATTRIBUTES:
-
-= USAGE:
-
