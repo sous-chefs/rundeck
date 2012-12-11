@@ -310,8 +310,6 @@
         }, 
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/44814:id/webtrends-streamingapi-bin.tar.gz", 
-            "explore_quietperiod": "5", 
-            "explore_timeout": "2", 
             "sapi_service_url": "ws://bsapi.webtrends.com", 
             "usagedbname": "Streaming", 
             "usagedbserver": "bcamdb01.staging.dmz"
