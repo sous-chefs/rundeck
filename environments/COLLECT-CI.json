@@ -168,7 +168,9 @@
         "wt_streaminganalysis_monitor": {}, 
         "wt_streamingapi": {}, 
         "wt_streamingauditor": {}, 
-        "wt_streamingcollection": {}, 
+        "wt_streamingcollection": {
+          "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41771:id/webtrends-streamingcollection-bin.tar.gz"
+        }, 
         "wt_streamingconfigservice": {}, 
         "wt_streaminglogreplayer": {}, 
         "wt_streamingmanagementservice": {}, 
