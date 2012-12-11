@@ -339,18 +339,16 @@
             "usagedbserver": "cicamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt194/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/41427:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://ciscs01.staging.dmz:8080", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         }, 
-        "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt188/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz"
-        }, 
+        "wt_streamingcollection": {}, 
         "wt_streamingconfigservice": {
             "camdbname": "CAM", 
             "camdbserver": "cicamdb01.staging.dmz", 
             "config_service_url": "http://ciutil01.staging.dmz:8080", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt195/.lastSuccessful/webtrends-streaming-configservice-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz", 
             "includeUnmappedAnalyticsIds": "true"
         }, 
         "wt_streaminglogreplayer": {
@@ -359,9 +357,9 @@
             "thread_pool_size": 200
         }, 
         "wt_streamingmanagementservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42811:id/webtrends-streaming-managementservice-bin.tar.gz", 
-            "healthcheck_port": 9002, 
-            "jmx_port": 9997, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/44668:id/webtrends-streaming-managementservice-bin.tar.gz", 
+            "healthcheck_port": 9001, 
+            "jmx_port": 9998,
             "port": 8081
         }, 
         "zookeeper": {
