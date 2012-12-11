@@ -309,7 +309,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/44523:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/44798:id/webtrends-streamingapi-bin.tar.gz", 
             "explore_quietperiod": "5", 
             "explore_timeout": "2", 
             "sapi_service_url": "ws://bsapi.webtrends.com", 
@@ -337,7 +337,7 @@
             "thread_pool_size": 160
         }, 
         "wt_streamingmanagementservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/44668:id/webtrends-streaming-managementservice-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/44668:id/webtrends-streaming-managementservice-bin.tar.gz", 
             "healthcheck_port": 9002, 
             "jmx_port": 9997, 
             "port": 8081

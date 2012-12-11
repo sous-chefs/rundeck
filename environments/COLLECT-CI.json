@@ -168,8 +168,12 @@
         "wt_streaminganalysis_monitor": {}, 
         "wt_streamingapi": {}, 
         "wt_streamingauditor": {}, 
-        "wt_streamingcollection": {}, 
-        "wt_streamingconfigservice": {}, 
+        "wt_streamingcollection": {
+          "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41771:id/webtrends-streamingcollection-bin.tar.gz"
+        }, 
+        "wt_streamingconfigservice": {
+          "config_service_url": "http://ciutil01.staging.dmz"
+        }, 
         "wt_streaminglogreplayer": {}, 
         "wt_streamingmanagementservice": {}, 
         "zookeeper": {}
