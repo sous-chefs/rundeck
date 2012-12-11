@@ -339,7 +339,7 @@
             "usagedbserver": "cicamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt194/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/41427:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://ciscs01.staging.dmz:8080", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         }, 
@@ -358,8 +358,8 @@
         }, 
         "wt_streamingmanagementservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/44668:id/webtrends-streaming-managementservice-bin.tar.gz", 
-            "healthcheck_port": 9002, 
-            "jmx_port": 9997, 
+            "healthcheck_port": 9001, 
+            "jmx_port": 9998,
             "port": 8081
         }, 
         "zookeeper": {
