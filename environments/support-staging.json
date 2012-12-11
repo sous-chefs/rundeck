@@ -193,6 +193,11 @@
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
+        "sysctl": {
+            "set swappiness": {
+              "vm.swappiness": "0"
+          }
+        }, 
         "snmp": {
             "community": "DevOps", 
             "full_systemview": "true", 
