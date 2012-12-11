@@ -22,17 +22,29 @@ define :ruby_packages, :action => :install do
   rv = params[:name].to_s
   raise "A Ruby version such as 1.8, 1.9 or 1.9.1 must be given" if rv.empty?
 
-  packages = case node[:platform]
-  when "ubuntu","debian"
-    [
-      "ruby#{rv}",
-      "ruby#{rv}-dev",
-      "rdoc#{rv}",
-      "ri#{rv}",
-      "irb#{rv}",
-      "libopenssl-ruby#{rv}",
-     ("libshadow-ruby1.8" if rv == "1.8")
-    ].compact
+  case node[:platform]
+  when "ubuntu","debian" 
+    if node[:platform_version] != "12.04"
+      packages = [
+        "ruby#{rv}",
+        "ruby#{rv}-dev",
+        "rdoc#{rv}",
+        "ri#{rv}",
+        "irb#{rv}",
+        "libopenssl-ruby#{rv}",
+       ("libshadow-ruby1.8" if rv == "1.8")
+      ].compact
+    else
+      packages = [
+        "ruby#{rv}",
+        "ruby#{rv}-dev",
+        "rdoc#{rv}",
+        "ri#{rv}",
+        "irb#{rv}",
+        "libruby#{rv}",
+       ("libshadow-ruby1.8" if rv == "1.8")
+      ].compact
+    end
 
   when "gentoo"
     rv = rv.slice(0..2)
@@ -49,23 +61,23 @@ define :ruby_packages, :action => :install do
 
   when "centos","redhat","fedora"
     # yum requires full version numbers. :(
-    %w{
-      ruby
-      ruby-libs
-      ruby-devel
-      ruby-docs
-      ruby-ri
-      ruby-irb
-      ruby-rdoc
-      ruby-mode
-    }
+    packages = [
+      "ruby",
+      "ruby-libs",
+      "ruby-devel",
+      "ruby-docs",
+      "ruby-ri",
+      "ruby-irb",
+      "ruby-rdoc",
+      "ruby-mode"
+    ]
 
   when "arch"
     # 1.8 only available from AUR. :(
-    %w{
-      ruby
-      ruby-docs
-    }
+    packages = [
+      "ruby",
+      "ruby-docs"
+   ]
   end
 
   unless packages.nil?

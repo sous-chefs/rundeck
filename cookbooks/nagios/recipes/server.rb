@@ -97,18 +97,15 @@ if nodes.empty?
   nodes << node
 end
 
+# Sort by name to provide stable ordering
+nodes.sort! {|a,b| a.name <=> b.name }
+
 # maps nodes into nagios hostgroups
 service_hosts= Hash.new
 search(:role, "*:*") do |r|
   hostgroups << r.name
-  if node['nagios']['multi_environment_monitoring']
-    search(:node, "roles:#{r.name}") do |n|
-      service_hosts[r.name] = n['hostname']
-    end
-  else
-    search(:node, "roles:#{r.name} AND chef_environment:#{node.chef_environment}") do |n|
-      service_hosts[r.name] = n['hostname']
-    end
+  nodes.select {|n| n['roles'].include?(r.name) }.each do |n|
+    service_hosts[r.name] = n['hostname']
   end
 end
 
@@ -116,7 +113,7 @@ end
 if node['nagios']['multi_environment_monitoring']
   search(:environment, "*:*") do |e|
     hostgroups << e.name
-    search(:node, "chef_environment:#{e.name}") do |n|
+    nodes.select {|n| n.chef_environment == e.name }.each do |n|
       service_hosts[e.name] = n['hostname']
     end
   end
@@ -260,7 +257,8 @@ end
 nagios_conf "services" do
   variables(
     :service_hosts => service_hosts,
-    :services => services
+    :services => services,
+    :hostgroups => hostgroups
   )
 end
 

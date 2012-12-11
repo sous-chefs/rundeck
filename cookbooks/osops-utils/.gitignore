@@ -1,0 +1,4 @@
+.chef*
+*.swp
+Gemfile.lock
+metadata.json
