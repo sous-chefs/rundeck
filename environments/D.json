@@ -2,19 +2,18 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "java": "= 1.6.0", 
-        "nagios": "= 1.6.3", 
+        "nagios": "= 2.0.0", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.0.2", 
-        "wt_cam": "= 1.0.9", 
         "wt_data_deleter": "= 1.0.4", 
         "wt_devicedataupdater": "= 0.1.1", 
-        "wt_logpreproc": "= 1.0.2", 
         "wt_monitoring": "= 0.0.2", 
         "wt_netacuity": "= 1.0.10", 
         "wt_platformscheduler": "= 1.0.12", 
+        "wt_roadrunner": "= 1.1.2", 
         "wt_search": "= 1.0.10", 
         "wt_sync": "= 1.0.6", 
         "wt_xd": "= 1.0.2"
@@ -159,7 +158,7 @@
             "bba_domain": "dbba.webtrends.com", 
             "cache_region": "D_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/42690:id/AnalyticsUI.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/hotfix/1115/AnalyticsUI.zip", 
             "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
@@ -191,25 +190,18 @@
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
             "install_log_dir_windows": "d:\\logs", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
             "pod_id": "D", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
-            "velocitycache_hosts": [
-                {
-                    "name": "ddxweb01.staging.dmz", 
-                    "port": "22233"
-                }
-            ], 
             "wrsmodify_group": "STAGINGDMZ\\D.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\D.WRS.Read"
         }, 
         "wt_data_deleter": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/40174:id/DataDeleter.zip"
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/DataDeleter.zip"
         }, 
         "wt_devicedataupdater": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt284/39953:id/DeviceDataUpdater.zip"
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/DeviceDataUpdater.zip"
         }, 
         "wt_dx": {
             "app_settings_section": {
@@ -223,9 +215,7 @@
             "website_name": "DX", 
             "website_port": "80"
         }, 
-        "wt_logpreproc": {
-            "download_url": "http://pdxchartrandj06/logpreproc.zip"
-        }, 
+        "wt_logpreproc": {}, 
         "wt_management_console": {
             "mc_service_url": "https://dmc.staging.dmz"
         }, 
@@ -257,12 +247,12 @@
         }, 
         "wt_platformscheduler": {
             "agent": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt289/40153:id/WebTrendsVDMSchedulerAgent.msi"
+                "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/WebTrendsVDMSchedulerAgent.msi"
             }, 
             "host": "dsched01.staging.dmz"
         }, 
         "wt_roadrunner": {
-            "url": "path/to/zip/here"
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.31/rtm/roadrunner/RoadRunner.zip"
         }, 
         "wt_rta": {
             "rta_host": "drta01.staging.dmz"
@@ -276,31 +266,23 @@
             "host": "dusagedb01.staging.dmz"
         }, 
         "wt_search": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt291/39663:id/Search.zip", 
-            "search_hostname": "dsearch.staging.dmz"
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/Search.zip", 
+            "search_hostname": "dsearch.staging.dmz", 
+            "search_service": "net.tcp://dsearch.staging.dmz:8096/Search/Service"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt292/39692:id/SyncService.zip"
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/SyncService.zip"
         }, 
         "wt_usagedb": {
             "dbname": "wtUsage", 
             "host": "dusagedb01.staging.dmz"
         }, 
         "wt_xd": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36325:id/artifacts.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/XD_Map_Reduce_master_1.0.0-SNAPSHOT.118_artifacts.zip", 
             "environment": "support-staging"
         }, 
         "zookeeper": {
-            "client_port": 2181, 
-            "init_limit": 10, 
-            "quorum": [
-                "szoo01.staging.dmz", 
-                "szoo02.staging.dmz", 
-                "szoo03.staging.dmz"
-            ], 
-            "snapshot_num": 3, 
-            "sync_limit": 5, 
-            "tick_time": 2000
+            "client_port": 2181
         }
     }, 
     "description": "D Pod", 

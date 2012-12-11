@@ -53,6 +53,15 @@ end
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so we will grab the tar ball and install"
 
+
+  package 'unzip' do
+    action :install
+  end
+
+  package 'zip' do
+    action :install
+  end
+
   # download the application tarball
   remote_file "#{Chef::Config['file_cache_path']}/#{tarball}" do
     source download_url
@@ -104,7 +113,7 @@ if ENV["deploy_build"] == "true" then
 
   
   # make sure all templates and copied files now are owned correctly
-  directory "#{install_dir}/oozie" do
+  directory "#{install_dir}/oozie-#{version}" do
   	owner user
 	group group
 	mode 00755
@@ -112,26 +121,34 @@ if ENV["deploy_build"] == "true" then
 	action :create
   end
 
+  # this currently sets it up to use derby, will need to adjust once the MySQL recipe is working
+  bash "final_setup" do
+    interpreter "bash"
+    user "root"
+    cwd "/usr/share/oozie/bin"
+    code <<-EOH
+	ln -s /usr/share/hadoop/*.jar /usr/share/oozie/libext/
+	/usr/share/oozie/bin/oozie-setup.sh
+	/usr/share/oozie/bin/ooziedb.sh create -sqlfile /usr/share/oozie/bin/oozie.sql -run
+	/usr/share/oozie/bin/oozie-start.sh
+    EOH
+  end
+
+
+
 
 end
 
-# create config files and the startup script from template
-#%w[oozie-env.sh].each do |template_file|
-#	template "/usr/share/oozie/conf/#{template_file}" do
-#		source "#{template_file}"
-#		mode 00755
-#		variables(
-#			:metastore_driver => metastore_driver,
-#			:dbuser => auth_config['oozie']['dbuser'],
-#			:dbpass => auth_config['oozie']['dbpass']
-#		)
-#	end
-#
-#	# remove default template files
-#	file "/usr/share/oozie/conf/#{template_file}.template" do
-#		action :delete
-#	end
-#end
+
+# configure templates
+%w[oozie-env.sh].each do |template_file|
+  template "#{install_dir}/oozie/conf/#{template_file}" do
+	  source "#{template_file}.erb"
+	  owner user
+	  group group
+	  mode  00644
+  end
+end
 
 
 

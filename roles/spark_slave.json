@@ -1,0 +1,12 @@
+{
+  "name": "spark_slave",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Spark Slave",
+  "run_list": [
+    "recipe[spark::slave]",
+    "role[shark]"
+  ],
+  "override_attributes": {
+  }
+}
