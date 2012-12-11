@@ -172,7 +172,7 @@
           "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41771:id/webtrends-streamingcollection-bin.tar.gz"
         }, 
         "wt_streamingconfigservice": {
-          "config_service_url": "http://ciutil01.staging.dmz"
+          "config_service_url": "http://ciutil01.staging.dmz:8080"
         }, 
         "wt_streaminglogreplayer": {}, 
         "wt_streamingmanagementservice": {}, 
