@@ -348,7 +348,7 @@
             "camdbname": "CAM", 
             "camdbserver": "cicamdb01.staging.dmz", 
             "config_service_url": "http://ciutil01.staging.dmz:8080", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt195/.lastSuccessful/webtrends-streaming-configservice-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz", 
             "includeUnmappedAnalyticsIds": "true"
         }, 
         "wt_streaminglogreplayer": {
