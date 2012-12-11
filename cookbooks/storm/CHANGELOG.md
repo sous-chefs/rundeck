@@ -1,3 +1,9 @@
+## 1.0.30
+* Changed supervisor control script which would prevent a supervisor from
+  starting because worker processes were already running. It can happen
+  that a supervisor will die but the workers not, then runit will no
+  longer be able to start the supervisor. This fix should prevent that.
+
 ## 1.0.29
 * Changed the default worker memory size.
 
