@@ -319,7 +319,7 @@
             "explore_quietperiod": "5"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/41427:id/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/44812:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://escs.staging.dmz,http://lscs.staging.dmz", 
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
