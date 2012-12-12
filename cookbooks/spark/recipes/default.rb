@@ -26,9 +26,9 @@ spark_master = search(:node, "role:spark_master AND chef_environment:#{node.chef
 
 install_dir = "#{node['spark']['install_dir']}/spark-#{node['spark']['version']}"
 
-mem = "6g"
+mem = "#{node['spark']['mem']['slave']}"
 if node.run_list.include?("role[spark_master]")
-  mem = "6g"
+  mem = "#{node['spark']['mem']['master']}"
 end
 
 # setup spark group
@@ -63,12 +63,12 @@ directory node['spark']['install_dir'] do
 end
 
 # download spark
-remote_file "#{Chef::Config[:file_cache_path]}/spark-#{node[:spark][:version]}-prebuilt.tar.gz" do
-  source "#{node['spark']['download_url']}/spark-#{node['spark']['version']}-prebuilt.tar.gz"
+remote_file "#{Chef::Config[:file_cache_path]}/spark-#{node[:spark][:version]}-prebuilt.tgz" do
+  source "#{node['spark']['download_url']}/spark-#{node['spark']['version']}-prebuilt.tgz"
   owner  "spark"
   group  "spark"
   mode   00744
-  not_if "test -f #{Chef::Config[:file_cache_path]}/spark-#{node['spark']['version']}-prebuilt.tar.gz"
+  not_if "test -f #{Chef::Config[:file_cache_path]}/spark-#{node['spark']['version']}-prebuilt.tgz"
 end
 
 # uncompress the application tarball into the install directory
@@ -77,7 +77,7 @@ execute "tar" do
   group   "spark"
   creates "#{node['spark']['install_dir']}/spark-#{node['spark']['version']}"
   cwd     "#{node['spark']['install_dir']}"
-  command "tar -zxvf #{Chef::Config[:file_cache_path]}/spark-#{node['spark']['version']}-prebuilt.tar.gz"
+  command "tar -zxvf #{Chef::Config[:file_cache_path]}/spark-#{node['spark']['version']}-prebuilt.tgz"
 end
 
 # create a link from the specific version to a generic current folder
