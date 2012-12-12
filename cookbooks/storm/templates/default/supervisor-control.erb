@@ -17,7 +17,7 @@ SUPERVISOR_PID_WORKERS=`$JAVA_HOME/bin/jps -l |grep "backtype.storm.daemon.worke
 # Check what the caller wants.
 case "$1" in
     start)
-        if [ "" = "$SUPERVISOR_PID" -a "" = "$SUPERVISOR_PID_WORKERS" ]; then
+        if [ "" = "$SUPERVISOR_PID" ]; then
             echo $CMD
             # Storm processes look for a conf/ directory relative
             # the processes start directory.
