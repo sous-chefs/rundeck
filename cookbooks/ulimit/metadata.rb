@@ -1,4 +1,4 @@
-maintainer       "Webtrends"
+maintainer       "Webtrends, Inc."
 maintainer_email "david.andrew@webtrends.com"
 license          "Apache 2.0"
 description      "Configures ulimit"
