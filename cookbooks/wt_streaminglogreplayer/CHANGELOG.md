@@ -68,8 +68,8 @@
 * Added the attribute lock_check_period which determines how many minutes to wait before a local_lock file is considered to be "lost" and thus put back in the process
 
 ## 0.0.12
-* Externalized the healthcheck options 'healthcheck_enabled' to [:wt_monitoring][:healthcheck_enabled]
-* Externalized the healthcheck options 'healthcheck_port' to [:wt_monitoring][:healthcheck_port]
+* Externalized the healthcheck options 'healthcheck_enabled' to ['wt_monitoring']['healthcheck_enabled']
+* Externalized the healthcheck options 'healthcheck_port' to ['wt_monitoring']['healthcheck_port']
 
 ## 0.0.11
 * Added support for deploying changes to attributes that write to templates without having to re-deploy all the bits.
@@ -102,7 +102,7 @@
 * Renamed the cookbook from 'wt_streaminglogreplay' to 'wt_streaminglogreplayer'
 * Removed 'tarball' attribute as it is included in the download_url
 * Externalized the java options 'java_opts'
-* Externalized the java options 'jmx_port' to [:wt_monitoring][:jmx_port]
+* Externalized the java options 'jmx_port' to ['wt_monitoring']['jmx_port']
 
 ## 0.0.1:
 * Initial release
