@@ -4,6 +4,7 @@
   "json_class": "Chef::Role",
   "description": "Hadoop JobTracker",
   "run_list": [
+    "recipe[sysctl]",
     "recipe[hadoop::jobtracker]"
   ],
   "override_attributes": {

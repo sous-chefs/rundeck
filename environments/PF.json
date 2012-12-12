@@ -11,7 +11,6 @@
         "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 1.0.0", 
-        "wt_realtimeapi": "= 0.0.17", 
         "wt_storm": "= 1.0.20", 
         "wt_streamingapi": "= 0.0.16", 
         "wt_streamingauditor": "= 0.0.7", 

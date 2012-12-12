@@ -14,7 +14,7 @@
         "wt_base": "= 1.0.2", 
         "wt_cam": "= 1.1.3", 
         "wt_kafka_topagg": "= 1.0.1", 
-        "wt_netacuity": "= 1.0.10", 
+        "wt_netacuity": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.10", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.2", 
@@ -201,9 +201,6 @@
             "alt_chef_environment": "support-staging", 
             "config_distrib": "acd01.staging.dmz:8097", 
             "heatmap_reducers": -1
-        }, 
-        "wt_kafka_mm": {
-            "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38950:id/MirrorMonitor-bin.tar.gz"
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
