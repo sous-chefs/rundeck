@@ -298,7 +298,7 @@
             "jmx_port": 9998
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/44814:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/44977:id/webtrends-streamingapi-bin.tar.gz",
             "sapi_service_url": "ws://bsapi.webtrends.com",
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"
