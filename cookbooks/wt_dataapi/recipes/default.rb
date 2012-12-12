@@ -24,7 +24,7 @@ end
 zookeeper_quorum = Array.new
 if not Chef::Config.solo
   search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-    zookeeper_quorum << n[:fqdn]
+    zookeeper_quorum << n['fqdn']
   end
 end
 
@@ -114,7 +114,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, usag
         :cam_url => cam_url,
         :install_dir => install_dir,
         :port => port,
-        :wt_monitoring => node[:wt_monitoring],
+        :wt_monitoring => node['wt_monitoring'],
 
         # usage db parameters
         :usagedbserver => usagedbserver,
