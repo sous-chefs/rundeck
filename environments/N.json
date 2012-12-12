@@ -202,9 +202,6 @@
             "config_distrib": "acd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
-        "wt_kafka_mm": {
-            "monitor_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt252/38950:id/MirrorMonitor-bin.tar.gz"
-        }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
             "host": "amasterdb01.staging.dmz"
