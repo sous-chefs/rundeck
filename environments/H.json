@@ -268,8 +268,8 @@
                 "workers": 2
             },
             "topic_list": [
-                "Lab_B_scsRawHits:30",
-                "Lab_B_lrRawHits:30"
+                "Lab_H_scsRawHits:30",
+                "Lab_H_lrRawHits:30"
             ],
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f",
             "worker": {
