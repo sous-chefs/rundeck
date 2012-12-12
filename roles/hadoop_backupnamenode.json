@@ -4,6 +4,7 @@
   "json_class": "Chef::Role",
   "description": "Hadoop Backup NameNode",
   "run_list": [
+    "recipe[sysctl]",
     "recipe[hadoop::backupnamenode]"
   ],
   "override_attributes": {
