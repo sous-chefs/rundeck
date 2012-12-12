@@ -27,12 +27,12 @@ define contactgroup {
 }
 
 <% @admins.each do |a| -%>
-
 define contact {
   use          default-contact
   contact_name <%= a['id'] %>
   <%= "email  #{a['nagios']['email']}" unless a['nagios'].nil? || a['nagios']['email'].nil? %>
 }
+
 <% end -%>
 
 <% @contacts.each do |c| -%>
