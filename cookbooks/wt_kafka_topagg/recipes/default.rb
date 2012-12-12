@@ -78,7 +78,7 @@ zookeeper_port = node['zookeeper']['client_port']
 zookeeper_pairs = Array.new
 if not Chef::Config.solo
     search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-        zookeeper_pairs << n[:fqdn]
+        zookeeper_pairs << n['fqdn']
     end
 end
 
