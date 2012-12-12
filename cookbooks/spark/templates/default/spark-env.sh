@@ -30,9 +30,5 @@ export SPARK_CLASSPATH="$SPARK_CLASSPATH:$(find /usr/share/java/ | grep scala | 
 export SPARK_WORKER_PORT=8080
 export SPARK_WORKER_WEBUI_PORT=8081
 
-
-#export SPARK_MEM="2g"
-#export SPARK_WORKER_MEMORY="14g"
-
 export SPARK_MEM="<%= @mem %>"
 
