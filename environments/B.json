@@ -171,7 +171,7 @@
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/44907:id/CAM.zip"
             },
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt315/41973:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt315/44907:id/Plugins.zip"
             },
             "cam_service_url": "http://bcam.staging.dmz",
             "db_name": "cam",
