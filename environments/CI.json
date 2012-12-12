@@ -25,56 +25,12 @@
             "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
         "hadoop": {
-            "core": {
-                "fs_checkpoint_dir": "/var/lib/hadoop/hdfs/backupnamenode", 
-                "fs_checkpoint_period": 900, 
-                "fs_trash_interval": 360, 
-                "io_file_buffer_size": 4096
-            }, 
-            "dfs": {
-                "block_size": 67108864, 
-                "data_dir": "/mnt/hdfs/hdfs01/data01/hdfs", 
-                "datanode_du_reserved": 0, 
-                "datanode_handler_count": 3, 
-                "datanode_max_xcievers": 4096, 
-                "name_dir": "/var/lib/hadoop/hdfs/namenode", 
-                "namenode_handler_count": 10, 
-                "permissions": "true", 
-                "replication": 3
-            }, 
-            "env": {
-                "HADOOP_HEAPSIZE": 2000, 
-                "HADOOP_OPTS": "", 
-                "java_net_preferIPv4Stack": "true"
-            }, 
-            "mapred": {
-                "child_java_opts": "-server -Xmx640m -Djava.net.preferIPv4Stack=true", 
-                "child_ulimit": 8388608, 
-                "io_sort_factor": 10, 
-                "io_sort_mb": 100, 
-                "job_reuse_jvm_num_tasks": 1, 
-                "job_tracker_handler_count": 10, 
-                "local_dir": "/mnt/hdfs/hdfs01/data01/mapred", 
-                "map_tasks_speculative_execution": "false", 
-                "reduce_tasks": 1, 
-                "reduce_tasks_speculative_execution": "false", 
-                "tasktracker_map_tasks_maximum": 2, 
-                "tasktracker_reduce_tasks_maximum": 2
-            }
+            "core": {}, 
+            "dfs": {}, 
+            "env": {}, 
+            "mapred": {}
         }, 
-        "hbase": {
-            "data_center_id": "Lab", 
-            "env": {
-                "HBASE_HEAPSIZE": 4000, 
-                "HBASE_MANAGES_ZK": "false"
-            }, 
-            "location": "sdata.staging.dmz", 
-            "pod_id": "CI", 
-            "site": {
-                "zookeeper_clientport": 2181, 
-                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
-            }
-        }, 
+        "hbase": {}, 
         "hive": {}, 
         "java": {
             "install_flavor": "oracle", 
@@ -109,16 +65,12 @@
         "nagios": {
             "client": {
                 "install_method": "package"
-            }, 
-            "multi_environment_monitoring": true, 
-            "multi_os_monitoring": true, 
+            },
+            "multi_environment_monitoring": true,
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
-            "server_auth_method": "htpasswd", 
-            "server_role": "nagios_xi", 
-            "sysadmin_email": "trent.white@webtrends.com", 
-            "users_databag_group": "staging"
+            "server_role": "nagios_xi"
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
@@ -129,9 +81,7 @@
             "syscontact": "trent.white@webtrends.com"
         }, 
         "storm": {
-            "download_url": "http://repo.staging.dmz/repo/linux/storm", 
-            "install_dir": "/opt/storm", 
-            "log_dir": "/var/log/storm", 
+            "download_url": "http://repo.staging.dmz/repo/linux/storm",  
             "version": "0.8.0"
         }, 
         "vc2010": {
@@ -213,14 +163,6 @@
             "wrsmodify_group": "STAGINGDMZ\\CI.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\CI.WRS.Read"
         }, 
-        "wt_configdistrib": {
-            "dcsid_url": "http://jcd01.englab.webtrends.corp:8097/config/dcsid2account"
-        }, 
-        "wt_heatmaps": {
-            "alt_chef_environment": "support-staging", 
-            "config_distrib": "jcd01.englab.webtrends.corp:8097", 
-            "heatmap_reducers": -1
-        }, 
         "wt_kafka_topagg": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41969:id/TopicAggregator-bin.tar.gz", 
             "edge_kafka_sources": [
@@ -262,7 +204,6 @@
             "proxy_enabled": "false"
         }, 
         "wt_portfolio_manager": {
-            "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip", 
             "manager_ui_url": "http://hportmc01.staging.dmz", 
             "portmgr_domain": "STAGINGDMZ", 
@@ -282,16 +223,17 @@
         "wt_search": {}, 
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/.lastSuccessful/streaming-analysis-bin.tar.gz", 
-            "streaming_topology_augmentation_bolt_count": 10, 
-            "streaming_topology_field_grouping_local": "false", 
-            "streaming_topology_in_session_bolt_count": 0, 
-            "streaming_topology_parsing_bolt_count": 50, 
-            "streaming_topology_validation_bolt_count": 40, 
-            "streaming_topology_zmq_emitter_bolt_count": 3, 
+            "query_bolt_executors": 24,
+            "query_bolt_tasks": 24,
+            "streaming_topology_field_grouping_local": "false",
+            "supervisor": {
+                "workers": 1
+            },
             "topic_list": [
                 "Lab_CI_scsRawHits:3", 
                 "Lab_CI_lrRawHits:3"
             ], 
+	    "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f",
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
