@@ -25,7 +25,7 @@ java_opts = node['wt_heatmaps_logconverter']['java_opts']
 
 hadoop_datanodes = Array.new
 search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment}").each do |n|
-  hadoop_datanodes << n[:fqdn]
+  hadoop_datanodes << n['fqdn']
 end
 hadoop_datanodes.sort!
 

@@ -137,7 +137,7 @@ template "#{install_dir}/conf/config.properties" do
     :camdbname => node['wt_cam']['db_name'],
     :camdbuser => camdbuser,
     :camdbpwd => camdbpwd,
-    :wt_monitoring => node[:wt_monitoring],
+    :wt_monitoring => node['wt_monitoring'],
     :healthcheck_port => node['wt_streamingmanagementservice']['healthcheck_port'],
   })
 end
