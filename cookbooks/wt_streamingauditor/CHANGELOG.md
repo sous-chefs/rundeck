@@ -1,3 +1,6 @@
+## 1.0.13
+* Fixed a bug introduced in .12
+
 ## 1.0.12
 * Fixed food critic complaints
   * Removed unused template variables

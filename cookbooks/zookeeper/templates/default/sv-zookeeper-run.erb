@@ -1,5 +1,5 @@
 #!/bin/sh
-
+ulimit -n 2048
 exec 2>&1
 
 JMX_PORT="<%= @options[:java_jmx_port] %>"

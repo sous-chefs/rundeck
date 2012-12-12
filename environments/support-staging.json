@@ -1,9 +1,8 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "bluepill": "= 1.0.6", 
         "cassandra": "= 1.0.12", 
-        "cobbler": "= 1.0.7", 
+        "cobbler": "= 1.0.8", 
         "graphite": "= 0.3.0", 
         "hadoop": "= 1.1.11", 
         "hbase": "= 1.1.4", 
@@ -192,6 +191,11 @@
                 "10.164.0.12"
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
+        "sysctl": {
+            "set swappiness": {
+              "vm.swappiness": "0"
+          }
         }, 
         "snmp": {
             "community": "DevOps", 
