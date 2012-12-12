@@ -1,8 +1,9 @@
 #
-# Cookbook Name:: rbvmomi
-# Recipe:: default
+# Cookbook Name:: sysctl
+# Resources:: default
+# Author:: Guilhem Lettron <guilhem.lettron@youscribe.com>
 #
-# Copyright 2012, Webtrends
+# Copyright 2012, Societe Publica.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,11 +18,15 @@
 # limitations under the License.
 #
 
-include_recipe "ruby"
-include_recipe "build-essential"
-
-%w{ libxslt1-dev libxml2-dev }.each do |pkg|
-  package pkg
+def initialize(*args)
+  super
+  @action = :save
 end
 
-gem_package "rbvmomi"
+actions :save, :set, :remove
+
+attribute :name, :kind_of => String, :name_attribute => true
+attribute :variable, :kind_of => String, :default => nil
+attribute :value, :kind_of => String, :required => true
+attribute :path, :kind_of => String, :default => nil
+attribute :priority, :kind_of => String, :default => "40"

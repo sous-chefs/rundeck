@@ -1,403 +1,398 @@
 {
-  "chef_type": "environment", 
+    "chef_type": "environment", 
     "cookbook_versions": {}, 
     "default_attributes": {
-      "authorization": {
-        "ad_auth": {
-          "ad_network": "STAGINGDMZ"
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "STAGINGDMZ"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins", 
+                    "ci.admins"
+                ], 
+                "include_sudoers_d": true, 
+                "passwordless": true, 
+                "users": [
+                    "bobo"
+                ]
+            }
         }, 
-        "sudo": {
-          "groups": [
-            "domain-admins", 
-          "ci.admins"
+        "beyond_compare": {}, 
+        "cassandra": {}, 
+        "delltools": {}, 
+        "esx": {
+            "repo": "http://repo.staging.dmz/repo/linux/vmware"
+        }, 
+        "hadoop": {
+            "core": {
+                "fs_checkpoint_dir": "/var/lib/hadoop/hdfs/backupnamenode", 
+                "fs_checkpoint_period": 900, 
+                "fs_trash_interval": 360, 
+                "io_file_buffer_size": 4096
+            }, 
+            "dfs": {
+                "block_size": 67108864, 
+                "data_dir": "/mnt/hdfs/hdfs01/data01/hdfs", 
+                "datanode_du_reserved": 0, 
+                "datanode_handler_count": 3, 
+                "datanode_max_xcievers": 4096, 
+                "name_dir": "/var/lib/hadoop/hdfs/namenode", 
+                "namenode_handler_count": 10, 
+                "permissions": "true", 
+                "replication": 3
+            }, 
+            "env": {
+                "HADOOP_HEAPSIZE": 2000, 
+                "HADOOP_OPTS": "", 
+                "java_net_preferIPv4Stack": "true"
+            }, 
+            "mapred": {
+                "child_java_opts": "-server -Xmx640m -Djava.net.preferIPv4Stack=true", 
+                "child_ulimit": 8388608, 
+                "io_sort_factor": 10, 
+                "io_sort_mb": 100, 
+                "job_reuse_jvm_num_tasks": 1, 
+                "job_tracker_handler_count": 10, 
+                "local_dir": "/mnt/hdfs/hdfs01/data01/mapred", 
+                "map_tasks_speculative_execution": "false", 
+                "reduce_tasks": 1, 
+                "reduce_tasks_speculative_execution": "false", 
+                "tasktracker_map_tasks_maximum": 2, 
+                "tasktracker_reduce_tasks_maximum": 2
+            }
+        }, 
+        "hbase": {
+            "data_center_id": "Lab", 
+            "env": {
+                "HBASE_HEAPSIZE": 4000, 
+                "HBASE_MANAGES_ZK": "false"
+            }, 
+            "location": "sdata.staging.dmz", 
+            "pod_id": "CI", 
+            "site": {
+                "zookeeper_clientport": 2181, 
+                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
+            }
+        }, 
+        "hive": {}, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
+                    }
+                }, 
+                "7": {
+                    "x86_64": {
+                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
+                    }
+                }
+            }
+        }, 
+        "kafka": {
+            "chroot_suffix": "brokers", 
+            "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
+            "log_flush_scheduler_time_interval": "500", 
+            "log_flush_time_interval": "500", 
+            "log_retention_hours": "2", 
+            "threads": "8", 
+            "version": "0.7.1"
+        }, 
+        "memcached": {}, 
+        "ms_dotnet4": {
+            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
+        }, 
+        "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
+            "multi_environment_monitoring": true, 
+            "multi_os_monitoring": true, 
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server_auth_method": "htpasswd", 
+            "server_role": "nagios_xi", 
+            "sysadmin_email": "trent.white@webtrends.com", 
+            "users_databag_group": "staging"
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "snmp": {
+            "community": "DevOps", 
+            "full_systemview": "true", 
+            "syscontact": "trent.white@webtrends.com"
+        }, 
+        "storm": {
+            "download_url": "http://repo.staging.dmz/repo/linux/storm", 
+            "install_dir": "/opt/storm", 
+            "log_dir": "/var/log/storm", 
+            "version": "0.8.0"
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
+        }, 
+        "webtrends_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
+                }, 
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution_suffix": "-0.10", 
+                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
+                    "name": "wtlab-opscode", 
+                    "url": "http://repo.staging.dmz/repo/apt/opscode"
+                }
             ], 
-          "include_sudoers_d": true, 
-          "passwordless": true, 
-          "users": [
-            "bobo"
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
+                }
             ]
-        }
-      }, 
-      "beyond_compare": {}, 
-      "cassandra": {}, 
-      "delltools": {}, 
-      "esx": {
-        "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
-        "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-        "tarball": "VMwareTools-8.6.5-652272.tar.gz"
-      }, 
-      "hadoop": {
-        "core": {
-          "fs_checkpoint_dir": "/var/lib/hadoop/hdfs/backupnamenode", 
-          "fs_checkpoint_period": 900, 
-          "fs_trash_interval": 360, 
-          "io_file_buffer_size": 4096
         }, 
-        "dfs": {
-          "block_size": 67108864, 
-          "data_dir": "/mnt/hdfs/hdfs01/data01/hdfs", 
-          "datanode_du_reserved": 0, 
-          "datanode_handler_count": 3, 
-          "datanode_max_xcievers": 4096, 
-          "name_dir": "/var/lib/hadoop/hdfs/namenode", 
-          "namenode_handler_count": 10, 
-          "permissions": "true", 
-          "replication": 3
+        "wt_analytics_ui": {}, 
+        "wt_aps": {
+            "aps_url_base": "/AccountProvisioning/", 
+            "service_url": "http://aaps01.staging.dmz"
         }, 
-        "env": {
-          "HADOOP_HEAPSIZE": 2000, 
-          "HADOOP_OPTS": "", 
-          "java_net_preferIPv4Stack": "true"
+        "wt_cam": {
+            "cam": {
+                "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/CAM.zip"
+            }, 
+            "cam_plugins": {
+                "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Plugins.zip"
+            }, 
+            "cam_service_url": "http://cicam01.staging.dmz", 
+            "db_name": "cam", 
+            "db_server": "cicamdb01.staging.dmz"
         }, 
-        "mapred": {
-          "child_java_opts": "-server -Xmx640m -Djava.net.preferIPv4Stack=true", 
-          "child_ulimit": 8388608, 
-          "io_sort_factor": 10, 
-          "io_sort_mb": 100, 
-          "job_reuse_jvm_num_tasks": 1, 
-          "job_tracker_handler_count": 10, 
-          "local_dir": "/mnt/hdfs/hdfs01/data01/mapred", 
-          "map_tasks_speculative_execution": "false", 
-          "reduce_tasks": 1, 
-          "reduce_tasks_speculative_execution": "false", 
-          "tasktracker_map_tasks_maximum": 2, 
-          "tasktracker_reduce_tasks_maximum": 2
-        }
-      }, 
-      "hbase": {
-        "data_center_id": "Lab", 
-        "env": {
-          "HBASE_HEAPSIZE": 4000, 
-          "HBASE_MANAGES_ZK": "false"
+        "wt_cam_db": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt137/.lastSuccessful/artifacts.zip"
         }, 
-        "location": "sdata.staging.dmz", 
-        "pod_id": "CI", 
-        "site": {
-          "zookeeper_clientport": 2181, 
-          "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
-        }
-      }, 
-      "hive": {}, 
-      "java": {
-        "install_flavor": "oracle", 
-        "jdk": {
-          "6": {
-            "x86_64": {
-              "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
-              "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
-            }
-          }, 
-          "7": {
-            "x86_64": {
-              "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
-              "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
-            }
-          }
-        }
-      }, 
-      "kafka": {
-        "chroot_suffix": "brokers", 
-        "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
-        "log_flush_scheduler_time_interval": "500", 
-        "log_flush_time_interval": "500", 
-        "log_retention_hours": "2", 
-        "threads": "8", 
-        "version": "0.7.1"
-      }, 
-      "memcached": {}, 
-      "ms_dotnet4": {
-        "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
-      }, 
-      "nagios": {
-        "client": {
-          "install_method": "package"
+        "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "common_resource_environment": "support-staging", 
+            "config_dir_linux": "/etc/webtrends/", 
+            "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
+            "http_proxy_url": "", 
+            "install_dir_linux": "/opt/webtrends/", 
+            "install_dir_windows": "d:\\wrs", 
+            "install_log_dir_linux": "/var/log/webtrends/install", 
+            "install_log_dir_windows": "d:\\logs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "ldap_host": "hldap01.staging.dmz", 
+            "ldap_port": "636", 
+            "log_dir_linux": "/var/log/webtrends/", 
+            "log_dir_windows": "", 
+            "smtp_server": "pdxengmta01.webtrends.corp", 
+            "wrsmodify_group": "STAGINGDMZ\\CI.WRS.Modify", 
+            "wrsread_group": "STAGINGDMZ\\CI.WRS.Read"
         }, 
-        "multi_environment_monitoring": true, 
-        "multi_os_monitoring": true, 
-        "nrpe": {
-          "dont_blame_nrpe": "1"
+        "wt_configdistrib": {
+            "dcsid_url": "http://jcd01.englab.webtrends.corp:8097/config/dcsid2account"
         }, 
-        "server_auth_method": "htpasswd", 
-        "server_role": "nagios_xi", 
-        "sysadmin_email": "trent.white@webtrends.com", 
-        "users_databag_group": "staging"
-      }, 
-      "postfix": {
-        "relayhost": "pdxengmta01.webtrends.corp"
-      }, 
-      "snmp": {
-        "community": "DevOps", 
-        "full_systemview": "true", 
-        "syscontact": "trent.white@webtrends.com"
-      }, 
-      "storm": {
-        "download_url": "http://repo.staging.dmz/repo/linux/storm", 
-        "install_dir": "/opt/storm", 
-        "log_dir": "/var/log/storm", 
-        "version": "0.8.0"
-      }, 
-      "vc2010": {
-        "x64": {
-          "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
+        "wt_heatmaps": {
+            "alt_chef_environment": "support-staging", 
+            "config_distrib": "jcd01.englab.webtrends.corp:8097", 
+            "heatmap_reducers": -1
         }, 
-        "x86": {
-          "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x86.exe"
-        }
-      }, 
-      "webpi": {
-        "checksum": "fc763c31be35e50fea3381082ddbb078", 
-        "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
-        "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
-      }, 
-      "webtrends_server": {
-        "apt": [
-        {
-          "components": [
-            "main"
+        "wt_kafka_topagg": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41969:id/TopicAggregator-bin.tar.gz", 
+            "edge_kafka_sources": [
+                {
+                    "host": "ciscs01.staging.dmz", 
+                    "topic": "Lab_CI_scsRawHits"
+                }
+            ]
+        }, 
+        "wt_management_console": {
+            "service_url": "https://cisviz01.staging.dmz"
+        }, 
+        "wt_masterdb": {
+            "dbname": "wtMaster", 
+            "host": "amasterdb01.staging.dmz"
+        }, 
+        "wt_messaging_monitoring": {}, 
+        "wt_monitoring": {
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
+            "jmx_enabled": "true", 
+            "metric_prefix": "staging.cipod.servers", 
+            "monitoring_enabled": "true"
+        }, 
+        "wt_netacuity": {
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_460_x86_64.tgz", 
+            "geo_url": "ciutil01.staging.dmz", 
+            "version": "460"
+        }, 
+        "wt_portfolio_admin": {
+            "account_ui_url": "https://haccount.webtrends.com", 
+            "custom_errors": "Off", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lasSuccessful/Portfolio.Admin.zip", 
+            "elmah_remote_access": "yes", 
+            "proxy_enabled": "false"
+        }, 
+        "wt_portfolio_manager": {
+            "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip", 
+            "manager_ui_url": "http://hportmc01.staging.dmz", 
+            "portmgr_domain": "STAGINGDMZ", 
+            "portmgr_group_admin": "H.PortMgr.Admins", 
+            "portmgr_group_user": "H.PortMgr.Users", 
+            "portmgr_injected_user": "toby.mosby@webtrends.com"
+        }, 
+        "wt_realtime_hadoop": {
+            "datacenter": "Lab", 
+            "pod": "CI"
+        }, 
+        "wt_realtimeapi": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/28201:id/webtrends-realtimeapi-bin.tar.gz", 
+            "port": 8082
+        }, 
+        "wt_rta": {}, 
+        "wt_sauth": {
+            "auth_service_url": "http://ciauth01.staging.dmz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/auth.zip"
+        }, 
+        "wt_search": {}, 
+        "wt_storm_realtime": {
+            "dcsid_whitelist": "dcsyzsuwrvz5bdv8tcntgzutq_9g1b,dcspqo4cm10000s1g3ohltw6k_8h8m,dcse1dpwv00000cdisgddy37k_8u5q,dcs34vb8400000kjwxl69ttnn_7n2v,dcsuejun910000s9ujgc67unn_9c8t,dcsg66lds00000s1so8x3cunn_5c1j,dcs1qap5e10000kflmi2xhunn_1v1d,dcse70k3c10000g0znjfanunn_1x9y,dcsn54vyw000000woc740sunn_7y4o,dcsoxh6ge10000k7v4t360vnn_6w1n,dcs5aiq8l000000s1oljc3vnn_4j4o,dcsibz3qs10000gk6bm1havnn_7e5h,dcsnucutr1000008a9k4kovnn_4n4y,dcs0s2y5510000w8o91zxsvnn_5e6s,dcspes3mn10000g0fwkmovvnn_6t5r,dcsae9ion10000g0v03g40wnn_8u6e,dcsj0gzli10000oa8szxgjwnn_6o6j,dcsov28f00000004v6hn3mwnn_5k1b,dcspjti7p10000wsr5480pwnn_7k9g,dcsmww65k00000sx48p3dvwnn_3k9w,dcsrns95v1000043haj6olxnn_4f6f,dcs8ozrta00000golpansoxnn_4l8x,dcsdzq7wp1000004bfiuhuxnn_4i9q,dcsiquz4000000oe37nz9yxnn_3z8v,dcsfzq2wn10000oiid9uo4ynn_8w7f,dcsku18tl10000kruhyq0dynn_7d4c,dcsxvu4x910000sxwt8r2hynn_7j3b,dcsuc9ypv10000o6ttfuykynn_4o3l,dcsjnp2u3000008yjgzhpnynn_1t2z,dcskjiakf100000wwabc2qynn_4c5m,dcs1gyhv610000k3owahtrynn_3n4l,dcs245tu510000kf5y4ratynn_7u7b,dcszkj9dc1000008ugnfzvynn_1e5m,dcss6f9mk00000kraqzxelznn_4e9d,dcs5k9hvz00000oqsyiqwpznn_7k1j,dcsazrqn910000g0nuouqtznn_1u4f,dcsb72n2r10000ch1ul65xznn_3s1w,dcsh646dq00000clw4quz70on_6q3p,dcserhkmf00000047wk8ab0on_8z5i,dcs710mic000008qpbtjsi0on_2b6q,dcssgd2je10000kjsus2vp0on_7f2l,dcsxfzp1x100004fijgrku0on_4r4u,dcs2b2yk01000000wkh4yz0on_8v6g,dcs3nbznq10000gk24ak431on_8p4c,dcsc1oz2v10000clg4rei71on_2v4o,dcs5flvyp000000spy9crd1on_7n1v,dcsi809po10000gwvimaxh1on_6m7l,dcsbez9lj00000w8k2phll1on_6h7u,dcs0hhch6100008q5kuq6r1on_4f5k,dcs9bqd2110000shw6eext1on_5y2d,dcshg49en00000kn7dcbwwsar_2p9l,dcs47s6qjvz5bdnkeht20izhr_5l4t,dcslj023muz5bdrvxmobjjzhr_6j4c,dcsq6p77iuz5bdb7wokzb0sir_5b4k,dcspa42wa00000sxseqn2pksw_7r1r,dcsmd3yy6vz5bd3b4psfl64n7_4s7f,dcsn51xppuz5bdvwvut0bk5n7_4f2g,dcsohahltuz5bdz34pl5ia6n7_5d4m,dcswgm2oluz5bdv6e1rrii1ba_9x4r,dcsgdjl1luz5bdj1m2pk4laia_3c6f,dcs5wls3mvz5bdrbnkmz3vbia_8y4l,dcslb2astvz5bdr7gkazao10c_2k3j,dcs74v7l7wz5bdaowgr5drbrw_3s3j,dcsgscitbvz5bd8n0vjdd9tqy_4b7o,dcs5o60j5wz5bdfyozcs4bp6l_8c6z,dcs0kruhf6dv0hwgnqv6b8b8m_6d3l,dcs0hrta40000000k3szf256c_2e1q,dcs2p9t6b10000st9dlarpbbm_4n3j,dcs2gwi0t00000s10v2fpacp4_4j3b,dcs7jxiwo100004jl0v1v6ep6_6s6j,dcsflof4r10000g0zz0tdg26f_9i3n,dcsy7wari10000kv9g2qgaxnl_8v7x,dcsfhisnz00000oyed7za00a8_5h1h,dcstxcr8i00000omtguyi9uvn_1x1c,dcsxbyqii00000kjg1qf86jxv_7j9z,dcspagvqr000008at3dzb84s7_6o4v,dcs1639qu00000slv8ma7sjkp_3j4h,dcsexxefe00000wg6dug0ibgq_9l6n,dcsmxxuzs10000s189f47cyep_3j1x,dcsxsf1syuz5bdygt9m66qtjt_7z2j,dcs0hrta40000000k3szf256c_2e1q,dcs2p9t6b10000st9dlarpbbm_4n3j,dcs2gwi0t00000s10v2fpacp4_4j3b,dcs7jxiwo100004jl0v1v6ep6_6s6j,dcsflof4r10000g0zz0tdg26f_9i3n,dcsy7wari10000kv9g2qgaxnl_8v7x,dcsfhisnz00000oyed7za00a8_5h1h,dcstxcr8i00000omtguyi9uvn_1x1c,dcsxbyqii00000kjg1qf86jxv_7j9z,dcspagvqr000008at3dzb84s7_6o4v,dcs1639qu00000slv8ma7sjkp_3j4h,dcsexxefe00000wg6dug0ibgq_9l6n,dcsmxxuzs10000s189f47cyep_3j1x,dcsxsf1syuz5bdygt9m66qtjt_7z2j,dcskf5ra3wievv2j7rl2dzj9r_8m4t,dcssd1hl110000o65n6wko6yv_3f5i,dcscyjdor000004fu02p6j55k_7z2q,dcss1s1qz00000cpfqm6c3uzk_2u3x,dcsivypwnvz5bdaurmxdcu8oe_4w6t,dcskzwq0z6bv0hgc5x3drmdhl_6b2w,dcs0k3bfw9bv0h43mmbfafa4r_3d3d,dcsx80onvuz5bda0arxz7nuj4_1h7u,dcs4ns4a46bv0hkbj2mbl4kz4_2f9c,dcs679u7gvz5bdvketfrwpqz4_3d8d,dcsg1ip8ouz5bd7ikdlfzxsz4_1h9c,dcsz02wc3wz5bdfq1x2cjvqtf_7p2r,dcs5oiviquz5bdmb1vby0bq0m_8d3h,dcsvx0uq4wz5bdn4q716fat5p_1d8n,dcsy2qt14vz5bd6pu8n9w1l6p_3d5v,dcsshgbi400000gscd62rrg43_4o2o,dcs067c7h10000k3k5zmvwaj5_8c4n,dcscdq79k10000ws33akfryho_9g9w,dcsc9nqmj10000cd6rrr6kul8_2v1o,dcsifulp900000gol5vd3ocer_2j8b,dcs4jxi4zuz5bdn8i3a7617hw_9f7j,dcs19pwlvvz5bdigu9pwxx9l2_6y3o,dcsf1yuljuz5bdudkxuyg48f5_3g2u,dcs29w0rnvz5bdnctay4sq3jc_3u3s,dcsg8p0h45dv0h4v7mnq5jkkl_8r9z,dcswsvx32wz5bdqw99esr3w6n_5k5l,dcsvjsbpruz5bdvegwia9qsvt_7z8v,dcshgveaiuz5bdfussc3bris0_9s9o,dcso385e9wz5bdrjwxeu4kps0_5h3e,dcsz8d3revz5bdaez1q24pfc4_7k6c,dcs08qllk7dv0h04wzra57hqa_6h6w,dcsemnbegvz5bdvcwlvt0lrnk_5s9i,dcs47025tabv0hk3xrgk0tslo_2l6w,dcs8yzs3x2dv0hw4acycjgugu_1c5x,dcso2us69adv0h0cimie32sq3_5k9s,dcswifnc8vz5bdgl4fz966ht3_6q3g,dcs1mcf6vuz5bdov5tdb7cht3_9o2t,dcsao7pyvvz5bd0tr9z1tght3_6w6k,dcsb0dgv5vz5bdkohymqilht3_8m1b,dcs07qrphvz5bd0h6h5f7oht3_6p6w,dcsp592meuz5bdovxaelytht3_1k8b,dcsivnryzvz5bdsqghtchwht3_7v7l,dcsr5hdheuz5bd4k3wa24zht3_9n3y,dcsm75cbawz5bd87wk0vvjit3_5d6j,dcs353ienuz5bdsufngre2jt3_7e7p,dcsc3395nvz5bdorultkt4jt3_4u9k,dcsxaep7pvz5bd4s142i07jt3_2d4y,dcsej7k6muz5bdk0rl0op8jt3_8h9m,dcs7h82lruz5bds2uv6nsajt3_3j9k,dcs46xtmivz5bd0xe6ndddjt3_9h9i,dcst831r9vz5bdkskzsvimjt3_9y2g,dcsytaax5wz5bde1suuhad937_4w3c,dcsn0o5s1wz5bdygxokifn937_1u6q,dcsceg97uvz5bdmz7ckl17lwe_7c7g,dcs0j5koeuz5bdmvo64t7l4yh_2u1u,dcs15xobcvz5bdjbv66g8usqj_8f1z,dcsstljbf5dv0hcldijadb1go_1f8r,dcspm9u2fuz5bdjx58hagqhmp_5j2w,dcsvawr2v10000c9zqfbp3wdt_1l8p,dcs2i0d1x00000wwmoann0bpt_3y3z,dcsgs0dqv8bv0h8ud5z2yrxxv_5c4y,dcsoqwl14adv0h8iwb3h429lb_5l1t,dcs43l8ue5dv0hc9cttwihinf_9n4v,dcsgcok054dv0hkn4rc9m885n_6i7u,dcswgyr5n7dv0h08ruzm4fxvq_5c9u,dcs8ir0f0100004700jz6ln22_6m5t,dcsdl4wvf10000s9awcivsgt4_1b9z,dcs4sd6z700000wc30newmmjg_8h7y,dcs93136b10000004rrmeb3jo_5u5i,dcsrsdo9p00000shcnx8we3sl_8w7o,dcs3p47op00000wc3w7w4ov8d_8u6e,dcsg07k8yabv0h0481l7zxtyk_8e9c", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/28096:id/streaming-analysis-bin.tar.gz", 
+            "realtime_topology_dimensions_bolt_count": 6, 
+            "realtime_topology_parsing_bolt_count": 3, 
+            "realtime_topology_row_key_bolt_count": 6, 
+            "realtime_topology_writing_bolt_count": 48, 
+            "topic_list": [
+                "Lab_CI_scsRawHits:0", 
+                "Lab_CI_lrRawHits:0"
             ], 
-          "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
-          "name": "wtlab", 
-          "url": "http://repo.staging.dmz/repo/apt/webtrends"
+            "topology_override_max_spout_pending": 3000, 
+            "topology_override_msg_timeout_seconds": 30, 
+            "worker": {
+                "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+            }
         }, 
-        {
-          "components": [
-            "main"
+        "wt_storm_streaming": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/.lastSuccessful/streaming-analysis-bin.tar.gz", 
+            "streaming_topology_augmentation_bolt_count": 10, 
+            "streaming_topology_field_grouping_local": "false", 
+            "streaming_topology_in_session_bolt_count": 0, 
+            "streaming_topology_parsing_bolt_count": 50, 
+            "streaming_topology_validation_bolt_count": 40, 
+            "streaming_topology_zmq_emitter_bolt_count": 3, 
+            "topic_list": [
+                "Lab_CI_scsRawHits:3", 
+                "Lab_CI_lrRawHits:3"
             ], 
-          "distribution_suffix": "-0.10", 
-          "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
-          "name": "wtlab-opscode", 
-          "url": "http://repo.staging.dmz/repo/apt/opscode"
-        }
-        ], 
-          "yum": [
-          {
-            "description": "Webtrends Repo", 
-            "name": "wtlab", 
-            "url": "http://repo.staging.dmz/repo/yum/webtrends"
-          }
-        ]
-      }, 
-      "wt_analytics_ui": {}, 
-      "wt_aps": {
-        "aps_url_base": "/AccountProvisioning/", 
-        "service_url": "http://daps01.staging.dmz"
-      }, 
-      "wt_cam": {
-        "cam": {
-          "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/CAM.zip"
+            "worker": {
+                "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+            }
         }, 
-        "cam_plugins": {
-          "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/Plugins.zip"
+        "wt_streaming_viz": {
+            "custom_errors": "Off", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip", 
+            "elmah_remote_access": "yes", 
+            "proxy_enabled": "false", 
+            "sapi_url": "ws://cisapi01.staging.dmz:8080"
         }, 
-        "cam_service_url": "http://cicam01.staging.dmz", 
-        "db_name": "cam", 
-        "db_server": "cicamdb01.staging.dmz"
-      }, 
-      "wt_cam_db": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt137/.lastSuccessful/artifacts.zip"
-      }, 
-      "wt_common": {
-        "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-        "common_resource_environment": "support-staging", 
-        "config_dir_linux": "/etc/webtrends/", 
-        "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
-        "http_proxy_url": "", 
-        "install_dir_linux": "/opt/webtrends/", 
-        "install_dir_windows": "d:\\wrs", 
-        "install_log_dir_linux": "/var/log/webtrends/install", 
-        "install_log_dir_windows": "d:\\logs", 
-        "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-        "ldap_host": "hldap01.staging.dmz", 
-        "ldap_port": "636", 
-        "log_dir_linux": "/var/log/webtrends/", 
-        "log_dir_windows": "", 
-        "smtp_server": "pdxengmta01.webtrends.corp", 
-        "wrsmodify_group": "STAGINGDMZ\\CI.WRS.Modify", 
-        "wrsread_group": "STAGINGDMZ\\CI.WRS.Read"
-      }, 
-      "wt_configdistrib": {
-        "dcsid_url": "http://jcd01.englab.webtrends.corp:8097/config/dcsid2account"
-      }, 
-      "wt_heatmaps": {
-        "alt_chef_environment": "support-staging", 
-        "config_distrib": "jcd01.englab.webtrends.corp:8097", 
-        "heatmap_reducers": -1
-      }, 
-      "wt_kafka_topagg": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41969:id/TopicAggregator-bin.tar.gz",
-        "edge_kafka_sources": [
-          {
-            "topic": "Lab_CI_scsRawHits",
-            "host": "ciscs01.staging.dmz"
-          }
-        ]
-      },
-      "wt_management_console": {
-        "service_url": "https://cisviz01.staging.dmz"
-      }, 
-      "wt_masterdb": {
-        "dbname": "wtMaster", 
-        "host": "dmasterdb01.staging.dmz"
-      }, 
-      "wt_messaging_monitoring": {}, 
-      "wt_monitoring": {
-        "audit_bucket_timespan": 10, 
-        "audit_topic": "stream-audit", 
-        "graphite_port": 2003, 
-        "graphite_server": "sgraph01.staging.dmz", 
-        "healthcheck_enabled": "true", 
-        "healthcheck_port": 9000, 
-        "jmx_enabled": "true", 
-        "metric_prefix": "staging.cipod.servers", 
-        "monitoring_enabled": "true"
-      }, 
-      "wt_netacuity": {
-        "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_460_x86_64.tgz", 
-        "geo_url": "ciutil01.staging.dmz", 
-        "version": "460"
-      }, 
-      "wt_portfolio_admin": {
-        "account_ui_url": "https://haccount.webtrends.com", 
-        "custom_errors": "Off", 
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lasSuccessful/Portfolio.Admin.zip", 
-        "elmah_remote_access": "yes", 
-        "proxy_enabled": "false"
-      }, 
-      "wt_portfolio_manager": {
-        "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip", 
-        "manager_ui_url": "http://hportmc01.staging.dmz", 
-        "portmgr_domain": "STAGINGDMZ", 
-        "portmgr_group_admin": "H.PortMgr.Admins", 
-        "portmgr_group_user": "H.PortMgr.Users", 
-        "portmgr_injected_user": "toby.mosby@webtrends.com"
-      }, 
-      "wt_realtime_hadoop": {
-        "datacenter": "Lab", 
-        "pod": "CI"
-      }, 
-      "wt_realtimeapi": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/28201:id/webtrends-realtimeapi-bin.tar.gz", 
-        "port": 8082
-      }, 
-      "wt_rta": {}, 
-      "wt_sauth": {
-        "auth_service_url": "http://ciauth01.staging.dmz", 
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/auth.zip"
-      }, 
-      "wt_search": {}, 
-      "wt_storm_realtime": {
-        "dcsid_whitelist": "dcsyzsuwrvz5bdv8tcntgzutq_9g1b,dcspqo4cm10000s1g3ohltw6k_8h8m,dcse1dpwv00000cdisgddy37k_8u5q,dcs34vb8400000kjwxl69ttnn_7n2v,dcsuejun910000s9ujgc67unn_9c8t,dcsg66lds00000s1so8x3cunn_5c1j,dcs1qap5e10000kflmi2xhunn_1v1d,dcse70k3c10000g0znjfanunn_1x9y,dcsn54vyw000000woc740sunn_7y4o,dcsoxh6ge10000k7v4t360vnn_6w1n,dcs5aiq8l000000s1oljc3vnn_4j4o,dcsibz3qs10000gk6bm1havnn_7e5h,dcsnucutr1000008a9k4kovnn_4n4y,dcs0s2y5510000w8o91zxsvnn_5e6s,dcspes3mn10000g0fwkmovvnn_6t5r,dcsae9ion10000g0v03g40wnn_8u6e,dcsj0gzli10000oa8szxgjwnn_6o6j,dcsov28f00000004v6hn3mwnn_5k1b,dcspjti7p10000wsr5480pwnn_7k9g,dcsmww65k00000sx48p3dvwnn_3k9w,dcsrns95v1000043haj6olxnn_4f6f,dcs8ozrta00000golpansoxnn_4l8x,dcsdzq7wp1000004bfiuhuxnn_4i9q,dcsiquz4000000oe37nz9yxnn_3z8v,dcsfzq2wn10000oiid9uo4ynn_8w7f,dcsku18tl10000kruhyq0dynn_7d4c,dcsxvu4x910000sxwt8r2hynn_7j3b,dcsuc9ypv10000o6ttfuykynn_4o3l,dcsjnp2u3000008yjgzhpnynn_1t2z,dcskjiakf100000wwabc2qynn_4c5m,dcs1gyhv610000k3owahtrynn_3n4l,dcs245tu510000kf5y4ratynn_7u7b,dcszkj9dc1000008ugnfzvynn_1e5m,dcss6f9mk00000kraqzxelznn_4e9d,dcs5k9hvz00000oqsyiqwpznn_7k1j,dcsazrqn910000g0nuouqtznn_1u4f,dcsb72n2r10000ch1ul65xznn_3s1w,dcsh646dq00000clw4quz70on_6q3p,dcserhkmf00000047wk8ab0on_8z5i,dcs710mic000008qpbtjsi0on_2b6q,dcssgd2je10000kjsus2vp0on_7f2l,dcsxfzp1x100004fijgrku0on_4r4u,dcs2b2yk01000000wkh4yz0on_8v6g,dcs3nbznq10000gk24ak431on_8p4c,dcsc1oz2v10000clg4rei71on_2v4o,dcs5flvyp000000spy9crd1on_7n1v,dcsi809po10000gwvimaxh1on_6m7l,dcsbez9lj00000w8k2phll1on_6h7u,dcs0hhch6100008q5kuq6r1on_4f5k,dcs9bqd2110000shw6eext1on_5y2d,dcshg49en00000kn7dcbwwsar_2p9l,dcs47s6qjvz5bdnkeht20izhr_5l4t,dcslj023muz5bdrvxmobjjzhr_6j4c,dcsq6p77iuz5bdb7wokzb0sir_5b4k,dcspa42wa00000sxseqn2pksw_7r1r,dcsmd3yy6vz5bd3b4psfl64n7_4s7f,dcsn51xppuz5bdvwvut0bk5n7_4f2g,dcsohahltuz5bdz34pl5ia6n7_5d4m,dcswgm2oluz5bdv6e1rrii1ba_9x4r,dcsgdjl1luz5bdj1m2pk4laia_3c6f,dcs5wls3mvz5bdrbnkmz3vbia_8y4l,dcslb2astvz5bdr7gkazao10c_2k3j,dcs74v7l7wz5bdaowgr5drbrw_3s3j,dcsgscitbvz5bd8n0vjdd9tqy_4b7o,dcs5o60j5wz5bdfyozcs4bp6l_8c6z,dcs0kruhf6dv0hwgnqv6b8b8m_6d3l,dcs0hrta40000000k3szf256c_2e1q,dcs2p9t6b10000st9dlarpbbm_4n3j,dcs2gwi0t00000s10v2fpacp4_4j3b,dcs7jxiwo100004jl0v1v6ep6_6s6j,dcsflof4r10000g0zz0tdg26f_9i3n,dcsy7wari10000kv9g2qgaxnl_8v7x,dcsfhisnz00000oyed7za00a8_5h1h,dcstxcr8i00000omtguyi9uvn_1x1c,dcsxbyqii00000kjg1qf86jxv_7j9z,dcspagvqr000008at3dzb84s7_6o4v,dcs1639qu00000slv8ma7sjkp_3j4h,dcsexxefe00000wg6dug0ibgq_9l6n,dcsmxxuzs10000s189f47cyep_3j1x,dcsxsf1syuz5bdygt9m66qtjt_7z2j,dcs0hrta40000000k3szf256c_2e1q,dcs2p9t6b10000st9dlarpbbm_4n3j,dcs2gwi0t00000s10v2fpacp4_4j3b,dcs7jxiwo100004jl0v1v6ep6_6s6j,dcsflof4r10000g0zz0tdg26f_9i3n,dcsy7wari10000kv9g2qgaxnl_8v7x,dcsfhisnz00000oyed7za00a8_5h1h,dcstxcr8i00000omtguyi9uvn_1x1c,dcsxbyqii00000kjg1qf86jxv_7j9z,dcspagvqr000008at3dzb84s7_6o4v,dcs1639qu00000slv8ma7sjkp_3j4h,dcsexxefe00000wg6dug0ibgq_9l6n,dcsmxxuzs10000s189f47cyep_3j1x,dcsxsf1syuz5bdygt9m66qtjt_7z2j,dcskf5ra3wievv2j7rl2dzj9r_8m4t,dcssd1hl110000o65n6wko6yv_3f5i,dcscyjdor000004fu02p6j55k_7z2q,dcss1s1qz00000cpfqm6c3uzk_2u3x,dcsivypwnvz5bdaurmxdcu8oe_4w6t,dcskzwq0z6bv0hgc5x3drmdhl_6b2w,dcs0k3bfw9bv0h43mmbfafa4r_3d3d,dcsx80onvuz5bda0arxz7nuj4_1h7u,dcs4ns4a46bv0hkbj2mbl4kz4_2f9c,dcs679u7gvz5bdvketfrwpqz4_3d8d,dcsg1ip8ouz5bd7ikdlfzxsz4_1h9c,dcsz02wc3wz5bdfq1x2cjvqtf_7p2r,dcs5oiviquz5bdmb1vby0bq0m_8d3h,dcsvx0uq4wz5bdn4q716fat5p_1d8n,dcsy2qt14vz5bd6pu8n9w1l6p_3d5v,dcsshgbi400000gscd62rrg43_4o2o,dcs067c7h10000k3k5zmvwaj5_8c4n,dcscdq79k10000ws33akfryho_9g9w,dcsc9nqmj10000cd6rrr6kul8_2v1o,dcsifulp900000gol5vd3ocer_2j8b,dcs4jxi4zuz5bdn8i3a7617hw_9f7j,dcs19pwlvvz5bdigu9pwxx9l2_6y3o,dcsf1yuljuz5bdudkxuyg48f5_3g2u,dcs29w0rnvz5bdnctay4sq3jc_3u3s,dcsg8p0h45dv0h4v7mnq5jkkl_8r9z,dcswsvx32wz5bdqw99esr3w6n_5k5l,dcsvjsbpruz5bdvegwia9qsvt_7z8v,dcshgveaiuz5bdfussc3bris0_9s9o,dcso385e9wz5bdrjwxeu4kps0_5h3e,dcsz8d3revz5bdaez1q24pfc4_7k6c,dcs08qllk7dv0h04wzra57hqa_6h6w,dcsemnbegvz5bdvcwlvt0lrnk_5s9i,dcs47025tabv0hk3xrgk0tslo_2l6w,dcs8yzs3x2dv0hw4acycjgugu_1c5x,dcso2us69adv0h0cimie32sq3_5k9s,dcswifnc8vz5bdgl4fz966ht3_6q3g,dcs1mcf6vuz5bdov5tdb7cht3_9o2t,dcsao7pyvvz5bd0tr9z1tght3_6w6k,dcsb0dgv5vz5bdkohymqilht3_8m1b,dcs07qrphvz5bd0h6h5f7oht3_6p6w,dcsp592meuz5bdovxaelytht3_1k8b,dcsivnryzvz5bdsqghtchwht3_7v7l,dcsr5hdheuz5bd4k3wa24zht3_9n3y,dcsm75cbawz5bd87wk0vvjit3_5d6j,dcs353ienuz5bdsufngre2jt3_7e7p,dcsc3395nvz5bdorultkt4jt3_4u9k,dcsxaep7pvz5bd4s142i07jt3_2d4y,dcsej7k6muz5bdk0rl0op8jt3_8h9m,dcs7h82lruz5bds2uv6nsajt3_3j9k,dcs46xtmivz5bd0xe6ndddjt3_9h9i,dcst831r9vz5bdkskzsvimjt3_9y2g,dcsytaax5wz5bde1suuhad937_4w3c,dcsn0o5s1wz5bdygxokifn937_1u6q,dcsceg97uvz5bdmz7ckl17lwe_7c7g,dcs0j5koeuz5bdmvo64t7l4yh_2u1u,dcs15xobcvz5bdjbv66g8usqj_8f1z,dcsstljbf5dv0hcldijadb1go_1f8r,dcspm9u2fuz5bdjx58hagqhmp_5j2w,dcsvawr2v10000c9zqfbp3wdt_1l8p,dcs2i0d1x00000wwmoann0bpt_3y3z,dcsgs0dqv8bv0h8ud5z2yrxxv_5c4y,dcsoqwl14adv0h8iwb3h429lb_5l1t,dcs43l8ue5dv0hc9cttwihinf_9n4v,dcsgcok054dv0hkn4rc9m885n_6i7u,dcswgyr5n7dv0h08ruzm4fxvq_5c9u,dcs8ir0f0100004700jz6ln22_6m5t,dcsdl4wvf10000s9awcivsgt4_1b9z,dcs4sd6z700000wc30newmmjg_8h7y,dcs93136b10000004rrmeb3jo_5u5i,dcsrsdo9p00000shcnx8we3sl_8w7o,dcs3p47op00000wc3w7w4ov8d_8u6e,dcsg07k8yabv0h0481l7zxtyk_8e9c", 
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt74/28096:id/streaming-analysis-bin.tar.gz", 
-        "realtime_topology_dimensions_bolt_count": 6, 
-        "realtime_topology_parsing_bolt_count": 3, 
-        "realtime_topology_row_key_bolt_count": 6, 
-        "realtime_topology_writing_bolt_count": 48, 
-        "topic_list": [
-          "Lab_CI_scsRawHits:0", 
-        "Lab_CI_lrRawHits:0"
-          ], 
-        "topology_override_max_spout_pending": 3000, 
-        "topology_override_msg_timeout_seconds": 30, 
-        "worker": {
-          "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+        "wt_streaminganalysis_monitor": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/.lastSuccessful/webtrends-streaming-analysis-monitor-bin.tar.gz", 
+            "healthcheck_port": 9001, 
+            "jmx_port": 9998
+        }, 
+        "wt_streamingapi": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt192/.lastSuccessful/webtrends-streamingapi-bin.tar.gz", 
+            "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
+            "sapi_service_url": "ws://cisapi01.staging.dmz:8080", 
+            "usagedbname": "Streaming", 
+            "usagedbserver": "cicamdb01.staging.dmz"
+        }, 
+        "wt_streamingauditor": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/41427:id/webtrends-streamingauditor-bin.tar.gz", 
+            "roundtrip_scs_urls": "http://ciscs01.staging.dmz:8080", 
+            "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
+        }, 
+        "wt_streamingcollection": {}, 
+        "wt_streamingconfigservice": {
+            "camdbname": "CAM", 
+            "camdbserver": "cicamdb01.staging.dmz", 
+            "config_service_url": "http://ciutil01.staging.dmz:8080", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz", 
+            "includeUnmappedAnalyticsIds": "true"
+        }, 
+        "wt_streaminglogreplayer": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/26189:id/webtrends-streaminglogreplayer-bin.tar.gz", 
+            "log_share_mount": "sstore02.staging.dmz:/ifs/cistore/logreplay", 
+            "thread_pool_size": 200
+        }, 
+        "wt_streamingmanagementservice": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/44668:id/webtrends-streaming-managementservice-bin.tar.gz", 
+            "healthcheck_port": 9001, 
+            "jmx_port": 9998,
+            "port": 8081
+        }, 
+        "zookeeper": {
+            "client_port": 2181, 
+            "init_limit": 10, 
+            "quorum": [
+                "cizoo01.staging.dmz", 
+                "cizoo02.staging.dmz", 
+                "cizoo03.staging.dmz"
+            ], 
+            "snapshot_num": 3, 
+            "sync_limit": 5, 
+            "tick_time": 2000
         }
-      }, 
-      "wt_storm_streaming": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/.lastSuccessful/streaming-analysis-bin.tar.gz", 
-        "streaming_topology_augmentation_bolt_count": 10, 
-        "streaming_topology_field_grouping_local": "false", 
-        "streaming_topology_in_session_bolt_count": 0, 
-        "streaming_topology_parsing_bolt_count": 50, 
-        "streaming_topology_validation_bolt_count": 40, 
-        "streaming_topology_zmq_emitter_bolt_count": 3, 
-        "topic_list": [
-          "Lab_CI_scsRawHits:3", 
-        "Lab_CI_lrRawHits:3"
-          ], 
-        "worker": {
-          "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
-        }
-      }, 
-      "wt_streaming_viz": {
-        "custom_errors": "Off", 
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip", 
-        "elmah_remote_access": "yes", 
-        "proxy_enabled": "false", 
-        "sapi_url": "ws://cisapi01.staging.dmz:8080"
-      }, 
-      "wt_streaminganalysis_monitor": {
-        "healthcheck_port": 9001,
-        "jmx_port": 9998,
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/.lastSuccessful/webtrends-streaming-analysis-monitor-bin.tar.gz" 
-      },
-      "wt_streamingapi": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt192/.lastSuccessful/webtrends-streamingapi-bin.tar.gz", 
-        "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
-        "sapi_service_url": "ws://cisapi01.staging.dmz:8080", 
-        "usagedbname": "Streaming", 
-        "usagedbserver": "cicamdb01.staging.dmz"
-      }, 
-      "wt_streamingauditor": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt194/.lastSuccessful/webtrends-streamingauditor-bin.tar.gz", 
-        "roundtrip_scs_urls": "http://ciscs01.staging.dmz:8080", 
-        "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
-      }, 
-      "wt_streamingcollection": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt188/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz"
-      }, 
-      "wt_streamingconfigservice": {
-        "camdbname": "CAM", 
-        "camdbserver": "cicamdb01.staging.dmz", 
-        "config_service_url": "http://ciutil01.staging.dmz:8080", 
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt195/.lastSuccessful/webtrends-streaming-configservice-bin.tar.gz", 
-        "includeUnmappedAnalyticsIds": "true"
-      }, 
-      "wt_streaminglogreplayer": {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt127/26189:id/webtrends-streaminglogreplayer-bin.tar.gz", 
-        "log_share_mount": "sstore02.staging.dmz:/ifs/cistore/logreplay", 
-        "thread_pool_size": 200
-      }, 
-      "wt_streamingmanagementservice": {
-        "healthcheck_port": 9002,
-        "port": 8081,
-        "jmx_port": 9997,
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt321/42811:id/webtrends-streaming-managementservice-bin.tar.gz"
-      },
-      "wt_usagedb": {}, 
-      "zookeeper": {
-        "client_port": 2181, 
-        "init_limit": 10, 
-        "quorum": [
-          "cizoo01.staging.dmz", 
-        "cizoo02.staging.dmz", 
-        "cizoo03.staging.dmz"
-          ], 
-        "snapshot_num": 3, 
-        "sync_limit": 5, 
-        "tick_time": 2000
-      }
     }, 
     "description": "CI Pod", 
     "json_class": "Chef::Environment", 
     "name": "CI", 
     "override_attributes": {
-      "ntp": {
-        "servers": [
-          "time.webtrends.corp"
-          ]
-      }, 
-      "resolver": {
-        "nameservers": [
-          "10.164.0.11", 
-        "10.164.0.12"
-          ], 
-        "search": "staging.dmz webtrends.corp englab.webtrends.corp"
-      }, 
-      "ubuntu": {
-        "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
-        "include_source_packages": false, 
-        "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
-      }
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
+        }
     }
 }
