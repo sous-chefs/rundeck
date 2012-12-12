@@ -2,7 +2,7 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "cobbler": "= 1.0.7", 
-        "nagios": "= 1.6.3",
+        "nagios": "= 2.0.0",
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
