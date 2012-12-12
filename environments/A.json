@@ -13,7 +13,7 @@
         "wt_devicedataupdater": "= 0.1.1", 
         "wt_logpreproc": "= 1.0.8", 
         "wt_monitoring": "= 0.0.2", 
-        "wt_netacuity": "= 1.0.10", 
+        "wt_netacuity": "= 1.0.12", 
         "wt_platformscheduler": "= 1.0.12", 
         "wt_roadrunner": "= 1.1.2", 
         "wt_search": "= 1.0.10", 
