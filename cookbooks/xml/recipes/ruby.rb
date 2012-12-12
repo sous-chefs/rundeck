@@ -1,8 +1,10 @@
 #
 # Cookbook Name:: xml
-# Recipe:: default
+# Recipe:: ruby
 #
-# Copyright 2010-2012, Opscode, Inc.
+# Author:: Joseph Holsten (<joseph@josephholsten.com>)
+#
+# Copyright 2008-2012, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,8 +19,17 @@
 # limitations under the License.
 #
 
-node['xml']['packages'].each do |pkg|
-  package pkg do
-    action :install
-  end
+execute 'apt-get update' do
+  ignore_failure true
+  action :nothing
+end.run_action(:run) if 'debian' == node['platform_family']
+
+node.set['build_essential']['compiletime'] = true
+include_recipe "build-essential"
+include_recipe 'xml::default'
+
+node['xml']['packages'].each do |xml_pack|
+  resources("package[#{xml_pack}]").run_action(:install)
 end
+
+chef_gem 'nokogiri'
