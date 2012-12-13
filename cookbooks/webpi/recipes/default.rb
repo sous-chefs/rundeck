@@ -1,5 +1,5 @@
 #
-# Author:: Seth Chisamore (<schisamo@opscode.com>)
+# Author:: Guilhem Lettron (<guilhem.lettron@youscribe.com>)
 # Cookbook Name:: webpi
 # Recipe:: default
 #
@@ -18,23 +18,4 @@
 # limitations under the License.
 #
 
-file_name = ::File.basename(node['webpi']['url'])
-installdir = node['webpi']['home']
-
-remote_file "#{Chef::Config[:file_cache_path]}/#{file_name}" do
-  source node['webpi']['url']
-  checksum node['webpi']['checksum']
-  notifies :delete, "directory[#{installdir}]", :immediately
-  notifies :unzip, "windows_zipfile[webpicmdline]", :immediately
-end
-
-directory installdir do
-  recursive true
-end
-
-windows_zipfile "webpicmdline" do
-  path installdir
-  source "#{Chef::Config[:file_cache_path]}/#{file_name}"
-  action :nothing
-  not_if { ::File.exists?("#{node['webpi']['home']}/WebpiCmd.exe") }
-end
+include_recipe"webpi::install-#{node['webpi']['install_method']}"
