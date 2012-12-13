@@ -4,6 +4,9 @@
 * resource/provider for managing IIS virtual directories
 * IIS 6.0 support
 
+## v1.3.3(Webtrends Only)
+* Adding missing returns line to config resource
+
 ## v1.3.2:
 
 * [COOK-1251] - Fix LWRP "NotImplementedError"
