@@ -1,3 +1,6 @@
+## 2.3.3
+* Added "streaming.topology.zmq.data.pull.address" in config.properties.erb
+
 ## 2.3.2
 * Set default of saving the offset to ZK true.
 
