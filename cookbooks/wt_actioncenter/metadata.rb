@@ -1,6 +1,12 @@
-maintainer       "YOUR_COMPANY_NAME"
-maintainer_email "YOUR_EMAIL"
+maintainer       "Webtrends, Inc."
+maintainer_email "kendrick.martin@webtrends.com"
 license          "All rights reserved"
-description      "Installs/Configures wt_actioncenter"
+description      "Installs/Configures ActionCenter WebAPI IIS site"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.1.0"
+version          "1.0.0"
+supports         "windows"
+depends          "iis"
+depends          "windows"
+depends          "wt_base"
+depends          "ms_dotnet4"
+
