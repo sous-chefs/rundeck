@@ -1,8 +1,9 @@
 # CHANGELOG for wt_actioncenter
 
 This file is used to list changes made in each version of wt_actioncenter.
-
-## 0.1.0:
+## 1.0.1
+* Fixing invalid download_url
+## 1.0.0:
 
 * Initial release of wt_actioncenter
 
