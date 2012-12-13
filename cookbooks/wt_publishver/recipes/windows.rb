@@ -9,7 +9,8 @@
 
 require 'rest_client'
 require 'rexml/document'
-require 'teamcity-rest-client'
+
+tc = Teamcity.new("teamcity.webtrends.corp", 80)
 
 def publish_version (role, branch, key_file, status)
 
