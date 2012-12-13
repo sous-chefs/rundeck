@@ -31,7 +31,9 @@ tracer.dcsid=<%= @tracer_dcsid %>
 
 # Roots for zookeeper data
 streaming.topology.zmq.emitter.znodeRoot=/StreamingZMQ
-streaming.topology.zmq.data.znodeRoot=/DataAPIZMQ
+streaming.topology.zmq.data.znoderoot=/analysis
+# This is the external address for the pull server for clients to connect to
+streaming.topology.zmq.data.pull.address=tcp://*:1544
 
 # Endpoints to information in CAM
 cam.account.product.sapi.url.template=<%=@cam_url%>/account/{account_id}/product/sapi
