@@ -1,6 +1,7 @@
-ookbook Name:: wt_actioncenter
+#
+# Cookbook Name:: wt_actioncenter
 # Recipe:: uninstall
-# Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
+# Author: Marcus Vincent(<marcus.vincent@webtrends.com>)
 #
 # Copyright 2012, Webtrends
 #

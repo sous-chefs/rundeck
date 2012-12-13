@@ -1,5 +1,5 @@
 maintainer       "Webtrends, Inc."
-maintainer_email "kendrick.martin@webtrends.com"
+maintainer_email "marcus.vincent@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures ActionCenter WebAPI IIS site"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
