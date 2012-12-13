@@ -1,0 +1,17 @@
+{
+  "name": "wt_actioncenter",
+  "description": "Webtrends Actioncenter",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[ms_dotnet4]",
+    "role[iis]",
+    "recipe[wt_actioncenter]"
+  ],
+  "env_run_lists": {
+  }
+}
