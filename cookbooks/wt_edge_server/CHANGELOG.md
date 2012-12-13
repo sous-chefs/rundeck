@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of wt_edge_server.
 
+## 1.0.1:
+* Changed node attribute access to instance variables in config template
+
 ## 1.0.0:
 
 * Add NRPE check
