@@ -74,8 +74,6 @@ end
 
 # enable the service and start it
 service 'netacuity' do
-  enabled true
-  running true
   pattern 'netacuity_server'
   supports :status => false, :restart => true, :reload => false
   action [ :enable, :start ]
