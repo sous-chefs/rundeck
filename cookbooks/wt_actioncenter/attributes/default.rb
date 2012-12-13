@@ -1,4 +1,4 @@
-uthor:: Kendrick Martin(<kendrick.martin@webtrends.com>)
+author:: Marcus Vincent(marcus.vincent@webtrends.com>)
 # Cookbook Name:: wt_actioncenter
 # Attribute:: default
 #
