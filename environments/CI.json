@@ -218,7 +218,7 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "http://ciauth01.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt137/.lastSuccessful/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/.lastSuccessful/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
