@@ -25,11 +25,10 @@ include Windows::Helper
 
 action :install do
   unless installed?
-    cmd = "#{webpicmdline} /Install"
+    cmd = "#{webpicmd} /Install"
     cmd << " /products:#{@new_resource.product_id} /suppressreboot"
     cmd << " /accepteula" if @new_resource.accept_eula
     cmd << " /XML:#{node['webpi']['xmlpath']}" if node['webpi']['xmlpath']
-    cmd << " /Log:#{node['webpi']['log']}"
     shell_out!(cmd, {:returns => [0,42]})
     @new_resource.updated_by_last_action(true)
     Chef::Log.info("#{@new_resource} added new product '#{@new_resource.product_id}'")
@@ -41,13 +40,13 @@ end
 private
 def installed?
   @installed ||= begin
-    cmd = shell_out("#{webpicmdline} /List /ListOption:Installed", {:returns => [0,42]})
-    cmd.stderr.empty? && (cmd.stdout =~ /^#{@new_resource.product_id}\s.*$/i)
+    cmd = shell_out("#{webpicmd} /List /ListOption:Installed", {:returns => [0,42]})
+    cmd.stderr.empty? && cmd.stdout.lines.grep(/^#{@new_resource.product_id}\s.*$/i)
   end
 end
 
-def webpicmdline
-  @webpicmdline ||= begin
-    "#{node['webpi']['home']}\\WebpiCmd.exe"
+def webpicmd
+  @webpicmd ||= begin
+    node['webpi']['bin']
   end
 end

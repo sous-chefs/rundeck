@@ -1,7 +1,7 @@
 #
 # Author:: Guilhem Lettron (<guilhem.lettron@youscribe.com>)
 # Cookbook Name:: webpi
-# Recipe:: default
+# Recipe:: install-msi
 #
 # Copyright 2011, Opscode, Inc.
 #
@@ -18,4 +18,21 @@
 # limitations under the License.
 #
 
-include_recipe"webpi::install-#{node['webpi']['install_method']}"
+include_recipe "windows"
+
+#msi bug workaround
+msi_file = ::File.join( Chef::Config[:file_cache_path], "wpi.msi" )
+
+remote_file "msi" do
+  path msi_file
+  source node['webpi']['msi']
+  action :create
+end
+
+windows_package "Web Platform Installer" do
+  source msi_file
+  action :install
+end
+
+# MSI manage PATH
+node.default['webpi']['bin'] = "WebpiCmd.exe"
