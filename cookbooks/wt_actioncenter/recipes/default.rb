@@ -59,7 +59,7 @@ end
 
 if ENV["deploy_build"] == "true" then
  windows_zipfile install_dir do
-   source node['wt_actioncenter']['actioncenter']['download_url']
+   source node['wt_actioncenter']['download_url']
    action :unzip
  end
 end
