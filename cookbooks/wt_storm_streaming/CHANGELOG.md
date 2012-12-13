@@ -1,3 +1,6 @@
+## 2.3.3
+* Removed unusued template variable
+
 ## 2.3.2
 * Set default of saving the offset to ZK true.
 
