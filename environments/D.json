@@ -6,7 +6,7 @@
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.8", 
         "windows": "= 1.3.6", 
-        "wt_actioncenter": "= 1.0.4",
+        "wt_actioncenter": "= 1.0.3",
         "wt_analytics_ui": "= 2.0.0", 
         "wt_base": "= 1.0.2", 
         "wt_data_deleter": "= 1.0.4", 
