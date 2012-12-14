@@ -1,9 +1,10 @@
 #
 # Author:: Kendrick Martin (kendrick.martin@webtrends.com>)
+# Contributor:: David Dvorak (david.dvorak@webtrends.com)
 # Cookbook Name:: iis
 # Resource:: pool
 #
-# Copyright:: 2011, Webtrends
+# Copyright:: 2011, Webtrends Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +19,7 @@
 # limitations under the License.
 #
 
-actions :add, :config, :delete, :start, :stop, :restart
+actions :add, :config, :delete, :start, :stop, :restart, :recycle
 
 attribute :pool_name, :kind_of => String, :name_attribute => true
 attribute :runtime_version, :kind_of => String
