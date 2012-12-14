@@ -115,7 +115,7 @@ if ENV["deploy_build"] == "true" then
     curator-recipes-1.1.10.jar
     fastutil-6.4.4.jar
     groovy-all-1.7.6.jar
-    guice-3.0.jar
+    guice-2.0.jar
     guice-assisted-inject-2.0.jar
     gson-2.2.2.jar
     hadoop-core-1.0.0.jar
