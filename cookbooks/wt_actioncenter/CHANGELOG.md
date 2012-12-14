@@ -1,9 +1,13 @@
 # CHANGELOG for wt_actioncenter
 
 This file is used to list changes made in each version of wt_actioncenter.
+## 1.0.2
+* Fixing template name
 
-## 0.1.0:
+## 1.0.1
+* Fixing invalid download_url
 
+## 1.0.0:
 * Initial release of wt_actioncenter
 
 - - - 
