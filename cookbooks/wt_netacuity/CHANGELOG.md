@@ -1,3 +1,6 @@
+## 1.0.13
+* removed redundant internal attribute set in the netacuity service
+
 ## 1.0.12
 * Remove old wt_netacuity_webui Nagios check.  This is no longer needed
 

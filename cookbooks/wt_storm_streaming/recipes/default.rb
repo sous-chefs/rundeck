@@ -115,7 +115,8 @@ if ENV["deploy_build"] == "true" then
     curator-recipes-1.1.10.jar
     fastutil-6.4.4.jar
     groovy-all-1.7.6.jar
-    guice-3.0.jar
+    guice-2.0.jar
+    guice-assisted-inject-2.0.jar
     gson-2.2.2.jar
     hadoop-core-1.0.0.jar
     hamcrest-core-1.1.jar
@@ -237,7 +238,6 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :tracer_dcsid => node['wt_storm_streaming']['tracer_dcsid'],
     # non-storm parameters
     :zookeeper_quorum      => zookeeper_quorum * ",",
-    :zookeeper_clientport  => zookeeper_clientport,
     :configservice         => node['wt_streamingconfigservice']['config_service_url'],
     :netacuity             => node['wt_netacuity']['geo_url'],
     :pod                   => pod,

@@ -243,11 +243,7 @@
             "datacenter": "pdx", 
             "environment": "DO", 
             "pod": "DO"
-        }, 
-        "wt_realtimeapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt120/18442:id/realtimeapi-bin.tar.gz", 
-            "port": 8082
-        }, 
+        },  
         "wt_scheddb": {
             "dbname": "wt_Sched", 
             "host": "masterdb01"

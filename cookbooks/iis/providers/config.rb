@@ -1,7 +1,8 @@
 #
 # Author:: Kendrick Martin (kendrick.martin@webtrends.com)
+# Contributor:: David Dvorak (david.dvorak@webtrends.com)
 # Cookbook Name:: iis
-# Provider:: config
+# Resource:: config
 #
 # Copyright:: 2011, Webtrends Inc.
 #
@@ -24,15 +25,15 @@ include Chef::Mixin::ShellOut
 include Windows::Helper
 
 action :config do
-	cmd = "#{appcmd} set config #{@new_resource.cfg_cmd}"
-	Chef::Log.debug(cmd)
-	shell_out!(cmd, :returns => @new_resource.returns)
-	Chef::Log.info("IIS Config command run")
+  cmd = "#{appcmd} set config #{@new_resource.cfg_cmd}"
+  Chef::Log.debug(cmd)
+  shell_out!(cmd, :returns => @new_resource.returns)
+  Chef::Log.info("IIS Config command run")
 end
 
 private
 def appcmd
-	@appcmd ||= begin
-		"#{node['iis']['home']}\\appcmd.exe"
-	end
+  @appcmd ||= begin
+    "#{node['iis']['home']}\\appcmd.exe"
+  end
 end
