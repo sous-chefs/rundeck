@@ -132,6 +132,7 @@ module TeamcityRestClient
     end
   end
 
+  # modified to support guestAuth urls -ddvorak
   class Open < Authentication
   
     def initialize host, port, options = {}
@@ -150,6 +151,7 @@ module TeamcityRestClient
     end
   end
 
+## original class -ddvorak
 #  class Open < Authentication
 #  
 #    def initialize host, port, options = {}
