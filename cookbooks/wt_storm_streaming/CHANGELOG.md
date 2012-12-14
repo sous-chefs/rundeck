@@ -1,3 +1,6 @@
+## 2.3.4
+* Adding new dep for guice-assisted injection.
+
 ## 2.3.3
 * Removed unusued template variable
 
