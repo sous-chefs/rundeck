@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: wt_actioncenter
 # Recipe:: default
-# Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
+# Author: Marcus Vincent(<marcus.vincent@webtrends.com>)
 #
 # Copyright 2012, Webtrends
 #
@@ -66,9 +66,10 @@ end
  
 template "#{install_dir}\\web.config" do
  source "web.config.erb"
- variables(
+ variables(    
+   :cache_hosts   => node['memcached']['cache_hosts'],
    :db_server => node['wt_actioncenter']['db_server'],
-   :db_name   => node['wt_actioncenter']['db_name'],
+   :db_name   => node['wt_actioncenter']['db_name']
  )
 end
  
@@ -81,31 +82,6 @@ end
 
 iis_config auth_cmd do
  action :config
-end
- 
-if ENV["deploy_build"] == "true" then
- #add the user to the admin group to create perfmon counters
- wt_base_netlocalgroup "Administrators" do
-   user user_data['wt_common']['ui_user']
-   returns [0, 2]
-   action :add
- end  
- 
- ruby_block "preheat app pool" do
-   block do
-     require 'net/http'
-     uri = URI("http://localhost/")
-     puts Net::HTTP.get(uri)
-   end
-   action :create
- end
- 
- #remove the user from the admin group
- wt_base_netlocalgroup "Administrators" do
-   user user_data['wt_common']['ui_user']
-   returns [0, 2]
-   action :remove
- end
 end
  
 share_wrs

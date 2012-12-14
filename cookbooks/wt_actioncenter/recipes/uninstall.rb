@@ -1,6 +1,11 @@
+<<<<<<< HEAD
+#
+# Cookbook Name:: wt_actioncenter
+=======
 #Cookbook Name:: wt_actioncenter
+>>>>>>> d023d2cedc26c5889f638e2384c2066a01520346
 # Recipe:: uninstall
-# Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
+# Author: Marcus Vincent(<marcus.vincent@webtrends.com>)
 #
 # Copyright 2012, Webtrends
 #
