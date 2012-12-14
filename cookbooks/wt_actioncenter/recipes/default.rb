@@ -67,9 +67,19 @@ end
 template "#{install_dir}\\web.config" do
  source "web.config.erb"
  variables(    
-   :cache_hosts   => node['memcached']['cache_hosts'],
-   :db_server => node['wt_actioncenter']['db_server'],
-   :db_name   => node['wt_actioncenter']['db_name']
+     # master database host
+     :master_host => node['wt_masterdb']['host'],
+     
+# cache config
+     :cache_enabled => node['wt_actioncenter']['cache_enabled'],
+     :cache_hosts   => node['memcached']['cache_hosts'],
+     :cache_region  => node['wt_actioncenter']['cache_region'],
+
+     # cassandra config
+     :cass_host            => node['cassandra']['cassandra_host'],
+     :cass_report_column   => node['cassandra']['cassandra_report_column'],
+     :cass_metadata_column => node['cassandra']['cassandra_meta_column'],
+     :cass_thrift_port     => node['cassandra']['cassandra_thrift_port']
  )
 end
  
