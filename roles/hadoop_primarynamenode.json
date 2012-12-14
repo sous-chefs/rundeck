@@ -4,6 +4,7 @@
   "json_class": "Chef::Role",
   "description": "Hadoop Primary Namenode",
   "run_list": [
+    "recipe[sysctl]",
     "recipe[hadoop::namenode]",
     "role[hbase_hmaster]",
     "role[hive]",
