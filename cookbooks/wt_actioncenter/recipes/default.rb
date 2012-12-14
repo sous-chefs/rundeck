@@ -66,9 +66,10 @@ end
  
 template "#{install_dir}\\web.config" do
  source "web.config.erb"
- variables(
+ variables(    
+   :cache_hosts   => node['memcached']['cache_hosts'],
    :db_server => node['wt_actioncenter']['db_server'],
-   :db_name   => node['wt_actioncenter']['db_name'],
+   :db_name   => node['wt_actioncenter']['db_name']
  )
 end
  
