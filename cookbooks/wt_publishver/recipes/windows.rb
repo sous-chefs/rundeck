@@ -98,20 +98,27 @@ node['roles'].each do |r|
 				:download_url => node['wt_platformscheduler']['agent']['download_url'],
 				:key_file     => File.join(idir, 'common/agent/Webtrends.Agent.exe').gsub(/[\\\/]+/,'\\')
 			)
+  		when 'wt_roadrunner'
+  			log "publishing #{r}"
+  			publish_version(
+				:role         => 'RoadRunner Service',
+				:download_url => node['wt_roadrunner']['download_url'],
+				:key_file     => File.join(idir, node['wt_roadrunner']['install_dir'], 'Webtrends.RoadRunner.Service.exe').gsub(/[\\\/]+/,'\\')
+			)
   		when 'wt_search'
   			log "publishing #{r}"
   			publish_version(
-					:role         => 'Search Service',
-					:download_url => node['wt_search']['download_url'],
-					:key_file     => File.join(idir, node['wt_search']['install_dir'], 'bin/Webtrends.Search.Service.exe').gsub(/[\\\/]+/,'\\')
-				)
+				:role         => 'Search Service',
+				:download_url => node['wt_search']['download_url'],
+				:key_file     => File.join(idir, node['wt_search']['install_dir'], 'bin/Webtrends.Search.Service.exe').gsub(/[\\\/]+/,'\\')
+			)
   		when 'wt_sync'
   			log "publishing #{r}"
   			publish_version(
-					:role         => 'Sync Service',
-					:download_url => node['wt_sync']['download_url'],
-					:key_file     => File.join(idir, node['wt_sync']['install_dir'], 'bin/Webtrends.SyncService.exe').gsub(/[\\\/]+/,'\\')
-				)
+				:role         => 'Sync Service',
+				:download_url => node['wt_sync']['download_url'],
+				:key_file     => File.join(idir, node['wt_sync']['install_dir'], 'bin/Webtrends.SyncService.exe').gsub(/[\\\/]+/,'\\')
+			)
   		else
     		log "no publishing data for role  => #{r}"
 	end
