@@ -7,6 +7,7 @@ Requirements
 
 Recipes to be installed prior to this cookbook. Should be included as part of the wt_portfolio_admin role.
 
+* windows, webpi cookbook
 * recipe[ms_dotnet4]
 * role[iis]
 
@@ -46,4 +47,3 @@ Usage
 =====
 `set deploy_build=true`
 `chef-client`
-
