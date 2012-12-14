@@ -35,8 +35,8 @@ function Usage([int]$ExitCode)
 . $MeRoot/Functions.ps1
 
 # check parameter usage
-if ($BuildDir -eq $null -and ($Branch -eq $null -or $Build -eq $null) -and $Status -ne 'Pending' ) {
-    Write-Error "missing param:  -BuildDir or -Branch and -Build"
+if ($BuildDir -eq $null -and ($Branch -eq $null -and $KeyFile -eq $null) -and ($Branch -eq $null -and $Build -eq $null) -and $Status -ne 'Pending') {
+    Write-Error "missing param:  -BuildDir or (-Branch and -Build) or (-Branch and -KeyFile)"
     Usage(1)
 }
 # if ($BuildDir -and !(Test-Path $BuildDir)) {
