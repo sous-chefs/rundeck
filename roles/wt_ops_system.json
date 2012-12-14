@@ -1,0 +1,16 @@
+{
+    "chef_type": "role", 
+    "default_attributes": {}, 
+    "description": "Role for Ops systems", 
+    "json_class": "Chef::Role", 
+    "name": "wt_ops_system", 
+    "override_attributes": {}, 
+    "run_list": [
+      "recipe[capistrano::default]",
+      "recipe[screen::default]",
+      "recipe[build-essential::default]",
+      "recipe[ruby]",
+      "recipe[git]",
+      "recipe[wt_viracocha]"
+    ]
+}
