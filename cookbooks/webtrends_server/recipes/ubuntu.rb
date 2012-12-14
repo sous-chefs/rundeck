@@ -26,8 +26,7 @@ end
 
 # make sure someone didn't set the _default environment
 if node.chef_environment == "_default"
-  Chef::Log.info("Set a Chef environment. We don't want to use _default")
-  exit(true)
+  Chef::Application.fatal!("Set a Chef environment. We don't want to use _default")
 end
 
 # setup the Webtrends apt repo.  This has to be the first thing that happens
