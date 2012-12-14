@@ -91,17 +91,13 @@ define service {
   hostgroup_name <%= service['hostgroup_name'] %>
   check_command check_<%= service['id'] %>
   use <% if service['service_template'].nil? -%>default-service<% else -%><%= service['service_template'] %> <% end -%>
-<% unless service['event_handler'].nil? -%>  event_handler <%= service['event_handler'] -%><% end -%>
-<% unless service['obsess_over_service'].nil? -%>  obsess_over_service <%= service['obsess_over_service'] -%><% end -%>
-<% unless service['is_volatile'].nil? -%>  is_volatile <%= service['is_volatile'] -%><% end -%>
-<% unless service['check_freshness'].nil? -%>  check_freshness <%= service['check_freshness'] -%><% end -%>
-<% unless service['process_perf_data'].nil? -%>  process_perf_data <%= service['process_perf_data'] -%><% end -%>
-<% unless service['retain_status_information'].nil? -%>  retain_status_information <%= service['retain_status_information'] -%><% end -%>
-<% unless service['retain_nonstatus_information'].nil? -%>  retain_nonstatus_information <%= service['retain_nonstatus_information'] -%><% end -%>
-<% unless service['flap_detection_enabled'].nil? -%>  flap_detection_enabled <%= service['flap_detection_enabled'] -%><% end -%>
-<% unless service['event_handler_enabled'].nil? -%>  event_handler_enabled <%= service['event_handler_enabled'] -%><% end -%>
-<% unless service['event_handler'].nil? -%>  event_handler <%= service['event_handler'] -%><% end -%>
+  <% unless service['event_handler'].nil? -%>event_handler <%= service['event_handler'] %><% end -%>
+  #per-databag overrides:
+  <% %w{passive_checks_enabled parallelize_check obsess_over_service check_freshness notifications_enabled event_handler_enabled flap_detection_enabled failure_prediction_enabled process_perf_data retain_status_information retain_nonstatus_information is_volatile check_period max_check_attempts check_interval retry_interval contact_groups notification_options notification_interval notification_period}.each do |conf| %>
+    <% unless service[conf].nil? %>
+  <%= conf %> <%= service[conf] %>
+    <% end %>
+  <% end %>
 }
   <% end -%>
-
 <% end -%>
