@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-author:: Marcus Vincent(marcus.vincent@webtrends.com>)
-=======
-# Author:: Kendrick Martin(<kendrick.martin@webtrends.com>)
->>>>>>> d023d2cedc26c5889f638e2384c2066a01520346
+# Author:: Marcus Vincent(marcus.vincent@webtrends.com>)
 # Cookbook Name:: wt_actioncenter
 # Attribute:: default
 #
