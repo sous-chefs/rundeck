@@ -82,14 +82,14 @@ node['roles'].each do |r|
 			publish_version(
 				:role         => 'Data Deleter',
 				:download_url => node['wt_data_deleter']['download_url'],
-				:key_file     => File.join(idir, node['wt_data_deleter']['install_dir'], 'bin/DataDeleter.exe').gsub(/[\\\/]+/,'\\')
+				:key_file     => File.join(idir, node['wt_data_deleter']['install_dir'], 'DataDeleter.exe').gsub(/[\\\/]+/,'\\')
 			)
 		when 'wt_devicedataupdater'
 			log "publishing #{r}"
 			publish_version(
 				:role         => 'Device Data Updater',
 				:download_url => node['wt_devicedataupdater']['download_url'],
-				:key_file     => File.join(idir, node['wt_devicedataupdater']['install_dir'], 'bin/DDU.exe').gsub(/[\\\/]+/,'\\')
+				:key_file     => File.join(idir, node['wt_devicedataupdater']['install_dir'], 'DDU.exe').gsub(/[\\\/]+/,'\\')
 			)
 		when 'wt_platformscheduler_agent'
 			log "publishing #{r}"
@@ -110,14 +110,14 @@ node['roles'].each do |r|
   			publish_version(
 				:role         => 'Search Service',
 				:download_url => node['wt_search']['download_url'],
-				:key_file     => File.join(idir, node['wt_search']['install_dir'], 'bin/Webtrends.Search.Service.exe').gsub(/[\\\/]+/,'\\')
+				:key_file     => File.join(idir, node['wt_search']['install_dir'], 'Webtrends.Search.Service.exe').gsub(/[\\\/]+/,'\\')
 			)
   		when 'wt_sync'
   			log "publishing #{r}"
   			publish_version(
 				:role         => 'Sync Service',
 				:download_url => node['wt_sync']['download_url'],
-				:key_file     => File.join(idir, node['wt_sync']['install_dir'], 'bin/Webtrends.SyncService.exe').gsub(/[\\\/]+/,'\\')
+				:key_file     => File.join(idir, node['wt_sync']['install_dir'], 'Webtrends.SyncService.exe').gsub(/[\\\/]+/,'\\')
 			)
   		else
     		log "no publishing data for role  => #{r}"
