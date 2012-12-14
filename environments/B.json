@@ -168,10 +168,10 @@
         },
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/44907:id/CAM.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/45054:id/CAM.zip"
             },
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt315/44907:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt315/45054:id/Plugins.zip"
             },
             "cam_service_url": "http://bcam.staging.dmz",
             "db_name": "cam",
@@ -263,11 +263,11 @@
         "wt_rta": {},
         "wt_sauth": {
             "auth_service_url": "https://bsauth.webtrends.com",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/44907:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/45054:id/auth.zip"
         },
         "wt_search": {},
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/44953:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/45032:id/streaming-analysis-bin.tar.gz",
             "query_bolt_executors": 24,
             "query_bolt_tasks": 24,
             "streaming_topology_field_grouping_local": "false",
@@ -298,7 +298,7 @@
             "jmx_port": 9998
         },
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/44977:id/webtrends-streamingapi-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/45032:id/webtrends-streamingapi-bin.tar.gz",
             "sapi_service_url": "ws://bsapi.webtrends.com",
             "usagedbname": "Streaming",
             "usagedbserver": "bcamdb01.staging.dmz"

@@ -237,7 +237,6 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :tracer_dcsid => node['wt_storm_streaming']['tracer_dcsid'],
     # non-storm parameters
     :zookeeper_quorum      => zookeeper_quorum * ",",
-    :zookeeper_clientport  => zookeeper_clientport,
     :configservice         => node['wt_streamingconfigservice']['config_service_url'],
     :netacuity             => node['wt_netacuity']['geo_url'],
     :pod                   => pod,
