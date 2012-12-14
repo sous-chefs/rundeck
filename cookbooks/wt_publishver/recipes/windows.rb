@@ -71,33 +71,33 @@ idir = node['wt_common']['install_dir_windows']
 node['roles'].each do |r|
 	case r
   		when 'wt_analytics_ui'
-				log "publishing #{r}"
-				publish_version(
-					:role         => 'A10 UI',
-					:download_url => node['wt_analytics_ui']['download_url'],
-					:key_file     => File.join(idir, node['wt_analytics_ui']['install_dir'], 'bin/WebTrends.UI.Reporting.dll').gsub(/[\\\/]+/,'\\')
-				)
-			when 'wt_data_deleter'
-				log "publishing #{r}"
-				publish_version(
-					:role         => 'Data Deleter',
-					:download_url => node['wt_data_deleter']['download_url'],
-					:key_file     => File.join(idir, node['wt_data_deleter']['install_dir'], 'bin/DataDeleter.exe').gsub(/[\\\/]+/,'\\')
-				)
-			when 'wt_devicedataupdater'
-				log "publishing #{r}"
-				publish_version(
-					:role         => 'Device Data Updater',
-					:download_url => node['wt_devicedataupdater']['download_url'],
-					:key_file     => File.join(idir, node['wt_devicedataupdater']['install_dir'], 'bin/DDU.exe').gsub(/[\\\/]+/,'\\')
-				)
-			when 'wt_platformscheduler_agent'
-				log "publishing #{r}"
-				publish_version(
-					:role         => 'Platform Scheduler Agent',
-					:download_url => node['wt_platformscheduler']['agent']['download_url'],
-					:key_file     => File.join(idir, 'common/agent/Webtrends.Agent.exe').gsub(/[\\\/]+/,'\\')
-				)
+			log "publishing #{r}"
+			publish_version(
+				:role         => 'A10 UI',
+				:download_url => node['wt_analytics_ui']['download_url'],
+				:key_file     => File.join(idir, node['wt_analytics_ui']['install_dir'], 'bin/WebTrends.UI.Reporting.dll').gsub(/[\\\/]+/,'\\')
+			)
+		when 'wt_data_deleter'
+			log "publishing #{r}"
+			publish_version(
+				:role         => 'Data Deleter',
+				:download_url => node['wt_data_deleter']['download_url'],
+				:key_file     => File.join(idir, node['wt_data_deleter']['install_dir'], 'bin/DataDeleter.exe').gsub(/[\\\/]+/,'\\')
+			)
+		when 'wt_devicedataupdater'
+			log "publishing #{r}"
+			publish_version(
+				:role         => 'Device Data Updater',
+				:download_url => node['wt_devicedataupdater']['download_url'],
+				:key_file     => File.join(idir, node['wt_devicedataupdater']['install_dir'], 'bin/DDU.exe').gsub(/[\\\/]+/,'\\')
+			)
+		when 'wt_platformscheduler_agent'
+			log "publishing #{r}"
+			publish_version(
+				:role         => 'Platform Scheduler Agent',
+				:download_url => node['wt_platformscheduler']['agent']['download_url'],
+				:key_file     => File.join(idir, 'common/agent/Webtrends.Agent.exe').gsub(/[\\\/]+/,'\\')
+			)
   		when 'wt_search'
   			log "publishing #{r}"
   			publish_version(
