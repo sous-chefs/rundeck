@@ -1,3 +1,6 @@
+## 1.0.3:
+* Improved consistency of node attribute access
+
 ## 1.0.2:
 * Added the attribute 'storm.stats.graphite.regex' and changed the default graphite push to 1 minute.
 
