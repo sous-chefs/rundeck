@@ -116,7 +116,7 @@ if ENV["deploy_build"] == "true" then
     fastutil-6.4.4.jar
     groovy-all-1.7.6.jar
     guice-3.0.jar
-    guice-assistedinject-3.0.jar
+    guice-assisted-inject-2.0.jar
     gson-2.2.2.jar
     hadoop-core-1.0.0.jar
     hamcrest-core-1.1.jar
