@@ -59,16 +59,17 @@ end
 
 if ENV["deploy_build"] == "true" then
  windows_zipfile install_dir do
-   source node['wt_actioncenter']['actioncenter']['download_url']
+   source node['wt_actioncenter']['download_url']
    action :unzip
  end
 end
  
 template "#{install_dir}\\web.config" do
  source "web.config.erb"
- variables(
+ variables(    
+   :cache_hosts   => node['memcached']['cache_hosts'],
    :db_server => node['wt_actioncenter']['db_server'],
-   :db_name   => node['wt_actioncenter']['db_name'],
+   :db_name   => node['wt_actioncenter']['db_name']
  )
 end
  

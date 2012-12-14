@@ -85,7 +85,8 @@ def processTemplates (install_dir, node, log_dir)
     group   "root"
     mode    00644
     variables({
-      :wt_monitoring => node['wt_monitoring']
+      :wt_monitoring => node['wt_monitoring'],
+      :wt_edge_server => node['wt_edge_server']
     })
   end
 
