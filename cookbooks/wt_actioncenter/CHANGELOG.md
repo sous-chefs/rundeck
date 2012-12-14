@@ -1,6 +1,9 @@
 # CHANGELOG for wt_actioncenter
 
 This file is used to list changes made in each version of wt_actioncenter.
+## 1.0.4
+* Fixed template varables 
+
 ## 1.0.3
 * Adding cache_host to the template resource
 
