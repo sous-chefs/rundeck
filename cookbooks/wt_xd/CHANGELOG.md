@@ -1,3 +1,6 @@
+## 1.0.3
+* Adding the ability to adjust mapred.child.hava.opts by conf file
+
 ## 1.0.2:
 * Fix a bad variable that failed runs
 
