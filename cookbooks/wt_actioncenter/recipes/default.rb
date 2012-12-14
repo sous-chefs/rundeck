@@ -79,7 +79,7 @@ template "#{install_dir}\\web.config" do
      :cass_host            => node['cassandra']['cassandra_host'],
      :cass_report_column   => node['cassandra']['cassandra_report_column'],
      :cass_metadata_column => node['cassandra']['cassandra_meta_column'],
-     :cass_thrift_port     => node['cassandra']['cassandra_thrift_port'],
+     :cass_thrift_port     => node['cassandra']['cassandra_thrift_port']
  )
 end
  
