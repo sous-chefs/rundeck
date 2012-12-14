@@ -25,6 +25,10 @@ when "0xE72C0"
   default['esx']['version'] = "5.0"
   default['esx']['tarball'] = "VMwareTools-8.6.0-446312.tar.gz"
   default['esx']['checksum'] = "5118df75830e416ca20e2939e4934b4ebb8b9e29160e3fbed225aaa832345712"
+when "0xEA0C0"
+  default['esx']['version'] = "5.1"
+  default['esx']['tarball'] = "VMwareTools-9.0.0-782409.tar.gz"
+  default['esx']['checksum'] = "be9ff564870ea98597b2e1f6965d8416f7708eeeb1b372be5f42ac4376d8336d"
 end
 
 Chef::Log.debug("esx tarball is #{node['esx']['tarball']}")
