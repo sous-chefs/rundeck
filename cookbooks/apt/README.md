@@ -33,7 +33,9 @@ includes the `cacher-client` recipe, so it helps seed itself.
 
 cacher-client
 -------------
-Configures the node to use the `apt-cacher-ng` server as a client.
+Configures the node to use the `apt-cacher-ng` server as a client. If you
+want to restrict your node to using the `apt-cacher-ng` server in your
+Environment, set `['apt']['cacher-client']['restrict_environment']` to `true`.
 
 Resources/Providers
 ===================
@@ -59,8 +61,8 @@ resource immediately.
 - components: package groupings..when it doubt use `main`
 - deb_src: whether or not to add the repository as a source repo as
   well - value can be `true` or `false`, default `false`.
-- key_server: the GPG keyserver where the key for the repo should be retrieved
-- key: if a `key_server` is provided, this is assumed to be the
+- keyserver: the GPG keyserver where the key for the repo should be retrieved
+- key: if a `keyserver` is provided, this is assumed to be the
   fingerprint, otherwise it can be either the URI to the GPG key for
   the repo, or a cookbook_file.
 - cookbook: if key should be a cookbook_file, specify a cookbook where
