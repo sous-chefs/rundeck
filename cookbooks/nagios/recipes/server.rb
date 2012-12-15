@@ -69,6 +69,18 @@ else
   end
 end
 
+# load Nagios alert contacts from the nagios_contacts data bag
+begin
+  contacts = search(:nagios_contacts, '*:*')
+rescue Net::HTTPServerException
+  Chef::Log.info("Could not search for nagios_contacts data bag items, not adding addition contact groups")
+end
+
+if contacts.nil? || contacts.empty?
+  Chef::Log.info("No contacts returned from data bag search.")
+  contacts = Array.new
+end
+
 # find nodes to monitor.  Search in all environments if multi_environment_monitoring is enabled
 Chef::Log.info("Beginning search for nodes.  This may take some time depending on your node count")
 nodes = Array.new
@@ -128,14 +140,14 @@ end
 
 # Load Nagios templates from the nagios_templates data bag
 begin
-  templates = search(:nagios_templates, '*:*')
-  rescue Net::HTTPServerException
-  Chef::Log.info("Could not search for nagios_template data bag items, skipping dynamically generated template checks")
+    templates = search(:nagios_templates, '*:*')
+    rescue Net::HTTPServerException
+    Chef::Log.info("Could not search for nagios_template data bag items, skipping dynamically generated template checks")
 end
 
 if templates.nil? || templates.empty?
-  Chef::Log.info("No templates returned from data bag search.")
-  templates = Array.new
+    Chef::Log.info("No templates returned from data bag search.")
+    templates = Array.new
 end
 
 # Load Nagios event handlers from the nagios_eventhandlers data bag
@@ -178,7 +190,7 @@ begin
     hostgroup_list << hg['hostgroup_name']
     temp_hostgroup_array= Array.new
     search(:node, "#{hg['search_query']}") do |n|
-      temp_hostgroup_array << n['hostname']
+       temp_hostgroup_array << n['hostname']
     end
     hostgroup_nodes[hg['hostgroup_name']] = temp_hostgroup_array.join(",")
   end
@@ -265,7 +277,11 @@ nagios_conf "services" do
 end
 
 nagios_conf "contacts" do
-  variables :admins => sysadmins, :members => members
+  variables( 
+    :admins => sysadmins,
+    :members => members,
+    :contacts => contacts
+  )
 end
 
 nagios_conf "hostgroups" do

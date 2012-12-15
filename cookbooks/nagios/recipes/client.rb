@@ -29,12 +29,20 @@ if node.run_list.roles.include?(node['nagios']['server_role'])
   mon_host << node['ipaddress']
 elsif node['nagios']['multi_environment_monitoring']
   search(:node, "role:#{node['nagios']['server_role']}") do |n|
-    mon_host << n['ipaddress']
+   mon_host << n['ipaddress']
   end
 else
   search(:node, "role:#{node['nagios']['server_role']} AND chef_environment:#{node.chef_environment}") do |n|
     mon_host << n['ipaddress']
   end
+end
+
+user node['nagios']['user'] do
+  system true
+end
+
+group node['nagios']['group'] do
+  members [ node['nagios']['user'] ]
 end
 
 include_recipe "nagios::client_#{node['nagios']['client']['install_method']}"
@@ -66,7 +74,15 @@ template "#{node['nagios']['nrpe']['conf_dir']}/nrpe.cfg" do
 end
 
 service "nagios-nrpe-server" do
-  action [:start, :enable]
+  case node['platform_family']
+   when 'rhel'
+     if node['nagios']['client']['install_method'] == "package"
+       service_name "nrpe"
+     end
+   else
+     service_name "nagios-nrpe-server"
+  end
+  action [:enable, :start]
   supports :restart => true, :reload => true
 end
 

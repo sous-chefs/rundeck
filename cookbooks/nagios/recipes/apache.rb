@@ -22,7 +22,7 @@ if node['nagios']['enable_ssl']
   include_recipe "apache2::mod_ssl"
 end
 
-group = "#{node['nagios']['users_databag_group']}"
+group = node['nagios']['users_databag_group']
 sysadmins = search(:users, "groups:#{group}")
 
 apache_site "000-default" do

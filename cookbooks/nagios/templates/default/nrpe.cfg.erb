@@ -10,20 +10,51 @@ command_timeout=<%= node['nagios']['nrpe']['command_timeout'] %>
 allowed_hosts=<%= @mon_host.join(',') %>
 include_dir=<%= @nrpe_directory %>
 
+# The following examples use hardcoded command arguments...
+
+command[check_users]=<%= node['nagios']['plugin_dir'] %>/check_users -w 5 -c 10
+command[check_load]=<%= node['nagios']['plugin_dir'] %>/check_load -w 15,10,5 -c 30,25,20
+command[check_hda1]=<%= node['nagios']['plugin_dir'] %>/check_disk -w 20% -c 10% -p /dev/hda1
 command[check_zombie_procs]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 5 -c 10 -s Z
-command[check_total_procs]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 500 -c 800
-command[check_swap]=<%= node['nagios']['plugin_dir'] %>/check_swap -w '50%' -c '25%'
-command[check_mem]=<%= node['nagios']['plugin_dir'] %>/check_mem.sh -w <%= node['nagios']['checks']['memory']['warning'] %> -c <%= node['nagios']['checks']['memory']['critical'] %> -p
+command[check_total_procs]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 150 -c 200
 command[check_chef_client]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 1:2 -c 1:2 -C chef-client
-command[check_smtp]=<%= node['nagios']['plugin_dir'] %>/check_smtp -H <%= node['nagios']['checks']['smtp_host'] %>
 command[check_nginx]=<%= node['nagios']['plugin_dir'] %>/check_procs -w 2:3 -c 1:5 -C nginx
-command[check_sphinx]=<%= node['nagios']['plugin_dir'] %>/check_procs -c 1:1 -C searchd
-<% unless node['mysql'].nil? -%>
-command[check_mysql_server]=<%= node['nagios']['plugin_dir'] %>/check_mysql -H localhost -u debian-sys-maint -p <%= node['mysql']['server_debian_password'] %>
-<% end -%>
-#command[check_unicorn]=<%= node['nagios']['plugin_dir'] %>/check_procs -c 4:8 -C unicorn_rails
-#
-# memcached checks require cpan modules, "Cache::Memcached" and "Nagios::Plugins::Memcached"
-#command[check_memcached_response]=/usr/local/bin/check_memcached -H <%= node["ipaddress"] %> -w 3 -c 5
-#command[check_memcached_size]=/usr/local/bin/check_memcached -H <%= node["ipaddress"] %> --size-warning 60 --size-critical 80
-#command[check_memcached_hit]=/usr/local/bin/check_memcached -H <%= node["ipaddress"] %> --hit-warning 40 --hit-critical 20
+command[check_solr]=<%= node['nagios']['plugin_dir'] %>/check_solr.rb -c 10 -r 10 -h localhost -p solr
+command[chef_server_web_api_check]=<%= node['nagios']['plugin_dir'] %>/check_http -H <%= node['fqdn'] %> -p 4000 -r "Chef"
+command[chef_server_web_ui_check]=<%= node['nagios']['plugin_dir'] %>/check_http -H <%= node['fqdn'] %> -p 4040 -u /users/login -r "Chef"
+command[check_ipmi_sensors]=<%= node['nagios']['plugin_dir'] %>/check_ipmi_sensors
+
+# The following examples allow user-supplied arguments and can
+# only be used if the NRPE daemon was compiled with support for
+# command arguments *AND* the dont_blame_nrpe directive in this
+# config file is set to '1'.  This poses a potential security risk, so
+# make sure you read the SECURITY file before doing this.
+
+#command[check_users]=<%= node['nagios']['plugin_dir'] %>/check_users -w $ARG1$ -c $ARG2$
+#command[check_load]=<%= node['nagios']['plugin_dir'] %>/check_load -w $ARG1$ -c $ARG2$
+#command[check_disk]=<%= node['nagios']['plugin_dir'] %>/check_disk -w $ARG1$ -c $ARG2$ -p $ARG3$
+#command[check_procs]=<%= node['nagios']['plugin_dir'] %>/check_procs -w $ARG1$ -c $ARG2$ -s $ARG3$
+command[wt_check_load]=<%= node['nagios']['plugin_dir'] %>/check_load $ARG1$
+command[wt_check_disk]=<%= node['nagios']['plugin_dir'] %>/check_disk $ARG1$
+command[wt_check_ssh]=<%= node['nagios']['plugin_dir'] %>/check_ssh localhost
+command[wt_check_swap]=<%= node['nagios']['plugin_dir'] %>/check_swap $ARG1$
+command[wt_check_procs]=<%= node['nagios']['plugin_dir'] %>/check_procs $ARG1$
+command[wt_check_updates]=sudo <%= node['nagios']['plugin_dir'] %>/check_system_updates
+command[wt_check_system_info]=<%= node['nagios']['plugin_dir'] %>/check_system_info
+command[wt_check_ftp]=<%= node['nagios']['plugin_dir'] %>/check_ftp $ARG1$
+command[wt_check_http]=<%= node['nagios']['plugin_dir'] %>/check_http $ARG1$
+command[wt_check_tcp]=<%= node['nagios']['plugin_dir'] %>/check_tcp $ARG1$
+command[wt_check_memcached_conns]=<%= node['nagios']['plugin_dir'] %>/check_memcached_connections $ARG1$
+command[wt_check_jps]=<%= node['nagios']['plugin_dir'] %>/check_jps_procs $ARG1$
+command[wt_check_file_age]=sudo <%= node['nagios']['plugin_dir'] %>/check_file_age $ARG1$
+command[wt_check_file_ages_in_dirs]=sudo <%= node['nagios']['plugin_dir'] %>/check_file_ages_in_dirs $ARG1$
+command[wt_check_file_size]=sudo <%= node['nagios']['plugin_dir'] %>/check_file_size $ARG1$
+command[wt_check_log]=sudo <%= node['nagios']['plugin_dir'] %>/check_log $ARG1$
+command[wt_check_cassandra_ring]=<%= node['nagios']['plugin_dir'] %>/cassandra_ring $ARG1$
+command[wt_check_smart_disks]=sudo <%= node['nagios']['plugin_dir'] %>/check_smartmon $ARG1$
+command[wt_check_mailq]=sudo <%= node['nagios']['plugin_dir'] %>/check_mailq $ARG1$
+command[wt_check_squid]=sudo <%= node['nagios']['plugin_dir'] %>/check_squid $ARG1$
+command[wt_check_jmx]=<%= node['nagios']['plugin_dir'] %>/check_jmx $ARG1$
+command[wt_check_graphite_data]=<%= node['nagios']['plugin_dir'] %>/check_graphite_data $ARG1$
+command[wt_check_hpasm]=sudo <%= node['nagios']['plugin_dir'] %>/check_hpasm $ARG1$
+
