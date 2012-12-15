@@ -5,7 +5,7 @@
         "hbase": "= 0.0.1", 
         "hive": "= 0.0.1", 
         "java": "= 1.6.0", 
-        "nagios": "= 2.0.0",  
+        "nagios": "= 3.0.0",  
         "nginx": "= 0.101.0", 
         "php5-cgi": "= 1.0.2", 
         "webtrends_server": "= 1.8.8", 
