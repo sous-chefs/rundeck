@@ -1,3 +1,10 @@
+## v2.0.0:
+
+Major version bump due to use of platform_family (only available on
+newer versions of ohai/chef).
+
+* [COOK-1838] - Switch to platform_family approach to support scientific
+
 ## v1.0.4:
 
 * [COOK-1623] - add attribute to prevent erlang installation
