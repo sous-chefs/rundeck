@@ -35,10 +35,10 @@ else
 end
 
 pkgs = value_for_platform_family(
-  [ "rhel","fedora" ] => %w{ openssl-devel gd-devel },
-  "debian" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx },
-  "default" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx }
-)
+    ["rhel","fedora"] => %w{ openssl-devel gd-devel },
+    "debian" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx },
+    "default" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx }
+  )
 
 pkgs.each do |pkg|
   package pkg do
@@ -97,6 +97,13 @@ bash "compile-nagios" do
 end
 
 directory "#{node['nagios']['conf_dir']}/conf.d" do
+  owner "root"
+  group "root"
+  mode 00755
+end
+
+cookbook_file "#{node['nagios']['plugin_dir']}/check_nrpe" do
+  source "plugins/check_nrpe"
   owner "root"
   group "root"
   mode 00755

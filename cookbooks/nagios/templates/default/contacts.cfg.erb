@@ -34,3 +34,14 @@ define contact {
 }
 
 <% end -%>
+
+<% @contacts.each do |c| -%>
+
+define contact {
+  contact_name  <%= c['id'] %>
+  use <% if c['contact_template'].nil? -%>default-service<% else -%><%= c['contact_template'] %> <% end -%>
+  <%= "alias  #{c['alias']}" unless c['alias'].nil? -%>
+  <%= "email  #{c['email']}" unless c['email'].nil? -%>
+  <%= "pager  #{c['pager']}" unless c['pager'].nil? -%>
+}
+<% end -%>
