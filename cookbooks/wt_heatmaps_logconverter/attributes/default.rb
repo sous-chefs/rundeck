@@ -11,7 +11,7 @@ default['wt_heatmaps_logconverter']['user']         = "webtrends"
 default['wt_heatmaps_logconverter']['group']        = "webtrends"
 default['wt_heatmaps_logconverter']['download_url'] = ""
 default['wt_heatmaps_logconverter']['java_opts']    = "-Xms1G -Xmx4G"
-default['wt_heatmaps_logconverter']['jmx_port']     = 10000
+default['wt_heatmaps_logconverter']['jmx_port']     = 9999
 
 
 default['wt_heatmaps_logconverter']['log_level'] = "WARN"

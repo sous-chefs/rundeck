@@ -5,7 +5,7 @@ cd /home/<%= @node['wt_heatmaps_logconverter']['user'] %>
 case "$1" in
         start)
                 echo "starting..."
-                sudo -u <%= @node['wt_heatmaps_logconverter']['user'] %> java <%= @node['wt_heatmaps_logconverter']['java_opts'] %> -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=<%= @node['wt_heatmaps_logconverter']['jmx_port'] %> -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -cp lib -jar <%= @node['wt_heatmaps_logconverter']['install_dir'] %>/Heatmap-LogConverter-1.0-SNAPSHOT.jar <%= @node['wt_heatmaps_logconverter']['install_dir'] %>/conf &
+                sudo -u <%= @node['wt_heatmaps_logconverter']['user'] %> java <%= @node['wt_heatmaps_logconverter']['java_opts'] %> -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=<%= @node['wt_heatmaps_logconverter']['jmx_port'] %> -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -cp lib -jar <%= @install_dir %>/Heatmap-LogConverter-1.0-SNAPSHOT.jar <%= @install_dir %>/conf &
                 exit $?
                 ;;
         status)
