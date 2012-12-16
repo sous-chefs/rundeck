@@ -100,12 +100,22 @@ file "/var/lib/tftpboot/pxelinux.0" do
   content IO.read("/usr/lib/syslinux/pxelinux.0") rescue nil
 end
 
-# make validation.pem available
-link "/var/www/validation.pem" do
-  to Chef::Config[:validation_key]
+# load the auth data bags (supports both On Demand and Optimize)
+begin
+  auth_dbag = data_bag_item('authorization', node['authorization']['ad_likewise']['ad_network'])
+rescue
+  auth_dbag = data_bag_item('authorization', node['authorization']['ad_auth']['ad_network'])
 end
-file Chef::Config[:validation_key] do
-	mode 00644
+
+# make validation.pem keys available for each domain
+auth_dbag['chef_validation_keys'].each do |env|
+  file "/var/www/#{env['domain']}.pem" do
+    action :create
+    owner "root"
+    group "root"
+    mode 00644
+    content env['key']
+  end
 end
 
 # firstboot script
