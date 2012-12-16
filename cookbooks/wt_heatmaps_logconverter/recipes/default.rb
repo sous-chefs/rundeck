@@ -80,8 +80,7 @@ template "#{install_dir}/log_pusher/log_pusher.sh" do
 end
 
 cron "log_pusher" do
-  owner   user
-  group   group
+  user  user
   command "#{install_dir}/log_pusher/log_pusher.sh"
 end
 
