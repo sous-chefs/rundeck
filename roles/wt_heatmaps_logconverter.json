@@ -4,6 +4,7 @@
   "chef_type": "role",
   "json_class": "Chef::Role",
   "run_list": [
-    "recipe[java]"
+    "recipe[java]",
+    "recipe[wt_heatmaps_logconverter]"
   ]
 }
