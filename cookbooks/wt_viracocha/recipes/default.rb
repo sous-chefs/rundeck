@@ -36,7 +36,11 @@ directory "/home/bobo/.ec2/" do
   recursive true
 end
 
-auth_dbag = data_bag_item('authorization', node['authorization']['ad_likewise']['ad_network'])
+begin
+  auth_dbag = data_bag_item('authorization', node['authorization']['ad_likewise']['ad_network'])
+rescue
+  auth_dbag = data_bag_item('authorization', node['authorization']['ad_auth']['ad_network'])
+end
 
 template "/home/bobo/.ec2/ec2rc" do
   source "ec2rc.erb"
