@@ -43,8 +43,13 @@ directory log_dir do
   action :create
 end
 
+# install nfs-common for the mount
+package "nfs-common" do
+  action :install
+end
+
 # create the directories the app needs to function
-%w{install_dir #{install_dir}/conf #{install_dir}/log_pusher mount_dir}.each do |dir|
+[ install_dir , "#{install_dir}/conf" , "#{install_dir}/log_pusher" , mount_dir ].each do |dir|
   directory dir do 
     owner "root"
     group "root"
