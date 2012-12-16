@@ -84,7 +84,7 @@ cron "log_pusher" do
   command "#{install_dir}/log_pusher/log_pusher.sh"
 end
 
-%w[logconverter.properties log4j.properties datanodes.conf ].each do | template_file|
+%w[logconverter.properties log4j.properties datanodes.conf ].each do |template_file|
   template "#{install_dir}/conf/#{template_file}" do
     source  "#{template_file}.erb"
     owner "root"
