@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+cd /home/<%= @node['wt_heatmaps_logconverter']['user'] %>
+
+case "$1" in
+        start)
+                echo "starting..."
+                sudo -u <%= @node['wt_heatmaps_logconverter']['user'] %> java <%= @node['wt_heatmaps_logconverter']['java_opts'] %> -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=<%= @node['wt_heatmaps_logconverter']['jmx_port'] %> -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -cp lib -jar <%= @node['wt_heatmaps_logconverter']['install_dir'] %>/Heatmap-LogConverter-1.0-SNAPSHOT.jar <%= @node['wt_heatmaps_logconverter']['install_dir'] %>/conf &
+                exit $?
+                ;;
+        status)
+                [ "$(ps aux | grep -v grep | grep Heatmap-LogConverter)" ] && echo "running" && exit 0
+                echo "not running"
+                exit 1
+                ;;
+        stop)
+                echo "stopping.."
+                kill -9 $(ps aux | grep -v grep | grep Heatmap-LogConverter | awk '{print $2}')
+                exit $?
+                ;;
+        *)
+                echo "arguments: start,stop,status"
+                ;;
+esac
+
+exit 0
