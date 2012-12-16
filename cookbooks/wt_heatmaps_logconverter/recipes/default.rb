@@ -16,6 +16,7 @@ end
 
 log_dir      = File.join(node['wt_common']['log_dir_linux'], "heatmaps_logconverter")
 install_dir  = File.join(node['wt_common']['install_dir_linux'], "heatmaps_logconverter")
+mount_dir    = node['wt_heatmaps_logconverter']['nfs_mount_dir']
 tarball      = node['wt_heatmaps_logconverter']['download_url'].split("/")[-1]
 java_home    = node['java']['java_home']
 download_url = node['wt_heatmaps_logconverter']['download_url']
@@ -42,31 +43,23 @@ directory log_dir do
   action :create
 end
 
-# create the install directory
-directory install_dir do
-  owner "root"
-  group "root"
-  mode 00755
-  recursive true
-  action :create
+# create the directories the app needs to function
+%w{install_dir #{install_dir}/conf #{install_dir}/log_pusher mount_dir}.each do |dir|
+  directory dir do 
+    owner "root"
+    group "root"
+    mode 00755
+    recursive true
+    action :create
+  end
 end
 
-# create the config directory
-directory "#{install_dir}/conf" do
-  owner "root"
-  group "root"
-  mode 00755
-  recursive true
-  action :create
-end
-
-# create the log_pusher directory
-directory "#{install_dir}/log_pusher" do
-  owner "root"
-  group "root"
-  mode 00755
-  recursive true
-  action :create
+# mount the NFS directory containing the logs
+mount mount_dir do
+  device node['wt_heatmaps_logconverter']['nfs_export']
+  fstype "nfs"
+  options "rw"
+  action [:mount, :enable]
 end
 
 # Make sure the user has a home directory
@@ -112,7 +105,7 @@ template "/etc/init.d/hmlc" do
   source  "hmlc.erb"
   owner "root"
   group "root"
-  mode  00644
+  mode  00755
   variables(
     :install_dir => install_dir
   )
