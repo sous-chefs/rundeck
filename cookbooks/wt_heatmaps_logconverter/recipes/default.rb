@@ -84,6 +84,7 @@ cron "log_pusher" do
   command "#{install_dir}/log_pusher/log_pusher.sh"
 end
 
+# template the config files
 %w[logconverter.properties log4j.properties datanodes.conf ].each do |template_file|
   template "#{install_dir}/conf/#{template_file}" do
     source  "#{template_file}.erb"
@@ -95,6 +96,14 @@ end
       :datanodes => hadoop_datanodes
     )
   end
+end
+
+# template the init script
+template "/etc/init.d/hmlc" do
+  source  "hmlc.erb"
+  owner "root"
+  group "root"
+  mode  00644
 end
 
 if ENV["deploy_build"] == "true" then
@@ -114,8 +123,6 @@ if ENV["deploy_build"] == "true" then
     command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
   end
 
-  processTemplates(install_dir, node)
-
   # delete the application tarball
   execute "delete_install_source" do
     user "root"
@@ -126,7 +133,7 @@ if ENV["deploy_build"] == "true" then
 
   # create the service
   service "hmlc" do
-    action :create
+    action [:enable, :start]
   end
 
 end
