@@ -101,7 +101,8 @@ end
     mode  00644
     variables(
       :install_dir => install_dir,
-      :datanodes => hadoop_datanodes
+      :datanodes => hadoop_datanodes,
+      :log_dir => log_dir
     )
   end
 end
