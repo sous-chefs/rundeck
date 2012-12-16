@@ -69,6 +69,14 @@ directory "#{install_dir}/log_pusher" do
   action :create
 end
 
+# Make sure the user has a home directory
+directory "/home/#{user}" do
+  owner user
+  group group
+  mode 00755
+  action :create
+end
+
 template "#{install_dir}/log_pusher/log_pusher.sh" do
   source  "log_pusher.sh.erb"
   owner "root"
@@ -104,6 +112,9 @@ template "/etc/init.d/hmlc" do
   owner "root"
   group "root"
   mode  00644
+  variables(
+    :install_dir => install_dir
+  )
 end
 
 if ENV["deploy_build"] == "true" then
