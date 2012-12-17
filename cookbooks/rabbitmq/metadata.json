@@ -12,7 +12,9 @@
     "centos": ">= 0.0.0",
     "scientific": ">= 0.0.0",
     "amazon": ">= 0.0.0",
-    "fedora": ">= 0.0.0"
+    "fedora": ">= 0.0.0",
+    "oracle": ">= 0.0.0",
+    "smartos": ">= 0.0.0"
   },
   "dependencies": {
     "apt": ">= 1.4.4",
@@ -186,5 +188,5 @@
     "rabbitmq": "Install and configure RabbitMQ",
     "rabbitmq::cluster": "Set up RabbitMQ clustering."
   },
-  "version": "1.6.4"
+  "version": "1.7.0"
 }
