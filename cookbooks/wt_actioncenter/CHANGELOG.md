@@ -1,6 +1,9 @@
 # CHANGELOG for wt_actioncenter
 
 This file is used to list changes made in each version of wt_actioncenter.
+## 1.0.5
+* Update web.config to remove A10 reference. Updated default.rb to include monitor_host variable
+
 ## 1.0.4
 * Fixed template varables 
 
