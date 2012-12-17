@@ -77,7 +77,7 @@ directory "/home/#{user}/.ssh" do
 end
 
 # add the hadoop user private key
-auth_dbag = data_bag_item('authorization', node['authorization']['ad_auth']['ad_network'])
+auth_dbag = data_bag_item('authorization', node.chef_environment)
 
 file "/home/#{user}/.ssh/config" do
   action :create
