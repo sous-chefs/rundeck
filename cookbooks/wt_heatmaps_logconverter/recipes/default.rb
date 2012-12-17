@@ -48,8 +48,17 @@ package "nfs-common" do
   action :install
 end
 
+#create the mount dir (with a special check to make sure it doesn't fail)
+directory mount_dir do
+  owner "root"
+  group "root"
+  mode 00755
+  action :create
+  not_if "{File.exists?(node['wt_heatmaps_logconverter']['nfs_export'])}"
+end
+
 # create the directories the app needs to function
-[ install_dir , "#{install_dir}/conf" , "#{install_dir}/log_pusher" , mount_dir ].each do |dir|
+[ install_dir , "#{install_dir}/conf" , "#{install_dir}/log_pusher" ].each do |dir|
   directory dir do 
     owner "root"
     group "root"
@@ -67,14 +76,35 @@ mount mount_dir do
   action [:mount, :enable]
 end
 
-# Make sure the user has a home directory
-directory "/home/#{user}" do
+# Make sure the user has a home directory and ssh dir
+directory "/home/#{user}/.ssh" do
   owner user
   group group
   mode 00755
   action :create
+  recursive true
 end
 
+# add the hadoop user private key
+auth_dbag = data_bag_item('authorization', node.chef_environment)
+
+file "/home/#{user}/.ssh/config" do
+  action :create
+  owner user
+  group group
+  mode 00600
+  content "StrictHostKeyChecking no"
+end
+
+file "/home/#{user}/.ssh/id_rsa" do
+  action :create
+  owner user
+  group group
+  mode 00600
+  content auth_dbag['hadoop']['private_key']
+end
+
+# setup the log pushed script and the cron job that kicks it off
 template "#{install_dir}/log_pusher/log_pusher.sh" do
   source  "log_pusher.sh.erb"
   owner "root"
