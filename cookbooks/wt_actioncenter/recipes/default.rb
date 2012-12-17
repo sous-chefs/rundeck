@@ -14,13 +14,16 @@ if ENV["deploy_build"] == "true" then
 end
  
 #Properties
+user_data = data_bag_item('authorization', node.chef_environment)
+rsa_user = user_data['wt_common']['ui_user']
 install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter"
+iis_action_center_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter\\bin\\_PublishedWebsites\\Webtrends.ActionCenter"
 install_logdir = node['wt_common']['install_log_dir_windows']
 log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
 app_pool = node['wt_actioncenter']['app_pool']
-user_data = data_bag_item('authorization', node.chef_environment)
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
 http_port = node['wt_actioncenter']['port']
+googleplay_key = data_bag_item('rsa_keys', 'googleplay')
  
 iis_pool app_pool do
  pipeline_mode :Integrated
@@ -52,7 +55,7 @@ iis_site 'ActionCenter' do
  protocol :http
  port http_port
  application_pool app_pool
- path install_dir
+ path iis_action_center_dir
  action [:add,:start]
  retries 2
 end
@@ -64,7 +67,7 @@ if ENV["deploy_build"] == "true" then
  end
 end
  
-template "#{install_dir}\\web.config" do
+template "#{iis_action_center_dir}\\web.config" do
  source "web.config.erb"
  variables(    
      # master database host
@@ -87,7 +90,48 @@ template "#{install_dir}\\web.config" do
  )
 end
  
-template "#{install_dir}\\log4net.config" do
+template "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
+   source "PublicPrivateKeys.rsa.erb"
+   variables(
+     :modulus => googleplay_key['modulus'],
+     :exponent => googleplay_key['exponent'],
+     :p => googleplay_key['p'],
+     :q => googleplay_key['q'],
+     :dp => googleplay_key['dp'],
+     :dq => googleplay_key['dq'],
+     :inverse_q => googleplay_key['inverse_q'],
+     :d => googleplay_key['d']
+   )
+ end
+
+ # run iss command on the .rsa file  
+ 
+ wt_base_icacls "C:\\ProgramData\\Microsoft\\Crypto\\RSA\\MachineKeys" do
+ user node['current_user']
+ perm :modify
+ action :grant
+end
+
+execute "asp_regiis_pi" do   
+   command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi Webtrends.ActionCenter #{install_dir}\\bin\\PublicPrivateKeys.rsa"
+ end
+ 
+ execute "asp_regiis_pa" do
+   command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pa Webtrends.ActionCenter #{rsa_user}"
+ end
+
+# delete the .rsa file
+ file "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
+   action :delete
+ end
+ 
+ wt_base_icacls "C:\\ProgramData\\Microsoft\\Crypto\\RSA\\MachineKeys" do
+ user node['current_user']
+ perm :modify
+ action :remove
+ end
+
+template "#{iis_action_center_dir}\\log4net.config" do
  source "log4net.config.erb"
  variables(
    :log_level => node['wt_actioncenter']['log_level']
