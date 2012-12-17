@@ -17,7 +17,7 @@
     "default_attributes": {
         "authorization": {
             "ad_auth": {
-                "ad_network": "WTENGLAB"
+                "ad_network": "WTENGLAB-J"
             }, 
             "sudo": {
                 "groups": [

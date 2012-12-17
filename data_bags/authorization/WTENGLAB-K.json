@@ -1,0 +1,11 @@
+{
+    "auth_domain_password": "H1DvoOXRrG", 
+    "auth_domain_user": "VMwareJoinDomain", 
+    "id": "WTENGLAB-K", 
+    "membership_required": [
+        "WTENGLAB\\\\domain-admins", 
+        "WTENGLAB\\\\lab.admins", 
+        "WTENGLAB\\\\k.admins"
+    ], 
+    "primary_domain": "englab.webtrends.corp"
+}
