@@ -1,3 +1,7 @@
+## v1.1.2:
+
+* [COOK-2059] - missing dependency on build-essential
+
 ## v1.1.0:
 
 * [COOK-1826] - support nokogiri chef_gem
