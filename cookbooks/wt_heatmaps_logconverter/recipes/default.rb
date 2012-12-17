@@ -48,8 +48,17 @@ package "nfs-common" do
   action :install
 end
 
+#create the mount dir (with a special check to make sure it doesn't fail)
+directory mount_dir do
+  owner "root"
+  group "root"
+  mode 00755
+  action :create
+  not_if "{File.exists?(node['wt_heatmaps_logconverter']['nfs_export'])}"
+end
+
 # create the directories the app needs to function
-[ install_dir , "#{install_dir}/conf" , "#{install_dir}/log_pusher" , mount_dir ].each do |dir|
+[ install_dir , "#{install_dir}/conf" , "#{install_dir}/log_pusher" ].each do |dir|
   directory dir do 
     owner "root"
     group "root"
@@ -65,7 +74,6 @@ mount mount_dir do
   fstype "nfs"
   options "rw"
   action [:mount, :enable]
-  not_if "{File.exists?(node['wt_heatmaps_logconverter']['nfs_export'])}"
 end
 
 # Make sure the user has a home directory and ssh dir
