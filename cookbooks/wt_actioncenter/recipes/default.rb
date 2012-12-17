@@ -17,7 +17,7 @@ end
 user_data = data_bag_item('authorization', node.chef_environment)
 rsa_user = user_data['wt_common']['ui_user']
 install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter"
-iis_action_center_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter\\bin\\_PublishedWebsites\\Webtrends.ActionCenter"
+iis_action_center_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter\\bin\\_PublishedWebsites\\Webtrends.ActionCenterService"
 install_logdir = node['wt_common']['install_log_dir_windows']
 log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
 app_pool = node['wt_actioncenter']['app_pool']
