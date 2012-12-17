@@ -18,6 +18,7 @@
     "arch": ">= 0.0.0"
   },
   "dependencies": {
+    "build-essential": ">= 0.0.0"
   },
   "recommendations": {
   },
@@ -36,5 +37,5 @@
   "recipes": {
     "xml": "Installs libxml development packages"
   },
-  "version": "1.1.0"
+  "version": "1.1.2"
 }
