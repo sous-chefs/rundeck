@@ -65,6 +65,7 @@ mount mount_dir do
   fstype "nfs"
   options "rw"
   action [:mount, :enable]
+  not_if "{File.exists?(node['wt_heatmaps_logconverter']['nfs_export'])}"
 end
 
 # Make sure the user has a home directory and ssh dir
