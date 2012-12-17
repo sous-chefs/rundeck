@@ -19,11 +19,11 @@
 # limitations under the License.
 #
 
-case node['platform']
-when "centos", "redhat", "fedora"
+case node['platform_family']
+when "rhel", "fedora"
   # enabled by default in php53
-when "debian", "ubuntu"
+when "debian"
   package "php5-fileinfo" do
-    action :install
+    action :upgrade
   end
 end
