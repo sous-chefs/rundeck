@@ -67,14 +67,35 @@ mount mount_dir do
   action [:mount, :enable]
 end
 
-# Make sure the user has a home directory
-directory "/home/#{user}" do
+# Make sure the user has a home directory and ssh dir
+directory "/home/#{user}/.ssh" do
   owner user
   group group
   mode 00755
   action :create
+  recursive true
 end
 
+# add the hadoop user private key
+auth_dbag = data_bag_item('authorization', node['authorization']['ad_auth']['ad_network'])
+
+file "/home/#{user}/.ssh/config" do
+  action :create
+  owner user
+  group group
+  mode 00600
+  content "StrictHostKeyChecking no"
+end
+
+file "/home/#{user}/.ssh/id_rsa" do
+  action :create
+  owner user
+  group group
+  mode 00600
+  content auth_dbag['hadoop']['private_key']
+end
+
+# setup the log pushed script and the cron job that kicks it off
 template "#{install_dir}/log_pusher/log_pusher.sh" do
   source  "log_pusher.sh.erb"
   owner "root"
