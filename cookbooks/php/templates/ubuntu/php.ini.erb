@@ -511,7 +511,7 @@ memory_limit = -1
 ; Development Value: E_ALL | E_STRICT
 ; Production Value: E_ALL & ~E_DEPRECATED
 ; http://php.net/error-reporting
-error_reporting = E_ALL & ~E_DEPRECATED & ~E_NOTICE
+error_reporting = E_ALL & ~E_DEPRECATED
 
 ; This directive controls whether or not and where PHP will output errors,
 ; notices and warnings too. Error output is very useful during development, but
@@ -1851,3 +1851,7 @@ ldap.max_links = -1
 ; Local Variables:
 ; tab-width: 4
 ; End:
+
+<% node['php']['directives'].each do |directive, value| -%>
+<%= "#{directive}=\"#{value}\"" %>
+<% end -%>

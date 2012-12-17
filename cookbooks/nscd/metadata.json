@@ -1,21 +1,11 @@
 {
-<<<<<<< HEAD:cookbooks/apparmor/metadata.json
-  "name": "apparmor",
-  "description": "Disables apparmor service on Ubuntu",
-=======
   "name": "nscd",
   "description": "Installs and configures nscd",
->>>>>>> chef-vendor-nscd:cookbooks/nscd/metadata.json
   "long_description": "",
   "maintainer": "Opscode, Inc.",
   "maintainer_email": "cookbooks@opscode.com",
   "license": "Apache 2.0",
   "platforms": {
-<<<<<<< HEAD:cookbooks/apparmor/metadata.json
-    "ubuntu": [
-
-    ]
-=======
     "redhat": ">= 0.0.0",
     "centos": ">= 0.0.0",
     "debian": ">= 0.0.0",
@@ -23,34 +13,19 @@
     "amazon": ">= 0.0.0",
     "scientific": ">= 0.0.0",
     "oracle": ">= 0.0.0"
->>>>>>> chef-vendor-nscd:cookbooks/nscd/metadata.json
   },
   "dependencies": {
   },
   "recommendations": {
   },
   "suggestions": {
-<<<<<<< HEAD:cookbooks/apparmor/metadata.json
-=======
     "openldap": ">= 0.0.0"
->>>>>>> chef-vendor-nscd:cookbooks/nscd/metadata.json
   },
   "conflicting": {
   },
   "providing": {
   },
   "replacing": {
-<<<<<<< HEAD:cookbooks/apparmor/metadata.json
-  },
-  "attributes": {
-  },
-  "groupings": {
-  },
-  "recipes": {
-    "default": "Disables apparmor service on Ubuntu"
-  },
-  "version": "0.9.0"
-=======
   },
   "attributes": {
   },
@@ -60,5 +35,4 @@
     "nscd": "Installs and configures nscd"
   },
   "version": "0.8.2"
->>>>>>> chef-vendor-nscd:cookbooks/nscd/metadata.json
 }
