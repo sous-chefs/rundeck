@@ -15,7 +15,7 @@ end
  
 #Properties
 user_data = data_bag_item('authorization', node.chef_environment)
-rsa_user = user_data['wt_common']['ui_user']i
+rsa_user = user_data['wt_common']['ui_user']
 ui_user   = user_data['wt_common']['ui_user']
 install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter"
 iis_action_center_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter\\bin\\_PublishedWebsites\\Webtrends.ActionCenterService"
