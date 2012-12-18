@@ -1,17 +1,18 @@
-= DESCRIPTION:
+Description
+===========
 
 Installs the configures the Webtrends Platform Scheduler service
 
-= REQUIREMENTS:
+Requirements
+============
 
 * Windows cookbook
 * Webtrends Base cookbook (wt_base)
 
-= ATTRIBUTES:
+Attributes
+==========
 
-
-
-= USAGE:
-
+Usage
+=====
 Apply the wt_platformscheduler role and apply a valid environment with wt_common attributes
 
