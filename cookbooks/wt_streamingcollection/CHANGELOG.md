@@ -1,3 +1,6 @@
+## 1.1.3
+* Food critic warning
+
 ## 1.1.2
 * Fix the force-stop syntax for the uninstall
 
