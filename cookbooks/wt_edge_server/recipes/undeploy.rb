@@ -21,11 +21,11 @@ service "edge_server" do
   ignore_failure true
 end
 
-# force stop the service in case the stop failed
-service "edge_server" do
-  action :stop
-  stop_command "force-stop"
-  ignore_failure true
+# shell out to force-stop the service if it hasn't stopped cleanly
+execute "force-stop" do
+  command "sv force-stop edge_server"
+  action :run
+  returns [0,1]  
 end
 
 directory log_dir do

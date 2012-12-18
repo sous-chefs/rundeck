@@ -1,3 +1,6 @@
+## 1.0.8
+* Fix force-stop syntax on uninstall
+
 ## 1.0.7
 * replace node attribute access with instance variable in template
 
