@@ -54,14 +54,14 @@ directory mount_dir do
   group "root"
   mode 00755
   action :create
-  not_if "{File.exists?(node['wt_heatmaps_logconverter']['nfs_export'])}"
+  not_if {File.exists?(mount_dir)}
 end
 
 # create the directories the app needs to function
 [ install_dir , "#{install_dir}/conf" , "#{install_dir}/log_pusher" ].each do |dir|
   directory dir do 
-    owner "root"
-    group "root"
+    owner user
+    group group
     mode 00755
     recursive true
     action :create
@@ -160,7 +160,7 @@ if ENV["deploy_build"] == "true" then
     user  "root"
     group "root"
     cwd install_dir
-    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball} && chown -R #{user}::#{group} *"
   end
 
   # delete the application tarball
