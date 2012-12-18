@@ -1,4 +1,7 @@
-## 1.0.2
+## 1.0.3:
+* Fixed syntax on the force-stop for uninstalls
+
+## 1.0.2:
 * Fixed inconsistency in accessing node attributes (symbols vs strings)
 
 ## 1.0.1:

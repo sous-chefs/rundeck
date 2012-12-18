@@ -1,3 +1,6 @@
+## 1.1.3
+* Fix the syntax of the force-stop on uninstall
+
 ## 1.1.2
 * Remove an unused "user" variable being passed into the service control erb
 * Remove the hardcoded value for MAIN that was passed into the service control erb as a variable
