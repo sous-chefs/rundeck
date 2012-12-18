@@ -4,8 +4,9 @@
 * resource/provider for managing IIS virtual directories
 * IIS 6.0 support
 
-## v1.3.3(Webtrends Only)
-* Adding missing returns line to config resource
+## v1.3.4:
+
+* [COOK-2050] - IIS cookbook does not have returns resource defined
 
 ## v1.3.2:
 

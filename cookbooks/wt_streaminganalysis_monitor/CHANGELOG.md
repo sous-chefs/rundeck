@@ -1,3 +1,7 @@
+## 1.0.4:
+* Fix force-stop syntax on uninstall
+* Remove string interpolation in the uninstall
+
 ## 1.0.3:
 * Improved consistency of node attribute access
 
