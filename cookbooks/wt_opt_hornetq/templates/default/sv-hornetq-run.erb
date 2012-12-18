@@ -1,9 +1,0 @@
-#!/bin/sh
-ulimit -n 10240
-
-export RANDFILE=/dev/urandom;
-export HORNETQ_HOME=<%=@options[:basedir]%>/current;
-exec 2>&1
-exec \
-	chpst -u jboss <%=@options[:basedir]%>/current/bin/run.sh
-
