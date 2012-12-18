@@ -1,12 +1,11 @@
-## v2.0.0:
+## v1.1.2:
 
-This version uses platform_family attribute, making the cookbook incompatible
-with older versions of Chef/Ohai, hence the major version bump.
+* [COOK-2020] - Add setup option attributes to Git Windows package
+  install
 
-* [COOK-1668] - git cookbook fails to run due to bad platform_family
-  call
-* [COOK-1759] - git::source needs additional package for rhel
-  platform_family
+## v1.1.0:
+
+* [COOK-1943] - Update to git 1.8.0
 
 ## v1.0.2:
 
