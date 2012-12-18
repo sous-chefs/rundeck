@@ -86,7 +86,9 @@ template "#{iis_action_center_dir}\\web.config" do
      :cass_thrift_port     => node['cassandra']['cassandra_thrift_port'],
 
  # other settings
-     :monitor_host  => node['wt_messaging_monitoring']['monitor_hostname']
+     :monitor_host  => node['wt_messaging_monitoring']['monitor_hostname'],
+
+     :actioncenter_public_key    => node['wt_actioncenter']['actioncenter_public_key']
 
  )
 end
