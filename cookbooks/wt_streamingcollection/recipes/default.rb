@@ -39,7 +39,7 @@ directory log_dir do
 end
 
 # create the install directory
-directory "#{install_dir}" do
+directory install_dir do
   owner "root"
   group "root"
   mode 00755

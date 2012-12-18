@@ -1,8 +1,9 @@
+name              "postfix"
 maintainer        "Opscode, Inc."
 maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
 description       "Installs and configures postfix for client or outbound relayhost, or to do SASL auth"
-version           "1.2.2"
+version           "2.1.2"
 recipe            "postfix", "Installs and configures postfix"
 recipe            "postfix::sasl_auth", "Set up postfix to auth to a server with sasl"
 recipe            "postfix::aliases", "Manages /etc/aliases"
@@ -67,6 +68,11 @@ attribute "postfix/smtp_sasl_security_options",
   :display_name => "Postfix SMTP SASL Security Options",
   :description => "Sets the value of smtp_sasl_security_options in main.cf",
   :default => "noanonymous"
+
+attribute "postfix/inet_interfaces",
+  :display_name => "Postfix listening interfaces",
+  :description => "Interfaces to listen to, all or loopback-only. default is all for master mail_type, and loopback-only otherwise",
+  :default => ""
 
 attribute "postfix/smtp_tls_cafile",
   :display_name => "Postfix SMTP TLS CA File",
