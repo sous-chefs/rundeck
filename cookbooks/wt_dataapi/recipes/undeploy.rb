@@ -22,6 +22,13 @@ service "dataapi" do
   ignore_failure true
 end
 
+# shell out to force-stop the service if it hasn't stopped cleanly
+execute "force-stop" do
+  command "sv force-stop dataapi"
+  action :run
+  returns [0,1]  
+end
+
 directory log_dir do
   recursive true
   action :delete
