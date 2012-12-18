@@ -4,8 +4,8 @@
         "cobbler": "= 1.0.8", 
         "nagios": "= 3.0.0",
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.8", 
-        "windows": "= 1.3.6", 
+        "webtrends_server": "= 1.8.9", 
+        "windows": "= 1.6.0", 
         "wt_base": "= 1.0.2"
     }, 
     "default_attributes": {
