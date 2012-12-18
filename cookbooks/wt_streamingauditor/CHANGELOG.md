@@ -1,3 +1,6 @@
+## 1.0.14:
+* Fix force-stop syntax on the uninstall
+
 ## 1.0.13
 * Fixed a bug introduced in .12
 
