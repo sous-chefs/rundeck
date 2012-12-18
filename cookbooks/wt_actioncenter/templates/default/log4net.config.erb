@@ -27,7 +27,7 @@
 
   <!-- Setup the root category, add the appenders and set the default level -->
   <root>
-    <level value="DEBUG" />
+    <level value="<%= @log_level %>" />
     <appender-ref ref="LogFileAppender" />
   </root>
   </log4net>
