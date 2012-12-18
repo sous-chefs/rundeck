@@ -15,7 +15,8 @@ end
  
 #Properties
 user_data = data_bag_item('authorization', node.chef_environment)
-rsa_user = user_data['wt_common']['ui_user']
+rsa_user = user_data['wt_common']['ui_user']i
+ui_user   = user_data['wt_common']['ui_user']
 install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter"
 iis_action_center_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter\\bin\\_PublishedWebsites\\Webtrends.ActionCenterService"
 install_logdir = node['wt_common']['install_log_dir_windows']
@@ -136,6 +137,12 @@ template "#{iis_action_center_dir}\\log4net.config" do
  variables(
    :log_level => node['wt_actioncenter']['log_level']
  )
+end
+
+wt_base_icacls iis_action_center_dir do
+ user ui_user
+ perm :modify
+ action :grant
 end
 
 iis_config auth_cmd do
