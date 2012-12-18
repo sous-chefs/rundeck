@@ -1,3 +1,6 @@
+## 1.1.2
+* Fix the force-stop syntax for the uninstall
+
 ## 1.1.1
 * Same as 1.1.0, it was a failed experiment.
 
