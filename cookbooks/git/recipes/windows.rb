@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: git
-# Recipe:: server
+# Recipe:: windows
 #
-# Copyright 2009, Opscode, Inc.
+# Copyright 2008-2009, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,23 +16,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if node["platform"] == "windows"
-  return "#{node['platform']} is not supported by the #{cookbook_name}::#{recipe_name} recipe"
+windows_package node['git']['display_name'] do
+  action :install
+  source node['git']['url']
+  checksum node['git']['checksum']
+  installer_type :inno
 end
 
-include_recipe "git"
+# Git is installed to Program Files (x86) on 64-bit machines and
+# 'Program Files' on 32-bit machines
+PROGRAM_FILES = ENV['ProgramFiles(x86)'] || ENV['ProgramFiles']
 
-directory "/srv/git" do
-  owner "root"
-  group "root"
-  mode 00755
-end
-
-case node['platform_family']
-when "debian"
-  include_recipe "runit"
-  runit_service "git-daemon"
-else
-  log "Platform requires setting up a git daemon service script."
-  log "Hint: /usr/bin/git daemon --export-all --user=nobody --group=daemon --base-path=/srv/git"
+windows_path "#{ PROGRAM_FILES }\\Git\\Cmd" do
+  action :add
 end
