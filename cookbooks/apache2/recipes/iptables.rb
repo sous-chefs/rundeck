@@ -1,9 +1,8 @@
 #
-# Author:: Seth Chisamore <schisamo@opscode.com>
-# Cookbook Name:: python
-# Resource:: pip
+# Cookbook Name:: apache2
+# Recipe:: iptables
 #
-# Copyright:: 2011, Opscode, Inc <legal@opscode.com>
+# Copyright 2012, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,12 +17,4 @@
 # limitations under the License.
 #
 
-actions :install, :upgrade, :remove, :purge
-
-attribute :package_name, :kind_of => String, :name_attribute => true
-attribute :version, :default => nil
-attribute :timeout, :default => 900
-attribute :virtualenv, :kind_of => String
-attribute :user, :regex => Chef::Config[:user_valid_regex]
-attribute :group, :regex => Chef::Config[:group_valid_regex]
-attribute :options, :kind_of => String, :default => ''
+iptables_rule "port_apache"
