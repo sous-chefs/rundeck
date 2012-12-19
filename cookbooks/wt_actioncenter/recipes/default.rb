@@ -14,6 +14,7 @@ if ENV["deploy_build"] == "true" then
 end
  
 #Properties
+static_content_dest = node['wt_actioncenter']['static_content_dest']
 user_data = data_bag_item('authorization', node.chef_environment)
 rsa_user = user_data['wt_common']['ui_user']
 ui_user   = user_data['wt_common']['ui_user']
@@ -115,6 +116,11 @@ template "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
  user node['current_user']
  perm :modify
  action :grant
+end
+
+#Copy static image files
+execute "xcopy" do
+	command "#{install_dir}\\Content\\Images #{static_content_dest} " 
 end
 
 execute "asp_regiis_pi" do   
