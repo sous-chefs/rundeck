@@ -14,8 +14,9 @@ if ENV["deploy_build"] == "true" then
 end
  
 #Properties
-static_content_dest = node['wt_actioncenter']['static_content_dest']
+static_content_version="v1"
 user_data = data_bag_item('authorization', node.chef_environment)
+static_content_dest = node['wt_actioncenter']['static_content_dest']
 rsa_user = user_data['wt_common']['ui_user']
 ui_user   = user_data['wt_common']['ui_user']
 install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter"
@@ -92,6 +93,7 @@ template "#{iis_action_center_dir}\\web.config" do
      :monitor_host  => node['wt_messaging_monitoring']['monitor_hostname'],
 
      :actioncenter_public_key    => node['wt_actioncenter']['actioncenter_public_key']
+     :static_content_url => node['wt_actioncenter']['static_content_base_url']static_content_version
 
  )
 end
@@ -120,7 +122,7 @@ end
 
 #Copy static image files
 execute "xcopy" do
-	command "xcopy #{iis_action_center_dir}\\Content\\Images #{static_content_dest} " 
+	command "xcopy #{iis_action_center_dir}\\Content\\Images #{static_content_dest}#{static_content_version} " 
 end
 
 execute "asp_regiis_pi" do   
