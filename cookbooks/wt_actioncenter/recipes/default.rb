@@ -151,7 +151,8 @@ end
 
 directory log_dir do
  action :create
- rights :full_control, user_data['wt_common']['ui_user']
+
+ rights :write, user_data['wt_common']['ui_user']
 end
 
 iis_config auth_cmd do
