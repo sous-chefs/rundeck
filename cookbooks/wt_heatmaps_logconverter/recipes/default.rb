@@ -160,7 +160,15 @@ if ENV["deploy_build"] == "true" then
     user  "root"
     group "root"
     cwd install_dir
-    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball} && chown -R #{user}::#{group} *"
+    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+  end
+
+  # Chown the install_dir
+  execute "chown" do
+    user  "root"
+    group "root"
+    cwd install_dir
+    command "chown -R #{user}::#{group} *"
   end
 
   # delete the application tarball
