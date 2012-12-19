@@ -63,11 +63,6 @@ if ENV["deploy_build"] == "true" then
  end
 end
  
-directory log_dir do
- recursive true
- action :create
- rights :write, user_data['wt_common']['ui_user']
-end
 
 template "#{iis_action_center_dir}\\web.config" do
  source "web.config.erb"
@@ -146,6 +141,12 @@ wt_base_icacls iis_action_center_dir do
  user ui_user
  perm :modify
  action :grant
+end
+
+directory log_dir do
+ recursive true
+ action :create
+ rights :write, user_data['wt_common']['ui_user']
 end
 
 iis_config auth_cmd do
