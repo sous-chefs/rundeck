@@ -150,9 +150,8 @@ wt_base_icacls iis_action_center_dir do
 end
 
 directory log_dir do
- recursive true
  action :create
- rights :write, user_data['wt_common']['ui_user']
+ rights :full_control, user_data['wt_common']['ui_user']
 end
 
 iis_config auth_cmd do
