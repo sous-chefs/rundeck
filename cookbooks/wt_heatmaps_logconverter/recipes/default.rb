@@ -168,7 +168,7 @@ if ENV["deploy_build"] == "true" then
     user  "root"
     group "root"
     cwd install_dir
-    command "chown -R #{user}::#{group} *"
+    command "chown -R #{user}:#{group} *"
   end
 
   # delete the application tarball
