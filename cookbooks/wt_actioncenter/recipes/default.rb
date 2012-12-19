@@ -121,7 +121,7 @@ end
 #Copy static image files
 execute "xcopy" do
 	user "#{rsa_user}"
-	command "#{iis_action_center_dir}\\Content\\Images #{static_content_dest} " 
+	command "xcopy #{iis_action_center_dir}\\Content\\Images #{static_content_dest} " 
 end
 
 execute "asp_regiis_pi" do   
