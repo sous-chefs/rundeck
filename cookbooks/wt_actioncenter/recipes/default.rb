@@ -120,6 +120,7 @@ end
 
 #Copy static image files
 execute "xcopy" do
+	user "#{rsa_user}"
 	command "#{iis_action_center_dir}\\Content\\Images #{static_content_dest} " 
 end
 
