@@ -92,7 +92,7 @@ template "#{iis_action_center_dir}\\web.config" do
  # other settings
      :monitor_host  => node['wt_messaging_monitoring']['monitor_hostname'],
 
-     :actioncenter_public_key    => node['wt_actioncenter']['actioncenter_public_key']
+     :actioncenter_public_key    => node['wt_actioncenter']['actioncenter_public_key'],
      :static_content_url => node['wt_actioncenter']['static_content_base_url']static_content_version
 
  )
