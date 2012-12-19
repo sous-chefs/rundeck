@@ -184,7 +184,8 @@
 	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt325/.lastSuccessful/artifacts.zip",
 		"actioncenter_public_key":"mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw=="
 ,
-"static_content_dest":"\\\\10.164.0.210\\actioncenter\\v1"
+"static_content_dest":"\\\\10.164.0.210\\actioncenter\\",
+"static_content_base_url":"http://sops01.stagingdmz/actioncenter/"
 	},
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
