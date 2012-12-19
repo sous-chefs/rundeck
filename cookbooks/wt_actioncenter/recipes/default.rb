@@ -122,7 +122,7 @@ end
 
 #Copy static image files
 execute "xcopy" do
-	command "xcopy #{iis_action_center_dir}\\Content\\Images #{static_content_dest}#{static_content_version} " 
+	command "xcopy #{iis_action_center_dir}\\Content\\Images #{static_content_dest}#{static_content_version} /y" 
 end
 
 execute "asp_regiis_pi" do   
