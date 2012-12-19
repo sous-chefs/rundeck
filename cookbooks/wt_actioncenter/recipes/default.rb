@@ -46,11 +46,6 @@ directory install_dir do
  rights :write, user_data['wt_common']['ui_user']
 end
  
-directory log_dir do
- recursive true
- action :create
- rights :write, user_data['wt_common']['ui_user']
-end
  
 iis_site 'ActionCenter' do
  protocol :http
@@ -68,6 +63,12 @@ if ENV["deploy_build"] == "true" then
  end
 end
  
+directory log_dir do
+ recursive true
+ action :create
+ rights :write, user_data['wt_common']['ui_user']
+end
+
 template "#{iis_action_center_dir}\\web.config" do
  source "web.config.erb"
  variables(    
