@@ -21,7 +21,7 @@ Attributes
 * `node['zookeeper']['default']['config_dir']` - ZooKeeper configuration files directory.
 * `node['zookeeper']['default']['log_dir']` - Log directory.
 * `node['zookeeper']['default']['data_dir']` - Data directory.
-* `node['zookeeper']['default']['snapshot_dir']` - Snapshot directory.
+* `node['zookeeper']['default']['data_log_dir']` - Snapshot directory.
 
 * `node['zookeeper']['default']['tick_time']` - The number of milliseconds of each tick.
 * `node['zookeeper']['default']['init_limit']` - The number of ticks that the initial synchronization phase can take.
