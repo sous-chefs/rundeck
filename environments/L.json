@@ -133,7 +133,7 @@
             "wrsread_group": "STAGINGDMZ\\L.WRS.Read"
         }, 
 	"wt_edge_server": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt320/43619:id/Edge-Server-Distribution-wModules-all.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt299/44984:id/Edge-Server-Distribution-wModules-all.tar.gz"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
