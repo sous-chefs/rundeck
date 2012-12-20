@@ -1,6 +1,8 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {}, 
+    "cookbook_versions": {
+      "wt_storm_streaming": "2.3.5"
+    }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
