@@ -4,8 +4,7 @@
   "json_class": "Chef::Role",
   "description": "Spark Master",
   "run_list": [
-    "recipe[spark::master]",
-    "role[shark]"
+    "recipe[spark::master]"
   ],
   "override_attributes": {
   }

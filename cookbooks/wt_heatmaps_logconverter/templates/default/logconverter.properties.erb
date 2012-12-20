@@ -2,10 +2,10 @@
 dcsidWhiteList= <%= @node['wt_heatmaps_logconverter']['dcsidWhiteList'] %>
 
 #sdc log location
-inputLogDir=<%= @node['wt_heatmaps_logconverter']['nfs_mount_dir'] %>/HMLogs
+inputLogDir=<%= @node['wt_heatmaps_logconverter']['nfs_mount_dir'] %>HMLogs
 
 #bizip settings
-bzipOutDir = <%= @node['wt_heatmaps_logconverter']['nfs_mount_dir'] %>/bziplogs
+bzipOutDir = <%= @node['wt_heatmaps_logconverter']['nfs_mount_dir'] %>bziplogs
 
 deleteLogs = <%= @node['wt_heatmaps_logconverter']['deleteLogs'] %>
 

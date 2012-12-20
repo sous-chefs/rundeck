@@ -7,6 +7,7 @@
     "name": "wt_labserver", 
     "override_attributes": {}, 
     "run_list": [
-        "recipe[wt_labserver]"
+        "recipe[wt_labserver]", 
+        "recipe[wt_publishver]"
     ]
 }

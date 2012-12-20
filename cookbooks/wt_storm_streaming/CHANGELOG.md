@@ -1,5 +1,14 @@
+## 2.3.6
+* Changed "streaming.topology.zmq.data.znoderoot" in config.properties.erb
+
+## 2.3.5
+* Adding new pull address for zmq.
+
+## 2.3.4
+* Adding new dep for guice-assisted injection.
+
 ## 2.3.3
-* Added "streaming.topology.zmq.data.pull.address" in config.properties.erb
+* Removed unusued template variable
 
 ## 2.3.2
 * Set default of saving the offset to ZK true.

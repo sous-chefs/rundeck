@@ -11,7 +11,7 @@ log_dir      = "#{node['wt_common']['log_dir_linux']}/wt_heatmaps_logconverter"
 install_dir  = "#{node['wt_common']['install_dir_linux']}/wt_heatmaps_logconverter"
 
 # stop the service
-service "wt_heatmaps_logconverter" do
+service "hmlc" do
   action [:stop, :disable]
 end
 

@@ -5,13 +5,26 @@
 * [COOK-666] `windows_package` should support CoApp packages
 * windows_registry :force_modify action should use RegNotifyChangeKeyValue from WinAPI
 * WindowsRebootHandler/`windows_reboot` LWRP should support kicking off subsequent chef run on reboot.
-* Support all types of registry keys with `type` parameter in `windows_registry`.
 
-## v1.3.6(Webtrends):
-* Merged in https://github.com/opscode-cookbooks/windows/pull/11 to fix ruby error
+## v1.6.0:
 
-## v1.3.5(Webtrends):
-* Removed version hard code for rubyzip
+* [COOK-2048] - undefined method for Falseclass on task :change when
+  action is :nothing (and task doesn't exist)
+* [COOK-2049] - Add `windows_pagefile` resource
+
+## v1.5.0:
+
+* [COOK-1251] - Fix LWRP "NotImplementedError"
+* [COOK-1921] - Task LWRP will return true for resource exists when no
+  other scheduled tasks exist
+* [COOK-1932] - Include :change functionality to windows task lwrp
+
+## v1.4.0:
+
+* [COOK-1571] - windows_package resource (with msi provider) does not
+accept spaces in filename
+* [COOK-1581] - Windows cookbook needs a scheduled tasks LWRP
+* [COOK-1584] - `windows_registry` should support all registry types
 
 ## v1.3.4:
 

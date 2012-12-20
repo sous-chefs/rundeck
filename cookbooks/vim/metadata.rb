@@ -8,4 +8,3 @@ version          "1.0.2"
 %w{debian ubuntu arch redhat centos fedora scientific}.each do |os|
   supports os
 end
-

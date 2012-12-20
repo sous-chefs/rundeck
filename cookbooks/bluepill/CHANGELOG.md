@@ -1,3 +1,8 @@
+## v2.1.0:
+
+* [COOK-1295] - The bluepill cookbook does not create the default log file
+* [COOK-1840] - Enable bluepill to log to rsyslog
+
 ## v2.0.0:
 
 This version uses platform_family attribute (in the provider), making

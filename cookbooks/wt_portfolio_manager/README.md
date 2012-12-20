@@ -4,9 +4,9 @@ Installs the Webtrends Portfolio Manager site on Windows servers
 
 Requirements
 ============
-Recipes to be installed prior to running this cookbook. Should be included as part of the wt_PortfolioManager role.
+Recipes to be installed prior to running this cookbook. Should be included as part of the wt_portfolio_manager role.
 
-* webpi, windows, 
+* webpi, windows cookbooks
 * recipe[ms_dotnet4]
 * role[iis]
 * recipe[iis::mod_auth_windows]

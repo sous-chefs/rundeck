@@ -1,3 +1,23 @@
+## v2.1.2:
+
+* [COOK-2010] - postfix sasl_auth does not include the sasl plain
+  package
+
+## v2.1.0:
+
+* [COOK-1233] - optional configuration for canonical maps
+* [COOK-1660] - allow comma separated arrays in aliases
+* [COOK-1662] - allow inet_interfaces configuration via attribute
+
+## v2.0.0:
+
+This version uses platform_family attribute, making the cookbook incompatible
+with older versions of Chef/Ohai, hence the major version bump.
+
+* [COOK-1535] - `smtpd_cache` should be in `data_directory`, not `queue_directory`
+* [COOK-1790] - /etc/aliases template is only in ubuntu directory
+* [COOK-1792] - add minitest-chef tests to postfix cookbook
+
 ## v1.2.2:
 
 * [COOK-1442] - Missing ['postfix']['domain'] Attribute causes initial installation failure
