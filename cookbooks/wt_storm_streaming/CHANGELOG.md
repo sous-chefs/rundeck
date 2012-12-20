@@ -1,3 +1,6 @@
+## 2.3.6
+* Changed "streaming.topology.zmq.data.znoderoot" in config.properties.erb
+
 ## 2.3.5
 * Adding new pull address for zmq.
 
