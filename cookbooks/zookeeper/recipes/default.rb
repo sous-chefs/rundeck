@@ -29,6 +29,25 @@ node.save # needed to populate attributes
 zookeeper_nodes = zookeeper_search('zookeeper').sort
 raise Chef::Exceptions::RoleNotFound, "zookeeper role not found" if zookeeper_nodes.count == 0
 
+
+
+
+###########################################################################
+# This block facilitates moving from zookeeper 3.3.6 to 3.4.5.  At some
+# point in the future we can remove this (ie- when all our environments)
+# are off the older versions of this cookbook.
+
+file "/etc/cron.hourly/zkRollSnapshot" do
+  action :delete
+end
+
+
+###########################################################################
+
+
+
+
+
 # setup zookeeper group
 group 'zookeeper'
 
@@ -41,12 +60,12 @@ user 'zookeeper' do
 end
 
 # create the config directory
-directory node.zookeeper_attrib(:config_dir) do
-	owner 'root'
-	group 'root'
-	recursive true
-	mode 00755
-end
+#directory node.zookeeper_attrib(:config_dir) do
+#	owner 'root'
+#	group 'root'
+#	recursive true
+#	mode 00755
+#end
 
 # create the install directory
 directory node.zookeeper_attrib(:install_dir) do
@@ -64,8 +83,8 @@ directory node.zookeeper_attrib(:data_dir) do
 	mode 00744
 end
 
-# create the snapshot directory
-directory node.zookeeper_attrib(:snapshot_dir) do
+# create the data log directory
+directory node.zookeeper_attrib(:data_log_dir) do
 	owner 'zookeeper'
 	group 'zookeeper'
 	recursive true
@@ -81,7 +100,7 @@ directory node.zookeeper_attrib(:log_dir) do
 end
 
 # force ownership change in case these directories were created by other means
-[ node.zookeeper_attrib(:install_dir), node.zookeeper_attrib(:data_dir), node.zookeeper_attrib(:snapshot_dir), node.zookeeper_attrib(:log_dir) ].each do |dir|
+[ node.zookeeper_attrib(:install_dir), node.zookeeper_attrib(:data_dir), node.zookeeper_attrib(:data_log_dir), node.zookeeper_attrib(:log_dir) ].each do |dir|
 	execute dir do
 		command "chown -R zookeeper:zookeeper #{dir}"
 		action :run
@@ -113,12 +132,6 @@ link "#{node.zookeeper_attrib(:install_dir)}/current" do
 	to "#{node.zookeeper_attrib(:install_dir)}/zookeeper-#{node.zookeeper_attrib(:version)}"
 end
 
-# delete original config folder so there's no confusion about which is the real config location
-directory "#{node.zookeeper_attrib(:install_dir)}/current/conf" do
-	recursive true
-	action :delete
-end
-
 # manage configs
 %w[configuration.xsl java.env log4j.properties zoo.cfg].each do |template_file|
 	template "#{node.zookeeper_attrib(:config_dir)}/#{template_file}" do
@@ -148,14 +161,6 @@ template "#{node.zookeeper_attrib(:install_dir)}/current/bin/zkServer.sh" do
 	variables({
 		:java_jmx_port => node.zookeeper_attrib(:jmx_port)
 	})
-end
-
-# setup snapshot roller cron job
-template '/etc/cron.hourly/zkRollSnapshot' do
-	source 'zkRollSnapshot.erb'
-	owner 'zookeeper'
-	group 'zookeeper'
-	mode 00555
 end
 
 # stop zookeeper if setting up runit service for the first time
