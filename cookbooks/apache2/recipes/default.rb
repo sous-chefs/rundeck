@@ -67,6 +67,7 @@ if platform_family?("rhel", "fedora", "arch", "suse", "freebsd")
 
   execute "generate-module-list" do
     command "/usr/local/bin/apache2_module_conf_generate.pl #{node['apache']['lib_dir']} #{node['apache']['dir']}/mods-available"
+    action :nothing
   end
 
   %w{a2ensite a2dissite a2enmod a2dismod}.each do |modscript|
@@ -107,10 +108,12 @@ if platform_family?("freebsd")
     action :delete
   end
 
-  %w{httpd-autoindex.conf httpd-dav.conf httpd-default.conf httpd-info.conf
-     httpd-languages.conf httpd-manual.conf httpd-mpm.conf
-     httpd-multilang-errordoc.conf httpd-ssl.conf httpd-userdir.conf
-     httpd-vhosts.conf}.each do |f|
+  %w{
+      httpd-autoindex.conf httpd-dav.conf httpd-default.conf httpd-info.conf
+      httpd-languages.conf httpd-manual.conf httpd-mpm.conf
+      httpd-multilang-errordoc.conf httpd-ssl.conf httpd-userdir.conf
+      httpd-vhosts.conf
+    }.each do |f|
 
     file "#{node['apache']['dir']}/extra/#{f}" do
       action :delete
@@ -141,6 +144,16 @@ directory node['apache']['cache_dir'] do
   mode 00755
   owner "root"
   group node['apache']['root_group']
+end
+
+# Set the preferred execution binary - prefork or worker
+template "/etc/sysconfig/httpd" do
+  source "etc-sysconfig-httpd.erb"
+  owner "root"
+  group node['apache']['root_group']
+  mode 00644
+  notifies :restart, "service[apache2]"
+  only_if { platform_family?("rhel", "fedora") }
 end
 
 template "apache2.conf" do
@@ -183,7 +196,7 @@ template "#{node['apache']['dir']}/ports.conf" do
   source "ports.conf.erb"
   owner "root"
   group node['apache']['root_group']
-  variables :apache_listen_ports => node['apache']['listen_ports'].map{|p| p.to_i}.uniq
+  variables :apache_listen_ports => node['apache']['listen_ports'].map { |p| p.to_i }.uniq
   mode 00644
   notifies :restart, "service[apache2]"
 end
@@ -201,7 +214,9 @@ node['apache']['default_modules'].each do |mod|
   include_recipe "apache2::#{module_recipe_name}"
 end
 
-apache_site "default" if node['apache']['default_site_enabled']
+apache_site "default" do
+  enable !!node['apache']['default_site_enabled']
+end
 
 service "apache2" do
   action :start
