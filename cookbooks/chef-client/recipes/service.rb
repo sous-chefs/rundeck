@@ -23,7 +23,7 @@ require 'chef/version_constraint'
 require 'chef/exceptions'
 
 root_group = value_for_platform_family(
-  ["openbsd", "freebsd", "mac_os_x"] => { "default" => "wheel" },
+  ["openbsd", "freebsd", "mac_os_x"] => "wheel",
   "default" => "root"
 )
 
@@ -82,8 +82,9 @@ when "init"
   #argh?
   dist_dir, conf_dir = value_for_platform_family(
     ["debian"] => ["debian", "default"],
+    ["fedora"] => ["redhat", "sysconfig"],
     ["rhel"] => ["redhat", "sysconfig"],
-    ["suse"] => ["suse", "sysconfig"],
+    ["suse"] => ["suse", "sysconfig"]
   )
 
   template "/etc/init.d/chef-client" do
@@ -280,7 +281,8 @@ when "launchd"
       source "com.opscode.chef-client.plist.erb"
       mode 0644
       variables(
-        :launchd_mode => node["chef_client"]["launchd_mode"]
+        :launchd_mode => node["chef_client"]["launchd_mode"],
+        :client_bin => client_bin
       )
     end
 
