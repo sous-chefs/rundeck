@@ -58,7 +58,7 @@
         "masterdbuser": "ConfigSvc"
     }, 
     "wt_streamingmanagementservice": {
-        "db_pwd": "bijoux", 
+        "db_pwd": "Bijoux1", 
         "db_user": "wtUI"
     }
 }
