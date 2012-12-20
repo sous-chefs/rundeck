@@ -1,3 +1,6 @@
+## 1.1.3
+* Fix force-stop syntax on uninstall
+
 ## 1.1.2
 * Added exploratory parameters: explore_timeout and explore_quietperiod
 

@@ -78,7 +78,7 @@ zookeeper_port = node['zookeeper']['client_port']
 zookeeper_pairs = Array.new
 if not Chef::Config.solo
     search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
-        zookeeper_pairs << n[:fqdn]
+        zookeeper_pairs << n['fqdn']
     end
 end
 
@@ -196,7 +196,7 @@ if node.attribute?("nagios")
     #Create a nagios nrpe check for the log file
     nagios_nrpecheck "wt_garbage_collection_limit_reached" do
         command "#{node['nagios']['plugin_dir']}/check_log"
-        parameters "-F /var/log/webtrends/topagg/#{node[:wt_kafka_topagg][:name]}.log -O /tmp/#{node[:wt_kafka_topagg][:name]}_old.log -q 'GC overhead limit exceeded'"
+        parameters "-F /var/log/webtrends/topagg/#{node['wt_kafka_topagg']['name']}.log -O /tmp/#{node['wt_kafka_topagg']['name']}_old.log -q 'GC overhead limit exceeded'"
         action :add
     end
 end

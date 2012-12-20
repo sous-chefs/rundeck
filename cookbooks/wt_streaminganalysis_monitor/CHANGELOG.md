@@ -1,3 +1,10 @@
+## 1.0.4:
+* Fix force-stop syntax on uninstall
+* Remove string interpolation in the uninstall
+
+## 1.0.3:
+* Improved consistency of node attribute access
+
 ## 1.0.2:
 * Added the attribute 'storm.stats.graphite.regex' and changed the default graphite push to 1 minute.
 

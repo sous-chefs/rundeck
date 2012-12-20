@@ -2,23 +2,23 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "java": "= 1.6.0", 
-        "nagios": "= 2.0.0", 
+        "nagios": "= 3.0.0", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.8", 
-        "windows": "= 1.3.6", 
+        "webtrends_server": "= 1.8.9", 
+        "windows": "= 1.6.0", 
         "wt_analytics_ui": "= 1.1.6", 
-        "wt_base": "= 1.0.2", 
+        "wt_base": "= 1.0.3", 
         "wt_cam": "= 1.0.9", 
         "wt_data_deleter": "= 1.0.4", 
         "wt_devicedataupdater": "= 0.1.1", 
         "wt_logpreproc": "= 1.0.8", 
-        "wt_monitoring": "= 0.0.2", 
-        "wt_netacuity": "= 1.0.10", 
+        "wt_monitoring": "= 1.0.0", 
+        "wt_netacuity": "= 1.0.12", 
         "wt_platformscheduler": "= 1.0.12", 
         "wt_roadrunner": "= 1.1.2", 
         "wt_search": "= 1.0.10", 
         "wt_sync": "= 1.0.6", 
-        "wt_xd": "= 1.0.2"
+        "wt_xd": "= 1.0.3"
     }, 
     "default_attributes": {
         "authorization": {
@@ -289,7 +289,7 @@
             "host": "ausagedb01.staging.dmz"
         }, 
         "wt_xd": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36325:id/artifacts.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/45036:id/artifacts.zip", 
             "environment": "support-staging"
         }, 
         "zookeeper": {

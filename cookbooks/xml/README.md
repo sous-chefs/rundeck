@@ -1,18 +1,36 @@
 Description
-====
+===========
 
 Installs development package for libxml.
 
 Requirements
-====
+============
 
-Debian, Ubuntu, CentOS, Red Hat, Scientific, Fedora, SUSE.
+Debian, Ubuntu, CentOS, Red Hat, Scientific, Fedora, SUSE, ArchLinux
+
+Attributes
+==========
+
+* `node['xml']['packages']` - Array of package names that should be
+  installed
+
+Recipes
+=======
+
+## default
+
+Installs the development packages for libxml2 and libxslt.
+
+## ruby
+
+Installs the nokogiri gem into Chef's Ruby environment so it can be
+used in recipes.
 
 License and Author
-====
+==================
 
-Author:: Joshua Timberman (<joshua@opscode.com>)
-Copyright:: 2009-2011, Opscode, Inc.
+- Author:: Joshua Timberman (<joshua@opscode.com>)
+- Copyright:: 2009-2012, Opscode, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

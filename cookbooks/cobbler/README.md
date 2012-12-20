@@ -26,12 +26,12 @@ Node attributes are set under the `cobbler` namespace.
 * pxe_just_once - set true disable PXE booting after install
 * subnets - array of networks served by DHCP. 
 
-
 Usage
 =====
 
 Add the cobbler recipe to the node's run list. If you want Cobbler to
-manage your DHCP service configure a node attribute with your subnet(s):
+manage your DHCP service add the following to your environment (or
+directly on the node):
 
     "cobbler": {
       "subnets": {
@@ -47,8 +47,10 @@ License and Author
 ==================
 
 Author:: Eric Heydrick <eheydrick@gmail.com>
+Author:: Tim Smith <tsmith84@gmail.com>
 
 Copyright:: 2011 Eric Heydrick
+Copyright:: 2012 Tim Smith
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -17,7 +17,7 @@ chkconfig chef-client on
 mkdir /etc/chef
 
 # fetch validation.pem
-wget -O /etc/chef/validation.pem http://$http_server/validation.pem
+wget -O /etc/chef/validation.pem http://$http_server/\$dnsdomainname.pem
 
 # create client.rb
 cat > /etc/chef/client.rb << EOF

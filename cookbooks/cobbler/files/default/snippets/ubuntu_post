@@ -5,7 +5,7 @@
 
 #set nopxe = "d-i preseed/late_command string wget \"http://%s/cblr/svc/op/nopxe/system/%s\" -O /dev/null" % (http_server, system_name)
 #set fetch_scripts = "; wget http://%s/firstbootrc.sh -O /target/etc/rc.local ; chmod 755 /target/etc/rc.local ; wget http://%s/firstboot.sh -O /target/root/firstboot.sh ; chmod 755 /target/root/firstboot.sh" % (http_server, http_server)
-#set conf_chef = "; in-target mkdir /etc/chef; apt-install chef ; in-target wget -O /etc/chef/validation.pem http://%s/validation.pem" % http_server
+#set conf_chef = "; in-target mkdir /etc/chef; apt-install chef ; in-target wget -O /etc/chef/validation.pem http://%s/\$dnsdomainname.pem" % http_server
 #set copy_run_list = "; echo \"%s\" > /target/var/tmp/runlist" % run_list
 #set copy_env = "; echo %s > /target/var/tmp/environment" % environment
 #set cmd = $nopxe + $fetch_scripts + $conf_chef + $copy_run_list + $copy_env + "; exit 0"
