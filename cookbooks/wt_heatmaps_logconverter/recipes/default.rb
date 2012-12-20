@@ -16,6 +16,7 @@ end
 
 log_dir      = File.join(node['wt_common']['log_dir_linux'], "heatmaps_logconverter")
 install_dir  = File.join(node['wt_common']['install_dir_linux'], "heatmaps_logconverter")
+mount_dir    = node['wt_heatmaps_logconverter']['nfs_mount_dir']
 tarball      = node['wt_heatmaps_logconverter']['download_url'].split("/")[-1]
 java_home    = node['java']['java_home']
 download_url = node['wt_heatmaps_logconverter']['download_url']
@@ -25,7 +26,7 @@ java_opts = node['wt_heatmaps_logconverter']['java_opts']
 
 hadoop_datanodes = Array.new
 search(:node, "role:hadoop_datanode AND chef_environment:#{node.chef_environment}").each do |n|
-  hadoop_datanodes << n[:fqdn]
+  hadoop_datanodes << n['fqdn']
 end
 hadoop_datanodes.sort!
 
@@ -42,33 +43,68 @@ directory log_dir do
   action :create
 end
 
-# create the install directory
-directory install_dir do
+# install nfs-common for the mount
+package "nfs-common" do
+  action :install
+end
+
+#create the mount dir (with a special check to make sure it doesn't fail)
+directory mount_dir do
   owner "root"
   group "root"
   mode 00755
-  recursive true
   action :create
+  not_if {File.exists?(mount_dir)}
 end
 
-# create the config directory
-directory "#{install_dir}/conf" do
-  owner "root"
-  group "root"
+# create the directories the app needs to function
+[ install_dir , "#{install_dir}/conf" , "#{install_dir}/log_pusher" ].each do |dir|
+  directory dir do 
+    owner user
+    group group
+    mode 00755
+    recursive true
+    action :create
+  end
+end
+
+# mount the NFS directory containing the logs
+mount mount_dir do
+  device node['wt_heatmaps_logconverter']['nfs_export']
+  fstype "nfs"
+  options "rw"
+  action [:mount, :enable]
+end
+
+# Make sure the user has a home directory and ssh dir
+directory "/home/#{user}/.ssh" do
+  owner user
+  group group
   mode 00755
-  recursive true
   action :create
+  recursive true
 end
 
-# create the log_pusher directory
-directory "#{install_dir}/log_pusher" do
-  owner "root"
-  group "root"
-  mode 00755
-  recursive true
+# add the hadoop user private key
+auth_dbag = data_bag_item('authorization', node.chef_environment)
+
+file "/home/#{user}/.ssh/config" do
   action :create
+  owner user
+  group group
+  mode 00600
+  content "StrictHostKeyChecking no"
 end
 
+file "/home/#{user}/.ssh/id_rsa" do
+  action :create
+  owner user
+  group group
+  mode 00600
+  content auth_dbag['hadoop']['private_key']
+end
+
+# setup the log pushed script and the cron job that kicks it off
 template "#{install_dir}/log_pusher/log_pusher.sh" do
   source  "log_pusher.sh.erb"
   owner "root"
@@ -80,12 +116,12 @@ template "#{install_dir}/log_pusher/log_pusher.sh" do
 end
 
 cron "log_pusher" do
-  owner   user
-  group   group
+  user  user
   command "#{install_dir}/log_pusher/log_pusher.sh"
 end
 
-%w[logconverter.properties log4j.properties datanodes.conf ].each do | template_file|
+# template the config files
+%w[logconverter.properties log4j.properties datanodes.conf ].each do |template_file|
   template "#{install_dir}/conf/#{template_file}" do
     source  "#{template_file}.erb"
     owner "root"
@@ -93,9 +129,21 @@ end
     mode  00644
     variables(
       :install_dir => install_dir,
-      :datanodes => hadoop_datanodes
+      :datanodes => hadoop_datanodes,
+      :log_dir => log_dir
     )
   end
+end
+
+# template the init script
+template "/etc/init.d/hmlc" do
+  source  "hmlc.erb"
+  owner "root"
+  group "root"
+  mode  00755
+  variables(
+    :install_dir => install_dir
+  )
 end
 
 if ENV["deploy_build"] == "true" then
@@ -112,10 +160,8 @@ if ENV["deploy_build"] == "true" then
     user  "root"
     group "root"
     cwd install_dir
-    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball} && chown -R #{user}::#{group} *"
   end
-
-  processTemplates(install_dir, node)
 
   # delete the application tarball
   execute "delete_install_source" do
@@ -127,7 +173,7 @@ if ENV["deploy_build"] == "true" then
 
   # create the service
   service "hmlc" do
-    action :create
+    action [:enable, :start]
   end
 
 end

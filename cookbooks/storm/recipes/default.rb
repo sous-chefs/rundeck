@@ -42,8 +42,7 @@ end
 install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
 
 # setup storm group
-group "storm" do
-end
+group "storm"
 
 # setup storm user
 user "storm" do

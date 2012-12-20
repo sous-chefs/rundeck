@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_streamingcollection
+# Cookbook Name:: wt_kafka_topagg
 # Recipe:: undeploy
 #
 # Copyright 2012, Webtrends
@@ -19,6 +19,13 @@ end
 service "topagg" do
   action [:stop, :disable]
   ignore_failure true
+end
+
+# shell out to force-stop the service if it hasn't stopped cleanly
+execute "force-stop" do
+  command "sv force-stop topagg"
+  action :run
+  returns [0,1]  
 end
 
 directory log_dir do

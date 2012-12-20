@@ -1,9 +1,10 @@
-## Future
- * Set chef-client to run under runit
- * Include the delete-validation recipe with chef-client to delete the validation.pem file
- * Use platform_family not platform to determine the platform
+## 1.8.9
+ * Change the detection of the _default environment so that it fails the run, but doesn't kill the running daemon
+ * Add name metadata
+
 ## 1.8.8
-*  Added step to manually install rubyzip
+ * Added step to manually install rubyzip
+
 ## 1.8.7
  * Remove ability to disable NRPE install on CentOS.
  * Update the updater version to 10.14.4

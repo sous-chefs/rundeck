@@ -1,9 +1,0 @@
-= DESCRIPTION:
-Installs Webtrends heatmaps
-
-= REQUIREMENTS:
-
-= ATTRIBUTES:
-
-= USAGE:
-

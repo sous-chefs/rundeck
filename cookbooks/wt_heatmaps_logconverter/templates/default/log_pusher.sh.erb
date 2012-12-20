@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-exec 9><% @install_dir =%>/log_pusher/replicate.lock
+exec 9><%= @install_dir %>/log_pusher/replicate.lock
 if ! flock -n 9  ; then
         echo "another instance is running";
         exit 1
 fi
 
-QUEUE="<% @node['wt_heatmaps_logconverter']['nfs_mount_dir'] =%>/bziplogs"
-DATANODES=($(< <% @install_dir =%>/conf/datanodes.conf))
+QUEUE="<%= @node['wt_heatmaps_logconverter']['nfs_mount_dir'] %>/bziplogs"
+DATANODES=($(< <%= @install_dir %>/conf/datanodes.conf))
 HOSTNAME=$(hostname)
 
 # transfer logs to a random datanode

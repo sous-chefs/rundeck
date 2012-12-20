@@ -30,8 +30,8 @@ couchdb_tar_gz = File.join(Chef::Config[:file_cache_path], "/", "apache-couchdb-
 compile_flags = String.new
 dev_pkgs = Array.new
 
-case node['platform']
-when "debian", "ubuntu"
+case node['platform_family']
+when "debian"
 
   dev_pkgs << "libicu-dev"
   dev_pkgs << "libcurl4-openssl-dev"

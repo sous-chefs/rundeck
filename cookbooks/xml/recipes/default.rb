@@ -17,13 +17,7 @@
 # limitations under the License.
 #
 
-pkg_name = value_for_platform(
-  [ "centos", "redhat", "scientific", "suse", "fedora", "amazon" ] => { "default" => ["libxml2-devel","libxslt-devel"] },
-  [ "freebsd" ] => { "default" => ["libxml2","libxslt"] },
-  "default" => ["libxml2-dev", "libxslt-dev"]
-)
-
-pkg_name.each do |pkg|
+node['xml']['packages'].each do |pkg|
   package pkg do
     action :install
   end

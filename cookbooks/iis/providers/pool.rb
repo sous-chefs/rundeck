@@ -1,5 +1,6 @@
 #
 # Author:: Kendrick Martin (kendrick.martin@webtrends.com)
+# Contributor:: David Dvorak (david.dvorak@webtrends.com)
 # Cookbook Name:: iis
 # Provider:: pool
 #
@@ -51,6 +52,9 @@ action :config do
 	cmd = "#{appcmd} set apppool /apppool.name:#{@new_resource.pool_name} /enable32BitAppOnWin64:#{@new_resource.thirty_two_bit}"
 	Chef::Log.debug(cmd)
 	shell_out!(cmd)
+	cmd = "#{appcmd} set apppool /apppool.name:#{@new_resource.pool_name} /managedRuntimeVersion:v#{@new_resource.runtime_version}"
+	Chef::Log.debug(cmd) if @new_resource.runtime_version
+	shell_out!(cmd)
 	if @new_resource.pool_username != nil and @new_resource.pool_password != nil
 		cmd = "#{appcmd} set config /section:applicationPools"
 		cmd << " /[name='#{@new_resource.pool_name}'].processModel.identityType:SpecificUser"
@@ -97,6 +101,12 @@ action :restart do
   shell_out!("#{appcmd} start APPPOOL \"#{site_identifier}\"")
   @new_resource.updated_by_last_action(true)
   Chef::Log.info("#{@new_resource} restarted")
+end
+
+action :recycle do
+  shell_out!("#{appcmd} recycle APPPOOL \"#{site_identifier}\"")
+  @new_resource.updated_by_last_action(true)
+  Chef::Log.info("#{@new_resource} recycled")
 end
 
 def load_current_resource
