@@ -7,7 +7,6 @@
     "override_attributes": {}, 
     "run_list": [
       "recipe[capistrano::default]",
-      "recipe[screen::default]",
       "recipe[build-essential::default]",
       "recipe[ruby]",
       "recipe[git]",
