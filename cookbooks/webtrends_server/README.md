@@ -1,15 +1,19 @@
-= DESCRIPTION:
+Description
+===========
 
 Applies base OS setup for Ubuntu, Windows, and CentOS systems
 
-= REQUIREMENTS:
+Requirements
+============
 
 The world
 
-= ATTRIBUTES:
+Attributes
+==========
 
 None
 
-= USAGE:
+Usage
+=====
 
 The webtrends_server role should include each of the 3 recipes in its runlist.
