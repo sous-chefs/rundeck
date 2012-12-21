@@ -40,6 +40,9 @@ node['webtrends_server']['apt'].each do |aptrepo|
     else
       distribution node['lsb']['codename']
     end
+    if aptrepo.has_key? "arch"
+      arch aptrepo['arch']
+    end
     uri aptrepo['url']
     components aptrepo['components']
     key aptrepo['key']
