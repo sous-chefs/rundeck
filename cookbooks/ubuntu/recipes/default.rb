@@ -33,8 +33,8 @@ template "/etc/apt/sources.list" do
 end
 
 execute "set_locale" do
-  command "update-locale LANG=#{node['ubuntu']['locale']} LANGUAGE=#{node['ubuntu']['locale']}"
+  command "update-locale LC_ALL=#{node['ubuntu']['locale']}"
   action :run
   only_if { node['ubuntu']['locale'] }
-  not_if { "grep /etc/default/locale #{node['ubuntu']['locale']}" }
+  not_if { "grep LC_ALL=#{node['ubuntu']['locale']} /etc/default/locale" }
 end
