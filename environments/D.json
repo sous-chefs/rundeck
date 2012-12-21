@@ -7,7 +7,7 @@
         "webtrends_server": "= 1.8.9", 
         "windows": "= 1.6.0", 
         "wt_actioncenter": "= 1.0.5",
-        "wt_analytics_ui": "= 2.0.0", 
+        "wt_analytics_ui": "= 2.0.1", 
         "wt_base": "= 1.0.3", 
         "wt_data_deleter": "= 1.0.4", 
         "wt_devicedataupdater": "= 0.1.1", 
