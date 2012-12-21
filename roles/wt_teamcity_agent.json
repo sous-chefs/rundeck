@@ -1,0 +1,15 @@
+{
+  "name": "wt_teamcity_agent",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[java]"
+  ],
+  "description": "Team City Build Agents",
+  "chef_type": "role"
+}
