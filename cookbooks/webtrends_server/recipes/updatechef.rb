@@ -8,7 +8,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-new_version = "10.14.4"
+new_version = "10.16.2"
 
 if node['upgrade_chef'] == true
   node.set['upgrade_chef'] = false
