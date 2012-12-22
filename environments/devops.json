@@ -1,5 +1,33 @@
 {
   "default_attributes": {
+        "webtrends_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ],
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key",
+                    "name": "wtlab",
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
+                },
+                {
+                    "components": [
+                        "main"
+                    ],
+                    "distribution_suffix": "-0.10",
+                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key",
+                    "name": "wtlab-opscode",
+                    "url": "http://repo.staging.dmz/repo/apt/opscode"
+                }
+            ],
+            "yum": [
+                {
+                    "description": "Webtrends Repo",
+                    "name": "wtlab",
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
+                }
+            ]
+        }
   },
   "chef_type": "environment",
   "json_class": "Chef::Environment",
