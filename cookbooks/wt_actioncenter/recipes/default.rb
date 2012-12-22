@@ -14,15 +14,13 @@ if ENV["deploy_build"] == "true" then
 end
  
 #Properties
-static_content_version="v1"
 user_data = data_bag_item('authorization', node.chef_environment)
 static_content_dest = node['wt_actioncenter']['static_content_dest']
 rsa_user = user_data['wt_common']['ui_user']
 ui_user   = user_data['wt_common']['ui_user']
-install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter"
-iis_action_center_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter\\bin\\_PublishedWebsites\\Webtrends.ActionCenterService"
-install_logdir = node['wt_common']['install_log_dir_windows']
-log_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter\\bin\\_PublishedWebsites\\logs"
+install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter.Service"
+
+log_dir = node['wt_common']['log_dir_windows']
 app_pool = node['wt_actioncenter']['app_pool']
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
 http_port = node['wt_actioncenter']['port']
@@ -33,27 +31,18 @@ iis_pool app_pool do
  runtime_version "4.0"
  action [:add, :config]
 end
- 
-iis_site 'Default Web Site' do
- action [:stop, :delete]
-end
- 
-iis_pool 'DefaultAppPool' do
- action [:stop, :delete]
-end
- 
+  
 directory install_dir do
  recursive true
  action :create
  rights :write, user_data['wt_common']['ui_user']
 end
- 
- 
+  
 iis_site 'ActionCenter' do
  protocol :http
  port http_port
  application_pool app_pool
- path iis_action_center_dir
+ path install_dir
  action [:add,:start]
  retries 2
 end
@@ -65,7 +54,7 @@ wt_base_netlocalgroup "Performance Monitor Users" do
 end
 
 if ENV["deploy_build"] == "true" then
- windows_zipfile install_dir do
+ windows_zipfile node['wt_common']['install_dir_windows'] do
    source node['wt_actioncenter']['download_url']
    action :unzip
  end
@@ -93,7 +82,7 @@ template "#{iis_action_center_dir}\\web.config" do
      :monitor_host  => node['wt_messaging_monitoring']['monitor_hostname'],
 
      :actioncenter_public_key    => node['wt_actioncenter']['actioncenter_public_key'],
-     :static_content_url => node['wt_actioncenter']['static_content_base_url']+static_content_version
+     :static_content_url => node['wt_static_tag_host']['host']+node['wt_actioncenter']['static_content_appender']
 
  )
 end
