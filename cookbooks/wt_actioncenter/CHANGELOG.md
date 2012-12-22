@@ -1,6 +1,14 @@
 # CHANGELOG for wt_actioncenter
 
 This file is used to list changes made in each version of wt_actioncenter.
+## 1.1.3
+* Updating the ownership 
+## 1.1.2
+* Fixing static directory 
+
+## 1.1.1
+* Fixing path for pool
+
 ## 1.1.0
 * Pulled static content into its own recipe. 
 * Fixed pathing for iis site
