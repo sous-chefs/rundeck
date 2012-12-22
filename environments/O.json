@@ -19,7 +19,7 @@
         "wt_portfolio_manager": "= 1.1.16", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.3", 
-        "wt_storm_streaming": "= 2.3.6", 
+        "wt_storm_streaming": "= 2.3.2", 
         "wt_streaming_viz": "= 1.1.16", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
         "wt_streamingapi": "= 1.1.2", 
@@ -222,9 +222,7 @@
             "monitoring_enabled": "true"
         }, 
         "wt_netacuity": {
-            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz", 
-            "geo_url": "ogeo.staging.dmz", 
-            "version": "502"
+            "geo_url": "geo.staging.dmz"
         }, 
         "wt_portfolio_admin": {
             "account_ui_url": "https://oaccount.webtrends.com", 
@@ -252,7 +250,7 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.3/1212/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/45230:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 

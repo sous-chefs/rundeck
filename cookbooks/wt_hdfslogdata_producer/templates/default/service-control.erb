@@ -1,7 +1,12 @@
 #!/bin/sh
 
+
+
+# TODO: This script should be modified to use hdfs-log-producer.sh to start the job
+
+
 # Setup basic path information.
-MAIN="com.webtrends.hdfslogdata.ProducerDaemon"
+MAIN="com.webtrends.log.HDFSLogProducer"
 LOG_OUT="<%=File.join(@log_dir,"process.out")%>"
 LOG_ERR="<%=File.join(@log_dir,"process.err")%>"
 HOME_DIR="<%=@install_dir%>"
