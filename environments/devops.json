@@ -1,5 +1,23 @@
 {
   "default_attributes": {
+        "nagios": {
+            "client": {
+                "install_method": "package"
+            },
+            "multi_environment_monitoring": true,
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            },
+            "server_role": "nagios_xi"
+        },
+        "postfix": {
+            "relayhost": "pdxengmta01.webtrends.corp"
+        },
+        "snmp": {
+            "community": "DevOps",
+            "full_systemview": "true",
+            "syscontact": "trent.white@webtrends.com"
+        },
         "webtrends_server": {
             "apt": [
                 {
