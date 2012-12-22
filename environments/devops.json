@@ -1,0 +1,12 @@
+{
+  "default_attributes": {
+  },
+  "chef_type": "environment",
+  "json_class": "Chef::Environment",
+  "cookbook_versions": {
+  },
+  "override_attributes": {
+  },
+  "description": "",
+  "name": "devops"
+}
