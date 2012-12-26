@@ -3,7 +3,7 @@ maintainer_email "marcus.vincent@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures ActionCenter WebAPI IIS site"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.1.4"
+version          "1.1.5"
 supports         "windows"
 depends          "iis"
 depends          "windows"
