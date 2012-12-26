@@ -121,7 +121,7 @@ template "#{iis_action_center_dir}\\bin\\PublicPrivateKeys.rsa" do
 end
 
 execute "asp_regiis_pi" do   
-   command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi Webtrends.ActionCenter #{install_dir}\\bin\\PublicPrivateKeys.rsa"
+   command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi Webtrends.ActionCenter #{iis_action_center_dir}\\bin\\PublicPrivateKeys.rsa"
  end
  
  execute "asp_regiis_pa" do
