@@ -53,7 +53,7 @@ iis_site 'ActionCenter' do
  protocol :http
  port http_port
  application_pool app_pool
- path install_dir
+ path iis_action_center_dir 
  action [:add,:start]
  retries 2
 end
