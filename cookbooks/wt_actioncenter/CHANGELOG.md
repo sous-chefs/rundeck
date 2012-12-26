@@ -1,6 +1,8 @@
 # CHANGELOG for wt_actioncenter
 
 This file is used to list changes made in each version of wt_actioncenter.
+#1.1.4
+* Fixing the install directory to match build artifacts
 ## 1.1.3
 * Updating the ownership 
 ## 1.1.2

@@ -20,9 +20,9 @@ static_content_dest = node['wt_actioncenter']['static_content_dest']
 rsa_user = user_data['wt_common']['ui_user']
 ui_user   = user_data['wt_common']['ui_user']
 install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter"
-iis_action_center_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter\\bin\\_PublishedWebsites\\Webtrends.ActionCenterService"
+iis_action_center_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter\\Webtrends.ActionCenterService"
 install_logdir = node['wt_common']['install_log_dir_windows']
-log_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter\\bin\\_PublishedWebsites\\logs"
+log_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.ActionCenter\\logs"
 app_pool = node['wt_actioncenter']['app_pool']
 auth_cmd = "/section:applicationPools /[name='#{app_pool}'].processModel.identityType:SpecificUser /[name='#{app_pool}'].processModel.userName:#{user_data['wt_common']['ui_user']} /[name='#{app_pool}'].processModel.password:#{user_data['wt_common']['ui_pass']}"
 http_port = node['wt_actioncenter']['port']
