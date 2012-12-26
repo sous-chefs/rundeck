@@ -1,6 +1,8 @@
 # CHANGELOG for wt_actioncenter
 
 This file is used to list changes made in each version of wt_actioncenter.
+#1.1.7
+* Updating the IIS site path
 #1.1.6
 * Missed one rsa key file path reference
 #1.1.5
