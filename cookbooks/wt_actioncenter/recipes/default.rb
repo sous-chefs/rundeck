@@ -98,7 +98,7 @@ template "#{iis_action_center_dir}\\web.config" do
  )
 end
  
-template "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
+template "#{iis_action_center_dir}\\bin\\PublicPrivateKeys.rsa" do
    source "PublicPrivateKeys.rsa.erb"
    variables(
      :modulus => googleplay_key['modulus'],
@@ -129,7 +129,7 @@ execute "asp_regiis_pi" do
  end
 
 # delete the .rsa file
- file "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
+ file "#{iis_action_center_dir}\\bin\\PublicPrivateKeys.rsa" do
    action :delete
  end
  
