@@ -278,7 +278,7 @@
             "search_service": "net.tcp://dsearch.staging.dmz:8096/Search/Service"
         },
         "wt_static_tag_host":{
-            "host": "dstatic01.staging.dmz"
+            "host": "http://dstatic01.staging.dmz/"
         },
         "wt_sync": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/SyncService.zip"
