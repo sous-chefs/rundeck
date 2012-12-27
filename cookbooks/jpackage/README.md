@@ -11,9 +11,12 @@ The JPackage Project has two primary goals:
 Requirements
 ============
 
+Chef 0.10.10 and Ohai 0.6.12 are required due to the use of
+`platform_family`.
+
 Platform: 
 
-* CentOS, Red Hat, Fedora
+* CentOS, Red Hat, Amazon, Oracle, Scientific, Fedora
 
 The following Opscode cookbooks are dependencies:
 
@@ -47,4 +50,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
