@@ -1,16 +1,16 @@
-= DESCRIPTION:
+# DESCRIPTION #
 
-Configure and install the collectd[http://collectd.org/] monitoring daemon.
+Configure and install the [collectd](http://collectd.org/) monitoring daemon.
 
-= REQUIREMENTS:
+# REQUIREMENTS #
 
 This cookbook has only been tested on Ubuntu 10.04.
 
-To use the collectd_web recipe you need the apache2[https://github.com/opscode/cookbooks/tree/master/apache2] cookbook.
+To use the `collectd::collectd_web` recipe you need the [apache2](https://github.com/opscode/cookbooks/tree/master/apache2) cookbook.
 
-The collectd_plugins cookbook is not required, but provides many common plugin definitions for easy reuse.
+The [collectd_plugins](#) cookbook is not required, but provides many common plugin definitions for easy reuse.
 
-= ATTRIBUTES:
+# ATTRIBUTES #
 
 * collectd.basedir - Base folder for collectd output data.
 * collectd.plugin_dir - Base folder to find plugins.
@@ -20,56 +20,63 @@ The collectd_plugins cookbook is not required, but provides many common plugin d
 * collectd.collectd_web.path - Location to install collectd_web to. Defaults to /srv/collectd_web.
 * collectd.collectd_web.hostname - Server name to use for collectd_web Apache site.
 
-= USAGE:
+# USAGE #
 
 Three main recipes are provided:
+
 * collectd - Install a standalone daemon.
 * collectd::client - Install collectd and configure it to send data to a server.
 * collectd::server - Install collectd and configure it to recieve data from clients.
 
 The client recipe will use the search index to automatically locate the server hosts, so no manual configuration is required.
 
-== Defines:
+## Defines ##
 
 Several defines are provided to simplfy configuring plugins
 
-=== collectd_plugin:
+### collectd_plugin ###
 
-The +collectd_plugin+ define configures and enables standard collect plugins. Example:
-    
-    collectd_plugin "interface" do
-      options :interface=>"lo", :ignore_selected=>true
-    end
+The `collectd_plugin` define configures and enables standard collect plugins. Example:
+
+```ruby
+collectd_plugin "interface" do
+  options :interface=>"lo", :ignore_selected=>true
+end
+```
 
 The options hash is converted to collectd-style settings automatically. Any symbol key will be converted to camel-case. In the above example :ignore_selected will be output as the
 key "IgnoreSelected". If the key is already a string, this conversion is skipped. If the value is an array, it will be output as a separate line for each element.
 
-=== collectd_python_plugin:
+### collectd_python_plugin ###
 
-The +collectd_python_plugin+ define configures and enables Python plugins using the collectd-python plugin. Example:
-    
-    collectd_python_plugin "redis" do
-      options :host=>servers, :verbose=>true
-    end
+The `collectd_python_plugin` define configures and enables Python plugins using the collectd-python plugin. Example:
 
-Options are interpreted in the same way as with +collectd_plugin+. This define will not deploy the plugin script as well, so be sure to setup a cookbook_file resource
+```ruby
+collectd_python_plugin "redis" do
+  options :host=>servers, :verbose=>true
+end
+```
+
+Options are interpreted in the same way as with `collectd_plugin`. This define will not deploy the plugin script as well, so be sure to setup a cookbook_file resource
 or other mechanism to handle distribution. Example:
 
-    cookbook_file File.join(node[:collectd][:plugin_dir], "redis.py") do
-      owner "root"
-      group "root"
-      mode "644"
-    end
+```ruby
+cookbook_file File.join(node[:collectd][:plugin_dir], "redis.py") do
+  owner "root"
+  group "root"
+  mode "644"
+end
+```
 
-== Web frontend:
+## Web frontend ##
 
-The +collectd::collectd_web+ recipe will automatically deploy the collectd_web[https://github.com/httpdss/collectd-web] frontend using Apache. The 
-apache2[https://github.com/opscode/cookbooks/tree/master/apache2] cookbook is required for this and is *not* included automatically as this is an optional
+The `collectd::collectd_web` recipe will automatically deploy the [collectd_web](https://github.com/httpdss/collectd-web) frontend using Apache. The 
+[apache2](https://github.com/opscode/cookbooks/tree/master/apache2) cookbook is required for this and is *not* included automatically as this is an optional
 component, so be sure to configure the node with the correct recipes.
 
-= LICENSE & AUTHOR:
+# LICENSE & AUTHOR #
 
-Author:: Noah Kantrowitz (<nkantrowitz@crypticstudios.com>)
+Author:: Noah Kantrowitz (<noah@coderanger.net>)
 Copyright:: 2010, Atari, Inc
 
 Licensed under the Apache License, Version 2.0 (the "License");
