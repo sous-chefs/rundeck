@@ -129,8 +129,7 @@ link "#{node['nagios']['conf_dir']}/stylesheets" do
   to "#{node['nagios']['docroot']}/stylesheets"
 end
 
-if web_srv == :apache
-  apache_module "cgi" do
-    enable :true
-  end
+apache_module "cgi" do
+  enable :true
+  only_if { web_srv == :apache }
 end
