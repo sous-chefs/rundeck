@@ -3,7 +3,7 @@ maintainer       "Tim Smith - Webtrends Inc."
 maintainer_email "tim.smith@webtrends.com"
 license          "All rights reserved"
 description      "Configures the /etc/hosts file"
-version          "1.0.1"
+version          "1.0.2"
 
 %w{ centos redhat amazon scientific oracle }.each do |os|
   supports os
