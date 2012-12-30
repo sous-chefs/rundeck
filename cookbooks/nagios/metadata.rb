@@ -15,6 +15,6 @@ recipe "nagios::pagerduty", "Integrates contacts w/ PagerDuty API"
   depends cb
 end
 
-%w{ debian ubuntu redhat centos fedora scientific amazon oracle}.each do |os|
+%w{ debian ubuntu redhat centos fedora scientific amazon oracle }.each do |os|
   supports os
 end
