@@ -101,6 +101,7 @@ template "#{install_dir}\\web.config" do
 		:db_name   => node['wt_cam']['db_name'],
 		:tokenExpirationMinutes => node['wt_sauth']['tokenExpirationMinutes'],
                 :authCodeExpirationMinutes => node['wt_sauth']['authCodeExpirationMinutes'],
+                :sessionExpirationMinutes => node['wt_sauth']['sessionExpirationMinutes'],
                 :internal_domains => node['wt_sauth']['internal_domains'],
          	:machine_validation_key => user_data['wt_iis']['machine_validation_key'],
 		:machine_decryption_key => user_data['wt_iis']['machine_decryption_key'],
