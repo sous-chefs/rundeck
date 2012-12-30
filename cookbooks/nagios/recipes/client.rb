@@ -70,18 +70,10 @@ template "#{node['nagios']['nrpe']['conf_dir']}/nrpe.cfg" do
     :mon_host => mon_host,
     :nrpe_directory => "#{node['nagios']['nrpe']['conf_dir']}/nrpe.d"
   )
-  notifies :restart, "service[nagios-nrpe-server]"
+  notifies :restart, "service[#{node['nagios']['client']['service_name']}]"
 end
 
-service "nagios-nrpe-server" do
-  case node['platform_family']
-   when 'rhel'
-     if node['nagios']['client']['install_method'] == "package"
-       service_name "nrpe"
-     end
-   else
-     service_name "nagios-nrpe-server"
-  end
+service node['nagios']['client']['service_name'] do
   action [:enable, :start]
   supports :restart => true, :reload => true
 end
