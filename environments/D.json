@@ -1,12 +1,13 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {
+    "cookbook_versions": {        
+        "iis": "= 1.1.4",
         "java": "= 1.6.0", 
         "nagios": "= 3.0.0", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.9", 
-        "windows": "= 1.6.0", 
-        "wt_actioncenter": "= 1.1.7",
+        "webtrends_server": "= 1.8.10", 
+        "windows": "= 1.3.6", 
+        "wt_actioncenter": "= 1.1.8",
         "wt_analytics_ui": "= 2.0.1", 
         "wt_base": "= 1.0.3", 
         "wt_data_deleter": "= 1.0.4", 
