@@ -70,7 +70,7 @@ template "#{node['nagios']['nrpe']['conf_dir']}/nrpe.cfg" do
     :mon_host => mon_host,
     :nrpe_directory => "#{node['nagios']['nrpe']['conf_dir']}/nrpe.d"
   )
-  notifies :restart, "service[node['nagios']['nrpe']['service_name']]"
+  notifies :restart, "service[#{node['nagios']['nrpe']['service_name']}]"
 end
 
 service node['nagios']['nrpe']['service_name'] do
