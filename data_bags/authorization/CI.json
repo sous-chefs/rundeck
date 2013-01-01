@@ -59,6 +59,6 @@
     }, 
     "wt_streamingmanagementservice": {
         "db_pwd": "Bijoux1", 
-        "db_user": "wtUI"
+        "db_user": "sa"
     }
 }
