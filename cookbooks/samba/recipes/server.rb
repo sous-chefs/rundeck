@@ -34,13 +34,13 @@ end
 
 package value_for_platform(
   ["ubuntu", "debian", "arch"] => { "default" => "samba" },
-  ["redhat", "centos", "fedora"] => { "default" => "samba3x" },
+  ["redhat", "centos", "fedora", "scientific", "amazon"] => { "default" => "samba3x" },
   "default" => "samba"
 )
 
 svcs = value_for_platform(
   ["ubuntu", "debian"] => { "default" => ["smbd", "nmbd"] },
-  ["redhat", "centos", "fedora"] => { "default" => ["smb", "nmb"] },
+  ["redhat", "centos", "fedora", "scientific", "amazon"] => { "default" => ["smb", "nmb"] },
   "arch" => { "default" => [ "samba" ] },
   "default" => ["smbd", "nmbd"]
 )
@@ -56,7 +56,7 @@ template node["samba"]["config"] do
   source "smb.conf.erb"
   owner "root"
   group "root"
-  mode "0644"
+  mode 00644
   variables :shares => shares["shares"]
   notifies :restart, resources(:service => svcs)
 end
