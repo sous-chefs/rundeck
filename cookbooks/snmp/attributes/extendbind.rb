@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-case node['platform']
-when "redhat","centos","scientific"
+case node['platform_family']
+when "redhat"
   case node['platform_version'].to_i
   when 5
     # BIND <= 9.3 stats

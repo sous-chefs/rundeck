@@ -41,17 +41,3 @@ template "/etc/snmp/snmpd.conf" do
   group "root"
   notifies :restart, resources(:service => node['snmp']['service'])
 end
-
-#For CentOS/RH 6+
-#Update SNMP options to eliminate snmpd connection spam that fills up syslog
-if platform?("centos","redhat","fedora","suse")
-  if node.platform_version.to_f >= 6
-    cookbook_file "/etc/sysconfig/snmpd" do
-      source "snmpd"
-      mode "0644"
-      owner "root"
-      group "root"
-      notifies :restart, resources(:service => node['snmp']['service'])
-    end
-  end
-end
