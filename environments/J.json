@@ -1,11 +1,6 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {
-        "java": "= 1.6.0", 
-        "nagios": "= 3.0.0", 
-        "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.9", 
-        "windows": "= 1.6.0", 
+    "cookbook_versions": {    
         "wt_analytics_ui": "= 2.0.0", 
         "wt_base": "= 1.0.3", 
         "wt_cam": "= 1.0.9", 
