@@ -17,10 +17,12 @@
 # limitations under the License.
 #
 
-%w{ xfsprogs xfsdump }.each do |pkg|
-  package pkg
-end
+package "xfsprogs"
 
-package "xfslibs-dev" do
-  package_name "xfsprogs-devel" if platform?("redhat","centos","scientific","fedora")
+case node["platform_family"]
+when "debian"
+  package "xfsdump"
+  package "xfslibs-dev"
+when "rhel", "fedora"
+  package"xfsprogs-devel"
 end
