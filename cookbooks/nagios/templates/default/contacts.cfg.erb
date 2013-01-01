@@ -36,12 +36,20 @@ define contact {
 <% end -%>
 
 <% @contacts.each do |c| -%>
-
+  <% if c['contact_group'] == true -%>
+define contact_group {
+  contactgroup_name  <%= c['id'] %>
+  <% if c['alias'] -%>alias <%= c['alias'] %><% end -%>
+  members
+}
+ <% else -%>
 define contact {
   contact_name  <%= c['id'] %>
-  use <% if c['contact_template'].nil? -%>default-service<% else -%><%= c['contact_template'] %> <% end -%>
-  <%= "alias  #{c['alias']}" unless c['alias'].nil? -%>
-  <%= "email  #{c['email']}" unless c['email'].nil? -%>
-  <%= "pager  #{c['pager']}" unless c['pager'].nil? -%>
+  use <% if c['contact_template'].nil? -%>default-contact<% else -%><%= c['contact_template'] %> <% end -%>
+  <% %w{ alias host_notifications_enabled service_notifications_enabled service_notification_period host_notification_period service_notification_options host_notification_options service_notification_commands host_notification_commands email pager address1 address2 can_submit_commands }.each do |object| %>
+    <% unless c[object].nil? %>
+  <%= object %> <%= c[object] %>
+    <% end %>
 }
+ <% end -%>
 <% end -%>

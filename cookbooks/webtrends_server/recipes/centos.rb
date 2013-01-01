@@ -33,8 +33,14 @@ end
 #Fix the host file as CentOS ships with a bad hostfile
 include_recipe "hosts"
 
-#Set chef-client to run on a regular schedule (30 mins)
-include_recipe "chef-client"
+# setup the client.rb file for chef with the correct chef server URL and logging options
+if node['chef_client']['server_url'].nil?
+  Chef::Application.fatal!("Your environment must contain a valid [:chef_client][:server_url] value to run the webtrends_server cookbook")
+end
+include_recipe "chef-client::config"
+
+# set chef-client to run on a regular schedule (30 mins)
+include_recipe "chef-client::service"
 
 # configures selinux enforcement policy
 include_recipe "selinux::permissive"
