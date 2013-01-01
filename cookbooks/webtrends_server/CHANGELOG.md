@@ -1,3 +1,7 @@
+## 1.8.11
+ * Manage the chef client.rb file with chef.  This requires a new chef_client section in the environment
+ * Update the updater version to 10.16.4
+
 ## 1.8.10
  * Switch to md for the readme
  * Add an optional value of arch for the apt repo LWRP now that apt 1.7.0 cookbook supports this

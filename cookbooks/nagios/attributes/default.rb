@@ -26,9 +26,13 @@ default['nagios']['group'] = 'nagios'
 
 case node['platform_family']
 when 'debian'
-default['nagios']['plugin_dir']   = '/usr/lib/nagios/plugins'
+default['nagios']['plugin_dir']     = '/usr/lib/nagios/plugins'
 when 'rhel','fedora'
-  default['nagios']['plugin_dir'] = '/usr/lib64/nagios/plugins'
+  if node['kernel']['machine'] == "i686"
+    default['nagios']['plugin_dir'] = '/usr/lib/nagios/plugins'
+  else
+    default['nagios']['plugin_dir'] = '/usr/lib64/nagios/plugins'
+  end
 else
-  default['nagios']['plugin_dir'] = '/usr/lib/nagios/plugins'
+  default['nagios']['plugin_dir']   = '/usr/lib/nagios/plugins'
 end
