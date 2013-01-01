@@ -27,7 +27,7 @@ will disable the ntpdate-debian command on Debian family distributions.
 
 ## Requirements
 
-Should work on Windows, Red Hat-family and Debian-family Linux distributions, or FreeBSD.
+Should work on Red Hat-family and Debian-family Linux distributions, or FreeBSD.
 
 # Attributes
 
@@ -78,22 +78,22 @@ Should work on Windows, Red Hat-family and Debian-family Linux distributions, or
 * ntp['varlibdir']
 
   - String, the path to /var/lib files such as the driftfile.
-  - Default, platform-specific location (*nix only).
+  - Default, platform-specific location.
 
 * ntp['statsdir']
 
   - String, the directory path for files created by the statistics facility.
-  - Default, platform-specific location. (*nix only)
+  - Default, platform-specific location.
 
 * ntp['conf\_owner'] and ntp['conf\_group']
 
   - String, the owner and group of the sysconf directory files, such as /etc/ntp.conf.
-  - Default, platform-specific root:root or root:wheel (*nix only)
+  - Default, platform-specific root:root or root:wheel
 
 * ntp['var\_owner'] and ntp['var\_group']
 
   - String, the owner and group of the /var/lib directory files, such as /var/lib/ntp.
-  - Default, platform-specific ntp:ntp or root:wheel (*nix only)
+  - Default, platform-specific ntp:ntp or root:wheel
 
 ## Usage
 
@@ -145,12 +145,10 @@ ntp::undo to your run\_list.
 Author:: Joshua Timberman (<joshua@opscode.com>)
 Contributor:: Eric G. Wolfe (<wolfe21@marshall.edu>)
 Contributor:: Fletcher Nichol (<fletcher@nichol.ca>)
-Contributor:: Tim Smith (<tim.smith@webtrends.com>)
 
 Copyright 2009-2011, Opscode, Inc.
 Copyright 2012, Eric G. Wolfe
 Copyright 2012, Fletcher Nichol
-Copyright 2012, Webtrends, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
