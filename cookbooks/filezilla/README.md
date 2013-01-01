@@ -1,7 +1,7 @@
 Description
 ===========
 
-This cookbook installs FileZilla Client 3.5.3
+This cookbook installs FileZilla Client 3.6.0.2
 
 Requirements
 ============
@@ -25,5 +25,3 @@ Usage
 =====
 
 Include the default recipe on a node's runlist to ensure that FileZilla Client is installed
-
-

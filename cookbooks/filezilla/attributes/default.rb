@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-default['filezilla']['http_url'] = "http://iweb.dl.sourceforge.net/project/filezilla/FileZilla_Client/3.5.3/FileZilla_3.5.3_win32-setup.exe"
+default['filezilla']['http_url'] = "http://iweb.dl.sourceforge.net/project/filezilla/FileZilla_Client/3.6.0.2/FileZilla_3.6.0.2_win32-setup.exe"
