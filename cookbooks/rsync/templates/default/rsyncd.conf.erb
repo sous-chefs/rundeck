@@ -1,0 +1,15 @@
+# Rsync Config file written by chef
+#
+
+<% @globals.each do |key, value| -%>
+<%= key %> = <%= value %>
+<% end -%>
+
+# Modules 
+<% @modules.each_key do |mod| -%>
+[<%= mod %>]
+  <% @modules[mod].each do |key,value| -%>
+    <%= key %> = <%= value %> 
+  <% end %>
+
+<% end %>

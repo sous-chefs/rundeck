@@ -17,20 +17,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if node['platform'] == "windows"
-  include_recipe "ntp::windows_client"
-else
-  node['ntp']['packages'].each do |ntppkg|
-    package ntppkg
-  end
+node['ntp']['packages'].each do |ntppkg|
+  package ntppkg
+end
 
-  [ node['ntp']['varlibdir'],
-    node['ntp']['statsdir'] ].each do |ntpdir|
-    directory ntpdir do
-      owner node['ntp']['var_owner']
-      group node['ntp']['var_group']
-      mode 00755
-    end
+[ node['ntp']['varlibdir'],
+  node['ntp']['statsdir'] ].each do |ntpdir|
+  directory ntpdir do
+    owner node['ntp']['var_owner']
+    group node['ntp']['var_group']
+    mode 0755
   end
 end
 
@@ -39,10 +35,16 @@ service node['ntp']['service'] do
   action [ :enable, :start ]
 end
 
-template node['ntp']['conffile'] do
-  source "ntp.conf.erb"
+cookbook_file node['ntp']['leapfile'] do
   owner node['ntp']['conf_owner']
   group node['ntp']['conf_group']
-  mode 00644
+  mode 0644
+end
+
+template "/etc/ntp.conf" do
+  source "ntp.conf.erb"
+  owner node['ntp']['conf_owner'] 
+  group node['ntp']['conf_group']
+  mode "0644"
   notifies :restart, resources(:service => node['ntp']['service'])
 end

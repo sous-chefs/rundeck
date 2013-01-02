@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: snmp 
-# Attributes:: default 
+# Cookbook Name:: snmp
+# Attributes:: default
 #
-# Copyright 2010, Eric G. Wolfe 
+# Copyright 2010, Eric G. Wolfe
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,16 +17,16 @@
 # limitations under the License.
 #
 
-case node['platform']
-  when "redhat","centos","fedora","scientific"
+case node['platform_family']
+  when "rhel"
     set['snmp']['packages'] = ["net-snmp", "net-snmp-utils"]
     set['snmp']['cookbook_files'] = Array.new
-  when "debian","ubuntu"
-    set['snmp']['packages'] = ["snmp"]
+  when "debian"
+    set['snmp']['packages'] = ["snmp", "snmpd"]
     set['snmp']['cookbook_files'] = ["/etc/default/snmpd"]
   else
     set['snmp']['packages'] = ["net-snmp", "net-snmp-utils"]
-    set['snmp']['cookbook_files'] = Array.new  
+    set['snmp']['cookbook_files'] = Array.new
 end
 
 # Same on supported platforms:
