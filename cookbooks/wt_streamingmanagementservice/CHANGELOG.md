@@ -1,3 +1,6 @@
+## 1.0.4
+* Added conn string for streaming usage database
+
 ## 1.0.3:
 * Fix syntax of the force-stop on the uninstall
 
