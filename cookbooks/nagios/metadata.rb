@@ -4,7 +4,7 @@ maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
 description       "Installs and configures Nagios3 server and the NRPE client"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "3.0.0"
+version           "3.1.0"
 
 recipe "nagios", "Includes the client recipe."
 recipe "nagios::client", "Installs and configures a nagios client with nrpe"
@@ -15,6 +15,6 @@ recipe "nagios::pagerduty", "Integrates contacts w/ PagerDuty API"
   depends cb
 end
 
-%w{ debian ubuntu redhat centos fedora scientific amazon oracle}.each do |os|
+%w{ debian ubuntu redhat centos fedora scientific amazon oracle }.each do |os|
   supports os
 end

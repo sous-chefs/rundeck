@@ -4,7 +4,7 @@ A very simple cookbook to create a properly formatted /etc/hosts file since RHEL
 
 Requirements
 ============
-A RHEL/CentOS box with a poorly crafted /etc/hosts file
+A RHEL based system with a poorly crafted /etc/hosts file
 
 Attributes
 ==========
@@ -14,4 +14,3 @@ None
 Usage
 =====
 Add to the runlist (the higher the better)
-

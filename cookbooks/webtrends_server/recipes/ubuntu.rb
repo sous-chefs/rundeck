@@ -40,6 +40,9 @@ node['webtrends_server']['apt'].each do |aptrepo|
     else
       distribution node['lsb']['codename']
     end
+    if aptrepo.has_key? "arch"
+      arch aptrepo['arch']
+    end
     uri aptrepo['url']
     components aptrepo['components']
     key aptrepo['key']
@@ -50,8 +53,14 @@ end
 # updates apt cache and sets up daily package list updates
 include_recipe "apt"
 
+# setup the client.rb file for chef with the correct chef server URL and logging options
+if node['chef_client']['server_url'].nil?
+  Chef::Application.fatal!("Your environment must contain a valid [:chef_client][:server_url] value to run the webtrends_server cookbook")
+end
+include_recipe "chef-client::config"
+
 # set chef-client to run on a regular schedule (30 mins)
-include_recipe "chef-client"
+include_recipe "chef-client::service"
 
 # configures /etc/apt/sources.list
 include_recipe "ubuntu"
