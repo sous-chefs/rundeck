@@ -20,7 +20,7 @@
         "ui_pass": "Bijoux1", 
         "ui_user": "DEVOPS\\wtUI"
     },
-    "usernameprefix": true,
+    "usenameprefix": true,
     "auth_domain_password": "OSMF2jt8eNPUBjsMLPzi", 
     "auth_domain_user": "staging.dmz\\deployer", 
     "membership_required": [
