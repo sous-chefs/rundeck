@@ -14,3 +14,4 @@ default['wt_streamingmanagementservice']['download_url'] = ""
 default['wt_streamingmanagementservice']['port'] = 8080
 default['wt_streamingmanagementservice']['jmx_port'] = 9999
 default['wt_streamingmanagementservice']['healthcheck_port'] = 9000
+default['wt_streamingmanagementservice']['sms_service_url'] = ""
