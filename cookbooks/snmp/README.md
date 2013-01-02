@@ -1,13 +1,13 @@
-DESCRIPTION
-===========
+# SNMP [![Build Status](https://secure.travis-ci.org/atomic-penguin/cookbook-snmp.png?branch=master)](http://travis-ci.org/atomic-penguin/cookbook-snmp)
+
+## DESCRIPTION
 
 Installs and configures snmpd.
 
 The SNMP multiplex (smuxpeer) line will be set for Dell OpenManage, if Dell
 manufactured hardware is detected by Ohai.
 
-REQUIREMENTS
-============
+## REQUIREMENTS
 
 This cookbook provides an SNMP Extend example to collect DNS RNDC statistics.
 The SNMP Extend script is written in Perl and depends on the CPAN module "version",
@@ -18,8 +18,7 @@ If you have no need for the SNMP Extend example included, you may remove the
 "depends perl" line from metadata.rb. Then run 'knife cookbook metadata snmp'
 before uploading to the Chef server.
 
-RECIPES
-=======
+## RECIPES
 
 * snmp::default
   - Installs and configures SNMP
@@ -28,8 +27,7 @@ RECIPES
   - Example recipe to deploy a Perl based extend script to collect stats
     from a BIND 9 server.
 
-ATTRIBUTES
-==========
+## ATTRIBUTES
 
 Notable overridable attributes are as follows.  It is recommended to override
 these following attributes to best suit your own environment.
@@ -56,14 +54,13 @@ these following attributes to best suit your own environment.
   - String to set the location for Virtual Machines.
     Default is "Virtual Server".
 
-* snmp[:full_systemview]
+* snmp[:full\_systemview]
   - Boolean to include the full systemview.
     This defaults to "false" as many distributions ship this way to speed up
      snmpwalk.  However, if you're running SNMP Network Management System,
      you'll want to override this as "true" on your systems.
 
-USAGE
-=====
+## USAGE
 
 Here is a full example featuring all the overridable attributes.
 You can apply these override attributes in a role, or node context.
@@ -79,14 +76,12 @@ You can apply these override attributes in a role, or node context.
   }
 ```
 
-ACKNOWLEDGEMENTS
-================
+## ACKNOWLEDGEMENTS
 
 Thanks to Sami Haahtinen <zanaga> on Freenode/#chef for testing,
 and feedback pertinent to the Debian/Ubuntu platforms.
 
-AUTHOR AND LICENSE
-==================
+## AUTHOR AND LICENSE
 
 Author:: Eric G. Wolfe (<wolfe21@marshall.edu>)
 

@@ -19,8 +19,8 @@
 
 include_recipe "java"
 
-case node[:platform]
-when "redhat","centos","fedora"
+case node[:platform_family]
+when "rhel","fedora"
   
   package "yum-priorities" do
     action :install
@@ -31,7 +31,7 @@ when "redhat","centos","fedora"
   end
   
   template "/etc/yum.repos.d/jpackage#{node[:jpackage][:version].sub(/\./,'')}.repo" do
-    mode "0644"
+    mode 00644
     source "jpackage.repo.erb"
     notifies :run, resources(:execute => "yum clean all"), :immediately
   end
@@ -42,7 +42,7 @@ when "redhat","centos","fedora"
   remote_file "#{Chef::Config[:file_cache_path]}/jpackage-utils-compat-el5-0.0.1-1.noarch.rpm" do
     checksum "c61f2a97e4cda0781635310a6a595e978a2e48e64cf869df7d339f0db6a28093"
     source "http://plone.lucidsolutions.co.nz/linux/centos/images/jpackage-utils-compat-el5-0.0.1-1.noarch.rpm"
-    mode "0644"
+    mode 00644
   end
   
   package "jpackage-utils-compat-el5" do

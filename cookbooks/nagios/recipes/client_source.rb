@@ -21,9 +21,9 @@
 include_recipe "build-essential"
 
 pkgs = value_for_platform_family(
-    ["rhel","fedora"] => %w{ openssl-devel gd-devel },
-    "debian" => %w{ libssl-dev libgd2-xpm-dev },
-    "default" => %w{ libssl-dev libgd2-xpm-dev }
+    ["rhel","fedora"] => "openssl-devel" ,
+    "debian" => "libssl-dev",
+    "default" => "libssl-dev"
   )
 
 pkgs.each do |pkg|
@@ -81,7 +81,9 @@ bash "compile-nagios-nrpe" do
                 --localstatedir=/var \
                 --libexecdir=#{node['nagios']['plugin_dir']} \
                 --libdir=#{node['nagios']['nrpe']['home']} \
-                --enable-command-args
+                --enable-command-args \
+                --with-nagios-user=#{node['nagios']['user']} \
+                --with-nagios-group=#{node['nagios']['group']}
     make -s
     make install
   EOH

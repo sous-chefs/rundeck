@@ -35,10 +35,10 @@ else
 end
 
 pkgs = value_for_platform_family(
-    ["rhel","fedora"] => %w{ openssl-devel gd-devel },
-    "debian" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx },
-    "default" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx }
-  )
+  [ "rhel","fedora" ] => %w{ openssl-devel gd-devel },
+  "debian" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx },
+  "default" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx }
+)
 
 pkgs.each do |pkg|
   package pkg do
@@ -129,8 +129,7 @@ link "#{node['nagios']['conf_dir']}/stylesheets" do
   to "#{node['nagios']['docroot']}/stylesheets"
 end
 
-if web_srv == :apache
-  apache_module "cgi" do
-    enable :true
-  end
+apache_module "cgi" do
+  enable :true
+  only_if { web_srv == :apache }
 end
