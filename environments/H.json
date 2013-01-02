@@ -318,7 +318,7 @@
             "thread_pool_size": 200
         },
         "wt_streamingmanagementservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/46845:id/webtrends-streaming-managementservice-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/46943:id/webtrends-streaming-managementservice-bin.tar.gz",
             "healthcheck_port": 9002,
             "jmx_port": 9997,
             "port": 8081
