@@ -1,5 +1,6 @@
 port=<%= @port %>
 connString=jdbc:sqlserver://<%= @camdbserver %>:1433;databaseName=<%= @camdbname %>;user=<%= @camdbuser %>;password=<%= @camdbpwd %>;
+streamingConnString=jdbc:sqlserver://<%= @streamingdbserver %>:1433;databaseName=<%= @streamingdbname %>;user=<%= @streamingdbuser %>;password=<%= @streamingdbpwd %>;
 
 # are we monitoring at all
 monitoring.enabled = <%= @wt_monitoring['monitoring_enabled'] %>

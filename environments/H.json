@@ -27,7 +27,7 @@
         "wt_streamingauditor": "= 1.0.10",
         "wt_streamingconfigservice": "= 1.0.7",
         "wt_streaminglogreplayer": "= 1.1.2",
-        "wt_streamingmanagementservice": "= 1.0.1",
+        "wt_streamingmanagementservice": "= 1.0.4",
         "zookeeper": "= 1.1.6"
     },
     "default_attributes": {
@@ -318,7 +318,7 @@
             "thread_pool_size": 200
         },
         "wt_streamingmanagementservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/44668:id/webtrends-streaming-managementservice-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/46943:id/webtrends-streaming-managementservice-bin.tar.gz",
             "healthcheck_port": 9002,
             "jmx_port": 9997,
             "port": 8081,
