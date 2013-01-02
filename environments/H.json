@@ -321,7 +321,8 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/44668:id/webtrends-streaming-managementservice-bin.tar.gz",
             "healthcheck_port": 9002,
             "jmx_port": 9997,
-            "port": 8081
+            "port": 8081,
+            "sms_service_url": "http://hsms.staging.dmz"
         },
         "zookeeper": {
             "client_port": 2181,
