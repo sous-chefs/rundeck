@@ -1,0 +1,30 @@
+{
+    "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "alternate_uid": "2001", 
+    "alternate_user": "bobo", 
+    "id": "testops", 
+    "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "wt_common": {
+        "camdb_pass": "Bijoux01", 
+        "camdb_user": "wtCam", 
+        "install_acct": "wtInstaller", 
+        "install_pass": "Bijoux1", 
+        "install_user": "DEVOPS\\wtInstaller", 
+        "loader_acct": "wtLoader", 
+        "loader_pass": "Bijoux1", 
+        "loader_user": "DEVOPS\\wtLoader", 
+        "system_acct": "wtSystem", 
+        "system_pass": "Bijoux1", 
+        "system_user": "DEVOPS\\wtSystem", 
+        "ui_acct": "wtUI", 
+        "ui_pass": "Bijoux1", 
+        "ui_user": "DEVOPS\\wtUI"
+    },
+    "auth_domain_password": "OSMF2jt8eNPUBjsMLPzi", 
+    "auth_domain_user": "staging.dmz\\deployer", 
+    "membership_required": [
+        "stagingdmz\\\\domain-admins", 
+        "stagingdmz\\\\stage-admins"
+    ], 
+    "primary_domain": "os.staging.dmz"
+}
