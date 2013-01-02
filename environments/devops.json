@@ -10,6 +10,21 @@
             },
             "server_role": "nagios_xi"
         },
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "testops"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins"
+                ], 
+                "include_sudoers_d": true, 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         },
