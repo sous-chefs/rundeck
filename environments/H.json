@@ -28,6 +28,7 @@
         "wt_streamingconfigservice": "= 1.0.7",
         "wt_streaminglogreplayer": "= 1.1.2",
         "wt_streamingmanagementservice": "= 1.0.4",
+        "wt_stream_processor": "= 1.0.0",
         "zookeeper": "= 1.1.6"
     },
     "default_attributes": {
@@ -303,6 +304,9 @@
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com",
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         },
+        "wt_stream_processor": {
+            "download_url": ""
+        },
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/.lastSuccessful/webtrends-streamingcollection-bin.tar.gz"
         },
@@ -318,7 +322,7 @@
             "thread_pool_size": 200
         },
         "wt_streamingmanagementservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/46943:id/webtrends-streaming-managementservice-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/46947:id/webtrends-streaming-managementservice-bin.tar.gz",
             "healthcheck_port": 9002,
             "jmx_port": 9997,
             "port": 8081,

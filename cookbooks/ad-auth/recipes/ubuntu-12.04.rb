@@ -38,6 +38,14 @@ end
 # Pull the necessary creds from the appropriate authorization databag depending on the ad_network attribute
 ad_config = data_bag_item('authorization', node['authorization']['ad_auth']['ad_network'])
 
+# Change hostname to unique name
+if ad_config['usenameprefix'] then
+  execute "prepare-likewise" do
+    command "/usr/bin/domainjoin-cli setname #{node.chef_environment}-#{node[:hostname]}"
+    only_if "lw-get-status |grep -q Status.*Unknown"
+  end
+end
+
 # Join the primary_domain if we aren't a member already
 execute "initialize-likewise" do
 	command "domainjoin-cli join #{ad_config['primary_domain']} #{ad_config['auth_domain_user']} \"#{ad_config['auth_domain_password']}\""
