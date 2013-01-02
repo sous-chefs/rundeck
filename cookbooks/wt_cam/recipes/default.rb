@@ -87,6 +87,7 @@ template "#{install_dir}\\web.config" do
     :ldap_password => user_data['wt_common']['ldap_password'],
     :smtp_host => node['wt_common']['smtp_server'],
     :streams_ui_url => node['wt_streaming_viz']['streams_ui_url']
+    :sms_url => node['wt_streamingmanagementservice']['sms_service_url']
   )
 end
 

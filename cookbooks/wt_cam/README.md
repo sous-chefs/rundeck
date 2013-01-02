@@ -20,6 +20,7 @@ Attributes
 * node['wt_common']['ldap_port'] - Port for ldap access
 * node['wt_common']['smtp_server'] - Address of the server cam uses to send user emails
 * node['wt_streaming_viz']['streams_ui_url'] - Url to the streams UI, included in the user emails
+* node['wt_streaming_viz']['sms_url'] - Url to the streaming management service
 
 * node['wt_cam']['app_pool'] - Name to assign the app pool for the iis app that hosts the service
 * node['wt_cam']['cam'] ['download_url'] - Url of the artifacts needed to deploy the cam service
