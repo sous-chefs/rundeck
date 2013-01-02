@@ -1,6 +1,39 @@
 # CHANGELOG for wt_actioncenter
-
 This file is used to list changes made in each version of wt_actioncenter.
+
+#1.1.8
+* Cleaning up spacing
+* Added permissions to windows temp folder
+* Removed wt_base icacls reference and added directory call
+
+#1.1.7
+* Updating the IIS site path
+
+#1.1.6
+* Missed one rsa key file path reference
+
+#1.1.5
+* Updating the path to PublicPrivateKeys.rsa
+
+#1.1.4
+* Fixing the install directory to match build artifacts
+
+## 1.1.3
+* Updating the ownership 
+
+## 1.1.2
+* Fixing static directory 
+
+## 1.1.1
+* Fixing path for pool
+
+## 1.1.0
+* Pulled static content into its own recipe. 
+* Fixed pathing for iis site
+
+## 1.0.6
+* Update web.config.erb template to add = symbol. 
+
 ## 1.0.5
 * Update web.config to remove A10 reference. Updated default.rb to include monitor_host variable
 

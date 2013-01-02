@@ -45,7 +45,7 @@ template "#{node['nagios']['config_dir']}/pagerduty.cfg" do
   owner node['nagios']['user']
   group node['nagios']['group']
   mode 00644
-  source "pagerduty_nagios.cfg.erb"
+  source "pagerduty.cfg.erb"
 end
 
 remote_file "#{node['nagios']['plugin_dir']}/pagerduty_nagios.pl" do

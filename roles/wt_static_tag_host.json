@@ -12,8 +12,9 @@
   },
   "run_list": [
     "recipe[apache2]",
-	"recipe[apache2::mod_status]",
-    "recipe[wt_static_tag_host]"
+	  "recipe[apache2::mod_status]",
+    "recipe[wt_static_tag_host]",
+    "recipe[wt_actioncenter::static]"
   ],
   "description": "Webtrends Static Tag Host Service",
   "chef_type": "role"
