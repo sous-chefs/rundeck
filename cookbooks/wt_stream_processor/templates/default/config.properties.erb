@@ -1,8 +1,3 @@
-# This is the base url for the AUTH service
-webtrends.authentication.baseUrl = <%=@auth_url%>/<%=@auth_version%>
-# This is the url to the REST service for getting a token's detailed information
-webtrends.authentication.tokenDetail = %%baseUrl%%/token/%%access_token%%
-
 # This is the base url for the CAM service
 webtrends.cam.baseUrl = <%=@cam_url%>
 # This is the url to the REST service for getting product provisioning
@@ -14,7 +9,7 @@ webtrends.cam.blacklist=%%baseUrl%%/product/sapi/blacklist
 # This is the url to the REST service for getting the products
 webtrends.cam.productDetail=%%baseUrl%%/product
 
-# are we monitoring at all
+# Are we monitoring at all
 monitoring.enabled = <%= node['wt_monitoring']['monitoring_enabled'] %>
 # should we publish to jmx
 monitoring.jmx.enabled = <%= node['wt_monitoring']['jmx_enabled'] %>
@@ -26,22 +21,25 @@ healthcheck.enabled=<%= node['wt_monitoring']['healthcheck_enabled'] %>
 # This is for future use for having health checks bound to an alternative port
 healthcheck.port=<%= node['wt_monitoring']['healthcheck_port'] %>
 
-usageConnString=jdbc:sqlserver://<%= @usagedbserver %>:1433;databaseName=<%= @usagedbname %>;user=<%= @usagedbuser %>;password=<%= @usagedbpwd %>;
-
 # Used for zmq connectivity
 datacenter=<%= @datacenter %>
 pod=<%= @pod %>
 zookeeper.quorum=<%= @zookeeper_quorum  %>
 
-# The is the root in Zookeeper where data for the DataAPI will be placed
-dataapi.zmq.znodeRoot=/DataAPIZMQ
+usageConnString=jdbc:sqlserver://<%= @usagedbserver %>:1433;databaseName=<%= @usagedbname %>;user=<%= @usagedbuser %>;password=<%= @usagedbpwd %>;
+
+
+# The is the root in Zookeeper where data for the api will be placed
+stream.processor.zmq.znodeRoot=/StreamingZMQ
 # This is the external address for the publish server for clients to connect to
-dataapi.zmq.pub.address=tcp://*:1543
+stream.processor.zmq.znodepushnode=/analysis/node
 # This is the external address for the pull server for clients to connect to
-dataapi.zmq.pull.address=tcp://*:1544
+stream.processor.zmq.pull.address=tcp://*:1544
 
+# A comma seperated list of routers to connect to for recieving
+webtrends.network.binding.recieve = tcp://localhost:5762
 
-# Proxy properties. Lease this section blank if you dont need proxy support.
-<% if @auth_host.to_s != '' && @proxy_host.to_s != '' %>
-easy.proxy.1 = <%= @auth_host %> -> <%= @proxy_host %>
-<% end %>
+# This is the number of elements, not the SIZE in bytes.
+# Ideally, this will fit in L2 cache, most of our VM's tend to be aprox 15Mb
+webtrends.network.binding.recieve.eventBufferSize = 128
+webtrends.network.binding.recieve.eventHandlerThreads = 8
