@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_dataapi
+# Cookbook Name:: wt_stream_processor
 # Recipe:: default
 #
 # Copyright 2012, Webtrends
@@ -30,26 +30,26 @@ end
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploying first"
-  include_recipe "wt_dataapi::undeploy"
+  include_recipe "wt_stream_processor::undeploy"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-log_dir     = File.join(node['wt_common']['log_dir_linux'], "dataapi")
-install_dir = File.join(node['wt_common']['install_dir_linux'], "dataapi")
-tarball      = node['wt_dataapi']['download_url'].split("/")[-1]
-download_url = node['wt_dataapi']['download_url']
+log_dir     = File.join(node['wt_common']['log_dir_linux'], "streamprocessor")
+install_dir = File.join(node['wt_common']['install_dir_linux'], "streamprocessor")
+tarball      = node['wt_stream_processor']['download_url'].split("/")[-1]
+download_url = node['wt_stream_processor']['download_url']
 java_home   = node['java']['java_home']
-java_opts = node['wt_dataapi']['java_opts']
-user = node['wt_dataapi']['user']
-group = node['wt_dataapi']['group']
+java_opts = node['wt_stream_processor']['java_opts']
+user = node['wt_stream_processor']['user']
+group = node['wt_stream_processor']['group']
 pod = node['wt_realtime_hadoop']['pod']
 datacenter = node['wt_realtime_hadoop']['datacenter']
 
 # grab the users and passwords from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
-usagedbuser  = auth_data['wt_dataapi']['usagedbuser']
-usagedbpwd = auth_data['wt_dataapi']['usagedbpwd']
+usagedbuser  = auth_data['wt_stream_processor']['usagedbuser']
+usagedbpwd = auth_data['wt_stream_processor']['usagedbpwd']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -84,21 +84,11 @@ end
 def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
   log "Updating the template files"
 
-  auth_url = node['wt_sauth']['auth_service_url']
-
-  auth_uri = URI(auth_url)
-  auth_host = auth_uri.host
-
-  proxy_host = ''
-  unless node['wt_common']['http_proxy_url'].nil? || node['wt_common']['http_proxy_url'].empty?
-    proxy_uri = URI(node['wt_common']['http_proxy_url'])
-    proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
-  end
-
   cam_url = node['wt_cam']['cam_service_url']
-  port = node['wt_dataapi']['port']
-  usagedbserver = node['wt_dataapi']['usagedbserver']
-  usagedbname = node['wt_dataapi']['usagedbname']
+  port = node['wt_stream_processor']['port']
+
+  usagedbserver = node['wt_stream_processor']['usagedbserver']
+  usagedbname = node['wt_stream_processor']['usagedbname']
 
   %w[log4j.xml config.properties netty.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
@@ -107,10 +97,6 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, usag
       group "root"
       mode  00644
       variables({
-        :auth_url => auth_url,
-        :auth_host => auth_host,
-        :auth_version => node['wt_dataapi']['sauth_version'],
-        :proxy_host => proxy_host,
         :cam_url => cam_url,
         :install_dir => install_dir,
         :port => port,
@@ -158,7 +144,7 @@ if ENV["deploy_build"] == "true" then
       :log_dir => log_dir,
       :install_dir => install_dir,
       :java_home => java_home,
-      :java_jmx_port => node['wt_dataapi']['jmx_port'],
+      :java_jmx_port => node['wt_stream_processor']['jmx_port'],
       :java_opts => java_opts
     })
   end
@@ -174,7 +160,7 @@ if ENV["deploy_build"] == "true" then
   end
 
   # create the runit service
-  runit_service "dataapi" do
+  runit_service "streamprocessor" do
     options({
       :log_dir => log_dir,
       :install_dir => install_dir,
@@ -187,17 +173,6 @@ else
   processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
 end
 
-#Create collectd plugin for streaming api JMX objects if collectd has been applied.
-if node.attribute?("collectd")
-  template "#{node['collectd']['plugin_conf_dir']}/collectd_dataapi.conf" do
-    source "collectd_dataapi.conf.erb"
-    owner "root"
-    group "root"
-    mode 00644
-    notifies :restart, resources(:service => "collectd")
-  end
-end
-
 if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
   nagios_nrpecheck "wt_healthcheck_page" do
@@ -208,7 +183,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the log file
   nagios_nrpecheck "wt_garbage_collection_limit_reached" do
     command "#{node['nagios']['plugin_dir']}/check_log"
-    parameters "-F /var/log/webtrends/dataapi/service.log -O /tmp/service_old.log -q 'GC overhead limit exceeded'"
+    parameters "-F /var/log/webtrends/streamprocessor/service.log -O /tmp/service_old.log -q 'GC overhead limit exceeded'"
     action :add
   end
 end
