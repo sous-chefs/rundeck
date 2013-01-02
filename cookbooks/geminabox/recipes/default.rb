@@ -15,9 +15,9 @@ template config_file do
   owner "root"
   group "root"
   mode 00644
-  variables (
-    :install_dir => install_dir
-  )
+  variables ({
+    :install_dir => node['geminabox']['install_dir']
+  })
 end
 
 unicorn_config config_file do
