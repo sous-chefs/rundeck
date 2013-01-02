@@ -1,5 +1,5 @@
 {
-  "name": "wt_data_api_server",
+  "name": "wt_stream_processor",
   "default_attributes": {
   },
   "override_attributes": {
@@ -13,8 +13,8 @@
   },
   "run_list": [
     "recipe[java]",
-    "recipe[wt_dataapi]"
+    "recipe[wt_stream_processor]"
   ],
-  "description": "Webtrends Data API Server",
+  "description": "Webtrends Stream Processor",
   "chef_type": "role"
 }
