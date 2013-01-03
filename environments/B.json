@@ -28,7 +28,7 @@
         "wt_streamingconfigservice": "= 1.0.7",
         "wt_streaminglogreplayer": "= 1.1.1",
         "wt_streamingmanamgementservice": "= 1.0.1",
-        "zookeeper": "= 1.2.0"
+        "zookeeper": "= 1.2.1"
     },
     "default_attributes": {
         "authorization": {
