@@ -13,7 +13,7 @@
         "webtrends_server": "= 1.8.10",
         "windows": "= 1.7.0",
         "wt_base": "= 1.0.3",
-        "wt_cam": "= 1.1.5",
+        "wt_cam": "= 1.1.6",
         "wt_kafka_topagg": "= 1.0.1",
         "wt_netacuity": "= 1.0.12",
         "wt_portfolio_admin": "= 1.1.10",
