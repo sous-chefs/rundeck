@@ -14,7 +14,7 @@ when "ubuntu","debian"
 		source "ntpdate.erb"
 		owner "root"
 		group root_group
-		mode 00644
+		mode "0644"
 		variables(
 			:disable => TRUE
 		)

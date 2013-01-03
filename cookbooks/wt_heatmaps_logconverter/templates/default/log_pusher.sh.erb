@@ -6,7 +6,7 @@ if ! flock -n 9  ; then
         exit 1
 fi
 
-QUEUE="<%= @node['wt_heatmaps_logconverter']['nfs_mount_dir'] %>/bziplogs"
+QUEUE="<%= @node['wt_heatmaps_logconverter']['nfs_mount_dir'] %>bziplogs"
 DATANODES=($(< <%= @install_dir %>/conf/datanodes.conf))
 HOSTNAME=$(hostname)
 
