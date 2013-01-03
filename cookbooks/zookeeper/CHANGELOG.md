@@ -1,3 +1,7 @@
+## 1.2.1
+* Changing the execute "extract-zookeeper" to have action :nothing
+* Adding notify on untarring to the remote_file
+
 ## 1.2.0
 * zookeeper 3.4.5
 
