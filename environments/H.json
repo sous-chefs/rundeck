@@ -13,7 +13,7 @@
         "webtrends_server": "= 1.8.10",
         "windows": "= 1.7.0",
         "wt_base": "= 1.0.3",
-        "wt_cam": "= 1.1.5",
+        "wt_cam": "= 1.1.6",
         "wt_kafka_topagg": "= 1.0.1",
         "wt_netacuity": "= 1.0.12",
         "wt_portfolio_admin": "= 1.1.10",
@@ -29,7 +29,7 @@
         "wt_streaminglogreplayer": "= 1.1.2",
         "wt_streamingmanagementservice": "= 1.0.4",
         "wt_stream_processor": "= 1.0.0",
-        "zookeeper": "= 1.1.6"
+        "zookeeper": "= 1.2.3"
     },
     "default_attributes": {
         "authorization": {
@@ -120,7 +120,7 @@
         },
         "storm": {
             "download_url": "http://repo.staging.dmz/repo/linux/storm",
-            "version": "0.8.0"
+            "version": "0.8.1"
         },
         "vc2010": {
             "x64": {
@@ -232,7 +232,7 @@
         },
         "wt_netacuity": {
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz",
-            "geo_url": "hgeo.staging.dmz",
+            "geo_url": "sgeo.staging.dmz",
             "version": "502"
         },
         "wt_portfolio_admin": {
@@ -262,7 +262,7 @@
         },
         "wt_search": {},
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/45310:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/47029:id/streaming-analysis-bin.tar.gz",
             "query_bolt_executors": 24,
             "query_bolt_tasks": 24,
             "streaming_topology_field_grouping_local": "false",
@@ -317,7 +317,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz"
         },
         "wt_streaminglogreplayer": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/37547:id/webtrends-streaminglogreplayer-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/42300:id/webtrends-streaminglogreplayer-bin.tar.gz",
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay",
             "thread_pool_size": 200
         },

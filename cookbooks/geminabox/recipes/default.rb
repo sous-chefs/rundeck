@@ -20,7 +20,7 @@ template config_file do
   })
 end
 
-unicorn_config config_file do
+unicorn_config "/etc/unicorn/geminabox.rb" do
   listen({ node[:unicorn][:port] => node[:unicorn][:options] })
-  working_directory "#{node['geminabox']['install_dir']}/current"
+  working_directory node['geminabox']['install_dir']
 end
