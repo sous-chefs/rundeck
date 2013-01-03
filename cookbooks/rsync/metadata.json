@@ -1,52 +1,35 @@
 {
+  "name": "rsync",
+  "description": "Installs rsync",
+  "long_description": "",
+  "maintainer": "Opscode, Inc.",
+  "maintainer_email": "cookbooks@opscode.com",
   "license": "Apache 2.0",
-  "recipes": {
-    "rsync": ""
-  },
-  "conflicting": {
-
+  "platforms": {
+    "centos": ">= 0.0.0",
+    "fedora": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0",
+    "debian": ">= 0.0.0"
   },
   "dependencies": {
-
   },
-  "providing": {
-    "rsync": [
-
-    ]
-  },
-  "long_description": "",
-  "description": "Installs rsync",
-  "replacing": {
-
-  },
-  "platforms": {
-    "debian": [
-
-    ],
-    "fedora": [
-
-    ],
-    "centos": [
-
-    ],
-    "ubuntu": [
-
-    ],
-    "redhat": [
-
-    ]
-  },
-  "version": "0.7.0",
-  "maintainer": "Opscode, Inc.",
   "recommendations": {
-
-  },
-  "name": "rsync",
-  "maintainer_email": "cookbooks@opscode.com",
-  "attributes": {
-
   },
   "suggestions": {
-
-  }
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "rsync": "Installs rsync, Provides LWRP rsync_serve for serivng pats via rsyncd"
+  },
+  "version": "0.8.0"
 }

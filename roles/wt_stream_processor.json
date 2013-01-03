@@ -1,0 +1,20 @@
+{
+  "name": "wt_stream_processor",
+  "default_attributes": {
+  },
+  "override_attributes": {
+      "java" : {
+        "install_flavor": "oracle",
+        "jdk_version": "7"
+      }
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[java]",
+    "recipe[wt_stream_processor]"
+  ],
+  "description": "Webtrends Stream Processor",
+  "chef_type": "role"
+}

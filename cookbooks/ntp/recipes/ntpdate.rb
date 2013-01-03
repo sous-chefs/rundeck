@@ -1,7 +1,7 @@
 #
 # Cookbook Name:: ntp
-# Recipe:: ntpdate
-# Author:: Eric G. Wolfe
+# Recipe:: ntpdate 
+# Author:: Eric G. Wolfe 
 #
 # Copyright 2012, Eric G. Wolfe
 # Copyright 2009, Opscode, Inc
@@ -28,7 +28,7 @@ end
 template "/etc/default/ntpdate" do
   owner node['ntp']['conf_owner']
   group node['ntp']['conf_group']
-  mode 00644
+  mode "0644"
   variables(
     :disable => node['ntp']['ntpdate']['disable']
   )

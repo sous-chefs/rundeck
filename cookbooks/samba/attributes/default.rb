@@ -32,7 +32,7 @@ case platform
 when "arch"
   set["samba"]["config"] = "/etc/samba/smb.conf"
   set["samba"]["log_dir"] = "/var/log/samba/log.%m"
-when "redhat","centos","fedora"
+when "redhat","centos","fedora","amazon","scientific"
   set["samba"]["config"] = "/etc/samba/smb.conf"
   set["samba"]["log_dir"] = "/var/log/samba/log.%m"
 else

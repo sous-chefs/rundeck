@@ -11,7 +11,9 @@
     "ubuntu": ">= 0.0.0",
     "centos": ">= 0.0.0",
     "fedora": ">= 0.0.0",
-    "redhat": ">= 0.0.0"
+    "redhat": ">= 0.0.0",
+    "scientific": ">= 0.0.0",
+    "amazon": ">= 0.0.0"
   },
   "dependencies": {
   },
@@ -34,5 +36,5 @@
     "samba::client": "Installs smbclient package",
     "samba::server": "Installs samba server packages and configures smb.conf"
   },
-  "version": "0.10.6"
+  "version": "0.11.0"
 }

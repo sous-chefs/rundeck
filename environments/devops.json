@@ -1,0 +1,87 @@
+{
+  "default_attributes": {
+        "nagios": {
+            "client": {
+                "install_method": "package"
+            },
+            "multi_environment_monitoring": true,
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            },
+            "server_role": "nagios_xi"
+        },
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "osstagingdmz"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins"
+                ], 
+                "include_sudoers_d": true, 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.webtrends.corp"
+        },
+        "snmp": {
+            "community": "DevOps",
+            "full_systemview": "true",
+            "syscontact": "trent.white@webtrends.com"
+        },
+        "wt_monitoring": {
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "true", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "devops.dopod.servers", 
+            "monitoring_enabled": "false"
+        }, 
+        "webtrends_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ],
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key",
+                    "name": "wtlab",
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
+                },
+                {
+                    "components": [
+                        "main"
+                    ],
+                    "distribution_suffix": "-0.10",
+                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key",
+                    "name": "wtlab-opscode",
+                    "url": "http://repo.staging.dmz/repo/apt/opscode"
+                }
+            ],
+            "yum": [
+                {
+                    "description": "Webtrends Repo",
+                    "name": "wtlab",
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
+                }
+            ]
+        }
+  },
+  "chef_type": "environment",
+  "json_class": "Chef::Environment",
+  "cookbook_versions": {
+  },
+  "override_attributes": {
+  },
+  "description": "",
+  "name": "devops"
+}
