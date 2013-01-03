@@ -138,11 +138,20 @@ end
 %w[configuration.xsl java.env log4j.properties zoo.cfg].each do |template_file|
 	template "#{node.zookeeper_attrib(:config_dir)}/#{template_file}" do
 		source "#{template_file}.erb"
-		owner 'root'
-		group 'root'
+		owner 'zookeeper'
+		group 'zookeeper'
 		mode 00644
 		variables({
-			:quorum => zookeeper_nodes
+			:quorum           => zookeeper_nodes,				
+			:tick_time        => node.zookeeper_attrib(:tick_time),
+			:init_limit       => node.zookeeper_attrib(:init_limit),
+			:sync_limit       => node.zookeeper_attrib(:sync_limit),
+			:data_dir         => node.zookeeper_attrib(:data_dir),
+			:client_port      => node.zookeeper_attrib(:client_port),
+			:max_client_cnxns => node.zookeeper_attrib(:max_client_cnxns),
+			:data_log_dir     => node.zookeeper_attrib(:data_log_dir),
+			:snapshot_num     => node.zookeeper_attrib(:snapshot_num),
+			:purge_interval   => node.zookeeper_attrib(:purge_interval)
 		})
 	end
 end
@@ -162,15 +171,6 @@ template "#{node.zookeeper_attrib(:install_dir)}/current/bin/zkServer.sh" do
 	group 'zookeeper'
 	variables({
 		:java_jmx_port    => node.zookeeper_attrib(:jmx_port),
-		:tick_time        => node.zookeeper_attrib(:tick_time),
-		:init_limit       => node.zookeeper_attrib(:init_limit),
-		:sync_limit       => node.zookeeper_attrib(:sync_limit),
-		:data_dir         => node.zookeeper_attrib(:data_dir),
-		:client_port      => node.zookeeper_attrib(:client_port),
-		:max_client_cnxns => node.zookeeper_attrib(:max_client_cnxns),
-		:data_log_dir     => node.zookeeper_attrib(:data_log_dir),
-		:snapshot_num     => node.zookeeper_attrib(:snapshot_num),
-		:purge_interval   => node.zookeeper_attrib(:purge_interval)
 	})
 end
 

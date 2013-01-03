@@ -1,3 +1,6 @@
+## 1.2.3
+* Changing owner/group from root to zookeeper on template files
+
 ## 1.2.2
 * Changed template for zoo.cfg to not use the zookeeper_attrib method itself
 
