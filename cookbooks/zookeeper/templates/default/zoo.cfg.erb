@@ -1,19 +1,19 @@
 # The number of milliseconds of each tick
-tickTime=<%= node.zookeeper_attrib(:tick_time) %>
+tickTime=<%= @tick_time %>
 # The number of ticks that the initial 
 # synchronization phase can take
-initLimit=<%= node.zookeeper_attrib(:init_limit) %>
+initLimit=<%= @init_limit %>
 # The number of ticks that can pass between 
 # sending a request and getting an acknowledgement
-syncLimit=<%= node.zookeeper_attrib(:sync_limit) %>
+syncLimit=<%= @sync_limit %>
 # the directory where the snapshot is stored.
 # do not use /tmp for storage, /tmp here is just 
 # example sakes.
-dataDir=<%= node.zookeeper_attrib(:data_dir) %>
+dataDir=<%= @data_dir %>
 # the port at which the clients will connect
-clientPort=<%= node.zookeeper_attrib(:client_port) %>
+clientPort=<%= @client_port %>
 # max connections from a single IP address
-maxClientCnxns=<%= node.zookeeper_attrib(:max_client_cnxns) %>
+maxClientCnxns=<%= @max_client_cnxns %>
 
 
 #
@@ -25,14 +25,14 @@ maxClientCnxns=<%= node.zookeeper_attrib(:max_client_cnxns) %>
 
 # This option will direct the machine to write the transaction log to the dataLogDir rather than the dataDir. This allows a dedicated
 # log device to be used, and helps avoid competition between logging and snaphots.
-dataLogDir=<%= node.zookeeper_attrib(:data_log_dir) %>
+dataLogDir=<%= @data_log_dir %>
 
 # The number of snapshots to retain in data Dir <-- edit by sean: keep a space between data and Dir, otheriwse zkServer.sh start will fail
-autopurge.snapRetainCount=<%= node.zookeeper_attrib(:snapshot_num) %>
+autopurge.snapRetainCount=<%= @snapshot_num %>
 
 # Purge task interval in hours
 # Set to "0" to disable auto purge feature
-autopurge.purgeInterval=<%= node.zookeeper_attrib(:purge_interval) %>
+autopurge.purgeInterval=<%= @purge_interval %>
 
 
 

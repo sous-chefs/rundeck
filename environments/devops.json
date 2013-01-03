@@ -12,7 +12,7 @@
         },
         "authorization": {
             "ad_auth": {
-                "ad_network": "testops"
+                "ad_network": "osstagingdmz"
             }, 
             "sudo": {
                 "groups": [
@@ -33,6 +33,20 @@
             "full_systemview": "true",
             "syscontact": "trent.white@webtrends.com"
         },
+        "wt_monitoring": {
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "true", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "devops.dopod.servers", 
+            "monitoring_enabled": "false"
+        }, 
         "webtrends_server": {
             "apt": [
                 {
