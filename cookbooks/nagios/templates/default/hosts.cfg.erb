@@ -15,10 +15,10 @@ define host {
   elsif !node['cloud'].nil? && n['cloud']['provider'] != node['cloud']['provider']
     ip = n['cloud']['public_ipv4']
   else
-    ip = n['ipaddress']
+    ip = n[node['nagios']['host_name_attribute']]
   end %>
   address <%= ip %>
-  host_name <%= n['hostname'] %>
+  host_name <%= n[node['nagios']['host_name_attribute']] %>
   <% if node['nagios']['multi_environment_monitoring'] -%>
   <% if n.run_list.roles.nil? || n.run_list.roles.length == 0 -%>
   hostgroups all,<%= n.os %>,<%= n.chef_environment %>
