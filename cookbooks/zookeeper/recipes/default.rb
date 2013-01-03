@@ -114,6 +114,7 @@ remote_file source_fullpath do
 	group 'zookeeper'
 	mode 00744
 	action :create_if_missing
+	notifies :run, "execute[extract-zookeeper]", :immediately
 end
 
 # extract it
@@ -123,6 +124,7 @@ execute 'extract-zookeeper' do
 	cwd node.zookeeper_attrib(:install_dir)
 	user 'zookeeper'
 	group 'zookeeper'
+	action :nothing
 end
 
 # create a link from the specific version to a generic zookeeper folder
