@@ -58,7 +58,7 @@ directory mount_dir do
 end
 
 # create the directories the app needs to function
-[ install_dir , "#{install_dir}/conf" , "#{install_dir}/log_pusher" ].each do |dir|
+[ node['wt_common']['install_dir_linux'], install_dir , "#{install_dir}/conf" , "#{install_dir}/log_pusher" ].each do |dir|
   directory dir do 
     owner user
     group group
