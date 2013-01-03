@@ -1,3 +1,6 @@
+## 1.2.2
+* Changed template for zoo.cfg to not use the zookeeper_attrib method itself
+
 ## 1.2.1
 * Changing the execute "extract-zookeeper" to have action :nothing
 * Adding notify on untarring to the remote_file
