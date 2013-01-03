@@ -39,12 +39,14 @@ end
 directory install_dir do
   recursive true
   action :create
+  rights :read, user_data['wt_common']['ui_user']
   rights :write, user_data['wt_common']['ui_user']
 end
 
 directory log_dir do
   recursive true
   action :create
+  rights :read, user_data['wt_common']['ui_user']
   rights :write, user_data['wt_common']['ui_user']
 end
 
