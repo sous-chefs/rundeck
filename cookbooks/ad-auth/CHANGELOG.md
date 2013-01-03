@@ -1,3 +1,6 @@
+## 1.0.6
+* Add attribute check for setting hostnames with environment prepended for openstack using boolean attribute usenameprefix
+
 ## 1.0.5
 * Add OS support to the metadata
 * Use a standard default.rb attributes file not a non-standard named file

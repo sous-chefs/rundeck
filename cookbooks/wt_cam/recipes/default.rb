@@ -39,12 +39,14 @@ end
 directory install_dir do
   recursive true
   action :create
+  rights :read, user_data['wt_common']['ui_user']
   rights :write, user_data['wt_common']['ui_user']
 end
 
 directory log_dir do
   recursive true
   action :create
+  rights :read, user_data['wt_common']['ui_user']
   rights :write, user_data['wt_common']['ui_user']
 end
 
@@ -86,7 +88,8 @@ template "#{install_dir}\\web.config" do
     :ldap_user => user_data['wt_common']['ldap_user'],
     :ldap_password => user_data['wt_common']['ldap_password'],
     :smtp_host => node['wt_common']['smtp_server'],
-    :streams_ui_url => node['wt_streaming_viz']['streams_ui_url']
+    :streams_ui_url => node['wt_streaming_viz']['streams_ui_url'],
+    :sms_url => node['wt_streamingmanagementservice']['sms_service_url']
   )
 end
 

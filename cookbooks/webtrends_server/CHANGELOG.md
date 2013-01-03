@@ -1,3 +1,12 @@
+## 1.8.11
+ * Manage the chef client.rb file with chef.  This requires a new chef_client section in the environment
+ * Update the updater version to 10.16.4
+
+## 1.8.10
+ * Switch to md for the readme
+ * Add an optional value of arch for the apt repo LWRP now that apt 1.7.0 cookbook supports this
+ * Update the updatechef cookbook to update to the new current version of 10.16.2
+
 ## 1.8.9
  * Change the detection of the _default environment so that it fails the run, but doesn't kill the running daemon
  * Add name metadata
@@ -31,6 +40,9 @@
 
 ## 1.8.0
  * Rename ondemand_base to webtrends_server.  Two fold:  This cookbook will be used for Optimize as well going forward and it should match the role name
+
+## 1.7.13
+ * Added gem_repo creation for windows
 
 ## 1.7.12
  * Added 'webtrends' user to centos
