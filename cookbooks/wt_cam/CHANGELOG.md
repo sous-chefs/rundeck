@@ -1,3 +1,6 @@
+## 1.1.6
+* STR-779 folder permissions bug
+
 ## 1.1.5
 * Added sms_url to invoke billing usage from CAM plugin
 
