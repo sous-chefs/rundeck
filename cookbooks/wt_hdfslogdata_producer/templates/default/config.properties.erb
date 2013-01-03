@@ -1,0 +1,27 @@
+
+
+# Kafka
+zk.connect=<%= @zookeeper_pairs.join(",") %>
+zk.connectiontimeout.ms=<%= node['wt_hdfslogdata_producer']['kafka']['connectiontimeout_ms'] %>
+fetch.size=<%= node['wt_hdfslogdata_producer']['kafka']['fetch_size'] %>
+groupid=<%= node['wt_hdfslogdata_producer']['kafka']['group_id'] %>
+
+
+# HDFSLogProducer
+daemon.topics=<%= node['wt_hdfslogdata_producer']['daemon']['topics'] %>
+daemon.threadsPerTopic=<%= node['wt_hdfslogdata_producer']['daemon']['threads_per_topic'] %>
+daemon.compressionBufferSize=<%= node['wt_hdfslogdata_producer']['daemon']['compression_buffer_size'] %>
+daemon.maxLogSize=<%= node['wt_hdfslogdata_producer']['daemon']['max_log_size'] %>
+daemon.logPath=<%= node['wt_hdfslogdata_producer']['daemon']['log_path'] %>
+daemon.completedLogPath=<%= node['wt_hdfslogdata_producer']['daemon']['completed_log_path'] %>
+daemon.whitelist=<%= node['wt_hdfslogdata_producer']['daemon']['completed_log_path'] %>
+
+
+#GEO augmentation
+geo.timeout = <%= node['wt_hdfslogdata_producer']['geo']['timeout'] %>
+geo.url=<%= node['wt_hdfslogdata_producer']['geo']['url'] %>
+
+
+
+# BZip2 blocksize (1 = 100k)
+bzip2.blockSize=<%= node['wt_hdfslogdata_producer']['bzip2']['block_size'] %>

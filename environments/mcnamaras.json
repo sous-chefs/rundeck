@@ -267,6 +267,18 @@
                 "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
         }, 
+        "wt_hdfslogdata_producer": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt339/46118:id/webtrends-visitoranalytics-hdfslogproducer-develop-SNAPSHOT-bin.tar.gz",
+            "kafka": {
+                 "group_id": "hdfslog-producer-mcnamaras"
+             },
+            "daemon": {
+                 "topics": "Lab_H_lrRawHits,Lab_H_scsRawHits"
+             },
+             "geo": {
+                 "url": "hutil01.staging.dmz"
+             }
+        }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/42263:id/Streaming.Viz.zip", 

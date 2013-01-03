@@ -105,7 +105,7 @@ service_hosts= Hash.new
 search(:role, "*:*") do |r|
   hostgroups << r.name
   nodes.select {|n| n['roles'].include?(r.name) }.each do |n|
-    service_hosts[r.name] = n['hostname']
+    service_hosts[r.name] = n[node['nagios']['host_name_attribute']]
   end
 end
 
@@ -114,7 +114,7 @@ if node['nagios']['multi_environment_monitoring']
   search(:environment, "*:*") do |e|
     hostgroups << e.name
     nodes.select {|n| n.chef_environment == e.name }.each do |n|
-      service_hosts[e.name] = n['hostname']
+      service_hosts[e.name] = n[node['nagios']['host_name_attribute']]
     end
   end
 end
@@ -140,14 +140,14 @@ end
 
 # Load Nagios templates from the nagios_templates data bag
 begin
-    templates = search(:nagios_templates, '*:*')
-    rescue Net::HTTPServerException
-    Chef::Log.info("Could not search for nagios_template data bag items, skipping dynamically generated template checks")
+  templates = search(:nagios_templates, '*:*')
+  rescue Net::HTTPServerException
+  Chef::Log.info("Could not search for nagios_template data bag items, skipping dynamically generated template checks")
 end
 
 if templates.nil? || templates.empty?
-    Chef::Log.info("No templates returned from data bag search.")
-    templates = Array.new
+  Chef::Log.info("No templates returned from data bag search.")
+  templates = Array.new
 end
 
 # Load Nagios event handlers from the nagios_eventhandlers data bag
@@ -189,8 +189,14 @@ begin
   search(:nagios_hostgroups, '*:*') do |hg|
     hostgroup_list << hg['hostgroup_name']
     temp_hostgroup_array= Array.new
-    search(:node, "#{hg['search_query']}") do |n|
-       temp_hostgroup_array << n['hostname']
+    if node['nagios']['multi_environment_monitoring']
+      search(:node, "#{hg['search_query']}") do |n|
+        temp_hostgroup_array << n[node['nagios']['host_name_attribute']]
+      end
+    else
+      search(:node, "#{hg['search_query']} AND chef_environment:#{node.chef_environment}") do |n|
+        temp_hostgroup_array << n[node['nagios']['host_name_attribute']]
+      end
     end
     hostgroup_nodes[hg['hostgroup_name']] = temp_hostgroup_array.join(",")
   end

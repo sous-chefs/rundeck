@@ -1,3 +1,9 @@
+## 1.1.6
+* STR-779 folder permissions bug
+
+## 1.1.5
+* Added sms_url to invoke billing usage from CAM plugin
+
 ## 1.1.4
 * Changed the wt_base icacls call to be directory rights calls
 

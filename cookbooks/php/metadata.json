@@ -48,5 +48,5 @@
     "php::module_pgsql": "Install the php5-pgsql packag",
     "php::module_sqlite3": "Install the php5-sqlite3 package"
   },
-  "version": "1.1.2"
+  "version": "1.1.4"
 }

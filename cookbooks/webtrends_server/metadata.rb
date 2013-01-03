@@ -3,8 +3,8 @@ maintainer       "Webtrends Inc."
 maintainer_email "hostedops@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures the base Webtrends server setup"
-long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "1.8.9"
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+version          "1.8.11"
 supports         "windows"
 supports         "ubuntu"
 supports         "centos"

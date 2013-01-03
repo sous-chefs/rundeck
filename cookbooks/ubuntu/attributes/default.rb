@@ -27,3 +27,5 @@ default['ubuntu']['include_source_packages'] = true
 
 # If you want to limit the repositories to a specifc arch set this to an array of archs 
 default['ubuntu']['architectures'] = nil
+
+default['ubuntu']['locale'] = nil

@@ -1,0 +1,21 @@
+{
+  "name": "wt_hdfslogdata_producer",
+  "default_attributes": {
+  },
+  "override_attributes": {
+      "java" : {
+        "install_flavor": "oracle",
+        "jdk_version": "7"
+      }
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[java]",
+    "recipe[kafka]",
+    "recipe[wt_hdfslogdata_producer]"
+  ],
+  "description": "Webtrends HDFS Log Data Producer",
+  "chef_type": "role"  
+}
