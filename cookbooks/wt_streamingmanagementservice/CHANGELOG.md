@@ -1,3 +1,6 @@
+## 1.0.5
+* STR-695, replaced attribute references with variables
+
 ## 1.0.4
 * Added conn string for streaming usage database
 
