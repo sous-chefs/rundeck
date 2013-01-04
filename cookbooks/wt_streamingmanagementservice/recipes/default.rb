@@ -120,8 +120,8 @@ end
 
 template "#{install_dir}/conf/log4j.xml" do
   source "log4j.xml.erb"
-  owner "webtrends"
-  group "webtrends"
+  owner user
+  group group
   mode 00640
   variables({
     :log_dir => log_dir
@@ -130,8 +130,8 @@ end
 
 template "#{install_dir}/conf/config.properties" do
   source "config.properties.erb"
-  owner "webtrends"
-  group "webtrends"
+  owner user
+  group group
   mode  00640
   variables({
     :port => node['wt_streamingmanagementservice']['port'],
