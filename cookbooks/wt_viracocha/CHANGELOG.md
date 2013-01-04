@@ -1,3 +1,6 @@
+## 1.1.3:
+* Do not fail if ec2 information is not present.
+
 ## 1.1.2:
 * Support both formats for storing the authorization databag location (Optimize and On Demand) 
 
