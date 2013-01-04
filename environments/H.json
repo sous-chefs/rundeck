@@ -123,7 +123,7 @@
             "version": "0.8.1"
         },
         "vc2010": {
-            tAuth/repository/download/bt324/47056:id/Cam.zip"guestAuth/repository/download/bt324/47056:id/Cam.zip"x64": {
+            "x64": {
                 "url": "http://repo.staging.dmz/repo/windows/ms_vc2010/vcredist_x64.exe"
             },
             "x86": {
