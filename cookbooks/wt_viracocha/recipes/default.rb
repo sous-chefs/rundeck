@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: viracocha
+# Cookbook Name:: wt_viracocha
 # Recipe:: default
 #
 # Copyright 2012, Webtrends Inc.
