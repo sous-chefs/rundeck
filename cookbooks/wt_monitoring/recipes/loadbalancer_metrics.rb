@@ -32,11 +32,6 @@ cron "AMSLBA_Metrics" do
   command "/opt/webtrends/loadbalancer_metrics/snmp-poll_amslba.sh"
 end
 
-cron "IADLBA01_Metrics" do
-  minute "*/5"
-  command "/opt/webtrends/loadbalancer_metrics/snmp-poll_iadlba01.sh"
-end
-
 cron "IADLBB_Metrics" do
   minute "*/5"
   command "/opt/webtrends/loadbalancer_metrics/snmp-poll_iadlbb.sh"
