@@ -1,3 +1,6 @@
+##2.3.7
+* Added new versions of browsers.ini, keywords.ini, device-atlas.json
+
 ## 2.3.6
 * Changed "streaming.topology.zmq.data.znoderoot" in config.properties.erb
 
