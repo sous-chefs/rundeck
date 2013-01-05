@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: viracocha
+# Cookbook Name:: wt_viracocha
 # Recipe:: default
 #
-# Copyright 2012, Webtrends
+# Copyright 2012, Webtrends Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 include_recipe "ruby"
 include_recipe "rbvmomi"
 include_recipe "build-essential"
@@ -28,64 +29,69 @@ end
   gem_package gem
 end
 
-directory "/home/bobo/.ec2/" do
-  owner "root"
-  group "root"
-  mode 00700
-  action :create
-  recursive true
-end
-
 begin
   auth_dbag = data_bag_item('authorization', node['authorization']['ad_likewise']['ad_network'])
 rescue
   auth_dbag = data_bag_item('authorization', node['authorization']['ad_auth']['ad_network'])
 end
 
-template "/home/bobo/.ec2/ec2rc" do
-  source "ec2rc.erb"
-  owner "root"
-  group "root"
-  mode 00700
-  variables(
-    :ec2_access_key => auth_dbag['ec2']['ec2_access_key'],
-    :ec2_secret_key => auth_dbag['ec2']['ec2_secret_key']
-  )
-end
+if auth_dbag['ec2'].nil?
+  log('No ec2 data in authorization data bag.') { level :warn }
+else
 
-file "/home/bobo/.ec2/cert-ZO6RBYVDHGN57LV7N5UGQGQL7IJJEXCH.pem" do
-  owner "root"
-  group "root"
-  mode 00600
-  content auth_dbag['ec2']['ec2_cert']
-end
+  directory "/home/bobo/.ec2/" do
+    owner "root"
+    group "root"
+    mode 00700
+    action :create
+    recursive true
+  end
 
-file "/home/bobo/.ec2/pk-ZO6RBYVDHGN57LV7N5UGQGQL7IJJEXCH.pem" do
-  owner "root"
-  group "root"
-  mode 00600
-  content auth_dbag['ec2']['ec2_pk']
-end
+  template "/home/bobo/.ec2/ec2rc" do
+    source "ec2rc.erb"
+    owner "root"
+    group "root"
+    mode 00700
+    variables(
+      :ec2_access_key => auth_dbag['ec2']['ec2_access_key'],
+      :ec2_secret_key => auth_dbag['ec2']['ec2_secret_key']
+    )
+  end
 
-directory "/home/bobo/.ssh" do
-  owner "root"
-  group "root"
-  mode 00600
-  action :create
-  recursive true
-end
+  file "/home/bobo/.ec2/cert-ZO6RBYVDHGN57LV7N5UGQGQL7IJJEXCH.pem" do
+    owner "root"
+    group "root"
+    mode 00600
+    content auth_dbag['ec2']['ec2_cert']
+  end
 
-file "/home/bobo/.ssh/wt-opt-prod" do
-  owner "root"
-  group "root"
-  mode 00600
-  content auth_dbag['ec2']['ssh_pk']
-end
+  file "/home/bobo/.ec2/pk-ZO6RBYVDHGN57LV7N5UGQGQL7IJJEXCH.pem" do
+    owner "root"
+    group "root"
+    mode 00600
+    content auth_dbag['ec2']['ec2_pk']
+  end
 
-file "/home/bobo/.ssh/wt-opt-prod.pub" do
-  owner "root"
-  group "root"
-  mode 00600
-  content auth_dbag['ec2']['ssh_pub']
-end
+  directory "/home/bobo/.ssh" do
+    owner "root"
+    group "root"
+    mode 00600
+    action :create
+    recursive true
+  end
 
+  file "/home/bobo/.ssh/wt-opt-prod" do
+    owner "root"
+    group "root"
+    mode 00600
+    content auth_dbag['ec2']['ssh_pk']
+  end
+
+  file "/home/bobo/.ssh/wt-opt-prod.pub" do
+    owner "root"
+    group "root"
+    mode 00600
+    content auth_dbag['ec2']['ssh_pub']
+  end
+
+end
