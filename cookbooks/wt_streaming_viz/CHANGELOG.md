@@ -1,3 +1,6 @@
+## 1.1.17
+* set a default errorRedirect in the web.config template
+
 ## 1.1.16
 * replaced missing comma in recipe
 

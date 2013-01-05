@@ -4,7 +4,7 @@ maintainer_email "kendrick.martin@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures Streams UI IIS site"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.1.16"
+version          "1.1.17"
 supports         "windows"
 depends          "iis"
 depends          "windows"
