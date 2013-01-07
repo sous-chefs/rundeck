@@ -9,6 +9,7 @@
         "kafka": "= 1.0.20",
         "nagios": "= 3.0.0",
         "storm": "= 1.0.30",
+	"ubuntu": "= 1.0.2",
         "webpi": "= 1.0.16",
         "webtrends_server": "= 1.8.10",
         "windows": "= 1.7.0",
@@ -360,7 +361,8 @@
         "ubuntu": {
             "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu",
             "include_source_packages": false,
-            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu",
+            "locale": "en_US.utf8"
         }
     }
 }
