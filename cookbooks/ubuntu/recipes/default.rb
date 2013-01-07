@@ -36,5 +36,5 @@ execute "set_locale" do
   command "update-locale LC_ALL=#{node['ubuntu']['locale']}"
   action :run
   only_if { node['ubuntu']['locale'] }
-  not_if { "grep LC_ALL=#{node['ubuntu']['locale']} /etc/default/locale" }
+  not_if "grep LC_ALL=#{node['ubuntu']['locale']} /etc/default/locale"
 end
