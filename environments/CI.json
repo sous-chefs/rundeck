@@ -316,6 +316,7 @@
         "ubuntu": {
             "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
             "include_source_packages": false, 
+            "locale": "en_US.utf8",
             "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }

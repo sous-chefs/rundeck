@@ -1,0 +1,12 @@
+{
+    "id": "OSSTAGINGDMZ", 
+    "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "usenameprefix": true,
+    "auth_domain_password": "Mt.H00d", 
+    "auth_domain_user": "osdeploy", 
+    "membership_required": [
+        "stagingdmz\\\\domain-admins",
+        "stagingdmz\\\\stage-admins"
+    ], 
+    "primary_domain": "os.staging.dmz"
+}
