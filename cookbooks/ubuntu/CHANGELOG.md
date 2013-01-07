@@ -1,3 +1,7 @@
+## v1.0.3:
+
+* Added second section for changing the LANG as well as the lc
+
 ## v1.0.1:
 
 * Added support for changing the locale.
