@@ -362,7 +362,7 @@
             "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu",
             "include_source_packages": false,
             "security_url": "http://repo.staging.dmz/repo/apt/ubuntu",
-            "locale": "en_US_utf8"
+            "locale": "en_US.utf8"
         }
     }
 }
