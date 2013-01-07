@@ -119,7 +119,11 @@ package "libshadow-ruby1.8"
 end
 
 # pull authorization data from the authorization data bag
-auth_config = data_bag_item('authorization', node.chef_environment)
+if !node[:authorization][:ad_auth][:ad_network]
+  auth_config = data_bag_item('authorization', node.chef_environment)
+  else
+    auth_config = data_bag_item('authorization', node[:authorization][:ad_auth][:ad_network])
+end
 
 # set root password from authorization databag
 user "root" do
