@@ -16,7 +16,7 @@
         "wt_cam": "= 1.1.6",
         "wt_kafka_topagg": "= 1.0.1",
         "wt_netacuity": "= 1.0.12",
-        "wt_portfolio_admin": "= 1.1.10",
+        "wt_portfolio_admin": "= 1.1.11",
         "wt_portfolio_manager": "= 1.1.16",
         "wt_realtime_hadoop": "= 1.0.1",
         "wt_sauth": "= 1.1.4",
@@ -169,10 +169,10 @@
         },
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/47283:id/CAM.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/47358:id/CAM.zip"
             },
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt315/47283:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt315/47358:id/Plugins.zip"
             },
             "cam_service_url": "http://bcam.staging.dmz",
             "db_name": "cam",
@@ -245,7 +245,7 @@
         "wt_portfolio_admin": {
             "account_ui_url": "https://baccount.webtrends.com",
             "custom_errors": "Off",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/44494:id/Portfolio.Admin.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/47350:id/Portfolio.Admin.zip",
             "elmah_remote_access": "yes",
             "proxy_enabled": "true"
         },
@@ -264,11 +264,11 @@
         "wt_rta": {},
         "wt_sauth": {
             "auth_service_url": "https://bsauth.webtrends.com",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/47283:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/47358:id/auth.zip"
         },
         "wt_search": {},
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/47166:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/47354:id/streaming-analysis-bin.tar.gz",
             "query_bolt_executors": 24,
             "query_bolt_tasks": 24,
             "streaming_topology_field_grouping_local": "false",
@@ -286,7 +286,7 @@
         },
         "wt_streaming_viz": {
             "custom_errors": "Off",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/47292:id/Streaming.Viz.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/47309:id/Streaming.Viz.zip",
             "elmah_remote_access": "yes",
             "port": 80,
             "proxy_enabled": "true",
@@ -364,6 +364,7 @@
         "ubuntu": {
             "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu",
             "include_source_packages": false,
+	    "locale": "en_US.utf8",
             "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
