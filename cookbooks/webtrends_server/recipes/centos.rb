@@ -34,10 +34,12 @@ end
 include_recipe "hosts"
 
 # setup the client.rb file for chef with the correct chef server URL and logging options
-if node['chef_client']['server_url'].nil?
-  Chef::Application.fatal!("Your environment must contain a valid [:chef_client][:server_url] value to run the webtrends_server cookbook")
+if node['virtualization']['system'] != 'openstack'
+  if node['chef_client']['server_url'].nil?
+    Chef::Application.fatal!("Your environment must contain a valid [:chef_client][:server_url] value to run the webtrends_server cookbook")
+  end
+  include_recipe "chef-client::config"
 end
-include_recipe "chef-client::config"
 
 # set chef-client to run on a regular schedule (30 mins)
 include_recipe "chef-client::service"
