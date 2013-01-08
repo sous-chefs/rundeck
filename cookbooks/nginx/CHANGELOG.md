@@ -1,3 +1,8 @@
+## v1.1.3:
+
+* Adding attribute: default['nginx']['root']
+
+
 ## v1.1.2:
 
 * [COOK-1766] - Nginx Source Recipe Rebuilding Source at Every Run
