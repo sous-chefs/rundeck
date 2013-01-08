@@ -4,7 +4,7 @@
     "default_attributes": {
         "authorization": {
             "ad_auth": {
-                "ad_network": "osstagingdmz"
+                "ad_network": "OSSTAGINGDMZ"
             }, 
             "sudo": {
                 "groups": [
