@@ -97,9 +97,7 @@ template "#{install_dir}\\appSettings.config" do
 	source "appSettings.config.erb"
 	variables(
 		:auth_url => "#{auth_url}/#{auth_version}",
-		:auth_url_base => node['wt_portfolio_admin']['auth_service_url_base'],
 		:cam_url => node['wt_cam']['cam_service_url'],
-		:cam_url_base => node['wt_portfolio_admin']['cam_service_url_base'],
 		:sapi_url   => node['wt_streamingapi']['sapi_service_url'],
 		:help_url => "http://help.webtrends.com",
 		:account_url => node['wt_portfolio_admin']['account_ui_url'],
