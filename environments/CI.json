@@ -302,6 +302,9 @@
     "json_class": "Chef::Environment", 
     "name": "CI", 
     "override_attributes": {
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        },
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
