@@ -26,7 +26,10 @@
                 "dont_blame_nrpe": "1"
             }, 
             "server_role": "nagios_xi"
-        }, 
+        },
+        "chef_client": {
+           "server_url": "http://chef.staging.dmz:4040"
+        },
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
