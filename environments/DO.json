@@ -243,7 +243,7 @@
             "datacenter": "pdx", 
             "environment": "DO", 
             "pod": "DO"
-        },  
+        }, 
         "wt_scheddb": {
             "dbname": "wt_Sched", 
             "host": "masterdb01"
