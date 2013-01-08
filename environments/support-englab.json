@@ -2,11 +2,12 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "cobbler": "= 1.0.8", 
-        "nagios": "= 3.0.0",
+        "nagios": "= 3.0.0", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.9", 
         "windows": "= 1.6.0", 
-        "wt_base": "= 1.0.2"
+        "wt_base": "= 1.0.2", 
+        "wt_publishver": "= 0.1.0"
     }, 
     "default_attributes": {
         "authorization": {
