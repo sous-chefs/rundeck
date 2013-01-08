@@ -1,11 +1,12 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "kafka": "= 1.0.20",
+        "kafka": "= 1.0.20", 
         "nagios": "= 3.0.0", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.9", 
         "wt_base": "= 1.0.3", 
+        "wt_publishver": "= 0.1.0", 
         "wt_streamingcollection": "= 1.1.0"
     }, 
     "default_attributes": {
