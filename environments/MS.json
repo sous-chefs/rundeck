@@ -14,6 +14,7 @@
         "wt_monitoring": "= 1.0.0", 
         "wt_netacuity": "= 1.0.10", 
         "wt_platformscheduler": "= 1.0.12", 
+        "wt_publishver": "= 0.1.0", 
         "wt_search": "= 1.0.10", 
         "wt_sync": "= 1.0.6", 
         "wt_xd": "= 1.0.1"
