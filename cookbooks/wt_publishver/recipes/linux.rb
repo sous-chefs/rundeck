@@ -32,11 +32,11 @@ end.run_action :install
 	gem_package gem[/^(.*)-[\d\.]+?/, 1] do
 		gem_binary 'gem'
 		source File.join(wdir, "#{gem}.gem")
-		options "--install-dir #{gdir}"
+		options "--install-dir #{gdir} --ignore-dependencies"
 		action :nothing
 	end.run_action :install
 end
 
 Gem.clear_paths
 
-require 'viewpoint/spws'
+# require 'viewpoint/spws'
