@@ -1,3 +1,6 @@
+## 1.1.11
+* Remove unused url_base parameters from attributes, replace with proper config values.
+
 ## 1.1.10
 * Add node domain to http proxy bypass list.
 
