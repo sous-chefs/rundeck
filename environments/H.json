@@ -9,7 +9,7 @@
         "kafka": "= 1.0.20",
         "nagios": "= 3.0.0",
         "storm": "= 1.0.30",
-	"ubuntu": "= 1.0.2",
+	"ubuntu": "= 1.0.3",
         "webpi": "= 1.0.16",
         "webtrends_server": "= 1.8.10",
         "windows": "= 1.7.0",
@@ -263,7 +263,7 @@
         },
         "wt_search": {},
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/47166:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/47354:id/streaming-analysis-bin.tar.gz",
             "query_bolt_executors": 24,
             "query_bolt_tasks": 24,
             "streaming_topology_field_grouping_local": "false",
