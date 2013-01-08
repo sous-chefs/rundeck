@@ -1,12 +1,13 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "cobbler": "= 1.0.7",
-        "java": "= 1.6.0",
+        "cobbler": "= 1.0.7", 
+        "java": "= 1.6.0", 
         "nagios": "= 3.0.0", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.9", 
-        "windows": "= 1.6.0"
+        "windows": "= 1.6.0", 
+        "wt_publishver": "= 0.1.0"
     }, 
     "default_attributes": {
         "authorization": {
@@ -41,22 +42,22 @@
             "tarball": "VMwareTools-8.6.5-652272.tar.gz"
         }, 
         "java": {
-            "install_flavor": "oracle",
+            "install_flavor": "oracle", 
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4",
+                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
-                },
+                }, 
                 "7": {
                     "x86_64": {
-                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7",
+                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
             }
-        },
+        }, 
         "nagios": {
             "client": {
                 "install_method": "package"
