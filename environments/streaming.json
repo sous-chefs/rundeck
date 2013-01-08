@@ -1,87 +1,85 @@
 {
-  "override_attributes": {
-  },
-  "chef_type": "environment",
-  "json_class": "Chef::Environment",
-  "default_attributes": {
-    "authorization": {
-      "sudo": {
-        "include_sudoers_d": true,
-        "passwordless": false,
-        "users": [
-          "bobo"
-        ],
-        "groups": [
-          "domain-admins"
-        ]
-      },
-      "ad_auth": {
-        "ad_network": "OSSTAGINGDMZ"
-      }
-    },
-    "webtrends_server": {
-      "yum": [
-        {
-          "url": "http://repo.staging.dmz/repo/yum/webtrends",
-          "name": "wtlab",
-          "description": "Webtrends Repo"
+    "chef_type": "environment", 
+    "cookbook_versions": {}, 
+    "default_attributes": {
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "OSSTAGINGDMZ"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins"
+                ], 
+                "include_sudoers_d": true, 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
+        "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
+            "multi_environment_monitoring": true, 
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server_role": "nagios_xi"
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "snmp": {
+            "community": "DevOps", 
+            "full_systemview": "true", 
+            "syscontact": "trent.white@webtrends.com"
+        }, 
+        "webtrends_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
+                }, 
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution_suffix": "-0.10", 
+                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
+                    "name": "wtlab-opscode", 
+                    "url": "http://repo.staging.dmz/repo/apt/opscode"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
+                }
+            ]
+        }, 
+        "wt_monitoring": {
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "true", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "streaming.servers", 
+            "monitoring_enabled": "false"
         }
-      ],
-      "apt": [
-        {
-          "url": "http://repo.staging.dmz/repo/apt/webtrends",
-          "name": "wtlab",
-          "components": [
-            "main"
-          ],
-          "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key"
-        },
-        {
-          "url": "http://repo.staging.dmz/repo/apt/opscode",
-          "name": "wtlab-opscode",
-          "distribution_suffix": "-0.10",
-          "components": [
-            "main"
-          ],
-          "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key"
-        }
-      ]
-    },
-    "snmp": {
-      "full_systemview": "true",
-      "syscontact": "trent.white@webtrends.com",
-      "community": "DevOps"
-    },
-    "postfix": {
-      "relayhost": "pdxengmta01.webtrends.corp"
-    },
-    "wt_monitoring": {
-      "jmx_port": 9999,
-      "healthcheck_enabled": "true",
-      "graphite_port": 2003,
-      "healthcheck_port": 9000,
-      "audit_topic": "stream-audit",
-      "graphite_flush_interval": "1",
-      "graphite_flush_enabled": "true",
-      "graphite_server": "sgraph01.staging.dmz",
-      "monitoring_enabled": "false",
-      "metric_prefix": "streaming.servers",
-      "audit_bucket_timespan": 10,
-      "jmx_enabled": "true"
-    },
-    "nagios": {
-      "client": {
-        "install_method": "package"
-      },
-      "server_role": "nagios_xi",
-      "multi_environment_monitoring": true,
-      "nrpe": {
-        "dont_blame_nrpe": "1"
-      }
-    }
-  },
-  "name": "streaming",
-  "cookbook_versions": {
-  },
-  "description": "Streaming environment for Openstack instances."
+    }, 
+    "description": "Streaming environment for Openstack instances.", 
+    "json_class": "Chef::Environment", 
+    "name": "streaming", 
+    "override_attributes": {}
 }
