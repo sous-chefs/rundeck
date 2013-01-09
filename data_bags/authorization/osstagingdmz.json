@@ -6,7 +6,7 @@
     "auth_domain_user": "osdeploy", 
     "membership_required": [
         "stagingdmz\\\\domain-admins",
-        "stagingdmz\\\\stage-admins"
+        "stagingdmz\\\\os-admins"
     ], 
     "primary_domain": "os.staging.dmz"
 }
