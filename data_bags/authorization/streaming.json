@@ -1,7 +1,7 @@
 {
   "root_password": "$6$vU62efg8$LRXmqJ2A3gz/JjnKi3SNxzoAOfZf2CQkXaaqB3v5UW3KsKPbj5V5opjbJ4n0js/ErXTU5XNLiZXoF498esaeM1",
   "usenameprefix": true,
-  "auth_domain_password": "Mt.H00d",
+  "auth_domain_password": "mKET9dYDnzypsbzUB4VV",
   "auth_domain_user": "osdeployer",
   "membership_required": [
     "osstagingdmz\\\\domain-admins",
