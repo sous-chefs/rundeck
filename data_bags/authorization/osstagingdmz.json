@@ -2,7 +2,7 @@
     "id": "OSSTAGINGDMZ", 
     "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "usenameprefix": true,
-    "auth_domain_password": "Mt.H00d", 
+    "auth_domain_password": "mKET9dYDnzypsbzUB4VV", 
     "auth_domain_user": "osdeploy", 
     "membership_required": [
         "stagingdmz\\\\domain-admins",
