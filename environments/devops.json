@@ -28,7 +28,7 @@
             "server_role": "nagios_xi"
         },
         "chef_client": {
-           "server_url": "http://chef.staging.dmz:4040"
+           "server_url": "http://chef.staging.dmz:4000"
         },
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
