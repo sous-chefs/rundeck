@@ -14,7 +14,7 @@ else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-log_dir      = File.join(node['wt_common']['log_dir_linux'], "hdfslogdata_producer")
+log_dir      = File.join(node['wt_common']['install_log_dir_linux'], "hdfslogdata_producer")
 install_dir  = File.join(node['wt_common']['install_dir_linux'], "hdfslogdata_producer")
 tarball      = node['wt_hdfslogdata_producer']['download_url'].split("/")[-1]
 java_home    = node['java']['java_home']
@@ -72,7 +72,7 @@ def getZookeeperPairs(node)
   # grab the zookeeper nodes that are currently available
   zookeeper_pairs = Array.new
   if not Chef::Config.solo
-    search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+    search(:node, "role:zookeeper AND chef_environment:#{node.['wt_common']['common_resource_environment}").each do |n|
       zookeeper_pairs << n[:fqdn]
     end
   end

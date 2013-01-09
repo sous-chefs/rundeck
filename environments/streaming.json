@@ -100,6 +100,7 @@
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp",
             "config_dir_linux": "/etc/webtrends/",
+	    "common_resource_environment": "support-staging",
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/",
             "http_proxy_url": "http://sproxy02.staging.dmz:3128",
             "install_dir_linux": "/opt/webtrends/",
@@ -120,7 +121,7 @@
                 "url": "hutil01.staging.dmz"
             },
             "kafka": {
-                "group_id": "hdfslog-producer-mcnamaras"
+                "group_id": "hdfs-log-producer-je"
             }
         },
         "wt_monitoring": {
