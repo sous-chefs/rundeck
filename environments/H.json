@@ -268,15 +268,15 @@
             "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
-                "workers": 2
+                "workers": 4
             }, 
             "topic_list": [
-                "Lab_H_scsRawHits:30", 
-                "Lab_H_lrRawHits:30"
+                "Lab_H_scsRawHits:60", 
+                "Lab_H_lrRawHits:60"
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
-                "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                "childopts": "-Xmx3456m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
         }, 
         "wt_stream_processor": {
