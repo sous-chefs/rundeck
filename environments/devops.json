@@ -8,7 +8,7 @@
             }, 
             "sudo": {
                 "groups": [
-                    "domain-admins"
+                    "domain-admins","os-admins"
                 ], 
                 "include_sudoers_d": true, 
                 "passwordless": false, 
