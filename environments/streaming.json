@@ -30,6 +30,9 @@
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
+        "chef_client": {
+           "server_url": "http://chef.staging.dmz:4000"
+        },
         "snmp": {
             "community": "DevOps", 
             "full_systemview": "true", 
