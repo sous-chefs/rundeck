@@ -30,8 +30,6 @@ default['wt_hdfslogdata_producer']['dcs']['url']               		= "http://hconf
 # kafka
 default['wt_hdfslogdata_producer']['kafka']['connectiontimeout_ms'] 	= "1000000"
 default['wt_hdfslogdata_producer']['kafka']['fetch_size']           	= "3603150"
-#should pull from streamining environment file
-default['wt_hdfslogdata_producer']['kafka']['group_id']            	= ['kafka']['group_id']
 
 
 # GEO augmentation
@@ -41,4 +39,6 @@ default['wt_hdfslogdata_producer']['geo']['url'] 			= "hutil01.staging.dmz"
 
 # BZip2 blocksize (1 = 100k)
 default['wt_hdfslogdata_producer']['bzip2']['block_size'] 		= 1
+default['wt_hdfslogdata_producer']['jmx_port']         			= 9998
+default['wt_hdfslogdata_producer']['log4j_logging_level']               = "INFO"
 
