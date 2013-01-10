@@ -1,3 +1,8 @@
+## v2.2.0:
+
+* [COOK-547] - Add `load` action to provider to reload services when
+  template changes.
+
 ## v2.1.0:
 
 * [COOK-1295] - The bluepill cookbook does not create the default log file

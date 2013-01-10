@@ -77,8 +77,8 @@ end
 def build_repo(uri, distribution, components, arch, add_deb_src)
   components = components.join(' ') if components.respond_to?(:join)
   repo_info = "#{uri} #{distribution} #{components}\n"
-  repo_info = "[arch=#{arch}] #{repo_info}" if arch
-  repo =  "deb #{repo_info}"
+  repo_info = "arch=#{arch} #{repo_info}" if arch
+  repo =  "deb     #{repo_info}"
   repo << "deb-src #{repo_info}" if add_deb_src
   repo
 end
@@ -114,10 +114,11 @@ action :add do
     group "root"
     mode 00644
     content repository
-    action :create
+    action :nothing
     notifies :delete, resources(:file => "/var/lib/apt/periodic/update-success-stamp"), :immediately
     notifies :run, resources(:execute => "apt-get update"), :immediately if new_resource.cache_rebuild
   end
+  f.run_action(:create)
   new_resource.updated_by_last_action(f.updated?)
 end
 

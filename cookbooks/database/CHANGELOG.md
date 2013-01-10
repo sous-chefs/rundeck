@@ -1,11 +1,21 @@
-## v1.3.9
-* Changed Bool to Symbol
+## v1.3.10:
 
-## v1.3.8
-* Changed String to Bool
+* [COOK-2117] - undefined variable `grant_statement` in mysql user
+  provider
 
-## v1.3.7
-* Added support to drop user connections when dropping sql server
+## v1.3.8:
+
+* [COOK-1896] - Escape command
+* [COOK-2047] - Chef::Provider::Database::MysqlUser action :grant
+  improperly quotes `username`@`host` string
+* [COOK-2060] - Mysql::Error: Table '*.*' doesn't exist when privileges
+  include SELECT and database/table attributes are nil
+* [COOK-2062] - Remove backticks from database name when using wildcard
+
+## v1.3.6:
+
+* [COOK-1688] - fix typo in readme and add amazon linux to supported
+  platforms
 
 ## v1.3.4:
 

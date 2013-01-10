@@ -24,12 +24,16 @@ Attributes
 * node['wt_logpreproc']['logfilebatchsize'] - Number of files to process at a time
 * node['wt_logpreproc']['debugmsgsbatchcount'] - At debug level 4 or higher, log stats every time we finish this number of batches
 * node['wt_logpreproc']['wtlogpreproc1_label'] - Reference label for the logpreproc section
-* node['wt_logpreproc']['wtlogpreproc1_fileextension'] = "*.log.gz.rt" - Pick up these file extensions
-* node['wt_logpreproc']['wtlogpreproc1_doneextension'] = ".done" - File extension to be added to original files after processing, when deleteoriginallogs = false
+* node['wt_logpreproc']['wtlogpreproc1_fileextension'] = Pick up these file extensions
+* node['wt_logpreproc']['wtlogpreproc1_doneextension'] = File extension to be added to original files after processing, when deleteoriginallogs = false
 * node['wt_logpreproc']['wtlogpreproc1_compresslogfile'] - Compress logs (true/false)
 * node['wt_logpreproc']['wtlogpreproc1_compresslogfile_level'] - Compression level (only used if compresslogfile=true) can be from 1-9. See ENG 304856.
 * node['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'] - Delete the orignal lfr logs when finished (true/false)
 * node['wt_logpreproc']['wtlogpreproc1_webserver'] - Web Logs default to IIS Logs
+* node['wt_logpreproc']['geo_maxretries'] - Number of times to retry a geo lookup when no response is received
+* node['wt_logpreproc']['geo_timeoutlength'] - Time (in milliseconds) to wait for a reply from the server
+* node['wt_logpreproc']['geo_maxpending'] - Maximum number of outstanding geo lookups
+* node['wt_logpreproc']['geo_maxcachedrecords'] - Maximum number of cached geo records
 * node['wt_logpreproc']['dns_serverlist'] - List of DNS server IP addresses (semi-colon delimited).  Use if you need to override the system default DNS server.
 * node['wt_logpreproc']['dns_retrycount'] - DNS retry count
 * node['wt_logpreproc']['dns_retrytimeout'] - DNS retry timeout

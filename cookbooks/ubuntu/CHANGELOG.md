@@ -1,10 +1,6 @@
-## v1.0.3:
+## v1.1.0:
 
-* Added second section for changing the LANG as well as the lc
-
-## v1.0.1:
-
-* Added support for changing the locale.
+* [COOK-2104] - allow specifying architectures for repos
 
 ## v1.0.0:
 
