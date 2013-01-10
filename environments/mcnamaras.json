@@ -16,6 +16,7 @@
         "wt_kafka_topagg": "= 1.0.1", 
         "wt_netacuity": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.10", 
+        "wt_publishver": "= 0.1.0", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.2", 
         "wt_storm_streaming": "= 2.3.2", 
@@ -50,9 +51,7 @@
         "cassandra": {}, 
         "delltools": {}, 
         "esx": {
-            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
-            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+            "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
         "hadoop": {
             "core": {}, 
@@ -72,7 +71,6 @@
         "hive": {}, 
         "java": {
             "install_flavor": "oracle", 
-            "jdk_version": "7",
             "jdk": {
                 "6": {
                     "x86_64": {
@@ -86,7 +84,8 @@
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
-            }
+            }, 
+            "jdk_version": "7"
         }, 
         "kafka": {
             "chroot_suffix": "brokers", 
@@ -198,6 +197,18 @@
             "wrsmodify_group": "STAGINGDMZ\\B.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\B.WRS.Read"
         }, 
+        "wt_hdfslogdata_producer": {
+            "daemon": {
+                "topics": "Lab_H_lrRawHits,Lab_H_scsRawHits"
+            }, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt339/46118:id/webtrends-visitoranalytics-hdfslogproducer-develop-SNAPSHOT-bin.tar.gz", 
+            "geo": {
+                "url": "hutil01.staging.dmz"
+            }, 
+            "kafka": {
+                "group_id": "hdfslog-producer-mcnamaras"
+            }
+        }, 
         "wt_heatmaps": {
             "alt_chef_environment": "support-staging", 
             "config_distrib": "acd01.staging.dmz:8097", 
@@ -266,18 +277,6 @@
             "worker": {
                 "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
-        }, 
-        "wt_hdfslogdata_producer": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt339/46118:id/webtrends-visitoranalytics-hdfslogproducer-develop-SNAPSHOT-bin.tar.gz",
-            "kafka": {
-                 "group_id": "hdfslog-producer-mcnamaras"
-             },
-            "daemon": {
-                 "topics": "Lab_H_lrRawHits,Lab_H_scsRawHits"
-             },
-             "geo": {
-                 "url": "hutil01.staging.dmz"
-             }
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
