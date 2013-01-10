@@ -1,13 +1,14 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {        
+    "cookbook_versions": {
         "java": "= 2.0.0", 
-        "kafka": "= 1.0.20",
+        "kafka": "= 1.0.20", 
         "nagios": "= 3.0.0", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.10", 
         "wt_base": "= 1.0.3", 
-        "wt_edge_server": "= 1.0.0",
+        "wt_edge_server": "= 1.0.0", 
+        "wt_publishver": "= 0.1.0", 
         "wt_streamingcollection": "= 1.1.0"
     }, 
     "default_attributes": {
@@ -28,9 +29,7 @@
             }
         }, 
         "esx": {
-            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
-            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+            "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
         "java": {
             "install_flavor": "oracle", 
@@ -144,9 +143,9 @@
             "wrsmodify_group": "STAGINGDMZ\\G.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\G.WRS.Read"
         }, 
-	"wt_edge_server": {
+        "wt_edge_server": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt320/43589:id/Edge-Server-Distribution-wModules-all.tar.gz"
-        },
+        }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 

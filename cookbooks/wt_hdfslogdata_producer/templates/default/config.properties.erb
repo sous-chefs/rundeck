@@ -14,7 +14,11 @@ daemon.compressionBufferSize=<%= node['wt_hdfslogdata_producer']['daemon']['comp
 daemon.maxLogSize=<%= node['wt_hdfslogdata_producer']['daemon']['max_log_size'] %>
 daemon.logPath=<%= node['wt_hdfslogdata_producer']['daemon']['log_path'] %>
 daemon.completedLogPath=<%= node['wt_hdfslogdata_producer']['daemon']['completed_log_path'] %>
-daemon.whitelist=<%= node['wt_hdfslogdata_producer']['daemon']['completed_log_path'] %>
+daemon.whitelist=<%= node['wt_hdfslogdata_producer']['daemon']['whitelist'] %>
+
+
+#dcs augmentation
+dcs.config.service.url=<%= node['wt_hdfslogdata_producer']['dcs']['url'] %>
 
 
 #GEO augmentation
