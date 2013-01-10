@@ -5,8 +5,6 @@
     "auth_domain_password": "mKET9dYDnzypsbzUB4VV", 
     "auth_domain_user": "osdeployer", 
     "membership_required": [
-        "stagingdmz\\\\domain-admins",
-        "stagingdmz\\\\os-admins"
     ], 
     "primary_domain": "os.staging.dmz"
 }
