@@ -1,8 +1,7 @@
 {
   "name": "openstack_instance",
   "default_attributes": {
-     "openstack_instance": true
-    }
+    "openstack_instance": true
   },
   "json_class": "Chef::Role",
   "env_run_lists": {
