@@ -11,7 +11,7 @@ log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=[%d] %p %m (%c)%n
 
 log4j.appender.R=org.apache.log4j.RollingFileAppender
-log4j.appender.R.File=<%= node["wt_common"]["log_dir_linux"] %>wt_hdfslogdata_producer.log
+log4j.appender.R.File=<%= node["wt_common"]["log_dir_linux"] %>hdfslogdata_producer/wt_hdfslogdata_producer.log
 # Keep one backup file
 log4j.appender.R.MaxBackupIndex=1
 log4j.appender.R.layout=org.apache.log4j.PatternLayout
