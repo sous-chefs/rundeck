@@ -8,7 +8,7 @@
 #
 
 if node['virtualization']['system'] == 'vmware'
-  
+
   bash "remove_vmware_tools" do
     code <<-EOH
     yum remove -y 'vmware*'
