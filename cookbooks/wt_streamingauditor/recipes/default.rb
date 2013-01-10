@@ -178,14 +178,14 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
   nagios_nrpecheck "wt_healthcheck_page" do
     command "#{node['nagios']['plugin_dir']}/check_http"
-    parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"all_services\\\": \\\"ok\\\"\""
+    parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
     action :add
   end
 
   # Create a nagios nrpe check for the overall streaming health
   nagios_nrpecheck "wt_streaming_healthcheck" do
     command "#{node['nagios']['plugin_dir']}/check_http"
-    parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"streaming_healthcheck\\\":\\{\\\"healthy\\\": \\\"true\\\"\""
+    parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"streaming_healthcheck\\\":\\s*\\{\\\"healthy\\\":\\s*\\\"true\\\"\""
     action :add
   end
 end
