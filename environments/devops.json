@@ -8,7 +8,8 @@
             }, 
             "sudo": {
                 "groups": [
-                    "domain-admins","os-admins"
+                    "domain-admins", 
+                    "os-admins"
                 ], 
                 "include_sudoers_d": true, 
                 "passwordless": false, 
@@ -16,6 +17,9 @@
                     "bobo"
                 ]
             }
+        }, 
+        "chef_client": {
+            "server_url": "http://chef.staging.dmz:4000"
         }, 
         "nagios": {
             "client": {
@@ -26,10 +30,7 @@
                 "dont_blame_nrpe": "1"
             }, 
             "server_role": "nagios_xi"
-        },
-        "chef_client": {
-           "server_url": "http://chef.staging.dmz:4000"
-        },
+        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
