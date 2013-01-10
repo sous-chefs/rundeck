@@ -17,7 +17,7 @@
         "wt_cam": "= 1.1.6", 
         "wt_kafka_topagg": "= 1.0.1", 
         "wt_netacuity": "= 1.0.12", 
-        "wt_portfolio_admin": "= 1.1.10", 
+        "wt_portfolio_admin": "= 1.1.11", 
         "wt_portfolio_manager": "= 1.1.16", 
         "wt_publishver": "= 0.1.0", 
         "wt_realtime_hadoop": "= 1.0.4", 
@@ -282,7 +282,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/47711:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true", 
             "sms_url": "http://hsms.staging.dmz", 
