@@ -54,7 +54,7 @@ end
 include_recipe "apt"
 
 # setup the client.rb file for chef with the correct chef server URL and logging options
-if node['virtualization']['system'] != 'openstack'
+if !node[:openstack_instance]
   if node['chef_client']['server_url'].nil?
     Chef::Application.fatal!("Your environment must contain a valid [:chef_client][:server_url] value to run the webtrends_server cookbook")
   end
@@ -77,7 +77,9 @@ include_recipe "openssh"
 include_recipe "ntp"
 
 # configures /etc/resolv.conf
-include_recipe "resolver"
+if !node[:openstack_instance]
+  include_recipe "resolver"
+end
 
 # setup NRPE to run sudo w/o a password
 file "/etc/sudoers.d/nrpe" do
