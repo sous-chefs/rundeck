@@ -8,9 +8,6 @@
 #
 
 
-depends           "java"
-depends           "hadoop"
-
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploying first"
