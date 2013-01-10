@@ -12,9 +12,9 @@ Platform
 --------
 
 * RHEL, CentOS, Fedora
-* Debian, Ubuntu
+* Debian, Ubuntu theoretically
 
-Tested on RHEL 5, RHEL 6, Ubuntu 10.04, and Ubuntu 12.04
+Tested on RHEL 5 and RHEL 6
 
 
 Attributes
