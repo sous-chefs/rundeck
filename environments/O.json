@@ -195,11 +195,11 @@
             "edge_kafka_sources": [
                 {
                     "host": "mscs01.staging.dmz", 
-                    "topic": "Lab_O_scsRawHits"
+                    "topic": "Lab_H_scsRawHits"
                 }, 
                 {
                     "host": "mscs02.staging.dmz", 
-                    "topic": "Lab_O_scsRawHits"
+                    "topic": "Lab_H_scsRawHits"
                 }
             ]
         }, 
@@ -259,8 +259,8 @@
                 "workers": 2
             }, 
             "topic_list": [
-                "Lab_O_scsRawHits:30", 
-                "Lab_O_lrRawHits:30"
+                "Lab_H_scsRawHits:30", 
+                "Lab_H_lrRawHits:30"
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
