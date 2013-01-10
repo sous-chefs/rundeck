@@ -1,3 +1,6 @@
+## 1.0.15
+* Fixed Nagios regular expression to be ignore whitespace
+
 ## 1.0.14:
 * Fix force-stop syntax on the uninstall
 
