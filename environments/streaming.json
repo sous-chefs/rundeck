@@ -116,7 +116,7 @@
             "daemon": {
                 "topics": "Lab_H_lrRawHits,Lab_H_scsRawHits"
             }, 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt339/47680:id/webtrends-visitoranalytics-hdfslogproducer-develop-SNAPSHOT-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt339/.lastSuccessful/webtrends-visitoranalytics-hdfslogproducer-develop-SNAPSHOT-bin.tar.gz", 
             "geo": {
                 "url": "hutil01.staging.dmz"
             }, 
