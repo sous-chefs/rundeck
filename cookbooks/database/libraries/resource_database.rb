@@ -27,7 +27,6 @@ class Chef
         @resource_name = :database
         @database_name = name
         @allowed_actions.push(:create, :drop, :query)
-		@drop_users = drop_users
         @action = :create
       end
 
@@ -36,14 +35,6 @@ class Chef
           :database_name,
           arg,
           :kind_of => String
-        )
-      end
-	  
-	  def drop_users(arg=nil)
-        set_or_return(
-          :drop_users,
-          arg,
-          :kind_of => Symbol, :default => :false, :equal_to => [:true, :false]
         )
       end
 
