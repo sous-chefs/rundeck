@@ -72,7 +72,8 @@ def getZookeeperPairs(node)
   # grab the zookeeper nodes that are currently available
   zookeeper_pairs = Array.new
   if not Chef::Config.solo
-    search(:node, "role:zookeeper AND chef_environment:#{node.['wt_common']['common_resource_environment}").each do |n|
+    search(:node, "role:zookeeper AND chef_environment:#{node['wt_common']['common_resource_environment']}").each do |n|
+
       zookeeper_pairs << n[:fqdn]
     end
   end
@@ -94,7 +95,7 @@ def processTemplates (install_dir, node, datacenter, pod)
   # grab the zookeeper nodes that are currently available
   zookeeper_pairs = getZookeeperPairs(node)
 
-  %w[config.properties].each do | template_file|
+  %w[config.properties log4j.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source	"#{template_file}.erb"
       owner "root"
@@ -135,7 +136,9 @@ if ENV["deploy_build"] == "true" then
       :log_dir => log_dir,
       :install_dir => install_dir,
       :java_home => java_home,
-      :java_opts => java_opts
+      :java_opts => java_opts,
+      :java_jmx_port => node['port']['wt_hdfslogdata_producer']['jmx_port']
+
     })
   end
 
