@@ -14,7 +14,9 @@ else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-log_dir      = File.join(node['wt_common']['install_log_dir_linux'], "hdfslogdata_producer")
+"log_dir_linux"
+
+log_dir      = File.join(node['wt_common']['log_dir_linux'], "hdfslogdata_producer")
 install_dir  = File.join(node['wt_common']['install_dir_linux'], "hdfslogdata_producer")
 tarball      = node['wt_hdfslogdata_producer']['download_url'].split("/")[-1]
 java_home    = node['java']['java_home']
@@ -65,6 +67,19 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
+
+#any other config file
+%w[device-atlas.json browsers.ini].each do |file|
+  cookbook_file "#{install_dir}/conf/#{file}" do
+     source "#{file}"
+     owner "root"
+     group "root"
+     mode 00644
+  end
+end
+
+
+
 def getZookeeperPairs(node)
   # get the correct environment for the zookeeper nodes
   zookeeper_port = node['zookeeper']['client_port']
@@ -107,7 +122,6 @@ def processTemplates (install_dir, node, datacenter, pod)
       })
     end
   end
-
 end
 
 if ENV["deploy_build"] == "true" then

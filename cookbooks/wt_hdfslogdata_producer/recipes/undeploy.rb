@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-log_dir      = "#{node['wt_common']['install_log_dir_linux']}/hdfslogdata_producer"
+log_dir      = "#{node['wt_common']['log_dir_linux']}/hdfslogdata_producer"
 install_dir  = "#{node['wt_common']['install_dir_linux']}/hdfslogdata_producer"
 
 runit_service "hdfslogdata_producer" do
