@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-if node['platform_family'] == "windows" then
+if node['platform_family'] == "windows"
   include_recipe "java::windows"
 else
   include_recipe "java::#{node['java']['install_flavor']}"
