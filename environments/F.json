@@ -1,7 +1,7 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {        
-        "iis": "= 1.1.4",
+    "cookbook_versions": {
+        "iis": "= 1.1.4", 
         "java": "= 1.6.0", 
         "nagios": "= 3.0.0", 
         "webpi": "= 1.0.16", 
@@ -15,6 +15,7 @@
         "wt_monitoring": "= 1.0.0", 
         "wt_netacuity": "= 1.0.10", 
         "wt_platformscheduler": "= 1.0.12", 
+        "wt_publishver": "= 0.1.0", 
         "wt_search": "= 1.0.10", 
         "wt_sync": "= 1.0.6", 
         "wt_xd": "= 1.0.2"
@@ -43,9 +44,7 @@
             "cassandra_thrift_port": 9160
         }, 
         "esx": {
-            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
-            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+            "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
         "hbase": {
             "location": "sdata.staging.dmz", 
