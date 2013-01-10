@@ -228,6 +228,9 @@
             "metric_prefix": "englab.jpod.servers", 
             "monitoring_enabled": "true"
         }, 
+        "wt_netacuity": {
+            "geo_url": "localhost"
+        },
         "wt_rta": {
             "rta_host": "jrta01.englab.webtrends.corp"
         }, 

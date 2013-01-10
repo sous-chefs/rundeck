@@ -60,13 +60,6 @@ if ENV["deploy_build"] == "true" then
   share_wrs
 end
 
-template "#{install_dir}\\geoclient.ini" do
-  source "geoclient.ini.erb"
-  variables(
-    :netacuity_host => node['wt_netacuity']['geo_url']
-  )
-end
-
 template "#{install_dir}\\wtlogpreproc.ini" do
   source "wtlogpreproc.ini.erb"
   variables(
@@ -87,6 +80,12 @@ template "#{install_dir}\\wtlogpreproc.ini" do
     :wtlogpreproc1_compresslogfile       => node['wt_logpreproc']['wtlogpreproc1_compresslogfile'],
     :wtlogpreproc1_compresslogfile_level => node['wt_logpreproc']['wtlogpreproc1_compresslogfile_level'],
     :wtlogpreproc1_deleteoriginallogs    => node['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'],
+
+    :geo_maxcachedrecords  => node['wt_logpreproc']['geo_maxcachedrecords'],
+    :geo_maxretries        => node['wt_logpreproc']['geo_maxretries'],
+    :geo_timeoutlength     => node['wt_logpreproc']['geo_timeoutlength'],
+    :geo_maxpending        => node['wt_logpreproc']['geo_maxpending'],
+    :geo_server            => node['wt_netacuity']['geo_url'],
 
     :dns_serverlist   => node['wt_logpreproc']['dns_serverlist'],
     :dns_retrycount   => node['wt_logpreproc']['dns_retrycount'],
@@ -111,7 +110,6 @@ end
 service 'wtlogpreproc' do
   supports :start => true, :restart => true
   subscribes :restart, resources(
-    :template => "#{install_dir}\\geoclient.ini",
     :template => "#{install_dir}\\wtlogpreproc.ini"
   )
   action :nothing
