@@ -137,8 +137,7 @@ if ENV["deploy_build"] == "true" then
       :install_dir => install_dir,
       :java_home => java_home,
       :java_opts => java_opts,
-      :java_jmx_port => node['port']['wt_hdfslogdata_producer']['jmx_port']
-
+      :java_jmx_port => node['wt_hdfslogdata_producer']['jmx_port']
     })
   end
 
