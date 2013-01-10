@@ -1,3 +1,6 @@
+## 1.1.5
+* Changed Nagios check from port 9000 to 8080
+
 ## 1.1.4
 * Fixed Nagios regular expression to be ignore whitespace
 
