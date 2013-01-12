@@ -221,7 +221,7 @@
             "monitoring_enabled": "true"
         }, 
         "wt_netacuity": {
-            "geo_url": "geo.staging.dmz"
+            "geo_url": "sgeo.staging.dmz"
         }, 
         "wt_portfolio_admin": {
             "account_ui_url": "https://oaccount.webtrends.com", 
