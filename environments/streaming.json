@@ -140,6 +140,9 @@
         }, 
         "wt_realtime_hadoop": {
             "pod": "mcnamaras"
+        },
+        "wt_stream_processor": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/.lastSuccessful/webtrends-portfolio-edge-service-develop-SNAPSHOT-bin.tar.gz"
         }
     }, 
     "description": "Streaming environment for Openstack instances.", 
