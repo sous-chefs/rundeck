@@ -6,8 +6,8 @@
 # Copyright 2012, Webtrends Inc.
 #
 
-default['spark']['version'] = "0.6.1"
-default['spark']['download_url'] = "http://github.com/downloads/mesos/spark"
+default['spark']['version'] = "0.7.0-alpha20130108"
+default['spark']['download_url'] = "http://repo.staging.dmz/repo/linux/spark"
 default['spark']['install_dir'] = "/opt/spark"
 
 default['spark']['mem']['master'] = "6g"
