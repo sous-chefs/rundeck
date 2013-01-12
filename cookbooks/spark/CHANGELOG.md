@@ -1,5 +1,8 @@
 ## Future
 
+## 1.0.2:
+* Spark 0.7.0 alpha
+
 ## 1.0.1:
 * Adding mem attributes and setting default spark version to 0.6.1
 
