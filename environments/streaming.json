@@ -144,6 +144,12 @@
         },
         "wt_stream_processor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/.lastSuccessful/webtrends-portfolio-edge-service-develop-SNAPSHOT-bin.tar.gz"
+        },
+        "wt_sauth": {
+            "auth_service_url": "https://hsauth.webtrends.com"
+        },
+        "wt_cam": {
+            "cam_service_url": "http://hcam.staging.dmz"
         }
     }, 
     "description": "Streaming environment for Openstack instances.", 
