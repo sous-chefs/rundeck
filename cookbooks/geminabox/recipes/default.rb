@@ -20,7 +20,7 @@ template config_file do
   })
 end
 
-unicorn_config "/etc/unicorn/geminabox.rb" do
-  listen({ node[:unicorn][:port] => node[:unicorn][:options] })
-  working_directory node['geminabox']['install_dir']
+execute "start_unicorn" do
+  command "unicorn -D -p 8080"
+  cwd node['geminabox']['install_dir']
 end
