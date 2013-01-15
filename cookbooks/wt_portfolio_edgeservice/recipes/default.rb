@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_stream_processor
+# Cookbook Name:: wt_portfolio_edgeservice
 # Recipe:: default
 #
 # Copyright 2012, Webtrends
@@ -30,26 +30,26 @@ end
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploying first"
-  include_recipe "wt_stream_processor::undeploy"
+  include_recipe "wt_portfolio_edgeservice::undeploy"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-log_dir     = File.join(node['wt_common']['log_dir_linux'], "streamprocessor")
-install_dir = File.join(node['wt_common']['install_dir_linux'], "streamprocessor")
-tarball      = node['wt_stream_processor']['download_url'].split("/")[-1]
-download_url = node['wt_stream_processor']['download_url']
+log_dir     = File.join(node['wt_common']['log_dir_linux'], "edgeservice")
+install_dir = File.join(node['wt_common']['install_dir_linux'], "edgeservice")
+tarball      = node['wt_portfolio_edgeservice']['download_url'].split("/")[-1]
+download_url = node['wt_portfolio_edgeservice']['download_url']
 java_home   = node['java']['java_home']
-java_opts = node['wt_stream_processor']['java_opts']
-user = node['wt_stream_processor']['user']
-group = node['wt_stream_processor']['group']
+java_opts = node['wt_portfolio_edgeservice']['java_opts']
+user = node['wt_portfolio_edgeservice']['user']
+group = node['wt_portfolio_edgeservice']['group']
 pod = node['wt_realtime_hadoop']['pod']
 datacenter = node['wt_realtime_hadoop']['datacenter']
 
 # grab the users and passwords from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
-usagedbuser  = auth_data['wt_stream_processor']['usagedbuser']
-usagedbpwd = auth_data['wt_stream_processor']['usagedbpwd']
+usagedbuser  = auth_data['wt_portfolio_edgeservice']['usagedbuser']
+usagedbpwd = auth_data['wt_portfolio_edgeservice']['usagedbpwd']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -81,14 +81,22 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
+directory "#{install_dir}/modules" do
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
+end
+
 def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
   log "Updating the template files"
 
   cam_url = node['wt_cam']['cam_service_url']
-  port = node['wt_stream_processor']['port']
+  port = node['wt_portfolio_edgeservice']['port']
 
-  usagedbserver = node['wt_stream_processor']['usagedbserver']
-  usagedbname = node['wt_stream_processor']['usagedbname']
+  usagedbserver = node['wt_portfolio_edgeservice']['usagedbserver']
+  usagedbname = node['wt_portfolio_edgeservice']['usagedbname']
 
   %w[log4j.xml config.properties netty.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
@@ -101,7 +109,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, usag
         :install_dir => install_dir,
         :port => port,
         :wt_monitoring => node['wt_monitoring'],
-        :router_uri => node['wt_stream_processor']['router_uri'],
+        :router_uri => node['wt_portfolio_edgeservice']['router_uri'],
         # usage db parameters
         :usagedbserver => usagedbserver,
         :usagedbname => usagedbname,
@@ -126,7 +134,7 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-  # uncompress the application tarbarll into the install dir
+  # uncompress the application tarball into the install dir
   execute "tar" do
     user  "root"
     group "root"
@@ -144,7 +152,7 @@ if ENV["deploy_build"] == "true" then
       :log_dir => log_dir,
       :install_dir => install_dir,
       :java_home => java_home,
-      :java_jmx_port => node['wt_stream_processor']['jmx_port'],
+      :java_jmx_port => node['wt_portfolio_edgeservice']['jmx_port'],
       :java_opts => java_opts
     })
   end
@@ -160,7 +168,7 @@ if ENV["deploy_build"] == "true" then
   end
 
   # create the runit service
-  runit_service "streamprocessor" do
+  runit_service "edgeservice" do
     options({
       :log_dir => log_dir,
       :install_dir => install_dir,
@@ -183,7 +191,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the log file
   nagios_nrpecheck "wt_garbage_collection_limit_reached" do
     command "#{node['nagios']['plugin_dir']}/check_log"
-    parameters "-F /var/log/webtrends/streamprocessor/service.log -O /tmp/service_old.log -q 'GC overhead limit exceeded'"
+    parameters "-F /var/log/webtrends/edgeservice/service.log -O /tmp/service_old.log -q 'GC overhead limit exceeded'"
     action :add
   end
 end
