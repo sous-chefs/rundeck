@@ -1,6 +1,9 @@
 ## Future
 * Format the data disks if they haven't been formated already
 
+## 1.1.12
+* added support to search for roles in alternate chef environment, i.e. node['wt_common']['common_resource_environment']
+
 ## 1.1.11
 * adding hadoop proxy properties for Oozie
 
