@@ -39,12 +39,17 @@ end
 node.save # needed to populate attributes
 
 # get servers in this cluster
-hadoop_namenode       = hadoop_search('hadoop_primarynamenode', 1)
+if node.attribute?('wt_common') && node['wt_common'].attribute?('common_resource_environment')
+	hadoop_chef_environment = node['wt_common']['common_resource_environment'] || node.chef_environment
+else
+	hadoop_chef_environment = node.chef_environment
+end
+hadoop_namenode       = hadoop_search('hadoop_primarynamenode', 1, hadoop_chef_environment)
 raise Chef::Exceptions::RoleNotFound, "hadoop_primarynamenode role not found" unless hadoop_namenode.count == 1
 hadoop_namenode       = hadoop_namenode.first
-hadoop_backupnamenode = hadoop_search('hadoop_backupnamenode', 1).first
-hadoop_jobtracker     = hadoop_search('hadoop_jobtracker', 1).first
-hadoop_datanodes      = hadoop_search('hadoop_datanode').sort
+hadoop_backupnamenode = hadoop_search('hadoop_backupnamenode', 1, hadoop_chef_environment).first
+hadoop_jobtracker     = hadoop_search('hadoop_jobtracker', 1, hadoop_chef_environment).first
+hadoop_datanodes      = hadoop_search('hadoop_datanode', 1000, hadoop_chef_environment).sort
 
 # determine local_dir (datanodes often have multiples disks, while namenode/jobtrackers do not)
 query = "name:#{node.name} AND role:hadoop_datanode"
