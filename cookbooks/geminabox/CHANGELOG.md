@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of geminabox.
 
+## 0.1.3
+* Added not_if line
+
 ## 0.1.2
 * Fixed template issue
 
