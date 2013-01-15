@@ -12,5 +12,9 @@
   "wt_stream_processor": {
         "usagedbpwd": "bijoux", 
         "usagedbuser": "wtUI"
+    },
+    "wt_portfolio_edgeservice": {
+        "usagedbpwd": "bijoux", 
+        "usagedbuser": "wtUI"
     }
 }
