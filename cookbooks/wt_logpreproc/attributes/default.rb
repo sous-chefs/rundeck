@@ -6,7 +6,7 @@
 # Copyright 2012, Webtrends Inc.
 #
 
-default['wt_logpreproc']['install_dir'] = 'modules\\logpreproc'
+default['wt_logpreproc']['install_dir'] = 'logpreproc'
 default['wt_logpreproc']['download_url'] = ''
 default['wt_logpreproc']['netacuity_host'] = 'localhost'
 
@@ -57,6 +57,18 @@ default['wt_logpreproc']['wtlogpreproc1_compresslogfile_level'] = '1'
 
 # Delete the original lfr logs when finished
 default['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'] = 'true'
+
+# Number of times to retry a geo lookup when no response is received
+default['wt_logpreproc']['geo_maxretries'] = '1'
+
+# Time (in milliseconds) to wait for a reply from the server
+default['wt_logpreproc']['geo_timeoutlength'] = '2000'
+
+# Maximum number of outstanding geo lookups
+default['wt_logpreproc']['geo_maxpending'] = '500'
+
+# Maximum number of cached geo records
+default['wt_logpreproc']['geo_maxcachedrecords'] = '50000'
 
 # List of DNS server IP addresses (semi-colon delimited) 
 # Use if you need to override the system default DNS server.

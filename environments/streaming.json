@@ -1,87 +1,159 @@
 {
-  "override_attributes": {
-  },
-  "chef_type": "environment",
-  "json_class": "Chef::Environment",
-  "default_attributes": {
-    "authorization": {
-      "sudo": {
-        "include_sudoers_d": true,
-        "passwordless": false,
-        "users": [
-          "bobo"
-        ],
-        "groups": [
-          "domain-admins"
-        ]
-      },
-      "ad_auth": {
-        "ad_network": "OSSTAGINGDMZ"
-      }
-    },
-    "webtrends_server": {
-      "yum": [
-        {
-          "url": "http://repo.staging.dmz/repo/yum/webtrends",
-          "name": "wtlab",
-          "description": "Webtrends Repo"
-        }
-      ],
-      "apt": [
-        {
-          "url": "http://repo.staging.dmz/repo/apt/webtrends",
-          "name": "wtlab",
-          "components": [
-            "main"
-          ],
-          "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key"
+    "chef_type": "environment", 
+    "cookbook_versions": {
+        "java": "= 1.6.0", 
+        "kafka": "= 1.0.20"
+    }, 
+    "default_attributes": {
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "streaming"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins", 
+                    "streaming-admins"
+                ], 
+                "include_sudoers_d": true, 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
+        "chef_client": {
+            "server_url": "http://chef.staging.dmz:4000"
+        }, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk_version": 7,
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
+                    }
+                }, 
+                "7": {
+                    "x86_64": {
+                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
+                        "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
+                    }
+                }
+            }
+        }, 
+        "kafka": {
+            "chroot_suffix": "brokers", 
+            "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
+            "log_flush_scheduler_time_interval": "500", 
+            "log_flush_time_interval": "500", 
+            "log_retention_hours": "2", 
+            "num_partitions": 12, 
+            "threads": "16", 
+            "version": "0.7.1"
+        }, 
+        "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
+            "multi_environment_monitoring": true, 
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server_role": "nagios_xi"
+        }, 
+        "postfix": {
+            "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "snmp": {
+            "community": "DevOps", 
+            "full_systemview": "true", 
+            "syscontact": "trent.white@webtrends.com"
+        }, 
+        "webtrends_server": {
+            "apt": [
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "key": "http://repo.staging.dmz/repo/apt/webtrends/repo.gpg.key", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/apt/webtrends"
+                }, 
+                {
+                    "components": [
+                        "main"
+                    ], 
+                    "distribution_suffix": "-0.10", 
+                    "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key", 
+                    "name": "wtlab-opscode", 
+                    "url": "http://repo.staging.dmz/repo/apt/opscode"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "wtlab", 
+                    "url": "http://repo.staging.dmz/repo/yum/webtrends"
+                }
+            ]
+        }, 
+        "wt_common": {
+            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "common_resource_environment": "support-staging", 
+            "config_dir_linux": "/etc/webtrends/", 
+            "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
+            "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
+            "install_dir_linux": "/opt/webtrends/", 
+            "install_dir_windows": "d:\\wrs", 
+            "install_log_dir_linux": "/var/log/webtrends/install", 
+            "install_log_dir_windows": "d:\\logs", 
+            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
+            "log_dir_linux": "/var/log/webtrends/", 
+            "log_dir_windows": "", 
+            "smtp_server": "pdxengmta01.webtrends.corp"
+        }, 
+        "wt_hdfslogdata_producer": {
+            "daemon": {
+                "topics": "Lab_H_lrRawHits,Lab_H_scsRawHits"
+            }, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt339/.lastSuccessful/webtrends-visitoranalytics-hdfslogproducer-develop-SNAPSHOT-bin.tar.gz", 
+            "geo": {
+                "url": "hutil01.staging.dmz"
+            }, 
+            "kafka": {
+                "group_id": "hdfs-log-producer-je"
+            }
+        }, 
+        "wt_monitoring": {
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "true", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "sgraph01.staging.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "streaming.servers", 
+            "monitoring_enabled": "false"
+        }, 
+        "wt_realtime_hadoop": {
+            "pod": "mcnamaras"
         },
-        {
-          "url": "http://repo.staging.dmz/repo/apt/opscode",
-          "name": "wtlab-opscode",
-          "distribution_suffix": "-0.10",
-          "components": [
-            "main"
-          ],
-          "key": "http://repo.staging.dmz/repo/apt/opscode/packages@opscode.com.gpg.key"
+        "wt_stream_processor": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/.lastSuccessful/webtrends-portfolio-edge-service-develop-SNAPSHOT-bin.tar.gz"
+        },
+        "wt_sauth": {
+            "auth_service_url": "https://hsauth.webtrends.com"
+        },
+        "wt_cam": {
+            "cam_service_url": "http://hcam.staging.dmz"
         }
-      ]
-    },
-    "snmp": {
-      "full_systemview": "true",
-      "syscontact": "trent.white@webtrends.com",
-      "community": "DevOps"
-    },
-    "postfix": {
-      "relayhost": "pdxengmta01.webtrends.corp"
-    },
-    "wt_monitoring": {
-      "jmx_port": 9999,
-      "healthcheck_enabled": "true",
-      "graphite_port": 2003,
-      "healthcheck_port": 9000,
-      "audit_topic": "stream-audit",
-      "graphite_flush_interval": "1",
-      "graphite_flush_enabled": "true",
-      "graphite_server": "sgraph01.staging.dmz",
-      "monitoring_enabled": "false",
-      "metric_prefix": "streaming.servers",
-      "audit_bucket_timespan": 10,
-      "jmx_enabled": "true"
-    },
-    "nagios": {
-      "client": {
-        "install_method": "package"
-      },
-      "server_role": "nagios_xi",
-      "multi_environment_monitoring": true,
-      "nrpe": {
-        "dont_blame_nrpe": "1"
-      }
-    }
-  },
-  "name": "streaming",
-  "cookbook_versions": {
-  },
-  "description": "Streaming environment for Openstack instances."
+    }, 
+    "description": "Streaming environment for Openstack instances.", 
+    "json_class": "Chef::Environment", 
+    "name": "streaming", 
+    "override_attributes": {}
 }

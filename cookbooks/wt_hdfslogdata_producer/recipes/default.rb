@@ -7,12 +7,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
+
+
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploying first"
   include_recipe "wt_hdfslogdata_producer::undeploy"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
+
+"log_dir_linux"
 
 log_dir      = File.join(node['wt_common']['log_dir_linux'], "hdfslogdata_producer")
 install_dir  = File.join(node['wt_common']['install_dir_linux'], "hdfslogdata_producer")
@@ -65,6 +69,19 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
+
+#any other config file
+%w[device-atlas.json browsers.ini].each do |file|
+  cookbook_file "#{install_dir}/conf/#{file}" do
+     source "#{file}"
+     owner "root"
+     group "root"
+     mode 00644
+  end
+end
+
+
+
 def getZookeeperPairs(node)
   # get the correct environment for the zookeeper nodes
   zookeeper_port = node['zookeeper']['client_port']
@@ -72,7 +89,8 @@ def getZookeeperPairs(node)
   # grab the zookeeper nodes that are currently available
   zookeeper_pairs = Array.new
   if not Chef::Config.solo
-    search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+    search(:node, "role:zookeeper AND chef_environment:#{node['wt_common']['common_resource_environment']}").each do |n|
+
       zookeeper_pairs << n[:fqdn]
     end
   end
@@ -94,7 +112,7 @@ def processTemplates (install_dir, node, datacenter, pod)
   # grab the zookeeper nodes that are currently available
   zookeeper_pairs = getZookeeperPairs(node)
 
-  %w[config.properties].each do | template_file|
+  %w[config.properties log4j.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source	"#{template_file}.erb"
       owner "root"
@@ -106,7 +124,6 @@ def processTemplates (install_dir, node, datacenter, pod)
       })
     end
   end
-
 end
 
 if ENV["deploy_build"] == "true" then
@@ -135,7 +152,8 @@ if ENV["deploy_build"] == "true" then
       :log_dir => log_dir,
       :install_dir => install_dir,
       :java_home => java_home,
-      :java_opts => java_opts
+      :java_opts => java_opts,
+      :java_jmx_port => node['wt_hdfslogdata_producer']['jmx_port']
     })
   end
 

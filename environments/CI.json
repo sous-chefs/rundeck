@@ -1,7 +1,8 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-      "wt_storm_streaming": "2.3.5"
+        "wt_publishver": "= 0.1.0", 
+        "wt_storm_streaming": "2.3.5"
     }, 
     "default_attributes": {
         "authorization": {
@@ -67,8 +68,8 @@
         "nagios": {
             "client": {
                 "install_method": "package"
-            },
-            "multi_environment_monitoring": true,
+            }, 
+            "multi_environment_monitoring": true, 
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
@@ -83,7 +84,7 @@
             "syscontact": "trent.white@webtrends.com"
         }, 
         "storm": {
-            "download_url": "http://repo.staging.dmz/repo/linux/storm",  
+            "download_url": "http://repo.staging.dmz/repo/linux/storm", 
             "version": "0.8.0"
         }, 
         "vc2010": {
@@ -96,9 +97,9 @@
         }, 
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "install_method": "zip", 
             "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
-            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml",
-            "install_method": "zip"
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
@@ -226,17 +227,17 @@
         "wt_search": {}, 
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/.lastSuccessful/streaming-analysis-bin.tar.gz", 
-            "query_bolt_executors": 24,
-            "query_bolt_tasks": 24,
-            "streaming_topology_field_grouping_local": "false",
+            "query_bolt_executors": 24, 
+            "query_bolt_tasks": 24, 
+            "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 1
-            },
+            }, 
             "topic_list": [
                 "Lab_CI_scsRawHits:3", 
                 "Lab_CI_lrRawHits:3"
             ], 
-	    "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f",
+            "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
@@ -281,7 +282,7 @@
         "wt_streamingmanagementservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/44668:id/webtrends-streaming-managementservice-bin.tar.gz", 
             "healthcheck_port": 9001, 
-            "jmx_port": 9998,
+            "jmx_port": 9998, 
             "port": 8081
         }, 
         "zookeeper": {
@@ -301,6 +302,9 @@
     "json_class": "Chef::Environment", 
     "name": "CI", 
     "override_attributes": {
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        },
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
@@ -316,7 +320,7 @@
         "ubuntu": {
             "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
             "include_source_packages": false, 
-            "locale": "en_US.utf8",
+            "locale": "en_US.utf8", 
             "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }

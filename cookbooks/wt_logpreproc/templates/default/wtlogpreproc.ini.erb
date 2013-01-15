@@ -74,6 +74,23 @@ ensurefield=dcs-dns
 ensurefield1=dcs-geo
 ensurefield2=origin-id
 
+[geotrends]
+
+# The NetAcuity server to be used for geo lookups
+server=<%= @geo_server %>
+
+# Number of times to retry a geo lookup when no response is received
+maxretries=<%= @geo_maxretries %>
+
+# Time (in milliseconds) to wait for a reply from the server
+timeoutlength=<%= @geo_timeoutlength %>
+
+# Maximum number of outstanding geo lookups
+maxpending=<%= @geo_maxpending %>
+
+# Maximum number of cached geo records
+maxcachedrecords=<%= @geo_maxcachedrecords %>
+
 [dns]
 # List of DNS server IP addresses (semi-colon delimited)
 # Use if you need to override the system default DNS server.

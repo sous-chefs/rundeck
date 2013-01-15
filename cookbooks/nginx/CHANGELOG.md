@@ -1,7 +1,6 @@
-## v1.1.3:
+## v1.1.4:
 
-* Adding attribute: default['nginx']['root']
-
+* [COOK-2168] - specify package name as an attribute
 
 ## v1.1.2:
 

@@ -26,5 +26,5 @@
   "recipes": {
     "aws": "Installs the right_aws gem during compile time"
   },
-  "version": "0.100.4"
+  "version": "0.100.6"
 }

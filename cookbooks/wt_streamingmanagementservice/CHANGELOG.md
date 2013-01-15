@@ -1,3 +1,6 @@
+## 1.0.6
+* Fixed Nagios regular expression to be ignore whitespace
+
 ## 1.0.5
 * STR-695, replaced attribute references with variables
 

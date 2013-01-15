@@ -1,3 +1,6 @@
+## 1.1.18
+* moved hard-coded help_url to attribute and updated with value per STR-872
+
 ## 1.1.17
 * set a default errorRedirect in the web.config template
 
