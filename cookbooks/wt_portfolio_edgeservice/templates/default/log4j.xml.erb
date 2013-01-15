@@ -3,7 +3,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
     <!-- FileLog is set to be a RollingFileAppender -->
     <appender name="FileLog" class="org.apache.log4j.RollingFileAppender">
-        <param name="file" value="<%= node['wt_stream_processor']['log_dir'] %>/service.log"/>
+        <param name="file" value="<%= node['wt_portfolio_edgeservice']['log_dir'] %>/service.log"/>
         <param name="MaxFileSize" value="100MB"/>
         <param name="MaxBackupIndex" value="10"/>
         <param name="append" value="true"/>
@@ -13,7 +13,7 @@
     </appender>
     <!-- ErrorLog is set to be a RollingFileAppender -->
     <appender name="ErrorLog" class="org.apache.log4j.RollingFileAppender">
-        <param name="file" value="<%= node['wt_stream_processor']['log_dir'] %>/error.log"/>
+        <param name="file" value="<%= node['wt_portfolio_edgeservice']['log_dir'] %>/error.log"/>
         <param name="MaxFileSize" value="100MB"/>
         <param name="MaxBackupIndex" value="10"/>
         <param name="append" value="true"/>
@@ -41,7 +41,7 @@
 
     <!-- This file appender is used to output aggregated performance statistics -->
     <appender name="fileAppender" class="org.apache.log4j.FileAppender">
-        <param name="File" value="<%= node['wt_stream_processor']['log_dir'] %>/perfStats.log"/>
+        <param name="File" value="<%= node['wt_portfolio_edgeservice']['log_dir'] %>/perfStats.log"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%m%n"/>
         </layout>

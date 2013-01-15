@@ -1,3 +1,13 @@
+# This is the base url for the AUTH service
+webtrends.authentication.baseUrl = <%=@auth_url%>/<%=@auth_version%>
+# This is the url to the REST service for getting a token's detailed information
+webtrends.authentication.tokenDetail = %%baseUrl%%/token/%%access_token%%
+
+# Proxy properties. Lease this section blank if you dont need proxy support.
+<% if @auth_host.to_s != '' && @proxy_host.to_s != '' %>
+easy.proxy.1 = <%= @auth_host %> -> <%= @proxy_host %>
+<% end %>
+
 # This is the base url for the CAM service
 webtrends.cam.baseUrl = <%=@cam_url%>
 # This is the url to the REST service for getting product provisioning
