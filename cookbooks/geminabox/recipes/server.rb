@@ -21,7 +21,7 @@ template config_file do
 end
 
 execute "start_unicorn" do
-  command "unicorn -D -p #{node['geminabox']['port']}"
+  command "unicorn -D -p 8080"
   cwd node['geminabox']['install_dir']
-  not_if "ps aux | 'grep [u]nicorn master -D -p #{node['geminabox']['port']}'"
+  not_if "ps aux | grep [u]nicorn"
 end
