@@ -16,6 +16,7 @@
         "wt_kafka_topagg": "= 1.0.1", 
         "wt_netacuity": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.10", 
+        "wt_publishver": "= 0.1.0", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.2", 
         "wt_storm_streaming": "= 2.3.2", 
@@ -50,9 +51,7 @@
         "cassandra": {}, 
         "delltools": {}, 
         "esx": {
-            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
-            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+            "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
         "hadoop": {
             "core": {}, 

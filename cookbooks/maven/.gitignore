@@ -1,0 +1,7 @@
+.vagrant
+#*#
+*~
+.kitchen/
+
+# RubyMine
+/.idea

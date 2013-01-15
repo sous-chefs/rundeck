@@ -22,10 +22,9 @@
 
 require "digest/md5"
 
-root_group = value_for_platform_family(
-                                ["openbsd", "freebsd", "mac_os_x"] => [ "wheel" ],
-                                "default" => "root"
-                                )
+class ::Chef::Recipe
+  include ::Opscode::ChefClient::Helpers
+end
 
 # COOK-635 account for alternate gem paths
 # try to use the bin provided by the node attribute
@@ -41,21 +40,8 @@ else
   raise "Could not locate the chef-client bin in any known path. Please set the proper path by overriding node['chef_client']['bin'] in a role."
 end
 
-%w{run_path cache_path backup_path log_dir}.each do |key|
-  directory node["chef_client"][key] do
-    recursive true
-    mode 0755
-    unless node["platform"] == "windows"
-      if node.recipe?("chef-server")
-        owner "chef"
-        group "chef"
-      else
-        owner "root"
-        group root_group
-      end
-    end
-  end
-end
+# libraries/helpers.rb method to DRY directory creation resources
+create_directories
 
 dist_dir, conf_dir = value_for_platform_family(
                                         ["debian"] => ["debian", "default"],
@@ -72,7 +58,7 @@ when "arch","debian","rhel","fedora","suse","openbsd","freebsd"
               :client_bin => client_bin
               )
   end
-  
+
   template "/etc/#{conf_dir}/chef-client" do
     source "#{dist_dir}/#{conf_dir}/chef-client.erb"
     mode 0644
@@ -103,6 +89,7 @@ cron "chef-client" do
   checksum = Digest::MD5.hexdigest "#{node['fqdn'] or 'unknown-hostname'}"
   sleep_time = checksum.to_s.hex % node['chef_client']['splay'].to_i
   env = node['chef_client']['cron']['environment_variables']
+  log_file = node["chef_client"]["cron"]["log_file"]
 
-  command "/bin/sleep #{sleep_time}; #{env} #{client_bin} &> /dev/null"
+  command "/bin/sleep #{sleep_time}; #{env} #{client_bin} &> #{log_file}"
 end

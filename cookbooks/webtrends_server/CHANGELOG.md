@@ -2,6 +2,7 @@
  * Manage the chef client.rb file with chef.  This requires a new chef_client section in the environment
  * Update the updater version to 10.16.4
  * Add a check for authorization data bag specified
+ * Add support for openstack instances
 
 ## 1.8.10
  * Switch to md for the readme
