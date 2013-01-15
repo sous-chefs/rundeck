@@ -60,6 +60,12 @@ action :load do
   end
 end
 
+action :reload do
+  shell_out!(stop_command) if @current_resource.running
+  shell_out!(load_command)
+  new_resource.updated_by_last_action(true)
+end
+
 action :start do
   unless @current_resource.running
     shell_out!(start_command)

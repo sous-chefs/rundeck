@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of geminabox.
 
+## 0.1.2
+* Fixed template issue
+
+## 0.1.1:
+* Changed unicorn to be a command called via execute
+
 ## 0.1.0:
 
 * Initial release of geminabox

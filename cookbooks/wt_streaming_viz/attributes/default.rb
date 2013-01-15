@@ -11,6 +11,7 @@ default['wt_streaming_viz']['download_url'] = ""
 #default['wt_streaming_viz']['db_server'] = "(local)"
 #default['wt_streaming_viz']['db_name'] = "Cam"
 #default['wt_streaming_viz']['tokenExpirationMinutes'] = 60
+default['wt_streaming_viz']['help_url'] = "http://help.webtrends.com/en/streams/"
 default['wt_streaming_viz']['port'] = 80
 default['wt_streaming_viz']['log_level'] = "INFO"
 default['wt_streaming_viz']['elmah_remote_access'] = "no"

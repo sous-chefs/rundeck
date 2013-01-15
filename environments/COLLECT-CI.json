@@ -22,9 +22,7 @@
         "cassandra": {}, 
         "delltools": {}, 
         "esx": {
-            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
-            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+            "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
         "hadoop": {}, 
         "hbase": {}, 
@@ -168,10 +166,10 @@
         "wt_streamingapi": {}, 
         "wt_streamingauditor": {}, 
         "wt_streamingcollection": {
-          "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41771:id/webtrends-streamingcollection-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41771:id/webtrends-streamingcollection-bin.tar.gz"
         }, 
         "wt_streamingconfigservice": {
-          "config_service_url": "http://ciutil01.staging.dmz:8080"
+            "config_service_url": "http://ciutil01.staging.dmz:8080"
         }, 
         "wt_streaminglogreplayer": {}, 
         "wt_streamingmanagementservice": {}, 
@@ -180,7 +178,10 @@
     "description": "CI Collection Pod", 
     "json_class": "Chef::Environment", 
     "name": "COLLECT-CI", 
-    "override_attributes": {
+    "override_attributes": {        
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        },
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

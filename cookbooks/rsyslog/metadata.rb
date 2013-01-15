@@ -4,7 +4,7 @@ maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
 description       "Installs and configures rsyslog"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "1.4.0"
+version           "1.5.0"
 
 recipe            "rsyslog", "Installs rsyslog"
 recipe            "rsyslog::client", "Sets up a client to log to a remote rsyslog server"
@@ -77,6 +77,11 @@ attribute "rsyslog/max_message_size",
   :display_name => "Maximum Rsyslog message size",
   :description => "Specifies the maximum size of allowable Rsyslog messages",
   :default => "2k"
+
+attribute "rsyslog/preserve_fqdn",
+  :display_name => "Preserve FQDN",
+  :description => "Specifies if the short or full host name will be used. The default off setting is more compatible.",
+  :default => "off"
 
 attribute "rsyslog/priv_seperation",
   :display_name => "Privilege separation",

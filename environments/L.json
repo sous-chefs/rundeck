@@ -2,10 +2,11 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "kafka": "= 1.0.20", 
-        "nagios": "= 3.0.0",  
+        "nagios": "= 3.0.0", 
         "webtrends_server": "= 1.8.9", 
-        "wt_base": "= 1.0.3",         
-        "wt_edge_server": "= 0.1.2",
+        "wt_base": "= 1.0.3", 
+        "wt_edge_server": "= 0.1.2", 
+        "wt_publishver": "= 0.1.0", 
         "wt_streamingcollection": "= 1.1.0", 
         "zookeeper": "= 1.1.6"
     }, 
@@ -27,9 +28,7 @@
             }
         }, 
         "esx": {
-            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
-            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+            "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
         "java": {
             "install_flavor": "oracle", 
@@ -132,7 +131,7 @@
             "wrsmodify_group": "STAGINGDMZ\\L.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\L.WRS.Read"
         }, 
-	"wt_edge_server": {
+        "wt_edge_server": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt299/44984:id/Edge-Server-Distribution-wModules-all.tar.gz"
         }, 
         "wt_monitoring": {

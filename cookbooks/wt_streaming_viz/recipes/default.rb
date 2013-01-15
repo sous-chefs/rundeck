@@ -98,7 +98,7 @@ template "#{install_dir}\\appSettings.config" do
 		:cam_url => node['wt_cam']['cam_service_url'],
 		:cam_url_base => node['wt_streaming_viz']['cam_service_url_base'],
 		:sapi_url   => node['wt_streamingapi']['sapi_service_url'],
-		:help_url => "http://help.webtrends.com",
+		:help_url => node['wt_streaming_viz']['help_url'],
 		:account_url => node['wt_portfolio_admin']['account_ui_url'],
 		:streams_url => node['wt_streaming_viz']['streams_ui_url'],
 		:stream_client_id => user_data['wt_streaming_viz']['client_id'],
