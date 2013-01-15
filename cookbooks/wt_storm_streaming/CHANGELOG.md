@@ -1,4 +1,8 @@
-##2.3.7
+## 2.3.8
+* Added new logic to remove old zookeeper jar file, and replace with the latest
+  from streamig-analysis tarball.
+
+## 2.3.7
 * Added new versions of browsers.ini, keywords.ini, device-atlas.json
 
 ## 2.3.6
