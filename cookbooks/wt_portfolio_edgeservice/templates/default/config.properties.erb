@@ -29,17 +29,5 @@ zookeeper.quorum=<%= @zookeeper_quorum  %>
 usageConnString=jdbc:sqlserver://<%= @usagedbserver %>:1433;databaseName=<%= @usagedbname %>;user=<%= @usagedbuser %>;password=<%= @usagedbpwd %>;
 
 
-# The is the root in Zookeeper where data for the api will be placed
-stream.processor.zmq.znoderoot=/StreamingZMQ
-# This is the external address for the publish server for clients to connect to
-stream.processor.zmq.znodepushnode=/analysis/node
-# This is the external address for the pull server for clients to connect to
-stream.processor.zmq.pull.address=tcp://*:1544
-
-# A comma seperated list of routers to connect to for recieving
-webtrends.network.binding.recieve = <%= @router_uri %>
-
-# This is the number of elements, not the SIZE in bytes.
-# Ideally, this will fit in L2 cache, most of our VM's tend to be aprox 15Mb
-webtrends.network.binding.recieve.eventBufferSize = 128
-webtrends.network.binding.recieve.eventHandlerThreads = 8
+# A comma seperated list of routers to connect to for sending
+webtrends.network.binding.send = <%= @router_uri %>

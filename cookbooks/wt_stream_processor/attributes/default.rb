@@ -14,3 +14,4 @@ default['wt_stream_processor']['port']           = 8080
 default['wt_stream_processor']['java_opts']      = "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true"
 default['wt_stream_processor']['jmx_port']       = 9999
 default['wt_stream_processor']['log_dir']        = "/var/log/webtrends/streamprocessor"
+default['wt_stream_processor']['router_uri']     = "tcp://localhost:5762"

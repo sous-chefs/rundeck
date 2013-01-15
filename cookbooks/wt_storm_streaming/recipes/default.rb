@@ -97,6 +97,13 @@ if ENV["deploy_build"] == "true" then
       command "chown storm:storm #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/webtrends*.jar"
     end
 
+    # Remove any old zookeeper lib, below we will replace it.
+    execute "rm" do
+      user  "root"
+      group "root"
+      command "rm -f #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/zookeeper*.jar"
+    end
+
     %w{
     activation-1.1.jar
     antlr-3.4.jar
@@ -150,6 +157,7 @@ if ENV["deploy_build"] == "true" then
     zkclient-0.1.jar
     mobi.mtld.da-1.5.3.jar
     ini4j-0.5.2.jar
+    zookeeper-3.3.6.jar
     }.each do |jar|
       execute "mv" do
         user  "root"
