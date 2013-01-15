@@ -8,13 +8,14 @@
         "hbase": "= 1.1.4", 
         "hive": "= 1.1.0", 
         "java": "= 1.6.0", 
-        "memcached": "= 1.0.4", 
+        "memcached": "= 1.1.2", 
         "nagios": "= 3.0.0", 
         "rundeck": "= 1.0.4", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.9", 
         "windows": "= 1.6.0", 
         "wt_base": "= 1.0.3", 
+        "wt_publishver": "= 0.1.0", 
         "zookeeper": "= 1.1.6"
     }, 
     "default_attributes": {
@@ -56,9 +57,7 @@
             }
         }, 
         "esx": {
-            "checksum": "f8b12b4a5f2811839ac3a0e64b623ba4", 
-            "repo": "http://repo.staging.dmz/repo/linux/vmware", 
-            "tarball": "VMwareTools-8.6.5-652272.tar.gz"
+            "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
         "hadoop": {
             "default": {
@@ -192,15 +191,15 @@
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
-        "sysctl": {
-            "set swappiness": {
-              "vm.swappiness": "0"
-          }
-        }, 
         "snmp": {
             "community": "DevOps", 
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
+        }, 
+        "sysctl": {
+            "set swappiness": {
+                "vm.swappiness": "0"
+            }
         }, 
         "unbound": {
             "access_control": {
@@ -275,10 +274,10 @@
             "jmx_port": 9999, 
             "metric_prefix": "support-staging.servers", 
             "monitoring_enabled": "true"
-        },
+        }, 
         "wt_netacuity": {
-            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz",
-            "geo_url": "sgeo.staging.dmz",
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz", 
+            "geo_url": "sgeo.staging.dmz", 
             "version": "502"
         }
     }, 
