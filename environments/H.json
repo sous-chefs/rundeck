@@ -31,7 +31,9 @@
         "wt_streamingconfigservice": "= 1.0.7", 
         "wt_streaminglogreplayer": "= 1.1.2", 
         "wt_streamingmanagementservice": "= 1.0.4", 
-        "zookeeper": "= 1.2.3"
+        "zookeeper": "= 1.2.3",
+        "wt_portfolio_edgeservice": "= 1.0.0",
+        "wt_stream_processor": "= 1.0.0"
     }, 
     "default_attributes": {
         "authorization": {
@@ -278,8 +280,13 @@
             }
         }, 
         "wt_stream_processor": {
-            "download_url": ""
-        }, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/.lastSuccessful/webtrends-stream-processor-develop-SNAPSHOT-bin.tar.gz",
+            "router_uri": "tcp://router01.os.staging.dmz:5862"
+        },
+        "wt_portfolio_edgeservice": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/.lastSuccessful/webtrends-portfolio-edge-service-develop-SNAPSHOT-bin.tar.gz",
+            "router_uri": "tcp://router01.os.staging.dmz:5861"
+        },
         "wt_streaming_viz": {
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/47711:id/Streaming.Viz.zip", 
