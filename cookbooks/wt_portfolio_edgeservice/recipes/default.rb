@@ -92,6 +92,16 @@ end
 def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
   log "Updating the template files"
 
+    auth_url = node['wt_sauth']['auth_service_url']
+    auth_uri = URI(auth_url)
+    auth_host = auth_uri.host
+
+    proxy_host = ''
+    unless node['wt_common']['http_proxy_url'].nil? || node['wt_common']['http_proxy_url'].empty?
+            proxy_uri = URI(node['wt_common']['http_proxy_url'])
+            proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
+    end
+
   cam_url = node['wt_cam']['cam_service_url']
   port = node['wt_portfolio_edgeservice']['port']
 
@@ -105,6 +115,10 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, usag
       group "root"
       mode  00644
       variables({
+        :auth_url => auth_url,
+        :auth_host => auth_host,
+        :auth_version => node['wt_streamingapi']['sauth_version'],
+        :proxy_host => proxy_host,
         :cam_url => cam_url,
         :install_dir => install_dir,
         :port => port,
