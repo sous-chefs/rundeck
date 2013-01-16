@@ -15,3 +15,4 @@ default['wt_portfolio_edgeservice']['java_opts']      = "-Xms1024m -XX:+UseG1GC 
 default['wt_portfolio_edgeservice']['jmx_port']       = 9999
 default['wt_portfolio_edgeservice']['log_dir']        = "/var/log/webtrends/edgeservice"
 default['wt_portfolio_edgeservice']['router_uri']     = "tcp://localhost:5761"
+default['wt_portfolio_edgeservice']['sauth_version'] = "v1"
