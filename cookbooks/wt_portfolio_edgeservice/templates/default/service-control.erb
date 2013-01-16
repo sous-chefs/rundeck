@@ -20,6 +20,17 @@ for jar in `ls $HOME_DIR/lib/*`; do
     fi
 done
 
+# Add all module .jar files to the classpath.
+for path in `ls $HOME_DIR/modules`; do
+    for jar in `ls $HOME_DIR/modules/$path/*`; do
+        if [ "" = "$CP" ]; then
+            CP=$jar
+        else
+            CP=$CP:$jar
+        fi
+    done
+done
+
 # Add the JMX options.
 if [ -z "$JMX_OPTS" ]; then
     JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false "

@@ -117,7 +117,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, usag
       variables({
         :auth_url => auth_url,
         :auth_host => auth_host,
-        :auth_version => node['wt_streamingapi']['sauth_version'],
+        :auth_version => node['wt_portfolio_edgeservice']['sauth_version'],
         :proxy_host => proxy_host,
         :cam_url => cam_url,
         :install_dir => install_dir,
