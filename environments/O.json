@@ -82,7 +82,7 @@
             "log_flush_scheduler_time_interval": "500", 
             "log_flush_time_interval": "500", 
             "log_retention_hours": "2", 
-            "num_partitions": 60, 
+            "num_partitions": 4, 
             "threads": "16", 
             "version": "0.7.1"
         }, 
