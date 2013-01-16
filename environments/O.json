@@ -250,17 +250,17 @@
         "wt_search": {}, 
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/47637:id/streaming-analysis-bin.tar.gz", 
-            "query_bolt_executors": 24, 
-            "query_bolt_tasks": 24, 
+            "query_bolt_executors": 12, 
+            "query_bolt_tasks": 12, 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 2
             }, 
             "topic_list": [
-                "Lab_H_scsRawHits:30", 
-                "Lab_H_lrRawHits:30",
-                "Lab_O_scsRawHits:30", 
-                "Lab_O_lrRawHits:30"
+                "Lab_H_scsRawHits:4", 
+                "Lab_H_lrRawHits:4",
+                "Lab_O_scsRawHits:4", 
+                "Lab_O_lrRawHits:4"
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
