@@ -5,7 +5,7 @@
         "java": "= 1.6.0", 
         "nagios": "= 3.0.0", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.10", 
+        "webtrends_server": "= 1.8.11", 
         "windows": "= 1.7.0", 
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.0.3", 
@@ -96,6 +96,12 @@
             }, 
             "server_role": "nagios_xi"
         }, 
+        "ohai":
+        {
+            "disabled_plugins":[
+              "rackspace"
+              ]
+        },
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -292,6 +298,9 @@
     "json_class": "Chef::Environment", 
     "name": "F", 
     "override_attributes": {
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        },
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

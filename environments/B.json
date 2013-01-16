@@ -12,7 +12,7 @@
         "storm": "= 1.0.30", 
         "ubuntu": "= 1.0.3",
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.10", 
+        "webtrends_server": "= 1.8.11", 
         "windows": "= 1.7.0", 
         "wt_base": "= 1.0.3", 
         "wt_cam": "= 1.1.6", 
@@ -113,6 +113,12 @@
         "nginx": {
             "default_site_enabled": false
         }, 
+        "ohai":
+        {
+            "disabled_plugins":[
+              "rackspace"
+              ]
+        },
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -353,6 +359,9 @@
     "json_class": "Chef::Environment", 
     "name": "B", 
     "override_attributes": {
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        },
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

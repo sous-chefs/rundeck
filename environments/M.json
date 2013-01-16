@@ -4,7 +4,7 @@
         "kafka": "= 1.0.20", 
         "nagios": "= 3.0.0", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.9", 
+        "webtrends_server": "= 1.8.11", 
         "wt_base": "= 1.0.3", 
         "wt_publishver": "= 0.1.0", 
         "wt_streamingcollection": "= 1.1.0"
@@ -55,6 +55,12 @@
             "threads": "8", 
             "version": "0.7.1"
         }, 
+        "ohai":
+        {
+            "disabled_plugins":[
+              "rackspace"
+              ]
+        },
         "nagios": {
             "client": {
                 "install_method": "package"
@@ -153,7 +159,10 @@
     "description": "M Pod", 
     "json_class": "Chef::Environment", 
     "name": "M", 
-    "override_attributes": {
+    "override_attributes": { 
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        },
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

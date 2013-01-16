@@ -12,7 +12,7 @@
         "nagios": "= 3.1.0", 
         "rundeck": "= 1.0.4", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.9", 
+        "webtrends_server": "= 1.8.11", 
         "windows": "= 1.6.0", 
         "wt_base": "= 1.0.3", 
         "wt_publishver": "= 0.1.0", 
@@ -181,6 +181,12 @@
             "sysadmin_email": "trent.white@webtrends.com", 
             "users_databag_group": "staging"
         }, 
+        "ohai":
+        {
+            "disabled_plugins":[
+              "rackspace"
+              ]
+        },
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -285,6 +291,9 @@
     "json_class": "Chef::Environment", 
     "name": "support-staging", 
     "override_attributes": {
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        },
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
