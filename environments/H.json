@@ -288,7 +288,7 @@
             "router_uri": "tcp://hrouter01.staging.dmz:5861"
         },
         "wt_portfolio_edge_stream_api": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/.lastSuccessful/webtrends-stream-edge-api.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/.lastSuccessful/webtrends-stream-edge-api-develop-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
