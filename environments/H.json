@@ -22,7 +22,7 @@
         "wt_publishver": "= 0.1.0", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.4", 
-        "wt_storm_streaming": "= 2.3.8", 
+        "wt_storm_streaming": "= 2.3.9", 
         "wt_stream_processor": "= 1.0.0", 
         "wt_streaming_viz": "= 1.1.18", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
@@ -33,6 +33,7 @@
         "wt_streamingmanagementservice": "= 1.0.4", 
         "zookeeper": "= 1.2.3",
         "wt_portfolio_edgeservice": "= 1.0.0",
+        "wt_portfolio_router": "= 1.0.0",
         "wt_stream_processor": "= 1.0.0"
     }, 
     "default_attributes": {
@@ -286,6 +287,9 @@
         "wt_portfolio_edgeservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/.lastSuccessful/webtrends-portfolio-edge-service-develop-SNAPSHOT-bin.tar.gz",
             "router_uri": "tcp://hrouter01.staging.dmz:5861"
+        },
+        "wt_portfolio_router": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt337/.lastSuccessful/webtrends-portfolio-router-develop-SNAPSHOT-bin.tar.gz"
         },
         "wt_portfolio_edge_stream_api": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/.lastSuccessful/webtrends-stream-edge-api-develop-SNAPSHOT-bin.tar.gz"
