@@ -47,9 +47,17 @@ ENV['HTTP_PROXY'] = "<%= node["chef_client"]["http_proxy"] %>"
 Ohai::Config[:plugin_path] << "<%= node["ohai"]["plugin_path"] %>"
 <% end -%>
 
-<% if @ohai_disabled_plugins %>
-Ohai::Config[:disabled] = [@ohai_disabled_plugins]
-<% end %>
+<% unless @ohai_disabled_plugins.empty?
+plugins = "["
+disabled_list = @ohai_disabled_plugins.map {|element|
+  "\"#{element}\""
+}.join(',')
+
+plugins << disabled_list 
+plugins << "]"
+%>
+Ohai::Config[:disabled] = <%= plugins %>
+<% end -%>
 
 <% if @chef_environment %>
 environment "<%= @chef_environment %>"
