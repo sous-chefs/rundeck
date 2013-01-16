@@ -1,3 +1,6 @@
+## 2.3.9
+* Changed "streaming.topology.zmq.data.znoderoot" in config.properties.erb to "streaming.topology.zmq.data.znode.root"
+
 ## 2.3.8
 * Added new logic to remove old zookeeper jar file, and replace with the latest
   from streamig-analysis tarball.
