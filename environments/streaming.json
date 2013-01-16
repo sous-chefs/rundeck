@@ -64,6 +64,12 @@
             }, 
             "server_role": "nagios_xi"
         }, 
+        "ohai":
+        {
+            "disabled_plugins":[
+              "rackspace"
+              ]
+        },
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -176,5 +182,9 @@
     "description": "Streaming environment for Openstack instances.", 
     "json_class": "Chef::Environment", 
     "name": "streaming", 
-    "override_attributes": {}
+    "override_attributes": {
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        }
+    }
 }
