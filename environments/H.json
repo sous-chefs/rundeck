@@ -243,17 +243,10 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
-<<<<<<< HEAD
             "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/48013:id/Portfolio.Manager.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/48384:id/Portfolio.Manager.zip",
             "portmgr_group_admin": "H.PortMgr.Admins",
             "portmgr_group_user": "H.PortMgr.Users",
-=======
-            "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/47403:id/Portfolio.Manager.zip", 
-            "portmgr_group_admin": "H.PortMgr.Admins", 
-            "portmgr_group_user": "H.PortMgr.Users", 
->>>>>>> eec36a7349dff1fa2e1e8688fa887294c4ce6d15
             "portmgr_injected_user": "toby.mosby@webtrends.com"
         }, 
         "wt_realtime_hadoop": {
