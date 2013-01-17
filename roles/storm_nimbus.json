@@ -7,5 +7,9 @@
     "recipe[storm::nimbus]"
   ],
   "override_attributes": {
+      "java" : {
+        "install_flavor": "oracle",
+        "jdk_version": "7"
+      }
   }
 }
