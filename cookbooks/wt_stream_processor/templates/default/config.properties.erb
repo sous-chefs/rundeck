@@ -30,14 +30,14 @@ usageConnString=jdbc:sqlserver://<%= @usagedbserver %>:1433;databaseName=<%= @us
 
 
 # The is the root in Zookeeper where data for the api will be placed
-stream.processor.zmq.znoderoot=/StreamingZMQ
+stream.processor.zmq.znode.root=/StreamingZMQ
 # This is the external address for the publish server for clients to connect to
-stream.processor.zmq.znodepushnode=/analysis/node
+stream.processor.zmq.znodepushnode=/analysis
 # This is the external address for the pull server for clients to connect to
 stream.processor.zmq.pull.address=tcp://*:1544
 
 # A comma seperated list of routers to connect to for recieving
-webtrends.network.binding.recieve = tcp://localhost:5762
+webtrends.network.binding.recieve = <%= @router_uri %>
 
 # This is the number of elements, not the SIZE in bytes.
 # Ideally, this will fit in L2 cache, most of our VM's tend to be aprox 15Mb
