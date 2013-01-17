@@ -1,0 +1,13 @@
+{
+  "name": "wt_portfolio_edge_stream_api",
+  "default_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[wt_portfolio_edge_stream_api]"
+  ],
+  "description": "Webtrends Portfolio Edge Plugin for Streaming",
+  "chef_type": "role"
+}

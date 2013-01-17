@@ -1,24 +1,24 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "iis": "= 1.1.4", 
+        "iis": "= 1.3.4", 
         "java": "= 1.6.0", 
         "nagios": "= 3.0.0", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.10", 
-        "windows": "= 1.6.0", 
+        "webtrends_server": "= 1.8.11", 
+        "windows": "= 1.7.0", 
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.0.3", 
-        "wt_cam": "= 1.0.9", 
         "wt_data_deleter": "= 1.0.4", 
-        "wt_logpreproc": "= 1.0.13", 
-        "wt_monitoring": "= 1.0.0", 
-        "wt_netacuity": "= 1.0.10", 
+        "wt_devicedataupdater": "= 0.1.1", 
+        "wt_logpreproc": "= 1.0.17", 
+        "wt_netacuity": "= 1.0.12", 
         "wt_platformscheduler": "= 1.0.12", 
         "wt_publishver": "= 0.1.0", 
+        "wt_roadrunner": "= 1.1.2", 
         "wt_search": "= 1.0.10", 
         "wt_sync": "= 1.0.6", 
-        "wt_xd": "= 1.0.2"
+        "wt_xd": "= 1.0.3"
     }, 
     "default_attributes": {
         "authorization": {
@@ -96,6 +96,12 @@
             }, 
             "server_role": "nagios_xi"
         }, 
+        "ohai":
+        {
+            "disabled_plugins":[
+              "rackspace"
+              ]
+        },
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -158,7 +164,7 @@
             "bba_domain": "fbba.webtrends.com", 
             "cache_region": "F_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/41398:id/AnalyticsUI.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/hotfix/0102/AnalyticsUI.zip", 
             "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
@@ -183,38 +189,29 @@
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
             "config_dir_linux": "/etc/webtrends/", 
+            "config_share": "\\\\sstore02.staging.dmz\\fstore\\config", 
+            "datacenter": "Lab", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
             "ifr_locations": [
-                "\\\\sstore03.staging.dmz\\fstore\\ifr-10.6"
+                "\\\\sstore03.staging.dmz\\fstore\\ifr"
             ], 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
             "install_log_dir_windows": "d:\\logs", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
             "pod_id": "F", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
-            "velocitycache_hosts": [
-                {
-                    "name": "fdxweb01.staging.dmz", 
-                    "port": "22233"
-                }, 
-                {
-                    "name": "fdxweb02.staging.dmz", 
-                    "port": "22233"
-                }
-            ], 
             "wrsmodify_group": "STAGINGDMZ\\F.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\F.WRS.Read"
         }, 
         "wt_data_deleter": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/39505:id/DataDeleter.zip"
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/DataDeleter.zip"
         }, 
         "wt_devicedataupdater": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt284/39953:id/DeviceDataUpdater.zip"
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/DeviceDataUpdater.zip"
         }, 
         "wt_dx": {
             "app_settings_section": {
@@ -258,20 +255,17 @@
         }, 
         "wt_netacuity": {
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz", 
-            "geo_url": "fgeo.staging.dmz", 
+            "geo_url": "sgeo.staging.dmz", 
             "version": "502"
         }, 
         "wt_platformscheduler": {
             "agent": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt289/39511:id/WebTrendsVDMSchedulerAgent.msi"
+                "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/WebTrendsVDMSchedulerAgent.msi"
             }, 
             "host": "fsched01.staging.dmz"
         }, 
         "wt_roadrunner": {
             "build_url": "\\\\sstore02.staging.dmz\\install\\ReleasedBuilds\\10.3.0\\10.3HF bundle build\\RoadRunner_10.3_10.3.0.11_artifacts.zip"
-        }, 
-        "wt_rta": {
-            "rta_host": "frta01.staging.dmz"
         }, 
         "wt_scheddb": {
             "dbname": "wt_Sched", 
@@ -282,37 +276,31 @@
             "host": "fusagedb01.staging.dmz"
         }, 
         "wt_search": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt20/37173:id/Search.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/Search.zip", 
             "search_hostname": "fsearch.staging.dmz"
         }, 
         "wt_sync": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt292/39581:id/SyncService.zip"
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/SyncService.zip"
         }, 
         "wt_usagedb": {
             "dbname": "wtUsage", 
             "host": "fusagedb01.staging.dmz"
         }, 
         "wt_xd": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36325:id/artifacts.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/hotfix/1218/XD_Map_Reduce_master_1.0.0-SNAPSHOT.121_artifacts.zip", 
             "environment": "support-staging"
         }, 
         "zookeeper": {
-            "client_port": 2181, 
-            "init_limit": 10, 
-            "quorum": [
-                "szoo01.staging.dmz", 
-                "szoo02.staging.dmz", 
-                "szoo03.staging.dmz"
-            ], 
-            "snapshot_num": 3, 
-            "sync_limit": 5, 
-            "tick_time": 2000
+            "client_port": 2181
         }
     }, 
     "description": "F Pod", 
     "json_class": "Chef::Environment", 
     "name": "F", 
     "override_attributes": {
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        },
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

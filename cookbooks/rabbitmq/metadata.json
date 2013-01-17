@@ -188,5 +188,5 @@
     "rabbitmq": "Install and configure RabbitMQ",
     "rabbitmq::cluster": "Set up RabbitMQ clustering."
   },
-  "version": "1.7.0"
+  "version": "1.8.0"
 }

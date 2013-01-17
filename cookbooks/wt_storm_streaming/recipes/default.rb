@@ -97,6 +97,13 @@ if ENV["deploy_build"] == "true" then
       command "chown storm:storm #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/webtrends*.jar"
     end
 
+    # Remove any old zookeeper lib, below we will replace it.
+    execute "rm" do
+      user  "root"
+      group "root"
+      command "rm -f #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/zookeeper*.jar"
+    end
+
     %w{
     activation-1.1.jar
     antlr-3.4.jar
@@ -135,21 +142,22 @@ if ENV["deploy_build"] == "true" then
     jettison-1.1.jar
     jsp-2.1-6.1.14.jar
     jsp-api-2.1-6.1.14.jar
-    kafka-0.7.1.1.jar
+    kafka_2.9.2-0.7.1.jar
     libthrift-0.7.0.jar
-    netty-3.3.0.Final.jar
+    netty-3.5.11.Final.jar
     plexus-utils-1.5.6.jar
     protobuf-java-2.4.0a.jar
     regexp-1.3.jar
-    scala-library-2.8.0.jar
     snappy-java-1.0.4.1.jar
     stax-api-1.0.1.jar
+    scala-library-2.9.2.jar
     streaming-analysis.jar
     UserAgentUtils-1.6.jar
     xmlenc-0.52.jar
     zkclient-0.1.jar
     mobi.mtld.da-1.5.3.jar
     ini4j-0.5.2.jar
+    zookeeper-3.3.6.jar
     }.each do |jar|
       execute "mv" do
         user  "root"
