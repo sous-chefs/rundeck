@@ -14,11 +14,11 @@ require 'uri'
 include_recipe "runit"
 
 # install dependency packages
-%w{zeromq jzmq}.each do |pkg|
-  package pkg do
-    action :install
-  end
-end
+#%w{zeromq jzmq}.each do |pkg|
+#  package pkg do
+#    action :install
+#  end
+#end
 
 # grab the zookeeper nodes that are currently available
 zookeeper_quorum = Array.new
