@@ -7,5 +7,4 @@
 
 
 default['geminabox']['install_dir'] = "/var/geminabox"
-default['unicorn']['port'] = 8080
-default[:unicorn][:options] = { :tcp_nodelay => true, :backlog => 100 }
+default['geminabox']['port'] = 8080

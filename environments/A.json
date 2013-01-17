@@ -5,7 +5,7 @@
         "java": "= 1.6.0", 
         "nagios": "= 3.0.0", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.10", 
+        "webtrends_server": "= 1.8.11", 
         "windows": "= 1.3.6", 
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.0.3", 
@@ -98,6 +98,12 @@
             }, 
             "server_role": "nagios_xi"
         }, 
+        "ohai":
+        {
+            "disabled_plugins":[
+              "rackspace"
+              ]
+        },
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -160,7 +166,7 @@
             "bba_domain": "abba.webtrends.com", 
             "cache_region": "A_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/46825:id/AnalyticsUI.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/47460:id/AnalyticsUI.zip", 
             "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
@@ -309,6 +315,9 @@
     "json_class": "Chef::Environment", 
     "name": "A", 
     "override_attributes": {
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        },
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

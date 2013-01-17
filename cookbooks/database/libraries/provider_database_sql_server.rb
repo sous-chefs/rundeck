@@ -6,9 +6,9 @@
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,13 +47,8 @@ class Chef
         def action_drop
           if exists?
             begin
-			  if @new_resource.drop_users
-                Chef::Log.debug("#{@new_resource}: Setting database to single user mode to close any connections. #{new_resource.database_name}")
-                db.execute("ALTER DATABASE #{new_resource.database_name} SET SINGLE_USER WITH ROLLBACK IMMEDIATE").do
-                @new_resource.updated_by_last_action(true)
-			  end
-			  Chef::Log.debug("#{@new_resource}: Dropping database #{new_resource.database_name}")
-              db.execute("DROP DATABASE #{new_resource.database_name}").do
+              Chef::Log.debug("#{@new_resource}: Dropping database #{new_resource.database_name}")
+              db.execute("DROP DATABASE [#{new_resource.database_name}]").do
               @new_resource.updated_by_last_action(true)
             ensure
               close
