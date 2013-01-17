@@ -1,3 +1,7 @@
+## 2.4.0
+* Adding change to support scala-2.9.2, which requires the use of a kafka jar
+  compiled with the scala-2.9.2 compiler.
+
 ## 2.3.9
 * Changed "streaming.topology.zmq.data.znoderoot" in config.properties.erb to "streaming.topology.zmq.data.znode.root"
 
