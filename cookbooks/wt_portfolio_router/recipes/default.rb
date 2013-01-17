@@ -14,11 +14,11 @@ require 'uri'
 include_recipe "runit"
 
 # install dependency packages
-%w{zeromq jzmq}.each do |pkg|
-  package pkg do
-    action :install
-  end
-end
+#%w{zeromq jzmq}.each do |pkg|
+#  package pkg do
+#    action :install
+#  end
+#end
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploying first"
