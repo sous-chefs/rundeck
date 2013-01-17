@@ -1,5 +1,5 @@
 {
-  "name": "wt_hdfslogdata_producer",
+  "name": "wt_portfolio_edgeservice",
   "default_attributes": {
   },
   "override_attributes": {
@@ -13,11 +13,8 @@
   },
   "run_list": [
     "recipe[java]",
-    "recipe[kafka]",
-    "recipe[hadoop]",
-    "recipe[hive]",
-    "recipe[wt_hdfslogdata_producer]"
+    "recipe[wt_portfolio_edgeservice]"
   ],
-  "description": "Webtrends HDFS Log Data Producer",
-  "chef_type": "role"  
+  "description": "Webtrends Portfolio Edge Service",
+  "chef_type": "role"
 }
