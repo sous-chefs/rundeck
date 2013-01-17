@@ -2,12 +2,14 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "java": "= 1.6.0", 
-        "kafka": "= 1.0.20"
+        "kafka": "= 1.0.20", 
+        "wt_portfolio_edgeservice": "= 1.0.0", 
+        "wt_stream_processor": "= 1.0.0"
     }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
-                "ad_network": "streaming"
+                "ad_network": "OSSTAGINGDMZ"
             }, 
             "sudo": {
                 "groups": [
@@ -26,7 +28,6 @@
         }, 
         "java": {
             "install_flavor": "oracle", 
-            "jdk_version": 7,
             "jdk": {
                 "6": {
                     "x86_64": {
@@ -40,7 +41,8 @@
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
-            }
+            }, 
+            "jdk_version": 7
         }, 
         "kafka": {
             "chroot_suffix": "brokers", 
@@ -61,6 +63,11 @@
                 "dont_blame_nrpe": "1"
             }, 
             "server_role": "nagios_xi"
+        }, 
+        "ohai": {
+            "disabled_plugins": [
+                "rackspace"
+            ]
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
@@ -97,6 +104,9 @@
                     "url": "http://repo.staging.dmz/repo/yum/webtrends"
                 }
             ]
+        }, 
+        "wt_cam": {
+            "cam_service_url": "http://hcam.staging.dmz"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -139,21 +149,41 @@
             "metric_prefix": "streaming.servers", 
             "monitoring_enabled": "false"
         }, 
+        "wt_portfolio_edgeservice": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/.lastSuccessful/webtrends-portfolio-edge-service-develop-SNAPSHOT-bin.tar.gz", 
+            "router_uri": "tcp://router01.os.staging.dmz:5861"
+        }, 
         "wt_realtime_hadoop": {
-            "pod": "mcnamaras"
-        },
-        "wt_stream_processor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/.lastSuccessful/webtrends-portfolio-edge-service-develop-SNAPSHOT-bin.tar.gz"
-        },
+            "datacenter": "Lab", 
+            "environment": "support-staging", 
+            "pod": "streaming"
+        }, 
         "wt_sauth": {
             "auth_service_url": "https://hsauth.webtrends.com"
-        },
-        "wt_cam": {
-            "cam_service_url": "http://hcam.staging.dmz"
+        }, 
+        "wt_stream_processor": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/.lastSuccessful/webtrends-stream-processor-develop-SNAPSHOT-bin.tar.gz", 
+            "router_uri": "tcp://router01.os.staging.dmz:5862"
+        }, 
+        "zookeeper": {
+            "client_port": 2181, 
+            "init_limit": 10, 
+            "quorum": [
+                "streaming-zoo01.os.staging.dmz", 
+                "hzoo02.staging.dmz", 
+                "hzoo03.staging.dmz"
+            ], 
+            "snapshot_num": 3, 
+            "sync_limit": 5, 
+            "tick_time": 2000
         }
     }, 
     "description": "Streaming environment for Openstack instances.", 
     "json_class": "Chef::Environment", 
     "name": "streaming", 
-    "override_attributes": {}
+    "override_attributes": {
+        "chef_client": {
+            "server_url": "http://chef.staging.dmz:4000"
+        }
+    }
 }
