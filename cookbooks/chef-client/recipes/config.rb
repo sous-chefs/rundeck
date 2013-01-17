@@ -20,6 +20,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+class ::Chef::Recipe
+  include ::Opscode::ChefClient::Helpers
+end
+
 root_user = value_for_platform(
   ["windows"] => { "default" => "Administrator" },
   "default" => "root"
@@ -39,25 +43,8 @@ log_path = case node["chef_client"]["log_file"]
     'STDOUT'
   end
 
-%w{run_path cache_path backup_path log_dir conf_dir}.each do |key|
-  directory node["chef_client"][key] do
-    recursive true
-    if key == "log_dir"
-      mode 00750
-    else
-      mode 00755
-    end
-    unless node["platform"] == "windows"
-      if node.recipe?("chef-server")
-        owner "chef"
-        group "chef"
-      else
-        owner root_user
-        group root_group
-      end
-    end
-  end
-end
+# libraries/helpers.rb method to DRY directory creation resources
+create_directories
 
 if log_path != "STDOUT"
   file log_path do
@@ -88,7 +75,8 @@ template "#{node["chef_client"]["conf_dir"]}/client.rb" do
     :chef_requires => chef_requires,
     :chef_verbose_logging => node["chef_client"]["verbose_logging"],
     :chef_report_handlers => node["chef_client"]["report_handlers"],
-    :chef_exception_handlers => node["chef_client"]["exception_handlers"]
+    :chef_exception_handlers => node["chef_client"]["exception_handlers"],
+    :ohai_disabled_plugins => node['ohai']['disabled_plugins']
   )
   notifies :create, "ruby_block[reload_client_config]"
 end

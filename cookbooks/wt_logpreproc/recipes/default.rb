@@ -103,7 +103,7 @@ template "#{install_dir}\\wtlogpreproc.ini" do
     :auditlog_maxsize           => node['wt_logpreproc']['auditlog_maxsize'],
     :auditlog_trimsize          => node['wt_logpreproc']['auditlog_trimsize'],
     :auditlog_filenameprefix    => node['wt_logpreproc']['auditlog_filenameprefix'],
-    :auditlog_filenameext       => node['wt_logpreproc']['auditlog_filenameext'],
+    :auditlog_filenameext       => node['wt_logpreproc']['auditlog_filenameext']
   )
 end
 

@@ -25,10 +25,10 @@
 # overriding attributes by modifying a role, or the node itself.
 # default['nginx']['source']['checksum']
 default['nginx']['version'] = "1.2.3"
+default['nginx']['package_name'] = "nginx"
 default['nginx']['dir'] = "/etc/nginx"
 default['nginx']['log_dir'] = "/var/log/nginx"
 default['nginx']['binary'] = "/usr/sbin/nginx"
-default['nginx']['root'] = "/var/www/nginx-default"
 
 case node['platform']
 when "debian","ubuntu"

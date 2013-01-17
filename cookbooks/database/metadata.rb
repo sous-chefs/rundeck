@@ -4,7 +4,7 @@ maintainer_email "cookbooks@opscode.com"
 license          "Apache 2.0"
 description      "Sets up the database master or slave"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.3.9"
+version          "1.3.10"
 
 recipe "database", "Empty placeholder"
 recipe "database::ebs_backup", "Considered deprecated, older way of backing up EBS volumes"
@@ -17,6 +17,6 @@ depends "postgresql", ">= 1.0.0"
 depends "aws"
 depends "xfs"
 
-%w{ debian ubuntu centos suse fedora redhat scientific }.each do |os|
+%w{ debian ubuntu centos suse fedora redhat scientific amazon }.each do |os|
   supports os
 end

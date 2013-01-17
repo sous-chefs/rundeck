@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+
+
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploying first"
   include_recipe "wt_hdfslogdata_producer::undeploy"

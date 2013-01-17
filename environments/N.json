@@ -9,7 +9,7 @@
         "nagios": "= 3.0.0", 
         "storm": "= 1.0.28", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.9", 
+        "webtrends_server": "= 1.8.11", 
         "windows": "= 1.6.0", 
         "wt_base": "= 1.0.3", 
         "wt_cam": "= 1.1.3", 
@@ -100,6 +100,12 @@
         "ms_dotnet4": {
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
+        "ohai":
+        {
+            "disabled_plugins":[
+              "rackspace"
+              ]
+        },
         "nagios": {
             "client": {
                 "install_method": "package"
@@ -321,6 +327,9 @@
     "json_class": "Chef::Environment", 
     "name": "N", 
     "override_attributes": {
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        },
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
