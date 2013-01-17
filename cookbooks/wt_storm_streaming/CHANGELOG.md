@@ -1,4 +1,15 @@
-##2.3.7
+## 2.4.0
+* Adding change to support scala-2.9.2, which requires the use of a kafka jar
+  compiled with the scala-2.9.2 compiler.
+
+## 2.3.9
+* Changed "streaming.topology.zmq.data.znoderoot" in config.properties.erb to "streaming.topology.zmq.data.znode.root"
+
+## 2.3.8
+* Added new logic to remove old zookeeper jar file, and replace with the latest
+  from streamig-analysis tarball.
+
+## 2.3.7
 * Added new versions of browsers.ini, keywords.ini, device-atlas.json
 
 ## 2.3.6

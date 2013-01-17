@@ -1,3 +1,5 @@
+## v2.1.7-10: WEBTRENDS - Adding support for templating disbled ohai plugins
+
 ## v2.1.6:
 
 * [COOK-1978] - make cron output location configurable
