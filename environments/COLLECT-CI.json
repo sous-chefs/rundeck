@@ -71,6 +71,12 @@
             "sysadmin_email": "trent.white@webtrends.com", 
             "users_databag_group": "staging"
         }, 
+        "ohai":
+        {
+            "disabled_plugins":[
+              "rackspace"
+              ]
+        },
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 

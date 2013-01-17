@@ -10,18 +10,20 @@
 
 module HadoopSearch
 
-	def hadoop_search(role, limit = 1000)
+	def hadoop_search(role, limit = 1000, search_chefenv = nil)
 
-		search_timeout = 60 # seconds
+		search_timeout   = 60 # seconds
+		search_chefenv ||= node.chef_environment
 
 		Chef::Log.info "hadoop_cluster_name: #{node[:hadoop][:cluster_name]}"
+		Chef::Log.info "search_chefenv: #{search_chefenv}"
 
 		results = Array.new
 
 		if node[:hadoop][:cluster_name] == 'default'
 
 			# search for nodes with default cluster name
-			query =  "chef_environment:#{node.chef_environment}"
+			query =  "chef_environment:#{search_chefenv}"
 			query << " AND role:#{role}"
 			query << " AND hadoop_cluster_name:#{node[:hadoop][:cluster_name]}"
 			Chef::Log.info "hadoop_search: #{query}"
@@ -37,7 +39,7 @@ module HadoopSearch
 			end
 
 			# search for nodes that have no cluster name
-			query =  "chef_environment:#{node.chef_environment}"
+			query =  "chef_environment:#{search_chefenv}"
 			query << " AND role:#{role}"
 			query << " AND NOT hadoop_cluster_name:*"
 			Chef::Log.info "hadoop_search: #{query}"
@@ -47,7 +49,7 @@ module HadoopSearch
 		else
 
 			# search for nodes with a non-default cluster name
-			query =  "chef_environment:#{node.chef_environment}"
+			query =  "chef_environment:#{search_chefenv}"
 			query << " AND role:#{role}"
 			query << " AND hadoop_cluster_name:#{node[:hadoop][:cluster_name]}"
 			Chef::Log.info "hadoop_search: #{query}"
