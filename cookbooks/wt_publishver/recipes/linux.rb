@@ -7,6 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# older platforms are not supported
+return if node['platform_family'] == 'debian' && node['platform_version'].to_i < 12
+
 # working directories
 wdir = File.join(Chef::Config[:file_cache_path], 'wt_publishver')
 gdir = File.join(wdir, 'gems')
@@ -28,8 +31,9 @@ gem_package 'nokogiri' do
 	action :nothing
 end.run_action :install
 
-%w{little-plugger-1.1.3  multi_json-1.5.0 logging-1.8.0 httpclient-2.3.0.1 rubyntlm-0.1.2 viewpoint-spws-0.5.0}.each do |gem|
-	gem_package gem[/^(.*)-[\d\.]+?/, 1] do
+gem_list = ['little-plugger-1.1.3', 'multi_json-1.5.0', 'logging-1.6.1', 'httpclient-2.2.4', 'rubyntlm-0.1.2', 'viewpoint-spws-0.5.0.wt']
+gem_list.each do |gem|
+	gem_package gem[/^(.*)-[\d\.wt]+?/, 1] do
 		gem_binary 'gem'
 		source File.join(wdir, "#{gem}.gem")
 		options "--install-dir #{gdir} --ignore-dependencies"
@@ -39,4 +43,5 @@ end
 
 Gem.clear_paths
 
-# require 'viewpoint/spws'
+require 'viewpoint/spws'
+
