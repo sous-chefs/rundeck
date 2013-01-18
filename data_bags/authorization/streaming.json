@@ -1,19 +1,11 @@
 {
-  "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/",
-  "usenameprefix": true,
-  "auth_domain_password": "mKET9dYDnzypsbzUB4VV",
-  "auth_domain_user": "osdeployer",
-  "membership_required": [
-    "osstagingdmz\\\\domain-admins",
-    "osstagingdmz\\\\os-admins"
-  ],
-  "id": "streaming",
-  "primary_domain": "os.staging.dmz",
-  "wt_stream_processor": {
+    "id": "streaming", 
+    "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "wt_portfolio_edgeservice": {
         "usagedbpwd": "bijoux", 
         "usagedbuser": "wtUI"
-    },
-    "wt_portfolio_edgeservice": {
+    }, 
+    "wt_stream_processor": {
         "usagedbpwd": "bijoux", 
         "usagedbuser": "wtUI"
     }

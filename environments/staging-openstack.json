@@ -1,0 +1,74 @@
+{
+    "chef_type": "environment", 
+    "cookbook_versions": {}, 
+    "default_attributes": {
+       "authorization": {
+            "ad_auth": {
+                "ad_network": "OSSTAGINGDMZ"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins", 
+                    "streaming-admins"
+                ], 
+                "include_sudoers_d": true, 
+                "passwordless": false, 
+                "users": [
+                    "bobo"
+                ]
+            }
+        }, 
+    "glance": {
+      "image": {
+        "cirros": "http://repo.staging.dmz/repo/linux/img/cirros/current/cirros-0.3.0-x86_64-disk.img",
+        "precise": "http://repo.staging.dmz/repo/linux/img/precise/current//precise-server-cloudimg-amd64-disk1.img"
+      },
+      "image_upload": true
+    },
+    "mysql": {
+      "allow_remote_root": true,
+      "root_network_acl": "%"
+    },
+    "nova": {
+      "networks": [
+        {
+          "num_networks": "1",
+          "bridge": "br100",
+          "label": "Staging Openstack Instances",
+          "bridge_dev": "bond0",
+          "ipv4_cidr": "10.164.24.0/16",
+          "dns2": "10.164.0.11",
+          "dns1": "10.164.0.11",
+          "network_size": "255"
+        }
+      ],
+      "network": {
+        "public_interface": "bond0",
+        "fixed_range": "10.164.24.0/24"
+      }
+    },
+    "osops_networks": {
+      "public": "10.164.23.0/16",
+      "management": "10.164.23.0/16",
+      "nova": "10.164.23.0/16"
+    }
+    }, 
+    "description": "Staging Test Environment for Openstack from Opscode's cookbooks.", 
+    "json_class": "Chef::Environment", 
+    "name": "staging-openstack", 
+    "override_attributes": {
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        },
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }, 
+        "ubuntu": {
+            "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
+        }
+    }
+}

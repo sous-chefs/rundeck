@@ -14,9 +14,9 @@
   "run_list": [
     "recipe[java]",
     "recipe[kafka]",
+    "recipe[wt_hdfslogdata_producer]",
     "recipe[hadoop]",
-    "recipe[hive]",
-    "recipe[wt_hdfslogdata_producer]"
+    "recipe[hive]"
   ],
   "description": "Webtrends HDFS Log Data Producer",
   "chef_type": "role"  
