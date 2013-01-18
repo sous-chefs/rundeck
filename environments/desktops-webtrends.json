@@ -1,0 +1,25 @@
+{
+    "chef_type": "environment", 
+    "cookbook_versions": {
+    }, 
+    "default_attributes": {
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "WEBTRENDS"
+            } 
+        }
+    }, 
+    "description": "Personal desktops in Webtrends domain", 
+    "json_class": "Chef::Environment", 
+    "name": "desktops-webtrends", 
+    "override_attributes": {
+        "chef_client":{
+            "server_url": "http://chef.staging.dmz:4000"
+        },
+        "ntp": {
+            "servers": [
+                "time.webtrends.corp"
+            ]
+        }
+    }
+}
