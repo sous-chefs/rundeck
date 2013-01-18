@@ -13,7 +13,6 @@
   },
   "run_list": [
     "recipe[java]",
-    "recipe[kafka]",
     "recipe[wt_hdfslogdata_producer]",
     "recipe[hadoop]",
     "recipe[hive]"
