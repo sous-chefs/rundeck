@@ -193,6 +193,18 @@
             "smtp_server": "pdxengmta01.webtrends.corp", 
             "wrsmodify_group": "STAGINGDMZ\\O.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\O.WRS.Read"
+         }, 
+        "wt_hdfslogdata_producer": {	 	 	 
+             "daemon": {	 	 	 
+                 "topics": "Lab_O_scsRawHits"	 	 	 
+             }, 	 	 	 
+             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt339/.lastSuccessful/webtrends-visitoranalytics-hdfslogproducer-develop-SNAPSHOT-bin.tar.gz", 	 	 	 
+             "geo": {	 	 	 
+                "url": "outil01.staging.dmz"	 	 	 
+             }, 	 	 	 
+             "kafka": {	 	 	 
+                 "group_id": "hdfs-log-producer-o"	 	 	 
+             }	 	 	 
         }, 
         "wt_kafka_topagg": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.1/1116/TopicAggregator-bin.tar.gz", 
