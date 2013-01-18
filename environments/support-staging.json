@@ -9,7 +9,7 @@
         "hive": "= 1.1.0", 
         "java": "= 1.6.0", 
         "memcached": "= 1.1.2", 
-        "nagios": "= 3.1.0", 
+        "nagios": "= 3.1.1", 
         "rundeck": "= 1.0.4", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.11", 
@@ -271,6 +271,18 @@
             "log_dir_windows": "", 
             "smtp_server": "pdxengmta01.webtrends.corp"
         }, 
+       "wt_hdfslogdata_producer": {
+            "daemon": {
+                "topics": "Lab_O_lrRawHits,Lab_O_scsRawHits"
+            },
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt339/.lastSuccessful/webtrends-visitoranalytics-hdfslogproducer-develop-SNAPSHOT-bin.tar.gz",
+            "geo": {
+                "url": "outil01.staging.dmz"
+            },
+            "kafka": {
+                "group_id": "hdfs-log-producer-o"
+            }
+        },
         "wt_monitoring": {
             "graphite_flush_enabled": "true", 
             "graphite_flush_interval": "1", 

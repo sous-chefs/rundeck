@@ -1,5 +1,8 @@
 ## Future
 
+## 1.1.5
+* added nrpe check to region server recipe to scan log for exceptions.
+
 ## 1.1.4
 * added more log messages to search method
 * decreased search timeout to 60 seconds
