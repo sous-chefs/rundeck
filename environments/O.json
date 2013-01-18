@@ -59,6 +59,14 @@
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
             }
         }, 
+       "hive": {
+            "default": {
+                "metastore": {
+                    "connection_url": "jdbc:sqlserver://shivemeta01.staging.dmz;databaseName=hivemeta",
+                    "connector": "sqlserver"
+                }
+            }
+        },
         "java": {
             "install_flavor": "oracle", 
             "jdk": {
