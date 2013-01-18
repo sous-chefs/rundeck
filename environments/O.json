@@ -1,9 +1,9 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "hadoop": "= 1.0.3", 
-        "hbase": "= 1.0.3", 
-        "hive": "= 1.0.2", 
+        "hadoop": "= 1.1.12", 
+        "hbase": "= 1.1.4", 
+        "hive": "= 1.1.0", 
         "java": "= 1.6.0", 
         "kafka": "= 1.0.20", 
         "nagios": "= 3.0.0", 
