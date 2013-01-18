@@ -9,7 +9,7 @@
         "nagios": "= 3.0.0", 
         "rundeck": "= 1.0.4", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.11", 
+        "webtrends_server": "= 1.8.12", 
         "windows": "= 1.6.0", 
         "wt_base": "= 1.0.3", 
         "wt_publishver": "= 0.1.0", 
