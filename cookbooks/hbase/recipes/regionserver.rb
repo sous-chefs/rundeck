@@ -18,3 +18,12 @@
 #
 
 include_recipe 'hbase'
+
+if node.attribute?("nagios")
+  #Create a nagios nrpe check for the hbase log regarding IPC Server handler errors
+    nagios_nrpecheck "hbase_log_check_server_error" do
+        command "sudo #{node['nagios']['plugin_dir']}/check_log"
+        parameters "-F /var/log/hbase/hbase-hadoop-regionserver-#{node['fqdn']}.log -O /tmp/NRPE_check_log_hbase.log -q 'WARN org.apache.hadoop.ipc.HBaseServer: PRI IPC Server handler'"
+        action :add
+    end
+end
