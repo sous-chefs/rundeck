@@ -123,18 +123,6 @@
             "log_dir_windows": "", 
             "smtp_server": "pdxengmta01.webtrends.corp"
         }, 
-        "wt_hdfslogdata_producer": {
-            "daemon": {
-                "topics": "Lab_H_lrRawHits,Lab_H_scsRawHits"
-            }, 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt339/.lastSuccessful/webtrends-visitoranalytics-hdfslogproducer-develop-SNAPSHOT-bin.tar.gz", 
-            "geo": {
-                "url": "hutil01.staging.dmz"
-            }, 
-            "kafka": {
-                "group_id": "hdfs-log-producer-je"
-            }
-        }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 
