@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="plugins" type="Webtrends.ExternalData.Configuration.PluginConfigurationSection, Webtrends.ExternalData" />
+    <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core" />
+    <section name="serviceBus" type="Webtrends.ServiceBus.Configuration.ServiceBusConfiguration, Webtrends.ServiceBus" />
+  </configSections>
+  <appSettings>
+    <add key="ExternalStorageQueue" value="xdssmain@localhost" />
+    <add key="ExternalDataQueue" value="xdrsmain@localhost" />
+    <add key="max3rdPartyErrorMessageLength" value="350" />
+  </appSettings>
+ <connectionStrings>
+    <add name="wtMasterConnection" connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Integrated Security=True;Connect Timeout=300"
+      providerName="System.Data.SqlClient" />
+  </connectionStrings>
+ <!-- Start of Plugin Directory settings-->
+  <plugins>
+    <pluginDirectories>
+      <add Directory="." />
+    </pluginDirectories>
+  </plugins>
+  <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>"
+    MetaDataColumnFamily="<%= @metadata_column %>" ThriftPort="<%= @thrift_port %>" UseLegacy="false">
+    <Nodes>
+      <clear />
+      <add Hostname="<%= @cass_host %>" />
+    </Nodes>
+  </CassandraCluster>
+  <serviceBus>
+    <endpoints>
+      <endpoint endpointIdentifier="XDRefresh@localhost" returnAddress="XDRefresh@localhost" binding="customMsmqBinding" />
+    </endpoints>
+    <bindings>
+      <msmqBinding purgeOnStartup="false" isTransactional="true" transactionTimeout="00:16:00" isolationLevel="Serializable" name="customMsmqBinding" />
+    </bindings>
+  </serviceBus>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
+  </startup>
+</configuration>

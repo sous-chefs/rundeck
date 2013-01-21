@@ -1,3 +1,6 @@
+## 2.0.0
+* Created recipe for installing windows external data components
+
 ## 1.0.3
 * Adding the ability to adjust mapred.child.hava.opts by conf file
 
