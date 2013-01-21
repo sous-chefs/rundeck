@@ -1,3 +1,7 @@
+## 2.4.1
+* Adding application.conf to configure the connectivity to hbase session
+  history.
+
 ## 2.4.0
 * Adding change to support scala-2.9.2, which requires the use of a kafka jar
   compiled with the scala-2.9.2 compiler.
