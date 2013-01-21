@@ -1,0 +1,34 @@
+{
+  "name": "scala",
+  "description": "Installs/Configures scala",
+  "long_description": "# scala cookbook\n\nInstalls the Scala programming language language. [See the Scala homepage](http://www.scala-lang.org/)\n\n# Requirements\n\n* Chef 10\n* Java\n\n# Usage\n\nInclude the `scala::default` recipe to your run list or inside your cookbook.\n\n# Attributes\n\nThe following attributes are set under the `scala` namespace:\n\n* version  - The version to install.\n* url      - The url to the Scala tgz.\n* checksum - The SHA-256 of the Scala tgz.\n* home     - The installation directory for Scala. \n\n# Recipes\n\n* default\n\n# Author\n\nAuthor:: Kyle Allan (<kallan@riotgames.com>)",
+  "maintainer": "Kyle Allan",
+  "maintainer_email": "kallan@riotgames.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "centos": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "fedora": ">= 0.0.0"
+  },
+  "dependencies": {
+    "java": ">= 0.0.0",
+    "ark": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.0.1"
+}
