@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="serviceBus" type="Webtrends.ServiceBus.Configuration.ServiceBusConfiguration, Webtrends.ServiceBus" />
+    <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core" />
+    <section name="HBaseConfig" type="Webtrends.HBase.Core.HBaseConfigSection, Webtrends.HBase.Core" />
+  </configSections>
+  <appSettings>
+    <!-- This is the path to the log4net config file -->
+    <add key="log4net.Config" value="Webtrends.ExternalData.StorageService.log4net.config" />
+    <add key="FacebookMinDaysPast" value="4" />
+    <add key="YouTubeMinDaysPast" value="4" />
+  </appSettings>
+ <connectionStrings>
+    <add name="wtMasterConnection" connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Integrated Security=True;Connect Timeout=300"
+      providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <plugins>
+    <pluginDirectories>
+      <add Directory="." />
+    </pluginDirectories>
+  </plugins>
+  <!-- Start Cassandra settings -->
+  <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>"
+    MetaDataColumnFamily="<%= @metadata_column %>" ThriftPort="<%= @thrift_port %>" UseLegacy="false">
+    <Nodes>
+      <clear />
+      <add Hostname="<%= @cass_host %>" />
+    </Nodes>
+  </CassandraCluster>
+  <!-- ServiceBus endpoint -->
+  <serviceBus>
+    <endpoints>
+      <endpoint endpointIdentifier="xdssmain@localhost" binding="mainBinding" name="Webtrends External Data Storage Service" description="" returnAddress="xdssmain@localhost" monitorServiceAddress="discover" distributorAddress="" poisonMessageAddress="" maxMessageRetryCount="2" retryHandling="Drop" statusReportInterval="00:00:30" statusReportGracePeriod="00:01:00" numberOfWorkerThreads="25" maxRetries="4" incomingMessageLoggingLevel="None" outgoingMessageLoggingLevel="None" sendOnly="false">
+        <profiler enabled="true" profilePipelineComponents="true" pipelineDirection="Both" />
+        <!-- Register to handle the following messages -->
+        <registeredMessages>
+          <message messageType="Webtrends.ExternalData.Messages.ReportRequestMessage, Webtrends.ExternalData" enabled="true" local="true" />
+          <message messageType="Webtrends.ExternalData.Messages.AcquiredReportsMessage, Webtrends.ExternalData" enabled="true" local="true" />
+          <message messageType="Webtrends.ExternalData.Messages.RetrieveRawDataMessage, Webtrends.ExternalData" enabled="true" local="true" />
+        </registeredMessages>
+        <messageAssemblies>
+          <assembly name="Webtrends.ExternalData" destinationAddress="xdssmain" />
+        </messageAssemblies>
+        <messageHandlerAssemblies>
+          <assembly name="Webtrends.ExternalData.StorageService" />
+        </messageHandlerAssemblies>
+        <statusProbes>
+          <probe name="Available Memory" unitOfMeasurement="mb" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Memory" />
+              <add name="Counter" value="Available MBytes" />
+              <add name="Instance" value="" />
+            </properties>
+          </probe>
+          <probe name="Avg. Processor Time" unitOfMeasurement="%" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Processor" />
+              <add name="Counter" value="% Processor Time" />
+              <add name="Instance" value="_Total" />
+            </properties>
+          </probe>
+          <probe name="Messages in Queue" unitOfMeasurement="messages" canAggregate="true" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="MSMQ Queue" />
+              <add name="Counter" value="Messages in Queue" />
+              <!-- The term 'localhost' will be converted to the machine name -->
+              <add name="Instance" value="localhost\private$\xdssmain" />
+            </properties>
+          </probe>
+          <probe name="Avg. Processor Time (process)" unitOfMeasurement="%" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Process" />
+              <add name="Counter" value="% Processor Time" />
+              <add name="Instance" value="Webtrends.ExternalData.StorageService" />
+            </properties>
+          </probe>
+          <probe name="Private Bytes (process)" unitOfMeasurement="bytes" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Process" />
+              <add name="Counter" value="Private Bytes" />
+              <add name="Instance" value="Webtrends.ExternalData.StorageService" />
+            </properties>
+          </probe>
+          <probe name="Virtual Bytes (process)" unitOfMeasurement="bytes" canAggregate="false" dataType="Numeric" type="Webtrends.ServiceBus.Endpoint.Management.Monitoring.PerfCounterProbe, Webtrends.ServiceBus">
+            <properties>
+              <add name="Category" value="Process" />
+              <add name="Counter" value="Virtual Bytes" />
+              <add name="Instance" value="Webtrends.ExternalData.StorageService" />
+            </properties>
+          </probe>
+        </statusProbes>
+      </endpoint>
+    </endpoints>
+    <bindings>
+      <msmqBinding name="mainBinding" purgeOnStartup="false" isTransactional="true" transactionTimeout="01:00:00" isolationLevel="Serializable" />
+    </bindings>
+  </serviceBus>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
+  </startup>
+</configuration>
