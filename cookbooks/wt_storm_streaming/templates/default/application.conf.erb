@@ -1,0 +1,13 @@
+visitor.pod = "<%= @visitor_pod %>"
+visitor.datacenter = "<%= @visitior_datacenter %>"
+
+# A comma seperated list of zookeeper nodes for HBase configuration
+visitor.zookeeper = "<%= @visitor_zookeeper_quorum %>"
+
+# HBase settings
+visitor.hbase.quorum = "hbase.zookeeper.quorum"
+visitor.hbase.setCacheBlocks = true
+visitor.hbase.setCaching = 500
+visitor.hbase.table.partitions = <%= @visitor_hbase_table_partitions %>
+visitor.hbase.table.direct = "<%= @visitor_hbase_table_direct %>"
+visitor.hbase.table.parallel = "<%= @visitor_hbase_table_parallel %>"

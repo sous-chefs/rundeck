@@ -227,6 +227,22 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
 end
 
 # template the actual storm config file
+template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/application.conf" do
+  source "application.conf.erb"
+  owner  "storm"
+  group  "storm"
+  mode   00644
+  variables(
+    visitor_pod: => node['wt_storm_streaming']['visitor']['pod'],
+    visitor_datacenter: => node['wt_storm_streaming']['visitor']['datacenter'],
+    visitor_hbase_table_partitions: => node['wt_storm_streaming']['visitor']['hbase_table_partitions'],
+    visitor_hbase_table_direct: => node['wt_storm_streaming']['visitor']['hbase_table_direct'],
+    visitor_hbase_table_parallel: => node['wt_storm_streaming']['visitor']['hbase_table_parallel'],
+    visitor_zookeeper_quorum: => node['wt_storm_streaming']['visitor']['zookeeper_quorum']
+  )
+end
+
+# template the actual storm config file
 template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties" do
   source "config.properties.erb"
   owner  "storm"
