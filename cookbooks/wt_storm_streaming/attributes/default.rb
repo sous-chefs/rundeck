@@ -14,6 +14,13 @@ default['wt_storm_streaming']['query_bolt_tasks'] = 0
 default['wt_storm_streaming']['tracer_dcsid'] = ""
 default['wt_storm_streaming']['topic_list'] = []
 
+default['wt_storm_streaming']['visitor']['pod'] = ""
+default['wt_storm_streaming']['visitor']['datacenter'] = ""
+default['wt_storm_streaming']['visitor']['hbase_table_partitions'] = 0
+default['wt_storm_streaming']['visitor']['hbase_table_direct'] = ""
+default['wt_storm_streaming']['visitor']['hbase_table_parallel'] = ""
+default['wt_storm_streaming']['visitor']['zookeeper_quorum'] = ""
+
 default['wt_storm_streaming']['kafka']['consumer_group_id'] = "kafka-streaming"
 default['wt_storm_streaming']['kafka']['zookeeper_timeout_ms'] = 100000
 default['wt_storm_streaming']['kafka']['auto_offset_reset'] = "smallest"
