@@ -1,3 +1,6 @@
+## 2.0.2
+* Fixed loop issue
+
 ## 2.0.1
 * Fixed auth data bag typo
 
