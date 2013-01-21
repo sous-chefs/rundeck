@@ -1,9 +1,7 @@
 {
   "name": "openstack_instance",
   "default_attributes": {
-    "virtualization": {
-      "system": "openstack"
-    }
+    "openstack_instance": true
   },
   "json_class": "Chef::Role",
   "env_run_lists": {

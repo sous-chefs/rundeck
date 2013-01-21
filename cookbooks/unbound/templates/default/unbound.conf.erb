@@ -65,7 +65,7 @@ server:
 
   # number of ports to allocate per thread, determines the size of the
   # port range that can be open simultaneously. 
-  outgoing-range: 8192
+  outgoing-range: 16384
 
   # permit unbound to use this port number or port range for
   # making outgoing queries, using an outgoing interface.
@@ -107,7 +107,7 @@ server:
   # msg-cache-slabs: 4
 
   # the number of queries that a thread gets to service.
-  num-queries-per-thread: 4096
+  num-queries-per-thread: 16384
 
   # if very busy, 50% queries run to completion, 50% get timeout in msec
   # jostle-timeout: 200

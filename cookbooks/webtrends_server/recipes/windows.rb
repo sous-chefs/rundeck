@@ -38,6 +38,14 @@ windows_reboot 60 do
   action :nothing
 end
 
+# setup the client.rb file for chef with the correct chef server URL and logging options
+if !node[:openstack_instance]
+  if node['chef_client']['server_url'].nil?
+    Chef::Application.fatal!("Your environment must contain a valid [:chef_client][:server_url] value to run the webtrends_server cookbook")
+  end
+  include_recipe "chef-client::config"
+end
+
 # disable UAC
 windows_registry 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' do
   values 'EnableLUA' => 0
