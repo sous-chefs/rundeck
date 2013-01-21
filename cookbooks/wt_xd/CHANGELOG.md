@@ -1,3 +1,7 @@
+## 2.0.5
+* Renamed default to importer, and added uninstall.
+* Now passing user/password to install calls
+
 ## 2.0.4
 * Changing --install to /install
 
