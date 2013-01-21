@@ -1,3 +1,6 @@
+## 2.0.3
+* Removed comma from list
+
 ## 2.0.2
 * Fixed loop issue
 
