@@ -1,0 +1,5 @@
+{
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c hbase_log_check_server_error", 
+    "hostgroup_name": "hadoop_datanode", 
+    "id": "hbase_log_check_server_error"
+}

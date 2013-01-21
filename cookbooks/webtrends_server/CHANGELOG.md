@@ -1,3 +1,6 @@
+## 1.8.12 
+ *  Added support for managing client.rb for windows
+
 ## 1.8.11
  * Manage the chef client.rb file with chef.  This requires a new chef_client section in the environment
  * Update the updater version to 10.16.4
