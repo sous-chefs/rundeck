@@ -40,7 +40,7 @@ directory log_dir do
   rights :write, auth_data['wt_common']['system_user']
 end
 
-if ENV["deploy_build"] == "true" then
+if ENV["deploy_build"] == "true"
 
 	# unzip the install package
 	windows_zipfile install_dir do
@@ -48,12 +48,12 @@ if ENV["deploy_build"] == "true" then
 		action :unzip
 	end
 	
-    %[Webtrends.ActionCenterControl.exe.config, Webtrends.ExternalData.Refresh.exe.config, Webtrends.ExternalData.RetrievalService.exe.config, 
+    %w[Webtrends.ActionCenterControl.exe.config, Webtrends.ExternalData.Refresh.exe.config, Webtrends.ExternalData.RetrievalService.exe.config, 
     	Webtrends.ExternalData.StorageService.exe.config, Webtrends.ExternalData.Common.dll.config, Webtrends.ExternalData.Plugins.ExactTargetConnector.dll.config.erb,
     	Webtrends.ExternalData.StorageService.log4net.config.erb].each do |template_file|
-	  template "#{install_dir}\\#{template_file}"
+	  template "#{install_dir}\\#{template_file}" do
 	  source "#{template_file}.erb"
-	  variables(
+	  variables({
 	  	  :log_dir => log_dir,
 		  :master_host => node['wt_masterdb']['host'],
 		  :cass_host => node['cassandra']['cassandra_host'],
@@ -64,8 +64,9 @@ if ENV["deploy_build"] == "true" then
 		  :support_email => node['wt_common']['tech_support_email'],
 		  :target_email => node['wt_actioncenter']['exact_target_email'],
 		  :bcc_email => node['wt_actioncenter']['bcc_email']
-	  )
-	end
+	  })
+	  end
+    end
 
   # Creates the services and issues initial startup commands
   xd_rs = File.join(install_dir, node['wt_xd']['retrieval']['service_binary']).gsub(/[\\\/]+/,"\\")
