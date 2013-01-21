@@ -8,6 +8,10 @@
   },
   "chef_type": "role",
   "run_list": [
+    "recipe[ms_dotnet4]",
+    "recipe[ms_messagequeue]",
+    "recipe[wt_base::msdtc]",
+    "recipe[wt_xd]"
   ],
   "env_run_lists": {
   }
