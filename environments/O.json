@@ -17,7 +17,7 @@
         "wt_netacuity": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.11", 
         "wt_portfolio_manager": "= 1.1.16", 
-        "wt_publishver": "= 0.1.0", 
+        "wt_publishver": "= 0.1.2", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.4", 
         "wt_storm_streaming": "= 2.3.8", 
@@ -59,14 +59,14 @@
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
             }
         }, 
-       "hive": {
+        "hive": {
             "default": {
                 "metastore": {
-                    "connection_url": "jdbc:sqlserver://shivemeta01.staging.dmz;databaseName=hivemeta",
+                    "connection_url": "jdbc:sqlserver://shivemeta01.staging.dmz;databaseName=hivemeta", 
                     "connector": "sqlserver"
                 }
             }
-        },
+        }, 
         "java": {
             "install_flavor": "oracle", 
             "jdk": {
@@ -108,12 +108,11 @@
             }, 
             "server_role": "nagios_xi"
         }, 
-        "ohai":
-        {
-            "disabled_plugins":[
-              "rackspace"
-              ]
-        },
+        "ohai": {
+            "disabled_plugins": [
+                "rackspace"
+            ]
+        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -201,18 +200,18 @@
             "smtp_server": "pdxengmta01.webtrends.corp", 
             "wrsmodify_group": "STAGINGDMZ\\O.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\O.WRS.Read"
-         }, 
-        "wt_hdfslogdata_producer": {	 	 	 
-             "daemon": {	 	 	 
-                 "topics": "Lab_O_scsRawHits"	 	 	 
-             }, 	 	 	 
-             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt339/.lastSuccessful/webtrends-visitoranalytics-hdfslogproducer-develop-SNAPSHOT-bin.tar.gz", 	 	 	 
-             "geo": {	 	 	 
-                "url": "outil01.staging.dmz"	 	 	 
-             }, 	 	 	 
-             "kafka": {	 	 	 
-                 "group_id": "hdfs-log-producer-o"	 	 	 
-             }	 	 	 
+        }, 
+        "wt_hdfslogdata_producer": {
+            "daemon": {
+                "topics": "Lab_O_scsRawHits"
+            }, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt339/.lastSuccessful/webtrends-visitoranalytics-hdfslogproducer-develop-SNAPSHOT-bin.tar.gz", 
+            "geo": {
+                "url": "outil01.staging.dmz"
+            }, 
+            "kafka": {
+                "group_id": "hdfs-log-producer-o"
+            }
         }, 
         "wt_kafka_topagg": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.1/1116/TopicAggregator-bin.tar.gz", 
@@ -330,10 +329,10 @@
         }, 
         "wt_streamingmanagementservice": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.2/0111/webtrends-streaming-managementservice-bin.tar.gz", 
-            "sms_service_url": "http://osms.staging.dmz",
             "healthcheck_port": 9002, 
             "jmx_port": 9997, 
-            "port": 8081
+            "port": 8081, 
+            "sms_service_url": "http://osms.staging.dmz"
         }, 
         "zookeeper": {
             "client_port": 2181, 
@@ -353,9 +352,9 @@
     "json_class": "Chef::Environment", 
     "name": "O", 
     "override_attributes": {
-        "chef_client":{
+        "chef_client": {
             "server_url": "http://chef.staging.dmz:4000"
-        },
+        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
@@ -371,8 +370,8 @@
         "ubuntu": {
             "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
             "include_source_packages": false, 
-            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu",
-            "locale": "en_US.utf8"
+            "locale": "en_US.utf8", 
+            "security_url": "http://repo.staging.dmz/repo/apt/ubuntu"
         }
     }
 }
