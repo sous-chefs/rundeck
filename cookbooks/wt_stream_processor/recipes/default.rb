@@ -48,8 +48,8 @@ datacenter = node['wt_realtime_hadoop']['datacenter']
 
 # grab the users and passwords from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
-usagedbuser  = auth_data['wt_stream_processor']['usagedbuser']
-usagedbpwd = auth_data['wt_stream_processor']['usagedbpwd']
+usagedbuser  = auth_data['wt_streamingapi']['usagedbuser']
+usagedbpwd = auth_data['wt_streamingapi']['usagedbpwd']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -87,8 +87,8 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, usag
   cam_url = node['wt_cam']['cam_service_url']
   port = node['wt_stream_processor']['port']
 
-  usagedbserver = node['wt_stream_processor']['usagedbserver']
-  usagedbname = node['wt_stream_processor']['usagedbname']
+  usagedbserver = node['wt_streamingapi']['usagedbserver']
+  usagedbname = node['wt_streamingapi']['usagedbname']
 
   %w[log4j.xml config.properties netty.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
