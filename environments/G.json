@@ -8,7 +8,7 @@
         "webtrends_server": "= 1.8.12", 
         "wt_base": "= 1.0.3", 
         "wt_edge_server": "= 1.0.0", 
-        "wt_publishver": "= 0.1.0", 
+        "wt_publishver": "= 0.1.2", 
         "wt_streamingcollection": "= 1.1.0"
     }, 
     "default_attributes": {
@@ -67,12 +67,11 @@
             }, 
             "server_role": "nagios_xi"
         }, 
-        "ohai":
-        {
-            "disabled_plugins":[
-              "rackspace"
-              ]
-        },
+        "ohai": {
+            "disabled_plugins": [
+                "rackspace"
+            ]
+        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -180,10 +179,10 @@
     "description": "G Pod", 
     "json_class": "Chef::Environment", 
     "name": "G", 
-    "override_attributes": {   
-        "chef_client":{
+    "override_attributes": {
+        "chef_client": {
             "server_url": "http://chef.staging.dmz:4000"
-        },
+        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
