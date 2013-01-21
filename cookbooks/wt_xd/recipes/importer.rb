@@ -9,7 +9,7 @@
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploy first"  
-  #include_recipe "wt_xd::uninstall"
+  include_recipe "wt_xd::importer_uninstall"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
@@ -71,12 +71,12 @@ if ENV["deploy_build"] == "true"
   # Creates the services and issues initial startup commands
   xd_rs = File.join(install_dir, node['wt_xd']['retrieval']['service_binary']).gsub(/[\\\/]+/,"\\")
   execute xd_rs do
-    command "#{xd_rs} /install"
+    command "#{xd_rs} /install #{svcuser} #{svcpass}"
   end
 
   xd_ss = File.join(install_dir, node['wt_xd']['storage']['service_binary']).gsub(/[\\\/]+/,"\\")
   execute xd_ss do
-    command "#{xd_ss} /install"
+    command "#{xd_ss} /install #{svcuser} #{svcpass}"
   end
 	
 	share_wrs
