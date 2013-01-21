@@ -1,0 +1,21 @@
+{
+	"name": "wt_pdf_service",
+	"description": "Webtrends HTML to PDF service",
+	"json_class": "Chef::Role",
+	"default_attributes": {
+	},
+	"override_attributes":{
+
+	},
+	"chef_type": "role",
+	"run_list": [
+	"role[iis]",
+	"recipe[ms_dotnet4]"
+	"recipe[vc2010]",
+	"recipe[iis:mod_aspnet]",
+	"recipe[wt_pdf_service]"
+	],
+	"env_run_lists": {
+
+	}
+}
