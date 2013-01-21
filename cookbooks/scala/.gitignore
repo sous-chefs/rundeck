@@ -1,0 +1,4 @@
+Berksfile.lock
+Gemfile.lock
+/cookbooks
+.vagrant
