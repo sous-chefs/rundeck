@@ -292,6 +292,14 @@
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
                 "childopts": "-Xmx3456m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+            },
+            "visitor": {
+                "pod": "O",
+                "datacenter": "Lab",
+                "hbase_table_partitions": 40,
+                "hbase_table_direct": "VisitorHistory",
+                "hbase_table_parallel": "spark_test",
+                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
             }
         }, 
         "wt_stream_processor": {
