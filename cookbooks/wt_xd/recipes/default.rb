@@ -50,7 +50,7 @@ if ENV["deploy_build"] == "true"
 	
     %w[Webtrends.ActionCenterControl.exe.config Webtrends.ExternalData.Refresh.exe.config Webtrends.ExternalData.RetrievalService.exe.config
     	Webtrends.ExternalData.StorageService.exe.config Webtrends.ExternalData.Common.dll.config Webtrends.ExternalData.Plugins.ExactTargetConnector.dll.config
-    	Webtrends.ExternalData.StorageService.log4net.config.erb].each do |template_file|
+    	Webtrends.ExternalData.StorageService.log4net.config].each do |template_file|
 	  template "#{install_dir}\\#{template_file}" do
 	  source "#{template_file}.erb"
 	  variables({
