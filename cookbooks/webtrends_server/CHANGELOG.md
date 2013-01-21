@@ -1,3 +1,6 @@
+## 1.8.13
+*  Changed rubyzip to zip
+
 ## 1.8.12 
  *  Added support for managing client.rb for windows
 
