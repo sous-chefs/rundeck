@@ -1,3 +1,6 @@
+## 2.0.4
+* Changing --install to /install
+
 ## 2.0.3
 * Removed comma from list
 
