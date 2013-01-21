@@ -16,7 +16,7 @@
         "wt_kafka_topagg": "= 1.0.1", 
         "wt_netacuity": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.10", 
-        "wt_publishver": "= 0.1.0", 
+        "wt_publishver": "= 0.1.2", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.2", 
         "wt_storm_streaming": "= 2.3.2", 
@@ -100,12 +100,6 @@
         "ms_dotnet4": {
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
-        "ohai":
-        {
-            "disabled_plugins":[
-              "rackspace"
-              ]
-        },
         "nagios": {
             "client": {
                 "install_method": "package"
@@ -115,6 +109,11 @@
                 "dont_blame_nrpe": "1"
             }, 
             "server_role": "nagios_xi"
+        }, 
+        "ohai": {
+            "disabled_plugins": [
+                "rackspace"
+            ]
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
@@ -327,9 +326,9 @@
     "json_class": "Chef::Environment", 
     "name": "N", 
     "override_attributes": {
-        "chef_client":{
+        "chef_client": {
             "server_url": "http://chef.staging.dmz:4000"
-        },
+        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

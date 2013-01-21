@@ -5,7 +5,7 @@
         "wt_base": "= 1.0.3", 
         "wt_cam": "= 1.0.9", 
         "wt_monitoring": "= 1.0.0", 
-        "wt_publishver": "= 0.1.0", 
+        "wt_publishver": "= 0.1.2", 
         "wt_search": "= 1.0.10", 
         "wt_sync": "= 1.0.6", 
         "wt_xd": "= 0.0.6"
@@ -230,7 +230,7 @@
         }, 
         "wt_netacuity": {
             "geo_url": "localhost"
-        },
+        }, 
         "wt_rta": {
             "rta_host": "jrta01.englab.webtrends.corp"
         }, 
