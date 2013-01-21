@@ -36,7 +36,7 @@ end
 directory log_dir do
   recursive true
   action :create
-  rights :read, user_data['wt_common'][['system_user']
+  rights :read,  user_data['wt_common']['system_user']
   rights :write, user_data['wt_common']['system_user']
 end
 
