@@ -67,6 +67,9 @@
                 }
             }
         }, 
+        "kafka": {
+            "chroot_suffix": "brokers"
+        }, 
         "memcached": {
             "cache_hosts": [
                 {
@@ -95,13 +98,12 @@
                 "dont_blame_nrpe": "1"
             }, 
             "server_role": "nagios_xi"
-        },
-        "ohai":
-        {
-            "disabled_plugins":[
-              "rackspace"
-              ]
-        },
+        }, 
+        "ohai": {
+            "disabled_plugins": [
+                "rackspace"
+            ]
+        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -185,6 +187,9 @@
             "twitter_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "youtube_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw=="
         }, 
+        "wt_cam": {
+            "cam_service_url": "http://hcam.staging.dmz"
+        }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
@@ -257,11 +262,19 @@
             }, 
             "host": "csched01.staging.dmz"
         }, 
+        "wt_realtime_hadoop": {
+            "datacenter": "Lab", 
+            "environment": "support-staging", 
+            "pod": "H"
+        }, 
         "wt_roadrunner": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.31/rtm/roadrunner/RoadRunner.zip"
         }, 
         "wt_rta": {
             "rta_host": "crta01.staging.dmz"
+        }, 
+        "wt_sauth": {
+            "auth_service_url": "https://hsauth.webtrends.com"
         }, 
         "wt_scheddb": {
             "dbname": "wt_Sched", 
@@ -275,6 +288,13 @@
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/Search.zip", 
             "search_hostname": "csearch.staging.dmz", 
             "search_service": "net.tcp://csearch.staging.dmz:8096/Search/Service"
+        }, 
+        "wt_streamingapi": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/.lastSuccessful/webtrends-streamingapi-bin.tar.gz", 
+            "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
+            "sapi_service_url": "ws://pig01.staging.dmz:8080", 
+            "usagedbname": "Streaming", 
+            "usagedbserver": "hcamdb01.staging.dmz"
         }, 
         "wt_sync": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/SyncService.zip"
@@ -295,9 +315,9 @@
     "json_class": "Chef::Environment", 
     "name": "C", 
     "override_attributes": {
-        "chef_client":{
+        "chef_client": {
             "server_url": "http://chef.staging.dmz:4000"
-        },
+        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
