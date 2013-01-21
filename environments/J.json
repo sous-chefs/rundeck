@@ -146,6 +146,11 @@
                 }
             ]
         }, 
+        "wt_actioncenter": {
+            "importer": {
+                "download_url":""
+            }
+        },
         "wt_analytics_ui": {
             "android_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "app_pool_private_memory": 2097152, 
@@ -175,6 +180,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "tech_support_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
@@ -255,7 +261,10 @@
         }, 
         "wt_xd": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/09122012/XD_Map_Reduce_master_1.0.0-SNAPSHOT.102_artifacts.zip", 
-            "environment": "support-staging"
+            "environment": "support-staging",
+            "importer":{
+                "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt262/12345:id/XD.zip"
+            }
         }, 
         "zookeeper": {
             "client_port": 2181, 
