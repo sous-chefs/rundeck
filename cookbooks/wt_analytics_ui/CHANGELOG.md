@@ -1,3 +1,5 @@
+## 1.1.7
+  * Added pdf export url to Web.config
 ## 1.1.6
   * renamed system database attributes
 ## 1.1.5

@@ -213,8 +213,8 @@ if ENV["deploy_build"] == "true" then
       :custom_errors => node['wt_analytics_ui']['custom_errors'],
       :search_host   => node['wt_search']['search_hostname'],
       :monitor_host  => node['wt_messaging_monitoring']['monitor_hostname'],
-      :remote_access => node['wt_analytics_ui']['remote_access']
-
+      :remote_access => node['wt_analytics_ui']['remote_access'],
+	  :pdf_export_url => node['wt_analytics_ui']['pdf_export_url']
     )
   end
 
