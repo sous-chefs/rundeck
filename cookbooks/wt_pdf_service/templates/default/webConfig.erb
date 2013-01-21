@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<system.web>
+		<httpRuntime requestValidationMode="2.0" maxQueryStringLength="8048" />
+		<compilation debug="true" targetFramework="4.0" />
+		<customErrors mode="Off" />
+	</system.web>
+
+	<system.webServer>
+		<modules runAllManagedModulesForAllRequests="true">
+			<remove name="ServiceModel" />
+			<add name="UrlRoutingModule" type="System.Web.Routing.UrlRoutingModule,System.Web,Version=4.0.0.0, Culture=neutral,
+			PublicKeyToken=b03f5f7f11d50a3a" />
+		</modules>
+		<security>
+			<requestFiltering>
+				<requestLimits maxAllowedContentLength="30000000" maxUrl="8048"	maxQueryString="8048" />
+			</requestFiltering>
+		</security>
+	</system.webServer>
+	<system.serviceModel>
+		<serviceHostingEnvironment aspNetCompatibilityEnabled="true" />
+		<standardEndpoints>
+			<webHttpEndpoint>
+				<standardEndpoint name="" helpEnabled="true" automaticFormatSelectionEnabled="false" maxReceivedMessageSize="10485760" />
+			</webHttpEndpoint>
+		</standardEndpoints>
+	</system.serviceModel>
+	<runtime>
+		<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+			<dependentAssembly>
+				<assemblyIdentity name="Common.Logging" publicKeyToken="af08829b84f0328e" culture="neutral" />
+				<bindingRedirect oldVersion="0.0.0.0-2.1.2.0" newVersion="2.1.2.0" />
+			</dependentAssembly>
+		</assemblyBinding>
+	</runtime>
+</configuration>
