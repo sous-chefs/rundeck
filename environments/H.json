@@ -11,7 +11,7 @@
         "storm": "= 1.0.30", 
         "ubuntu": "= 1.0.3", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.11", 
+        "webtrends_server": "= 1.8.12", 
         "windows": "= 1.7.0", 
         "wt_base": "= 1.0.3", 
         "wt_cam": "= 1.1.6", 
@@ -252,10 +252,10 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
-            "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/47403:id/Portfolio.Manager.zip", 
-            "portmgr_group_admin": "H.PortMgr.Admins", 
-            "portmgr_group_user": "H.PortMgr.Users", 
+            "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/48384:id/Portfolio.Manager.zip",
+            "portmgr_group_admin": "H.PortMgr.Admins",
+            "portmgr_group_user": "H.PortMgr.Users",
             "portmgr_injected_user": "toby.mosby@webtrends.com"
         }, 
         "wt_realtime_hadoop": {
@@ -270,7 +270,7 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/48295:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/48560:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
