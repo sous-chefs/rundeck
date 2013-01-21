@@ -112,12 +112,26 @@ node['roles'].each do |r|
 				:download_url => node['wt_roadrunner']['download_url'],
 				:key_file     => File.join(idir, node['wt_roadrunner']['install_dir'], 'Webtrends.RoadRunner.Service.exe').gsub(/[\\\/]+/,'\\')
 			)
+		when 'wt_sauth'
+			log "publishing #{r}"
+  			publish_version(
+				:role         => 'Streaming Auth',
+				:download_url => node['wt_sauth']['download_url'],
+				:key_file     => File.join(idir, 'Webtrends.Auth/bin/Webtrends.Auth.dll').gsub(/[\\\/]+/,'\\')
+			)
   		when 'wt_search'
   			log "publishing #{r}"
   			publish_version(
 				:role         => 'Search Service',
 				:download_url => node['wt_search']['download_url'],
 				:key_file     => File.join(idir, node['wt_search']['install_dir'], 'Webtrends.Search.Service.exe').gsub(/[\\\/]+/,'\\')
+			)
+		when 'wt_streaming_viz'
+			log "publishing #{r}"
+  			publish_version(
+				:role         => 'Streaming Viz',
+				:download_url => node['wt_streaming_viz']['download_url'],
+				:key_file     => File.join(idir, 'Webtrends.Streaming.Viz/bin/Webtrends.Streaming.Viz.dll').gsub(/[\\\/]+/,'\\')
 			)
   		when 'wt_sync'
   			log "publishing #{r}"
@@ -127,6 +141,6 @@ node['roles'].each do |r|
 				:key_file     => File.join(idir, node['wt_sync']['install_dir'], 'Webtrends.SyncService.exe').gsub(/[\\\/]+/,'\\')
 			)
   		else
-    		log "no publishing data for role  => #{r}"
+    		log "no publishing data for role => #{r}"
 	end
 end
