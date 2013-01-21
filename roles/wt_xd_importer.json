@@ -11,7 +11,7 @@
     "recipe[ms_dotnet4]",
     "recipe[ms_messagequeue]",
     "recipe[wt_base::msdtc]",
-    "recipe[wt_xd]"
+    "recipe[wt_xd::importer]"
   ],
   "env_run_lists": {
   }
