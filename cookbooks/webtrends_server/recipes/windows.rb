@@ -81,4 +81,4 @@ execute "clear_gem_repo" do
   action :nothing
 end
 
-gem_package "rubyzip"
+gem_package "zip"
