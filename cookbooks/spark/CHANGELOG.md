@@ -1,5 +1,8 @@
 ## Future
 
+## 1.0.3:
+* Spark 0.7.0 (with patches for updateStateByKey and kafka)
+
 ## 1.0.2:
 * Spark 0.7.0 alpha
 
