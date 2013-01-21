@@ -1,5 +1,5 @@
 {
-  "name": "wt_xd",
+  "name": "wt_xd_importer",
   "description": "Webtrends External Data Service",
   "json_class": "Chef::Role",
   "default_attributes": {      
