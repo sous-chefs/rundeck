@@ -48,8 +48,8 @@ if ENV["deploy_build"] == "true"
 		action :unzip
 	end
 	
-    %w[Webtrends.ActionCenterControl.exe.config, Webtrends.ExternalData.Refresh.exe.config, Webtrends.ExternalData.RetrievalService.exe.config, 
-    	Webtrends.ExternalData.StorageService.exe.config, Webtrends.ExternalData.Common.dll.config, Webtrends.ExternalData.Plugins.ExactTargetConnector.dll.config.erb,
+    %w[Webtrends.ActionCenterControl.exe.config Webtrends.ExternalData.Refresh.exe.config Webtrends.ExternalData.RetrievalService.exe.config
+    	Webtrends.ExternalData.StorageService.exe.config Webtrends.ExternalData.Common.dll.config Webtrends.ExternalData.Plugins.ExactTargetConnector.dll.config.erb
     	Webtrends.ExternalData.StorageService.log4net.config.erb].each do |template_file|
 	  template "#{install_dir}\\#{template_file}" do
 	  source "#{template_file}.erb"
