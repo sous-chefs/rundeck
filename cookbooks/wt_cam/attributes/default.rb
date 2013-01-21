@@ -14,3 +14,5 @@ default['wt_cam']['db_name'] = "Cam"
 default['wt_cam']['tokenExpirationMinutes'] = 60
 default['wt_cam']['port'] = 80
 default['wt_cam']['log_level'] = "INFO"
+default['wt_cam']['optimize_plugin']['guest_user'] = "internalGuestUser"
+default['wt_cam']['optimize_plugin']['optimize_server_url'] = ""
