@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of wt_publishver.
 
+## 0.2.0:
+* 
+
+## 0.1.2:
+* Add wt_sauth to windows publishing information.
+* Add wt_streaming_viz to windows publishing information.
+
 ## 0.1.1:
 * Add wt_logpreproc to windows publishing information.
 * Change httpclient and logging gem version to match viewpoint-spws version constraints.
