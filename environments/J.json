@@ -7,8 +7,7 @@
         "wt_monitoring": "= 1.0.0", 
         "wt_publishver": "= 0.1.2", 
         "wt_search": "= 1.0.10", 
-        "wt_sync": "= 1.0.6", 
-        "wt_xd": "= 2.0.0"
+        "wt_sync": "= 1.0.6"
     }, 
     "default_attributes": {
         "authorization": {
