@@ -17,5 +17,9 @@
         "ui_acct": "wtUI", 
         "ui_pass": "Bijoux1", 
         "ui_user": "STAGINGDMZ\\wtUI"
+    }, 
+    "wt_streamingapi": {
+        "usagedbpwd": "bijoux", 
+        "usagedbuser": "wtUI"
     }
 }
