@@ -1,3 +1,6 @@
+## 2.0.1
+* Fixed auth data bag typo
+
 ## 2.0.0
 * Created recipe for installing windows external data components
 
