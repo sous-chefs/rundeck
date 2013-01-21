@@ -22,7 +22,11 @@
 # - SPARK_JAVA_OPTS, to add JVM options
 # - SPARK_LIBRARY_PATH, to add extra search paths for native libraries.
 
-export SCALA_HOME="/usr"
+
+
+export SCALA_HOME="/usr/local/scala"
+
+export SPARK_JAVA_OPTS="-Djava.net.preferIPv4Stack=true"
 
 # add scala jars to classpath
 export SPARK_CLASSPATH="$SPARK_CLASSPATH:$(find /usr/share/java/ | grep scala | tr '\n' ':')"

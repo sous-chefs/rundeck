@@ -18,7 +18,7 @@
 #
 
 include_recipe "java"
-package "scala"
+include_recipe "scala"
 
 spark_slaves = search(:node, "role:spark_slave AND chef_environment:#{node.chef_environment}")
 spark_master = search(:node, "role:spark_master AND chef_environment:#{node.chef_environment}").first
