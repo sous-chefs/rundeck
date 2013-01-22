@@ -1,3 +1,5 @@
+## 1.2.1
+* Updated the location of value stored
 ## 1.2.0
 * Added command to pull jar version and store as node attribute
 
