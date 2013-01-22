@@ -1,0 +1,15 @@
+Listen 81
+
+ExtendedStatus on
+TraceEnable off
+<VirtualHost *:81>
+  ServerAdmin     <%= node['wt_common']['admin_email'] %>
+  ServerName      <%= node['fqdn'] %>
+  DocumentRoot    <%= @docroot %>
+  CustomLog       <%= node['apache']['log_dir'] %>/wt_maintenance_site_access.log combined
+  ErrorLog        <%= node['apache']['log_dir'] %>/wt_maintenance_error.log
+  <Directory />
+    Options -Indexes
+  </Directory>
+  ErrorDocument 404 /index.html
+</VirtualHost>
