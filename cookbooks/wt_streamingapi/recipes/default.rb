@@ -225,7 +225,10 @@ ruby_block "Grep jar version" do
   block do
     wt_version = `jar xvf #{install_dir}/lib/#{node['wt_streamingapi']['jar']} META-INF/MANIFEST.MF > /dev/null  && grep Implementation-Version: META-INF/MANIFEST.MF| sed s/Implementation-Version://g | tr -d '\r\n'`
     wt_build = `grep Implementation-Build: META-INF/MANIFEST.MF | sed s/Implementation-Build://g | tr -d '\r\n'`
-    node.set['webtrends_server']['product_versions']['wt_streamingapi'] = "#{wt_version}-#{wt_build}".gsub(/\s/,'')
+    version_block = Hash.new()
+    version_block = node['webtrends_server']['product_versions']
+    version_block['wt_streamingapi']['version'] = "#{wt_version}-#{wt_build}".gsub(/\s/,'')
+    node.set['webtrends_server']['product_versions'] = version_block 
   end
 end
 
