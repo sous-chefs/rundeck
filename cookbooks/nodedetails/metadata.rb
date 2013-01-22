@@ -1,0 +1,6 @@
+maintainer       "Kendrick Martin"
+maintainer_email "kendrick.martin@webtrends.com"
+license          "All rights reserved"
+description      "Creates an apache site displaying information about nodes"
+version          "0.1.0"
+depends			 "apache2"
