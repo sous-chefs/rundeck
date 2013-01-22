@@ -241,6 +241,14 @@
         "wt_netacuity": {
             "geo_url": "localhost"
         }, 
+        "wt_platformscheduler":
+        {
+            "host":"jsched01"
+            "agent":
+            {
+                "download_url":"http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/WebTrendsVDMSchedulerAgent.msi"
+            }
+        },
         "wt_rta": {
             "rta_host": "jrta01.englab.webtrends.corp"
         }, 
