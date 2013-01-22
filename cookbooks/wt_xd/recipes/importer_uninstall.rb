@@ -53,9 +53,3 @@ directory install_dir do
 	recursive true
 	action :delete
 end
-
-# delete log folder
-directory log_dir do
-	recursive true
-	action :delete
-end
