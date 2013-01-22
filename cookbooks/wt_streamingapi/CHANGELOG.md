@@ -1,3 +1,6 @@
+## 1.2.0
+* Added command to pull jar version and store as node attribute
+
 ## 1.1.5
 * Changed Nagios check from port 9000 to 8080
 
