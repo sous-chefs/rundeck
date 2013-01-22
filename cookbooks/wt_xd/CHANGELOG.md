@@ -1,3 +1,6 @@
+## 2.0.6
+* Added rsa key support
+
 ## 2.0.5
 * Renamed default to importer, and added uninstall.
 * Now passing user/password to install calls
