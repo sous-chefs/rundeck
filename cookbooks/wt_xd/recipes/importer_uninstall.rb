@@ -8,8 +8,8 @@
 # This recipe uninstalls existing Search Service installs
 
 # destinations
-install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_xd']['install_dir']).gsub(/[\\\/]+/,"\\")
-log_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_xd']['log_dir']).gsub(/[\\\/]+/,"\\")
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_xd']['importer']['install_dir']).gsub(/[\\\/]+/,"\\")
+log_dir = node['wt_common']['install_dir_windows']
 
 
 # determine root drive of install_dir - ENG390500

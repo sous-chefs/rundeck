@@ -15,11 +15,6 @@
     <add name="wtMasterConnection" connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Integrated Security=True;Connect Timeout=300"
       providerName="System.Data.SqlClient" />
   </connectionStrings>
-  <plugins>
-    <pluginDirectories>
-      <add Directory="." />
-    </pluginDirectories>
-  </plugins>
   <!-- Start Cassandra settings -->
   <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>"
     MetaDataColumnFamily="<%= @metadata_column %>" ThriftPort="<%= @thrift_port %>" UseLegacy="false">
