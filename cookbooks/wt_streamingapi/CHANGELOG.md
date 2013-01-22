@@ -1,3 +1,6 @@
+## 1.2.3
+* Pulled out jar verison check and created wt_base recipe
+
 ## 1.2.1
 * Updated the location of value stored
 ## 1.2.0
