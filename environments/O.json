@@ -254,7 +254,7 @@
         "wt_portfolio_admin": {
             "account_ui_url": "https://oaccount.webtrends.com", 
             "custom_errors": "Off", 
-            "download_url": "teamcity.webtrends.corp/guestAuth/repository/download/bt239/47473:id/Por1tfolio.Admin.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/47473:id/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true"
         }, 
@@ -295,7 +295,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "teamcity.webtrends.corp/guestAuth/repository/download/bt241/48924:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/48713:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true", 
             "sms_url": "http://osms.staging.dmz", 
