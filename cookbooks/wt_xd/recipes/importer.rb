@@ -29,15 +29,15 @@ svcpass = auth_data['wt_common']['system_pass']
 directory install_dir do
   recursive true
   action :create
-  rights :read, auth_data['wt_common']['system_user']
   rights :write, auth_data['wt_common']['system_user']
+  rights :read, auth_data['wt_common']['system_user']
 end
 
 directory log_dir do
   recursive true
   action :create
-  rights :read,  auth_data['wt_common']['system_user']
   rights :write, auth_data['wt_common']['system_user']
+  rights :read,  auth_data['wt_common']['system_user']
 end
 
 if ENV["deploy_build"] == "true"
