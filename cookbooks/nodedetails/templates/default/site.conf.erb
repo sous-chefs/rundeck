@@ -1,0 +1,13 @@
+
+Listen 8080
+
+# Listen for virtual host requests on all IP addresses
+NameVirtualHost *:8080
+
+<VirtualHost *:8080>
+DocumentRoot /var/nodedetails
+ServerName snagios02.staging.dmz
+
+# Other directives here
+
+</VirtualHost>
