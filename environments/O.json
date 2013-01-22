@@ -277,7 +277,7 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/48868:id/streaming-analysis-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/48887:id/streaming-analysis-bin.tar.gz",
             "query_bolt_executors": 12, 
             "query_bolt_tasks": 12, 
             "streaming_topology_field_grouping_local": "false", 
