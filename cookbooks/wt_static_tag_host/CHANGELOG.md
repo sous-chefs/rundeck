@@ -1,3 +1,7 @@
+## 0.0.4
+* Removed the un-deploy code from this cookbook since it only sets up the site and doesn actually deploy bits.
+* Cleaned up some code
+
 ## 0.0.3
 * Fix the deploy logging text
 * Ungate the setup of Apache.  We should always be making sure Apache is configured
