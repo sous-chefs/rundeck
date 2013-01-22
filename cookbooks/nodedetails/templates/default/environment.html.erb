@@ -1,0 +1,13 @@
+THIS IS <%= @env_name -%>!
+
+<% @nodes.each do |n| -%>
+	<br /><br /><br />
+	Node Name:<b> <%= n['fqdn'] -%></b><br />
+	&nbsp;Run List: <b><%= n.run_list%></b><br />
+    <% 	if !n['webtrends_server'].nil? && !n['webtrends_server']['product_versions'].nil? -%>
+      &nbsp;Webtrends Versions:
+      <% n['webtrends_server']['product_versions'].each do |v| 	 -%>
+        &nbsp;&nbsp;<%= v['name']-%>@<%= v['version'] -%>
+      <%end -%>
+    <%end -%>
+<%end -%>
