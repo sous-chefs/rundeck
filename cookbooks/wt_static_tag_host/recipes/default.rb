@@ -22,11 +22,9 @@ apache_site "000-default" do
   enable false
 end
 
-if ENV["deploy_build"] != "true" then
-  log "The deploy_build value is not set or is false so exit here"
-else
-  log "The deploy_build value is true so we will redeploy the product"
-  include_recipe "wt_static_tag_host::undeploy"
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so we will deploy the site"
+
 
   # create the Gomez monitor file
   file "/var/www/js/gomez.html" do
@@ -43,14 +41,9 @@ end
 
 # template the apache config for the repo site
 template "#{node['apache']['dir']}/sites-available/static_tag_host.conf" do
-  source "apache2.conf.erb"
+  source "static_tag_host.conf.erb"
   mode 00644
   variables(:docroot => "/var/www")
-end
-
-#Enable the apache site
-apache_site "static_tag_host.conf" do
-  enable true
 end
 
 #Create a .htaccess file in /var/www to redirect people to www.webtrends.com in the absence of a index.html file
@@ -59,6 +52,11 @@ cookbook_file "/var/www/.htaccess" do
   mode 0644
   owner "root"
   group "root"
+end
+
+#Enable the apache site
+apache_site "static_tag_host.conf" do
+  enable true
 end
 
 #Create collectd plugin for apache if collectd has been applied.
