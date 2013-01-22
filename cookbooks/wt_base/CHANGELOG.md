@@ -1,3 +1,6 @@
+## 1.0.4
+* Added recipe to update jar versions
+
 ## 1.0.3
 * Address food critic warning
   * Removed reptitious resource declarations
