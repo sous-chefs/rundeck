@@ -25,6 +25,8 @@ auth_data = data_bag_item('authorization', node.chef_environment)
 svcuser = auth_data['wt_common']['system_user']
 svcpass = auth_data['wt_common']['system_pass']
 
+googleplay_key = data_bag_item('rsa_keys', 'googleplay')
+
 # create the install directory
 directory install_dir do
   recursive true
@@ -78,15 +80,59 @@ if ENV["deploy_build"] == "true"
   execute xd_ss do
     command "#{xd_ss} --install --SERVICEACCOUNT=#{svcuser} --SERVICEPASS=#{svcpass}"
   end
-	
-	share_wrs
+
+  template "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
+    source "PublicPrivateKeys.rsa.erb"
+    variables(
+      :modulus => googleplay_key['modulus'],
+      :exponent => googleplay_key['exponent'],
+      :p => googleplay_key['p'],
+      :q => googleplay_key['q'],
+      :dp => googleplay_key['dp'],
+      :dq => googleplay_key['dq'],
+      :inverse_q => googleplay_key['inverse_q'],
+      :d => googleplay_key['d']
+    )
+  end
+
+  # run iss command on the .rsa file  
+
+  wt_base_icacls "C:\\ProgramData\\Microsoft\\Crypto\\RSA\\MachineKeys" do
+    user node['current_user']
+    perm :modify
+    action :grant
+  end
+
+  node['wt_xd']['importer']['plugins'].each do |plugin|
+
+    execute "asp_regiis_pi" do   
+      command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi #{plugin} #{install_dir}\\bin\\PublicPrivateKeys.rsa"
+    end
+
+    execute "asp_regiis_pa" do
+      command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pa #{plugin} #{rsa_user}"
+    end
+  end
+
+  # delete the .rsa file
+  file "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
+    action :delete
+  end
+
+  wt_base_icacls "C:\\ProgramData\\Microsoft\\Crypto\\RSA\\MachineKeys" do
+    user node['current_user']
+    perm :modify
+    action :remove
+  end
+
+  share_wrs
 end
 
-service node['wt_xd']['retrieval']['service_name'] do
+service "Start #{node['wt_xd']['retrieval']['service_name']}" do
 	action :start
 end
 
-service node['wt_xd']['storage']['service_name'] do
+service "Start #{node['wt_xd']['storage']['service_name']}" do
 	action :start
 end
 
