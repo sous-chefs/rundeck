@@ -7,7 +7,7 @@
         "webtrends_server": "= 1.8.11", 
         "wt_base": "= 1.0.3", 
         "wt_publishver": "= 0.1.2", 
-        "wt_streamingcollection": "= 1.1.0"
+        "wt_streamingcollection": "= 1.1.5"
     }, 
     "default_attributes": {
         "authorization": {
@@ -149,7 +149,7 @@
             "pod": "H"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41502:id/webtrends-streamingcollection-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/48874:id/webtrends-streamingcollection-bin.tar.gz"
         }, 
         "wt_streamingconfigservice": {
             "config_service_url": "http://hutil01.staging.dmz:8080"
