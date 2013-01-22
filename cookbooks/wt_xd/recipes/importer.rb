@@ -31,15 +31,23 @@ googleplay_key = data_bag_item('rsa_keys', 'googleplay')
 directory install_dir do
   recursive true
   action :create
-  rights :write, auth_data['wt_common']['system_user']
-  rights :read, auth_data['wt_common']['system_user']
 end
 
 directory log_dir do
   recursive true
   action :create
-  rights :write, auth_data['wt_common']['system_user']
-  rights :read,  auth_data['wt_common']['system_user']
+end
+
+wt_base_icacls install_dir do
+    user svcuser
+    perm :modify
+    action :grant
+end
+
+wt_base_icacls log_dir do
+    user svcuser
+    perm :modify
+    action :grant
 end
 
 if ENV["deploy_build"] == "true"
@@ -49,6 +57,20 @@ if ENV["deploy_build"] == "true"
 		source download_url
 		action :unzip
 	end
+
+  template "#{install_dir}\\PublicPrivateKeys.rsa" do
+    source "PublicPrivateKeys.rsa.erb"
+    variables(
+      :modulus => googleplay_key['modulus'],
+      :exponent => googleplay_key['exponent'],
+      :p => googleplay_key['p'],
+      :q => googleplay_key['q'],
+      :dp => googleplay_key['dp'],
+      :dq => googleplay_key['dq'],
+      :inverse_q => googleplay_key['inverse_q'],
+      :d => googleplay_key['d']
+    )
+  end
 	
     %w[Webtrends.ActionCenterControl.exe.config Webtrends.ExternalData.Refresh.exe.config Webtrends.ExternalData.RetrievalService.exe.config
     	Webtrends.ExternalData.StorageService.exe.config Webtrends.ExternalData.Common.dll.config Webtrends.ExternalData.Plugins.ExactTargetConnector.dll.config
@@ -70,32 +92,7 @@ if ENV["deploy_build"] == "true"
 	  end
     end
 
-  # Creates the services and issues initial startup commands
-  xd_rs = File.join(install_dir, node['wt_xd']['retrieval']['service_binary']).gsub(/[\\\/]+/,"\\")
-  execute xd_rs do
-    command "#{xd_rs} --install --SERVICEACCOUNT=#{svcuser} --SERVICEPASS=#{svcpass}"
-  end
-
-  xd_ss = File.join(install_dir, node['wt_xd']['storage']['service_binary']).gsub(/[\\\/]+/,"\\")
-  execute xd_ss do
-    command "#{xd_ss} --install --SERVICEACCOUNT=#{svcuser} --SERVICEPASS=#{svcpass}"
-  end
-
-  template "#{install_dir}\\bin\\PublicPrivateKeys.rsa" do
-    source "PublicPrivateKeys.rsa.erb"
-    variables(
-      :modulus => googleplay_key['modulus'],
-      :exponent => googleplay_key['exponent'],
-      :p => googleplay_key['p'],
-      :q => googleplay_key['q'],
-      :dp => googleplay_key['dp'],
-      :dq => googleplay_key['dq'],
-      :inverse_q => googleplay_key['inverse_q'],
-      :d => googleplay_key['d']
-    )
-  end
-
-  # run iss command on the .rsa file  
+# run iss command on the .rsa file  
 
   wt_base_icacls "C:\\ProgramData\\Microsoft\\Crypto\\RSA\\MachineKeys" do
     user node['current_user']
@@ -106,11 +103,11 @@ if ENV["deploy_build"] == "true"
   node['wt_xd']['importer']['plugins'].each do |plugin|
 
     execute "asp_regiis_pi" do   
-      command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi #{plugin} #{install_dir}\\bin\\PublicPrivateKeys.rsa"
+      command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi #{plugin} #{install_dir}\\PublicPrivateKeys.rsa"
     end
 
     execute "asp_regiis_pa" do
-      command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pa #{plugin} #{rsa_user}"
+      command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pa #{plugin} #{svcuser}"
     end
   end
 
@@ -124,6 +121,17 @@ if ENV["deploy_build"] == "true"
     perm :modify
     action :remove
   end
+
+  # Creates the services and issues initial startup commands
+  xd_rs = File.join(install_dir, node['wt_xd']['retrieval']['service_binary']).gsub(/[\\\/]+/,"\\")
+  execute xd_rs do
+    command "#{xd_rs} --install --SERVICEACCOUNT=#{svcuser} --SERVICEPASS=#{svcpass}"
+  end
+
+  xd_ss = File.join(install_dir, node['wt_xd']['storage']['service_binary']).gsub(/[\\\/]+/,"\\")
+  execute xd_ss do
+    command "#{xd_ss} --install --SERVICEACCOUNT=#{svcuser} --SERVICEPASS=#{svcpass}"
+  end  
 
   share_wrs
 end

@@ -1,3 +1,6 @@
+## 1.1.5
+* STR-943 - Added configservice.baseUrl to config.properties
+
 ## 1.1.4
 * Fixed Nagios regular expression to be ignore whitespace
 
