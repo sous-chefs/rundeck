@@ -88,6 +88,18 @@ if ENV["deploy_build"] == "true" then
     execute "mv" do
       user  "root"
       group "root"
+      command "mv #{install_tmp}/lib/visitoranalytics*.jar #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/"
+    end
+
+    execute "chown" do
+      user  "root"
+      group "root"
+      command "chown storm:storm #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/visitoranalytics*.jar"
+    end
+
+    execute "mv" do
+      user  "root"
+      group "root"
       command "mv #{install_tmp}/lib/webtrends*.jar #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/"
     end
 
@@ -151,6 +163,7 @@ if ENV["deploy_build"] == "true" then
     stax-api-1.0.1.jar
     scala-library-2.9.2.jar
     streaming-analysis.jar
+    typesafe-config-0.3.0.jar
     UserAgentUtils-1.6.jar
     xmlenc-0.52.jar
     zkclient-0.1.jar
