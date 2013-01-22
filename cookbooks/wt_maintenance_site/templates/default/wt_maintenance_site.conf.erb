@@ -7,7 +7,7 @@ TraceEnable off
   ServerName      <%= node['fqdn'] %>
   DocumentRoot    <%= @docroot %>
   CustomLog       <%= node['apache']['log_dir'] %>/wt_maintenance_site_access.log combined
-  ErrorLog        <%= node['apache']['log_dir'] %>/wt_maintenance_error.log
+  ErrorLog        <%= node['apache']['log_dir'] %>/wt_maintenance_site_error.log
   <Directory />
     Options -Indexes
   </Directory>
