@@ -1,3 +1,6 @@
+## 1.1.7
+* Added plugin attributes and config template
+
 ## 1.1.6
 * STR-779 folder permissions bug
 
