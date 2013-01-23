@@ -1,3 +1,7 @@
+## 2.0.8
+* Removed dll config files
+* Added sftpPush plugin
+
 ## 2.0.7
 * Added uninstall calls to binaries
 
