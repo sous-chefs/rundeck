@@ -165,6 +165,22 @@ LoadPlugin java
 			Attribute "RecentHitRate"
 		</Value>
 	</MBean>
+	#Compaction Pending Tasks
+	<MBean "compaction-manager">
+		ObjectName "org.apache.cassandra.db:type=CompactionManager"
+		#InstancePrefix ""
+		InstanceFrom "type"
+		<Value>
+			Type "gauge"
+			InstancePrefix "PendingTasks"
+			Attribute "PendingTasks"
+		</Value>
+		<Value>
+			Type "gauge"
+			InstancePrefix "CompletedTasks"
+			Attribute "CompletedTasks"
+		</Value>
+	</MBean>
 	#####################
 	# Connection blocks #
 	#####################
@@ -179,6 +195,7 @@ LoadPlugin java
 		Collect "runtime"
 		Collect "cassandra-cf-Webtrends"
 		Collect "cassandra-cache-Webtrends"
+		Collect "compaction-manager"
 	</Connection>
 	</Plugin>
 </Plugin>
