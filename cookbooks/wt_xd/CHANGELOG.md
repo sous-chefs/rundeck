@@ -1,3 +1,6 @@
+## 2.0.7
+* Added uninstall calls to binaries
+
 ## 2.0.6
 * Added rsa key support
 

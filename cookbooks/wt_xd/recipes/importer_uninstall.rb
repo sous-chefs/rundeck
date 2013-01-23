@@ -20,6 +20,16 @@ end
 xd_rs_cmd = "\"%WINDIR%\\System32\\sc.exe\" delete \"#{node['wt_xd']['retrieval']['service_name']}\""
 xd_ss_cmd = "\"%WINDIR%\\System32\\sc.exe\" delete \"#{node['wt_xd']['storage']['service_name']}\""
 
+execute "Uninstall retrieval service" do
+	command "#{install_dir}\\#{node['wt_xd']['retrieval']['service_binary']} --uninstall"
+	ignore_failure true
+end
+
+execute "Uninstall storage service" do
+	command "#{install_dir}\\#{node['wt_xd']['storage']['service_binary']} --uninstall"
+	ignore_failure true
+end
+
 service node['wt_xd']['retrieval']['service_name'] do
 	action :stop
 	ignore_failure true
