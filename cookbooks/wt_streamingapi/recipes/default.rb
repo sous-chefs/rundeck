@@ -220,8 +220,11 @@ if node.attribute?("nagios")
     end
 end
 
+
+
+#Setup for determing version
 $install_dir = install_dir
 $jar_name = node['wt_streamingapi']['jar']
 $role_name = "wt_streamingapi"
-
+#Recipe that determines version
 include_recipe "wt_base::jar_version"
