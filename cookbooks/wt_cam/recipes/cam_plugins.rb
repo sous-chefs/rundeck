@@ -25,6 +25,14 @@ wt_base_icacls plugin_install_dir do
   perm :modify
 end
 
+template "#{plugin_install_dir}\\Webtrends.Cam.Plugins.Optimize.dll.config" do
+  source "Webtrends.Cam.Plugins.Optimize.dll.config.erb"
+  variables(
+    :optimize_server_url => node['wt_cam']['optimize_plugin']['optimize_server_url'],
+    :guest_user   => node['wt_cam']['optimize_plugin']['guest_user']
+  )
+end
+
 if ENV["deploy_build"] == "true" then
   # Lay the files down
   windows_zipfile plugin_install_dir do
