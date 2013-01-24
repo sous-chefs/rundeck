@@ -221,15 +221,15 @@
             }
         }, 
         "wt_kafka_topagg": {
-            "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.1/1116/TopicAggregator-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/49208:id/TopicAggregator-bin.tar.gz", 
             "edge_kafka_sources": [
                 {
-                    "host": "mscs01.staging.dmz", 
-                    "topic": "Lab_H_scsRawHits"
+                    "host": "hagg01.staging.dmz", 
+                    "topic": "Lab_H_scsRawHits:20"
                 }, 
                 {
-                    "host": "mscs02.staging.dmz", 
-                    "topic": "Lab_H_scsRawHits"
+                    "host": "hagg02.staging.dmz", 
+                    "topic": "Lab_H_scsRawHits:20"
                 }
             ]
         }, 
