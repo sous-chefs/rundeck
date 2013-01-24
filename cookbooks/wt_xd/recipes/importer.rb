@@ -88,6 +88,10 @@ if ENV["deploy_build"] == "true"
 		  :support_email => node['wt_common']['tech_support_email'],
 		  :target_email => node['wt_actioncenter']['exact_target_email'],
 		  :bcc_email => node['wt_actioncenter']['bcc_email']
+		  :hbase_location => node[][]
+		  :hbase_data_center_id =>
+		  :hbase_pod_id =>
+		  :hbase_thrift_port
 	  })
 	  end
     end
