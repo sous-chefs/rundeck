@@ -233,11 +233,11 @@
                 },
                 {
                     "host": "lasagg03v.netiq.dmz", 
-                    "topic": "las_01_scsRawHits:20"
+                    "topic": "las_01_scsRawHits:60"
                 }, 
                 {
                     "host": "lasagg04v.netiq.dmz", 
-                    "topic": "las_01_scsRawHits:20"
+                    "topic": "las_01_scsRawHits:60"
                 }
             ]
         }, 
