@@ -297,6 +297,7 @@
                 "workers": 4
             }, 
             "topic_list": [
+                "las_01_scsRawHits:4",
                 "Lab_H_scsRawHits:4", 
                 "Lab_O_lrRawHits:4"
             ], 
