@@ -1,3 +1,6 @@
+## 2.0.11
+* Fixing services installation issues
+
 ## 2.0.10
 * Fixing importer.rb
 
