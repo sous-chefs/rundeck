@@ -1,3 +1,6 @@
+## 2.0.10
+* Fixing importer.rb
+
 ## 2.0.9
 * Updated config files
 
