@@ -35,22 +35,40 @@ define contact {
 
 <% end -%>
 
-<% @contacts.each do |c| -%>
-  <% if c['contact_group'] == true -%>
-define contact_group {
-  contactgroup_name  <%= c['id'] %>
-  <% if c['alias'] -%>alias <%= c['alias'] %><% end -%>
-  members
-}
- <% else -%>
+# Contacts from data bags
+<% @contacts.each do |contact| -%>
 define contact {
-  contact_name  <%= c['id'] %>
-  use <% if c['contact_template'].nil? -%>default-contact<% else -%><%= c['contact_template'] %> <% end -%>
-  <% %w{ alias host_notifications_enabled service_notifications_enabled service_notification_period host_notification_period service_notification_options host_notification_options service_notification_commands host_notification_commands email pager address1 address2 can_submit_commands }.each do |object| %>
-    <% unless c[object].nil? %>
-  <%= object %> <%= c[object] %>
-    <% end %>
+  name <%= contact['id'] %>
+  contact_name <%= contact['id'] %>
+  <% %w{use alias service_notification_period host_notification_period service_notification_options host_notification_options service_notification_commands host_notification_commands email pager register}.each do |conf| %>
+  <% unless contact[conf].nil? %>
+  <%= conf %> <%= contact[conf] %>
+  <% end %>
+  <% end %>
 }
- <% end -%>
-<% end -%>
+<% end %>
+
+# Contact Groupss from data bags
+<% @contactgroups.each do |contactgroup| -%>
+define contactgroup {
+  contactgroup_name <%= contactgroup['id'] %>
+  <% %w{alias members contactgroup_members}.each do |conf| %>
+  <% unless contactgroup[conf].nil? %>
+  <%= conf %> <%= contactgroup[conf] %>
+  <% end %>
+  <% end %>
+}
+<% end %>
+
+# Service escalations defined by data bags
+<% @serviceescalations.each do |serviceescalation| -%>
+define serviceescalation {
+  name <%= serviceescalation['id'] %>
+  register 0
+  <% %w{use contact_groups first_notification last_notification escalation_period notification_interval}.each do |conf| %>
+  <% unless serviceescalation[conf].nil? %>
+  <%= conf %> <%= serviceescalation[conf] %>
+  <% end %>
+  <% end %>
+}
 <% end -%>
