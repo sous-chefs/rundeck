@@ -177,10 +177,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49037:id/Cam.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49169:id/Cam.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49037:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49169:id/Plugins.zip"
             },
             "optimize_plugin": {
                 "optimize_server_url": "http://was.c2.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
@@ -277,7 +277,7 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://hsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49037:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49169:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
