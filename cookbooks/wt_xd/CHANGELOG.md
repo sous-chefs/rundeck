@@ -1,3 +1,6 @@
+## 2.0.9
+* Updated config files
+
 ## 2.0.8
 * Removed dll config files
 * Added sftpPush plugin
