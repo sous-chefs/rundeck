@@ -30,16 +30,6 @@ execute "Uninstall storage service" do
 	ignore_failure true
 end
 
-service node['wt_xd']['retrieval']['service_name'] do
-	action :stop
-	ignore_failure true
-end
-
-service node['wt_xd']['storage']['service_name'] do
-	action :stop
-	ignore_failure true
-end
-
 # delays to give the service plenty of time to actually stop
 ruby_block "wait" do
 	block do

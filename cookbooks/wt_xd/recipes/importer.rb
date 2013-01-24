@@ -129,22 +129,23 @@ if ENV["deploy_build"] == "true"
   # Creates the services and issues initial startup commands
   xd_rs = File.join(install_dir, node['wt_xd']['retrieval']['service_binary']).gsub(/[\\\/]+/,"\\")
   execute xd_rs do
-    command "#{xd_rs} --install --SERVICEACCOUNT=#{svcuser} --SERVICEPASS=#{svcpass}"
+    command "#{xd_rs} --install --SERVICEACCT=#{svcuser} --SERVICEPASS=#{svcpass}"
   end
 
   xd_ss = File.join(install_dir, node['wt_xd']['storage']['service_binary']).gsub(/[\\\/]+/,"\\")
   execute xd_ss do
-    command "#{xd_ss} --install --SERVICEACCOUNT=#{svcuser} --SERVICEPASS=#{svcpass}"
+    command "#{xd_ss} --install --SERVICEACCT=#{svcuser} --SERVICEPASS=#{svcpass}"
   end  
 
   share_wrs
 end
 
-service "Start #{node['wt_xd']['retrieval']['service_name']}" do
+
+service "#{node['wt_xd']['retrieval']['service_name']}" do
 	action :start
 end
 
-service "Start #{node['wt_xd']['storage']['service_name']}" do
+service "#{node['wt_xd']['storage']['service_name']}" do
 	action :start
 end
 
