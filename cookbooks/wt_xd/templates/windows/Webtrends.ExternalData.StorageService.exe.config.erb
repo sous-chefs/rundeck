@@ -1,10 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 	
+	All changes in the local file are ignored when deploying using chef. 
+	Make sure they are duplicated in Git repo and pushed to chef server
+	http://git.webtrends.corp/git/chef-repo.git/
+	chef-repo\cookbooks\wt_xd\templates\windows\Webtrends.ExternalData.StorageService.exe.config.erb
+-->
 <configuration>
   <configSections>
+    <section name="plugins" type="Webtrends.ExternalData.Configuration.PluginConfigurationSection, Webtrends.ExternalData" />
     <section name="serviceBus" type="Webtrends.ServiceBus.Configuration.ServiceBusConfiguration, Webtrends.ServiceBus" />
     <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core" />
     <section name="HBaseConfig" type="Webtrends.HBase.Core.HBaseConfigSection, Webtrends.HBase.Core" />
   </configSections>
+  <HBaseConfig HBaseLocation="<%= @hbase_location %>" 
+               DataCenterId="<%= @hbase_data_center_id %>"
+               PodId="<%= @hbase_pod_id %>" 
+	       ThriftPort="<%= @hbase_thrift_port %>" />
+  <!-- Start Cassandra settings -->
+    <CassandraCluster KeySpace="Webtrends" 
+                      ReportColumnFamily="<%= @report_column %>"
+		      MetaDataColumnFamily="<%= @metadata_column %>" 
+ 		      SnmpPort="1161" 
+		      ThriftPort="<%= @thrift_port %>" 
+		      UseLegacy="false">
+    <Nodes>
+      <clear />
+      <add Hostname="<%= @cass_host %>" />
+    </Nodes>
+  </CassandraCluster>
   <appSettings>
     <!-- This is the path to the log4net config file -->
     <add key="log4net.Config" value="Webtrends.ExternalData.StorageService.log4net.config" />
@@ -12,21 +35,36 @@
     <add key="YouTubeMinDaysPast" value="4" />
   </appSettings>
  <connectionStrings>
-    <add name="wtMasterConnection" connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Integrated Security=True;Connect Timeout=300"
-      providerName="System.Data.SqlClient" />
+    <add name="wtMasterConnection" 
+    	 connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Integrated Security=True;Application Name=Webtrends.ExternalData.StorageService;Connect Timeout=300"
+         providerName="System.Data.SqlClient" />
   </connectionStrings>
-  <!-- Start Cassandra settings -->
-  <CassandraCluster KeySpace="Webtrends" ReportColumnFamily="<%= @report_column %>"
-    MetaDataColumnFamily="<%= @metadata_column %>" ThriftPort="<%= @thrift_port %>" UseLegacy="false">
-    <Nodes>
-      <clear />
-      <add Hostname="<%= @cass_host %>" />
-    </Nodes>
-  </CassandraCluster>
+  <!-- Start of Plugin Directory settings-->
+  <plugins>
+    <pluginDirectories>
+      <add Directory="." />
+    </pluginDirectories>
+  </plugins>
   <!-- ServiceBus endpoint -->
   <serviceBus>
     <endpoints>
-      <endpoint endpointIdentifier="xdssmain@localhost" binding="mainBinding" name="Webtrends External Data Storage Service" description="" returnAddress="xdssmain@localhost" monitorServiceAddress="discover" distributorAddress="" poisonMessageAddress="" maxMessageRetryCount="2" retryHandling="Drop" statusReportInterval="00:00:30" statusReportGracePeriod="00:01:00" numberOfWorkerThreads="25" maxRetries="4" incomingMessageLoggingLevel="None" outgoingMessageLoggingLevel="None" sendOnly="false">
+      <endpoint endpointIdentifier="xdssmain@localhost"
+		binding="mainBinding"
+	        name="Webtrends External Data Storage Service"
+		description=""
+                returnAddress="xdssmain@localhost"
+		monitorServiceAddress="discover"
+	        distributorAddress=""
+		poisonMessageAddress=""
+   		maxMessageRetryCount="2"
+		retryHandling="Drop"
+                statusReportInterval="00:00:30"
+                statusReportGracePeriod="00:01:00"
+                numberOfWorkerThreads="12"
+                maxRetries="4"
+                incomingMessageLoggingLevel="None"
+                outgoingMessageLoggingLevel="None"
+                sendOnly="false">
         <profiler enabled="true" profilePipelineComponents="true" pipelineDirection="Both" />
         <!-- Register to handle the following messages -->
         <registeredMessages>
