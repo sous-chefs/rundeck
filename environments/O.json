@@ -12,7 +12,7 @@
         "webtrends_server": "= 1.8.12", 
         "windows": "= 1.7.0", 
         "wt_base": "= 1.0.3", 
-        "wt_cam": "= 1.1.6", 
+        "wt_cam": "= 1.1.7", 
         "wt_kafka_topagg": "= 1.0.1", 
         "wt_netacuity": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.11", 
@@ -177,10 +177,13 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/48769:id/Cam.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49203:id/Cam.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/48769:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49203:id/Plugins.zip"
+            },
+            "optimize_plugin": {
+                "optimize_server_url": "http://was.c2.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }, 
             "cam_service_url": "http://ocam.staging.dmz", 
             "db_name": "cam", 
@@ -274,7 +277,7 @@
         }, 
         "wt_sauth": {
             "auth_service_url": "https://osauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/48769:id/Auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49203:id/Auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
