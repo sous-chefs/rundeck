@@ -87,10 +87,10 @@ if ENV["deploy_build"] == "true"
 		  :admin_email => node['wt_common']['admin_email'],
 		  :support_email => node['wt_common']['tech_support_email'],
 		  :target_email => node['wt_actioncenter']['exact_target_email'],
-		  :bcc_email => node['wt_actioncenter']['bcc_email']
-		  :hbase_location => node['hbase']['location']
-		  :hbase_data_center_id => node['hbase']['data_center_id']
-		  :hbase_pod_id => node['hbase']['pod_id']
+		  :bcc_email => node['wt_actioncenter']['bcc_email'],
+		  :hbase_location => node['hbase']['location'],
+		  :hbase_data_center_id => node['hbase']['data_center_id'],
+		  :hbase_pod_id => node['hbase']['pod_id'],
 		  :hbase_thrift_port => node['hbase']['thrift_port']
 	  })
 	  end
