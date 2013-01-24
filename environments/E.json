@@ -7,7 +7,7 @@
         "wt_base": "= 1.0.3", 
         "wt_edge_server": "= 1.0.0", 
         "wt_publishver": "= 0.1.2", 
-        "wt_streamingcollection": "= 1.1.0", 
+        "wt_streamingcollection": "= 1.1.5", 
         "zookeeper": "= 1.1.6"
     }, 
     "default_attributes": {
@@ -158,7 +158,7 @@
             "pod": "B"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/45760:id/webtrends-streamingcollection-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/48874:id/webtrends-streamingcollection-bin.tar.gz", 
             "port": 8080
         }, 
         "wt_streamingconfigservice": {
