@@ -374,7 +374,7 @@
             "router_uri": "tcp://orouter01.staging.dmz:5861"
         }, 
         "wt_stream_processor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/49166:id/webtrends-stream-processor-develop-SNAPSHOT-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/49265:id/webtrends-stream-processor-develop-SNAPSHOT-bin.tar.gz", 
             "router_uri": "tcp://orouter01.staging.dmz:5862"
         }
     }, 
