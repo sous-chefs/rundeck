@@ -1,3 +1,6 @@
+## 2.0.12
+* Adding XD refresh utility registration with scheduler agent
+
 ## 2.0.11
 * Fixing services installation issues
 
