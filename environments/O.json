@@ -106,11 +106,19 @@
             "client": {
                 "install_method": "package"
             }, 
-            "multi_environment_monitoring": true, 
+            "multi_environment_monitoring": false, 
+            "notifications_enabled": "1",
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
-            "server_role": "nagios_xi"
+            "server": {
+                "install_method": "source", 
+                "service_name": "nagios"
+            }, 
+            "server_auth_method": "htpasswd", 
+            "server_role": "nagios_xi", 
+            "sysadmin_email": "devops@webtrends.com", 
+            "users_databag_group": "staging"
         }, 
         "ohai": {
             "disabled_plugins": [
