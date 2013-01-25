@@ -27,6 +27,13 @@ execute "Uninstall storage service" do
 	ignore_failure true
 end
 
+# DM: doesn't make sense to do this as agent is already removed along with configuration. It will just cause refresh to wait till timeout
+#execute "Unregister from scheduler agent" do
+#	command "#{install_dir}\\#{node['wt_xd']['refresh']['binary']} --uninstall"
+#	ignore_failure true
+#	returns 21
+#end
+
 # delays to give the service plenty of time to actually stop
 ruby_block "wait" do
 	block do

@@ -137,6 +137,12 @@ if ENV["deploy_build"] == "true"
     command "#{xd_ss} --install --SERVICEACCT=#{svcuser} --SERVICEPASS=#{svcpass}"
   end  
 
+  xd_refresh = File.join(install_dir, node['wt_xd']['refresh']['binary']).gsub(/[\\\/]+/,"\\")
+  execute xd_refresh do
+    command "#{xd_refresh} --install"
+    returns 21	
+  end  
+
   share_wrs
 
 end
