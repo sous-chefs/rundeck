@@ -1,3 +1,6 @@
+## 2.0.13
+* Removing reference to Webtrends.ExternalData.StorageService.log4net.config from importer.rb
+
 ## 2.0.12
 * Adding XD refresh utility registration with scheduler agent
 
