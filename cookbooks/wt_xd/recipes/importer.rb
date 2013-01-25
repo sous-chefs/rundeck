@@ -87,7 +87,11 @@ if ENV["deploy_build"] == "true"
 		  :admin_email => node['wt_common']['admin_email'],
 		  :support_email => node['wt_common']['tech_support_email'],
 		  :target_email => node['wt_actioncenter']['exact_target_email'],
-		  :bcc_email => node['wt_actioncenter']['bcc_email']
+		  :bcc_email => node['wt_actioncenter']['bcc_email'],
+		  :hbase_location => node['hbase']['location'],
+		  :hbase_data_center_id => node['hbase']['data_center_id'],
+		  :hbase_pod_id => node['hbase']['pod_id'],
+		  :hbase_thrift_port => node['hbase']['thrift_port']
 	  })
 	  end
     end
@@ -125,22 +129,21 @@ if ENV["deploy_build"] == "true"
   # Creates the services and issues initial startup commands
   xd_rs = File.join(install_dir, node['wt_xd']['retrieval']['service_binary']).gsub(/[\\\/]+/,"\\")
   execute xd_rs do
-    command "#{xd_rs} --install --SERVICEACCOUNT=#{svcuser} --SERVICEPASS=#{svcpass}"
+    command "#{xd_rs} --install --SERVICEACCT=#{svcuser} --SERVICEPASS=#{svcpass}"
   end
 
   xd_ss = File.join(install_dir, node['wt_xd']['storage']['service_binary']).gsub(/[\\\/]+/,"\\")
   execute xd_ss do
-    command "#{xd_ss} --install --SERVICEACCOUNT=#{svcuser} --SERVICEPASS=#{svcpass}"
+    command "#{xd_ss} --install --SERVICEACCT=#{svcuser} --SERVICEPASS=#{svcpass}"
+  end  
+
+  xd_refresh = File.join(install_dir, node['wt_xd']['refresh']['binary']).gsub(/[\\\/]+/,"\\")
+  execute xd_refresh do
+    command "#{xd_refresh} --install"
+    returns 21	
   end  
 
   share_wrs
-end
 
-service "Start #{node['wt_xd']['retrieval']['service_name']}" do
-	action :start
-end
-
-service "Start #{node['wt_xd']['storage']['service_name']}" do
-	action :start
 end
 

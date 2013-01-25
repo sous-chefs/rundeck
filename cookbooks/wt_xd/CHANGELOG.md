@@ -1,3 +1,15 @@
+## 2.0.12
+* Adding XD refresh utility registration with scheduler agent
+
+## 2.0.11
+* Fixing services installation issues
+
+## 2.0.10
+* Fixing importer.rb
+
+## 2.0.9
+* Updated config files
+
 ## 2.0.8
 * Removed dll config files
 * Added sftpPush plugin
