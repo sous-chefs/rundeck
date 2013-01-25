@@ -19,7 +19,7 @@
         "wt_roadrunner": "= 1.1.2", 
         "wt_search": "= 1.0.10", 
         "wt_sync": "= 1.0.6", 
-        "wt_xd": "= 1.0.2"
+        "wt_xd": "= 2.0.11"
     }, 
     "default_attributes": {
         "authorization": {
@@ -48,6 +48,8 @@
             "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
         "hbase": {
+	    "data_center_id": "Lab",
+	    "pod_id": "D",
             "location": "sdata.staging.dmz", 
             "thrift_port": 9090
         }, 
@@ -293,7 +295,10 @@
         }, 
         "wt_xd": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/XD_Map_Reduce_master_1.0.0-SNAPSHOT.118_artifacts.zip", 
-            "environment": "support-staging"
+            "environment": "support-staging",
+	    "importer": {
+		"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt262/.lastSuccessful/XD.zip" 	
+	    }
         }, 
         "zookeeper": {
             "client_port": 2181
