@@ -21,3 +21,5 @@ default['wt_xd']['retrieval']['service_name'] = "Webtrends External Data Retriev
 default['wt_xd']['storage']['service_name'] = "Webtrends External Data Storage Service"
 default['wt_xd']['retrieval']['service_binary'] = "Webtrends.ExternalData.RetrievalService.exe"
 default['wt_xd']['storage']['service_binary'] = "Webtrends.ExternalData.StorageService.exe"
+default['wt_xd']['refresh']['binary'] = "Webtrends.ExternalData.Refresh.exe"
+
