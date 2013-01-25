@@ -48,6 +48,8 @@
             "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
         "hbase": {
+	    "data_center_id": "Lab",
+	    "pod_id": "D",
             "location": "sdata.staging.dmz", 
             "thrift_port": 9090
         }, 
