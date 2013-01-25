@@ -191,7 +191,7 @@
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49203:id/Plugins.zip"
             },
             "optimize_plugin": {
-                "optimize_server_url": "http://was.c2.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
+                "optimize_server_url": "http://was.ea.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }, 
             "cam_service_url": "http://ocam.staging.dmz", 
             "db_name": "cam", 
