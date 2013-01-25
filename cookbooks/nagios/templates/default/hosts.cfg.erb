@@ -11,9 +11,9 @@ define host {
   #   cloud servers in the same cloud, public IPs for servers in other clouds
   #   (where other is defined by node['cloud']['provider']
   if node['cloud'].nil? && !n['cloud'].nil?
-    ip = n['cloud']['public_ipv4']
+    ip = n['cloud']['public_ipv4'] || n['ipaddress']
   elsif !node['cloud'].nil? && n['cloud']['provider'] != node['cloud']['provider']
-    ip = n['cloud']['public_ipv4']
+    ip = n['cloud']['public_ipv4'] || n['ipaddress']
   else
     ip = n[node['nagios']['host_name_attribute']]
   end %>
