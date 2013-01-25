@@ -152,10 +152,12 @@
                 "retry_interval": 30
             }, 
             "multi_environment_monitoring": true, 
-            "non_alerting_environments": [
+             "non_alerting_environments": [
                 "A", 
                 "B", 
                 "C", 
+                "CI",
+                "COLLECT-CI",
                 "D", 
                 "E", 
                 "F", 
@@ -165,10 +167,12 @@
                 "K", 
                 "L", 
                 "M", 
+                "N",
                 "PF", 
                 "heatmap-staging", 
                 "_default"
             ], 
+            "notifications_enabled": "1",
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
@@ -178,7 +182,7 @@
             }, 
             "server_auth_method": "htpasswd", 
             "server_role": "nagios_xi", 
-            "sysadmin_email": "trent.white@webtrends.com", 
+            "sysadmin_email": "devops@webtrends.com", 
             "users_databag_group": "staging"
         }, 
         "ohai": {
@@ -199,7 +203,7 @@
         "snmp": {
             "community": "DevOps", 
             "full_systemview": "true", 
-            "syscontact": "trent.white@webtrends.com"
+            "syscontact": "devops@webtrends.com"
         }, 
         "sysctl": {
             "set swappiness": {
@@ -257,7 +261,7 @@
             ]
         }, 
         "wt_common": {
-            "admin_email": "Eng-TestEnvironment@webtrends.corp", 
+            "admin_email": "DevOps@webtrends.corp", 
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
