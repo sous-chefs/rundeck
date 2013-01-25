@@ -1,3 +1,6 @@
+## 2.0.14
+* hotfix required to remove hbase row level locking to keep track of high water mark of processing
+
 ## 2.0.13
 * Removing reference to Webtrends.ExternalData.StorageService.log4net.config from importer.rb
 
