@@ -138,14 +138,6 @@ if ENV["deploy_build"] == "true"
   end  
 
   share_wrs
-end
 
-
-service "#{node['wt_xd']['retrieval']['service_name']}" do
-	action :start
-end
-
-service "#{node['wt_xd']['storage']['service_name']}" do
-	action :start
 end
 
