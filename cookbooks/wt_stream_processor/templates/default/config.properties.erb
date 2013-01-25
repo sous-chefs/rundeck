@@ -37,6 +37,8 @@ stream.processor.zmq.znodepushnode=/analysis
 stream.processor.zmq.pull.address=tcp://*:1544
 # Comma delimited list of valid domains to weed out invalid Zookeeper nodes coming from a Topology running on someone's VM
 stream.processor.zk.valid.domains=staging.dmz,netiq.dmz
+# This is the number of puller threads
+stream.processor.pullerthreads = 2
 
 # A comma seperated list of routers to connect to for recieving
 webtrends.network.binding.recieve = <%= @router_uri %>
@@ -44,4 +46,4 @@ webtrends.network.binding.recieve = <%= @router_uri %>
 # This is the number of elements, not the SIZE in bytes.
 # Ideally, this will fit in L2 cache, most of our VM's tend to be aprox 15Mb
 webtrends.network.binding.recieve.eventBufferSize = 128
-webtrends.network.binding.recieve.eventHandlerThreads = 8
+webtrends.network.binding.recieve.eventHandlerThreads = 2
