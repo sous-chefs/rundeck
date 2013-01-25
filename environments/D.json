@@ -293,7 +293,10 @@
         }, 
         "wt_xd": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/XD_Map_Reduce_master_1.0.0-SNAPSHOT.118_artifacts.zip", 
-            "environment": "support-staging"
+            "environment": "support-staging",
+	    "importer": {
+		"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt262/.lastSuccessful/XD.zip" 	
+	    }
         }, 
         "zookeeper": {
             "client_port": 2181
