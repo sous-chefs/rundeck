@@ -305,7 +305,7 @@
             "host": "cusagedb01.staging.dmz"
         }, 
         "wt_xd": {
-            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/XD_Map_Reduce_master_1.0.0-SNAPSHOT.123_artifacts.zip", 
+	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt134/49462:id/artifacts.zip",
             "environment": "support-staging"
         }, 
         "zookeeper": {
