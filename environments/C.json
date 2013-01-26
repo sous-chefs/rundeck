@@ -305,7 +305,7 @@
             "host": "cusagedb01.staging.dmz"
         }, 
         "wt_xd": {
-	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt134/49462:id/artifacts.zip",
+	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36325:id/artifacts.zip", 	
             "environment": "support-staging"
         }, 
         "zookeeper": {
