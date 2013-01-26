@@ -1,0 +1,16 @@
+{
+	"id": "engage",
+	"groups": [ "staging" ],
+	"htpasswd": "lpDF2Rwb9m38o",
+	"nagios": {
+		"email":[ 
+		   "andrew.psaltis@webtrends.com",
+	           "greg.washburn@webtrends.com",
+		   "ivan.vonnagy@webtrends.com",
+		   "marek.dolgos@webtrends.com",
+		   "mark.alexander@webtrends.com",
+		   "scott.totten@webtrends.com",
+		   "jim.sunderland@webtrends.com"
+		]
+	}
+}
