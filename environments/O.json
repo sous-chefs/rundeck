@@ -316,12 +316,11 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/49430:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/49477:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true", 
             "sms_url": "http://osms.staging.dmz", 
-            "streams_ui_url": "https://ostreams.webtrends.com",
-	    "port": 80
+            "streams_ui_url": "https://ostreams.webtrends.com"
         }, 
         "wt_streaminganalysis_monitor": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.1/1116/webtrends-streaming-analysis-monitor-bin.tar.gz", 
