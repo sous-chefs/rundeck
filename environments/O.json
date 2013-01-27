@@ -330,7 +330,7 @@
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/48256:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
-            "sapi_service_url": "ws://osapi.webtrends.com/streaming", 
+            "sapi_service_url": "ws://osapi.webtrends.com", 
             "usagedbname": "Streaming", 
             "usagedbserver": "ocamdb01.staging.dmz"
         }, 
