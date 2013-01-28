@@ -1,6 +1,6 @@
 {
 	"id": "engage",
-	"groups": [ "staging" ],
+	"groups": [ "engage" ],
 	"htpasswd": "lpDF2Rwb9m38o",
 	"nagios": {
 		"email":[ 
@@ -10,7 +10,8 @@
 		   "marek.dolgos@webtrends.com",
 		   "mark.alexander@webtrends.com",
 		   "scott.totten@webtrends.com",
-		   "jim.sunderland@webtrends.com"
+		   "jim.sunderland@webtrends.com",
+		   "russell.smith@webtrends.com"
 		]
 	}
 }
