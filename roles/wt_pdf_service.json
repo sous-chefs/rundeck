@@ -12,7 +12,7 @@
 	"role[iis]",
 	"recipe[ms_dotnet4]"
 	"recipe[vc2010]",
-	"recipe[iis:mod_aspnet]",
+	"recipe[iis::mod_aspnet]",
 	"recipe[wt_pdf_service]"
 	],
 	"env_run_lists": {
