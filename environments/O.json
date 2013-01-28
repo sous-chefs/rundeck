@@ -336,7 +336,7 @@
         }, 
         "wt_streamingauditor": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.1/1116/webtrends-streamingauditor-bin.tar.gz", 
-            "roundtrip_scs_urls": "http://oscs.webtrends.com", 
+            "roundtrip_scs_urls": "http://scs.webtrends.com,http://scs.pdx.webtrends.com,http://scs.last.webtrends.com,http://scs.iad2.webtrends.com,http://scs.ams.webtrends.com",
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         }, 
