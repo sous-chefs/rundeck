@@ -68,9 +68,16 @@
         <profiler enabled="true" profilePipelineComponents="true" pipelineDirection="Both" />
         <!-- Register to handle the following messages -->
         <registeredMessages>
-          <message messageType="Webtrends.ExternalData.Messages.ReportRequestMessage, Webtrends.ExternalData" enabled="true" local="true" />
-          <message messageType="Webtrends.ExternalData.Messages.AcquiredReportsMessage, Webtrends.ExternalData" enabled="true" local="true" />
-          <message messageType="Webtrends.ExternalData.Messages.RetrieveRawDataMessage, Webtrends.ExternalData" enabled="true" local="true" />
+          <!-- "local" attribute must be set to "false" in chef template -->
+          <message messageType="Webtrends.ExternalData.Messages.ReportRequestMessage, Webtrends.ExternalData" 
+	           enabled="true" 
+		   local="false" />
+          <message messageType="Webtrends.ExternalData.Messages.AcquiredReportsMessage, Webtrends.ExternalData" 
+	  	   enabled="true" 
+		   local="false" />
+          <message messageType="Webtrends.ExternalData.Messages.RetrieveRawDataMessage, Webtrends.ExternalData" 
+	  	   enabled="true" 
+		   local="false" />
         </registeredMessages>
         <messageAssemblies>
           <assembly name="Webtrends.ExternalData" destinationAddress="xdssmain" />
@@ -126,7 +133,12 @@
       </endpoint>
     </endpoints>
     <bindings>
-      <msmqBinding name="mainBinding" purgeOnStartup="false" isTransactional="true" transactionTimeout="01:00:00" isolationLevel="Serializable" />
+      <!-- purgeOnStartup must be set to "false" in the chef template -->
+      <msmqBinding name="mainBinding" 
+                   purgeOnStartup="false" 
+                   isTransactional="true" 
+                   transactionTimeout="01:00:00" 
+                   isolationLevel="Serializable" />
     </bindings>
   </serviceBus>
   <startup>
