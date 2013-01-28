@@ -1,0 +1,7 @@
+{
+    "auth_domain_password": "dm7m7ErsvdH0JzUUnA0L", 
+    "auth_domain_user": "VMwareJoinDomain", 
+    "id": "WEBTRENDS", 
+    "membership_required":"", 
+    "primary_domain": "webtrends.corp"
+}

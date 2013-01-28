@@ -118,7 +118,7 @@
             "server_auth_method": "htpasswd", 
             "server_role": "nagios_xi", 
             "sysadmin_email": "devops@webtrends.com", 
-            "users_databag_group": "staging"
+            "users_databag_group": "engage"
         }, 
         "ohai": {
             "disabled_plugins": [
