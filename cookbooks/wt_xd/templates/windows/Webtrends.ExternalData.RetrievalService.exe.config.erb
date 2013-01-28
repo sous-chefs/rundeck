@@ -59,6 +59,7 @@
   <!-- ServiceBus endpoint -->
   <serviceBus>
     <endpoints>
+      <!-- "local" attribute must be set to "false" in chef template -->
       <endpoint endpointIdentifier="xdrsmain@localhost"
       		binding="mainBinding"
 		name="Webtrends External Data Retrieval Service"
@@ -71,7 +72,7 @@
 		retryHandling="Drop"
 		statusReportInterval="00:00:30"
 		statusReportGracePeriod="00:01:00"
-		numberOfWorkerThreads="100"
+  	        numberOfWorkerThreads="12"
 		maxRetries="4"
 		incomingMessageLoggingLevel="None"
 		outgoingMessageLoggingLevel="None"
@@ -79,9 +80,16 @@
         <profiler enabled="true" profilePipelineComponents="true" pipelineDirection="Both" />
         <!-- Register to handle the following messages -->
         <registeredMessages>
-          <message messageType="Webtrends.ExternalData.Messages.EnumerationRequestMessage, Webtrends.ExternalData" enabled="true" local="true" />
-          <message messageType="Webtrends.ExternalData.Messages.AcquireRawDataMessage, Webtrends.ExternalData" enabled="true" local="true" />
-          <message messageType="Webtrends.ExternalData.Messages.AcquireReportsMessage, Webtrends.ExternalData" enabled="true" local="true" />
+          <!-- "local" attribute must be set to "false" in chef template -->
+          <message messageType="Webtrends.ExternalData.Messages.EnumerationRequestMessage, Webtrends.ExternalData" 
+	           enabled="true" 
+		   local="false" />
+          <message messageType="Webtrends.ExternalData.Messages.AcquireRawDataMessage, Webtrends.ExternalData" 
+	           enabled="true" 
+		   local="false" />
+          <message messageType="Webtrends.ExternalData.Messages.AcquireReportsMessage, Webtrends.ExternalData" 
+	           enabled="true" 
+		   local="false" />
         </registeredMessages>
         <messageAssemblies>
           <assembly name="Webtrends.ExternalData" destinationAddress="xdrsmain" />
@@ -137,7 +145,12 @@
       </endpoint>
     </endpoints>
     <bindings>
-      <msmqBinding name="mainBinding" purgeOnStartup="false" isTransactional="true" transactionTimeout="01:00:00" isolationLevel="Serializable" />
+      <!-- purgeOnStartup must be set to "false" in the chef template -->
+      <msmqBinding name="mainBinding" 
+                   purgeOnStartup="false" 
+                   isTransactional="true" 
+                   transactionTimeout="01:00:00" 
+                   isolationLevel="Serializable" />
     </bindings>
   </serviceBus>
   <startup>
