@@ -5,6 +5,7 @@ This file is used to list changes made in each version of wt_publishver.
 ## 0.2.0:
 * changed publish_verison method to a LWRP (wt_publishver)
 * add support for Ubuntu
+* add more roles to publishing info
 
 ## 0.1.2:
 * Add wt_sauth to windows publishing information.
