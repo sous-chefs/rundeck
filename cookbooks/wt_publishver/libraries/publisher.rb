@@ -159,9 +159,14 @@ module WtPublishver
 
 			# extract manifest file
 			system "cd #{wdir} && jar xf \"#{jarfile}\" META-INF/MANIFEST.MF"
+			manifest_file = File.join(wdir, 'META-INF/MANIFEST.MF')
 
 			# read manifest
-			mani = Manifest.read(File.open('META-INF/MANIFEST.MF').read)
+			if File.exists? manifest_file
+				mani = Manifest.read(File.open(manifest_file).read)
+			else
+				return
+			end
 
 			# determine version + build
 			jar_build_number = Array.new
