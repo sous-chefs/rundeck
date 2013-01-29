@@ -52,7 +52,10 @@ action :update do
 
 	Chef::Log.debug("Running #{@new_resource.name} in #{@new_resource.provider} from #{@new_resource.cookbook_name}::#{@new_resource.recipe_name}")
 
-	unless ::File.exists? @new_resource.key_file
+	# expand wildcards
+	key_file = Dir[@new_resource.key_file].sort.first
+
+	if key_file.nil?
 		log("key_file: #{@new_resource.key_file} not found") { level :warn }
 		next
 	end
@@ -71,12 +74,12 @@ action :update do
 	if items.count == 0
 		log("No records found: hostname => #{pub.hostname}, pod => #{pub.pod}, role => #{pub.role}") { level :warn }
 		log('No publish version update performed') { level :warn }
-		return
+		next
 	end
 	if items.count > 1
 		log("More than 1 record found for: hostname => #{pub.hostname}, pod => #{pub.pod}, role => #{pub.role}") { level :warn }
 		log('Please refine criteria. No publish version update performed') { level :warn }
-		return
+		next
 	end
 	pub.oitem = ::WtPublishver::PublisherItem.new items.first
 	pub.nitem = ::WtPublishver::PublisherItem.new items.first
@@ -96,9 +99,9 @@ action :update do
 	end
 
 	# build number (should be derived from key_file and not TC)
-	case @new_resource.key_file
+	case key_file
 	when /\.jar$/
-		pub.nitem.build = pub.jar_build @new_resource.key_file
+		pub.nitem.build = pub.jar_build key_file
 	else
 		log('key_file type not supported') { level :warn }
 		pub.nitem.build = pub.build_number.to_s
