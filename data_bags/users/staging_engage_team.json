@@ -4,14 +4,20 @@
 	"htpasswd": "lpDF2Rwb9m38o",
 	"nagios": {
 		"email":[ 
+		   "dave.solbes@webtrends.com",
 		   "andrew.psaltis@webtrends.com",
-	           "greg.washburn@webtrends.com",
+	       "greg.washburn@webtrends.com",
 		   "ivan.vonnagy@webtrends.com",
 		   "marek.dolgos@webtrends.com",
 		   "mark.alexander@webtrends.com",
 		   "scott.totten@webtrends.com",
 		   "jim.sunderland@webtrends.com",
-		   "russell.smith@webtrends.com"
+		   "russell.smith@webtrends.com",
+		   "8168985590@txt.att.net",
+		   "7202032262@vzwpix.com",
+		   "9712852503@vzwpix.com",
+		   "5037645000@tmomail.net",
+		   "9712750614@tmomail.net"
 		]
 	}
 }
