@@ -1,31 +1,64 @@
-
+# hard coding a few things in here while we hodge podge between 2 environments
 
 # Kafka
-zk.connect=<%= @zookeeper_pairs.join(",") %>
-zk.connectiontimeout.ms=<%= node['wt_hdfslogdata_producer']['kafka']['connectiontimeout_ms'] %>
-fetch.size=<%= node['wt_hdfslogdata_producer']['kafka']['fetch_size'] %>
-groupid=<%= node['wt_hdfslogdata_producer']['kafka']['group_id'] %>
+#zk.connect=<%= @zookeeper_pairs.join(",") %>
+#zk.connectiontimeout.ms=<%= node['wt_hdfslogdata_producer']['kafka']['connectiontimeout_ms'] %>
+#fetch.size=<%= node['wt_hdfslogdata_producer']['kafka']['fetch_size'] %>
+#groupid=<%= node['wt_hdfslogdata_producer']['kafka']['group_id'] %>
 
 
 # HDFSLogProducer
-daemon.topics=<%= node['wt_hdfslogdata_producer']['daemon']['topics'] %>
-daemon.threadsPerTopic=<%= node['wt_hdfslogdata_producer']['daemon']['threads_per_topic'] %>
-daemon.compressionBufferSize=<%= node['wt_hdfslogdata_producer']['daemon']['compression_buffer_size'] %>
-daemon.maxLogSize=<%= node['wt_hdfslogdata_producer']['daemon']['max_log_size'] %>
-daemon.logPath=<%= node['wt_hdfslogdata_producer']['daemon']['log_path'] %>
-daemon.completedLogPath=<%= node['wt_hdfslogdata_producer']['daemon']['completed_log_path'] %>
-daemon.whitelist=<%= node['wt_hdfslogdata_producer']['daemon']['whitelist'] %>
+#daemon.topics=<%= node['wt_hdfslogdata_producer']['daemon']['topics'] %>
+#daemon.threadsPerTopic=<%= node['wt_hdfslogdata_producer']['daemon']['threads_per_topic'] %>
+#daemon.compressionBufferSize=<%= node['wt_hdfslogdata_producer']['daemon']['compression_buffer_size'] %>
+#daemon.maxLogSize=<%= node['wt_hdfslogdata_producer']['daemon']['max_log_size'] %>
+#daemon.logPath=<%= node['wt_hdfslogdata_producer']['daemon']['log_path'] %>
+#daemon.completedLogPath=<%= node['wt_hdfslogdata_producer']['daemon']['completed_log_path'] %>
+#daemon.whitelist=<%= node['wt_hdfslogdata_producer']['daemon']['whitelist'] %>
 
 
 #dcs augmentation
-dcs.config.service.url=<%= node['wt_hdfslogdata_producer']['dcs']['url'] %>
+#dcs.config.service.url=<%= node['wt_hdfslogdata_producer']['dcs']['url'] %>
 
 
 #GEO augmentation
-geo.timeout = <%= node['wt_hdfslogdata_producer']['geo']['timeout'] %>
-geo.url=<%= node['wt_hdfslogdata_producer']['geo']['url'] %>
+#geo.timeout = <%= node['wt_hdfslogdata_producer']['geo']['timeout'] %>
+#geo.url=<%= node['wt_hdfslogdata_producer']['geo']['url'] %>
 
 
 
 # BZip2 blocksize (1 = 100k)
-bzip2.blockSize=<%= node['wt_hdfslogdata_producer']['bzip2']['block_size'] %>
+#bzip2.blockSize=<%= node['wt_hdfslogdata_producer']['bzip2']['block_size'] %>
+
+
+
+# Kafka
+zk.connect=ozoo01.staging.dmz,ozoo02.staging.dmz,ozoo03.staging.dmz
+zk.connectiontimeout.ms=1000000
+fetch.size=3603150
+groupid=hdfs-log-producer-o-pod
+
+
+# HDFSLogProducer
+daemon.topics=Lab_O_scsRawHits
+daemon.threadsPerTopic=1
+daemon.compressionBufferSize=524288
+daemon.maxLogSize=134217728
+daemon.logPath=/tmp
+daemon.completedLogPath=/tmp/finished
+daemon.whitelist=
+
+
+#dcs augmentation
+dcs.config.service.url=http://oconfigsvc.staging.dmz/dcsid
+
+
+#GEO augmentation
+geo.timeout = 400
+geo.url=outil01.staging.dmz
+
+
+
+# BZip2 blocksize (1 = 100k)
+bzip2.blockSize=1
+
