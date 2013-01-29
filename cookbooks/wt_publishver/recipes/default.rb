@@ -57,6 +57,12 @@ node['roles'].each do |r|
 			download_url node['wt_devicedataupdater']['download_url']
 			key_file     win_path(wdir, node['wt_devicedataupdater']['install_dir'], 'DDU.exe')
 		end
+	when 'wt_kafka_topagg'
+		log "publishing #{r}"
+		wt_publishver 'Kafka Top Aggregator' do
+			download_url node['wt_kafka_topagg']['download_url']
+			key_file     File.join(ldir, node['wt_kafka_topagg']['name'], 'lib/TopicAggregator.jar')
+		end
 	when 'wt_logpreproc'
 		log "publishing #{r}"
 		wt_publishver 'LPP' do
