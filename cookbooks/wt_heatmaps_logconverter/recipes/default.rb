@@ -74,6 +74,7 @@ mount mount_dir do
   fstype "nfs"
   options "rw"
   action [:mount, :enable]
+  not_if do File.directory?("#{mount_dir}HMLogs") end
 end
 
 # Make sure the user has a home directory and ssh dir
