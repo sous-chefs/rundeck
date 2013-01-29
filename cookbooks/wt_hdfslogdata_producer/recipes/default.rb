@@ -28,10 +28,31 @@ group = node['wt_hdfslogdata_producer']['group']
 java_opts = node['wt_hdfslogdata_producer']['java_opts']
 pod = node['wt_realtime_hadoop']['pod']
 datacenter = node['wt_realtime_hadoop']['datacenter']
+logproducer_path = node['wt_hdfslogdata_producer']['daemon']['log_path']
+logproducer_finished_path = node['wt_hdfslogdata_producer']['daemon']['completed_log_path']
+
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
+
+
+# create the log directory
+directory logproducer_path do
+  owner   user
+  group   group
+  mode    00777
+  recursive true
+  action :create
+end
+# create the log directory
+directory logproducer_finished_path do
+  owner   user
+  group   group
+  mode    00777
+  recursive true
+  action :create
+end
 
 # create the log directory
 directory log_dir do
