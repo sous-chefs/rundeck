@@ -8,7 +8,10 @@
 #
 
 # old ubuntu platforms are not supported
-return if node['platform_family'] == 'debian' && node['platform_version'].to_i < 12
+if node['platform_family'] == 'debian' && node['platform_version'].to_i < 12
+	log("#{cookbook_name}: unsupported platform: #{node['platform_family']} #{node['platform_version']}") { level :warn }
+	return
+end
 
 class Chef::Resource
 	# returns a path with backslashes (windows friendly)
@@ -158,6 +161,12 @@ node['roles'].each do |r|
 		wt_publishver 'Sync Service' do
 			download_url node['wt_sync']['download_url']
 			key_file     win_path(wdir, node['wt_sync']['install_dir'], 'Webtrends.SyncService.exe')
+		end
+	when 'wt_xd_mapreduce'
+		log "publishing #{r}"
+		wt_publishver 'External Data Mapreduce' do
+			download_url node['wt_xd']['download_url']
+			key_file     File.join(ldir, 'wt_xd/lib/webtrends.mapreduce.common.jar')
 		end
 	else
 		log "no publishing data for role => #{r}"
