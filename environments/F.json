@@ -193,7 +193,7 @@
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
             "ifr_locations": [
-                "\\\\sstore03.staging.dmz\\fstore\\ifr"
+                "\\\\sstore03.staging.dmz\\fstore\\ifr-10.6"
             ], 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
