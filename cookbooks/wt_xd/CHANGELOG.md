@@ -1,5 +1,5 @@
 ## 2.0.15
-* updated local="false" in XD services config file templates
+* updated local="false" in XD services config file templates [test commit from vsts plugin]
 
 ## 2.0.14
 * hotfix required to remove hbase row level locking to keep track of high water mark of processing
