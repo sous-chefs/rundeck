@@ -38,17 +38,9 @@ log "Java home: #{java_home}"
 
 
 # create the log directory
-directory logproducer_path do
-  owner   user
-  group   group
-  mode    00777
-  recursive true
-  action :create
-end
-# create the log directory
 directory logproducer_finished_path do
-  owner   user
-  group   group
+  owner   "root"
+  group   "root"
   mode    00777
   recursive true
   action :create
