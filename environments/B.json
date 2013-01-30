@@ -71,6 +71,7 @@
         "hive": {}, 
         "java": {
             "install_flavor": "oracle", 
+            "jdk_version": "7",
             "jdk": {
                 "6": {
                     "x86_64": {
@@ -128,7 +129,7 @@
         }, 
         "storm": {
             "download_url": "http://repo.staging.dmz/repo/linux/storm", 
-            "version": "0.8.1"
+            "version": "0.8.2"
         }, 
         "vc2010": {
             "x64": {

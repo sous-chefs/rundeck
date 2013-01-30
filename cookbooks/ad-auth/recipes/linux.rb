@@ -97,6 +97,7 @@ for lwservice in [ "eventlogd", "lwiod", "lwregd", "netlogond"  ] do
   service lwservice do
     supports :restart => true, :status => true
     action [ :enable, :start ]
+    only_if { File.exists?("/etc/init.d/${svc}") }
   end
 end
 
