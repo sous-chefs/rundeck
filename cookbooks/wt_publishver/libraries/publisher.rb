@@ -26,13 +26,13 @@ module WtPublishver
 
 		def formatted
 			msg  = sprintf("%-7s : %s\n", 'ID',      @id)
-		    msg << sprintf("%-7s : %s\n", 'Title',   @hostname)
-		    msg << sprintf("%-7s : %s\n", 'Pod',     @pod)
-		    msg << sprintf("%-7s : %s\n", 'Role',    @role)
-		    msg << sprintf("%-7s : %s\n", 'Version', @version)
-		    msg << sprintf("%-7s : %s\n", 'Branch',  @branch)
-		    msg << sprintf("%-7s : %s\n", 'Build',   @build)
-		    msg << sprintf("%-7s : %s\n", 'Status',  @status)
+			msg << sprintf("%-7s : %s\n", 'Title',   @hostname)
+			msg << sprintf("%-7s : %s\n", 'Pod',     @pod)
+			msg << sprintf("%-7s : %s\n", 'Role',    @role)
+			msg << sprintf("%-7s : %s\n", 'Version', @version)
+			msg << sprintf("%-7s : %s\n", 'Branch',  @branch)
+			msg << sprintf("%-7s : %s\n", 'Build',   @build)
+			msg << sprintf("%-7s : %s\n", 'Status',  @status)
 			msg
 		end
 	end
