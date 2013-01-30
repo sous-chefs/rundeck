@@ -16,7 +16,7 @@ end
 class Chef::Resource
 	# returns a path with backslashes (windows friendly)
 	def win_path(*args)
-		::File.join(args).gsub(/[\\\/]/, '\\')
+		::File.join(args).gsub(/[\\\/]+/, '\\')
 	end
 end
 
