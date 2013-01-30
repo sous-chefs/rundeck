@@ -145,10 +145,10 @@ module WtPublishver
 		end
 
 		def changed?
-			return true unless @oitem.version == @nitem.version
-			return true unless @oitem.branch  == @nitem.branch
-			return true unless @oitem.build   == @nitem.build
-			return true unless @oitem.status  == @nitem.status
+			return true unless @oitem.version.to_s == @nitem.version.to_s
+			return true unless @oitem.branch.to_s  == @nitem.branch.to_s
+			return true unless @oitem.build.to_s   == @nitem.build.to_s
+			return true unless @oitem.status.to_s  == @nitem.status.to_s
 			return false
 		end
 
