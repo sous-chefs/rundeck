@@ -15,7 +15,7 @@
         "webtrends_server": "= 1.8.11", 
         "windows": "= 1.6.0", 
         "wt_base": "= 1.0.3", 
-        "wt_publishver": "= 0.1.2", 
+        "wt_publishver": "= 0.2.0", 
         "zookeeper": "= 1.1.6"
     }, 
     "default_attributes": {
@@ -152,12 +152,12 @@
                 "retry_interval": 30
             }, 
             "multi_environment_monitoring": true, 
-             "non_alerting_environments": [
+            "non_alerting_environments": [
                 "A", 
                 "B", 
                 "C", 
-                "CI",
-                "COLLECT-CI",
+                "CI", 
+                "COLLECT-CI", 
                 "D", 
                 "E", 
                 "F", 
@@ -167,12 +167,12 @@
                 "K", 
                 "L", 
                 "M", 
-                "N",
+                "N", 
                 "PF", 
                 "heatmap-staging", 
                 "_default"
             ], 
-            "notifications_enabled": "1",
+            "notifications_enabled": "1", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
