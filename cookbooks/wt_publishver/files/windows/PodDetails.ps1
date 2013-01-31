@@ -1,5 +1,43 @@
 <#
 .SYNOPSIS
+	Updates the Pod Details page (Sharepoint List) with current build information.
+
+.DESCRIPTION
+	Updates the Pod Details page with these general steps:
+		* queries the list for single row that matches this host, pod and role
+		* determines the branch name from the build directory/zipfile name
+		* determines the build number from a key file such as an exe or dll
+		* updates the list with this new information
+
+.PARAMETER hostname
+
+.PARAMETER pod
+
+.PARAMETER role
+
+.PARAMETER version
+
+.PARAMETER selectversion
+
+.PARAMETER branch
+
+.PARAMETER build
+
+.PARAMETER builddir
+
+.PARAMETER keyfile
+
+.PARAMETER status
+
+.PARAMETER credential
+
+.PARAMETER password
+
+.PARAMETER usedefaultcredential
+	
+.NOTES
+	Author:  David Dvorak <david.dvorak@webtrends.com>
+	Copyright © 2013 Webtrends Inc.
 #>
 Param(
         [Parameter(Position=0, Mandatory=$True)][ValidatePattern('^[\w\.]+$')]$Hostname,
@@ -32,7 +70,7 @@ function Usage([int]$ExitCode)
 }
 
 # source common functions
-. $MeRoot/Functions.ps1
+. $MeRoot/PodDetailsLib.ps1
 
 # check parameter usage
 if ($BuildDir -eq $null -and ($Branch -eq $null -and $KeyFile -eq $null) -and ($Branch -eq $null -and $Build -eq $null) -and $Status -ne 'Pending') {
@@ -138,13 +176,13 @@ if ($items.data.ItemCount -eq 0) {
     Exit(0)
 } elseif ($items.data.ItemCount -gt 1) {
     Write-Output "More than 1 record found.  Refine criteria.  No update performed."
-    $items.data.row | format-table -Property ows_ID,ows_Title,ows_POD,ows_Role,ows__Version,ows_Branch,ows_Build,ows__Status | Out-Default
+    $items.data.row | format-table -Property ows_ID,ows_Title,ows_POD,ows_Role,ows__Version,ows_Branch,ows_Build,ows_OS,ows__Status | Out-Default
     Exit(0)
 }
 
 Write-Debug "Got 1 record."
 Write-Host "Pod Details: BEFORE" -ForegroundColor Yellow -NoNewline
-$items.data.row | format-list -Property ows_ID,ows_Title,ows_POD,ows_Role,ows__Version,ows_Branch,ows_Build,ows__Status | Out-Default
+$items.data.row | format-list -Property ows_ID,ows_Title,ows_POD,ows_Role,ows__Version,ows_Branch,ows_Build,ows_OS,ows__Status | Out-Default
 
 # determine branch and build
 if ($BuildDir) {
@@ -200,15 +238,23 @@ if ($Branch -eq $null -and $Status -ne 'Pending') { Write-Error "Unable to deter
 if ($Build -eq $null -and $Status -ne 'Pending') { Write-Error "Unable to determine build." }
 if (($Branch -eq $null -or $Build -eq $null) -and $Status -ne 'Pending') { Write-Output "BuildDir: $BuildDir"; Exit(1) }
 
+# get os
+$OSName = Get-OSVersion
+
+Write-Debug "New Values"
+Write-Debug "Version: $Version"
 Write-Debug "Branch: $Branch"
 Write-Debug "Build: $Build"
+Write-Debug "Status: $Status"
+Write-Debug "OSName: $OSName"
 
 # determine if fields are different
 $PerformUpdate = $False
 if ($Version -and $Version.CompareTo($items.data.row.ows__Version)) { $PerformUpdate = $True }
 if ($Branch  -and $Branch.CompareTo($items.data.row.ows_Branch))    { $PerformUpdate = $True }
-if ($Build   -and $Build.CompareTo($items.data.row.ows_Build))      { $PerformUpdate = $True }
+if ($Build   -and "$Build".CompareTo($items.data.row.ows_Build))      { $PerformUpdate = $True }
 if ($Status  -and $Status.CompareTo($items.data.row.ows__Status))   { $PerformUpdate = $True }
+if ($OSName  -and $OSName.CompareTo($items.data.row.ows_OS))        { $PerformUpdate = $True }
 
 # if no fields have changed, then skip the update
 if ($PerformUpdate -eq $False) {
@@ -217,7 +263,8 @@ if ($PerformUpdate -eq $False) {
 Version: $Version
 Branch : $Branch
 Build  : $Build
-Status : $Status"
+Status : $Status
+OS     : $OSName"
     Exit(0)
 }
 
@@ -262,6 +309,12 @@ if ($Status) {
     $updFieldStatus.InnerXml = $Status
     [void]$updMethod1.AppendChild($updFieldStatus)
 }
+if ($OSName) {
+	$updFieldOS = $xml.CreateElement("Field")
+	$updFieldOS.SetAttribute("Name", "OS")
+	$updFieldOS.InnerXml = $OSName
+	[void]$updMethod1.AppendChild($updFieldOS)
+}
 [void]$updBatch.AppendChild($updMethod1)
 
 Write-Debug "Updating $Hostname"
@@ -273,4 +326,5 @@ if ($d) {
 
 $items = $ws.GetListItems($listName, $null, $query, $null, $null, $queryOptions, $null)
 Write-Host "Pod Details: AFTER" -ForegroundColor Yellow -NoNewline
-$items.data.row | format-list -Property ows_ID,ows_Title,ows_POD,ows_Role,ows__Version,ows_Branch,ows_Build,ows__Status | Out-Default
+$items.data.row | format-list -Property ows_ID,ows_Title,ows_POD,ows_Role,ows__Version,ows_Branch,ows_Build,ows_OS,ows__Status | Out-Default
+
