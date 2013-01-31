@@ -107,6 +107,9 @@ action :update do
 		pub.nitem.build = pub.build_number.to_s
 	end
 
+	# set os
+	pub.nitem.os = get_osversion
+
 	# set status
 	case @new_resource.status
 	when :up
@@ -129,5 +132,40 @@ action :update do
 	else
 		log 'Pod Detail field values are the same.  No update performed.'
 	end
+
+end
+
+private
+
+def get_osversion
+
+	case node['platform']
+	when 'ubuntu'
+		os_name = 'Ubuntu'
+		case node['platform_version']
+		when '10.04'
+			os_name << ' 10.04 LTS'
+		when '12.04'
+			os_name << ' 12.04 LTS'
+		when '14.04'
+			os_name << ' 14.04 LTS'
+		else
+			return nil
+		end
+	when 'centos'
+		os_name = 'CentOS'
+		case node['platform_version']
+		when '6.2'
+			os_name << ' 6.2'
+		when '6.3'
+			os_name << ' 6.2'
+		else
+			return nil
+		end
+	else
+		return nil
+	end
+
+	return os_name
 
 end
