@@ -21,7 +21,7 @@
         "wt_portfolio_edgeservice": "= 1.0.0", 
         "wt_portfolio_manager": "= 1.1.16", 
         "wt_portfolio_router": "= 1.0.0", 
-        "wt_publishver": "= 0.1.2", 
+        "wt_publishver": "= 0.2.0", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.4", 
         "wt_storm_streaming": "= 2.4.1", 
@@ -181,13 +181,13 @@
             }, 
             "cam_plugins": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49203:id/Plugins.zip"
-            },
-            "optimize_plugin": {
-                "optimize_server_url": "http://was.c2.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }, 
             "cam_service_url": "http://hcam.staging.dmz", 
             "db_name": "cam", 
-            "db_server": "hcamdb01.staging.dmz"
+            "db_server": "hcamdb01.staging.dmz", 
+            "optimize_plugin": {
+                "optimize_server_url": "http://was.c2.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
+            }
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -293,16 +293,16 @@
                 "Lab_H_lrRawHits:20"
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
+            "visitor": {
+                "datacenter": "Lab", 
+                "hbase_table_direct": "VisitorHistory", 
+                "hbase_table_parallel": "spark_test", 
+                "hbase_table_partitions": 40, 
+                "pod": "O", 
+                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
+            }, 
             "worker": {
                 "childopts": "-Xmx3456m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
-            },
-            "visitor": {
-                "pod": "O",
-                "datacenter": "Lab",
-                "hbase_table_partitions": 40,
-                "hbase_table_direct": "VisitorHistory",
-                "hbase_table_parallel": "spark_test",
-                "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
             }
         }, 
         "wt_stream_processor": {
