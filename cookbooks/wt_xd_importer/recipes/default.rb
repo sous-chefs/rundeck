@@ -9,15 +9,15 @@
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploy first"  
-  include_recipe "wt_xd::importer_uninstall"
+  include_recipe "wt_xd::uninstall"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-download_url = node['wt_xd']['importer']['download_url']
+download_url = node['wt_xd_importer']['download_url']
 
 # destinations
-install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_xd']['importer']['install_dir']).gsub(/[\\\/]+/,"\\")
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_xd_importer']['install_dir']).gsub(/[\\\/]+/,"\\")
 log_dir = File.join(node['wt_common']['install_dir_windows'], "logs")
 
 # get data bag items
@@ -103,7 +103,7 @@ if ENV["deploy_build"] == "true"
     action :grant
   end
 
-  node['wt_xd']['importer']['plugins'].each do |plugin|
+  node['wt_xd_importer']['plugins'].each do |plugin|
 
     execute "asp_regiis_pi" do   
       command  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\aspnet_regiis -pi #{plugin} #{install_dir}\\PublicPrivateKeys.rsa"
@@ -126,17 +126,17 @@ if ENV["deploy_build"] == "true"
   end
 
   # Creates the services and issues initial startup commands
-  xd_rs = File.join(install_dir, node['wt_xd']['retrieval']['service_binary']).gsub(/[\\\/]+/,"\\")
+  xd_rs = File.join(install_dir, node['wt_xd_importer']['retrieval']['service_binary']).gsub(/[\\\/]+/,"\\")
   execute xd_rs do
     command "#{xd_rs} --install --SERVICEACCT=#{svcuser} --SERVICEPASS=#{svcpass}"
   end
 
-  xd_ss = File.join(install_dir, node['wt_xd']['storage']['service_binary']).gsub(/[\\\/]+/,"\\")
+  xd_ss = File.join(install_dir, node['wt_xd_importer']['storage']['service_binary']).gsub(/[\\\/]+/,"\\")
   execute xd_ss do
     command "#{xd_ss} --install --SERVICEACCT=#{svcuser} --SERVICEPASS=#{svcpass}"
   end  
 
-  xd_refresh = File.join(install_dir, node['wt_xd']['refresh']['binary']).gsub(/[\\\/]+/,"\\")
+  xd_refresh = File.join(install_dir, node['wt_xd_importer']['refresh']['binary']).gsub(/[\\\/]+/,"\\")
   execute xd_refresh do
     command "#{xd_refresh} --install"
     returns 21	
