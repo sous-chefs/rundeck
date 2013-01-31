@@ -12,7 +12,7 @@
     "recipe[ms_messagequeue]",
     "recipe[wt_base::msdtc]",
     "role[wt_platformscheduler_agent]",
-    "recipe[wt_xd::importer]"
+    "recipe[wt_xd_importer]"
   ],
   "env_run_lists": {
   }
