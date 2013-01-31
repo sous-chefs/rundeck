@@ -158,7 +158,7 @@ def get_osversion
 		when '6.2'
 			os_name << ' 6.2'
 		when '6.3'
-			os_name << ' 6.2'
+			os_name << ' 6.3'
 		else
 			return nil
 		end
