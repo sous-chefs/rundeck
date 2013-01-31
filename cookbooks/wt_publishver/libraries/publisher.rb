@@ -21,7 +21,7 @@ module WtPublishver
 			@branch = item.branch
 			@build = item.build
 			@status = item.wtstatus
-			@os =  nil
+			@os =  item.os
 		end
 
 		def formatted
@@ -32,6 +32,7 @@ module WtPublishver
 			msg << sprintf("%-7s : %s\n", 'Version', @version)
 			msg << sprintf("%-7s : %s\n", 'Branch',  @branch)
 			msg << sprintf("%-7s : %s\n", 'Build',   @build)
+			msg << sprintf("%-7s : %s\n", 'OS',      @os)
 			msg << sprintf("%-7s : %s\n", 'Status',  @status)
 			msg
 		end
@@ -136,6 +137,7 @@ module WtPublishver
 						b.Field(@nitem.version, :Name => '_Version') unless @nitem.version.nil? or @oitem.version == @nitem.version
 						b.Field(@nitem.branch,  :Name => 'Branch')   unless @nitem.branch.nil?  or @oitem.branch  == @nitem.branch
 						b.Field(@nitem.build,   :Name => 'Build')    unless @nitem.build.nil?   or @oitem.build   == @nitem.build
+						b.Field(@nitem.os,      :Name => 'OS')       unless @nitem.os.nil?      or @oitem.os      == @nitem.os
 						b.Field(@nitem.status,  :Name => '_Status')  unless @nitem.status.nil?  or @oitem.status  == @nitem.status
 					}
 				end
@@ -148,6 +150,7 @@ module WtPublishver
 			return true unless @oitem.version.to_s == @nitem.version.to_s
 			return true unless @oitem.branch.to_s  == @nitem.branch.to_s
 			return true unless @oitem.build.to_s   == @nitem.build.to_s
+			return true unless @oitem.os.to_s      == @nitem.os.to_s
 			return true unless @oitem.status.to_s  == @nitem.status.to_s
 			return false
 		end
