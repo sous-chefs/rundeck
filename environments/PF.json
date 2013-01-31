@@ -11,7 +11,7 @@
         "wt_base": "= 1.0.3", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 1.0.0", 
-        "wt_publishver": "= 0.1.2", 
+        "wt_publishver": "= 0.2.0", 
         "wt_storm": "= 1.0.20", 
         "wt_streamingapi": "= 0.0.16", 
         "wt_streamingauditor": "= 0.0.7", 

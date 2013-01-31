@@ -5,7 +5,7 @@
         "wt_base": "= 1.0.3", 
         "wt_cam": "= 1.0.9", 
         "wt_monitoring": "= 1.0.0", 
-        "wt_publishver": "= 0.1.2", 
+        "wt_publishver": "= 0.2.0", 
         "wt_search": "= 1.0.10", 
         "wt_sync": "= 1.0.6"
     }, 
@@ -42,6 +42,9 @@
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
             }, 
             "thrift_port": 9090
+        }, 
+        "importer": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt262/.lastSuccessful/XD.zip"
         }, 
         "java": {
             "install_flavor": "oracle", 
@@ -152,9 +155,9 @@
         }, 
         "wt_actioncenter": {
             "importer": {
-                "download_url":""
+                "download_url": ""
             }
-        },
+        }, 
         "wt_analytics_ui": {
             "android_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "app_pool_private_memory": 2097152, 
@@ -184,7 +187,6 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "tech_support_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
@@ -198,6 +200,7 @@
             "log_dir_windows": "", 
             "pod_id": "J", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
+            "tech_support_email": "Eng-TestEnvironment@webtrends.corp", 
             "velocitycache_hosts": [
                 {
                     "name": "jdxweb01.englab.webtrends.corp", 
@@ -241,14 +244,12 @@
         "wt_netacuity": {
             "geo_url": "localhost"
         }, 
-        "wt_platformscheduler":
-        {
-            "host":"jsched01",
-            "agent":
-            {
-                "download_url":"http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/WebTrendsVDMSchedulerAgent.msi"
-            }
-        },
+        "wt_platformscheduler": {
+            "agent": {
+                "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/WebTrendsVDMSchedulerAgent.msi"
+            }, 
+            "host": "jsched01"
+        }, 
         "wt_rta": {
             "rta_host": "jrta01.englab.webtrends.corp"
         }, 
@@ -274,9 +275,6 @@
         "wt_xd": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/09122012/XD_Map_Reduce_master_1.0.0-SNAPSHOT.102_artifacts.zip", 
             "environment": "support-staging"
-        },
-        "importer":{
-                "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt262/.lastSuccessful/XD.zip"
         }, 
         "zookeeper": {
             "client_port": 2181, 

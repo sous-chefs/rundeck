@@ -7,7 +7,7 @@
         "webtrends_server": "= 1.8.11", 
         "windows": "= 1.6.0", 
         "wt_base": "= 1.0.2", 
-        "wt_publishver": "= 0.1.2"
+        "wt_publishver": "= 0.2.0"
     }, 
     "default_attributes": {
         "authorization": {
