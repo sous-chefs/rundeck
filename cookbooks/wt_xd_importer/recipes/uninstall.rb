@@ -1,4 +1,4 @@
-# Cookbook Name:: wt_xd
+# Cookbook Name:: wt_xd_importer
 # Recipe:: uninstall
 # Author:: Kendrick Martin
 #
@@ -8,7 +8,7 @@
 # This recipe uninstalls existing Search Service installs
 
 # destinations
-install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_xd']['importer']['install_dir']).gsub(/[\\\/]+/,"\\")
+install_dir = File.join(node['wt_common']['install_dir_windows'], node['wt_xd_importer']['install_dir']).gsub(/[\\\/]+/,"\\")
 log_dir = node['wt_common']['install_dir_windows']
 
 
@@ -18,18 +18,18 @@ if (install_dir =~ /^(\w:)\\.*$/)
 end
 
 execute "Uninstall retrieval service" do
-	command "#{install_dir}\\#{node['wt_xd']['retrieval']['service_binary']} --uninstall"
+	command "#{install_dir}\\#{node['wt_xd_importer']['retrieval']['service_binary']} --uninstall"
 	ignore_failure true
 end
 
 execute "Uninstall storage service" do
-	command "#{install_dir}\\#{node['wt_xd']['storage']['service_binary']} --uninstall"
+	command "#{install_dir}\\#{node['wt_xd_importer']['storage']['service_binary']} --uninstall"
 	ignore_failure true
 end
 
 # DM: doesn't make sense to do this as agent is already removed along with configuration. It will just cause refresh to wait till timeout
 #execute "Unregister from scheduler agent" do
-#	command "#{install_dir}\\#{node['wt_xd']['refresh']['binary']} --uninstall"
+#	command "#{install_dir}\\#{node['wt_xd_importer']['refresh']['binary']} --uninstall"
 #	ignore_failure true
 #	returns 21
 #end
