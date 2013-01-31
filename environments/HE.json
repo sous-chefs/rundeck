@@ -11,7 +11,7 @@
         "webtrends_server": "= 1.8.9", 
         "wt_base": "= 1.0.3", 
         "wt_heatmaps": "= 0.10.45", 
-        "wt_publishver": "= 0.1.2", 
+        "wt_publishver": "= 0.2.0", 
         "zookeeper": "= 0.0.1"
     }, 
     "default_attributes": {}, 

@@ -6,7 +6,7 @@
         "webtrends_server": "= 1.8.12", 
         "wt_base": "= 1.0.3", 
         "wt_edge_server": "= 1.0.0", 
-        "wt_publishver": "= 0.1.2", 
+        "wt_publishver": "= 0.2.0", 
         "wt_streamingcollection": "= 1.1.5", 
         "zookeeper": "= 1.1.6"
     }, 
