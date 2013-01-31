@@ -12,7 +12,7 @@
         "webtrends_server": "= 1.8.12", 
         "windows": "= 1.6.0", 
         "wt_base": "= 1.0.3", 
-        "wt_publishver": "= 0.1.2", 
+        "wt_publishver": "= 0.2.0", 
         "zookeeper": "= 1.1.4"
     }, 
     "default_attributes": {

@@ -71,7 +71,6 @@
         "hive": {}, 
         "java": {
             "install_flavor": "oracle", 
-            "jdk_version": "7",
             "jdk": {
                 "6": {
                     "x86_64": {
@@ -85,7 +84,8 @@
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
-            }
+            }, 
+            "jdk_version": "7"
         }, 
         "kafka": {
             "chroot_suffix": "brokers", 
