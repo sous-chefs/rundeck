@@ -60,6 +60,12 @@ node['roles'].each do |r|
 			download_url node['wt_devicedataupdater']['download_url']
 			key_file     win_path(wdir, node['wt_devicedataupdater']['install_dir'], 'DDU.exe')
 		end
+	when 'wt_edge_server'
+		log "publishing #{r}"
+		wt_publishver 'Edge Server' do
+			download_url node['wt_edge_server']['download_url']
+			key_file     File.join(ldir, 'edge_server/lib/webtrends-edge-server-module-rcs.jar')
+		end
 	when 'wt_kafka_topagg'
 		log "publishing #{r}"
 		wt_publishver 'Kafka Top Aggregator' do
@@ -131,6 +137,12 @@ node['roles'].each do |r|
 		wt_publishver 'Streaming Auditor' do
 			download_url node['wt_streamingauditor']['download_url']
 			key_file     File.join(ldir, 'streamingauditor/lib/webtrends-auditing-master-*')  
+		end
+	when 'wt_streaming_collection_server'
+		log "publishing #{r}"
+		wt_publishver 'Streaming Collection' do
+			download_url node['wt_streamingcollection']['download_url']
+			key_file     File.join(ldir, 'streamingcollection/lib/webtrends-streamingcollection.jar')
 		end
 	when 'wt_streaming_configservice'
 		log "publishing #{r}"
