@@ -10,7 +10,7 @@
 
 action :deploy_prereqs do
 
-	%w{ PodDetails.ps1 Functions.ps1 }.each do |ps|
+	%w{ PodDetails.ps1 PodDetailsLib.ps1 }.each do |ps|
 		cookbook_file "#{Chef::Config[:file_cache_path]}\\#{ps}" do
 			source ps
 			action :create
