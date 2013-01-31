@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 	
+	All changes in the local file are ignored when deploying using chef. 
+	Make sure they are duplicated in Git repo and pushed to chef server
+	http://git.webtrends.corp/git/chef-repo.git/
+	chef-repo\cookbooks\wt_xd\templates\windows\Webtrends.ExternalData.Refresh.exe.config.erb
+-->
+<configuration>
+  <configSections>
+    <section name="plugins" type="Webtrends.ExternalData.Configuration.PluginConfigurationSection, Webtrends.ExternalData" />
+    <section name="CassandraCluster" type="Webtrends.Cassandra.Core.CassandraClusterConfigSection, Webtrends.Cassandra.Core" />
+    <section name="HBaseConfig" type="Webtrends.HBase.Core.HBaseConfigSection, Webtrends.HBase.Core" />
+  </configSections>
+  <HBaseConfig HBaseLocation="<%= @hbase_location %>" 
+               DataCenterId="<%= @hbase_data_center_id %>"
+               PodId="<%= @hbase_pod_id %>" 
+	       ThriftPort="<%= @hbase_thrift_port %>" />
+  <!-- Start Cassandra settings -->
+    <CassandraCluster KeySpace="Webtrends" 
+                      ReportColumnFamily="<%= @report_column %>"
+		      MetaDataColumnFamily="<%= @metadata_column %>" 
+ 		      SnmpPort="1161" 
+		      ThriftPort="<%= @thrift_port %>" 
+		      UseLegacy="false">
+    <Nodes>
+      <clear />
+      <add Hostname="<%= @cass_host %>" />
+    </Nodes>
+  </CassandraCluster>
+  <appSettings>
+    <add key="FacebookMinDaysPast" value="4" />
+    <add key="YouTubeMinDaysPast" value="4" />
+    <add key="max3rdPartyErrorMessageLength" value="350" />
+    <add key="YouTubeProfileUri" value="https://www.youtube.com/profile" />
+    <add key="YouTubeGoogleBaseLoginUri" value="https://accounts.google.com/ServiceLogin?uilel=3&amp;service=youtube&amp;passive=true&amp;continue=http%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26feature%3Dprofile%26nomobiletemp%3D1%26hl%3Den_US%26next%3D%252Fprofile&amp;hl=en_US&amp;ltmpl=sso" />
+    <add key="YouTubeArtworkPath" value="//span[@class='profile-thumb']//img" />
+    <add key="ChannelNamePath" value="//link[@rel='canonical']" />
+    <add key="ApiVideoFeedBaseUri" value="https://gdata.youtube.com/feeds/api/videos?author=_YOUTUBE_AUTHOR&amp;orderby=published&amp;start-index=1&amp;max-results=_MAX_RESULTS&amp;v=2&amp;alt=json" />
+    <add key="YouTubeReports" value="{    'reports': [        {            'dim': 'DAY',            'ord': 'DAY',            'id': 'YouTubeEngagement',            'whatType': 'VIDEO'        },        {            'dim': 'DAY',            'ord': 'DAY',            'id': 'YouTubeEarnings',            'whatType': 'VIDEO'        },        {            'dim': 'COUNTRY',            'ord': 'VIEWS',            'id': 'YouTubeVideosByCountries',            'whatType': 'VIDEO'        },        {            'dim': 'PLAYBACK_LOCATION',            'ord': 'VIEWS',            'id': 'YouTubeVideosByPlaybackLocations',            'whatType': 'VIDEO'        },        {            'dim': 'PLAYBACK_LOCATION',            'ord': 'VIEWS',            'id': 'YouTubePlaybackLocations',            'whatType': 'USER'        },        {            'dim': 'SHARING_SERVICE',            'ord': 'SHARINGS',            'id': 'SharingServiceReport',            'whatType': 'VIDEO'        },        {            'dim': 'TRAFFIC_SOURCE',            'ord': 'VIEWS',            'id': 'YouTubeVideosByTrafficSources',            'whatType': 'VIDEO'        },        {            'dim': 'TRAFFIC_SOURCE',            'ord': 'VIEWS',            'id': 'YouTubeTrafficSources',            'whatType': 'USER'        },        {            'dim': 'COUNTRY',            'ord': 'SUBSCRIBERS_NET_CHANGE',            'id': 'YouTubeCountries',            'whatType': 'USER'        }    ]}" />
+    <add key="YouTubeReportMapping" value="{    'mappings': [        {            'sourceData': 'YouTubeEarnings',            'columns': [                'Views',                'Unique Viewers',                'Monetizable Views',                'Total Estimated Earnings',                'AFV Earnings',                'YouTube Earnings',                'YouTube Rental Earnings'            ],            'wtReportId': 'YouTubeEarnings',            'measureType': 'periodic',            'type': 'video'        },        {            'sourceData': 'YouTubeVideosByTrafficSources',            'columns': [                'Views'            ],            'wtReportId': 'YouTubeVideosByTrafficSources',            'measureType': 'dimensional',            'type': 'video'        },        {            'sourceData': 'YouTubeVideosByCountries',            'columns': [                'Views'            ],            'wtReportId': 'YouTubeVideosByCountries',            'measureType': 'dimensional',            'type': 'video'        },        {            'sourceData': 'YouTubeVideosByPlaybackLocations',            'columns': [                'Views'            ],            'wtReportId': 'YouTubeVideosByPlaybackLocations',            'measureType': 'dimensional',            'type': 'video'        },        {            'sourceData': 'YouTubeEngagement',            'columns': [                'Views',                'Unique Viewers',                'Subscribers Gained',                'Subscribers Lost',                'Likes',                'Dislikes',                'Favorites Added',                'Favorites Removed',                'Comments',                'Shares',                'Total Engagement'            ],            'wtReportId': 'YouTubeEngagement',            'measureType': 'periodic',            'type': 'video'        },        {            'sourceData': 'YouTubeCountries',            'columns': [                'Views',                'Subscribers Gained',                'Subscribers Lost',                'Likes',                'Dislikes',                'Favorites Added',                'Favorites Removed',                'Comments',                'Shares',                'Total Engagement'            ],            'wtReportId': 'YouTubeCountries',            'measureType': 'dimension',            'type': 'user'        },        {            'sourceData': 'YouTubeTrafficSources',            'columns': [                'Views'            ],            'wtReportId': 'YouTubeTrafficSources',            'measureType': 'dimension',            'type': 'user'        },        {            'sourceData': 'YouTubePlaybackLocations',            'columns': [                'Views'            ],            'wtReportId': 'YouTubePlaybackLocations',            'measureType': 'dimension',            'type': 'user'        }    ]}" />
+    <add key="FBCommentsPerRequest" value="1000" />
+    <add key="FBMaxComments" value="2000" />
+    <add key="HBaseLocation" value="<%= @hbase_location %>" />
+  </appSettings>
+ <connectionStrings>
+    <add name="wtMasterConnection" 
+         connectionString="Data Source=<%= @master_host %>;Initial Catalog=wtMaster;Integrated Security=True;Application Name=Webtrends.ExternalData.Refresh;Connect Timeout=300"
+         providerName="System.Data.SqlClient" />
+  </connectionStrings>
+ <!-- Start of Plugin Directory settings-->
+  <plugins>
+    <pluginDirectories>
+      <add Directory="." />
+    </pluginDirectories>
+  </plugins>
+
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
+  </startup>
+</configuration>
