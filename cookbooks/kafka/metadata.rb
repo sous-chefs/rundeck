@@ -26,10 +26,9 @@ attribute "kafka/home_dir",
   :default => "/usr/share/kafka"
 
 attribute "kafka/mount",
-  :display_name => "Kafka mount"
+  :display_name => "Kafka mount",
   :description => "Optional share to mount to the data directory",
   :default => nil
-
 
 attribute "kafka/data_dir",
   :display_name => "Kafka Log Directory",
