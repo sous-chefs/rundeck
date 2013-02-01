@@ -90,11 +90,29 @@ node['roles'].each do |r|
 			download_url node['wt_portfolio_admin']['download_url']
 			key_file     win_path(wdir, 'Webtrends.Portfolio.Admin/bin/Webtrends.Portfolio.Admin.dll')
 		end
+	when 'wt_portfolio_edgeservice'
+		log "publishing #{r}"
+		wt_publishver 'Portfolio Edge Service' do
+			download_url node['wt_portfolio_edgeservice']['download_url']
+			key_file     File.join(ldir, 'edgeservice/lib/webtrends-portfolio-edge-service-*')
+		end
+	when 'wt_portfolio_edge_stream_api'
+		log "publishing #{r}"
+		wt_publishver 'Portfolio Edge API' do
+			download_url node['wt_portfolio_edge_stream_api']['download_url']
+			key_file     File.join(ldir, 'edgeservice/modules/stream_api/webtrends-stream-edge-api-*')
+		end
 	when 'wt_portfolio_manager'
 		log "publishing #{r}"
 		wt_publishver 'Portfolio Manager' do
 			download_url node['wt_portfolio_manager']['download_url']
 			key_file     win_path(wdir, 'Webtrends.Portfolio.Manager/bin/Webtrends.PortfolioManager.dll')
+		end
+	when 'wt_portfolio_router'
+		log "publishing #{r}"
+		wt_publishver 'Portfolio Router' do
+			download_url node['wt_portfolio_router']['download_url']
+			key_file     File.join(ldir, 'router/lib/webtrends-portfolio-router-*')
 		end
 	when 'wt_roadrunner'
 		log "publishing #{r}"
@@ -136,7 +154,7 @@ node['roles'].each do |r|
 		log "publishing #{r}"
 		wt_publishver 'Streaming Auditor' do
 			download_url node['wt_streamingauditor']['download_url']
-			key_file     File.join(ldir, 'streamingauditor/lib/webtrends-auditing-master-*')  
+			key_file     File.join(ldir, 'streamingauditor/lib/webtrends-auditing-*')  
 		end
 	when 'wt_streaming_collection_server'
 		log "publishing #{r}"
@@ -161,6 +179,12 @@ node['roles'].each do |r|
 		wt_publishver 'Streaming Management Service' do
 			download_url node['wt_streamingmanagementservice']['download_url']
 			key_file     File.join(ldir, 'streamingmanagementservice/lib/webtrends-streaming-managementservice.jar')
+		end
+	when 'wt_stream_processor'
+		log "publishing #{r}"
+		wt_publishver 'Streaming Processor' do
+			download_url node['wt_stream_processor']['download_url']
+			key_file     File.join(ldir, 'streamprocessor/lib/webtrends-stream-processor-*')
 		end
 	when 'wt_streaming_viz'
 		log "publishing #{r}"
