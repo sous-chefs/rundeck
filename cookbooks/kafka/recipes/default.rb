@@ -37,6 +37,14 @@ end
 log "Broker id: #{node[:kafka][:broker_id]}"
 log "Broker name: #{node[:kafka][:broker_host_name]}"
 
+#Mount a drive if necessary
+if !node[:kafka][:data_mount].nil? 
+  mount node[:kafka][:data_dir] do
+    device node[:kafka][:data_mount]
+    fstype "ext4"
+  end
+end
+
 # == Users
 
 # setup kafka group
@@ -55,7 +63,7 @@ end
 # create the install directory
 install_dir = node[:kafka][:install_dir]
 
-directory "#{install_dir}" do
+directory install_dir do
   owner "root"
   group "root"
   mode 00755
