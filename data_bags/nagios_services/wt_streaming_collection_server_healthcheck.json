@@ -1,5 +1,5 @@
 {
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_healthcheck_page", 
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_scs_healthcheck_page", 
     "hostgroup_name": "wt_streaming_collection_server", 
     "id": "wt_streaming_collection_server_healthcheck"
 }
