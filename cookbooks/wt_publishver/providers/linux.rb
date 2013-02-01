@@ -125,6 +125,7 @@ action :update do
 	if pub.changed?
 		puts "\nPod Details: BEFORE\n"
 		puts pub.oitem.formatted
+		printf("\n%-7s : %s\n", 'KeyFile', key_file)
 		pub.sp_update
 		puts "\nPod Details: AFTER\n"
 		puts ( ::WtPublishver::PublisherItem.new pub.sp_query.first ).formatted
