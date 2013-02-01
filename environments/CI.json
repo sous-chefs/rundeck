@@ -1,8 +1,6 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "wt_publishver": "= 0.2.0", 
-        "wt_storm_streaming": "2.3.5"
     }, 
     "default_attributes": {
         "authorization": {
@@ -37,6 +35,7 @@
         "hive": {}, 
         "java": {
             "install_flavor": "oracle", 
+            "jdk_version" : "7",
             "jdk": {
                 "6": {
                     "x86_64": {
@@ -90,7 +89,7 @@
         }, 
         "storm": {
             "download_url": "http://repo.staging.dmz/repo/linux/storm", 
-            "version": "0.8.0"
+            "version": "0.8.2"
         }, 
         "vc2010": {
             "x64": {
@@ -164,7 +163,7 @@
             "install_log_dir_linux": "/var/log/webtrends/install", 
             "install_log_dir_windows": "d:\\logs", 
             "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "ldap_host": "hldap01.staging.dmz", 
+            "ldap_host": "cildap01.staging.dmz", 
             "ldap_port": "636", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
@@ -219,10 +218,6 @@
             "portmgr_group_admin": "H.PortMgr.Admins", 
             "portmgr_group_user": "H.PortMgr.Users", 
             "portmgr_injected_user": "toby.mosby@webtrends.com"
-        }, 
-        "wt_realtime_hadoop": {
-            "datacenter": "Lab", 
-            "pod": "CI"
         }, 
         "wt_rta": {}, 
         "wt_sauth": {
