@@ -3,7 +3,7 @@ maintainer_email  "ivan.vonnagy@webtrends.com"
 license           "Apache 2.0"
 description       "Intalls and configures a Kafka broker"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "1.0.20"
+version           "1.0.21"
 
 depends           "java"
 depends           "runit"
@@ -24,6 +24,12 @@ attribute "kafka/home_dir",
   :display_name => "Kafka Home Directory",
   :description => "Location for Kafka to be located.",
   :default => "/usr/share/kafka"
+
+attribute "kafka/mount",
+  :display_name => "Kafka mount"
+  :description => "Optional share to mount to the data directory",
+  :default => nil
+
 
 attribute "kafka/data_dir",
   :display_name => "Kafka Log Directory",
