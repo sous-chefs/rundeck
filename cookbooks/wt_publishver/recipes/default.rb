@@ -66,6 +66,12 @@ node['roles'].each do |r|
 			download_url node['wt_edge_server']['download_url']
 			key_file     File.join(ldir, 'edge_server/lib/webtrends-edge-server-module-rcs.jar')
 		end
+	when 'wt_hdfslogdata_producer'
+		log "publishing #{r}"
+		wt_publishver 'HDFS Log Data Producer' do
+			download_url node['wt_hdfslogdata_producer']['download_url']
+			key_file     File.join(ldir, 'hdfslogdata_producer/lib/webtrends-visitoranalytics-hdfslogproducer-*')
+		end
 	when 'wt_kafka_topagg'
 		log "publishing #{r}"
 		wt_publishver 'Kafka Top Aggregator' do
