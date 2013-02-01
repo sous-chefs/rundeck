@@ -7,8 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# old ubuntu platforms are not supported
-if node['platform_family'] == 'debian' && node['platform_version'].to_i < 12
+# centos is untested
+if node['platform_family'] == 'rhel'
 	log("#{cookbook_name}: unsupported platform: #{node['platform_family']} #{node['platform_version']}") { level :warn }
 	return
 end
