@@ -172,7 +172,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page for RCS
   nagios_nrpecheck "wt_edge_healthcheck_page" do
    command "#{node['nagios']['plugin_dir']}/check_http"
-   parameters "-H #{node['fqdn']} -u /healthcheck -p 8081 -r \"\\\"name\\\":\\\"RCS\\\",\\\"core_services\\\":true,\\\"all_services\\\":true\\\"\""
+   parameters "-H #{node['fqdn']} -u /healthcheck -p 8081 -r \"\\\"name\\\":\\\"RCS\\\",\\\"core_services\\\":true,\\\"all_services\\\":true\""
    action :add
   end
   #Create a nagios nrpe check for the log file
