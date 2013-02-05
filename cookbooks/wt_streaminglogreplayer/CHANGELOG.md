@@ -1,3 +1,6 @@
+## 1.1.5
+* Adding config cache directory.
+
 ## 1.1.4
 * Fixed Nagios regular expression to be ignore whitespace
 

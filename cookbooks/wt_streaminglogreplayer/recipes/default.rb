@@ -68,6 +68,15 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
+# create the conf directory
+directory "#{install_dir}/conf-cache" do
+  owner "webtrends"
+  group "webtrends"
+  mode 00755
+  recursive true
+  action :create
+end
+
 # create the share mount dir
 directory node['wt_streaminglogreplayer']['share_mount_dir'] do
   action :create
