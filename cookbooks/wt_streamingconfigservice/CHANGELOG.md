@@ -1,3 +1,6 @@
+## 1.0.10
+* STR-906 - updated database blocks, removed duplicate component-specific entries
+
 ## 1.0.9
 * Fixed Nagios regular expression to be ignore whitespace
 
