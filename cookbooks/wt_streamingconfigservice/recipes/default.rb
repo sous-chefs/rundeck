@@ -29,10 +29,10 @@ java_opts    = node['wt_streamingconfigservice']['java_opts']
 
 # grab the users and passwords from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
-camdbuser  = auth_data['wt_streamingconfigservice']['camdbuser']
-camdbpwd = auth_data['wt_streamingconfigservice']['camdbpwd']
-masterdbuser = auth_data['wt_streamingconfigservice']['masterdbuser']
-masterdbpwd = auth_data['wt_streamingconfigservice']['masterdbpwd']
+camdbuser  = auth_data['wt_cam_db']['db_user']
+camdbpwd = auth_data['wt_cam_db']['db_pwd']
+masterdbuser = auth_data['wt_master_db']['db_user']
+masterdbpwd = auth_data['wt_master_db']['db_pwd']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -155,8 +155,8 @@ template "#{install_dir}/conf/config.properties" do
   mode  00640
   variables({
     :port => node['wt_streamingconfigservice']['port'],
-    :camdbserver => node['wt_streamingconfigservice']['camdbserver'],
-    :camdbname => node['wt_streamingconfigservice']['camdbname'],
+    :camdbserver => node['wt_cam_db']['db_server'],
+    :camdbname => node['wt_cam_db']['db_name'],
     :camdbuser => camdbuser,
     :camdbpwd => camdbpwd,
     :masterdbserver => node['wt_masterdb']['host'],
