@@ -31,7 +31,7 @@
         "wt_streamingapi": "= 1.1.5", 
         "wt_streamingauditor": "= 1.0.10", 
         "wt_streamingconfigservice": "= 1.0.7", 
-        "wt_streaminglogreplayer": "= 1.1.2", 
+        "wt_streaminglogreplayer": "= 1.1.5", 
         "wt_streamingmanagementservice": "= 1.0.4", 
         "zookeeper": "= 1.2.3"
     }, 
@@ -346,7 +346,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streaminglogreplayer": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/50267:id/webtrends-streaminglogreplayer-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/50270:id/webtrends-streaminglogreplayer-bin.tar.gz", 
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay", 
             "thread_pool_size": 200
         }, 
