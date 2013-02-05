@@ -69,7 +69,7 @@ directory "#{install_dir}/conf" do
 end
 
 # create the conf directory
-directory "#{install_dir}/conf-cache" do
+directory "#{install_dir}/conf/cache" do
   owner "webtrends"
   group "webtrends"
   mode 00755
