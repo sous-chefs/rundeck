@@ -38,11 +38,31 @@ log "Broker id: #{node[:kafka][:broker_id]}"
 log "Broker name: #{node[:kafka][:broker_host_name]}"
 
 #Mount a drive if necessary
-if !node[:kafka][:data_mount].nil? 
+if !node[:kafka][:data_mount].nil?  
+  if !node[:kafka][:mount_formatted]
+    execute "PartitionDisk"
+      command "parted -s /dev/sdb -- mklabel gpt mkpart primary ext4 2048s -0"
+    end
+
+    execute "FormatDisk"
+      command "mkfs.ext3 /dev/sdb1"
+    end
+  end
+  #Sets node attribute to make sure we're not formatting disks more then once
+  ruby_block "set disk formatted flag" do
+    block do
+      node['kafka']['mount_formatted'] = true
+    end
+    subscribes :create, resources(:execute => "FormatDisk")
+    action :nothing
+  end
+
+  #Mounts share
   mount node[:kafka][:data_dir] do
     device node[:kafka][:data_mount]
     fstype "ext4"
   end
+
 end
 
 # == Users
