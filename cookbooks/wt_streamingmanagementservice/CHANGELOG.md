@@ -1,3 +1,6 @@
+## 1.0.7 
+* STR-906 - Replaced component-specific db attributes with common db-specific entries
+
 ## 1.0.6
 * Fixed Nagios regular expression to be ignore whitespace
 

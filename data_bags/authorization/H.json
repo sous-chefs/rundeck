@@ -35,30 +35,20 @@
         "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
         "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
     }, 
-    "wt_streamingapi": {
-        "usagedbpwd": "bijoux", 
-        "usagedbuser": "wtUI"
-    }, 
     "wt_streamingauditor": {
         "client_id": "8BFF54F85A85413C915AC5EF61C9B851", 
         "client_secret": "C027E291A87E480D9069853823EFEB23"
     }, 
-    "wt_streamingconfigservice": {
-        "camdbpwd": "bijoux", 
-        "camdbuser": "wtUI", 
-        "masterdbpwd": "v87m-Rhv8TMogJ_j", 
-        "masterdbuser": "ConfigSvc"
-    }, 
-    "wt_streamingmanagementservice": {
-        "db_pwd": "bijoux", 
-        "db_user": "wtUI"
+    "wt_cam_db": {
+        "db_user": "bijoux",
+        "db_pwd": "wtUI"
     },
-    "wt_stream_processor": {
-        "usagedbpwd": "bijoux", 
-        "usagedbuser": "wtUI"
+    "wt_streaming_usage_db": {
+        "db_user": "bijoux",
+        "db_pwd": "wtUI"
     },
-    "wt_portfolio_edgeservice": {
-        "usagedbpwd": "bijoux", 
-        "usagedbuser": "wtUI"
-    }
+    "wt_master_db": {
+        "db_pwd": "v87m-Rhv8TMogJ_j",
+        "db_user": "ConfigSvc"
+    } 
 }

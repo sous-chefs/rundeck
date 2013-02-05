@@ -1,3 +1,6 @@
+## 1.2.4
+* Updated usage db references to use common block (STR-906)
+
 ## 1.2.3
 * Pulled out jar verison check and created wt_base recipe
 
