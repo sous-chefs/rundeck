@@ -218,6 +218,11 @@
             "portmgr_group_admin": "H.PortMgr.Admins", 
             "portmgr_group_user": "H.PortMgr.Users", 
             "portmgr_injected_user": "toby.mosby@webtrends.com"
+        },  
+        "wt_realtime_hadoop": {
+            "datacenter": "Lab", 
+            "environment": "support-staging", 
+            "pod": "CI"
         }, 
         "wt_rta": {}, 
         "wt_sauth": {
