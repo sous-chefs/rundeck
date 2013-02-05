@@ -24,7 +24,7 @@
         "wt_publishver": "= 0.2.0", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.4", 
-        "wt_storm_streaming": "= 2.4.1", 
+        "wt_storm_streaming": "= 2.4.2", 
         "wt_stream_processor": "= 1.0.0", 
         "wt_streaming_viz": "= 1.1.18", 
         "wt_streaminganalysis_monitor": "= 1.0.2", 
@@ -282,7 +282,7 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/50284:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/50341:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
