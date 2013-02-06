@@ -40,12 +40,12 @@
         "client_secret": "C027E291A87E480D9069853823EFEB23"
     }, 
     "wt_cam_db": {
-        "db_user": "bijoux",
-        "db_pwd": "wtUI"
+        "db_pwd": "bijoux",
+        "db_user": "wtUI"
     },
     "wt_streaming_usage_db": {
-        "db_user": "bijoux",
-        "db_pwd": "wtUI"
+        "db_pwd": "bijoux",
+        "db_user": "wtUI"
     },
     "wt_master_db": {
         "db_pwd": "v87m-Rhv8TMogJ_j",
