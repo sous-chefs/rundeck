@@ -130,7 +130,7 @@ if ENV["deploy_build"] == "true" then
     commons-httpclient-3.1.jar
     commons-math-2.1.jar
     commons-net-1.4.1.jar
-    curator-framework-1.0.1.jar
+    curator-framework-1.0.3.jar
     curator-recipes-1.1.10.jar
     fastutil-6.4.4.jar
     groovy-all-1.7.6.jar
