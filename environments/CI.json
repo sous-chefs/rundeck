@@ -199,10 +199,8 @@
             "metric_prefix": "staging.cipod.servers", 
             "monitoring_enabled": "true"
         }, 
-        "wt_netacuity": {
-            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_460_x86_64.tgz", 
-            "geo_url": "ciutil01.staging.dmz", 
-            "version": "460"
+        "wt_netacuity": { 
+            "geo_url": "sgeo.staging.dmz"
         }, 
         "wt_portfolio_admin": {
             "account_ui_url": "https://haccount.webtrends.com", 
