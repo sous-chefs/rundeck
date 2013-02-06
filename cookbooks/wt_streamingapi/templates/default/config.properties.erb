@@ -31,6 +31,8 @@ monitoring.graphite.host=<%= node[:wt_monitoring][:graphite_server] %>
 monitoring.graphite.port=<%= node[:wt_monitoring][:graphite_port] %>
 # How often (minutes) should we flush metrics to graphite
 monitoring.graphite.interval=<%= node[:wt_streamingapi][:graphite_interval] %>
+# Should we include the JVM metrics when sending to graphite
+monitoring.graphite.vmmetrics=<%= node[:wt_streamingapi][:graphite_vmmetrics] %>
 # This is a regular expression for which metrics should be sent on to graphite. All metrics are still exposed via JMX or the metrics endpoint
 monitoring.graphite.regex=<%= node[:wt_streamingapi][:graphite_regex] %>
 
