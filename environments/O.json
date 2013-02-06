@@ -233,11 +233,11 @@
             "edge_kafka_sources": [
                 {
                     "host": "hagg01.staging.dmz", 
-                    "topic": "Lab_H_scsRawHits:20"
+                    "topic": "Lab_H_scsRawHits:6"
                 }, 
                 {
                     "host": "hagg02.staging.dmz", 
-                    "topic": "Lab_H_scsRawHits:20"
+                    "topic": "Lab_H_scsRawHits:6"
                 }, 
                 {
                     "host": "lasagg03v.netiq.dmz", 
