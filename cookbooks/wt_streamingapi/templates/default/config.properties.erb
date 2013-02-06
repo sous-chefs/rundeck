@@ -14,6 +14,31 @@ webtrends.cam.blacklist=%%baseUrl%%/product/sapi/blacklist
 
 usageConnString=jdbc:sqlserver://<%= @usagedbserver %>:1433;databaseName=<%= @usagedbname %>;user=<%= @usagedbuser %>;password=<%= @usagedbpwd %>;
 
+# are we monitoring at all
+monitoring.enabled = <%= node[:wt_monitoring][:monitoring_enabled] %>
+# should we publish to jmx
+monitoring.jmx.enabled = <%= node[:wt_monitoring][:jmx_enabled] %>
+# The JMX port
+monitoring.jmx.port =<%= node[:wt_streamingapi][:jmx_port] %>
+# the prefix to append metrics being sent to graphite
+monitoring.metric.prefix = <%= node[:wt_monitoring][:metric_prefix] %>
+
+# Should we push metrics to graphite
+monitoring.graphite.enabled=<%= node[:wt_streamingapi][:graphite_enabled] %>
+# What is the host of graphite
+monitoring.graphite.host=<%= node[:wt_monitoring][:graphite_server] %>
+# What port is graphite listening on
+monitoring.graphite.port=<%= node[:wt_monitoring][:graphite_port] %>
+# How often (minutes) should we flush metrics to graphite
+monitoring.graphite.interval=<%= node[:wt_streamingapi][:graphite_interval] %>
+# This is a regular expression for which metrics should be sent on to graphite. All metrics are still exposed via JMX or the metrics endpoint
+monitoring.graphite.regex=<%= node[:wt_streamingapi][:graphite_regex] %>
+
+# Are health checks enabled
+healthcheck.enabled=<%= node['wt_monitoring']['healthcheck_enabled'] %>
+# This is for future use for having health checks bound to an alternative port
+healthcheck.port=<%= node['wt_monitoring']['healthcheck_port'] %>
+
 # Used for zmq connectivity
 datacenter=<%= @datacenter %>
 pod=<%= @pod %>
