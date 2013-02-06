@@ -334,7 +334,7 @@
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/50355:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
-            "sapi_service_url": "ws://hsapi01.staging.dmz:8080", 
+            "sapi_service_url": "ws://hsapi01.staging.dmz:8080"
         }, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/45791:id/webtrends-streamingauditor-bin.tar.gz", 
