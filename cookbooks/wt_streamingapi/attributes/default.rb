@@ -16,6 +16,7 @@ default['wt_streamingapi']['jar']                       = "webtrends-streamingap
 default['wt_streamingapi']['jmx_port']                  = 9999
 default['wt_streamingapi']['graphite_enabled'] = "true"
 default['wt_streamingapi']['graphite_interval'] = 5
+default['wt_streamingapi']['graphite_vmmetrics'] = "true"
 default['wt_streamingapi']['graphite_regex'] = ""
 default['wt_streamingapi']['writeBufferHighWaterMark'] = 1048576
 default['wt_streamingapi']['log_dir'] = "/var/log/webtrends/streamingapi"
