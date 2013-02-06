@@ -13,7 +13,7 @@
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.12", 
         "windows": "= 1.7.0", 
-        "wt_base": "= 1.0.3", 
+        "wt_base": "= 1.0.4", 
         "wt_cam": "= 1.1.7", 
         "wt_kafka_topagg": "= 1.0.1", 
         "wt_netacuity": "= 1.0.12", 
@@ -334,7 +334,7 @@
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/50355:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
-            "sapi_service_url": "ws://hsapi01.staging.dmz:8080", 
+            "sapi_service_url": "ws://hsapi01.staging.dmz:8080" 
         }, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/45791:id/webtrends-streamingauditor-bin.tar.gz", 
