@@ -1,0 +1,16 @@
+{
+  "run_list": [
+   "recipe[postfix::default]",
+   "recipe[nagios::server]"
+  ],
+  "json_class": "Chef::Role",
+  "description": "Nagios Server",
+  "override_attributes": {
+  },
+  "env_run_lists": {
+  },
+  "name": "nagios",
+  "chef_type": "role",
+  "default_attributes": {
+  }
+}
