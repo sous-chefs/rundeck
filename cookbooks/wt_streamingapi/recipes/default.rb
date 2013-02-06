@@ -101,7 +101,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
 	usagedbserver = node['wt_streamingapi']['usagedbserver']
 	usagedbname = node['wt_streamingapi']['usagedbname']
 
-	%w[log4j.xml monitoring.properties streaming.properties netty.properties kafka.properties].each do | template_file|
+	%w[log4j.xml config.properties netty.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source    "#{template_file}.erb"
       owner "root"
@@ -117,8 +117,7 @@ def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, kafk
         :port => port,
         :wt_monitoring => node[:wt_monitoring],
         :writeBufferHighWaterMark => node['wt_streamingapi']['writeBufferHighWaterMark'],
-        :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
-
+        
         # usage db parameters
         :usagedbserver => usagedbserver,
         :usagedbname => usagedbname,
@@ -192,17 +191,6 @@ if ENV["deploy_build"] == "true" then
 
 else
   processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod, kafka_chroot_suffix, usagedbuser, usagedbpwd)
-end
-
-#Create collectd plugin for streaming api JMX objects if collectd has been applied.
-if node.attribute?("collectd")
-  template "#{node['collectd']['plugin_conf_dir']}/collectd_streamingapi.conf" do
-    source "collectd_streamingapi.conf.erb"
-    owner "root"
-    group "root"
-    mode 00644
-    notifies :restart, resources(:service => "collectd")
-  end
 end
 
 if node.attribute?("nagios")

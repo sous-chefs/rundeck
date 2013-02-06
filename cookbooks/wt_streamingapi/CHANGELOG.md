@@ -1,3 +1,6 @@
+## 1.2.4
+* Removed use of collectd for metrics and replaced with built-in monitoring. The monitoring.properties was also merged into config.properties
+
 ## 1.2.3
 * Pulled out jar verison check and created wt_base recipe
 

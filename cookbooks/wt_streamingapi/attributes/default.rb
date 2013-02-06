@@ -7,13 +7,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
-default['wt_streamingapi']['user']                     = "webtrends"
-default['wt_streamingapi']['group']                    = "webtrends"
-default['wt_streamingapi']['download_url']             = ""
-default['wt_streamingapi']['port']                     = 8080
-default['wt_streamingapi']['java_opts']                = "-Xms2048m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true"
-default['wt_streamingapi']['jar'] 					   = "webtrends-streamingapi.jar"
-default['wt_streamingapi']['jmx_port']                 = 9999
+default['wt_streamingapi']['user']                      = "webtrends"
+default['wt_streamingapi']['group']                     = "webtrends"
+default['wt_streamingapi']['download_url']              = ""
+default['wt_streamingapi']['port']                      = 8080
+default['wt_streamingapi']['java_opts']                 = "-Xms2048m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true"
+default['wt_streamingapi']['jar']                       = "webtrends-streamingapi.jar"
+default['wt_streamingapi']['jmx_port']                  = 9999
+default['wt_streamingapi']['graphite_enabled'] = "true"
+default['wt_streamingapi']['graphite_interval'] = 5
+default['wt_streamingapi']['graphite_regex'] = ""
 default['wt_streamingapi']['writeBufferHighWaterMark'] = 1048576
 default['wt_streamingapi']['usagedbserver'] = ""
 default['wt_streamingapi']['usagedbname'] = "Streaming"
