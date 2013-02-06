@@ -95,7 +95,7 @@
             "log_flush_scheduler_time_interval": "500", 
             "log_flush_time_interval": "500", 
             "log_retention_hours": "2", 
-            "num_partitions": 20, 
+            "num_partitions": 6, 
             "threads": "16", 
             "version": "0.7.1"
         }, 
@@ -298,8 +298,8 @@
                 "workers": 4
             }, 
             "topic_list": [
-                "Lab_H_scsRawHits:20", 
-                "Lab_H_lrRawHits:20"
+                "Lab_H_scsRawHits:6", 
+                "Lab_H_lrRawHits:6"
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "visitor": {
