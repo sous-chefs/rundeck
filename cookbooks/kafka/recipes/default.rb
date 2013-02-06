@@ -40,11 +40,11 @@ log "Broker name: #{node[:kafka][:broker_host_name]}"
 #Mount a drive if necessary
 if !node[:kafka][:data_mount].nil?  
   if !node[:kafka][:mount_formatted]
-    execute "PartitionDisk"
+    execute "PartitionDisk" do
       command "parted -s /dev/sdb -- mklabel gpt mkpart primary ext4 2048s -0"
     end
 
-    execute "FormatDisk"
+    execute "FormatDisk" do
       command "mkfs.ext3 /dev/sdb1"
     end
   end
