@@ -1,3 +1,6 @@
+## 2.4.2
+* Updated curator framework version to v1.0.3
+
 ## 2.4.1
 * Adding application.conf to configure the connectivity to hbase session
   history.

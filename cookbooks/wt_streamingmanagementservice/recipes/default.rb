@@ -29,10 +29,10 @@ java_opts    = node['wt_streamingmanagementservice']['java_opts']
 
 # grab the users and passwords from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
-camdbuser  = auth_data['wt_streamingmanagementservice']['db_user']
-camdbpwd = auth_data['wt_streamingmanagementservice']['db_pwd']
-streamingdbuser  = auth_data['wt_streamingapi']['usagedbuser']
-streamingdbpwd = auth_data['wt_streamingapi']['usagedbpwd']
+camdbuser  = auth_data['wt_cam_db']['db_user']
+camdbpwd = auth_data['wt_cam_db']['db_pwd']
+streamingdbuser  = auth_data['wt_streaming_usage_db']['db_user']
+streamingdbpwd = auth_data['wt_streaming_usage_db']['db_pwd']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -140,8 +140,8 @@ template "#{install_dir}/conf/config.properties" do
     :camdbuser => camdbuser,
     :camdbpwd => camdbpwd,
     :wt_monitoring => node['wt_monitoring'],
-    :streamingdbserver => node['wt_streamingapi']['usagedbserver'],
-    :streamingdbname => node['wt_streamingapi']['usagedbname'],
+    :streamingdbserver => node['wt_streaming_usage_db']['db_server'],
+    :streamingdbname => node['wt_streaming_usage_db']['db_name'],
     :streamingdbuser => streamingdbuser,
     :streamingdbpwd => streamingdbpwd,
     :healthcheck_port => node['wt_streamingmanagementservice']['healthcheck_port'],
