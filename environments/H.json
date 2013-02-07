@@ -85,9 +85,9 @@
                         "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
-                },                
+                },
+            },                
             "jdk_version" : "7"
-            }
         }, 
         "kafka": {
             "chroot_suffix": "brokers", 
