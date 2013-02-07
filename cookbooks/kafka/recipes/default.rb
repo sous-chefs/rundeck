@@ -72,15 +72,16 @@ if !node[:kafka][:data_mount].nil?
     execute "FormatDisk" do
       command "mkfs.ext4 /dev/sdb1"
     end
-  end
-  #Sets node attribute to make sure we're not formatting disks more then once
-  ruby_block "set disk formatted flag" do
-    block do
-      node.set['kafka']['mount_formatted'] = true
-      node.save #Prevents a failed run from causing this drive to be formatted more then once
+    
+    #Sets node attribute to make sure we're not formatting disks more then once
+    ruby_block "set disk formatted flag" do
+      block do
+        node.set['kafka']['mount_formatted'] = true
+        node.save #Prevents a failed run from causing this drive to be formatted more then once
+      end
+      subscribes :create, resources(:execute => "FormatDisk")
+      action :nothing
     end
-    subscribes :create, resources(:execute => "FormatDisk")
-    action :nothing
   end
 
   #Mounts share
