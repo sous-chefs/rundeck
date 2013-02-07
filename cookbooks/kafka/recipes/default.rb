@@ -85,7 +85,7 @@ if !node[:kafka][:data_mount].nil?
 
   #Mounts share
   mount node[:kafka][:data_dir] do
-    device node[:kafka][:data_mount]
+    device node[:kafka][:data_partition]
     fstype "ext4"
   end
 
