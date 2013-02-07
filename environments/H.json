@@ -292,7 +292,9 @@
         "wt_storm_streaming": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/50490:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
-            "query_bolt_tasks": 24, 
+            "query_bolt_tasks": 24,
+            "augment_bolt_executors": 48,
+            "augment_bolt_tasks": 48,
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 4
