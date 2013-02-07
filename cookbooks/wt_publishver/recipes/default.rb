@@ -36,6 +36,12 @@ wdir = node['wt_common']['install_dir_windows']
 
 node['roles'].each do |r|
 	case r
+	when 'wt_actioncenter'
+		log "publishing #{r}"
+		wt_publishver 'Action Center' do
+			download_url node['wt_actioncenter']['download_url']
+			key_file     win_path(wdir, 'Webtrends.ActionCenter/Webtrends.ActionCenterService/bin/Webtrends.ActionCenter.dll')
+		end
 	when 'wt_analytics_ui'
 		log "publishing #{r}"
 		wt_publishver 'A10 UI' do
@@ -203,6 +209,12 @@ node['roles'].each do |r|
 		wt_publishver 'Sync Service' do
 			download_url node['wt_sync']['download_url']
 			key_file     win_path(wdir, node['wt_sync']['install_dir'], 'Webtrends.SyncService.exe')
+		end
+	when 'wt_xd_importer'
+		log "publishing #{r}"
+		wt_publishver 'External Data Service' do
+			download_url node['wt_xd_importer']['download_url']
+			key_file     win_path(wdir, node['wt_xd_importer']['install_dir'], 'Webtrends.ExternalData.RetrievalService.exe')
 		end
 	when 'wt_xd_mapreduce'
 		log "publishing #{r}"
