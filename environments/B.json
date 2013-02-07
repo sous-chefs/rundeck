@@ -296,7 +296,7 @@
             "worker": {
                 "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             },
-	    "augment_bold_executors":24,
+	    "augment_bolt_executors":24,
             "augment_bolt_tasks":24
         }, 
         "wt_streaming_viz": {
