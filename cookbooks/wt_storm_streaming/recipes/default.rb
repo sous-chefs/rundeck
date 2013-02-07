@@ -264,6 +264,9 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     # executor counts, ie: executor threads
     :query_bolt_tasks => node['wt_storm_streaming']['query_bolt_tasks'],
     :query_bolt_executors => node['wt_storm_streaming']['query_bolt_executors'],
+    :augment_bolt_tasks => node['wt_storm_streaming']['augment_bolt_tasks'],
+    :augment_bolt_executors => node['wt_storm_streaming']['augment_bolt_executors'],
+
     # kafka consumer settings
     :kafka_consumer_topic       => node['wt_storm_streaming']['topic_list'].join(','),
     :kafka_consumer_group_id    => node['wt_storm_streaming']['kafka']['consumer_group_id'],

@@ -1,3 +1,6 @@
+## 2.4.3
+* Added configurable augment bolt settings
+
 ## 2.4.2
 * Updated curator framework version to v1.0.3
 
