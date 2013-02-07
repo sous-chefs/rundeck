@@ -61,5 +61,17 @@
     "wt_streamingmanagementservice": {
         "db_pwd": "bijoux", 
         "db_user": "wtUI"
+    },
+    "wt_cam_db": {
+        "db_pwd": "bijoux",
+        "db_user": "wtUI"
+    },
+    "wt_streaming_usage_db": {
+        "db_pwd": "bijoux",
+        "db_user": "wtUI"
+    },
+    "wt_master_db": {
+        "db_pwd": "v87m-Rhv8TMogJ_j"
+        "db_user": "ConfigSvc"
     }
 }
