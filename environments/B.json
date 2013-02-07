@@ -23,10 +23,10 @@
         "wt_publishver": "= 0.2.0", 
         "wt_realtime_hadoop": "= 1.0.1", 
         "wt_sauth": "= 1.1.4", 
-        "wt_storm_streaming": "= 2.3.8", 
+        "wt_storm_streaming": "= 2.4.3", 
         "wt_streaming_viz": "= 1.1.18", 
         "wt_streaminganalysis_monitor": "= 1.0.5", 
-        "wt_streamingapi": "= 1.1.5", 
+        "wt_streamingapi": "= 1.2.5", 
         "wt_streamingauditor": "= 1.0.15", 
         "wt_streamingconfigservice": "= 1.0.7", 
         "wt_streaminglogreplayer": "= 1.1.5", 
@@ -281,7 +281,7 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/47637:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/50500:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
@@ -295,7 +295,9 @@
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
                 "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
-            }
+            },
+	    "augment_bolt_executors":24,
+            "augment_bolt_tasks":24
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
@@ -312,11 +314,13 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/49574:id/webtrends-streamingapi-bin.tar.gz", 
-            "sapi_service_url": "ws://bsapi.webtrends.com", 
-            "usagedbname": "Streaming", 
-            "usagedbserver": "bcamdb01.staging.dmz"
-        }, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/50449:id/webtrends-streamingapi-bin.tar.gz", 
+            "sapi_service_url": "ws://bsapi.webtrends.com" 
+        },
+	"wt_streaming_usage_db": {
+	    "db_server":"bcamdb01.staging.dmz",
+	    "db_name": "Streaming"
+	}, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/44812:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://escs.staging.dmz,http://lscs.staging.dmz", 
