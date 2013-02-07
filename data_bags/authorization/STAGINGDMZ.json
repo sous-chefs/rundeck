@@ -4,7 +4,8 @@
     "id": "STAGINGDMZ", 
     "membership_required": [
         "stagingdmz\\\\domain-admins", 
-        "stagingdmz\\\\stage-admins"
+        "stagingdmz\\\\stage-admins", 
+        "stagingdmz\\\\engserviceaccts"
     ], 
     "primary_domain": "staging.dmz"
 }
