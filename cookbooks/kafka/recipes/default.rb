@@ -79,7 +79,7 @@ if !node[:kafka][:data_mount].nil?
         node.set['kafka']['mount_formatted'] = true
         node.save #Prevents a failed run from causing this drive to be formatted more then once
       end
-      subscribes :create, resources(:execute => "FormatDisk")
+      subscribes :create, resources(:execute => "FormatDisk"), :immediately
       action :nothing
     end
   end
