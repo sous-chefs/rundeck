@@ -37,6 +37,15 @@ end
 log "Broker id: #{node[:kafka][:broker_id]}"
 log "Broker name: #{node[:kafka][:broker_host_name]}"
 
+# create the data directory
+directory node[:kafka][:data_dir] do
+  owner   user
+  group   group
+  mode    00755
+  recursive true
+  action :create
+end
+
 #Mount a drive if necessary
 if !node[:kafka][:data_mount].nil?  
   if !node[:kafka][:mount_formatted]
@@ -45,13 +54,14 @@ if !node[:kafka][:data_mount].nil?
     end
 
     execute "FormatDisk" do
-      command "mkfs.ext3 /dev/sdb1"
+      command "mkfs.ext4 /dev/sdb1"
     end
   end
   #Sets node attribute to make sure we're not formatting disks more then once
   ruby_block "set disk formatted flag" do
     block do
-      node['kafka']['mount_formatted'] = true
+      node.set['kafka']['mount_formatted'] = true
+      node.save #Prevents a failed run from causing this drive to be formatted more then once
     end
     subscribes :create, resources(:execute => "FormatDisk")
     action :nothing
@@ -116,14 +126,7 @@ directory node[:kafka][:log_dir] do
   action :create
 end
 
-# create the data directory
-directory node[:kafka][:data_dir] do
-  owner   user
-  group   group
-  mode    00755
-  recursive true
-  action :create
-end
+
 
 # pull the remote file only if we create the directory
 tarball = "kafka-#{node[:kafka][:version]}.tar.gz"
