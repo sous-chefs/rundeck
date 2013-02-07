@@ -37,6 +37,22 @@ end
 log "Broker id: #{node[:kafka][:broker_id]}"
 log "Broker name: #{node[:kafka][:broker_host_name]}"
 
+
+# == Users
+
+# setup kafka group
+group group do
+end
+
+# setup kafka user
+user user do
+  comment "Kafka user"
+  gid "kafka"
+  home "/home/kafka"
+  shell "/bin/noshell"
+  supports :manage_home => false
+end
+
 # create the data directory
 directory node[:kafka][:data_dir] do
   owner   user
@@ -73,21 +89,6 @@ if !node[:kafka][:data_mount].nil?
     fstype "ext4"
   end
 
-end
-
-# == Users
-
-# setup kafka group
-group group do
-end
-
-# setup kafka user
-user user do
-  comment "Kafka user"
-  gid "kafka"
-  home "/home/kafka"
-  shell "/bin/noshell"
-  supports :manage_home => false
 end
 
 # create the install directory
