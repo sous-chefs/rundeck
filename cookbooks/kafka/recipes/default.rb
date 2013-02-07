@@ -50,7 +50,7 @@ end
 if !node[:kafka][:data_mount].nil?  
   if !node[:kafka][:mount_formatted]
     execute "PartitionDisk" do
-      command "parted -s /dev/sdb -- mklabel gpt mkpart primary ext4 2048s -0"
+      command "parted -s /dev/sdb -- mklabel gpt mkpart primary ext2 2048s -0"
     end
 
     execute "FormatDisk" do
