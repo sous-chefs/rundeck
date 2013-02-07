@@ -231,8 +231,18 @@ if ($KeyFile) {
     }
 }
 
-# special case for Common Lib
-if ($Role -eq 'Common Lib' -and $Build -eq $null ) { $Build = '-' }
+# special cases for specific roles
+if ($Build -eq $null) {
+	Write-Debug "Using special case to get build number."
+	switch ($Role) {
+		'Account Console'    { $Build = Get-ChildItem -Path $BuildDir -Recurse -Filter "bldnum.txt" | Get-Content }
+		'Management Console' { $Build = Get-ChildItem -Path $BuildDir -Recurse -Filter "bldnum.txt" | Get-Content }
+		'Common Lib' { $Build = '-' }
+	}
+}
+
+Write-Debug "Branch: $Branch"
+Write-Debug "Build: $Build"
 
 if ($Branch -eq $null -and $Status -ne 'Pending') { Write-Error "Unable to determine branch." }
 if ($Build -eq $null -and $Status -ne 'Pending') { Write-Error "Unable to determine build." }
