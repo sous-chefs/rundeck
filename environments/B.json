@@ -316,8 +316,6 @@
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/50449:id/webtrends-streamingapi-bin.tar.gz", 
             "sapi_service_url": "ws://bsapi.webtrends.com", 
-            "usagedbname": "Streaming", 
-            "usagedbserver": "bcamdb01.staging.dmz"
         },
 	"wt_streaming_usage_db": {
 	    "db_server":"bcamdb01.staging.dmz",
