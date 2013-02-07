@@ -71,7 +71,7 @@
         "db_user": "wtUI"
     },
     "wt_master_db": {
-        "db_pwd": "v87m-Rhv8TMogJ_j"
+        "db_pwd": "v87m-Rhv8TMogJ_j",
         "db_user": "ConfigSvc"
     }
 }
