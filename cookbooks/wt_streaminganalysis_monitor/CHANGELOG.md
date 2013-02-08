@@ -1,3 +1,6 @@
+## 1.0.6
+* Fixed runit issue
+
 ## 1.0.5
 * Fixed Nagios regular expression to be ignore whitespace
 
