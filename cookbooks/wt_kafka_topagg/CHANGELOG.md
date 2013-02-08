@@ -1,3 +1,6 @@
+## 1.1.0
+* Adding support for new runit.
+
 ## 1.0.3:
 * Fixed syntax on the force-stop for uninstalls
 
