@@ -1,3 +1,6 @@
+## 1.0.31
+* Added support for new runit version.
+
 ## 1.0.30
 * Changed supervisor control script which would prevent a supervisor from
   starting because worker processes were already running. It can happen

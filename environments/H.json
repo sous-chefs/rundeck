@@ -8,7 +8,7 @@
         "java": "= 1.8.0", 
         "kafka": "= 1.0.29", 
         "nagios": "= 3.0.0", 
-        "storm": "= 1.0.30", 
+        "storm": "= 1.0.31", 
         "ubuntu": "= 1.0.3", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.12", 
