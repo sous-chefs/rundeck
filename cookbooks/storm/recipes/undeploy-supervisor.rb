@@ -21,7 +21,8 @@ runit_service "supervisor" do
 end
 
 # try to stop the service, but allow a failure without printing the error
-service "supervisor" do
+service "supervisor_stop" do
+  service_name "supervisor"
   action [:stop, :disable]
   ignore_failure true
 end
