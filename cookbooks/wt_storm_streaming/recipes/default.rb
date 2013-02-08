@@ -316,7 +316,7 @@ convert_searchstr.ini
     end
 end
 
-if node.run_list.include?("role[supervisor]")
+if node.run_list.include?("role[storm_supervisor]")
 
 execute "reload_streaming_supervisor" do
   command "sv reload supervisor"
