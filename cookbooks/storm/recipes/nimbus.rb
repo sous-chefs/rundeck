@@ -57,3 +57,13 @@ end
 runit_service "stormui" do
     action :enable
 end
+
+service "nimbus" do
+  action [:start]
+  ignore_failure false
+end
+
+service "stormui" do
+  action [:start]
+  ignore_failure false
+end
