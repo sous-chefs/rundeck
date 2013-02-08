@@ -26,12 +26,12 @@ service "nimbus" do
   ignore_failure true
 end
 
-runit_service "stormui" do
+runit_service "stormui_stop" do
     action :disable
 end
 
 # try to stop the service, but allow a failure without printing the error
-service "stormui" do
+service "stormui_stop" do
   action [:stop, :disable]
   ignore_failure true
 end
