@@ -16,22 +16,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-runit_service "nimbus" do
+runit_service "nimbus_stop" do
+    service_name "nimbus"
     action :disable
 end
 
 # try to stop the service, but allow a failure without printing the error
 service "nimbus" do
+  service_name "nimbus"
   action [:stop, :disable]
   ignore_failure true
 end
 
 runit_service "stormui_stop" do
+    service_name "stormui"
     action :disable
 end
 
 # try to stop the service, but allow a failure without printing the error
 service "stormui_stop" do
+  service_name "stormui"
   action [:stop, :disable]
   ignore_failure true
 end

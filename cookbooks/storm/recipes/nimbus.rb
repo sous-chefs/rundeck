@@ -50,22 +50,12 @@ end
   end
 end
 
-runit_service "nimbus" do
-    action :enable
-end
-
-runit_service "stormui" do
-    action :enable
-end
-
 service "nimbus_start" do
   service_name "nimbus"
   action [:start]
-  ignore_failure false
 end
 
 service "stormui_start" do
   service_name "stormui"
   action [:start]
-  ignore_failure false
 end

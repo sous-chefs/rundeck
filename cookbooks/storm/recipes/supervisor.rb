@@ -49,3 +49,8 @@ end
     })
   end
 end
+
+service "servisor_start" do
+  service_name "supervisor"
+  action [:start]
+end
