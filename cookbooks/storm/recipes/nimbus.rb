@@ -49,3 +49,11 @@ end
     })
   end
 end
+
+runit_service "nimbus" do
+    action :enable
+end
+
+runit_service "stormui" do
+    action :enable
+end
