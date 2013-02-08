@@ -15,7 +15,7 @@
         "windows": "= 1.7.0", 
         "wt_base": "= 1.0.4", 
         "wt_cam": "= 1.1.7", 
-        "wt_kafka_topagg": "= 1.0.1", 
+        "wt_kafka_topagg": "= 1.1.0", 
         "wt_netacuity": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.11", 
         "wt_portfolio_edgeservice": "= 1.0.2", 
