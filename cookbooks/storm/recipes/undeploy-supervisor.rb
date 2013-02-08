@@ -16,7 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-runit_service "supervisor" do
+runit_service "supervisor_stop" do   
+    service_name "supervisor"
     action :disable
 end
 
