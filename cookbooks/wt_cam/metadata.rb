@@ -3,7 +3,7 @@ maintainer_email "mark.alexander@webtrends.com"
 license          "All rights reserved"
 description      "Installs/Configures CAM IIS site"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.1.7"
+version          "1.1.8"
 supports         "windows"
 depends          "iis"
 depends          "windows"

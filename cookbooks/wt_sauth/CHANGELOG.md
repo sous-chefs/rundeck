@@ -1,3 +1,6 @@
+## 1.1.5
+* Add web.config setting for email.imagepath
+
 ## 1.1.4
 * Added template and attribute entries for session expiration minutes config property
 
