@@ -1,4 +1,7 @@
 ## 1.0.15
+* Added back the log4j.xml template and setup attributes 'log_dir' and 'log_level'
+
+## 1.0.15
 * Fixed Nagios regular expression to be ignore whitespace
 
 ## 1.0.14:
