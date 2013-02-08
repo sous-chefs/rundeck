@@ -12,7 +12,6 @@ install_dir  = "#{node['wt_common']['install_dir_linux']}/streamingconfigservice
 
 runit_service "streamingconfigservice" do
   action :disable
-  run_restart false
 end
 
 # try to stop the service, but allow a failure without printing the error
