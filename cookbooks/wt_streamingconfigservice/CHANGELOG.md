@@ -1,3 +1,6 @@
+## 1.1.0
+* Added support for runit.
+
 ## 1.0.10
 * STR-906 - updated database blocks, removed duplicate component-specific entries
 
