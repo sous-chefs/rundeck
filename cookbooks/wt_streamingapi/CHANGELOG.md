@@ -1,3 +1,6 @@
+## 1.2.6
+* Fixed runit configuration to support new version of runit
+
 ## 1.2.5
 * Removed use of collectd for metrics and replaced with built-in monitoring. The monitoring.properties was also merged into config.properties
 

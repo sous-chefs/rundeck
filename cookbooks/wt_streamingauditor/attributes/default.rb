@@ -21,3 +21,5 @@ default['wt_streamingauditor']['roundtrip_tagserver_timeout'] = 15
 default['wt_streamingauditor']['roundtrip_scs_timeout'] = 2
 default['wt_streamingauditor']['jmx_port'] = 9999
 default['wt_streamingauditor']['sauth_version'] = "v1"
+default['wt_streamingauditor']['log_dir'] = "/var/log/webtrends/streamingauditor"
+default['wt_streamingauditor']['log_level'] = "WARN"
