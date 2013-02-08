@@ -1,3 +1,6 @@
+## 1.0.29
+* Updated default ZK Session and Connection timeouts
+
 ## 1.0.22
 * Supports mounting/formatting a share
 
