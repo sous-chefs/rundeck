@@ -1,3 +1,6 @@
+## 1.1.0
+* Added support for new runit version.
+
 ## 1.0.7 
 * STR-906 - Replaced component-specific db attributes with common db-specific entries
 
