@@ -199,6 +199,10 @@
                 "optimize_server_url":"http://was.ea.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }
         }, 
+	"wt_cam_db": {
+            "db_server": "bcamdb01.staging.dmz", 
+            "db_name": "CAM"
+        }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "support-staging", 
