@@ -1,3 +1,7 @@
+## 1.2.0
+* Adding support for new version of runit cookbook that is
+  compatible with CentOS.
+
 ## 1.1.5
 * Adding config cache directory.
 
