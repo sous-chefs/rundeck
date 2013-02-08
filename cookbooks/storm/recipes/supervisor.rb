@@ -52,5 +52,5 @@ end
 service "servisor_start" do
   service_name "supervisor"
   action [:start]
-  subscribes :reload, resources("template[#{install_dir}/bin/supervisor-control], runit_service[supervisor_start]"), :immediately
+  subscribes :reload, resources("template[#{install_dir}/bin/supervisor-control]", "runit_service[supervisor_start]"), :immediately
 end
