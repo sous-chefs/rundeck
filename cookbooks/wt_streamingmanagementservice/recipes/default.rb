@@ -102,6 +102,7 @@ if ENV["deploy_build"] == "true" then
 
 end
 
+
 log "Updating the template files"
 
 template "#{install_dir}/bin/service-control" do
@@ -171,6 +172,11 @@ if node.attribute?("nagios")
     action :add
   end
 
+end
+
+service "SMS-Start" do
+  service_name "streamingmanagementservice"
+  action :start
 end
 
 if ENV['deploy_test'] == 'true' 
