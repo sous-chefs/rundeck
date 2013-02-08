@@ -16,15 +16,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-runit_service "supervisor_stop" do   
-    service_name "supervisor"
-    action :disable
-end
+#runit_service "supervisor_stop" do   
+#    service_name "supervisor"
+#    action :disable
+#end
 
 # try to stop the service, but allow a failure without printing the error
 service "supervisor_stop" do
   service_name "supervisor"
-  action [:stop, :disable]
+  action [:stop]
   ignore_failure true
 end
 
