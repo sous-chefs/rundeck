@@ -187,10 +187,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50082:id/CAM.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50615:id/CAM.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50082:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50615:id/Plugins.zip"
             }, 
             "cam_service_url": "http://bcam.staging.dmz", 
             "db_name": "cam", 
@@ -285,7 +285,7 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://bsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49993:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50615:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
@@ -309,7 +309,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/47751:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/50581:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "port": 80, 
             "proxy_enabled": "true", 
