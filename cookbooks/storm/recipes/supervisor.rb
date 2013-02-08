@@ -26,10 +26,9 @@ if ENV["deploy_build"] == "true" then
   include_recipe "storm::undeploy-supervisor"
 end
 
-%w{supervisor}.each do |daemon|
   # control file
-  template "#{install_dir}/bin/#{daemon}-control" do
-    source  "#{daemon}-control.erb"
+  template "#{install_dir}/bin/supervisor-control" do
+    source  "supervisor-control.erb"
     owner "root"
     group "root"
     mode  00755
@@ -41,16 +40,17 @@ end
   end
 
   # runit service
-  runit_service daemon do
+  runit_service "supervisor_start" do
+  service_name "supervisor"
     options({
       :install_dir => install_dir,
       :log_dir => node['storm']['log_dir'],
       :user => "storm"
     })
   end
-end
 
 service "servisor_start" do
   service_name "supervisor"
   action [:start]
+  subscribes :reload, resources("template[#{install_dir}/bin/supervisor-control], runit_service[supervisor_start]"), :immediately
 end
