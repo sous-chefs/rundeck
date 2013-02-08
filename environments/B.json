@@ -101,16 +101,24 @@
         "ms_dotnet4": {
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
-        "nagios": {
+       "nagios": {
             "client": {
                 "install_method": "package"
             }, 
-            "multi_environment_monitoring": true, 
+            "multi_environment_monitoring": false, 
+            "notifications_enabled": "1", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
-            "server_role": "nagios_xi"
-        }, 
+            "server": {
+                "install_method": "source", 
+                "service_name": "nagios"
+            }, 
+            "server_auth_method": "htpasswd", 
+            "server_role": "nagios_xi", 
+            "sysadmin_email": "devops@webtrends.com", 
+            "users_databag_group": "engage"
+        },
         "nginx": {
             "default_site_enabled": false
         }, 
