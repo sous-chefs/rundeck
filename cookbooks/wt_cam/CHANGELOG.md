@@ -1,3 +1,6 @@
+## 1.1.8
+* Add web.config setting for email.imagepath
+
 ## 1.1.7
 * Added plugin attributes and config template
 
