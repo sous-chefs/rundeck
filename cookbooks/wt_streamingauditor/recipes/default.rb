@@ -58,6 +58,14 @@ directory "#{install_dir}/bin" do
   action :create
 end
 
+directory "#{install_dir}/conf" do
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
+end
+
 def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix, client_id, client_secret)
   log "Updating the template files"
 
@@ -84,16 +92,14 @@ def processTemplates (install_dir, node, datacenter, pod, kafka_chroot_suffix, c
     })
   end
 
-  %w[auditor.properties].each do |template_file|
-    template "#{install_dir}/conf/auditor.properties" do
-      source	"#{template_file}.erb"
+  %w[log4j.xml auditor.properties].each do | template_file|
+    template "#{install_dir}/conf/#{template_file}" do
+      source    "#{template_file}.erb"
       owner "root"
       group "root"
       mode  00644
       variables({
         :zookeeper_pairs => zookeeper_pairs,
-        :wt_streamingauditor => node['wt_streamingauditor'],
-        :wt_monitoring => node['wt_monitoring'],
         :wt_cam => node['wt_cam'],
         :kafka_chroot => "/#{datacenter}_#{pod}_#{kafka_chroot_suffix}",
         :pod => pod,
