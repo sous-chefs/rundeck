@@ -10,6 +10,10 @@
 log_dir      = "#{node['wt_common']['log_dir_linux']}/streamingauditor"
 install_dir  = "#{node['wt_common']['install_dir_linux']}/streamingauditor"
 
+runit_service "streamingauditor" do
+    action :disable
+end
+
 # try to stop the service, but allow a failure without printing the error
 service "streamingauditor" do
   action [:stop, :disable]
