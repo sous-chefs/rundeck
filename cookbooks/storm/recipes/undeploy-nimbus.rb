@@ -28,7 +28,6 @@ end
 
 runit_service "stormui" do
     action :disable
-    run_restart false
 end
 
 # try to stop the service, but allow a failure without printing the error
