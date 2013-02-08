@@ -31,7 +31,7 @@
         "wt_streamingapi": "= 1.2.5", 
         "wt_streamingauditor": "= 1.0.15", 
         "wt_streamingconfigservice": "= 1.0.10", 
-        "wt_streaminglogreplayer": "= 1.1.5", 
+        "wt_streaminglogreplayer": "= 1.2.0", 
         "wt_streamingmanagementservice": "= 1.0.7", 
         "zookeeper": "= 1.2.3",
 	"runit": "= 1.0.2"
