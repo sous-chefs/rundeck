@@ -14,7 +14,7 @@
         "webtrends_server": "= 1.8.12", 
         "windows": "= 1.7.0", 
         "wt_base": "= 1.0.4", 
-        "wt_cam": "= 1.1.7", 
+        "wt_cam": "= 1.1.8", 
         "wt_kafka_topagg": "= 1.1.0", 
         "wt_netacuity": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.11", 
@@ -23,7 +23,7 @@
         "wt_portfolio_router": "= 1.0.0", 
         "wt_publishver": "= 0.2.0", 
         "wt_realtime_hadoop": "= 1.0.4", 
-        "wt_sauth": "= 1.1.4", 
+        "wt_sauth": "= 1.1.5", 
         "wt_storm_streaming": "= 2.4.4", 
         "wt_stream_processor": "= 1.0.2", 
         "wt_streaming_viz": "= 1.1.18", 
@@ -179,10 +179,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50615:id/Cam.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50847:id/Cam.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50615:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50847:id/Plugins.zip"
             }, 
             "cam_service_url": "http://hcam.staging.dmz", 
             "db_name": "cam", 
@@ -287,7 +287,7 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://hsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50615:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50847:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
