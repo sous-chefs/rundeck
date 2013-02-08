@@ -6,7 +6,7 @@
         "hive": "= 1.0.2", 
         "iis": "= 1.3.4", 
         "java": "= 1.8.0", 
-        "kafka": "= 1.0.20", 
+        "kafka": "= 1.0.29", 
         "nagios": "= 3.0.0", 
         "storm": "= 1.0.30", 
         "ubuntu": "= 1.0.3", 
@@ -33,7 +33,8 @@
         "wt_streamingconfigservice": "= 1.0.10", 
         "wt_streaminglogreplayer": "= 1.1.5", 
         "wt_streamingmanagementservice": "= 1.0.7", 
-        "zookeeper": "= 1.2.3"
+        "zookeeper": "= 1.2.3",
+	"runit": "= 1.0.2"
     }, 
     "default_attributes": {
         "authorization": {
@@ -178,10 +179,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50558:id/Cam.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50615:id/Cam.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50558:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50615:id/Plugins.zip"
             }, 
             "cam_service_url": "http://hcam.staging.dmz", 
             "db_name": "cam", 
@@ -286,7 +287,7 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://hsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50558:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/50615:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
