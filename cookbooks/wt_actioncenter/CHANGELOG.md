@@ -1,6 +1,13 @@
 # CHANGELOG for wt_actioncenter
 This file is used to list changes made in each version of wt_actioncenter.
 
+## 1.1.9
+* minor clean up for formatting
+* remove unneeded variables
+* set app_pool user with iis_pool resource
+* corrected perm on %windir%\temp directory
+* configure iis to standard setup
+
 #1.1.8
 * Cleaning up spacing
 * Added permissions to windows temp folder

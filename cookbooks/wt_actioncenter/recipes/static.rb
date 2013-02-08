@@ -6,14 +6,16 @@
 # Copyright 2012, Webtrends
 #
 # All rights reserved - Do Not Redistribute
+#
 # This recipe installs the static content for ActionCenter
+#
  
- tarball      = node['wt_actioncenter']['static_download_url'].split("/")[-1]
+tarball = node['wt_actioncenter']['static_download_url'].split('/')[-1]
  
-directory "/var/www/actioncenter" do
-    user  'www-data'
-    group 'www-data'
-	action :create
+directory '/var/www/actioncenter' do
+  user  'www-data'
+  group 'www-data'
+  action :create
 end
 
 # pull the install .tgz file down from the repo
@@ -25,7 +27,7 @@ end
 execute 'tar' do
   user  'www-data'
   group 'www-data'  
-  cwd "/var/www/actioncenter"
+  cwd '/var/www/actioncenter'
   command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
 
