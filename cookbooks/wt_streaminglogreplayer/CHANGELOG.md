@@ -1,3 +1,6 @@
+##.1.2.1
+* Updated default values for zk.connectiontimeout and zk.sessiontimeout
+
 ## 1.2.0
 * Adding support for new version of runit cookbook that is
   compatible with CentOS.
