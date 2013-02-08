@@ -315,3 +315,12 @@ convert_searchstr.ini
       mode 00644
     end
 end
+
+if node.run_list.include?("role[supervisor]")
+
+execute "reload_streaming_supervisor" do
+  command "sv reload supervisor"
+  action :nothing
+  subscribes :run, resources(:template => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties"), :immediately
+end
+end

@@ -24,7 +24,7 @@
         "wt_publishver": "= 0.2.0", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.4", 
-        "wt_storm_streaming": "= 2.4.3", 
+        "wt_storm_streaming": "= 2.4.4", 
         "wt_stream_processor": "= 1.0.2", 
         "wt_streaming_viz": "= 1.1.18", 
         "wt_streaminganalysis_monitor": "= 1.0.6", 
