@@ -40,8 +40,8 @@ end
   end
 
   # runit service
-  runit_service "supervisor_start" do
-  service_name "supervisor"
+  runit_service "supervisor" do
+    service_name "supervisor"
     options({
       :install_dir => install_dir,
       :log_dir => node['storm']['log_dir'],
@@ -49,8 +49,13 @@ end
     })
   end
 
-service "servisor_start" do
+execute "reload_supervisor" do
+  command "sv reload supervisor"
+  action :nothing
+  subscribes :run, resources(:template => "#{install_dir}/bin/supervisor-control"), :immediately
+end
+
+service "supervisor_start" do
   service_name "supervisor"
   action [:start]
-  subscribes :reload, resources("template[#{install_dir}/bin/supervisor-control]", "runit_service[supervisor_start]"), :immediately
 end
