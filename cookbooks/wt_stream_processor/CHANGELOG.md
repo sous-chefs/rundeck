@@ -1,3 +1,6 @@
+##1.0.2
+* Fixed runit issues with new runit cookbook
+
 ## 1.0.1
 * STR-906
 
