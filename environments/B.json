@@ -223,7 +223,7 @@
             "wrsread_group": "STAGINGDMZ\\B.WRS.Read"
         }, 
         "wt_kafka_topagg": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41969:id/TopicAggregator-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/41765:id/TopicAggregator-bin.tar.gz", 
             "edge_kafka_sources": [
                 {
                     "host": "lscs01.staging.dmz", 
