@@ -1,3 +1,6 @@
+## 1.1.18
+* Added dependent config for fulfillment email.
+
 ## 1.1.17
 * Removed unused template variable
 
