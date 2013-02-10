@@ -19,7 +19,7 @@
         "wt_netacuity": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.11", 
         "wt_portfolio_edgeservice": "= 1.0.2", 
-        "wt_portfolio_manager": "= 1.1.16", 
+        "wt_portfolio_manager": "= 1.1.18", 
         "wt_portfolio_router": "= 1.0.0", 
         "wt_publishver": "= 0.2.0", 
         "wt_realtime_hadoop": "= 1.0.4", 
@@ -274,7 +274,11 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/49303:id/Portfolio.Manager.zip", 
             "portmgr_group_admin": "H.PortMgr.Admins", 
             "portmgr_group_user": "H.PortMgr.Users", 
-            "portmgr_injected_user": "toby.mosby@webtrends.com"
+            "portmgr_injected_user": "toby.mosby@webtrends.com",
+            "portmgr_email_from": "ondemandsupport@webtrends.com",
+            "portmgr_fulfillment_dl": "toby.mosby@webtrends.com",
+            "portmgr_support_dl": "eng-systems@webtrends.com",
+            "portmgr_email_imagepath": "https://dod.webtrends.com/images"
         }, 
         "wt_portfolio_router": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt337/.lastSuccessful/webtrends-portfolio-router-develop-SNAPSHOT-bin.tar.gz"
