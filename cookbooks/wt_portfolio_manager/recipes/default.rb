@@ -130,7 +130,10 @@ template "#{install_dir}\\appSettings.config" do
     :portmgr_group_admin => node['wt_portfolio_manager']['portmgr_group_admin'],
     :portmgr_group_user => node['wt_portfolio_manager']['portmgr_group_user'],
     :portmgr_injected_user => node['wt_portfolio_manager']['portmgr_injected_user'],
-    :portmgr_domain => node['domain'].gsub(".", "").upcase
+    :portmgr_domain => node['domain'].gsub(".", "").upcase,
+    :portmgr_fulfillment_dl => node['wt_portfolio_manager']['portmgr_fulfillment_dl'],
+    :portmgr_email_from => node['wt_portfolio_manager']['portmgr_email_from'],
+    :streams_ui_url => node['wt_streaming_viz']['streams_ui_url']
   )
 end
 
@@ -142,6 +145,8 @@ template "#{install_dir}\\web.config" do
     # proxy
     :proxy_enabled => node['wt_portfolio_manager']['proxy_enabled'],
     :proxy_address => node['wt_common']['http_proxy_url'],
+    # smtp relay
+    :smtp_host => node['wt_common']['smtp_server'],
     # forms auth
     :machine_validation_key => user_data['wt_iis']['machine_validation_key'],
     :machine_decryption_key => user_data['wt_iis']['machine_decryption_key']
