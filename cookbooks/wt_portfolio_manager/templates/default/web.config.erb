@@ -94,6 +94,11 @@
     </errorFilter>
   </elmah>
   <system.net>
+    <mailSettings>
+      <smtp deliveryMethod="Network">
+        <network host="<%= @smtp_host %>" />
+      </smtp>
+    </mailSettings>
     <defaultProxy enabled="<%= @proxy_enabled %>">
       <proxy proxyaddress="<%= @proxy_address %>" />
       <bypasslist>
