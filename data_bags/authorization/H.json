@@ -28,8 +28,8 @@
         "admin_password": "bijoux"
     }, 
     "wt_portfolio_admin": {
-        "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
-        "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
+        "client_id": "9663da37ba4b482daf265c8ac2d2c864.app.webtrends.com", 
+        "client_secret": "7025c2c662204f0bb9c5efcb655a8bdb"
     }, 
     "wt_streaming_viz": {
         "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
