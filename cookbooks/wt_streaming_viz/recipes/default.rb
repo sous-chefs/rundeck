@@ -117,7 +117,11 @@ template "#{install_dir}\\web.config" do
 		:proxy_address => node['wt_common']['http_proxy_url'],
 		# forms auth
 		:machine_validation_key => user_data['wt_iis']['machine_validation_key'],
-		:machine_decryption_key => user_data['wt_iis']['machine_decryption_key']
+		:machine_decryption_key => user_data['wt_iis']['machine_decryption_key'],
+        # oauth2 config
+		:auth_url => "#{auth_base}/#{auth_version}",
+		:client_id => user_data['wt_streaming_viz']['client_id'],
+		:client_secret => user_data['wt_streaming_viz']['client_secret']
 	)
 end
 

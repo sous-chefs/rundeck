@@ -12,6 +12,7 @@
       <section name="errorMail" requirePermission="false" type="Elmah.ErrorMailSectionHandler, Elmah" />
       <section name="errorFilter" requirePermission="false" type="Elmah.ErrorFilterSectionHandler, Elmah" />
     </sectionGroup>
+    <section name="oauth2" type="OAuth2.Configuration.OAuth2ConfigurationSection, OAuth2" />
   </configSections>
   <connectionStrings>
     <add name="DefaultConnection" providerName="System.Data.SqlClient" connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=aspnet-Webtrends.Streaming.Viz-20120918163315;Integrated Security=SSPI" />
@@ -21,7 +22,7 @@
     <compilation debug="false" targetFramework="4.0" />
     <customErrors mode="<%= @custom_errors %>" defaultRedirect="~/Error" />
     <authentication mode="Forms">
-      <forms loginUrl="~/signin" timeout="2880" name="_sauth" domain=".webtrends.com" />
+      <forms loginUrl="~/OAuth/Login/Login" timeout="2880" enableCrossAppRedirects="true" name="_svizauth"></forms>
     </authentication>
     <machineKey 
       compatibilityMode="Framework20SP2"
@@ -115,6 +116,11 @@
       </test>
     </errorFilter>
   </elmah>
+  <oauth2>
+    <services>
+      <add clientType="WebtrendsClient" enabled="true" clientId="<%= @client_id %>" clientSecret="<%= @client_secret %>" scope="session" redirectUri="~/OAuth/Login/Authorize" authurl="<%= @auth_url %>" />
+    </services>
+  </oauth2>
   <system.net>
     <defaultProxy enabled="<%= @proxy_enabled %>">
       <proxy proxyaddress="<%= @proxy_address %>" />
