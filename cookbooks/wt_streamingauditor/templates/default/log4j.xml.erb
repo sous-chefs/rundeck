@@ -2,7 +2,7 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
     <!-- FileLog is set to be a RollingFileAppender -->
-    <appender name="FileLog" class="org.apache.log4j.DailyRollingFileAppender">
+    <appender name="FileLog" class="org.apache.log4j.RollingFileAppender">
         <param name="file" value="<%= node['wt_streamingauditor']['log_dir'] %>/auditor.log"/>
         <param name="MaxFileSize" value="100MB"/>
         <param name="MaxBackupIndex" value="10"/>
@@ -23,7 +23,7 @@
         </layout>
     </appender>
     <root>
-        <level value="<%= node['wt_streamingauditor']['log_level'] %>/auditor.log"/>" />
+        <level value="<%= node['wt_streamingauditor']['log_level'] %>" />
         <appender-ref ref="FileLog" />
         <appender-ref ref="ErrorLog" />
     </root>
