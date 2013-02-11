@@ -1,3 +1,6 @@
+## 1.1.12
+* Add oauth2 configuration items to web.config template.
+
 ## 1.1.11
 * Remove unused url_base parameters from attributes, replace with proper config values.
 
