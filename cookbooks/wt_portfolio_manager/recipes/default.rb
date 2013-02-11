@@ -133,7 +133,9 @@ template "#{install_dir}\\appSettings.config" do
     :portmgr_domain => node['domain'].gsub(".", "").upcase,
     :portmgr_fulfillment_dl => node['wt_portfolio_manager']['portmgr_fulfillment_dl'],
     :portmgr_email_from => node['wt_portfolio_manager']['portmgr_email_from'],
-    :streams_ui_url => node['wt_streaming_viz']['streams_ui_url']
+    :streams_ui_url => node['wt_streaming_viz']['streams_ui_url'],
+    :portmgr_email_imagepath => node['wt_portfolio_manager']['portmgr_email_imagepath'],
+    :portmgr_support_dl => node['wt_portfolio_manager']['portmgr_support_dl']
   )
 end
 
