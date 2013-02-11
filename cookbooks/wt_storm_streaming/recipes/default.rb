@@ -214,6 +214,14 @@ link "/home/storm/.storm" do
 	to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
 end 
 
+# create the log directory
+directory "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/cache" do
+  action :create
+  owner "storm"
+  group "storm"
+  mode 00755
+end
+
 file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
   owner "root"
   group "root"
