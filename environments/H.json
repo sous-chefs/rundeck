@@ -277,8 +277,7 @@
             "portmgr_injected_user": "toby.mosby@webtrends.com",
             "portmgr_email_from": "ondemandsupport@webtrends.com",
             "portmgr_fulfillment_dl": "toby.mosby@webtrends.com",
-            "portmgr_support_dl": "eng-systems@webtrends.com",
-            "portmgr_email_imagepath": "https://hsauth.webtrends.com/content/images/email"
+            "portmgr_support_dl": "eng-systems@webtrends.com"
         }, 
         "wt_portfolio_router": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt337/.lastSuccessful/webtrends-portfolio-router-develop-SNAPSHOT-bin.tar.gz"
