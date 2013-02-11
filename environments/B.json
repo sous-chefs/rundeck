@@ -19,7 +19,7 @@
         "wt_kafka_topagg": "= 1.1.0", 
         "wt_netacuity": "= 1.0.13", 
         "wt_portfolio_admin": "= 1.1.11", 
-        "wt_portfolio_manager": "= 1.1.17", 
+        "wt_portfolio_manager": "= 1.1.18", 
         "wt_publishver": "= 0.2.0", 
         "wt_realtime_hadoop": "= 1.0.1", 
         "wt_sauth": "= 1.1.5", 
@@ -275,7 +275,7 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/47500:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/50978:id/Portfolio.Manager.zip", 
             "manager_ui_url": "", 
             "portmgr_group_admin": "B.PortMgr.Admins", 
             "portmgr_group_user": "B.PortMgr.Users", 
