@@ -1,3 +1,9 @@
+## 2.4.5
+* Added cache directory in conf directory.
+
+## 2.4.4
+* 
+
 ## 2.4.3
 * Added configurable augment bolt settings
 
