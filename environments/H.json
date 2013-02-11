@@ -17,7 +17,7 @@
         "wt_cam": "= 1.1.8", 
         "wt_kafka_topagg": "= 1.1.0", 
         "wt_netacuity": "= 1.0.12", 
-        "wt_portfolio_admin": "= 1.1.11", 
+        "wt_portfolio_admin": "= 1.1.12", 
         "wt_portfolio_edgeservice": "= 1.0.2", 
         "wt_portfolio_manager": "= 1.1.18", 
         "wt_portfolio_router": "= 1.0.0", 
