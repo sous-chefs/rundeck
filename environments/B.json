@@ -282,8 +282,7 @@
             "portmgr_injected_user": "tomomi.ioffe@webtrends.com",
             "portmgr_email_from": "Eng-TestEnvironment@webtrends.com",
             "portmgr_fulfillment_dl": "martin.neal@webtrends.com",
-            "portmgr_support_dl": "eng-systems@webtrends.com",
-            "portmgr_email_imagepath": "https://dod.webtrends.com/images"
+            "portmgr_support_dl": "eng-systems@webtrends.com"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
@@ -297,7 +296,7 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/50851:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/51036:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
