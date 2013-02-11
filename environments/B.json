@@ -279,7 +279,7 @@
             "manager_ui_url": "", 
             "portmgr_group_admin": "B.PortMgr.Admins", 
             "portmgr_group_user": "B.PortMgr.Users", 
-            "portmgr_injected_user": "tomomi.ioffe@webtrends.com"
+            "portmgr_injected_user": "tomomi.ioffe@webtrends.com",
             "portmgr_email_from": "Eng-TestEnvironment@webtrends.com",
             "portmgr_fulfillment_dl": "martin.neal@webtrends.com",
             "portmgr_support_dl": "eng-systems@webtrends.com",
