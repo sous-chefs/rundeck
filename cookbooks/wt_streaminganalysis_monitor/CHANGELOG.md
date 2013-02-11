@@ -1,3 +1,6 @@
+## 1.0.7
+* Set metricslistener.enabled to false by default to resolve part of Str-916
+
 ## 1.0.6
 * Fixed runit issue
 
