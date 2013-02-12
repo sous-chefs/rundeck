@@ -101,7 +101,7 @@
         "ms_dotnet4": {
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
-       "nagios": {
+        "nagios": {
             "client": {
                 "install_method": "package"
             }, 
@@ -118,7 +118,7 @@
             "server_role": "nagios_xi", 
             "sysadmin_email": "devops@webtrends.com", 
             "users_databag_group": "engage"
-        },
+        }, 
         "nginx": {
             "default_site_enabled": false
         }, 
@@ -194,14 +194,14 @@
             }, 
             "cam_service_url": "http://bcam.staging.dmz", 
             "db_name": "cam", 
-            "db_server": "bcamdb01.staging.dmz",
+            "db_server": "bcamdb01.staging.dmz", 
             "optimize_plugin": {
-                "optimize_server_url":"http://was.ea.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
+                "optimize_server_url": "http://was.ea.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }
         }, 
-	"wt_cam_db": {
-            "db_server": "bcamdb01.staging.dmz", 
-            "db_name": "CAM"
+        "wt_cam_db": {
+            "db_name": "CAM", 
+            "db_server": "bcamdb01.staging.dmz"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -275,13 +275,13 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/51043:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/51162:id/Portfolio.Manager.zip", 
             "manager_ui_url": "", 
+            "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
+            "portmgr_fulfillment_dl": "martin.neal@webtrends.com", 
             "portmgr_group_admin": "B.PortMgr.Admins", 
             "portmgr_group_user": "B.PortMgr.Users", 
-            "portmgr_injected_user": "tomomi.ioffe@webtrends.com",
-            "portmgr_email_from": "Eng-TestEnvironment@webtrends.com",
-            "portmgr_fulfillment_dl": "martin.neal@webtrends.com",
+            "portmgr_injected_user": "tomomi.ioffe@webtrends.com", 
             "portmgr_support_dl": "eng-systems@webtrends.com"
         }, 
         "wt_realtime_hadoop": {
@@ -292,11 +292,13 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://bsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51047:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51133:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/51036:id/streaming-analysis-bin.tar.gz", 
+            "augment_bolt_executors": 24, 
+            "augment_bolt_tasks": 24, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/51162:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
@@ -310,9 +312,11 @@
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
                 "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
-            },
-	    "augment_bolt_executors":24,
-            "augment_bolt_tasks":24
+            }
+        }, 
+        "wt_streaming_usage_db": {
+            "db_name": "Streaming", 
+            "db_server": "bcamdb01.staging.dmz"
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
@@ -324,20 +328,16 @@
             "streams_ui_url": "https://bstreams.webtrends.com/"
         }, 
         "wt_streaminganalysis_monitor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/50602:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/51123:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
             "healthcheck_port": 9001, 
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/50855:id/webtrends-streamingapi-bin.tar.gz", 
-            "sapi_service_url": "ws://bsapi.webtrends.com" 
-        },
-	"wt_streaming_usage_db": {
-	    "db_server":"bcamdb01.staging.dmz",
-	    "db_name": "Streaming"
-	}, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/51126:id/webtrends-streamingapi-bin.tar.gz", 
+            "sapi_service_url": "ws://bsapi.webtrends.com"
+        }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/50672:id/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/51122:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://escs.staging.dmz,http://lscs.staging.dmz", 
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
@@ -352,12 +352,12 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/45265:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streaminglogreplayer": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/50702:id/webtrends-streaminglogreplayer-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/51127:id/webtrends-streaminglogreplayer-bin.tar.gz", 
             "log_share_mount": "sstore06.staging.dmz:/bstore/logreplay", 
             "thread_pool_size": 160
         }, 
         "wt_streamingmanagementservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/47503:id/webtrends-streaming-managementservice-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/51126:id/webtrends-streaming-managementservice-bin.tar.gz", 
             "healthcheck_port": 9002, 
             "jmx_port": 9997, 
             "port": 8081, 
