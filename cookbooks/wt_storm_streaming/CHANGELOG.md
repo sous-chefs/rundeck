@@ -1,3 +1,6 @@
+## 2.4.8
+* Updated ZK timeout/retry settings in storm.yaml
+
 ## 2.4.7
 * Added supported for restarting nimbus/webui post deploy
 
