@@ -88,18 +88,6 @@ if ENV["deploy_build"] == "true" then
     execute "mv" do
       user  "root"
       group "root"
-      command "mv #{install_tmp}/lib/visitoranalytics*.jar #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/"
-    end
-
-    execute "chown" do
-      user  "root"
-      group "root"
-      command "chown storm:storm #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/visitoranalytics*.jar"
-    end
-
-    execute "mv" do
-      user  "root"
-      group "root"
       command "mv #{install_tmp}/lib/webtrends*.jar #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/"
     end
 
