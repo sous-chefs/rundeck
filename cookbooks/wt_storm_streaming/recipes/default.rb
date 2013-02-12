@@ -328,7 +328,7 @@ if node.run_list.include?("role[storm_nimbus]")
   end
 
   execute "reload_streaming_webui" do
-    command "sv reload webui"
+    command "sv reload stormui"
     action :nothing
     subscribes :run, resources(:template => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties"), :immediately
   end
