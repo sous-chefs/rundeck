@@ -1,3 +1,6 @@
+## 1.1.20
+* Adding appKey to the appSettings.config.tmpl
+
 ## 1.1.19
 * Add oauth2 config section to web.config template
 
