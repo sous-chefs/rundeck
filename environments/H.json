@@ -179,10 +179,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51033:id/Cam.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51133:id/Cam.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51033:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51133:id/Plugins.zip"
             }, 
             "cam_service_url": "http://hcam.staging.dmz", 
             "db_name": "cam", 
@@ -290,8 +290,7 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://hsauth.webtrends.com", 
-
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51044:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51133:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
