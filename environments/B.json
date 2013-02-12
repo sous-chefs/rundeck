@@ -18,13 +18,13 @@
         "wt_cam": "= 1.1.8", 
         "wt_kafka_topagg": "= 1.1.0", 
         "wt_netacuity": "= 1.0.13", 
-        "wt_portfolio_admin": "= 1.1.11", 
+        "wt_portfolio_admin": "= 1.1.13", 
         "wt_portfolio_manager": "= 1.1.18", 
         "wt_publishver": "= 0.2.0", 
         "wt_realtime_hadoop": "= 1.0.1", 
         "wt_sauth": "= 1.1.5", 
         "wt_storm_streaming": "= 2.4.5", 
-        "wt_streaming_viz": "= 1.1.18", 
+        "wt_streaming_viz": "= 1.1.19", 
         "wt_streaminganalysis_monitor": "= 1.0.6", 
         "wt_streamingapi": "= 1.2.6", 
         "wt_streamingauditor": "= 1.0.16", 
@@ -270,7 +270,7 @@
         "wt_portfolio_admin": {
             "account_ui_url": "https://baccount.webtrends.com", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/47473:id/Portfolio.Admin.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/51115:id/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true"
         }, 
@@ -316,7 +316,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/50802:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/51114:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "port": 80, 
             "proxy_enabled": "true", 
