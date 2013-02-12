@@ -1,3 +1,6 @@
+## 2.4.6
+* Removed Visitor Analytics Dependency
+
 ## 2.4.5
 * Added cache directory in conf directory.
 
