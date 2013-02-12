@@ -1,3 +1,6 @@
+## 1.1.19
+* Add oauth2 config section to web.config template
+
 ## 1.1.18
 * moved hard-coded help_url to attribute and updated with value per STR-872
 
