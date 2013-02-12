@@ -36,9 +36,9 @@ default['wt_storm_streaming']['cluster_mode'] = "distributed"
 
 # zookeeper attributes
 default['wt_storm_streaming']['zookeeper']['root'] = "/v2-storm-streaming"
-default['wt_storm_streaming']['zookeeper']['session_timeout'] = 20000
-default['wt_storm_streaming']['zookeeper']['retry_times'] = 5
-default['wt_storm_streaming']['zookeeper']['retry_interval'] = 1000
+default['wt_storm_streaming']['zookeeper']['session_timeout'] = 30000
+default['wt_storm_streaming']['zookeeper']['retry_times'] = 60
+default['wt_storm_streaming']['zookeeper']['retry_interval'] = 5000
 
 # supervisor attributes
 default['wt_storm_streaming']['supervisor']['workers'] = 4
