@@ -1,3 +1,6 @@
+## 2.4.9
+* Fixed service name
+
 ## 2.4.8
 * Updated ZK timeout/retry settings in storm.yaml
 
