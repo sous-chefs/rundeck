@@ -1,3 +1,6 @@
+## 2.4.7
+* Added supported for restarting nimbus/webui post deploy
+
 ## 2.4.6
 * Removed Visitor Analytics Dependency
 
@@ -5,7 +8,7 @@
 * Added cache directory in conf directory.
 
 ## 2.4.4
-* 
+* Provided support for restarting supervisors post deploy
 
 ## 2.4.3
 * Added configurable augment bolt settings

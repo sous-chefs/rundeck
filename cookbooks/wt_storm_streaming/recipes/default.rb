@@ -313,10 +313,23 @@ convert_searchstr.ini
 end
 
 if node.run_list.include?("role[storm_supervisor]")
-
-execute "reload_streaming_supervisor" do
-  command "sv reload supervisor"
-  action :nothing
-  subscribes :run, resources(:template => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties"), :immediately
+  execute "reload_streaming_supervisor" do
+    command "sv reload supervisor"
+    action :nothing
+    subscribes :run, resources(:template => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties"), :immediately
+  end
 end
+
+if node.run_list.include?("role[storm_nimbus]")
+  execute "reload_streaming_nimbus" do
+    command "sv reload nimbus"
+    action :nothing
+    subscribes :run, resources(:template => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties"), :immediately
+  end
+
+  execute "reload_streaming_webui" do
+    command "sv reload webui"
+    action :nothing
+    subscribes :run, resources(:template => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties"), :immediately
+  end
 end
