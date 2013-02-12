@@ -1,3 +1,6 @@
+## 1.1.14
+* Adding the appKey setting
+
 ## 1.1.13
 * Remove version specifier on oauth2 config section declaration.
 
