@@ -7,6 +7,7 @@
         "iis": "= 1.3.4", 
         "java": "= 1.8.0", 
         "kafka": "= 1.0.29", 
+        "nagios": "= 3.0.0", 
         "nginx": "= 1.1.4", 
         "storm": "= 1.0.32", 
         "ubuntu": "= 1.0.3", 
@@ -22,7 +23,7 @@
         "wt_publishver": "= 0.2.0", 
         "wt_realtime_hadoop": "= 1.0.1", 
         "wt_sauth": "= 1.1.5", 
-        "wt_storm_streaming": "= 2.4.5", 
+        "wt_storm_streaming": "= 2.4.9", 
         "wt_streaming_viz": "= 1.1.20", 
         "wt_streaminganalysis_monitor": "= 1.0.6", 
         "wt_streamingapi": "= 1.2.6", 
@@ -100,7 +101,7 @@
         "ms_dotnet4": {
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
-        "nagios": {
+       "nagios": {
             "client": {
                 "install_method": "package"
             }, 
@@ -117,7 +118,7 @@
             "server_role": "nagios_xi", 
             "sysadmin_email": "devops@webtrends.com", 
             "users_databag_group": "engage"
-        }, 
+        },
         "nginx": {
             "default_site_enabled": false
         }, 
@@ -186,21 +187,21 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51233:id/CAM.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51133:id/CAM.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51233:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51133:id/Plugins.zip"
             }, 
             "cam_service_url": "http://bcam.staging.dmz", 
             "db_name": "cam", 
-            "db_server": "bcamdb01.staging.dmz", 
+            "db_server": "bcamdb01.staging.dmz",
             "optimize_plugin": {
-                "optimize_server_url": "http://was.ea.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
+                "optimize_server_url":"http://was.ea.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }
         }, 
-        "wt_cam_db": {
-            "db_name": "CAM", 
-            "db_server": "bcamdb01.staging.dmz"
+	"wt_cam_db": {
+            "db_server": "bcamdb01.staging.dmz", 
+            "db_name": "CAM"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -274,13 +275,13 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/51162:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/51134:id/Portfolio.Manager.zip", 
             "manager_ui_url": "", 
-            "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
-            "portmgr_fulfillment_dl": "martin.neal@webtrends.com", 
             "portmgr_group_admin": "B.PortMgr.Admins", 
             "portmgr_group_user": "B.PortMgr.Users", 
-            "portmgr_injected_user": "tomomi.ioffe@webtrends.com", 
+            "portmgr_injected_user": "tomomi.ioffe@webtrends.com",
+            "portmgr_email_from": "Eng-TestEnvironment@webtrends.com",
+            "portmgr_fulfillment_dl": "martin.neal@webtrends.com",
             "portmgr_support_dl": "eng-systems@webtrends.com"
         }, 
         "wt_realtime_hadoop": {
@@ -291,12 +292,10 @@
         "wt_rta": {}, 
         "wt_sauth": {
             "auth_service_url": "https://bsauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51233:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51133:id/auth.zip"
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "augment_bolt_executors": 24, 
-            "augment_bolt_tasks": 24, 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/51162:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
@@ -311,11 +310,9 @@
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
                 "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
-            }
-        }, 
-        "wt_streaming_usage_db": {
-            "db_name": "Streaming", 
-            "db_server": "bcamdb01.staging.dmz"
+            },
+	    "augment_bolt_executors":24,
+            "augment_bolt_tasks":24
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
@@ -333,8 +330,12 @@
         }, 
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/51126:id/webtrends-streamingapi-bin.tar.gz", 
-            "sapi_service_url": "ws://bsapi.webtrends.com"
-        }, 
+            "sapi_service_url": "ws://bsapi.webtrends.com" 
+        },
+	"wt_streaming_usage_db": {
+	    "db_server":"bcamdb01.staging.dmz",
+	    "db_name": "Streaming"
+	}, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/51122:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://escs.staging.dmz,http://lscs.staging.dmz", 
@@ -356,7 +357,7 @@
             "thread_pool_size": 160
         }, 
         "wt_streamingmanagementservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/51125:id/webtrends-streaming-managementservice-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/51125:id/webtrends-streaming-managementservice-bin.tar.gz", 
             "healthcheck_port": 9002, 
             "jmx_port": 9997, 
             "port": 8081, 
