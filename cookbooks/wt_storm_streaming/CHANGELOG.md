@@ -1,3 +1,6 @@
+## 2.4.10
+* Removed session history jars in cookbook.
+
 ## 2.4.9
 * Fixed service name
 
