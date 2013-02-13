@@ -1,4 +1,4 @@
-class JabberSnitchHandler < Chef:Handler
+
 # Notify admins via Jabber when a Chef run fails
  require 'chef-jabber-snitch'
 
