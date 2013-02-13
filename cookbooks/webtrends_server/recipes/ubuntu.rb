@@ -193,7 +193,7 @@ remote_directory node['chef_handler']['handler_path'] do
   action :create
 end
 
-chef_handler 'JabberSnitchHandler' do
+chef_handler 'JabberSnitch' do
   source "#{node['chef_handler']['handler_path']}/chef_jabber_snitch.rb"
   supports :report => true, :exception => true
   action :enable
