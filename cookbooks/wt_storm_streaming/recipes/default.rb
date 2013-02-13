@@ -151,7 +151,6 @@ if ENV["deploy_build"] == "true" then
     stax-api-1.0.1.jar
     scala-library-2.9.2.jar
     streaming-analysis.jar
-    typesafe-config-0.3.0.jar
     UserAgentUtils-1.6.jar
     xmlenc-0.52.jar
     zkclient-0.1.jar
