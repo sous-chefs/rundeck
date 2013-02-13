@@ -27,7 +27,7 @@
         "wt_storm_streaming": "= 2.4.9", 
         "wt_stream_processor": "= 1.0.2", 
         "wt_streaming_viz": "= 1.1.20", 
-        "wt_streaminganalysis_monitor": "= 1.0.6", 
+        "wt_streaminganalysis_monitor": "= 1.0.7", 
         "wt_streamingapi": "= 1.2.6", 
         "wt_streamingauditor": "= 1.0.16", 
         "wt_streamingconfigservice": "= 1.1.0",
