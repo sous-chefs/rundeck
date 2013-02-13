@@ -271,7 +271,7 @@
         }, 
         "wt_portfolio_manager": {
             "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/51134:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/51404:id/Portfolio.Manager.zip", 
             "portmgr_group_admin": "H.PortMgr.Admins", 
             "portmgr_group_user": "H.PortMgr.Users", 
             "portmgr_injected_user": "toby.mosby@webtrends.com",
