@@ -1,3 +1,6 @@
+## 1.9.0
+* Initial support for adding a chef jabber handler
+
 ## 1.8.13
 *  Changed rubyzip to zip
 
