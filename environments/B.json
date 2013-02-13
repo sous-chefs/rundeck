@@ -297,25 +297,23 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/51162:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/51408:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
             "query_bolt_tasks": 24,
-	    "augment_bolt_executors": 96,
- 	    "augment_bolt_tasks": 96,
+	    "augment_bolt_executors": 24,
+ 	    "augment_bolt_tasks": 24,
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 1
             }, 
             "topic_list": [
-                "Lab_B_scsRawHits:12", 
-                "Lab_B_lrRawHits:12"
+                "Lab_B_scsRawHits:6", 
+                "Lab_B_lrRawHits:6"
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
                 "childopts": "-Xmx6912m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             },
-	    "augment_bolt_executors":24,
-            "augment_bolt_tasks":24
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
