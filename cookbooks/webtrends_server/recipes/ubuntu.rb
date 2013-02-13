@@ -184,3 +184,17 @@ include_recipe "collectd"
 
 # install collectd plugins for WT base OS monitoring
 include_recipe "wt_monitoring::collectd_base"
+
+chef_gem "chef-jabber-snitch"
+
+remote_directory node['chef_handler']['handler_path'] do
+  source 'handlers'
+  recursive true
+  action :create
+end
+
+chef_handler 'JabberSnitchHandler' do
+  source "#{node['chef_handler']['handler_path']}/chef_jabber_snitch.rb"
+  supports :report => true, :exception => true
+  action :enable
+end
