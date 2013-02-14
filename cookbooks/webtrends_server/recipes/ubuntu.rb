@@ -186,16 +186,3 @@ include_recipe "collectd"
 include_recipe "wt_monitoring::collectd_base"
 
 chef_gem "chef-jabber-snitch"
-
-remote_directory node['chef_handler']['handler_path'] do
-  source 'handlers'
-  recursive true
-  action :create
-end
-
-chef_handler 'JabberSnitch' do
-  source "#{node['chef_handler']['handler_path']}/chef_jabber_snitch.rb"
-  arguments ["chef@sengutil01.staging.dmz", "cookin", "martink@sengutil01.staging.dmz", 0,0, "sengutil01.staging.dmz"]
-  supports :report => false, :exception => true
-  action :enable
-end
