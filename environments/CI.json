@@ -1,7 +1,6 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {
-    }, 
+    "cookbook_versions": {}, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -35,7 +34,6 @@
         "hive": {}, 
         "java": {
             "install_flavor": "oracle", 
-            "jdk_version" : "7",
             "jdk": {
                 "6": {
                     "x86_64": {
@@ -49,7 +47,8 @@
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
-            }
+            }, 
+            "jdk_version": "7"
         }, 
         "kafka": {
             "chroot_suffix": "brokers", 
@@ -199,7 +198,7 @@
             "metric_prefix": "staging.cipod.servers", 
             "monitoring_enabled": "true"
         }, 
-        "wt_netacuity": { 
+        "wt_netacuity": {
             "geo_url": "sgeo.staging.dmz"
         }, 
         "wt_portfolio_admin": {
@@ -216,7 +215,7 @@
             "portmgr_group_admin": "H.PortMgr.Admins", 
             "portmgr_group_user": "H.PortMgr.Users", 
             "portmgr_injected_user": "toby.mosby@webtrends.com"
-        },  
+        }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
             "environment": "support-staging", 
@@ -245,6 +244,10 @@
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
         }, 
+        "wt_streaming_usage_db": {
+            "db_name": "Streaming", 
+            "db_server": "cicamdb01.staging.dmz"
+        }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip", 
@@ -269,10 +272,6 @@
             "roundtrip_scs_urls": "http://ciscs01.staging.dmz:8080", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         }, 
-        "wt_streaming_usage_db": {
-          "db_server":"cicamdb01.staging.dmz",
-          "db_name": "Streaming"
-        },
         "wt_streamingcollection": {}, 
         "wt_streamingconfigservice": {
             "camdbname": "CAM", 
@@ -310,18 +309,18 @@
     "name": "CI", 
     "override_attributes": {
         "chef_client": {
-            "server_url": "http://chef.staging.dmz:4000",
             "exception_handlers": [
                 {
-                    "class":"JabberSnitch",
                     "arguments": [
-                        "\"chef@sengutil01.staging.dmz\"",
-                        "\"cookin\"",
-                        "\"chef-run-status@conference.sengutil01.staging.dmz\"",
+                        "\"chef@sengutil01.staging.dmz\"", 
+                        "\"cookin\"", 
+                        "\"chef-run-status@conference.sengutil01.staging.dmz\"", 
                         "\"sengutil01.staging.dmz\""
-                    ]
+                    ], 
+                    "class": "JabberSnitch"
                 }
-            ]
+            ], 
+            "server_url": "http://chef.staging.dmz:4000"
         }, 
         "ntp": {
             "servers": [
