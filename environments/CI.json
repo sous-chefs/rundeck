@@ -321,9 +321,6 @@
                         "\"sengutil01.staging.dmz\""
                     ]
                 }
-            ],
-            "load_gems": [
-                "chef-jabber-snitch"
             ]
         }, 
         "ntp": {
