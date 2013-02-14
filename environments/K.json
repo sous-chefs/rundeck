@@ -79,12 +79,11 @@
             }, 
             "server_role": "nagios_xi"
         }, 
-        "ohai":
-        {
-            "disabled_plugins":[
-              "rackspace"
-              ]
-        },
+        "ohai": {
+            "disabled_plugins": [
+                "rackspace"
+            ]
+        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -212,7 +211,7 @@
             "website_port": "80"
         }, 
         "wt_management_console": {
-            "mc_service_url": "https://kmc.englab.webtrends.corp"
+            "service_url": "https://kmc.englab.webtrends.corp"
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
@@ -286,9 +285,9 @@
     "json_class": "Chef::Environment", 
     "name": "K", 
     "override_attributes": {
-        "chef_client":{
+        "chef_client": {
             "server_url": "http://chef.staging.dmz:4000"
-        },
+        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

@@ -234,7 +234,7 @@
         }, 
         "wt_logpreproc": {}, 
         "wt_management_console": {
-            "mc_service_url": "https://dmc.staging.dmz"
+            "service_url": "https://dmc.staging.dmz"
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
@@ -282,8 +282,7 @@
         }, 
         "wt_search": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/Search.zip", 
-            "search_hostname": "dsearch.staging.dmz", 
-            "search_service": "net.tcp://dsearch.staging.dmz:8096/Search/Service"
+            "search_hostname": "dsearch.staging.dmz"
         }, 
         "wt_static_tag_host": {
             "host": "http://dstatic01.staging.dmz/"

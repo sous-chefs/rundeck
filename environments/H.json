@@ -6,8 +6,9 @@
         "hive": "= 1.0.2", 
         "iis": "= 1.3.4", 
         "java": "= 1.8.0", 
-        "kafka": "= 1.0.29",
-        "nagios": "= 3.0.0",
+        "kafka": "= 1.0.29", 
+        "nagios": "= 3.0.0", 
+        "runit": "= 1.0.2", 
         "storm": "= 1.0.32", 
         "ubuntu": "= 1.0.3", 
         "webpi": "= 1.0.16", 
@@ -30,11 +31,10 @@
         "wt_streaminganalysis_monitor": "= 1.0.7", 
         "wt_streamingapi": "= 1.2.6", 
         "wt_streamingauditor": "= 1.0.17", 
-        "wt_streamingconfigservice": "= 1.1.0",
+        "wt_streamingconfigservice": "= 1.1.0", 
         "wt_streaminglogreplayer": "= 1.2.1", 
         "wt_streamingmanagementservice": "= 1.1.0", 
-        "zookeeper": "= 1.2.3",
-	"runit": "= 1.0.2"
+        "zookeeper": "= 1.2.3"
     }, 
     "default_attributes": {
         "authorization": {
@@ -73,23 +73,23 @@
         }, 
         "hive": {}, 
         "java": {
-            "install_flavor": "oracle",
+            "install_flavor": "oracle", 
             "jdk": {
                 "6": {
                     "x86_64": {
-                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4",
+                        "checksum": "51d594cec29948bdf58918ba802a872826bc7caae3f0aada42b65eacdc14a7f4", 
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-6u37-linux-x64.bin"
                     }
-                },
+                }, 
                 "7": {
                     "x86_64": {
-                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7",
+                        "checksum": "1b39fe2a3a45b29ce89e10e59be9fbb671fb86c13402e29593ed83e0b419c8d7", 
                         "url": "http://repo.staging.dmz/repo/linux/java/jdk/jdk-7u9-linux-x64.tar.gz"
                     }
                 }
-            },
+            }, 
             "jdk_version": "7"
-        },
+        }, 
         "kafka": {
             "chroot_suffix": "brokers", 
             "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
@@ -190,14 +190,10 @@
             "optimize_plugin": {
                 "optimize_server_url": "http://was.c2.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }
-        },
-        "wt_cam_db" : {
-            "db_server": "hcamdb01.staging.dmz",
-            "db_name": "CAM"
-	},
-        "wt_streaming_usage_db": {
-            "db_server": "hcamdb01.staging.dmz",
-            "db_name": "Streaming"
+        }, 
+        "wt_cam_db": {
+            "db_name": "CAM", 
+            "db_server": "hcamdb01.staging.dmz"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -272,11 +268,11 @@
         "wt_portfolio_manager": {
             "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/51404:id/Portfolio.Manager.zip", 
+            "portmgr_email_from": "ondemandsupport@webtrends.com", 
+            "portmgr_fulfillment_dl": "toby.mosby@webtrends.com", 
             "portmgr_group_admin": "H.PortMgr.Admins", 
             "portmgr_group_user": "H.PortMgr.Users", 
-            "portmgr_injected_user": "toby.mosby@webtrends.com",
-            "portmgr_email_from": "ondemandsupport@webtrends.com",
-            "portmgr_fulfillment_dl": "toby.mosby@webtrends.com",
+            "portmgr_injected_user": "toby.mosby@webtrends.com", 
             "portmgr_support_dl": "eng-systems@webtrends.com"
         }, 
         "wt_portfolio_router": {
@@ -294,11 +290,11 @@
         }, 
         "wt_search": {}, 
         "wt_storm_streaming": {
+            "augment_bolt_executors": 48, 
+            "augment_bolt_tasks": 48, 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/51408:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
-            "query_bolt_tasks": 24,
-            "augment_bolt_executors": 48,
-            "augment_bolt_tasks": 48,
+            "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 4
@@ -324,6 +320,10 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/.lastSuccessful/webtrends-stream-processor-develop-SNAPSHOT-bin.tar.gz", 
             "router_uri": "tcp://hrouter01.staging.dmz:5862"
         }, 
+        "wt_streaming_usage_db": {
+            "db_name": "Streaming", 
+            "db_server": "hcamdb01.staging.dmz"
+        }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip", 
@@ -340,7 +340,7 @@
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/51126:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
-            "sapi_service_url": "ws://hsapi01.staging.dmz:8080" 
+            "sapi_service_url": "ws://hsapi01.staging.dmz:8080"
         }, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/51475:id/webtrends-streamingauditor-bin.tar.gz", 
