@@ -310,7 +310,21 @@
     "name": "CI", 
     "override_attributes": {
         "chef_client": {
-            "server_url": "http://chef.staging.dmz:4000"
+            "server_url": "http://chef.staging.dmz:4000",
+            "exception_handlers": [
+                {
+                    "class":"JabberSnitch",
+                    "arguments": [
+                        "\"chef@sengutil01.staging.dmz\"",
+                        "\"cookin\"",
+                        "\"chef-run-status@conference.sengutil01.staging.dmz\"",
+                        "\"sengutil01.staging.dmz\""
+                    ]
+                }
+            ],
+            "load_gems": [
+                "chef-jabber-snitch"
+            ]
         }, 
         "ntp": {
             "servers": [
