@@ -350,7 +350,7 @@
             "usagedbserver": "ocamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/50672:id/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/51475:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://scs.webtrends.com,http://scs.pdx.webtrends.com,http://scs.las.webtrends.com,http://scs.iad.webtrends.com,http://scs.ams.webtrends.com", 
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
