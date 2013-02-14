@@ -343,8 +343,8 @@
             "sapi_service_url": "ws://hsapi01.staging.dmz:8080" 
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/51122:id/webtrends-streamingauditor-bin.tar.gz", 
-            "roundtrip_scs_urls": "http://hscs.webtrends.com", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/51475:id/webtrends-streamingauditor-bin.tar.gz", 
+            "roundtrip_scs_urls": "http://mscs01.staging.dmz:8080", 
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         }, 
