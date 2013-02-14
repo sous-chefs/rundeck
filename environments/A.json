@@ -234,7 +234,7 @@
             "download_url": "http://pdxchartrandj06/logpreproc.zip"
         }, 
         "wt_management_console": {
-            "mc_service_url": "https://amc.staging.dmz"
+            "service_url": "https://amc.staging.dmz"
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
