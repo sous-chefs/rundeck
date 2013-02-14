@@ -195,6 +195,7 @@ end
 
 chef_handler 'JabberSnitch' do
   source "#{node['chef_handler']['handler_path']}/chef_jabber_snitch.rb"
-  supports :report => true, :exception => true
+  arguments ["chef@sengutil01.staging.dmz", "cookin", "martink@sengutil01.staging.dmz", 0,0, "sengutil01.staging.dmz"]
+  supports :report => false, :exception => true
   action :enable
 end
