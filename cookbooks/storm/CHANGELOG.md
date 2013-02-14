@@ -1,3 +1,7 @@
+## 1.0.33
+* Changed template to be current
+* Changed the service reload to not be immediate
+
 ## 1.0.31
 * Added support for new runit version.
 
