@@ -52,7 +52,7 @@ end
 execute "reload_supervisor" do
   command "sv reload supervisor"
   action :nothing
-  subscribes :run, resources(:template => "#{install_dir}/bin/supervisor-control"), :immediately
+  subscribes :run, resources(:template => "#{install_dir}/bin/supervisor-control")
 end
 
 service "supervisor_start" do
