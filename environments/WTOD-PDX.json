@@ -1,0 +1,566 @@
+{
+    "chef_type": "environment", 
+    "cookbook_versions": {
+        "7-zip": "= 1.0.0", 
+        "ad-auth": "= 1.0.6", 
+        "apache2": "= 1.1.16", 
+        "apparmor": "= 0.9.0", 
+        "application": "= 2.0.0", 
+        "application_ruby": "= 1.0.6", 
+        "apt": "= 1.7.1", 
+        "ark": "= 0.0.17", 
+        "aws": "= 0.100.6", 
+        "beyond_compare": "= 0.0.2", 
+        "bluepill": "= 2.2.0", 
+        "boost": "= 0.1.0", 
+        "build-essential": "= 1.3.2", 
+        "capistrano": "= 0.1.0", 
+        "cassandra": "= 1.0.7", 
+        "chef-client": "= 2.1.6", 
+        "chef-server": "= 1.1.0", 
+        "chef_handler": "= 1.1.4", 
+        "cobbler": "= 1.1.0", 
+        "collectd": "= 1.0.2", 
+        "couchdb": "= 2.0.0", 
+        "cron": "= 1.2.2", 
+        "daemontools": "= 1.0.0", 
+        "database": "= 1.3.10", 
+        "delltools": "= 0.0.4", 
+        "dmg": "= 1.1.0", 
+        "erlang": "= 1.1.2", 
+        "filezilla": "= 1.0.1", 
+        "firefox": "= 1.0.6", 
+        "firewall": "= 0.8.0", 
+        "gdash": "= 0.0.1", 
+        "gecode": "= 2.0.0", 
+        "geminabox": "= 0.1.0", 
+        "git": "= 2.1.2", 
+        "glance": "= 1.0.0", 
+        "graphite": "= 0.4.0", 
+        "hadoop": "= 0.0.1", 
+        "hbase": "= 0.0.1", 
+        "hive": "= 0.0.1", 
+        "horizon": "= 1.0.0", 
+        "hosts": "= 1.0.2", 
+        "hp-tools": "= 0.3.0", 
+        "iis": "= 1.3.4", 
+        "iptables": "= 0.10.0", 
+        "java": "= 1.6.0", 
+        "jetty": "= 0.0.1", 
+        "jpackage": "= 1.0.0", 
+        "kafka": "= 1.0.20", 
+        "keystone": "= 1.0.0", 
+        "logrotate": "= 0.8.2", 
+        "man": "= 0.7.0", 
+        "maven": "= 0.13.0", 
+        "memcached": "= 1.1.2", 
+        "minitest-handler": "= 0.4.0", 
+        "ms_dotnet35": "= 1.0.0", 
+        "ms_dotnet4": "= 1.0.1", 
+        "ms_dotnet45": "= 1.1.0", 
+        "ms_messagequeue": "= 0.0.2", 
+        "multi_repo": "= 1.0.0", 
+        "mysql": "= 2.1.0", 
+        "mysql-openstack": "= 1.0.4", 
+        "nagios": "= 3.0.0", 
+        "nagios-xi": "= 0.0.1", 
+        "networking_basic": "= 0.0.5", 
+        "nginx": "= 1.1.0", 
+        "nginx_simplecgi": "= 0.1.0", 
+        "notepadplusplus": "= 1.0.3", 
+        "nova": "= 1.0.0", 
+        "nscd": "= 0.8.2", 
+        "nscp": "= 0.0.1", 
+        "ntp": "= 1.3.2", 
+        "ohai": "= 1.1.6", 
+        "oozie": "= 0.0.1", 
+        "openldap": "= 0.10.0", 
+        "openssh": "= 0.8.0", 
+        "openssl": "= 1.0.0", 
+        "osops-utils": "= 1.0.6", 
+        "passenger_apache2": "= 1.1.0", 
+        "perl": "= 1.1.0", 
+        "php": "= 1.0.3", 
+        "php5-fcgi": "= 1.0.2", 
+        "postfix": "= 2.1.2", 
+        "postgresql": "= 2.1.0", 
+        "powergui": "= 1.0.0", 
+        "powershell": "= 1.0.8", 
+        "python": "= 1.2.0", 
+        "rabbitmq": "= 1.8.0", 
+        "rabbitmq-openstack": "= 1.0.4", 
+        "rbenv": "= 1.4.1", 
+        "rbvmomi": "= 1.0.0", 
+        "reprepro": "= 0.2.4", 
+        "resolver": "= 1.1.0", 
+        "rsync": "= 0.8.0", 
+        "rsyslog": "= 1.5.0", 
+        "ruby": "= 0.9.2", 
+        "rundeck": "= 1.0.5", 
+        "runit": "= 0.16.2", 
+        "samba": "= 0.11.0", 
+        "selinux": "= 0.5.6", 
+        "snmp": "= 0.3.1", 
+        "spark": "= 1.0.1", 
+        "splunk": "= 0.0.4", 
+        "sql_server": "= 1.1.0", 
+        "squid": "= 0.2.0", 
+        "storm": "= 1.0.30", 
+        "sudo": "= 1.0.0", 
+        "sysctl": "= 0.1.8", 
+        "thrift": "= 1.0.0", 
+        "thrift-hbase-php5": "= 0.0.2", 
+        "tomcat": "= 0.11.0", 
+        "ubuntu": "= 1.1.0", 
+        "ucspi-tcp": "= 1.0.0", 
+        "ulimit": "= 0.0.1", 
+        "unbound": "= 0.1.1", 
+        "unicorn": "= 1.1.0", 
+        "unit-tests": "= 0.1.0", 
+        "users": "= 1.3.0", 
+        "vc2010": "= 1.0.1", 
+        "vim": "= 1.0.2", 
+        "vmware-tools": "= 0.1.3", 
+        "vsftpd": "= 0.0.2", 
+        "webpi": "= 1.0.16", 
+        "webtrends_server": "= 1.8.10", 
+        "windows": "= 1.7.0", 
+        "wt_actioncenter": "= 1.1.8", 
+        "wt_analytics_ui": "= 1.1.6", 
+        "wt_base": "= 1.0.2", 
+        "wt_cam": "= 1.1.6", 
+        "wt_cam_db": "= 0.1.5", 
+        "wt_commonlib": "= 0.10.5", 
+        "wt_data_deleter": "= 1.0.2", 
+        "wt_devicedataupdater": "= 0.1.1", 
+        "wt_dx": "= 0.10.53", 
+        "wt_edge_server": "= 1.0.2", 
+        "wt_hdfslogdata_producer": "= 1.0.0", 
+        "wt_heatmaps": "= 0.10.45", 
+        "wt_heatmaps_logconverter": "= 1.0.1", 
+        "wt_kafka_topagg": "= 1.0.3", 
+        "wt_labserver": "= 0.1.0", 
+        "wt_labstation": "= 0.0.1", 
+        "wt_lfm_ftp": "= 0.1.0", 
+        "wt_logpreproc": "= 1.0.16", 
+        "wt_maintenance_site": "= 0.0.1", 
+        "wt_monitoring": "= 1.0.0", 
+        "wt_netacuity": "= 1.0.10", 
+        "wt_oauth_redirector": "= 0.0.13", 
+        "wt_platformscheduler": "= 1.0.11", 
+        "wt_portfolio_admin": "= 1.1.11", 
+        "wt_portfolio_manager": "= 1.1.17", 
+        "wt_publishver": "= 0.1.0", 
+        "wt_realtime_hadoop": "= 1.0.4", 
+        "wt_roadrunner": "= 0.10.31", 
+        "wt_sauth": "= 1.1.4", 
+        "wt_search": "= 1.0.8", 
+        "wt_static_tag_host": "= 0.0.4", 
+        "wt_storm_streaming": "= 2.3.8", 
+        "wt_stream_processor": "= 1.0.0", 
+        "wt_streaming_viz": "= 1.1.18", 
+        "wt_streaminganalysis_monitor": "= 1.0.5", 
+        "wt_streamingapi": "= 1.1.5", 
+        "wt_streamingauditor": "= 1.0.15", 
+        "wt_streamingcollection": "= 1.1.4", 
+        "wt_streamingconfigservice": "= 1.0.9", 
+        "wt_streaminglogreplayer": "= 1.1.5", 
+        "wt_streamingmanagementservice": "= 1.0.6", 
+        "wt_sync": "= 1.0.4", 
+        "wt_viracocha": "= 1.1.3", 
+        "wt_xd": "= 1.0.3", 
+        "xfs": "= 1.1.0", 
+        "xml": "= 1.1.2", 
+        "yum": "= 2.1.0", 
+        "zlib": "= 2.0.0", 
+        "zookeeper": "= 0.0.1"
+    }, 
+    "default_attributes": {}, 
+    "description": "WTOD Pod in PDX", 
+    "json_class": "Chef::Environment", 
+    "name": "WTOD-PDX", 
+    "override_attributes": {
+        "authorization": {
+            "ad_auth": {
+                "ad_network": "NETIQ"
+            }, 
+            "sudo": {
+                "groups": [
+                    "domain-admins", 
+                    "NETIQDMZ\\\\domain-admins"
+                ], 
+                "include_sudoers_d": true, 
+                "passwordless": false, 
+                "users": [
+                    "shaggy"
+                ]
+            }
+        }, 
+        "beyond_compare": {
+            "download_url": "http://repo.netiq.dmz/windows/beyond_compare/BCompare-3.3.5.15075.exe"
+        }, 
+        "cassandra": {
+            "cassandra_host": "pdxcas.netiq.dmz", 
+            "cassandra_meta_column": "01_Meta", 
+            "cassandra_report_column": "01_Report", 
+            "cassandra_thrift_port": 9160
+        }, 
+        "delltools": {
+            "raid": {
+                "megacli_url": "http://repo.netiq.dmz/centos/MegaCli-8.04.07-1.noarch.rpm"
+            }
+        }, 
+        "esx": {
+            "checksum": "a495c580eee4b94d92b213e8189c4ec2", 
+            "repo": "http://repo.netiq.dmz/linux/vmware", 
+            "tarball": "VMwareTools-8.3.12-493255.tar.gz"
+        }, 
+        "hadoop": {
+            "core": {
+                "fs_checkpoint_dir": "/var/lib/hadoop/hdfs/backupnamenode", 
+                "fs_checkpoint_period": 900, 
+                "fs_trash_interval": 360, 
+                "io_file_buffer_size": 4096
+            }, 
+            "dfs": {
+                "block_size": 67108864, 
+                "data_dir": "/mnt/hdfs/hdfs01/data1/hdfs,/mnt/hdfs/hdfs01/data2/hdfs,/mnt/hdfs/hdfs01/data3/hdfs,/mnt/hdfs/hdfs01/data4/hdfs,/mnt/hdfs/hdfs01/data5/hdfs,/mnt/hdfs/hdfs01/data6/hdfs,/mnt/hdfs/hdfs01/data7/hdfs,/mnt/hdfs/hdfs01/data8/hdfs,/mnt/hdfs/hdfs01/data9/hdfs,/mnt/hdfs/hdfs01/data10/hdfs,/mnt/hdfs/hdfs01/data11/hdfs,/mnt/hdfs/hdfs01/data12/hdfs", 
+                "datanode_du_reserved": 10485760, 
+                "datanode_handler_count": 3, 
+                "datanode_max_xcievers": 4096, 
+                "name_dir": "/var/lib/hadoop/hdfs/namenode", 
+                "namenode_handler_count": 10, 
+                "permissions": "true", 
+                "replication": 3
+            }, 
+            "env": {
+                "HADOOP_HEAPSIZE": 2000, 
+                "HADOOP_OPTS": "", 
+                "java_net_preferIPv4Stack": "true"
+            }, 
+            "mapred": {
+                "child_java_opts": "-server -Xmx640m -Djava.net.preferIPv4Stack=true", 
+                "child_ulimit": 8388608, 
+                "io_sort_factor": 10, 
+                "io_sort_mb": 100, 
+                "job_reuse_jvm_num_tasks": 1, 
+                "job_tracker_handler_count": 10, 
+                "local_dir": "/mnt/hdfs/hdfs01/data1/mapred,/mnt/hdfs/hdfs01/data2/mapred,/mnt/hdfs/hdfs01/data3/mapred,/mnt/hdfs/hdfs01/data4/mapred,/mnt/hdfs/hdfs01/data5/mapred,/mnt/hdfs/hdfs01/data6/mapred,/mnt/hdfs/hdfs01/data7/mapred,/mnt/hdfs/hdfs01/data8/mapred,/mnt/hdfs/hdfs01/data9/mapred,/mnt/hdfs/hdfs01/data10/mapred,/mnt/hdfs/hdfs01/data11/mapred,/mnt/hdfs/hdfs01/data12/mapred", 
+                "map_tasks_speculative_execution": "false", 
+                "reduce_tasks": 26, 
+                "reduce_tasks_speculative_execution": "false", 
+                "tasktracker_map_tasks_maximum": 6, 
+                "tasktracker_reduce_tasks_maximum": 3
+            }
+        }, 
+        "hbase": {
+            "data_center_id": "las", 
+            "env": {
+                "HBASE_HEAPSIZE": 4000, 
+                "HBASE_MANAGES_ZK": "false"
+            }, 
+            "location": "hbase01.las.netiq.dmz", 
+            "pod_id": "01", 
+            "site": {
+                "replication": "true", 
+                "zookeeper_clientport": 2181, 
+                "zookeeper_quorum": "pdxzoo01v.netiq.dmz,pdxzoo02v.netiq.dmz,pdxzoo03v.netiq.dmz"
+            }, 
+            "thrift_port": 9090
+        }, 
+        "hive": {
+            "metastore": {
+                "connection_url": "jdbc:sqlserver://pdxusagedb01v.netiq.dmz;databaseName=hivemeta", 
+                "connector": "sqlserver"
+            }
+        }, 
+        "java": {
+            "install_flavor": "oracle", 
+            "jdk": {
+                "6": {
+                    "x86_64": {
+                        "url": "http://repo.netiq.dmz/linux/java/jdk/jdk-6u31-linux-x64.bin"
+                    }
+                }, 
+                "7": {
+                    "x86_64": {
+                        "url": "http://repo.netiq.dmz/linux/java/jdk/jdk-7u3-linux-x64.tar.gz"
+                    }
+                }
+            }
+        }, 
+        "kafka": {
+            "chroot_suffix": "brokers", 
+            "download_url": "http://repo.netiq.dmz/linux/kafka/", 
+            "log_flush_scheduler_time_interval": "500", 
+            "log_flush_time_interval": "500", 
+            "log_retention_hours": "2", 
+            "threads": "8", 
+            "version": "0.7.1"
+        }, 
+        "memcached": {
+            "cache_hosts": [
+                {
+                    "name": "01memcache01.pdx.netiq.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "01memcache02.pdx.netiq.dmz", 
+                    "port": "11211"
+                }, 
+                {
+                    "name": "01memcache03.pdx.netiq.dmz", 
+                    "port": "11211"
+                }
+            ], 
+            "memory": "1024"
+        }, 
+        "ms_dotnet4": {
+            "http_url": "http://repo.netiq.dmz/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
+        }, 
+        "ms_dotnet45": {
+            "http_url": "http://repo.netiq.dmz/windows/ms_dotnet45/dotNetFx45_Full_x86_x64.exe"
+        }, 
+        "nagios": {
+            "client": {
+                "install_method": "package"
+            }, 
+            "multi_environment_monitoring": true, 
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server_role": "nagios_xi"
+        }, 
+        "nginx": {
+            "default_site_enabled": false
+        }, 
+        "ntp": {
+            "servers": [
+                "ntp.las.netiq.dmz", 
+                "ntp.iad.netiq.dmz", 
+                "ntp.pdx.netiq.dmz", 
+                "ntp.ams.netiq.dmz"
+            ]
+        }, 
+        "postfix": {
+            "relayhost": "smtp.pdx.netiq.dmz"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.90.18.8", 
+                "10.90.18.9"
+            ], 
+            "search": "netiq.dmz"
+        }, 
+        "snmp": {
+            "community": "wtlive", 
+            "full_systemview": "true", 
+            "syscontact": "hostedops@webtrends.com", 
+            "trapcommunity": "wtlive", 
+            "trapsinks": [
+                "pdxmgr10v.netiq.dmz"
+            ]
+        }, 
+        "squid": {
+            "network": "10.92.0.0/8", 
+            "port": "8080"
+        }, 
+        "ubuntu": {
+            "architectures": [
+                "amd64"
+            ], 
+            "archive_url": "http://repo.netiq.dmz/apt/mirrors.cat.pdx.edu/ubuntu/", 
+            "include_source_packages": false, 
+            "security_url": "http://repo.netiq.dmz/apt/mirrors.cat.pdx.edu/ubuntu/"
+        }, 
+        "vc2010": {
+            "x64": {
+                "url": "http://repo.netiq.dmz/windows/ms_vc2010/vcredist_x64.exe"
+            }, 
+            "x86": {
+                "url": "http://repo.netiq.dmz/windows/ms_vc2010/vcredist_x86.exe"
+            }
+        }, 
+        "webpi": {
+            "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "url": "http://repo.netiq.dmz/windows/webpi/WebpiCmd.zip", 
+            "xmlpath": "http://repo.netiq.dmz/windows/webpi/webproductlist.xml"
+        }, 
+        "webtrends_server": {
+            "apt": [
+                {
+                    "arch": "amd64", 
+                    "components": [
+                        "main"
+                    ], 
+                    "key": "http://repo.netiq.dmz/apt/webtrends/repo.gpg.key", 
+                    "name": "webtrends", 
+                    "url": "http://repo.netiq.dmz/apt/webtrends"
+                }
+            ], 
+            "yum": [
+                {
+                    "description": "Webtrends Repo", 
+                    "name": "webtrends", 
+                    "url": "http://repo.netiq.dmz/yum/webtrends"
+                }
+            ]
+        }, 
+        "wt_analytics_ui": {
+            "android_public_key": "7z/1guVIdPgZQqKxpvw2RZMNdCxgFMCdWL0T89WZWzPDoTCp3EKLMz501OAw+yfwKCbVwdUjgtvv4+RTV2zZUXE3AnbKDwynzUiOI2pbzwvh2CZ+kBI9KEaVnb5yPkNwNOVx1DNEEkVKoIGj24jPrMwZWasT9V/vSvGkgnmZssRYb8prT35hRezhzHsAhHHR+ZIPMp7EvdOLJXQ1oFmUranjv0c/mKMycQDPtAAll7OSQPostu7LnQBTOFBbgDyiI51ZvRIt6ONnsZNXqda0vIlJtVwDYCJ0CZHYEfbW7JhKt6nkVWUdKDql4O3m5bfh5HTBY6bt5I+XhB/bv1iM8w==", 
+            "app_pool_private_memory": 3145728, 
+            "bba_domain": "blackberry.webtrends.com", 
+            "cache_region": "A10", 
+            "custom_errors": "On", 
+            "download_url": "http://repo.netiq.dmz/product/ondemand/10.6/hotfix/0102/AnalyticsUI.zip", 
+            "facebook_public_key": "7z/1guVIdPgZQqKxpvw2RZMNdCxgFMCdWL0T89WZWzPDoTCp3EKLMz501OAw+yfwKCbVwdUjgtvv4+RTV2zZUXE3AnbKDwynzUiOI2pbzwvh2CZ+kBI9KEaVnb5yPkNwNOVx1DNEEkVKoIGj24jPrMwZWasT9V/vSvGkgnmZssRYb8prT35hRezhzHsAhHHR+ZIPMp7EvdOLJXQ1oFmUranjv0c/mKMycQDPtAAll7OSQPostu7LnQBTOFBbgDyiI51ZvRIt6ONnsZNXqda0vIlJtVwDYCJ0CZHYEfbW7JhKt6nkVWUdKDql4O3m5bfh5HTBY6bt5I+XhB/bv1iM8w==", 
+            "fb_app_clientid": "103645866351316", 
+            "fb_app_clientsecret": "f856805656c4b27bef04dc49641dbd58", 
+            "fb_data_center_id": "las", 
+            "help_link": "http://help.webtrends.com/{0}/analytics10/", 
+            "hmap_url": "http://hmapi.netiq.dmz/", 
+            "ios_public_key": "7z/1guVIdPgZQqKxpvw2RZMNdCxgFMCdWL0T89WZWzPDoTCp3EKLMz501OAw+yfwKCbVwdUjgtvv4+RTV2zZUXE3AnbKDwynzUiOI2pbzwvh2CZ+kBI9KEaVnb5yPkNwNOVx1DNEEkVKoIGj24jPrMwZWasT9V/vSvGkgnmZssRYb8prT35hRezhzHsAhHHR+ZIPMp7EvdOLJXQ1oFmUranjv0c/mKMycQDPtAAll7OSQPostu7LnQBTOFBbgDyiI51ZvRIt6ONnsZNXqda0vIlJtVwDYCJ0CZHYEfbW7JhKt6nkVWUdKDql4O3m5bfh5HTBY6bt5I+XhB/bv1iM8w==", 
+            "ondemand_base_domain": "ondemand.webtrends.com", 
+            "proxy_address": "http://pdxproxy.netiq.dmz:8080", 
+            "proxy_enabled": "true", 
+            "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
+            "remote_access": "0", 
+            "show_profiling": "false", 
+            "tagbuilder_domain": "statse.webtrendslive.com", 
+            "tagbuilder_domainmobile": "dc.webtrends.com/v1", 
+            "tagbuilder_download_url": "https://tagbuilder.webtrends.com", 
+            "tagbuilder_url_template": "https://tagbuilder.webtrends.com/ws/{0}/{1}{2}", 
+            "twitter_public_key": "7z/1guVIdPgZQqKxpvw2RZMNdCxgFMCdWL0T89WZWzPDoTCp3EKLMz501OAw+yfwKCbVwdUjgtvv4+RTV2zZUXE3AnbKDwynzUiOI2pbzwvh2CZ+kBI9KEaVnb5yPkNwNOVx1DNEEkVKoIGj24jPrMwZWasT9V/vSvGkgnmZssRYb8prT35hRezhzHsAhHHR+ZIPMp7EvdOLJXQ1oFmUranjv0c/mKMycQDPtAAll7OSQPostu7LnQBTOFBbgDyiI51ZvRIt6ONnsZNXqda0vIlJtVwDYCJ0CZHYEfbW7JhKt6nkVWUdKDql4O3m5bfh5HTBY6bt5I+XhB/bv1iM8w==", 
+            "youtube_public_key": "7z/1guVIdPgZQqKxpvw2RZMNdCxgFMCdWL0T89WZWzPDoTCp3EKLMz501OAw+yfwKCbVwdUjgtvv4+RTV2zZUXE3AnbKDwynzUiOI2pbzwvh2CZ+kBI9KEaVnb5yPkNwNOVx1DNEEkVKoIGj24jPrMwZWasT9V/vSvGkgnmZssRYb8prT35hRezhzHsAhHHR+ZIPMp7EvdOLJXQ1oFmUranjv0c/mKMycQDPtAAll7OSQPostu7LnQBTOFBbgDyiI51ZvRIt6ONnsZNXqda0vIlJtVwDYCJ0CZHYEfbW7JhKt6nkVWUdKDql4O3m5bfh5HTBY6bt5I+XhB/bv1iM8w=="
+        }, 
+        "wt_common": {
+            "admin_email": "hostedops@webtrends.com", 
+            "cassandra_hosts": [
+                "pdxcas.netiq.dmz"
+            ], 
+            "cassandra_meta_column": "01_Meta", 
+            "cassandra_report_column": "01_Report", 
+            "cassandra_thrift_port": "9160", 
+            "common_resource_environment": "COMMON-PDX", 
+            "config_dir_linux": "/etc/webtrends/", 
+            "config_share": "\\\\pdxstore02.netiq.dmz\\config", 
+            "datacenter": "pdx", 
+            "gem_repo": "http://repo.netiq.dmz/gems-repo/", 
+            "http_proxy_url": "http://proxy.pdx.netiq.dmz:8080", 
+            "install_dir_linux": "/opt/webtrends/", 
+            "install_dir_windows": "d:\\wrs", 
+            "install_log_dir_linux": "/var/log/webtrends/install", 
+            "install_log_dir_windows": "d:\\logs", 
+            "install_server": "http://repo.netiq.dmz/", 
+            "log_dir_linux": "/var/log/webtrends/", 
+            "log_dir_windows": "", 
+            "master_host": "pdxmaster01.netiq.dmz", 
+            "pod_id": "01", 
+            "sched_host": "pdxmaster01.netiq.dmz", 
+            "schedulerdb_host": "pdxusagedb01v.netiq.dmz", 
+            "smtp_server": "smtp.las.netiq.dmz", 
+            "usage_host": "pdxusagedb01v.netiq.dmz", 
+            "wrsmodify_group": "", 
+            "wrsread_group": "NETIQDMZ\\LogReaders"
+        }, 
+        "wt_data_deleter": {
+            "download_url": "http://repo.netiq.dmz/product/ondemand/10.6/rtm/DataDeleter.zip"
+        }, 
+        "wt_devicedataupdater": {
+            "download_url": "http://repo.netiq.dmz/product/ondemand/10.6/rtm/DeviceDataUpdater.zip"
+        }, 
+        "wt_dx": {
+            "app_settings_section": {
+                "streamingServiceRoot": "https://ws.webtrends.com/StreamingServices_v3/"
+            }, 
+            "brandedaccountid": "20578,20663", 
+            "cacheenabled": "True", 
+            "cachename": "DX", 
+            "endpoint_address": "net.tcp://pdxmss.netiq.dmz:8096/Search/Service", 
+            "rest_base_uri": "https://ws.webtrends.com/v3", 
+            "website_name": "DX", 
+            "website_port": "80"
+        }, 
+        "wt_heatmaps": {
+            "config_distrib": "cd.pdx.netiq.dmz:8097", 
+            "heatmap_reducers": -1
+        }, 
+        "wt_heatmaps_logconverter": {
+            "download_url": "http://repo.netiq.dmz/product/ondemand/10.3/rtm/heatmaps_logconverter/heatmaps_logconverter.tar.gz", 
+            "nfs_export": "pdxstore08.netiq.dmz:/ifs/data/hmifr_20120309"
+        }, 
+        "wt_masterdb": {
+            "dbname": "wtmaster", 
+            "host": "pdxmaster01.netiq.dmz", 
+            "master_db": "wtmaster", 
+            "master_host": "pdxmaster01.netiq.dmz", 
+            "sched_host": "pdxmaster01.netiq.dmz"
+        }, 
+        "wt_messaging_monitoring": {
+            "monitor_hostname": "pdxtools02v.netiq.dmz"
+        }, 
+        "wt_monitoring": {
+            "audit_bucket_timespan": 10, 
+            "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "false", 
+            "graphite_flush_interval": "1", 
+            "graphite_port": 2003, 
+            "graphite_server": "carbon.pdx.netiq.dmz", 
+            "healthcheck_enabled": "true", 
+            "healthcheck_port": 9000, 
+            "jmx_enabled": "true", 
+            "jmx_port": 9999, 
+            "metric_prefix": "ondemand.WTOD.servers", 
+            "monitoring_enabled": "true"
+        }, 
+        "wt_netacuity": {
+            "download_url": "http://repo.netiq.dmz/linux/netacuity/NetAcuity_502_x64.gz", 
+            "geo_url": "geo.pdx.netiq.dmz", 
+            "version": "502"
+        }, 
+        "wt_platformscheduler": {
+            "agent": {
+                "download_url": "http://repo.netiq.dmz/product/ondemand/10.6/rtm/WebTrendsVDMSchedulerAgent.msi"
+            }, 
+            "host": "pdxpltschd01v.netiq.dmz"
+        }, 
+        "wt_realtime_hadoop": {
+            "datacenter": "las", 
+            "environment": "WTOD-LAS", 
+            "pod": "01"
+        }, 
+        "wt_roadrunner": {
+            "url": "product/ondemand/10.31/rtm/roadrunner/"
+        }, 
+        "wt_search": {
+            "download_url": "http://repo.netiq.dmz/product/ondemand/10.6/rtm/Search.zip", 
+            "search_hostname": "pdxmss.netiq.dmz", 
+            "search_service": "net.tcp://pdxmss.netiq.dmz:8096/Search/Service"
+        }, 
+        "wt_streamingconfigservice": {
+            "config_service_url": "http://configsvc.las.netiq.dmz"
+        }, 
+        "wt_streaminglogreplayer": {
+            "download_url": "http://repo.netiq.dmz/product/srt/1.2/0212/webtrends-streaminglogreplayer-bin.tar.gz", 
+            "log_share_mount": "pdxstore08.netiq.dmz:/ifs/data/logreplay_20120529", 
+            "thread_pool_size": 160, 
+            "zookeeper_env": "WTOD-LAS"
+        }, 
+        "wt_sync": {
+            "download_url": "http://repo.netiq.dmz/product/ondemand/10.6/rtm/SyncService.zip"
+        }, 
+        "zookeeper": {
+            "clientPort": 2181, 
+            "dataDir": "/var/run/zookeeper", 
+            "initLimit": 10, 
+            "quorum": [
+                "pdxzoo01v.netiq.dmz", 
+                "pdxzoo02v.netiq.dmz", 
+                "pdxzoo03v.netiq.dmz"
+            ], 
+            "syncLimit": 5, 
+            "tickTime": 2000, 
+            "version": "3.3.4"
+        }
+    }
+}
