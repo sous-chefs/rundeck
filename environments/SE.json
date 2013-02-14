@@ -221,7 +221,7 @@
         }, 
         "wt_logpreproc": {}, 
         "wt_management_console": {
-            "mc_service_url": "https://semc.staging.dmz"
+            "service_url": "https://semc.staging.dmz"
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
@@ -271,8 +271,7 @@
         }, 
         "wt_search": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/Search.zip", 
-            "search_hostname": "sesearch.staging.dmz", 
-            "search_service": "net.tcp://sesearch.staging.dmz:8096/Search/Service"
+            "search_hostname": "sesearch.staging.dmz"
         }, 
         "wt_sync": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/SyncService.zip"

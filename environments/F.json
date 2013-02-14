@@ -229,7 +229,7 @@
             "wtlogpreproc1_fileextension": "*.log.gz"
         }, 
         "wt_management_console": {
-            "mc_service_url": "https://fmc.staging.dmz"
+            "service_url": "https://fmc.staging.dmz"
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
