@@ -1,8 +1,9 @@
+#
 # Cookbook Name:: wt_xd_importer
 # Recipe:: uninstall
 # Author:: Kendrick Martin
 #
-# Copyright 2012, Webtrends, Inc
+# Copyright 2012, Webtrends Inc.
 #
 # All rights reserved - Do Not Redistribute
 # This recipe uninstalls existing Search Service installs
