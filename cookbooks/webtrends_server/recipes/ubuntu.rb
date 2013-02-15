@@ -189,11 +189,11 @@ chef_gem "chef-jabber-snitch"
 
 if node['wt_common']['gem_repo']
   execute "remove rubygems" do
-    command "gem source -r http://rubgems.org/"
+    command "gem source -r http://rubygems.org/"
   end
   
   execute "gem_repo_add" do
     command "gem source -a #{node['wt_common']['gem_repo']}"
-    only_if "gem source | grep #{node['wt_common']['gem_repo']}"
+    not_if "gem source | grep #{node['wt_common']['gem_repo']}"
   end
 end
