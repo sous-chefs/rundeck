@@ -135,6 +135,9 @@
                 }
             ]
         }, 
+        "wt_common": {
+            "gem_repo": "http://repo.staging.dmz/repo/gems-repo/"
+        }, 
         "wt_monitoring": {
             "graphite_flush_enabled": "true", 
             "graphite_flush_interval": "1", 
