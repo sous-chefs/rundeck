@@ -185,8 +185,6 @@ include_recipe "collectd"
 # install collectd plugins for WT base OS monitoring
 include_recipe "wt_monitoring::collectd_base"
 
-chef_gem "chef-jabber-snitch"
-
 if node['wt_common']['gem_repo']
   execute "remove rubygems" do
     command "gem source -r http://rubygems.org/"
@@ -197,3 +195,5 @@ if node['wt_common']['gem_repo']
     not_if "gem source | grep #{node['wt_common']['gem_repo']}"
   end
 end
+
+chef_gem "chef-jabber-snitch"
