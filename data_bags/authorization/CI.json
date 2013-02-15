@@ -57,6 +57,10 @@
         "masterdbpwd": "v87m-Rhv8TMogJ_j", 
         "masterdbuser": "ConfigSvc"
     }, 
+    "wt_cam_db": {
+        "db_pwd": "bijoux",
+        "db_user": "wtUI"
+    },
     "wt_streamingmanagementservice": {
         "db_pwd": "Bijoux1", 
         "db_user": "sa"
