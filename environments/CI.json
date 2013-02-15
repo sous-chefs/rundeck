@@ -315,7 +315,8 @@
                         "\"chef@sengutil01.staging.dmz\"", 
                         "\"cookin\"", 
                         "\"chef-run-status@conference.sengutil01.staging.dmz\"", 
-                        "\"sengutil01.staging.dmz\""
+                        "\"sengutil01.staging.dmz\"",
+                        "\"http://sengutil01.staging.dmz:8080/api/create\""
                     ], 
                     "class": "JabberSnitch"
                 }
