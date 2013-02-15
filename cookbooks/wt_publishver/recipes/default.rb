@@ -212,9 +212,9 @@ node['roles'].each do |r|
 		end
 	when 'wt_xd_importer'
 		log "publishing #{r}"
-		wt_publishver 'External Data Service' do
+		wt_publishver 'External Data Importer' do
 			download_url node['wt_xd_importer']['download_url']
-			key_file     win_path(wdir, node['wt_xd_importer']['install_dir'], 'Webtrends.ExternalData.RetrievalService.exe')
+			key_file     win_path(wdir, node['wt_xd_importer']['install_dir'], 'Webtrends.ExternalData.Refresh.exe')
 		end
 	when 'wt_xd_mapreduce'
 		log "publishing #{r}"
