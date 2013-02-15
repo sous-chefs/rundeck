@@ -1,3 +1,6 @@
+## 1.9.1
+* Added gem source add to ubuntu boxes
+
 ## 1.9.0
 * Initial support for adding a chef jabber handler
 
