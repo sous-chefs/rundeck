@@ -204,12 +204,12 @@
         "wt_portfolio_admin": {
             "account_ui_url": "https://haccount.webtrends.com", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lasSuccessful/Portfolio.Admin.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lastSuccessful/Portfolio.Admin.zip",
             "elmah_remote_access": "yes", 
             "proxy_enabled": "false"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip",
             "manager_ui_url": "http://hportmc01.staging.dmz", 
             "portmgr_domain": "STAGINGDMZ", 
             "portmgr_group_admin": "H.PortMgr.Admins", 
