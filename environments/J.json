@@ -1,8 +1,9 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
+        "webtrends_server": "= 1.8.12", 
         "wt_analytics_ui": "= 1.1.6", 
-        "wt_base": "= 1.0.3", 
+        "wt_base": "= 1.0.4", 
         "wt_monitoring": "= 1.0.0", 
         "wt_publishver": "= 0.2.0", 
         "wt_search": "= 1.0.10", 
@@ -35,11 +36,10 @@
             "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
         "hbase": {
+            "data_center_id": "Lab", 
             "location": "sdata.staging.dmz", 
+            "pod_id": "J", 
             "thrift_port": 9090
-        }, 
-        "importer": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt262/.lastSuccessful/XD.zip"
         }, 
         "java": {
             "install_flavor": "oracle", 
@@ -117,6 +117,7 @@
         }, 
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "install_method": "zip", 
             "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
             "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
@@ -149,7 +150,9 @@
             ]
         }, 
         "wt_actioncenter": {
-            "download_url": ""
+            "actioncenter_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt325/.lastSuccessful/ActionCenter.zip", 
+            "static_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt325/.lastSuccessful/ac_static.tar.gz"
         }, 
         "wt_analytics_ui": {
             "android_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
@@ -157,7 +160,7 @@
             "bba_domain": "jblackberry.englab.webtrends.corp", 
             "cache_region": "J_A10", 
             "custom_errors": "Off", 
-            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.5/hotfix/0913/AnalyticsUI.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/hotfix/0102/AnalyticsUI.zip", 
             "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "fb_app_clientid": "119772538146833", 
             "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
@@ -260,6 +263,9 @@
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/Search.zip", 
             "search_hostname": "jsearch.englab.webtrends.corp"
         }, 
+        "wt_static_tag_host": {
+            "host": "jstatic01.englab.webtrends.corp"
+        }, 
         "wt_sync": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/SyncService.zip"
         }, 
@@ -270,6 +276,9 @@
         "wt_xd": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/hotfix/1218/XD_Map_Reduce_master_1.0.0-SNAPSHOT.121_artifacts.zip", 
             "environment": "support-staging"
+        }, 
+        "wt_xd_importer": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt262/.lastSuccessful/XD.zip"
         }, 
         "zookeeper": {
             "client_port": 2181
