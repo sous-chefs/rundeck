@@ -354,7 +354,7 @@
         }, 
         "wt_streaminglogreplayer": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/51567:id/webtrends-streaminglogreplayer-bin.tar.gz", 
-            "log_share_mount": "sstore06.staging.dmz:/bstore/logreplay", 
+            "log_share_mount": "sstore02.staging.dmz:/bstore/logreplay", 
             "thread_pool_size": 160
         }, 
         "wt_streamingmanagementservice": {
