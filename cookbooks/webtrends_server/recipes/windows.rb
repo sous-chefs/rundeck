@@ -64,21 +64,18 @@ execute "powercfg-performance" do
   action :run
 end
 
-execute "clear_new_gem_repo" do
-  command "gem sources -r #{node['wt_common']['gem_repo']}"
-  notifies :run, "execute[add_gem_repo]", :immediately
-  only_if { node['wt_common']['gem_repo'] }
-end
 
-execute "add_gem_repo" do
-  command "gem sources -a #{node['wt_common']['gem_repo']}"
-  notifies :run, "execute[clear_gem_repo]", :immediately
-  action :nothing
-end
-
-execute "clear_gem_repo" do
-  command "gem sources -r http://rubygems.org/"
-  action :nothing
+if node['wt_common']['gem_repo']
+  execute "remove rubygems" do
+    command "gem source -r http://rubygems.org/"
+    only_if "gem source | find /I \"http://rubygems.org\""
+  end
+  
+  execute "gem_repo_add" do
+    command "gem source -a #{node['wt_common']['gem_repo']}"
+    not_if "gem source | find /I \"#{node['wt_common']['gem_repo']}\""
+  end
 end
 
 gem_package "zip"
+chef_gem "chef-jabber-snitch"
