@@ -1,23 +1,38 @@
-# Use a better prefix:
-set -g prefix C-a
-unbind C-b
+#
+# Webtrends custom config
+# 
+#
 
-# Change the default delay:
-set -sg escape-time 1
-
-# Set the window and panes index
+#General settings
+#set-option -g default-terminal "screen-256color"
 set -g base-index 1
-setw -g pane-base-index 1
+setw -g utf8 on
+setw -g mode-keys vi
+setw -g mode-mouse on
+set -g mouse-select-pane on
+set -g mouse-select-window on
+set -g mouse-resize-pane on
+set -g history-limit 30000
+setw -g alternate-screen on
+set -s escape-time 1
+set -g visual-activity off
+setw -g monitor-activity on
+setw -g aggressive-resize on
 
-# Send prefix to ohter apps:
-bind C-a send-prefix
-
-# Split windows with more logical keys
+# rebind a few keys
 bind | split-window -h
-bind - split-window -v
+bind _ split-window -v
+bind r source-file ~/.tmux.conf \; display-message "Configuration reloaded."
 
-# Remap movement keys
-bind h select-pane -L
-bind j select-pane -D
-bind k select-pane -U
-bind l select-pane -R
+# Set status bar
+set -g status-bg colour235
+set -g status-fg white
+set -g status-interval 10
+setw -g window-status-current-bg red
+setw -g window-status-current-fg black
+set -g status-right '#[fg=green]#h#[fg=green] - [#[fg=yellow]#(cat /proc/loadavg |cut -d " " -f 1-3)#[fg=green]][#[fg=cyan]%Y-%m-%d #[fg=white]%H:%M:%S#[default]#[fg=green]]'
+set -g status-right-length 60
+
+# pane border colors
+set-option -g pane-border-fg colour240
+set-option -g pane-active-border-fg colour240
