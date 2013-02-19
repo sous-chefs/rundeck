@@ -1,8 +1,12 @@
+## 1.9.2
+* Updated internal gem source handling for all platforms.
+* Added chef jabber gem to windows/centos
+
 ## 1.9.1
 * Added gem source add to ubuntu boxes
 
 ## 1.9.0
-* Initial support for adding a chef jabber handler
+* Initial support for adding a chef jabber handler on ubuntu
 
 ## 1.8.13
 *  Changed rubyzip to zip
