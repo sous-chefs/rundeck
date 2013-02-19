@@ -201,3 +201,19 @@ include_recipe "collectd"
 
 #Install collectd plugins for WT base OS monitoring
 include_recipe "wt_monitoring::collectd_base"
+
+#Sets up internal gem repo
+if node['wt_common']['gem_repo']
+  execute "remove rubygems" do
+    command "gem source -r http://rubygems.org/"
+    only_if "gem source | grep http://rubygems.org"
+  end
+  
+  execute "gem_repo_add" do
+    command "gem source -a #{node['wt_common']['gem_repo']}"
+    not_if "gem source | grep #{node['wt_common']['gem_repo']}"
+  end
+end
+
+#Installs gem for reporting to chef jabber server
+chef_gem "chef-jabber-snitch"
