@@ -11,7 +11,7 @@
         "runit": "= 1.0.2", 
         "storm": "= 1.0.32", 
         "ubuntu": "= 1.0.3", 
-        "webpi": "= 1.0.16", 
+        "webpi": "= 1.1.2", 
         "webtrends_server": "= 1.8.12", 
         "windows": "= 1.7.0", 
         "wt_base": "= 1.0.4", 
