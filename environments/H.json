@@ -142,7 +142,8 @@
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
             "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
-            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml",
+            "msi": "http://repo.staging.dmz/repo/windows/webpi/WebPlatformInstaller_amd64_en-US.msi"
         }, 
         "webtrends_server": {
             "apt": [
