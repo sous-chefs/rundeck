@@ -3,7 +3,8 @@
 #
 #
 #
-
+logger "starting weekly repair run on cassandra nodes using nodetool"
 <% @nodes.each do |ip| -%>
 nodetool -h <%= ip %> repair
 <% end -%>
+logger "cassandra weekly repair run completed"
