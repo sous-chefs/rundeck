@@ -107,7 +107,6 @@
                 "install_method": "package"
             }, 
             "multi_environment_monitoring": false, 
-            "notifications_enabled": "1", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
