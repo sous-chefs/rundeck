@@ -217,3 +217,6 @@ end
 
 #Installs gem for reporting to chef jabber server
 chef_gem "chef-jabber-snitch"
+
+#Install tmux - a terminal multiplexer
+include_recipe "tmux"
