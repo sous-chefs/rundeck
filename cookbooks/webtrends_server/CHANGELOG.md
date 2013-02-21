@@ -1,3 +1,6 @@
+## 1.9.3
+* Added tmux cookbook so it's auto installed on all boxes
+
 ## 1.9.2
 * Updated internal gem source handling for all platforms.
 * Added chef jabber gem to windows/centos
