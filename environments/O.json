@@ -241,12 +241,12 @@
                     "topic": "Lab_H_scsRawHits"
                 }, 
                 {
-                    "host": "lasagg03v.netiq.dmz", 
-                    "topic": "las_01_scsRawHits:60"
+                    "host": "lasagg01.netiq.dmz", 
+                    "topic": "las_01_scsRawHits:3"
                 }, 
                 {
-                    "host": "lasagg04v.netiq.dmz", 
-                    "topic": "las_01_scsRawHits:60"
+                    "host": "lasagg02.netiq.dmz", 
+                    "topic": "las_01_scsRawHits:3"
                 }
             ]
         }, 
