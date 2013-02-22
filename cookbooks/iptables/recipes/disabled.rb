@@ -18,33 +18,7 @@
 #
 
 package "iptables" 
-package "perl"
-
-execute "rebuild-iptables" do
-  command "/usr/sbin/rebuild-iptables"
-  action :nothing
+service "iptables" do
+      action [ :disable, :stop ]
+      supports :status => true, :start => true, :stop => true, :restart => true
 end
-
-directory "/etc/iptables.d" do
-  action :create
-end
-
-cookbook_file "/usr/sbin/rebuild-iptables" do
-  source "rebuild-iptables"
-  mode 0755
-end
-
-case node[:platform]
-when "ubuntu", "debian"
-  iptables_save_file = "/etc/iptables/general"
-
-  template "/etc/network/if-pre-up.d/iptables_load" do
-    source "iptables_load.erb"
-    mode 0755
-    variables :iptables_save_file => iptables_save_file
-  end
-end
-
-
-iptables_rule "all_established"
-iptables_rule "all_icmp"
