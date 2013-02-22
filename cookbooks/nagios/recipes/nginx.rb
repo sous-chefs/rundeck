@@ -14,9 +14,10 @@
 # limitations under the License.
 #
 
-service 'apache2' do
-  action :stop
-  only_if { node["nagios"]["server"]["stop_apache"] }
+if node["nagios"]["server"]["stop_apache"]
+  service 'apache2' do
+    action :stop
+  end
 end
 
 via_pkg = value_for_platform_family(
@@ -80,6 +81,7 @@ template File.join(node['nginx']['dir'], 'sites-available', 'nagios3.conf') do
     :docroot => node['nagios']['docroot'],
     :log_dir => node['nagios']['log_dir'],
     :fqdn => node['fqdn'],
+    :nagios_url => node['nagios']['url'],
     :chef_env =>  node.chef_environment == '_default' ? 'default' : node.chef_environment,
     :htpasswd_file => File.join(
       node['nagios']['conf_dir'],
