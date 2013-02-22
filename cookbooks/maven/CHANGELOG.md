@@ -1,3 +1,8 @@
+## v0.14.0:
+
+* [COOK-2191] - maven3 recipe's "version" doesn't match the attributes
+* [COOK-2208] - Add 'classifier' attribute to maven cookbook
+
 ## v0.13.0:
 
 * [COOK-2116] - maven should be available on the path
