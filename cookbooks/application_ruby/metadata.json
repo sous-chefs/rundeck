@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "application": ">= 0.0.0",
-    "runit": ">= 0.0.0",
     "unicorn": ">= 0.0.0",
     "apache2": ">= 0.0.0",
-    "passenger_apache2": ">= 0.0.0"
+    "passenger_apache2": ">= 0.0.0",
+    "runit": "~> 1.0"
   },
   "recommendations": {
   },
@@ -30,5 +30,5 @@
   },
   "recipes": {
   },
-  "version": "1.0.6"
+  "version": "1.1.0"
 }
