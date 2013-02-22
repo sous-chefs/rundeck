@@ -1,23 +1,29 @@
-= DESCRIPTION:
+Description
+===========
 
 Installs boost, mainly to support Thrift.
 
-= REQUIREMENTS:
+Requirements
+============
 
-Platform: Ubuntu 9.04. Not tested on any others at this time.
+## Platform:
 
-= USAGE:
+* Ubuntu 10.04
+
+Usage
+=====
 
 Include this recipe to install boost development packages.
 
-  include_recipe "boost"
+    include_recipe "boost"
 
 Merely installs the libboost-dev package which should grab a bunch of dependencies and get the right thing.
 
-= LICENSE and AUTHOR:
-
+License and Author
+==================
 
 Author:: Joshua Timberman (<joshua@opscode.com>)
+
 Copyright:: 2009, Opscode, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
