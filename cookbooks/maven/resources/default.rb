@@ -24,6 +24,7 @@ attribute :group_id, :kind_of => String, :required => true
 attribute :dest, :kind_of => String
 attribute :version, :kind_of => String, :required => true
 attribute :packaging, :kind_of => String, :default => "jar"
+attribute :classifier, :kind_of => String
 attribute :owner, :kind_of => String, :default => "root"
 attribute :mode, :kind_of => Integer, :default => 0644
 attribute :repositories, :kind_of => Array
