@@ -16,70 +16,67 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-version = node[:graphite][:version]
-pyver = node[:graphite][:python_version]
 
-remote_file "/usr/src/carbon-#{version}.tar.gz" do
-  source node[:graphite][:carbon][:uri]
-  checksum node[:graphite][:carbon][:checksum]
+package "python-twisted"
+package "python-simplejson"
+
+version = node['graphite']['version']
+pyver = node['languages']['python']['version'][0..-3]
+
+remote_file "#{Chef::Config[:file_cache_path]}/carbon-#{version}.tar.gz" do
+  source node['graphite']['carbon']['uri']
+  checksum node['graphite']['carbon']['checksum']
 end
 
 execute "untar carbon" do
   command "tar xzf carbon-#{version}.tar.gz"
-  creates "/usr/src/carbon-#{version}"
-  cwd "/usr/src"
+  creates "#{Chef::Config[:file_cache_path]}/carbon-#{version}"
+  cwd Chef::Config[:file_cache_path]
 end
 
 execute "install carbon" do
   command "python setup.py install"
-  creates "/opt/graphite/lib/carbon-#{version}-py#{pyver}.egg-info"
-  cwd "/usr/src/carbon-#{version}"
+  creates "#{node['graphite']['base_dir']}/lib/carbon-#{version}-py#{pyver}.egg-info"
+  cwd "#{Chef::Config[:file_cache_path]}/carbon-#{version}"
 end
 
-service "carbon-cache" do
-  supports :status => true, :start => true, :stop => true
-end
-
-#Create init script for RH or DEB
-template "/etc/init.d/carbon-cache" do
-  source "carbon-cache.init.erb"
-  owner "root"
-  group "root"
-  mode 00755
-  notifies :enable, "service[carbon-cache]"
-  notifies :start, "service[carbon-cache]"
-end
-
-template "/opt/graphite/conf/carbon.conf" do
+template "#{node['graphite']['base_dir']}/conf/carbon.conf" do
   owner node['apache']['user']
   group node['apache']['group']
-  variables( :local_data_dir => node[:graphite][:carbon][:local_data_dir],
-             :line_receiver_interface => node[:graphite][:carbon][:line_receiver_interface],
-             :pickle_receiver_interface => node[:graphite][:carbon][:pickle_receiver_interface],
-             :cache_query_interface => node[:graphite][:carbon][:cache_query_interface] )
-  mode 00644
+  variables( :line_receiver_interface => node['graphite']['carbon']['line_receiver_interface'],
+             :line_receiver_port => node['graphite']['carbon']['line_receiver_port'],
+             :pickle_receiver_interface => node['graphite']['carbon']['pickle_receiver_interface'],
+             :pickle_receiver_port => node['graphite']['carbon']['pickle_receiver_port'],
+             :cache_query_interface => node['graphite']['carbon']['cache_query_interface'],
+             :cache_query_port => node['graphite']['carbon']['cache_query_port'],
+             :max_updates_per_second => node['graphite']['carbon']['max_updates_per_second'],
+             :log_whisper_updates => node['graphite']['carbon']['log_whisper_updates'],
+             :storage_dir => node['graphite']['storage_dir'])
   notifies :restart, "service[carbon-cache]"
 end
 
-template "/opt/graphite/conf/storage-schemas.conf" do
-  owner node['apache']['user']
-  group node['apache']['group']
-  mode 00644
-end
-
-execute "carbon: change graphite storage permissions to apache user" do
-  command "chown -R #{node['apache']['user']}:#{node['apache']['group']} /opt/graphite/storage"
-  only_if do
-    f = File.stat("/opt/graphite/storage")
-    f.uid == 0 and f.gid == 0
-  end
-end
-
-directory "/opt/graphite/lib/twisted/plugins/" do
+template "#{node['graphite']['base_dir']}/conf/storage-schemas.conf" do
   owner node['apache']['user']
   group node['apache']['group']
 end
 
-service "carbon-cache" do
-  action [:enable, :start]
+directory node['graphite']['storage_dir'] do
+  owner node['apache']['user']
+  group node['apache']['group']
+  recursive true
 end
+
+directory "#{node['graphite']['storage_dir']}/whisper" do
+  owner node['apache']['user']
+  group node['apache']['group']
+  recursive true
+end
+
+directory "#{node['graphite']['base_dir']}/lib/twisted/plugins/" do
+  owner node['apache']['user']
+  group node['apache']['group']
+  recursive true
+end
+
+service_type = node['graphite']['carbon']['service_type']
+include_recipe "#{cookbook_name}::#{recipe_name}_#{service_type}"

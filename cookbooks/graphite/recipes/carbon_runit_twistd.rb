@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: graphite
-# Recipe:: default
+# Recipe:: carbon_runit_twistd
 #
 # Copyright 2011, Heavy Water Software Inc.
 #
@@ -17,9 +17,4 @@
 # limitations under the License.
 #
 
-include_recipe "python"
-include_recipe "memcached"
-
-include_recipe "graphite::whisper"
-include_recipe "graphite::carbon"
-include_recipe "graphite::web"
+runit_service "twistd-carbon-cache"
