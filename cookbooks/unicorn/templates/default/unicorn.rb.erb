@@ -5,7 +5,7 @@
 
 # What ports/sockets to listen on, and what options for them.
 <%- @listen.each do |port, options| %>
-listen "<%= port %>", <%= options %>
+listen "<%= port %>"<%- unless options.blank? %>, <%= options %><%- end %>
 <%- end %>
 
 <%- if @working_directory %>
@@ -20,6 +20,10 @@ preload_app <%= @preload_app %>
 
 # How many worker processes
 worker_processes <%= @worker_processes %>
+
+<%- if @unicorn_command_line %>
+Unicorn::HttpServer::START_CTX[0] = "<%= @unicorn_command_line %>"
+<%- end %>
 
 <%- if @before_exec %>
 # What to do right before exec()-ing the new unicorn binary
@@ -58,3 +62,21 @@ stderr_path '<%= @stderr_path %>'
 stdout_path '<%= @stdout_path %>'
 
 <%- end %>
+<%- if @copy_on_write %>
+# http://www.rubyenterpriseedition.com/faq.html#adapt_apps_for_cow
+if GC.respond_to?(:copy_on_write_friendly=)
+  GC.copy_on_write_friendly = true
+end
+
+<%- end %>
+<%- if @enable_stats %>
+# https://newrelic.com/docs/ruby/ruby-gc-instrumentation
+if GC.respond_to?(:enable_stats)
+  GC.enable_stats
+end
+if defined?(GC::Profiler) and GC::Profiler.respond_to?(:enable)
+  GC::Profiler.enable
+end
+
+<%- end %>
+
