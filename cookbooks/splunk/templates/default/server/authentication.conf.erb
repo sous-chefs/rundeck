@@ -1,0 +1,11 @@
+[authentication]
+authType = Scripted
+authSettings = script
+
+[script]
+scriptPath = $SPLUNK_HOME/bin/python $SPLUNK_HOME/<%= node['splunk']['scripted_auth_directory']%>/<%= node['splunk']['scripted_auth_script']%>
+
+[cacheTiming]
+userLoginTTL    = <%= node['splunk']['scripted_auth_userLoginTTL']%>
+getUserInfoTTL  = <%= node['splunk']['scripted_auth_getUserInfoTTL']%>
+getUsersTTL     = <%= node['splunk']['scripted_auth_getUsersTTL']%>
