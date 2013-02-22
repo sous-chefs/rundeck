@@ -2,8 +2,12 @@
 
 <VirtualHost *:<%= node['nagios']['http_port'] %>>
   ServerAdmin     <%= node['nagios']['sysadmin_email'] %>
+  <% if @nagios_url %>
+  ServerName <%= @nagios_url %>
+  <% else %>
   ServerName      <%= node['fqdn'] %>
   ServerAlias     nagios nagios.<%= node.chef_environment =~ /^_default$/ ? "default" : node.chef_environment%>.<%= @public_domain %>
+  <% end %>
   DocumentRoot    <%= node['nagios']['docroot'] %>
   CustomLog       <%= node['nagios']['log_dir'] %>/apache_access.log combined
   ErrorLog        <%= node['nagios']['log_dir'] %>/apache_error.log
@@ -11,6 +15,7 @@
   ScriptAlias /cgi-bin/nagios3 /usr/lib/cgi-bin/nagios3
   ScriptAlias /nagios3/cgi-bin /usr/lib/cgi-bin/nagios3
 
+  Alias /stylesheets /etc/nagios3/stylesheets
   Alias /nagios3/stylesheets /etc/nagios3/stylesheets
   Alias /nagios3 <%= node['nagios']['docroot'] %>
 
@@ -28,6 +33,29 @@
     AuthType OpenID
     require user <%= node['apache']['allowed_openids'].join(' ') %>
     AuthOpenIDDBLocation <%= node['apache']['mod_auth_openid']['dblocation'] %>
+  </Location>
+<% when "cas" -%>
+  CASLoginURL <%= node['nagios']['cas_login_url'] %>
+  CASValidateURL <%= node['nagios']['cas_validate_url'] %>
+  CASValidateServer <%= node['nagios']['cas_validate_server'] %>
+  <% if node['nagios']['cas_root_proxy_url'] -%>
+  CASRootProxiedAs <%= node['nagios']['cas_root_proxy_url'] %>
+  <% end -%>
+
+  <Location />
+    AuthType CAS
+    require valid-user
+  </Location>
+<% when "ldap" -%>
+  <Location />
+    AuthName "Nagios Server"
+    AuthType Basic
+    AuthBasicProvider ldap
+    <% unless node['nagios']['ldap_bind_dn'].nil? -%>AuthLDAPBindDN "<%= node['nagios']['ldap_bind_dn'] %>" <% end -%>
+    <% unless node['nagios']['ldap_bind_password'].nil? -%>AuthLDAPBindPassword "<%= node['nagios']['ldap_bind_password'] %>"<% end -%>
+    AuthLDAPURL "<%= node['nagios']['ldap_url'] %>"
+    AuthzLDAPAuthoritative <%= node['nagios']['ldap_authoritative'] %>
+    require valid-user
   </Location>
 <% else -%>
   <Location />

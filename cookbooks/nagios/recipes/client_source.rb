@@ -21,9 +21,9 @@
 include_recipe "build-essential"
 
 pkgs = value_for_platform_family(
-    ["rhel","fedora"] => "openssl-devel" ,
-    "debian" => "libssl-dev",
-    "default" => "libssl-dev"
+    ["rhel","fedora"] => ["openssl-devel","make","tar"] ,
+    "debian" => ["libssl-dev","make","tar"],
+    "default" => ["libssl-dev","make","tar"]
   )
 
 pkgs.each do |pkg|
@@ -63,42 +63,6 @@ bash "compile-nagios-plugins" do
   creates "#{node['nagios']['plugin_dir']}/check_users"
 end
 
-nrpe_version = node['nagios']['nrpe']['version']
+# compile the NRPE service and NRPE plugin
+include_recipe "nagios::nrpe_source"
 
-remote_file "#{Chef::Config[:file_cache_path]}/nrpe-#{nrpe_version}.tar.gz" do
-  source "#{node['nagios']['nrpe']['url']}/nrpe-#{nrpe_version}.tar.gz"
-  checksum node['nagios']['nrpe']['checksum']
-  action :create_if_missing
-end
-
-bash "compile-nagios-nrpe" do
-  cwd Chef::Config[:file_cache_path]
-  code <<-EOH
-    tar zxvf nrpe-#{nrpe_version}.tar.gz
-    cd nrpe-#{nrpe_version}
-    ./configure --prefix=/usr \
-                --sysconfdir=/etc \
-                --localstatedir=/var \
-                --libexecdir=#{node['nagios']['plugin_dir']} \
-                --libdir=#{node['nagios']['nrpe']['home']} \
-                --enable-command-args \
-                --with-nagios-user=#{node['nagios']['user']} \
-                --with-nagios-group=#{node['nagios']['group']}
-    make -s
-    make install
-  EOH
-  creates "#{node['nagios']['plugin_dir']}/check_nrpe"
-end
-
-template "/etc/init.d/nagios-nrpe-server" do
-  source "nagios-nrpe-server.erb"
-  owner "root"
-  group "root"
-  mode  00755
-end
-
-directory node['nagios']['nrpe']['conf_dir'] do
-  owner "root"
-  group "root"
-  mode  00755
-end
