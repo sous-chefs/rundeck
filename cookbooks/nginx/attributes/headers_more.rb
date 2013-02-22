@@ -1,10 +1,10 @@
 #
-# Cookbook Name:: maven
-# Recipe:: maven3
-# Author:: Seth Chisamore (<seth@opscode.com>)
-# Author:: Bryan W. Berry (<bryan.berry@gmail.com>)
+# Cookbook Name:: nginx
+# Attributes:: headers_more
 #
-# Copyright 2011, Opscode
+# Author:: Lucas Jandrew (<ljandrew@riotgames.com>)
+#
+# Copyright 2012, Riot Games
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,24 +17,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-include_recipe "ark"
-
-ark "maven" do
-  url node['maven']['3']['url']
-  checksum node['maven']['3']['checksum']
-  home_dir node['maven']["m2_home"]
-<<<<<<< HEAD
-  version "3.0.4"
-=======
-  version "3.0.3"
->>>>>>> chef-vendor-nginx
-  append_env_path true
-  action :install
-end
-
-template "/etc/mavenrc" do
-  source "mavenrc.erb"
-  mode "0755"
-end
+default['nginx']['headers_more']['source_url'] = 'https://github.com/agentzh/headers-more-nginx-module/tarball/v0.17'
+default['nginx']['headers_more']['source_checksum'] = '5c556903763c58db0dd01606fdbba5f8'
