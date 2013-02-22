@@ -41,6 +41,7 @@ def get_mvn_artifact(action, new_resource)
     else
       ::File.join new_resource.dest, "#{new_resource.artifact_id}-#{new_resource.version}-#{new_resource.classifier}.#{new_resource.packaging}"
     end
+    artifact_file = ::File.join new_resource.dest, "#{new_resource.artifact_id}-#{new_resource.version}.#{new_resource.packaging}"
   end
 
   unless ::File.exists?(artifact_file)
