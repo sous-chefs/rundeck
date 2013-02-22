@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: nginx
-# Attributes:: upload_progress
+# Attributes:: headers_more
 #
-# Author:: Jamie Winsor (<jamie@vialstudios.com>)
+# Author:: Lucas Jandrew (<ljandrew@riotgames.com>)
 #
 # Copyright 2012, Riot Games
 #
@@ -17,7 +17,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-default['nginx']['upload_progress']['url']      = "https://github.com/masterzen/nginx-upload-progress-module/tarball/v0.8.4"
-default['nginx']['upload_progress']['checksum'] = "7b3f81d30cd3e8af2c343b73d8518d2373b95aeb3d0243790991873a3d91d0c5"
+default['nginx']['headers_more']['source_url'] = 'https://github.com/agentzh/headers-more-nginx-module/tarball/v0.17'
+default['nginx']['headers_more']['source_checksum'] = '5c556903763c58db0dd01606fdbba5f8'
