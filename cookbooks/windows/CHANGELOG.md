@@ -6,6 +6,29 @@
 * windows_registry :force_modify action should use RegNotifyChangeKeyValue from WinAPI
 * WindowsRebootHandler/`windows_reboot` LWRP should support kicking off subsequent chef run on reboot.
 
+## v1.8.4:
+
+* [COOK-2336] - MSI That requires reboot returns with RC 3010 and
+  causes chef run failure
+* [COOK-2368] - `version` attribute of the `windows_package` provider
+  should be documented
+
+## v1.8.2:
+
+**Important**: Use powershell in nodes expanded run lists to ensure
+  powershell is downloaded, as powershell has a dependency on this
+  cookbook; v1.8.0 created a circular dependency.
+
+* [COOK-2301] - windows 1.8.0 has circular dependency on powershell
+
+## v1.8.0:
+
+* [COOK-2126] - Add checksum attribute to windows_zipfile
+* [COOK-2142] - Add printer and printer_port LWRPs
+* [COOK-2149] - Chef::Log.debug Windows Package command line
+* [COOK-2155] -`windows_package` does not send checksum to
+  `cached_file` in `installer_type`
+
 ## v1.7.0:
 
 * [COOK-1745] - allow for newer versions of rubyzip
