@@ -25,11 +25,7 @@ ark "maven" do
   url node['maven']['3']['url']
   checksum node['maven']['3']['checksum']
   home_dir node['maven']["m2_home"]
-<<<<<<< HEAD
   version "3.0.4"
-=======
-  version "3.0.3"
->>>>>>> chef-vendor-nginx
   append_env_path true
   action :install
 end
