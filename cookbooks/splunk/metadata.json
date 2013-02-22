@@ -1,34 +1,34 @@
 {
+  "name": "splunk",
+  "description": "Installs/Configures a Splunk Server, Forwarders, and Apps",
+  "long_description": "",
+  "maintainer": "BBY Solutions, Inc.",
+  "maintainer_email": "andrew.painter@bestbuy.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "redhat": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "fedora": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
+  },
   "dependencies": {
   },
-  "name": "splunk",
-  "maintainer_email": "bryan.brandau@bestbuy.com",
-  "attributes": {
-  },
-  "license": "Apache 2.0",
-  "suggestions": {
-  },
-  "platforms": {
-    "debian": ">= 0.0.0",
-    "fedora": ">= 0.0.0",
-    "centos": ">= 0.0.0",
-    "ubuntu": ">= 0.0.0",
-    "redhat": ">= 0.0.0"
-  },
-  "maintainer": "Best Buy",
-  "long_description": "",
-  "version": "0.0.4",
   "recommendations": {
   },
-  "recipes": {
-  },
-  "groupings": {
+  "suggestions": {
   },
   "conflicting": {
   },
+  "providing": {
+  },
   "replacing": {
   },
-  "description": "Installs/Configures Splunk Server, Forwarder, Deployment Monitor and *nix App",
-  "providing": {
-  }
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.0.9"
 }
