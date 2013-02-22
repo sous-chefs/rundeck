@@ -26,6 +26,9 @@ pkgs = value_for_platform(
   ["centos","redhat","fedora","scientific","amazon"] => {
     "default" => ["java-1.#{jdk_version}.0-openjdk","java-1.#{jdk_version}.0-openjdk-devel"]
   },
+  ["debian","ubuntu"] => {
+    "default" => ["openjdk-#{jdk_version}-jdk","default-jre-headless"]
+  },
   ["arch","freebsd"] => {
     "default" => ["openjdk#{jdk_version}"]
   },
@@ -37,6 +40,7 @@ ruby_block  "set-env-java-home" do
   block do
     ENV["JAVA_HOME"] = java_home
   end
+  not_if { ENV["JAVA_HOME"] == java_home }
 end
 
 file "/etc/profile.d/jdk.sh" do
@@ -67,11 +71,10 @@ if platform?("ubuntu","debian","redhat","centos","fedora","scientific","amazon")
         Chef::Log.debug("glob is #{java_home_parent}/java*#{jdk_version}*openjdk*#{arch}")
         jdk_home = Dir.glob("#{java_home_parent}/java*#{jdk_version}*openjdk*#{arch}").first
         Chef::Log.debug("jdk_home is #{jdk_home}")
-        # delete the symlink if it already exists
-        if ::File.exists? java_home
-          FileUtils.rm_f java_home
+        if jdk_home
+          FileUtils.rm_f java_home if ::File.exists? java_home
+          FileUtils.ln_sf jdk_home, java_home
         end
-        FileUtils.ln_sf jdk_home, java_home
 
         cmd = Chef::ShellOut.new(
           %Q[ update-alternatives --install /usr/bin/java java #{java_home}/bin/java 1;
