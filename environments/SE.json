@@ -185,7 +185,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "common_resource_environment": "support-staging", 
+            "common_resource_environment": "LAB-COMMON-LAS", 
             "config_dir_linux": "/etc/webtrends/", 
             "config_share": "\\\\sstore02.staging.dmz\\sestore\\config", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
@@ -282,7 +282,7 @@
         }, 
         "wt_xd": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/45036:id/artifacts.zip", 
-            "environment": "support-staging"
+            "environment": "LAB-COMMON-LAS"
         }, 
         "zookeeper": {
             "client_port": 2181
