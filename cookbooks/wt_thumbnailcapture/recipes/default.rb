@@ -142,31 +142,41 @@ if ENV["deploy_build"] == "true" then
   end  # 1==0
 
   processTemplates(install_dir, node, user, group, log_dir, java_home)
-  
-  # create a runit service
-  runit_service "thumbnailcapture" do
-    options({
-      :log_dir => log_dir,
-      :install_dir => install_dir,
-      :java_home => java_home,
-      :user => user
-    })
+
+  # not running as runit service yet
+  if 1 == 0 then  
+    # create a runit service
+    runit_service "thumbnailcapture" do
+      options({
+        :log_dir => log_dir,
+        :install_dir => install_dir,
+        :java_home => java_home,
+        :user => user
+      })
+    end
+  else
+    # invoke the service using java command and java_opts
+      execute "thumbnailcapture" do
+      user  "root"
+      group "root"
+      cwd install_dir
+      command "java -jar #{Chef::Config['file_cache_path']}/#{tarball}"
+    end
+
   end
 
 else
     processTemplates(install_dir, node, user, group, log_dir, java_home)
 end
 
-if node.attribute?("nagios")
-
+##if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
-  nagios_nrpecheck "wt_healthcheck_page" do
-    command "#{node['nagios']['plugin_dir']}/check_http"
-    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_thumbnailcapture']['healthcheck_port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
-    action :add
-  end
-
-end
+##  nagios_nrpecheck "wt_healthcheck_page" do
+##    command "#{node['nagios']['plugin_dir']}/check_http"
+##    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_thumbnailcapture']['healthcheck_port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
+##    action :add
+##  end
+##end
 
 service "thumbnailcapture-start" do
   service_name "thumbnailcapture"
