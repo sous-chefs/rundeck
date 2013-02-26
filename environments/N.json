@@ -184,7 +184,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "common_resource_environment": "support-staging", 
+            "common_resource_environment": "LAB-COMMON-LAS", 
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
@@ -202,7 +202,7 @@
             "wrsread_group": "STAGINGDMZ\\B.WRS.Read"
         }, 
         "wt_heatmaps": {
-            "alt_chef_environment": "support-staging", 
+            "alt_chef_environment": "LAB-COMMON-LAS", 
             "config_distrib": "acd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
@@ -244,7 +244,7 @@
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
-            "environment": "support-staging", 
+            "environment": "LAB-COMMON-LAS", 
             "pod": "N"
         }, 
         "wt_rta": {}, 
