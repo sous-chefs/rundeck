@@ -1,3 +1,6 @@
+## 1.9.4
+* Changing jabber-snitch to be a gem package vs chef gem to ensure repo source is correct
+
 ## 1.9.3
 * Added tmux cookbook so it's auto installed on all boxes
 
