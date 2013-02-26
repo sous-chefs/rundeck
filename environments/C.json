@@ -192,7 +192,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "common_resource_environment": "support-staging", 
+            "common_resource_environment": "LAB-COMMON-LAS", 
             "config_dir_linux": "/etc/webtrends/", 
             "config_share": "\\\\sstore02.staging.dmz\\cstore\\config", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
@@ -264,7 +264,7 @@
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
-            "environment": "support-staging", 
+            "environment": "LAB-COMMON-LAS", 
             "pod": "H"
         }, 
         "wt_roadrunner": {
@@ -304,7 +304,7 @@
         }, 
         "wt_xd": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/49688:id/XD_Map_Reduce_master_1.0.0-SNAPSHOT.131_artifacts.zip", 
-            "environment": "support-staging"
+            "environment": "LAB-COMMON-LAS"
         }, 
         "zookeeper": {
             "client_port": 2181

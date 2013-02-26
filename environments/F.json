@@ -186,7 +186,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "common_resource_environment": "support-staging", 
+            "common_resource_environment": "LAB-COMMON-LAS", 
             "config_dir_linux": "/etc/webtrends/", 
             "config_share": "\\\\sstore02.staging.dmz\\fstore\\config", 
             "datacenter": "Lab", 
@@ -287,7 +287,7 @@
         }, 
         "wt_xd": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/hotfix/1218/XD_Map_Reduce_master_1.0.0-SNAPSHOT.121_artifacts.zip", 
-            "environment": "support-staging"
+            "environment": "LAB-COMMON-LAS"
         }, 
         "zookeeper": {
             "client_port": 2181
