@@ -6,7 +6,7 @@ monitoring.jmx.enabled = <%= node['wt_monitoring']['jmx_enabled'] %>
 monitoring.metric.prefix = <%= node['wt_monitoring']['metric_prefix'] %>
 
 # Zookeeper connection info (use this or audit.broker.list)
-audit.zk.connect=<%= @zookeeper_pairs.join(",") %>
+#audit.zk.connect=<%= @zookeeper_pairs.join(",") %>
 
 # Are health checks enabled
 healthcheck.enabled=<%= node['wt_monitoring']['healthcheck_enabled'] %>
