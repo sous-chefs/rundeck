@@ -1,1 +1,1 @@
-override['chef_client']['load_gems'] = ["chef-jabber-snitch"] 
+override['chef_client']['load_gems'] = {"chef-jabber-snitch"=>{"version"=>"1.0.0"}}
