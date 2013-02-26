@@ -386,6 +386,18 @@
     "name": "H", 
     "override_attributes": {
         "chef_client": {
+            "exception_handlers": [
+                {
+                    "arguments": [
+                        "\"chef@sengutil01.staging.dmz\"", 
+                        "\"cookin\"",                        
+                        "\"chef-run-status@conference.sengutil01.staging.dmz\"",
+                        "\"http://sengutil01.staging.dmz:8080/api/create\"",
+                        "\"sengutil01.staging.dmz\""
+                    ], 
+                    "class": "JabberSnitch"
+                }
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "ntp": {
