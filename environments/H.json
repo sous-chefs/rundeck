@@ -369,10 +369,10 @@
             "sms_service_url": "http://hsms.staging.dmz"
         }, 
         "wt_thumbnailcapture": {
-            "download_url": "http://tc/repository/download/bt364/52393:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
+            "download_url": "http://tc/repository/download/bt364/52572:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
             "healthcheck_port": 9001, 
             "jmx_port": 9995, 
-            "port": 8084, 
+            "port": 8085,
             "thread_pool_size": 5000, 
             "thumbnail_service_url": "http://hutil.staging.dmz"
         }, 
@@ -406,6 +406,9 @@
                     "class": "JabberSnitch"
                 }
             ], 
+            "load_gems":[
+              "chef-jabber-snitch"
+            ],
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "ntp": {
