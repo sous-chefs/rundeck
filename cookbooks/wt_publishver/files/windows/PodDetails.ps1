@@ -41,7 +41,7 @@
 #>
 Param(
         [Parameter(Position=0, Mandatory=$True)][ValidatePattern('^[\w\.]+$')]$Hostname,
-        [Parameter(Position=1, Mandatory=$True)][ValidateSet("A","B","C","D","E","F","G","H","J","K","L","M","N","O","S","MS","PF","SE")]$Pod,
+        [Parameter(Position=1, Mandatory=$True)]$Pod,
         [Parameter(Position=2, Mandatory=$True)]$Role,
         [Parameter(Position=3, Mandatory=$False)]$Version,
         [Parameter(Position=4, Mandatory=$False)]$SelectVersion,
