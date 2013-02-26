@@ -141,9 +141,9 @@
         }, 
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "msi": "http://repo.staging.dmz/repo/windows/webpi/WebPlatformInstaller_amd64_en-US.msi", 
             "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
-            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml",
-            "msi": "http://repo.staging.dmz/repo/windows/webpi/WebPlatformInstaller_amd64_en-US.msi"
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
@@ -369,13 +369,13 @@
             "sms_service_url": "http://hsms.staging.dmz"
         }, 
         "wt_thumbnailcapture": {
-            "download_url": "http://tc/repository/download/bt364/52393:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar",
-            "healthcheck_port": 9001,
-            "jmx_port": 9995,
-            "thread_pool_size": 5000,
-            "thumbnail_service_url": "http://hutil.staging.dmz",
-            "port": 8084
-        },
+            "download_url": "http://tc/repository/download/bt364/52393:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
+            "healthcheck_port": 9001, 
+            "jmx_port": 9995, 
+            "port": 8084, 
+            "thread_pool_size": 5000, 
+            "thumbnail_service_url": "http://hutil.staging.dmz"
+        }, 
         "zookeeper": {
             "client_port": 2181, 
             "init_limit": 10, 
@@ -398,9 +398,9 @@
                 {
                     "arguments": [
                         "\"chef@sengutil01.staging.dmz\"", 
-                        "\"cookin\"",                        
-                        "\"chef-run-status@conference.sengutil01.staging.dmz\"",
-                        "\"http://sengutil01.staging.dmz:8080/api/create\"",
+                        "\"cookin\"", 
+                        "\"chef-run-status@conference.sengutil01.staging.dmz\"", 
+                        "\"http://sengutil01.staging.dmz:8080/api/create\"", 
                         "\"sengutil01.staging.dmz\""
                     ], 
                     "class": "JabberSnitch"
