@@ -149,8 +149,8 @@
             "db_server": "cicamdb01.staging.dmz"
         }, 
         "wt_cam_db": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt137/.lastSuccessful/artifacts.zip",
-            "db_server": "cicamdb01.staging.dmz"
+            "db_server": "cicamdb01.staging.dmz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt137/.lastSuccessful/artifacts.zip"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -205,12 +205,12 @@
         "wt_portfolio_admin": {
             "account_ui_url": "https://haccount.webtrends.com", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lastSuccessful/Portfolio.Admin.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lastSuccessful/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "false"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip", 
             "manager_ui_url": "http://hportmc01.staging.dmz", 
             "portmgr_domain": "STAGINGDMZ", 
             "portmgr_group_admin": "H.PortMgr.Admins", 
@@ -231,13 +231,13 @@
         "wt_storm_streaming": {
             "augment_bolt_executors": 24, 
             "augment_bolt_tasks": 24, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/.lastSuccessful/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 1
             }, 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/.lastSuccessful/streaming-analysis-bin.tar.gz", 
             "topic_list": [
                 "Lab_CI_scsRawHits:3", 
                 "Lab_CI_lrRawHits:3"
@@ -316,9 +316,9 @@
                 {
                     "arguments": [
                         "\"chef@sengutil01.staging.dmz\"", 
-                        "\"cookin\"",                        
-                        "\"chef-run-status@conference.sengutil01.staging.dmz\"",
-                        "\"http://sengutil01.staging.dmz:8080/api/create\"",
+                        "\"cookin\"", 
+                        "\"chef-run-status@conference.sengutil01.staging.dmz\"", 
+                        "\"http://sengutil01.staging.dmz:8080/api/create\"", 
                         "\"sengutil01.staging.dmz\""
                     ], 
                     "class": "JabberSnitch"
