@@ -200,7 +200,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "common_resource_environment": "support-staging", 
+            "common_resource_environment": "LAB-COMMON-LAS", 
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
@@ -299,7 +299,7 @@
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
-            "environment": "support-staging", 
+            "environment": "LAB-COMMON-LAS", 
             "pod": "O"
         }, 
         "wt_sauth": {
