@@ -368,6 +368,14 @@
             "port": 8081, 
             "sms_service_url": "http://hsms.staging.dmz"
         }, 
+        "wt_thumbnailcapture": {
+            "download_url": "http://tc/repository/download/bt364/52393:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar",
+            "healthcheck_port": 9001,
+            "jmx_port": 9995,
+            "thread_pool_size": 5000,
+            "thumbnail_service_url": "http://hutil.staging.dmz",
+            "port": 8084
+        },
         "zookeeper": {
             "client_port": 2181, 
             "init_limit": 10, 
