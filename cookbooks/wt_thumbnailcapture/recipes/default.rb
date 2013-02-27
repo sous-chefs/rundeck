@@ -92,9 +92,7 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home)
 	  group group
 	  mode  00640
 	  variables({
-		:port => node['wt_thumbnailcapture']['port'],
-		:wt_monitoring => node['wt_monitoring'],
-		:healthcheck_port => node['wt_thumbnailcapture']['healthcheck_port'],
+		:port => node['wt_thumbnailcapture']['port']
 	  })
 	end
 
@@ -155,12 +153,28 @@ if ENV["deploy_build"] == "true" then
       })
     end
   else
-    # invoke the service using java command and java_opts
+    # install dependencies
+      execute "installdependencies" do
+      user  "root"
+      group "root"
+      cwd install_dir
+      command "sudo apt-get install unzip xvfb cutycapt -y"
+    end
+
+    # explode our artifacts zip file
+      execute "explodeartifacts" do
+      user  "root"
+      group "root"
+      cwd install_dir
+      command "unzip #{Chef::Config['file_cache_path']}/#{tarball} ."
+    end
+
+      # invoke the service using java command and java_opts
       execute "thumbnailcapture" do
       user  "root"
       group "root"
       cwd install_dir
-      command "java -jar #{Chef::Config['file_cache_path']}/#{tarball}"
+      command "java -jar capture-service-1.0-SNAPSHOT.jar"
     end
 
   end
