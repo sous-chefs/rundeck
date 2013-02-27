@@ -8,7 +8,8 @@
 default['wt_thumbnailcapture']['user'] = "webtrends"
 default['wt_thumbnailcapture']['group'] = "webtrends"
 default['wt_thumbnailcapture']['download_url'] = ""
-
+default['wt_thumbnailcapture']['port'] = 8085
+default['wt_thumbnailcapture']['thread_pool_size'] = 500
 default['wt_thumbnailcapture']['java_opts'] = "-Xms1024m -Djava.net.preferIPv4Stack=true"
 
 # optionally specify the environment where ZooKeeper nodes are located
