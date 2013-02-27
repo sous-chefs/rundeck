@@ -198,9 +198,5 @@ if node['wt_common']['gem_repo']
   end
 end
 
-gem_package "chef-jabber-snitch" do
-  version "1.0.0"
-end
-
 #Install tmux - a terminal multiplexer
 include_recipe "tmux"
