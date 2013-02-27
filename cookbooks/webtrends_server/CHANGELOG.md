@@ -1,3 +1,6 @@
+## 1.9.5
+* Removed force install of jabber-snitch entirely. It will now be handled via environment settings
+
 ## 1.9.4
 * Changing jabber-snitch to be a gem package vs chef gem to ensure repo source is correct
 
