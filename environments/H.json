@@ -12,7 +12,7 @@
         "storm": "= 1.0.32", 
         "ubuntu": "= 1.0.3", 
         "webpi": "= 1.1.1", 
-        "webtrends_server": "= 1.9.4", 
+        "webtrends_server": "= 1.9.5", 
         "windows": "= 1.7.0", 
         "wt_base": "= 1.0.4", 
         "wt_cam": "= 1.1.8", 
