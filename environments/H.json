@@ -369,7 +369,7 @@
             "sms_service_url": "http://hsms.staging.dmz"
         }, 
         "wt_thumbnailcapture": {
-            "download_url": "http://tc/repository/downloadAll/bt364/52572:id/artifacts.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt364/52572:id/artifacts.zip", 
             "healthcheck_port": 9001, 
             "jmx_port": 9995, 
             "port": 8085,

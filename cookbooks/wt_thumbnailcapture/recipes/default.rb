@@ -192,10 +192,10 @@ end
 ##  end
 ##end
 
-service "thumbnailcapture-start" do
-  service_name "thumbnailcapture"
-  action :start
-end
+##service "thumbnailcapture-start" do
+##  service_name "thumbnailcapture"
+##  action :start
+##end
 
 if ENV['deploy_test'] == 'true' 
   minitest_handler "unit-tests" do
