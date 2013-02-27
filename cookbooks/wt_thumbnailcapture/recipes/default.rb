@@ -166,7 +166,7 @@ if ENV["deploy_build"] == "true" then
       user  "root"
       group "root"
       cwd install_dir
-      command "unzip #{Chef::Config['file_cache_path']}/#{tarball} ."
+      command "sudo unzip #{Chef::Config['file_cache_path']}/#{tarball}"
     end
 
       # invoke the service using java command and java_opts
@@ -174,7 +174,7 @@ if ENV["deploy_build"] == "true" then
       user  "root"
       group "root"
       cwd install_dir
-      command "java -jar capture-service-1.0-SNAPSHOT.jar"
+      command "java -jar capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar"
     end
 
   end
