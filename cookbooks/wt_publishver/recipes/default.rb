@@ -210,6 +210,12 @@ node['roles'].each do |r|
 			download_url node['wt_sync']['download_url']
 			key_file     win_path(wdir, node['wt_sync']['install_dir'], 'Webtrends.SyncService.exe')
 		end
+	when 'wt_thumbnail_capture'
+		log "publishing #{r}"
+		wt_publishver 'Thumbnail Capture' do
+			download_url node['wt_thumbnailcapture']['download_url']
+			key_file     File.join(ldir, 'thumbnailcapture/lib/capture-service-*')
+		end
 	when 'wt_xd_importer'
 		log "publishing #{r}"
 		wt_publishver 'External Data Importer' do
