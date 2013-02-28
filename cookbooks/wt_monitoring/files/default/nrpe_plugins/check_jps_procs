@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# by Sean McNamara <sean@reinvigorate.net>
+# this script looks at jps to see if processes passed in via args are running
+#
+# Modified by: Josh Behrends 3/19/2012
+#              - When processes are missing, they are now outputting to one line for easy reading in Nagios. Also updated to output the process names that are being watched.
+#              - Added code to find the jps binary and then use the last version found if multiple are found. - Josh 4/30/2012
+#
+
+echo -n "JPS_PROCS"
+
+#Find the location of the JPS binary.
+jps_bin=($(find /usr/lib/jvm/jdk* -name jps))
+
+declare -a Missing
+
+R="0"
+for ARG in "$@"
+do
+        # need to run jps with privs in order for jps to display all procs
+        sudo ${jps_bin[${#jps_bin[@]}-1]} | egrep "$ARG" > /dev/null
+        if [ "$?" -ne 0 ];
+        then
+                # echo " MISSING: $ARG"
+                Missing=("${Missing[@]}" $ARG)
+                R="2"
+        fi
+done
+
+[ $R -eq 2 ] && echo " MISSING: ${Missing[@]}"
+[ $R -eq 0 ] && echo " OK: watching $# processes: $@"
+
+exit $R
