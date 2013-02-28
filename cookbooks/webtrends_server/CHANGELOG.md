@@ -1,3 +1,6 @@
+## 1.9.6
+* Added wt_monitoring::base_nrpe_checks to both ubuntu and centos recipes
+
 ## 1.9.5
 * Removed force install of jabber-snitch entirely. It will now be handled via environment settings
 
