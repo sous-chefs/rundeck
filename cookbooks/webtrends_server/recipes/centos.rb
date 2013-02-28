@@ -88,6 +88,9 @@ else
   log "skipping nagios::client because package install was not set in the environment"
 end
 
+# Sets up base NRPE plugins
+include_recipe "wt_monitoring::base_nrpe_checks"
+
 # Sets up rundeck private keys
 include_recipe "rundeck"
 
