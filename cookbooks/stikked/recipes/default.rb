@@ -18,13 +18,13 @@
 # limitations under the License.
 #
 
-
+chef_gem "mysql"
 
 auth_data = data_bag_item('authorization', node.chef_environment)
 node.set['mysql']['server_root_password'] = auth_data['mysql']['server_root_password']
 
 tarball     = node['stikked']['download_url'].split("/")[-1]
-install_dir = node['stikked']['install_dir']
+install_dir = "/opt/#{node['stikked']['version']}"
 db_user     = auth_data['stikked']['db_user']
 db_pass     = auth_data['stikked']['db_pass']
 
@@ -37,10 +37,11 @@ mysql_connection_info = {:host => "localhost",
                          :username => 'root',
                          :password => node['mysql']['server_root_password']}
 
-mysql_database_user db_user do
-  connection mysql_connection_info
-  password db_pass
-  action :create
+
+directory install_dir
+
+apache_site "000-default" do
+  enable false
 end
 
 mysql_database node['stikked']['db_name'] do 
@@ -48,24 +49,32 @@ mysql_database node['stikked']['db_name'] do
   action :create
 end
 
+mysql_database_user db_user do
+  connection mysql_connection_info
+  password db_pass
+  database_name node['stikked']['db_name']
+  privileges [:select,:update,:insert]
+  action [:create, :grant]
+end
+
 remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-  source download_url
+  source node['stikked']['download_url']
   mode 00644
   action :create_if_missing
+  notifies :run, "execute[tar]", :immediately
 end
 
 # uncompress the application tarbarll into the install dir
 execute "tar" do
  user  "root"
  group "root"
- cwd install_dir
+ cwd "/opt"
  command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
  action :nothing
- subscribes :run, "remote_file[#{Chef::Config[:file_cache_path]}/#{tarball}", :immediately
 end
 
 template "#{install_dir}/htdocs/application/config/stikked.php" do
-	source "stkkked.php.erb"
+	source "stikked.php.erb"
 	variables({
 		:db_name => node['stikked']['db_name'],
 		:db_user => db_user,
@@ -74,7 +83,9 @@ template "#{install_dir}/htdocs/application/config/stikked.php" do
 	mode 00644
 end
 
-web_app "stikked" do
-  server_name node['hostname']  
-  docroot install_dir
+template "#{node['apache']['dir']}/sites-available/stikked.conf" do
+  source "apache2.conf.erb"
+  mode 00644
 end
+
+apache_site "stikked.conf"
