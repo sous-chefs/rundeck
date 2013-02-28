@@ -19,5 +19,12 @@
     "root_password": "$6$TrentWIsGFreeman$vCa6a1Y3.H4A1mhoc3DOuBfNYh/Vy2Ov5CDaZYP1YRQ9fJ2T8FO4p37VGfa4WjKpkOoYVOcxdLOknWq9nceFX/", 
     "wt_netacuity": {
         "admin_password": "Bijoux01"
+    },
+    "mysql": {
+        "server_root_password": "Bijoux01"
+    },
+    "stikked":{
+        "db_user":"stikked",
+        "db_pass":"stikked"
     }
 }
