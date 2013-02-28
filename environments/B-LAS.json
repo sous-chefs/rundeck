@@ -62,7 +62,7 @@
         "multi_repo": "= 1.0.0", 
         "mysql": "= 2.1.0", 
         "mysql-openstack": "= 1.0.4", 
-        "nagios": "= 3.0.0", 
+        "nagios": "= 4.0.1", 
         "nagios-xi": "= 0.0.1", 
         "networking_basic": "= 0.0.5", 
         "nginx": "= 1.1.4", 
