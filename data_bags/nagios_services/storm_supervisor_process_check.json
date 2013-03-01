@@ -1,5 +1,6 @@
 {
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jps -a 'supervisor worker'", 
     "hostgroup_name": "storm_supervisor", 
-    "id": "storm_supervisor_process_check"
+    "id": "storm_supervisor_process_check",
+    "service_template": "service-email_only"
 }
