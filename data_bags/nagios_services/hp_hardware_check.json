@@ -1,5 +1,6 @@
 {
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c check_hpasm",
     "hostgroup_name": "hp_systems",
-    "id": "hp_hardware_check"
+    "id": "hp_hardware_check",
+    "service_template": "service-email_only"
 }
