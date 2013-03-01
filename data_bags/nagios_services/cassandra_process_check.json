@@ -1,5 +1,6 @@
 {
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jps -a 'CassandraDaemon'", 
     "hostgroup_name": "cassandra", 
-    "id": "cassandra_process_check"
+    "id": "cassandra_process_check",
+    "service_template": "service-email_only"
 }
