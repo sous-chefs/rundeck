@@ -264,15 +264,22 @@
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet45/dotNetFx45_Full_x86_x64.exe"
         }, 
         "nagios": {
-            "client": {
-                "install_method": "package"
-            }, 
-            "multi_environment_monitoring": true, 
-            "nrpe": {
-                "dont_blame_nrpe": "1"
-            }, 
-            "server_role": "nagios_xi"
-        }, 
+           "client": {
+               "install_method": "package"
+           },
+           "multi_environment_monitoring": false,
+           "nrpe": {
+               "dont_blame_nrpe": "1"
+           },
+           "server": {
+               "install_method": "source",
+               "service_name": "nagios"
+           },
+           "server_auth_method": "htpasswd",
+           "server_role": "nagios_xi",
+           "sysadmin_email": "devops@webtrends.com",
+           "users_databag_group": "engage"
+       },
         "ohai": {
             "disabled_plugins": [
                 "rackspace"
