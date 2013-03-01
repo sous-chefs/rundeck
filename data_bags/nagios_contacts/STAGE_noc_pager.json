@@ -1,0 +1,6 @@
+{
+  "id": "noc_pager",
+  "alias": "Noc_Pager",
+  "use": "default-contact",
+  "email": "devops@webtrends.com"
+}
