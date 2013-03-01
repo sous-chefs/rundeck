@@ -1,0 +1,6 @@
+    {
+      "id": "service-email_and_page",
+      "use": "default-service",
+      "contact_groups": "email_and_page"
+    }
+
