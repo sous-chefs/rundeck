@@ -1,0 +1,6 @@
+    {
+      "id": "service-email_only",
+      "use": "default-service",
+      "contact_groups": "email_only"
+    }
+
