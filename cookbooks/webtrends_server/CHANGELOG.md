@@ -1,3 +1,8 @@
+## 1.9.8
+* Removed backslash when removing rubygems on windows
+* Initial addition of platform based install directory attributes
+
+* Added
 ## 1.9.7
 * Removed hard coded install for jabber gem
 
