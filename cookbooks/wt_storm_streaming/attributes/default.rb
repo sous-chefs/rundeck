@@ -13,6 +13,9 @@ default['wt_storm_streaming']['query_bolt_tasks'] = 0
 default['wt_storm_streaming']['augment_bolt_executors'] = 0
 default['wt_storm_streaming']['augment_bolt_tasks'] = 0
 
+
+default['wt_storm_streaming']['data_request_url'] = ""
+
 default['wt_storm_streaming']['tracer_dcsid'] = ""
 default['wt_storm_streaming']['topic_list'] = []
 
