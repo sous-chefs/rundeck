@@ -478,7 +478,7 @@
             "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
-            "data_request_url": "hrcs.staging.dmz",
+            "data_request_url": "http://hrcs.staging.dmz",
             "supervisor": {
                 "workers": 4
             }, 
