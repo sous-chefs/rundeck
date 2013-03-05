@@ -1,3 +1,6 @@
+## 2.4.11
+* Added data_request_url
+
 ## 2.4.10
 * Removed session history jars in cookbook.
 
