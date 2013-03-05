@@ -78,4 +78,3 @@ if node['wt_common']['gem_repo']
 end
 
 gem_package "zip"
-chef_gem "chef-jabber-snitch"
