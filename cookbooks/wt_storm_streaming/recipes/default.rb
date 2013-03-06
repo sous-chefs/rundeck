@@ -279,7 +279,9 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :audit_zookeeper_pairs => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
     :audit_bucket_timespan => node['wt_monitoring']['audit_bucket_timespan'],
     :audit_topic           => node['wt_monitoring']['audit_topic'],
-    :cam_url               => node['wt_cam']['cam_service_url']
+    :cam_url               => node['wt_cam']['cam_service_url'],
+    :data_request_url      => node['wt_storm_streaming']['data_request_url']
+
   )
 end
 
