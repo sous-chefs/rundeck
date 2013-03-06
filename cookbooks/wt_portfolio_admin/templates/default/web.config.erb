@@ -98,7 +98,9 @@
   </elmah>
   <oauth2>
     <services>
-      <add clientType="WebtrendsClient" enabled="true" clientId="<%= @client_id %>" clientSecret="<%= @client_secret %>" scope="session" redirectUri="~/OAuth/Login/Authorize" authurl="<%= @auth_url %>" />
+      <add clientType="WebtrendsClient" enabled="true" clientId="<%= @client_id %>" 
+           clientSecret="<%= @client_secret %>" scope="session" 
+           redirectUri="<%= @account_url %>/OAuth/Login/Authorize" authurl="<%= @auth_url %>" />
     </services>
   </oauth2>
   <system.net>
