@@ -10,6 +10,8 @@
 
 action :deploy_prereqs do
 
+	require 'rbconfig'
+
 	# working directories
 	wdir = ::File.join(Chef::Config[:file_cache_path], 'wt_publishver')
 	gdir = ::File.join(wdir, 'gems')
@@ -17,6 +19,27 @@ action :deploy_prereqs do
 	ldir = ::File.join(wdir, 'lib')
 
 	ENV['GEM_HOME'] = gdir
+
+	# determine if cache should be cleared
+	clear_cache = false
+	if node.has_key? 'wt_publishver'
+		clear_cache = true if node['wt_publishver']['ruby_version'] != RbConfig::CONFIG['ruby_version']
+		clear_cache = true if node['wt_publishver']['ruby_bindir'] != RbConfig::CONFIG['bindir']
+		clear_cache = true if node['wt_publishver']['chef_version'] != node['chef_packages']['chef']['version']
+	end
+
+	# clear cache
+	if clear_cache
+		directory wdir do
+			recursive true
+			action :nothing
+		end.run_action :delete
+	end
+
+	# save current values for next run
+	node.set['wt_publishver']['ruby_version'] =  RbConfig::CONFIG['ruby_version']
+	node.set['wt_publishver']['ruby_bindir'] = RbConfig::CONFIG['bindir']
+	node.set['wt_publishver']['chef_version'] = node['chef_packages']['chef']['version']
 
 	remote_directory wdir do
 		source 'prereqs'
@@ -49,7 +72,7 @@ action :deploy_prereqs do
 	end.run_action :create_if_missing
 
 	gem_package 'nokogiri' do
-		gem_binary 'gem'
+		gem_binary ::File.join(RbConfig::CONFIG['bindir'], 'gem')
 		source ::File.join(wdir, 'nokogiri-1.5.6.gem')
 		options "--install-dir #{gdir} -- --with-xml2-lib=#{ldir} --with-xml2-include=#{idir}/libxml2 --with-xslt-lib=#{ldir} --with-xslt-include=#{idir} --with-dldflags='-Wl,-rpath,#{ldir}'"
 		not_if { node['platform_version'] == '10.04' }
@@ -59,7 +82,7 @@ action :deploy_prereqs do
 	gem_list = ['little-plugger-1.1.3', 'multi_json-1.5.0', 'logging-1.6.1', 'httpclient-2.2.4', 'rubyntlm-0.1.2', 'viewpoint-spws-0.5.0.wt', 'manifest-1.0.0']
 	gem_list.each do |gem|
 		gem_package gem[/^(.*)-[\d\.wt]+?/, 1] do
-			gem_binary 'gem'
+			gem_binary ::File.join(RbConfig::CONFIG['bindir'], 'gem')
 			source ::File.join(wdir, "#{gem}.gem")
 			options "--install-dir #{gdir} --ignore-dependencies --force"
 			action :nothing

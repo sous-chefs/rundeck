@@ -13,6 +13,10 @@
     }, 
     "id": "B-PDX", 
     "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "wt_cam_db": {
+        "db_pwd": "bijoux", 
+        "db_user": "wtUI"
+    }, 
     "wt_common": {
         "install_acct": "wtInstaller", 
         "install_pass": "Bijoux1", 
@@ -33,12 +37,17 @@
         "machine_decryption_key": "B0FCBEE38C05DCB5213655ACD722702DEACE441304FC02FE", 
         "machine_validation_key": "7FAB532C7D9A7E3EBE4A891BFAEC6B554E0228E0167891F3C6382249455C3524ACE13309FB9F83E6522152E6C1CC1D645ACCDACFFF72ADCB9C9C56396905EAEA"
     }, 
-    "wt_netacuity": {
-        "admin_password": "SHvWHezZSc7"
+    "wt_master_db": {
+        "db_pwd": "v87m-Rhv8TMogJ_j", 
+        "db_user": "ConfigSvc"
     }, 
     "wt_portfolio_admin": {
         "client_id": "9663da37ba4b482daf265c8ac2d2c864.app.webtrends.com", 
         "client_secret": "7025c2c662204f0bb9c5efcb655a8bdb"
+    }, 
+    "wt_streaming_usage_db": {
+        "db_pwd": "bijoux", 
+        "db_user": "wtUI"
     }, 
     "wt_streaming_viz": {
         "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
@@ -61,17 +70,5 @@
     "wt_streamingmanagementservice": {
         "db_pwd": "bijoux", 
         "db_user": "wtUI"
-    },
-    "wt_cam_db": {
-        "db_pwd": "bijoux",
-        "db_user": "wtUI"
-    },
-    "wt_streaming_usage_db": {
-        "db_pwd": "bijoux",
-        "db_user": "wtUI"
-    },
-    "wt_master_db": {
-        "db_pwd": "v87m-Rhv8TMogJ_j",
-        "db_user": "ConfigSvc"
     }
 }

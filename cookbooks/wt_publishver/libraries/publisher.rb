@@ -173,8 +173,8 @@ module WtPublishver
 
 			# determine version + build
 			jar_build_number = Array.new
-			jar_build_number << mani.first['Implementation-Version'] unless mani.first['Implementation-Version'].nil?
-			jar_build_number << mani.first['Implementation-Build']   unless mani.first['Implementation-Build'].nil?
+			jar_build_number << mani.first['Implementation-Version'].keys.first unless mani.first['Implementation-Version'].nil?
+			jar_build_number << mani.first['Implementation-Build'].keys.first   unless mani.first['Implementation-Build'].nil?
 			return jar_build_number.join('.')
 		end
 

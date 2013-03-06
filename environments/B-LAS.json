@@ -124,7 +124,7 @@
         "vmware-tools": "= 0.1.3", 
         "vsftpd": "= 0.0.2", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.9.6", 
+        "webtrends_server": "= 1.9.8", 
         "windows": "= 1.7.0", 
         "wt_actioncenter": "= 1.1.8", 
         "wt_analytics_ui": "= 1.1.6", 
@@ -503,7 +503,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/52687:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/53217:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "port": 80, 
             "proxy_enabled": "true", 
