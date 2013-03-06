@@ -59,6 +59,16 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
+def getMemcacheBoxes() do
+	memcache = search(:node, "chef_environment:support-staging AND roles:memcached")
+	boxes = []
+
+	memcache.each do |b|
+		boxes << b[:fqdn]
+	end
+	boxes = boxes.sort
+end
+
 def processTemplates (install_dir, node, user, group, log_dir, java_home)
   log "Updating the template files"
 
@@ -93,6 +103,7 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home)
 	  mode  00640
 	  variables({
 		:port => node['wt_thumbnailcapture']['port']
+		:memcache_boxes => getMemcacheBoxes()
 	  })
 	end
 

@@ -1,4 +1,7 @@
 ## 1.1.14
+* Set oauth2 redirectUri setting to absolute URL. Fixes pre-prod :82 issue.
+
+## 1.1.14
 * Adding the appKey setting
 
 ## 1.1.13
