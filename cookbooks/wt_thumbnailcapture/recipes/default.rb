@@ -59,7 +59,7 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
-def getMemcacheBoxes() do
+def getMemcacheBoxes ()
 	memcache = search(:node, "chef_environment:support-staging AND roles:memcached")
 	boxes = []
 
@@ -102,7 +102,7 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home)
 	  group group
 	  mode  00640
 	  variables({
-		:port => node['wt_thumbnailcapture']['port']
+		:port => node['wt_thumbnailcapture']['port'],
 		:memcache_boxes => getMemcacheBoxes()
 	  })
 	end
