@@ -127,7 +127,8 @@ template "#{install_dir}\\web.config" do
         # oauth2 config
 		:auth_url => "#{auth_base}/#{auth_version}",
 		:client_id => user_data['wt_streaming_viz']['client_id'],
-		:client_secret => user_data['wt_streaming_viz']['client_secret']
+		:client_secret => user_data['wt_streaming_viz']['client_secret'],
+		:streams_url => node['wt_streaming_viz']['streams_ui_url']
 	)
 end
 
