@@ -1,5 +1,4 @@
-#This file generated via template by Chef.
-include /etc/<%= node['squid']['service_name'] %>/chef.acl.config
+include /etc/squid/chef.acl.config
 acl all src all
 acl manager proto cache_object
 acl localhost src 127.0.0.1/32
