@@ -110,9 +110,12 @@ end
 template "#{install_dir}\\web.config" do
   source "web.config.erb"
   variables(
+    # Auth loop configuration
 		:auth_url => "#{auth_url}/#{auth_version}",
 		:client_id => user_data['wt_portfolio_admin']['client_id'],
 		:client_secret => user_data['wt_portfolio_admin']['client_secret'],
+		:account_url => node['wt_portfolio_admin']['account_ui_url'],
+    # Application settings
 		:elmah_remote_access => node['wt_portfolio_admin']['elmah_remote_access'],
 		:custom_errors => node['wt_portfolio_admin']['custom_errors'],
 		# proxy

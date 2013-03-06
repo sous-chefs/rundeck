@@ -1,3 +1,6 @@
+## 1.2.1
+* Set oauth2 redirectUri to absolute uri
+
 ## 1.2.0
 * Changed logic to use links vs folders
 
