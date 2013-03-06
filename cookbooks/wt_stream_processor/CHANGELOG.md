@@ -1,3 +1,6 @@
+##1.0.3
+* Upgrade with Akka defaults
+
 ##1.0.2
 * Fixed runit issues with new runit cookbook
 
