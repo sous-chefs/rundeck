@@ -52,9 +52,9 @@ Chef::Log.info "Squid network #{network}"
 version = node['squid']['version']
 Chef::Log.info "Squid version number (unknown if blank): #{version}"
 
-template "/etc/squid/squid.conf" do
+template "/etc/squid3/squid.conf" do
   source "squid#{version}.conf.erb"
-  notifies :reload, "service[squid]"
+  notifies :reload, "service[squid3]"
   mode 00644
 end
 
@@ -94,7 +94,7 @@ rescue
   Chef::Log.info "no 'squid_acls' data bag"
 end
 
-template "/etc/squid/chef.acl.config" do
+template "/etc/squid3/chef.acl.config" do
   source "chef.acl.config.erb"
   variables(
     :acls => acls,
