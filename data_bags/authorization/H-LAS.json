@@ -47,5 +47,9 @@
     "wt_streamingauditor": {
         "client_id": "8BFF54F85A85413C915AC5EF61C9B851", 
         "client_secret": "C027E291A87E480D9069853823EFEB23"
+    },
+    "wt_streaming_barebones": {
+        "client_token": "b14db0f48965407baf6b0b5e4ebcabf1.app.webtrends.com",
+        "client_secret": "eef18f7849fc4fa9a8ee8f9e8a1d10f7"
     }
 }
