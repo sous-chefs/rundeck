@@ -101,6 +101,6 @@ template "/etc/squid3/chef.acl.config" do
     :host_acl => host_acl,
     :url_acl => url_acl
     )
-  notifies :reload, "service[squid]"
+  notifies :reload, "service[squid3]"
 end
 
