@@ -31,7 +31,7 @@ when "redhat","centos","scientific","fedora","suse","amazon"
   end
 end
 
-service "squid" do
+service "squid3" do
   supports :restart => true, :status => true, :reload => true
   case node['platform']
   when "redhat","centos","scientific","fedora","suse","amazon"
