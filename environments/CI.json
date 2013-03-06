@@ -162,7 +162,6 @@
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
             "install_log_dir_windows": "d:\\logs", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
             "ldap_host": "cildap01.staging.dmz", 
             "ldap_port": "636", 
             "log_dir_linux": "/var/log/webtrends/", 
@@ -253,7 +252,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/52687:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "false", 
             "sapi_url": "ws://cisapi01.staging.dmz:8080"
@@ -312,18 +311,6 @@
     "name": "CI", 
     "override_attributes": {
         "chef_client": {
-            "exception_handlers": [
-                {
-                    "arguments": [
-                        "\"chef@sengutil01.staging.dmz\"", 
-                        "\"cookin\"", 
-                        "\"chef-run-status@conference.sengutil01.staging.dmz\"", 
-                        "\"http://sengutil01.staging.dmz:8080/api/create\"", 
-                        "\"sengutil01.staging.dmz\""
-                    ], 
-                    "class": "JabberSnitch"
-                }
-            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "ntp": {

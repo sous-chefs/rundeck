@@ -64,11 +64,10 @@ execute "powercfg-performance" do
   action :run
 end
 
-
 if node['wt_common']['gem_repo']
   execute "remove rubygems" do
-    command "gem source -r http://rubygems.org"
-    only_if "gem source | find /I \"http://rubygems.org\""
+    command "gem source -r http://rubygems.org/"
+    only_if "gem source | find /I \"http://rubygems.org/\""
   end
   
   execute "gem_repo_add" do
@@ -78,4 +77,3 @@ if node['wt_common']['gem_repo']
 end
 
 gem_package "zip"
-chef_gem "chef-jabber-snitch"

@@ -1,3 +1,11 @@
+## 1.9.8
+* Removed backslash when removing rubygems on windows
+* Initial addition of platform based install directory attributes
+
+* Added
+## 1.9.7
+* Removed hard coded install for jabber gem
+
 ## 1.9.6
 * Added wt_monitoring::base_nrpe_checks to both ubuntu and centos recipes
 

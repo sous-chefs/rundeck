@@ -1,3 +1,6 @@
+## 1.2.0
+* Changed logic to use links vs folders
+
 ## 1.1.20
 * Adding appKey to the appSettings.config.tmpl
 

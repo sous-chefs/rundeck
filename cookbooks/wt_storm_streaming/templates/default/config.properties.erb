@@ -60,3 +60,9 @@ webtrends.cam.provisioningDetail=%%baseUrl%%/account/%%accountId%%/product/%%pro
 webtrends.cam.streamType=%%baseUrl%%/product/sapi/streamtypes
 # This is the url to the REST service for getting the blacklist
 webtrends.cam.blacklist=%%baseUrl%%/product/sapi/blacklist
+
+# This is the base url for the DataRequest Rest Service
+data.request.base.url=<%= @data_request_url %>
+
+# This is the url to the DataRequest REST Service to request a session for a specific visitor
+data.request.visitor.url=%%data_request_base_url%%/streaming/v1/account/%%account_id%%/session/visitor/%%visitor_id%%
