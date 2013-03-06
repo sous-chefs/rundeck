@@ -123,8 +123,8 @@
         "vim": "= 1.0.2", 
         "vmware-tools": "= 0.1.3", 
         "vsftpd": "= 0.0.2", 
-        "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.9.8", 
+        "webpi": "= 1.1.1", 
+        "webtrends_server": "= 1.9.5", 
         "windows": "= 1.7.0", 
         "wt_actioncenter": "= 1.1.8", 
         "wt_analytics_ui": "= 1.1.6", 
@@ -150,7 +150,9 @@
         "wt_oauth_redirector": "= 0.0.13", 
         "wt_platformscheduler": "= 1.0.11", 
         "wt_portfolio_admin": "= 1.1.14", 
+        "wt_portfolio_edgeservice": "= 1.0.2", 
         "wt_portfolio_manager": "= 1.1.18", 
+        "wt_portfolio_router": "= 1.0.0", 
         "wt_publishver": "= 0.2.0", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_roadrunner": "= 0.10.31", 
@@ -158,7 +160,7 @@
         "wt_search": "= 1.0.8", 
         "wt_static_tag_host": "= 0.0.4", 
         "wt_storm_streaming": "= 2.4.10", 
-        "wt_stream_processor": "= 1.0.0", 
+        "wt_stream_processor": "= 1.0.2", 
         "wt_streaming_viz": "= 1.1.20", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
         "wt_streamingapi": "= 1.2.6", 
@@ -184,7 +186,7 @@
             "sudo": {
                 "groups": [
                     "domain-admins", 
-                    "b.admins"
+                    "h.admins"
                 ], 
                 "include_sudoers_d": true, 
                 "passwordless": false, 
@@ -198,8 +200,8 @@
         }, 
         "cassandra": {
             "cassandra_host": "cassandra.staging.dmz", 
-            "cassandra_meta_column": "B_Meta", 
-            "cassandra_report_column": "B_Report", 
+            "cassandra_meta_column": "H_Meta", 
+            "cassandra_report_column": "H_Report", 
             "cassandra_thrift_port": 9160
         }, 
         "chef_client": {
@@ -237,7 +239,7 @@
             "log_flush_scheduler_time_interval": "500", 
             "log_flush_time_interval": "500", 
             "log_retention_hours": "2", 
-            "num_partitions": "12", 
+            "num_partitions": 6, 
             "threads": "16", 
             "version": "0.7.1"
         }, 
@@ -318,6 +320,7 @@
         }, 
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "msi": "http://repo.staging.dmz/repo/windows/webpi/WebPlatformInstaller_amd64_en-US.msi", 
             "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
             "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
@@ -353,7 +356,7 @@
             "android_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "app_pool_private_memory": 2097152, 
             "bba_domain": "TBD", 
-            "cache_region": "B_A10", 
+            "cache_region": "H_A10", 
             "custom_errors": "Off", 
             "download_url": "http://repo.netiq.dmz/product/ondemand/10.6.1/rtm/0221/AnalyticsUI.zip", 
             "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
@@ -391,8 +394,8 @@
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
-            "wrsmodify_group": "STAGINGDMZ\\B.WRS.Modify", 
-            "wrsread_group": "STAGINGDMZ\\B.WRS.Read"
+            "wrsmodify_group": "STAGINGDMZ\\H.WRS.Modify", 
+            "wrsread_group": "STAGINGDMZ\\H.WRS.Read"
         }, 
         "wt_data_deleter": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/DataDeleter.zip"
@@ -402,10 +405,6 @@
         }, 
         "wt_dx": {
             "rest_base_uri": "TBD"
-        }, 
-        "wt_heatmaps_logconverter": {
-            "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.3/rtm/heatmaps_logconverter/heatmaps_logconverter.tar.gz", 
-            "nfs_export": "pdxstore08.netiq.dmz:/ifs/data/hmifr_20120309"
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
@@ -425,7 +424,7 @@
             "healthcheck_port": 9000, 
             "jmx_enabled": "true", 
             "jmx_port": 9999, 
-            "metric_prefix": "staging.bpod.servers", 
+            "metric_prefix": "staging.hpod.servers", 
             "monitoring_enabled": "true"
         }, 
         "wt_netacuity": {
@@ -441,8 +440,8 @@
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
-            "environment": "B-LAS", 
-            "pod": "B"
+            "environment": "H-LAS", 
+            "pod": "H"
         }, 
         "wt_roadrunner": {
             "url": "product/ondemand/10.31/rtm/roadrunner/"
@@ -453,13 +452,13 @@
             "search_service": "TBD"
         }, 
         "wt_streamingconfigservice": {
-            "config_service_url": "http://bconfigsvc.staging.dmz"
+            "config_service_url": "http://hconfigsvc.staging.dmz"
         }, 
         "wt_streaminglogreplayer": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/51567:id/webtrends-streaminglogreplayer-bin.tar.gz", 
-            "log_share_mount": "sstore02.staging.dmz:/ifs/bstore/logreplay", 
+            "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay", 
             "thread_pool_size": 160, 
-            "zookeeper_env": "B-LAS"
+            "zookeeper_env": "H-LAS"
         }, 
         "wt_sync": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/SyncService.zip"
@@ -468,9 +467,9 @@
             "client_port": 2181
         }
     }, 
-    "description": "B Pod in PDX", 
+    "description": "H Pod in PDX", 
     "json_class": "Chef::Environment", 
-    "name": "B-PDX", 
+    "name": "H-PDX", 
     "override_attributes": {
         "ntp": {
             "servers": [
