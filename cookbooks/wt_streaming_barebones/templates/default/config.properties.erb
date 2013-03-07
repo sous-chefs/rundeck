@@ -1,15 +1,15 @@
-port=<% @port %>
+port=<%= @port %>
 
-auth.baseUrl=<% @auth_url %>
+auth.baseUrl=<%= @auth_url %>
 auth.tokenUrl=%%baseUrl%%/token
-auth.audience=<% @jwt_audience %>
-auth.scope=<% @jwt_scope %>
+auth.audience=<%= @jwt_audience %>
+auth.scope=<%= @jwt_scope %>
 
-webtrends.cam.baseUrl = <% @cam_url %>
+webtrends.cam.baseUrl = <%= @cam_url %>
 webtrends.cam.accounts=%%baseUrl%%/account
 
-auth.clientId=<% @client_token %>
-auth.clientSecret=<% @client_secret %>
+auth.clientId=<%= @client_token %>
+auth.clientSecret=<%= @client_secret %>
 
 # Proxy properties. Lease this section blank if you dont need proxy support.
 easy.proxy.1 = hsauth.webtrends.com -> sproxy02.staging.dmz:3128
