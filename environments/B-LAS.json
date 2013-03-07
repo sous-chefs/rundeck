@@ -151,7 +151,7 @@
         "wt_platformscheduler": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.14", 
         "wt_portfolio_manager": "= 1.1.18", 
-        "wt_publishver": "= 0.2.0", 
+        "wt_publishver": "= 0.2.1", 
         "wt_realtime_hadoop": "= 1.0.1", 
         "wt_roadrunner": "= 1.1.2", 
         "wt_sauth": "= 1.1.6", 
