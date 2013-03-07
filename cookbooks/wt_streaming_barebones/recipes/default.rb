@@ -134,8 +134,8 @@ template "#{install_dir}/conf/config.properties" do
    :port => node['wt_streaming_barebones']['port'],
    :jwt_audience => node['wt_streaming_barebones']['auth_jwt_audience'],
    :jwt_scope => node['wt_streaming_barebones']['auth_jwt_scope'],
-   :cam_url => node['wt_streaming_barebones']['cam_url'],
-   :auth_url => node['wt_streaming_barebones']['auth_url'],
+   :cam_url => node['wt_cam']['cam_service_url'],
+   :auth_url => node['wt_sauth']['auth_service_url'],
    :client_token => client_token,
    :client_secret => client_secret
  })

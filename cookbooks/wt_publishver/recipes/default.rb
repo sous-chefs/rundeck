@@ -214,7 +214,7 @@ node['roles'].each do |r|
 		log "publishing #{r}"
 		wt_publishver 'Thumbnail Capture' do
 			download_url node['wt_thumbnailcapture']['download_url']
-			key_file     File.join(ldir, 'thumbnailcapture/lib/capture-service-*')
+			key_file     File.join(ldir, 'thumbnailcapture/capture-service-*')
 		end
 	when 'wt_xd_importer'
 		log "publishing #{r}"
