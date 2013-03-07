@@ -23,7 +23,7 @@ ClientSys {
                 /streamprocessor {
                     router = round-robin
                     routees {
-                        paths = ["akka://StreamProcessor@127.0.0.1:2552/user/processor"]
+                        paths = [<%= @processors.join(",") %>]
                     }
                 }
             }
