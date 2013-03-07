@@ -215,7 +215,9 @@
                     "class": "JabberSnitch"
                 }
             ], 
-            "load_gems":["chef-jabber-snitch"],
+            "load_gems": [
+                "chef-jabber-snitch"
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "delltools": {
@@ -264,23 +266,23 @@
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet45/dotNetFx45_Full_x86_x64.exe"
         }, 
         "nagios": {
-           "client": {
-               "install_method": "package"
-           },
-           "multi_environment_monitoring": false,
-           "nrpe": {
-               "dont_blame_nrpe": "1"
-           },
-           "server": {
-                "install_method": "source",
-                "service_name": "nagios",
+            "client": {
+                "install_method": "package"
+            }, 
+            "multi_environment_monitoring": false, 
+            "nrpe": {
+                "dont_blame_nrpe": "1"
+            }, 
+            "server": {
+                "install_method": "source", 
+                "service_name": "nagios", 
                 "version": "3.4.4"
-            },
-           "users_databag_group": "staging",
-           "server_auth_method": "htpasswd",
-           "server_role": "nagios_xi",
-           "sysadmin_email": "devops@webtrends.com"
-       },
+            }, 
+            "server_auth_method": "htpasswd", 
+            "server_role": "nagios_xi", 
+            "sysadmin_email": "devops@webtrends.com", 
+            "users_databag_group": "staging"
+        }, 
         "ohai": {
             "disabled_plugins": [
                 "rackspace"
@@ -537,6 +539,10 @@
             "jmx_port": 9998, 
             "port": 8081, 
             "sms_service_url": "http://bsms.staging.dmz"
+        }, 
+        "wt_thumbnailcapture": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt364/52855:id/artifacts.zip", 
+            "thumbnail_service_url": "http://bthumb.staging.dmz"
         }, 
         "zookeeper": {
             "client_port": 2181
