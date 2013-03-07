@@ -160,7 +160,7 @@
         "wt_search": "= 1.0.10", 
         "wt_static_tag_host": "= 0.0.4", 
         "wt_storm_streaming": "= 2.4.11", 
-        "wt_stream_processor": "= 1.0.2", 
+        "wt_stream_processor": "= 1.0.3", 
         "wt_streaming_viz": "= 1.2.1", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
         "wt_streamingapi": "= 1.2.6", 
@@ -500,8 +500,7 @@
             }
         }, 
         "wt_stream_processor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/.lastSuccessful/webtrends-stream-processor-develop-SNAPSHOT-bin.tar.gz", 
-            "router_uri": "tcp://hrouter01.staging.dmz:5862"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/.lastSuccessful/webtrends-stream-processor-develop-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_streaming_usage_db": {
             "db_name": "Streaming", 
