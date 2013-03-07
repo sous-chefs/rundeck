@@ -535,7 +535,7 @@
         "wt_streaming_barebones": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt365/53411:id/webtrends-streaming-barebones-bin.tar.gz",
             "port": 8085
-        }
+        },
         "wt_streamingconfigservice": {
             "config_service_url": "http://hconfigsvc.staging.dmz", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz"
