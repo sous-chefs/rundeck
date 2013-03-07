@@ -139,6 +139,7 @@ template "#{install_dir}/conf/config.properties" do
    :cam_url => node['wt_cam']['cam_service_url'],
    :auth_url => node['wt_sauth']['auth_service_url'],
    :client_token => client_token,
-   :client_secret => client_secret
+   :client_secret => client_secret,
+   :sapi_url => node['wt_streamingapi']['sapi_service_url']
  })
 end
