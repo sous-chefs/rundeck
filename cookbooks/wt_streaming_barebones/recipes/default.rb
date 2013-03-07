@@ -31,6 +31,8 @@ java_opts    = node['wt_streaming_barebones']['java_opts']
 auth_data = data_bag_item('authorization', node.chef_environment)
 client_token = auth_data['wt_streaming_barebones']['client_token']
 client_secret = auth_data['wt_streaming_barebones']['client_secret']
+
+log "client token: #{client_token}"
  
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
