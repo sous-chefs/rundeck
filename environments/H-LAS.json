@@ -533,7 +533,7 @@
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         }, 
         "wt_streaming_barebones": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt365/53411:id/Webtrends.Streaming.BareBones/dist/webtrends-streaming-barebones-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt365/53516:id/Webtrends.Streaming.BareBones/dist/webtrends-streaming-barebones-bin.tar.gz",
             "port": 8083
         },
         "wt_streamingconfigservice": {
