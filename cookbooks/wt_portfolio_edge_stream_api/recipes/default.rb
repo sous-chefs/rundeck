@@ -51,17 +51,17 @@ if ENV["deploy_build"] == "true" then
 
   proc_port = node['wt_stream_processor']['message_port']
   
-  processors = Array.new
+  processors = Array.new
     if not Chef::Config.solo
       search(:node, "role:wt_stream_processor AND chef_environment:#{node.chef_environment}").each do |n|
         processors << n[:fqdn]
       end
     end
 
-  i = 0
-    while i < processors.size do
-      processors[i] = "akka://StreamProcessor@".concat(processors[i]).concat(":#{proc_port}/user/processor")
-      i += 1
+    i = 0
+  while i < processors.size do
+    processors[i] = "akka://StreamProcessor@".concat(processors[i]).concat(":#{proc_port}/user/processor")
+    i += 1
   end
   
   %w[application.conf].each do | template_file|
