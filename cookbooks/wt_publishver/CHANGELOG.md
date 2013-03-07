@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of wt_publishver.
 
+## 0.2.2
+* removed support for ubuntu less than version 12, too many problems installing nokogiri
+
 ## 0.2.1
 * fix handling hash returned from manifest for ruby 1.9
 * add support for chef installed from omnibus installer, i.e. use chef's gem binary

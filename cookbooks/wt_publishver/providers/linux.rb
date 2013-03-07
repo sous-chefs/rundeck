@@ -47,35 +47,10 @@ action :deploy_prereqs do
 		action :nothing
 	end.run_action :create
 
-	directory ::File.join(gdir, 'gems') do
-		recursive true
-		action :nothing
-	end.run_action :create
-
-	directory ::File.join(gdir, 'specifications') do
-		recursive true
-		action :nothing
-	end.run_action :create
-
-	execute 'extract nokogiri' do
-		command "tar xzf #{::File.join(wdir, 'nokogiri-1.5.6.tgz')}"
-		creates ::File.join(gdir, 'gems/nokogiri-1.5.6/bin/nokogiri')
-		cwd ::File.join(gdir, 'gems')
-		only_if { node['platform_version'] == '10.04' }
-		action :nothing
-	end.run_action :run
-
-	cookbook_file ::File.join(gdir, 'specifications/nokogiri-1.5.6.gemspec') do
-		source 'prereqs/nokogiri-1.5.6.gemspec'
-		only_if { node['platform_version'] == '10.04' }
-		action :nothing
-	end.run_action :create_if_missing
-
 	gem_package 'nokogiri' do
 		gem_binary ::File.join(RbConfig::CONFIG['bindir'], 'gem')
 		source ::File.join(wdir, 'nokogiri-1.5.6.gem')
 		options "--install-dir #{gdir} -- --with-xml2-lib=#{ldir} --with-xml2-include=#{idir}/libxml2 --with-xslt-lib=#{ldir} --with-xslt-include=#{idir} --with-dldflags='-Wl,-rpath,#{ldir}'"
-		not_if { node['platform_version'] == '10.04' }
 		action :nothing
 	end.run_action :install
 

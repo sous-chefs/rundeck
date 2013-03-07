@@ -13,6 +13,12 @@ if node['platform_family'] == 'rhel'
 	return
 end
 
+# no support for ubuntu less than precise
+if node['platform'] == 'ubuntu' and node['platform_version'].to_i < 12
+	log("#{cookbook_name}: unsupported platform: #{node['platform']} #{node['platform_version']}") { level :warn }
+	return
+end
+
 class Chef::Resource
 	# returns a path with backslashes (windows friendly)
 	def win_path(*args)
