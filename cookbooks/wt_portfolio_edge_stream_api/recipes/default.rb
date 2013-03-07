@@ -49,12 +49,10 @@ if ENV["deploy_build"] == "true" then
         command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
 
-    proc_port = node['wt_stream_processor']['message_port']
-  
     processors = Array.new
     if not Chef::Config.solo
       search(:node, "role:wt_stream_processor AND chef_environment:#{node.chef_environment}").each do |n|
-        processors << "akka://StreamProcessor@#{n[:fqdn]}:#{proc_port}/user/processor" 
+        processors << "\"akka://StreamProcessor@#{n[:fqdn]}:2552/user/processor\"" 
       end
     end
 
