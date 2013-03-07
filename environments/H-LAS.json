@@ -128,7 +128,8 @@
         "windows": "= 1.7.0", 
         "wt_actioncenter": "= 1.1.8", 
         "wt_analytics_ui": "= 1.1.6", 
-        "wt_base": "= 1.0.4", 
+        "wt_streaming_barebones": "= 0.0.1",
+	"wt_base": "= 1.0.4", 
         "wt_cam": "= 1.1.8", 
         "wt_cam_db": "= 0.1.5", 
         "wt_commonlib": "= 0.10.6", 
@@ -531,6 +532,10 @@
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         }, 
+        "wt_streaming_barebones": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt365/53411:id/webtrends-streaming-barebones-bin.tar.gz",
+            "port": 8085
+        },
         "wt_streamingconfigservice": {
             "config_service_url": "http://hconfigsvc.staging.dmz", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz"
