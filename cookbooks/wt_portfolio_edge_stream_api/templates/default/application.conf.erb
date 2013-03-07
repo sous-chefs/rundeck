@@ -33,7 +33,7 @@ ClientSys {
             log-received-messages = on
             transport = "akka.remote.netty.NettyRemoteTransport"
             netty {
-                hostname = "127.0.0.1"
+                hostname = "<%= node[:fqdn] %>"
                 port = <%= node['wt_portfolio_edge_stream_api']['message_port'] %>
             }
  	}
