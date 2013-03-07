@@ -1,6 +1,6 @@
 {
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -c check_chef_client -t 20",
-    "hostgroup_name": "chef_managed_systems",
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_procs -a '-c 1: -C 'chef-client''",
+    "hostgroup_name": "linux",
     "id": "chef-client",
     "service_template": "service-email_only"
 }
