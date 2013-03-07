@@ -20,19 +20,67 @@ if node.attribute?("nagios")
   end 
   #Create a nagios nrpe check 
   nagios_nrpecheck "wt_check_file_age" do
-    command "#{node['nagios']['plugin_dir']}/check_file_age"
+    command "sudo #{node['nagios']['plugin_dir']}/check_file_age"
     parameters "$ARG1$"
     action :add
-  end  
+  end
+  #Create a nagios nrpe check 
+  nagios_nrpecheck "wt_check_file_ages_in_dirs" do
+    command "sudo #{node['nagios']['plugin_dir']}/check_file_ages_in_dirs"
+    parameters "$ARG1$"
+    action :add
+  end
+  #Create a nagios nrpe check 
+  nagios_nrpecheck "wt_check_file_size" do
+    command "sudo #{node['nagios']['plugin_dir']}/check_file_size"
+    parameters "$ARG1$"
+    action :add
+  end
+  #Create a nagios nrpe check 
+  nagios_nrpecheck "wt_check_hpasm" do
+    command "#{node['nagios']['plugin_dir']}/check_hpasm"
+    parameters "$ARG1$"
+    action :add
+  end
+  #Create a nagios nrpe check 
+  nagios_nrpecheck "wt_check_http" do
+    command "#{node['nagios']['plugin_dir']}/check_http"
+    parameters "$ARG1$"
+    action :add
+  end
+  #Create a nagios nrpe check 
+  nagios_nrpecheck "wt_check_jmx" do
+    command "#{node['nagios']['plugin_dir']}/check_jmx"
+    parameters "$ARG1$"
+    action :add
+  end
   #Create a nagios nrpe check 
   nagios_nrpecheck "wt_check_jps" do
     command "#{node['nagios']['plugin_dir']}/check_jps_procs"
     parameters "$ARG1$"
     action :add
   end
+  #Create a nagios nrpe check
+  nagios_nrpecheck "wt_check_log" do
+    command "sudo #{node['nagios']['plugin_dir']}/check_log"
+    parameters "$ARG1$"
+    action :add
+  end
+  #Create a nagios nrpe check 
+  nagios_nrpecheck "wt_check_memcached_conns" do
+    command "#{node['nagios']['plugin_dir']}/check_memcached_connections"
+    parameters "$ARG1$"
+    action :add
+  end
   #Create a nagios nrpe check 
   nagios_nrpecheck "wt_check_procs" do
     command "#{node['nagios']['plugin_dir']}/check_procs"
+    parameters "$ARG1$"
+    action :add
+  end
+  #Create a nagios nrpe check 
+  nagios_nrpecheck "wt_check_smart_disks" do
+    command "sudo #{node['nagios']['plugin_dir']}/check_smartmon"
     parameters "$ARG1$"
     action :add
   end
@@ -48,13 +96,18 @@ if node.attribute?("nagios")
     action :add
   end
   #Create a nagios nrpe check 
+  nagios_nrpecheck "wt_check_tcp" do
+    command "#{node['nagios']['plugin_dir']}/check_tcp"
+    action :add
+  end
+  #Create a nagios nrpe check 
   nagios_nrpecheck "wt_check_updates" do
     command "#{node['nagios']['plugin_dir']}/check_system_updates"
     action :add
   end
   #Create a nagios nrpe check 
   nagios_nrpecheck "wt_check_updates" do
-    command "#{node['nagios']['plugin_dir']}/check_system_updates"
+    command "sudo #{node['nagios']['plugin_dir']}/check_system_updates"
     action :add
   end
   
