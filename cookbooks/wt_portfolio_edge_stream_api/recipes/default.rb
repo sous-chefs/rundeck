@@ -41,39 +41,32 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-  # uncompress the application tarball into the install dir
-  execute "tar" do
-    user  "root"
-    group "root"
-    cwd install_dir
-    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-  end
+    # uncompress the application tarball into the install dir
+    execute "tar" do
+        user  "root"
+        group "root"
+        cwd install_dir
+        command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+    end
 
-  proc_port = node['wt_stream_processor']['message_port']
+    proc_port = node['wt_stream_processor']['message_port']
   
-  processors = Array.new
+    processors = Array.new
     if not Chef::Config.solo
       search(:node, "role:wt_stream_processor AND chef_environment:#{node.chef_environment}").each do |n|
-        processors << n[:fqdn]
+        processors << "akka://StreamProcessor@#{n[:fqdn]}:#{proc_port}/user/processor" 
       end
     end
 
-    i = 0
-  while i < processors.size do
-    processors[i] = "akka://StreamProcessor@".concat(processors[i]).concat(":#{proc_port}/user/processor")
-    i += 1
-  end
-  
-  %w[application.conf].each do | template_file|
-    template "#{conf_dir}/#{template_file}" do
-      source    "#{template_file}.erb"
-      owner "root"
-      group "root"
-      mode  00644
-      variables({processors => processors
-      })
+    template "#{conf_dir}/application.conf" do
+        source  "application.conf.erb"
+        owner   "root"
+        group   "root"
+        mode    00644
+        variables({
+          :processors => processors
+        })
     end
-  end  
 
   # delete the install tar ball
   execute "delete_install_source" do
