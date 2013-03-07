@@ -161,6 +161,7 @@
         "wt_static_tag_host": "= 0.0.4", 
         "wt_storm_streaming": "= 2.4.11", 
         "wt_stream_processor": "= 1.0.3", 
+        "wt_portfolio_edge_stream_api": "= 1.0.1", 
         "wt_streaming_viz": "= 1.2.1", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
         "wt_streamingapi": "= 1.2.6", 
