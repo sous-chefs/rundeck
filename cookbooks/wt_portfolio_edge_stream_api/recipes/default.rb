@@ -15,6 +15,7 @@ else
 end
 
 install_dir = File.join(node['wt_common']['install_dir_linux'], "edgeservice/modules/stream_api")
+conf_dir = File.join(node['wt_common']['install_dir_linux'], "edgeservice/conf")
 tarball      = node['wt_portfolio_edge_stream_api']['download_url'].split("/")[-1]
 download_url = node['wt_portfolio_edge_stream_api']['download_url']
 user = node['wt_portfolio_edge_stream_api']['user']
@@ -40,13 +41,32 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-  # uncompress the application tarball into the install dir
-  execute "tar" do
-    user  "root"
-    group "root"
-    cwd install_dir
-    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-  end
+    # uncompress the application tarball into the install dir
+    execute "tar" do
+        user  "root"
+        group "root"
+        cwd install_dir
+        command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+    end
+
+    proc_port = node['wt_stream_processor']['message_port']
+  
+    processors = Array.new
+    if not Chef::Config.solo
+      search(:node, "role:wt_stream_processor AND chef_environment:#{node.chef_environment}").each do |n|
+        processors << "akka://StreamProcessor@#{n[:fqdn]}:#{proc_port}/user/processor" 
+      end
+    end
+
+    template "#{conf_dir}/application.conf" do
+        source  "application.conf.erb"
+        owner   "root"
+        group   "root"
+        mode    00644
+        variables({
+          :processors => processors
+        })
+    end
 
   # delete the install tar ball
   execute "delete_install_source" do
