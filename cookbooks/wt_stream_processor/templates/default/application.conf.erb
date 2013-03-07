@@ -8,16 +8,17 @@ StreamProcessor {
             receive=on
             lifecycle=on
             fsm = on
-            
         }
         actor {
             serializers {
                 java = "akka.serialization.JavaSerializer"
                 proto = "akka.remote.serialization.ProtobufSerializer"
+                bytes = "akka.serialization.ByteArraySerializer"
             }
             serialization-bindings {
                 "com.webtrends.portfolio.common.processing.RequestMessage" = java
                 "com.webtrends.portfolio.common.processing.ResponseMessage" = java
+                "[B" = bytes
             } 
             provider = "akka.remote.RemoteActorRefProvider"
             deployment {
@@ -29,13 +30,11 @@ StreamProcessor {
             }
   	}
         remote {
-            log-sent-messages = on
-            log-received-messages = on
             transport = "akka.remote.netty.NettyRemoteTransport"
             netty {
-                hostname = "127.0.0.1"
+                hostname = "<%= node[:fqdn] %>"
                 port = <%= node['wt_stream_processor']['message_port'] %>
             }
- 	}
+        }
     }
 }
