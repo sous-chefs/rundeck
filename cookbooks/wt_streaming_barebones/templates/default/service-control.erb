@@ -1,7 +1,7 @@
 #!/bin/sh
  
 # Setup basic path information.
-MAIN="com.webtrends.streaming.configservice.ConfigServiceDaemon"
+MAIN="com.webtrends.streaming.barebones.BareBonesDaemon"
 LOG_OUT="<%=File.join(@log_dir,"process.out")%>"
 LOG_ERR="<%=File.join(@log_dir,"process.err")%>"
 HOME_DIR="<%=@install_dir%>"
@@ -21,20 +21,21 @@ for jar in `ls $HOME_DIR/lib/*`; do
 done
  
 # Add the JMX options.
-if [ -z "$JMX_OPTS"]; then
-   JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false "
-fi
+# if [ -z "$JMX_OPTS"]; then
+#   JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false "
+# fi
  
 # Add the JMX port.
-if [ -z "$JMX_PORT" ]; then
-   JMX_PORT="<%=@java_jmx_port%>"
-fi
+# if [ -z "$JMX_PORT" ]; then
+#   JMX_PORT="<%=@java_jmx_port%>"
+# fi
  
 # Add JMX options and port together.
-JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
+# JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
  
 # Create the JSVC command line.
-CMD="$JAVA_HOME/bin/java -cp $CP -Dcom.webtrends.log.dir=<%=@log_dir%> $JAVA_OPTS $JMX_OPTS"
+CMD="$JAVA_HOME/bin/java -cp $CP -Dcom.webtrends.log.dir=<%=@log_dir%> $JAVA_OPTS" 
+# $JMX_OPTS
  
 # Find current PID if any.
 FOUND_PID=`ps -ef |grep $MAIN |grep -v grep |awk '{print $2}'`
