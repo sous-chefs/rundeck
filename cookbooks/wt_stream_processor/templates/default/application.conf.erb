@@ -1,0 +1,41 @@
+StreamProcessor { 
+    include "common"
+    akka {
+        loglevel = DEBUG
+        event-handlers=["akka.event.slf4j.Slf4jEventHandler"]
+        event-handler-level="DEBUG"
+        debug {
+            receive=on
+            lifecycle=on
+            fsm = on
+            
+        }
+        actor {
+            serializers {
+                java = "akka.serialization.JavaSerializer"
+                proto = "akka.remote.serialization.ProtobufSerializer"
+            }
+            serialization-bindings {
+                "com.webtrends.portfolio.common.processing.RequestMessage" = java
+                "com.webtrends.portfolio.common.processing.ResponseMessage" = java
+            } 
+            provider = "akka.remote.RemoteActorRefProvider"
+            deployment {
+                /processor/worker {
+#                    router = round-robin
+                    router = smallest-mailbox
+                    nr-of-instances = 5
+                }
+            }
+  	}
+        remote {
+            log-sent-messages = on
+            log-received-messages = on
+            transport = "akka.remote.netty.NettyRemoteTransport"
+            netty {
+                hostname = "127.0.0.1"
+                port = <%= node['wt_stream_processor']['message_port'] %>
+            }
+ 	}
+    }
+}
