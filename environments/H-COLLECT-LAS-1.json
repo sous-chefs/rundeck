@@ -310,7 +310,7 @@
             "wrsread_group": "STAGINGDMZ\\H.WRS.Read"
         }, 
         "wt_edge_server": {
-            "download_url": "http://repo.netiq.dmz/product/srt/1.1.2/1204/Edge-Server-Distribution-wModules-all.tar.gz"
+            "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.2/1204/Edge-Server-Distribution-wModules-all.tar.gz"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
