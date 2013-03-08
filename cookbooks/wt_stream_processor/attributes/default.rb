@@ -15,3 +15,4 @@ default['wt_stream_processor']['java_opts']      = "-Xms1024m -XX:+UseG1GC -Djav
 default['wt_stream_processor']['jmx_port']       = 9999
 default['wt_stream_processor']['log_dir']        = "/var/log/webtrends/streamprocessor"
 default['wt_stream_processor']['message_port']   = 2552
+default['wt_stream_processor']['conf_url']       = "conf/application.conf"
