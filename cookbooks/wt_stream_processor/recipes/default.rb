@@ -37,6 +37,7 @@ end
 
 log_dir     = File.join(node['wt_common']['log_dir_linux'], "streamprocessor")
 install_dir = File.join(node['wt_common']['install_dir_linux'], "streamprocessor")
+conf_url = File.join(install_dir, node['wt_stream_processor']['conf_url'])
 tarball      = node['wt_stream_processor']['download_url'].split("/")[-1]
 download_url = node['wt_stream_processor']['download_url']
 java_home   = node['java']['java_home']
@@ -76,7 +77,7 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
-def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod)
+def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
   log "Updating the template files"
 
   port = node['wt_stream_processor']['port']
@@ -130,11 +131,12 @@ if ENV["deploy_build"] == "true" then
       :install_dir => install_dir,
       :java_home => java_home,
       :java_jmx_port => node['wt_stream_processor']['jmx_port'],
-      :java_opts => java_opts
+      :java_opts => java_opts,
+      :conf_url => conf_url
     })
   end
 
-  processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod)
+  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
 
   # delete the install tar ball
   execute "delete_install_source" do
