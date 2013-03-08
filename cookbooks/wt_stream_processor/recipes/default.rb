@@ -50,6 +50,7 @@ datacenter = node['wt_realtime_hadoop']['datacenter']
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
+log "Configuration: #{conf_url}"
 
 # create the log directory
 directory log_dir do
