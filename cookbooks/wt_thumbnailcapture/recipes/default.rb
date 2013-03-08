@@ -59,17 +59,22 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
-def getMemcacheBoxes ()
+def getMemcacheBoxes
+  log "Fetching memcache hosts for environment"
+  mBoxes = []
 	memcache = search(:node, "chef_environment:support-staging AND roles:memcached")
 	boxes = []
-
 	memcache.each do |b|
 		boxes << b[:fqdn]
 	end
 	boxes = boxes.sort
+        boxes.each do |c|
+          mBoxes << c
+        end
+  return mBoxes
 end
 
-def processTemplates (install_dir, node, user, group, log_dir, java_home)
+def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes)
   log "Updating the template files"
 
 	template "#{install_dir}/bin/service-control" do
@@ -103,7 +108,7 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home)
 	  mode  00640
 	  variables({
 		:port => node['wt_thumbnailcapture']['port'],
-		:memcache_boxes => getMemcacheBoxes()
+		:memcache_boxes => mBoxes
 	  })
 	end
 
@@ -150,7 +155,7 @@ if ENV["deploy_build"] == "true" then
     end
   end  # 1==0
 
-  processTemplates(install_dir, node, user, group, log_dir, java_home)
+  processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes())
 
   # not running as runit service yet
   if 1 == 0 then  
@@ -236,7 +241,7 @@ if ENV["deploy_build"] == "true" then
   end
 
 else
-    processTemplates(install_dir, node, user, group, log_dir, java_home)
+    processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes())
 end
 
 ##if node.attribute?("nagios")
