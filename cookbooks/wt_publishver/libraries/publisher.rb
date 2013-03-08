@@ -73,8 +73,8 @@ module WtPublishver
 			@build_id     = get_build_id
 			@@xmldoc = get_build_xmldoc(@build_id)
 			unless @@xmldoc.nil?
-				@buildtype_name  = get_buildtype_name(@@xmldoc.root)
-				@project_name    = get_project_name(@@xmldoc.root)
+				@buildtype_name  = get_buildtype_name(@@xmldoc.root) unless @@xmldoc.root.nil?
+				@project_name    = get_project_name(@@xmldoc.root)   unless @@xmldoc.root.nil?
 				@build_number    = get_build_number(@@xmldoc)
 			end
 
