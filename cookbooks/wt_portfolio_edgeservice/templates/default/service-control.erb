@@ -7,28 +7,13 @@ LOG_ERR="<%=File.join(@log_dir,"process.err")%>"
 HOME_DIR="<%=@install_dir%>"
 JAVA_HOME="<%=@java_home%>"
 JAVA_OPTS="<%=@java_opts%>"
-
-# Setup classpath, initially empty.
+# Setup classpath
 CP=""
-
-# Add all .jar files to the classpath.
-for jar in `ls $HOME_DIR/lib/*`; do
-    if [ "" = "$CP" ]; then
-        CP=$jar
-    else
-        CP=$CP:$jar
-    fi
-done
+CP=".:lib/*"
 
 # Add all module .jar files to the classpath.
 for path in `ls $HOME_DIR/modules`; do
-    for jar in `ls $HOME_DIR/modules/$path/*`; do
-        if [ "" = "$CP" ]; then
-            CP=$jar
-        else
-            CP=$CP:$jar
-        fi
-    done
+    CP=$CP:modules/$path/*
 done
 
 # Add the JMX options.
@@ -45,7 +30,7 @@ fi
 JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=$JMX_PORT "
 
 # Create the JSVC command line.
-CMD="$JAVA_HOME/bin/java -Djava.library.path=/usr/local/lib:/opt/local/lib:/usr/lib -cp $CP -Dcom.webtrends.log.dir=<%=@log_dir%> $JAVA_OPTS $JMX_OPTS"
+CMD="$JAVA_HOME/bin/java -Djava.library.path=/usr/local/lib:/opt/local/lib:/usr/lib -Dconfig.file=<%=@conf_url%> -cp $CP $JAVA_OPTS $JMX_OPTS"
 
 # Find current PID if any.
 FOUND_PID=`$JAVA_HOME/bin/jps -l |grep $MAIN |awk '{print $1}'`
