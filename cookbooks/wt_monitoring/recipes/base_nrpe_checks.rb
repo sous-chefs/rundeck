@@ -102,11 +102,6 @@ if node.attribute?("nagios")
   end
   #Create a nagios nrpe check 
   nagios_nrpecheck "wt_check_updates" do
-    command "#{node['nagios']['plugin_dir']}/check_system_updates"
-    action :add
-  end
-  #Create a nagios nrpe check 
-  nagios_nrpecheck "wt_check_updates" do
     command "sudo #{node['nagios']['plugin_dir']}/check_system_updates"
     action :add
   end
