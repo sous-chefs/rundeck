@@ -173,9 +173,6 @@ if ENV["deploy_build"] == "true" then
       command "sudo apt-get install unzip xvfb cutycapt -y"
     end
 
-
-
-
 #copy screencap.erb to init.d folder
        template "/etc/init.d/screencap" do
           source "screencap.erb"
@@ -231,7 +228,7 @@ if ENV["deploy_build"] == "true" then
       user  "root"
       group "root"
       cwd install_dir
-      command "java -jar capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar"
+      command "java -jar capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar&"
     end
 
   end
