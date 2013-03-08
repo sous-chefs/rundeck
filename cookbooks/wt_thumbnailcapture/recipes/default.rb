@@ -166,33 +166,24 @@ if ENV["deploy_build"] == "true" then
     end
   else
     # install dependencies
-      execute "installdependencies" do
+    execute "installdependencies" do
       user  "root"
       group "root"
       cwd install_dir
       command "sudo apt-get install unzip xvfb cutycapt -y"
     end
 
-#copy screencap.erb to init.d folder
-       template "/etc/init.d/screencap" do
-          source "screencap.erb"
-          owner "root"
-          user "root"
-          group "root"
-          mode  00640
-        end
-
-    # configure xvfb as startup service + run it
-    # copy templates/screencap.txt to /etc/init.d/screencap
-##      execute "framebuffer_prep" do
-##      user "root"
-##      group "root"
-##      cwd install_dir
-##      command "cp ./templates/default/screencap.txt /etc/init.d/screencap"
-##    end
+    #copy screencap.erb to init.d folder
+    template "/etc/init.d/screencap" do
+      source "screencap.erb"
+      owner "root"
+      user "root"
+      group "root"
+      mode  00640
+    end
 
     # init screencap config
-      execute "framebuffer_config" do
+    execute "framebuffer_config" do
       user "root"
       group "root"
       cwd install_dir
@@ -200,7 +191,7 @@ if ENV["deploy_build"] == "true" then
     end
 
     # set screencap up as startup service
-      execute "framebuffer_runasstartup" do
+    execute "framebuffer_runasstartup" do
       user "root"
       group "root"
       cwd install_dir
@@ -208,23 +199,30 @@ if ENV["deploy_build"] == "true" then
     end
 
     # start screencap up
-      execute "framebuffer_startservice" do
+    execute "framebuffer_startservice" do
       user "root"
       group "root"
       cwd install_dir
       command "sudo /etc/init.d/screencap start"
     end
 
+    # assign DISPLAY env
+    execute "envassignment" do
+      user "root"
+      group "root"
+      command "export DISPLAY=:1"
+    end
+
     # explode our artifacts zip file
-      execute "explodeartifacts" do
+    execute "explodeartifacts" do
       user  "root"
       group "root"
       cwd install_dir
       command "sudo unzip #{Chef::Config['file_cache_path']}/#{tarball}"
     end
 
-      # invoke the service using java command and java_opts
-      execute "thumbnailcapture" do
+    # invoke the service using java command and java_opts
+    execute "thumbnailcapture" do
       user  "root"
       group "root"
       cwd install_dir
