@@ -61,17 +61,13 @@ end
 
 def getMemcacheBoxes
   log "Fetching memcache hosts for environment"
-  mBoxes = []
 	memcache = search(:node, "chef_environment:support-staging AND roles:memcached")
 	boxes = []
 	memcache.each do |b|
 		boxes << b[:fqdn]
 	end
 	boxes = boxes.sort
-        boxes.each do |c|
-          mBoxes << c
-        end
-  return mBoxes
+  return boxes.join(",")  
 end
 
 def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes)
