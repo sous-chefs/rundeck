@@ -1,4 +1,5 @@
-# The number of threads for spawning concurrent cutycapt processes (The number should be the number of thumbnails to capture + 2 for supporting threads)
-##thread.pool.size=   @wt_thumbnailcapture[:thread_pool_size] 
-##port=  @wt_thumbnailcapture[:port] 
+port=<%= @port %>
+minDelayMsec=150
+maxWaitMsec=5000
 memcache.boxes = <%= @memcache_boxes %>
+cacheTtlSec=86400
