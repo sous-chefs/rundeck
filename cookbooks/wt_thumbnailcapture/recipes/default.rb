@@ -172,6 +172,51 @@ if ENV["deploy_build"] == "true" then
       command "sudo apt-get install unzip xvfb cutycapt -y"
     end
 
+
+
+
+#copy screencap.erb to init.d folder
+       template "/etc/init.d/screencap" do
+          source "screencap.erb"
+          owner "root"
+          user "root"
+          group "root"
+          mode  00640
+        end
+
+    # configure xvfb as startup service + run it
+    # copy templates/screencap.txt to /etc/init.d/screencap
+##      execute "framebuffer_prep" do
+##      user "root"
+##      group "root"
+##      cwd install_dir
+##      command "cp ./templates/default/screencap.txt /etc/init.d/screencap"
+##    end
+
+    # init screencap config
+      execute "framebuffer_config" do
+      user "root"
+      group "root"
+      cwd install_dir
+      command "sudo update-rc.d screencap defaults"
+    end
+
+    # set screencap up as startup service
+      execute "framebuffer_runasstartup" do
+      user "root"
+      group "root"
+      cwd install_dir
+      command "sudo chmod 700 /etc/init.d/screencap"
+    end
+
+    # start screencap up
+      execute "framebuffer_startservice" do
+      user "root"
+      group "root"
+      cwd install_dir
+      command "sudo /etc/init.d/screencap start"
+    end
+
     # explode our artifacts zip file
       execute "explodeartifacts" do
       user  "root"
