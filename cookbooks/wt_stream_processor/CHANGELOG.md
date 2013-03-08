@@ -1,3 +1,6 @@
+##1.0.4
+* Classpath changes
+
 ##1.0.3
 * Upgrade with Akka defaults
 
