@@ -552,8 +552,9 @@
             "healthcheck_port": 9001, 
             "jmx_port": 9995, 
             "port": 8085, 
+            "healthcheck_port": 9001,
             "thread_pool_size": 5000, 
-            "thumbnail_service_url": "http://hutil.staging.dmz"
+            "thumbnail_service_url": "http://hthumb.staging.dmz"
         }, 
         "zookeeper": {
             "client_port": 2181
