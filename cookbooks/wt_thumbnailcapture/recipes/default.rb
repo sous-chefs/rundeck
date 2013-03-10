@@ -210,7 +210,7 @@ if ENV["deploy_build"] == "true" then
     execute "envassignment" do
       user "root"
       group "root"
-      command "export DISPLAY=:1"
+      command "export DISPLAY=\":1\""
     end
 
     # explode our artifacts zip file
