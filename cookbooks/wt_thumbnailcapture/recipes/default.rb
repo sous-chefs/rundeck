@@ -180,7 +180,7 @@ if ENV["deploy_build"] == "true" then
     user  "root"
     group "root"
     cwd install_dir
-    command "sudo apt-get install unzip xvfb cutycapt -y"
+    command "apt-get install unzip xvfb cutycapt x11-utils -y"
   end
 
   #copy screencap.erb to init.d folder
@@ -197,7 +197,7 @@ if ENV["deploy_build"] == "true" then
     user "root"
     group "root"
     cwd install_dir
-    command "sudo update-rc.d screencap defaults"
+    command "update-rc.d screencap defaults"
   end
 
   # set screencap up as startup service
@@ -205,7 +205,7 @@ if ENV["deploy_build"] == "true" then
     user "root"
     group "root"
     cwd install_dir
-    command "sudo chmod 700 /etc/init.d/screencap"
+    command "chmod 700 /etc/init.d/screencap"
   end
 
   # start screencap up
@@ -213,13 +213,14 @@ if ENV["deploy_build"] == "true" then
     user "root"
     group "root"
     cwd install_dir
-    command "sudo /etc/init.d/screencap start"
+    command "/etc/init.d/screencap start"
   end
 
-  # assign DISPLAY env
+  # assign DISPLAY env, should we just append to /etc/environment?
   execute "envassignment" do
     user "root"
     group "root"
+    cwd install_dir
     command "export DISPLAY=\":1\""
   end
 
@@ -228,7 +229,7 @@ if ENV["deploy_build"] == "true" then
     user  "root"
     group "root"
     cwd install_dir
-    command "sudo unzip #{Chef::Config['file_cache_path']}/#{tarball}"
+    command "unzip #{Chef::Config['file_cache_path']}/#{tarball}"
   end
 
 # before we used runit, this invoked the service using java command and java_opts
