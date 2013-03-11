@@ -154,82 +154,81 @@ if ENV["deploy_build"] == "true" then
   processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes())
 
   # not running as runit service yet
-  if 1 == 0 then  
-    # create a runit service
-    runit_service "thumbnailcapture" do
-      options({
-        :log_dir => log_dir,
-        :install_dir => install_dir,
-        :java_home => java_home,
-        :user => user
-      })
-    end
-  else
-    # install dependencies
-    execute "installdependencies" do
-      user  "root"
-      group "root"
-      cwd install_dir
-      command "sudo apt-get install unzip xvfb cutycapt -y"
-    end
-
-    #copy screencap.erb to init.d folder
-    template "/etc/init.d/screencap" do
-      source "screencap.erb"
-      owner "root"
-      user "root"
-      group "root"
-      mode  00640
-    end
-
-    # init screencap config
-    execute "framebuffer_config" do
-      user "root"
-      group "root"
-      cwd install_dir
-      command "sudo update-rc.d screencap defaults"
-    end
-
-    # set screencap up as startup service
-    execute "framebuffer_runasstartup" do
-      user "root"
-      group "root"
-      cwd install_dir
-      command "sudo chmod 700 /etc/init.d/screencap"
-    end
-
-    # start screencap up
-    execute "framebuffer_startservice" do
-      user "root"
-      group "root"
-      cwd install_dir
-      command "sudo /etc/init.d/screencap start"
-    end
-
-    # assign DISPLAY env
-    execute "envassignment" do
-      user "root"
-      group "root"
-      command "export DISPLAY=\":1\""
-    end
-
-    # explode our artifacts zip file
-    execute "explodeartifacts" do
-      user  "root"
-      group "root"
-      cwd install_dir
-      command "sudo unzip #{Chef::Config['file_cache_path']}/#{tarball}"
-    end
-
-    # invoke the service using java command and java_opts
-    execute "thumbnailcapture" do
-      user  "root"
-      group "root"
-      cwd install_dir
-      command "java -jar capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar&"
-    end
-
+  # create a runit service
+  runit_service "thumbnailcapture" do
+    options({
+      :log_dir => log_dir,
+      :install_dir => install_dir,
+      :java_home => java_home,
+      :user => user
+    })
   end
+
+  # install dependencies
+  execute "installdependencies" do
+    user  "root"
+    group "root"
+    cwd install_dir
+    command "sudo apt-get install unzip xvfb cutycapt -y"
+  end
+
+  #copy screencap.erb to init.d folder
+  template "/etc/init.d/screencap" do
+    source "screencap.erb"
+    owner "root"
+    user "root"
+    group "root"
+    mode  00640
+  end
+
+  # init screencap config
+  execute "framebuffer_config" do
+    user "root"
+    group "root"
+    cwd install_dir
+    command "sudo update-rc.d screencap defaults"
+  end
+
+  # set screencap up as startup service
+  execute "framebuffer_runasstartup" do
+    user "root"
+    group "root"
+    cwd install_dir
+    command "sudo chmod 700 /etc/init.d/screencap"
+  end
+
+  # start screencap up
+  execute "framebuffer_startservice" do
+    user "root"
+    group "root"
+    cwd install_dir
+    command "sudo /etc/init.d/screencap start"
+  end
+
+  # assign DISPLAY env
+  execute "envassignment" do
+    user "root"
+    group "root"
+    command "export DISPLAY=\":1\""
+  end
+
+  # explode our artifacts zip file
+  execute "explodeartifacts" do
+    user  "root"
+    group "root"
+    cwd install_dir
+    command "sudo unzip #{Chef::Config['file_cache_path']}/#{tarball}"
+  end
+
+# before we used runit, this invoked the service using java command and java_opts
+#  execute "thumbnailcapture" do
+#    user  "root"
+#    group "root"
+#    cwd install_dir
+#    command "java -jar capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar&"
+#  end
+
+end
 
 else
     processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes())
@@ -244,10 +243,10 @@ end
 ##  end
 ##end
 
-##service "thumbnailcapture-start" do
-##  service_name "thumbnailcapture"
-##  action :start
-##end
+service "thumbnailcapture-start" do
+  service_name "thumbnailcapture"
+  action :start
+end
 
 if ENV['deploy_test'] == 'true' 
   minitest_handler "unit-tests" do
