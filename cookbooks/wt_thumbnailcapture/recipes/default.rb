@@ -105,6 +105,7 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes
           variables({
                 :port => node['wt_thumbnailcapture']['port'],
                 :memcache_boxes => mBoxes,
+                :memcache_expireseconds => node['wt_thumbnailcapture']['memcache_expireseconds'],
                 :healthcheck_enabled => node['wt_monitoring']['healthcheck_enabled']
           })
         end
@@ -243,14 +244,14 @@ else
     processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes())
 end
 
-##if node.attribute?("nagios")
+if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
-##  nagios_nrpecheck "wt_healthcheck_page" do
-##    command "#{node['nagios']['plugin_dir']}/check_http"
-##    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_thumbnailcapture']['healthcheck_port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
-##    action :add
-##  end
-##end
+  nagios_nrpecheck "wt_healthcheck_page" do
+    command "#{node['nagios']['plugin_dir']}/check_http"
+    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_thumbnailcapture']['healthcheck_port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
+    action :add
+  end
+end
 
 service "thumbnailcapture-start" do
   service_name "thumbnailcapture"

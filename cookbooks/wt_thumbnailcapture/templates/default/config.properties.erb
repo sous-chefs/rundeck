@@ -2,7 +2,7 @@ port=<%= @port %>
 minDelayMsec=150
 maxWaitMsec=5000
 memcache.boxes = <%= @memcache_boxes %>
-cacheTtlSec=86400
+memcache.expireseconds= <%= @memcache_expireseconds %>
 # Are health checks enabled
 healthcheck.enabled=<%= @healthcheck_enabled %>
 # This is for future use for having health checks bound to an alternative port
