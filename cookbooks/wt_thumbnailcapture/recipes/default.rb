@@ -97,14 +97,25 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes
 	  })
 	end
 
-	template "#{install_dir}/conf/config.properties" do
-	  source "config.properties.erb"
+        template "#{install_dir}/conf/config.properties" do
+          source "config.properties.erb"
+          owner user
+          group group
+          mode  00640
+          variables({
+                :port => node['wt_thumbnailcapture']['port'],
+                :memcache_boxes => mBoxes,
+                :healthcheck_enabled => node['wt_monitoring']['healthcheck_enabled']
+          })
+        end
+	template "#{install_dir}/conf/monitoring.properties" do
+	  source "monitoring.properties.erb"
 	  owner user
 	  group group
 	  mode  00640
 	  variables({
-		:port => node['wt_thumbnailcapture']['port'],
-		:memcache_boxes => mBoxes
+		:healthcheck_port => node['wt_thumbnailcapture']['healthcheck_port'],
+                :healthcheck_enabled => node['wt_monitoring']['healthcheck_enabled']
 	  })
 	end
 
