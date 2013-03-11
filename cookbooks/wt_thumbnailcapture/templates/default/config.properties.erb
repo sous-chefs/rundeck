@@ -4,7 +4,7 @@ maxWaitMsec=5000
 memcache.boxes = <%= @memcache_boxes %>
 cacheTtlSec=86400
 # Are health checks enabled
-healthcheck.enabled=<%= @wt_monitoring['healthcheck_enabled'] %>
+healthcheck.enabled=<%= @healthcheck_enabled %>
 # This is for future use for having health checks bound to an alternative port
 healthcheck.port=<%= @healthcheck_port %>
 
