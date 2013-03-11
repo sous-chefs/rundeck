@@ -238,9 +238,6 @@ if ENV["deploy_build"] == "true" then
 #    cwd install_dir
 #    command "java -jar capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar&"
 #  end
-
-end
-
 else
     processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes())
 end
