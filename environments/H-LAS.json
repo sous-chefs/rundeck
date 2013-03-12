@@ -548,7 +548,7 @@
             "sms_service_url": "http://hsms.staging.dmz"
         }, 
         "wt_thumbnailcapture": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt364/54019:id/artifacts.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt364/54024:id/artifacts.zip", 
             "memcache_expireseconds": 259200,
             "healthcheck_port": 9001, 
             "jmx_port": 9995, 
