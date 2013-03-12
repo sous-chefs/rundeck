@@ -539,7 +539,7 @@
             "sms_service_url": "http://bsms.staging.dmz"
         }, 
         "wt_thumbnailcapture": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/bt364/54136:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/54136:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
             "memcache_expireseconds": 259200,     
             "healthcheck_port": 9001,
             "jmx_port": 9995,
