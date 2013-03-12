@@ -539,6 +539,12 @@
         }, 
         "wt_thumbnailcapture": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt364/54024:id/artifacts.zip", 
+            "memcache_expireseconds": 259200,     
+            "healthcheck_port": 9001,
+            "jmx_port": 9995,
+            "port": 8085,
+            "thread_pool_size": 5000,
+            "http_proxy_url": "http://sproxy02.staging.dmz:3128",
             "thumbnail_service_url": "http://bthumb.staging.dmz"
         }, 
         "zookeeper": {
