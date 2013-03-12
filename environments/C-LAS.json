@@ -184,7 +184,7 @@
             "sudo": {
                 "groups": [
                     "domain-admins", 
-                    "a.admins"
+                    "c.admins"
                 ], 
                 "include_sudoers_d": true, 
                 "passwordless": false, 
@@ -198,8 +198,8 @@
         }, 
         "cassandra": {
             "cassandra_host": "cassandra.staging.dmz", 
-            "cassandra_meta_column": "A_Meta", 
-            "cassandra_report_column": "A_Report", 
+            "cassandra_meta_column": "C_Meta", 
+            "cassandra_report_column": "C_Report", 
             "cassandra_thrift_port": 9160
         }, 
         "chef_client": {
@@ -349,7 +349,7 @@
         }, 
         "wt_aps": {
             "aps_url_base": "/AccountProvisioning/", 
-            "service_url": "http://aaps01.staging.dmz"
+            "service_url": "http://caps01.staging.dmz"
         }, 
         "wt_cam": {
             "cam": {
@@ -358,16 +358,16 @@
             "cam_plugins": {
                 "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.1/0220/Plugins.zip"
             }, 
-            "cam_service_url": "http://acam.staging.dmz", 
+            "cam_service_url": "http://ccam.staging.dmz", 
             "db_name": "CAM", 
-            "db_server": "acamdb01.staging.dmz", 
+            "db_server": "ccamdb01.staging.dmz", 
             "optimize_plugin": {
                 "optimize_server_url": "http://was.ea.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }
         }, 
         "wt_cam_db": {
             "db_name": "CAM", 
-            "db_server": "acamdb01.staging.dmz"
+            "db_server": "ccamdb01.staging.dmz"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -380,28 +380,28 @@
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
             "install_log_dir_windows": "d:\\logs", 
-            "ldap_host": "aldap01.staging.dmz", 
+            "ldap_host": "cldap01.staging.dmz", 
             "ldap_port": "636", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
-            "pod_id": "A", 
+            "pod_id": "C", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
-            "wrsmodify_group": "STAGINGDMZ\\A.WRS.Modify", 
-            "wrsread_group": "STAGINGDMZ\\A.WRS.Read"
+            "wrsmodify_group": "STAGINGDMZ\\C.WRS.Modify", 
+            "wrsread_group": "STAGINGDMZ\\C.WRS.Read"
         }, 
         "wt_kafka_topagg": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.1/1116/TopicAggregator-bin.tar.gz", 
             "edge_kafka_sources": []
         }, 
         "wt_management_console": {
-            "service_url": "https://amc.staging.dmz"
+            "service_url": "https://cmc.staging.dmz"
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
-            "host": "amasterdb01.staging.dmz"
+            "host": "cmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {
-            "monitor_hostname": "ads01.staging.dmz"
+            "monitor_hostname": "cds01.staging.dmz"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
@@ -413,7 +413,7 @@
             "healthcheck_enabled": "true", 
             "healthcheck_port": 9000, 
             "jmx_enabled": "true", 
-            "metric_prefix": "staging.apod.servers", 
+            "metric_prefix": "staging.cpod.servers", 
             "monitoring_enabled": "true"
         }, 
         "wt_netacuity": {
@@ -422,7 +422,7 @@
             "version": "502"
         }, 
         "wt_portfolio_admin": {
-            "account_ui_url": "https://aaccount.webtrends.com", 
+            "account_ui_url": "https://caccount.webtrends.com", 
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.1/0220/Portfolio.Admin.zip", 
             "proxy_enabled": "true"
         }, 
@@ -431,27 +431,27 @@
             "portmgr_domain": "STAGINGDMZ", 
             "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
             "portmgr_fulfillment_dl": "martin.neal@webtrends.com", 
-            "portmgr_group_admin": "A.PortMgr.Admins", 
-            "portmgr_group_user": "A.PortMgr.Users", 
+            "portmgr_group_admin": "C.PortMgr.Admins", 
+            "portmgr_group_user": "C.PortMgr.Users", 
             "portmgr_injected_user": "tomomi.ioffe@webtrends.com", 
             "portmgr_support_dl": "eng-systems@webtrends.com"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
-            "environment": "A-LAS", 
-            "pod": "A"
+            "environment": "C-LAS", 
+            "pod": "C"
         }, 
         "wt_sauth": {
-            "auth_service_url": "https://asauth.webtrends.com", 
+            "auth_service_url": "https://csauth.webtrends.com", 
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.1/0220/Auth.zip"
         }, 
         "wt_scheddb": {
             "dbname": "wt_Sched", 
-            "host": "amasterdb01.staging.dmz"
+            "host": "cmasterdb01.staging.dmz"
         }, 
         "wt_schedulerdb": {
             "dbname": "wtScheduler", 
-            "host": "ausagedb01.staging.dmz"
+            "host": "cusagedb01.staging.dmz"
         }, 
         "wt_storm_streaming": {
             "augment_bolt_executors": 96, 
@@ -464,8 +464,8 @@
                 "workers": 4
             }, 
             "topic_list": [
-                "Lab_A_scsRawHits:3", 
-                "Lab_A_lrRawHits:3"
+                "Lab_C_scsRawHits:3", 
+                "Lab_C_lrRawHits:3"
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
@@ -474,13 +474,13 @@
         }, 
         "wt_streaming_usage_db": {
             "db_name": "streaming", 
-            "db_server": "acamdb01.staging.dmz"
+            "db_server": "ccamdb01.staging.dmz"
         }, 
         "wt_streaming_viz": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.1/0228/Streaming.Viz.zip", 
             "proxy_enabled": "true", 
-            "sms_url": "http://asms.staging.dmz", 
-            "streams_ui_url": "https://astreams.webtrends.com"
+            "sms_url": "http://csms.staging.dmz", 
+            "streams_ui_url": "https://cstreams.webtrends.com"
         }, 
         "wt_streaminganalysis_monitor": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.1/0222/webtrends-streaming-analysis-monitor-bin.tar.gz", 
@@ -489,18 +489,18 @@
         }, 
         "wt_streamingapi": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.1/0220/webtrends-streamingapi-bin.tar.gz", 
-            "sapi_service_url": "ws://asapi.webtrends.com"
+            "sapi_service_url": "ws://csapi.webtrends.com"
         }, 
         "wt_streamingauditor": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.1/0220/webtrends-streamingauditor-bin.tar.gz", 
-            "roundtrip_scs_urls": "http://ascs.staging.dmz", 
+            "roundtrip_scs_urls": "http://cscs.staging.dmz", 
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         }, 
         "wt_streamingconfigservice": {
             "camdbname": "CAM", 
-            "camdbserver": "acamdb01.staging.dmz", 
-            "config_service_url": "http://aconfigsvc.staging.dmz", 
+            "camdbserver": "ccamdb01.staging.dmz", 
+            "config_service_url": "http://cconfigsvc.staging.dmz", 
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.3/1214/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streamingmanagementservice": {
@@ -508,11 +508,11 @@
             "healthcheck_port": 9003, 
             "jmx_port": 9998, 
             "port": 8081, 
-            "sms_service_url": "http://asms.staging.dmz"
+            "sms_service_url": "http://csms.staging.dmz"
         }, 
         "wt_usagedb": {
             "dbname": "wtUsage", 
-            "host": "ausagedb01.staging.dmz"
+            "host": "cusagedb01.staging.dmz"
         }, 
         "wt_xd": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/hotfix/0131/XD_Map_Reduce_master_1.0.0-SNAPSHOT.131_artifacts.zip", 
@@ -523,9 +523,9 @@
             "client_port": 2181
         }
     }, 
-    "description": "A Pod in LAS", 
+    "description": "C Pod in LAS", 
     "json_class": "Chef::Environment", 
-    "name": "A-LAS", 
+    "name": "C-LAS", 
     "override_attributes": {
         "ntp": {
             "servers": [
