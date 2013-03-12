@@ -142,7 +142,7 @@ if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so we will grab the jar and install"
 
   # download the application tarball
-  remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+  remote_file "#{install_dir}/#{tarball}" do
     source download_url
     mode 00644
   end
@@ -184,9 +184,9 @@ if ENV["deploy_build"] == "true" then
   end.run_action(:run)
 
   # install dependencies
-  package "unzip" do
-    action :install
-  end
+#  package "unzip" do
+#    action :install
+#  end
   package "xvfb" do
     action :install
   end
@@ -196,12 +196,6 @@ if ENV["deploy_build"] == "true" then
   package "x11-utils" do
     action :install
   end
-#  execute "installdependencies" do
-#    user  "root"
-#    group "root"
-#    cwd install_dir
-#    command "apt-get install unzip xvfb cutycapt x11-utils -y"
-#  end
 
   #copy screencap.erb to init.d folder
   template "/etc/init.d/screencap" do
@@ -221,12 +215,12 @@ if ENV["deploy_build"] == "true" then
   end
 
   # explode our artifacts zip file
-  execute "explodeartifacts" do
-    user  "root"
-    group "root"
-    cwd install_dir
-    command "unzip #{Chef::Config['file_cache_path']}/#{tarball}"
-  end
+#  execute "explodeartifacts" do
+#    user  "root"
+#    group "root"
+#    cwd install_dir
+#    command "unzip #{Chef::Config['file_cache_path']}/#{tarball}"
+#  end
 
 else
     processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes())

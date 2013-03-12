@@ -46,18 +46,3 @@ directory service_dir do
   recursive true
   action :delete
 end
-
-# remove dependencies we explicitly added in recipe
-# uninstall dependencies
-package "unzip" do
-  action :remove
-end
-package "xvfb" do
-  action :remove
-end
-package "cutycapt" do
-  action :remove
-end
-package "x11-utils" do
-  action :remove
-end

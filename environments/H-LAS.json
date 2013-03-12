@@ -548,7 +548,8 @@
             "sms_service_url": "http://hsms.staging.dmz"
         }, 
         "wt_thumbnailcapture": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt364/54024:id/artifacts.zip", 
+            "artifact_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt364/54024:id/artifacts.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/54024:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar",
             "memcache_expireseconds": 259200,
             "healthcheck_port": 9001, 
             "jmx_port": 9995, 
