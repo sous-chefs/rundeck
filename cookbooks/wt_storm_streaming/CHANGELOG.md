@@ -1,5 +1,5 @@
 ##2.4.12
-* Added portfolio jar files
+* Added portfolio and jamm jar files
 
 ## 2.4.11
 * Added data_request_url
