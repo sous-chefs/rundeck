@@ -11,7 +11,7 @@
             "--- END LICENSE KEY -----"
         ]
     }, 
-    "id": "COLLECT-CI", 
+    "id": "CI-COLLECT-LAS-1", 
     "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "wt_common": {
         "camdb_install_user": "sa", 
