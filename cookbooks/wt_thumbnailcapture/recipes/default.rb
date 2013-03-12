@@ -167,7 +167,6 @@ if ENV["deploy_build"] == "true" then
 
   processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes())
 
-  # not running as runit service yet
   # create a runit service
   runit_service "thumbnailcapture" do
     options({
@@ -178,13 +177,31 @@ if ENV["deploy_build"] == "true" then
     })
   end
 
+  execute "update package index" do
+    command "apt-get update"
+    ignore_failure true
+    action :nothing
+  end.run_action(:run)
+
   # install dependencies
-  execute "installdependencies" do
-    user  "root"
-    group "root"
-    cwd install_dir
-    command "apt-get install unzip xvfb cutycapt x11-utils -y"
+  package "unzip" do
+    action :install
   end
+  package "xvfb" do
+    action :install
+  end
+  package "cutycapt" do
+    action :install
+  end
+  package "x11-utils" do
+    action :install
+  end
+#  execute "installdependencies" do
+#    user  "root"
+#    group "root"
+#    cwd install_dir
+#    command "apt-get install unzip xvfb cutycapt x11-utils -y"
+#  end
 
   #copy screencap.erb to init.d folder
   template "/etc/init.d/screencap" do
@@ -192,7 +209,7 @@ if ENV["deploy_build"] == "true" then
     owner "root"
     user "root"
     group "root"
-    mode  00640
+    mode  00700
   end
 
   # init screencap config
@@ -203,30 +220,6 @@ if ENV["deploy_build"] == "true" then
     command "update-rc.d screencap defaults"
   end
 
-  # set screencap up as startup service
-  execute "framebuffer_runasstartup" do
-    user "root"
-    group "root"
-    cwd install_dir
-    command "chmod 700 /etc/init.d/screencap"
-  end
-
-  # start screencap up
-  execute "framebuffer_startservice" do
-    user "root"
-    group "root"
-    cwd install_dir
-    command "/etc/init.d/screencap start"
-  end
-
-  # assign DISPLAY env, should we just append to /etc/environment?
-  execute "envassignment" do
-    user "root"
-    group "root"
-    cwd install_dir
-    command "export DISPLAY=\":1\""
-  end
-
   # explode our artifacts zip file
   execute "explodeartifacts" do
     user  "root"
@@ -235,18 +228,11 @@ if ENV["deploy_build"] == "true" then
     command "unzip #{Chef::Config['file_cache_path']}/#{tarball}"
   end
 
-# before we used runit, this invoked the service using java command and java_opts
-#  execute "thumbnailcapture" do
-#    user  "root"
-#    group "root"
-#    cwd install_dir
-#    command "java -jar capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar&"
-#  end
 else
     processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes())
 end
 
-if node.attribute?("nagios")
+if node.attribute?("nagios") then
   #Create a nagios nrpe check for the healthcheck page
   nagios_nrpecheck "wt_healthcheck_page" do
     command "#{node['nagios']['plugin_dir']}/check_http"
@@ -255,9 +241,16 @@ if node.attribute?("nagios")
   end
 end
 
+service "xserver-start" do
+  service_name "screencap"
+  action [:start, :enable]
+  ignore_failure true
+end
+
 service "thumbnailcapture-start" do
   service_name "thumbnailcapture"
-  action :start
+  action [:start, :enable]
+  ignore_failure true
 end
 
 if ENV['deploy_test'] == 'true' 

@@ -22,6 +22,11 @@ service "thumbnailcapture" do
   ignore_failure true
 end
 
+service "screencap" do
+  action [:stop, :disable]
+  ignore_failure true
+end
+
 directory log_dir do
   recursive true
   action :delete
@@ -42,3 +47,17 @@ directory service_dir do
   action :delete
 end
 
+# remove dependencies we explicitly added in recipe
+# uninstall dependencies
+package "unzip" do
+  action :remove
+end
+package "xvfb" do
+  action :remove
+end
+package "cutycapt" do
+  action :remove
+end
+package "x11-utils" do
+  action :remove
+end
