@@ -64,10 +64,10 @@ def getMemcacheBoxes
 	memcache = search(:node, "chef_environment:support-staging AND roles:memcached")
 	boxes = []
 	memcache.each do |b|
-		boxes << b[:fqdn]
+		boxes << b[:fqdn]+":11211"
 	end
 	boxes = boxes.sort
-  return boxes.join(",")  
+  return boxes.join(" ")
 end
 
 def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes)
@@ -106,7 +106,9 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes
                 :port => node['wt_thumbnailcapture']['port'],
                 :memcache_boxes => mBoxes,
                 :memcache_expireseconds => node['wt_thumbnailcapture']['memcache_expireseconds'],
-                :healthcheck_enabled => node['wt_monitoring']['healthcheck_enabled']
+                :healthcheck_enabled => node['wt_monitoring']['healthcheck_enabled'],
+                :proxy_enabled => node['wt_portfolio_admin']['proxy_enabled'],
+                :proxy_address => node['wt_common']['http_proxy_url']
           })
         end
 	template "#{install_dir}/conf/monitoring.properties" do

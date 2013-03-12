@@ -1,11 +1,10 @@
 port=<%= @port %>
 minDelayMsec=150
 maxWaitMsec=5000
-memcache.boxes = <%= @memcache_boxes %>
-memcache.expireseconds= <%= @memcache_expireseconds %>
-# Are health checks enabled
+memcache.boxes=<%= @memcache_boxes %>
+memcache.expireseconds=<%= @memcache_expireseconds %>
+proxyEnabled=<%= @proxy_enabled %>
+httpProxy=<%= @proxy_address %>
+
 healthcheck.enabled=<%= @healthcheck_enabled %>
-# This is for future use for having health checks bound to an alternative port
 healthcheck.port=<%= @healthcheck_port %>
-
-
