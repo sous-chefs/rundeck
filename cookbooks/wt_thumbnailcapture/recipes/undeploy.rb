@@ -9,6 +9,8 @@
 
 log_dir = File.join(node['wt_common']['log_dir_linux'], "thumbnailcapture")
 install_dir = File.join(node['wt_common']['install_dir_linux'], "thumbnailcapture")
+sv_dir = "/etc/sv/thumbnailcapture"
+service_dir = "service/thumbnailservice"
 
 runit_service "thumbnailcapture" do
     action :disable
@@ -29,3 +31,14 @@ directory install_dir do
   recursive true
   action :delete
 end
+
+directory sv_dir do
+  recursive true
+  action :delete
+end
+
+directory service_dir do
+  recursive true
+  action :delete
+end
+
