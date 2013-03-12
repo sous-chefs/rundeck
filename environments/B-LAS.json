@@ -448,7 +448,7 @@
         "wt_portfolio_admin": {
             "account_ui_url": "https://baccount.webtrends.com", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/53953:id/Portfolio.Admin.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/54155:id/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true"
         }, 
@@ -503,7 +503,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/54006:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/54162:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "port": 80, 
             "proxy_enabled": "true", 
@@ -539,13 +539,12 @@
             "sms_service_url": "http://bsms.staging.dmz"
         }, 
         "wt_thumbnailcapture": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt364/54110:id/artifacts.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/54136:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
             "memcache_expireseconds": 259200,     
             "healthcheck_port": 9001,
             "jmx_port": 9995,
             "port": 8085,
             "thread_pool_size": 5000,
-            "http_proxy_url": "http://sproxy02.staging.dmz:3128",
             "thumbnail_service_url": "http://bthumb.staging.dmz"
         }, 
         "zookeeper": {
