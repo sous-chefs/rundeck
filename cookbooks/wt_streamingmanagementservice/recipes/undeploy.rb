@@ -39,6 +39,6 @@ end
 
 directory service_dir do
   recursive true
-  action: delete
+  action :delete
 end
 
