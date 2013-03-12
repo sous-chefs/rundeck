@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: vmware-tools
-# attributes::default.rb
+# Attributes:: default
 #
 # Copyright 2011, Bryan W. Berry <bryan.berry@gmail.com>
 #
@@ -27,8 +27,8 @@ when "0xE72C0"
   default['esx']['checksum'] = "5118df75830e416ca20e2939e4934b4ebb8b9e29160e3fbed225aaa832345712"
 when "0xEA0C0"
   default['esx']['version'] = "5.1"
-  default['esx']['tarball'] = "VMwareTools-9.0.0-782409.tar.gz"
-  default['esx']['checksum'] = "be9ff564870ea98597b2e1f6965d8416f7708eeeb1b372be5f42ac4376d8336d"
+  default['esx']['tarball'] = "VMwareTools-9.0.1-913578.tar.gz"
+  default['esx']['checksum'] = "e3c116eaa0693774d1ced90fefea7f65de246b7914a9218df6bb4549c0ae4c81"
 end
 
 Chef::Log.debug("esx tarball is #{node['esx']['tarball']}")
