@@ -18,15 +18,12 @@
                 ]
             }
         }, 
-        "beyond_compare": {}, 
-        "cassandra": {}, 
-        "delltools": {}, 
+        "chef_client": {
+            "server_url": "http://chef.staging.dmz:4000"
+        }, 
         "esx": {
             "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
-        "hadoop": {}, 
-        "hbase": {}, 
-        "hive": {}, 
         "java": {
             "install_flavor": "oracle", 
             "jdk": {
@@ -53,23 +50,15 @@
             "threads": "8", 
             "version": "0.7.1"
         }, 
-        "memcached": {}, 
-        "ms_dotnet4": {
-            "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
-        }, 
         "nagios": {
             "client": {
                 "install_method": "package"
             }, 
             "multi_environment_monitoring": true, 
-            "multi_os_monitoring": true, 
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
-            "server_auth_method": "htpasswd", 
-            "server_role": "nagios_xi", 
-            "sysadmin_email": "trent.white@webtrends.com", 
-            "users_databag_group": "staging"
+            "server_role": "nagios_xi"
         }, 
         "ohai": {
             "disabled_plugins": [
@@ -79,14 +68,29 @@
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
         "snmp": {
             "community": "DevOps", 
             "full_systemview": "true", 
-            "syscontact": "trent.white@webtrends.com"
+            "syscontact": "devops@webtrends.com", 
+            "trapcommunity": "DevOps", 
+            "trapsinks": [
+                "TBD"
+            ]
         }, 
-        "storm": {}, 
-        "vc2010": {}, 
-        "webpi": {}, 
+        "tmux": {
+            "install_method": "package"
+        }, 
+        "vsftpd": {
+            "use_ssl_certs_from_cookbook": false, 
+            "xferlog_enable": "NO"
+        }, 
         "webtrends_server": {
             "apt": [
                 {
@@ -115,41 +119,30 @@
                 }
             ]
         }, 
-        "wt_analytics_ui": {}, 
-        "wt_aps": {}, 
-        "wt_cam": {}, 
-        "wt_cam_db": {}, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "LAB-COMMON-LAS", 
             "config_dir_linux": "/etc/webtrends/", 
+            "datacenter": "Lab", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
-            "http_proxy_url": "", 
             "install_dir_linux": "/opt/webtrends/", 
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
             "install_log_dir_windows": "d:\\logs", 
-            "install_server": "http://pdxteamcitys01.webtrends.corp/", 
-            "ldap_host": "hldap01.staging.dmz", 
-            "ldap_port": "636", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
             "smtp_server": "pdxengmta01.webtrends.corp", 
             "wrsmodify_group": "STAGINGDMZ\\CI.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\CI.WRS.Read"
         }, 
-        "wt_configdistrib": {}, 
-        "wt_heatmaps": {}, 
-        "wt_kafka_topagg": {}, 
-        "wt_management_console": {}, 
-        "wt_masterdb": {
-            "dbname": "wtMaster", 
-            "host": "amasterdb01.staging.dmz"
+        "wt_edge_server": {
+            "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.2/1204/Edge-Server-Distribution-wModules-all.tar.gz"
         }, 
-        "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "false", 
+            "graphite_flush_interval": "1", 
             "graphite_port": 2003, 
             "graphite_server": "sgraph01.staging.dmz", 
             "healthcheck_enabled": "true", 
@@ -158,46 +151,29 @@
             "metric_prefix": "staging.cipod.servers", 
             "monitoring_enabled": "true"
         }, 
-        "wt_netacuity": {}, 
-        "wt_portfolio_admin": {}, 
-        "wt_portfolio_manager": {}, 
-        "wt_realtime_hadoop": {}, 
-        "wt_rta": {}, 
-        "wt_sauth": {}, 
-        "wt_search": {}, 
-        "wt_storm_streaming": {}, 
-        "wt_streaming_viz": {}, 
-        "wt_streaminganalysis_monitor": {}, 
-        "wt_streamingapi": {}, 
-        "wt_streamingauditor": {}, 
+        "wt_realtime_hadoop": {
+            "datacenter": "Lab", 
+            "environment": "CI-LAS", 
+            "pod": "CI"
+        }, 
         "wt_streamingcollection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/41771:id/webtrends-streamingcollection-bin.tar.gz"
         }, 
         "wt_streamingconfigservice": {
             "config_service_url": "http://ciutil01.staging.dmz:8080"
         }, 
-        "wt_streaminglogreplayer": {}, 
-        "wt_streamingmanagementservice": {}, 
-        "zookeeper": {}
+        "zookeeper": {
+            "client_port": 2181
+        }
     }, 
-    "description": "CI Collection Pod", 
+    "description": "Data Collection Pod CI in LAS", 
     "json_class": "Chef::Environment", 
-    "name": "COLLECT-CI", 
+    "name": "CI-COLLECT-LAS-1", 
     "override_attributes": {
-        "chef_client": {
-            "server_url": "http://chef.staging.dmz:4000"
-        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
             ]
-        }, 
-        "resolver": {
-            "nameservers": [
-                "10.164.0.11", 
-                "10.164.0.12"
-            ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
         }, 
         "ubuntu": {
             "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 
