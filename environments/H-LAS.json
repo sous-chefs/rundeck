@@ -160,7 +160,7 @@
         "wt_sauth": "= 1.1.6", 
         "wt_search": "= 1.0.10", 
         "wt_static_tag_host": "= 0.0.4", 
-        "wt_storm_streaming": "= 2.4.11", 
+        "wt_storm_streaming": "= 2.4.12", 
         "wt_stream_processor": "= 1.0.4", 
         "wt_portfolio_edge_stream_api": "= 1.0.1", 
         "wt_streaming_viz": "= 1.2.1", 
