@@ -169,7 +169,6 @@ if ENV["deploy_build"] == "true" then
     mobi.mtld.da-1.5.3.jar
     ini4j-0.5.2.jar
     zookeeper-3.3.6.jar
-    portfolio-common*.jar
     }.each do |jar|
       execute "mv" do
         user  "root"
