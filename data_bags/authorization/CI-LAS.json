@@ -11,7 +11,7 @@
             "--- END LICENSE KEY -----"
         ]
     }, 
-    "id": "CI", 
+    "id": "CI-LAS", 
     "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "wt_cam_db": {
         "db_pwd": "bijoux", 
@@ -22,6 +22,8 @@
         "install_acct": "wtInstaller", 
         "install_pass": "Bijoux1", 
         "install_user": "STAGINGDMZ\\wtInstaller", 
+        "ldap_password": "Bijoux01", 
+        "ldap_user": "cn=admin,dc=webtrends,dc=com", 
         "loader_acct": "wtLoader", 
         "loader_pass": "Bijoux1", 
         "loader_user": "STAGINGDMZ\\wtLoader", 
