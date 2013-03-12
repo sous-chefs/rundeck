@@ -145,6 +145,7 @@ if ENV["deploy_build"] == "true" then
     jackson-jaxrs-1.5.5.jar
     jackson-mapper-asl-1.9.3.jar
     jackson-xc-1.5.5.jar
+    jamm-0.2.5.jar
     JavaEWAH-0.5.0.jar
     javax.inject-1.jar
     jdom-1.1.jar
