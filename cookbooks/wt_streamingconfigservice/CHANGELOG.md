@@ -1,3 +1,6 @@
+## 1.1.1
+* Start service as final deploy step.
+
 ## 1.1.0
 * Added support for runit.
 
