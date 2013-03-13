@@ -107,6 +107,7 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes
       :memcache_boxes => mBoxes,
       :memcache_expireseconds => node['wt_thumbnailcapture']['memcache_expireseconds'],
       :proxy_address => node['wt_common']['http_proxy_url'],
+      :healthcheck_port => node['wt_thumbnailcapture']['healthcheck_port'],
       :wt_monitoring => node[:wt_monitoring]
     })
   end
