@@ -61,10 +61,10 @@ end
 
 def getMemcacheBoxes
   log "Fetching memcache hosts for environment"
-	memcache = search(:node, "chef_environment:support-staging AND roles:memcached")
+	memcache = search(:node, "chef_environment:#{node['wt_thumbnailcapture']['memcache_environment']} AND roles:memcached")
 	boxes = []
 	memcache.each do |b|
-		boxes << b[:fqdn]+":11211"
+		boxes << b[:fqdn]+":#{b['memcached']['port']}"
 	end
 	boxes = boxes.sort
   return boxes.join(" ")
@@ -97,19 +97,20 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes
 	  })
 	end
 
-        template "#{install_dir}/conf/config.properties" do
-          source "config.properties.erb"
-          owner user
-          group group
-          mode  00640
-          variables({
-                :port => node['wt_thumbnailcapture']['port'],
-                :memcache_boxes => mBoxes,
-                :memcache_expireseconds => node['wt_thumbnailcapture']['memcache_expireseconds'],
-                :healthcheck_enabled => node['wt_monitoring']['healthcheck_enabled'],
-                :proxy_address => node['wt_common']['http_proxy_url']
-          })
-        end
+  template "#{install_dir}/conf/config.properties" do
+    source "config.properties.erb"
+    owner user
+    group group
+    mode  00640
+    variables({
+      :port => node['wt_thumbnailcapture']['port'],
+      :memcache_boxes => mBoxes,
+      :memcache_expireseconds => node['wt_thumbnailcapture']['memcache_expireseconds'],
+      :proxy_address => node['wt_common']['http_proxy_url'],
+      :wt_monitoring => node[:wt_monitoring]
+    })
+  end
+
 	template "#{install_dir}/conf/monitoring.properties" do
 	  source "monitoring.properties.erb"
 	  owner user
@@ -117,7 +118,8 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes
 	  mode  00640
 	  variables({
 		:healthcheck_port => node['wt_thumbnailcapture']['healthcheck_port'],
-                :healthcheck_enabled => node['wt_monitoring']['healthcheck_enabled']
+    :healthcheck_enabled => node['wt_thumbnailcapture']['healthcheck_enabled'],
+    :wt_monitoring => node[:wt_monitoring]
 	  })
 	end
 
@@ -146,24 +148,6 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-  # not packaging as tar yet
-  if 1 == 0 then
-    # uncompress the application tarball into the install directory
-    execute "tar" do
-      user  "root"
-      group "root"
-      cwd install_dir
-      command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-    end
-    # delete the application tarball
-    execute "delete_install_source" do
-      user "root"
-      group "root"
-      command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
-      action :run
-    end
-  end  # 1==0
-
   processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes())
 
   # create a runit service
@@ -179,13 +163,9 @@ if ENV["deploy_build"] == "true" then
   execute "update package index" do
     command "apt-get update"
     ignore_failure true
-    action :nothing
-  end.run_action(:run)
+    action :run
+  end
 
-  # install dependencies
-#  package "unzip" do
-#    action :install
-#  end
   package "xvfb" do
     action :install
   end
@@ -237,13 +217,11 @@ end
 service "xserver-start" do
   service_name "screencap"
   action [:start, :enable]
-  ignore_failure true
 end
 
 service "thumbnailcapture-start" do
   service_name "thumbnailcapture"
   action [:start, :enable]
-  ignore_failure true
 end
 
 if ENV['deploy_test'] == 'true' 
