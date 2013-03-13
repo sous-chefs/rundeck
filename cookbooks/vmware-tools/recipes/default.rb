@@ -43,7 +43,7 @@ if node['virtualization']['system'] == 'vmware'
     # run uninstall script
     execute 'vmware-uninstall-tools.pl' do
       command 'vmware-uninstall-tools.pl'
-      path ['/tmp/vmware-tools-distrib/bin']
+      environment ({'PATH' => "#{ENV['PATH']}:/tmp/vmware-tools-distrib/bin"})
       ignore_failure true
     end
   
