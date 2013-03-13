@@ -181,6 +181,12 @@ if node.attribute?("collectd")
   end
 end
 
+service "streamingconfigservice-start" do
+  service_name "streamingconfigservice"
+  action [:start, :enable]
+  ignore_failure true
+end
+
 if node.attribute?("nagios")
 
   #Create a nagios nrpe check for the healthcheck page
