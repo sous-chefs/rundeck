@@ -12,7 +12,7 @@ CP=""
 CP=".:lib/*"
 
 # Add all plugin .jar files to the classpath.
-for path in `ls $HOME_DIR/modules`; do
+for path in `ls $HOME_DIR/plugins`; do
     CP=$CP:plugins/$path/*
 done
 
