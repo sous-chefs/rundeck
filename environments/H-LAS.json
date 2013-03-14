@@ -549,11 +549,6 @@
         }, 
         "wt_thumbnailcapture": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/54201:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar",
-            "healthcheck_port": 9000, 
-            "jmx_port": 9995, 
-            "memcache_expireseconds": 259200, 
-            "port": 8085, 
-            "thread_pool_size": 5000, 
             "memcache_environment":"support-staging",
             "thumbnail_service_url": "http://hthumb.staging.dmz"
         }, 
