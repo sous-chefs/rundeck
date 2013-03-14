@@ -498,7 +498,7 @@
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
             }, 
             "worker": {
-                "childopts": "-agentpath:/opt/yourkit/current/bin/linux-x86-64/libyjpagent.so -Xmx3456m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                "childopts": "-Xmx3456m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
         }, 
         "wt_stream_processor": {
