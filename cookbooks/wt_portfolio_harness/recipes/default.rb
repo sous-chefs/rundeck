@@ -35,8 +35,8 @@ else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-log_dir     = File.join(node['wt_common']['log_dir_linux'], "edgeservice")
-install_dir = File.join(node['wt_common']['install_dir_linux'], "edgeservice")
+log_dir     = File.join(node['wt_common']['log_dir_linux'], "harness")
+install_dir = File.join(node['wt_common']['install_dir_linux'], "harness")
 conf_url = File.join(install_dir, node['wt_portfolio_harness']['conf_url'])
 tarball      = node['wt_portfolio_harness']['download_url'].split("/")[-1]
 download_url = node['wt_portfolio_harness']['download_url']
@@ -184,7 +184,7 @@ if ENV["deploy_build"] == "true" then
   end
 
   # create the runit service
-  runit_service "edgeservice" do
+  runit_service "harness" do
     options({
       :log_dir => log_dir,
       :install_dir => install_dir,
@@ -207,7 +207,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the log file
   nagios_nrpecheck "wt_garbage_collection_limit_reached" do
     command "#{node['nagios']['plugin_dir']}/check_log"
-    parameters "-F /var/log/webtrends/edgeservice/service.log -O /tmp/service_old.log -q 'GC overhead limit exceeded'"
+    parameters "-F /var/log/webtrends/harness/service.log -O /tmp/service_old.log -q 'GC overhead limit exceeded'"
     action :add
   end
 end
