@@ -80,7 +80,7 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
-directory "#{install_dir}/modules" do
+directory "#{install_dir}/plugins" do
   owner "root"
   group "root"
   mode 00755
@@ -104,7 +104,7 @@ def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter,
   cam_url = node['wt_cam']['cam_service_url']
   port = node['wt_portfolio_harness']['port']
 
-  %w[log4j.xml config.properties netty.properties].each do | template_file|
+  %w[log4j.xml config.properties netty.properties application.conf logback.xml].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source    "#{template_file}.erb"
       owner "root"
