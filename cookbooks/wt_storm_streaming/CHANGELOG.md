@@ -1,3 +1,6 @@
+##2.4.13
+* Added yammer metrics jar files
+
 ##2.4.12
 * Added portfolio and jamm jar files
 

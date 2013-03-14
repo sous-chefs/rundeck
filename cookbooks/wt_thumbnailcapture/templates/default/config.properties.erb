@@ -5,5 +5,5 @@ memcache.boxes=<%= @memcache_boxes %>
 memcache.expireseconds=<%= @memcache_expireseconds %>
 httpProxy=<%= @proxy_address %>
 
-healthcheck.enabled=<%= @healthcheck_enabled %>
+healthcheck.enabled=<%= @wt_monitoring['monitoring_enabled']  %>
 healthcheck.port=<%= @healthcheck_port %>
