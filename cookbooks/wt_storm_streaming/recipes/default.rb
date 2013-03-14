@@ -169,6 +169,9 @@ if ENV["deploy_build"] == "true" then
     zkclient-0.1.jar
     mobi.mtld.da-1.5.3.jar
     ini4j-0.5.2.jar
+    metrics-annotation-2.2.0.jar
+    metrics-core-2.2.0.jar
+    metrics-guice-2.2.0.jar
     zookeeper-3.3.6.jar
     }.each do |jar|
       execute "mv" do
