@@ -477,7 +477,7 @@
             "augment_bolt_executors": 48, 
             "augment_bolt_tasks": 48, 
             "data_request_url": "http://hedge01.staging.dmz:8080", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/54280:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/54311:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
@@ -498,7 +498,7 @@
                 "zookeeper_quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"
             }, 
             "worker": {
-                "childopts": "-Xmx3456m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                "childopts": "-agentpath:/opt/yourkit/current/bin/linux-x86-64/libyjpagent.so -Xmx3456m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
             }
         }, 
         "wt_stream_processor": {
