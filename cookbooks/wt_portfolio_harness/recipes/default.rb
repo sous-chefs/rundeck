@@ -49,8 +49,6 @@ datacenter = node['wt_realtime_hadoop']['datacenter']
 
 # grab the users and passwords from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
-usagedbuser  = auth_data['wt_streaming_usage_db']['db_user']
-usagedbpwd = auth_data['wt_streaming_usage_db']['db_pwd']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -90,7 +88,7 @@ directory "#{install_dir}/modules" do
   action :create
 end
 
-def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
+def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
   log "Updating the template files"
 
     auth_url = node['wt_sauth']['auth_service_url']
@@ -105,9 +103,6 @@ def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter,
 
   cam_url = node['wt_cam']['cam_service_url']
   port = node['wt_portfolio_harness']['port']
-
-  usagedbserver = node['wt_streaming_usage_db']['db_server']
-  usagedbname = node['wt_streaming_usage_db']['db_name']
 
   %w[log4j.xml config.properties netty.properties].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
@@ -126,10 +121,6 @@ def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter,
         :wt_monitoring => node['wt_monitoring'],
         :router_uri => node['wt_portfolio_harness']['router_uri'],
         # usage db parameters
-        :usagedbserver => usagedbserver,
-        :usagedbname => usagedbname,
-        :usagedbuser => usagedbuser,
-        :usagedbpwd => usagedbpwd,
 
         # streaming 0mq parameters
         :zookeeper_quorum => zookeeper_quorum * ",",
@@ -173,7 +164,7 @@ if ENV["deploy_build"] == "true" then
     })
   end
 
-  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
+  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
 
   # delete the install tar ball
   execute "delete_install_source" do
