@@ -1,0 +1,13 @@
+{
+  "name": "wt_actioncenter_ds_streaming",
+  "default_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[wt_actioncenter_ds_streaming]"
+  ],
+  "description": "Harness Plugin for action center streaming",
+  "chef_type": "role"
+}
