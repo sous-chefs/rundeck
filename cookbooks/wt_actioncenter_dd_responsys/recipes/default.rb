@@ -42,7 +42,7 @@ def processTemplates(conf_dir)
 			owner "root"
 			group "root"
 			mode 00644
-			variable({})
+			variables({})
 		end
 	end
 end
