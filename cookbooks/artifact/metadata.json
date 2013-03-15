@@ -1,0 +1,34 @@
+{
+  "name": "artifact",
+  "description": "Provides your cookbooks with the Artifact Deploy LWRP",
+  "long_description": "",
+  "maintainer": "Riot Games",
+  "maintainer_email": "kallan@riotgames.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "centos": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "fedora": ">= 0.0.0",
+    "windows": ">= 6.0"
+  },
+  "dependencies": {
+    "windows": "~> 1.8.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "1.4.0"
+}
