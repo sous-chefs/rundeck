@@ -119,6 +119,11 @@ def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter,
         :install_dir => install_dir,
         :port => port,
         :wt_monitoring => node['wt_monitoring'],
+        :graphite_enabled => node['wt_portfolio_harness']['graphite_enabled'],
+        :graphite_interval => node['wt_portfolio_harness']['graphite_interval'],
+        :graphite_vmmetrics => node['wt_portfolio_harness']['graphite_vmmetrics'],
+        :graphite_regex => node['wt_portfolio_harness']['graphite_regex'],
+        :jmx_port => node['wt_portfolio_harness']['jmx_port'],
         :router_uri => node['wt_portfolio_harness']['router_uri'],
         # usage db parameters
 
