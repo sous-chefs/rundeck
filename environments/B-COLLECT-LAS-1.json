@@ -194,18 +194,6 @@
             }
         }, 
         "chef_client": {
-            "exception_handlers": [
-            {
-                "arguments": [
-                    "\"chef@sengutil01.staging.dmz\"", 
-                    "\"cookin\"", 
-                    "\"chef-run-status@conference.sengutil01.staging.dmz\"", 
-                    "\"http://paste.staging.dmz:8080/api/create\"", 
-                    "\"paste.staging.dmz\""
-                ], 
-                "class": "JabberSnitch"
-            }
-        ],
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "esx": {
