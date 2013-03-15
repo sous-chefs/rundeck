@@ -67,7 +67,7 @@ portfolio-harness-system {
             transport = "akka.remote.netty.NettyRemoteTransport"
 
             netty {
-                hostname = "127.0.0.1"
+                hostname = "<%= node[:fqdn] %>"
                 port = 2552
                 write-buffer-high-water-mark = 1048576b
                 write-buffer-low-water-mark = 0b
