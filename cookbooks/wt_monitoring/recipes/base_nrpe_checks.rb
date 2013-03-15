@@ -116,6 +116,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check 
   nagios_nrpecheck "wt_check_tcp" do
     command "#{node['nagios']['plugin_dir']}/check_tcp"
+    parameters "$ARG1$"
     action :add
   end
   #Create a nagios nrpe check 
