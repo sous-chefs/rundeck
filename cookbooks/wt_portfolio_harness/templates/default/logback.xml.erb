@@ -1,97 +1,46 @@
-portfolio-harness-system {
-    include "common"
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true">
+    <appender name="FileLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>service.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>service-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="ErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>error.log</file>
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
 
-    portfolio {
-        http-port=8080
+    <root level="DEBUG">
+        <appender-ref ref="FileLog" />
+        <appender-ref ref="ErrorLog" />
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
 
-        monitoring {
-            #Monitoring
-            application.name = "Portfolio Harness"
-            metric.prefix = workstations
-            enabled = true
-            jmx.enabled = true
-            jmx.port = 9999
-            graphite.enabled = false
-            graphite.host = ""
-            graphite.port = 2003
-            graphite.interval = 5
-            # Are health checks enabled
-            healthcheck.enabled=true
-        }
-    }
-
-    akka {
-        event-handlers = ["com.webtrends.portfolio.logging.Logger"]
-        loglevel=DEBUG
-        log-config-on-start = off
-        receive=on
-
-        debug {
-            receive = on
-            autoreceive = on
-            lifecycle = on
-            event-stream = on
-        }
-
-        actor {
-            serializers {
-                proto = "akka.remote.serialization.ProtobufSerializer"
-                java = "akka.serialization.JavaSerializer"
-                bytes = "akka.serialization.ByteArraySerializer"
-                blank = "akka.serialization.NullSerializer"
-            }
-
-            serialization-bindings {
-                "[B" = bytes
-            }
-
-            provider = "akka.remote.RemoteActorRefProvider"
-            deployment {
-                /harness/tcpprocessor {
-                    router = smallest-mailbox
-                    nr-of-instances = 5
-                }
-                #/0mq-processor {
-                #    router = smallest-mailbox
-                #    nr-of-instances = 5
-                #}
-            }
-
-            debug {
-                autorecieve=on
-            }
-        }
-        remote {
-            log-sent-messages = on
-            log-received-messages = on
-            transport = "akka.remote.netty.NettyRemoteTransport"
-
-            netty {
-                hostname = "127.0.0.1"
-                port = 2552
-                write-buffer-high-water-mark = 1048576b
-                write-buffer-low-water-mark = 0b
-                send-buffer-size = 1048576b
-                receive-buffer-size = 1048576b
-            }
-        }
-
-        io {
-            # In bytes, the size of the shared read buffer. In the span 0b..2GiB.
-            read-buffer-size = 32KiB
-            # Specifies how many ops are done between every descriptor selection
-            select-interval = 100
-            # Number of connections that are allowed in the backlog.
-            # 0 or negative means that the platform default will be used.
-            default-backlog = 1000
-        }
-    }
-
-    spray {
-        can {
-            server {
-                request-timeout=5s
-            }
-        }
-    }
- }
