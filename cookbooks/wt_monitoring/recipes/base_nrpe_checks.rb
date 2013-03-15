@@ -19,6 +19,12 @@ if node.attribute?("nagios")
     action :add
   end 
   #Create a nagios nrpe check 
+  nagios_nrpecheck "wt_check_disk" do
+    command "#{node['nagios']['plugin_dir']}/check_disk"
+    parameters "$ARG1$"
+    action :add
+  end 
+  #Create a nagios nrpe check 
   nagios_nrpecheck "wt_check_file_age" do
     command "sudo #{node['nagios']['plugin_dir']}/check_file_age"
     parameters "$ARG1$"
@@ -81,6 +87,12 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check 
   nagios_nrpecheck "wt_check_smart_disks" do
     command "sudo #{node['nagios']['plugin_dir']}/check_smartmon"
+    parameters "$ARG1$"
+    action :add
+  end
+  #Create a nagios nrpe check 
+  nagios_nrpecheck "wt_check_ssh" do
+    command "sudo #{node['nagios']['plugin_dir']}/check_ssh"
     parameters "$ARG1$"
     action :add
   end
