@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration scan="true">
     <appender name="FileLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>service.log</file>
+        <file>"<%= node['wt_portfolio_harness']['log_dir'] %>/service.log"</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>service-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern><%= node['wt_portfolio_harness']['log_dir'] %>/service-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -15,13 +15,13 @@
         </encoder>
     </appender>
     <appender name="ErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>error.log</file>
+        <file>"<%= node['wt_portfolio_harness']['log_dir'] %>/error.log"</file>
         <append>true</append>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern><%= node['wt_portfolio_harness']['log_dir'] %>/error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>

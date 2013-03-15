@@ -154,6 +154,7 @@
         "wt_portfolio_edgeservice": "= 1.0.2", 
         "wt_portfolio_manager": "= 1.1.18", 
         "wt_portfolio_router": "= 1.0.0", 
+        "wt_portfolio_harness": "= 1.0.1",
         "wt_publishver": "= 0.2.2", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_roadrunner": "= 1.1.2", 
