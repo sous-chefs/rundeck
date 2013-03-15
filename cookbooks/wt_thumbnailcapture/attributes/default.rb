@@ -13,9 +13,9 @@ default['wt_thumbnailcapture']['thread_pool_size'] = 500
 default['wt_thumbnailcapture']['java_opts'] = "-Xms1024m -Djava.net.preferIPv4Stack=true"
 default['wt_thumbnailcapture']['memcache_cacheexpireseconds']=259200
 default['wt_thumbnailcapture']['jmx_port'] = 9999
-default['wt_thumbnailcapture']['graphite_enabled'] = true
+default['wt_thumbnailcapture']['graphite_enabled'] = "true"
 default['wt_thumbnailcapture']['graphite_interval'] = 5
-default['wt_thumbnailcapture']['graphite_vmmetrics'] = true
+default['wt_thumbnailcapture']['graphite_vmmetrics'] = "true"
 default['wt_thumbnailcapture']['graphite_regex'] = ""
 
 default['wt_thumbnailcapture']['healthcheck_port'] = 9000

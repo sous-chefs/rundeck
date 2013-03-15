@@ -1,3 +1,6 @@
+## 1.0.3
+* Updated monitoring configuration
+
 ## 1.0.2
 * Updated nagios healthcheck name
 * Updated default memcache timeout
