@@ -43,6 +43,12 @@ if node.attribute?("nagios")
     action :add
   end
   #Create a nagios nrpe check 
+  nagios_nrpecheck "wt_check_ftp" do
+    command "sudo #{node['nagios']['plugin_dir']}/check_ftp"
+    parameters "$ARG1$"
+    action :add
+  end  
+  #Create a nagios nrpe check 
   nagios_nrpecheck "wt_check_hpasm" do
     command "#{node['nagios']['plugin_dir']}/check_hpasm"
     parameters "$ARG1$"
