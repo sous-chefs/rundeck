@@ -104,7 +104,7 @@ def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter,
   cam_url = node['wt_cam']['cam_service_url']
   port = node['wt_portfolio_harness']['port']
 
-  %w[log4j.xml config.properties netty.properties application.conf logback.xml].each do | template_file|
+  %w[config.properties application.conf logback.xml].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source    "#{template_file}.erb"
       owner "root"
@@ -185,7 +185,7 @@ if ENV["deploy_build"] == "true" then
   end
 
 else
-  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
+  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
 end
 
 if node.attribute?("nagios")
