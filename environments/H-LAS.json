@@ -465,7 +465,10 @@
         }, 
         "wt_portfolio_router": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt337/.lastSuccessful/webtrends-portfolio-router-develop-SNAPSHOT-bin.tar.gz"
-        }, 
+        },
+        "wt_portfolio_harness": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/.lastSuccessful/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
+        },
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
             "environment": "H-LAS", 
