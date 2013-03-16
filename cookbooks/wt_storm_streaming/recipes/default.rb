@@ -273,8 +273,10 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   mode   00644
   variables(
     # executor counts, ie: executor threads
-    :query_bolt_tasks => node['wt_storm_streaming']['query_bolt_tasks'],
-    :query_bolt_executors => node['wt_storm_streaming']['query_bolt_executors'],
+    :event_stream_bolt_tasks => node['wt_storm_streaming']['event_stream_bolt_tasks'],
+    :event_stream_bolt_executors => node['wt_storm_streaming']['event_stream_bolt_executors'],
+    :session_stream_bolt_tasks => node['wt_storm_streaming']['session_stream_bolt_tasks'],
+    :session_stream_bolt_executors => node['wt_storm_streaming']['session_stream_bolt_executors'],    
     :augment_bolt_tasks => node['wt_storm_streaming']['augment_bolt_tasks'],
     :augment_bolt_executors => node['wt_storm_streaming']['augment_bolt_executors'],
 
