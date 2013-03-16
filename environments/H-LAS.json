@@ -161,7 +161,7 @@
         "wt_sauth": "= 1.1.6", 
         "wt_search": "= 1.0.10", 
         "wt_static_tag_host": "= 0.0.4", 
-        "wt_storm_streaming": "= 2.4.13", 
+        "wt_storm_streaming": "= 2.4.14", 
         "wt_stream_processor": "= 1.0.4", 
         "wt_streaming_barebones": "= 0.0.2", 
         "wt_streaming_viz": "= 1.2.1", 
@@ -479,12 +479,14 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51697:id/auth.zip"
         }, 
         "wt_storm_streaming": {
-            "augment_bolt_executors": 48, 
-            "augment_bolt_tasks": 48, 
+            "augment_bolt_executors": 24, 
+            "augment_bolt_tasks": 24, 
             "data_request_url": "http://hedge01.staging.dmz:8080", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/54382:id/streaming-analysis-bin.tar.gz", 
-            "query_bolt_executors": 24, 
-            "query_bolt_tasks": 24, 
+            "event_stream_bolt_executors": 6, 
+            "event_stream_bolt_tasks": 6,
+            "session_stream_bolt_executors": 12,
+            "session_stream_bolt_tasks": 12, 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 4
