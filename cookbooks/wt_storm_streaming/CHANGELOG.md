@@ -1,3 +1,6 @@
+##2.4.14
+* Changed bolt names and added configuration
+
 ##2.4.13
 * Added yammer metrics jar files
 

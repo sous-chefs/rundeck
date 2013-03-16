@@ -8,8 +8,10 @@
 
 # wt specific parameters
 default['wt_storm_streaming']['download_url'] = ""
-default['wt_storm_streaming']['query_bolt_executors'] = 0
-default['wt_storm_streaming']['query_bolt_tasks'] = 0
+default['wt_storm_streaming']['event_stream_bolt_executors'] = 0
+default['wt_storm_streaming']['session_stream_bolt_executors'] = 0
+default['wt_storm_streaming']['event_stream_bolt_tasks'] = 0
+default['wt_storm_streaming']['session_stream_bolt_tasks'] = 0
 default['wt_storm_streaming']['augment_bolt_executors'] = 0
 default['wt_storm_streaming']['augment_bolt_tasks'] = 0
 
