@@ -194,7 +194,9 @@
             }
         }, 
         "chef_client": {
-            "daemon_options": "--fork", 
+            "daemon_options": [
+                "--fork"
+            ], 
             "exception_handlers": [
                 {
                     "arguments": [
