@@ -52,6 +52,7 @@ $SNIPPET('puppet_install_if_enabled')
 $SNIPPET('log_ks_post')
 # Start yum configuration 
 $yum_config_stanza
+$SNIPPET('centos_yum_repo')
 # End yum configuration
 $SNIPPET('post_install_kernel_options')
 $SNIPPET('post_install_network_config')

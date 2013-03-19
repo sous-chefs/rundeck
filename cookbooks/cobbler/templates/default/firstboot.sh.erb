@@ -5,6 +5,32 @@
 
 exec > >(tee /root/firstboot.log) 2>&1
 
+# setup chef repo
+echo "deb <%= node['cobbler']['apt']['url'] %> $(lsb_release -c -s) main" > /etc/apt/sources.list.d/cobbler.list
+apt-get update
+
+mkdir /etc/chef
+
+# install chef
+case "$(lsb_release -c -s)" in
+<% @chef_versions.each do |codename, chef_version| %>
+"<%= codename %>")
+  apt-get --assume-yes --allow-unauthenticated install chef=<%= chef_version %>
+  ;;
+<% end %>
+*)
+  apt-get --assume-yes --allow-unauthenticated install chef
+  ;;
+esac
+
+# create client.rb
+cat > /etc/chef/client.rb << EOF
+log_level        :info
+log_location     STDOUT
+chef_server_url  "$(cat /var/tmp/chef_server)"
+validation_client_name 'chef-validator'
+EOF
+
 # generate first boot json
 runlist=$(cat /var/tmp/runlist)
 realrunlist=$(for item in ${runlist//,/ }; do echo -n "\"${item}\","; done | sed 's/,$//')
@@ -33,6 +59,8 @@ chef-client ${chef_environment} -j /etc/chef/first-boot.json
 /etc/init.d/chef-client restart
 
 # cleanup
-chmod 600 /etc/chef/validation.pem /root/firstboot.log
+chmod 600 /root/firstboot.log
+rm /etc/chef/validation.pem
 rm /etc/chef/first-boot.json
-rm /var/tmp/runlist /var/tmp/environment
+rm /var/tmp/runlist /var/tmp/environment /var/tmp/chef_server
+rm /etc/apt/sources.list.d/cobbler.list 
