@@ -5,7 +5,7 @@
         "kafka": "= 1.0.20", 
         "wt_portfolio_edgeservice": "= 1.0.0", 
         "wt_stream_processor": "= 1.0.0",
-		"wt_portfolio_harness":"= 1.0.0"
+		"wt_portfolio_harness":"= 1.0.1"
     }, 
     "default_attributes": {
         "authorization": {
@@ -25,6 +25,9 @@
             }
         }, 
         "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "java": {
@@ -141,12 +144,11 @@
         "wt_portfolio_edgeservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/.lastSuccessful/webtrends-portfolio-edge-service-develop-SNAPSHOT-bin.tar.gz", 
             "router_uri": "tcp://router01.os.staging.dmz:5861"
-        },
-		"wt_portfolio_harness": {
-			"download_url":
-			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/.lastSuccessful/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz",
-			"router_uri": "tcp://router01.os.staging.dmz:5861"
-		},
+        }, 
+        "wt_portfolio_harness": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/.lastSuccessful/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz", 
+            "router_uri": "tcp://router01.os.staging.dmz:5861"
+        }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
             "environment": "LAB-COMMON-LAS", 
@@ -177,6 +179,9 @@
     "name": "streaming", 
     "override_attributes": {
         "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }
     }
