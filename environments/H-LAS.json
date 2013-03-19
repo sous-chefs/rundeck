@@ -453,8 +453,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/53639:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_portfolio_edgeservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/53345:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz", 
-            "router_uri": "tcp://hrouter01.staging.dmz:5861"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54451:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz" 
         }, 
         "wt_portfolio_harness": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/.lastSuccessful/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
