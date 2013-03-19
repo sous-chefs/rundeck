@@ -157,7 +157,7 @@
         "wt_sauth": "= 1.1.6", 
         "wt_search": "= 1.0.10", 
         "wt_static_tag_host": "= 0.0.4", 
-        "wt_storm_streaming": "= 2.4.10", 
+        "wt_storm_streaming": "= 2.4.14", 
         "wt_stream_processor": "= 1.0.0", 
         "wt_streaming_viz": "= 1.1.20", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
@@ -499,7 +499,7 @@
         "wt_storm_streaming": {
             "augment_bolt_executors": 24, 
             "augment_bolt_tasks": 24, 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/51554:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/54723:id/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
             "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
