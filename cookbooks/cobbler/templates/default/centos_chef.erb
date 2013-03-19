@@ -48,4 +48,4 @@ chef-client -j /etc/chef/first-boot.json
 # cleanup
 rm /etc/chef/validation.pem
 rm /etc/chef/first-boot.json
-
+[ -e /etc/yum.repos.d/<%= @node['cobbler']['yum']['name'] %>.repo ] && rm /etc/yum.repos.d/<%= @node['cobbler']['yum']['name'] %>.repo
