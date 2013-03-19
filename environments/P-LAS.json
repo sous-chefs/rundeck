@@ -434,7 +434,7 @@
             "healthcheck_enabled": "true", 
             "healthcheck_port": 9000, 
             "jmx_enabled": "true", 
-            "metric_prefix": "staging.hpod.servers", 
+            "metric_prefix": "staging.ppod.servers", 
             "monitoring_enabled": "true"
         }, 
         "wt_netacuity": {
