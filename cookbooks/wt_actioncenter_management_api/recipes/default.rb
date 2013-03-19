@@ -50,39 +50,6 @@ if ENV["deploy_build"] == "true" then
         command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
 
-	execute "copy_lib_contents" do
-		user "root"
-		group "root"
-		cwd install_dir
-		command "cp lib/* ."
-		action :run
-	end
-
-	execute "delete_lib_directory" do
-		user "root"
-		group "root"
-		cwd install_dir
-		command "rm -rf lib"
-		action :run
-	end
-
-    #processors = Array.new
-    #if not Chef::Config.solo
-    #  search(:node, "role:wt_stream_processor AND chef_environment:#{node.chef_environment}").each do |n|
-    #    processors << "\"akka://StreamProcessor@#{n[:fqdn]}:2552/user/processor\"" 
-    #  end
-    #end
-
-    #template "#{conf_dir}/application.conf" do
-    #    source  "application.conf.erb"
-    #    owner   "root"
-    #    group   "root"
-    #    mode    00644
-    #    variables({
-    #      :processors => processors
-    #    })
-    #end
-
   # delete the install tar ball
   execute "delete_install_source" do
     user "root"
