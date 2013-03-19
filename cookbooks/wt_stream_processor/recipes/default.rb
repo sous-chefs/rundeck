@@ -158,7 +158,7 @@ if ENV["deploy_build"] == "true" then
   end
 
 else
-  processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod)
+  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
 end
 
 if node.attribute?("nagios")
