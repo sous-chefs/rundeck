@@ -497,18 +497,20 @@
             "host": "ausagedb01.staging.dmz"
         }, 
         "wt_storm_streaming": {
-            "augment_bolt_executors": 24, 
-            "augment_bolt_tasks": 24, 
+            "augment_bolt_executors": 2, 
+            "augment_bolt_tasks": 2,
+            "session_stream_executors": 2,
+            "session_stream_tasks": 2,
+            "event_stream_executors": 2,
+            "event_stream_tasks": 2,
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/54723:id/streaming-analysis-bin.tar.gz", 
-            "query_bolt_executors": 24, 
-            "query_bolt_tasks": 24, 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 1
             }, 
             "topic_list": [
-                "Lab_B_scsRawHits:6", 
-                "Lab_B_lrRawHits:6"
+                "Lab_B_scsRawHits:2", 
+                "Lab_B_lrRawHits:2"
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
