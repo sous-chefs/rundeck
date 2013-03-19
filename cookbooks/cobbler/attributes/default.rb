@@ -31,7 +31,7 @@ default['cobbler']['apt']['url'] = 'http://repo.staging.dmz/repo/apt/webtrends'
 default['cobbler']['chef_version_centos'] = '10.24.0'
 
 # yum repo where chef package is located
-default['cobbler']['yum']['name']        = 'wtlab'
+default['cobbler']['yum']['name']        = 'wtlab-cobbler'
 default['cobbler']['yum']['description'] = 'Webtrends Repo'
 default['cobbler']['yum']['baseurl']     = 'http://repo.staging.dmz/repo/yum/webtrends'
 
