@@ -203,6 +203,9 @@
             "cassandra_thrift_port": 9160
         }, 
         "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "delltools": {
