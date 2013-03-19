@@ -497,13 +497,14 @@
             "host": "ausagedb01.staging.dmz"
         }, 
         "wt_storm_streaming": {
+            "data_request_url": "http://bedge01.staging.dmz:8080",
             "augment_bolt_executors": 4, 
             "augment_bolt_tasks": 4,
             "session_stream_bolt_executors": 2,
             "session_stream_bolt_tasks": 2,
             "event_stream_bolt_executors": 2,
             "event_stream_bolt_tasks": 2,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/54723:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/54802:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 1
