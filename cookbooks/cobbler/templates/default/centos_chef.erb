@@ -7,7 +7,7 @@
 ntpdate <%= @node[:ntp][:servers][0] %>
 
 # install chef
-yum install chef-<%=  @node[:cobbler][:deploy_chef_version] %> -y
+yum install chef-<%=  @node['cobbler']['chef_version_centos'] %> -y
 
 # create chef config dir
 mkdir /etc/chef
@@ -46,6 +46,6 @@ fi
 chef-client -j /etc/chef/first-boot.json
 
 # cleanup
-chmod 600 /etc/chef/validation.pem
+rm /etc/chef/validation.pem
 rm /etc/chef/first-boot.json
 
