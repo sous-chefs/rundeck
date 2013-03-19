@@ -563,8 +563,7 @@
             "thumbnail_service_url": "http://hthumb.staging.dmz"
         }, 
         "zookeeper": {
-            "client_port": 2181,
-			"quorum": "szoo01.staging.dmz,szoo02.staging.dmz,szoo03.staging.dmz"			
+            "client_port": 2181		
         }
     }, 
     "description": "H Pod in LAS", 
