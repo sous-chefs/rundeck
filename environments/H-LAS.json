@@ -484,7 +484,7 @@
             "augment_bolt_executors": 18, 
             "augment_bolt_tasks": 18, 
             "data_request_url": "http://hedge01.staging.dmz:8080", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/54723:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/54802:id/streaming-analysis-bin.tar.gz", 
             "event_stream_bolt_executors": 6, 
             "event_stream_bolt_tasks": 6, 
             "session_stream_bolt_executors": 12, 
