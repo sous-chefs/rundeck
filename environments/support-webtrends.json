@@ -151,6 +151,9 @@
     "name": "support-webtrends", 
     "override_attributes": {
         "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "ntp": {
