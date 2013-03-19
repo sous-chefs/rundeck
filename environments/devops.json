@@ -1,9 +1,15 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "webtrends_server": "= 1.8.13"
     }, 
     "default_attributes": {
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
         "authorization": {
             "ad_auth": {
                 "ad_network": "OSSTAGINGDMZ"

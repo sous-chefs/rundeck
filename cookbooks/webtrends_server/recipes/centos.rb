@@ -116,7 +116,9 @@ end
 
 #fprintd crashes every time someone tries to sudo.  Uninstall it
 %w{ fprintd libfprint }.each do |pkg|
-  package pkg
+  package pkg do
+    action :remove
+  end
 end
 
 # Used for password string generation
@@ -185,19 +187,21 @@ end
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
 
-#Allow for hardware monitoring (CentOS in prod is always on hardware systems)
-include_recipe "snmp"
+unless node.run_list.include?("role[openstack_instance]")
+  #Allow for hardware monitoring (CentOS in prod is always on hardware systems)
+  include_recipe "snmp"
 
-#HP Systems only: Install HP System Management Homepage along with other HP tools.
-include_recipe "hp-tools"
+  #HP Systems only: Install HP System Management Homepage along with other HP tools.
+  include_recipe "hp-tools"
 
-#Dell Systems only: Install Dell System E-Support Tool and Dell RAID tools
-include_recipe "delltools::default"
-include_recipe "delltools::dset"
-include_recipe "delltools::raid"
+  #Dell Systems only: Install Dell System E-Support Tool and Dell RAID tools
+  include_recipe "delltools::default"
+  include_recipe "delltools::dset"
+  include_recipe "delltools::raid"
 
-#VMware Systems only: Install VMware tools
-include_recipe "vmware-tools"
+  #VMware Systems only: Install VMware tools
+  include_recipe "vmware-tools"
+end
 
 #Install collectd - system statistics collection daemon
 include_recipe "collectd"
