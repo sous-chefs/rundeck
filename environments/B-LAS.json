@@ -497,8 +497,8 @@
             "host": "ausagedb01.staging.dmz"
         }, 
         "wt_storm_streaming": {
-            "augment_bolt_executors": 2, 
-            "augment_bolt_tasks": 2,
+            "augment_bolt_executors": 4, 
+            "augment_bolt_tasks": 4,
             "session_stream_bolt_executors": 2,
             "session_stream_bolt_tasks": 2,
             "event_stream_bolt_executors": 2,
