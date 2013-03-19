@@ -167,8 +167,8 @@
         "wt_streamingconfigservice": "= 1.1.1", 
         "wt_streaminglogreplayer": "= 1.2.1", 
         "wt_streamingmanagementservice": "= 1.1.0", 
-        "wt_thumbnailcapture": "= 1.0.2", 
         "wt_sync": "= 1.0.6", 
+        "wt_thumbnailcapture": "= 1.0.2", 
         "wt_viracocha": "= 1.1.3", 
         "wt_xd": "= 2.0.14", 
         "xfs": "= 1.1.0", 
@@ -203,20 +203,25 @@
             "cassandra_report_column": "B_Report", 
             "cassandra_thrift_port": 9160
         }, 
-        "chef_client": {            
+        "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
             "exception_handlers": [
-            {
-                "arguments": [
-                    "\"chef@sengutil01.staging.dmz\"", 
-                    "\"cookin\"", 
-                    "\"chef-run-status@conference.sengutil01.staging.dmz\"", 
-                    "\"http://paste.staging.dmz:8080/api/create\"", 
-                    "\"paste.staging.dmz\""
-                ], 
-                "class": "JabberSnitch"
-            }
-            ],
-            "load_gems":["chef-jabber-snitch"],
+                {
+                    "arguments": [
+                        "\"chef@sengutil01.staging.dmz\"", 
+                        "\"cookin\"", 
+                        "\"chef-run-status@conference.sengutil01.staging.dmz\"", 
+                        "\"http://paste.staging.dmz:8080/api/create\"", 
+                        "\"paste.staging.dmz\""
+                    ], 
+                    "class": "JabberSnitch"
+                }
+            ], 
+            "load_gems": [
+                "chef-jabber-snitch"
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "delltools": {
@@ -334,9 +339,9 @@
         }, 
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "msi": "http://repo.staging.dmz/repo/windows/webpi/WebPlatformInstaller_amd64_en-US.msi", 
             "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
-            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml",
-            "msi": "http://repo.staging.dmz/repo/windows/webpi/WebPlatformInstaller_amd64_en-US.msi"
+            "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
         "webtrends_server": {
             "apt": [
@@ -375,10 +380,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51697:id/CAM.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/54634:id/CAM.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51697:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/54634:id/Plugins.zip"
             }, 
             "cam_service_url": "http://bcam.staging.dmz", 
             "db_name": "CAM", 
@@ -466,7 +471,7 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/51556:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/54660:id/Portfolio.Manager.zip", 
             "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
             "portmgr_fulfillment_dl": "martin.neal@webtrends.com", 
             "portmgr_group_admin": "B.PortMgr.Admins", 
@@ -553,8 +558,8 @@
         }, 
         "wt_thumbnailcapture": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/54277:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
-            "thumbnail_service_url": "http://bthumb.staging.dmz",
-	    "memcache_environment":"support-staging"
+            "memcache_environment": "support-staging", 
+            "thumbnail_service_url": "http://bthumb.staging.dmz"
         }, 
         "zookeeper": {
             "client_port": 2181
