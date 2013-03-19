@@ -135,13 +135,21 @@ file Chef::Config[:validation_key] do
 end
 
 # firstboot script
-%w{ firstboot.sh firstbootrc.sh }.each do |file|
-  cookbook_file "/var/www/#{file}" do
-    source file
-    owner "root"
-    group "root"
-    mode 00755
-  end
+cookbook_file '/var/www/firstbootrc.sh' do
+  source 'firstbootrc.sh'
+  owner 'root'
+  group 'root'
+  mode 00755
+end
+
+template '/var/www/firstboot.sh' do
+  source 'firstboot.sh.erb'
+  mode 00755
+  owner 'root'
+  group 'root'
+  variables(
+    :chef_versions => node['cobbler']['chef_version_ubuntu']
+  )
 end
 
 execute "cobbler sync" do

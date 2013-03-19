@@ -39,7 +39,6 @@
             "max_heap_size": "6G"
         }, 
         "cobbler": {
-            "deploy_chef_version": "10.24.0", 
             "ks_meta": {
                 "centos-6.2-x86_64": {
                     "tree": "http://repo.staging.dmz/repo/yum/centos/6.3/os/x86_64/"
