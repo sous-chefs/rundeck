@@ -499,10 +499,10 @@
         "wt_storm_streaming": {
             "augment_bolt_executors": 2, 
             "augment_bolt_tasks": 2,
-            "session_stream_executors": 2,
-            "session_stream_tasks": 2,
-            "event_stream_executors": 2,
-            "event_stream_tasks": 2,
+            "session_stream_bolt_executors": 2,
+            "session_stream_bolt_tasks": 2,
+            "event_stream_bolt_executors": 2,
+            "event_stream_bolt_tasks": 2,
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/54723:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
