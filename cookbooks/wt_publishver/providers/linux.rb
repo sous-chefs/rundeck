@@ -47,6 +47,12 @@ action :deploy_prereqs do
 		action :nothing
 	end.run_action :create
 
+	execute 'extract libs' do
+		command "tar xzf #{::File.join(wdir, 'libs.tgz')} -C #{wdir}"
+		creates idir
+		action :nothing
+	end.run_action :run
+
 	gem_package 'nokogiri' do
 		gem_binary ::File.join(RbConfig::CONFIG['bindir'], 'gem')
 		source ::File.join(wdir, 'nokogiri-1.5.6.gem')
