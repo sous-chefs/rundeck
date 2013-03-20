@@ -371,16 +371,16 @@
             "cam_plugins": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51697:id/Plugins.zip"
             }, 
-            "cam_service_url": "http://pcam01.staging.dmz", 
+            "cam_service_url": "http://streaming-pcam01.os.staging.dmz", 
             "db_name": "CAM", 
-            "db_server": "pcamdb01.staging.dmz", 
+            "db_server": "streaming-pcamdb01.os.staging.dmz", 
             "optimize_plugin": {
                 "optimize_server_url": "http://was.c2.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }
         }, 
         "wt_cam_db": {
             "db_name": "CAM", 
-            "db_server": "pcamdb01.staging.dmz"
+            "db_server": "streaming-pcamdb01.os.staging.dmz"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -519,7 +519,7 @@
         }, 
         "wt_streaming_usage_db": {
             "db_name": "Streaming", 
-            "db_server": "pcamdb01.staging.dmz"
+            "db_server": "streaming-pcamdb01.os.staging.dmz"
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
