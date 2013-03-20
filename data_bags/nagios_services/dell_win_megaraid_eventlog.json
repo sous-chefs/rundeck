@@ -1,0 +1,6 @@
+{
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c CheckEventLog -a file=Application MaxWarn=1 MaxCrit=1 \"filter=generated > -15m AND source='MR_MONITOR' AND type='error'\" truncate=1023 unique descriptions 'syntax=%id%: %strings%'", 
+    "hostgroup_name": "win_dell_c6100", 
+    "id": "dell_win_megaraid_eventlog",
+    "service_template": "service-email_only"
+}
