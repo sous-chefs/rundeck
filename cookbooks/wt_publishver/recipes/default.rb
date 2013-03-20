@@ -19,6 +19,12 @@ if node['platform'] == 'ubuntu' and node['platform_version'].to_i < 12
 	return
 end
 
+# abort if gcc missing (needed for mokogiri build)
+if not system('which gcc > /dev/null')
+	log("#{cookbook_name}: gcc is missing") { level :warn }
+	return
+end
+
 class Chef::Resource
 	# returns a path with backslashes (windows friendly)
 	def win_path(*args)
