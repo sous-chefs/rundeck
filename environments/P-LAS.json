@@ -371,7 +371,7 @@
             "cam_plugins": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51697:id/Plugins.zip"
             }, 
-            "cam_service_url": "http://hcam.staging.dmz", 
+            "cam_service_url": "http://pcam01.staging.dmz", 
             "db_name": "CAM", 
             "db_server": "pcamdb01.staging.dmz", 
             "optimize_plugin": {
