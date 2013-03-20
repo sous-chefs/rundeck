@@ -19,10 +19,12 @@ if node['platform'] == 'ubuntu' and node['platform_version'].to_i < 12
 	return
 end
 
-# abort if gcc missing (needed for mokogiri build)
-if not system('which gcc > /dev/null')
-	log("#{cookbook_name}: gcc is missing") { level :warn }
-	return
+# abort if gcc or make missing (needed for mokogiri build)
+%w{ gcc make }.each do |cmd|
+	if not system("which #{cmd} > /dev/null")
+		log("#{cookbook_name}: #{cmd} is missing") { level :warn }
+		return
+	end
 end
 
 class Chef::Resource
