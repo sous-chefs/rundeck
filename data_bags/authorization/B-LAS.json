@@ -49,7 +49,7 @@
         "client_secret": "7025c2c662204f0bb9c5efcb655a8bdb",
         "client_token": "9663da37ba4b482daf265c8ac2d2c864.app.webtrends.com"
     },
-   "wt_streaming_usage_db": {
+    "wt_streaming_usage_db": {
         "db_pwd": "bijoux", 
         "db_user": "wtUI"
     }, 
