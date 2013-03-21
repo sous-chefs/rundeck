@@ -19,6 +19,11 @@ if node.attribute?("nagios")
     action :add
   end 
   #Create a nagios nrpe check 
+  nagios_nrpecheck "check_ipmi_sensors" do
+    command "#{node['nagios']['plugin_dir']}/check_ipmi_sensors"
+    action :add
+  end  
+  #Create a nagios nrpe check 
   nagios_nrpecheck "wt_check_disk" do
     command "#{node['nagios']['plugin_dir']}/check_disk"
     parameters "$ARG1$"
