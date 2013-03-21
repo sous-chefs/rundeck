@@ -27,6 +27,7 @@ tarball      = node['wt_thumbnailcapture']['download_url'].split("/")[-1]
 user         = node['wt_thumbnailcapture']['user']
 group        = node['wt_thumbnailcapture']['group']
 java_opts    = node['wt_thumbnailcapture']['java_opts']
+display_idx  = node['wt_thumbnailcapture']['display_idx']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -83,7 +84,8 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes
 		:install_dir => install_dir,
 		:java_home => java_home,
 		:java_jmx_port => node['wt_thumbnailcapture']['jmx_port'],
-		:java_opts => node['wt_thumbnailcapture']['java_opts']
+		:java_opts => node['wt_thumbnailcapture']['java_opts'],
+                :display_idx => node['wt_thumbnailcapture']['display_idx']
 	  })
 	end
 
@@ -157,7 +159,8 @@ if ENV["deploy_build"] == "true" then
       :log_dir => log_dir,
       :install_dir => install_dir,
       :java_home => java_home,
-      :user => user
+      :user => user,
+      :display_idx => display_idx
     })
   end
 
@@ -185,12 +188,14 @@ if ENV["deploy_build"] == "true" then
     group "root"
     mode  00700
   end
-  template "/etc/default/screencap" do
+  template "/etc/environment" do
     source "screencap_def.erb"
     owner "root"
     user "root"
     group "root"
-    mode 00700
+    variables({
+       :display_idx => node['wt_thumbnailcapture']['display_idx']
+    })
   end
 
   # init screencap config
