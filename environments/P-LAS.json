@@ -406,11 +406,11 @@
             "edge_kafka_sources": [
                 {
                     "host": "mscs01.staging.dmz", 
-                    "topic": "Lab_P_scsRawHits"
+                    "topic": "Lab_H_scsRawHits"
                 }, 
                 {
                     "host": "mscs02.staging.dmz", 
-                    "topic": "Lab_P_scsRawHits"
+                    "topic": "Lab_H_scsRawHits"
                 }
             ]
         }, 
