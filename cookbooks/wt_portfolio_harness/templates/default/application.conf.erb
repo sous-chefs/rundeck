@@ -9,7 +9,7 @@ portfolio-harness-system {
         
         # Proxy properties. Leave this section blank if you dont need proxy support.
         <% if @auth_host.to_s != '' && @proxy_host.to_s != '' %>
-        easy.proxy.1 = <%= @auth_host %> -> <%= @proxy_host %>
+        easy.proxy.1 = "<%= @auth_host %> -> <%= @proxy_host %>"
         <% end %>
 
         easy.proxy.1=""
