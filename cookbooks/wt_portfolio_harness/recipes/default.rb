@@ -102,9 +102,9 @@ def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter,
     end
 
   cam_url = node['wt_cam']['cam_service_url']
-  port = node['wt_portfolio_harness']['port']
+  http_port = node['wt_portfolio_harness']['port']
 
-  %w[config.properties application.conf logback.xml].each do | template_file|
+  %w[application.conf logback.xml].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source    "#{template_file}.erb"
       owner "root"
@@ -117,16 +117,13 @@ def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter,
         :proxy_host => proxy_host,
         :cam_url => cam_url,
         :install_dir => install_dir,
-        :port => port,
+        :http_port => http_port,
         :wt_monitoring => node['wt_monitoring'],
         :graphite_enabled => node['wt_portfolio_harness']['graphite_enabled'],
         :graphite_interval => node['wt_portfolio_harness']['graphite_interval'],
         :graphite_vmmetrics => node['wt_portfolio_harness']['graphite_vmmetrics'],
         :graphite_regex => node['wt_portfolio_harness']['graphite_regex'],
         :jmx_port => node['wt_portfolio_harness']['jmx_port'],
-        :router_uri => node['wt_portfolio_harness']['router_uri'],
-        # usage db parameters
-
         # streaming 0mq parameters
         :zookeeper_quorum => zookeeper_quorum * ",",
         :pod              => pod,
