@@ -9,12 +9,19 @@
 # Short-Description: starts the Xvfb server
 # Description:       starts Xvfb using start-stop-daemon
 ### END INIT INFO
- 
+
+[ -f /etc/default/screencap ] && . /etc/default/screencap
+
+if [ -z "$XSERV_DISPLAY_IDX" ] ; then
+   echo "XSERV_DISPLAY_IDX is not set, please set it in /etc/default/screencap" >&2
+   exit 1
+fi 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/Xvfb
 NAME=screencap
 DESC=screencap
-DAEMON_OPTS=":1 -screen 1 1024x768x24 -nolisten tcp"
+## set in profile.d/thumbnailcapture.sh SCREEN_IDX=1
+DAEMON_OPTS=":$XSERV_DISPLAY_IDX -screen $XSERV_DISPLAY_IDX 1024x768x24 -nolisten tcp"
  
 test -x $DAEMON || exit 0
  
@@ -24,7 +31,7 @@ set -e
  
 case "$1" in
 	start)
-		echo -n "Starting $DESC: "
+		echo -n "Starting $DESC on $XSERV_DISPLAY_IDX: "
 		start-stop-daemon --start --make-pidfile --background --quiet --pidfile /var/run/$NAME.pid \
 		    --exec $DAEMON -- $DAEMON_OPTS || true
 		echo "$NAME."
@@ -38,7 +45,7 @@ case "$1" in
 		;;
  
 	restart|force-reload)
-		echo -n "Restarting $DESC: "
+		echo -n "Restarting $DESC on $XSERV_DISPLAY_IDX: "
 		start-stop-daemon --stop --quiet --pidfile \
 		    /var/run/$NAME.pid --exec $DAEMON || true
 		sleep 1
@@ -48,9 +55,11 @@ case "$1" in
 		;;
  
 	status)
+                echo "XSERV_DISPLAY_IDX on $XSERV_DISPLAY_IDX" >&2
 		status_of_proc -p /var/run/$NAME.pid "$DAEMON" Xvfb && exit 0 || exit $?
 		;;
 	*)
+                echo "XSERV_DISPLAY_IDX on $XSERV_DISPLAY_IDX" >&2
 		echo "Usage: $NAME {start|stop|restart|status}" >&2
 		exit 1
 		;;
