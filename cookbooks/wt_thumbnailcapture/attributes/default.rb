@@ -17,6 +17,7 @@ default['wt_thumbnailcapture']['graphite_enabled'] = "true"
 default['wt_thumbnailcapture']['graphite_interval'] = 5
 default['wt_thumbnailcapture']['graphite_vmmetrics'] = "true"
 default['wt_thumbnailcapture']['graphite_regex'] = ""
+default['wt_thumbnailcapture']['display_idx'] = 17
 
 default['wt_thumbnailcapture']['healthcheck_port'] = 9000
 default['wt_thumbnailcapture']['thumbnailcapture_service_url'] = ""
