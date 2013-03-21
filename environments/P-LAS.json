@@ -105,7 +105,7 @@
         "splunk": "= 0.0.9", 
         "sql_server": "= 1.1.0", 
         "squid": "= 0.2.2", 
-        "storm": "= 1.0.34", 
+        "storm": "= 1.1.0", 
         "sudo": "= 2.0.4", 
         "sysctl": "= 0.1.8", 
         "thrift": "= 1.0.0", 
@@ -450,7 +450,7 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_edge_stream_api": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/54607:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/54986:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_portfolio_edgeservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54775:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz" 
@@ -511,7 +511,7 @@
             }
         }, 
         "wt_stream_processor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/54647:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/54987:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_streaming_barebones": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt365/53526:id/Webtrends.Streaming.BareBones/dist/webtrends-streaming-barebones-bin.tar.gz", 
