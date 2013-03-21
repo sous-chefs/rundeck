@@ -1,3 +1,6 @@
+## 1.1.0
+* Added runit include
+
 ## 1.0.34
 * Used joshes correct changes
 
