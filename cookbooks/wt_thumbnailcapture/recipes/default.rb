@@ -179,7 +179,9 @@ if ENV["deploy_build"] == "true" then
   package "x11-utils" do
     action :install
   end
-
+  package "libicu48" do
+    action :install
+  end
   #copy screencap.erb to init.d folder
   template "/etc/init.d/screencap" do
     source "screencap.erb"
