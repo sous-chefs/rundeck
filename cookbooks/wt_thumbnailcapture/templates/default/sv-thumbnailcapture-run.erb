@@ -11,6 +11,7 @@ if [ -z "$XSERV_DISPLAY_IDX" ] ; then
 fi
 echo "Running on display $XSERV_DISPLAY_IDX" >&2
 export XSERV_DISPLAY_IDX
+export DISPLAY=":$XSERV_DISPLAY_IDX"
 
 exec chpst -u <%=@options[:user]%> <%=@options[:install_dir]%>/bin/service-control start
 
