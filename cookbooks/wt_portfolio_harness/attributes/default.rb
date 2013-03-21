@@ -10,7 +10,7 @@
 default['wt_portfolio_harness']['user']           = "webtrends"
 default['wt_portfolio_harness']['group']          = "webtrends"
 default['wt_portfolio_harness']['download_url']   = ""
-default['wt_portfolio_harness']['http_port']      = 8080
+default['wt_portfolio_harness']['port']      = 8080
 default['wt_portfolio_harness']['java_opts']      = "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true"
 default['wt_portfolio_harness']['jmx_port']       = 9999
 default['wt_portfolio_harness']['graphite_enabled'] = true
