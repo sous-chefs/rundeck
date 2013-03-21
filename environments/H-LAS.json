@@ -450,7 +450,7 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_edge_stream_api": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/54607:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/54986:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_portfolio_edgeservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54775:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz" 
@@ -460,7 +460,7 @@
         }, 
         "wt_portfolio_manager": {
             "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/54748:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/54808:id/Portfolio.Manager.zip", 
             "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
             "portmgr_fulfillment_dl": "toby.mosby@webtrends.com", 
             "portmgr_group_admin": "H.PortMgr.Admins", 
@@ -511,7 +511,7 @@
             }
         }, 
         "wt_stream_processor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/54647:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/54987:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_streaming_barebones": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt365/53526:id/Webtrends.Streaming.BareBones/dist/webtrends-streaming-barebones-bin.tar.gz", 
@@ -557,7 +557,7 @@
             "sms_service_url": "http://hsms.staging.dmz"
         }, 
         "wt_thumbnailcapture": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/54400:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/54985:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
             "memcache_environment": "support-staging", 
             "thumbnail_service_url": "http://hthumb.staging.dmz"
         }, 
