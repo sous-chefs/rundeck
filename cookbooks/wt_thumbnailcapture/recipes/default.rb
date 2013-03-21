@@ -185,6 +185,13 @@ if ENV["deploy_build"] == "true" then
     group "root"
     mode  00700
   end
+  template "/etc/default/screencap" do
+    source "screencap_def.erb"
+    owner "root"
+    user "root"
+    group "root"
+    mode 00700
+  end
 
   # init screencap config
   execute "framebuffer_config" do
