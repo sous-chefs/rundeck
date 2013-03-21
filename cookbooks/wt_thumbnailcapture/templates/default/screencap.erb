@@ -10,16 +10,21 @@
 # Description:       starts Xvfb using start-stop-daemon
 ### END INIT INFO
 
-[ -f /etc/default/screencap ] && . /etc/default/screencap
+if [ -z "$XSERV_DISPLAY_IDX" ] ; then
+   [ -f /etc/default/screencap ] && . /etc/default/screencap
+fi
 
 if [ -z "$XSERV_DISPLAY_IDX" ] ; then
-   echo "XSERV_DISPLAY_IDX is not set, please set it in /etc/default/screencap" >&2
+   echo "XSERV_DISPLAY_IDX is not set, please set it in /etc/environment or to be loaded from /etc/default/screencap" >&2
    exit 1
 fi 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/Xvfb
 NAME=screencap
 DESC=screencap
+# display index is consumed by thumbnailcapture service.
+export XSERV_DISPLAY_IDX
+
 ## set in profile.d/thumbnailcapture.sh SCREEN_IDX=1
 DAEMON_OPTS=":$XSERV_DISPLAY_IDX -screen $XSERV_DISPLAY_IDX 1024x768x24 -nolisten tcp"
  
