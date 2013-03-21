@@ -185,6 +185,13 @@ if ENV["deploy_build"] == "true" then
     group "root"
     mode  00700
   end
+  template "/etc/default/screencap" do
+    source "screencap_def.erb"
+    owner "root"
+    user "root"
+    group "root"
+    mode 00700
+  end
 
   # init screencap config
   execute "framebuffer_config" do
@@ -208,7 +215,7 @@ end
 
 if node.attribute?("nagios") then
   #Create a nagios nrpe check for the healthcheck page
-  nagios_nrpecheck "wt_streaming_capture_healthcheck" do
+  nagios_nrpecheck "wt_thumbnail_capture_healthcheck" do
     command "#{node['nagios']['plugin_dir']}/check_http"
     parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_thumbnailcapture']['healthcheck_port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
     action :add
