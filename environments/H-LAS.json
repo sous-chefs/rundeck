@@ -166,7 +166,7 @@
         "wt_streaming_barebones": "= 0.0.2", 
         "wt_streaming_viz": "= 1.2.1", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
-        "wt_streamingapi": "= 1.2.6", 
+        "wt_streamingapi": "= 1.2.7", 
         "wt_streamingauditor": "= 1.0.17", 
         "wt_streamingcollection": "= 1.1.5", 
         "wt_streamingconfigservice": "= 1.1.2", 
@@ -453,7 +453,8 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/55052:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_portfolio_edgeservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54775:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz" 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54775:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz",
+            "edgeserviceurl": "http://hedge01.staging.dmz:8080"
         }, 
         "wt_portfolio_harness": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/.lastSuccessful/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
@@ -535,7 +536,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/51693:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/55054:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "sapi_service_url": "ws://hsapi.webtrends.com"
         }, 
