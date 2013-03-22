@@ -1,0 +1,12 @@
+# Kafka topic base to push to  the account id or some other data should be
+# tacked on the end
+# dynamically so that the data is seperate
+kafka.topic=Lab_H_acTransformed_
+
+# Zookeeper hosts
+zookeeper.quorum=hzoo02.staging.dmz,hzoo03.staging.dmz,hzoo01.staging.dmz
+
+# Kafka consumer parameters
+kafka.consumer.group.id=action-center-integration-example
+kafka.auto.offset.reset=smallest
+kafka.auto.commit.enable=true
