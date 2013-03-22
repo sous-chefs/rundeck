@@ -16,7 +16,7 @@ end
 
 install_dir = File.join(node['wt_common']['install_dir_linux'],
 "harness/plugins/actioncenter_ds_streaming")
-conf_dir = File.join(node['wt_common']['install_dir_linux'], "harness/conf")
+conf_dir = File.join(install_dir, "conf")
 tarball      = node['wt_actioncenter_ds_streaming']['download_url'].split("/")[-1]
 download_url = node['wt_actioncenter_ds_streaming']['download_url']
 user = node['wt_actioncenter_ds_streaming']['user']
@@ -30,6 +30,13 @@ directory "#{install_dir}" do
   group "root"
   mode 00755
   recursive true
+  action :create
+end
+
+directory "#{conf_dir}" do
+  owner "root"
+  group "root"
+  mode 00755
   action :create
 end
 
@@ -54,6 +61,8 @@ if ENV["deploy_build"] == "true" then
     source download_url
     mode 00644
   end
+
+  processTemplates(conf_dir)
 
     # uncompress the application tarball into the install dir
     execute "tar" do
