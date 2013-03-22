@@ -443,7 +443,7 @@
             "version": "502"
         }, 
         "wt_portfolio_admin": {
-            "account_ui_url": "https://paccount.webtrends.com", 
+            "account_ui_url": "http://pportadmin.os.staging.dmz", 
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lastSuccessful/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
@@ -526,8 +526,8 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/.lastSuccessful/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true", 
-            "sms_url": "http://psms01.os.staging.dmz:8080", 
-            "streams_ui_url": "https://psviz01.os.staging.dmz"
+            "sms_url": "http://streaming-putil01.os.staging.dmz:8081", 
+            "streams_ui_url": "http://psviz01.os.staging.dmz"
         }, 
         "wt_streaminganalysis_monitor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/52212:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
@@ -546,7 +546,7 @@
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
         }, 
         "wt_streamingconfigservice": {
-            "config_service_url": "http://hconfigsvc.staging.dmz", 
+            "config_service_url": "http://streaming-putil01.os.staging.dmz:8080", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streamingmanagementservice": {
@@ -554,12 +554,12 @@
             "healthcheck_port": 9001, 
             "jmx_port": 9997, 
             "port": 8081, 
-            "sms_service_url": "http://psms01.os.staging.dmz:8080"
+            "sms_service_url": "http://streaming-putil01.os.staging.dmz:8081"
         }, 
         "wt_thumbnailcapture": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/54400:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
             "memcache_environment": "support-staging", 
-            "thumbnail_service_url": "http://pthumb.staging.dmz"
+            "thumbnail_service_url": "http://hthumb.staging.dmz"
         }, 
         "zookeeper": {
             "client_port": 2181
