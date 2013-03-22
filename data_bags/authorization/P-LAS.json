@@ -5,7 +5,7 @@
     "id": "P-LAS", 
     "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
     "wt_cam_db": {
-        "db_pwd": "bijoux", 
+        "db_pwd": "VVxwpoY6MV8oPR5tdFd0", 
         "db_user": "wtUI"
     }, 
     "wt_common": {
@@ -41,7 +41,7 @@
         "client_token": "b14db0f48965407baf6b0b5e4ebcabf1.app.webtrends.com"
     }, 
     "wt_streaming_usage_db": {
-        "db_pwd": "bijoux", 
+        "db_pwd": "VVxwpoY6MV8oPR5tdFd0", 
         "db_user": "wtUI"
     }, 
     "wt_streaming_viz": {
