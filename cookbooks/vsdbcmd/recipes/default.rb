@@ -14,7 +14,7 @@
 	source node['vsdbcmd'][pkg]['url']
 	checksum node['vsdbcmd'][pkg]['checksum']
 	installer_type :msi
-	options "/quiet /norestart"
+	options "IACCEPTSQLNCLILICENSETERMS=#{node['vsdbcmd']['accept_license_terms'] ? 'YES' : 'NO'}"
 	action :install
       end
   end
