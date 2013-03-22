@@ -23,12 +23,13 @@
   default['vsdbcmd']['smo']['checksum']                    = '1ec4e315c26e25002597fc63bdfd7ac8a4089478ebc3ea14ddd7560e003eb8a4'
   default['vsdbcmd']['smo']['package_name']                = 'Microsoft SQL Server 2008 R2 Management Objects (x64)'
 
+  default['vsdbcmd']['sql_compact32']['url']               = 'http://repo.staging.dmz/repo/windows/sqlserver/prereqs/SSCERuntime_x86-ENU.msi'
+  default['vsdbcmd']['sql_compact32']['checksum']          = '99b5f0c1cc7fe40120a36fb760cc7c646edef5916695d6ecd8d41e8bba9b1c60'
+  default['vsdbcmd']['sql_compact32']['package_name']      = 'Microsoft SQL Server Compact 3.5 SP2 ENU'  
+
   default['vsdbcmd']['sql_compact64']['url']	           = 'http://repo.staging.dmz/repo/windows/sqlserver/prereqs/SSCERuntime_x64-ENU.msi'
   default['vsdbcmd']['sql_compact64']['checksum']          = 'fcc1110c9ad0fb3e2f8787103a2a7549c16b0935e1808c2ee1ea016149fa08b8'
   default['vsdbcmd']['sql_compact64']['package_name']      = 'Microsoft SQL Server Compact 3.5 SP2 x64 ENU'
 
-  default['vsdbcmd']['sql_compact32']['url']               = 'http://repo.staging.dmz/repo/windows/sqlserver/prereqs/SSCERuntime_x86-ENU.msi'
-  default['vsdbcmd']['sql_compact32']['checksum']          = '99b5f0c1cc7fe40120a36fb760cc7c646edef5916695d6ecd8d41e8bba9b1c60'
-  default['vsdbcmd']['sql_compact32']['package_name']      = 'Microsoft SQL Server Compact 3.5 SP2 ENU'
 
 
