@@ -443,7 +443,7 @@
             "version": "502"
         }, 
         "wt_portfolio_admin": {
-            "account_ui_url": "http://pportadmin.os.staging.dmz", 
+            "account_ui_url": "http://pportadm01.os.staging.dmz", 
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lastSuccessful/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
