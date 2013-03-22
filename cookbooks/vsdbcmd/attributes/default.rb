@@ -5,7 +5,7 @@
 # Copyright:: Copyright (c) 2013 Webtrends Inc.
 #
 #
-  default['vsdbcmd']['accept_eula'] = false
+  default['vsdbcmd']['native_client']['accept_eula']       = true
 
   default['vsdbcmd']['native_client']['url']               = 'http://repo.staging.dmz/repo/windows/sqlserver/prereqs/sqlncli_x64.msi'
   default['vsdbcmd']['native_client']['checksum']          = '012aca6cef50ed784f239d1ed5f6923b741d8530b70d14e9abcb3c7299a826cc'
