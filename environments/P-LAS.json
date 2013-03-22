@@ -393,7 +393,7 @@
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
             "install_log_dir_windows": "d:\\logs", 
-            "ldap_host": "pldap01.os.staging.dmz", 
+            "ldap_host": "aldap01.staging.dmz", 
             "ldap_port": "636", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
