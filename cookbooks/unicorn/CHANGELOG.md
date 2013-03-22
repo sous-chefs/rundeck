@@ -1,3 +1,7 @@
+## v1.2.2:
+
+* [COOK-2442] - Template uses an ActiveSupport method
+
 ## v1.2.0:
 
 * [COOK-2229] - Allow specification of unicorn command line in config file
