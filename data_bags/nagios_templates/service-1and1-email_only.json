@@ -1,0 +1,7 @@
+    {
+      "id": "service-1and1-email_only",
+      "use": "default-service",
+      "max_check_attempts" : 1,
+      "contact_groups": "email_only"
+    }
+
