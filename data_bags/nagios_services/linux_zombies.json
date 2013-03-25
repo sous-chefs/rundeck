@@ -2,5 +2,5 @@
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_procs -a '-t 60 -w 45 -c 50 -s Z'", 
     "hostgroup_name": "linux", 
     "id": "linux_zombies",
-    "service_template": "service-email_only"
+    "contact_groups": "email_only"
 }

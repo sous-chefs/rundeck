@@ -2,5 +2,5 @@
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_streaming_capture_healthcheck",
     "hostgroup_name": "wt_thumbnail_capture",
     "id": "wt_thumbnail_capture_healthcheck",
-    "service_template": "service-email_only"
+    "contact_groups": "email_only"
 }
