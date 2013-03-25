@@ -2,5 +2,5 @@
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_procs -a '-c 1: -C 'carbon-cache.py''",
     "hostgroup_name": "graphite",
     "id": "carbon_cache_service",
-    "service_template": "service-email_only"
+    "contact_groups": "email_and_page"
 }

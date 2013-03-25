@@ -2,5 +2,5 @@
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jps -a 'StreamingAPIDaemon'", 
     "hostgroup_name": "wt_streaming_api_server", 
     "id": "wt_streaming_api_server_process_check",
-    "service_template": "service-email_only"
+    "contact_groups": "email_only-streaming"
 }
