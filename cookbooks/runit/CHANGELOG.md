@@ -1,4 +1,16 @@
-## v1.0.4
+## v1.1.0:
+
+* [COOK-2353] - Runit does not update run template if the service is
+  already enabled
+* [COOK-2497] - add :nothing to allowed actions
+
+## v1.0.6:
+
+* [COOK-2404] - allow sending sigquit
+* [COOK-2431] - gentoo - it should create the runit-start template
+  before calling it
+
+## v1.0.4:
 
 * [COOK-2351] - add `run_template_name` to allow alternate run script
   template
