@@ -166,7 +166,7 @@
         "wt_streaming_barebones": "= 0.0.3", 
         "wt_streaming_viz": "= 1.2.1", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
-        "wt_streamingapi": "= 1.2.7", 
+        "wt_streamingapi": "= 1.2.8", 
         "wt_streamingauditor": "= 1.0.17", 
         "wt_streamingcollection": "= 1.1.5", 
         "wt_streamingconfigservice": "= 1.1.2", 
