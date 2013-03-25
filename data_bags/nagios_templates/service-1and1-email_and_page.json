@@ -1,7 +1,0 @@
-    {
-      "id": "service-1and1-email_and_page",
-      "use": "default-service",
-      "max_check_attempts" : 1,
-      "contact_groups": "email_and_page"
-    }
-
