@@ -1,0 +1,6 @@
+    {
+      "id": "service-email_only-streaming",
+      "use": "default-service",
+      "contact_groups": "email_only-streaming"
+    }
+
