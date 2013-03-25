@@ -2,5 +2,5 @@
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c check_ipmi_sensors", 
     "hostgroup_name": "dell_systems", 
     "id": "dell_ipmi_sensors",
-    "service_template": "service-email_only"
+    "contact_groups": "email_and_page"
 }

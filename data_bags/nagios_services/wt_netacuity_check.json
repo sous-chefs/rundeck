@@ -3,5 +3,5 @@
     "hostgroup_name": "wt_netacuity", 
     "id": "wt_netacuity_check",
     "event_handler": "restart_netacuity",
-    "service_template": "service-email_only"
+    "contact_groups": "email_and_page"
 }
