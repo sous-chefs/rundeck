@@ -1,6 +1,6 @@
 {
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_http -a '-H $HOSTNAME -u http://$HOSTNAME/dfshealth.jsp -p 50070'", 
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 120 -c wt_check_http -a '-H $HOSTNAME -u http://$HOSTNAME/dfshealth.jsp -p 50070'", 
     "hostgroup_name": "hadoop_primarynamenode", 
     "id": "hadoop_primarynamenode_web_ui_check",
-    "service_template": "service-email_only"
+    "contact_groups": "email_and_page"
 }
