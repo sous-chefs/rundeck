@@ -1,3 +1,6 @@
+## 1.1.21
+* Adding a thumbnail service url so the sessions lab could use when generating thumbnails
+
 ## 1.1.20
 * Adding appKey to the appSettings.config.tmpl
 
