@@ -13,6 +13,20 @@ if node['platform_family'] == 'rhel'
 	return
 end
 
+# no support for ubuntu less than precise
+if node['platform'] == 'ubuntu' and node['platform_version'].to_i < 12
+	log("#{cookbook_name}: unsupported platform: #{node['platform']} #{node['platform_version']}") { level :warn }
+	return
+end
+
+# abort if gcc or make missing (needed for nokogiri build)
+%w{ gcc make }.each do |cmd|
+	if not system("which #{cmd} > /dev/null")
+		log("#{cookbook_name}: #{cmd} is missing") { level :warn }
+		return
+	end
+end
+
 class Chef::Resource
 	# returns a path with backslashes (windows friendly)
 	def win_path(*args)
@@ -210,11 +224,17 @@ node['roles'].each do |r|
 			download_url node['wt_sync']['download_url']
 			key_file     win_path(wdir, node['wt_sync']['install_dir'], 'Webtrends.SyncService.exe')
 		end
+	when 'wt_thumbnail_capture'
+		log "publishing #{r}"
+		wt_publishver 'Thumbnail Capture' do
+			download_url node['wt_thumbnailcapture']['download_url']
+			key_file     File.join(ldir, 'thumbnailcapture/capture-service-*')
+		end
 	when 'wt_xd_importer'
 		log "publishing #{r}"
-		wt_publishver 'External Data Service' do
+		wt_publishver 'External Data Importer' do
 			download_url node['wt_xd_importer']['download_url']
-			key_file     win_path(wdir, node['wt_xd_importer']['install_dir'], 'Webtrends.ExternalData.RetrievalService.exe')
+			key_file     win_path(wdir, node['wt_xd_importer']['install_dir'], 'Webtrends.ExternalData.Refresh.exe')
 		end
 	when 'wt_xd_mapreduce'
 		log "publishing #{r}"

@@ -1,0 +1,38 @@
+{
+  "name": "jetty",
+  "description": "Installs/Configures jetty",
+  "long_description": "Description\n===========\n\nInstalls and configures Jetty, Java servlet engine and webserver.\n\nRequirements\n============\n\nPlatform: \n\n* Debian, Ubuntu (OpenJDK, Sun)\n* CentOS, Red Hat, Fedora (OpenJDK)\n\nThe following Opscode cookbooks are dependencies:\n\n* java\n\nAttributes\n==========\n\n* `node[\"jetty\"][\"host\"]` - Listen to connections from this network host, default '0.0.0.0'.\n* `node[\"jetty\"][\"port\"]` - The network port used by Jetty, default '8080'.\n* `node[\"jetty\"][\"jetty_args\"]` - Additional arguments to pass to Jetty, default ''.\n* `node[\"jetty\"][\"java_options\"]` - Extra options to pass to the JVM, default '-Xmx256m -Djava.awt.headless=true'.\n* `node[\"jetty\"][\"cargo\"][\"username\"]` - Username that is granted access to the Cargo remote deploy app, if you are using it.\n* `node[\"jetty\"][\"cargo\"][\"password\"]` - Password that grants access to the Cargo remote deploy app, if you are using it.\n\n\nRecipes\n=======\n\n## default.rb\n\nThe default recipe will install the native package for Jetty. The service will be managed via the package provided init scripts.\n\n## cargo.rb\n\nThis recipe adds Cargo remote deploy support to the Jetty service by deploying the Cargo remote deployer app that is available at http://cargo.codehaus.org/Downloads . This recipe includes the default recipe.\nTo establish a password, set a default attribute like so:\n\n  \"default_attributes\": {\n    \"jetty\": {\n      \"cargo\": {\n        \"password\": \"cargo123\"\n      }\n    }\n  },\n\nUsage\n=====\n\nSimply include the recipe where you want Jetty installed.\n\nTODO\n====\n\n* enable SSL support\n* instrument logging\n\nLicense and Author\n==================\n\nAuthor:: Seth Chisamore (<schisamo@opscode.com>)\n\nContributor:: Brian Dols (<brian.dols@gmail.com>)\n\nCopyright:: 2010, Opscode, Inc\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n",
+  "maintainer": "Opscode, Inc.",
+  "maintainer_email": "cookbooks@opscode.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "debian": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "fedora": ">= 0.0.0"
+  },
+  "dependencies": {
+    "java": ">= 0.0.0",
+    "jpackage": ">= 0.0.0",
+    "openssl": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "jetty::default": "Installs and configures Jetty"
+  },
+  "version": "0.1.0"
+}

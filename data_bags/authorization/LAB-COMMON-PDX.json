@@ -1,0 +1,23 @@
+{
+    "alternate_pass": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "alternate_uid": "2001", 
+    "alternate_user": "bobo", 
+    "beyond_compare_v3": {
+        "license_key": [
+            "--- BEGIN LICENSE KEY ---", 
+            "E72PRdldttGI8NSbqeDsT6Vg0VRG82HYKNxaMYgFxu9Do7nhQ8Sie4kBs", 
+            "PRBH6IJ9paf-R7HgnVzOX9OcoP277JzJXE6YVapYW7f+tRRXRFI4yn4Nj", 
+            "jZ0RiiqGRCTVzwComUcXB-eiFWRBY6JpSsCNkmIxL5KsRCo442djHhTZE", 
+            "--- END LICENSE KEY -----"
+        ]
+    }, 
+    "hive": {
+        "dbpass": "QZ3caTZCJ5ybp0oDKgt4", 
+        "dbuser": "hivemeta"
+    }, 
+    "id": "LAB-COMMON-PDX", 
+    "root_password": "$6$TrentWIsGFreeman$vCa6a1Y3.H4A1mhoc3DOuBfNYh/Vy2Ov5CDaZYP1YRQ9fJ2T8FO4p37VGfa4WjKpkOoYVOcxdLOknWq9nceFX/", 
+    "wt_netacuity": {
+        "admin_password": "Bijoux01"
+    }
+}

@@ -73,8 +73,8 @@ module WtPublishver
 			@build_id     = get_build_id
 			@@xmldoc = get_build_xmldoc(@build_id)
 			unless @@xmldoc.nil?
-				@buildtype_name  = get_buildtype_name(@@xmldoc.root)
-				@project_name    = get_project_name(@@xmldoc.root)
+				@buildtype_name  = get_buildtype_name(@@xmldoc.root) unless @@xmldoc.root.nil?
+				@project_name    = get_project_name(@@xmldoc.root)   unless @@xmldoc.root.nil?
 				@build_number    = get_build_number(@@xmldoc)
 			end
 
@@ -173,8 +173,8 @@ module WtPublishver
 
 			# determine version + build
 			jar_build_number = Array.new
-			jar_build_number << mani.first['Implementation-Version'] unless mani.first['Implementation-Version'].nil?
-			jar_build_number << mani.first['Implementation-Build']   unless mani.first['Implementation-Build'].nil?
+			jar_build_number << mani.first['Implementation-Version'].keys.first unless mani.first['Implementation-Version'].nil?
+			jar_build_number << mani.first['Implementation-Build'].keys.first   unless mani.first['Implementation-Build'].nil?
 			return jar_build_number.join('.')
 		end
 

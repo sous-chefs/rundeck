@@ -37,6 +37,7 @@ end
 
 log_dir     = File.join(node['wt_common']['log_dir_linux'], "streamprocessor")
 install_dir = File.join(node['wt_common']['install_dir_linux'], "streamprocessor")
+conf_url = File.join(install_dir, node['wt_stream_processor']['conf_url'])
 tarball      = node['wt_stream_processor']['download_url'].split("/")[-1]
 download_url = node['wt_stream_processor']['download_url']
 java_home   = node['java']['java_home']
@@ -46,14 +47,10 @@ group = node['wt_stream_processor']['group']
 pod = node['wt_realtime_hadoop']['pod']
 datacenter = node['wt_realtime_hadoop']['datacenter']
 
-# grab the users and passwords from the data bag
-auth_data = data_bag_item('authorization', node.chef_environment)
-usagedbuser  = auth_data['wt_streaming_usage_db']['db_user']
-usagedbpwd = auth_data['wt_streaming_usage_db']['db_pwd']
-
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
+log "Configuration: #{conf_url}"
 
 # create the log directory
 directory log_dir do
@@ -81,32 +78,22 @@ directory "#{install_dir}/conf" do
   action :create
 end
 
-def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
+def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
   log "Updating the template files"
 
-  cam_url = node['wt_cam']['cam_service_url']
   port = node['wt_stream_processor']['port']
 
-  usagedbserver = node['wt_streaming_usage_db']['db_server']
-  usagedbname = node['wt_streaming_usage_db']['db_name']
-
-  %w[log4j.xml config.properties netty.properties].each do | template_file|
+  %w[log4j.xml config.properties netty.properties application.conf].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source    "#{template_file}.erb"
       owner "root"
       group "root"
       mode  00644
       variables({
-        :cam_url => cam_url,
         :install_dir => install_dir,
         :port => port,
         :wt_monitoring => node['wt_monitoring'],
         :router_uri => node['wt_stream_processor']['router_uri'],
-        # usage db parameters
-        :usagedbserver => usagedbserver,
-        :usagedbname => usagedbname,
-        :usagedbuser => usagedbuser,
-        :usagedbpwd => usagedbpwd,
 
         # streaming 0mq parameters
         :zookeeper_quorum => zookeeper_quorum * ",",
@@ -145,11 +132,12 @@ if ENV["deploy_build"] == "true" then
       :install_dir => install_dir,
       :java_home => java_home,
       :java_jmx_port => node['wt_stream_processor']['jmx_port'],
-      :java_opts => java_opts
+      :java_opts => java_opts,
+      :conf_url => conf_url
     })
   end
 
-  processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
+  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
 
   # delete the install tar ball
   execute "delete_install_source" do
@@ -170,7 +158,7 @@ if ENV["deploy_build"] == "true" then
   end
 
 else
-  processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
+  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
 end
 
 if node.attribute?("nagios")

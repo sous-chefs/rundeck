@@ -168,7 +168,7 @@ General settings
 These are general settings used in recipes and templates. Default
 values are noted.
 
-* `node['apache']['listen_ports']` - Ports that httpd should listen on. Default is an array of ports 80 and 443.
+* `node['apache']['listen_ports']` - Ports that httpd should listen on. Default is port 80.
 * `node['apache']['contact']` - Value for ServerAdmin directive. Default "ops@example.com".
 * `node['apache']['timeout']` - Value for the Timeout directive. Default is 300.
 * `node['apache']['keepalive']` - Value for the KeepAlive directive. Default is On.
@@ -212,7 +212,7 @@ they're logistically unrelated to the others, being specific to the
 `mod_auth_openid` recipe.
 
 * `node['apache']['mod_auth_openid']['checksum']` - sha256sum of the tarball containing the source.
-* `node['apache']['mod_auth_openid']['version']` - version of the `mod_auth_openid` to download.
+* `node['apache']['mod_auth_openid']['ref']` - Any sha, tag, or branch found from https://github.com/bmuller/mod_auth_openid
 * `node['apache']['mod_auth_openid']['cache_dir']` - the cache directory is where the sqlite3 database is stored. It is separate so it can be managed as a directory resource.
 * `node['apache']['mod_auth_openid']['dblocation']` - filename of the sqlite3 database used for directive `AuthOpenIDDBLocation`, stored in the `cache_dir` by default.
 * `node['apache']['mod_auth_openid']['configure_flags']` - optional array of configure flags passed to the `./configure` step in the compilation of the module.

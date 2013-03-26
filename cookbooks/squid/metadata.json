@@ -12,7 +12,8 @@
     "fedora": ">= 0.0.0",
     "redhat": ">= 0.0.0",
     "scientific": ">= 0.0.0",
-    "suse": ">= 0.0.0"
+    "suse": ">= 0.0.0",
+    "amazon": ">= 0.0.0"
   },
   "dependencies": {
   },
@@ -32,5 +33,5 @@
   },
   "recipes": {
   },
-  "version": "0.2.0"
+  "version": "0.2.2"
 }

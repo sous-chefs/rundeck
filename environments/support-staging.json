@@ -2,20 +2,20 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "cassandra": "= 1.0.12", 
-        "cobbler": "= 1.0.8", 
+        "cobbler": "= 1.0.9", 
         "graphite": "= 0.3.0", 
         "hadoop": "= 1.1.11", 
         "hbase": "= 1.1.4", 
         "hive": "= 1.1.0", 
         "java": "= 1.6.0", 
         "memcached": "= 1.1.2", 
-        "nagios": "= 3.1.1", 
+        "nagios": "= 4.0.1", 
         "rundeck": "= 1.0.6", 
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.11", 
         "windows": "= 1.6.0", 
         "wt_base": "= 1.0.3", 
-        "wt_publishver": "= 0.2.0", 
+        "wt_publishver": "= 0.2.2", 
         "zookeeper": "= 1.1.6"
     }, 
     "default_attributes": {
@@ -39,7 +39,14 @@
             "max_heap_size": "6G"
         }, 
         "cobbler": {
-            "deploy_chef_version": "10.16.2", 
+            "ks_meta": {
+                "centos-6.2-x86_64": {
+                    "tree": "http://repo.staging.dmz/repo/yum/centos/6.3/os/x86_64/"
+                }, 
+                "centos-6.4-x86_64": {
+                    "tree": "http://repo.staging.dmz/repo/yum/centos/6.4/os/x86_64/"
+                }
+            }, 
             "manage_dhcp": 1, 
             "pxe_just_once": 1, 
             "subnets": {
@@ -49,6 +56,11 @@
                 "10.165.0.0": {
                     "netmask": "255.255.254.0"
                 }
+            }, 
+            "yum": {
+                "baseurl": "http://repo.staging.dmz/repo/yum/webtrends", 
+                "description": "Webtrends Repo", 
+                "name": "wtlab"
             }
         }, 
         "delltools": {
@@ -295,6 +307,9 @@
     "name": "support-staging", 
     "override_attributes": {
         "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "ntp": {
