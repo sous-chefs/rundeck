@@ -1,5 +1,6 @@
 {
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_topagg_healthcheck_page",
     "hostgroup_name": "wt_kafka_topagg",
-    "id": "wt_kafka_topagg_healthcheck"
+    "id": "wt_kafka_topagg_healthcheck",
+    "contact_groups": "email_only-streaming"
 }

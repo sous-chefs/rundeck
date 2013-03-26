@@ -120,7 +120,8 @@ def install_package(name,version)
   Chef::Log.debug("Processing #{@new_resource} as a #{installer_type} installer.")
   install_args = [cached_file(@new_resource.source, @new_resource.checksum), expand_options(unattended_installation_flags), expand_options(@new_resource.options)]
   Chef::Log.info("Starting installation...this could take awhile.")
-  shell_out!(sprintf(install_command_template, *install_args), {:timeout => @new_resource.timeout, :returns => [0,42,127]})
+  Chef::Log.debug "Install command: #{ sprintf(install_command_template, *install_args) }"
+  shell_out!(sprintf(install_command_template, *install_args), {:timeout => @new_resource.timeout, :returns => @new_resource.success_codes})
 end
 
 def remove_package(name, version)
@@ -135,7 +136,7 @@ def remove_package(name, version)
     end
   end
   Chef::Log.info("Removing #{@new_resource} with uninstall command '#{uninstall_command}'")
-  shell_out!(uninstall_command, {:returns => [0,42,127]})
+  shell_out!(uninstall_command, {:returns => @new_resource.success_codes})
 end
 
 private
@@ -223,7 +224,7 @@ def installer_type
     if @new_resource.installer_type
       @new_resource.installer_type
     else
-      basename = ::File.basename(cached_file(@new_resource.source))
+      basename = ::File.basename(cached_file(@new_resource.source, @new_resource.checksum))
       if basename.split(".").last == "msi" # Microsoft MSI
         :msi
       else

@@ -1,0 +1,37 @@
+{
+  "name": "graphite",
+  "description": "Installs/Configures graphite",
+  "long_description": "Description\n===========\n\nInstalls and configures Graphite http://graphite.wikidot.com/\n\nRequirements\n============\n\n* Ubuntu 10.04 / Ubuntu 12.04\n\nAttributes\n==========\n\nThe name of the encrypted data bag containing the default password for\nthe graphite \"root\" user.  If this attribute is set it will not use\n`node[:graphite][:password]`.\n\n* `node['graphite']['encrypted_data_bag']['name']`\n\n\n* `node['graphite']['version']` - version of graphite to install (defaults to 0.9.10)\n* `node['graphite']['password']` - password for graphite root user(default to `change_me` and is only used if encrypted databag isn't)\n* `node['graphite']['url']` - url of the graphite server (defaults to graphite)\n* `node['graphite']['url_aliases']` - array of url aliases (defaults to nil)\n* `node['graphite']['listen_port']` - port to listen on (defaults to 80)\n* `node['graphite']['base_dir']` = \"/opt/graphite\"\n* `node['graphite']['doc_root']` = \"/opt/graphite/webapp\"\n* `node['graphite']['storage_dir']` = \"/opt/graphite/storage\"\n* `node['graphite']['django_root']` = \"@DJANGO_ROOT@\" - configurable path to your django installation\n\n* `node['graphite']['whisper']['uri']` - download url for whisper\n* `node['graphite']['whisper']['checksum']` - checksum of the whisper download\n\n* `node['graphite']['graphite_web']['uri']` - download url for the graphite web ui\n* `node['graphite']['graphite_web']['checksum']` - checksum for the graphite web ui download\n\n* `node['graphite']['carbon']['uri']` - download url for carbon\n* `node['graphite']['carbon']['checksum']` - checksum for the carbon download\n* `node['graphite']['carbon']['line_receiver_interface']` - line interface IP (defaults to 0.0.0.0)\n* `node['graphite']['carbon']['line_receiver_port']` - line interface port (defaults to 2003)\n* `node['graphite']['carbon']['pickle_receiver_interface']` - pickle receiver IP (defaults to 0.0.0.0)\n* `node['graphite']['carbon']['pickle_receiver_port']` - pickle receiver port (defaults to 2004)\n* `node['graphite']['carbon']['cache_query_interface']` - cache query IP (defaults to 0.0.0.0)\n* `node['graphite']['carbon']['cache_query_port']` - cache query port (defaults to 7002)\n* `node['graphite']['carbon']['max_updates_per_second']` - max updates to carbon per second (defaults to 1000)\n* `node['graphite']['carbon']['service_type']` - init service to use for carbon (defaults to runit)\n* `node['graphite']['carbon']['log_whisper_updates']` - log updates to whisper (defaults to false)\n\nSet the timezone for the graphite web interface, defaults to America/Los_Angeles\n\n* `node[:graphite][:timezone]`\n\nUsage\n=====\n\n`recipe[graphite]` should build a stand-alone Graphite installation.\n\n`recipe[graphite::ganglia]` integrates with Ganglia. You'll want at\nleast one monitor node (i.e. recipe[ganglia]) node to be running\nto use it.\n",
+  "maintainer": "Heavy Water Software Inc.",
+  "maintainer_email": "ops@hw-ops.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "ubuntu": ">= 0.0.0"
+  },
+  "dependencies": {
+    "python": ">= 0.0.0",
+    "apache2": ">= 0.0.0",
+    "runit": "<= 0.16.2",
+    "memcached": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+    "systemd": ">= 0.0.0",
+    "s6": ">= 0.0.0",
+    "graphiti": ">= 0.0.0"
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.4.2"
+}

@@ -61,11 +61,23 @@ default['nagios']['server']['checksum'] = '2d5c0cc56bafb08a71840a6efa349afc1eebb
 default['nagios']['notifications_enabled']   = 0
 default['nagios']['check_external_commands'] = true
 default['nagios']['default_contact_groups']  = %w{admins}
-default['nagios']['sysadmin_email']          = 'root@localhost'
-default['nagios']['sysadmin_sms_email']      = 'root@localhost'
-default['nagios']['server_auth_method']      = 'openid'
-default['nagios']['users_databag_group']     = 'sysadmin'
-default['nagios']['host_name_attribute']     = 'hostname'
+default['nagios']['sysadmin_email']          = "root@localhost"
+default['nagios']['sysadmin_sms_email']      = "root@localhost"
+default['nagios']['server_auth_method']      = "openid"
+default['nagios']['users_databag_group']     = "sysadmin"
+default['nagios']['host_name_attribute']     = "hostname"
+
+# for cas authentication
+default['nagios']['cas_login_url'] = "https://example.com/cas/login"
+default['nagios']['cas_validate_url'] = "https://example.com/cas/serviceValidate"
+default['nagios']['cas_validate_server'] = "off"
+default['nagios']['cas_root_proxy_url'] = nil
+
+# for apache ldap authentication
+default['nagios']['ldap_bind_dn'] = nil
+default['nagios']['ldap_bind_password'] = nil
+default['nagios']['ldap_url'] = nil
+default['nagios']['ldap_authoritative'] = nil
 
 # This setting is effectively sets the minimum interval (in seconds) nagios can handle.
 # Other interval settings provided in seconds will calculate their actual from this value, since nagios works in 'time units' rather than allowing definitions everywhere in seconds
@@ -74,19 +86,19 @@ default['nagios']['templates'] = Mash.new
 default['nagios']['interval_length'] = 1
 
 # Provide all interval values in seconds
-default['nagios']['default_host']['check_interval']        = 15
-default['nagios']['default_host']['retry_interval']        = 15
-default['nagios']['default_host']['max_check_attempts']    = 1
+default['nagios']['default_host']['check_interval']     = 15
+default['nagios']['default_host']['retry_interval']     = 15
+default['nagios']['default_host']['max_check_attempts'] = 1
 default['nagios']['default_host']['notification_interval'] = 300
-default['nagios']['default_host']['flap_detection']        = true
+default['nagios']['default_host']['flap_detection'] = true
 
-default['nagios']['default_service']['check_interval']        = 60
-default['nagios']['default_service']['retry_interval']        = 15
-default['nagios']['default_service']['max_check_attempts']    = 3
+default['nagios']['default_service']['check_interval']     = 60
+default['nagios']['default_service']['retry_interval']     = 15
+default['nagios']['default_service']['max_check_attempts'] = 3
 default['nagios']['default_service']['notification_interval'] = 1200
-default['nagios']['default_service']['flap_detection']        = true
+default['nagios']['default_service']['flap_detection'] = true
 
-default['nagios']['server']['web_server']     = :apache
+default['nagios']['server']['web_server'] = :apache
 default['nagios']['server']['nginx_dispatch'] = :cgi
-default['nagios']['server']['stop_apache']    = false
+default['nagios']['server']['stop_apache'] = false
 default['nagios']['server']['redirect_root'] = false

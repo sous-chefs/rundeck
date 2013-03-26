@@ -1,3 +1,6 @@
+##1.0.3
+* Removed usage connection information
+
 ##1.0.2
 * Fixed runit issues with new runit cookbook
 

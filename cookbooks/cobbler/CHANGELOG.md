@@ -1,3 +1,11 @@
+## 1.0.9
+* added distribution for centos 6.4
+* move centos profiles to be templates and added attributes to set ks_meta tree variable for centos
+* added ks snippet for centos 6.4 which adds our own yum repo so it can find chef package
+* bumped chef version for centos to 10.24.0
+* moved ubuntu chef install to firstboot.sh script and changed attributes to support this change
+* remove validation.pem at end of setup
+
 ## 1.0.8
 * Use our internal mirrors for security updates during the install
 

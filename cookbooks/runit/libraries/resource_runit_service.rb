@@ -32,7 +32,7 @@ class Chef
         @provider = Chef::Provider::Service::Runit
         @supports = { :restart => true, :reload => true, :status => true }
         @action = :enable
-        @allowed_actions = [:start, :stop, :enable, :disable, :restart, :reload, :status, :once, :hup, :cont, :term, :kill, :up, :down, :usr1, :usr2]
+        @allowed_actions = [:nothing, :start, :stop, :enable, :disable, :restart, :reload, :status, :once, :hup, :cont, :term, :kill, :up, :down, :usr1, :usr2]
 
         # sv_bin, sv_dir and service_dir may have been set in the node attributes
         @sv_bin = runit_node[:sv_bin] || '/usr/bin/sv'
@@ -50,6 +50,8 @@ class Chef
         @enabled = false
         @running = false
         @default_logger = false
+        @restart_on_update = true
+        @run_template_name = @service_name
         @log_template_name = @service_name
         @finish_script_template_name = @service_name
         @control_template_names = {}
@@ -134,6 +136,15 @@ class Chef
       def default_logger(arg=nil)
         set_or_return(:default_logger, arg, :kind_of => [TrueClass, FalseClass])
       end
+
+      def restart_on_update(arg=nil)
+        set_or_return(:restart_on_update, arg, :kind_of => [TrueClass, FalseClass])
+      end
+
+      def run_template_name(arg=nil)
+        set_or_return(:run_template_name, arg, :kind_of => [String])
+      end
+      alias :template_name :run_template_name
 
       def log_template_name(arg=nil)
         set_or_return(:log_template_name, arg, :kind_of => [String])

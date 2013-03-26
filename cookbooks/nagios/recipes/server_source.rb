@@ -35,9 +35,9 @@ else
 end
 
 pkgs = value_for_platform_family(
-  [ "rhel","fedora" ] => %w{ openssl-devel gd-devel },
-  "debian" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx },
-  "default" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx }
+  [ "rhel","fedora" ] => %w{ openssl-devel gd-devel tar },
+  "debian" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx tar },
+  "default" => %w{ libssl-dev libgd2-xpm-dev bsd-mailx tar }
 )
 
 pkgs.each do |pkg|
@@ -57,7 +57,7 @@ end
 version = node['nagios']['server']['version']
 
 remote_file "#{Chef::Config[:file_cache_path]}/nagios-#{version}.tar.gz" do
-  source "http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-#{version}.tar.gz"
+  source "#{node['nagios']['server']['url']}/nagios-#{version}.tar.gz"
   checksum node['nagios']['server']['checksum']
   action :create_if_missing
 end
@@ -102,13 +102,6 @@ directory "#{node['nagios']['conf_dir']}/conf.d" do
   mode 00755
 end
 
-cookbook_file "#{node['nagios']['plugin_dir']}/check_nrpe" do
-  source "plugins/check_nrpe"
-  owner "root"
-  group "root"
-  mode 00755
-end
-
 %w{ cache_dir log_dir run_dir }.each do |dir|
 
   directory node['nagios'][dir] do
@@ -129,7 +122,15 @@ link "#{node['nagios']['conf_dir']}/stylesheets" do
   to "#{node['nagios']['docroot']}/stylesheets"
 end
 
-apache_module "cgi" do
-  enable :true
-  only_if { web_srv == :apache }
+# if nrpe client is not being installed by source then we need the NRPE plugin
+if node['nagios']['client']['install_method'] == "package"
+
+  include_recipe "nagios::nrpe_source"
+
+end
+
+if web_srv == :apache
+  apache_module "cgi" do
+    enable :true
+  end
 end

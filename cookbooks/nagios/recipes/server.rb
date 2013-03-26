@@ -21,6 +21,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# workaround to allow for a nagios server install from source using the override attribute on debian/ubuntu (COOK-2350)
+if platform_family?('debian') && node['nagios']['server']['install_method'] == "source"
+  nagios_service_name = "nagios"
+else
+  nagios_service_name = node['nagios']['server']['service_name']
+end
+
 # configure either Apache2 or NGINX
 web_srv = node['nagios']['server']['web_server'].to_sym
 
@@ -37,49 +44,57 @@ when :apache
   web_group = node["apache"]["group"] || web_user
 else
   Chef::Log.fatal("Unknown web server option provided for Nagios server: " <<
-    "#{node['nagios']['server']['web_server']} provided. Allowed: :nginx or :apache"
-  )
+                  "#{node['nagios']['server']['web_server']} provided. Allowed: :nginx or :apache")
   raise 'Unknown web server option provided for Nagios server'
 end
 
-# install nagios service either from source of package
-include_recipe "nagios::server_#{node['nagios']['server']['install_method']}"
-
-group = "#{node['nagios']['users_databag_group']}"
-sysadmins = search(:users, "groups:#{group}")
+# find nagios web interface users from the users data bag
+group = node['nagios']['users_databag_group']
+begin
+  sysadmins = search(:users, "groups:#{group}")
+rescue Net::HTTPServerException
+  Chef::Log.fatal("Could not find appropriate items in the \"users\" databag.  Check to make sure there is a users databag and if you have set the \"users_databag_group\" that users in that group exist")
+  raise 'Could not find appropriate items in the "users" databag.  Check to make sure there is a users databag and if you have set the "users_databag_group" that users in that group exist'
+end
 
 case node['nagios']['server_auth_method']
 when "openid"
-  if(web_srv == :apache)
+  if web_srv == :apache
     include_recipe "apache2::mod_auth_openid"
   else
     Chef::Log.fatal("OpenID authentication for Nagios is not supported on NGINX")
     Chef::Log.fatal("Set node['nagios']['server_auth_method'] attribute in your role: #{node['nagios']['server_role']}")
     raise
   end
+when "cas"
+  if web_srv == :apache
+    include_recipe "apache2::mod_auth_cas"
+  else
+    Chef::Log.fatal("CAS authentication for Nagios is not supported on NGINX")
+    Chef::Log.fatal("Set node['nagios']['server_auth_method'] attribute in your role: #{node['nagios']['server_role']}")
+    raise
+  end
+when "ldap"
+  if(web_srv == :apache)
+    include_recipe "apache2::mod_authnz_ldap"
+  else
+    Chef::Log.fatal("LDAP authentication for Nagios is not supported on NGINX")
+    Chef::Log.fatal("Set node['nagios']['server_auth_method'] attribute in your role: #{node['nagios']['server_role']}")
+    raise
+  end
 else
+  directory node['nagios']['conf_dir']
   template "#{node['nagios']['conf_dir']}/htpasswd.users" do
     source "htpasswd.users.erb"
     owner node['nagios']['user']
     group web_group
     mode 00640
-    variables(
-      :sysadmins => sysadmins
-    )
+    variables(:sysadmins => sysadmins)
   end
 end
 
-# load Nagios alert contacts from the nagios_contacts data bag
-begin
-  contacts = search(:nagios_contacts, '*:*')
-rescue Net::HTTPServerException
-  Chef::Log.info("Could not search for nagios_contacts data bag items, not adding addition contact groups")
-end
-
-if contacts.nil? || contacts.empty?
-  Chef::Log.info("No contacts returned from data bag search.")
-  contacts = Array.new
-end
+# install nagios service either from source of package
+include_recipe "nagios::server_#{node['nagios']['server']['install_method']}"
 
 # find nodes to monitor.  Search in all environments if multi_environment_monitoring is enabled
 Chef::Log.info("Beginning search for nodes.  This may take some time depending on your node count")
@@ -126,84 +141,45 @@ nodes.each do |n|
   end
 end
 
-# load Nagios services from the nagios_services data bag
-begin
-  services = search(:nagios_services, '*:*')
-rescue Net::HTTPServerException
-  Chef::Log.info("Could not search for nagios_service data bag items, skipping dynamically generated service checks")
-end
-
-if services.nil? || services.empty?
-  Chef::Log.info("No services returned from data bag search.")
-  services = Array.new
-end
-
-# Load Nagios templates from the nagios_templates data bag
-begin
-  templates = search(:nagios_templates, '*:*')
-  rescue Net::HTTPServerException
-  Chef::Log.info("Could not search for nagios_template data bag items, skipping dynamically generated template checks")
-end
-
-if templates.nil? || templates.empty?
-  Chef::Log.info("No templates returned from data bag search.")
-  templates = Array.new
-end
-
-# Load Nagios event handlers from the nagios_eventhandlers data bag
-begin
-  eventhandlers = search(:nagios_eventhandlers, '*:*')
-rescue Net::HTTPServerException
-  Chef::Log.info("Search for nagios_eventhandlers data bag failed, so we'll just move on.")
-end
-
-if eventhandlers.nil? || eventhandlers.empty?
-  Chef::Log.info("No Event Handlers returned from data bag search.")
-  eventhandlers = Array.new
-end
-
-# find all unique hostgroups in the nagios_unmanagedhosts data bag
-begin
-  unmanaged_hosts = search(:nagios_unmanagedhosts, '*:*')
-rescue Net::HTTPServerException
-  Chef::Log.info("Search for nagios_unmanagedhosts data bag failed, so we'll just move on.")
-end
+nagios_bags = NagiosDataBags.new
+services = nagios_bags.get('nagios_services')
+templates = nagios_bags.get('nagios_templates')
+eventhandlers = nagios_bags.get('nagios_eventhandlers')
+unmanaged_hosts = nagios_bags.get('nagios_unmanagedhosts')
+serviceescalations = nagios_bags.get('nagios_serviceescalations')
+contacts = nagios_bags.get('nagios_contacts')
+contactgroups = nagios_bags.get('nagios_contactgroups')
 
 # Add unmanaged host hostgroups to the hostgroups array if they don't already exist
-if unmanaged_hosts.nil? || unmanaged_hosts.empty?
-  Chef::Log.info("No unmanaged hosts returned from data bag search.")
-else
-  unmanaged_hosts.each do |host|
-    host['hostgroups'].each do |hg|
-      if !hostgroups.include?(hg)
-        hostgroups << hg
-      end
+unmanaged_hosts.each do |host|
+  host['hostgroups'].each do |hg|
+    if !hostgroups.include?(hg)
+      hostgroups << hg
     end
   end
 end
 
 # Load search defined Nagios hostgroups from the nagios_hostgroups data bag and find nodes
-begin
-  hostgroup_nodes= Hash.new
-  hostgroup_list = Array.new
+hostgroup_nodes= Hash.new
+hostgroup_list = Array.new
+if nagios_bags.bag_list.include?("nagios_hostgroups")
   search(:nagios_hostgroups, '*:*') do |hg|
     hostgroup_list << hg['hostgroup_name']
     temp_hostgroup_array= Array.new
     if node['nagios']['multi_environment_monitoring']
       search(:node, "#{hg['search_query']}") do |n|
-        temp_hostgroup_array << n[node['nagios']['host_name_attribute']]
+        temp_hostgroup_array << n['hostname']
       end
     else
       search(:node, "#{hg['search_query']} AND chef_environment:#{node.chef_environment}") do |n|
-        temp_hostgroup_array << n[node['nagios']['host_name_attribute']]
+        temp_hostgroup_array << n['hostname']
       end
     end
     hostgroup_nodes[hg['hostgroup_name']] = temp_hostgroup_array.join(",")
   end
-rescue Net::HTTPServerException
-  Chef::Log.info("Search for nagios_hostgroups data bag failed, so we'll just move on.")
 end
 
+# pick up base contacts
 members = Array.new
 sysadmins.each do |s|
   members << s['id']
@@ -258,56 +234,50 @@ end
 %w{ nagios cgi }.each do |conf|
   nagios_conf conf do
     config_subdir false
+    variables(:nagios_service_name => nagios_service_name)
   end
 end
 
 nagios_conf "timeperiods"
 
 nagios_conf "templates" do
-    variables :templates => templates
+  variables(:templates => templates)
 end
 
 nagios_conf "commands" do
-  variables(
-    :services => services,
-    :eventhandlers => eventhandlers
-  )
+  variables(:services => services,
+            :eventhandlers => eventhandlers)
 end
 
 nagios_conf "services" do
-  variables(
-    :service_hosts => service_hosts,
-    :services => services,
-    :hostgroups => hostgroups
-  )
+  variables(:service_hosts => service_hosts,
+            :services => services,
+            :search_hostgroups => hostgroup_list,
+            :hostgroups => hostgroups)
 end
 
 nagios_conf "contacts" do
-  variables( 
-    :admins => sysadmins,
-    :members => members,
-    :contacts => contacts
-  )
+  variables(:admins => sysadmins,
+            :members => members,
+            :contacts => contacts,
+            :contactgroups => contactgroups,
+            :serviceescalations => serviceescalations)
 end
 
 nagios_conf "hostgroups" do
-  variables(
-    :hostgroups => hostgroups,
-    :search_hostgroups => hostgroup_list,
-    :search_nodes => hostgroup_nodes
-  )
+  variables(:hostgroups => hostgroups,
+            :search_hostgroups => hostgroup_list,
+            :search_nodes => hostgroup_nodes)
 end
 
 nagios_conf "hosts" do
-  variables(
-    :nodes => nodes,
-    :unmanaged_hosts => unmanaged_hosts,
-    :hostgroups => hostgroups
-  )
+  variables(:nodes => nodes,
+            :unmanaged_hosts => unmanaged_hosts,
+            :hostgroups => hostgroups)
 end
 
 service "nagios" do
-  service_name node['nagios']['server']['service_name']
+  service_name nagios_service_name
   supports :status => true, :restart => true, :reload => true
   action [ :enable, :start ]
 end
@@ -315,6 +285,6 @@ end
 # Add the NRPE check to monitor the Nagios server
 nagios_nrpecheck "check_nagios" do
   command "#{node['nagios']['plugin_dir']}/check_nagios"
-  parameters "-F #{node["nagios"]["cache_dir"]}/status.dat -e 4 -C /usr/sbin/#{node['nagios']['server']['service_name']}"
+  parameters "-F #{node["nagios"]["cache_dir"]}/status.dat -e 4 -C /usr/sbin/#{nagios_service_name}"
   action :add
 end

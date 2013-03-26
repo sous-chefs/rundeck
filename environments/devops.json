@@ -1,7 +1,15 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {}, 
+    "cookbook_versions": {
+    }, 
     "default_attributes": {
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+        }, 
         "authorization": {
             "ad_auth": {
                 "ad_network": "OSSTAGINGDMZ"
@@ -19,6 +27,9 @@
             }
         }, 
         "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "nagios": {

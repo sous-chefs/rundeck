@@ -25,7 +25,7 @@ ark "maven" do
   url node['maven']['3']['url']
   checksum node['maven']['3']['checksum']
   home_dir node['maven']["m2_home"]
-  version "3.0.3"
+  version "3.0.4"
   append_env_path true
   action :install
 end

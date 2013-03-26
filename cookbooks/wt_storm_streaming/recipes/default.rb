@@ -91,10 +91,22 @@ if ENV["deploy_build"] == "true" then
       command "mv #{install_tmp}/lib/webtrends*.jar #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/"
     end
 
+    execute "mv" do
+      user  "root"
+      group "root"
+      command "mv #{install_tmp}/lib/portfolio*.jar #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/"
+    end
+
     execute "chown" do
       user  "root"
       group "root"
       command "chown storm:storm #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/webtrends*.jar"
+    end
+
+    execute "chown" do
+      user  "root"
+      group "root"
+      command "chown storm:storm #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/portfolio*.jar"
     end
 
     # Remove any old zookeeper lib, below we will replace it.
@@ -133,6 +145,7 @@ if ENV["deploy_build"] == "true" then
     jackson-jaxrs-1.5.5.jar
     jackson-mapper-asl-1.9.3.jar
     jackson-xc-1.5.5.jar
+    jamm-0.2.5.jar
     JavaEWAH-0.5.0.jar
     javax.inject-1.jar
     jdom-1.1.jar
@@ -151,12 +164,14 @@ if ENV["deploy_build"] == "true" then
     stax-api-1.0.1.jar
     scala-library-2.9.2.jar
     streaming-analysis.jar
-    typesafe-config-0.3.0.jar
     UserAgentUtils-1.6.jar
     xmlenc-0.52.jar
     zkclient-0.1.jar
     mobi.mtld.da-1.5.3.jar
     ini4j-0.5.2.jar
+    metrics-annotation-2.2.0.jar
+    metrics-core-2.2.0.jar
+    metrics-guice-2.2.0.jar
     zookeeper-3.3.6.jar
     }.each do |jar|
       execute "mv" do
@@ -258,8 +273,10 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
   mode   00644
   variables(
     # executor counts, ie: executor threads
-    :query_bolt_tasks => node['wt_storm_streaming']['query_bolt_tasks'],
-    :query_bolt_executors => node['wt_storm_streaming']['query_bolt_executors'],
+    :event_stream_bolt_tasks => node['wt_storm_streaming']['event_stream_bolt_tasks'],
+    :event_stream_bolt_executors => node['wt_storm_streaming']['event_stream_bolt_executors'],
+    :session_stream_bolt_tasks => node['wt_storm_streaming']['session_stream_bolt_tasks'],
+    :session_stream_bolt_executors => node['wt_storm_streaming']['session_stream_bolt_executors'],    
     :augment_bolt_tasks => node['wt_storm_streaming']['augment_bolt_tasks'],
     :augment_bolt_executors => node['wt_storm_streaming']['augment_bolt_executors'],
 
@@ -280,7 +297,9 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :audit_zookeeper_pairs => zookeeper_quorum.map { |server| "#{server}:#{zookeeper_clientport}" } * ",",
     :audit_bucket_timespan => node['wt_monitoring']['audit_bucket_timespan'],
     :audit_topic           => node['wt_monitoring']['audit_topic'],
-    :cam_url               => node['wt_cam']['cam_service_url']
+    :cam_url               => node['wt_cam']['cam_service_url'],
+    :data_request_url      => node['wt_storm_streaming']['data_request_url']
+
   )
 end
 
@@ -328,7 +347,7 @@ if node.run_list.include?("role[storm_nimbus]")
   end
 
   execute "reload_streaming_webui" do
-    command "sv reload webui"
+    command "sv reload stormui"
     action :nothing
     subscribes :run, resources(:template => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties"), :immediately
   end

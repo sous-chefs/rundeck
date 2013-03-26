@@ -3,11 +3,23 @@ Description
 
 This Chef cookbook provides recipes for installing Splunk Server, Splunk Forwarders, and a few sample Splunk Apps (DeploymentMonitor, PDF Server, *nix) in Amazon EC2.  It also includes a provider for installing other Splunk Apps.
 
-This is project is hosted on github and contributions are welcome: https://github.com/bestbuycom/splunk_cookbook
-
 Changes
 =======
 
+* v0.0.9 -
+    - Added Distributed Searching.  This requires an Enterprise License with the CanBeRemoteMaster / DistSearch Feature Flags.  See the Distributed Search section for more details.
+* v0.0.8 -
+	- Added scripted authentication logic.  We use an external SSO system for logins.  Splunk's scripted authentication allows us to write custom scripts to interact with that SSO system to facilitate authentication.  See http://docs.splunk.com/Documentation/Splunk/5.0.1/Security/ConfigureSplunkToUsePAMOrRADIUSAuthentication for more information.
+* v0.0.7 -
+	- Broke up the attributes into separate files.  This will be needed as we add a lot of features to this cookbook
+	- Redesigned how splunk starts -- fixed accept-license / answer-yes problems when starting splunk for the first time with version 5.
+	- Added SSL Forwarding as an option.  See attributes/README.md under the forwarder.rb section.
+		- With splunk having a unique secret per install, you may see a couple of splunk restarts while saves the encrypted passwords.  When you deploy a regular password (e.g., splunk), splunk will encrypt that regular password on service start and replace it in the config file.  On the next run, chef will read that encrypted password and save it for future runs, but may restart splunk because checksums will not match.
+		- If you ever completely remove splunk and then install splunk, you will have to destroy two attributes on the nodes because the splunk.secret will be different.  We can solve this in the future releases.  The attributes are:
+			node['splunk']['inputsSSLPass']
+			node['splunk']['outputsSSLPass']
+	- Removed default['splunk']['indexer_name'] in attributes/default.rb. 
+	- Got rid of the annoying output on the multiple "moving inputs file" for the forwarders.  It should now only do it once.
 * v0.0.4 - Added a splunk app: Pulse for AWS Cloudwatch.  This app will pull back metrics from AWS Cloudwatch and provides sample dashboards to display the information.  Read the SETUP.txt located in the root directory of the app file for installation requirements.
 * v0.0.3 - Changing version of Splunk to 4.3
 * v0.0.2 - Revamp
@@ -28,75 +40,12 @@ Requirements
 - The cookbook is currently setup to run being named "splunk".  If you rename the cookbook from the original name of "splunk", be sure to modify the following:
 	* attributes/default.rb: `node['splunk']['cookbook_name']`
 	* recipes/*-app.rb: splunk_app_install -> {NEW_NAME}_app_install (e.g., splunk_app_install)
-- This cookbook has only been tested thoroughly with Ubuntu
+- This cookbook has only been tested thoroughly with RHEL
 
 Attributes
 ==========
 
-See `attributes/default.rb` for default values.
-
-* `node['splunk']['cookbook_name']` - The name of the directory in which the cookbook runs.
-
-* `node['splunk']['indexer_name']` - The name to use for the forwarder outputs.conf defaultGroup. (templates/forwarder/outputs.conf.erb)
-* `node['splunk']['forwarder_home']` - The directory in which to install the Splunk Forwarder
-* `node['splunk']['server_home']` - The directory in which to install the Splunk Server
-* `node['splunk']['db_directory']` - The directory to use for the Splunk Server Database. (templates/server/splunk-launch.conf.erb)
-
-* `node['splunk']['web_server_port']` - The port number to assign the web server (httpport). (templates/server/web.conf.erb)
-* `node['splunk']['browser_timeout']` - The inactivity timeout (ui_inactivity_timeout). (templates/server/web.conf.erb)
-* `node['splunk']['minify_js']` - Indicates whether the static JS files for modules are consolidated and minified. (templates/server/web.conf.erb)
-* `node['splunk']['minify_css']` - Indicates whether the static CSS files for modules are consolidated and minified. (templates/server/web.conf.erb)
-
-* `node['splunk']['use_ssl']` - Toggles between http or https (enableSplunkWebSSL). (templates/server/web.conf.erb)
-* `node['splunk']['ssl_crt']` - The cert file.  (files/default/ssl)
-* `node['splunk']['ssl_key']` - The private key File.  (files/default/ssl)
-
-* `node['splunk']['deploy_dashboards']` - Toggles deploying dashboards or not
-* `node['splunk']['dashboards_to_deploy']` - An array of xml dashboards to copy over. These are the filenames minus the .xml suffix (files/default/dashboards)
-
-* `node['splunk']['static_server_configs']` - An array of static server configs that *are not* specific to an environment (Dev, QA, PL, Prod, etc).  These are the primary names without the .conf.erb suffix. (templates/server)
-* `node['splunk']['dynamic_server_configs']` - An array of dynamic server configs that *are* specific to an environment.  These are the primary names without the .conf.erb suffix.  (templates/server/#{node['splunk']['server_config_folder]})
-
-* `node['splunk']['receiver_port']` - The default port in which to receive data from the forwarders.
-* `node['splunk']['limits_thruput']` - The max amount of bandwidth, in KBps, the forwarders will use when sending data.  (templates/forawrder/limits.conf.erb)
-
-* `node['splunk']['auth']` - The default admin password to use instead of splunks "changeme"
-
-* `node['splunk']['server_role']` - The name of the splunk indexer.  Forwarders will search for this role in order to identify the server in which to send the data.
-
-* `node['splunk']['forwarder_role']` - The name of the splunk forwarder role.  It is best to override this attribute per role.  This is the inputs file that will be moved over on the forwarding server.  (templates/forwarder/#{node['splunk']['forwarder_config_folder']}/#{node['splunk']['forwarder_role']}.inputs.conf.erb)
-* `node['splunk']['forwarder_config_folder']` - The folder which contains the inputs file for the environment.  It is best to override this attribute per chef role. (templates/forwarder/#{node['splunk']['forwarder_config_folder]})
-* `node['splunk']['server_config_folder']` - The folder which contains the environment specific server config files.  It is best to override this attribute per chef role.  (templates/server/#{node['splunk']['server_config_folder']})
-
-* `node['splunk']['server_root']` - The base URL that splunk uses to download release files for Splunk Server
-* `node['splunk']['server_version']` - The specific version of Splunk Server to download
-* `node['splunk']['server_build]` - The specific build number of Splunk Server to download
-
-* `node['splunk']['forwarder_root']` - The base URL that splunk uses to download release files for Splunk Forwarder
-* `node['splunk']['forwarder_version']` - The specific version of Splunk Forwarder to download
-* `node['splunk']['forwarder_build]` - The specific build number of Splunk Forwarder to download
-
-* `node['splunk']['unix_app_file']` - The name of the unix app file.  (files/default/apps)
-* `node['splunk']['unix_app_version']` - The version number associated with this file.
-
-* `node['splunk']['pdf_server_file']` - The name of the pdf server app file.  (files/default/apps)
-* `node['splunk']['pdf_server_version']` - The version number associated with this file.
-
-* `node['splunk']['deployment_mon_file']` - The name of the deployment monitor app file.  (files/default/apps)
-* `node['splunk']['deployment_mon_version']` - The version number associated with this file.
-
-* `node['splunk']['splunk_sos_file]` - The name of the Splunk on Splunk app file.  (files/default/apps)
-* `node['splunk']['splunk_sos_version]` - The version number associated with this file.
-
-* `node['splunk']['sideview_utils_file]` - The name of the sideview utils app file.  (files/default/apps)
-* `node['splunk']['sideview_utils_version']` - The version number associated with this file.
-
-* `node['splunk']['pulse_app_file']` - The name of the Pulse for AWS Cloudwatch app file.  (files/default/apps)
-* `node['splunk']['pulse_app_version']` - The version number associated with this file.
-* `node['splunk']['boto_remote_location]` - The base URL for downloading the Python boto library
-* `node['splunk']['boto_verison]` - The version of boto to download
-* `node['splunk']['dateutil_remote_location]` - The base URL for downloading the Python dateutil library
-* `node['splunk']['dateutil_version]` - The version of python-dateutil to download
+See attributes/README.md for values.
 
 Recipes
 =======
@@ -208,11 +157,32 @@ This will install or upgrade the *nix app:
 		remove_dir_on_upgrade   "true"
 	end
 
+Distributed Search
+==================
+
+** Requires a License with CanBeRemoteMaster / DistSearch Feature Flags.  Trial licenses do not appear CanBeRemoteMaster.
+
+Distributed Search (1-n Search Heads <-> 1-n Search Indexers) setup is not complex, but does require a few chef runs.  We run chef-client as a service every XX minutes to keep the search nodes and indexers up to date.  When we add new indexers, within XX minutes the search peers will be updated on all the search heads.
+
+This implementation will be a 1-n Search Head/Indexer setup.  Future versions will include an implementation to allow n-n with shared bundles.
+
+## Setup:
+
+1. Override node['splunk']['distributed_search'] to true
+2. Override node['splunk']['distributed_search_master'] to the local IP of the master license server.
+3. Set the search head role to the value of node['splunk']['server_role']
+4. Set the search indexer role to the value of node['splunk']['indexer_role']
+5. Run Chef on the Search Head -- This will save the instance's ServerName and trusted.pem contents as an attributeto the chef server.
+6. Run Chef on the Search Indexer -- This will deploy the search heads trusted.pem to the local indexer (node['splunk']['server_home']/etc/auth/distServerKeys/ServerName) and create a distsearch.conf.
+7. Run Chef on the Search Head -- This will modify the distsearch.conf to point to the indexer.
+
+A lot of steps?  Perhaps, but if it's running as a service you can technically do steps 1-4 and let the service runs do 5-7.  It just may take a little longer depending on how often chef runs.
+
 License and Author
 ==================
 
-Author:: Bryan Brandau (<bryan.brandau@bestbuy.com>)
 Author:: Andrew Painter (<andrew.painter@bestbuy.com>)
+Author:: Bryan Brandau (<bryan.brandau@bestbuy.com>)
 Author:: Aaron Peterson (<aaron@opscode.com>)
 
 Copyright 2011-2012, BBY Solutions, Inc.

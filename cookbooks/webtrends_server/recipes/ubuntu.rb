@@ -97,6 +97,9 @@ else
   log "skipping nagios::client"
 end
 
+# Sets up base NRPE plugins
+include_recipe "wt_monitoring::base_nrpe_checks"
+
 # Sets up rundeck private keys
 include_recipe "rundeck"
 
@@ -184,3 +187,19 @@ include_recipe "collectd"
 
 # install collectd plugins for WT base OS monitoring
 include_recipe "wt_monitoring::collectd_base"
+
+# Sets up internal gem repo
+if node['wt_common']['gem_repo']
+  execute "remove rubygems" do
+    command "gem source -r http://rubygems.org/"
+    only_if "gem source | grep http://rubygems.org"
+  end
+  
+  execute "gem_repo_add" do
+    command "gem source -a #{node['wt_common']['gem_repo']}"
+    not_if "gem source | grep #{node['wt_common']['gem_repo']}"
+  end
+end
+
+#Install tmux - a terminal multiplexer
+include_recipe "tmux"

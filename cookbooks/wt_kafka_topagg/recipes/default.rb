@@ -22,6 +22,10 @@ install_dir  = File.join(node['wt_common']['install_dir_linux'], name)
 tarball      = node['wt_kafka_topagg']['download_url'].split("/")[-1]
 download_url = node['wt_kafka_topagg']['download_url']
 
+log "------> download URL ---->   #{download_url}"
+log "------> TARBALL ---->   #{tarball}"
+
+
 java_home    = node['java']['java_home']
 java_opts = node['wt_kafka_topagg']['java_opts']
 

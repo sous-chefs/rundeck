@@ -2,7 +2,7 @@
 # Cookbook Name:: wt_static_tag_host
 # Recipe:: default
 #
-# Copyright 2012, Webtrends
+# Copyright 2012, Webtrends Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,7 +23,13 @@ apache_site "000-default" do
 end
 
 if ENV["deploy_build"] == "true" then
+
   log "The deploy_build value is true so we will deploy the site"
+
+  directory '/var/www/js' do
+    recursive true
+    action :create
+  end
 
 
   # create the Gomez monitor file

@@ -43,7 +43,11 @@ Simply include the recipe where you want Apache Maven installed.
 
 The maven lwrp has two actions, `:install` and `:put`. They are
 essentially the same accept that the install action will name the the
+<<<<<<< HEAD
+downloaded file `artifact_id-version.packaging`. For example, the
+=======
 downloaded file `actifact_id-version.packaging`. For example, the
+>>>>>>> chef-vendor-nginx
 mysql jar would be named mysql-5.1.19.jar.
 
 Use the put action when you want to explicitly control the name of the
@@ -64,6 +68,10 @@ maven
 * version: version of the artifact
 * dest: the destination folder for the jar and its dependencies
 * packaging: defaults to 'jar'
+<<<<<<< HEAD
+* classifier: distinguishes artifacts that were built from the same POM but differ in context
+=======
+>>>>>>> chef-vendor-nginx
 * repositories: array of maven repositories to use, defaults to
  ["http://repo1.maven.apache.org/maven2"]
 * owner: the owner of the resulting file, default is root
@@ -88,14 +96,33 @@ maven
     end
     # The artifact will be downloaded to /usr/local/tomcat/webapps/solr.war
 
+<<<<<<< HEAD
+    maven "custom-application" do
+      group_id "com.company.name"
+      version "2.0.0"
+      dest "/usr/local/tomcat/lib"
+      classifier "client"
+      action :put
+    end
+    # The artifact will be downloaded to /usr/local/tomcat/lib/custom-application-2.0.0-client.jar
+
+
+=======
+>>>>>>> chef-vendor-nginx
 
 License and Author
 ==================
 
 Author:: Seth Chisamore (<schisamo@opscode.com>)
 Author:: Bryan W. Berry (<bryan.berry@gmail.com>)
+<<<<<<< HEAD
+Author:: Leif Madsen (<lmadsen@thinkingphones.com>)
+
+Copyright 2010-2013, Opscode, Inc.
+=======
 
 Copyright 2010-2012, Opscode, Inc.
+>>>>>>> chef-vendor-nginx
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

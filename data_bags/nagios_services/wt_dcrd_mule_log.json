@@ -1,0 +1,8 @@
+{
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_log -a '-F /srv/www/wt-mule/production.log -O /tmp/NRPE_check_log_wt-mule-production.log -q 'ERROR''",
+    "hostgroup_name": "wt_dcrd",
+    "id": "wt_dcrd_mule_log",
+    "max_check_attempts" : 1,
+    "notification_options": "w,u,c",
+    "contact_groups": "email_only"
+}
