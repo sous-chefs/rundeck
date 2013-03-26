@@ -2,5 +2,5 @@
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_streaminganalysis_monitor_storm_health",
     "hostgroup_name": "wt_streaming_auditor",
     "id": "wt_streaminganalysis_monitor_storm_health",
-    "contact_groups": "email_only-streaming"
+    "contact_groups": "email_and_page-streaming"
 }
