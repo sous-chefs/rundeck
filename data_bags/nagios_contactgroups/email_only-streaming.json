@@ -1,0 +1,6 @@
+    {
+      "id": "email_only-streaming",
+      "alias": "Email_only-streaming",
+      "members": "hostedops,streaming_dl"
+    }
+

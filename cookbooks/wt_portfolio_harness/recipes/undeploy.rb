@@ -7,16 +7,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
-log_dir      = "#{node['wt_common']['log_dir_linux']}/edgeservice"
-install_dir  = "#{node['wt_common']['install_dir_linux']}/edgeservice"
+log_dir      = "#{node['wt_common']['log_dir_linux']}/harness"
+install_dir  = "#{node['wt_common']['install_dir_linux']}/harness"
 
 
-runit_service "edgeservice" do
+runit_service "harness" do
   action :disable
 end 
 
 # try to stop the service, but allow a failure without printing the error
-service "edgeservice" do
+service "harness" do
   action [:stop, :disable]
   ignore_failure true
 end
