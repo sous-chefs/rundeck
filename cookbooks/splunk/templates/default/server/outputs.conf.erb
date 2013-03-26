@@ -1,0 +1,18 @@
+[tcpout]
+defaultGroup = splunkssl
+compressed = true
+disabled = false
+
+[tcpout:splunkssl]
+server=<% @search_indexers.sort.each_with_index do |server, index| -%><%= server['ipaddress'] %>:<%= node['splunk']['receiver_port']%><% if @search_indexers.size-1 > index -%>,<% end -%><% end -%>
+
+<% @search_indexers.sort.each do |server| -%>
+
+[tcpout-server://<%= server['ipaddress']%>:<%= node['splunk']['receiver_port']%>]
+<% if node['splunk']['ssl_forwarding'] == true -%>
+sslRootCAPath = <%= node['splunk']['server_home']%>/etc/auth/forwarders/<%= node['splunk']['ssl_forwarding_cacert'] %>
+sslCertPath = <%= node['splunk']['server_home']%>/etc/auth/forwarders/<%= node['splunk']['ssl_forwarding_servercert'] %>
+sslPassword = <% if node['splunk']['outputsSSLPass'] != nil -%><%= node['splunk']['outputsSSLPass']%><% else -%><%= node['splunk']['ssl_forwarding_pass'] %><% end -%>
+sslVerifyServerCert = false
+<% end -%>
+<% end -%>

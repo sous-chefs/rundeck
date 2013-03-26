@@ -1,3 +1,6 @@
+## 1.1.6
+* Updated forms auth tag in web config template
+
 ## 1.1.5
 * Add web.config setting for email.imagepath
 

@@ -43,7 +43,7 @@ end
   runit_service "supervisor" do
     service_name "supervisor"
     options({
-      :install_dir => install_dir,
+      :install_dir => "#{node['storm']['install_dir']}/current",
       :log_dir => node['storm']['log_dir'],
       :user => "storm"
     })
@@ -52,7 +52,7 @@ end
 execute "reload_supervisor" do
   command "sv reload supervisor"
   action :nothing
-  subscribes :run, resources(:template => "#{install_dir}/bin/supervisor-control"), :immediately
+  subscribes :run, resources(:template => "#{install_dir}/bin/supervisor-control")
 end
 
 service "supervisor_start" do

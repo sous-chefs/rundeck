@@ -16,7 +16,7 @@
         "wt_kafka_topagg": "= 1.0.1", 
         "wt_netacuity": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.10", 
-        "wt_publishver": "= 0.2.0", 
+        "wt_publishver": "= 0.2.2", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.2", 
         "wt_storm_streaming": "= 2.3.2", 
@@ -184,7 +184,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "common_resource_environment": "support-staging", 
+            "common_resource_environment": "LAB-COMMON-LAS", 
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
@@ -202,7 +202,7 @@
             "wrsread_group": "STAGINGDMZ\\B.WRS.Read"
         }, 
         "wt_heatmaps": {
-            "alt_chef_environment": "support-staging", 
+            "alt_chef_environment": "LAB-COMMON-LAS", 
             "config_distrib": "acd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
@@ -225,7 +225,7 @@
         }, 
         "wt_netacuity": {
             "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz", 
-            "geo_url": "ngeo.staging.dmz", 
+            "geo_url": "sgeo.staging.dmz", 
             "version": "502"
         }, 
         "wt_portfolio_admin": {
@@ -244,7 +244,7 @@
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
-            "environment": "support-staging", 
+            "environment": "LAB-COMMON-LAS", 
             "pod": "N"
         }, 
         "wt_rta": {}, 
@@ -327,6 +327,9 @@
     "name": "N", 
     "override_attributes": {
         "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "ntp": {

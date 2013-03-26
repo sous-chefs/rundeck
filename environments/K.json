@@ -79,12 +79,11 @@
             }, 
             "server_role": "nagios_xi"
         }, 
-        "ohai":
-        {
-            "disabled_plugins":[
-              "rackspace"
-              ]
-        },
+        "ohai": {
+            "disabled_plugins": [
+                "rackspace"
+            ]
+        }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
         }, 
@@ -110,6 +109,7 @@
         }, 
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "msi": "http://repo.staging.dmz/repo/windows/webpi/WebPlatformInstaller_amd64_en-US.msi", 
             "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
             "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
@@ -149,8 +149,8 @@
             "custom_errors": "Off", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/.lastSuccessful/AnalyticsUI.zip", 
             "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
-            "fb_app_clientid": "119772538146833", 
-            "fb_app_clientsecret": "3622dee4341c3ab15076ce92caa0a71c", 
+            "fb_app_clientid": "103645866351316", 
+            "fb_app_clientsecret": "f856805656c4b27bef04dc49641dbd58", 
             "fb_data_center_id": "Lab", 
             "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
             "hmap_url": "", 
@@ -170,7 +170,7 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "common_resource_environment": "support-staging", 
+            "common_resource_environment": "LAB-COMMON-LAS", 
             "config_dir_linux": "/etc/webtrends/", 
             "config_share": "\\\\pdxshare02.webtrends.corp\\Pods\\kstore\\config", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
@@ -212,7 +212,7 @@
             "website_port": "80"
         }, 
         "wt_management_console": {
-            "mc_service_url": "https://kmc.englab.webtrends.corp"
+            "service_url": "https://kmc.englab.webtrends.corp"
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
@@ -267,7 +267,7 @@
         }, 
         "wt_xd": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt134/36325:id/artifacts.zip", 
-            "environment": "support-staging"
+            "environment": "LAB-COMMON-LAS"
         }, 
         "zookeeper": {
             "client_port": 2181, 
@@ -286,9 +286,12 @@
     "json_class": "Chef::Environment", 
     "name": "K", 
     "override_attributes": {
-        "chef_client":{
+        "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
-        },
+        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

@@ -88,6 +88,9 @@ else
   log "skipping nagios::client because package install was not set in the environment"
 end
 
+# Sets up base NRPE plugins
+include_recipe "wt_monitoring::base_nrpe_checks"
+
 # Sets up rundeck private keys
 include_recipe "rundeck"
 
@@ -113,7 +116,9 @@ end
 
 #fprintd crashes every time someone tries to sudo.  Uninstall it
 %w{ fprintd libfprint }.each do |pkg|
-  package pkg
+  package pkg do
+    action :remove
+  end
 end
 
 # Used for password string generation
@@ -182,22 +187,43 @@ end
 #Now that the local user is created attach the system to AD
 include_recipe "ad-auth"
 
-#Allow for hardware monitoring (CentOS in prod is always on hardware systems)
-include_recipe "snmp"
+unless node.run_list.include?("role[openstack_instance]")
+  #Allow for hardware monitoring (CentOS in prod is always on hardware systems)
+  include_recipe "snmp"
 
-#HP Systems only: Install HP System Management Homepage along with other HP tools.
-include_recipe "hp-tools"
+  #HP Systems only: Install HP System Management Homepage along with other HP tools.
+  include_recipe "hp-tools"
 
-#Dell Systems only: Install Dell System E-Support Tool and Dell RAID tools
-include_recipe "delltools::default"
-include_recipe "delltools::dset"
-include_recipe "delltools::raid"
+  #Dell Systems only: Install Dell System E-Support Tool and Dell RAID tools
+  include_recipe "delltools::default"
+  include_recipe "delltools::dset"
+  include_recipe "delltools::raid"
 
-#VMware Systems only: Install VMware tools
-include_recipe "vmware-tools"
+  #VMware Systems only: Install VMware tools
+  include_recipe "vmware-tools"
+end
 
 #Install collectd - system statistics collection daemon
 include_recipe "collectd"
 
 #Install collectd plugins for WT base OS monitoring
 include_recipe "wt_monitoring::collectd_base"
+
+#Sets up internal gem repo
+if node['wt_common']['gem_repo']
+  execute "remove rubygems" do
+    command "gem source -r http://rubygems.org/"
+    only_if "gem source | grep http://rubygems.org"
+  end
+  
+  execute "gem_repo_add" do
+    command "gem source -a #{node['wt_common']['gem_repo']}"
+    not_if "gem source | grep #{node['wt_common']['gem_repo']}"
+  end
+end
+
+#Installs gem for reporting to chef jabber server
+chef_gem "chef-jabber-snitch"
+
+#Install tmux - a terminal multiplexer
+include_recipe "tmux"

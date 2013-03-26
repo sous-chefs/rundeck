@@ -1,0 +1,20 @@
+{
+  "name": "wt_portfolio_harness",
+  "default_attributes": {
+  },
+  "override_attributes": {
+      "java" : {
+        "install_flavor": "oracle",
+        "jdk_version": "7"
+      }
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[java]",
+    "recipe[wt_portfolio_harness]"
+  ],
+  "description": "Webtrends Portfolio Harness",
+  "chef_type": "role"
+}

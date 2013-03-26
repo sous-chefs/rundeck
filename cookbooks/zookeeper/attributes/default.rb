@@ -9,7 +9,7 @@
 default[:zookeeper][:cluster_name] = 'default'
 
 default[:zookeeper][:default][:version] = '3.4.5'
-default[:zookeeper][:default][:download_url] = 'http://mirror.uoregon.edu/apache/zookeeper/zookeeper-3.4.5/zookeeper-3.4.5.tar.gz'
+default[:zookeeper][:default][:download_url] = 'http://repo.staging.dmz/repo/linux/zookeeper/zookeeper-3.4.5.tar.gz'
 
 default[:zookeeper][:default][:install_dir] = '/opt/zookeeper'
 default[:zookeeper][:default][:config_dir] = '/opt/zookeeper/current/conf'

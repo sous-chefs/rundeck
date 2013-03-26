@@ -1,0 +1,7 @@
+cat > /etc/yum.repos.d/<%= @name %>.repo << EOF
+[<%= @name %>]
+name=<%= @description %>
+baseurl=<%= @baseurl %>
+gpgcheck=0
+enabled=1
+EOF

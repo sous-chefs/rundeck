@@ -1,3 +1,6 @@
+## 0.0.5
+* create gomez.html parent directory
+
 ## 0.0.4
 * Removed the un-deploy code from this cookbook since it only sets up the site and doesn actually deploy bits.
 * Cleaned up some code

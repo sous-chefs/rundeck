@@ -1,0 +1,16 @@
+portfolio:
+  application_key: actioncenter
+  help_url: '<%= @help_url %>'
+auth:
+  endpoint: '<%= @auth_url %>'
+  client_id: <%= @client_id %>
+  client_secret: <%= @client_secret %>
+  oauth2:
+    scope: session
+    <% if @proxy_url %>
+    connection_opts:
+      proxy: '<%= @http_proxy.gsub(%r{/$},'') %>'
+    <% end %>
+cam:
+  endpoint: '<%= @cam_url %>'
+

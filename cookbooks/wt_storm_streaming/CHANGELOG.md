@@ -1,3 +1,24 @@
+##2.4.14
+* Changed bolt names and added configuration
+
+##2.4.13
+* Added yammer metrics jar files
+
+##2.4.12
+* Added portfolio and jamm jar files
+
+## 2.4.11
+* Added data_request_url
+
+## 2.4.10
+* Removed session history jars in cookbook.
+
+## 2.4.9
+* Fixed service name
+
+## 2.4.8
+* Updated ZK timeout/retry settings in storm.yaml
+
 ## 2.4.7
 * Added supported for restarting nimbus/webui post deploy
 

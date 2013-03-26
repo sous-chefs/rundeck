@@ -13,5 +13,10 @@ default['wt_stream_processor']['download_url']   = ""
 default['wt_stream_processor']['port']           = 8080
 default['wt_stream_processor']['java_opts']      = "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true"
 default['wt_stream_processor']['jmx_port']       = 9999
+default['wt_streamingapi']['graphite_enabled'] = "true"
+default['wt_streamingapi']['graphite_interval'] = 5
+default['wt_streamingapi']['graphite_vmmetrics'] = "true"
+default['wt_streamingapi']['graphite_regex'] = ""
 default['wt_stream_processor']['log_dir']        = "/var/log/webtrends/streamprocessor"
-default['wt_stream_processor']['router_uri']     = "tcp://localhost:5762"
+default['wt_stream_processor']['message_port']   = 2552
+default['wt_stream_processor']['conf_url']       = "conf/application.conf"

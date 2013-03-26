@@ -10,13 +10,13 @@
 
 if ENV["deploy_build"] == "true" then
   include_recipe "ms_dotnet4::regiis"
-  include_recipe "wt_streaming_viz::uninstall"
 else
     log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
 #Properties
 install_dir = "#{node['wt_common']['install_dir_windows']}\\Webtrends.Streaming.Viz"
+deploy_dir= "#{install_dir}_#{Time.now.year}#{Time.now.month}#{Time.now.day}#{Time.now.hour}#{Time.now.min}#{Time.now.sec}"
 install_logdir = node['wt_common']['install_log_dir_windows']
 log_dir = "#{node['wt_common']['install_dir_windows']}\\logs"
 app_pool = node['wt_streaming_viz']['app_pool']
@@ -53,6 +53,10 @@ iis_site 'StreamingViz' do
 	retries 2
 end
 
+iis_config auth_cmd do
+	action :config
+end
+
 wt_base_firewall 'StreamingViz' do
 	protocol "TCP"
 	port http_port
@@ -79,12 +83,14 @@ wt_base_icacls log_dir do
 end
 
 if ENV["deploy_build"] == "true" then
-  windows_zipfile install_dir do
+  windows_zipfile deploy_dir do
 		source node['wt_streaming_viz']['download_url']
 		action :unzip
   end
-  iis_config auth_cmd do
-  	action :config
+  
+  execute "mklink" do
+    command "rmdir #{install_dir}&&mklink /D #{install_dir} #{deploy_dir}"
+    action :run
   end
 end
 
@@ -122,7 +128,8 @@ template "#{install_dir}\\web.config" do
         # oauth2 config
 		:auth_url => "#{auth_base}/#{auth_version}",
 		:client_id => user_data['wt_streaming_viz']['client_id'],
-		:client_secret => user_data['wt_streaming_viz']['client_secret']
+		:client_secret => user_data['wt_streaming_viz']['client_secret'],
+		:streams_url => node['wt_streaming_viz']['streams_ui_url']
 	)
 end
 

@@ -37,6 +37,7 @@ end
 
 log_dir     = File.join(node['wt_common']['log_dir_linux'], "edgeservice")
 install_dir = File.join(node['wt_common']['install_dir_linux'], "edgeservice")
+conf_url = File.join(install_dir, node['wt_portfolio_edgeservice']['conf_url'])
 tarball      = node['wt_portfolio_edgeservice']['download_url'].split("/")[-1]
 download_url = node['wt_portfolio_edgeservice']['download_url']
 java_home   = node['java']['java_home']
@@ -89,7 +90,7 @@ directory "#{install_dir}/modules" do
   action :create
 end
 
-def processTemplates (install_dir, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
+def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
   log "Updating the template files"
 
     auth_url = node['wt_sauth']['auth_service_url']
@@ -165,13 +166,14 @@ if ENV["deploy_build"] == "true" then
     variables({
       :log_dir => log_dir,
       :install_dir => install_dir,
+      :conf_url => conf_url,
       :java_home => java_home,
       :java_jmx_port => node['wt_portfolio_edgeservice']['jmx_port'],
       :java_opts => java_opts
     })
   end
 
-  processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
+  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
 
   # delete the install tar ball
   execute "delete_install_source" do
@@ -192,7 +194,7 @@ if ENV["deploy_build"] == "true" then
   end
 
 else
-  processTemplates(install_dir, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
+  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
 end
 
 if node.attribute?("nagios")

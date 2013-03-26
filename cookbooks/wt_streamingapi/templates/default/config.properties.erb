@@ -1,3 +1,12 @@
+# This is the current schema version
+streaming.schema.version=2.1
+# This is the current api version
+streaming.api.version=2.1
+# This is the supported schema versions
+streaming.supported.schema.versions=2(\.([01]))?
+# This is the supported api versions
+streaming.supported.api.versions=2(\.([01]))?
+
 # This is the base url for the AUTH service
 webtrends.authentication.baseUrl = <%=@auth_url%>/<%=@auth_version%>
 # This is the url to the REST service for getting a token's detailed information
@@ -11,6 +20,10 @@ webtrends.cam.provisioningDetail=%%baseUrl%%/account/%%accountId%%/product/%%pro
 webtrends.cam.streamType=%%baseUrl%%/product/sapi/streamtype
 # This is the url to the REST service for getting the blacklist
 webtrends.cam.blacklist=%%baseUrl%%/product/sapi/blacklist
+
+# urls for wapi calls to get session details
+streaming.wapi.baseUrl = <%= node[:wt_portfolio_edgeservice][:edgeserviceurl] %>
+streaming.wapi.sessionDetailsUrl = %%baseUrl%%/streaming/v1/account/%%accountId%%/session/visitor/%%visitorId%%
 
 usageConnString=jdbc:sqlserver://<%= @usagedbserver %>:1433;databaseName=<%= @usagedbname %>;user=<%= @usagedbuser %>;password=<%= @usagedbpwd %>;
 

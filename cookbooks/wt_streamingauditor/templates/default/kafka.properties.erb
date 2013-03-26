@@ -6,8 +6,13 @@ serializer.class=kafka.serializer.StringEncoder
 # server. e.g. "127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002"
 zk.connect=<%= @zookeeper_pairs.join(",") %>
 
+
 # timeout in ms for connecting to zookeeper
-zk.connectiontimeout.ms=1000000
+zk.connectiontimeout.ms=30000
+
+# zookeeper session timeout; default is 6000
+zk.sessiontimeout.ms=30000
+
 
 #consumer group id
 groupid=auditor-group
