@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 include_recipe "runit"
+include_recipe "apache2::default"
 
 rel_version = "0.1.0"
 user_data = data_bag_item('authorization', node.chef_environment)
@@ -21,7 +22,6 @@ gem_package "bundler" do
   gem_binary '/usr/bin/gem'
   version '1.2.2'
 end
-
 
 directory log_dir do
   owner ui_user
@@ -50,8 +50,9 @@ artifact_deploy "actioncenter_ui" do
 
   after_extract Proc.new {
     bundle_without = node[:wt_actioncenter_ui][:bundle_without].join(' ')
+    log "Bundle version #{`bundle --version`}"
     execute "bundle install" do
-      command "/usr/bin/bundle install --local --path=vendor/bundle --without #{bundle_without} --binstubs --deployment"
+      command "bundle install --local --path=vendor/bundle --without #{bundle_without} --binstubs --deployment"
       cwd release_path
       environment({'RAILS_ENV' => 'production'})
       user ui_user
@@ -65,6 +66,7 @@ artifact_deploy "actioncenter_ui" do
     template "#{release_path}/config/settings/production.yml" do
       source "production.yml.erb"
       variables(
+        :allow_http => node[:wt_actioncenter_ui][:allow_http],
         :help_url => node[:wt_actioncenter_ui][:help_url],
         # Auth
         :auth_url => "#{auth_base}/#{auth_version}",
@@ -78,7 +80,7 @@ artifact_deploy "actioncenter_ui" do
     unicorn_config "#{release_path}/config/unicorn.rb" do
       owner ui_user
       group ui_group
-      listen({ node[:wt_actioncenter_ui][:port] => node[:wt_actioncenter_ui][:unicorn][:options] })
+      listen({ node[:wt_actioncenter_ui][:unicorn][:port] => node[:wt_actioncenter_ui][:unicorn][:options] })
       # Current release path?
       working_directory File.join(install_dir, 'current')
       worker_timeout node[:wt_actioncenter_ui][:unicorn][:worker_timeout]
@@ -110,4 +112,12 @@ artifact_deploy "actioncenter_ui" do
   # since version and URL are not guaranteed to change
   force ENV["deploy_build"] == "true"
   action :deploy
+end
+
+web_app "actioncenter-ui" do
+  template "apache.conf.erb"
+  server_name node['hostname']
+  server_aliases [node['fqdn']]
+  docroot File.join(install_dir, 'current', 'public')
+  unicorn_port node[:wt_actioncenter_ui][:unicorn][:port]
 end
