@@ -1,5 +1,8 @@
+<%- if @allow_http %>
+allow_http: true
+<% end %>
 portfolio:
-  application_key: actioncenter
+  application_key: streams
   help_url: '<%= @help_url %>'
 auth:
   endpoint: '<%= @auth_url %>'
@@ -7,10 +10,10 @@ auth:
   client_secret: <%= @client_secret %>
   oauth2:
     scope: session
-    <% if @proxy_url %>
+    <%- if @http_proxy %>
     connection_opts:
       proxy: '<%= @http_proxy.gsub(%r{/$},'') %>'
-    <% end %>
+    <%- end %>
 cam:
   endpoint: '<%= @cam_url %>'
 
