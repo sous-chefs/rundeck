@@ -36,7 +36,7 @@ default
 -------
 
 This recipe requires that the attribute be set
-node['repo']['corp']['url']. The relevant tarball must located at the
+node['esx']['repo']. The relevant tarball must located at the
 base of that path, for example:
 
 http://repo.example.com/VMwareTools-4.0.0-208167.tar.gz

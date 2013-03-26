@@ -1,3 +1,13 @@
+## 1.1.0
+* Added runit include
+
+## 1.0.34
+* Used joshes correct changes
+
+## 1.0.33
+* Changed template to be current
+* Changed the service reload to not be immediate
+
 ## 1.0.31
 * Added support for new runit version.
 

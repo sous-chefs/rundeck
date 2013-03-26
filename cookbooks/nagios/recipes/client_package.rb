@@ -18,14 +18,15 @@
 # limitations under the License.
 #
 
-pkgs = value_for_platform_family(
-    ["rhel","fedora"] => %w{ nrpe nagios-plugins nagios-plugins-disk nagios-plugins-swap nagios-plugins-ssh nagios-plugins-snmp nagios-plugins-smtp nagios-plugins-tcp nagios-plugins-time nagios-plugins-ups nagios-plugins-users nagios-plugins-wave nagios-plugins-sensors nagios-plugins-nagios nagios-plugins-ntp nagios-plugins-ping nagios-plugins-load nagios-plugins-log nagios-plugins-http nagios-plugins-breeze nagios-plugins-by_ssh nagios-plugins-game nagios-plugins-perl nagios-plugins-flexlm nagios-plugins-fping nagios-plugins-hpjd nagios-plugins-icmp nagios-plugins-ide_smart nagios-plugins-ifoperstatus nagios-plugins-ifstatus nagios-plugins-real nagios-plugins-rpc nagios-plugins-cluster nagios-plugins-dig nagios-plugins-dns nagios-plugins-ldap nagios-plugins-ircd nagios-plugins-file_age nagios-plugins-dummy nagios-plugins-mrtg nagios-plugins-mailq nagios-plugins-mrtgtraf nagios-plugins-mysql nagios-plugins-oracle nagios-plugins-pgsql nagios-plugins-procs nagios-plugins-nwstat nagios-plugins-nt nagios-plugins-radius nagios-plugins-overcr },
-    "debian" => %w{ nagios-nrpe-server nagios-plugins nagios-plugins-basic nagios-plugins-standard },
-    "default" => %w{ nagios-nrpe-server nagios-plugins nagios-plugins-basic nagios-plugins-standard }
-  )
-
-pkgs.each do |pkg|
-  package pkg do
-    action :install
+# nrpe packages are available in EPEL on rhel / fedora platforms
+# fedora 17 and later don't require epel
+if platform_family?("rhel","fedora")
+  unless platform?("fedora") && node['platform_version'] < 17
+    include_recipe "yum::epel"
   end
+end
+
+# install the nrpe packages specified in the ['nrpe']['packages'] attribute
+node['nagios']['nrpe']['packages'].each do |pkg|
+  package pkg
 end

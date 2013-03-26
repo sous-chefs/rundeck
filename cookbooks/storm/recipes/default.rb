@@ -17,6 +17,8 @@
 # limitations under the License.
 
 include_recipe "java"
+include_recipe "runit"
+
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploy first"

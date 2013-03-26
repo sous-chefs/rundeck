@@ -76,6 +76,19 @@ template "/var/lib/cobbler/snippets/centos_chef" do
   group "root"
 end
 
+# template centos_yum_repo
+template '/var/lib/cobbler/snippets/centos_yum_repo' do
+  source 'centos_yum_repo.erb'
+  mode 00644
+  owner 'root'
+  group 'root'
+  variables(
+    :name        => node['cobbler']['yum']['name'],
+    :description => node['cobbler']['yum']['description'],
+    :baseurl     => node['cobbler']['yum']['baseurl']
+  )
+end
+
 # fetch distros and profiles
 %w{ config/distros.d config/profiles.d }.each do |dir|
   remote_directory "/var/lib/cobbler/#{dir}" do
@@ -83,6 +96,19 @@ end
     files_owner "root"
     files_group "root"
     notifies :restart, "service[cobbler]"
+  end
+end
+
+# template centos profiles
+%w{ centos-6.2-x86_64 centos-6.4-x86_64 }.each do |profile|
+  template "/var/lib/cobbler/config/profiles.d/#{profile}.json" do
+    source "#{profile}.json.erb"
+    mode 00644
+    owner 'root'
+    group 'root'
+    variables(
+      :tree => node['cobbler']['ks_meta']["#{profile}"]['tree']
+    )
   end
 end
 
@@ -100,32 +126,30 @@ file "/var/lib/tftpboot/pxelinux.0" do
   content IO.read("/usr/lib/syslinux/pxelinux.0") rescue nil
 end
 
-# load the auth data bags (supports both On Demand and Optimize)
-begin
-  auth_dbag = data_bag_item('authorization', node['authorization']['ad_likewise']['ad_network'])
-rescue
-  auth_dbag = data_bag_item('authorization', node['authorization']['ad_auth']['ad_network'])
+# make validation.pem available
+link "/var/www/validation.pem" do
+  to Chef::Config[:validation_key]
 end
-
-# make validation.pem keys available for each domain
-auth_dbag['chef_validation_keys'].each do |env|
-  file "/var/www/#{env['domain']}.pem" do
-    action :create
-    owner "root"
-    group "root"
-    mode 00644
-    content env['key']
-  end
+file Chef::Config[:validation_key] do
+	mode 00644
 end
 
 # firstboot script
-%w{ firstboot.sh firstbootrc.sh }.each do |file|
-  cookbook_file "/var/www/#{file}" do
-    source file
-    owner "root"
-    group "root"
-    mode 00755
-  end
+cookbook_file '/var/www/firstbootrc.sh' do
+  source 'firstbootrc.sh'
+  owner 'root'
+  group 'root'
+  mode 00755
+end
+
+template '/var/www/firstboot.sh' do
+  source 'firstboot.sh.erb'
+  mode 00755
+  owner 'root'
+  group 'root'
+  variables(
+    :chef_versions => node['cobbler']['chef_version_ubuntu']
+  )
 end
 
 execute "cobbler sync" do

@@ -23,16 +23,26 @@ include_recipe "windows"
 #msi bug workaround
 msi_file = ::File.join( Chef::Config[:file_cache_path], "wpi.msi" )
 
+# Do this stuff at compile time so we can build the path and use the exe on this run for the LWRP
 remote_file "msi" do
   path msi_file
   source node['webpi']['msi']
-  action :create
-end
+  action :nothing
+end.run_action(:create)
 
 windows_package "Web Platform Installer" do
   source msi_file
-  action :install
-end
+  action :nothing
+end.run_action(:install)
 
 # MSI manage PATH
-node.default['webpi']['bin'] = "WebpiCmd.exe"
+if system("where WebpiCmd.exe 2>&1 > NUL")
+  node.default['webpi']['bin'] = "WebpiCmd.exe"
+elsif ::File.exists? "#{ENV['ProgramW6432']}/Microsoft/Web Platform Installer/WebpiCmd.exe"
+  node.default['webpi']['bin'] = "#{ENV['ProgramW6432']}/Microsoft/Web Platform Installer/WebpiCmd.exe"
+elsif ::File.exists? "#{ENV['ProgramFiles']}/Microsoft/Web Platform Installer/WebpiCmd.exe"
+  node.default['webpi']['bin'] = "#{ENV['ProgramFiles']}/Microsoft/Web Platform Installer/WebpiCmd.exe"
+else
+  Chef::Log.error "Unable to find Webpi executable"
+  raise "WebpiCmd.exe can't be found"
+end

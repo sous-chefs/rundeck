@@ -1,3 +1,33 @@
+## 1.9.8
+* Removed backslash when removing rubygems on windows
+* Initial addition of platform based install directory attributes
+
+* Added
+## 1.9.7
+* Removed hard coded install for jabber gem
+
+## 1.9.6
+* Added wt_monitoring::base_nrpe_checks to both ubuntu and centos recipes
+
+## 1.9.5
+* Removed force install of jabber-snitch entirely. It will now be handled via environment settings
+
+## 1.9.4
+* Changing jabber-snitch to be a gem package vs chef gem to ensure repo source is correct
+
+## 1.9.3
+* Added tmux cookbook so it's auto installed on all boxes
+
+## 1.9.2
+* Updated internal gem source handling for all platforms.
+* Added chef jabber gem to windows/centos
+
+## 1.9.1
+* Added gem source add to ubuntu boxes
+
+## 1.9.0
+* Initial support for adding a chef jabber handler on ubuntu
+
 ## 1.8.13
 *  Changed rubyzip to zip
 

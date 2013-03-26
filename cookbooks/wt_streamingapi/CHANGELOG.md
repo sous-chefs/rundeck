@@ -1,3 +1,9 @@
+## 1.2.8
+* Added api and schema version info
+
+## 1.2.7
+* Added wapi url to config file template
+
 ## 1.2.6
 * Fixed runit configuration to support new version of runit
 

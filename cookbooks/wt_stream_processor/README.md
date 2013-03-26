@@ -11,5 +11,6 @@ Installs Webtrends Stream Processor
 * java_home: The location of the JRE on the system
 * java_opts - Options to start java (e.g. "-Xms2048m -Djava.net.preferIPv4Stack=true")
 * download_url: The fullpath, including the tarball, to the system build
+* message_port: The port the processor is listening for messages on
 
 = USAGE:

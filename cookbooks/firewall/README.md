@@ -4,8 +4,8 @@ Description
 Provides a set of primitives for managing firewalls and associated rules.
 
 PLEASE NOTE - The resource/providers in this cookbook are under heavy development.
-An attempt is being made to keep the resource simple/stupid by starting with less 
-sophisticated firewall implementations first and refactor/vet the resource definition 
+An attempt is being made to keep the resource simple/stupid by starting with less
+sophisticated firewall implementations first and refactor/vet the resource definition
 with each successive provider.
 
 Requirements
@@ -20,6 +20,7 @@ Tested on:
 
 * Ubuntu 10.04
 * Ubuntu 11.04
+* Ubuntu 11.10
 
 Resources/Providers
 ===================
@@ -29,7 +30,7 @@ Resources/Providers
 
 ### Actions
 
-- :enable: enable the firewall.  this will make any rules that have been defined 'active'.
+- :enable: *Default action* enable the firewall.  this will make any rules that have been defined 'active'.
 - :disable: disable the firewall. drop any rules and put the node in an unprotected state.
 
 ### Attribute Parameters
@@ -43,7 +44,7 @@ Resources/Providers
     - platform default: Ubuntu
 
 ### Examples
-    
+
     # enable platform default firewall
     firewall "ufw" do
       action :enable
@@ -62,15 +63,17 @@ Resources/Providers
 
 - :allow: the rule should allow incoming traffic.
 - :deny: the rule should deny incoming traffic.
-- :reject: the rule should reject incoming traffic.
+- :reject: *Default action: the rule should reject incoming traffic.
 
 ### Attribute Parameters
 
 - name: name attribute. arbitrary name to uniquely identify this firewall rule
 - protocol: valid values are: :udp, :tcp. default is all protocols
 - port: incoming port number (ie. 22 to allow inbound SSH)
+- ports: array of incoming port numbers (ie. [80,443] to allow inbound HTTP & HTTPS). NOTE: `protocol` attribute is required with `ports`
+- port_range: range of incoming port numbers (ie. 60000..61000 to allow inbound mobile-shell. NOTE: `protocol` attribute is required with `port_range`
 - source: ip address or subnet to filter on incoming traffic. default is `0.0.0.0/0` (ie Anywhere)
-- destination: ip address or subnet to filter on outgoing traffic. 
+- destination: ip address or subnet to filter on outgoing traffic.
 - dest_port: outgoing port number.
 - position: position to insert rule at. if not provided rule is inserted at the end of the rule list.
 - direction: direction of the rule. valid values are: :in, :out, default is :in
@@ -90,79 +93,43 @@ Resources/Providers
       action :allow
       notifies :enable, "firewall[ufw]"
     end
-    
+
     # open standard http port to tcp traffic only; insert as first rule
     firewall_rule "http" do
       port 80
-      protocol 'tcp'
+      protocol :tcp
       position 1
       action :allow
     end
-    
+
     # restrict port 13579 to 10.0.111.0/24 on eth0
     firewall_rule "myapplication" do
       port 13579
       source '10.0.111.0/24'
-      direction 'in'
+      direction :in
       interface 'eth0'
+      action :allow
+    end
+
+    # open UDP ports 60000..61000 for mobile shell (mosh.mit.edu), note
+    # that the protocol attribute is required when using port_range
+    firewall_rule "mosh" do
+      protocol :udp
+      port_range 60000..61000
+      action :allow
+    end
+
+    # open multiple ports for http/https, note that the protocol
+    # attribute is required when using ports
+    firewall_rule "http/https" do
+      protocol :tcp
+      ports [ 80, 443 ]
       action :allow
     end
 
     firewall "ufw" do
       action :nothing
     end
-
-Changes/Roadmap
-===============
-
-## Future
-
-* [COOK-688] create iptables providers for all resources
-* [COOK-689] create windows firewall providers for all resources
-* [COOK-690] create firewall_chain resource
-* [COOK-693] create pf firewall providers for all resources
-
-## 0.8.0
-
-* refactor all resources and providers into LWRPs
-* removed :reset action from firewall resource (couldn't find a good way to make it idempotent)
-* removed :logging action from firewall resource...just set desired level via the log_level attribute
-
-## 0.6.0
-
-* [COOK-725] Firewall cookbook firewall_rule LWRP needs to support logging attribute.
-* Firewall cookbook firewall LWRP needs to support :logging
-
-## 0.5.7
-
-* [COOK-696] Firewall cookbook firewall_rule LWRP needs to support interface
-* [COOK-697] Firewall cookbook firewall_rule LWRP needs to support the direction for the rules
-
-## 0.5.6
-
-* [COOK-695] Firewall cookbook firewall_rule LWRP needs to support destination port
-
-## 0.5.5
-
-* [COOK-709] fixed :nothing action for the 'firewall_rule' resource.
-
-## 0.5.4
-
-* [COOK-694] added :reject action to the 'firewall_rule' resource.
-
-## 0.5.3
-
-* [COOK-698] added :reset action to the 'firewall' resource.
-
-## 0.5.2
-
-* add missing 'requires' statements. fixes 'NameError: uninitialized constant' error.  
-thanks to Ernad Husremović for the fix.
-
-## 0.5.0
-
-* [COOK-686] create firewall and firewall_rule resources
-* [COOK-687] create UFW providers for all resources
 
 License and Author
 ==================

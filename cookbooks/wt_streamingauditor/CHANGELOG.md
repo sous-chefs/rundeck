@@ -1,3 +1,6 @@
+## 1.0.17
+* Added ZK timeout settings to kafka.properties
+
 ## 1.0.15
 * Added back the log4j.xml template and setup attributes 'log_dir' and 'log_level'
 

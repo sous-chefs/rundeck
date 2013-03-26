@@ -22,7 +22,7 @@ if node['couch_db']['install_erlang']
 end
 
 case node['platform_family']
-when "rhel","fedora"
+when "rhel"
   group "couchdb" do
     system true
   end

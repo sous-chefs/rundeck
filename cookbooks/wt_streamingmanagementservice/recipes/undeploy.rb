@@ -9,6 +9,8 @@
 
 log_dir      = "#{node['wt_common']['log_dir_linux']}/streamingmanagementservice"
 install_dir  = "#{node['wt_common']['install_dir_linux']}/streamingmanagementservice"
+sv_dir       = "/etc/sv/streamingmanagementservice"
+service_dir  = "/etc/service/streamingmanagementservice"
 
 runit_service "streamingmanagementservice" do
   action :disable
@@ -29,3 +31,14 @@ directory install_dir do
   recursive true
   action :delete
 end
+
+directory sv_dir do
+  recursive true
+  action :delete
+end
+
+directory service_dir do
+  recursive true
+  action :delete
+end
+

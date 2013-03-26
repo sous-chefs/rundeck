@@ -20,6 +20,8 @@ end
 
 # pull the install .tgz file down from the repo
 remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+  user  'www-data'
+  group 'www-data'
   source node['wt_actioncenter']['static_download_url'] 
 end
 

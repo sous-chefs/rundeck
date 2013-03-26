@@ -1,3 +1,7 @@
+## v2.1.0:
+
+* [COOK-2139] - fedora has couchdb package, no EPEL required
+
 ## v2.0.0:
 
 Major version bump due to use of platform_family (only available on

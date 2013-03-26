@@ -11,7 +11,7 @@
         "wt_base": "= 1.0.3", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 1.0.0", 
-        "wt_publishver": "= 0.2.0", 
+        "wt_publishver": "= 0.2.2", 
         "wt_storm": "= 1.0.20", 
         "wt_streamingapi": "= 0.0.16", 
         "wt_streamingauditor": "= 0.0.7", 
@@ -121,7 +121,7 @@
             "cassandra_snmp_comm": "StagingRO", 
             "cassandra_snmp_port": "", 
             "cassandra_thrift_port": "", 
-            "common_resource_environment": "support-staging", 
+            "common_resource_environment": "LAB-COMMON-LAS", 
             "config_dir_linux": "/etc/webtrends/", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
@@ -179,6 +179,9 @@
     "name": "PF", 
     "override_attributes": {
         "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "ntp": {

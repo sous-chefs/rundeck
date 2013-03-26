@@ -22,8 +22,8 @@ package "squid" do
   action :install
 end
 
-case node['platform_family']
-when "rhel","fedora","suse"
+case node['platform']
+when "redhat","centos","scientific","fedora","suse","amazon"
   template "/etc/sysconfig/squid" do
     source "redhat/sysconfig/squid.erb"
     notifies :restart, "service[squid]", :delayed
@@ -31,15 +31,14 @@ when "rhel","fedora","suse"
   end
 end
 
-service "squid" do
+service "squid3" do
   supports :restart => true, :status => true, :reload => true
-  case node['platform_family']
-  when "rhel","fedora","suse"
+  case node['platform']
+  when "redhat","centos","scientific","fedora","suse","amazon"
     provider Chef::Provider::Service::Redhat
-  when "debian"
+  when "debian","ubuntu"
     provider Chef::Provider::Service::Upstart
   end
-  service_name node['squid']['service_name']
   action [ :enable, :start ]
 end
 
@@ -50,9 +49,12 @@ else
 end
 Chef::Log.info "Squid network #{network}"
 
-template "/etc/#{node['squid']['service_name']}/squid.conf" do
-  source "#{node['squid']['service_name']}.conf.erb"
-  notifies :reload, "service[squid]"
+version = node['squid']['version']
+Chef::Log.info "Squid version number (unknown if blank): #{version}"
+
+template "/etc/squid3/squid.conf" do
+  source "squid#{version}.conf.erb"
+  notifies :reload, "service[squid3]"
   mode 00644
 end
 
@@ -92,13 +94,13 @@ rescue
   Chef::Log.info "no 'squid_acls' data bag"
 end
 
-template "/etc/#{node['squid']['service_name']}/chef.acl.config" do
+template "/etc/squid3/chef.acl.config" do
   source "chef.acl.config.erb"
   variables(
     :acls => acls,
     :host_acl => host_acl,
     :url_acl => url_acl
     )
-  notifies :reload, "service[squid]"
+  notifies :reload, "service[squid3]"
 end
 

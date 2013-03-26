@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: wt_xd
+# Cookbook Name:: wt_xd_importer
 # Recipe:: default
 #
 # Copyright 2012, Webtrends Inc.
@@ -9,7 +9,7 @@
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so un-deploy first"  
-  include_recipe "wt_xd::uninstall"
+  include_recipe "wt_xd_importer::uninstall"
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
