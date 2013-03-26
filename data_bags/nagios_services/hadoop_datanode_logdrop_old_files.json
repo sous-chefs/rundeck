@@ -2,5 +2,5 @@
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 120 -c wt_check_file_ages_in_dirs -a '-d /home/hadoop/log-drop -w 10 -c 15 -t minutes'",
     "hostgroup_name": "hadoop_datanode",
     "id": "hadoop_datanode_logdrop_old_files",
-    "contact_groups": "email_only"
+    "contact_groups": "email_and_page"
 }
