@@ -7,7 +7,7 @@
         "webtrends_server": "= 1.8.11", 
         "windows": "= 1.6.0", 
         "wt_base": "= 1.0.2", 
-        "wt_publishver": "= 0.2.0"
+        "wt_publishver": "= 0.2.2"
     }, 
     "default_attributes": {
         "authorization": {
@@ -135,6 +135,9 @@
                 }
             ]
         }, 
+        "wt_common": {
+            "gem_repo": "http://repo.staging.dmz/repo/gems-repo/"
+        }, 
         "wt_monitoring": {
             "graphite_flush_enabled": "true", 
             "graphite_flush_interval": "1", 
@@ -151,6 +154,9 @@
     "name": "support-englab", 
     "override_attributes": {
         "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
             "server_url": "http://chef.staging.dmz:4000"
         }, 
         "ntp": {
