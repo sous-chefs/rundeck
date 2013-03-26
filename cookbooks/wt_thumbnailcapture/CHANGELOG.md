@@ -1,3 +1,9 @@
+## 1.0.5
+* Update x-server display index management
+
+## 1.0.4
+* Fixing template syntax 
+
 ## 1.0.3
 * Updated monitoring configuration
 
