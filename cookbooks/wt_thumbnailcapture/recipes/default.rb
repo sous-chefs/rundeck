@@ -84,8 +84,7 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes
 		:install_dir => install_dir,
 		:java_home => java_home,
 		:java_jmx_port => node['wt_thumbnailcapture']['jmx_port'],
-		:java_opts => node['wt_thumbnailcapture']['java_opts'],
-                :display_idx => node['wt_thumbnailcapture']['display_idx']
+		:java_opts => node['wt_thumbnailcapture']['java_opts']
 	  })
 	end
 
@@ -127,18 +126,18 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes
 	end
 
 	#Create collectd plugin for thumbnailcapture JMX objects if collectd has been applied.
-	if node.attribute?("collectd")
-	  template "#{node['collectd']['plugin_conf_dir']}/collectd_thumbnailcapture.conf" do
-		source "collectd_thumbnailcapture.conf.erb"
-		owner "root"
-		group "root"
-		mode 00644
-		variables({
-		  :jmx_port => node['wt_thumbnailcapture']['jmx_port']
-		})
-		notifies :restart, resources(:service => "collectd")
-	  end
-	end
+#	if node.attribute?("collectd")
+#	  template "#{node['collectd']['plugin_conf_dir']}/collectd_thumbnailcapture.conf" do
+#		source "collectd_thumbnailcapture.conf.erb"
+#		owner "root"
+#		group "root"
+#		mode 00644
+#		variables({
+#		  :jmx_port => node['wt_thumbnailcapture']['jmx_port']
+#		})
+#		notifies :restart, resources(:service => "collectd")
+#	  end
+#	end
 end
 
 
@@ -190,13 +189,13 @@ if ENV["deploy_build"] == "true" then
     group "root"
     mode  00700
   end
-  template "/etc/environment" do
+  template "/etc/default/screencap" do
     source "screencap_def.erb"
     owner "root"
     user "root"
     group "root"
     variables({
-       :display_idx => node['wt_thumbnailcapture']['display_idx']
+       :display_idx => display_idx
     })
   end
 
