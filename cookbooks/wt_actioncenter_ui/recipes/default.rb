@@ -17,7 +17,11 @@ log "log_dir: #{log_dir}"
 ui_user = node[:wt_actioncenter_ui][:user]
 ui_group = node[:wt_actioncenter_ui][:group]
 
-gem_package "bundler"
+gem_package "bundler" do
+  gem_binary '/usr/bin/gem'
+  version '1.2'
+end
+
 
 directory log_dir do
   owner ui_user
@@ -47,7 +51,7 @@ artifact_deploy "actioncenter_ui" do
   after_extract Proc.new {
     bundle_without = node[:wt_actioncenter_ui][:bundle_without].join(' ')
     execute "bundle install" do
-      command "bundle install --local --path=vendor/bundle --without #{bundle_without} --binstubs --deployment"
+      command "/usr/bin/bundle install --local --path=vendor/bundle --without #{bundle_without} --binstubs --deployment"
       cwd release_path
       environment({'RAILS_ENV' => 'production'})
       user ui_user
