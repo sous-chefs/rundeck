@@ -2,5 +2,5 @@
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_streamingauditor_healthcheck",
     "hostgroup_name": "wt_streaming_auditor",
     "id": "wt_streaming_auditor_healthcheck",
-    "service_template": "service-email_only"
+    "contact_groups": "email_and_page-streaming"
 }

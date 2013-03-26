@@ -1,7 +1,11 @@
-##2.4.14
+## 2.5.0
+* Adding first rework of topology with new query
+  parser.
+
+## 2.4.14
 * Changed bolt names and added configuration
 
-##2.4.13
+## 2.4.13
 * Added yammer metrics jar files
 
 ##2.4.12

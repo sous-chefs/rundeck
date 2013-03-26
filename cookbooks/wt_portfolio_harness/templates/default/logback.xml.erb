@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration scan="true">
     <appender name="FileLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>"<%= node['wt_portfolio_harness']['log_dir'] %>/service.log"</file>
+        <file><%= node['wt_portfolio_harness']['log_dir'] %>/service.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern><%= node['wt_portfolio_harness']['log_dir'] %>/service-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
@@ -15,7 +15,7 @@
         </encoder>
     </appender>
     <appender name="ErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>"<%= node['wt_portfolio_harness']['log_dir'] %>/error.log"</file>
+        <file><%= node['wt_portfolio_harness']['log_dir'] %>/error.log</file>
         <append>true</append>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
