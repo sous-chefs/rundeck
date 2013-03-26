@@ -6,12 +6,16 @@
       "ruby": {
         "default_version": "1.9.1"
       }
+    },
+    "apache": {
+        "default_modules": ["proxy", "proxy_balancer", "proxy_http", "rewrite" ]
     }
   },
   "json_class": "Chef::Role",
   "env_run_lists": { },
   "run_list": [
     "recipe[build-essential]",
+    "recipe[apache2]",
     "recipe[ruby]",
     "recipe[ruby::symlinks]",
     "recipe[wt_actioncenter_ui]"
