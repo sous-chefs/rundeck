@@ -17,7 +17,7 @@
 
   default['vsdbcmd']['clr_types']['url']                   = 'http://repo.staging.dmz/repo/windows/sqlserver/prereqs/SQLSysClrTypes_x64.msi'
   default['vsdbcmd']['clr_types']['checksum']              = '3d889b8d2c4eb92126c4dd51f73b59d74e11d74526619e2afa8711f052f1d7a3'
-  default['vsdbcmd']['clr_types']['package_name']          = 'Microsoft SQL Server System CLR Types (x64)'
+  default['vsdbcmd']['clr_types']['package_name']          = 'SQL Server System CLR Types'
 
   default['vsdbcmd']['smo']['url']                         = 'http://repo.staging.dmz/repo/windows/sqlserver/prereqs/SharedManagementObjects_x64.msi'
   default['vsdbcmd']['smo']['checksum']                    = '1ec4e315c26e25002597fc63bdfd7ac8a4089478ebc3ea14ddd7560e003eb8a4'
