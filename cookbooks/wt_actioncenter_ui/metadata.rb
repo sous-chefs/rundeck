@@ -1,0 +1,10 @@
+name             'wt_actioncenter_ui'
+maintainer       'Webtrends'
+maintainer_email 'adam.keene@webtrends.com'
+license          'All rights reserved'
+description      'Installs/Configures wt_actioncenter_ui'
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+version          '0.9.0'
+depends          'artifact'
+depends          'unicorn'
+depends          'runit'

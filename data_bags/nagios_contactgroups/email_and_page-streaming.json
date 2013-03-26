@@ -1,6 +1,6 @@
     {
       "id": "email_and_page-streaming",
       "alias": "Email_and_page-Streaming",
-      "members": "hostedops,noc_pager,noc_pager_dl,streaming_dl"
+      "members": "hostedops,noc_pager,noc_pager_dl,streaming_dl,streaming_pager"
     }
 
