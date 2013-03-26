@@ -1,3 +1,6 @@
+## 1.2.8
+* Added api and schema version info
+
 ## 1.2.7
 * Added wapi url to config file template
 
