@@ -19,7 +19,7 @@ ui_group = node[:wt_actioncenter_ui][:group]
 
 gem_package "bundler" do
   gem_binary '/usr/bin/gem'
-  version '1.2'
+  version '1.2.2'
 end
 
 
