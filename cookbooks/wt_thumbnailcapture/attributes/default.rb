@@ -19,7 +19,7 @@ default['wt_thumbnailcapture']['graphite_vmmetrics'] = "true"
 default['wt_thumbnailcapture']['graphite_regex'] = ""
 default['wt_thumbnailcapture']['display_idx'] = 1
 
-default['wt_thumbnailcapture']['healthcheck_port'] = 8080
+default['wt_thumbnailcapture']['healthcheck_port'] = 9000
 default['wt_thumbnailcapture']['thumbnailcapture_service_url'] = ""
 
 # optionally specify the environment where ZooKeeper nodes are located
