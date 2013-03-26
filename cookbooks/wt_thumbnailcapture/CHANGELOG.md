@@ -1,3 +1,6 @@
+## 1.0.4
+* Fixing template syntax 
+
 ## 1.0.3
 * Updated monitoring configuration
 
