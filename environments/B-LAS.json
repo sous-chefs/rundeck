@@ -161,7 +161,7 @@
         "wt_static_tag_host": "= 0.0.4", 
         "wt_storm_streaming": "= 2.4.14", 
         "wt_stream_processor": "= 1.0.4", 
-        "wt_streaming_viz": "= 1.1.20", 
+        "wt_streaming_viz": "= 1.2.2", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
         "wt_streamingapi": "= 1.2.7", 
         "wt_streamingauditor": "= 1.0.17", 
@@ -171,7 +171,7 @@
         "wt_streamingmanagementservice": "= 1.1.0", 
         "wt_streaming_barebones": "= 0.0.2",
         "wt_sync": "= 1.0.6", 
-        "wt_thumbnailcapture": "= 1.0.2", 
+        "wt_thumbnailcapture": "= 1.0.5", 
         "wt_viracocha": "= 1.1.3", 
         "wt_xd": "= 2.0.14", 
         "xfs": "= 1.1.0", 
@@ -514,7 +514,7 @@
             "session_stream_bolt_tasks": 2,
             "event_stream_bolt_executors": 2,
             "event_stream_bolt_tasks": 2,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/54802:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/55183:id/streaming-analysis-bin.tar.gz", 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 1
@@ -537,7 +537,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/55000:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/55550:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "port": 80, 
             "proxy_enabled": "true", 
@@ -573,7 +573,7 @@
             "sms_service_url": "http://bsms.staging.dmz"
         }, 
         "wt_thumbnailcapture": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/54985:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/55206:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
             "memcache_environment": "support-staging", 
             "thumbnail_service_url": "http://bthumb.staging.dmz"
         }, 
