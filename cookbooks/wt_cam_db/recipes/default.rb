@@ -10,9 +10,9 @@
 #Properties
 auth_data = data_bag_item('authorization', node.chef_environment)
 
-camdbhost      = node['fqdn']
+camdbhost      = node['wt_cam_db']['db_server']
 domain         = node['authorization']['ad_auth']['ad_network']
-installerlogin = auth_data['wt_common']['camdb_install_user']
+installerlogin = auth_data['wt_common']['install_acct']
 uilogin        = auth_data['wt_common']['ui_acct']
 
 download_url = node['wt_cam_db']['download_url']
