@@ -2,5 +2,5 @@
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_log -a '-F /var/log/kafka/kafka.log -O /tmp/NRPE_check_log_streaming_kafka-kafka.log -q 'ERROR''", 
     "hostgroup_name": "kafka_aggregator", 
     "id": "kafka_log_check",
-    "contact_groups": "email_only-streaming"
+    "contact_groups": "email_and_page-streaming"
 }

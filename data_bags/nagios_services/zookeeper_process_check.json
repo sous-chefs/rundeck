@@ -2,5 +2,5 @@
     "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_jps -a 'QuorumPeerMain'", 
     "hostgroup_name": "zookeeper", 
     "id": "zookeeper_process_check",
-    "contact_groups": "email_only-streaming"
+    "contact_groups": "email_and_page-streaming"
 }
