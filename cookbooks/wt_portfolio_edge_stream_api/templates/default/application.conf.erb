@@ -36,6 +36,10 @@ ClientSys {
                 hostname = "<%= node[:fqdn] %>"
                 port = <%= node['wt_portfolio_edge_stream_api']['message_port'] %>
             }
- 	}
+ 		}
+    }
+    message {
+        # message timeout in milliseconds
+        timeout = <%= node['wt_portfolio_edge_stream_api']['message_timeout'] %>
     }
 }
