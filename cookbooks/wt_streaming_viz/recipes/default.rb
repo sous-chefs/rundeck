@@ -79,6 +79,7 @@ if ENV["deploy_build"] == "true" then
     command "rmdir #{install_dir}&&mklink /D #{install_dir} #{deploy_dir}"
     action :run
     notifies :restart, "iis_site[StreamingViz]"
+    notifies :restart, "iis_pool[StreamingViz]"
   end
 end
 
@@ -133,7 +134,14 @@ wt_base_icacls install_dir do
 	action :grant
 	user user_data['wt_common']['ui_user']
 	perm :modify
-	link true
+	link :true
+end
+
+wt_base_icacls deploy_dir do
+	action :grant
+	user user_data['wt_common']['ui_user']
+	perm :modify
+	link :true
 end
 
 # Allow anonymous access to scripts, etc
@@ -141,7 +149,13 @@ wt_base_icacls install_dir do
 	action :grant
 	user "IUSR"
 	perm :read
-	link true
+end
+
+# Allow anonymous access to scripts, etc
+wt_base_icacls deploy_dir do
+	action :grant
+	user "IUSR"
+	perm :read
 end
 
 share_wrs
