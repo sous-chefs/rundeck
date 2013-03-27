@@ -9,15 +9,19 @@
 include_recipe "runit"
 include_recipe "apache2::default"
 
-rel_version = "0.1.0"
-user_data = data_bag_item('authorization', node.chef_environment)
-install_dir = File.join(node[:wt_common][:install_dir_linux], 'actioncenter-ui')
-log "install_dir: #{install_dir}"
-log_dir = File.join(node[:wt_common][:log_dir_linux], 'actioncenter-ui')
-log "log_dir: #{log_dir}"
-log "deploy_build: #{ENV['deploy_build']}"
+# Our artifact info
+rel_version = node[:wt_actioncenter_ui][:release]
+artifact_name = 'actioncenter-ui'
+install_dir = File.join(node[:wt_common][:install_dir_linux], artifact_name)
+log_dir = File.join(node[:wt_common][:log_dir_linux], artifact_name)
+deploy_build = !!(ENV['deploy_build'] =~ /true/i)
 ui_user = node[:wt_actioncenter_ui][:user]
 ui_group = node[:wt_actioncenter_ui][:group]
+user_data = data_bag_item('authorization', node.chef_environment)
+
+log "install_dir: #{install_dir}"
+log "log_dir: #{log_dir}"
+log "deploy_build: #{deploy_build}"
 
 gem_package "bundler" do
   gem_binary '/usr/bin/gem'
@@ -32,7 +36,21 @@ directory log_dir do
   action :create
 end
 
-artifact_deploy "actioncenter_ui" do
+# Clean up so we can properly force a deploy.
+# Not really using the artifact versioning correctly, so we have to
+# clear out the cached version.
+if deploy_build
+  my_artifact_cache = File.join(Chef::Config[:file_cache_path], "artifact_deploys", artifact_name)
+  my_artifact_cache_version_path = File.join(my_artifact_cache, rel_version)
+  my_artifact_filename = File.basename(node[:wt_actioncenter_ui][:download_url])
+  my_cached_tar_path = File.join(my_artifact_cache_version_path, my_artifact_filename)
+  log "Removing #{my_cached_tar_path} since deploy_build=true."
+  file my_cached_tar_path do
+    action :delete 
+  end
+end
+
+artifact_deploy artifact_name do
   version rel_version
   deploy_to "#{install_dir}"
   artifact_location node[:wt_actioncenter_ui][:download_url]
@@ -44,8 +62,24 @@ artifact_deploy "actioncenter_ui" do
   symlinks({ 'log' => 'log', 'tmp' => 'tmp' })
 
   before_extract Proc.new {
-    service 'actioncenter-ui' do
+    service artifact_name do
       action :stop
+    end
+    # For now, clean out the current release if we are running with deploy_build=true
+    if deploy_build
+      log "Cleaning out #{release_path} since deploy_build=true"
+      directory release_path do
+        recursive true
+        action :delete 
+      end
+      # And recreate so tar doesn't barf later
+      directory release_path do
+        owner ui_user
+        group ui_group
+        mode '0755'
+        recursive true
+        action :create 
+      end
     end
   }
 
@@ -92,7 +126,7 @@ artifact_deploy "actioncenter_ui" do
       #before_exec "ENV['BUNDLE_GEMFILE'] = '#{install_dir}/releases/#{rel_version}/Gemfile'"
     end 
 
-    runit_service 'actioncenter-ui' do
+    runit_service artifact_name do
       options(
         :install_dir => release_path,
         :user => ui_user,
@@ -104,7 +138,7 @@ artifact_deploy "actioncenter_ui" do
   }
 
   restart Proc.new {
-    service 'actioncenter-ui' do
+    service artifact_name do
       action :restart
     end
   }
@@ -115,7 +149,7 @@ artifact_deploy "actioncenter_ui" do
   action :deploy
 end
 
-web_app "actioncenter-ui" do
+web_app artifact_name do
   template "apache.conf.erb"
   server_name node['hostname']
   server_aliases [node['fqdn']]
