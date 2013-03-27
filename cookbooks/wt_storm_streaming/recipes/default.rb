@@ -108,6 +108,8 @@ if ENV["deploy_build"] == "true" then
     activation-1.1.jar
     antlr-3.4.jar
     antlr-runtime-3.4.jar
+    antlr4-4.0.jar
+    antlr4-runtime-4.0.jar
     aopalliance-1.0.jar
     avro-1.5.3.jar
     avro-ipc-1.5.3.jar
