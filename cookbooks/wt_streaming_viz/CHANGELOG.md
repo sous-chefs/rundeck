@@ -1,3 +1,7 @@
+## 1.2.6
+* Fixing icacls permissions for link folders. 
+* Added notify for site restart on redeploy
+
 ## 1.2.5
 * fixing issue with ampersand in values in appSettings for the thumb size.
 
