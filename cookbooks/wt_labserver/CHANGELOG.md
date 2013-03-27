@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of wt_labserver.
 
+## 0.2.0
+* Created platform independent cert import
+* Added system cert import steps
+
 ## 0.1.0:
 
 * Initial release of wt_labserver
