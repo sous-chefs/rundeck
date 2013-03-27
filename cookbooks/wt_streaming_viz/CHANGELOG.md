@@ -1,3 +1,6 @@
+## 1.2.3
+* Adding /thumbnail/capture/ to the end of the thumbnail_service_url in the appSettings.
+
 ## 1.2.2
 * Adding a thumbnail service url so the sessions lab could use when generating thumbnails
 
@@ -6,7 +9,6 @@
 
 ## 1.2.0
 * Changed logic to use links vs folders
->>>>>>> 8a5badc7360627e1d9c5fb4df29f3ef6cddaa858
 
 ## 1.1.20
 * Adding appKey to the appSettings.config.tmpl
