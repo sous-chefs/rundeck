@@ -1,3 +1,6 @@
+## 1.2.4
+* Adding 2 new settings in the appSettings to cofigure the image size for the thumbs on the sessions lab and campaign flow.
+
 ## 1.2.3
 * Adding /thumbnail/capture/ to the end of the thumbnail_service_url in the appSettings.
 
