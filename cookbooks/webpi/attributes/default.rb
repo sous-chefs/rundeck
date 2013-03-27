@@ -27,6 +27,8 @@ when /i[3-6]86/
   default['webpi']['msi'] = "http://download.microsoft.com/download/7/0/4/704CEB4C-9F42-4962-A2B0-5C84B0682C7A/WebPlatformInstaller_x86_en-US.msi"
 end
 
+default['webpi']['msi_package_name'] = "Microsoft Web Platform Installer 4.5"
+
 default['webpi']['url']       = 'http://download.microsoft.com/download/6/8/D/68DAB32D-10B6-461D-8FF5-43CE9BDA6CE5/WebPICMD.zip'
 default['webpi']['checksum']  = '7bef8162b983fc83584016dbe0d3b0070a54eca44155f532b65a3ded7a59dccd'
 default['webpi']['log'] = "#{Chef::Config[:file_cache_path]}/WebPI.log"
