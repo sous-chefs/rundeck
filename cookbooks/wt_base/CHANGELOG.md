@@ -1,3 +1,7 @@
+## 1.1.0
+* Cleaned unneeded error logging
+* Added support for icacls on links
+
 ## 1.0.4
 * Added recipe to update jar versions
 
