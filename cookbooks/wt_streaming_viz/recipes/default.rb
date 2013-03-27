@@ -63,19 +63,6 @@ wt_base_firewall 'StreamingViz' do
 	action [:open_port]
 end
 
-wt_base_icacls install_dir do
-	action :grant
-	user user_data['wt_common']['ui_user']
-	perm :modify
-end
-
-# Allow anonymous access to scripts, etc
-wt_base_icacls install_dir do
-	action :grant
-	user "IUSR"
-	perm :read
-end
-
 wt_base_icacls log_dir do
 	action :grant
 	user user_data['wt_common']['ui_user']
@@ -91,6 +78,7 @@ if ENV["deploy_build"] == "true" then
   execute "mklink" do
     command "rmdir #{install_dir}&&mklink /D #{install_dir} #{deploy_dir}"
     action :run
+    notifies :restart, "iis_site[StreamingViz]"
   end
 end
 
@@ -109,8 +97,8 @@ template "#{install_dir}\\appSettings.config" do
 		:streams_url => node['wt_streaming_viz']['streams_ui_url'],
 		:stream_client_id => user_data['wt_streaming_viz']['client_id'],
 		:stream_client_secret => user_data['wt_streaming_viz']['client_secret'],
-                :sms_url => node['wt_streaming_viz']['sms_url'],
-                :thumbnail_service_url => node['wt_thumbnailcapture']['thumbnail_service_url']
+    :sms_url => node['wt_streaming_viz']['sms_url'],
+    :thumbnail_service_url => node['wt_thumbnailcapture']['thumbnail_service_url']
 	)
 end
 
@@ -139,6 +127,21 @@ template "#{install_dir}\\log4net.config" do
 		:log_level => node['wt_streaming_viz']['log_level'],
 		:log_dir => log_dir
 	)
+end
+
+wt_base_icacls install_dir do
+	action :grant
+	user user_data['wt_common']['ui_user']
+	perm :modify
+	link true
+end
+
+# Allow anonymous access to scripts, etc
+wt_base_icacls install_dir do
+	action :grant
+	user "IUSR"
+	perm :read
+	link true
 end
 
 share_wrs
