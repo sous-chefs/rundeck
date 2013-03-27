@@ -1,3 +1,6 @@
+## 1.2.5
+* fixing issue with ampersand in values in appSettings for the thumb size.
+
 ## 1.2.4
 * Adding 2 new settings in the appSettings to cofigure the image size for the thumbs on the sessions lab and campaign flow.
 
