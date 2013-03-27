@@ -1,3 +1,6 @@
+## 2.5.2
+* Adding antlr4 to topology
+
 ## 2.5.1
 * Modified Kafka Version to 0.7.2
 
