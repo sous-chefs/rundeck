@@ -360,7 +360,7 @@
         "wt_actioncenter_ui": {
             "release": "1.0.0",
             "allow_http": true,
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/55716:id/action-center.tar.gz"
         },
         "wt_analytics_ui": {
             "fb_data_center_id": "Lab"

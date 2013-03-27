@@ -15,6 +15,7 @@ install_dir = File.join(node[:wt_common][:install_dir_linux], 'actioncenter-ui')
 log "install_dir: #{install_dir}"
 log_dir = File.join(node[:wt_common][:log_dir_linux], 'actioncenter-ui')
 log "log_dir: #{log_dir}"
+log "deploy_build: #{ENV['deploy_build']}"
 ui_user = node[:wt_actioncenter_ui][:user]
 ui_group = node[:wt_actioncenter_ui][:group]
 
