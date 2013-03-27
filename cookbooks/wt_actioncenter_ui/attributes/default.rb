@@ -1,3 +1,4 @@
+default[:wt_actioncenter_ui][:release] = "0.0.0"
 default[:wt_actioncenter_ui][:auth_service_version] = "v1"
 default[:wt_actioncenter_ui][:allow_http] = false
 default[:wt_actioncenter_ui][:user] = "webtrends"
