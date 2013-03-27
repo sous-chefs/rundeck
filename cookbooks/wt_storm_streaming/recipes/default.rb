@@ -108,6 +108,8 @@ if ENV["deploy_build"] == "true" then
     activation-1.1.jar
     antlr-3.4.jar
     antlr-runtime-3.4.jar
+    antlr4-4.0.jar
+    antlr4-runtime-4.0.jar
     aopalliance-1.0.jar
     avro-1.5.3.jar
     avro-ipc-1.5.3.jar
@@ -143,7 +145,7 @@ if ENV["deploy_build"] == "true" then
     jettison-1.1.jar
     jsp-2.1-6.1.14.jar
     jsp-api-2.1-6.1.14.jar
-    kafka_2.9.2-0.7.1.jar
+    kafka_2.9.2-0.7.2.jar
     libthrift-0.7.0.jar
     netty-3.5.11.Final.jar
     plexus-utils-1.5.6.jar
