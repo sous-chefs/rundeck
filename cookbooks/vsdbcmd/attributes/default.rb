@@ -6,6 +6,7 @@
 #
 #
   default['vsdbcmd']['native_client']['accept_eula']       = true
+  default['ms_dotnet4x']['http_url']                       = "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_setup.exe"
 
   default['vsdbcmd']['native_client']['url']               = 'http://repo.staging.dmz/repo/windows/sqlserver/prereqs/sqlncli_x64.msi'
   default['vsdbcmd']['native_client']['checksum']          = '012aca6cef50ed784f239d1ed5f6923b741d8530b70d14e9abcb3c7299a826cc'

@@ -140,7 +140,7 @@
         "wt_heatmaps": "= 1.0.0", 
         "wt_heatmaps_logconverter": "= 1.0.1", 
         "wt_kafka_topagg": "= 1.1.0", 
-        "wt_labserver": "= 0.1.0", 
+        "wt_labserver": "= 0.2.0", 
         "wt_labstation": "= 0.0.1", 
         "wt_lfm_ftp": "= 0.1.0", 
         "wt_logpreproc": "= 1.0.16", 
@@ -385,7 +385,7 @@
         }, 
         "wt_cam_db": {
             "db_name": "CAM", 
-            "db_server": "sdbcomp01.staging.dmz",
+            "db_server": "hcamdb01.staging.dmz",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/55389:id/CamDB.zip"
         }, 
         "wt_common": {
@@ -464,7 +464,7 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_edge_stream_api": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/55361:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/55613:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_portfolio_edgeservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54775:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz",
@@ -498,8 +498,8 @@
         "wt_storm_streaming": {
             "augment_bolt_executors": 18, 
             "augment_bolt_tasks": 18, 
-            "data_request_url": "http://hedge01.staging.dmz:8080", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/55183:id/streaming-analysis-bin.tar.gz", 
+            "data_request_url": "http://hedge01.staging.dmz:8080",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/55410:id/streaming-analysis-bin.tar.gz", 
             "event_stream_bolt_executors": 12, 
             "event_stream_bolt_tasks": 12, 
             "session_stream_bolt_executors": 18, 
@@ -527,7 +527,7 @@
             }
         }, 
         "wt_stream_processor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/55523:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/55561:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_streaming_barebones": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt365/55077:id/Webtrends.Streaming.BareBones/dist/webtrends-streaming-barebones-bin.tar.gz", 
@@ -556,7 +556,7 @@
             "sapi_service_url": "ws://hsapi.webtrends.com"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/55577:id/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/55698:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://mscs01.staging.dmz:8080", 
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com"
         }, 
