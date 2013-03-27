@@ -15,4 +15,4 @@ attribute :path, :kind_of => String, :name_attribute => true
 attribute :user, :kind_of => String, :default => nil, :required => true
 attribute :perm, :kind_of => Symbol, :default => nil, :equal_to =>[:full, :modify, :read]
 attribute :options, :kind_of => String, :default => nil
-attribute :link, :kind_of => Bool, :default => false
+attribute :link, :kind_of => Symbol, :default => :false, :equal_to => [:true, :false]
