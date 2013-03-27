@@ -30,7 +30,7 @@ remote_file "msi" do
   action :nothing
 end.run_action(:create)
 
-windows_package "Web Platform Installer" do
+windows_package node['webpi']['msi_package_name'] do
   source msi_file
   action :nothing
 end.run_action(:install)
