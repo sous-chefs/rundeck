@@ -1,3 +1,11 @@
+## 0.9.2:
+
+* Clean out artifact_deploy cache for artifact if deploy_build=true.
+  Work around the fact that our artifacts from teamcity always have the same name.
+* Clean out release_path whend deploy_build=true
+  Work around the fact that our artifacts from teamcity always have the same version.
+* Map release version to node[:wt_actioncenter_ui][:release]
+
 ## 0.9.1:
 
 * Configure apache to front unicorn instances and serve static content.
