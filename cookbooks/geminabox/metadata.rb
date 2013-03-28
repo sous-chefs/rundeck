@@ -1,9 +1,13 @@
-maintainer       "Kendrick Martin"
-maintainer_email "kendrick.martin@webtrends.com"
+maintainer       "Chris Roberts"
+maintainer_email "chrisroberts.code@gmail.com"
 license          "Apache 2.0"
-description      "Installs the geminabox server"
-version          "0.1.3"
+description      "Installs and configures Geminabox"
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
+version          "0.1.2"
 
-depends "unicorn"
-depends "application"
-depends "application_ruby"
+supports 'ubuntu'
+depends 'unicorn'
+depends 'bluepill'
+depends 'nginx'
+
+suggests 'bag_config', '>= 2.0.0'

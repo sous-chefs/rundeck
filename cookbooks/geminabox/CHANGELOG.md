@@ -1,21 +1,7 @@
-# CHANGELOG for geminabox
+## v0.1.2
+* HTTPS fixes: https://github.com/chrisroberts/cookbook-geminabox/pull/4
 
-This file is used to list changes made in each version of geminabox.
-
-## 0.1.3
-* Added not_if line
-
-## 0.1.2
-* Fixed template issue
-
-## 0.1.1:
-* Changed unicorn to be a command called via execute
-
-## 0.1.0:
-
-* Initial release of geminabox
-
-- - - 
-Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
-
-The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
+## v0.1.1
+* Fix bluepill commands (thanks [Andrew Wason](https://github.com/rectalogic))
+* Disambiguate ssl enabled flag (thanks https://github.com/jblatt-verticloud)
+* Remove extra double quote from unix domain socket in unicorn config file (thanks https://github.com/jblatt-verticloud)
