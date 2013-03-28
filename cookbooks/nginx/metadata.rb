@@ -3,7 +3,7 @@ maintainer        "Opscode, Inc."
 maintainer_email  "cookbooks@opscode.com"
 license           "Apache 2.0"
 description       "Installs and configures nginx"
-version           "1.3.0"
+version           "1.4.0"
 
 recipe "nginx", "Installs nginx package and sets up configuration with Debian apache style with sites-enabled/sites-available"
 recipe "nginx::source", "Installs nginx from source and sets up configuration with Debian apache style with sites-enabled/sites-available"
@@ -12,13 +12,13 @@ recipe "nginx::source", "Installs nginx from source and sets up configuration wi
   supports os
 end
 
-%w{ build-essential }.each do |cb|
+%w{ build-essential yum apt }.each do |cb|
   depends cb
 end
 
 depends 'ohai', '>= 1.1.4'
 
-%w{ bluepill yum }.each do |cb|
+%w{ bluepill }.each do |cb|
   recommends cb
 end
 
@@ -108,3 +108,8 @@ attribute "nginx/disable_access_log",
 attribute "nginx/default_site_enabled",
   :display_name => "Default site enabled",
   :default => "true"
+
+attribute "nginx/sendfile",
+  :display_name => "Nginx sendfile",
+  :description => "Whether to enable sendfile",
+  :default => "on"
