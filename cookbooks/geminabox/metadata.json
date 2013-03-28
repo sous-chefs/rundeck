@@ -1,0 +1,34 @@
+{
+  "name": "geminabox",
+  "description": "Installs and configures Geminabox",
+  "long_description": "== Geminabox On Chef\n\nConfigures and installs {geminabox}[http://github.com/cwninja/geminabox] via Chef to provide\na private (and optionally secured) gem store.\n\n== Features\n\n* Optional SSL\n* Optional user/pass authentication\n\n== Requirements\n\nCurrently this cookbook uses a defined set of applications with the\nintention to expand coverage of other options (like passenger, thin,\napache, monit, etc). At present, these are supported:\n\n* Nginx\n* Unicorn\n* Bluepill\n\n== Suggested additions\n\nIt is highly suggested to include the BagConfig cookbook for storing sensitive\nconfiguration values within encrypted data bag entries:\n\nhttp://community.opscode.com/cookbooks/bag_config\n\n== What you get\n\nBy default, this cookbook will provide a Geminabox instance available\nvia http://node_address. It uses a unicorn + nginx pairing with bluepill\nmonitoring the unicorn processes. It also comes with an upstart configuration.\n\n== Adding extras\n\n=== SSL\n\nTo enable SSL, provide a key and cert pair:\n\n  node[:geminabox][:ssl] = {:key => '/path/to/ssl.key', :cert => '/path/to/ssl.cert', :enabled => true}\n\nYou can also provide the the actual key and cert pair in the attributes (though\nif this approach is used, it is advised to use the BagConfig cookbook and encrypt\nthe data bag entry).\n\n=== Authentication\n\nTo enable authentication, provide a path to the htpasswd file to use or the raw\ncontents of the htpasswd file:\n\n  node[:geminabox][:auth_required] = '/path/to/htpasswd.file'\n\nor, you can provide a hash of user/password pairs and have the auth file dynamically\ncreated:\n\n  node[:geminabox][:auth_required] = {'user1', 'secret'}\n\nAgain, with providing plaintext passwords, it is suggested to use the BagConfig cookbook\nand encrypt the configuration data bag entry.\n\nFinally, the password file can be provided via data bag.  There are two ways the data bag can\nbe formatted. First is providing the content of an htpasswd generated file. The second is to\nprovide username/password pairs in the data bag.\n\n== Issues\n\nPlease report any bugs to the {issues}[http://github.com/chrisroberts/cookbook-geminabox] section on the github repo.\nIf you have fixes, updates or new features, please fork and send a pull request\n\n== Thanks\n\nMany thanks to {Tom Lea}[http://github.com/cwninja] for {Geminabox}[http://github.com/cwninja/geminabox]\n\n== License\n\nMIT License (see LICENSE)\n",
+  "maintainer": "Chris Roberts",
+  "maintainer_email": "chrisroberts.code@gmail.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "ubuntu": ">= 0.0.0"
+  },
+  "dependencies": {
+    "unicorn": ">= 0.0.0",
+    "bluepill": ">= 0.0.0",
+    "nginx": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+    "bag_config": ">= 2.0.0"
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.1.2"
+}

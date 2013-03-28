@@ -1,27 +1,45 @@
-#
-# Cookbook Name:: geminabox
-# Recipe:: default
-#
-# Copyright 2013, Webtrends Inc.
-#
-
-gem_package "geminabox"
-include_recipe "unicorn"
-
-config_file = "#{node['geminabox']['install_dir']}/config.ru"
-
-template config_file do
-  source "config.ru.erb"
-  owner "root"
-  group "root"
-  mode 00644
-  variables ({
-    :install_dir => node['geminabox']['install_dir']
-  })
+# Ensure our directories exist
+directory node[:geminabox][:config_directory] do
+  action :create
+  recursive true
+  mode '0755'
 end
 
-execute "start_unicorn" do
-  command "unicorn -D -p #{node['geminabox']['port']}"
-  cwd node['geminabox']['install_dir']
-  not_if "ps aux | 'grep [u]nicorn master -D -p #{node['geminabox']['port']}'"
+directory File.join(node[:geminabox][:base_directory], node[:geminabox][:data_directory]) do
+  action :create
+  recursive true
+  mode '0755'
+  owner node[:geminabox][:www_user]
+  group node[:geminabox][:www_group]
+end
+
+# Setup the frontend
+if(node[:geminabox][:nginx] || :this_is_all_we_support_now)
+  include_recipe 'geminabox::nginx'
+end
+
+# Install the gem
+gem_package('geminabox') do
+  action :install
+  version node[:geminabox][:version] || '~> 0.6.0'
+end
+
+# Load up the monitoring
+if(node[:geminabox][:bluepill] || :this_is_all_we_support)
+  include_recipe 'geminabox::bluepill'
+end
+
+# Configure up server instance
+if(node[:geminabox][:unicorn] || :this_is_all_we_support)
+  include_recipe 'geminabox::unicorn'
+end
+
+template File.join(node[:geminabox][:base_directory], 'config.ru') do
+  source 'config.ru.erb'
+  variables(
+    :geminabox_data_directory => File.join(node[:geminabox][:base_directory], node[:geminabox][:data_directory]),
+    :geminabox_build_legacy => node[:geminabox][:build_legacy]
+  )
+  mode '0644'
+  notifies :restart, 'service[geminabox]'
 end
