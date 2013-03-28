@@ -14,7 +14,7 @@ require 'uri'
 include_recipe "runit"
 
 # install dependency packages
-%w{libzmq3 wtjzmq}.each do |pkg|
+%w{libzmq3 libzmq3-dev wtjzmq}.each do |pkg|
   package pkg do
     action :install
   end
