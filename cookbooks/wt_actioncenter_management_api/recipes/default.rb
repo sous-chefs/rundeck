@@ -16,7 +16,7 @@ end
 
 install_dir = File.join(node['wt_common']['install_dir_linux'],
 "harness/plugins/actioncenter_management_api")
-conf_dir = File.join(node['wt_common']['install_dir_linux'], "harness/conf")
+conf_dir = File.join(install_dir,"conf")
 tarball      = node['wt_actioncenter_management_api']['download_url'].split("/")[-1]
 download_url = node['wt_actioncenter_management_api']['download_url']
 user = node['wt_actioncenter_management_api']['user']
@@ -32,6 +32,24 @@ directory "#{install_dir}" do
   recursive true
   action :create
 end
+
+
+
+def processTemplates (conf_dir)
+	%w[config.properties].each do | template_file |
+		template "#{conf_dir}/conf/#{template_file}" do 
+		source "#{template_file}.erb" 
+		owner "root" 
+		group "root" 
+		mode 00644 
+		variables({ 
+			:ads_host => node['wt_actioncenter_management_api']['ads_host'],
+			:ads_port => node['wt_actioncenter_management_api']['ads_port']
+		})
+	end	
+
+end
+
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so we will grab the tar ball and install"
@@ -49,6 +67,8 @@ if ENV["deploy_build"] == "true" then
         cwd install_dir
         command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
+
+	processTemplates(conf_dir)
 
   # delete the install tar ball
   execute "delete_install_source" do
