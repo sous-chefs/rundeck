@@ -1,3 +1,6 @@
+## 1.0.14
+* changed UPGRADE_ALLOW parameter from DB_ONLY to NONE
+
 ## 1.0.13
 * removed redundant internal attribute set in the netacuity service
 
