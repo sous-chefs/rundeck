@@ -163,7 +163,7 @@
         "wt_streaming_barebones": "= 0.0.2", 
         "wt_streaming_viz": "= 1.2.6", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
-        "wt_streamingapi": "= 1.2.8", 
+        "wt_streamingapi": "= 1.2.7", 
         "wt_streamingauditor": "= 1.0.17", 
         "wt_streamingcollection": "= 1.1.5", 
         "wt_streamingconfigservice": "= 1.1.1", 
@@ -554,7 +554,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/55941:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/55054:id/webtrends-streamingapi-bin.tar.gz", 
             "sapi_service_url": "ws://bsapi.webtrends.com"
         }, 
         "wt_streamingauditor": {
