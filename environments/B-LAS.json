@@ -396,7 +396,8 @@
         }, 
         "wt_cam_db": {
             "db_name": "CAM", 
-            "db_server": "bcamdb01.staging.dmz"
+            "db_server": "bcamdb01.staging.dmz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/55389:id/CamDB.zip"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
