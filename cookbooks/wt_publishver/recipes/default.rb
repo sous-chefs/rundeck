@@ -20,10 +20,12 @@ if node['platform'] == 'ubuntu' and node['platform_version'].to_i < 12
 end
 
 # abort if gcc or make missing (needed for nokogiri build)
-%w{ gcc make }.each do |cmd|
-	if not system("which #{cmd} > /dev/null")
-		log("#{cookbook_name}: #{cmd} is missing") { level :warn }
-		return
+unless node['platform'] == 'windows'
+	%w{ gcc make }.each do |cmd|
+		if not system("which #{cmd} > /dev/null")
+			log("#{cookbook_name}: #{cmd} is missing") { level :warn }
+			return
+		end
 	end
 end
 
