@@ -1,4 +1,8 @@
-## v1.1.4:
+## v1.4.0:
+
+* [COOK-2183] - Install nginx package from nginxyum repo
+* [COOK-2311] - headers-more should be updated to the latest version
+* [COOK-2455] - Support sendfile option (nginx.conf)
 
 ## v1.3.0:
 
@@ -28,7 +32,6 @@
 
 ## v1.1.4:
 
->>>>>>> chef-vendor-nginx
 * [COOK-2168] - specify package name as an attribute
 
 ## v1.1.2:
