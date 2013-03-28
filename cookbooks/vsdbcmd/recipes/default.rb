@@ -26,3 +26,8 @@
       end
   end
 
+  windows_path 'C:\Program Files\Microsoft SQL Server\100\Tools\Binn' do
+   action :add
+  end
+
+
