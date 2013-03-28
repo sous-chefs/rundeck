@@ -473,7 +473,7 @@
         }, 
         "wt_portfolio_manager": {
             "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/54808:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/55799:id/Portfolio.Manager.zip", 
             "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
             "portmgr_fulfillment_dl": "toby.mosby@webtrends.com", 
             "portmgr_group_admin": "H.PortMgr.Admins", 
@@ -549,7 +549,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/55873:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/55941:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "sapi_service_url": "ws://hsapi.webtrends.com"
         }, 
