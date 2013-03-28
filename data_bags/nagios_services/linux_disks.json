@@ -1,0 +1,6 @@
+{
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 120 -c wt_check_disk -a '-w '10%' -c '5%''", 
+    "hostgroup_name": "linux", 
+    "id": "linux_disks",
+    "contact_groups": "email_and_page"
+}
