@@ -15,14 +15,6 @@ java_home = node['java']['java_home']
 		source "#{ca}.cer"
 		mode 00600
 		action :create_if_missing
-		only_if { File.exists?("#{java_home}/bin/keytool") }
-	end
-
-	#Imports into java
-	execute "keytool import #{ca}" do
-		command "#{java_home}/bin/keytool -import -trustcacerts -alias #{ca} -file #{Chef::Config[:file_cache_path]}/#{ca}.cer -keystore #{java_home}/jre/lib/security/cacerts -storepass changeit -noprompt"
-		only_if { File.exists?("#{java_home}/bin/keytool") }
-		not_if  "#{java_home}/bin/keytool -list -alias #{ca} -keystore #{java_home}/jre/lib/security/cacerts -storepass changeit"
 	end
 
 	#imports into system keystore
@@ -31,13 +23,25 @@ java_home = node['java']['java_home']
 		not_if {File.exists?("#{Chef::Config[:file_cache_path]}/#{ca}.pem")}
 	end
 	
+	#Imports into java
+	execute "keytool import #{ca}" do
+		command "#{java_home}/bin/keytool -import -trustcacerts -alias #{ca} -file #{Chef::Config[:file_cache_path]}/#{ca}.cer -keystore #{java_home}/jre/lib/security/cacerts -storepass changeit -noprompt"
+		only_if { File.exists?("#{java_home}/bin/keytool") }
+		not_if  "#{java_home}/bin/keytool -list -alias #{ca} -keystore #{java_home}/jre/lib/security/cacerts -storepass changeit"
+	end
+	
 	execute "Copy #{ca} to cert folder" do
 		command "cp #{Chef::Config[:file_cache_path]}/#{ca}.pem /etc/ssl/certs"
 		not_if {File.exists?("/etc/ssl/certs/#{ca}.pem")}
+		notifies :run, "bash[generatelinks#{ca}]"
 	end
-	
-	link "/etc/ssl/certs/#{ca}.pem" do
-		to "`openssl x509 -hash -noout -in #{ca}.pem`.0"
-	end	
-
+  
+   bash "generatelinks#{ca}" do
+   	user "root"
+   	cwd "/etc/ssl/certs"
+   	code <<-EOH
+   			ln -s #{ca}.pem `openssl x509 -hash -noout -in #{ca}.pem`.0
+   	EOH
+   	action :nothing
+   end
 end
