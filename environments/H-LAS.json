@@ -498,7 +498,7 @@
             "augment_bolt_executors": 24, 
             "augment_bolt_tasks": 24, 
             "data_request_url": "http://hedge01.staging.dmz:8080",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/55855:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/55861:id/streaming-analysis-bin.tar.gz", 
             "event_stream_bolt_executors": 12, 
             "event_stream_bolt_tasks": 12, 
             "session_stream_bolt_executors": 18, 
@@ -550,7 +550,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/55849:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/55862:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "sapi_service_url": "ws://hsapi.webtrends.com"
         }, 
