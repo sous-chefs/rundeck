@@ -14,7 +14,7 @@
         "wt_base": "= 1.0.3", 
         "wt_cam": "= 1.1.3", 
         "wt_kafka_topagg": "= 1.0.1", 
-        "wt_netacuity": "= 1.0.12", 
+        "wt_netacuity": "= 1.0.14", 
         "wt_portfolio_admin": "= 1.1.10", 
         "wt_publishver": "= 0.2.2", 
         "wt_realtime_hadoop": "= 1.0.4", 

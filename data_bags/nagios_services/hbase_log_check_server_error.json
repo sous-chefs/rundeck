@@ -1,8 +1,0 @@
-{
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 120 -c hbase_log_check_server_error", 
-    "hostgroup_name": "hadoop_datanode", 
-    "id": "hbase_log_check_server_error",
-    "max_check_attempts" : 1,
-    "notification_options": "w,u,c",
-    "contact_groups": "email_only"
-}
