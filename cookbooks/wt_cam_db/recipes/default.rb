@@ -28,6 +28,11 @@ if ENV["deploy_build"] then
 
   log "Calling #{Chef::Config[:file_cache_path]}/release/Deploy_CAM.bat #{camdbhost} #{domain} #{installerlogin} #{uilogin}"
 
+  windows_path 'C:\Program Files\Microsoft SQL Server\100\Tools\Binn' do
+   action :add
+  end
+
+
   execute "Deploy_CAM.bat" do
     cwd "#{Chef::Config[:file_cache_path]}/release"
     command "Deploy_CAM.bat #{camdbhost} #{domain} #{installerlogin} #{uilogin}"
