@@ -33,11 +33,18 @@ directory "#{install_dir}" do
   action :create
 end
 
+directory "#{conf_dir}" do
+  owner "root"
+  group "root"
+  mode 00755
+  action :create
+end
+
 
 
 def processTemplates (conf_dir)
 	%w[config.properties].each do | template_file |
-		template "#{conf_dir}/conf/#{template_file}" do 
+		template "#{conf_dir}/#{template_file}" do 
 		source "#{template_file}.erb" 
 		owner "root" 
 		group "root" 
