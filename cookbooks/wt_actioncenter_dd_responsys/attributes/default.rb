@@ -10,5 +10,5 @@
 default['wt_actioncenter_dd_responsys']['user']           = "webtrends"
 default['wt_actioncenter_dd_responsys']['group']          = "webtrends"
 default['wt_actioncenter_dd_responsys']['download_url']   =
-"http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/.lastSuccessful/action-center-integrations-example-develop-SNAPSHOT-bin.tar.gz"
+"http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/.lastSuccessful/action-center-integrations-responsys-bin.tar.gz"
 default['wt_actioncenter_dd_responsys']['message_port']   = 2552
