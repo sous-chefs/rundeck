@@ -27,7 +27,7 @@
   end
     
     execute "setpath" do
-    command "set PATH=C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn"
+    command "setx PATH=C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn"
     action :run
   end
 
