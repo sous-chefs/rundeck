@@ -16,7 +16,7 @@ end
 
 install_dir = File.join(node['wt_common']['install_dir_linux'],
 "harness/plugins/actioncenter_dd_responsys")
-conf_dir = File.join(node['wt_common']['install_dir_linux'], "harness/conf")
+conf_dir = File.join(install_dir, "conf")
 tarball      = node['wt_actioncenter_dd_responsys']['download_url'].split("/")[-1]
 download_url = node['wt_actioncenter_dd_responsys']['download_url']
 user = node['wt_actioncenter_dd_responsys']['user']
@@ -30,6 +30,12 @@ directory "#{install_dir}" do
   group "root"
   mode 00755
   recursive true
+  action :create
+end
+
+directory "#{conf_dir}" do
+  owner "root"
+  group "root"
   action :create
 end
 
@@ -64,40 +70,9 @@ if ENV["deploy_build"] == "true" then
         command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
     end
 
-	execute "copy_lib_contents" do
-		user "root"
-		group "root"
-		cwd install_dir
-		command "cp lib/* ."
-		action :run
-	end
-
-	execute "delete_lib_directory" do
-		user "root"
-		group "root"
-		cwd install_dir
-		command "rm -rf lib"
-		action :run
-	end
 
 	processTemplates(conf_dir)	
 
-    #processors = Array.new
-    #if not Chef::Config.solo
-    #  search(:node, "role:wt_stream_processor AND chef_environment:#{node.chef_environment}").each do |n|
-    #    processors << "\"akka://StreamProcessor@#{n[:fqdn]}:2552/user/processor\"" 
-    #  end
-    #end
-
-    #template "#{conf_dir}/application.conf" do
-    #    source  "application.conf.erb"
-    #    owner   "root"
-    #    group   "root"
-    #    mode    00644
-    #    variables({
-    #      :processors => processors
-    #    })
-    #end
 
   # delete the install tar ball
   execute "delete_install_source" do
