@@ -1,3 +1,6 @@
+## 1.0.18
+* Changed the nagios script to point to the main port, 8080, for health checks
+
 ## 1.0.17
 * Added ZK timeout settings to kafka.properties
 
