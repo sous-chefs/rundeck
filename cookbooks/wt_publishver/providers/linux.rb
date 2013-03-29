@@ -53,10 +53,11 @@ action :deploy_prereqs do
 		action :nothing
 	end.run_action :run
 
+	# this is a precompiled gem
 	gem_package 'nokogiri' do
 		gem_binary ::File.join(RbConfig::CONFIG['bindir'], 'gem')
-		source ::File.join(wdir, 'nokogiri-1.5.6.gem')
-		options "--install-dir #{gdir} -- --with-xml2-lib=#{ldir} --with-xml2-include=#{idir}/libxml2 --with-xslt-lib=#{ldir} --with-xslt-include=#{idir} --with-dldflags='-Wl,-rpath,#{ldir}'"
+		source ::File.join(wdir, 'nokogiri-1.5.9-x86_64-linux.gem')
+		options "--install-dir #{gdir}"
 		action :nothing
 	end.run_action :install
 
