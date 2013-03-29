@@ -19,6 +19,9 @@ download_url = node['wt_cam_db']['download_url']
 
 if ENV["deploy_build"] then
   log "The deploy_build value is true, so we will grab the camdb zip and install"
+  windows_path "C:\Program Files\Microsoft SQL Server\100\Tools\Binn" do
+   action :add
+ end
 
   windows_zipfile Chef::Config[:file_cache_path] do
     source download_url
