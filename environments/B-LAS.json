@@ -529,7 +529,8 @@
             }, 
             "topic_list": [
                 "Lab_B_scsRawHits:2", 
-                "Lab_B_lrRawHits:2"
+                "Lab_B_lrRawHits:2",
+		"las_01_scsRawHits:2"
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
