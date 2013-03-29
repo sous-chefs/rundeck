@@ -1,3 +1,7 @@
+## 0.9.3:
+
+* Configure sms.endpoint to wt_streamingmanagementservice.sms_service_url
+
 ## 0.9.2:
 
 * Clean out artifact_deploy cache for artifact if deploy_build=true.
