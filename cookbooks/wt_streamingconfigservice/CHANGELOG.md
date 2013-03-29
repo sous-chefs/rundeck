@@ -1,3 +1,7 @@
+## 1.1.3
+* Changed the nagios script to point to the main port, 8080, for health checks. Removed the healthcheck_port from this 
+* cookbook since it is not needed.
+
 ## 1.1.2
 * Added connection string for data config endpoints
 
