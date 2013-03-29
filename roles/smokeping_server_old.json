@@ -1,0 +1,10 @@
+{
+  "name": "smokeping_server_old",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "Old Smokeping Servers",
+  "run_list": [
+  ],
+  "override_attributes": {
+  }
+}
