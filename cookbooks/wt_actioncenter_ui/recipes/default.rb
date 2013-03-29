@@ -98,6 +98,7 @@ artifact_deploy artifact_name do
   configure Proc.new {
     auth_base = node[:wt_sauth][:auth_service_url]
     auth_version = node[:wt_actioncenter_ui][:auth_service_version]
+
     template "#{release_path}/config/settings/production.yml" do
       source "production.yml.erb"
       variables(
@@ -108,7 +109,8 @@ artifact_deploy artifact_name do
         :client_id => user_data['wt_actioncenter_ui']['client_id'],
         :client_secret => user_data['wt_actioncenter_ui']['client_secret'],
         :http_proxy => node[:wt_common][:http_proxy_url],
-        :cam_url => node[:wt_cam][:cam_service_url]
+        :cam_url => node[:wt_cam][:cam_service_url],
+        :sms_url => node[:wt_streamingmanagementservice][:sms_service_url]
       )
     end
 
