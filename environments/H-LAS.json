@@ -154,7 +154,7 @@
         "wt_portfolio_harness": "= 1.0.1", 
         "wt_portfolio_manager": "= 1.1.18", 
         "wt_portfolio_router": "= 1.0.0", 
-        "wt_publishver": "= 0.2.2", 
+        "wt_publishver": "= 0.2.3", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_roadrunner": "= 1.1.2", 
         "wt_sauth": "= 1.1.6", 
@@ -384,7 +384,7 @@
         "wt_cam_db": {
             "db_name": "CAM", 
             "db_server": "hcamdb01.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/55963:id/CamDB.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/56287:id/CamDB.zip"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
