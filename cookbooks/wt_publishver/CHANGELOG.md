@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of wt_publishver.
 
+# 0.2.3
+* switch to using own precompiled nokogiri gem; no need for build tools to be present
+
 ## 0.2.2
 * removed support for ubuntu less than version 12, too many problems installing nokogiri
 * check for gcc and make
