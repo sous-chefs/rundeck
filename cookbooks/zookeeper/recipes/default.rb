@@ -151,7 +151,8 @@ end
 			:max_client_cnxns => node.zookeeper_attrib(:max_client_cnxns),
 			:data_log_dir     => node.zookeeper_attrib(:data_log_dir),
 			:snapshot_num     => node.zookeeper_attrib(:snapshot_num),
-			:purge_interval   => node.zookeeper_attrib(:purge_interval)
+			:purge_interval   => node.zookeeper_attrib(:purge_interval),
+			:max_session_timeout => node.zookeeper_attrib(:max_session_timeout)
 		})
 	end
 end
