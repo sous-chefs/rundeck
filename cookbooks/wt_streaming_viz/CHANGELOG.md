@@ -1,3 +1,6 @@
+## 1.2.7 
+* Fixed delete command 
+
 ## 1.2.6
 * Fixing icacls permissions for link folders. 
 * Added notify for site restart on redeploy
