@@ -24,5 +24,6 @@ default[:zookeeper][:default][:client_port] = 2181
 default[:zookeeper][:default][:snapshot_num] = 3
 default[:zookeeper][:default][:purge_interval] = 1 # in hours
 default[:zookeeper][:default][:max_client_cnxns] = 60
+default[:zookeeper][:default][:max_session_timeout] = 60000
 
 default[:zookeeper][:default][:jmx_port] = 10201
