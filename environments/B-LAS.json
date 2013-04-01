@@ -486,7 +486,7 @@
         }, 
         "wt_portfolio_edgeservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54775:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz", 
-            "edgeserviceurl": "http://bbridge01.staging.dmz:8080"
+            "edgeserviceurl": "http://bwapi.staging.dmz:8080"
         }, 
         "wt_portfolio_manager": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/56507:id/Portfolio.Manager.zip", 
@@ -517,7 +517,7 @@
         "wt_storm_streaming": {
             "augment_bolt_executors": 4, 
             "augment_bolt_tasks": 4, 
-            "data_request_url": "http://bbridge01.staging.dmz:8080", 
+            "data_request_url": "http://bwapi.staging.dmz:8080", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/56503:id/streaming-analysis-bin.tar.gz", 
             "event_stream_bolt_executors": 2, 
             "event_stream_bolt_tasks": 2, 
