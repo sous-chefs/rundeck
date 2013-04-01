@@ -80,6 +80,8 @@ end
 
 def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
   log "Updating the template files"
+  
+  port = node['wt_stream_processor']['port']
 
   %w[log4j.xml config.properties netty.properties application.conf].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
@@ -89,6 +91,7 @@ def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter,
       mode  00644
       variables({
         :install_dir => install_dir,
+        :port => port,
         :wt_monitoring => node['wt_monitoring'],
         :router_uri => node['wt_stream_processor']['router_uri'],
 

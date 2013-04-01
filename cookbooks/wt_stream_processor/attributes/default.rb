@@ -10,6 +10,7 @@
 default['wt_stream_processor']['user']           = "webtrends"
 default['wt_stream_processor']['group']          = "webtrends"
 default['wt_stream_processor']['download_url']   = ""
+default['wt_stream_processor']['port']           = 8080
 default['wt_stream_processor']['healthcheck_port'] = 9000
 default['wt_stream_processor']['java_opts']      = "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true"
 default['wt_stream_processor']['jmx_port']       = 9999
