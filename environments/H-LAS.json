@@ -161,7 +161,7 @@
         "wt_search": "= 1.0.10", 
         "wt_static_tag_host": "= 0.0.4", 
         "wt_storm_streaming": "= 2.5.2", 
-        "wt_stream_processor": "= 1.0.4", 
+        "wt_stream_processor": "= 1.0.5", 
         "wt_streaming_barebones": "= 0.0.3", 
         "wt_streaming_viz": "= 1.2.6", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
