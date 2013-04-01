@@ -563,7 +563,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/56284:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/56432:id/webtrends-streamingapi-bin.tar.gz", 
             "explore_quietperiod": "1", 
             "explore_timeout": "2", 
             "sapi_service_url": "ws://bsapi.webtrends.com"
@@ -588,7 +588,7 @@
             "sms_service_url": "http://bsms.staging.dmz"
         }, 
         "wt_thumbnailcapture": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/56386:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/56411:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
             "memcache_environment": "support-staging", 
             "thumbnail_service_url": "http://bthumb.staging.dmz"
         }, 
