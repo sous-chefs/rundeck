@@ -466,7 +466,7 @@
         }, 
         "wt_portfolio_edgeservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54775:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz", 
-            "edgeserviceurl": "http://hedge01.staging.dmz:8080"
+            "edgeserviceurl": "http://hwapi.staging.dmz"
         }, 
         "wt_portfolio_harness": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/.lastSuccessful/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
