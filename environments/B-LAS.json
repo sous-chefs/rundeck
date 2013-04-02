@@ -518,7 +518,7 @@
             "augment_bolt_executors": 4, 
             "augment_bolt_tasks": 4, 
             "data_request_url": "http://bwapi.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/56705:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/56802:id/streaming-analysis-bin.tar.gz", 
             "event_stream_bolt_executors": 2, 
             "event_stream_bolt_tasks": 2, 
             "response_bolt_executors": 1, 
@@ -565,7 +565,7 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/56765:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/5:id/webtrends-streamingapi-bin.tar.gz", 
             "explore_quietperiod": "1", 
             "explore_timeout": "2", 
             "sapi_service_url": "ws://bsapi.webtrends.com"
