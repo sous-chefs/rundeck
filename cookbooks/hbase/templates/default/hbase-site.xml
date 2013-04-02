@@ -67,4 +67,8 @@
 		<name>hbase.replication</name>
 		<value>true</value>
 	</property>
+	<property>
+		<name>zookeeper.session.timeout</name>
+		<value><%= node.zookeeper_attrib[:max_session_timeout]</value>
+	</property>
 </configuration>

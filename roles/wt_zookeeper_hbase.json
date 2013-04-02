@@ -1,14 +1,15 @@
 {
-  "name": "zookeeper",
+  "name": "wt_zookeeper_hbase",
   "chef_type": "role",
   "json_class": "Chef::Role",
-  "description": "Zookeeper",
+  "description": "Added special values for zookeeper on hbase",
   "run_list": [
-    "recipe[zookeeper]"
   ],
   "override_attributes": {
   	"zookeeper":{
-  		"max_session_timeout": 120000
-  	}
+      "default":{
+  		  "max_session_timeout": 120000
+  	  }
+    }
   }
 }
