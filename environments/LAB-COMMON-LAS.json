@@ -38,7 +38,7 @@
         "glance": "= 1.0.0", 
         "graphite": "= 0.4.0", 
         "hadoop": "= 1.1.11", 
-        "hbase": "= 1.1.5", 
+        "hbase": "= 1.1.6", 
         "hive": "= 1.1.0", 
         "horizon": "= 1.0.0", 
         "hosts": "= 1.0.2", 
@@ -273,7 +273,7 @@
         "hbase": {
             "default": {
                 "env": {
-                    "HBASE_HEAPSIZE": 4000, 
+                    "HBASE_HEAPSIZE": 8000, 
                     "HBASE_MANAGES_ZK": "false"
                 }
             }
@@ -481,6 +481,11 @@
             "jmx_port": 9999, 
             "metric_prefix": "lab.common.servers", 
             "monitoring_enabled": "true"
+        },
+        "zookeeper": {
+            "default":{
+                "max_session_timeout": 120000
+            }
         }
     }, 
     "description": "Common (non-pod) systems in LAS", 
