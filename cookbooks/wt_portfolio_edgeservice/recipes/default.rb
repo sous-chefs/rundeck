@@ -183,31 +183,26 @@ if ENV["deploy_build"] == "true" then
     action :run
   end
 
-  # create the runit service
-  runit_service "edgeservice" do
-    options({
-      :log_dir => log_dir,
-      :install_dir => install_dir,
-      :java_home => java_home,
-      :user => user
-    })
-  end
-
 else
   processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
 end
 
+# create the runit service
+runit_service "edgeservice" do
+  options({
+    :log_dir => log_dir,
+    :install_dir => install_dir,
+    :java_home => java_home,
+    :user => user
+  })
+  action [:enable, :start]
+end
+
 if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
-  nagios_nrpecheck "wt_healthcheck_page" do
+  nagios_nrpecheck "wt_portfolio_edgeservice" do
     command "#{node['nagios']['plugin_dir']}/check_http"
-    parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
-    action :add
-  end
-  #Create a nagios nrpe check for the log file
-  nagios_nrpecheck "wt_garbage_collection_limit_reached" do
-    command "#{node['nagios']['plugin_dir']}/check_log"
-    parameters "-F /var/log/webtrends/edgeservice/service.log -O /tmp/service_old.log -q 'GC overhead limit exceeded'"
+    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_portfolio_edgeservice']['healthcheck_port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
     action :add
   end
 end
