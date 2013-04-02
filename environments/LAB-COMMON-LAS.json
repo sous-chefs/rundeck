@@ -388,7 +388,7 @@
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp os.staging.dmz"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -481,9 +481,9 @@
             "jmx_port": 9999, 
             "metric_prefix": "lab.common.servers", 
             "monitoring_enabled": "true"
-        },
+        }, 
         "zookeeper": {
-            "default":{
+            "default": {
                 "max_session_timeout": 120000
             }
         }
