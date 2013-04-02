@@ -69,6 +69,6 @@
 	</property>
 	<property>
 		<name>zookeeper.session.timeout</name>
-		<value><%= node.zookeeper_attrib[:max_session_timeout] %></value>
+		<value><%= node.zookeeper_attrib(:max_session_timeout) %></value>
 	</property>
 </configuration>
