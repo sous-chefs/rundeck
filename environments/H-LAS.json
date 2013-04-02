@@ -289,7 +289,7 @@
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp os.staging.dmz"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -500,11 +500,10 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/56598:id/streaming-analysis-bin.tar.gz", 
             "event_stream_bolt_executors": 18, 
             "event_stream_bolt_tasks": 18, 
+            "response_bolt_executors": 6, 
+            "response_bolt_tasks": 6, 
             "session_stream_bolt_executors": 18, 
             "session_stream_bolt_tasks": 18, 
-            "response_bolt_executors": 6,
-            "response_bolt_tasks": 6,
-
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 4
@@ -574,9 +573,9 @@
         }, 
         "wt_thumbnailcapture": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/56386:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
+            "memcache_cacheexpireseconds": "3", 
             "memcache_environment": "support-staging", 
-            "thumbnail_service_url": "http://hthumb.staging.dmz",
-            "memcache_cacheexpireseconds": "3"
+            "thumbnail_service_url": "http://hthumb.staging.dmz"
         }, 
         "zookeeper": {
             "client_port": 2181

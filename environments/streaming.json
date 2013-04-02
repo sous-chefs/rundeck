@@ -4,8 +4,8 @@
         "java": "= 1.6.0", 
         "kafka": "= 1.0.20", 
         "wt_portfolio_edgeservice": "= 1.0.0", 
-        "wt_stream_processor": "= 1.0.0",
-		"wt_portfolio_harness":"= 1.0.1"
+        "wt_portfolio_harness": "= 1.0.1", 
+        "wt_stream_processor": "= 1.0.0"
     }, 
     "default_attributes": {
         "authorization": {
