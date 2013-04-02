@@ -2,7 +2,7 @@
     "chef_type": "environment", 
     "cookbook_versions": {
         "wt_streaming_viz": "= 1.2.7"
-        }, 
+    }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -106,7 +106,7 @@
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp os.staging.dmz"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -346,7 +346,7 @@
             "jmx_port": 9998, 
             "port": 8081
         }, 
-         "wt_thumbnailcapture": {
+        "wt_thumbnailcapture": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/56411:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
             "memcache_environment": "support-staging", 
             "thumbnail_service_url": "http://cithumb.staging.dmz"

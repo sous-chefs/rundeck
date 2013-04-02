@@ -92,7 +92,7 @@
                 "10.61.65.251", 
                 "10.61.65.252"
             ], 
-            "search": "englab.webtrends.corp webtrends.corp staging.dmz"
+            "search": "englab.webtrends.corp webtrends.corp staging.dmz os.staging.dmz"
         }, 
         "snmp": {
             "community": "DevOps", 
