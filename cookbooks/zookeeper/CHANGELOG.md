@@ -1,3 +1,6 @@
+## 1.2.5
+* Changed the log4j properties to use a rolling file
+
 ## 1.2.4
 * Added template value for max session timeouts
 
