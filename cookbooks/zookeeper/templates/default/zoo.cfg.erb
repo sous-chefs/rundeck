@@ -15,10 +15,8 @@ clientPort=<%= @client_port %>
 # max connections from a single IP address
 maxClientCnxns=<%= @max_client_cnxns %>
 
-if @max_session_timeout.nil?
-	# session timeout
-	maxSessionTimeout=<%= @max_session_timeout %>
-end
+# session timeout
+maxSessionTimeout=<%= @max_session_timeout %>
 
 #
 # Be sure to read the maintenance section of the 
