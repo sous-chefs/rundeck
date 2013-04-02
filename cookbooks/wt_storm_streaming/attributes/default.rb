@@ -14,7 +14,8 @@ default['wt_storm_streaming']['event_stream_bolt_tasks'] = 0
 default['wt_storm_streaming']['session_stream_bolt_tasks'] = 0
 default['wt_storm_streaming']['augment_bolt_executors'] = 0
 default['wt_storm_streaming']['augment_bolt_tasks'] = 0
-
+default['wt_storm_streaming']['response_bolt_executors'] = 0
+default['wt_storm_streaming']['response_bolt_tasks'] = 0
 
 default['wt_storm_streaming']['data_request_url'] = ""
 
