@@ -565,9 +565,9 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/56556:id/webtrends-streamingapi-bin.tar.gz", 
-            "explore_quietperiod": "0", 
-            "explore_timeout": "10", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/56723:id/webtrends-streamingapi-bin.tar.gz", 
+            "explore_quietperiod": "1", 
+            "explore_timeout": "2", 
             "sapi_service_url": "ws://bsapi.webtrends.com"
         }, 
         "wt_streamingauditor": {
