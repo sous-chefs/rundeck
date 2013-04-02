@@ -1,3 +1,6 @@
+##1.0.4
+* Nagios configuration changes
+
 ##1.0.3
 * Removed usage connection information
 
