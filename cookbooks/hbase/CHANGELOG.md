@@ -1,7 +1,7 @@
 ## Future
 
 ## 1.1.6
-* Added a max client timeout value in site xml
+* Added a max client timeout value in site xml, and icreased hbase_heapsize in hbase-env.sh
 
 ## 1.1.5
 * added nrpe check to region server recipe to scan log for exceptions.
