@@ -1,3 +1,6 @@
+## 1.0.6
+* Reduce default cache expiration.
+
 ## 1.0.5
 * Update x-server display index management
 

@@ -150,7 +150,7 @@
         "wt_platformscheduler": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.15", 
         "wt_portfolio_manager": "= 1.1.18", 
-        "wt_publishver": "= 0.2.2", 
+        "wt_publishver": "= 0.2.3", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_roadrunner": "= 1.1.2", 
         "wt_sauth": "= 1.1.5", 
@@ -250,7 +250,7 @@
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp os.staging.dmz"
         }, 
         "snmp": {
             "community": "DevOps", 

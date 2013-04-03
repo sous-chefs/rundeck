@@ -13,6 +13,7 @@ Installs Thumbnail Capture Service
 * group: The group to run the service under
 * download_url: The fullpath, including the tarball, to the system build
 * display_idx: The available x-server screen location (default=1)
+* memcache_cacheexpireseconds: Length of time to permit fetching same request from cache (instead of re-rendering)
 * jmx_port: port to publish JMX metrics to
 * graphite_enabled: push counters to graphite
 * graphite_interval: how often to push (minutes)
