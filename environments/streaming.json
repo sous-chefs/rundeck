@@ -4,8 +4,9 @@
         "java": "= 1.6.0", 
         "kafka": "= 1.0.20", 
         "wt_portfolio_edgeservice": "= 1.0.0", 
+        "wt_portfolio_harness": "= 1.0.1", 
         "wt_stream_processor": "= 1.0.0",
-		"wt_portfolio_harness":"= 1.0.1"
+		"wt_actioncenter_management_api" : "= 1.0.0"
     }, 
     "default_attributes": {
         "authorization": {
@@ -140,7 +141,11 @@
             "jmx_port": 9999, 
             "metric_prefix": "streaming.servers", 
             "monitoring_enabled": "false"
-        }, 
+        },
+		"wt_actioncenter_management_api" : {
+		    "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz"
+		},
+
         "wt_portfolio_edgeservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/.lastSuccessful/webtrends-portfolio-edge-service-develop-SNAPSHOT-bin.tar.gz", 
             "router_uri": "tcp://router01.os.staging.dmz:5861"

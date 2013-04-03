@@ -1,3 +1,9 @@
+## 1.2.5
+* Changed the log4j properties to use a rolling file
+
+## 1.2.4
+* Added template value for max session timeouts
+
 ## 1.2.3
 * Changing owner/group from root to zookeeper on template files
 

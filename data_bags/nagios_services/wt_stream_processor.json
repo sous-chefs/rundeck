@@ -1,0 +1,6 @@
+{
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_stream_processor", 
+    "hostgroup_name": "wt_stream_processor", 
+    "id": "wt_stream_processor",
+    "contact_groups": "email_and_page-streaming"
+}
