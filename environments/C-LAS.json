@@ -126,7 +126,6 @@
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.9.8", 
         "windows": "= 1.7.0", 
-        "wt_actioncenter": "= 1.1.8", 
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.0.3", 
         "wt_cam": "= 1.1.8", 
@@ -170,7 +169,7 @@
         "wt_sync": "= 1.0.6", 
         "wt_thumbnailcapture": "= 1.0.2", 
         "wt_viracocha": "= 1.1.3", 
-        "wt_xd": "= 2.0.14", 
+        "wt_xd": "= 2.0.16", 
         "xfs": "= 1.1.0", 
         "xml": "= 1.1.2", 
         "yum": "= 2.1.0", 
@@ -282,7 +281,7 @@
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp os.staging.dmz"
         }, 
         "snmp": {
             "community": "DevOps", 
