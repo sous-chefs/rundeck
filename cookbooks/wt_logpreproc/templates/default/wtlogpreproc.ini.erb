@@ -62,7 +62,7 @@ sourcepath<%= i %>=<%= item %>
 compresslogfile=<%= @wtlogpreproc1_compresslogfile %>
 compresslogfile_level=<%= @wtlogpreproc1_compresslogfile_level %>
 
-# Delete the orignal lfr logs when finished
+# Delete the original lfr logs when finished
 deleteoriginallogs=<%= @wtlogpreproc1_deleteoriginallogs %>
 
 # Web Logs default to IIS Logs
@@ -73,6 +73,9 @@ webserver=IIS
 ensurefield=dcs-dns
 ensurefield1=dcs-geo
 ensurefield2=origin-id
+
+# Number of files to work on concurently.
+numthreads=<%= @wtda_numthreads %>
 
 [geotrends]
 
@@ -119,9 +122,6 @@ maxreq=4096
 maxrep=4096
 
 [wtda]
-# Numthreads should be 1 for LPP
-numthreads=<%= @wtda_numthreads %>
-
 # compressed filename extensions (comma separated list)
 # Any "fileextension" values which are in this list are compressed files:
 compressedext=<%= @wtda_compressedext %>
@@ -155,3 +155,4 @@ auditmaxsize=<%= @auditlog_maxsize %>
 audittrimsize=<%= @auditlog_trimsize %>
 auditfilenameprefix=<%= @auditlog_filenameprefix %>
 auditfilenameext=<%= @auditlog_filenameext %>
+
