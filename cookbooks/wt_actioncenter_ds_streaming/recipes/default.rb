@@ -22,6 +22,13 @@ download_url = node['wt_actioncenter_ds_streaming']['download_url']
 user = node['wt_actioncenter_ds_streaming']['user']
 group = node['wt_actioncenter_ds_streaming']['group']
 
+sapi_host = node['wt_actioncenter_ds_streaming']['sapi_host']
+client_id = node['wt_actioncenter_ds_streaming']['client_id']
+client_secret = node['wt_actioncenter_ds_streaming']['client_secret']
+auth_url = node['wt_actioncenter_ds_streaming']['auth_url']
+auth_user_id = node['wt_actioncenter_ds_streaming']['auth_user_id']
+
+
 log "Install dir: #{install_dir}"
 
 # create the install directory
@@ -47,7 +54,13 @@ def processTemplates(conf_dir)
 			owner "root"
 			group "root"
 			mode 00644
-			variables({})
+			variables({
+				:sapi_host => sapi_host,
+				:client_id => client_id,
+				:client_secret => client_secret,
+				:auth_url => auth_url,
+				:auth_user_id => auth_user_id				
+			})
 		end
 	end
 end
