@@ -1,3 +1,6 @@
+##1.0.7
+* Updating number of puller threads from 2 to 4
+
 ##1.0.6
 *Moved service to outside deploy block
 
