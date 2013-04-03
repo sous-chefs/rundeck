@@ -70,13 +70,14 @@ wt_base_icacls log_dir do
 end
 
 if ENV["deploy_build"] == "true" then
+  
   windows_zipfile deploy_dir do
 		source node['wt_streaming_viz']['download_url']
 		action :unzip
   end
   
   execute "mklink" do
-    command "rmdir #{install_dir}&&mklink /D #{install_dir} #{deploy_dir}"
+    command "rmdir /s /q #{install_dir}&&mklink /D #{install_dir} #{deploy_dir}"
     action :run
     notifies :restart, "iis_site[StreamingViz]"
     notifies :restart, "iis_pool[StreamingViz]"

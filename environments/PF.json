@@ -11,7 +11,7 @@
         "wt_base": "= 1.0.3", 
         "wt_cam": "= 1.0.4", 
         "wt_monitoring": "= 1.0.0", 
-        "wt_publishver": "= 0.2.2", 
+        "wt_publishver": "= 0.2.3", 
         "wt_storm": "= 1.0.20", 
         "wt_streamingapi": "= 0.0.16", 
         "wt_streamingauditor": "= 0.0.7", 
@@ -194,7 +194,7 @@
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp os.staging.dmz"
         }, 
         "ubuntu": {
             "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 

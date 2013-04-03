@@ -1,3 +1,6 @@
+##2.5.3
+* Added response_bolt tasks and executors
+
 ## 2.5.2
 * Adding antlr4 to topology
 

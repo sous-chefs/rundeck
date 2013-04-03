@@ -16,7 +16,7 @@
         "wt_kafka_topagg": "= 1.0.1", 
         "wt_netacuity": "= 1.0.14", 
         "wt_portfolio_admin": "= 1.1.10", 
-        "wt_publishver": "= 0.2.2", 
+        "wt_publishver": "= 0.2.3", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.2", 
         "wt_storm_streaming": "= 2.3.2", 
@@ -342,7 +342,7 @@
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp os.staging.dmz"
         }, 
         "ubuntu": {
             "archive_url": "http://repo.staging.dmz/repo/apt/ubuntu", 

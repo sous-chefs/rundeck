@@ -62,7 +62,7 @@
         "multi_repo": "= 1.0.0", 
         "mysql": "= 2.1.0", 
         "mysql-openstack": "= 1.0.4", 
-        "nagios": "= 3.0.0", 
+        "nagios": "= 4.0.1", 
         "nagios-xi": "= 0.0.1", 
         "networking_basic": "= 0.0.5", 
         "nginx": "= 1.1.4", 
@@ -124,7 +124,7 @@
         "vmware-tools": "= 0.1.3", 
         "vsftpd": "= 0.0.2", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.12", 
+        "webtrends_server": "= 1.9.8", 
         "windows": "= 1.7.0", 
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.0.3", 
@@ -150,7 +150,7 @@
         "wt_platformscheduler": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.14", 
         "wt_portfolio_manager": "= 1.1.18", 
-        "wt_publishver": "= 0.2.2", 
+        "wt_publishver": "= 0.2.3", 
         "wt_realtime_hadoop": "= 1.0.1", 
         "wt_roadrunner": "= 1.1.2", 
         "wt_sauth": "= 1.1.6", 
@@ -163,12 +163,13 @@
         "wt_streamingapi": "= 1.2.6", 
         "wt_streamingauditor": "= 1.0.17", 
         "wt_streamingcollection": "= 1.1.5", 
-        "wt_streamingconfigservice": "= 1.1.0", 
+        "wt_streamingconfigservice": "= 1.1.1", 
         "wt_streaminglogreplayer": "= 1.2.1", 
         "wt_streamingmanagementservice": "= 1.1.0", 
         "wt_sync": "= 1.0.6", 
+        "wt_thumbnailcapture": "= 1.0.2", 
         "wt_viracocha": "= 1.1.3", 
-        "wt_xd": "= 2.0.14", 
+        "wt_xd": "= 2.0.16", 
         "xfs": "= 1.1.0", 
         "xml": "= 1.1.2", 
         "yum": "= 2.1.0", 
@@ -280,7 +281,7 @@
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp os.staging.dmz"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -425,7 +426,7 @@
         }, 
         "wt_portfolio_admin": {
             "account_ui_url": "https://caccount.webtrends.com", 
-            "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.1/0220/Portfolio.Admin.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.2/0315/Portfolio.Admin.zip", 
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_manager": {
@@ -479,7 +480,7 @@
             "db_server": "ccamdb01.staging.dmz"
         }, 
         "wt_streaming_viz": {
-            "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.1/0228/Streaming.Viz.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.2/0325/Streaming.Viz.zip", 
             "proxy_enabled": "true", 
             "sms_url": "http://csms.staging.dmz", 
             "streams_ui_url": "https://cstreams.webtrends.com"
@@ -506,7 +507,7 @@
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.3/1214/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streamingmanagementservice": {
-            "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.1/0220/webtrends-streaming-managementservice-bin.tar.gz", 
+            "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.2/0315/webtrends-streaming-managementservice-bin.tar.gz", 
             "healthcheck_port": 9003, 
             "jmx_port": 9998, 
             "port": 8081, 
