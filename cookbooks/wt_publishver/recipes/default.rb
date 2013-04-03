@@ -19,16 +19,6 @@ if node['platform'] == 'ubuntu' and node['platform_version'].to_i < 12
 	return
 end
 
-# abort if gcc or make missing (needed for nokogiri build)
-unless node['platform'] == 'windows'
-	%w{ gcc make }.each do |cmd|
-		if not system("which #{cmd} > /dev/null")
-			log("#{cookbook_name}: #{cmd} is missing") { level :warn }
-			return
-		end
-	end
-end
-
 class Chef::Resource
 	# returns a path with backslashes (windows friendly)
 	def win_path(*args)

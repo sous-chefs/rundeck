@@ -25,9 +25,4 @@
 	action :install
       end
   end
-    
-    execute "setpath" do
-    command "setx PATH=C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn"
-    action :run
-  end
 

@@ -5,7 +5,7 @@
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.0.4", 
         "wt_monitoring": "= 1.0.0", 
-        "wt_publishver": "= 0.2.2", 
+        "wt_publishver": "= 0.2.3", 
         "wt_search": "= 1.0.10", 
         "wt_sync": "= 1.0.6"
     }, 
@@ -100,7 +100,7 @@
                 "10.61.65.251", 
                 "10.61.65.252"
             ], 
-            "search": "englab.webtrends.corp webtrends.corp staging.dmz"
+            "search": "englab.webtrends.corp webtrends.corp staging.dmz os.staging.dmz"
         }, 
         "snmp": {
             "community": "DevOps", 

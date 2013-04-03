@@ -80,9 +80,7 @@ end
 
 def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
   log "Updating the template files"
-
-  port = node['wt_stream_processor']['port']
-
+  
   %w[log4j.xml config.properties netty.properties application.conf].each do | template_file|
     template "#{install_dir}/conf/#{template_file}" do
       source    "#{template_file}.erb"
@@ -91,7 +89,6 @@ def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter,
       mode  00644
       variables({
         :install_dir => install_dir,
-        :port => port,
         :wt_monitoring => node['wt_monitoring'],
         :router_uri => node['wt_stream_processor']['router_uri'],
 
@@ -147,7 +144,11 @@ if ENV["deploy_build"] == "true" then
     action :run
   end
 
-  # create the runit service
+else
+  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
+end
+
+ # create the runit service
   runit_service "streamprocessor" do
     options({
       :log_dir => log_dir,
@@ -155,23 +156,15 @@ if ENV["deploy_build"] == "true" then
       :java_home => java_home,
       :user => user
     })
+    action [:enable, :start]
   end
 
-else
-  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
-end
 
 if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
-  nagios_nrpecheck "wt_healthcheck_page" do
+  nagios_nrpecheck "wt_stream_processor" do
     command "#{node['nagios']['plugin_dir']}/check_http"
-    parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
-    action :add
-  end
-  #Create a nagios nrpe check for the log file
-  nagios_nrpecheck "wt_garbage_collection_limit_reached" do
-    command "#{node['nagios']['plugin_dir']}/check_log"
-    parameters "-F /var/log/webtrends/streamprocessor/service.log -O /tmp/service_old.log -q 'GC overhead limit exceeded'"
+    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_stream_processor']['healthcheck_port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
     action :add
   end
 end
