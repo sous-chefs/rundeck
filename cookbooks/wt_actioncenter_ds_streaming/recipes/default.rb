@@ -26,7 +26,7 @@ sapi_host = node['wt_actioncenter_ds_streaming']['sapi_host']
 client_id = node['wt_actioncenter_ds_streaming']['client_id']
 client_secret = node['wt_actioncenter_ds_streaming']['client_secret']
 auth_url = node['wt_actioncenter_ds_streaming']['auth_url']
-auth_user_id = node['wt_actioncenter_ds_streaming']['auth_user_id']
+auth_user_id =  node['wt_actioncenter_ds_streaming']['auth_user_id']
 
 
 log "Install dir: #{install_dir}"
@@ -47,8 +47,8 @@ directory "#{conf_dir}" do
   action :create
 end
 
-def processTemplates(conf_dir, sapi_host, client_id, client_secret, auth_url,
-auth_user_id)
+def processTemplates(conf_dir, sapi_host, client_id, client_secret,
+auth_url,auth_user_id)
 	%w[producer.properties config.properties].each do | template_file|
 		template "#{conf_dir}/#{template_file}" do
 			source "#{template_file}.erb"
@@ -60,7 +60,7 @@ auth_user_id)
 				:client_id => client_id,
 				:client_secret => client_secret,
 				:auth_url => auth_url,
-				:auth_user_id => auth_user_id				
+				:auth_user_id => auth_user_id,				
 			})
 		end
 	end
