@@ -269,6 +269,8 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :session_stream_bolt_executors => node['wt_storm_streaming']['session_stream_bolt_executors'],    
     :augment_bolt_tasks => node['wt_storm_streaming']['augment_bolt_tasks'],
     :augment_bolt_executors => node['wt_storm_streaming']['augment_bolt_executors'],
+    :response_bolt_tasks => node['wt_storm_streaming']['response_bolt_tasks'],
+    :response_bolt_executors => node['wt_storm_streaming']['response_bolt_executors'],
 
     # kafka consumer settings
     :kafka_consumer_topic       => node['wt_storm_streaming']['topic_list'].join(','),
