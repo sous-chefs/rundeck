@@ -1,3 +1,9 @@
+##1.0.6
+*Moved service to outside deploy block
+
+##1.0.5
+* Nagios configuration changes
+
 ##1.0.4
 * Classpath changes
 

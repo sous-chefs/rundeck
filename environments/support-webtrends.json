@@ -7,7 +7,7 @@
         "webpi": "= 1.0.16", 
         "webtrends_server": "= 1.8.11", 
         "windows": "= 1.6.0", 
-        "wt_publishver": "= 0.2.2"
+        "wt_publishver": "= 0.2.3"
     }, 
     "default_attributes": {
         "authorization": {
@@ -100,7 +100,7 @@
                 "10.61.65.251", 
                 "10.61.65.252"
             ], 
-            "search": "englab.webtrends.corp webtrends.corp staging.dmz"
+            "search": "englab.webtrends.corp webtrends.corp staging.dmz os.staging.dmz"
         }, 
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
