@@ -358,12 +358,17 @@
             ]
         }, 
         "wt_actioncenter_ui": {
+<<<<<<< HEAD
+            "download_url":
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz", 
+=======
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz", 
+>>>>>>> f7bd029f091b374540bc0b614116d57bf4751308
             "release": "1.0.0"
         },
 		"wt_actioncenter_management_api" : {
 			"download_url" :
-			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz"
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/56092:id/action-center-management-service-bin.tar.gz"
 		},
         "wt_analytics_ui": {
             "fb_data_center_id": "Lab"
