@@ -532,7 +532,7 @@
             }
         }, 
         "wt_stream_processor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/57043:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/57046:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_streaming_barebones": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt365/57024:id/Webtrends.Streaming.BareBones/dist/webtrends-streaming-barebones-bin.tar.gz", 
