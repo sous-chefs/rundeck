@@ -47,7 +47,8 @@ directory "#{conf_dir}" do
   action :create
 end
 
-def processTemplates(conf_dir)
+def processTemplates(conf_dir, sapi_host, client_id, client_secret, auth_url,
+auth_user_id)
 	%w[producer.properties config.properties].each do | template_file|
 		template "#{conf_dir}/#{template_file}" do
 			source "#{template_file}.erb"
@@ -75,7 +76,7 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-  processTemplates(conf_dir)
+  processTemplates(conf_dir,sapi_host,client_id,client_secret,auth_url,auth_user_id)
 
     # uncompress the application tarball into the install dir
     execute "tar" do
