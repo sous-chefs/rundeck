@@ -1,3 +1,6 @@
+## 0.9.5:
+* Fixes for consistency
+
 ## 0.9.4:
 * Configure endpoints in the production.yml
 
