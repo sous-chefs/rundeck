@@ -183,20 +183,22 @@ if ENV["deploy_build"] == "true" then
     action :run
   end
 
+    # create the runit service
+    runit_service "edgeservice" do
+      options({
+        :log_dir => log_dir,
+        :install_dir => install_dir,
+        :java_home => java_home,
+        :user => user
+      })
+      action [:enable, :start]
+    end
+
 else
   processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod, usagedbuser, usagedbpwd)
 end
 
-# create the runit service
-runit_service "edgeservice" do
-  options({
-    :log_dir => log_dir,
-    :install_dir => install_dir,
-    :java_home => java_home,
-    :user => user
-  })
-  action [:enable, :start]
-end
+
 
 if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
