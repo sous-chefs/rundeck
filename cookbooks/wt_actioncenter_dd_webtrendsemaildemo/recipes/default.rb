@@ -14,8 +14,7 @@ else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-install_dir = File.join(node['wt_common']['install_dir_linux'],
-"harness/plugins/actioncenter_dd_responsys")
+install_dir = File.join(node['wt_common']['install_dir_linux'], "harness/plugins/wt_actioncenter_dd_webtrendsemaildemo")
 conf_dir = File.join(install_dir, "conf")
 tarball      = node['wt_actioncenter_dd_webtrendsemaildemo']['download_url'].split("/")[-1]
 download_url = node['wt_actioncenter_dd_webtrendsemaildemo']['download_url']
