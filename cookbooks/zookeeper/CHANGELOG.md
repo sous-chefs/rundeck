@@ -1,3 +1,6 @@
+## 1.2.6
+* making sure if no value provided for max session timeout, don't add property
+
 ## 1.2.5
 * Changed the log4j properties to use a rolling file
 

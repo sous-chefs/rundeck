@@ -1,3 +1,6 @@
+## 1.0.3
+* Restart edge service if deploy_build=true
+
 ## 1.0.2
 * Adding configuration setting for message timeout
 
