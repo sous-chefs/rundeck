@@ -1,0 +1,13 @@
+{
+  "name": "wt_actioncenter_dd_webtrendsemaildemo",
+  "default_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+    "recipe[wt_actioncenter_dd_webtrendsemaildemo]"
+  ],
+  "description": "Portfolio harness integration for Webtrends Email plugin",
+  "chef_type": "role"
+}
