@@ -27,7 +27,8 @@ client_id = node['wt_actioncenter_ds_streaming']['client_id']
 client_secret = node['wt_actioncenter_ds_streaming']['client_secret']
 auth_url = node['wt_actioncenter_ds_streaming']['auth_url']
 auth_user_id =  node['wt_actioncenter_ds_streaming']['auth_user_id']
-
+config_host = node['wt_actioncenter_ds_streaming']['config_host']
+config_port = node['wt_actioncenter_ds_streaming']['config_port']
 
 log "Install dir: #{install_dir}"
 
@@ -48,7 +49,7 @@ directory "#{conf_dir}" do
 end
 
 def processTemplates(conf_dir, sapi_host, client_id, client_secret,
-auth_url,auth_user_id)
+auth_url,auth_user_id, config_host, config_port)
 	%w[producer.properties config.properties].each do | template_file|
 		template "#{conf_dir}/#{template_file}" do
 			source "#{template_file}.erb"
@@ -60,7 +61,9 @@ auth_url,auth_user_id)
 				:client_id => client_id,
 				:client_secret => client_secret,
 				:auth_url => auth_url,
-				:auth_user_id => auth_user_id,				
+				:auth_user_id => auth_user_id,
+				:config_host => config_host,
+				:config_port => config_port,
 			})
 		end
 	end
@@ -76,7 +79,7 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-  processTemplates(conf_dir,sapi_host,client_id,client_secret,auth_url,auth_user_id)
+  processTemplates(conf_dir,sapi_host,client_id,client_secret,auth_url,auth_user_id,config_host,config_port)
 
     # uncompress the application tarball into the install dir
     execute "tar" do
