@@ -1,3 +1,6 @@
+## 1.0.1
+* Add collectd plugin for unbound.
+
 ## 1.0.0
 * Add a chef_handler for graphite to send chef run data to graphite
 

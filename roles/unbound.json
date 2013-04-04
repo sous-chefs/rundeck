@@ -7,6 +7,7 @@
     "name": "unbound", 
     "override_attributes": {}, 
     "run_list": [
-        "recipe[unbound::default]"
+        "recipe[unbound::default]",
+		"recipe[wt_monitoring::unbound]"
     ]
 }
