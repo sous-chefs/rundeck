@@ -144,11 +144,7 @@ if ENV["deploy_build"] == "true" then
     action :run
   end
 
-else
-  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
-end
-
- # create the runit service
+# create the runit service
   runit_service "streamprocessor" do
     options({
       :log_dir => log_dir,
@@ -158,6 +154,12 @@ end
     })
     action [:enable, :start]
   end
+
+else
+  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
+end
+
+ 
 
 
 if node.attribute?("nagios")
