@@ -23,3 +23,5 @@ default['wt_actioncenter_ds_streaming']['auth_url'] =
 "https://hsauth.webtrends.com/v1/token"
 
 default['wt_actioncenter_ds_streaming']['auth_user_id'] = "143"
+default['wt_actioncenter_ds_streaming']['config_host'] = "hutil01.staging.dmz"
+default['wt_actioncenter_ds_streaming']['config_port'] = "8080"
