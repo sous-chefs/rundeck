@@ -320,7 +320,7 @@
         }, 
         "wt_sauth": {
             "auth_service_url": "https://osauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51697:id/auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57057:id/auth.zip"
         }, 
         "wt_search": {},
         "wt_storm_streaming": {
