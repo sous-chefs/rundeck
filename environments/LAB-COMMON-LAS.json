@@ -173,7 +173,7 @@
         "xml": "= 1.1.2", 
         "yum": "= 2.1.0", 
         "zlib": "= 2.0.0", 
-        "zookeeper": "= 1.2.4"
+        "zookeeper": "= 1.2.6"
     }, 
     "default_attributes": {
         "authorization": {
