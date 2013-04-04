@@ -14,10 +14,10 @@ default['wt_actioncenter_ds_streaming']['download_url']   =
 default['wt_actioncenter_ds_streaming']['message_port']   = 2552
 default['wt_actioncenter_ds_streaming']['sapi_host'] = "hsapi.webtrends.com"
 default['wt_actioncenter_ds_streaming']['client_id'] =
-"5dc19a573395451cb90330f128807cee.app.webtrends.com"
+"e8ae471a23ef486986db824d41e3a4d7.app.webtrends.com"
 
 default['wt_actioncenter_ds_streaming']['client_secret'] =
-"6f6525b6cc1a4ab285023be1a5c2b5ad"
+"94ac26f39c4045299e6c300198cd7f54"
 
 default['wt_actioncenter_ds_streaming']['auth_url'] =
 "https://hsauth.webtrends.com/v1/token"
