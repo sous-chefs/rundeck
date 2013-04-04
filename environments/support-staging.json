@@ -229,6 +229,9 @@
                 "127.0.0.1/8": "allow"
             }, 
             "logfile": "/var/log/unbound.log", 
+            "stats": {
+                "extended": "yes"
+            }, 
             "use_syslog": "no"
         }, 
         "vc2010": {
