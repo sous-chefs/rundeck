@@ -19,8 +19,6 @@ action :grant do
       perm = "(oi)(ci)(m)"
     when :read
       perm = "(oi)(ci)(rx)"
-    else
-      raise Chef::Exceptions::AttributeNotFound, "perm could not be determined, please use :full, :modify or :read"
   end
   cmd = "#{icacls} /grant:r \"#{@new_resource.user}\":#{perm}"
   cmd << " /l" if @new_resource.link
@@ -30,7 +28,7 @@ end
 
 action :remove do
   Chef::Log.debug("icacls remove #{@new_resource.path} => #{@new_resource.user}")
-  cmd = "#{icacls} /remove \"#{@new_resource.user}\" /t /c /l/ q"
+  cmd = "#{icacls} /remove \"#{@new_resource.user}\" /t /c /l /q"
   shell_out!(cmd)
 end
 
