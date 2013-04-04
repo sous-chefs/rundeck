@@ -25,8 +25,16 @@
         "machine_validation_key": "7FAB532C7D9A7E3EBE4A891BFAEC6B554E0228E0167891F3C6382249455C3524ACE13309FB9F83E6522152E6C1CC1D645ACCDACFFF72ADCB9C9C56396905EAEA"
     }, 
     "wt_portfolio_admin": {
-        "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
-        "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
+        "client_id": "9663da37ba4b482daf265c8ac2d2c864.app.webtrends.com", 
+        "client_secret": "7025c2c662204f0bb9c5efcb655a8bdb"
+    }, 
+    "wt_streaming_barebones": {
+        "client_secret": "7025c2c662204f0bb9c5efcb655a8bdb",
+        "client_token": "9663da37ba4b482daf265c8ac2d2c864.app.webtrends.com"
+    },
+    "wt_streaming_usage_db": {
+        "db_pwd": "bijoux", 
+        "db_user": "wtUI"
     }, 
     "wt_streaming_viz": {
         "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
