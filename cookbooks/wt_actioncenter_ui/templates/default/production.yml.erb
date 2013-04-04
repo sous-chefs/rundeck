@@ -1,6 +1,9 @@
 <%- if @allow_http %>
 allow_http: true
 <% end %>
+api:
+  rest_endpoint: '<%= rest_endpoint %>'
+  streamlab_endpoint: '<%= streamlab_endpoint %>'
 portfolio:
   application_key: streams
   help_url: '<%= @help_url %>'
