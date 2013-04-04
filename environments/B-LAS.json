@@ -149,7 +149,7 @@
         "wt_oauth_redirector": "= 0.0.13", 
         "wt_platformscheduler": "= 1.0.12", 
         "wt_portfolio_admin": "= 1.1.14", 
-        "wt_portfolio_edge_stream_api": "= 1.0.2", 
+        "wt_portfolio_edge_stream_api": "= 1.0.3", 
         "wt_portfolio_edgeservice": "= 1.0.4", 
         "wt_portfolio_manager": "= 1.1.18", 
         "wt_publishver": "= 0.2.3", 
