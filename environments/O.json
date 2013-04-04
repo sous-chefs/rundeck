@@ -322,33 +322,32 @@
             "auth_service_url": "https://osauth.webtrends.com", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51697:id/auth.zip"
         }, 
-        "wt_search": {}, 
-		"wt_storm_streaming": { 
-            "augment_bolt_executors": 24, 
-            "augment_bolt_tasks": 24, 
-            "data_request_url": "http://owapi.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/57148:id/streaming-analysis-bin.tar.gz", 
-            "event_stream_bolt_executors": 6, 
-            "event_stream_bolt_tasks": 6, 
-            "response_bolt_executors": 6, 
-            "response_bolt_tasks": 6, 
-            "session_stream_bolt_executors": 18, 
-            "session_stream_bolt_tasks": 18, 
-            "streaming_topology_field_grouping_local": "false", 
-            "supervisor": { 
-                "workers": 4 
-            }, 
-            "topic_list": [ 
-                "las_01_scsRawHits:4", 
-                "Lab_H_scsRawHits:4", 
-                "Lab_O_lrRawHits:4" 
-            ], 
-            "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
-            "worker": { 
-                "childopts": "-Xmx3456m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote" 
-            } 
-        },
-
+        "wt_search": {},
+        "wt_storm_streaming": {
+            "augment_bolt_executors": 24,
+            "augment_bolt_tasks": 24,
+            "data_request_url": "http://owapi.staging.dmz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/57148:id/streaming-analysis-bin.tar.gz",
+            "event_stream_bolt_executors": 6,
+            "event_stream_bolt_tasks": 6,
+            "response_bolt_executors": 6,
+            "response_bolt_tasks": 6,
+            "session_stream_bolt_executors": 18,
+            "session_stream_bolt_tasks": 18,
+            "streaming_topology_field_grouping_local": "false",
+            "supervisor": {
+                "workers": 4
+            },
+            "topic_list": [
+                "las_01_scsRawHits:4",
+                "Lab_H_scsRawHits:4",
+                "Lab_O_lrRawHits:4"
+            ],
+            "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f",
+            "worker": {
+                "childopts": "-Xmx3456m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+            }
+        },
         "wt_stream_processor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/57046:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
@@ -376,7 +375,7 @@
         "wt_streamingapi": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/57077:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
-            "sapi_service_url": "ws://osapi.webtrends.com", 
+            "sapi_service_url": "ws://osapi.webtrends.com" 
         }, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/57071:id/webtrends-streamingauditor-bin.tar.gz", 
