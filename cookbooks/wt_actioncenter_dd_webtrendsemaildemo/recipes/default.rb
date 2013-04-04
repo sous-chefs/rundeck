@@ -40,6 +40,15 @@ end
 
 def processTemplates(conf_dir)
 	log "Updating template files"
+	%w[config.properties].each do | template_file |
+		template "#{conf_dir}/#{template_file}" do
+			source "#{template_file}.erb"
+			owner "root"
+			group "root"
+			mode 00644
+			variables({})
+		end
+	end
 end
 
 if ENV["deploy_build"] == "true" then
