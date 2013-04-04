@@ -51,7 +51,9 @@ def processTemplates (conf_dir)
 		mode 00644 
 		variables({ 
 			:ads_host => node['wt_actioncenter_management_api']['ads_host'],
-			:ads_port => node['wt_actioncenter_management_api']['ads_port']
+			:ads_port => node['wt_actioncenter_management_api']['ads_port'],
+			:cam_host => node['wt_actioncenter_management_api']['cam_host'],
+			:cam_port => node['wt_actioncenter_management_api']['cam_port']
 		})
 		end	
 	end
