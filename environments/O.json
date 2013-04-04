@@ -4,35 +4,38 @@
         "hadoop": "= 1.1.12", 
         "hbase": "= 1.1.4", 
         "hive": "= 1.1.0", 
-        "java": "= 1.6.0", 
-        "kafka": "= 1.0.20", 
-        "nagios": "= 3.0.0", 
-        "runit": "= 0.16.2", 
-        "storm": "= 1.0.30", 
-        "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.12", 
-        "windows": "= 1.7.0", 
-        "wt_base": "= 1.0.3", 
-        "wt_cam": "= 1.1.7", 
+        "java": "= 1.9.4", 
+        "kafka": "= 1.0.29", 
+        "nagios": "= 4.0.1", 
+        "runit": "= 1.0.4", 
+        "storm": "= 1.0.34", 
+        "webpi": "= 1.2.0", 
+        "webtrends_server": "= 1.9.8", 
+        "windows": "= 1.8.4", 
+        "wt_base": "= 1.1.1", 
+        "wt_cam": "= 1.1.8", 
+        "wt_cam_db": "= 0.1.5", 
         "wt_kafka_topagg": "= 1.0.1", 
         "wt_netacuity": "= 1.0.14", 
-        "wt_portfolio_admin": "= 1.1.11", 
-        "wt_portfolio_edgeservice": "= 1.0.0", 
-        "wt_portfolio_manager": "= 1.1.16", 
-        "wt_portfolio_router": "= 1.0.0", 
+        "wt_portfolio_admin": "= 1.1.14", 
+        "wt_portfolio_edge_stream_api": "= 1.0.3", 
+        "wt_portfolio_edgeservice": "= 1.0.4", 
+        "wt_portfolio_manager": "= 1.1.18", 
         "wt_publishver": "= 0.2.3", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.4", 
-        "wt_storm_streaming": "= 2.4.1", 
-        "wt_stream_processor": "= 1.0.4", 
-        "wt_streaming_viz": "= 1.1.18", 
-        "wt_streaminganalysis_monitor": "= 1.0.6", 
-        "wt_streamingapi": "= 1.1.5", 
-        "wt_streamingauditor": "= 1.0.16", 
-        "wt_streamingconfigservice": "= 1.0.7", 
-        "wt_streaminglogreplayer": "= 1.1.4", 
-        "wt_streamingmanagementservice": "= 1.0.5", 
-        "zookeeper": "= 1.2.3"
+        "wt_storm_streaming": "= 2.5.3", 
+        "wt_stream_processor": "= 1.0.7", 
+        "wt_streaming_barebones": "= 0.0.3", 
+        "wt_streaming_viz": "= 1.2.7", 
+        "wt_streaminganalysis_monitor": "= 1.0.7", 
+        "wt_streamingapi": "= 1.2.8", 
+        "wt_streamingauditor": "= 1.0.19", 
+        "wt_streamingconfigservice": "= 1.1.3", 
+        "wt_streaminglogreplayer": "= 1.2.1", 
+        "wt_streamingmanagementservice": "= 1.1.0", 
+        "wt_thumbnailcapture": "= 1.0.6", 
+        "zookeeper": "= 1.2.6"
     }, 
     "default_attributes": {
         "authorization": {
@@ -87,7 +90,7 @@
                     }
                 }
             }, 
-            "jdk_version": 7
+            "jdk_version": "7"
         }, 
         "kafka": {
             "chroot_suffix": "brokers", 
@@ -99,7 +102,9 @@
             "threads": "16", 
             "version": "0.7.1"
         }, 
-        "memcached": {}, 
+        "memcached": {
+            "memory": "1024"
+        }, 
         "ms_dotnet4": {
             "http_url": "http://repo.staging.dmz/repo/windows/ms_dotnet4/dotNetFx40_Full_x86_x64.exe"
         }, 
@@ -136,7 +141,10 @@
         }, 
         "storm": {
             "download_url": "http://repo.staging.dmz/repo/linux/storm", 
-            "version": "0.8.1"
+            "version": "0.8.2", 
+            "worker": {
+                "childopts": "-Xmx7168m  -Dcom.sun.management.jmxremote"
+            }
         }, 
         "vc2010": {
             "x64": {
@@ -148,6 +156,7 @@
         }, 
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
+            "msi": "http://repo.staging.dmz/repo/windows/webpi/WebPlatformInstaller_amd64_en-US.msi", 
             "url": "http://repo.staging.dmz/repo/windows/webpi/WebpiCmd.zip", 
             "xmlpath": "http://repo.staging.dmz/repo/windows/webpi/webproductlist.xml"
         }, 
@@ -186,10 +195,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49203:id/Cam.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57057:id/CAM.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49203:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57057:id/Plugins.zip"
             }, 
             "cam_service_url": "http://ocam.staging.dmz", 
             "db_name": "cam", 
@@ -201,7 +210,7 @@
         "wt_cam_db": {
             "db_name": "CAM", 
             "db_server": "ocamdb01.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/55389:id/CamDB.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/57079:id/CamDB.zip"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -266,6 +275,8 @@
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 
+            "graphite_flush_enabled": "false", 
+            "graphite_flush_interval": "1", 
             "graphite_port": 2003, 
             "graphite_server": "sgraph01.staging.dmz", 
             "healthcheck_enabled": "true", 
@@ -275,32 +286,32 @@
             "monitoring_enabled": "true"
         }, 
         "wt_netacuity": {
-            "geo_url": "sgeo.staging.dmz"
+            "download_url": "http://repo.staging.dmz/repo/linux/netacuity/NetAcuity_502_x64.tgz", 
+            "geo_url": "sgeo.staging.dmz", 
+            "version": "502"
         }, 
         "wt_portfolio_admin": {
             "account_ui_url": "https://oaccount.webtrends.com", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/47473:id/Portfolio.Admin.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/54185:id/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_edge_stream_api": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/55785:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/57044:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_portfolio_edgeservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54775:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz", 
-            "router_uri": "tcp://orouter01.staging.dmz:5861"
+            "edgeserviceurl": "http://owapi.staging.dmz"
         }, 
         "wt_portfolio_manager": {
-            "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-            "download_url": "http://repo.staging.dmz/repo/product/srt/1.2/0111/Portfolio.Manager.zip", 
-            "manager_ui_url": "http://oportmgr01.staging.dmz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/57154:id/Portfolio.Manager.zip", 
+            "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
+            "portmgr_fulfillment_dl": "martin.neal@webtrends.com", 
             "portmgr_group_admin": "O.PortMgr.Admins", 
             "portmgr_group_user": "O.PortMgr.Users", 
-            "portmgr_injected_user": "toby.mosby@webtrends.com"
-        }, 
-        "wt_portfolio_router": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt337/48786:id/webtrends-portfolio-router-develop-SNAPSHOT-bin.tar.gz"
+            "portmgr_injected_user": "tomomi.ioffe@webtrends.com", 
+            "portmgr_support_dl": "eng-systems@webtrends.com"
         }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
@@ -309,34 +320,49 @@
         }, 
         "wt_sauth": {
             "auth_service_url": "https://osauth.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/49203:id/Auth.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51697:id/auth.zip"
         }, 
         "wt_search": {}, 
-        "wt_storm_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/49804:id/streaming-analysis-bin.tar.gz", 
-            "query_bolt_executors": 24, 
-            "query_bolt_tasks": 24, 
-            "streaming_topology_field_grouping_local": "false", 
-            "supervisor": {
-                "workers": 4
-            }, 
-            "topic_list": [
-                "las_01_scsRawHits:4", 
-                "Lab_H_scsRawHits:4", 
-                "Lab_O_lrRawHits:4"
-            ], 
-            "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
-            "worker": {
-                "childopts": "-Xmx3456m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
-            }
-        }, 
+		"wt_storm_streaming": { 
+            "augment_bolt_executors": 24, 
+            "augment_bolt_tasks": 24, 
+            "data_request_url": "http://owapi.staging.dmz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/57148:id/streaming-analysis-bin.tar.gz", 
+            "event_stream_bolt_executors": 6, 
+            "event_stream_bolt_tasks": 6, 
+            "response_bolt_executors": 6, 
+            "response_bolt_tasks": 6, 
+            "session_stream_bolt_executors": 18, 
+            "session_stream_bolt_tasks": 18, 
+            "streaming_topology_field_grouping_local": "false", 
+            "supervisor": { 
+                "workers": 4 
+            }, 
+            "topic_list": [ 
+                "las_01_scsRawHits:4", 
+                "Lab_H_scsRawHits:4", 
+                "Lab_O_lrRawHits:4" 
+            ], 
+            "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
+            "worker": { 
+                "childopts": "-Xmx3456m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote" 
+            } 
+        },
+
         "wt_stream_processor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/55783:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz", 
-            "router_uri": "tcp://orouter01.staging.dmz:5862"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/57046:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+        }, 
+        "wt_streaming_barebones": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt365/57076:id/Webtrends.Streaming.BareBones/dist/webtrends-streaming-barebones-bin.tar.gz", 
+            "port": 8083
+        }, 
+        "wt_streaming_usage_db": {
+            "db_name": "streaming", 
+            "db_server": "ocamdb01.staging.dmz"
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/54631:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/57088:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true", 
             "sms_url": "http://osms.staging.dmz", 
@@ -348,14 +374,12 @@
             "jmx_port": 9998
         }, 
         "wt_streamingapi": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/48256:id/webtrends-streamingapi-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt244/57077:id/webtrends-streamingapi-bin.tar.gz", 
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "sapi_service_url": "ws://osapi.webtrends.com", 
-            "usagedbname": "Streaming", 
-            "usagedbserver": "ocamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/51475:id/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/57071:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://scs.webtrends.com,http://scs.pdx.webtrends.com,http://scs.las.webtrends.com,http://scs.iad.webtrends.com,http://scs.ams.webtrends.com", 
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com", 
             "roundtrip_token": "3fc39e27ba0344bdbbcff6d378d25a38"
@@ -364,7 +388,8 @@
             "camdbname": "CAM", 
             "camdbserver": "ocamdb01.staging.dmz", 
             "config_service_url": "http://oconfigsvc.staging.dmz", 
-            "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.3/1214/webtrends-streaming-configservice-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/54907:id/webtrends-streaming-configservice-bin.tar.gz"
+
         }, 
         "wt_streaminglogreplayer": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.1/1119/webtrends-streaminglogreplayer-bin.tar.gz", 
@@ -372,12 +397,18 @@
             "thread_pool_size": 160
         }, 
         "wt_streamingmanagementservice": {
-            "download_url": "http://repo.staging.dmz/repo/product/srt/1.2/0111/webtrends-streaming-managementservice-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/54195:id/webtrends-streaming-managementservice-bin.tar.gz", 
             "healthcheck_port": 9002, 
             "jmx_port": 9997, 
             "port": 8081, 
             "sms_service_url": "http://osms.staging.dmz"
         }, 
+        "wt_thumbnailcapture": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/56479:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
+            "memcache_environment": "support-staging", 
+            "thumbnail_service_url": "http://othumb.staging.dmz"
+        }, 
+
         "zookeeper": {
             "client_port": 2181, 
             "download_url": "http://repo.staging.dmz/repo/linux/zookeeper/zookeeper-3.4.5.tar.gz", 
