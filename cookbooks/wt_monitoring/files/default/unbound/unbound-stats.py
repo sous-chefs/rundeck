@@ -3,8 +3,7 @@
 """ unbound-stats.py:  collectd plugin for Unbound
 
     DESCRIPTION
-      
-    EXAMPLE
+	Executes 'unbound-control stats_noreset' and dispatches desired stats thru collectd
 
     Copyright 2013, Webtrends Inc.
     David Dvorak <david.dvorak@webtrends.com>
@@ -48,6 +47,10 @@ def get_stats():
 		if line.startswith('thread'):
 			continue
 
+		# histogram?
+		if line.startswith('histogram'):
+			continue
+
 		key, val = line.split('=')
 		stats[key] = val
 
@@ -57,9 +60,10 @@ def dispatch_value(stats, key, epoch, type):
 	if args.display:
 		print "%s %s %s" % (key, stats[key], epoch)
 	else:
-		log('%s %s %s' % (key, stats[key], epoch))
-		value = collectd.Values(plugin='unbound', time = epoch, type = type, type_instance = key, values = [stats[key]])
-		value.dispatch()
+		if key in stats:
+			log('%s %s %s' % (key, stats[key], epoch))
+			value = collectd.Values(plugin='unbound', time = epoch, type = type, type_instance = key, values = [stats[key]])
+			value.dispatch()
 	return
 
 def read_callback():
@@ -86,6 +90,15 @@ def read_callback():
 	dispatch_value(stats, 'total.requestlist.current.user', epoch, 'gauge')
 	dispatch_value(stats, 'total.recursion.time.avg', epoch, 'gauge')
 	dispatch_value(stats, 'total.recursion.time.median', epoch, 'gauge')
+
+	# extended stats
+	for key in stats:
+		if key.startswith('mem.'):
+			dispatch_value(stats, key, epoch, 'memory')
+		if key.startswith('num.'):
+			dispatch_value(stats, key, epoch, 'dns_query')
+		if key.startswith('unwanted.'):
+			dispatch_value(stats, key, epoch, 'dns_query')
 
 def log(msg):
 	if not VERBOSE:
