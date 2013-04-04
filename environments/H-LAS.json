@@ -128,7 +128,6 @@
         "windows": "= 1.8.4", 
         "wt_analytics_ui": "= 1.1.6",
 		"wt_actioncenter_management_api" : "= 1.0.0",
-        "wt_actioncenter_ui" : "= 0.9.4",
         "wt_base": "= 1.1.1", 
         "wt_cam": "= 1.1.8", 
         "wt_cam_db": "= 0.1.5", 
@@ -360,7 +359,8 @@
         }, 
         "wt_actioncenter_ui": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz", 
-            "release": "1.0.0"
+            "release": "1.0.0",
+            "actioncenter_management_url": "http://hacws01.staging.dmz:8080"
         },
 		"wt_actioncenter_management_api" : {
 			"download_url" :
