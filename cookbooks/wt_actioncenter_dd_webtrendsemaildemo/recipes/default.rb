@@ -21,6 +21,9 @@ download_url = node['wt_actioncenter_dd_webtrendsemaildemo']['download_url']
 user = node['wt_actioncenter_dd_webtrendsemaildemo']['user']
 group = node['wt_actioncenter_dd_webtrendsemaildemo']['group']
 
+config_host = node['wt_actioncenter_dd_webtrendsemaildemo']['config_host']
+config_port = node['wt_actioncenter_dd_webtrendsemaildemo']['config_port']
+
 log "Install dir: #{install_dir}"
 
 # create the install directory
@@ -38,7 +41,7 @@ directory "#{conf_dir}" do
   action :create
 end
 
-def processTemplates(conf_dir)
+def processTemplates(conf_dir, config_host, config_port)
 	log "Updating template files"
 	%w[config.properties].each do | template_file |
 		template "#{conf_dir}/#{template_file}" do
@@ -46,7 +49,10 @@ def processTemplates(conf_dir)
 			owner "root"
 			group "root"
 			mode 00644
-			variables({})
+			variables({
+				:config_host => config_host,
+				:config_port => config_port
+			})
 		end
 	end
 end
