@@ -17,5 +17,8 @@ webtrends.cam.accounts=%%baseUrl%%/account
 auth.clientId=<%= @client_token %>
 auth.clientSecret=<%= @client_secret %>
 
-# Proxy properties. Lease this section blank if you dont need proxy support.
-easy.proxy.1 = hsauth.webtrends.com -> sproxy02.staging.dmz:3128
+# Proxy properties. Leave this section blank if you dont need proxy support.
+<% if @auth_host.to_s != '' && @proxy_host.to_s != '' %>
+easy.proxy.1 = <%= @auth_host %> -> <%= @proxy_host %>
+<% end %>
+
