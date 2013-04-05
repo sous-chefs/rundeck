@@ -375,10 +375,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57018:id/CAM.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57416:id/CAM.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57018:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57416:id/Plugins.zip"
             }, 
             "cam_service_url": "http://hcam.staging.dmz", 
             "db_name": "CAM", 
@@ -500,24 +500,24 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51697:id/auth.zip"
         }, 
         "wt_storm_streaming": {
-            "augment_bolt_executors": 24, 
-            "augment_bolt_tasks": 24, 
+            "augment_bolt_executors": 16, 
+            "augment_bolt_tasks": 16, 
             "data_request_url": "http://hedge01.staging.dmz:8080", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/57056:id/streaming-analysis-bin.tar.gz", 
-            "event_stream_bolt_executors": 18, 
-            "event_stream_bolt_tasks": 18, 
-            "response_bolt_executors": 24, 
-            "response_bolt_tasks": 24, 
-            "session_stream_bolt_executors": 18, 
-            "session_stream_bolt_tasks": 18, 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/57148:id/streaming-analysis-bin.tar.gz", 
+            "event_stream_bolt_executors": 4, 
+            "event_stream_bolt_tasks": 4, 
+            "response_bolt_executors": 4, 
+            "response_bolt_tasks": 4, 
+            "session_stream_bolt_executors": 12, 
+            "session_stream_bolt_tasks": 12, 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 4
             }, 
             "topic_list": [
-                "Lab_H_scsRawHits:6", 
-                "Lab_H_lrRawHits:6", 
-                "las_01_scsRawHits:6"
+                "Lab_H_scsRawHits:2", 
+                "Lab_H_lrRawHits:2", 
+                "las_01_scsRawHits:2"
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "visitor": {
@@ -568,10 +568,10 @@
         }, 
         "wt_streamingconfigservice": {
             "config_service_url": "http://hconfigsvc.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/54875:id/webtrends-streaming-configservice-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/57181:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streamingmanagementservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/56495:id/webtrends-streaming-managementservice-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/57386:id/webtrends-streaming-managementservice-bin.tar.gz", 
             "healthcheck_port": 9001, 
             "jmx_port": 9997, 
             "port": 8081, 
