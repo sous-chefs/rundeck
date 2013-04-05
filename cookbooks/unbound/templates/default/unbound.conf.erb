@@ -13,7 +13,7 @@ server:
   # whitespace is not necessary, but looks cleaner.
 
   # verbosity number, 0 is least verbose. 1 is default.
-  verbosity: 2
+  verbosity: 1
 
   # print statistics to the log (for every thread) every N seconds.
   # Set to "" or 0 to disable. Default is disabled.
@@ -65,7 +65,7 @@ server:
 
   # number of ports to allocate per thread, determines the size of the
   # port range that can be open simultaneously. 
-  outgoing-range: 50000
+  outgoing-range: 65000
 
   # permit unbound to use this port number or port range for
   # making outgoing queries, using an outgoing interface.
@@ -107,7 +107,7 @@ server:
   # msg-cache-slabs: 4
 
   # the number of queries that a thread gets to service.
-  num-queries-per-thread: 40000
+  num-queries-per-thread: 60000
 
   # if very busy, 50% queries run to completion, 50% get timeout in msec
   # jostle-timeout: 200
