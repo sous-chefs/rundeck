@@ -121,7 +121,8 @@
                 "install_method": "source", 
                 "service_name": "nagios"
             },  
-            "server_role": "nagios", 
+            "server_role": "nagios_xi", 
+            "server_auth_method": "htpasswd", 
             "sysadmin_email": "devops@webtrends.com", 
             "users_databag_group": "staging"
         }, 
