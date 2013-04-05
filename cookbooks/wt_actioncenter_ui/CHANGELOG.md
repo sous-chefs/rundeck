@@ -1,3 +1,9 @@
+## 0.9.5:
+* Fixes for consistency
+
+## 0.9.4:
+* Configure endpoints in the production.yml
+
 ## 0.9.3:
 
 * Configure sms.endpoint to wt_streamingmanagementservice.sms_service_url
