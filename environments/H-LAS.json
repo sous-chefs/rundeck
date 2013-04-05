@@ -515,9 +515,9 @@
                 "workers": 4
             }, 
             "topic_list": [
-                "Lab_H_scsRawHits:3", 
-                "Lab_H_lrRawHits:3", 
-                "las_01_scsRawHits:3"
+                "Lab_H_scsRawHits:2", 
+                "Lab_H_lrRawHits:2", 
+                "las_01_scsRawHits:2"
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "visitor": {
