@@ -1,3 +1,6 @@
+## 0.0.4
+* Fixed proxy issue in template
+
 ## 0.0.3 
 * Added wapi url to config
 

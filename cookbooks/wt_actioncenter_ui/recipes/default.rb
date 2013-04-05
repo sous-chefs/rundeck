@@ -104,6 +104,8 @@ artifact_deploy artifact_name do
       variables(
         :allow_http => node[:wt_actioncenter_ui][:allow_http],
         :help_url => node[:wt_actioncenter_ui][:help_url],
+
+        :actioncenter_url => node[:wt_actioncenter_ui][:actioncenter_management_url],
         # Auth
         :auth_url => "#{auth_base}/#{auth_version}",
         :client_id => user_data['wt_actioncenter_ui']['client_id'],
