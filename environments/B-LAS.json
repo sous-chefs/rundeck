@@ -581,7 +581,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/54907:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streamingmanagementservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/54195:id/webtrends-streaming-managementservice-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/57386:id/webtrends-streaming-managementservice-bin.tar.gz", 
             "healthcheck_port": 9003, 
             "jmx_port": 9998, 
             "port": 8081, 
