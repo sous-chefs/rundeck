@@ -75,7 +75,7 @@ if ENV["deploy_build"] == "true" then
     end
 
 
-	processTemplates(conf_dir)	
+	processTemplates(conf_dir, config_host, config_port)	
 
 
   # delete the install tar ball
