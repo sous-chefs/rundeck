@@ -500,24 +500,24 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51697:id/auth.zip"
         }, 
         "wt_storm_streaming": {
-            "augment_bolt_executors": 24, 
-            "augment_bolt_tasks": 24, 
+            "augment_bolt_executors": 16, 
+            "augment_bolt_tasks": 16, 
             "data_request_url": "http://hedge01.staging.dmz:8080", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/57056:id/streaming-analysis-bin.tar.gz", 
-            "event_stream_bolt_executors": 18, 
-            "event_stream_bolt_tasks": 18, 
-            "response_bolt_executors": 24, 
-            "response_bolt_tasks": 24, 
-            "session_stream_bolt_executors": 18, 
-            "session_stream_bolt_tasks": 18, 
+            "event_stream_bolt_executors": 4, 
+            "event_stream_bolt_tasks": 4, 
+            "response_bolt_executors": 4, 
+            "response_bolt_tasks": 4, 
+            "session_stream_bolt_executors": 12, 
+            "session_stream_bolt_tasks": 12, 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 4
             }, 
             "topic_list": [
-                "Lab_H_scsRawHits:6", 
-                "Lab_H_lrRawHits:6", 
-                "las_01_scsRawHits:6"
+                "Lab_H_scsRawHits:3", 
+                "Lab_H_lrRawHits:3", 
+                "las_01_scsRawHits:3"
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "visitor": {
