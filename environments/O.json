@@ -20,6 +20,7 @@
         "wt_portfolio_admin": "= 1.1.14", 
         "wt_portfolio_edge_stream_api": "= 1.0.3", 
         "wt_portfolio_edgeservice": "= 1.0.4", 
+	"wt_portfolio_harness": "= 1.0.1",
         "wt_portfolio_manager": "= 1.1.18", 
         "wt_publishver": "= 0.2.3", 
         "wt_realtime_hadoop": "= 1.0.4", 
@@ -113,18 +114,16 @@
                 "install_method": "package"
             }, 
             "multi_environment_monitoring": false, 
-            "notifications_enabled": "1", 
             "nrpe": {
                 "dont_blame_nrpe": "1"
             }, 
             "server": {
                 "install_method": "source", 
                 "service_name": "nagios"
-            }, 
-            "server_auth_method": "htpasswd", 
-            "server_role": "nagios_xi", 
+            },  
+            "server_role": "nagios", 
             "sysadmin_email": "devops@webtrends.com", 
-            "users_databag_group": "engage"
+            "users_databag_group": "staging"
         }, 
         "ohai": {
             "disabled_plugins": [
@@ -191,7 +190,7 @@
 	"wt_actioncenter_ui": {
 		"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz",
 		"release": "1.0.0",
-		"actioncenter_management_url": "http://hacws01.staging.dmz:8080"
+		"actioncenter_management_url": "http://oacws01.staging.dmz:8080"
 	}, 
         "wt_analytics_ui": {}, 
         "wt_aps": {
@@ -309,6 +308,9 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54775:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz", 
             "edgeserviceurl": "http://owapi.staging.dmz"
         }, 
+	"wt_portfolio_harness": {
+		 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/.lastSuccessful/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
+	},
         "wt_portfolio_manager": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/57154:id/Portfolio.Manager.zip", 
             "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
