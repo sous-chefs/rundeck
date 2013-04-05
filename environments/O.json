@@ -190,7 +190,7 @@
 	"wt_actioncenter_ui": {
 		"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz",
 		"release": "1.0.0",
-		"actioncenter_management_url": "http://hacws01.staging.dmz:8080"
+		"actioncenter_management_url": "http://oacws01.staging.dmz:8080"
 	}, 
         "wt_analytics_ui": {}, 
         "wt_aps": {
