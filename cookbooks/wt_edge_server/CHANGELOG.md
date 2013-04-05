@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of wt_edge_server.
 
+## 1.0.3
+* Cleanup runit service disabling in undeploy.rb
+
 ## 1.0.2:
 * Fix the force-stop on the uninstall
 
