@@ -26,7 +26,7 @@
         "wt_sauth": "= 1.1.4", 
         "wt_storm_streaming": "= 2.5.3", 
         "wt_stream_processor": "= 1.0.7", 
-        "wt_streaming_barebones": "= 0.0.3", 
+        "wt_streaming_barebones": "= 0.0.4", 
         "wt_streaming_viz": "= 1.2.7", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
         "wt_streamingapi": "= 1.2.8", 
@@ -187,7 +187,12 @@
                     "url": "http://repo.staging.dmz/repo/yum/webtrends"
                 }
             ]
-        }, 
+        },
+	"wt_actioncenter_ui": {
+		"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz",
+		"release": "1.0.0",
+		"actioncenter_management_url": "http://hacws01.staging.dmz:8080"
+	}, 
         "wt_analytics_ui": {}, 
         "wt_aps": {
             "aps_url_base": "/AccountProvisioning/", 
