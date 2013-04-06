@@ -375,10 +375,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57496:id/CAM.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57583:id/CAM.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57496:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57583:id/Plugins.zip"
             }, 
             "cam_service_url": "http://hcam.staging.dmz", 
             "db_name": "CAM", 
@@ -479,7 +479,7 @@
         }, 
         "wt_portfolio_manager": {
             "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/57154:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/57584:id/Portfolio.Manager.zip", 
             "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
             "portmgr_fulfillment_dl": "toby.mosby@webtrends.com", 
             "portmgr_group_admin": "H.PortMgr.Admins", 
