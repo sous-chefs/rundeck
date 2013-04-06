@@ -1,3 +1,6 @@
+##1.0.8
+* Removed staging reference 
+
 ##1.0.7
 * Updating number of puller threads from 2 to 4
 
