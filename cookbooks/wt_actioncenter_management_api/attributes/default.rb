@@ -16,4 +16,5 @@ default['wt_actioncenter_management_api']['ads_port'] = 8080
 default['wt_actioncenter_management_api']['ads_host'] = "hutil01.staging.dmz"
 default['wt_actioncenter_management_api']['cam_host'] = "hcam.staging.dmz"
 default['wt_actioncenter_management_api']['cam_port'] = 80
-
+default['wt_actioncenter_management_api']['ds_host'] = "hacds01.staging.dmz"
+default['wt_actioncenter_management_api']['ds_port'] = 8080
