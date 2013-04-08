@@ -12,6 +12,7 @@
         "webpi": "= 1.2.0", 
         "webtrends_server": "= 1.9.8", 
         "windows": "= 1.8.4", 
+	"wt_actioncenter_management_api" : "= 1.0.0",
         "wt_base": "= 1.1.1", 
         "wt_cam": "= 1.1.8", 
         "wt_cam_db": "= 0.1.5", 
@@ -189,6 +190,14 @@
                 }
             ]
         },
+	"wt_actioncenter_management_api": {
+        	"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz",
+		"ads_port": "8080",
+		"ads_host": "outil01.staging.dmz",
+		"ds_port": "8080",
+		"ds_host": "oacds01.staging.dmz"	
+        },
+
 	"wt_actioncenter_ui": {
 		"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz",
 		"release": "1.0.0",
