@@ -362,10 +362,13 @@
             "release": "1.0.0",
             "actioncenter_management_url": "http://hacws01.staging.dmz:8080"
         },
-		"wt_actioncenter_management_api" : {
-			"download_url" :
-			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz"
-		},
+	"wt_actioncenter_management_api" : {
+		"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz",
+		"ads_port": "8080",
+                "ads_host": "hutil01.staging.dmz",
+                "ds_port": "8080",
+                "ds_host": "hacds01.staging.dmz"
+	},
         "wt_analytics_ui": {
             "fb_data_center_id": "Lab"
         }, 
