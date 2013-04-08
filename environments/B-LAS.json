@@ -139,7 +139,7 @@
         "wt_heatmaps": "= 1.0.0", 
         "wt_heatmaps_logconverter": "= 1.0.1", 
         "wt_kafka_topagg": "= 1.1.0", 
-        "wt_labserver": "= 0.1.0", 
+        "wt_labserver": "= 0.2.0", 
         "wt_labstation": "= 0.0.1", 
         "wt_lfm_ftp": "= 0.1.0", 
         "wt_logpreproc": "= 1.0.16", 
