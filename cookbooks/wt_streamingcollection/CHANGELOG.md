@@ -1,5 +1,3 @@
-## 1.1.7
-* Change config service healthcheck to /ping instead of /whitelist/collection
 
 ## 1.1.6
 * Cleanup runit service disabling in undeploy.rb
