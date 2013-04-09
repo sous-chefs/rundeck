@@ -7,11 +7,9 @@
     "recipe[sysctl]",
     "recipe[hbase::regionserver]"
   ],
-  "override_attributes": {
-  	"sysctl":{
-      "vm":{
-        "swappiness":0
-      }
+ "override_attributes": {
+    "sysctl":{
+      "vm.swappiness":0
     }
   }
 }
