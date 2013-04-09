@@ -13,9 +13,8 @@
     "recipe[wt_xd::schema]"
   ],
  "override_attributes": {
-    "sysctl":{     
-        "vm":{
-          "vm.swappiness":0
-        }
+    "sysctl":{  
+      "vm":{"swappiness":0}
+    }
   }
 }
