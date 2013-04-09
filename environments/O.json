@@ -200,6 +200,13 @@
 		"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz",
 		"release": "1.0.0",
 		"actioncenter_management_url": "http://oacws01.staging.dmz:8080"
+	},
+	"wt_actioncenter_ddp" : {
+		"kafka_topic" : "Lab_O_ActionRoutes"
+	},
+	"wt_actioncenter_ds_streaming": {
+		"kafka_topic": "Lab_O_ActionRoutes",
+		"zk_connect": "ozoo02.staging.dmz:2181,ozoo03.staging.dmz:2181,ozoo01.staging.dmz:2181"
 	}, 
         "wt_analytics_ui": {}, 
         "wt_aps": {
