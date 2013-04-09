@@ -1,0 +1,29 @@
+{
+  "name": "jn_sysctl",
+  "description": "Configure/Set sysctl paramaters",
+  "long_description": "DESCRIPTION\n===========\nManage sysctl sysctl provider.\nDefault recipe reads key value pairs from node attributes and ensures the system state.\n\nNOTE: If you are getting this from the community site I've renamed it jn_sysctl, you will have to rename the cookbook to sysctl\n\n__WARNING:__ The default behavior on non-debian flavors is to write out /etc/sysctl.conf, which if you don't have settings in chef means you can kill your existing config. the __sysctl_file__ atribute can control where this file goes in a role/override if you wish.\n\nAttributes\n----------\n* __sysctl__:  Hash of k/v pairs with sysctl settings.\n* __sysctl_file__: The location we write out the configuration\n  defaults to /etc/sysctl.conf on anything not debian flavor\n  defaults to /etc/sysctl.d/99-chef.conf on debian\n\nSysctl LWRP\n===========\nProperties\n----------\n* __name__:  The key name. Defaults to the resource name i.e. sysctl \"some.key\"\n* __value__:  what to set this key to\n* __save__: save the setting back to the node data (default: true)\n\nActions\n-------\n* __:set__  Make sure the running state is set  (default)\n* __:write__  Write the config file  (default)\n\nKnown Bugs\n----------\n* only intended to be used on Linux\n\nExample Usage\n=============\nLWRP\n----\nEnsure running state, and write this key to sysctl.conf\n\n    sysctl \"kernel.sysrq\" do\n       value 1\n    end\n\n__Check out__ [example/recipes/example.rb] [2] For more recipe examples.\n\n\nAttributes\n----------\nIn a role attribute or override:\n\n    {\n      \"sysctl\": {\n        \"net.ipv4.tcp_window_scaling\": 0\n      }\n    }\n\n\n__Check out__ [example/attributes/example.rb] [1] For more attribute examples.\n\n\nAuthor and License\n===================\n\n__Author__ Jesse Nelson <spheromak@gmail.com>\n\nCopyright 2011, Jesse Nelson\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n\n\n\n[1]: https://github.com/spheromak/cookbooks/blob/master/sysctl/example/attributes/example.rb\n[2]: https://github.com/spheromak/cookbooks/blob/master/sysctl/example/recipes/example.rb\n",
+  "maintainer": "Jesse Nelson",
+  "maintainer_email": "spheromak@gmail.com",
+  "license": "Apache 2.0",
+  "platforms": {
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "1.2.1"
+}
