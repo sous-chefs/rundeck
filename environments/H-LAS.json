@@ -555,7 +555,7 @@
             "streams_ui_url": "https://hstreams.webtrends.com"
         }, 
         "wt_streaminganalysis_monitor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/52212:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt300/57072:id/webtrends-streaming-analysis-monitor-bin.tar.gz", 
             "healthcheck_port": 9001, 
             "jmx_port": 9998
         }, 
@@ -564,8 +564,8 @@
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "sapi_service_url": "ws://hsapi.webtrends.com"
         }, 
-        "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/55698:id/webtrends-streamingauditor-bin.tar.gz", 
+        "wt_streamingauditor": { 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/57071:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://mscs01.staging.dmz:8080", 
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com"
         }, 
