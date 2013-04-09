@@ -22,6 +22,15 @@ download_url = node['wt_actioncenter_ddp']['download_url']
 user = node['wt_actioncenter_ddp']['user']
 group = node['wt_actioncenter_ddp']['group']
 
+# grab the zookeeper nodes that are currently available
+zookeeper_quorum = Array.new
+if not Chef::Config.solo
+  search(:node, "role:zookeeper AND
+    chef_environment:#{node.chef_environment}").each do |n|
+	      zookeeper_quorum << n[:fqdn]
+	end
+end
+
 log "Install dir: #{install_dir}"
 
 # create the install directory
@@ -33,7 +42,7 @@ directory "#{install_dir}" do
   action :create
 end
 
-def processTemplates(conf_dir)
+def processTemplates(conf_dir,zookeeper_quorum)
 	log "Updating template files"
 
 	%w[config.properties].each do | template_file|
@@ -42,7 +51,10 @@ def processTemplates(conf_dir)
 			owner "root"
 			group "root"
 			mode 00644
-			variables({})
+			variables({
+				:kafka_topic => node['wt_actioncenter_ddp']['kafka_topic'],
+				:zookeeper_quorum => zookeeper_quorum * ",",
+			})
 		end
 	end
 end
@@ -71,7 +83,7 @@ if ENV["deploy_build"] == "true" then
 	  action :create
 	end
 
-	processTemplates(conf_dir)	
+	processTemplates(conf_dir, zookeeper_quorum)	
 
 
   # delete the install tar ball
