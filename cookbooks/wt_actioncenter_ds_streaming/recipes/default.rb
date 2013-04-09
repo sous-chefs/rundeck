@@ -28,6 +28,17 @@ client_id = node['wt_actioncenter_ds_streaming']['client_id']
 client_secret = node['wt_actioncenter_ds_streaming']['client_secret']
 auth_url = node['wt_actioncenter_ds_streaming']['auth_url']
 auth_user_id =  node['wt_actioncenter_ds_streaming']['auth_user_id']
+kafka_topic = node['wt_actioncenter_ds_streaming']['kafka_topic']
+zk_connect = node['wt_actioncenter_ds_streaming']['zk_connect']
+# grab the zookeeper nodes that are currently available
+zookeeper_quorum = Array.new
+if not Chef::Config.solo
+  search(:node, "role:zookeeper AND
+  chef_environment:#{node.chef_environment}").each do |n|
+      zookeeper_quorum << n[:fqdn]
+  end
+end
+
 
 log "Install dir: #{install_dir}"
 
@@ -48,7 +59,7 @@ directory "#{conf_dir}" do
 end
 
 def processTemplates(conf_dir, sapi_host, sapi_port, client_id, client_secret,
-auth_url,auth_user_id)
+auth_url,auth_user_id, zookeeper_quorum, kafka_topic, zk_connect)
 	config_host =
 	URI(node['wt_streamingconfigservice']['config_service_url']).host
 	%w[producer.properties config.properties].each do | template_file|
@@ -65,6 +76,11 @@ auth_url,auth_user_id)
 				:auth_url => auth_url,
 				:auth_user_id => auth_user_id,
 				:config_host => config_host,
+				:zookeeper_quorum => zookeeper_quorum * ",",
+				:pod => node['wt_realtime_hadoop']['pod'],
+				:datacenter => node['wt_realtime_hadoop']['datacenter'],
+				:kafka_topic => kafka_topic,
+				:zk_connect => zk_connect,
 			})
 		end
 	end
@@ -80,7 +96,8 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-  processTemplates(conf_dir,sapi_host,sapi_port,client_id,client_secret,auth_url,auth_user_id)
+  processTemplates(conf_dir,sapi_host,sapi_port,client_id,client_secret,auth_url,auth_user_id,zookeeper_quorum,kafka_topic,
+  zk_connect)
 
     # uncompress the application tarball into the install dir
     execute "tar" do
