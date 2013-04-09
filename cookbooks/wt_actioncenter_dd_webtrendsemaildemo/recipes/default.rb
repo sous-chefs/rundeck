@@ -20,7 +20,7 @@ tarball      = node['wt_actioncenter_dd_webtrendsemaildemo']['download_url'].spl
 download_url = node['wt_actioncenter_dd_webtrendsemaildemo']['download_url']
 user = node['wt_actioncenter_dd_webtrendsemaildemo']['user']
 group = node['wt_actioncenter_dd_webtrendsemaildemo']['group']
-config_host = node['wt_streamingconfigservice']['config_service_url']
+config_host = URI(node['wt_streamingconfigservice']['config_service_url']).host
 
 log "Install dir: #{install_dir}"
 
