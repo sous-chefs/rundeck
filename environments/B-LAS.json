@@ -152,6 +152,7 @@
         "wt_portfolio_admin": "= 1.1.14", 
         "wt_portfolio_edge_stream_api": "= 1.0.3", 
         "wt_portfolio_edgeservice": "= 1.0.4", 
+	"wt_portfolio_harness": "= 1.0.1",
         "wt_portfolio_manager": "= 1.1.18", 
         "wt_publishver": "= 0.2.3", 
         "wt_realtime_hadoop": "= 1.0.1", 
@@ -498,6 +499,9 @@
         "wt_portfolio_edgeservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54775:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz", 
             "edgeserviceurl": "http://bwapi.staging.dmz"
+        },
+	"wt_portfolio_harness": {
+                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/.lastSuccessful/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
         }, 
         "wt_portfolio_manager": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/57154:id/Portfolio.Manager.zip", 
