@@ -43,6 +43,9 @@ end
 
 
 def processTemplates (conf_dir)
+	ads_url = node['wt_streamingconfigservice']['config_service_url']
+	ads_uri = URI(ads_url)
+	ads_host = ads_uri.host
 	%w[config.properties].each do | template_file |
 		template "#{conf_dir}/#{template_file}" do 
 		source "#{template_file}.erb" 
@@ -50,7 +53,7 @@ def processTemplates (conf_dir)
 		group "root" 
 		mode 00644 
 		variables({ 
-			:ads_host => node['wt_streamingconfigservice']['config_service_url'],
+			:ads_host => ads_host,
 			:cam_host => node['wt_cam']['cam_service_url'],
 			:cam_port => "80",
 			:ds_host  => node['wt_actioncenter_management_api']['ds_host'],
