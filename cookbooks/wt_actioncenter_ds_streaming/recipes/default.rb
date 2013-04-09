@@ -22,7 +22,6 @@ download_url = node['wt_actioncenter_ds_streaming']['download_url']
 user = node['wt_actioncenter_ds_streaming']['user']
 group = node['wt_actioncenter_ds_streaming']['group']
 
-sapi_host = node['wt_actioncenter_ds_streaming']['sapi_host']
 sapi_port = node['wt_actioncenter_ds_streaming']['sapi_port']
 client_id = node['wt_actioncenter_ds_streaming']['client_id']
 client_secret = node['wt_actioncenter_ds_streaming']['client_secret']
@@ -58,7 +57,7 @@ directory "#{conf_dir}" do
   action :create
 end
 
-def processTemplates(conf_dir, sapi_host, sapi_port, client_id, client_secret,
+def processTemplates(conf_dir, sapi_port, client_id, client_secret,
 auth_url,auth_user_id, zookeeper_quorum, kafka_topic, zk_connect)
 	config_host =
 	URI(node['wt_streamingconfigservice']['config_service_url']).host
@@ -69,7 +68,6 @@ auth_url,auth_user_id, zookeeper_quorum, kafka_topic, zk_connect)
 			group "root"
 			mode 00644
 			variables({
-				:sapi_host => sapi_host,
 				:sapi_port => sapi_port,
 				:client_id => client_id,
 				:client_secret => client_secret,
@@ -96,7 +94,7 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-  processTemplates(conf_dir,sapi_host,sapi_port,client_id,client_secret,auth_url,auth_user_id,zookeeper_quorum,kafka_topic,
+  processTemplates(conf_dir,sapi_port,client_id,client_secret,auth_url,auth_user_id,zookeeper_quorum,kafka_topic,
   zk_connect)
 
     # uncompress the application tarball into the install dir
