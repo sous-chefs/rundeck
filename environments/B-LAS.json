@@ -126,6 +126,7 @@
         "webpi": "= 1.2.0", 
         "webtrends_server": "= 1.9.8", 
         "windows": "= 1.8.4", 
+	"wt_actioncenter_management_api" : "= 1.0.0",
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.1.1", 
         "wt_cam": "= 1.1.8", 
@@ -373,6 +374,16 @@
                 }
             ]
         }, 
+	"wt_actioncenter_management_api": {
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz",
+                "ds_port": "8080",
+                "ds_host": "bacds01.staging.dmz"
+        },
+	"wt_actioncenter_ui": {
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz",
+                "release": "1.0.0",
+                "actioncenter_management_url": "http://bacws01.staging.dmz:8080"
+        },
         "wt_analytics_ui": {
             "fb_data_center_id": "Lab"
         }, 
@@ -382,10 +393,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57057:id/CAM.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57496:id/CAM.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57057:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57496:id/Plugins.zip"
             }, 
             "cam_service_url": "http://bcam.staging.dmz", 
             "db_name": "CAM", 
@@ -397,7 +408,7 @@
         "wt_cam_db": {
             "db_name": "CAM", 
             "db_server": "bcamdb01.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/57079:id/CamDB.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/57490:id/CamDB.zip"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
