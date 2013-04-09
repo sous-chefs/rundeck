@@ -166,6 +166,10 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/.lastSuccessful/webtrends-stream-processor-develop-SNAPSHOT-bin.tar.gz", 
             "router_uri": "tcp://router01.os.staging.dmz:5862"
         }, 
+        "wt_streamingconfigservice": {
+            "config_service_url": "http://hconfigsvc.staging.dmz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/57181:id/webtrends-streaming-configservice-bin.tar.gz"
+        }, 
         "zookeeper": {
             "client_port": 2181, 
             "init_limit": 10, 
