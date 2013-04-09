@@ -51,7 +51,7 @@ def processTemplates (conf_dir)
 		mode 00644 
 		variables({ 
 			:ads_host => node["wt_streamingconfigservice"]["config_service_url"],
-			:cam_host => node['wt_cam']['db_server'],
+			:cam_host => node['wt_cam']['cam_service_url'],
 			:cam_port => "80",
 			:ds_host  => node['wt_actioncenter_management_api']['ds_host'],
 			:ds_port  => node['wt_actioncenter_management_api']['ds_port']
