@@ -50,8 +50,7 @@ def processTemplates (conf_dir)
 		group "root" 
 		mode 00644 
 		variables({ 
-			:ads_host => node['wt_actioncenter_management_api']['ads_host'],
-			:ads_port => node['wt_actioncenter_management_api']['ads_port'],
+			:ads_host => node["wt_streamingconfigservice"]["config_service_url"],
 			:cam_host => node['wt_cam']['db_server'],
 			:cam_port => "80",
 			:ds_host  => node['wt_actioncenter_management_api']['ds_host'],
