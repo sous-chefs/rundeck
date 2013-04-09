@@ -192,8 +192,6 @@
         },
 	"wt_actioncenter_management_api": {
         	"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz",
-		"ads_port": "8080",
-		"ads_host": "outil01.staging.dmz",
 		"ds_port": "8080",
 		"ds_host": "oacds01.staging.dmz"	
         },
