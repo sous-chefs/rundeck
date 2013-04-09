@@ -1,10 +1,10 @@
 # Kafka topic base to push to  the account id or some other data should be
 # tacked on the end
 # dynamically so that the data is seperate
-kafka.topic=Lab_H_ActionRoutes
+kafka.topic=<%= @kafka_topic %>
 
 # Zookeeper hosts
-zookeeper.quorum=hzoo02.staging.dmz,hzoo03.staging.dmz,hzoo01.staging.dmz
+zookeeper.quorum=<%= @zookeeper_quorum %>
 
 # Kafka consumer parameters
 kafka.consumer.group.id=action-center-integration-example
