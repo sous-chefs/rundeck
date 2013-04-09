@@ -21,9 +21,6 @@ download_url = node['wt_actioncenter_dd_webtrendsemaildemo']['download_url']
 user = node['wt_actioncenter_dd_webtrendsemaildemo']['user']
 group = node['wt_actioncenter_dd_webtrendsemaildemo']['group']
 
-config_host = node['wt_actioncenter_dd_webtrendsemaildemo']['config_host']
-config_port = node['wt_actioncenter_dd_webtrendsemaildemo']['config_port']
-
 log "Install dir: #{install_dir}"
 
 # create the install directory
@@ -50,8 +47,7 @@ def processTemplates(conf_dir, config_host, config_port)
 			group "root"
 			mode 00644
 			variables({
-				:config_host => config_host,
-				:config_port => config_port
+				:config_host => node['wt_streamingconfigservice']['config_service_url'],
 			})
 		end
 	end
