@@ -48,7 +48,9 @@ directory "#{conf_dir}" do
 end
 
 def processTemplates(conf_dir, sapi_host, sapi_port, client_id, client_secret,
-auth_url,auth_user_id, config_host, config_port)
+auth_url,auth_user_id)
+	config_host =
+	URI(node['wt_streamingconfigservice']['config_service_url']).host
 	%w[producer.properties config.properties].each do | template_file|
 		template "#{conf_dir}/#{template_file}" do
 			source "#{template_file}.erb"
@@ -62,7 +64,7 @@ auth_url,auth_user_id, config_host, config_port)
 				:client_secret => client_secret,
 				:auth_url => auth_url,
 				:auth_user_id => auth_user_id,
-				:config_host => node['wt_streamingconfigservice']['config_service_url'],
+				:config_host => config_host,
 			})
 		end
 	end
@@ -78,7 +80,7 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-  processTemplates(conf_dir,sapi_host,sapi_port,client_id,client_secret,auth_url,auth_user_id,config_host,config_port)
+  processTemplates(conf_dir,sapi_host,sapi_port,client_id,client_secret,auth_url,auth_user_id)
 
     # uncompress the application tarball into the install dir
     execute "tar" do

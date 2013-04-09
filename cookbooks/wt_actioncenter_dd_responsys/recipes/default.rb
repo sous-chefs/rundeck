@@ -21,7 +21,7 @@ tarball      = node['wt_actioncenter_dd_responsys']['download_url'].split("/")[-
 download_url = node['wt_actioncenter_dd_responsys']['download_url']
 user = node['wt_actioncenter_dd_responsys']['user']
 group = node['wt_actioncenter_dd_responsys']['group']
-config_host = node['wt_streamingconfigservice']['config_service_url']
+config_host = URI(node['wt_streamingconfigservice']['config_service_url']).host
 log "Install dir: #{install_dir}"
 
 # create the install directory
