@@ -398,14 +398,13 @@
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/57071:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://scs.webtrends.com,http://scs.pdx.webtrends.com,http://scs.las.webtrends.com,http://scs.iad.webtrends.com,http://scs.ams.webtrends.com", 
-            "roundtrip_tagserver_url": "http://statse.webtrendslive.com", 
+            "roundtrip_tagserver_url": "http://statse.webtrendslive.com" 
         }, 
         "wt_streamingconfigservice": {
             "camdbname": "CAM", 
             "camdbserver": "ocamdb01.staging.dmz", 
             "config_service_url": "http://oconfigsvc.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/54907:id/webtrends-streaming-configservice-bin.tar.gz"
-
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/57181:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streaminglogreplayer": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.1/1119/webtrends-streaminglogreplayer-bin.tar.gz", 
