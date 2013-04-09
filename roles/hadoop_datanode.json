@@ -12,7 +12,7 @@
   ],
   "override_attributes": {
     "sysctl":{  
-      "vm":{"swappiness":0}
+      "vm":{"vm.swappiness":0}
     }
   }
 }
