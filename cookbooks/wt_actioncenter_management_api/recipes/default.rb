@@ -52,7 +52,7 @@ def processTemplates (conf_dir)
 		variables({ 
 			:ads_host => node['wt_actioncenter_management_api']['ads_host'],
 			:ads_port => node['wt_actioncenter_management_api']['ads_port'],
-			:cam_host => node['wt_cam']['db_server'],
+			:cam_host => node['wt_cam']['cam_service_url'],
 			:cam_port => "80",
 			:ds_host  => node['wt_actioncenter_management_api']['ds_host'],
 			:ds_port  => node['wt_actioncenter_management_api']['ds_port']
