@@ -21,7 +21,7 @@ tarball      = node['wt_actioncenter_dd_responsys']['download_url'].split("/")[-
 download_url = node['wt_actioncenter_dd_responsys']['download_url']
 user = node['wt_actioncenter_dd_responsys']['user']
 group = node['wt_actioncenter_dd_responsys']['group']
-
+config_host = node['wt_streamingconfigservice']['config_service_url']
 log "Install dir: #{install_dir}"
 
 # create the install directory
@@ -39,7 +39,7 @@ directory "#{conf_dir}" do
   action :create
 end
 
-def processTemplates(conf_dir, config_host, config_port)
+def processTemplates(conf_dir, config_host)
 	log "Updating template files"
 
 	%w[key.pem ResponsysServerCertificate.cer config.properties].each do | template_file|
@@ -49,7 +49,7 @@ def processTemplates(conf_dir, config_host, config_port)
 			group "root"
 			mode 00644
 			variables({
-				:config_host => node['wt_streamingconfigservice']['config_service_url'],
+				:config_host => config_host,
 			})
 		end
 	end
@@ -73,7 +73,7 @@ if ENV["deploy_build"] == "true" then
     end
 
 
-	processTemplates(conf_dir, config_host, config_port)	
+	processTemplates(conf_dir, config_host)	
 
 
   # delete the install tar ball
