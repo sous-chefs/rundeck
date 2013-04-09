@@ -27,3 +27,6 @@ default['wt_actioncenter_ds_streaming']['auth_url'] =
 default['wt_actioncenter_ds_streaming']['auth_user_id'] = "143"
 default['wt_actioncenter_ds_streaming']['config_host'] = "hutil01.staging.dmz"
 default['wt_actioncenter_ds_streaming']['config_port'] = "8080"
+default['wt_actioncenter_ds_streaming']['zk_connect'] =
+"hzoo02.staging.dmz:2181,hzoo03.staging.dmz:2181,hzoo01.staging.dmz:2181"
+default['wt_actioncenter_ds_streaming']['kafka_topic'] = "Lab_H_ActionRoutes"
