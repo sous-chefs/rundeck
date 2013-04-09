@@ -403,11 +403,6 @@
             "network": "10.160.0.0/12", 
             "port": "3128"
         }, 
-        "sysctl": {
-            "set swappiness": {
-                "vm.swappiness": "0"
-            }
-        }, 
         "tmux": {
             "install_method": "package"
         }, 
