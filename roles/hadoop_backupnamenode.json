@@ -8,5 +8,10 @@
     "recipe[hadoop::backupnamenode]"
   ],
   "override_attributes": {
+    "sysctl":{
+      "vm":{
+        "swappiness":0
+      }
+    }
   }
 }

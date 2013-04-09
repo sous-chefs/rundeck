@@ -8,5 +8,10 @@
     "recipe[hadoop::jobtracker]"
   ],
   "override_attributes": {
+    "sysctl":{
+      "vm":{
+        "swappiness":0
+      }
+    }
   }
 }
