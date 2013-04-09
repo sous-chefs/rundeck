@@ -13,6 +13,8 @@ default['wt_actioncenter_ds_streaming']['download_url']   =
 "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/.lastSuccessful/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz"
 default['wt_actioncenter_ds_streaming']['message_port']   = 2552
 default['wt_actioncenter_ds_streaming']['sapi_host'] = "hsapi.webtrends.com"
+default['wt_actioncenter_ds_streaming']['sapi_port'] = 8080
+
 default['wt_actioncenter_ds_streaming']['client_id'] =
 "e8ae471a23ef486986db824d41e3a4d7.app.webtrends.com"
 
