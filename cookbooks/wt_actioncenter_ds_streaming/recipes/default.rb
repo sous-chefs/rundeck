@@ -28,8 +28,6 @@ client_id = node['wt_actioncenter_ds_streaming']['client_id']
 client_secret = node['wt_actioncenter_ds_streaming']['client_secret']
 auth_url = node['wt_actioncenter_ds_streaming']['auth_url']
 auth_user_id =  node['wt_actioncenter_ds_streaming']['auth_user_id']
-config_host = node['wt_actioncenter_ds_streaming']['config_host']
-config_port = node['wt_actioncenter_ds_streaming']['config_port']
 
 log "Install dir: #{install_dir}"
 
@@ -64,8 +62,7 @@ auth_url,auth_user_id, config_host, config_port)
 				:client_secret => client_secret,
 				:auth_url => auth_url,
 				:auth_user_id => auth_user_id,
-				:config_host => config_host,
-				:config_port => config_port,
+				:config_host => node['wt_streamingconfigservice']['config_service_url'],
 			})
 		end
 	end
