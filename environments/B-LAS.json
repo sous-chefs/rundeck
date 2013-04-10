@@ -381,11 +381,19 @@
             ]
         }, 
 	"wt_actioncenter_ddp": {
+	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/.lastSuccessful/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz",
             "kafka_topic": "Lab_B_ActionRoutes"
         },
+	"wt_actioncenter_dd_responsys": {
+		"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/.lastSuccessful/action-center-integrations-responsys-bin.tar.gz"
+	},
+	"wt_actioncenter_dd_webtrendsemaildemo": {
+		"download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/.lastSuccessful/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
+	},
 	"wt_actioncenter_ds_streaming": {
             "auth_url": "https://bsauth.webtrends.com/v1/token",
             "auth_user_id": "130",
+	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/.lastSuccessful/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz",
             "kafka_topic": "Lab_B_ActionRoutes",
             "zk_connect": "bzoo02.staging.dmz:2181,bzoo03.staging.dmz:2181,bzoo01.staging.dmz:2181"
         },
