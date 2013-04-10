@@ -380,6 +380,15 @@
                 }
             ]
         }, 
+	"wt_actioncenter_ddp": {
+            "kafka_topic": "Lab_B_ActionRoutes"
+        },
+	"wt_actioncenter_ds_streaming": {
+            "auth_url": "https://bsauth.webtrends.com/v1/token",
+            "auth_user_id": "130",
+            "kafka_topic": "Lab_B_ActionRoutes",
+            "zk_connect": "bzoo02.staging.dmz:2181,bzoo03.staging.dmz:2181,bzoo01.staging.dmz:2181"
+        },
         "wt_actioncenter_management_api": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz",
                 "ds_port": "8080",
