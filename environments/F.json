@@ -43,6 +43,12 @@
             "cassandra_report_column": "F_Report", 
             "cassandra_thrift_port": 9160
         }, 
+        "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
+            "server_url": "http://chef.staging.dmz:4000"
+        }, 
         "esx": {
             "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
@@ -297,12 +303,6 @@
     "json_class": "Chef::Environment", 
     "name": "F", 
     "override_attributes": {
-        "chef_client": {
-            "daemon_options": [
-                "--fork"
-            ], 
-            "server_url": "http://chef.staging.dmz:4000"
-        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
