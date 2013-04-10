@@ -18,6 +18,12 @@
                 ]
             }
         }, 
+        "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
+            "server_url": "http://chef.staging.dmz:4000"
+        }, 
         "glance": {
             "image": {
                 "cirros": "http://repo.staging.dmz/repo/linux/img/cirros/current/cirros-0.3.0-x86_64-disk.img", 
@@ -57,12 +63,6 @@
     "json_class": "Chef::Environment", 
     "name": "staging-openstack", 
     "override_attributes": {
-        "chef_client": {
-            "daemon_options": [
-                "--fork"
-            ], 
-            "server_url": "http://chef.staging.dmz:4000"
-        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

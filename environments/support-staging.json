@@ -38,6 +38,12 @@
         "cassandra": {
             "max_heap_size": "6G"
         }, 
+        "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
+            "server_url": "http://chef.staging.dmz:4000"
+        }, 
         "cobbler": {
             "ks_meta": {
                 "centos-6.2-x86_64": {
@@ -309,12 +315,6 @@
     "json_class": "Chef::Environment", 
     "name": "support-staging", 
     "override_attributes": {
-        "chef_client": {
-            "daemon_options": [
-                "--fork"
-            ], 
-            "server_url": "http://chef.staging.dmz:4000"
-        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
