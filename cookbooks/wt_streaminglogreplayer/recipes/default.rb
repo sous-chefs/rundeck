@@ -200,6 +200,11 @@ if ENV["deploy_build"] == "true" then
         :user => user
     })
     end
+
+    runit_service "streaminglogreplayer" do
+      action [:start]
+      ignore_failure false
+    end
 else
     processTemplates(install_dir, node, user, group, datacenter, pod, configservice_url, kafka_topic, log_dir)
 end
