@@ -49,6 +49,12 @@
         }, 
         "beyond_compare": {}, 
         "cassandra": {}, 
+        "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
+            "server_url": "http://chef.staging.dmz:4000"
+        }, 
         "delltools": {}, 
         "esx": {
             "repo": "http://repo.staging.dmz/repo/linux/vmware"
@@ -326,12 +332,6 @@
     "json_class": "Chef::Environment", 
     "name": "N", 
     "override_attributes": {
-        "chef_client": {
-            "daemon_options": [
-                "--fork"
-            ], 
-            "server_url": "http://chef.staging.dmz:4000"
-        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

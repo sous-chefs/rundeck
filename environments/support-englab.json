@@ -26,6 +26,12 @@
                 ]
             }
         }, 
+        "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
+            "server_url": "http://chef.staging.dmz:4000"
+        }, 
         "cobbler": {
             "deploy_chef_version": "10.16.2", 
             "manage_dhcp": 1, 
@@ -153,12 +159,6 @@
     "json_class": "Chef::Environment", 
     "name": "support-englab", 
     "override_attributes": {
-        "chef_client": {
-            "daemon_options": [
-                "--fork"
-            ], 
-            "server_url": "http://chef.staging.dmz:4000"
-        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
