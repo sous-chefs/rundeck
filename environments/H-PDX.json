@@ -462,7 +462,7 @@
             "config_service_url": "http://hconfigsvc.staging.dmz"
         }, 
         "wt_streaminglogreplayer": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/58024:id/webtrends-streaminglogreplayer-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/58038:id/webtrends-streaminglogreplayer-bin.tar.gz", 
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay", 
             "thread_pool_size": 160, 
             "zookeeper_env": "H-LAS"
