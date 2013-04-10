@@ -466,7 +466,7 @@
             "log_share_mount": "sstore02.staging.dmz:/ifs/hstore/logreplay", 
             "thread_pool_size": 160, 
             "zookeeper_env": "H-LAS",
-            "kafka_producer_refresh_interval_sec": 40
+            "producer_refresh_interval_sec": 40
         }, 
         "wt_sync": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/SyncService.zip"
