@@ -54,6 +54,7 @@ def processTemplates(conf_dir,zookeeper_quorum)
 			variables({
 				:kafka_topic => node['wt_actioncenter_ddp']['kafka_topic'],
 				:zookeeper_quorum => zookeeper_quorum * ",",
+				:ads_host => URI(node['wt_streamingconfigservice']['config_service_url']).host
 			})
 		end
 	end
