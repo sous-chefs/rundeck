@@ -36,6 +36,12 @@
                 ]
             }
         }, 
+        "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
+            "server_url": "http://chef.staging.dmz:4000"
+        }, 
         "java": {
             "install_flavor": "oracle", 
             "jdk": {
@@ -178,12 +184,6 @@
     "json_class": "Chef::Environment", 
     "name": "PF", 
     "override_attributes": {
-        "chef_client": {
-            "daemon_options": [
-                "--fork"
-            ], 
-            "server_url": "http://chef.staging.dmz:4000"
-        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"
