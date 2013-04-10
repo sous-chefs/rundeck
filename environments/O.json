@@ -205,6 +205,8 @@
 		"kafka_topic" : "Lab_O_ActionRoutes"
 	},
 	"wt_actioncenter_ds_streaming": {
+		"auth_url": "https://osauth.webtrends.com/v1/token",
+		"auth_user_id": "22",
 		"kafka_topic": "Lab_O_ActionRoutes",
 		"zk_connect": "ozoo02.staging.dmz:2181,ozoo03.staging.dmz:2181,ozoo01.staging.dmz:2181"
 	}, 
