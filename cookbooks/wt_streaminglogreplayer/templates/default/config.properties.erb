@@ -13,9 +13,6 @@ lock.file.ext=_lock
 # Kafka topic to push to for each hit.
 kafka.topic=<%= @kafka_topic %>
 
-# Interval for closing Kafka producers and reconnecting; to help with P2P fail-back recovery.
-kafka.producer.refresh.interval.sec = <%= @wt_streaminglogreplayer[:kafka_producer_refresh_interval_sec] %>
-
 # Should the logs be deleted when they have been completed
 delete.logs=<%= @wt_streaminglogreplayer[:delete_logs] %>
 
