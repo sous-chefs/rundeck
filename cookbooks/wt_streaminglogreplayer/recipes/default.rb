@@ -139,6 +139,7 @@ def processTemplates (install_dir, node, user, group, datacenter, pod, configser
       variables({
         :wt_streaminglogreplayer => node['wt_streaminglogreplayer'],
         :zookeeper_pairs => zookeeper_pairs,
+        :producer_refresh_interval_sec => node['wt_streaminglogreplayer']['producer_refresh_interval_sec'],
         :wt_monitoring => node['wt_monitoring'],
         :configservice_url => configservice_url,
         :kafka_topic => kafka_topic,
