@@ -333,7 +333,7 @@
             "pod": "H"
         }, 
         "wt_streamingcollection": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/56720:id/webtrends-streamingcollection-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt255/57696:id/webtrends-streamingcollection-bin.tar.gz"
 	}, 
         "wt_streamingconfigservice": {
             "config_service_url": "http://hconfigsvc.staging.dmz"
