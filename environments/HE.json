@@ -221,7 +221,7 @@
             "smtp_server": "pdxengmta01.englab.webtrends.corp"
         }, 
         "wt_heatmaps": {
-            "config_distrib": "dcd01.staging.dmz:8097", 
+            "config_distrib": "hecd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
         "wt_monitoring": {
