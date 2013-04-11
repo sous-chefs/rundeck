@@ -45,15 +45,26 @@ node.set['wt_portfolio_harness']['plugin_dir'] = plugin_dir
 
 tarball      = node['wt_portfolio_harness']['download_url'].split("/")[-1]
 download_url = node['wt_portfolio_harness']['download_url']
-java_home    = node['java']['java_home']
-java_opts    = node['wt_portfolio_harness']['java_opts']
 user         = node['wt_portfolio_harness']['user']
 group        = node['wt_portfolio_harness']['group']
+http_port    = node['wt_portfolio_harness']['port']
 pod          = node['wt_realtime_hadoop']['pod']
 datacenter   = node['wt_realtime_hadoop']['datacenter']
+java_home    = node['java']['java_home']
+java_opts    = node['wt_portfolio_harness']['java_opts']
+cam_url      = node['wt_cam']['cam_service_url']
+auth_host    = URI(node['wt_sauth']['auth_service_url']).host
 
 # grab the users and passwords from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
+
+proxy_host = ''
+unless node['wt_common']['http_proxy_url'].nil? || node['wt_common']['http_proxy_url'].empty?
+        proxy_uri = URI(node['wt_common']['http_proxy_url'])
+        proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
+end
+
+
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -69,67 +80,6 @@ log "Java home: #{java_home}"
   end
 end
 
-
-def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
-  log "Updating the template files"
-
-    auth_url = node['wt_sauth']['auth_service_url']
-    auth_uri = URI(auth_url)
-    auth_host = auth_uri.host
-
-    proxy_host = ''
-    unless node['wt_common']['http_proxy_url'].nil? || node['wt_common']['http_proxy_url'].empty?
-            proxy_uri = URI(node['wt_common']['http_proxy_url'])
-            proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
-    end
-
-  cam_url = node['wt_cam']['cam_service_url']
-  http_port = node['wt_portfolio_harness']['port']
-
-  %w[application.conf logback.xml].each do | template_file|
-    template "#{install_dir}/conf/#{template_file}" do
-      source    "#{template_file}.erb"
-      owner "root"
-      group "root"
-      mode  00644
-      variables({
-        :auth_url => auth_url,
-        :auth_host => auth_host,
-        :auth_version => node['wt_portfolio_harness']['sauth_version'],
-        :proxy_host => proxy_host,
-        :cam_url => cam_url,
-        :install_dir => install_dir,
-        :http_port => http_port,
-        :wt_monitoring => node['wt_monitoring'],
-        :graphite_enabled => node['wt_portfolio_harness']['graphite_enabled'],
-        :graphite_interval => node['wt_portfolio_harness']['graphite_interval'],
-        :graphite_vmmetrics => node['wt_portfolio_harness']['graphite_vmmetrics'],
-        :graphite_regex => node['wt_portfolio_harness']['graphite_regex'],
-        :jmx_port => node['wt_portfolio_harness']['jmx_port'],
-        # streaming 0mq parameters
-        :zookeeper_quorum => zookeeper_quorum * ",",
-        :pod              => pod,
-        :datacenter       => datacenter,
-      })
-    end
-  end
-
-  #Creates runit service item
-  template "#{install_dir}/bin/service-control" do
-    source  "service-control.erb"
-    owner "root"
-    group "root"
-    mode  00755
-    variables({
-      :log_dir => log_dir,
-      :install_dir => install_dir,
-      :conf_url => conf_url,
-      :java_home => java_home,
-      :java_jmx_port => node['wt_portfolio_harness']['jmx_port'],
-      :java_opts => java_opts
-    })
-  end  
-end
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so we will grab the tar ball and install"
@@ -158,8 +108,51 @@ if ENV["deploy_build"] == "true" then
 
 end
 
-#Update templates
-processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
+
+log "Updating the template files"
+%w[application.conf logback.xml].each do | template_file|
+  template "#{install_dir}/conf/#{template_file}" do
+    source    "#{template_file}.erb"
+    owner "root"
+    group "root"
+    mode  00644
+    variables({
+      :auth_url => auth_url,
+      :auth_host => auth_host,
+      :auth_version => node['wt_portfolio_harness']['sauth_version'],
+      :proxy_host => proxy_host,
+      :cam_url => cam_url,
+      :install_dir => install_dir,
+      :http_port => http_port,
+      :wt_monitoring => node['wt_monitoring'],
+      :graphite_enabled => node['wt_portfolio_harness']['graphite_enabled'],
+      :graphite_interval => node['wt_portfolio_harness']['graphite_interval'],
+      :graphite_vmmetrics => node['wt_portfolio_harness']['graphite_vmmetrics'],
+      :graphite_regex => node['wt_portfolio_harness']['graphite_regex'],
+      :jmx_port => node['wt_portfolio_harness']['jmx_port'],
+      # streaming 0mq parameters
+      :zookeeper_quorum => zookeeper_quorum * ",",
+      :pod              => pod,
+      :datacenter       => datacenter,
+    })
+  end
+end
+
+#Creates runit service item
+template "#{install_dir}/bin/service-control" do
+  source  "service-control.erb"
+  owner "root"
+  group "root"
+  mode  00755
+  variables({
+    :log_dir => log_dir,
+    :install_dir => install_dir,
+    :conf_url => conf_url,
+    :java_home => java_home,
+    :java_jmx_port => node['wt_portfolio_harness']['jmx_port'],
+    :java_opts => java_opts
+  })
+end  
 
 # create the runit service
 runit_service "harness" do
