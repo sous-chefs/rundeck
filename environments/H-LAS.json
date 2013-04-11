@@ -419,11 +419,11 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/50103:id/TopicAggregator-bin.tar.gz", 
             "edge_kafka_sources": [
                 {
-                    "host": "gscs01.staging.dmz", 
+                    "host": "mscs01.staging.dmz", 
                     "topic": "Lab_H_scsRawHits"
                 }, 
                 {
-                    "host": "gscs02.staging.dmz", 
+                    "host": "mscs02.staging.dmz", 
                     "topic": "Lab_H_scsRawHits"
                 }, 
                 {
