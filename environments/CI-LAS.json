@@ -1,7 +1,6 @@
 {
     "chef_type": "environment", 
     "cookbook_versions": {
-        "wt_streaming_viz": "= 1.2.9"
     }, 
     "default_attributes": {
         "authorization": {
