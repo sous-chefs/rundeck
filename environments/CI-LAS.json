@@ -172,6 +172,12 @@
                 }
             ]
         }, 
+        "wt_actioncenter_dd_responsys": {
+            "download_url":"http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt376/.lastSuccessful/action-center-integrations-responsys-bin.tar.gz "
+        },
+        "wt_actioncenter_dd_webtrendsemaildemo": {
+            "download_url":"http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt379/.lastSuccessful/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
+        },
         "wt_analytics_ui": {
             "fb_data_center_id": "Lab"
         }, 
@@ -258,6 +264,9 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lastSuccessful/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "false"
+        }, 
+        "wt_portfolio_harness": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/.lastSuccessful/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
         }, 
         "wt_portfolio_manager": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/41523:id/Portfolio.Manager.zip", 
