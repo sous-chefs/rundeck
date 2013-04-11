@@ -1,3 +1,6 @@
+## 1.0.7
+* Add xvfb parameter.
+
 ## 1.0.6
 * Reduce default cache expiration.
 
