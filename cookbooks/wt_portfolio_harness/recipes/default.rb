@@ -37,15 +37,20 @@ end
 
 log_dir     = File.join(node['wt_common']['log_dir_linux'], "harness")
 install_dir = File.join(node['wt_common']['install_dir_linux'], "harness")
-conf_url = File.join(install_dir, node['wt_portfolio_harness']['conf_url'])
+conf_url    = File.join(install_dir, node['wt_portfolio_harness']['conf_url'])
+plugin_dir  = File.join(install_dir, "plugins")
+
+#Set node attribute for plugins to reference
+node.set['wt_portfolio_harness']['plugin_dir'] = plugin_dir
+
 tarball      = node['wt_portfolio_harness']['download_url'].split("/")[-1]
 download_url = node['wt_portfolio_harness']['download_url']
-java_home   = node['java']['java_home']
-java_opts = node['wt_portfolio_harness']['java_opts']
-user = node['wt_portfolio_harness']['user']
-group = node['wt_portfolio_harness']['group']
-pod = node['wt_realtime_hadoop']['pod']
-datacenter = node['wt_realtime_hadoop']['datacenter']
+java_home    = node['java']['java_home']
+java_opts    = node['wt_portfolio_harness']['java_opts']
+user         = node['wt_portfolio_harness']['user']
+group        = node['wt_portfolio_harness']['group']
+pod          = node['wt_realtime_hadoop']['pod']
+datacenter   = node['wt_realtime_hadoop']['datacenter']
 
 # grab the users and passwords from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
@@ -54,39 +59,16 @@ log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
 
-# create the log directory
-directory log_dir do
-  owner   user
-  group   group
-  mode    00755
-  recursive true
-  action :create
+%w[log_dir, "#{install_dir}/bin}", "#{install_dir}/conf", plugin_dir].each do |dir|
+  directory dir do
+    owner   user
+    group   group
+    mode    00755
+    recursive true
+    action :create
+  end
 end
 
-# create the install directory
-directory "#{install_dir}/bin" do
-  owner "root"
-  group "root"
-  mode 00755
-  recursive true
-  action :create
-end
-
-directory "#{install_dir}/conf" do
-  owner "root"
-  group "root"
-  mode 00755
-  recursive true
-  action :create
-end
-
-directory "#{install_dir}/plugins" do
-  owner "root"
-  group "root"
-  mode 00755
-  recursive true
-  action :create
-end
 
 def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
   log "Updating the template files"
@@ -131,6 +113,22 @@ def processTemplates (install_dir, conf_url, node, zookeeper_quorum, datacenter,
       })
     end
   end
+
+  #Creates runit service item
+  template "#{install_dir}/bin/service-control" do
+    source  "service-control.erb"
+    owner "root"
+    group "root"
+    mode  00755
+    variables({
+      :log_dir => log_dir,
+      :install_dir => install_dir,
+      :conf_url => conf_url,
+      :java_home => java_home,
+      :java_jmx_port => node['wt_portfolio_harness']['jmx_port'],
+      :java_opts => java_opts
+    })
+  end  
 end
 
 if ENV["deploy_build"] == "true" then
@@ -150,24 +148,6 @@ if ENV["deploy_build"] == "true" then
     command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
   end
 
-  #templates
-  template "#{install_dir}/bin/service-control" do
-    source  "service-control.erb"
-    owner "root"
-    group "root"
-    mode  00755
-    variables({
-      :log_dir => log_dir,
-      :install_dir => install_dir,
-      :conf_url => conf_url,
-      :java_home => java_home,
-      :java_jmx_port => node['wt_portfolio_harness']['jmx_port'],
-      :java_opts => java_opts
-    })
-  end
-
-  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
-
   # delete the install tar ball
   execute "delete_install_source" do
     user "root"
@@ -176,18 +156,20 @@ if ENV["deploy_build"] == "true" then
     action :run
   end
 
-  # create the runit service
-  runit_service "harness" do
-    options({
-      :log_dir => log_dir,
-      :install_dir => install_dir,
-      :java_home => java_home,
-      :user => user
-    })
-  end
+end
 
-else
-  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
+#Update templates
+processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
+
+# create the runit service
+runit_service "harness" do
+  options({
+    :log_dir => log_dir,
+    :install_dir => install_dir,
+    :java_home => java_home,
+    :user => user
+  })
+  action [:enable, :start]
 end
 
 if node.attribute?("nagios")

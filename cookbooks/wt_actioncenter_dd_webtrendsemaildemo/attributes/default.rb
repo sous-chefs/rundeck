@@ -10,11 +10,4 @@
 default['wt_actioncenter_dd_webtrendsemaildemo']['user']           = "webtrends"
 default['wt_actioncenter_dd_webtrendsemaildemo']['group']          = "webtrends"
 default['wt_actioncenter_dd_webtrendsemaildemo']['download_url']   =
-"http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/.lastSuccessful/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
 default['wt_actioncenter_dd_webtrendsemaildemo']['message_port']   = 2552
-
-config_host = node['wt_actioncenter_dd_webtrendsemaildemo']['config_host'] =
-"hutil01.staging.dmz"
-config_port = node['wt_actioncenter_dd_webtrendsemaildemo']['config_port'] =
-"8080"
-
