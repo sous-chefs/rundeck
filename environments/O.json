@@ -216,8 +216,8 @@
             "ds_port": "8080"
         }, 
         "wt_actioncenter_ui": {
-            "actioncenter_management_url": "http://oacws01.staging.dmz:8080", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz", 
+            "actioncenter_management_url": "https://oapi.webtrends.com", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/i58075:id/action-center.tar.gz", 
             "release": "1.0.0"
         }, 
         "wt_analytics_ui": {}, 
