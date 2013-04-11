@@ -1,3 +1,6 @@
+## 1.0.8
+* Add support for toggling proxy, metrics, cache
+
 ## 1.0.7
 * Add xvfb parameter.
 

@@ -28,6 +28,9 @@ user         = node['wt_thumbnailcapture']['user']
 group        = node['wt_thumbnailcapture']['group']
 java_opts    = node['wt_thumbnailcapture']['java_opts']
 display_idx  = node['wt_thumbnailcapture']['display_idx']
+use_cache    = node['wt_thumbnailcapture']['use_cache']
+use_proxy    = node['wt_thumbnailcapture']['use_proxy']
+use_metrics  = node['wt_thumbnailcapture']['use_metrics']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -71,7 +74,7 @@ def getMemcacheBoxes
   return boxes.join(" ")
 end
 
-def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes)
+def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes, usecache, useproxy, usemetrics)
   log "Updating the template files"
 
 	template "#{install_dir}/bin/service-control" do
@@ -109,7 +112,10 @@ def processTemplates (install_dir, node, user, group, log_dir, java_home, mBoxes
       :memcache_expireseconds => node['wt_thumbnailcapture']['memcache_cacheexpireseconds'],
       :proxy_address => node['wt_common']['http_proxy_url'],
       :healthcheck_port => node['wt_thumbnailcapture']['healthcheck_port'],
-      :wt_monitoring => node[:wt_monitoring]
+      :wt_monitoring => node[:wt_monitoring],
+      :use_cache => usecache,
+      :use_proxy => useproxy,
+      :use_metrics => usemetrics
     })
   end
 
@@ -150,7 +156,7 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-  processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes())
+  processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes(), use_cache, use_proxy, use_metrics)
 
   # create a runit service
   runit_service "thumbnailcapture" do
@@ -216,7 +222,7 @@ if ENV["deploy_build"] == "true" then
 #  end
 
 else
-    processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes())
+    processTemplates(install_dir, node, user, group, log_dir, java_home, getMemcacheBoxes(), use_cache, use_proxy, use_metrics)
 end
 
 if node.attribute?("nagios") then
