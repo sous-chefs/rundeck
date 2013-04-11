@@ -1,3 +1,6 @@
+## 1.2.9
+* Changed sms url to pull from correct location
+
 ## 1.2.8
 * Set the thumbnail size on sessions lab to 155x97 and the thumbnail on campaign flow to 320x200.
 
