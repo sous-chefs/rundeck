@@ -172,7 +172,7 @@ node['roles'].each do |r|
 		log "publishing #{r}"
 		wt_publishver 'Streaming Auditor' do
 			download_url node['wt_streamingauditor']['download_url']
-			key_file     File.join(ldir, 'streamingauditor/lib/webtrends-auditing-*')  
+			key_file     File.join(ldir, 'streamingauditor/lib/webtrends-streamingauditor.jar')  
 		end
 	when 'wt_streaming_collection_server'
 		log "publishing #{r}"
