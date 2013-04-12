@@ -7,7 +7,7 @@
 # zk connection string
 # comma separated host:port pairs, each corresponding to a zk
 # server. e.g. "127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002"
-zk.connect=<%=@zk_connect%>
+zk.connect=<% @zookeeper_search.each do |z|-%><%=z['fqdn']-%>:<%=z['zookeeper']['client_port']-%><%end-%>
 
 # timeout in ms for connecting to util
 zk.connectiontimeout.ms=1000000
