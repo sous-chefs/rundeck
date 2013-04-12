@@ -6,7 +6,9 @@ kafka.topic=<%=@kafka_topic %>
 
 
 #Long term they should come from a common config
-zookeeper.quorum=<%= @zookeeper_quorum %>
+
+zookeeper.quorum=<% @zookeeper_search.each do |z|-%><%=z['fqdn']-%>:<%=z['zookeeper']['client_port']-%><%end-%>
+
 zookeeper.session.timeout.ms=30000
 zookeeper.connection.timeout.ms=30000
 zookeeper.retry.sleep.ms=5000
