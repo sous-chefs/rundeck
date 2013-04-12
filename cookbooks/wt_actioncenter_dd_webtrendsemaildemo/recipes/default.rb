@@ -25,7 +25,7 @@ config_host  = URI(node['wt_streamingconfigservice']['config_service_url']).host
 log "Install dir: #{install_dir}"
 
 # create the directories
-%[install_dir, conf_dir].each do |dir|
+[install_dir, conf_dir].each do |dir|
   directory dir do
     owner "root"
     group "root"
@@ -63,16 +63,13 @@ if ENV["deploy_build"] == "true" then
   end
 end
 
-log "Updating template files"
-
-%w[config.properties].each do | template_file |
-  template "#{conf_dir}/#{template_file}" do
-    source "#{template_file}.erb"
-    owner "root"
-    group "root"
-    mode 00644
-    variables({
-      :config_host => config_host,
-    })
-  end
+template "#{conf_dir}/config.properties" do
+  source "config.properties.erb"
+  owner "root"
+  group "root"
+  mode 00644
+  variables({
+    :config_host => config_host,
+  })
+  notifies :restart, "runit_service[harness]", :delayed
 end
