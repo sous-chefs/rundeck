@@ -23,7 +23,7 @@ include_recipe "runit"
 # grab the zookeeper nodes that are currently available
 zookeeper_quorum = Array.new
 if not Chef::Config.solo
-  search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
+  search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").sort{|a,b| a.name <=> b.name }.each do |n|
     zookeeper_quorum << n['fqdn']
   end
 end
@@ -40,6 +40,7 @@ install_dir = File.join(node['wt_common']['install_dir_linux'], "harness")
 conf_url    = File.join(install_dir, node['wt_portfolio_harness']['conf_url'])
 plugin_dir  = File.join(install_dir, "plugins")
 
+
 #Set node attribute for plugins to reference
 node.set['wt_portfolio_harness']['plugin_dir'] = plugin_dir
 
@@ -53,7 +54,8 @@ datacenter   = node['wt_realtime_hadoop']['datacenter']
 java_home    = node['java']['java_home']
 java_opts    = node['wt_portfolio_harness']['java_opts']
 cam_url      = node['wt_cam']['cam_service_url']
-auth_host    = URI(node['wt_sauth']['auth_service_url']).host
+auth_url     = node['wt_sauth']['auth_service_url']
+auth_host    = URI(auth_url).host
 
 # grab the users and passwords from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
@@ -70,7 +72,7 @@ log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
 
-%w[log_dir, "#{install_dir}/bin}", "#{install_dir}/conf", plugin_dir].each do |dir|
+[log_dir, "#{install_dir}/bin", "#{install_dir}/conf", plugin_dir].each do |dir|
   directory dir do
     owner   user
     group   group
@@ -124,6 +126,7 @@ log "Updating the template files"
       :cam_url => cam_url,
       :install_dir => install_dir,
       :http_port => http_port,
+      :log_dir => log_dir,
       :wt_monitoring => node['wt_monitoring'],
       :graphite_enabled => node['wt_portfolio_harness']['graphite_enabled'],
       :graphite_interval => node['wt_portfolio_harness']['graphite_interval'],
@@ -135,6 +138,7 @@ log "Updating the template files"
       :pod              => pod,
       :datacenter       => datacenter,
     })
+    notifies :restart, "runit_service[harness]"
   end
 end
 
