@@ -259,7 +259,7 @@
             "ldap_port": "636", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
-            "smtp_server": "pdxengmta01.webtrends.corp", 
+            "smtp_server": "pdxmta.webtrends.corp", 
             "wrsmodify_group": "STAGINGDMZ\\O.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\O.WRS.Read"
         }, 
