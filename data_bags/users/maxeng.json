@@ -1,0 +1,8 @@
+{
+	"id": "MaxEng",
+	"groups": [ "staging" ],
+	"htpasswd": "lpDF2Rwb9m38o",
+	"nagios": {
+		"email": "engboilers@gmail.com"
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"id": "staging_phone6",
+	"groups": [ "staging" ],
+	"htpasswd": "lpDF2Rwb9m38o",
+	"nagios": {
+		"email": "5039575052@vtext.com"
+	}
+}
