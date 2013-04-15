@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-File.join(node['wt_common']['install_dir_linux'], "harness/plugins/actioncenter_ds_streaming")
+install_dir=File.join(node['wt_common']['install_dir_linux'], "harness/plugins/actioncenter_ds_streaming")
 
 directory install_dir do
   recursive true
