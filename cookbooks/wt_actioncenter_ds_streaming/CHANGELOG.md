@@ -1,3 +1,7 @@
+## 1.1.2
+* Fixed zookeeper search error
+* Fixed reverted directory
+
 ## 1.1.1
 * Fixing the install/uninstall directory
 
