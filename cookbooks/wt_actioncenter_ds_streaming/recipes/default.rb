@@ -14,7 +14,8 @@ else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "actioncenter_ds_streaming")
+install_dir  = File.join(node['wt_common']['install_dir_linux'],
+"harness/plugins/actioncenter_ds_streaming")
 conf_dir     = File.join(install_dir, "conf")
 tarball      = node['wt_actioncenter_ds_streaming']['download_url'].split("/")[-1]
 download_url = node['wt_actioncenter_ds_streaming']['download_url']
