@@ -110,6 +110,33 @@ if ENV["deploy_build"] == "true" then
 
 end
 
+#Creates runit service item
+template "#{install_dir}/bin/service-control" do
+  source  "service-control.erb"
+  owner "root"
+  group "root"
+  mode  00755
+  variables({
+    :log_dir => log_dir,
+    :install_dir => install_dir,
+    :conf_url => conf_url,
+    :java_home => java_home,
+    :java_jmx_port => node['wt_portfolio_harness']['jmx_port'],
+    :java_opts => java_opts
+  })
+end  
+
+# create the runit service
+runit_service "harness" do
+  options({
+    :log_dir => log_dir,
+    :install_dir => install_dir,
+    :java_home => java_home,
+    :user => user
+  })
+  action :enable
+end
+
 
 log "Updating the template files"
 %w[application.conf logback.xml].each do | template_file|
@@ -138,36 +165,13 @@ log "Updating the template files"
       :pod              => pod,
       :datacenter       => datacenter,
     })
-    notifies :restart, "runit_service[harness]"
+    notifies :restart, "service[harness]", :delayed
   end
 end
 
-#Creates runit service item
-template "#{install_dir}/bin/service-control" do
-  source  "service-control.erb"
-  owner "root"
-  group "root"
-  mode  00755
-  variables({
-    :log_dir => log_dir,
-    :install_dir => install_dir,
-    :conf_url => conf_url,
-    :java_home => java_home,
-    :java_jmx_port => node['wt_portfolio_harness']['jmx_port'],
-    :java_opts => java_opts
-  })
-end  
+service "harness"
 
-# create the runit service
-runit_service "harness" do
-  options({
-    :log_dir => log_dir,
-    :install_dir => install_dir,
-    :java_home => java_home,
-    :user => user
-  })
-  action [:enable, :start]
-end
+
 
 if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
