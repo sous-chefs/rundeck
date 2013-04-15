@@ -8,7 +8,7 @@
 #
 
 
-install_dir  = File.join(File.join(node['wt_portfolio_harness']['plugin_dir'], "actioncenter_ds_streaming")
+install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "actioncenter_ds_streaming")
 
 directory install_dir do
   recursive true
