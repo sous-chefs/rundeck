@@ -1,3 +1,6 @@
+## 1.1.1
+* Fixing the install/uninstall directory
+
 ## 1.1.0
 * Updated to match new harness settings
 * Using search to find zookeeper/ports and sapi port
