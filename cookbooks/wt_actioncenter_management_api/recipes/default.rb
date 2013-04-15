@@ -16,6 +16,10 @@ end
 
 install_dir = File.join(node['wt_common']['install_dir_linux'],
 "harness/plugins/actioncenter_management_api")
+
+harness_dir = File.join(node['wt_common']['install_dir_linux'], "harness")
+
+
 conf_dir = File.join(install_dir,"conf")
 tarball      = node['wt_actioncenter_management_api']['download_url'].split("/")[-1]
 download_url = node['wt_actioncenter_management_api']['download_url']
@@ -82,6 +86,12 @@ if ENV["deploy_build"] == "true" then
     end
 
 	processTemplates(conf_dir)
+
+	#copy messages jar to harness
+	#until we solve the class loader issues.
+  execute "copy messages" do
+    command "cp #{install_dir}/lib/action-center-messages*.jar #{harness_dir}/lib/."
+  end
 
   # delete the install tar ball
   execute "delete_install_source" do
