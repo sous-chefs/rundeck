@@ -14,8 +14,7 @@ else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-install_dir  = File.join(node['wt_common']['install_dir_linux'],
-"harness/plugins/actioncenter_ds_streaming")
+install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "actioncenter_ds_streaming")
 conf_dir     = File.join(install_dir, "conf")
 tarball      = node['wt_actioncenter_ds_streaming']['download_url'].split("/")[-1]
 download_url = node['wt_actioncenter_ds_streaming']['download_url']
@@ -37,9 +36,9 @@ else
 end
 
 # grab the zookeeper nodes that are currently available
-zk_search = Array.new
+zookeeper_search = Array.new
 if not Chef::Config.solo
-  zk_search = search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}")
+  zookeeper_search = search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}")
 end
 
 log "Install dir: #{install_dir}"
@@ -97,7 +96,7 @@ end
         :pod => node['wt_realtime_hadoop']['pod'],
         :datacenter => node['wt_realtime_hadoop']['datacenter'],
         :kafka_topic => kafka_topic,
-        :zk_search => zk_search,
+        :zookeeper_search  => zookeeper_search ,
       })
       notifies :restart, "runit_service[harness]", :delayed
     end
