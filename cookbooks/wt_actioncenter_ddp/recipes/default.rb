@@ -17,6 +17,9 @@ end
 install_dir = File.join(node['wt_common']['install_dir_linux'],
 "harness/plugins/actioncenter_ddp")
 conf_dir = File.join(install_dir, "conf")
+
+harness_dir = File.join(node['wt_common']['install_dir_linux'], "harness")
+
 tarball      = node['wt_actioncenter_ddp']['download_url'].split("/")[-1]
 download_url = node['wt_actioncenter_ddp']['download_url']
 user = node['wt_actioncenter_ddp']['user']
@@ -86,7 +89,9 @@ if ENV["deploy_build"] == "true" then
 
 	processTemplates(conf_dir, zookeeper_quorum)	
 
-
+  execute "copy messages" do
+    command "cp #{install_dir}/lib/action-center-messages*.jar #{harness_dir}/lib/."
+  end
   # delete the install tar ball
   execute "delete_install_source" do
     user "root"
