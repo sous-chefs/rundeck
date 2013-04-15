@@ -1,3 +1,6 @@
+## 1.1.4
+* Do not fail if ad_network is not defined.
+
 ## 1.1.3:
 * Do not fail if ec2 information is not present.
 
