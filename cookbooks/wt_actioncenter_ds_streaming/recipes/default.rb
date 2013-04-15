@@ -23,7 +23,7 @@ group        = node['wt_actioncenter_ds_streaming']['group']
 
 client_id     = node['wt_actioncenter_ds_streaming']['client_id']
 client_secret = node['wt_actioncenter_ds_streaming']['client_secret']
-auth_url      = "#{node['wt_sauth']['auth_url']}/#{node['wt_portfolio_harness']['sauth_version']}/token"
+auth_url      = "#{node['wt_sauth']['auth_service_url']}/#{node['wt_portfolio_harness']['sauth_version']}/token"
 auth_user_id  = node['wt_actioncenter_ds_streaming']['auth_user_id']
 config_host   = URI(node['wt_streamingconfigservice']['config_service_url']).host
 sapi_port     = search(:node, "role:wt_streaming_api_server AND chef_environment:#{node.chef_environment}").first['wt_streamingapi']['port']
