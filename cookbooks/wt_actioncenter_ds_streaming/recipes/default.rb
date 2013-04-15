@@ -36,9 +36,9 @@ else
 end
 
 # grab the zookeeper nodes that are currently available
-zk_search = Array.new
+zookeeper_search = Array.new
 if not Chef::Config.solo
-  zk_search = search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}")
+  zookeeper_search = search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}")
 end
 
 log "Install dir: #{install_dir}"
