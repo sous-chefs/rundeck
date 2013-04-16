@@ -79,7 +79,7 @@ end
     group "root"
     mode 00644
     variables({
-      :kafka_topic => kafka_topic
+      :kafka_topic => kafka_topic,
       :ads_host => ads_host
     })
     notifies :restart, "service[harness]", :delayed
