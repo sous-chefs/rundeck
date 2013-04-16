@@ -126,12 +126,12 @@
         "webpi": "= 1.2.0", 
         "webtrends_server": "= 1.9.8", 
         "windows": "= 1.8.4", 
-        "wt_actioncenter_dd_responsys": "= 1.1.0", 
-        "wt_actioncenter_dd_webtrendsemaildemo": "= 1.1.0", 
-        "wt_actioncenter_ddp": "= 1.0.1", 
+        "wt_actioncenter_dd_responsys": "= 1.1.1", 
+        "wt_actioncenter_dd_webtrendsemaildemo": "= 1.1.1", 
+        "wt_actioncenter_ddp": "= 1.1.0", 
         "wt_actioncenter_ds_streaming": "= 1.1.3", 
-        "wt_actioncenter_management_api": "= 1.0.1", 
-        "wt_actioncenter_ui": "= 0.9.5", 
+        "wt_actioncenter_management_api": "= 1.1.0", 
+        "wt_actioncenter_ui": "= 1.0.0", 
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.1.1", 
         "wt_cam": "= 1.1.8", 
@@ -381,8 +381,7 @@
             ]
         }, 
         "wt_actioncenter_ddp": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/.lastSuccessful/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz",
-            "kafka_topic": "Lab_B_ActionRoutes"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/.lastSuccessful/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
         },
         "wt_actioncenter_dd_responsys": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/.lastSuccessful/action-center-integrations-responsys-bin.tar.gz"
@@ -391,21 +390,15 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/.lastSuccessful/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
         },
         "wt_actioncenter_ds_streaming": {
-            "auth_url": "https://bsauth.webtrends.com/v1/token",
-            "auth_user_id": "130",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/58449/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz",
-            "kafka_topic": "Lab_B_ActionRoutes",
-            "zk_connect": "bzoo02.staging.dmz:2181,bzoo03.staging.dmz:2181,bzoo01.staging.dmz:2181"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/58449/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz"
         },
         "wt_actioncenter_management_api": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz",
-                "ds_port": "8080",
-                "ds_host": "bacds01.staging.dmz"
+                "ac_management_url": "https://bapi.webtrends.com"
         },
         "wt_actioncenter_ui": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz",
-                "release": "1.0.0",
-                "actioncenter_management_url": "https://bapi.webtrends.com"
+                "release": "1.0.0"
         },
         "wt_analytics_ui": {
             "fb_data_center_id": "Lab"
