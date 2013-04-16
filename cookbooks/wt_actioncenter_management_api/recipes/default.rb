@@ -57,7 +57,7 @@ if ENV["deploy_build"] == "true" then
 	#copy messages jar to harness
 	#until we solve the class loader issues.
   execute "copy messages" do
-    command "cp #{install_dir}/lib/action-center-messages*.jar #{node['wt_portfolio_harness']['plugin_dir']}/lib/."
+    command "cp #{install_dir}/lib/action-center-messages*.jar #{node['wt_portfolio_harness']['lib_dir']}/."
   end
 
   # delete the install tar ball
