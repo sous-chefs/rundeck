@@ -13,6 +13,10 @@
     }, 
     "id": "CI-LAS", 
     "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "wt_actioncenter_ds_streaming": {
+        "client_id": "e8ae471a23ef486986db824d41e3a4d7.app.webtrends.com", 
+        "client_secret": "94ac26f39c4045299e6c300198cd7f54"
+    },
     "wt_cam_db": {
         "db_pwd": "bijoux", 
         "db_user": "wtUI"
