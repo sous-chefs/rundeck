@@ -365,11 +365,12 @@
             "actioncenter_management_url": "http://hacws01.staging.dmz:8080"
         },
         "wt_actioncenter_management_api" : {
-        "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz",
-        "ads_port": "8080",
-                "ads_host": "hutil01.staging.dmz",
-                "ds_port": "8080",
-                "ds_host": "hacds01.staging.dmz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz",
+            "ads_port": "8080",
+            "ads_host": "hutil01.staging.dmz",
+            "ds_port": "8080",
+            "ds_host": "hacds01.staging.dmz",
+            "ac_management_url": "https://hapi.webtrends.com"
         },
         "wt_actioncenter_dd_webtrendsemaildemo": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/.lastSuccessful/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
