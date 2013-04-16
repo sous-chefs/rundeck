@@ -129,7 +129,7 @@
         "wt_actioncenter_dd_responsys": "= 1.1.0", 
         "wt_actioncenter_dd_webtrendsemaildemo": "= 1.1.0", 
         "wt_actioncenter_ddp": "= 1.0.1", 
-        "wt_actioncenter_ds_streaming": "= 1.0.1", 
+        "wt_actioncenter_ds_streaming": "= 1.1.3", 
         "wt_actioncenter_management_api": "= 1.0.1", 
         "wt_actioncenter_ui": "= 0.9.5", 
         "wt_analytics_ui": "= 1.1.6", 
@@ -393,7 +393,7 @@
         "wt_actioncenter_ds_streaming": {
             "auth_url": "https://bsauth.webtrends.com/v1/token",
             "auth_user_id": "130",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/.lastSuccessful/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/58449/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz",
             "kafka_topic": "Lab_B_ActionRoutes",
             "zk_connect": "bzoo02.staging.dmz:2181,bzoo03.staging.dmz:2181,bzoo01.staging.dmz:2181"
         },
