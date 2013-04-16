@@ -128,7 +128,7 @@
         "windows": "= 1.8.4", 
         "wt_actioncenter_dd_responsys": "= 1.1.1", 
         "wt_actioncenter_dd_webtrendsemaildemo": "= 1.1.1", 
-        "wt_actioncenter_ddp": "= 1.0.1", 
+        "wt_actioncenter_ddp": "= 1.1.1", 
         "wt_actioncenter_ds_streaming": "= 1.1.3", 
         "wt_actioncenter_management_api": "= 1.1.1", 
         "wt_actioncenter_ui": "= 1.0.0", 
@@ -381,8 +381,7 @@
             ]
         }, 
         "wt_actioncenter_ddp": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/.lastSuccessful/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz",
-	    "kafka_topic": "Lab_B_ActionRoutes"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/.lastSuccessful/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
         },
         "wt_actioncenter_dd_responsys": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/.lastSuccessful/action-center-integrations-responsys-bin.tar.gz"
