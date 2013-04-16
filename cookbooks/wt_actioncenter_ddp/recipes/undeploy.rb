@@ -7,8 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-install_dir  =
-"#{node['wt_common']['install_dir_linux']}/harness/plugins/actioncenter_ddp"
+install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "actioncenter_ddp")
 
 directory install_dir do
   recursive true

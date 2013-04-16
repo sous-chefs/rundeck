@@ -1,3 +1,6 @@
+## 1.1.3
+* Removed zookeeper all together as it's being used from harness
+
 ## 1.1.2
 * Fixed zookeeper search error
 * Fixed reverted directory
