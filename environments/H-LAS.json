@@ -371,6 +371,12 @@
                 "ds_port": "8080",
                 "ds_host": "hacds01.staging.dmz"
         },
+        "wt_actioncenter_dd_webtrendsemaildemo": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/.lastSuccessful/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
+        },
+        "wt_actioncenter_dd_responsys": {
+            "download_url":"http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt376/.lastSuccessful/action-center-integrations-responsys-bin.tar.gz"
+        },
 		"wt_actioncenter_ds_streaming" : {
 		"download_url" :
 		"http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/.lastSuccessful/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz"
