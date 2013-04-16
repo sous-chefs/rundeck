@@ -377,7 +377,7 @@
         },
         "wt_actioncenter_management_api": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz",
-                "ac_management_url": "https://bapi.webtrends.com"
+                "ac_management_url": "https://hapi.webtrends.com"
         },
         "wt_actioncenter_ui": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz",
