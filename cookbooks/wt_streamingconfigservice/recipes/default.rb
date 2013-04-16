@@ -33,6 +33,9 @@ camdbuser  = auth_data['wt_cam_db']['db_user']
 camdbpwd = auth_data['wt_cam_db']['db_pwd']
 masterdbuser = auth_data['wt_master_db']['db_user']
 masterdbpwd = auth_data['wt_master_db']['db_pwd']
+keystoreFilePath = auth_data['wt_streamingconfigservice']['keystoreFilePath']
+keystoreFilePassword = auth_data['wt_streamingconfigservice']['keystoreFilePassword']
+aesKey = auth_data['wt_streamingconfigservice']['aesKey']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -155,6 +158,7 @@ template "#{install_dir}/conf/config.properties" do
   mode  00640
   variables({
     :port => node['wt_streamingconfigservice']['port'],
+    :securePort => node['wt_streamingconfigservice']['securePort'],
     :camdbserver => node['wt_cam_db']['db_server'],
     :camdbname => node['wt_cam_db']['db_name'],
     :camdbuser => camdbuser,
@@ -164,6 +168,9 @@ template "#{install_dir}/conf/config.properties" do
     :masterdbuser => masterdbuser,
     :masterdbpwd => masterdbpwd,
     :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
+    :keystoreFilePath => keystoreFilePath,
+    :keystoreFilePassword => keystoreFilePassword,
+    :aesKey => aesKey
   })
 end
 
