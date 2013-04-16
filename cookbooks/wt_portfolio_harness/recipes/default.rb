@@ -39,10 +39,11 @@ log_dir     = File.join(node['wt_common']['log_dir_linux'], "harness")
 install_dir = File.join(node['wt_common']['install_dir_linux'], "harness")
 conf_url    = File.join(install_dir, node['wt_portfolio_harness']['conf_url'])
 plugin_dir  = File.join(install_dir, "plugins")
-
+lib_dir     = File.join(install_dir, "lib")
 
 #Set node attribute for plugins to reference
 node.set['wt_portfolio_harness']['plugin_dir'] = plugin_dir
+node.set['wt_portfolio_harness']['lib_dir'] = lib_dir
 
 tarball      = node['wt_portfolio_harness']['download_url'].split("/")[-1]
 download_url = node['wt_portfolio_harness']['download_url']
