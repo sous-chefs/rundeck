@@ -51,7 +51,7 @@ if ENV["deploy_build"] == "true" then
     group "root"
     cwd install_dir
     command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-    notifies :restart, "runit_service[harness]", :delayed
+    notifies :restart, "service[harness]", :delayed
   end
 
   # delete the install tar ball
@@ -71,5 +71,5 @@ template "#{conf_dir}/config.properties" do
   variables({
     :config_host => config_host,
   })
-  notifies :restart, "runit_service[harness]", :delayed
+  notifies :restart, "service[harness]", :delayed
 end

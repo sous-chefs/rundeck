@@ -1,3 +1,6 @@
+## 1.0.0
+* Changed management URL to pull from management block 
+
 ## 0.9.5:
 * Fixes for consistency
 
