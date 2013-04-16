@@ -8,6 +8,10 @@
         "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
         "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
     }, 
+    "wt_actioncenter_ds_streaming": {
+        "client_id": "e8ae471a23ef486986db824d41e3a4d7.app.webtrends.com", 
+        "client_secret": "94ac26f39c4045299e6c300198cd7f54"
+    },
     "wt_cam_db": {
         "db_pwd": "bijoux", 
         "db_user": "wtUI"
@@ -28,6 +32,11 @@
         "ui_pass": "Bijoux1", 
         "ui_user": "STAGINGDMZ\\wtUI"
     }, 
+    "wt_streamingconfigservice": {
+        "keystoreFilePath": "",
+        "keystoreFilePassword": "",
+        "aesKey": ""
+    },
     "wt_iis": {
         "machine_decryption_key": "B0FCBEE38C05DCB5213655ACD722702DEACE441304FC02FE", 
         "machine_validation_key": "7FAB532C7D9A7E3EBE4A891BFAEC6B554E0228E0167891F3C6382249455C3524ACE13309FB9F83E6522152E6C1CC1D645ACCDACFFF72ADCB9C9C56396905EAEA"

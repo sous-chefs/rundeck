@@ -1,5 +1,10 @@
-## 1.0.0
-* Initial release
+## 1.1.0
+* Updated to use similar harness structure
+* Added service restarts
+* Cleaned attribute names
 
 ## 1.0.1
 * Copy common messages jar to harness
+
+## 1.0.0
+* Initial release

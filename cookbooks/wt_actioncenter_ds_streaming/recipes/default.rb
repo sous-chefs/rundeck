@@ -21,24 +21,19 @@ download_url = node['wt_actioncenter_ds_streaming']['download_url']
 user         = node['wt_actioncenter_ds_streaming']['user']
 group        = node['wt_actioncenter_ds_streaming']['group']
 
-client_id     = node['wt_actioncenter_ds_streaming']['client_id']
-client_secret = node['wt_actioncenter_ds_streaming']['client_secret']
-auth_url      = "#{node['wt_sauth']['auth_url']}/#{node['wt_portfolio_harness']['sauth_version']}/token"
+auth_url      = "#{node['wt_sauth']['auth_service_url']}/#{node['wt_portfolio_harness']['sauth_version']}/token"
 auth_user_id  = node['wt_actioncenter_ds_streaming']['auth_user_id']
+user_data     = data_bag_item('authorization', node.chef_environment)
 config_host   = URI(node['wt_streamingconfigservice']['config_service_url']).host
 sapi_port     = search(:node, "role:wt_streaming_api_server AND chef_environment:#{node.chef_environment}").first['wt_streamingapi']['port']
+client_id     = user_data['wt_actioncenter_ds_streaming']['client_id']
+client_secret = user_data['wt_actioncenter_ds_streaming']['client_secret']
 
 #Dynamically builds kafka topic unless overridden
 unless node['wt_actioncenter_ds_streaming']['kafka_topic']
   kafka_topic = "#{node['wt_realtime_hadoop']['datacenter']}_#{node['wt_realtime_hadoop']['pod']}_ActionRoutes"
 else
   kafka_topic = node['wt_actioncenter_ds_streaming']['kafka_topic']
-end
-
-# grab the zookeeper nodes that are currently available
-zookeeper_search = Array.new
-if not Chef::Config.solo
-  zookeeper_search = search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}")
 end
 
 log "Install dir: #{install_dir}"
@@ -65,11 +60,11 @@ if ENV["deploy_build"] == "true" then
 
     # uncompress the application tarball into the install dir
     execute "tar" do
-        user  "root"
-        group "root"
-        cwd install_dir
-        command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-        notifies :restart, "runit_service[harness]", :delayed
+      user  "root"
+      group "root"
+      cwd install_dir
+      command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+      notifies :restart, "runit_service[harness]", :delayed
     end
 
   # delete the install tar ball
@@ -96,7 +91,7 @@ end
         :pod => node['wt_realtime_hadoop']['pod'],
         :datacenter => node['wt_realtime_hadoop']['datacenter'],
         :kafka_topic => kafka_topic,
-        :zookeeper_search  => zookeeper_search ,
+        :sapi_port => sapi_port
       })
       notifies :restart, "runit_service[harness]", :delayed
     end
