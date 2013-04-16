@@ -1,3 +1,6 @@
+## 1.1.1
+* Using service[restart] vs runit_service
+
 ## 1.1.0
 * Cleaned up attribute names
 * Used correct install directory
