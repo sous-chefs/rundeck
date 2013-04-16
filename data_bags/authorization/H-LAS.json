@@ -8,6 +8,10 @@
         "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
         "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
     }, 
+    "wt_actioncenter_ds_streaming": {
+        "client_id": "e8ae471a23ef486986db824d41e3a4d7.app.webtrends.com", 
+        "client_secret": "94ac26f39c4045299e6c300198cd7f54"
+    },
     "wt_cam_db": {
         "db_pwd": "bijoux", 
         "db_user": "wtUI"
