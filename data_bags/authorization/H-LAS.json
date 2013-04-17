@@ -34,7 +34,7 @@
     }, 
     "wt_streamingconfigservice": {
         "keystoreFileName": "hconfigsvc.staging.dmz.jks",
-        "keystoreFileUrl": "http://repo.staging.dmz/repo/",
+        "keystoreFileUrl": "http://repo.staging.dmz/repo/artifact/h/streamingconfigservice",
         "keystoreFilePassword": "Bijoux01",
         "aesKey": "AnOKtesterAESKey"
     },
