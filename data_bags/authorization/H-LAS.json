@@ -33,7 +33,8 @@
         "ui_user": "STAGINGDMZ\\wtUI"
     }, 
     "wt_streamingconfigservice": {
-        "keystoreFilePath": "/opt/webtrends/streamingconfigservice/conf/hconfigsvc.staging.dmz.jks",
+        "keystoreFileName": "hconfigsvc.staging.dmz.jks",
+        "keystoreFileUrl": "http://repo.staging.dmz/repo/",
         "keystoreFilePassword": "Bijoux01",
         "aesKey": "AnOKtesterAESKey"
     },
