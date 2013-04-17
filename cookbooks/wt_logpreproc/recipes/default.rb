@@ -113,4 +113,5 @@ service 'wtlogpreproc' do
     :template => "#{install_dir}\\wtlogpreproc.ini"
   )
   action :nothing
+  ignore_failure true
 end
