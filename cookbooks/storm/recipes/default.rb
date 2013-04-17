@@ -18,6 +18,7 @@
 
 include_recipe "java"
 include_recipe "runit"
+include_recipe "zeromq"
 
 
 if ENV["deploy_build"] == "true" then
@@ -43,6 +44,9 @@ end
 
 install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
 
+node.set['storm']['lib_dir'] = "#{install_dir}/lib"
+node.set['storm']['conf_dir'] = "#{install_dir}/conf"
+
 # setup storm group
 group "storm"
 
@@ -54,6 +58,11 @@ user "storm" do
   home "/home/storm"
   supports :manage_home => true
 end
+
+# storm looks for storm.yaml in ~/.storm/storm.yaml so make a link
+link "/home/storm/.storm" do
+  to node['storm']['conf_dir']
+end 
 
 # setup directories
 %w{install_dir local_dir log_dir}.each do |name|
@@ -89,7 +98,7 @@ link "#{node['storm']['install_dir']}/current" do
 end
 
 # storm.yaml
-template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
+template "#{node['storm']['conf_dir']}/storm.yaml" do
   source "storm.yaml.erb"
   mode 00644
   variables(
@@ -105,7 +114,7 @@ template "/home/storm/.profile" do
   source "profile.erb"
   mode   00644
   variables(
-    :storm_dir => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
+    :storm_dir => "#{install_dir}"
   )
 end
 

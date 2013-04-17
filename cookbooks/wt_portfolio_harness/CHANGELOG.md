@@ -1,3 +1,6 @@
+## 2.0.0
+*Changed deploy process to automatically deploy to clean system
+
 ## 1.1.1
 * Moved service creation before templates
 * Split runit service creation and service start into seperate resources
