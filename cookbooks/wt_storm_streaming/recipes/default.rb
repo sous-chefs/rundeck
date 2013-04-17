@@ -17,9 +17,6 @@
 # limitations under the License.
 #
 
-# Get the storm base application installed
-include_recipe "storm"
-
 download_url = node['wt_storm_streaming']['download_url']
 install_tmp = '/tmp/wt_storm_install'
 tarball = 'streaming-analysis-bin.tar.gz'
@@ -52,13 +49,7 @@ transactional_zookeeper_root = "/#{datacenter}_#{pod}_storm-streaming-transactio
 # Perform a deploy if the deploy flag is set
 if ENV["deploy_build"] == "true" then
     log "The deploy_build value is true so we will grab the tar ball and install"
-
-    # grab the source file
-    remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-      source download_url
-      mode 00644
-    end
-
+    
     # delete previous the install TEMP directory
     directory install_tmp do
       owner "root"
@@ -68,130 +59,125 @@ if ENV["deploy_build"] == "true" then
       action :delete
     end
 
-    # create the install TEMP dirctory
-    directory install_tmp do
-      owner "root"
-      group "root"
-      mode 00755
-      recursive true
-    end
-
-    # extract the source file into TEMP directory
-    execute "tar" do
-      user  "root"
-      group "root"
-      cwd install_tmp
-      creates "#{install_tmp}/lib"
-      command "tar zxvf #{Chef::Config[:file_cache_path]}/#{tarball}"
-    end
-
-    execute "mv" do
-      user  "root"
-      group "root"
-      command "mv #{install_tmp}/lib/webtrends*.jar #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/"
-    end
-
-    execute "chown" do
-      user  "root"
-      group "root"
-      command "chown storm:storm #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/webtrends*.jar"
-    end
-
-    # Remove any old zookeeper lib, below we will replace it.
-    execute "rm" do
-      user  "root"
-      group "root"
-      command "rm -f #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/zookeeper*.jar"
-    end
-
-    %w{
-    activation-1.1.jar
-    antlr-3.4.jar
-    antlr-runtime-3.4.jar
-    antlr4-4.0.jar
-    antlr4-runtime-4.0.jar
-    aopalliance-1.0.jar
-    avro-1.5.3.jar
-    avro-ipc-1.5.3.jar
-    commons-cli-1.2.jar
-    commons-collections-3.2.1.jar
-    commons-configuration-1.6.jar
-    commons-el-1.0.jar
-    commons-httpclient-3.1.jar
-    commons-math-2.1.jar
-    commons-net-1.4.1.jar
-    curator-framework-1.0.3.jar
-    curator-recipes-1.1.10.jar
-    fastutil-6.4.4.jar
-    groovy-all-1.7.6.jar
-    guice-3.0.jar
-    guice-assisted-inject-3.0.jar
-    gson-2.2.2.jar
-    hadoop-core-1.0.0.jar
-    hamcrest-core-1.1.jar
-    hbase-0.92.0.jar
-    high-scale-lib-1.1.1.jar
-    jackson-core-asl-1.9.3.jar
-    jackson-jaxrs-1.5.5.jar
-    jackson-mapper-asl-1.9.3.jar
-    jackson-xc-1.5.5.jar
-    jamm-0.2.5.jar
-    JavaEWAH-0.5.0.jar
-    javax.inject-1.jar
-    jdom-1.1.jar
-    jersey-core-1.4.jar
-    jersey-json-1.4.jar
-    jersey-server-1.4.jar
-    jettison-1.1.jar
-    jsp-2.1-6.1.14.jar
-    jsp-api-2.1-6.1.14.jar
-    kafka_2.9.2-0.7.2.jar
-    libthrift-0.7.0.jar
-    netty-3.5.11.Final.jar
-    plexus-utils-1.5.6.jar
-    protobuf-java-2.4.0a.jar
-    regexp-1.3.jar
-    stax-api-1.0.1.jar
-    scala-library-2.9.2.jar
-    streaming-analysis.jar
-    UserAgentUtils-1.6.jar
-    xmlenc-0.52.jar
-    zkclient-0.1.jar
-    mobi.mtld.da-1.5.3.jar
-    ini4j-0.5.2.jar
-    metrics-annotation-2.2.0.jar
-    metrics-core-2.2.0.jar
-    metrics-guice-2.2.0.jar
-    zookeeper-3.3.6.jar
-    }.each do |jar|
-      execute "mv" do
-        user  "root"
-        group "root"
-        command "mv #{install_tmp}/lib/#{jar} #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/#{jar}"
-      end
-
-      execute "chown" do
-        user  "root"
-        group "root"
-        command "chown storm:storm #{node['storm']['install_dir']}/storm-#{node['storm']['version']}/lib/#{jar}"
-      end
-    end
-
-    directory install_tmp do
-      action :delete
-      recursive true
-    end
+    execute "kill-topo" do
+      command "/opt/storm/current/bin/storm kill #{node['wt_storm_streaming']['name']}"
+      action :run
+      only_if "test -f /opt/storm/current/bin/storm"
+    end    
 end
 
-##############################################
-# Perform actions that will happen on each run
+directory install_tmp do
+  owner "root"
+  group "root"
+  mode 00755
+  recursive true
+  action :create
+end
 
-# create the log directory
-directory "/var/log/storm" do
-	action :create
-	owner "storm"
-	group "storm"
-	mode 00755
+# grab the source file
+remote_file "#{install_tmp}/#{tarball}" do
+  source download_url
+  mode 00644
+  action :create_if_missing
+end
+
+# extract the source file into TEMP directory
+execute "tar" do
+  user  "root"
+  group "root"
+  cwd install_tmp
+  creates "#{install_tmp}/lib"
+  command "tar zxvf #{install_tmp}/#{tarball}"
+end
+
+execute "mv" do
+  user  "root"
+  group "root"
+  command "mv #{install_tmp}/lib/webtrends*.jar #{node['storm']['lib_dir']}"
+  action :nothing
+  subscribes :run, "execute[tar]"
+end
+
+# Remove any old zookeeper lib, below we will replace it.
+execute "rm" do
+  user  "root"
+  group "root"
+  command "rm -f #{node['storm']['lib_dir']}/zookeeper*.jar"
+  subscribes :run, "execute[tar]"
+end
+
+%w{
+activation-1.1.jar
+antlr-3.4.jar
+antlr-runtime-3.4.jar
+antlr4-4.0.jar
+antlr4-runtime-4.0.jar
+aopalliance-1.0.jar
+avro-1.5.3.jar
+avro-ipc-1.5.3.jar
+commons-cli-1.2.jar
+commons-collections-3.2.1.jar
+commons-configuration-1.6.jar
+commons-el-1.0.jar
+commons-httpclient-3.1.jar
+commons-math-2.1.jar
+commons-net-1.4.1.jar
+curator-framework-1.0.3.jar
+curator-recipes-1.1.10.jar
+fastutil-6.4.4.jar
+groovy-all-1.7.6.jar
+guice-3.0.jar
+guice-assisted-inject-3.0.jar
+gson-2.2.2.jar
+hadoop-core-1.0.0.jar
+hamcrest-core-1.1.jar
+hbase-0.92.0.jar
+high-scale-lib-1.1.1.jar
+jackson-core-asl-1.9.3.jar
+jackson-jaxrs-1.5.5.jar
+jackson-mapper-asl-1.9.3.jar
+jackson-xc-1.5.5.jar
+jamm-0.2.5.jar
+JavaEWAH-0.5.0.jar
+javax.inject-1.jar
+jdom-1.1.jar
+jersey-core-1.4.jar
+jersey-json-1.4.jar
+jersey-server-1.4.jar
+jettison-1.1.jar
+jsp-2.1-6.1.14.jar
+jsp-api-2.1-6.1.14.jar
+kafka_2.9.2-0.7.2.jar
+libthrift-0.7.0.jar
+netty-3.5.11.Final.jar
+plexus-utils-1.5.6.jar
+protobuf-java-2.4.0a.jar
+regexp-1.3.jar
+stax-api-1.0.1.jar
+scala-library-2.9.2.jar
+streaming-analysis.jar
+UserAgentUtils-1.6.jar
+xmlenc-0.52.jar
+zkclient-0.1.jar
+mobi.mtld.da-1.5.3.jar
+ini4j-0.5.2.jar
+metrics-annotation-2.2.0.jar
+metrics-core-2.2.0.jar
+metrics-guice-2.2.0.jar
+zookeeper-3.3.6.jar
+}.each do |jar|
+  execute "mv" do
+    user  "root"
+    group "root"
+    command "mv #{install_tmp}/lib/#{jar} #{node['storm']['lib_dir']}/#{jar}"
+    subscribes :run, "execute[tar]"
+  end
+end
+
+execute "chown" do
+  user  "root"
+  group "root"
+  command "chown storm:storm -R #{node['storm']['install_dir']}"
 end
 
 # template out the log4j config with our custom logging settings
@@ -202,20 +188,15 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4
 	mode  00644
 end
 
-# storm looks for storm.yaml in ~/.storm/storm.yaml so make a link
-link "/home/storm/.storm" do
-	to "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf"
-end 
-
 # create the log directory
-directory "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/cache" do
+directory "#{node['storm']['conf_dir']}/cache" do
   action :create
   owner "storm"
   group "storm"
   mode 00755
 end
 
-file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
+file "#{node['storm']['conf_dir']}/storm.yaml" do
   owner "root"
   group "root"
   mode "00644"
@@ -223,7 +204,7 @@ file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/sto
 end
 
 # template the storm yaml file
-template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/storm.yaml" do
+template "#{node['storm']['conf_dir']}/storm.yaml" do
   source "storm.yaml.erb"
   owner  "storm"
   group  "storm"
@@ -240,7 +221,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
 end
 
 # template the actual storm config file
-template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/application.conf" do
+template "#{node['storm']['conf_dir']}/application.conf" do
   source "application.conf.erb"
   owner  "storm"
   group  "storm"
@@ -256,7 +237,7 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
 end
 
 # template the actual storm config file
-template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties" do
+template "#{node['storm']['conf_dir']}/config.properties" do
   source "config.properties.erb"
   owner  "storm"
   group  "storm"
@@ -291,11 +272,10 @@ template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf
     :audit_topic           => node['wt_monitoring']['audit_topic'],
     :cam_url               => node['wt_cam']['cam_service_url'],
     :data_request_url      => node['wt_storm_streaming']['data_request_url']
-
   )
 end
 
-template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/log4j.properties" do
+template "#{node['storm']['conf_dir']}/log4j.properties" do
   source "log4j.properties.erb"
   owner  "storm"
   group  "storm"
@@ -317,7 +297,7 @@ device-atlas.json
 browsers.ini
 convert_searchstr.ini
 }.each do |ini_file|
-    cookbook_file "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/#{ini_file}" do
+    cookbook_file "#{node['storm']['conf_dir']}/#{ini_file}" do
       source ini_file
       mode 00644
     end
@@ -343,4 +323,10 @@ if node.run_list.include?("role[storm_nimbus]")
     action :nothing
     subscribes :run, resources(:template => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties"), :immediately
   end
+
+  execute "start-topo" do
+    command "/opt/storm/current/bin/storm jar #{node['storm']['lib_dir']}/streaming-analysis.jar com.webtrends.streaming.analysis.storm.topology.StreamingTopology"
+    action :nothing
+    subscribes :run, "execute[tar]"
+  end   
 end
