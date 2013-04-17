@@ -429,7 +429,7 @@
             "wrsread_group": "STAGINGDMZ\\H.WRS.Read"
         }, 
         "wt_kafka_topagg": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/50103:id/TopicAggregator-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt307/58693:id/TopicAggregator-bin.tar.gz", 
             "edge_kafka_sources": [
                 {
                     "host": "mscs01.staging.dmz", 
@@ -440,6 +440,22 @@
                     "topic": "Lab_H_scsRawHits"
                 }, 
                 {
+                    "host": "gscs01.staging.dmz", 
+                    "topic": "Lab_H_scsRawHits"
+                }, 
+                {
+                    "host": "gscs01.staging.dmz", 
+                    "topic": "Lab_H_dcRawHits"
+                }, 
+                {
+                    "host": "gscs02.staging.dmz", 
+                    "topic": "Lab_H_scsRawHits"
+                }, 
+                {
+                    "host": "gscs02.staging.dmz", 
+                    "topic": "Lab_H_dcRawHits"
+                }, 
+		{
                     "host": "oagg01.staging.dmz", 
                     "topic": "las_01_scsRawHits:4"
                 }, 
