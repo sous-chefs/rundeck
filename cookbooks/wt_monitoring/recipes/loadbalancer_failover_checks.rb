@@ -24,13 +24,13 @@ if node.attribute?("nagios")
     action :add
   end
   #Check primary node in IADLBB
-  nagios_nrpecheck "wt_check_amslba_primary_node" do
+  nagios_nrpecheck "wt_check_iadlbb_primary_node" do
     command "#{node['nagios']['plugin_dir']}/check_snmp"
     parameters "-H 10.89.0.30 -P 2c -C wtlive -o 1.3.6.1.4.1.5951.4.1.1.6.0 -c 1:1"
     action :add
   end
   #Check standby node in IADLBB
-  nagios_nrpecheck "wt_check_amslba_standby_node" do
+  nagios_nrpecheck "wt_check_iadlbb_standby_node" do
     command "#{node['nagios']['plugin_dir']}/check_snmp"
     parameters "-H 10.89.0.31 -P 2c -C wtlive -o 1.3.6.1.4.1.5951.4.1.1.6.0 -c 2:2"
     action :add
