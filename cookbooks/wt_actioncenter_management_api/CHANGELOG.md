@@ -1,3 +1,6 @@
+## 1.1.1
+* Copy to the correct lib directory
+
 ## 1.1.0
 * Using updated harness strucuture
 * Notifying service to restart
