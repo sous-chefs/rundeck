@@ -33,9 +33,9 @@
         "ui_user": "STAGINGDMZ\\wtUI"
     }, 
     "wt_streamingconfigservice": {
-        "keystoreFilePath": "",
-        "keystoreFilePassword": "",
-        "aesKey": ""
+        "keystoreFilePath": "/opt/webtrends/streamingconfigservice/conf/hconfigsvc.staging.dmz.jks",
+        "keystoreFilePassword": "Bijoux01",
+        "aesKey": "AnOKtesterAESKey"
     },
     "wt_iis": {
         "machine_decryption_key": "B0FCBEE38C05DCB5213655ACD722702DEACE441304FC02FE", 
