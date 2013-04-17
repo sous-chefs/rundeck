@@ -1,3 +1,6 @@
+## 1.1.3
+* Updated authentication section in application.conf
+
 ## 1.1.2
 * Exposed lib directory for use by plugins to copy jars
 

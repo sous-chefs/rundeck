@@ -13,13 +13,6 @@ require 'uri'
 # include runit so we can create a runit service
 include_recipe "runit"
 
-# install dependency packages
-#%w{zeromq jzmq}.each do |pkg|
-#  package pkg do
-#    action :install
-#  end
-#end
-
 # grab the zookeeper nodes that are currently available
 zookeeper_quorum = Array.new
 if not Chef::Config.solo
@@ -54,9 +47,9 @@ pod          = node['wt_realtime_hadoop']['pod']
 datacenter   = node['wt_realtime_hadoop']['datacenter']
 java_home    = node['java']['java_home']
 java_opts    = node['wt_portfolio_harness']['java_opts']
-cam_url      = node['wt_cam']['cam_service_url']
-auth_url     = node['wt_sauth']['auth_service_url']
-auth_host    = URI(auth_url).host
+auth_host     = URI(node['wt_sauth']['auth_service_url']).host
+cam_host     = URI(node['wt_cam']['cam_service_url']).host
+cam_port     = URI(node['wt_cam']['cam_service_url']).port
 
 # grab the users and passwords from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
@@ -66,8 +59,6 @@ unless node['wt_common']['http_proxy_url'].nil? || node['wt_common']['http_proxy
         proxy_uri = URI(node['wt_common']['http_proxy_url'])
         proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
 end
-
-
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -147,11 +138,8 @@ log "Updating the template files"
     group "root"
     mode  00644
     variables({
-      :auth_url => auth_url,
-      :auth_host => auth_host,
       :auth_version => node['wt_portfolio_harness']['sauth_version'],
       :proxy_host => proxy_host,
-      :cam_url => cam_url,
       :install_dir => install_dir,
       :http_port => http_port,
       :log_dir => log_dir,
@@ -165,14 +153,17 @@ log "Updating the template files"
       :zookeeper_quorum => zookeeper_quorum * ",",
       :pod              => pod,
       :datacenter       => datacenter,
+      # auth, cam parameters
+      :auth_host => auth_host,
+      :cam_host => cam_host,
+      :cam_port => cam_port,
+      :remote_address_hdr => node['wt_portfolio_harness']['remote_address_hdr']
     })
     notifies :restart, "service[harness]", :delayed
   end
 end
 
 service "harness"
-
-
 
 if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
