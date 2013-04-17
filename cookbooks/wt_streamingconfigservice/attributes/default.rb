@@ -12,5 +12,6 @@ default['wt_streamingconfigservice']['group'] = "webtrends"
 default['wt_streamingconfigservice']['java_opts'] = "-Xms1024m -Djava.net.preferIPv4Stack=true"
 default['wt_streamingconfigservice']['download_url'] = ""
 default['wt_streamingconfigservice']['port'] = 8080
+default['wt_streamingconfigservice']['securePort'] = 8443
 default['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'] = "true"
 default['wt_streamingconfigservice']['jmx_port'] = 9999
