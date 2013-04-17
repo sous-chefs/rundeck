@@ -109,7 +109,9 @@ end
 log "Installing the keystore file"
 
 remote_file "#{install_dir}/conf/#{keystore_file_name}" do
-    source keystore_file_url
+    source "#{keystore_file_url}/#{keystore_file_name}"
+    owner "webtrends"
+    group "webtrends"
     mode 00640
 end
 
