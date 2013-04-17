@@ -18,7 +18,7 @@
 
 include_recipe "java"
 include_recipe "runit"
-include_recipe "zeromq"
+#include_recipe "zeromq"
 
 
 if ENV["deploy_build"] == "true" then
