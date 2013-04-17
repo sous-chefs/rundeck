@@ -19,3 +19,4 @@ default['wt_portfolio_harness']['graphite_vmmetrics'] = "true"
 default['wt_portfolio_harness']['graphite_regex']     = ""
 default['wt_portfolio_harness']['sauth_version']     = "v1"
 default['wt_portfolio_harness']['conf_url']          = "conf/application.conf"
+default['wt_portfolio_harness']['remote_address_hdr'] = false

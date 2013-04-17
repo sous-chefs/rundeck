@@ -61,22 +61,17 @@ portfolio-harness-system {
         }
 
         # Authorization
-        authorization {
-            # This is the base url for the AUTH service
-            base-url="<%=@auth_url%>/<%=@auth_version%>"
-            # This is the url to the REST service for getting a token's detailed information
-            token-detail = "%%baseUrl%%/token/%%access_token%%"
-
+        authentication {
             cam {
-                # This is the base url for the CAM service
-                base-url = "<%=@cam_url%>"
-                # This is the url to the REST service for getting product provisioning
-                provisioning-detail="%%baseUrl%%/account/%%accountId%%/product/%%productId%%"
-                # This is the url to the REST service for getting the products
-                product-detail="%%baseUrl%%/product"
+                # This is the host for the CAM service
+                host="<%=@cam_host%>"
+                # This is the port for the CAM service
+                port=<%=@cam_port%>
+                # This is the url to the REST service for getting a token's detailed information
+                context.url="/context/%s/scope/%s"
             }
         }
-
+       
         #temporary placement for these
         discovery {
             sapi {
@@ -114,14 +109,14 @@ portfolio-harness-system {
 
             provider = "akka.remote.RemoteActorRefProvider"
             deployment {
-                /harness/tcpprocessor {
-                    router = smallest-mailbox
-                    nr-of-instances = 5
+                /system/processor {
+                    router = round-robin
+                    nr-of-instances = 3
                 }
-                #/0mq-processor {
-                #    router = smallest-mailbox
-                #    nr-of-instances = 5
-                #}
+                /system/http-base {
+                    router = round-robin
+                    nr-of-instances = 3
+                }
             }
 
             debug {
@@ -155,8 +150,13 @@ portfolio-harness-system {
     }
 
     spray {
+        io {
+            #parallelism=2
+            #no-delay=1
+        }
         can {
             server {
+                remote-address-header=<%=@remote_address_hdr%>
                 request-timeout=5s
             }
         }
