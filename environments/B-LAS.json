@@ -546,16 +546,16 @@
             "host": "ausagedb01.staging.dmz"
         }, 
         "wt_storm_streaming": {
-            "augment_bolt_executors": 4, 
-            "augment_bolt_tasks": 4, 
+            "augment_bolt_executors": 16, 
+            "augment_bolt_tasks": 16, 
             "data_request_url": "http://bwapi.staging.dmz", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/57148:id/streaming-analysis-bin.tar.gz", 
-            "event_stream_bolt_executors": 2, 
-            "event_stream_bolt_tasks": 2, 
-            "response_bolt_executors": 6, 
-            "response_bolt_tasks": 6, 
-            "session_stream_bolt_executors": 2, 
-            "session_stream_bolt_tasks": 2, 
+            "event_stream_bolt_executors": 8, 
+            "event_stream_bolt_tasks": 8, 
+            "response_bolt_executors": 4, 
+            "response_bolt_tasks": 4, 
+            "session_stream_bolt_executors": 12, 
+            "session_stream_bolt_tasks": 12, 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 1
