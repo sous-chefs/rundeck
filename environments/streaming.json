@@ -3,6 +3,7 @@
     "cookbook_versions": {
         "java": "= 1.6.0", 
         "kafka": "= 1.0.20", 
+        "sysctl": "= 0.1.8", 
         "wt_actioncenter_management_api": "= 1.0.0", 
         "wt_portfolio_edgeservice": "= 1.0.0", 
         "wt_portfolio_harness": "= 1.0.1", 
@@ -82,6 +83,11 @@
             "full_systemview": "true", 
             "syscontact": "trent.white@webtrends.com"
         }, 
+        "sysctl": {
+            "set swappiness": {
+                "vm.swappiness": "0"
+            }
+        },
         "webtrends_server": {
             "apt": [
                 {

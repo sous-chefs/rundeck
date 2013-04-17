@@ -4,6 +4,7 @@
   "json_class": "Chef::Role",
   "description": "Spark Slave",
   "run_list": [
+    "recipe[sysctl]",
     "recipe[spark::slave]"
   ],
   "override_attributes": {
