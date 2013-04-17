@@ -131,7 +131,7 @@
         "wt_actioncenter_ddp": "= 1.1.1", 
         "wt_actioncenter_ds_streaming": "= 1.1.3", 
         "wt_actioncenter_management_api": "= 1.1.1", 
-        "wt_actioncenter_ui": "= 1.0.0", 
+        "wt_actioncenter_ui": "= 1.0.1", 
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.1.1", 
         "wt_cam": "= 1.1.8", 
@@ -390,7 +390,8 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/.lastSuccessful/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
         },
         "wt_actioncenter_ds_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/58449:id/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/.lastSuccessful/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz",
+	    "auth_user_id": "226"
         },
         "wt_actioncenter_management_api": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz",
