@@ -1,3 +1,6 @@
+## 1.1.2
+* Exposed lib directory for use by plugins to copy jars
+
 ## 1.1.1
 * Moved service creation before templates
 * Split runit service creation and service start into seperate resources
