@@ -1,3 +1,6 @@
+## 1.0.1
+* Changed template Application_key to actioncenter
+
 ## 1.0.0
 * Changed management URL to pull from management block 
 
