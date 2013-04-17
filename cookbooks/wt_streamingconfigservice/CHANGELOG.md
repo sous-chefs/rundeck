@@ -1,3 +1,6 @@
+## 1.1.5
+* Updated keyfile handling for ssl support
+
 ## 1.1.4
 * Added support for secure endpoints - additional config params
 
