@@ -52,3 +52,16 @@ default['wt_storm_streaming']['topology']['fall_back_on_java_serialization'] = t
 default['wt_storm_streaming']['topology']['worker_childopts'] = nil
 default['wt_storm_streaming']['topology']['name'] = "streaming-topology"
 
+# zookeeper attributes
+default['wt_storm_streaming']['zookeeper']['root'] = "/v2-storm-streaming"
+default['wt_storm_streaming']['zookeeper']['session_timeout'] = 30000
+default['wt_storm_streaming']['zookeeper']['retry_times'] = 60
+default['wt_storm_streaming']['zookeeper']['retry_interval'] = 5000
+
+# worker attributes
+default['wt_storm_streaming']['worker']['childopts'] = "-Xmx1280m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+default['wt_storm_streaming']['worker']['heartbeat_frequency_secs'] = 1
+default['wt_storm_streaming']['task']['heartbeat_frequency_secs'] = 3
+default['wt_storm_streaming']['task']['refresh_poll_secs'] = 10
+default['wt_storm_streaming']['zmq']['threads'] = 1
+default['wt_storm_streaming']['zmq']['longer_millis'] = 5000
