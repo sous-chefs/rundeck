@@ -4,6 +4,7 @@
   "json_class": "Chef::Role",
   "description": "Storm Supervisor",
   "run_list": [
+    "role[java]",
     "recipe[storm::supervisor]"
   ],
   "override_attributes": {

@@ -7,12 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploying first"
-  include_recipe "wt_actioncenter_management_api::undeploy"
-else
-  log "The deploy_build value is not set or is false so we will only update the configuration"
-end
+
 
 install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "actioncenter_management_api")
 conf_dir     = File.join(install_dir,"conf")
@@ -23,6 +18,14 @@ group        = node['wt_actioncenter_management_api']['group']
 ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
 
 log "Install dir: #{install_dir}"
+
+if ENV["deploy_build"] == "true" then
+  directory install_dir do
+    action :delete
+    recursive true
+    notifies :run, "execute[delete_install_source]"
+  end
+end
 
 # create the directories
 [install_dir, conf_dir].each do |dir|
@@ -36,37 +39,38 @@ log "Install dir: #{install_dir}"
 end
 
 
-if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so we will grab the tar ball and install"
+# delete the install tar ball
+execute "delete_install_source" do
+  user "root"
+  group "root"
+  command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
+  action :nothing
+end
+  
+# download the application tarball
+remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+  source download_url
+  mode 00644
+  action :create_if_missing
+end
 
-  # download the application tarball
-  remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-    source download_url
-    mode 00644
-  end
+# uncompress the application tarball into the install dir
+execute "tar" do
+  user  "root"
+  group "root"
+  cwd install_dir
+  command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+  action :nothing
+  subscribes :run, resources(:remote_file => "#{Chef::Config[:file_cache_path]}/#{tarball}"), :immediately
+  notifies :restart, "service[harness]", :delayed
+end
 
-  # uncompress the application tarball into the install dir
-  execute "tar" do
-    user  "root"
-    group "root"
-    cwd install_dir
-    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-    notifies :restart, "service[harness]", :delayed
-  end
-
-	#copy messages jar to harness
-	#until we solve the class loader issues.
-  execute "copy messages" do
-    command "cp #{install_dir}/lib/action-center-messages*.jar #{node['wt_portfolio_harness']['plugin_dir']}/lib/."
-  end
-
-  # delete the install tar ball
-  execute "delete_install_source" do
-    user "root"
-    group "root"
-    command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
-    action :run
-  end
+#copy messages jar to harness
+#until we solve the class loader issues.
+execute "copy messages" do
+  command "cp #{install_dir}/lib/action-center-messages*.jar #{node['wt_portfolio_harness']['plugin_dir']}/lib/."
+  action :nothing
+  subscribes :run, resources(:execute => "tar"), :immediately
 end
 
 template "#{conf_dir}/config.properties" do 
