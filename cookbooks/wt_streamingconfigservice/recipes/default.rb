@@ -33,9 +33,10 @@ camdbuser  = auth_data['wt_cam_db']['db_user']
 camdbpwd = auth_data['wt_cam_db']['db_pwd']
 masterdbuser = auth_data['wt_master_db']['db_user']
 masterdbpwd = auth_data['wt_master_db']['db_pwd']
-keystoreFilePath = auth_data['wt_streamingconfigservice']['keystoreFilePath']
 keystoreFilePassword = auth_data['wt_streamingconfigservice']['keystoreFilePassword']
 aesKey = auth_data['wt_streamingconfigservice']['aesKey']
+keystore_file_name = auth_data['wt_streamingconfigservice']['keystoreFileName']
+keystore_file_url = auth_data['wt_streamingconfigservice']['keystoreFileUrl']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -105,6 +106,13 @@ if ENV["deploy_build"] == "true" then
 
 end
 
+log "Installing the keystore file"
+
+remote_file "#{install_dir}/conf/#{keystore_file_name}" do
+    source keystore_file_url
+    mode 00640
+end
+
 log "Updating the template files"
 
 template "#{install_dir}/bin/service-control" do
@@ -168,7 +176,7 @@ template "#{install_dir}/conf/config.properties" do
     :masterdbuser => masterdbuser,
     :masterdbpwd => masterdbpwd,
     :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
-    :keystoreFilePath => keystoreFilePath,
+    :keystoreFilePath =>  "#{install_dir}/conf/#{keystore_file_name}",
     :keystoreFilePassword => keystoreFilePassword,
     :aesKey => aesKey
   })
