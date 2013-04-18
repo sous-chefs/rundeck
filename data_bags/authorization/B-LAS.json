@@ -57,12 +57,6 @@
         "client_secret": "7025c2c662204f0bb9c5efcb655a8bdb",
         "client_token": "9663da37ba4b482daf265c8ac2d2c864.app.webtrends.com"
     },
-    "wt_streamingconfigservice": {
-        "keystoreFileName": "bconfigsvc.staging.dmz.jks",
-        "keystoreFileUrl": "http://repo.staging.dmz/repo/artifact/b/streamingconfigservice/bconfigsvc.staging.dmz.jks", 
-        "keystoreFilePassword": "Bijoux01",
-        "aesKey": "AnOKtesterAESKey"
-    },
     "wt_streaming_usage_db": {
         "db_pwd": "bijoux", 
         "db_user": "wtUI"
@@ -83,7 +77,10 @@
         "camdbpwd": "bijoux", 
         "camdbuser": "wtUI", 
         "masterdbpwd": "v87m-Rhv8TMogJ_j", 
-        "masterdbuser": "ConfigSvc"
+        "masterdbuser": "ConfigSvc",
+	"keystoreFileName": "bconfigsvc.staging.dmz.jks",
+        "keystoreFilePassword": "Bijoux01",
+        "aesKey": "AnOKtesterAESKey"
     }, 
     "wt_streamingmanagementservice": {
         "db_pwd": "bijoux", 

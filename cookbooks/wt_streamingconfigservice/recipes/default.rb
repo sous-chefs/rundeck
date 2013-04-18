@@ -174,7 +174,7 @@ template "#{install_dir}/conf/config.properties" do
     :camdbuser => camdbuser,
     :camdbpwd => camdbpwd,
     :usagedbserver => node['wt_actioncenter_db']['db_name'],
-    :usagedbname => node['wt_actioncenter_db'['db_server']
+    :usagedbname => node['wt_actioncenter_db']['db_server'],
     :masterdbserver => node['wt_masterdb']['host'],
     :masterdbname => node['wt_masterdb']['dbname'],
     :masterdbuser => masterdbuser,
