@@ -89,7 +89,7 @@ end
       :datarequest_nodata_delay_before_retry_ms => datarequest_nodata_delay_before_retry_ms,
       :sender_max_send_retries => sender_max_send_retries,
       :sender_min_exponential_backoff_delay_ms => sender_min_exponential_backoff_delay_ms,
-      :sender_max_delay_befored_dropping_data_ms => sender_max_delay_befored_dropping_data_ms,
+      :sender_max_delay_before_dropping_data_ms => sender_max_delay_before_dropping_data_ms,
       :testing_enabled => testing_enabled,
       :testing_key_column_override => testing_key_column_override
     })
