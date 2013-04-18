@@ -171,6 +171,7 @@ zookeeper-3.3.6.jar
     user  "root"
     group "root"
     command "mv #{install_tmp}/lib/#{jar} #{node['storm']['lib_dir']}/#{jar}"
+    action :nothing
     subscribes :run, "execute[tar]"
   end
 end
@@ -211,7 +212,7 @@ template "#{node['storm']['conf_dir']}/storm.yaml" do
   group  "storm"
   mode   00644
   variables(
-    :worker_childopts => node['wt_storm_streaming']['worker']['childopts'],
+    :worker_childopts => node['storm']['worker']['childopts'],
     :zookeeper_root => zookeeper_root,
     :transactional_zookeeper_root => transactional_zookeeper_root,
     :storm_config => node['wt_storm_streaming'],
@@ -326,7 +327,8 @@ if node.run_list.include?("role[storm_nimbus]")
   end
 
   execute "start-topo" do
-    command "/opt/storm/current/bin/storm jar #{node['storm']['lib_dir']}/streaming-analysis.jar com.webtrends.streaming.analysis.storm.topology.StreamingTopology"
+    command "bin/storm jar lib/streaming-analysis.jar com.webtrends.streaming.analysis.storm.topology.StreamingTopology"
+    cwd "/opt/storm/current"
     action :nothing
     subscribes :run, "execute[tar]"
   end   
