@@ -1,3 +1,6 @@
+## 1.1.4
+* Updated the Nagios check to make sure it calls the health check on the main port (i.e. 8080)
+
 ## 1.1.3
 * Updated authentication section in application.conf
 

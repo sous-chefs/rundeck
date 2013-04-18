@@ -1,3 +1,6 @@
+## 1.0.9
+* Updated the Nagios check to make sure it calls the health check on the main port (i.e. 8080)
+
 ## 1.0.8
 * Add support for toggling proxy, metrics, cache
 
