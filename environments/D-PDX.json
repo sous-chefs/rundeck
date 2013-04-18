@@ -417,7 +417,7 @@
             "rest_base_uri": "https://ddx.webtrends.com/v3"
         }, 
         "wt_logpreproc": {
-            "download_url": "http://repo.staging.dmz/repo/product/ondemand/lpp/dpod/LPP64.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/lpp/d/LPP64.zip", 
             "wtlogpreproc1_fileextension": "*.log.gz"
         }, 
         "wt_management_console": {
