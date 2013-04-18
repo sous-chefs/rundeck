@@ -170,7 +170,7 @@
         "wt_storm_streaming": "= 2.5.3", 
         "wt_stream_processor": "= 1.0.7", 
         "wt_streaming_barebones": "= 0.0.3", 
-        "wt_streaming_viz": "= 1.2.7", 
+        "wt_streaming_viz": "= 1.2.9", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
         "wt_streamingapi": "= 1.2.8", 
         "wt_streamingauditor": "= 1.0.19", 
@@ -577,7 +577,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/57088:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/58706:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true", 
             "sms_url": "http://hsms.staging.dmz", 
