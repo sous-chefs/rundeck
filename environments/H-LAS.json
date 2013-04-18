@@ -135,7 +135,7 @@
         "wt_actioncenter_ui": "= 1.0.1",
         "wt_analytics_ui": "= 1.1.6",
 	"wt_base": "= 1.1.1", 
-        "wt_cam": "= 1.1.8", 
+        "wt_cam": "= 1.1.9", 
         "wt_cam_db": "= 0.1.5", 
         "wt_commonlib": "= 0.10.6", 
         "wt_data_deleter": "= 1.0.4", 
