@@ -383,7 +383,7 @@
 	    "testing_key_column_override": "173453478"
         },
         "wt_actioncenter_dd_webtrendsemaildemo": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/.lastSuccessful/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/.lastSuccessful/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz",
 	    "datarequest_max_event_batch_time_ms": "2000",
 	    "datarequest_max_events_in_batch": "200",
 	    "datarequest_failure_delay_before_retry_ms": "60000",
