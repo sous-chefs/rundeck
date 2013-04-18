@@ -21,6 +21,7 @@ download_url = node['wt_actioncenter_management_api']['download_url']
 user         = node['wt_actioncenter_management_api']['user']
 group        = node['wt_actioncenter_management_api']['group']
 ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
+ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
 
 log "Install dir: #{install_dir}"
 
@@ -76,6 +77,8 @@ template "#{conf_dir}/config.properties" do
   mode 00644 
   variables({ 
     :ads_host => ads_host,
+    :secure_config_host => ads_host,
+    :secure_config_port => ads_ssl_port,
     :cam_host => node['wt_cam']['cam_service_url'],
     :cam_port => "80",
   })
