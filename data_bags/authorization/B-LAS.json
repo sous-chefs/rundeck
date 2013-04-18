@@ -80,7 +80,7 @@
         "masterdbuser": "ConfigSvc",
 	"keystoreFileName": "bconfigsvc.staging.dmz.jks",
         "keystoreFilePassword": "Bijoux01",
-	"keystoreFileUrl": "http://repo.staging.dmz/repo/artifact/b/streamingconfigservice/bconfigsvc.staging.dmz.jks",
+	"keystoreFileUrl": "http://repo.staging.dmz/repo/artifact/b/streamingconfigservice",
         "aesKey": "AnOKtesterAESKey"
     }, 
     "wt_streamingmanagementservice": {
