@@ -85,7 +85,6 @@ end
       :secure_config_port => ads_ssl_port,
       :datarequest_max_event_batch_time_ms => datarequest_max_event_batch_time_ms,
       :datarequest_max_events_in_batch => datarequest_max_events_in_batch,
-      :datarequest_delay_before_retry_ms => datarequest_delay_before_retry_ms,
 			:datarequest_failure_delay_before_retry_ms => datarequest_failure_delay_before_retry_ms,
 			:datarequest_nodata_delay_before_retry_ms => datarequest_nodata_delay_before_retry_ms,
       :sender_delay_before_retry_ms => sender_delay_before_retry_ms,
