@@ -65,3 +65,20 @@ default['wt_storm_streaming']['task']['heartbeat_frequency_secs'] = 3
 default['wt_storm_streaming']['task']['refresh_poll_secs'] = 10
 default['wt_storm_streaming']['zmq']['threads'] = 1
 default['wt_storm_streaming']['zmq']['longer_millis'] = 5000
+
+# nimbus attributes
+default['wt_storm_streaming']['nimbus']['thrift_port'] = 6627
+default['wt_storm_streaming']['nimbus']['childopts'] = "-Xmx768m"
+default['wt_storm_streaming']['nimbus']['task_timeout_secs'] = 30
+default['wt_storm_streaming']['nimbus']['supervisor_timeout_secs'] = 60
+default['wt_storm_streaming']['nimbus']['monitor_freq_secs'] = 10
+default['wt_storm_streaming']['nimbus']['cleanup_inbox_freq_secs'] = 600
+default['wt_storm_streaming']['nimbus']['inbox_jar_expiration_secs'] = 3600
+default['wt_storm_streaming']['nimbus']['task_launch_secs'] = 120
+default['wt_storm_streaming']['nimbus']['reassign'] = true
+default['wt_storm_streaming']['nimbus']['file_copy_expiration_secs'] = 600
+
+# ui attributes
+default['wt_storm_streaming']['ui']['port'] = 8080
+default['wt_storm_streaming']['ui']['childopts'] = "-Xmx768m"
+ 
