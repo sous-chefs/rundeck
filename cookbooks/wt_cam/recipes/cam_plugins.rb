@@ -36,7 +36,7 @@ end
 template "#{plugin_install_dir}\\Webtrends.Cam.Plugins.ActionCenter.dll.config" do
   source "Webtrends.Cam.Plugins.ActionCenter.dll.config.erb"
   variables(
-    :provisioning_storage_url => node['wt_streamingconfigservie']['config_service_url'],
+    :provisioning_storage_url => node['wt_streamingconfigservice']['config_service_url'],
     :provisioning_storage_type   => node['wt_cam']['actioncenter_plugin']['provisioning_storage_type']
   )
 end
