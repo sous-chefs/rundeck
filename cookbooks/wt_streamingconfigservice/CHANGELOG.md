@@ -1,3 +1,6 @@
+## 1.1.6
+* Added conn string for actioncenter usage database
+
 ## 1.1.5
 * Updated keyfile handling for ssl support
 
