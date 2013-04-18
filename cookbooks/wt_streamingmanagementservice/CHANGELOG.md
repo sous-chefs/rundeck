@@ -1,3 +1,6 @@
+## 1.1.2
+* Moved runit creation to after files get templated
+
 ## 1.1.1
 * Updated the Nagios check to make sure it calls the health check on the main port (i.e. 8080)
 

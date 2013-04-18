@@ -89,17 +89,6 @@ if ENV["deploy_build"] == "true" then
     command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
     action :run
   end
-
-  # create a runit service
-  runit_service "streamingmanagementservice" do
-    options({
-      :log_dir => log_dir,
-      :install_dir => install_dir,
-      :java_home => java_home,
-      :user => user
-    })
-  end
-
 end
 
 
@@ -146,6 +135,17 @@ template "#{install_dir}/conf/config.properties" do
     :streamingdbuser => streamingdbuser,
     :streamingdbpwd => streamingdbpwd,
     :healthcheck_port => node['wt_streamingmanagementservice']['healthcheck_port'],
+  })
+end
+
+
+# create a runit service
+runit_service "streamingmanagementservice" do
+  options({
+    :log_dir => log_dir,
+    :install_dir => install_dir,
+    :java_home => java_home,
+    :user => user
   })
 end
 
