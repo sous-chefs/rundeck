@@ -410,7 +410,7 @@
 	    "auth_user_id": "226"
         },
         "wt_actioncenter_management_api": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/58792:id/action-center-management-service-bin.tar.gz",
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/58843:id/action-center-management-service-bin.tar.gz",
                 "ac_management_url": "https://bapi.webtrends.com"
         },
         "wt_actioncenter_ui": {
