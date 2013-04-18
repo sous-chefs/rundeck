@@ -366,7 +366,7 @@
         "wt_actioncenter_db": {
             "db_name": "ActionCenter",
             "db_server": "hcamdb01.staging.dmz"
-        } 
+        }, 
 	"wt_actioncenter_ddp": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/.lastSuccessful/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
         },
