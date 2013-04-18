@@ -168,7 +168,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
   nagios_nrpecheck "wt_streaming_managementservice_healthcheck" do
     command "#{node['nagios']['plugin_dir']}/check_http"
-    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_streamingmanagementservice']['healthcheck_port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
+    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_streamingmanagementservice']['port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
     action :add
   end
 
