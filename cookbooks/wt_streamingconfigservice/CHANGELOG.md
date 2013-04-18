@@ -1,3 +1,6 @@
+## 2.0.0
+* Changing setup to try a deploy automatically on clean machine.
+
 ## 1.1.4
 * Added support for secure endpoints - additional config params
 
