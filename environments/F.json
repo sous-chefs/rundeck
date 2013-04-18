@@ -231,7 +231,7 @@
             "website_port": "80"
         }, 
         "wt_logpreproc": {
-            "download_url": "http://repo.staging.dmz/repo/product/ondemand/lpp/LPP64.zip", 
+            "download_url": "http://repo.staging.dmz/repo/product/ondemand/lpp/f/LPP64.zip", 
             "wtlogpreproc1_fileextension": "*.log.gz"
         }, 
         "wt_management_console": {
