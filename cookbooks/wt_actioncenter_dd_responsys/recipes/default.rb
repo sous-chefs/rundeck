@@ -20,7 +20,18 @@ tarball      = node['wt_actioncenter_dd_responsys']['download_url'].split("/")[-
 download_url = node['wt_actioncenter_dd_responsys']['download_url']
 user         = node['wt_actioncenter_dd_responsys']['user']
 group        = node['wt_actioncenter_dd_responsys']['group']
-config_host  = URI(node['wt_streamingconfigservice']['config_service_url']).host
+ads_host	 = URI(node['wt_streamingconfigservice']['config_service_url']).host
+ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
+
+datarequest_max_event_batch_time_ms = node['wt_actioncenter_dd_responsys']['datarequest_max_event_batch_time_ms']
+datarequest_max_events_in_batch = node['wt_actioncenter_dd_responsys']['datarequest_max_events_in_batch']
+datarequest_failure_delay_before_retry_ms = node['wt_actioncenter_dd_responsys']['datarequest_failure_delay_before_retry_ms']
+datarequest_nodata_delay_before_retry_ms = node['wt_actioncenter_dd_responsys']['datarequest_nodata_delay_before_retry_ms']
+sender_max_send_retries = node['wt_actioncenter_dd_responsys']['sender_max_send_retries']
+sender_min_exponential_backoff_delay_ms = node['wt_actioncenter_dd_responsys']['sender_min_exponential_backoff_delay_ms']
+sender_max_delay_before_dropping_data_ms = node['wt_actioncenter_dd_responsys']['sender_max_delay_before_dropping_data_ms']
+testing_enabled = node['wt_actioncenter_dd_responsys']['testing_enabled']
+testing_key_column_override = node['wt_actioncenter_dd_responsys']['testing_key_column_override']
 
 log "Install dir: #{install_dir}"
 
@@ -69,7 +80,19 @@ end
     group "root"
     mode 00644
     variables({
-      :config_host => config_host,
+      :config_host => ads_host,
+      :secure_config_host => ads_host,
+      :secure_config_port => ads_ssl_port,
+      :datarequest_max_event_batch_time_ms => datarequest_max_event_batch_time_ms,
+      :datarequest_max_events_in_batch => datarequest_max_events_in_batch,
+      :datarequest_delay_before_retry_ms => datarequest_delay_before_retry_ms,
+			:datarequest_failure_delay_before_retry_ms => datarequest_failure_delay_before_retry_ms,
+			:datarequest_nodata_delay_before_retry_ms => datarequest_nodata_delay_before_retry_ms,
+      :sender_delay_before_retry_ms => sender_delay_before_retry_ms,
+      :sender_min_exponential_backoff_delay_ms => sender_min_exponential_backoff_delay_ms,
+      :sender_max_delay_befored_dropping_data_ms => sender_max_delay_befored_dropping_data_ms,
+      :testing_enabled => testing_enabled,
+      :testing_key_column_override => testing_key_column_override
     })
     notifies :restart, "service[harness]", :delayed
   end
