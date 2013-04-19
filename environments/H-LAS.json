@@ -622,7 +622,7 @@
         "wt_streamingconfigservice": {
             "config_service_url": "http://hconfigsvc.staging.dmz", 
 	    "config_service_ssl_port" : "443",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/58991:id/webtrends-streaming-configservice-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/59104:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streamingmanagementservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/57386:id/webtrends-streaming-managementservice-bin.tar.gz", 
