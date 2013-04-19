@@ -4,6 +4,6 @@ maintainer_email    "michael.parsons@webtrends.com"
 license             "All rights reserved"
 description         "Installs/Configures Webtrends Portfolio Edge Service"
 long_description    IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version             "1.1.3"
+version             "1.1.4"
 depends             "java"
 depends             "runit"
