@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: rundeck
-# Recipe:i: chef-rundeck
+# Recipe:: chef-rundeck
 #
 # Copyright 2012, Peter Crossley
 #
@@ -16,9 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 require 'json'
 
 include_recipe 'rundeck::default'
+include_recipe 'runit'
 
 bags = data_bag('rundeck')
 
@@ -26,54 +28,55 @@ projects = {}
 bags.each do |project|
   pdata = data_bag_item('rundeck', project)
   projects[project] = {
-    "pattern" => pdata['pattern'],
-    "username" => pdata['username'],
-    "hostname" => pdata['hostname']
+    'pattern' => pdata['pattern'],
+    'username' => pdata['username'],
+    'hostname' => pdata['hostname']
   }
 end
 
 file node['rundeck']['project_config'] do
   content JSON.pretty_generate(projects)
   mode 00644
-  notifies :restart, "service[chef-rundeck]"
+  notifies :restart, 'service[chef-rundeck]'
 end
 
-cookbook_file "/tmp/chef-rundeck-0.2.1.gem" do
-  source "chef-rundeck-0.2.1.gem"
+cookbook_file '/tmp/chef-rundeck-0.2.1.gem' do
+  source 'chef-rundeck-0.2.1.gem'
   mode 00644
+  notifies :install, 'chef_gem[chef-rundeck]'
 end
 
-gem_package "chef-rundeck" do
-  action :install
-  source "/tmp/chef-rundeck-0.2.1.gem"
+chef_gem 'chef-rundeck' do
+  source '/tmp/chef-rundeck-0.2.1.gem'
+  action :nothing
 end
 
-gem_package "sinatra"
+chef_gem 'sinatra'
 
-link "/usr/bin/chef-rundeck" do
-  to "/var/lib/gems/1.8/bin/chef-rundeck"
-  only_if do node[:platform_version] >= "10.04" end
+link '/usr/bin/chef-rundeck' do
+  to File.join(::Gem.bindir, 'chef-rundeck')
+  only_if do node[:platform_version] >= '10.04' end
 end
 
-template "/etc/chef/rundeck.rb" do
+template '/etc/chef/rundeck.rb' do
   owner node['rundeck']['user']
   group node['rundeck']['user']
-  source "rundeck.rb.erb"
+  source 'rundeck.rb.erb'
   variables(
     :rundeck => node['rundeck']
   )
 end
 
-runit_service "chef-rundeck" do
+runit_service 'chef-rundeck' do
   options(
     :user => node['rundeck']['user'],
     :chef_config => node['rundeck']['chef_config'],
     :chef_webui_url => node['rundeck']['chef_webui_url'],
     :project_config => node['rundeck']['project_config']
   )
-  notifies :restart, "service[chef-rundeck]"
+  notifies :restart, 'service[chef-rundeck]'
 end
 
-service "chef-rundeck" do
+service 'chef-rundeck' do
   action :start
 end
