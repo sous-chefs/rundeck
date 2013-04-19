@@ -20,7 +20,18 @@ tarball      = node['wt_actioncenter_dd_webtrendsemaildemo']['download_url'].spl
 download_url = node['wt_actioncenter_dd_webtrendsemaildemo']['download_url']
 user         = node['wt_actioncenter_dd_webtrendsemaildemo']['user']
 group        = node['wt_actioncenter_dd_webtrendsemaildemo']['group']
-config_host  = URI(node['wt_streamingconfigservice']['config_service_url']).host
+ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
+
+ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
+
+datarequest_max_event_batch_time_ms = node['wt_actioncenter_dd_webtrendsemaildemo']['datarequest_max_event_batch_time_ms']
+datarequest_max_events_in_batch = node['wt_actioncenter_dd_webtrendsemaildemo']['datarequest_max_events_in_batch']
+datarequest_failure_delay_before_retry_ms = node['wt_actioncenter_dd_webtrendsemaildemo']['datarequest_failure_delay_before_retry_ms']
+datarequest_nodata_delay_before_retry_ms = node['wt_actioncenter_dd_webtrendsemaildemo']['datarequest_nodata_delay_before_retry_ms']
+sender_max_send_retries = node['wt_actioncenter_dd_webtrendsemaildemo']['sender_max_send_retries']
+sender_min_exponential_backoff_delay_ms = node['wt_actioncenter_dd_webtrendsemaildemo']['sender_min_exponential_backoff_delay_ms']
+sender_max_delay_before_dropping_data_ms = node['wt_actioncenter_dd_webtrendsemaildemo']['sender_max_delay_before_dropping_data_ms']
+
 
 log "Install dir: #{install_dir}"
 
@@ -69,7 +80,16 @@ template "#{conf_dir}/config.properties" do
   group "root"
   mode 00644
   variables({
-    :config_host => config_host,
+    :config_host => ads_host,
+    :secure_config_host => ads_host,
+    :secure_config_port => ads_ssl_port,
+    :datarequest_max_event_batch_time_ms => datarequest_max_event_batch_time_ms,
+    :datarequest_max_events_in_batch => datarequest_max_events_in_batch,
+    :datarequest_failure_delay_before_retry_ms => datarequest_failure_delay_before_retry_ms,
+    :datarequest_nodata_delay_before_retry_ms => datarequest_nodata_delay_before_retry_ms,
+    :sender_max_send_retries => sender_max_send_retries,
+    :sender_min_exponential_backoff_delay_ms => sender_min_exponential_backoff_delay_ms,
+    :sender_max_delay_before_dropping_data_ms => sender_max_delay_before_dropping_data_ms
   })
   notifies :restart, "service[harness]", :delayed
 end

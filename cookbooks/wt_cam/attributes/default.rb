@@ -16,3 +16,5 @@ default['wt_cam']['port'] = 80
 default['wt_cam']['log_level'] = "INFO"
 default['wt_cam']['optimize_plugin']['guest_user'] = "internalGuestUser"
 default['wt_cam']['optimize_plugin']['optimize_server_url'] = ""
+default['wt_cam']['actioncenter_plugin']['provisioning_storage_url'] = ""
+default['wt_cam']['actioncenter_plugin']['provisioning_storage_type'] = "ActionCenterProvisioning"

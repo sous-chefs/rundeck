@@ -1,3 +1,9 @@
+## 1.1.3
+* Removing unused undefined parameter
+
+## 1.1.2
+* Adding partner plugin specific settings to config file
+
 ## 1.1.1
 * Using service[restart] vs runit_service
 
