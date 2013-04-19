@@ -1,3 +1,6 @@
+## 1.1.2
+* Added secured config service configuration
+
 ## 1.1.1
 * Copying to correct folder
 
