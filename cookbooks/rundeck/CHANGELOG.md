@@ -1,3 +1,6 @@
+## 1.0.7
+* support omnibus install of chef server
+
 ## 1.0.6
 * run_restart removed from runit_service in runit => 1.0.0
 
@@ -12,4 +15,4 @@
 
 ## 1.0:
 
-* Initial releas
+* Initial release

@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: rundeck
-# Recipe::server
+# Recipe:: server
 #
 # Copyright 2012, Peter Crossley
 #
