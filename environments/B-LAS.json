@@ -385,10 +385,12 @@
             "db_server": "bcamdb01.staging.dmz"
         },
         "wt_actioncenter_ddp": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/59136:id/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
+            "download_url":
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/59211:id/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
         },
         "wt_actioncenter_dd_responsys": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/59135:id/action-center-integrations-responsys-bin.tar.gz",
+            "download_url":
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/59209:id/action-center-integrations-responsys-bin.tar.gz",
 	    "datarequest_max_event_batch_time_ms": "2000",
 	    "datarequest_max_events_in_batch": "200",
 	    "datarequest_failure_delay_before_retry_ms": "60000",
@@ -400,7 +402,8 @@
 	    "testing_key_column_override": "173453478"
         },
         "wt_actioncenter_dd_webtrendsemaildemo": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/59132:id/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz",
+            "download_url":
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/59208:id/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz",
 	    "datarequest_max_event_batch_time_ms": "2000",
 	    "datarequest_max_events_in_batch": "200",
 	    "datarequest_failure_delay_before_retry_ms": "60000",
@@ -410,11 +413,13 @@
 	    "sender_max_delay_before_dropping_data_ms": "3600000"
         },
         "wt_actioncenter_ds_streaming": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/59137:id/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz",
+            "download_url":
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/59212:id/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz",
 	    "auth_user_id": "226"
         },
         "wt_actioncenter_management_api": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/59133:id/action-center-management-service-bin.tar.gz",
+                "download_url":
+				"http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/59210:id/action-center-management-service-bin.tar.gz",
                 "ac_management_url": "https://bapi.webtrends.com"
         },
         "wt_actioncenter_ui": {
