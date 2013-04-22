@@ -36,7 +36,8 @@
         "keystoreFileName": "hconfigsvc.staging.dmz.jks",
         "keystoreFileUrl": "http://repo.staging.dmz/repo/artifact/h/streamingconfigservice",
         "keystoreFilePassword": "Bijoux01",
-        "aesKey": "AnOKtesterAESKey"
+        "aesKey": "AnOKtesterAESKey",
+	"authToken": "71F039E5-A560-4082-AF6E-8788FE9668DE"
     },
     "wt_iis": {
         "machine_decryption_key": "B0FCBEE38C05DCB5213655ACD722702DEACE441304FC02FE", 
