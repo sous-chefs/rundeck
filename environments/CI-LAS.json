@@ -205,7 +205,11 @@
             }, 
             "cam_service_url": "http://bcam.staging.dmz",
             "db_name": "CAM",
+<<<<<<< Updated upstream
             "db_server": "bcamdb01.staging.dmz",
+=======
+            "db_server": "bcamdb01.staging.dmz", 
+>>>>>>> Stashed changes
             "optimize_plugin": {
                 "optimize_server_url": "http://was.ea.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }
@@ -353,11 +357,10 @@
         }, 
         "wt_streamingcollection": {}, 
         "wt_streamingconfigservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/57181:id//webtrends-streaming-configservice-bin.tar.gz", 
-            "includeUnmappedAnalyticsIds": "true",
             "config_service_url": "http://configsvc.ci-las.os.staging.dmz:8080",
             "camdbname": "CAM",
-            "camdbserver": "bcamdb01.staging.dmz"
+            "camdbserver": "bcamdb01.staging.dmz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/58844:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streamingmanagementservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/44668:id/webtrends-streaming-managementservice-bin.tar.gz", 
