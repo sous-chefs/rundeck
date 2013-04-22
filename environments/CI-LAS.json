@@ -172,6 +172,10 @@
                 }
             ]
         }, 
+        "wt_actioncenter_db": {
+            "db_name": "ActionCenter",
+            "db_server": "bcamdb01.staging.dmz"
+        },
         "wt_actioncenter_dd_responsys": {
             "download_url":"http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt376/.lastSuccessful/action-center-integrations-responsys-bin.tar.gz"
         },
