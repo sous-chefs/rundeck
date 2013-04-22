@@ -169,4 +169,10 @@ if node.attribute?("nagios")
     parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_stream_processor']['healthcheck_port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
     action :add
   end
+  #Create a nagios nrpe check for the healthcheck page
+  nagios_nrpecheck "wt_stream_processor" do
+    command "#{node['nagios']['plugin_dir']}/check_log"
+    parameters "-F /var/log/webtrends/streamprocessor/service.log -O /tmp/NRPE_check_log_streaming_Processor.log -q ' java.lang.NullPointerException'"
+    action :add
+  end
 end
