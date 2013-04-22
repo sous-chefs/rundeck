@@ -67,10 +67,14 @@
         "client_secret": "C027E291A87E480D9069853823EFEB23"
     }, 
     "wt_streamingconfigservice": {
-        "camdbpwd": "Bijoux1", 
-        "camdbuser": "sa", 
+        "camdbpwd": "bijoux", 
+        "camdbuser": "wtUI", 
         "masterdbpwd": "v87m-Rhv8TMogJ_j", 
-        "masterdbuser": "ConfigSvc"
+        "masterdbuser": "ConfigSvc",
+    "keystoreFileName": "bconfigsvc.staging.dmz.jks",
+        "keystoreFilePassword": "Bijoux01",
+    "keystoreFileUrl": "http://repo.staging.dmz/repo/artifact/b/streamingconfigservice",
+        "aesKey": "AnOKtesterAESKey"
     }, 
     "wt_streamingmanagementservice": {
         "db_pwd": "Bijoux1", 
