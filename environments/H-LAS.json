@@ -158,7 +158,7 @@
         "wt_portfolio_admin": "= 1.1.15", 
         "wt_portfolio_edge_stream_api": "= 1.0.3", 
         "wt_portfolio_edgeservice": "= 1.0.5", 
-        "wt_portfolio_harness": "= 1.1.4", 
+        "wt_portfolio_harness": "= 1.1.6", 
         "wt_portfolio_manager": "= 1.1.18", 
         "wt_portfolio_router": "= 1.0.0", 
         "wt_publishver": "= 0.2.3", 
@@ -606,7 +606,7 @@
         "wt_streamingconfigservice": {
             "config_service_url": "http://hconfigsvc.staging.dmz", 
 	    "config_service_ssl_port" : "443",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/59467:id/webtrends-streaming-configservice-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/59477:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streamingmanagementservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/57386:id/webtrends-streaming-managementservice-bin.tar.gz", 
