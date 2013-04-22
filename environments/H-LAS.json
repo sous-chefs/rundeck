@@ -127,8 +127,8 @@
         "webpi": "= 1.1.1", 
         "webtrends_server": "= 1.9.8", 
         "windows": "= 1.8.4", 
-	"wt_actioncenter_dd_responsys": "= 1.1.3",
-        "wt_actioncenter_dd_webtrendsemaildemo": "= 1.1.3",
+	"wt_actioncenter_dd_responsys": "= 1.1.4",
+        "wt_actioncenter_dd_webtrendsemaildemo": "= 1.1.4",
         "wt_actioncenter_ddp": "= 1.1.2",
         "wt_actioncenter_ds_streaming": "= 1.1.3",
         "wt_actioncenter_management_api": "= 1.1.2",
@@ -371,26 +371,10 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/.lastSuccessful/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
         },
         "wt_actioncenter_dd_responsys": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/.lastSuccessful/action-center-integrations-responsys-bin.tar.gz",
-	    "datarequest_max_event_batch_time_ms": "2000",
-	    "datarequest_max_events_in_batch": "200",
-	    "datarequest_failure_delay_before_retry_ms": "60000",
-	    "datarequest_nodata_delay_before_retry_ms": "5000",
-	    "sender_max_send_retries": "5",
-	    "sender_min_exponential_backoff_delay_ms": "5000",
-	    "sender_max_delay_before_dropping_data_ms": "3600000",
-	    "testing_enabled": "false",
-	    "testing_key_column_override": "173453478"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/.lastSuccessful/action-center-integrations-responsys-bin.tar.gz"
         },
         "wt_actioncenter_dd_webtrendsemaildemo": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/.lastSuccessful/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz",
-	    "datarequest_max_event_batch_time_ms": "2000",
-	    "datarequest_max_events_in_batch": "200",
-	    "datarequest_failure_delay_before_retry_ms": "60000",
-	    "datarequest_nodata_delay_before_retry_ms": "5000",
-	    "sender_max_send_retries": "5",
-	    "sender_min_exponential_backoff_delay_ms": "5000",
-	    "sender_max_delay_before_dropping_data_ms": "3600000"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/.lastSuccessful/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
         },
         "wt_actioncenter_ds_streaming": {
             "download_url":
