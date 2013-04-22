@@ -129,7 +129,6 @@ runit_service "harness" do
   action :enable
 end
 
-
 log "Updating the template files"
 %w[application.conf logback.xml].each do | template_file|
   template "#{install_dir}/conf/#{template_file}" do
@@ -165,11 +164,19 @@ end
 
 service "harness"
 
+template "#{install_dir}/bin/health-check-nagios.sh" do
+  source  "health-check-nagios.sh.erb"
+  owner "root"
+  group "root"
+  mode  00755
+end  
+
 if node.attribute?("nagios")
+
   #Create a nagios nrpe check for the healthcheck page
   nagios_nrpecheck "wt_healthcheck_page" do
-    command "#{node['nagios']['plugin_dir']}/check_http"
-    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_portfolio_harness']['port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
+    command "#{install_dir}/bin/health-check-nagios.sh"
+    parameters "5 http://#{node['fqdn']}:#{node['wt_portfolio_harness']['port']}/healthcheck?nagios"
     action :add
   end
   #Create a nagios nrpe check for the log file
