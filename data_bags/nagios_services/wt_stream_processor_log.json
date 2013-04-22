@@ -1,0 +1,6 @@
+{
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_log -a '-F /var/log/webtrends/streamprocessor/service.log -O /tmp/NRPE_check_log_streaming_Processor.log -q ' java.lang.NullPointerException''",
+    "hostgroup_name": "wt_stream_processor",
+    "id": "wt_stream_processor_log",
+    "contact_groups": "email_and_page-streaming"
+}
