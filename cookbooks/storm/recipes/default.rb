@@ -33,8 +33,11 @@ end
   end
 end
 
-# search
-storm_nimbus = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first
+if node.run_list.include?("recipe[storm::nimbus]")
+  nimbus_host = node
+else
+  nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first
+end
 
 # search for zookeeper servers
 zookeeper_quorum = Array.new
@@ -102,7 +105,7 @@ template "#{node['storm']['conf_dir']}/storm.yaml" do
   source "storm.yaml.erb"
   mode 00644
   variables(
-    :nimbus => storm_nimbus,
+    :nimbus => nimbus_host,
     :zookeeper_quorum => zookeeper_quorum
   )
 end
