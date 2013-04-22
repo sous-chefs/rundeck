@@ -202,15 +202,16 @@
             "cam_plugins": {
                 "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt324/.lastSuccessful/Plugins.zip"
             }, 
-            "cam_service_url": "http://cicam01.staging.dmz", 
-            "db_name": "cam", 
-            "db_server": "cicamdb01.staging.dmz", 
+            "cam_service_url": "http://bcam.staging.dmz",
+            "db_name": "CAM",
+            "db_server": "bcamdb01.staging.dmz",
             "optimize_plugin": {
                 "optimize_server_url": "http://was.ea.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }
         }, 
         "wt_cam_db": {
-            "db_server": "cicamdb01.staging.dmz", 
+            "db_name": "CAM",
+            "db_server": "bcamdb01.staging.dmz", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt137/.lastSuccessful/artifacts.zip"
         }, 
         "wt_common": {
@@ -248,10 +249,7 @@
         "wt_masterdb": {
             "dbname": "wtMaster", 
             "host": "amasterdb01.staging.dmz"
-        }, 
-        "wt_messaging_monitoring": {
-            "monitor_hostname": "cids01.staging.dmz"
-        }, 
+        },
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
             "audit_topic": "stream-audit", 
@@ -295,16 +293,8 @@
             "auth_service_url": "http://ciauth01.staging.dmz", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/.lastSuccessful/auth.zip"
         }, 
-        "wt_scheddb": {
-            "dbname": "wt_Sched", 
-            "host": "cimasterdb01.staging.dmz"
-        }, 
-        "wt_schedulerdb": {
-            "dbname": "wtScheduler", 
-            "host": "ciusagedb01.staging.dmz"
-        }, 
         "wt_storm_streaming": {
-            "augment_bolt_executors": 24, 
+            "augment_bolt_executors": 24,
             "augment_bolt_tasks": 24, 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/.lastSuccessful/streaming-analysis-bin.tar.gz", 
             "query_bolt_executors": 24, 
@@ -320,11 +310,21 @@
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "worker": {
                 "childopts": "-Xmx768m -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
+                },  
+            "event_stream_bolt_executors": 12, 
+            "event_stream_bolt_tasks": 12, 
+            "response_bolt_executors": 6, 
+            "response_bolt_tasks": 6, 
+            "session_stream_bolt_executors": 18, 
+            "session_stream_bolt_tasks": 18,    
+            "streaming_topology_field_grouping_local": "false", 
+            "supervisor": {
+                "workers": 4
             }
         }, 
         "wt_streaming_usage_db": {
-            "db_name": "Streaming", 
-            "db_server": "cicamdb01.staging.dmz"
+            "db_name": "streaming", 
+            "db_server": "bcamdb01.staging.dmz"
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
@@ -343,7 +343,7 @@
             "java_opts": "-Xms1024m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true", 
             "sapi_service_url": "ws://cisapi01.staging.dmz:8080", 
             "usagedbname": "Streaming", 
-            "usagedbserver": "cicamdb01.staging.dmz"
+            "usagedbserver": "bcamdb01.staging.dmz"
         }, 
         "wt_streamingauditor": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/44080:id/webtrends-streamingauditor-bin.tar.gz", 
@@ -356,7 +356,11 @@
             "camdbserver": "cicamdb01.staging.dmz", 
             "config_service_url": "http://ciutil01.staging.dmz:8080", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz", 
-            "includeUnmappedAnalyticsIds": "true"
+            "includeUnmappedAnalyticsIds": "true",
+            "config_service_url": "http://configsvc.ci-las.os.staging.dmz:8080",
+            "camdbname": "CAM",
+            "camdbserver": "bcamdb01.staging.dmz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/58844:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streamingmanagementservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/44668:id/webtrends-streaming-managementservice-bin.tar.gz", 
