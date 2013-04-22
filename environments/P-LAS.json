@@ -416,16 +416,16 @@
             "cam_plugins": {
                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57496:id/Plugins.zip"
             }, 
-            "cam_service_url": "http://p-las-pcam01.os.staging.dmz", 
+            "cam_service_url": "http://pcam01.os.staging.dmz", 
             "db_name": "CAM", 
-            "db_server": "p-las-pcamdb01.os.staging.dmz", 
+            "db_server": "pcamdb01.os.staging.dmz", 
             "optimize_plugin": {
                 "optimize_server_url": "http://was.c2.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }
         }, 
         "wt_cam_db": {
             "db_name": "CAM", 
-            "db_server": "p-las-pcamdb01.os.staging.dmz",
+            "db_server": "pcamdb01.os.staging.dmz",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/57490:id/CamDB.zip"
         }, 
         "wt_common": {
