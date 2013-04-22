@@ -170,7 +170,7 @@ if node.attribute?("nagios")
     action :add
   end
   #Create a nagios nrpe check for the healthcheck page
-  nagios_nrpecheck "wt_stream_processor" do
+  nagios_nrpecheck "wt_stream_processor_log" do
     command "#{node['nagios']['plugin_dir']}/check_log"
     parameters "-F /var/log/webtrends/streamprocessor/service.log -O /tmp/NRPE_check_log_streaming_Processor.log -q ' java.lang.NullPointerException'"
     action :add
