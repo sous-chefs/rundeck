@@ -157,7 +157,8 @@ log "Updating the template files"
       :auth_host => auth_host,
       :cam_host => cam_host,
       :cam_port => cam_port,
-      :remote_address_hdr => node['wt_portfolio_harness']['remote_address_hdr']
+      :remote_address_hdr => node['wt_portfolio_harness']['remote_address_hdr'],
+      :max_uri_length => node['wt_portfolio_harness']['max_uri_length']
     })
     notifies :restart, "service[harness]", :delayed
   end
