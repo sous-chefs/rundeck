@@ -76,7 +76,14 @@ end
   end
 end
 
-
+# uncompress the application tarball into the install directory
+execute "tar" do
+  user  "root"
+  group "root"
+  cwd install_dir
+  creates "#{install_dir}/lib"
+  command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+end
 
 # create a runit service
 runit_service "streamingconfigservice" do
@@ -180,12 +187,6 @@ if node.attribute?("collectd")
     })
     notifies :restart, resources(:service => "collectd")
   end
-end
-
-service "streamingconfigservice-start" do
-  service_name "streamingconfigservice"
-  action [:start, :enable]
-  ignore_failure true
 end
 
 if node.attribute?("nagios")
