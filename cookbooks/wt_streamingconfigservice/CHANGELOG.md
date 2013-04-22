@@ -1,3 +1,6 @@
+## 2.0.0
+* Updates to clean deploy successfully
+
 ## 1.1.6
 * Added conn string for actioncenter usage database
 
