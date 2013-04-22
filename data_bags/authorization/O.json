@@ -69,7 +69,7 @@
         "camdbuser": "wtUI", 
         "masterdbpwd": "v87m-Rhv8TMogJ_j", 
         "masterdbuser": "ConfigSvc",
-	"keystoreFileName": "jconfigsvc.staging.dmz.jks",
+	"keystoreFileName": "oconfigsvc.staging.dmz.jks",
         "keystoreFilePassword": "Bijoux01",
         "keystoreFileUrl": "http://repo.staging.dmz/repo/artifact/o/streamingconfigservice",
         "aesKey": "AnOKtesterAESKey"
