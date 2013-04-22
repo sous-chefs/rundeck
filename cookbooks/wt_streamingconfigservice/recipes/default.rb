@@ -85,15 +85,6 @@ execute "tar" do
   command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
 end
 
-# create a runit service
-runit_service "streamingconfigservice" do
-  options({
-    :log_dir => log_dir,
-    :install_dir => install_dir,
-    :java_home => java_home,
-    :user => user
-  })
-end
 
 log "Installing the keystore file"
 
@@ -172,6 +163,17 @@ template "#{install_dir}/conf/config.properties" do
     :keystoreFilePath =>  "#{install_dir}/conf/#{keystore_file_name}",
     :keystoreFilePassword => keystoreFilePassword,
     :aesKey => aesKey
+  })
+end
+
+
+# create a runit service
+runit_service "streamingconfigservice" do
+  options({
+    :log_dir => log_dir,
+    :install_dir => install_dir,
+    :java_home => java_home,
+    :user => user
   })
 end
 
