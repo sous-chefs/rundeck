@@ -1,3 +1,7 @@
+## 1.1.5
+* Add max-uri-length to config
+* Default to including the remote-address header
+
 ## 1.1.4
 * Updated the Nagios check to make sure it calls the health check on the main port (i.e. 8080)
 

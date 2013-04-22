@@ -158,6 +158,9 @@ portfolio-harness-system {
             server {
                 remote-address-header=<%=@remote_address_hdr%>
                 request-timeout=5s
+		parsing {
+			max-uri-length=<%=@max_uri_length%>
+		}
             }
         }
     }
