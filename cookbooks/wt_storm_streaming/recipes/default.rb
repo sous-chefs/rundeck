@@ -20,8 +20,16 @@
 download_url = node['wt_storm_streaming']['download_url']
 install_tmp = '/tmp/wt_storm_install'
 tarball = 'streaming-analysis-bin.tar.gz'
-nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
 
+if node.run_list.include?("recipe[storm::nimbus]")
+  is_nimbus = true
+end
+
+if is_nimbus
+  nimbus_host = node[:fqdn]
+else
+  nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first[:fqdn]
+end
 # grab the zookeeper port
 zookeeper_clientport = node['zookeeper']['client_port']
 
@@ -59,11 +67,13 @@ if ENV["deploy_build"] == "true" then
       action :delete
     end
 
-    execute "kill-topo" do
-      command "/opt/storm/current/bin/storm kill #{node['wt_storm_streaming']['name']}"
-      action :run
-      only_if "test -f /opt/storm/current/bin/storm"
-      only_if "/opt/storm/current/bin/storm list | grep #{node['wt_storm_streaming']['name']}"
+    if is_nimbus
+      execute "kill-topo" do
+        command "/opt/storm/current/bin/storm kill #{node['wt_storm_streaming']['name']}"
+        action :run
+        only_if "test -f /opt/storm/current/bin/storm"
+        only_if "/opt/storm/current/bin/storm list | grep #{node['wt_storm_streaming']['name']}"
+      end 
     end    
 end
 
@@ -83,7 +93,7 @@ remote_file "#{install_tmp}/#{tarball}" do
 end
 
 # extract the source file into TEMP directory
-execute "tar" do
+execute "topo_tar" do
   user  "root"
   group "root"
   cwd install_tmp
@@ -96,7 +106,7 @@ execute "mv" do
   group "root"
   command "mv #{install_tmp}/lib/webtrends*.jar #{node['storm']['lib_dir']}"
   action :nothing
-  subscribes :run, "execute[tar]"
+  subscribes :run, "execute[topo_tar]"
 end
 
 # Remove any old zookeeper lib, below we will replace it.
@@ -104,7 +114,8 @@ execute "rm" do
   user  "root"
   group "root"
   command "rm -f #{node['storm']['lib_dir']}/zookeeper*.jar"
-  subscribes :run, "execute[tar]"
+  action :nothing
+  subscribes :run, "execute[topo_tar]"
 end
 
 %w{
@@ -167,12 +178,12 @@ metrics-core-2.2.0.jar
 metrics-guice-2.2.0.jar
 zookeeper-3.3.6.jar
 }.each do |jar|
-  execute "mv" do
+  execute "mv #{jar}" do
     user  "root"
     group "root"
     command "mv #{install_tmp}/lib/#{jar} #{node['storm']['lib_dir']}/#{jar}"
     action :nothing
-    subscribes :run, "execute[tar]"
+    subscribes :run, "execute[topo_tar]"
   end
 end
 
@@ -305,15 +316,7 @@ convert_searchstr.ini
     end
 end
 
-if node.run_list.include?("role[storm_supervisor]")
-  execute "reload_streaming_supervisor" do
-    command "sv reload supervisor"
-    action :nothing
-    subscribes :run, resources(:template => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties"), :immediately
-  end
-end
-
-if node.run_list.include?("role[storm_nimbus]")
+if is_nimbus
   execute "reload_streaming_nimbus" do
     command "sv reload nimbus"
     action :nothing
@@ -326,10 +329,17 @@ if node.run_list.include?("role[storm_nimbus]")
     subscribes :run, resources(:template => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties"), :immediately
   end
 
-  execute "start-topo" do
-    command "bin/storm jar lib/streaming-analysis.jar com.webtrends.streaming.analysis.storm.topology.StreamingTopology"
-    cwd "/opt/storm/current"
+  # execute "start-topo" do
+  #   command "bin/storm jar lib/streaming-analysis.jar com.webtrends.streaming.analysis.storm.topology.StreamingTopology"
+  #   user "storm"
+  #   cwd "/opt/storm/current"
+  #   action :nothing
+  #   subscribes :run, "execute[tar]"
+  # end   
+else #Node must be supervisor
+  execute "reload_streaming_supervisor" do
+    command "sv reload supervisor"
     action :nothing
-    subscribes :run, "execute[tar]"
-  end   
+    subscribes :run, resources(:template => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties"), :immediately
+  end
 end
