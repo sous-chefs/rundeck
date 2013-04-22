@@ -158,7 +158,7 @@
         "wt_portfolio_edge_stream_api": "= 1.0.3", 
         "wt_portfolio_edgeservice": "= 1.0.4", 
         "wt_portfolio_harness": "= 1.1.4",
-        "wt_portfolio_manager": "= 1.2.62", 
+        "wt_portfolio_manager": "= 1.2.63", 
         "wt_publishver": "= 0.2.3", 
         "wt_realtime_hadoop": "= 1.0.1", 
         "wt_roadrunner": "= 1.1.2", 
@@ -545,7 +545,7 @@
                  "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/58733:id/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/59179:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/59216:id/Portfolio.Manager.zip", 
             "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
             "portmgr_fulfillment_dl": "martin.neal@webtrends.com", 
             "portmgr_group_admin": "B.PortMgr.Admins", 
