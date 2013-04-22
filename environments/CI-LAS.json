@@ -357,7 +357,7 @@
         }, 
         "wt_streamingcollection": {}, 
         "wt_streamingconfigservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/57181:id//webtrends-streaming-configservice-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/58991:id/webtrends-streaming-configservice-bin.tar.gz", 
             "includeUnmappedAnalyticsIds": "true",
             "config_service_url": "http://configsvc.ci-las.os.staging.dmz:8080",
             "camdbname": "CAM",
