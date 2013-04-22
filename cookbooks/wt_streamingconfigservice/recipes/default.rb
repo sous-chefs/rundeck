@@ -35,6 +35,7 @@ masterdbuser = auth_data['wt_master_db']['db_user']
 masterdbpwd = auth_data['wt_master_db']['db_pwd']
 keystoreFilePassword = auth_data['wt_streamingconfigservice']['keystoreFilePassword']
 aesKey = auth_data['wt_streamingconfigservice']['aesKey']
+authToken = auth_data['wt_streamingconfigservice']['authToken']
 keystore_file_name = auth_data['wt_streamingconfigservice']['keystoreFileName']
 keystore_file_url = auth_data['wt_streamingconfigservice']['keystoreFileUrl']
 
@@ -182,7 +183,8 @@ template "#{install_dir}/conf/config.properties" do
     :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
     :keystoreFilePath =>  "#{install_dir}/conf/#{keystore_file_name}",
     :keystoreFilePassword => keystoreFilePassword,
-    :aesKey => aesKey
+    :aesKey => aesKey,
+    :authToken => authToken
   })
 end
 
