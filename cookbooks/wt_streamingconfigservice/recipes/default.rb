@@ -7,6 +7,16 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# include runit so we can create a runit service
+include_recipe "runit"
+
+if ENV["deploy_build"] == "true" then
+  log "The deploy_build value is true so un-deploying first"
+  include_recipe "wt_streamingconfigservice::undeploy"
+else
+  log "The deploy_build value is not set or is false so we will only update the configuration"
+end
+
 log_dir      = File.join(node['wt_common']['log_dir_linux'], "streamingconfigservice")
 install_dir  = File.join(node['wt_common']['install_dir_linux'], "streamingconfigservice")
 
@@ -23,14 +33,14 @@ camdbuser  = auth_data['wt_cam_db']['db_user']
 camdbpwd = auth_data['wt_cam_db']['db_pwd']
 masterdbuser = auth_data['wt_master_db']['db_user']
 masterdbpwd = auth_data['wt_master_db']['db_pwd']
-keystoreFilePath = auth_data['wt_streamingconfigservice']['keystoreFilePath']
 keystoreFilePassword = auth_data['wt_streamingconfigservice']['keystoreFilePassword']
 aesKey = auth_data['wt_streamingconfigservice']['aesKey']
+keystore_file_name = auth_data['wt_streamingconfigservice']['keystoreFileName']
+keystore_file_url = auth_data['wt_streamingconfigservice']['keystoreFileUrl']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
-
 
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so we will grab the tar ball and install"
@@ -66,14 +76,28 @@ end
   end
 end
 
-# uncompress the application tarball into the install directory
-execute "tar" do
-  user  "root"
-  group "root"
-  cwd install_dir
-  creates "#{install_dir}/lib"
-  command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+
+
+# create a runit service
+runit_service "streamingconfigservice" do
+  options({
+    :log_dir => log_dir,
+    :install_dir => install_dir,
+    :java_home => java_home,
+    :user => user
+  })
 end
+
+log "Installing the keystore file"
+
+remote_file "#{install_dir}/conf/#{keystore_file_name}" do
+    source "#{keystore_file_url}/#{keystore_file_name}"
+    owner "webtrends"
+    group "webtrends"
+    mode 00640
+end
+
+log "Updating the template files"
 
 template "#{install_dir}/bin/service-control" do
   source  "service-control.erb"
@@ -131,39 +155,17 @@ template "#{install_dir}/conf/config.properties" do
     :camdbname => node['wt_cam_db']['db_name'],
     :camdbuser => camdbuser,
     :camdbpwd => camdbpwd,
+    :usagedbserver => node['wt_actioncenter_db']['db_server'],
+    :usagedbname => node['wt_actioncenter_db']['db_name'],
     :masterdbserver => node['wt_masterdb']['host'],
     :masterdbname => node['wt_masterdb']['dbname'],
     :masterdbuser => masterdbuser,
     :masterdbpwd => masterdbpwd,
     :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
-    :keystoreFilePath => keystoreFilePath,
+    :keystoreFilePath =>  "#{install_dir}/conf/#{keystore_file_name}",
     :keystoreFilePassword => keystoreFilePassword,
     :aesKey => aesKey
   })
-end
-
-# create a runit service
-runit_service "streamingconfigservice" do
-  options({
-    :log_dir => log_dir,
-    :install_dir => install_dir,
-    :java_home => java_home,
-    :user => user
-  })
-end
-
-service "streamingconfigservice" do
-  action :start
-  subscribes :restart, resources("template[#{install_dir}/conf/config.properties]", "template[#{install_dir}/conf/monitoring.properties]", "template[#{install_dir}/conf/rcsrules.config.caches.json]")
-end
-
-if node.attribute?("nagios")
-  #Create a nagios nrpe check for the healthcheck page
-  nagios_nrpecheck "wt_streaming_configservice_healthcheck" do
-    command "#{node['nagios']['plugin_dir']}/check_http"
-    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_streamingconfigservice']['port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
-    action :add
-  end
 end
 
 #Create collectd plugin for streamingconfigservice JMX objects if collectd has been applied.
@@ -178,6 +180,23 @@ if node.attribute?("collectd")
     })
     notifies :restart, resources(:service => "collectd")
   end
+end
+
+service "streamingconfigservice-start" do
+  service_name "streamingconfigservice"
+  action [:start, :enable]
+  ignore_failure true
+end
+
+if node.attribute?("nagios")
+
+  #Create a nagios nrpe check for the healthcheck page
+  nagios_nrpecheck "wt_streaming_configservice_healthcheck" do
+    command "#{node['nagios']['plugin_dir']}/check_http"
+    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_streamingconfigservice']['port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
+    action :add
+  end
+
 end
 
 if ENV['deploy_test'] == 'true' 

@@ -1,5 +1,8 @@
-## 2.0.0
-* Changing setup to try a deploy automatically on clean machine.
+## 1.1.6
+* Added conn string for actioncenter usage database
+
+## 1.1.5
+* Updated keyfile handling for ssl support
 
 ## 1.1.4
 * Added support for secure endpoints - additional config params
