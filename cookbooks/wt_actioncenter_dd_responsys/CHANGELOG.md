@@ -1,3 +1,6 @@
+## 1.1.4
+* Adding default values for parameters
+
 ## 1.1.3
 * Removing unused undefined parameter
 
