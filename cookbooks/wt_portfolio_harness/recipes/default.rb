@@ -174,7 +174,7 @@ if node.attribute?("nagios")
   end 
 
   #Create a nagios nrpe check for the healthcheck page
-  nagios_nrpecheck "wt_healthcheck_page" do
+  nagios_nrpecheck "wt_portfolio_healthcheck" do
     command "#{install_dir}/bin/health-check-nagios.sh"
     parameters "5 http://#{node['fqdn']}:#{node['wt_portfolio_harness']['port']}/healthcheck?nagios"
     action :add
