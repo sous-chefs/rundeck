@@ -1,3 +1,6 @@
+## 1.0.2
+* Added the correct help_url to the attributes
+
 ## 1.0.1
 * Changed template Application_key to actioncenter
 
