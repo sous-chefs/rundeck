@@ -165,17 +165,16 @@ end
 
 service "harness"
 
-template "#{install_dir}/bin/health-check-nagios.sh" do
-  source  "health-check-nagios.sh.erb"
-  owner "root"
-  group "root"
-  mode  00755
-end  
-
 if node.attribute?("nagios")
+  template "#{install_dir}/bin/health-check-nagios.sh" do
+    source  "health-check-nagios.sh.erb"
+    owner "root"
+    group "root"
+    mode  00755
+  end 
 
   #Create a nagios nrpe check for the healthcheck page
-  nagios_nrpecheck "wt_healthcheck_page" do
+  nagios_nrpecheck "wt_portfolio_healthcheck" do
     command "#{install_dir}/bin/health-check-nagios.sh"
     parameters "5 http://#{node['fqdn']}:#{node['wt_portfolio_harness']['port']}/healthcheck?nagios"
     action :add
