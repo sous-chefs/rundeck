@@ -1,5 +1,5 @@
 host=localhost
 port=9092
-connect.timeout.ms=<%=node["wt_streamingcollection"]["kafka_connect_timeout_ms"]%>
+connect.timeout.ms=<%=node["wt_streaming_collection"]["kafka_connect_timeout_ms"]%>
 router.topic.scs=<%= @kafka_topic_scs %>
 router.topic.dc=<%= @kafka_topic_dc %>
