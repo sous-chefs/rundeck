@@ -94,6 +94,13 @@ maxpending=<%= @geo_maxpending %>
 # Maximum number of cached geo records
 maxcachedrecords=<%= @geo_maxcachedrecords %>
 
+# Number of connections to the Net Acuity server to use.
+# If using a load balancer, ideally this should be a multiple of the number of Net Acuity servers behind the load balancer.
+numconnections=<%= @geo_numconnections %>
+
+
+
+
 [dns]
 # List of DNS server IP addresses (semi-colon delimited)
 # Use if you need to override the system default DNS server.
