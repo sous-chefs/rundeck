@@ -62,7 +62,7 @@ default['wt_logpreproc']['wtlogpreproc1_deleteoriginallogs'] = 'true'
 default['wt_logpreproc']['geo_maxretries'] = '1'
 
 # Time (in milliseconds) to wait for a reply from the server
-default['wt_logpreproc']['geo_timeoutlength'] = '2000'
+default['wt_logpreproc']['geo_timeoutlength'] = '200'
 
 # Maximum number of outstanding geo lookups
 default['wt_logpreproc']['geo_maxpending'] = '500'
@@ -72,7 +72,7 @@ default['wt_logpreproc']['geo_maxcachedrecords'] = '50000'
 
 # Number of connections to the Net Acuity server to use.
 # If using a load balancer, ideally this should be a multiple of the number of Net Acuity servers behind the load balancer.
-default['wt_logpreproc']['geo_numconnections'] = '1'
+default['wt_logpreproc']['geo_numconnections'] = '4'
 
 # List of DNS server IP addresses (semi-colon delimited) 
 # Use if you need to override the system default DNS server.
