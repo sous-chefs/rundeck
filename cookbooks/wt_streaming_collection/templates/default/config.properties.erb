@@ -1,5 +1,8 @@
 configservice.healthcheck.url=<%= @configservice %>/ping
 configservice.scswhitelist.url=<%= @configservice %>/whitelist/collection
 configservice.dcwhitelist.url=<%= @configservice %>/whitelist/collection
-refresh.seconds=600
+configservice.refresh.seconds=600
 
+scs.worker.count = <%=node["wt_streaming_collection"]["scs_worker_count"]%>
+dc.worker.count = <%=node["wt_streaming_collection"]["dc_worker_count"]%>
+id.worker.count = <%=node["wt_streaming_collection"]["id_worker_count"]%>
