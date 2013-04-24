@@ -5,7 +5,7 @@ default[:wt_actioncenter_ui][:user] = "webtrends"
 default[:wt_actioncenter_ui][:group] = "webtrends"
 default[:wt_actioncenter_ui][:actioncenter_management_url] = ""
 default[:wt_actioncenter_ui][:download_url] = ""
-default[:wt_actioncenter_ui][:help_url] = "http://help.webtrends.com"
+default[:wt_actioncenter_ui][:help_url] = "http://help.webtrends.com/en/actioncenter/"
 default[:wt_actioncenter_ui][:bundle_without] = %w(test development assets)
 default[:wt_actioncenter_ui][:unicorn][:port] = 5000
 default[:wt_actioncenter_ui][:unicorn][:options] = { :tcp_nodelay => true, :backlog => 100 }

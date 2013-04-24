@@ -345,8 +345,9 @@
             "monitoring_enabled": "true"
         }, 
 	"wt_portfolio_harness": {
-	   "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/59163:id/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
-	},
+	   "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/.lastSuccessful/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz",
+	   "plugin_dir": "/opt/webtrends/harness/plugins"
+        },
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
             "environment": "H-LAS", 

@@ -2,7 +2,7 @@
 # Cookbook Name:: wt_streaming_collection
 # Recipe:: default
 #
-# Copyright 2013, YOUR_COMPANY_NAME
+# Copyright 2013, Webtrends Inc.
 #
 # All rights reserved - Do Not Redistribute
 #
@@ -14,9 +14,9 @@ else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-#install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "streamingcollection")
-install_dir  = File.join("/opt/webtrends/harness/plugins", "streaming_collection")
+install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "streaming_collection")
 conf_dir     = File.join(install_dir, "conf")
+cache_dir    = File.join(install_dir, "cache")
 tarball      = node['wt_streaming_collection']['download_url'].split("/")[-1]
 download_url = node['wt_streaming_collection']['download_url']
 user         = node['wt_streaming_collection']['user']
@@ -28,7 +28,7 @@ datacenter = node['wt_realtime_hadoop']['datacenter']
 log "Install dir: #{install_dir}"
 
 # create the directories
-[install_dir, conf_dir].each do |dir|
+[install_dir, conf_dir, cache_dir].each do |dir|
   directory dir do
     owner "root"
     group "root"
