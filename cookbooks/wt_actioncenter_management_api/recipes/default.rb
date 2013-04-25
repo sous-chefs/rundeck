@@ -25,7 +25,7 @@ group        = node['wt_actioncenter_management_api']['group']
 ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
 ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
 authToken    = auth_data['wt_streamingconfigservice']['authToken']
-log "Auth Token:  #{authToken}"
+
 log "Install dir: #{install_dir}"
 
 # create the directories
