@@ -16,7 +16,6 @@
     }, 
     "run_list": [
         "recipe[chef-server]", 
-        "recipe[chef-server::config-solr]", 
         "recipe[rundeck::chef-rundeck]"
     ]
 }
