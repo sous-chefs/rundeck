@@ -14,6 +14,8 @@ else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
+auth_data = data_bag_item('authorization',node.chef_environment)
+
 install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "actioncenter_management_api")
 conf_dir     = File.join(install_dir,"conf")
 tarball      = node['wt_actioncenter_management_api']['download_url'].split("/")[-1]
@@ -22,7 +24,7 @@ user         = node['wt_actioncenter_management_api']['user']
 group        = node['wt_actioncenter_management_api']['group']
 ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
 ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
-authToken    = node['wt_streamingconfigservice']['authToken']
+authToken    = auth_data['wt_streamingconfigservice']['authToken']
 log "Install dir: #{install_dir}"
 
 # create the directories
