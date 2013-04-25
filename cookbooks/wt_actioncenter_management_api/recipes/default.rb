@@ -80,6 +80,7 @@ template "#{conf_dir}/config.properties" do
   mode 00644 
   variables({ 
     :ads_host => ads_host,
+    :authToken => authToken,
     :secure_config_host => ads_host,
     :secure_config_port => ads_ssl_port,
     :cam_host => node['wt_cam']['cam_service_url'],
