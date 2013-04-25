@@ -1,3 +1,12 @@
+#
+# Cookbook Name:: rundeck
+# Attributes:: default
+#
+# Copyright 2013, Webtrends Inc.
+#
+# All rights reserved - Do Not Redistribute
+#
+
 default['rundeck'] = {}
 default['rundeck']['configdir'] = "/etc/rundeck"
 default['rundeck']['basedir'] = "/var/rundeck"
@@ -11,7 +20,7 @@ default['rundeck']['project_config'] = "/etc/chef/chef-rundeck.json"
 
 default['rundeck']['jaas'] = "internal"
 
-#LDAP Properties
+# LDAP Properties
 default['rundeck']['ldap']['provider'] = "ldap://seadc01.webtrends.corp:389 ldap://seadc02.webtrends.corp:389"
 default['rundeck']['ldap']['binddn'] = "CN=winbind,ou=serviceaccountsOLD,ou=WebTrendsUsers,dc=webtrends,dc=corp"
 default['rundeck']['ldap']['bindpwd'] = "P1eas3Jo1nM3"
