@@ -1,0 +1,6 @@
+{
+    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c  wt_check_pdxlbb_primary_node", 
+    "hostgroup_name": "wt_poller", 
+    "id": "pdxlbb_primary_node_failover",
+    "contact_groups": "email_and_page"
+}

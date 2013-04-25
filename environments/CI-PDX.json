@@ -180,34 +180,7 @@
                     "url": "http://repo.staging.dmz/repo/yum/webtrends"
                 }
             ]
-        }, 
-        "wt_analytics_ui": {
-            "android_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
-            "app_pool_private_memory": 2097152, 
-            "bba_domain": "cibba.webtrends.com", 
-            "cache_region": "CI_A10", 
-            "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt278/52121:id/AnalyticsUI.zip", 
-            "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
-            "fb_app_clientid": "103645866351316", 
-            "fb_app_clientsecret": "f856805656c4b27bef04dc49641dbd58", 
-            "fb_data_center_id": "Lab", 
-            "help_link": "http://help-release.webtrends.corp/{0}/analytics10/", 
-            "hmap_url": "http://hehmapi01.staging.dmz/", 
-            "ios_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
-            "ondemand_base_domain": "ciod.webtrends.com", 
-            "proxy_address": "http://sproxy02.staging.dmz:3128", 
-            "proxy_enabled": "true", 
-            "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
-            "remote_access": "1", 
-            "show_profiling": "true", 
-            "tagbuilder_domain": "statse.webtrendslive.com", 
-            "tagbuilder_domainmobile": "dc.webtrends.com/v1", 
-            "tagbuilder_download_url": "https://stb.webtrends.com", 
-            "tagbuilder_url_template": "https://stb.webtrends.com/ws/{0}/{1}{2}", 
-            "twitter_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
-            "youtube_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw=="
-        }, 
+        },
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "LAB-COMMON-PDX", 
@@ -227,27 +200,9 @@
             "wrsmodify_group": "STAGINGDMZ\\CI.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\CI.WRS.Read"
         }, 
-        "wt_data_deleter": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt283/40174:id/DataDeleter.zip"
-        }, 
-        "wt_devicedataupdater": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt284/39953:id/DeviceDataUpdater.zip"
-        }, 
-        "wt_dx": {
-            "rest_base_uri": "https://cidx.webtrends.com/v3"
-        }, 
-        "wt_logpreproc": {
-            "download_url": "http://pdxchartrandj06/logpreproc.zip"
-        }, 
-        "wt_management_console": {
-            "service_url": "https://cisviz01.staging.dmz"
-        }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
             "host": "amasterdb01.staging.dmz"
-        }, 
-        "wt_messaging_monitoring": {
-            "monitor_hostname": "cids01.staging.dmz"
         }, 
         "wt_monitoring": {
             "audit_bucket_timespan": 10, 
@@ -265,37 +220,14 @@
         }, 
         "wt_netacuity": {
             "geo_url": "sgeo.staging.dmz"
-        }, 
-        "wt_platformscheduler": {
-            "agent": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt289/40153:id/WebTrendsVDMSchedulerAgent.msi"
-            }, 
-            "host": "cisched01.staging.dmz"
-        }, 
+        },
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
             "environment": "CI-LAS", 
             "pod": "CI"
         }, 
-        "wt_roadrunner": {
-            "url": "repo/product/ondemand/10.31/rtm/roadrunner/"
-        }, 
-        "wt_scheddb": {
-            "dbname": "wt_Sched", 
-            "host": "cimasterdb01.staging.dmz"
-        }, 
-        "wt_schedulerdb": {
-            "dbname": "wtScheduler", 
-            "host": "ciusagedb01.staging.dmz"
-        }, 
-        "wt_search": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt291/39663:id/Search.zip", 
-            "search_hostname": "cisearch.staging.dmz"
-        }, 
-        "wt_streamingconfigservice": {
-            "camdbname": "CAM", 
-            "camdbserver": "cicamdb01.staging.dmz", 
-            "config_service_url": "http://ciutil01.staging.dmz:8080", 
+        "wt_streamingconfigservice": { 
+            "config_service_url": "http://configsvc.ci-las.os.staging.dmz:8080", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz", 
             "includeUnmappedAnalyticsIds": "true"
         }, 
