@@ -5,7 +5,7 @@
   "json_class": "Chef::Role",
   "env_run_lists": { },
   "run_list": [
-    "role[wt_primer]",
+    "role[wt_rails_site]",
     "recipe[wt_actioncenter_ui]"
   ],
   "description": "Webtrends Action Center UI",
