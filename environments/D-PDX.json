@@ -143,7 +143,7 @@
         "wt_labserver": "= 0.1.0", 
         "wt_labstation": "= 0.0.1", 
         "wt_lfm_ftp": "= 0.1.0", 
-        "wt_logpreproc": "= 1.0.18", 
+        "wt_logpreproc": "= 1.0.20", 
         "wt_maintenance_site": "= 0.0.1", 
         "wt_monitoring": "= 1.0.0", 
         "wt_netacuity": "= 1.0.10", 
