@@ -1,3 +1,6 @@
+## 1.0.2
+* Add IADLBB checks to loadbalancer_failover_checks.rb
+
 ## 1.0.1
 * Add collectd plugin for unbound.
 
