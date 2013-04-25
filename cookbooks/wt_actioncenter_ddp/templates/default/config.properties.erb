@@ -8,4 +8,6 @@ kafka.consumer.group.id=action-center-integration-example
 kafka.auto.offset.reset=smallest
 kafka.auto.commit.enable=true
 
-configData.host=<%=@ads_host%>
+configData.host=<%=@config_host%>
+secureConfigData.host=<%= @secure_config_host %>
+secureConfigData.port=<%= @secure_config_port %>

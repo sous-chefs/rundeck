@@ -1,12 +1,18 @@
 {
     "chef_type": "role", 
-    "default_attributes": {}, 
+    "default_attributes": {
+        "ulimit": {
+            "hard": 65535, 
+            "soft": 65000
+        }
+    }, 
     "description": "Unbound DNS server", 
     "env_run_lists": {}, 
     "json_class": "Chef::Role", 
     "name": "unbound", 
     "override_attributes": {}, 
     "run_list": [
+        "recipe[ulimit]", 
         "recipe[unbound::default]", 
         "recipe[wt_monitoring::unbound]"
     ]

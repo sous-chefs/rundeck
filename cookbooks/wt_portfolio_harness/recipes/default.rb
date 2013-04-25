@@ -22,10 +22,11 @@ log_dir     = File.join(node['wt_common']['log_dir_linux'], "harness")
 install_dir = File.join(node['wt_common']['install_dir_linux'], "harness")
 conf_url    = File.join(install_dir, node['wt_portfolio_harness']['conf_url'])
 plugin_dir  = File.join(install_dir, "plugins")
-
+lib_dir     = File.join(install_dir, "lib")
 
 #Set node attribute for plugins to reference
 node.set['wt_portfolio_harness']['plugin_dir'] = plugin_dir
+node.set['wt_portfolio_harness']['lib_dir'] = lib_dir
 
 tarball      = node['wt_portfolio_harness']['download_url'].split("/")[-1]
 download_url = node['wt_portfolio_harness']['download_url']
@@ -36,9 +37,9 @@ pod          = node['wt_realtime_hadoop']['pod']
 datacenter   = node['wt_realtime_hadoop']['datacenter']
 java_home    = node['java']['java_home']
 java_opts    = node['wt_portfolio_harness']['java_opts']
-cam_url      = node['wt_cam']['cam_service_url']
-auth_url     = node['wt_sauth']['auth_service_url']
-auth_host    = URI(auth_url).host
+auth_host     = URI(node['wt_sauth']['auth_service_url']).host
+cam_host     = URI(node['wt_cam']['cam_service_url']).host
+cam_port     = URI(node['wt_cam']['cam_service_url']).port
 
 
 
@@ -61,7 +62,10 @@ unless node['wt_common']['http_proxy_url'].nil? || node['wt_common']['http_proxy
   proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
 end
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -131,7 +135,6 @@ runit_service "harness" do
   action :enable
 end
 
-
 log "Updating the template files"
 %w[application.conf logback.xml].each do | template_file|
   template "#{install_dir}/conf/#{template_file}" do
@@ -140,11 +143,8 @@ log "Updating the template files"
     group "root"
     mode  00644
     variables({
-      :auth_url => auth_url,
-      :auth_host => auth_host,
       :auth_version => node['wt_portfolio_harness']['sauth_version'],
       :proxy_host => proxy_host,
-      :cam_url => cam_url,
       :install_dir => install_dir,
       :http_port => http_port,
       :log_dir => log_dir,
@@ -158,6 +158,12 @@ log "Updating the template files"
       :zookeeper_quorum => zookeeper_quorum * ",",
       :pod              => pod,
       :datacenter       => datacenter,
+      # auth, cam parameters
+      :auth_host => auth_host,
+      :cam_host => cam_host,
+      :cam_port => cam_port,
+      :remote_address_hdr => node['wt_portfolio_harness']['remote_address_hdr'],
+      :max_uri_length => node['wt_portfolio_harness']['max_uri_length']
     })
     notifies :restart, "service[harness]", :delayed
   end
@@ -166,10 +172,23 @@ end
 service "harness"
 
 if node.attribute?("nagios")
+  template "#{install_dir}/bin/health-check-nagios.sh" do
+    source  "health-check-nagios.sh.erb"
+    owner "root"
+    group "root"
+    mode  00755
+  end 
+
   #Create a nagios nrpe check for the healthcheck page
+<<<<<<< HEAD
   nagios_nrpecheck "wt_portfolio_harness" do
     command "#{node['nagios']['plugin_dir']}/check_http"
     parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
+=======
+  nagios_nrpecheck "wt_portfolio_healthcheck" do
+    command "#{install_dir}/bin/health-check-nagios.sh"
+    parameters "5 http://#{node['fqdn']}:#{node['wt_portfolio_harness']['port']}/healthcheck?nagios"
+>>>>>>> master
     action :add
   end
   #Create a nagios nrpe check for the log file

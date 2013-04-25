@@ -16,6 +16,7 @@ download_url = node['wt_actioncenter_management_api']['download_url']
 user         = node['wt_actioncenter_management_api']['user']
 group        = node['wt_actioncenter_management_api']['group']
 ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
+ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
 
 log "Install dir: #{install_dir}"
 
@@ -61,9 +62,17 @@ execute "tar" do
   cwd install_dir
   command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
   action :nothing
-  subscribes :run, resources(:remote_file => "#{Chef::Config[:file_cache_path]}/#{tarball}"), :immediately
+  creates "#{install_dir}/lib"
   notifies :restart, "service[harness]", :delayed
-end
+  subscribes :run, resources(:execute => "tar"), :immediately
+end 
+
+	#copy messages jar to harness
+	#until we solve the class loader issues.
+  execute "copy messages" do
+    command "cp #{install_dir}/lib/action-center-messages*.jar #{node['wt_portfolio_harness']['lib_dir']}/."
+  end
+
 
 #copy messages jar to harness
 #until we solve the class loader issues.
@@ -80,6 +89,8 @@ template "#{conf_dir}/config.properties" do
   mode 00644 
   variables({ 
     :ads_host => ads_host,
+    :secure_config_host => ads_host,
+    :secure_config_port => ads_ssl_port,
     :cam_host => node['wt_cam']['cam_service_url'],
     :cam_port => "80",
   })

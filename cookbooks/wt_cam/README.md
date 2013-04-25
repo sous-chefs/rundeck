@@ -31,6 +31,8 @@ Attributes
 * node['wt_cam']['port'] - Http port to install the iis app that hosts the service
 * node['wt_cam']['log_level'] - Granularity setting for log4net entries
 
+* node['wt_streamingconfigservice']['config_service_url'] - ActionCenter plugin storage server for provisioning
+
 Data Bag Items
 ===============
 * authorization['wt_common']['ui_user'] - User under which the service will run

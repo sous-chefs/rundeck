@@ -21,6 +21,7 @@ download_url = node['wt_actioncenter_ddp']['download_url']
 user         = node['wt_actioncenter_ddp']['user']
 group        = node['wt_actioncenter_ddp']['group']
 ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
+ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
 
 #Dynamically builds kafka topic unless overridden
 unless node['wt_actioncenter_ddp']['kafka_topic']
@@ -60,7 +61,7 @@ if ENV["deploy_build"] == "true" then
   end
   	
   execute "copy messages" do
-    command "cp #{install_dir}/lib/action-center-messages*.jar #{node['wt_portfolio_harness']['plugin_dir']}/lib/."
+    command "cp #{install_dir}/lib/action-center-messages*.jar #{node['wt_portfolio_harness']['lib_dir']}/."
   end
 
   # delete the install tar ball
@@ -80,7 +81,9 @@ end
     mode 00644
     variables({
       :kafka_topic => kafka_topic,
-      :ads_host => ads_host
+      :config_host => ads_host,
+      :secure_config_host => ads_host,
+      :secure_config_port => ads_ssl_port
     })
     notifies :restart, "service[harness]", :delayed
   end
