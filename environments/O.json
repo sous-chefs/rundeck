@@ -224,7 +224,7 @@
 	    "ac_management_url": "https://oapi.webtrends.com" 
         }, 
         "wt_actioncenter_ui": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/59127:id/action-center.tar.gz",
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/59818:id/action-center.tar.gz",
             "release": "1.0.0"
         }, 
         "wt_analytics_ui": {}, 
