@@ -1,0 +1,24 @@
+{
+  "name": "wt_rails_site",
+  "default_attributes": { },
+  "override_attributes": { 
+    "languages": {
+      "ruby": {
+        "default_version": "1.9.1"
+      }
+    },
+    "apache": {
+        "default_modules": ["proxy", "proxy_balancer", "proxy_http", "rewrite" ]
+    }
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": { },
+  "run_list": [
+    "recipe[apache2]",
+    "recipe[runit]",
+    "recipe[ruby]",
+    "recipe[ruby::symlinks]"
+  ],
+  "description": "Necessary components for a primer ui box.",
+  "chef_type": "role"
+}
