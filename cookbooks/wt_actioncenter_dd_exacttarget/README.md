@@ -1,5 +1,5 @@
 = DESCRIPTION:
-Installs Webtrends Responsys Harness Plugin for Action Center
+Installs ExactTarget Harness Plugin for Action Center
 
 = REQUIREMENTS:
 * java
