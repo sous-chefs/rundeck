@@ -1,4 +1,7 @@
 ## 1.1.5
+* minor cleanup
+
+## 1.1.5
 * Added missing wt_actioncenter_dd_webtrendsemaildemo parameter to default.rb
 
 ## 1.1.4
