@@ -10,7 +10,6 @@
 default['wt_actioncenter_dd_responsys']['user']           														= "webtrends"
 default['wt_actioncenter_dd_responsys']['group']          														= "webtrends"
 default['wt_actioncenter_dd_responsys']['download_url']   														= ""
-default['wt_actioncenter_dd_responsys']['message_port']   														= 2552
 default['wt_actioncenter_dd_responsys']['datarequest_max_event_batch_time_ms']			  = "2000"
 default['wt_actioncenter_dd_responsys']['datarequest_max_events_in_batch'] 						=	"200"
 default['wt_actioncenter_dd_responsys']['datarequest_failure_delay_before_retry_ms']  = "60000"
