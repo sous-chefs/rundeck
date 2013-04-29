@@ -42,11 +42,35 @@ wdir = node['wt_common']['install_dir_windows']
 
 node['roles'].each do |r|
 	case r
-	when 'wt_actioncenter'
+	when 'wt_actioncenter_ddp'
 		log "publishing #{r}"
-		wt_publishver 'Action Center' do
-			download_url node['wt_actioncenter']['download_url']
-			key_file     win_path(wdir, 'Webtrends.ActionCenter/Webtrends.ActionCenterService/bin/Webtrends.ActionCenter.dll')
+		wt_publishver 'Action Center Data Destination Processor' do
+			download_url node['wt_actioncenter_ddp']['download_url']
+			key_file     File.join(ldir, 'harness/plugins/actioncenter_ddp/action-center-datadestination-processor-*')
+		end
+	when 'wt_actioncenter_dd_responsys'
+		log "publishing #{r}"
+		wt_publishver 'Action Center Data Destination Responsys' do
+			download_url node['wt_actioncenter_dd_responsys']['download_url']
+			key_file     File.join(ldir, 'harness/plugins/responsys/action-center-integrations-responsys.jar')
+		end
+	when 'wt_actioncenter_dd_webtrendsemaildemo'
+		log "publishing #{r}"
+		wt_publishver 'Action Center Data Destination Email Demo' do
+			download_url node['wt_actioncenter_dd_webtrendsemaildemo']['download_url']
+			key_file     File.join(ldir, 'harness/plugins/webtrendsemaildemo/action-center-integrations-webtrends-demo-*')
+		end
+	when 'wt_actioncenter_ds_streaming'
+		log "publishing #{r}"
+		wt_publishver 'Action Center Data Source Processor' do
+			download_url node['wt_actioncenter_ds_streaming']['download_url']
+			key_file     File.join(ldir, 'harness/plugins/actioncenter_ds_streaming/action-center-datasource-processor-*')
+		end
+	when 'wt_actioncenter_management_api'
+		log "publishing #{r}"
+		wt_publishver 'Action Center Management API' do
+			download_url node['wt_actioncenter_management_api']['download_url']
+			key_file     File.join(ldir, 'harness/plugins/actioncenter_management_api/action-center-management-service.jar')
 		end
 	when 'wt_analytics_ui'
 		log "publishing #{r}"
@@ -172,7 +196,7 @@ node['roles'].each do |r|
 		log "publishing #{r}"
 		wt_publishver 'Streaming Auditor' do
 			download_url node['wt_streamingauditor']['download_url']
-			key_file     File.join(ldir, 'streamingauditor/lib/webtrends-auditing-*')  
+			key_file     File.join(ldir, 'streamingauditor/lib/webtrends-streamingauditor.jar')  
 		end
 	when 'wt_streaming_collection_server'
 		log "publishing #{r}"

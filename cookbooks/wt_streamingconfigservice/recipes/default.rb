@@ -33,6 +33,11 @@ camdbuser  = auth_data['wt_cam_db']['db_user']
 camdbpwd = auth_data['wt_cam_db']['db_pwd']
 masterdbuser = auth_data['wt_master_db']['db_user']
 masterdbpwd = auth_data['wt_master_db']['db_pwd']
+keystoreFilePassword = auth_data['wt_streamingconfigservice']['keystoreFilePassword']
+aesKey = auth_data['wt_streamingconfigservice']['aesKey']
+authToken = auth_data['wt_streamingconfigservice']['authToken']
+keystore_file_name = auth_data['wt_streamingconfigservice']['keystoreFileName']
+keystore_file_url = auth_data['wt_streamingconfigservice']['keystoreFileUrl']
 
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
@@ -102,6 +107,15 @@ if ENV["deploy_build"] == "true" then
 
 end
 
+log "Installing the keystore file"
+
+remote_file "#{install_dir}/conf/#{keystore_file_name}" do
+    source "#{keystore_file_url}/#{keystore_file_name}"
+    owner "webtrends"
+    group "webtrends"
+    mode 00640
+end
+
 log "Updating the template files"
 
 template "#{install_dir}/bin/service-control" do
@@ -155,15 +169,22 @@ template "#{install_dir}/conf/config.properties" do
   mode  00640
   variables({
     :port => node['wt_streamingconfigservice']['port'],
+    :securePort => node['wt_streamingconfigservice']['securePort'],
     :camdbserver => node['wt_cam_db']['db_server'],
     :camdbname => node['wt_cam_db']['db_name'],
     :camdbuser => camdbuser,
     :camdbpwd => camdbpwd,
+    :usagedbserver => node['wt_actioncenter_db']['db_server'],
+    :usagedbname => node['wt_actioncenter_db']['db_name'],
     :masterdbserver => node['wt_masterdb']['host'],
     :masterdbname => node['wt_masterdb']['dbname'],
     :masterdbuser => masterdbuser,
     :masterdbpwd => masterdbpwd,
     :includeUnmappedAnalyticsIds => node['wt_streamingconfigservice']['includeUnmappedAnalyticsIds'],
+    :keystoreFilePath =>  "#{install_dir}/conf/#{keystore_file_name}",
+    :keystoreFilePassword => keystoreFilePassword,
+    :aesKey => aesKey,
+    :authToken => authToken
   })
 end
 

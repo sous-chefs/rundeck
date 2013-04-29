@@ -26,7 +26,9 @@ DESC=screencap
 export XSERV_DISPLAY_IDX
 
 ## set in profile.d/thumbnailcapture.sh SCREEN_IDX=1
-DAEMON_OPTS=":$XSERV_DISPLAY_IDX -screen $XSERV_DISPLAY_IDX 1024x768x24 -nolisten tcp"
+## TODO: check out image processing extensions for X Rendering, OpenGL etc 
+##       -ac +extension GLX +render
+DAEMON_OPTS=":$XSERV_DISPLAY_IDX -screen $XSERV_DISPLAY_IDX 1024x768x24 -nolisten tcp -noreset"
  
 test -x $DAEMON || exit 0
  

@@ -18,6 +18,9 @@ Installs Thumbnail Capture Service
 * graphite_enabled: push counters to graphite
 * graphite_interval: how often to push (minutes)
 * graphite_regex: filter
+* use_cache: Toggle use of memcached configuration
+* use_metrics: Toggle use of Yammer JMX capture
+* use_proxy: Toggle use of proxy configuration
 
 = USAGE:
 "/etc/init.d/screencap" start
