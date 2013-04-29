@@ -66,15 +66,6 @@ if ENV["deploy_build"] == "true" then
       recursive true
       action :delete
     end
-
-    if is_nimbus
-      execute "kill-topo" do
-        command "/opt/storm/current/bin/storm kill #{node['wt_storm_streaming']['name']}"
-        action :run
-        only_if "test -f /opt/storm/current/bin/storm"
-        only_if "/opt/storm/current/bin/storm list | grep #{node['wt_storm_streaming']['name']}"
-      end 
-    end    
 end
 
 directory install_tmp do
