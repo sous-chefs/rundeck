@@ -81,7 +81,8 @@
 	"keystoreFileName": "bconfigsvc.staging.dmz.jks",
         "keystoreFilePassword": "Bijoux01",
 	"keystoreFileUrl": "http://repo.staging.dmz/repo/artifact/b/streamingconfigservice",
-        "aesKey": "AnOKtesterAESKey"
+        "aesKey": "AnOKtesterAESKey",
+	"authToken": "71F039E5-A560-4082-AF6E-8788FE9668DE"
     }, 
     "wt_streamingmanagementservice": {
         "db_pwd": "bijoux", 
