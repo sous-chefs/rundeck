@@ -1,5 +1,5 @@
 {
-  "name": "wt_actioncenter_management_api",
+  "name": "wt_actioncenter_dd_exacttarget",
   "default_attributes": {
   },
   "json_class": "Chef::Role",
@@ -7,8 +7,8 @@
   },
   "run_list": [
     "role[wt_portfolio_harness]",
-    "recipe[wt_actioncenter_management_api]"
+    "recipe[wt_actioncenter_dd_exacttarget]"
   ],
-  "description": "Webtrends Portfolio Harness Plugin for Action Center API",
+  "description": "Portfolio harness integration for ExactTarget",
   "chef_type": "role"
 }
