@@ -6,8 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "runit"
-include_recipe "apache2::default"
 
 # Our artifact info
 rel_version = node[:wt_actioncenter_ui][:release]
@@ -105,7 +103,7 @@ artifact_deploy artifact_name do
         :allow_http => node[:wt_actioncenter_ui][:allow_http],
         :help_url => node[:wt_actioncenter_ui][:help_url],
 
-        :actioncenter_url => node[:wt_actioncenter_ui][:actioncenter_management_url],
+        :actioncenter_url => node[:wt_actioncenter_management_api][:ac_management_url],
         # Auth
         :auth_url => "#{auth_base}/#{auth_version}",
         :client_id => user_data['wt_actioncenter_ui']['client_id'],

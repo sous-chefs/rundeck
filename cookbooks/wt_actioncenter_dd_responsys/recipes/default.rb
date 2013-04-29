@@ -14,45 +14,36 @@ else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
-install_dir = File.join(node['wt_common']['install_dir_linux'],
-"harness/plugins/actioncenter_dd_responsys")
-conf_dir = File.join(install_dir, "conf")
+install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "responsys")
+conf_dir     = File.join(install_dir, "conf")
 tarball      = node['wt_actioncenter_dd_responsys']['download_url'].split("/")[-1]
 download_url = node['wt_actioncenter_dd_responsys']['download_url']
-user = node['wt_actioncenter_dd_responsys']['user']
-group = node['wt_actioncenter_dd_responsys']['group']
-config_host = URI(node['wt_streamingconfigservice']['config_service_url']).host
+user         = node['wt_actioncenter_dd_responsys']['user']
+group        = node['wt_actioncenter_dd_responsys']['group']
+ads_host	 = URI(node['wt_streamingconfigservice']['config_service_url']).host
+ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
+
+datarequest_max_event_batch_time_ms = node['wt_actioncenter_dd_responsys']['datarequest_max_event_batch_time_ms']
+datarequest_max_events_in_batch = node['wt_actioncenter_dd_responsys']['datarequest_max_events_in_batch']
+datarequest_failure_delay_before_retry_ms = node['wt_actioncenter_dd_responsys']['datarequest_failure_delay_before_retry_ms']
+datarequest_nodata_delay_before_retry_ms = node['wt_actioncenter_dd_responsys']['datarequest_nodata_delay_before_retry_ms']
+sender_max_send_retries = node['wt_actioncenter_dd_responsys']['sender_max_send_retries']
+sender_min_exponential_backoff_delay_ms = node['wt_actioncenter_dd_responsys']['sender_min_exponential_backoff_delay_ms']
+sender_max_delay_before_dropping_data_ms = node['wt_actioncenter_dd_responsys']['sender_max_delay_before_dropping_data_ms']
+testing_enabled = node['wt_actioncenter_dd_responsys']['testing_enabled']
+testing_key_column_override = node['wt_actioncenter_dd_responsys']['testing_key_column_override']
+
 log "Install dir: #{install_dir}"
 
-# create the install directory
-directory "#{install_dir}" do
-  owner "root"
-  group "root"
-  mode 00755
-  recursive true
-  action :create
-end
-
-directory "#{conf_dir}" do
-  owner "root"
-  group "root"
-  action :create
-end
-
-def processTemplates(conf_dir, config_host)
-	log "Updating template files"
-
-	%w[key.pem ResponsysServerCertificate.cer config.properties].each do | template_file|
-		template "#{conf_dir}/#{template_file}" do
-			source "#{template_file}.erb"
-			owner "root"
-			group "root"
-			mode 00644
-			variables({
-				:config_host => config_host,
-			})
-		end
-	end
+# create the directories
+[install_dir, conf_dir].each do |dir|
+  directory dir do
+    owner "root"
+    group "root"
+    mode 00755
+    recursive true
+    action :create
+  end
 end
 
 if ENV["deploy_build"] == "true" then
@@ -64,17 +55,14 @@ if ENV["deploy_build"] == "true" then
     mode 00644
   end
 
-    # uncompress the application tarball into the install dir
-    execute "tar" do
-        user  "root"
-        group "root"
-        cwd install_dir
-        command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-    end
-
-
-	processTemplates(conf_dir, config_host)	
-
+  # uncompress the application tarball into the install dir
+  execute "tar" do
+    user  "root"
+    group "root"
+    cwd install_dir
+    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+    notifies :restart, "service[harness]", :delayed
+  end
 
   # delete the install tar ball
   execute "delete_install_source" do
@@ -83,7 +71,28 @@ if ENV["deploy_build"] == "true" then
     command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
     action :run
   end
-
-else
 end
 
+%w[config.properties].each do | template_file|
+  template "#{conf_dir}/#{template_file}" do
+    source "#{template_file}.erb"
+    owner "root"
+    group "root"
+    mode 00644
+    variables({
+      :config_host => ads_host,
+      :secure_config_host => ads_host,
+      :secure_config_port => ads_ssl_port,
+      :datarequest_max_event_batch_time_ms => datarequest_max_event_batch_time_ms,
+      :datarequest_max_events_in_batch => datarequest_max_events_in_batch,
+      :datarequest_failure_delay_before_retry_ms => datarequest_failure_delay_before_retry_ms,
+      :datarequest_nodata_delay_before_retry_ms => datarequest_nodata_delay_before_retry_ms,
+      :sender_max_send_retries => sender_max_send_retries,
+      :sender_min_exponential_backoff_delay_ms => sender_min_exponential_backoff_delay_ms,
+      :sender_max_delay_before_dropping_data_ms => sender_max_delay_before_dropping_data_ms,
+      :testing_enabled => testing_enabled,
+      :testing_key_column_override => testing_key_column_override
+    })
+    notifies :restart, "service[harness]", :delayed
+  end
+end
