@@ -10,22 +10,12 @@
 # include for the URI object
 require 'uri'
 
-# include runit so we can create a runit service
-include_recipe "runit"
-
 # grab the zookeeper nodes that are currently available
 zookeeper_quorum = Array.new
 if not Chef::Config.solo
   search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").sort{|a,b| a.name <=> b.name }.each do |n|
     zookeeper_quorum << n['fqdn']
   end
-end
-
-if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploying first"
-  include_recipe "wt_portfolio_harness::undeploy"
-else
-  log "The deploy_build value is not set or is false so we will only update the configuration"
 end
 
 log_dir     = File.join(node['wt_common']['log_dir_linux'], "harness")
@@ -51,20 +41,36 @@ auth_host     = URI(node['wt_sauth']['auth_service_url']).host
 cam_host     = URI(node['wt_cam']['cam_service_url']).host
 cam_port     = URI(node['wt_cam']['cam_service_url']).port
 
+
+
+if ENV["deploy_build"] == "true" then
+  directory File.join(install_dir, "lib") do
+    action :delete
+    recursive true
+    notifies :run, "execute[delete_install_source]"
+  end
+end
+
+
+
 # grab the users and passwords from the data bag
 auth_data = data_bag_item('authorization', node.chef_environment)
 
 proxy_host = ''
 unless node['wt_common']['http_proxy_url'].nil? || node['wt_common']['http_proxy_url'].empty?
-        proxy_uri = URI(node['wt_common']['http_proxy_url'])
-        proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
+  proxy_uri = URI(node['wt_common']['http_proxy_url'])
+  proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
 end
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
 
-[log_dir, "#{install_dir}/bin", "#{install_dir}/conf", plugin_dir].each do |dir|
+[log_dir, "#{install_dir}/bin", "#{install_dir}/conf", plugin_dir, "#{plugin_dir}/lib"].each do |dir|
   directory dir do
     owner   user
     group   group
@@ -74,33 +80,33 @@ log "Java home: #{java_home}"
   end
 end
 
-
-if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so we will grab the tar ball and install"
-
-  # download the application tarball
-  remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-    source download_url
-    mode 00644
-  end
-
-  # uncompress the application tarball into the install dir
-  execute "tar" do
-    user  "root"
-    group "root"
-    cwd install_dir
-    command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-  end
-
-  # delete the install tar ball
-  execute "delete_install_source" do
-    user "root"
-    group "root"
-    command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
-    action :run
-  end
-
+# delete the install tar ball
+execute "delete_install_source" do
+  user "root"
+  group "root"
+  command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
+  ignore_failure true
+  action :nothing
 end
+
+# download the application tarball
+remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+  source download_url
+  mode 00644
+  action :create_if_missing
+end
+
+# uncompress the application tarball into the install dir
+execute "tar" do
+  user  "root"
+  group "root"
+  cwd install_dir
+  command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
+  action :nothing
+  subscribes :run, resources(:remote_file => "#{Chef::Config[:file_cache_path]}/#{tarball}"), :immediately
+  notifies :restart, "service[harness]", :delayed
+end
+
 
 #Creates runit service item
 template "#{install_dir}/bin/service-control" do
@@ -174,9 +180,15 @@ if node.attribute?("nagios")
   end 
 
   #Create a nagios nrpe check for the healthcheck page
+<<<<<<< HEAD
+  nagios_nrpecheck "wt_portfolio_harness" do
+    command "#{node['nagios']['plugin_dir']}/check_http"
+    parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
+=======
   nagios_nrpecheck "wt_portfolio_healthcheck" do
     command "#{install_dir}/bin/health-check-nagios.sh"
     parameters "5 http://#{node['fqdn']}:#{node['wt_portfolio_harness']['port']}/healthcheck?nagios"
+>>>>>>> master
     action :add
   end
   #Create a nagios nrpe check for the log file
