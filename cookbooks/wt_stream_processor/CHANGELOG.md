@@ -1,3 +1,6 @@
+##1.1.0
+* Externalized stream.processor.zk.valid.domain
+
 ##1.0.8
 * Removed staging reference 
 

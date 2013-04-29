@@ -12,31 +12,36 @@
         "webpi": "= 1.2.0", 
         "webtrends_server": "= 1.9.8", 
         "windows": "= 1.8.4", 
-        "wt_actioncenter_management_api": "= 1.0.0", 
+        "wt_actioncenter_dd_responsys": "= 1.1.5", 
+        "wt_actioncenter_dd_webtrendsemaildemo": "= 1.1.5", 
+        "wt_actioncenter_ddp": "= 1.1.2", 
+        "wt_actioncenter_ds_streaming": "= 1.1.3", 
+        "wt_actioncenter_management_api": "= 1.1.1", 
+        "wt_actioncenter_ui": "= 1.0.1", 
         "wt_base": "= 1.1.1", 
-        "wt_cam": "= 1.1.8", 
+        "wt_cam": "= 1.1.9", 
         "wt_cam_db": "= 0.1.5", 
         "wt_kafka_topagg": "= 1.1.0", 
         "wt_netacuity": "= 1.0.14", 
         "wt_portfolio_admin": "= 1.1.14", 
         "wt_portfolio_edge_stream_api": "= 1.0.3", 
         "wt_portfolio_edgeservice": "= 1.0.4", 
-        "wt_portfolio_harness": "= 1.0.1", 
+        "wt_portfolio_harness": "= 1.1.4", 
         "wt_portfolio_manager": "= 1.1.18", 
         "wt_publishver": "= 0.2.3", 
         "wt_realtime_hadoop": "= 1.0.4", 
         "wt_sauth": "= 1.1.4", 
         "wt_storm_streaming": "= 2.5.3", 
-        "wt_stream_processor": "= 1.0.7", 
+        "wt_stream_processor": "= 1.1.0", 
         "wt_streaming_barebones": "= 0.0.4", 
-        "wt_streaming_viz": "= 1.2.8", 
+        "wt_streaming_viz": "= 1.2.9", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
         "wt_streamingapi": "= 1.2.8", 
         "wt_streamingauditor": "= 1.0.19", 
-        "wt_streamingconfigservice": "= 1.1.3", 
+        "wt_streamingconfigservice": "= 1.1.6", 
         "wt_streaminglogreplayer": "= 1.2.1", 
-        "wt_streamingmanagementservice": "= 1.1.0", 
-        "wt_thumbnailcapture": "= 1.0.6", 
+        "wt_streamingmanagementservice": "= 1.1.2", 
+        "wt_thumbnailcapture": "= 1.0.8", 
         "zookeeper": "= 1.2.6"
     }, 
     "default_attributes": {
@@ -196,23 +201,30 @@
                 }
             ]
         }, 
-        "wt_actioncenter_ddp": {
-            "kafka_topic": "Lab_O_ActionRoutes"
-        }, 
+        "wt_actioncenter_db": {
+            "db_name": "ActionCenter",
+            "db_server": "ocamdb01.staging.dmz"
+        },
+	"wt_actioncenter_ddp": {
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/59471:id/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
+	}, 
+	"wt_actioncenter_dd_responsys": {
+            "download_url":
+                        "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/59387:id/action-center-integrations-responsys-bin.tar.gz"
+        },
+	"wt_actioncenter_dd_webtrendsemaildemo": {
+            "download_url":
+                        "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/59208:id/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
+        },
         "wt_actioncenter_ds_streaming": {
-            "auth_url": "https://osauth.webtrends.com/v1/token", 
-            "auth_user_id": "22", 
-            "kafka_topic": "Lab_O_ActionRoutes", 
-            "zk_connect": "ozoo02.staging.dmz:2181,ozoo03.staging.dmz:2181,ozoo01.staging.dmz:2181"
-        }, 
+       	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/59212:id/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz"
+	}, 
         "wt_actioncenter_management_api": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/.lastSuccessful/action-center-management-service-bin.tar.gz", 
-            "ds_host": "oacds01.staging.dmz", 
-            "ds_port": "8080"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/59210:id/action-center-management-service-bin.tar.gz",
+	    "ac_management_url": "https://oapi.webtrends.com" 
         }, 
         "wt_actioncenter_ui": {
-            "actioncenter_management_url": "http://oacws01.staging.dmz:8080", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/.lastSuccessful/action-center.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/59818:id/action-center.tar.gz",
             "release": "1.0.0"
         }, 
         "wt_analytics_ui": {}, 
@@ -222,10 +234,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57496:id/CAM.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/58826:id/CAM.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/57496:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/58826:id/Plugins.zip"
             }, 
             "cam_service_url": "http://ocam.staging.dmz", 
             "db_name": "cam", 
@@ -237,7 +249,7 @@
         "wt_cam_db": {
             "db_name": "CAM", 
             "db_server": "ocamdb01.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/57490:id/CamDB.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/59316:id/CamDB.zip"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -254,7 +266,7 @@
             "ldap_port": "636", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
-            "smtp_server": "pdxengmta01.webtrends.corp", 
+            "smtp_server": "pdxmta.webtrends.corp", 
             "wrsmodify_group": "STAGINGDMZ\\O.WRS.Modify", 
             "wrsread_group": "STAGINGDMZ\\O.WRS.Read"
         }, 
@@ -332,10 +344,10 @@
             "edgeserviceurl": "http://owapi.staging.dmz"
         }, 
         "wt_portfolio_harness": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/.lastSuccessful/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/58733:id/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/57154:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/59567:id/Portfolio.Manager.zip", 
             "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
             "portmgr_fulfillment_dl": "martin.neal@webtrends.com", 
             "portmgr_group_admin": "O.PortMgr.Admins", 
@@ -379,7 +391,8 @@
             }
         }, 
         "wt_stream_processor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/57046:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/59947:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz",
+            "zk_domains": "staging.dmz"
         }, 
         "wt_streaming_barebones": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt365/57076:id/Webtrends.Streaming.BareBones/dist/webtrends-streaming-barebones-bin.tar.gz", 
@@ -391,7 +404,7 @@
         }, 
         "wt_streaming_viz": {
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/58058:id/Streaming.Viz.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt241/58269:id/Streaming.Viz.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true", 
             "sms_url": "http://osms.staging.dmz", 
@@ -408,7 +421,7 @@
             "sapi_service_url": "ws://osapi.webtrends.com"
         }, 
         "wt_streamingauditor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/58019:id/webtrends-streamingauditor-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt246/58205:id/webtrends-streamingauditor-bin.tar.gz", 
             "roundtrip_scs_urls": "http://scs.webtrends.com,http://scs.pdx.webtrends.com,http://scs.las.webtrends.com,http://scs.iad.webtrends.com,http://scs.ams.webtrends.com", 
             "roundtrip_tagserver_url": "http://statse.webtrendslive.com"
         }, 
@@ -416,7 +429,7 @@
             "camdbname": "CAM", 
             "camdbserver": "ocamdb01.staging.dmz", 
             "config_service_url": "http://oconfigsvc.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/57181:id/webtrends-streaming-configservice-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/58991:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streaminglogreplayer": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.1/1119/webtrends-streaminglogreplayer-bin.tar.gz", 
@@ -424,14 +437,14 @@
             "thread_pool_size": 160
         }, 
         "wt_streamingmanagementservice": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/58021:id/webtrends-streaming-managementservice-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/58213:id/webtrends-streaming-managementservice-bin.tar.gz", 
             "healthcheck_port": 9002, 
             "jmx_port": 9997, 
             "port": 8081, 
             "sms_service_url": "http://osms.staging.dmz"
         }, 
         "wt_thumbnailcapture": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/57888:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt364/58200:id/capture-service-1.0-SNAPSHOT-jar-with-dependencies.jar", 
             "memcache_environment": "support-staging", 
             "thumbnail_service_url": "http://othumb.staging.dmz"
         }, 
