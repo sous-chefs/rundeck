@@ -21,7 +21,7 @@ download_url = node['wt_actioncenter_dd_exacttarget']['download_url']
 user         = node['wt_actioncenter_dd_exacttarget']['user']
 group        = node['wt_actioncenter_dd_exacttarget']['group']
 ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
-
+authToken    = auth_data['wt_streamingconfigservice']['authToken']
 ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
 
 datarequest_max_event_batch_time_ms = node['wt_actioncenter_dd_exacttarget']['datarequest_max_event_batch_time_ms']
@@ -83,6 +83,7 @@ end
     mode 00644
     variables({
       :config_host => ads_host,
+	  :authToken => authToken,
       :secure_config_host => ads_host,
       :secure_config_port => ads_ssl_port,
       :datarequest_max_event_batch_time_ms => datarequest_max_event_batch_time_ms,
