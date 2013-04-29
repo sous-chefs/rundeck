@@ -13,7 +13,7 @@ if ENV["deploy_build"] == "true" then
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
-
+auth_data = data_bag_item('authorization',node.chef_environment)
 install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "responsys")
 conf_dir     = File.join(install_dir, "conf")
 tarball      = node['wt_actioncenter_dd_responsys']['download_url'].split("/")[-1]
@@ -22,7 +22,7 @@ user         = node['wt_actioncenter_dd_responsys']['user']
 group        = node['wt_actioncenter_dd_responsys']['group']
 ads_host	 = URI(node['wt_streamingconfigservice']['config_service_url']).host
 ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
-
+authToken    = auth_data['wt_streamingconfigservice']['authToken']
 datarequest_max_event_batch_time_ms = node['wt_actioncenter_dd_responsys']['datarequest_max_event_batch_time_ms']
 datarequest_max_events_in_batch = node['wt_actioncenter_dd_responsys']['datarequest_max_events_in_batch']
 datarequest_failure_delay_before_retry_ms = node['wt_actioncenter_dd_responsys']['datarequest_failure_delay_before_retry_ms']
@@ -81,6 +81,7 @@ end
     mode 00644
     variables({
       :config_host => ads_host,
+	  :authToken => authToken,
       :secure_config_host => ads_host,
       :secure_config_port => ads_ssl_port,
       :datarequest_max_event_batch_time_ms => datarequest_max_event_batch_time_ms,
