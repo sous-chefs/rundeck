@@ -1,3 +1,6 @@
+## 1.2.0
+* Changes to set node data for topologies to use
+
 ## 1.1.0
 * Added runit include
 
