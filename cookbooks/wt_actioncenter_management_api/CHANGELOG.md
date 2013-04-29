@@ -1,3 +1,6 @@
+## 2.0.0
+* Changed deployment structure to allow for auto deploy to clean box
+
 ## 1.1.2
 * Added secured config service configuration
 
