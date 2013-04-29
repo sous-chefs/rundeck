@@ -8,7 +8,7 @@
 #
 
 
-
+auth_data = data_bag_item('authorization',node.chef_environment)
 install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "actioncenter_management_api")
 conf_dir     = File.join(install_dir,"conf")
 tarball      = node['wt_actioncenter_management_api']['download_url'].split("/")[-1]
@@ -17,6 +17,7 @@ user         = node['wt_actioncenter_management_api']['user']
 group        = node['wt_actioncenter_management_api']['group']
 ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
 ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
+authToken    = auth_data['wt_streamingconfigservice']['authToken']
 
 log "Install dir: #{install_dir}"
 
@@ -91,6 +92,7 @@ template "#{conf_dir}/config.properties" do
   variables({ 
     :ads_host => ads_host,
     :secure_config_host => ads_host,
+    :authToken => authToken,
     :secure_config_port => ads_ssl_port,
     :cam_host => node['wt_cam']['cam_service_url'],
     :cam_port => "80",
