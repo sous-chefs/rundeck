@@ -1,4 +1,8 @@
-##2.5.3
+## 3.0.0
+* Added topology starts/stops
+* Changes to allow deploy on clean machine
+
+## 2.5.3
 * Added response_bolt tasks and executors
 
 ## 2.5.2

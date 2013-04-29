@@ -1,3 +1,6 @@
+## 2.0.0
+* Updates to clean deploy successfully
+
 ## 1.1.7
 * Added support for an authentication token for the secure app data service
 

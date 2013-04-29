@@ -1,6 +1,6 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {      }, 
+    "cookbook_versions": { }, 
     "default_attributes": {
         "authorization": {
             "ad_auth": {
@@ -205,16 +205,30 @@
             "cam_plugins": {
                 "download_url": "http://pdxteamcitys01.webtrends.corp/guestAuth/repository/download/bt324/.lastSuccessful/Plugins.zip"
             }, 
+<<<<<<< HEAD
+            "cam_service_url": "http://bcam.staging.dmz",
+            "db_name": "CAM",
+<<<<<<< Updated upstream
+            "db_server": "bcamdb01.staging.dmz",
+=======
+            "db_server": "bcamdb01.staging.dmz", 
+>>>>>>> Stashed changes
+=======
             "cam_service_url": "http://cicam.staging.dmz",
             "db_name": "CAM",
             "db_server": "cicamdb01.staging.dmz",
+>>>>>>> master
             "optimize_plugin": {
                 "optimize_server_url": "http://was.ea.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
             }
         }, 
         "wt_cam_db": {
             "db_name": "CAM",
+<<<<<<< HEAD
+            "db_server": "bcamdb01.staging.dmz", 
+=======
             "db_server": "cicamdb01.staging.dmz", 
+>>>>>>> master
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/downloadAll/bt137/.lastSuccessful/artifacts.zip"
         }, 
         "wt_common": {
@@ -228,7 +242,7 @@
             "install_dir_windows": "d:\\wrs", 
             "install_log_dir_linux": "/var/log/webtrends/install", 
             "install_log_dir_windows": "d:\\logs", 
-            "ldap_host": "cildap01.staging.dmz", 
+            "ldap_host": "bldap01.staging.dmz", 
             "ldap_port": "636", 
             "log_dir_linux": "/var/log/webtrends/", 
             "log_dir_windows": "", 
@@ -355,11 +369,18 @@
         }, 
         "wt_streamingcollection": {}, 
         "wt_streamingconfigservice": {
+<<<<<<< HEAD
+            "config_service_url": "http://configsvc.ci-las.os.staging.dmz:8080",
+            "camdbname": "CAM",
+            "camdbserver": "bcamdb01.staging.dmz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/58844:id/webtrends-streaming-configservice-bin.tar.gz"
+=======
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/58991:id/webtrends-streaming-configservice-bin.tar.gz", 
             "includeUnmappedAnalyticsIds": "true",
             "config_service_url": "http://configsvc.ci-las.os.staging.dmz:8080",
             "camdbname": "CAM",
             "camdbserver": "cicamdb01.staging.dmz"
+>>>>>>> master
         }, 
         "wt_streamingmanagementservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/44668:id/webtrends-streaming-managementservice-bin.tar.gz", 
