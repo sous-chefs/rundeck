@@ -158,7 +158,7 @@
         "wt_portfolio_edge_stream_api": "= 1.0.3", 
         "wt_portfolio_edgeservice": "= 1.0.4", 
         "wt_portfolio_harness": "= 1.1.4",
-        "wt_portfolio_manager": "= 1.2.63", 
+        "wt_portfolio_manager": "= 1.1.18", 
         "wt_publishver": "= 0.2.3", 
         "wt_realtime_hadoop": "= 1.0.1", 
         "wt_roadrunner": "= 1.1.2", 
@@ -166,7 +166,7 @@
         "wt_search": "= 1.0.10", 
         "wt_static_tag_host": "= 0.0.4", 
         "wt_storm_streaming": "= 2.5.3", 
-        "wt_stream_processor": "= 1.0.7", 
+        "wt_stream_processor": "= 1.1.0", 
         "wt_streaming_barebones": "= 0.0.3", 
         "wt_streaming_viz": "= 1.2.9", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
@@ -386,11 +386,11 @@
         },
         "wt_actioncenter_ddp": {
             "download_url":
-			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/59471:id/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/59866:id/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
         },
         "wt_actioncenter_dd_responsys": {
             "download_url":
-			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/59387:id/action-center-integrations-responsys-bin.tar.gz"
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/59443:id/action-center-integrations-responsys-bin.tar.gz"
         },
         "wt_actioncenter_dd_webtrendsemaildemo": {
             "download_url":
@@ -406,7 +406,7 @@
                 "ac_management_url": "https://papi.webtrends.com"
         },
         "wt_actioncenter_ui": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/59127:id/action-center.tar.gz",
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/59818:id/action-center.tar.gz",
                 "release": "1.0.0"
         },
         "wt_analytics_ui": {
@@ -433,7 +433,7 @@
         "wt_cam_db": {
             "db_name": "CAM", 
             "db_server": "pcamdb01.os.staging.dmz",
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/57490:id/CamDB.zip"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/59316:id/CamDB.zip"
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
@@ -498,22 +498,22 @@
         "wt_portfolio_admin": {
             "account_ui_url": "http://pportadm01.os.staging.dmz", 
             "custom_errors": "Off", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/.lastSuccessful/Portfolio.Admin.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt239/54185:id/Portfolio.Admin.zip", 
             "elmah_remote_access": "yes", 
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_edge_stream_api": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/55361:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/57044:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_portfolio_edgeservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54775:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz",
             "edgeserviceurl": "http://pwapi01.staging.dmz"
         }, 
         "wt_portfolio_harness": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/.lastSuccessful/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
+                 "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/58733:id/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
         }, 
         "wt_portfolio_manager": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/57154:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/59567:id/Portfolio.Manager.zip", 
             "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
             "portmgr_fulfillment_dl": "toby.mosby@webtrends.com", 
             "portmgr_group_admin": "P.PortMgr.Admins", 
