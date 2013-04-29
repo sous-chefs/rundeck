@@ -62,10 +62,6 @@ unless node['wt_common']['http_proxy_url'].nil? || node['wt_common']['http_proxy
   proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
 end
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 log "Install dir: #{install_dir}"
 log "Log dir: #{log_dir}"
 log "Java home: #{java_home}"
@@ -180,15 +176,9 @@ if node.attribute?("nagios")
   end 
 
   #Create a nagios nrpe check for the healthcheck page
-<<<<<<< HEAD
-  nagios_nrpecheck "wt_portfolio_harness" do
-    command "#{node['nagios']['plugin_dir']}/check_http"
-    parameters "-H #{node['fqdn']} -u /healthcheck -p 9000 -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
-=======
   nagios_nrpecheck "wt_portfolio_healthcheck" do
     command "#{install_dir}/bin/health-check-nagios.sh"
     parameters "5 http://#{node['fqdn']}:#{node['wt_portfolio_harness']['port']}/healthcheck?nagios"
->>>>>>> master
     action :add
   end
   #Create a nagios nrpe check for the log file
