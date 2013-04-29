@@ -307,7 +307,21 @@
                     "url": "http://repo.staging.dmz/repo/yum/webtrends"
                 }
             ]
-        }, 
+        },
+	"wt_cam": {
+	    "cam": {
+                    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/54634:id/CAM.zip"
+   		},
+            "cam_plugins": {
+                    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/54634:id/Plugins.zip"
+            	},
+            "cam_service_url": "http://bcam.staging.dmz",
+            "db_name": "CAM",
+            "db_server": "bcamdb01.staging.dmz",
+            "optimize_plugin": {
+            	    "optimize_server_url": "http://was.c2.optlab.webtrends.corp/server/app/restservice/wt_internalapi_v1/initialize/portfolio"
+   		}
+	}, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "LAB-COMMON-PDX", 
