@@ -28,7 +28,7 @@ config_host   = URI(node['wt_streamingconfigservice']['config_service_url']).hos
 sapi_port     = search(:node, "role:wt_streaming_api_server AND chef_environment:#{node.chef_environment}").first['wt_streamingapi']['port']
 client_id     = user_data['wt_actioncenter_ds_streaming']['client_id']
 client_secret = user_data['wt_actioncenter_ds_streaming']['client_secret']
-
+authToken    = auth_data['wt_streamingconfigservice']['authToken']
 #Dynamically builds kafka topic unless overridden
 unless node['wt_actioncenter_ds_streaming']['kafka_topic']
   kafka_topic = "#{node['wt_realtime_hadoop']['datacenter']}_#{node['wt_realtime_hadoop']['pod']}_ActionRoutes"
@@ -91,7 +91,8 @@ end
         :pod => node['wt_realtime_hadoop']['pod'],
         :datacenter => node['wt_realtime_hadoop']['datacenter'],
         :kafka_topic => kafka_topic,
-        :sapi_port => sapi_port
+        :sapi_port => sapi_port,
+		:authToken => authToken
       })
       notifies :restart, "runit_service[harness]", :delayed
     end
