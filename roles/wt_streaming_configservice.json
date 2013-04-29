@@ -12,7 +12,8 @@
   "env_run_lists": {
   },
   "run_list": [
-    "recipe[java]",
+    "role[java]",
+    "recipe[runit]",
     "recipe[wt_streamingconfigservice]"
   ],
   "description": "Webtrends Streaming Configuration Service",
