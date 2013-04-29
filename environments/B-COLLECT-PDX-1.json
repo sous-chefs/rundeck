@@ -348,7 +348,10 @@
             "datacenter": "Lab", 
             "environment": "B-LAS", 
             "pod": "B"
-        }, 
+        },
+	"wt_sauth": {
+	    "auth_service_url": "https://bsauth.webtrends.com"
+	}, 
         "wt_streaming_collection": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt381/60049:id/webtrends-datacapture.collection-bin.tar.gz"
         }, 
