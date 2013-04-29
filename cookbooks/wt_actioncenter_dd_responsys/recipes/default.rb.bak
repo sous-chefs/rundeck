@@ -13,7 +13,7 @@ if ENV["deploy_build"] == "true" then
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
-auth_data = data_bag_item('authorization',node.chef_environment)
+
 install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "responsys")
 conf_dir     = File.join(install_dir, "conf")
 tarball      = node['wt_actioncenter_dd_responsys']['download_url'].split("/")[-1]
