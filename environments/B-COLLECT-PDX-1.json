@@ -124,7 +124,7 @@
         "vmware-tools": "= 0.1.3", 
         "vsftpd": "= 0.0.2", 
         "webpi": "= 1.1.0", 
-        "webtrends_server": "= 1.9.4", 
+        "webtrends_server": "= 1.8.11", 
         "windows": "= 1.7.0", 
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.0.4", 
