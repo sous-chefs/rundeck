@@ -12,7 +12,6 @@
         "nagios": "= 4.0.1", 
         "rundeck": "= 1.0.6", 
         "webpi": "= 1.0.16", 
-        "webtrends_server": "= 1.8.11", 
         "windows": "= 1.6.0", 
         "wt_base": "= 1.0.3", 
         "wt_publishver": "= 0.2.3", 
@@ -218,6 +217,9 @@
             ], 
             "search": "staging.dmz webtrends.corp englab.webtrends.corp os.staging.dmz"
         }, 
+        "rundeck":{
+            "rundeck_chef_name":"sops02.staging.dmz"
+        },
         "snmp": {
             "community": "DevOps", 
             "full_systemview": "true", 
