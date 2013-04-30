@@ -1,4 +1,5 @@
-ookbook Name:: haproxy
+#
+# Cookbook Name:: haproxy
 # Author:: Guilhem Lettron <guilhem.lettron@youscribe.com>
 #
 # Copyright 2012, Societe Publica.

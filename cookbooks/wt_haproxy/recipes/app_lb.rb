@@ -1,4 +1,5 @@
-ookbook Name:: haproxy
+#
+# Cookbook Name:: haproxy
 # Recipe:: app_lb
 #
 # Copyright 2011, Opscode, Inc.
