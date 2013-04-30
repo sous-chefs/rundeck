@@ -23,7 +23,7 @@ group        = node['wt_actioncenter_dd_webtrendsemaildemo']['group']
 ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
 authToken    = auth_data['wt_streamingconfigservice']['authToken']
 ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
-
+kafkaGroupId = node['wt_actioncenter_ddp']['group_id']
 datarequest_max_event_batch_time_ms = node['wt_actioncenter_dd_webtrendsemaildemo']['datarequest_max_event_batch_time_ms']
 datarequest_max_events_in_batch = node['wt_actioncenter_dd_webtrendsemaildemo']['datarequest_max_events_in_batch']
 datarequest_failure_delay_before_retry_ms = node['wt_actioncenter_dd_webtrendsemaildemo']['datarequest_failure_delay_before_retry_ms']
@@ -90,7 +90,8 @@ template "#{conf_dir}/config.properties" do
     :datarequest_nodata_delay_before_retry_ms => datarequest_nodata_delay_before_retry_ms,
     :sender_max_send_retries => sender_max_send_retries,
     :sender_min_exponential_backoff_delay_ms => sender_min_exponential_backoff_delay_ms,
-    :sender_max_delay_before_dropping_data_ms => sender_max_delay_before_dropping_data_ms
+    :sender_max_delay_before_dropping_data_ms =>sender_max_delay_before_dropping_data_msi,
+	:kafkaGroupId => kafkaGroupId
   })
   notifies :restart, "service[harness]", :delayed
 end
