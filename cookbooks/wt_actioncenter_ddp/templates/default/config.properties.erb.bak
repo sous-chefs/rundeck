@@ -1,0 +1,14 @@
+# Kafka topic base to push to  the account id or some other data should be
+# tacked on the end
+# dynamically so that the data is seperate
+kafka.topic=<%= @kafka_topic %>
+
+# Kafka consumer parameters
+kafka.consumer.group.id=<%=@groupId %>
+kafka.auto.offset.reset=largest
+kafka.auto.commit.enable=true
+
+configData.host=<%=@config_host%>
+configData.authToken=<%=@authToken%>
+secureConfigData.host=<%= @secure_config_host %>
+secureConfigData.port=<%= @secure_config_port %>
