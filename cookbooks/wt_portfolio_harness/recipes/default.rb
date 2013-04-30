@@ -93,7 +93,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
 end
 
 # uncompress the application tarball into the install dir
-execute "tar" do
+execute "Untar harness" do
   user  "root"
   group "root"
   cwd install_dir
