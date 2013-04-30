@@ -369,7 +369,9 @@
             "db_server": "hcamdb01.staging.dmz"
         }, 
 	"wt_actioncenter_ddp": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/.lastSuccessful/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
+            "download_url":
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/.lastSuccessful/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz",
+			"group_id":"action-center-consumer-group"
         },
         "wt_actioncenter_dd_responsys": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/.lastSuccessful/action-center-integrations-responsys-bin.tar.gz"
