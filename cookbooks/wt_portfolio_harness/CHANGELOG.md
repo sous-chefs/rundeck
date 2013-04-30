@@ -1,3 +1,6 @@
+## 2.0.1 
+* Added unique name to harness untarring
+
 ## 2.0.0
 *Changed deploy process to automatically deploy to clean system
 
@@ -16,7 +19,7 @@
 
 ## 1.1.2
 * Exposed lib directory for use by plugins to copy jars
->>>>>>> master
+
 
 ## 1.1.1
 * Moved service creation before templates
