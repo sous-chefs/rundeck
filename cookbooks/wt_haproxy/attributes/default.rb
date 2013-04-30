@@ -1,4 +1,5 @@
-ookbook Name:: haproxy
+#
+# Cookbook Name:: haproxy
 # Default:: default
 #
 # Copyright 2010, Opscode, Inc.
