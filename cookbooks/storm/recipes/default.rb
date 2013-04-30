@@ -33,7 +33,7 @@ end
   end
 end
 
-if node.recipes.include?("recipe[storm::nimbus]")
+if node.recipes.include?("storm::nimbus")
   nimbus_host = node
 else
   nimbus_host = search(:node, "role:storm_nimbus AND role:#{node['storm']['cluster_role']} AND chef_environment:#{node.chef_environment}").first
