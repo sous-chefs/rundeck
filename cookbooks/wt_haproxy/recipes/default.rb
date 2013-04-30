@@ -19,8 +19,8 @@
 
 include_recipe "haproxy::install_#{node['haproxy']['install_method']}"
 
-cookbook_file "/etc/default/haproxy" do
-  source "haproxy-default"
+cookbook_file "/etc/default/wt_haproxy" do
+  source "wt_haproxy-default"
   owner "root"
   group "root"
   mode 00644
