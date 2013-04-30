@@ -23,6 +23,7 @@ group        = node['wt_actioncenter_dd_responsys']['group']
 ads_host	 = URI(node['wt_streamingconfigservice']['config_service_url']).host
 ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
 authToken    = auth_data['wt_streamingconfigservice']['authToken']
+kafkaGroupId = node['wt_actioncenter_ddp']['group_id']
 datarequest_max_event_batch_time_ms = node['wt_actioncenter_dd_responsys']['datarequest_max_event_batch_time_ms']
 datarequest_max_events_in_batch = node['wt_actioncenter_dd_responsys']['datarequest_max_events_in_batch']
 datarequest_failure_delay_before_retry_ms = node['wt_actioncenter_dd_responsys']['datarequest_failure_delay_before_retry_ms']
@@ -92,7 +93,8 @@ end
       :sender_min_exponential_backoff_delay_ms => sender_min_exponential_backoff_delay_ms,
       :sender_max_delay_before_dropping_data_ms => sender_max_delay_before_dropping_data_ms,
       :testing_enabled => testing_enabled,
-      :testing_key_column_override => testing_key_column_override
+      :testing_key_column_override => testing_key_column_override,
+	  :kafkaGroupId => kafkaGroupId
     })
     notifies :restart, "service[harness]", :delayed
   end
