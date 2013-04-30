@@ -85,7 +85,7 @@ end
       :config_host => ads_host,
       :secure_config_host => ads_host,
       :secure_config_port => ads_ssl_port,
-	  :authToken => authToken,
+	  :authToken => authTokeni,
 	  :groupId => groupId
     })
     notifies :restart, "service[harness]", :delayed
