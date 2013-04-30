@@ -4,8 +4,8 @@
 kafka.topic=<%= @kafka_topic %>
 
 # Kafka consumer parameters
-kafka.consumer.group.id=action-center-integration-example
-kafka.auto.offset.reset=smallest
+kafka.consumer.group.id=<%=@groupId %>
+kafka.auto.offset.reset=largest
 kafka.auto.commit.enable=true
 
 configData.host=<%=@config_host%>
