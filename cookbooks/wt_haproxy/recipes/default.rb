@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "haproxy::install_#{node['haproxy']['install_method']}"
+include_recipe "wt_haproxy::install_#{node['haproxy']['install_method']}"
 
 cookbook_file "/etc/default/wt_haproxy" do
   source "wt_haproxy-default"
