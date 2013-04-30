@@ -1,3 +1,6 @@
+## 1.2.1
+* Updated run_list to recipe for determing nimbus node
+
 ## 1.2.0
 * Changes to set node data for topologies to use
 
