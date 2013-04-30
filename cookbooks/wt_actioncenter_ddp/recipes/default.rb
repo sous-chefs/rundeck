@@ -23,7 +23,7 @@ group        = node['wt_actioncenter_ddp']['group']
 ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
 ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
 authToken    = auth_data['wt_streamingconfigservice']['authToken']
-
+groupId = node['wt_actioncenter_ddp']['group_id']
 #Dynamically builds kafka topic unless overridden
 unless node['wt_actioncenter_ddp']['kafka_topic']
   kafka_topic = "#{node['wt_realtime_hadoop']['datacenter']}_#{node['wt_realtime_hadoop']['pod']}_ActionRoutes"
@@ -85,7 +85,8 @@ end
       :config_host => ads_host,
       :secure_config_host => ads_host,
       :secure_config_port => ads_ssl_port,
-	  :authToken => authToken
+	  :authToken => authToken,
+	  :groupId => groupId
     })
     notifies :restart, "service[harness]", :delayed
   end
