@@ -21,7 +21,7 @@ download_url = node['wt_storm_streaming']['download_url']
 install_tmp = '/tmp/wt_storm_install'
 tarball = 'streaming-analysis-bin.tar.gz'
 
-if node.recipes.include?("recipe[storm::nimbus]")
+if node.recipes.include?("storm::nimbus")
   is_nimbus = true
 end
 
