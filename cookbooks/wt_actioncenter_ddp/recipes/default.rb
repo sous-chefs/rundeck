@@ -28,7 +28,7 @@ groupId = node['wt_actioncenter_ddp']['group_id']
 unless node['wt_actioncenter_ddp']['kafka_topic']
   kafka_topic = "#{node['wt_realtime_hadoop']['datacenter']}_#{node['wt_realtime_hadoop']['pod']}_ActionRoutes"
 else
-  kafka_topic = node['wt_actioncenter_ds_streaming']['kafka_topic']
+  kafka_topic = node['wt_actioncenter_ddp']['kafka_topic']
 end
 
 # create the directories
