@@ -11,3 +11,4 @@ default['wt_actioncenter_ddp']['user']           = "webtrends"
 default['wt_actioncenter_ddp']['group']          = "webtrends"
 default['wt_actioncenter_ddp']['download_url']   = ""
 default['wt_actioncenter_ddp']['message_port']   = 2552
+default['wt_actioncenter_ddp']['group_id'] = "action-center-consumer-group"
