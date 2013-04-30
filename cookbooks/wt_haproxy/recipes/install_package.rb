@@ -1,4 +1,5 @@
-ookbook Name:: haproxy
+#
+# Cookbook Name:: haproxy
 # Recipe:: install_package
 #
 # Copyright 2009, Opscode, Inc.
