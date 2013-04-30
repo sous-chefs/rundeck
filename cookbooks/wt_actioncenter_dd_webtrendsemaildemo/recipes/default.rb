@@ -90,7 +90,7 @@ template "#{conf_dir}/config.properties" do
     :datarequest_nodata_delay_before_retry_ms => datarequest_nodata_delay_before_retry_ms,
     :sender_max_send_retries => sender_max_send_retries,
     :sender_min_exponential_backoff_delay_ms => sender_min_exponential_backoff_delay_ms,
-    :sender_max_delay_before_dropping_data_ms =>sender_max_delay_before_dropping_data_msi,
+    :sender_max_delay_before_dropping_data_ms =>sender_max_delay_before_dropping_data_ms,
 	:kafkaGroupId => kafkaGroupId
   })
   notifies :restart, "service[harness]", :delayed
