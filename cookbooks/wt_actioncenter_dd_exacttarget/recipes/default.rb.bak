@@ -13,7 +13,7 @@ if ENV["deploy_build"] == "true" then
 else
   log "The deploy_build value is not set or is false so we will only update the configuration"
 end
-
+auth_data = data_bag_item('authorization',node.chef_environment)
 install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "exacttarget")
 conf_dir     = File.join(install_dir, "conf")
 tarball      = node['wt_actioncenter_dd_exacttarget']['download_url'].split("/")[-1]
@@ -23,7 +23,7 @@ group        = node['wt_actioncenter_dd_exacttarget']['group']
 ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
 authToken    = auth_data['wt_streamingconfigservice']['authToken']
 ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
-
+kafkaGroupId = node['wt_actioncenter_ddp']['group_id']
 datarequest_max_event_batch_time_ms = node['wt_actioncenter_dd_exacttarget']['datarequest_max_event_batch_time_ms']
 datarequest_max_events_in_batch = node['wt_actioncenter_dd_exacttarget']['datarequest_max_events_in_batch']
 datarequest_failure_delay_before_retry_ms = node['wt_actioncenter_dd_exacttarget']['datarequest_failure_delay_before_retry_ms']
@@ -94,7 +94,8 @@ end
       :sender_min_exponential_backoff_delay_ms => sender_min_exponential_backoff_delay_ms,
       :sender_max_delay_before_dropping_data_ms => sender_max_delay_before_dropping_data_ms,
       :testing_enabled => testing_enabled,
-      :testing_key_column_override => testing_key_column_override
+      :testing_key_column_override => testing_key_column_override,
+	  :kafkaGroupId => kafkaGroupId
     })
     notifies :restart, "service[harness]", :delayed
   end
