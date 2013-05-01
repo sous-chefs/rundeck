@@ -18,7 +18,7 @@ group        = node['wt_actioncenter_management_api']['group']
 ads_host     = URI(node['wt_streamingconfigservice']['config_service_url']).host
 ads_ssl_port = node['wt_streamingconfigservice']['config_service_ssl_port']
 authToken    = auth_data['wt_streamingconfigservice']['authToken']
-
+kafka_topic ="#{node['wt_realtime_hadoop']['datacenter']}_#{node['wt_realtime_hadoop']['pod']}_ActionRoutes"
 log "Install dir: #{install_dir}"
 
 if ENV["deploy_build"] == "true" then
@@ -95,7 +95,8 @@ template "#{conf_dir}/config.properties" do
     :authToken => authToken,
     :secure_config_port => ads_ssl_port,
     :cam_host => node['wt_cam']['cam_service_url'],
-    :cam_port => "80"
+    :cam_port => "80",
+	:kafka_topic => kafka_topic
   })
   notifies :restart, "service[harness]", :delayed
 end 
