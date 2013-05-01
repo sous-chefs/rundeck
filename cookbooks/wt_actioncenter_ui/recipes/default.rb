@@ -56,8 +56,8 @@ artifact_deploy artifact_name do
   owner ui_user
   group ui_group
   environment({ 'RAILS_ENV' => 'production' })
-  shared_directories %w(log tmp pids)
-  symlinks({ 'log' => 'log', 'tmp' => 'tmp' })
+  shared_directories %w(tmp pids)
+  symlinks({ 'tmp' => 'tmp' })
 
   before_extract Proc.new {
     service artifact_name do
@@ -89,6 +89,13 @@ artifact_deploy artifact_name do
       cwd release_path
       environment({'RAILS_ENV' => 'production'})
       user ui_user
+      group ui_group
+    end
+
+    # Set up release/log -> log_dir
+    link File.join(release_path, "log") do
+      to log_dir
+      owner ui_user
       group ui_group
     end
   }
