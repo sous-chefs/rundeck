@@ -1,3 +1,6 @@
+## 2.0.1
+* Gave tar a unique name
+
 ## 2.0.0
 * Changed deployment structure to allow for auto deploy to clean box
 
