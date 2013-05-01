@@ -57,12 +57,11 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
 end
 
 # uncompress the application tarball into the install dir
-execute "tar" do
+execute "Untar_mgmt_api" do
   user  "root"
   group "root"
   cwd install_dir
   command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-  action :nothing
   creates "#{install_dir}/lib"
   notifies :restart, "service[harness]", :delayed
 end 
@@ -72,16 +71,7 @@ end
 execute "copy messages" do
   command "cp #{install_dir}/lib/action-center-messages*.jar #{node['wt_portfolio_harness']['lib_dir']}/."
   action :nothing
-  subscribes :run, resources(:execute => "tar"), :immediately
-end
-
-
-#copy messages jar to harness
-#until we solve the class loader issues.
-execute "copy messages" do
-  command "cp #{install_dir}/lib/action-center-messages*.jar #{node['wt_portfolio_harness']['plugin_dir']}/lib/."
-  action :nothing
-  subscribes :run, resources(:execute => "tar"), :immediately
+  subscribes :run, resources(:execute => "Untar_mgmt_api"), :immediately
 end
 
 template "#{conf_dir}/config.properties" do 

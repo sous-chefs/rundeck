@@ -47,7 +47,7 @@ if ENV["deploy_build"] == "true" then
   directory File.join(install_dir, "lib") do
     action :delete
     recursive true
-    notifies :run, "execute[delete_install_source]"
+    notifies :run, "execute[delete_install_source]", :immediately
   end
 end
 
@@ -98,8 +98,7 @@ execute "Untar harness" do
   group "root"
   cwd install_dir
   command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-  action :nothing
-  subscribes :run, resources(:remote_file => "#{Chef::Config[:file_cache_path]}/#{tarball}"), :immediately
+  creates "#{install_dir}/lib"
   notifies :restart, "service[harness]", :delayed
 end
 
