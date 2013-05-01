@@ -21,11 +21,6 @@ include_recipe "storm"
 java_home = node['java']['java_home']
 install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
 
-if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploying first"
-  include_recipe "storm::undeploy-nimbus"
-end
-
 %w{nimbus stormui}.each do |daemon|
   # control file
   template "#{install_dir}/bin/#{daemon}-control" do
@@ -50,12 +45,6 @@ end
   end
 end
 
-service "nimbus_start" do
-  service_name "nimbus"
-  action [:start]
-end
+service "nimbus_start"
 
-service "stormui_start" do
-  service_name "stormui"
-  action [:start]
-end
+service "stormui"
