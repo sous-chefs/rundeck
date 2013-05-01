@@ -1,3 +1,6 @@
+## 1.0.3
+* Move logs to /var/log/webtrends/actioncenter-ui
+
 ## 1.0.2
 * Added the correct help_url to the attributes
 
