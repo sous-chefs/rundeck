@@ -1,4 +1,7 @@
-## 1.1.5
+## 1.1.7
+* added proxy settings
+
+## 1.1.6
 * minor cleanup and fix for incorrect unistall dir
 
 ## 1.1.5
