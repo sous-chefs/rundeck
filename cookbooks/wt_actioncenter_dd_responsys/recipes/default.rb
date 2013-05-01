@@ -32,6 +32,7 @@ sender_min_exponential_backoff_delay_ms = node['wt_actioncenter_dd_responsys']['
 sender_max_delay_before_dropping_data_ms = node['wt_actioncenter_dd_responsys']['sender_max_delay_before_dropping_data_ms']
 testing_enabled = node['wt_actioncenter_dd_responsys']['testing_enabled']
 testing_key_column_override = node['wt_actioncenter_dd_responsys']['testing_key_column_override']
+proxy_uri = node['wt_common']['http_proxy_url']
 
 log "Install dir: #{install_dir}"
 
@@ -92,7 +93,8 @@ end
       :sender_min_exponential_backoff_delay_ms => sender_min_exponential_backoff_delay_ms,
       :sender_max_delay_before_dropping_data_ms => sender_max_delay_before_dropping_data_ms,
       :testing_enabled => testing_enabled,
-      :testing_key_column_override => testing_key_column_override
+      :testing_key_column_override => testing_key_column_override,
+      :proxy_uri => proxy_uri
     })
     notifies :restart, "service[harness]", :delayed
   end
