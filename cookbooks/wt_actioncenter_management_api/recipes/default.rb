@@ -62,7 +62,6 @@ execute "Untar_mgmt_api" do
   group "root"
   cwd install_dir
   command "tar zxf #{Chef::Config[:file_cache_path]}/#{tarball}"
-  action :nothing
   creates "#{install_dir}/lib"
   notifies :restart, "service[harness]", :delayed
 end 
