@@ -20,7 +20,7 @@
 include_recipe "wt_haproxy::install_#{node['haproxy']['install_method']}"
 
 defaults_timeouts={node['haproxy']['defaults_timeouts']}
-defaults_options={node['haproxy']'[defaults_options']}
+defaults_options={node['haproxy']['defaults_options']}
 
 cookbook_file "/etc/default/haproxy" do
   source "haproxy-default"
