@@ -18,13 +18,11 @@
 
 include_recipe "java"
 include_recipe "runit"
-#include_recipe "zeromq"
 
+install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
 
-if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploy first"
-  include_recipe "storm::undeploy-default"
-end
+node.set['storm']['lib_dir'] = "#{install_dir}/lib"
+node.set['storm']['conf_dir'] = "#{install_dir}/conf"
 
 # install dependency packages
 %w{unzip python zeromq jzmq}.each do |pkg|
@@ -33,6 +31,7 @@ end
   end
 end
 
+#locate the nimbus for this storm cluster
 if node.recipes.include?("storm::nimbus")
   nimbus_host = node
 else
@@ -44,11 +43,6 @@ zookeeper_quorum = Array.new
 search(:node, "role:zookeeper AND chef_environment:#{node.chef_environment}").each do |n|
 	zookeeper_quorum << n[:fqdn]
 end
-
-install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
-
-node.set['storm']['lib_dir'] = "#{install_dir}/lib"
-node.set['storm']['conf_dir'] = "#{install_dir}/conf"
 
 # setup storm group
 group "storm"
@@ -83,7 +77,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/storm-#{node[:storm][:version]}.t
   owner  "storm"
   group  "storm"
   mode   00744
-  not_if "test -f #{Chef::Config[:file_cache_path]}/storm-#{node['storm']['version']}.tar.gz"
+  action :create_if_missing
 end
 
 # uncompress the application tarball into the install directory

@@ -21,11 +21,6 @@ include_recipe "storm"
 java_home = node['java']['java_home']
 install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}"
 
-if ENV["deploy_build"] == "true" then
-  log "The deploy_build value is true so un-deploying first"
-  include_recipe "storm::undeploy-supervisor"
-end
-
   # control file
   template "#{install_dir}/bin/supervisor-control" do
     source  "supervisor-control.erb"
@@ -37,6 +32,7 @@ end
       :log_dir => node['storm']['log_dir'],
       :java_home => java_home
     })
+    notifies :run, "execute[reload_supervisor]"
   end
 
   # runit service
@@ -52,10 +48,6 @@ end
 execute "reload_supervisor" do
   command "sv reload supervisor"
   action :nothing
-  subscribes :run, resources(:template => "#{install_dir}/bin/supervisor-control")
 end
 
-service "supervisor_start" do
-  service_name "supervisor"
-  action [:start]
-end
+service "supervisor"

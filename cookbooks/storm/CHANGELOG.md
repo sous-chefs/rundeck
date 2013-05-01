@@ -1,3 +1,7 @@
+## 1.2.2
+* Removed deploy_build block entirely 
+* Changed remote_file to use :create_if_missing
+
 ## 1.2.1
 * Updated run_list to recipe for determing nimbus node
 
