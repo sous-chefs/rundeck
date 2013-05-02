@@ -160,7 +160,7 @@
         "wt_portfolio_edge_stream_api": "= 1.0.3", 
         "wt_portfolio_edgeservice": "= 1.0.5", 
         "wt_portfolio_harness": "= 2.0.1", 
-        "wt_portfolio_manager": "= 1.1.18", 
+        "wt_portfolio_manager": "= 1.1.19", 
         "wt_portfolio_router": "= 1.0.0", 
         "wt_publishver": "= 0.2.3", 
         "wt_realtime_hadoop": "= 1.0.4", 
@@ -523,7 +523,7 @@
         }, 
         "wt_portfolio_manager": {
             "DEVONLY_download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/.lastSuccessful/Portfolio.Manager.zip", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/59567:id/Portfolio.Manager.zip", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/61206:id/Portfolio.Manager.zip", 
             "portmgr_email_from": "Eng-TestEnvironment@webtrends.com", 
             "portmgr_fulfillment_dl": "toby.mosby@webtrends.com", 
             "portmgr_group_admin": "H.PortMgr.Admins", 
