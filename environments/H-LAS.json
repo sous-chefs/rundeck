@@ -159,7 +159,7 @@
         "wt_portfolio_admin": "= 1.1.15", 
         "wt_portfolio_edge_stream_api": "= 1.0.3", 
         "wt_portfolio_edgeservice": "= 1.0.5", 
-        "wt_portfolio_harness": "= 2.0.1", 
+        "wt_portfolio_harness": "= 2.0.2", 
         "wt_portfolio_manager": "= 1.1.19", 
         "wt_portfolio_router": "= 1.0.0", 
         "wt_publishver": "= 0.2.3", 
