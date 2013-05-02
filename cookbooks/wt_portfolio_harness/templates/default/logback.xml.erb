@@ -37,9 +37,9 @@
         </encoder>
     </appender>
 
-    <root level="DEBUG">
+    <root level="<%= @log_level %>">
         <appender-ref ref="FileLog" />
         <appender-ref ref="ErrorLog" />
-        <appender-ref ref="STDOUT" />
+        <!--<appender-ref ref="STDOUT" />-->
     </root>
 </configuration>
