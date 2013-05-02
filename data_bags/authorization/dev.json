@@ -37,10 +37,10 @@
         "usagedbuser": "wtUI"
     }, 
     "wt_streamingconfigservice": {
-	    "keystoreFileName": "bconfigsvc.staging.dmz.jks",
-        "keystoreFilePassword": "Bijoux01",
-	    "keystoreFileUrl": "http://repo.staging.dmz/repo/artifact/b/streamingconfigservice",
-        "aesKey": "AnOKtesterAESKey"
+        "aesKey": "AnOKtesterAESKey", 
+        "keystoreFileName": "bconfigsvc.staging.dmz.jks", 
+        "keystoreFilePassword": "Bijoux01", 
+        "keystoreFileUrl": "http://repo.staging.dmz/repo/artifact/b/streamingconfigservice"
     }, 
     "wt_streamingmanagementservice": {
         "db_pwd": "bijoux", 
