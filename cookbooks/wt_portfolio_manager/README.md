@@ -38,6 +38,10 @@ Data Bag Items
 * authorization['wt_common']['ui_user'] - User under which the service will run
 * authorization['wt_common']['ui_pass'] - Password for ui_user.
 
+Temporary workaround
+====================
+Available Action Center categories are defined directly in appSettings.config.erb template.
+
 Usage
 =====
 Installation:
