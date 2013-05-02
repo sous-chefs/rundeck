@@ -1,3 +1,7 @@
+## 2.0.2
+* Removed unused undeploy recipe
+* Fixed invalid source delete order
+
 ## 2.0.1
 * Gave tar a unique name
 
