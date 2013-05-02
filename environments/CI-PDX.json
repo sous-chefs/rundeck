@@ -180,7 +180,7 @@
                     "url": "http://repo.staging.dmz/repo/yum/webtrends"
                 }
             ]
-        },
+        }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "LAB-COMMON-PDX", 
@@ -220,13 +220,13 @@
         }, 
         "wt_netacuity": {
             "geo_url": "sgeo.staging.dmz"
-        },
+        }, 
         "wt_realtime_hadoop": {
             "datacenter": "Lab", 
             "environment": "CI-LAS", 
             "pod": "CI"
         }, 
-        "wt_streamingconfigservice": { 
+        "wt_streamingconfigservice": {
             "config_service_url": "http://configsvc.ci-las.os.staging.dmz:8080", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/42832:id/webtrends-streaming-configservice-bin.tar.gz", 
             "includeUnmappedAnalyticsIds": "true"

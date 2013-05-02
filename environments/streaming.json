@@ -87,7 +87,7 @@
             "set swappiness": {
                 "vm.swappiness": "0"
             }
-        },
+        }, 
         "webtrends_server": {
             "apt": [
                 {
