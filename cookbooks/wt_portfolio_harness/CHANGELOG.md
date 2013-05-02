@@ -1,3 +1,6 @@
+## 2.0.2
+* Externalized the logging level
+
 ## 2.0.1 
 * Added unique name to harness untarring
 

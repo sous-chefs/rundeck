@@ -72,8 +72,6 @@ template "#{conf_dir}/kafka.properties" do
     group   "root"
     mode    00644
     variables({
-      :kafka_topic_scs => "#{datacenter}_#{pod}_scsRawHits",
-      :kafka_topic_dc => "#{datacenter}_#{pod}_dcRawHits"
     })
 end
 
@@ -84,6 +82,8 @@ template "#{conf_dir}/config.properties" do
     group   "root"
     mode    00644
     variables({
-      :configservice => "#{config_url}"
+      :configservice => "#{config_url}",
+      :kafka_topic_scs => "#{datacenter}_#{pod}_scsRawHits",
+      :kafka_topic_dc => "#{datacenter}_#{pod}_dcRawHits"
     })
 end
