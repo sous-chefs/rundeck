@@ -1,6 +1,10 @@
 {
     "id": "streaming", 
     "root_password": "$1$zuQzd/Zk$SOuJ3fai1apUP6Ua/trbj/", 
+    "wt_actioncenter_ui": {
+        "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
+        "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
+    }, 
     "wt_portfolio_edgeservice": {
         "usagedbpwd": "bijoux", 
         "usagedbuser": "wtUI"
@@ -8,9 +12,5 @@
     "wt_stream_processor": {
         "usagedbpwd": "bijoux", 
         "usagedbuser": "wtUI"
-    },
-    "wt_actioncenter_ui": {
-        "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
-        "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
     }
 }
