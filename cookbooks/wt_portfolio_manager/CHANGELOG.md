@@ -1,3 +1,6 @@
+## 1.1.20
+* Added configuration so environments file can dictate available/default action center destinations.
+
 ## 1.1.19
 * Added action center available categories until we add support for scoped tokens (to discover from ACMS).
 
