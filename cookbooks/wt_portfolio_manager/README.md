@@ -32,6 +32,8 @@ Attributes
 * node['wt_aps']['aps_url_base'] - Root path portion for accessing APS endpoints in the environment (/aps/ vs /accountprovisioning/, etc).
 * node['wt_streamingconfigservice']['config_service_url'] - Base URL to access the Config Service in the environment.
 * node['wt_management_console']['service_url'] - Base URL to access the OnDemand Management Console in the environment.
+* node['wt_portfolio_manager']['actioncenter_availablecategories'] - Primarily assigns the destination types available during Add (+) on Action Center grid.
+* node['wt_portfolio_manager']['actioncenter_defaultedcategories'] - Assigns destination types to apply when RESET clicked for Action Center, or new Action Center account is added.
  
 Data Bag Items
 ===============
