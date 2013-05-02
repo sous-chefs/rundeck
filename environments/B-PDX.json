@@ -488,9 +488,9 @@
         "wt_streaminglogreplayer": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt248/59600:id/webtrends-streaminglogreplayer-bin.tar.gz", 
             "log_share_mount": "sstore02.staging.dmz:/ifs/bstore/logreplay", 
+            "producer_refresh_interval_sec": 30, 
             "thread_pool_size": 160, 
-            "zookeeper_env": "B-LAS",
-	    "producer_refresh_interval_sec": 30
+            "zookeeper_env": "B-LAS"
         }, 
         "wt_sync": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/SyncService.zip"
