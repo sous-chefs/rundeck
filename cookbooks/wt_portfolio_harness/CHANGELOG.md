@@ -1,3 +1,6 @@
+## 3.0.0
+* Initial creation of the lwrp for deploying plugins 
+
 ## 2.0.1 
 * Added unique name to harness untarring
 
