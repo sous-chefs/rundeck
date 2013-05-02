@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of wt_streaming_collection.
 
+## 1.0.1
+
+* Move topic info from kafka.properties to config.properties
+* add kafka worker count to config.properties
+
 ## 1.0.0:
 
 * Deploy Streaming Collection plugin to portfolio harness
