@@ -143,6 +143,7 @@ log "Updating the template files"
       :install_dir => install_dir,
       :http_port => http_port,
       :log_dir => log_dir,
+      :log_level => node['wt_portfolio_harness']['log_level'],
       :wt_monitoring => node['wt_monitoring'],
       :graphite_enabled => node['wt_portfolio_harness']['graphite_enabled'],
       :graphite_interval => node['wt_portfolio_harness']['graphite_interval'],
