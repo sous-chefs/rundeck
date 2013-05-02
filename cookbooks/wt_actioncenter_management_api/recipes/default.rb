@@ -22,11 +22,22 @@ kafka_topic ="#{node['wt_realtime_hadoop']['datacenter']}_#{node['wt_realtime_ha
 log "Install dir: #{install_dir}"
 
 if ENV["deploy_build"] == "true" then
-  directory install_dir do
-    action :delete
-    recursive true
-    notifies :run, "execute[delete_install_source]"
+   # delete the install tar ball
+  execute "delete_mgmtapi_source" do
+    user "root"
+    group "root"
+    command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
+    action :run
   end
+end
+
+
+# download the application tarball
+remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
+  source download_url
+  mode 00644
+  action :create_if_missing
+  notifies :delete, "directory[#{install_dir}]", :immediately
 end
 
 # create the directories
@@ -38,22 +49,6 @@ end
     recursive true
     action :create
   end
-end
-
-
-# delete the install tar ball
-execute "delete_install_source" do
-  user "root"
-  group "root"
-  command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
-  action :nothing
-end
-  
-# download the application tarball
-remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
-  source download_url
-  mode 00644
-  action :create_if_missing
 end
 
 # uncompress the application tarball into the install dir
