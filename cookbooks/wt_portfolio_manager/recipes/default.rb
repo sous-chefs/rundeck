@@ -135,7 +135,9 @@ template "#{install_dir}\\appSettings.config" do
     :portmgr_email_from => node['wt_portfolio_manager']['portmgr_email_from'],
     :streams_ui_url => node['wt_streaming_viz']['streams_ui_url'],
     :auth_url => node['wt_sauth']['auth_service_url'],
-    :portmgr_support_dl => node['wt_portfolio_manager']['portmgr_support_dl']
+    :portmgr_support_dl => node['wt_portfolio_manager']['portmgr_support_dl'],
+    :actioncenter_availablecategories => node['wt_portfolio_manager']['actioncenter_availablecategories'],
+    :actioncenter_defaultedcategories => node['wt_portfolio_manager']['actioncenter_defaultedcategories']
   )
 end
 

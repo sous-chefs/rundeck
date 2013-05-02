@@ -39,6 +39,7 @@
     <add key="streams.url" value="<%= @streams_ui_url %>" />
 
     <!-- Action Center overrides -->
-    <add key="actioncenter.availablecategories" value="{&quot;categories&quot;:[{&quot;name&quot;:&quot;EmailRemarketing&quot;,&quot;max_actions&quot;:25,&quot;max_delivery_events&quot;:1500000,&quot;destination&quot;:[{&quot;name&quot;:&quot;Responsys&quot;},{&quot;name&quot;:&quot;ExactTarget&quot;},{&quot;name&quot;:&quot;Silverpop&quot;},{&quot;name&quot;:&quot;Webtrends&quot;}]}]}" />
+    <add key="actioncenter.availablecategories" value="<%= @actioncenter_availablecategories%>"/>
+    <add key="actioncenter.defaultedcategories" value="<%= @actioncenter_defaultedcategories%>"/>
 
 </appSettings>
