@@ -6,7 +6,6 @@ configservice.refresh.seconds=600
 scs.worker.count = <%=node["wt_streaming_collection"]["scs_worker_count"]%>
 dc.worker.count = <%=node["wt_streaming_collection"]["dc_worker_count"]%>
 id.worker.count = <%=node["wt_streaming_collection"]["id_worker_count"]%>
-kafka.worker.count = <%=node["wt_streaming_collection"]["kafka_worker_count"]%>
 
 router.topic.scs=<%= @kafka_topic_scs %>
 router.topic.dc=<%= @kafka_topic_dc %>
