@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: openldap
-# Recipe:: default
+# Recipe:: master
 #
-# Copyright 2008-2009, Opscode, Inc.
+# Copyright 2012, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,3 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+node.default['openldap']['slapd_type'] = 'master'
+
+include_recipe "openldap::server"
+
