@@ -86,6 +86,15 @@ Sets the `node['openldap']['slapd_type']` to slave, then includes the
 `node['openldap']['slapd_master']` attributes must be set in the JSON
 attributes file passed to `chef-solo`.
 
+### server_backup
+
+* `openldap[:server_backup][:num_backups_retained]` - The number of backups ldap backups
+  to retain
+* `openldap[:server_backup][:backup_nfs_mount]` - The path to the NFS export.  An example
+mount would be: "server.dmz:/path"
+* `openldap[:server_backup][:mount_path]` - Where to mount the NFS export on your local
+system.  The folder will be created recursively so it doesn't need to already exist.
+
 Usage
 =====
 
