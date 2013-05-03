@@ -475,19 +475,19 @@
                     "topic": "Lab_B_scsRawHits"
                 }, 
                 {
-                    "host": "ldc01.staging.dmz", 
+                    "host": "lscs01.staging.dmz", 
                     "topic": "Lab_B_dcRawHits"
                 }, 
                 {
-                    "host": "ldc02.staging.dmz", 
+                    "host": "lscs02.staging.dmz", 
                     "topic": "Lab_B_dcRawHits"
                 }, 
                 {
-                    "host": "edc01.staging.dmz", 
+                    "host": "escs01.staging.dmz", 
                     "topic": "Lab_B_dcRawHits"
                 }, 
                 {
-                    "host": "edc02.staging.dmz", 
+                    "host": "escs02.staging.dmz", 
                     "topic": "Lab_B_dcRawHits"
                 }, 
                 {
