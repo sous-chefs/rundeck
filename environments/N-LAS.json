@@ -243,13 +243,12 @@
             "jdk_version": "7"
         }, 
         "kafka": {
-            "data_mount": "/dev/sdb", 
-            "data_partition": "/dev/sdb1", 
+	    "chroot_suffix": "brokers",
             "download_url": "http://repo.staging.dmz/repo/linux/kafka/", 
             "log_flush_scheduler_time_interval": "500", 
             "log_flush_time_interval": "500", 
             "log_retention_hours": "2", 
-            "num_partitions": "3", 
+            "num_partitions": "4", 
             "threads": "16", 
             "version": "0.7.1"
         }, 
