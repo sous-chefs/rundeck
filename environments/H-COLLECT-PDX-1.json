@@ -159,7 +159,7 @@
         "wt_static_tag_host": "= 0.0.4", 
         "wt_storm_streaming": "= 2.4.10", 
         "wt_stream_processor": "= 1.0.0", 
-        "wt_streaming_collection": "= 1.0.1", 
+        "wt_streaming_collection": "= 1.0.2", 
         "wt_streaming_viz": "= 1.2.1", 
         "wt_streaminganalysis_monitor": "= 1.0.7", 
         "wt_streamingapi": "= 1.2.6", 
