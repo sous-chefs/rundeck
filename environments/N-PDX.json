@@ -443,7 +443,7 @@
             "search_hostname": "nsearch01.staging.dmz"
         }, 
         "wt_streamingconfigservice": {
-            "config_service_url": "http://nconfigsvc.staging.dmz"
+            "config_service_url": "http://nutil01.staging.dmz:8080"
         }, 
         "wt_streaminglogreplayer": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.1/0220/webtrends-streaminglogreplayer-bin.tar.gz", 
