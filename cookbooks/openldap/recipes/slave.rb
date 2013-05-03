@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: openldap
-# Recipe:: client
+# Recipe:: slave
 #
-# Copyright 2008-2009, Opscode, Inc.
+# Copyright 2012, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,12 +17,16 @@
 # limitations under the License.
 #
 
-package "ldap-utils" do
-  action :upgrade
+node.default['openldap']['slapd_type'] = 'slave'
+
+if Chef::Config[:solo]
+  Chef::Log.warn("To use #{cookbook_name}::#{recipe_name} with solo, set attributes node['openldap']['slapd_replpw'] and node['openldap']['slapd_master'].")
+else
+  ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
+  node.default['openldap']['slapd_replpw'] = secure_password
+  node.default['openldap']['slapd_master'] = search(:nodes, 'openldap_slapd_type:master').map {|n| n['openldap']['server']}.first
+  node.save
 end
 
-directory node['openldap']['ssl_dir'] do
-  mode 00755
-  owner "root"
-  group "root"
-end
+include_recipe "openldap::server"
+
