@@ -20,7 +20,7 @@
 package "nfs-common"
 
 directory node['openldap']['server_backup']['mount_path'] do
-	action :create
+  action :create
 end
 
 mount node['openldap']['server_backup']['mount_path'] do
