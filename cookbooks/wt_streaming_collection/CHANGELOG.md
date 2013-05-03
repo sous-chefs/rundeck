@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of wt_streaming_collection.
 
+## 1.0.2
+
+* Remve kafka worker count
+
 ## 1.0.1
 
 * Move topic info from kafka.properties to config.properties
