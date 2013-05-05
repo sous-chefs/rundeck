@@ -22,8 +22,8 @@ default['wt_streaminglogreplayer']['znode_root'] = "/LogReplayer"
 default['wt_streaminglogreplayer']['jmx_port'] = 9999
 default['wt_streaminglogreplayer']['minimum_log_file_age_sec'] = 30
 default['wt_streaminglogreplayer']['producer_refresh_interval_sec'] = 120
-default['wt_streaminglogreplayer']['old_log_warning'] = 15
-default['wt_streaminglogreplayer']['old_log_crit'] = 20
+default['wt_streaminglogreplayer']['old_log_warn'] = "15"
+default['wt_streaminglogreplayer']['old_log_crit'] = "20"
 
 # optionally specify the environment where ZooKeeper nodes are located
 default['wt_streaminglogreplayer']['zookeeper_env'] = nil
