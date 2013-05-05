@@ -1,3 +1,6 @@
+## 1.3.1
+* Made nagios settings an attribute to allow for overriding
+
 ## 1.3.0
 * Start using runit to stop the service and then try to kill the service
   during undeploy.
