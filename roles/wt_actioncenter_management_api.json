@@ -1,6 +1,12 @@
 {
   "name": "wt_actioncenter_management_api",
   "default_attributes": {
+    "wt_haproxy":
+    {
+      "endpoint":"actioncenter",
+      "method": "roundrobin",
+      "healthcheck": "enabled"
+    }
   },
   "json_class": "Chef::Role",
   "env_run_lists": {
