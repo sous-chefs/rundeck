@@ -448,7 +448,7 @@
             "geo_url": "sgeo.staging.dmz"
         }, 
         "wt_portfolio_admin": {
-            "account_ui_url": "https://naccount.webtrends.com", 
+            "account_ui_url": "http://nportadm01.staging.dmz", 
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.2/0315/Portfolio.Admin.zip", 
             "proxy_enabled": "true"
         }, 
@@ -475,7 +475,7 @@
             "pod": "N"
         }, 
         "wt_sauth": {
-            "auth_service_url": "https://nsauth.webtrends.com", 
+            "auth_service_url": "http://nauth01.staging.dmz", 
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.2.1/0220/Auth.zip"
         }, 
         "wt_scheddb": {
