@@ -1,3 +1,6 @@
+## 1.1.8
+* added public certificate
+
 ## 1.1.7
 * added proxy settings
 
