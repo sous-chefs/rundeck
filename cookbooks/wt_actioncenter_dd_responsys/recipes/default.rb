@@ -47,6 +47,13 @@ log "Install dir: #{install_dir}"
   end
 end
 
+if node.recipes.include?("wt_actioncenter_ddp::default") then
+	# Optimization : there is no need to go thru proxy if we can access partner endpoints directly from DDP box
+	# All other boxes behind the load balancer must go through proxy
+	proxy_uri = ""
+end
+
+
 if ENV["deploy_build"] == "true" then
   log "The deploy_build value is true so we will grab the tar ball and install"
 
