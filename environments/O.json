@@ -432,7 +432,9 @@
         "wt_streaminglogreplayer": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.1.1/1119/webtrends-streaminglogreplayer-bin.tar.gz", 
             "log_share_mount": "sstore02.staging.dmz:/ifs/ostore/logreplay", 
-            "thread_pool_size": 160
+            "thread_pool_size": 160,
+            "old_log_warn": "20",
+            "old_log_crit": "30"
         }, 
         "wt_streamingmanagementservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/58213:id/webtrends-streaming-managementservice-bin.tar.gz", 
