@@ -511,7 +511,7 @@
             }
         }, 
         "wt_stream_processor": {
-            "download_url": "http://repo.staging.dmz/repo/product/srt/1.3/0405/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://repo.staging.dmz/repo/product/srt/1.3/0405/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz",
 	    "zk_domains": "staging.dmz"
         }, 
         "wt_streaming_barebones": {
