@@ -131,7 +131,7 @@
         "wt_actioncenter_dd_webtrendsemaildemo": "= 1.1.6", 
         "wt_actioncenter_ddp": "= 1.1.2", 
         "wt_actioncenter_ds_streaming": "= 1.1.3", 
-        "wt_actioncenter_management_api": "= 2.0.1", 
+        "wt_actioncenter_management_api": "= 2.0.2", 
         "wt_actioncenter_ui": "= 1.0.3", 
         "wt_analytics_ui": "= 1.1.6", 
         "wt_base": "= 1.1.1", 
@@ -405,7 +405,7 @@
         }, 
         "wt_actioncenter_management_api": {
             "ac_management_url": "https://bapi.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/61356:id/action-center-management-service-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/61699:id/action-center-management-service-bin.tar.gz"
         }, 
         "wt_actioncenter_ui": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/61270:id/action-center.tar.gz", 
