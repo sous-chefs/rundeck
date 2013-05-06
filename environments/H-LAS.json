@@ -112,7 +112,7 @@
         "thrift-hbase-php5": "= 0.0.2", 
         "tmux": "= 1.2.2", 
         "tomcat": "= 0.11.0", 
-        "ubuntu": "= 1.1.0", 
+        "ubuntu": "= 1.1.2", 
         "ucspi-tcp": "= 1.0.0", 
         "ulimit": "= 0.0.1", 
         "unbound": "= 0.1.1", 
