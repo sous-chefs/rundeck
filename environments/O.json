@@ -306,7 +306,7 @@
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
-            "host": "amasterdb01.staging.dmz"
+            "host": "cmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {}, 
         "wt_monitoring": {
