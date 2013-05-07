@@ -27,7 +27,7 @@ frontend http
   maxconn <%= node['haproxy']['frontend_max_connections'] %>
   bind <%= node['haproxy']['incoming_address'] %>:<%= node['haproxy']['incoming_port'] %>
 <% @proxy_inf.keys.each do |p| -%>
-	acl <%= 'has_' + p.name %>  path_beg <%= p["default_attributes"]["endpoint"] %>
+	acl <%= 'has_' + p.name %>  path_beg <%= p.default_attributes["wt_haproxy"]["endpoint"] %>
 	use_backend <%= p.name %> if <%= 'has_' + p.name %>
 <% end -%>
   default_backend servers-http
