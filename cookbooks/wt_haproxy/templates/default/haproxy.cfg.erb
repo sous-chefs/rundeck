@@ -26,22 +26,18 @@ defaults
 frontend http
   maxconn <%= node['haproxy']['frontend_max_connections'] %>
   bind <%= node['haproxy']['incoming_address'] %>:<%= node['haproxy']['incoming_port'] %>
-  default_backend servers-http
-
-<% if node['haproxy']['enable_ssl'] -%>
-frontend https
-  maxconn <%= node['haproxy']['frontend_ssl_max_connections'] %>
-  mode tcp
-  bind <%= node['haproxy']['ssl_incoming_address'] %>:<%= node['haproxy']['ssl_incoming_port'] %>
-  default_backend servers-https
+<% @proxy_inf.keys.each do |p| -%>
+	acl <%= 'has_' + p.name %>  path_beg <%= p.default_attributes["endpoint"] %>
+	use_backend <%= p.name %> if <%= 'has_' + p.name %>
 <% end -%>
+  default_backend servers-http
 
 backend servers-http
   server localhost 127.0.0.1:4000 weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
   server localhost 127.0.0.1:4001 weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
 
 <% @proxy_inf.keys.each do |p| -%>
-backend <%= p %>
+backend <%= p.name %>
 	<% @proxy_inf[p].each do |svr| %>
 server <%= svr.name %> <%= svr.ipaddress %> weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
 	<% end -%>
