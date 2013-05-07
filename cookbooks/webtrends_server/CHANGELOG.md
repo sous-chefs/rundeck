@@ -1,3 +1,6 @@
+## 1.9.9
+* Removed invalid centos gem install
+
 ## 1.9.8
 * Removed backslash when removing rubygems on windows
 * Initial addition of platform based install directory attributes
