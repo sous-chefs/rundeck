@@ -34,12 +34,12 @@ frontend http
 
 backend servers-http
   server localhost 127.0.0.1:4000 weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
-  server localhost 127.0.0.1:4001 weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
 
 <% @proxy_inf.keys.each do |p| -%>
 backend <%= p.name %>
 	<% @proxy_inf[p].each do |svr| %>
-server <%= svr.name %> <%= svr.ipaddress %> weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
+	server <%= svr.name %> <%= svr.ipaddress %> weight 1 maxconn <%= node['haproxy']['member_max_connections'] %>  <%= p.default_attributes["wt_haproxy"]["healthcheck"] %>
+
 	<% end -%>
 
 <% end-%>
