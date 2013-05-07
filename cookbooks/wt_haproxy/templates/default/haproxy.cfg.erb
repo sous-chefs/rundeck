@@ -40,16 +40,14 @@ backend servers-http
   server localhost 127.0.0.1:4000 weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
   server localhost 127.0.0.1:4001 weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
 
-<% if node['haproxy']['enable_ssl'] -%>
-backend servers-https
-  mode tcp
-  option ssl-hello-chk
-  server localhost 127.0.0.1:4000 weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
-  server localhost 127.0.0.1:4001 weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
-  <% if node["haproxy"]["ssl_httpchk"] -%>
-  option httpchk <%= node["haproxy"]["ssl_httpchk"] %>
-  <% end -%>
-<% end -%>
+<% @proxy_inf.keys.each do |p| -%>
+backend <%= p %>
+	<% @proxy_inf[p].each do |svr| %>
+server <%= svr.name %> <%= svr.ipaddress %> weight 1 maxconn <%= node['haproxy']['member_max_connections'] check
+	<% end -%>
+<% end-%>
+
+
 
 <% if node['haproxy']['enable_admin'] -%>
 listen admin <%= node['haproxy']['admin']['address_bind'] %>:<%= node['haproxy']['admin']['port'] %>
