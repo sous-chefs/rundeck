@@ -127,7 +127,7 @@
         "webtrends_server": "= 1.9.8", 
         "windows": "= 1.8.4", 
         "wt_actioncenter_dd_exacttarget": "= 1.1.2", 
-        "wt_actioncenter_dd_responsys": "= 1.1.8", 
+        "wt_actioncenter_dd_responsys": "= 1.1.9", 
         "wt_actioncenter_dd_webtrendsemaildemo": "= 1.1.6", 
         "wt_actioncenter_ddp": "= 1.1.2", 
         "wt_actioncenter_ds_streaming": "= 1.1.3", 
@@ -386,26 +386,26 @@
             "db_server": "bcamdb01.staging.dmz"
         }, 
         "wt_actioncenter_dd_exacttarget": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt382/61345:id/action-center-integrations-exacttarget-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt382/61998:id/action-center-integrations-exacttarget-bin.tar.gz"
         }, 
         "wt_actioncenter_dd_responsys": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/61886:id/action-center-integrations-responsys-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/62000:id/action-center-integrations-responsys-bin.tar.gz", 
             "testing_enabled": "true", 
             "testing_key_column_override": "173453480"
         }, 
         "wt_actioncenter_dd_webtrendsemaildemo": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/61889:id/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/62002:id/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_actioncenter_ddp": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/61875:id/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/62004:id/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_actioncenter_ds_streaming": {
             "auth_user_id": "226", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/61341:id/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/62044:id/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_actioncenter_management_api": {
             "ac_management_url": "https://bapi.webtrends.com", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/61883:id/action-center-management-service-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/62080:id/action-center-management-service-bin.tar.gz"
         }, 
         "wt_actioncenter_ui": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/61849:id/action-center.tar.gz", 
@@ -543,7 +543,7 @@
             "edgeserviceurl": "http://bwapi.staging.dmz"
         }, 
         "wt_portfolio_harness": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/60988:id/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/62061:id/webtrends-portfolio-harness-develop-SNAPSHOT.tar.gz"
         }, 
         "wt_portfolio_manager": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/61317:id/Portfolio.Manager.zip", 
