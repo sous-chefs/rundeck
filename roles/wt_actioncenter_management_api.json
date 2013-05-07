@@ -3,7 +3,7 @@
   "default_attributes": {
     "wt_haproxy":
     {
-      "endpoint":"actioncenter",
+      "endpoint":"/hapi.webtrends.com/actioncenter/",
       "method": "roundrobin",
       "healthcheck": "enabled"
     }
