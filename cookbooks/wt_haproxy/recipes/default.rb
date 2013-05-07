@@ -60,7 +60,7 @@ end
 ## Here's where we actually find the nodes we want
 proxy_roles.each do |p|
   node_a = search(:node, "role:#{p.name}#{search_query}") ##Here we are searching for all the nodes that fit our criteria. 
-  proxy_hash[p] = node_a
+  proxy_hash[p.name] = node_a
 end
 
 
