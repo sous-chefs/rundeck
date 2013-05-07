@@ -43,7 +43,7 @@ backend servers-http
 <% @proxy_inf.keys.each do |p| -%>
 backend <%= p %>
 	<% @proxy_inf[p].each do |svr| %>
-server <%= svr.name %> <%= svr.ipaddress %> weight 1 maxconn <%= node['haproxy']['member_max_connections'] check
+server <%= svr.name %> <%= svr.ipaddress %> weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
 	<% end -%>
 <% end-%>
 
