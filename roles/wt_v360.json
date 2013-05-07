@@ -1,0 +1,18 @@
+{
+  "name": "wt_v360",
+  "default_attributes": {
+    "wt_haproxy":
+    {
+      "endpoint":"v360",
+      "method": "roundrobin",
+      "healthcheck": "enabled"
+    }
+  },
+  "json_class": "Chef::Role",
+  "env_run_lists": {
+  },
+  "run_list": [
+  ],
+  "description": "Webtrends v360",
+  "chef_type": "role"
+}
