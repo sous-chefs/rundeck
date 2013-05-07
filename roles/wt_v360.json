@@ -3,7 +3,7 @@
   "default_attributes": {
     "wt_haproxy":
     {
-      "endpoint":"v360",
+      "endpoint":"/hapi.webtrends.com/Services/",
       "method": "roundrobin",
       "healthcheck": "enabled"
     }
