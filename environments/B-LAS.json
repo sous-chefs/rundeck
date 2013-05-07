@@ -408,7 +408,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/62080:id/action-center-management-service-bin.tar.gz"
         }, 
         "wt_actioncenter_ui": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/62095:id/action-center.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/62100:id/action-center.tar.gz", 
             "release": "1.0.0"
         }, 
         "wt_analytics_ui": {
