@@ -457,7 +457,7 @@
         }, 
         "wt_portfolio_edgeservice": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.3/0405/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz", 
-            "edgeserviceurl": "http://nwapi.staging.dmz"
+            "edgeserviceurl": "http://nwapi01.staging.dmz:8080"
         }, 
         "wt_portfolio_manager": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.3/0405/Portfolio.Manager.zip", 
@@ -490,7 +490,7 @@
             "augment_bolt_executors": 16, 
             "augment_bolt_tasks": 16, 
             "data_request_url": "http://nedge01.staging.dmz:8080",
-	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/61028:id/streaming-analysis-bin.tar.gz",
+	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/62066:id/streaming-analysis-bin.tar.gz",
             "event_stream_bolt_executors": 8, 
             "event_stream_bolt_tasks": 8, 
             "response_bolt_executors": 4, 
@@ -511,7 +511,8 @@
             }
         }, 
         "wt_stream_processor": {
-            "download_url": "http://repo.staging.dmz/repo/product/srt/1.3/0405/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://repo.staging.dmz/repo/product/srt/1.3/0405/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz",
+	    "zk_domains": "staging.dmz"
         }, 
         "wt_streaming_barebones": {
             "download_url": "http://repo.staging.dmz/repo/product/srt/1.3/0405/webtrends-streaming-barebones-bin.tar.gz", 
