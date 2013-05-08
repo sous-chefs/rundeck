@@ -24,15 +24,12 @@ install_dir = "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}
   # control file
   template "#{install_dir}/bin/supervisor-control" do
     source  "supervisor-control.erb"
-    owner "root"
-    group "root"
     mode  00755
     variables({
       :install_dir => install_dir,
       :log_dir => node['storm']['log_dir'],
       :java_home => java_home
     })
-    notifies :run, "execute[reload_supervisor]"
   end
 
   # runit service
