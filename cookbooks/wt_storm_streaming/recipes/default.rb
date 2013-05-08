@@ -178,11 +178,12 @@ zookeeper-3.3.6.jar
   end
 end
 
-execute "chown" do
-  user  "root"
-  group "root"
-  command "chown storm:storm -R #{node['storm']['install_dir']}"
+directory node['storm']['install_dir'] do
+  owner "storm"
+  group "storm"
+  recursive true
 end
+
 
 # template out the log4j config with our custom logging settings
 template "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/log4j/storm.log.properties" do
@@ -200,29 +201,29 @@ directory "#{node['storm']['conf_dir']}/cache" do
   mode 00755
 end
 
-file "#{node['storm']['conf_dir']}/storm.yaml" do
-  owner "root"
-  group "root"
-  mode "00644"
-  action :delete
-end
+# file "#{node['storm']['conf_dir']}/storm.yaml" do
+#   owner "root"
+#   group "root"
+#   mode "00644"
+#   action :delete
+# end
 
-# template the storm yaml file
-template "#{node['storm']['conf_dir']}/storm.yaml" do
-  source "storm.yaml.erb"
-  owner  "storm"
-  group  "storm"
-  mode   00644
-  variables(
-    :worker_childopts => node['storm']['worker']['childopts'],
-    :zookeeper_root => zookeeper_root,
-    :transactional_zookeeper_root => transactional_zookeeper_root,
-    :storm_config => node['wt_storm_streaming'],
-    :zookeeper_quorum => zookeeper_quorum,
-    :zookeeper_clientport  => zookeeper_clientport,
-    :nimbus_host => nimbus_host
-  )
-end
+# # template the storm yaml file
+# template "#{node['storm']['conf_dir']}/storm.yaml" do
+#   source "storm.yaml.erb"
+#   owner  "storm"
+#   group  "storm"
+#   mode   00644
+#   variables(
+#     :worker_childopts => node['storm']['worker']['childopts'],
+#     :zookeeper_root => zookeeper_root,
+#     :transactional_zookeeper_root => transactional_zookeeper_root,
+#     :storm_config => node['wt_storm_streaming'],
+#     :zookeeper_quorum => zookeeper_quorum,
+#     :zookeeper_clientport  => zookeeper_clientport,
+#     :nimbus_host => nimbus_host
+#   )
+# end
 
 # # template the actual storm config file
 # template "#{node['storm']['conf_dir']}/application.conf" do
@@ -320,13 +321,13 @@ if is_nimbus
     subscribes :run, resources(:template => "#{node['storm']['install_dir']}/storm-#{node['storm']['version']}/conf/config.properties"), :immediately
   end
 
-  # execute "start-topo" do
-  #   command "bin/storm jar lib/streaming-analysis.jar com.webtrends.streaming.analysis.storm.topology.StreamingTopology"
-  #   user "storm"
-  #   cwd "/opt/storm/current"
-  #   action :nothing
-  #   subscribes :run, "execute[tar]"
-  # end   
+  execute "start-topo" do
+    command "bin/storm jar lib/streaming-analysis.jar com.webtrends.streaming.analysis.storm.topology.StreamingTopology"
+    user "storm"
+    cwd "/opt/storm/current"
+    action :nothing
+    subscribes :run, "execute[topo_tar]"
+  end   
 else #Node must be supervisor
   execute "reload_streaming_supervisor" do
     command "sv reload supervisor"
