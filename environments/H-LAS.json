@@ -546,7 +546,7 @@
             "augment_bolt_executors": 24, 
             "augment_bolt_tasks": 24, 
             "data_request_url": "http://hedge01.staging.dmz:8080", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/62302:id/streaming-analysis-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/62335:id/streaming-analysis-bin.tar.gz", 
             "event_stream_bolt_executors": 12, 
             "event_stream_bolt_tasks": 12, 
             "response_bolt_executors": 6, 
@@ -559,7 +559,8 @@
             }, 
             "topic_list": [
                 "Lab_H_lrRawHits:6", 
-                "las_01_scsRawHits:6"
+                "las_01_scsRawHits:6",
+                "Lab_H_scsRawHits:1",
             ], 
             "tracer_dcsid": "dcsqm14ha10000s142fw1a8lw_6m3f", 
             "visitor": {
