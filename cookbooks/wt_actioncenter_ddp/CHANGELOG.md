@@ -1,3 +1,6 @@
+## 1.1.3
+* Adding typesafe config for DDP
+
 ## 1.1.2
 * Added secured config service configuration
 
