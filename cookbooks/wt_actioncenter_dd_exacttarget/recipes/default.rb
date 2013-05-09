@@ -81,7 +81,7 @@ if ENV["deploy_build"] == "true" then
   end
 end
 
-%w[config.properties].each do | template_file|
+%w[config.properties exacttarget.conf].each do | template_file|
   template "#{conf_dir}/#{template_file}" do
     source "#{template_file}.erb"
     owner "root"
@@ -89,7 +89,7 @@ end
     mode 00644
     variables({
       :config_host => ads_host,
-	  :authToken => authToken,
+      :authToken => authToken,
       :secure_config_host => ads_host,
       :secure_config_port => ads_ssl_port,
       :datarequest_max_event_batch_time_ms => datarequest_max_event_batch_time_ms,
