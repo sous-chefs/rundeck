@@ -1,3 +1,6 @@
+## 1.1.10
+* Adding typesafe config
+
 ## 1.1.9
 * Fix for AC-228 : Data Destination Server is uploading event data to Responsys through the proxy
 

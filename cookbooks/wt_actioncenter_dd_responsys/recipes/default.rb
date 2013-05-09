@@ -84,7 +84,7 @@ if ENV["deploy_build"] == "true" then
   end
 end
 
-%w[config.properties ResponsysServerCertificate.cer].each do | template_file|
+%w[config.properties responsys.conf ResponsysServerCertificate.cer].each do | template_file|
   template "#{conf_dir}/#{template_file}" do
     source "#{template_file}.erb"
     owner "root"
