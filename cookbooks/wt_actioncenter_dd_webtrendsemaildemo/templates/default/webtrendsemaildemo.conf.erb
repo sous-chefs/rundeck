@@ -1,0 +1,14 @@
+webtrendsemaildemo {
+	configData.host="<%= @config_host %>"
+	configData.authToken="<%=@authToken%>"
+	secureConfigData.host="<%= @secure_config_host %>"
+	secureConfigData.port="<%= @secure_config_port %>"
+	datarequest.maxEventBatchTimeMs="<%= @datarequest_max_event_batch_time_ms%>"
+	datarequest.maxEventsInBatch="<%= @datarequest_max_events_in_batch %>"
+	datarequest.failureDdpRetryDelayMs="<%=@datarequest_failure_delay_before_retry_ms%>"
+	datarequest.noDataDdpRetryDelayMs="<%=@datarequest_nodata_delay_before_retry_ms%>"
+	sender.maxSendRetries="<%= @sender_max_send_retries %>"
+	sender.minExponentialBackoffDelayMs="<%=@sender_min_exponential_backoff_delay_ms %>"
+	sender.maxDelayBeforeDroppingDataMs ="<%=@sender_max_delay_before_dropping_data_ms %>"
+	
+}

@@ -1,4 +1,7 @@
-## 1.1.5
+## 1.1.7
+* Adding typesafe config
+
+## 1.1.6
 * minor cleanup
 
 ## 1.1.5
