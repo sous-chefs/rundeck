@@ -73,23 +73,25 @@ if ENV["deploy_build"] == "true" then
   end
 end
 
-template "#{conf_dir}/config.properties" do
-  source "config.properties.erb"
-  owner "root"
-  group "root"
-  mode 00644
-  variables({
-    :config_host => ads_host,
-	:authToken => authToken,
-    :secure_config_host => ads_host,
-    :secure_config_port => ads_ssl_port,
-    :datarequest_max_event_batch_time_ms => datarequest_max_event_batch_time_ms,
-    :datarequest_max_events_in_batch => datarequest_max_events_in_batch,
-    :datarequest_failure_delay_before_retry_ms => datarequest_failure_delay_before_retry_ms,
-    :datarequest_nodata_delay_before_retry_ms => datarequest_nodata_delay_before_retry_ms,
-    :sender_max_send_retries => sender_max_send_retries,
-    :sender_min_exponential_backoff_delay_ms => sender_min_exponential_backoff_delay_ms,
-    :sender_max_delay_before_dropping_data_ms =>sender_max_delay_before_dropping_data_ms
-  })
-  notifies :restart, "service[harness]", :delayed
+%w[config.properties ddp.conf].each do | template_file|
+	template "#{conf_dir}/#{template_file}" do
+  		source "#{template_file}.erb"
+  		owner "root"
+  		group "root"
+  		mode 00644
+  		variables({
+    		:config_host => ads_host,
+			:authToken => authToken,
+    		:secure_config_host => ads_host,
+    		:secure_config_port => ads_ssl_port,
+    		:datarequest_max_event_batch_time_ms => datarequest_max_event_batch_time_ms,
+    		:datarequest_max_events_in_batch => datarequest_max_events_in_batch,
+    		:datarequest_failure_delay_before_retry_ms => datarequest_failure_delay_before_retry_ms,
+    		:datarequest_nodata_delay_before_retry_ms => datarequest_nodata_delay_before_retry_ms,
+    		:sender_max_send_retries => sender_max_send_retries,
+    		:sender_min_exponential_backoff_delay_ms => sender_min_exponential_backoff_delay_ms,
+   			:sender_max_delay_before_dropping_data_ms =>sender_max_delay_before_dropping_data_ms
+  		})
+  		notifies :restart, "service[harness]", :delayed
+	end
 end
