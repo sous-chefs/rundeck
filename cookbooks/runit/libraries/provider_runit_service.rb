@@ -142,10 +142,8 @@ class Chef
         end
 
         def enable_service
-          unless node['platform'] == 'gentoo'
-            Chef::Log.debug("Creating symlink in service_dir for #{new_resource.service_name}")
-            service_link.run_action(:create)
-          end
+          Chef::Log.debug("Creating symlink in service_dir for #{new_resource.service_name}")
+          service_link.run_action(:create)
 
           Chef::Log.debug("waiting until named pipe #{service_dir_name}/supervise/ok exists.")
           until ::FileTest.pipe?("#{service_dir_name}/supervise/ok") do
@@ -401,22 +399,18 @@ EOF
 
         def lsb_init
           return @lsb_init unless @lsb_init.nil?
+          initfile = ::File.join( '/etc', 'init.d', new_resource.service_name)
           if node['platform'] == 'debian'
-            @lsb_init = Chef::Resource::Template.new(::File.join( '/etc',
-                                                                  'init.d',
-                                                                  new_resource.service_name),
-                                                      run_context)
+            ::File.unlink(initfile) if ::File.symlink?(initfile)
+            @lsb_init = Chef::Resource::Template.new(initfile, run_context)
             @lsb_init.owner('root')
             @lsb_init.group('root')
             @lsb_init.mode(00755)
             @lsb_init.cookbook('runit')
             @lsb_init.source('init.d.erb')
-            @lsb_init.variables(:options => new_resource.options)
+            @lsb_init.variables(:name => new_resource.service_name)
           else
-            @lsb_init = Chef::Resource::Link.new(::File.join( '/etc',
-                                                              'init.d',
-                                                              new_resource.service_name),
-                                                  run_context)
+            @lsb_init = Chef::Resource::Link.new(initfile, run_context)
             @lsb_init.to(new_resource.sv_bin)
           end
           @lsb_init
