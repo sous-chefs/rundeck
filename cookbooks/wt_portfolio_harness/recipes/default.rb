@@ -47,7 +47,12 @@ if ENV["deploy_build"] == "true" then
   directory File.join(install_dir, "lib") do
     action :delete
     recursive true
-    notifies :run, "execute[delete_install_source]", :immediately
+  end
+  
+  # delete the install tar ball
+  execute "delete_harness_source" do
+    command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
+    ignore_failure true
   end
 end
 
@@ -76,14 +81,7 @@ log "Java home: #{java_home}"
   end
 end
 
-# delete the install tar ball
-execute "delete_install_source" do
-  user "root"
-  group "root"
-  command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
-  ignore_failure true
-  action :nothing
-end
+
 
 # download the application tarball
 remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
