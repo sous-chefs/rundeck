@@ -1,3 +1,6 @@
+## 2.0.3
+* Moved tar delete inside deploy gate
+
 ## 2.0.2
 * Externalized the logging level
 
