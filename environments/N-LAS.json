@@ -490,7 +490,7 @@
             "augment_bolt_executors": 16, 
             "augment_bolt_tasks": 16, 
             "data_request_url": "http://nedge01.staging.dmz:8080",
-	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/62455:id/streaming-analysis-bin.tar.gz",
+	    "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt249/62557:id/streaming-analysis-bin.tar.gz",
             "event_stream_bolt_executors": 8, 
             "event_stream_bolt_tasks": 8, 
             "response_bolt_executors": 4, 
