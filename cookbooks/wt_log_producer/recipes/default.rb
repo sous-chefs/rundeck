@@ -10,7 +10,7 @@
 
 install_dir  = File.join(node['wt_portfolio_harness']['plugin_dir'], "log_producer")
 conf_dir     = File.join(install_dir,"conf")
-cache_dir    = File.join(conf_dif, "cache")
+cache_dir    = File.join(conf_dir, "cache")
 tarball      = node['wt_log_producer']['download_url'].split("/")[-1]
 download_url = node['wt_log_producer']['download_url']
 topic        = node['wt_log_producer']['topic']
