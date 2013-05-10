@@ -1,3 +1,9 @@
+## 3.0.1
+* Merging new version together for great goodness
+
+## 3.0.0
+* Initial creation of the lwrp for deploying plugins 
+
 ## 2.0.3
 * Moved tar delete inside deploy gate
 
