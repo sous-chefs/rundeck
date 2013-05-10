@@ -1,3 +1,19 @@
+## v1.1.4:
+
+### Bug
+
+- [COOK-2549]: cannot enable_service (lwrp) on Gentoo
+- [COOK-2567]: Runit doesn't start at boot in Gentoo
+- [COOK-2629]: runit tests have ruby 1.9 method chaning syntax
+- [COOK-2867]: On debian, runit recipe will follow symlinks from
+  /etc/init.d, overwrite /usr/bin/sv
+
+## v1.1.2:
+
+* [COOK-2477] - runit cookbook should enable EPEL repo for CentOS 5
+* [COOK-2545] - Runit cookbook fails on Amazon Linux
+* [COOK-2322] - runit init template is broken on debian
+
 ## v1.1.0:
 
 * [COOK-2353] - Runit does not update run template if the service is
