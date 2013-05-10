@@ -158,7 +158,8 @@
         "wt_portfolio_admin": "= 1.1.14", 
         "wt_portfolio_edge_stream_api": "= 1.0.3", 
         "wt_portfolio_edgeservice": "= 1.0.4", 
-        "wt_portfolio_harness": "= 3.0.0", 
+        "wt_portfolio_harness": "= 3.0.0",
+        "wt_log_producer": "= 1.0.0", 
         "wt_portfolio_manager": "= 1.1.20", 
         "wt_publishver": "= 0.2.3", 
         "wt_realtime_hadoop": "= 1.0.1", 
@@ -560,7 +561,13 @@
             "datacenter": "Lab", 
             "environment": "B-LAS", 
             "pod": "B"
-        }, 
+        },
+        "wt_log_producer": {
+            "sdc_dir": "/tmp",
+            "hclf_dir": "/tmp",
+            "topic": "Lab_B_scsRawHits",
+            "download_url": "http://teamcity.webtrends.com/guestAuth/repository/download/bt386/62497:id/webtrends-log-producer-logpro-SNAPSHOT.tar.gz"
+        },
         "wt_sauth": {
             "auth_service_url": "https://bsauth.webtrends.com", 
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/51697:id/auth.zip"
