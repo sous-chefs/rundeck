@@ -65,7 +65,7 @@ The following attributes are used for the NRPE client
 * `node['nagios']['nrpe']['url']` - url to retrieve NRPE source
 * `node['nagios']['nrpe']['version']` - version of NRPE source to download
 * `node['nagios']['nrpe']['checksum']` - checksum of the nrpe source tarball
-* `node['nagios']['nrpe']['packages']` - nrpe / plugin packages to install.  The default attribute for RHEL/Fedora platforms contains a bare minimum set of packages.  The full list of available packages is avilable at: http://dl.fedoraproject.org/pub/epel/6/x86_64/repoview/letter_n.group.html
+* `node['nagios']['nrpe']['packages']` - nrpe / plugin packages to install.  The default attribute for RHEL/Fedora platforms contains a bare minimum set of packages.  The full list of available packages is available at: `http://dl.fedoraproject.org/pub/epel/6/x86_64/repoview/letter_n.group.html`
 * `node['nagios']['server_role']` - the role that the Nagios server will have in its run list that the clients can search for.
 
 server
@@ -126,6 +126,7 @@ The following attributes are used for the Nagios server
 * `node['nagios']['server']['nginx_dispatch']` - nginx dispatch method. support cgi or php, default "cgi"
 * `node['nagios']['server']['stop_apache']` - stop apache service if using nginx, default false
 * `node['nagios']['server']['redirect_root']` - if using Apache, should http://server/ redirect to http://server/nagios3 automatically, default false
+* `node['nagios']['server']['normalize_hostname']` - If set to true, normalize all hostnames in hosts.cfg to lowercase.  Defaults to false.
 
 
 Recipes
@@ -146,6 +147,8 @@ The client recipe searches for servers allowed to connect via NRPE that have a r
 Searches are confined to the node's `chef_environment` unless the `multi_environment_monitoring` attribute has been set to true.
 
 Client commands for NRPE can be installed using the nrpecheck lwrp. (See __Resources/Providers__ below.)
+
+RHEL and Fedora default to installation via source, but you can install NRPE via package by changing `node['nagios']['client']['install_method']` to "package".  Note that this will enable the EPEL repository on RHEL systems, which may not be desired.  You will also need to modify `node['nagios']['nrpe']['packages']` to include the appropriate NRPE plugins for your environment.  The complete list is available at `http://dl.fedoraproject.org/pub/epel/6/x86_64/repoview/letter_n.group.html`
 
 client\_package
 ---------------
@@ -274,6 +277,27 @@ You may also use an already defined command definition by omitting the command\_
     "id": "pingme",
      "hostgroup_name": "all",
      "use_existing_command": "check-host-alive"
+    }
+
+Service Groups
+--------------
+
+Create a nagios\_servicegroups data bag that will contain definitions for service groups.  Each server group will be named based on the id of the data bag.
+
+    {
+    "id": "ops",
+    "alias": "Ops",
+    "notes": "Services for ops"
+    }
+
+You can group your services by using the "servicegroups" keyword in your services data bags. For example, to have your ssh
+checks show up under the ops service group, you could define it like this:
+
+    {
+    "id": "ssh",
+    "hostgroup_name": "all",
+    "command_line": "$USER1$/check_ssh $HOSTADDRESS$",
+    "servicegroups": "ops"
     }
 
 Templates

@@ -40,6 +40,8 @@ case node["platform_family"]
 when "rhel"
 
   include_recipe "build-essential"
+  # `rpmdevtools` is in EPEL repo in EL <= 5
+  include_recipe "yum::epel" if node["platform_version"].to_i <= 5
 
   packages = %w{rpm-build rpmdevtools tar gzip}
   packages.each do |p|
@@ -82,6 +84,10 @@ when "debian","gentoo"
       source "runit-start.sh.erb"
       mode 0755
     end
+
+    service "runit-start" do
+      action :nothing
+    end
   end
 
   package "runit" do
@@ -102,6 +108,9 @@ when "debian","gentoo"
       "debian" => { "squeeze/sid" => :run, "default" => :nothing },
       "default" => :nothing
     ), "execute[runit-hup-init]", :immediately
+    if platform?("gentoo")
+      notifies :enable, "service[runit-start]"
+    end
   end
 
   if node["platform"] =~ /ubuntu/i && node["platform_version"].to_f <= 8.04
