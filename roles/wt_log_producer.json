@@ -13,6 +13,7 @@
   },
   "run_list": [
     "recipe[java]",
+    "recipe[runit]",
     "recipe[wt_portfolio_harness]",
     "recipe[wt_log_producer]"
   ],
