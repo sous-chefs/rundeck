@@ -68,7 +68,7 @@ template "#{conf_dir}/log-producer.conf" do
     :topic => topic,
     :sdcDir => node['wt_log_producer']['sdc_dir'],
     :hclfDir => node['wt_log_producer']['hclf_dir'],
-    :whitelistUrl => "#{conf_url}/whitelist/logproducer",
+    :whitelistUrl => "#{conf_host}/whitelist/logproducer",
     :whitelistUrlCacheDir => cache_dir,
   })
   notifies :restart, "service[harness]", :delayed

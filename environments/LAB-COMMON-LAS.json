@@ -477,6 +477,14 @@
             "metric_prefix": "lab.common.servers", 
             "monitoring_enabled": "true"
         }, 
+        "wt_openldap": {
+            "common_name": "pig.staging.dmz", 
+            "server_backup": {
+                "backup_nfs_mount": "sstore02.staging.dmz:/ifs/backups/OpenLDAP", 
+                "mount_path": "/srv/backups", 
+                "num_backups_retained": 14
+            }
+        }, 
         "zookeeper": {
             "default": {
                 "max_session_timeout": 120000
