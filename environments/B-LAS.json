@@ -398,7 +398,8 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/62733:id/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_actioncenter_ddp": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/62631:id/action-center-datadestination-processor-develop-SNAPSHOT-bin.tar.gz"
+            "download_url":
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/62801:id/action-center-datadestination-processor-1.0.0-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_actioncenter_ds_streaming": {
             "auth_user_id": "226", 
