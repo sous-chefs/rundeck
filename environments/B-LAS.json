@@ -545,7 +545,7 @@
             "edgeserviceurl": "http://bwapi.staging.dmz"
         }, 
         "wt_portfolio_harness": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/62415:id/webtrends-portfolio-harness-1.0.0-SNAPSHOT.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/62847:id/webtrends-portfolio-harness-1.0.0-SNAPSHOT.tar.gz"
         }, 
         "wt_portfolio_manager": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt294/61317:id/Portfolio.Manager.zip", 
