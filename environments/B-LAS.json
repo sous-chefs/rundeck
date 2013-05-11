@@ -544,6 +544,7 @@
             "edgeserviceurl": "http://bwapi.staging.dmz"
         }, 
         "wt_portfolio_harness": {
+            "java_opts": "-Xms3072m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/62415:id/webtrends-portfolio-harness-1.0.0-SNAPSHOT.tar.gz"
         }, 
         "wt_portfolio_manager": {
@@ -566,7 +567,7 @@
             "sdc_dir": "/tmp",
             "hclf_dir": "/tmp",
             "topic": "Lab_B_scsRawHits",
-            "download_url": "http://teamcity.webtrends.com/guestAuth/repository/download/bt386/62497:id/webtrends-log-producer-logpro-SNAPSHOT.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt386/62685:id/webtrends-log-producer-logpro-SNAPSHOT.tar.gz"
         },
         "wt_sauth": {
             "auth_service_url": "https://bsauth.webtrends.com", 
