@@ -369,29 +369,29 @@
         }, 
         "wt_actioncenter_dd_exacttarget": {
             "download_url":
-			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt382/62817:id/action-center-integrations-exacttarget-bin.tar.gz"
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt382/62862:id/action-center-integrations-exacttarget-bin.tar.gz"
         }, 
         "wt_actioncenter_dd_responsys": {
             "download_url":
-			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/62816:id/action-center-integrations-responsys-bin.tar.gz"
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/62860:id/action-center-integrations-responsys-bin.tar.gz"
         }, 
         "wt_actioncenter_dd_webtrendsemaildemo": {
             "download_url":
-			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/62819:id/action-center-integrations-webtrends-demo-1.0.0-SNAPSHOT-bin.tar.gz"
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/62861:id/action-center-integrations-webtrends-demo-1.0.0-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_actioncenter_ddp": {
             "download_url":
-			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/62813:id/action-center-datadestination-processor-1.0.0-SNAPSHOT-bin.tar.gz", 
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/62857:id/action-center-datadestination-processor-1.0.0-SNAPSHOT-bin.tar.gz", 
             "group_id": "action-center-consumer-group"
         }, 
         "wt_actioncenter_ds_streaming": {
             "download_url":
-			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/62823:id/action-center-datasource-processor-1.0.0-SNAPSHOT-bin.tar.gz"
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/62858:id/action-center-datasource-processor-1.0.0-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_actioncenter_management_api": {
             "ac_management_url": "https://hapi.webtrends.com", 
             "download_url":
-			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/62846:id/action-center-management-service-bin.tar.gz"
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/62859:id/action-center-management-service-bin.tar.gz"
         }, 
         "wt_actioncenter_ui": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/62552:id/action-center.tar.gz", 
