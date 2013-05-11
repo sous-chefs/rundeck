@@ -390,7 +390,7 @@
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt382/62626:id/action-center-integrations-exacttarget-bin.tar.gz"
         }, 
         "wt_actioncenter_dd_responsys": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/62637:id/action-center-integrations-responsys-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/62734:id/action-center-integrations-responsys-bin.tar.gz", 
             "testing_enabled": "true", 
             "testing_key_column_override": "173453480"
         }, 
