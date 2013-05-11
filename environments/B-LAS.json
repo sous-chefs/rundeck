@@ -402,7 +402,7 @@
         }, 
         "wt_actioncenter_ds_streaming": {
             "auth_user_id": "226", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/62081:id/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/62597:id/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_actioncenter_management_api": {
             "ac_management_url": "https://bapi.webtrends.com", 
@@ -537,13 +537,14 @@
             "proxy_enabled": "true"
         }, 
         "wt_portfolio_edge_stream_api": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/57044:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt343/62684:id/webtrends-stream-edge-api-streaming-1.2.2-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_portfolio_edgeservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt336/54775:id/webtrends-portfolio-edge-service-portfolio-edge-1.0.0-SNAPSHOT-bin.tar.gz", 
             "edgeserviceurl": "http://bwapi.staging.dmz"
         }, 
         "wt_portfolio_harness": {
+            "java_opts": "-Xms3072m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/62415:id/webtrends-portfolio-harness-1.0.0-SNAPSHOT.tar.gz"
         }, 
         "wt_portfolio_manager": {
@@ -564,7 +565,7 @@
             "sdc_dir": "/tmp",
             "hclf_dir": "/tmp",
             "topic": "Lab_B_scsRawHits",
-            "download_url": "http://teamcity.webtrends.com/guestAuth/repository/download/bt386/62497:id/webtrends-log-producer-logpro-SNAPSHOT.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt386/62685:id/webtrends-log-producer-logpro-SNAPSHOT.tar.gz"
         },
         "wt_sauth": {
             "auth_service_url": "https://bsauth.webtrends.com", 
