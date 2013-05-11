@@ -387,27 +387,27 @@
             "db_server": "bcamdb01.staging.dmz"
         }, 
         "wt_actioncenter_dd_exacttarget": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt382/62626:id/action-center-integrations-exacttarget-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt382/62862:id/action-center-integrations-exacttarget-bin.tar.gz"
         }, 
         "wt_actioncenter_dd_responsys": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/62734:id/action-center-integrations-responsys-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt376/62860:id/action-center-integrations-responsys-bin.tar.gz", 
             "testing_enabled": "true", 
             "testing_key_column_override": "173453480"
         }, 
         "wt_actioncenter_dd_webtrendsemaildemo": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/62733:id/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt379/62861:id/action-center-integrations-webtrends-demo-develop-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_actioncenter_ddp": {
             "download_url":
-			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/62801:id/action-center-datadestination-processor-1.0.0-SNAPSHOT-bin.tar.gz"
+			"http://teamcity.webtrends.corp/guestAuth/repository/download/bt371/62857:id/action-center-datadestination-processor-1.0.0-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_actioncenter_ds_streaming": {
             "auth_user_id": "226", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/62597:id/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/62858:id/action-center-datasource-processor-develop-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_actioncenter_management_api": {
             "ac_management_url": "https://bapi.webtrends.com", 
-            "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/62741:id/action-center-management-service-bin.tar.gz"
+            "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/62859:id/action-center-management-service-bin.tar.gz"
         }, 
         "wt_actioncenter_ui": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/62552:id/action-center.tar.gz", 
@@ -422,10 +422,10 @@
         }, 
         "wt_cam": {
             "cam": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/58826:id/CAM.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/62679:id/CAM.zip"
             }, 
             "cam_plugins": {
-                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/58826:id/Plugins.zip"
+                "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt324/62679:id/Plugins.zip"
             }, 
             "cam_service_url": "http://bcam.staging.dmz", 
             "db_name": "CAM", 
@@ -645,7 +645,7 @@
             "camdbserver": "bcamdb01.staging.dmz", 
 	    "config_service_ssl_port": "443",
             "config_service_url": "http://bconfigsvc.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/61103:id/webtrends-streaming-configservice-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt247/62622:id/webtrends-streaming-configservice-bin.tar.gz"
         }, 
         "wt_streamingmanagementservice": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt327/58213:id/webtrends-streaming-managementservice-bin.tar.gz", 
