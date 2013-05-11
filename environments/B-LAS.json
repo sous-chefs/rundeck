@@ -406,7 +406,7 @@
         }, 
         "wt_actioncenter_management_api": {
             "ac_management_url": "https://bapi.webtrends.com", 
-            "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/62727:id/action-center-management-service-bin.tar.gz"
+            "download_url":"http://teamcity.webtrends.corp/guestAuth/repository/download/bt372/62738:id/action-center-management-service-bin.tar.gz"
         }, 
         "wt_actioncenter_ui": {
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt375/62552:id/action-center.tar.gz", 
@@ -544,7 +544,6 @@
             "edgeserviceurl": "http://bwapi.staging.dmz"
         }, 
         "wt_portfolio_harness": {
-            "java_opts": "-Xms3072m -XX:+UseG1GC -Djava.net.preferIPv4Stack=true",
             "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt366/62415:id/webtrends-portfolio-harness-1.0.0-SNAPSHOT.tar.gz"
         }, 
         "wt_portfolio_manager": {
