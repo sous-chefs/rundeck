@@ -403,7 +403,7 @@
         }, 
         "wt_actioncenter_ds_streaming": {
             "auth_user_id": "226", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/62872:id/action-center-datasource-processor-1.0.0-SNAPSHOT-bin.tar.gz"
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt370/62876:id/action-center-datasource-processor-1.0.0-SNAPSHOT-bin.tar.gz"
         }, 
         "wt_actioncenter_management_api": {
             "ac_management_url": "https://bapi.webtrends.com", 
