@@ -26,7 +26,7 @@ action :create do
 
 	if @current_resource.exists
 		if  @current_resource.value == @new_resource.value
-			Chef::Log.info("no action required: #{@new_resource.attribute} = #{@new_resource.value}")
+			Chef::Log.info("no action required: #{@new_resource.attribute} = #{@new_resource.value} in dn: #{@new_resource.dn}")
 		else
 			ldap_replace
 		end
@@ -68,11 +68,14 @@ end
 def ldap_replace
 
 	Chef::Log.info("ldap_replace: attribute => #{@new_resource.attribute}, current_value => #{@current_resource.value}, new_value => #{@new_resource.value}, dn => #{@new_resource.dn}")
+
 	cmd = 'ldapmodify -Q -Y EXTERNAL -H ldapi:///'
 	stdin = "dn: #{@new_resource.dn}\nreplace: #{@new_resource.attribute}\n#{@new_resource.attribute}: #{@new_resource.value}\n"
+
 	Chef::Log.debug "input: #{stdin}"
 	p = shell_out!(cmd, :input => stdin)
 	Chef::Log.debug(p.stdout)
+
 	@new_resource.updated_by_last_action(true)
 
 end
@@ -80,11 +83,14 @@ end
 def ldap_add
 
 	Chef::Log.info("ldap_add: attribute => #{@new_resource.attribute}, value => #{@new_resource.value}, dn => #{@new_resource.dn}")
+
 	cmd = 'ldapmodify -Q -Y EXTERNAL -H ldapi:///'
 	stdin = "dn: #{@new_resource.dn}\nchangetype: modify\nadd: #{@new_resource.attribute}\n#{@new_resource.attribute}: #{@new_resource.value}\n"
+
 	Chef::Log.debug "input: #{stdin}"
 	p = shell_out!(cmd, :input => stdin)
 	Chef::Log.debug(p.stdout)
+
 	@new_resource.updated_by_last_action(true)
 
 end
