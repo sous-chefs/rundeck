@@ -495,8 +495,8 @@
             "event_stream_bolt_tasks": 4, 
             "response_bolt_executors": 4, 
             "response_bolt_tasks": 4, 
-            "session_stream_bolt_executors": 12, 
-            "session_stream_bolt_tasks": 12, 
+            "session_stream_bolt_executors": 16, 
+            "session_stream_bolt_tasks": 16, 
             "streaming_topology_field_grouping_local": "false", 
             "supervisor": {
                 "workers": 4
