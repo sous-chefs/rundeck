@@ -61,9 +61,10 @@ execute 'generate_csr' do
 	action :run
 end
 
-log "\n##\n## Signed certificate is required here: #{crt}\n##" do
-	level :error
-	not_if { File.exists? crt }
+unless File.exists? crt
+	log "\n##\n## Signed certificate is required here: #{crt}\n##" do
+		level :error
+	end
 end
 
 # upstream CA's
@@ -107,13 +108,13 @@ service 'slapd' do
 end
 
 # restore a backup file (intended for lab environments)
-unless ENV['OPENLDAP_RESTORE_SOURCE'].nil?
+unless ENV['RESTORE_SOURCE'].nil?
 
 	# get default password
 	default_password = data_bag_item('authorization', node.chef_environment)['wt_openldap']['default_password']
 
 	wt_openldap_database 'restore backup' do
-		source ENV['OPENLDAP_RESTORE_SOURCE']
+		source ENV['RESTORE_SOURCE']
 		default_password default_password
 		action :restore
 	end
