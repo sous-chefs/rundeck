@@ -1,3 +1,6 @@
+## 3.0.0
+* Using new harness LWRP
+
 ## 2.0.2
 * Removed unused undeploy recipe
 * Fixed invalid source delete order
