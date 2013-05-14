@@ -1,3 +1,6 @@
+## 1.10.1
+* Fixed devAccess syntax for likewise
+
 ## 1.10.0
 * Added java_cert recipe
 
