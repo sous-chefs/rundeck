@@ -1,3 +1,6 @@
+## 1.1.4
+* Added nagios check for ZK timeouts
+
 ## 1.1.3
 * Removed zookeeper all together as it's being used from harness
 
