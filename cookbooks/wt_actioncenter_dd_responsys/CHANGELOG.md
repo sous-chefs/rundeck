@@ -1,3 +1,6 @@
+## 1.1.11
+* Changing default values for 'sender_max_delay_before_dropping_data_ms' and 'sender_max_send_retries'
+
 ## 1.1.10
 * Adding typesafe config
 
