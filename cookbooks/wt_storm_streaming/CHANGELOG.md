@@ -1,3 +1,6 @@
+## 3.0.2
+* Removed the start topo command from cookbook
+
 ## 3.0.1
 * Corrected nimbus search logic 
 
