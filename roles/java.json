@@ -3,7 +3,9 @@
   "chef_type": "role",
   "json_class": "Chef::Role",
   "description": "Installs Java",
-  "run_list": ["recipe[java]"
+  "run_list": [
+       "recipe[java]",
+       "recipe[webtrends_server::java_cert]"
   ],
   "override_attributes": {
   }
