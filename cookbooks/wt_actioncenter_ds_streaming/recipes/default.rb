@@ -97,3 +97,12 @@ end
       notifies :restart, "runit_service[harness]", :delayed
     end
   end
+
+if node.attribute?("nagios")
+  #Create a nagios nrpe check for DSP ZK timeouts
+    nagios_nrpecheck "wt_acds_zk_timeout" do
+        command "sudo #{node['nagios']['plugin_dir']}/check_log"
+		parameters "-F /var/log/webtrends/harness/service.log -O /tmp/NRPE_DSP_zookeepertimeout.log -q 'ERROR com.netflix.curator.ConnectionState - Connection timed out for connection string'"
+		action :add
+    end
+end
