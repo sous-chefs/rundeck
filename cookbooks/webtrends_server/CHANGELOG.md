@@ -1,3 +1,6 @@
+## 1.10.0
+* Added java_cert recipe
+
 ## 1.9.9
 * Removed invalid centos gem install
 
