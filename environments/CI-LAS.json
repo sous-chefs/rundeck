@@ -221,6 +221,8 @@
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "LAB-COMMON-LAS", 
             "config_dir_linux": "/etc/webtrends/", 
+            "ca_repo":"http://repo.staging.dmz/repo/linux/java/certs/",
+            "ca_files":["pdxca01", "pdxengca01"],
             "datacenter": "Lab", 
             "gem_repo": "http://repo.staging.dmz/repo/gems-repo/", 
             "http_proxy_url": "http://sproxy02.staging.dmz:3128", 
