@@ -607,7 +607,7 @@
             }
         }, 
         "wt_stream_processor": {
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/59947:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz", 
+            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt344/62992:id/webtrends-stream-processor-streaming-1.2.2-SNAPSHOT-bin.tar.gz", 
             "zk_domains": "staging.dmz"
         }, 
         "wt_streaming_barebones": {
