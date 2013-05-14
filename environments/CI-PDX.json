@@ -183,7 +183,9 @@
         }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
-            "common_resource_environment": "LAB-COMMON-PDX", 
+            "common_resource_environment": "LAB-COMMON-PDX",  
+            "ca_repo":"http://repo.staging.dmz/repo/linux/java/certs/",
+            "ca_files":["pdxca01", "pdxengca01"],
             "config_dir_linux": "/etc/webtrends/", 
             "config_share": "\\\\sstore02.staging.dmz\\cistore\\config", 
             "datacenter": "Lab", 
