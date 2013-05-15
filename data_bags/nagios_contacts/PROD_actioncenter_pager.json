@@ -1,0 +1,6 @@
+{
+  "id": "actioncenter_pager",
+  "alias": "Action_Center_Pager_DL",
+  "use": "default-contact",
+  "email": "actioncenterteampager@webtrends.com"
+}

@@ -1,16 +1,19 @@
 # Kafka topic base to push to  the account id or some other data should be
 # tacked on the end
 # dynamically so that the data is seperate
-kafka.topic=Lab_H_ActionRoutes
+kafka.topic=<%=@kafka_topic %>
 
 
+datacenter=<%= @datacenter %>
+pod=<%= @pod %>
 
-#Long term they should come from a common config
-zookeeper.quorum=hzoo01.staging.dmz,hzoo02.staging.dmz,hzoo03.staging.dmz
-zookeeper.session.timeout.ms=30000
-zookeeper.connection.timeout.ms=30000
-zookeeper.retry.sleep.ms=5000
-zookeeper.retry.count=150
-datacenter=Lab
-pod=O
+#sapi config
+sapi_port=<%= @sapi_port %>
+client_id=<%= @client_id %>
+client_secret=<%= @client_secret %>
+auth_url=<%= @auth_url %>
+auth_user_id=<%= @auth_user_id %>
 
+#ADS config
+configData.host=<%= @config_host %>
+configData.authToken=<%=@authToken%>

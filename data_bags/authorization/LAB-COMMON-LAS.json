@@ -19,5 +19,9 @@
     "root_password": "$6$TrentWIsGFreeman$vCa6a1Y3.H4A1mhoc3DOuBfNYh/Vy2Ov5CDaZYP1YRQ9fJ2T8FO4p37VGfa4WjKpkOoYVOcxdLOknWq9nceFX/", 
     "wt_netacuity": {
         "admin_password": "Bijoux01"
+    }, 
+    "wt_openldap": {
+        "admin_password": "mBe7Zqo8gdTPaIY941", 
+        "default_password": "Bijoux01"
     }
 }

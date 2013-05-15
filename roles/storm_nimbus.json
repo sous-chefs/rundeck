@@ -4,6 +4,7 @@
   "json_class": "Chef::Role",
   "description": "Storm Nimbus",
   "run_list": [
+    "role[java]",
     "recipe[storm::nimbus]"
   ],
   "override_attributes": {

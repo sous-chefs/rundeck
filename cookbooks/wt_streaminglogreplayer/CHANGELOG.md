@@ -1,3 +1,15 @@
+## 1.3.1
+* Made nagios settings an attribute to allow for overriding
+
+## 1.3.0
+* Start using runit to stop the service and then try to kill the service
+  during undeploy.
+
+## 1.2.2
+* Adding ability to set the interval at which kafka-producers are closed
+  and recreated. This will hopefully help in recovery from P2P fail-back
+  bad state.
+
 ##.1.2.1
 * Updated default values for zk.connectiontimeout and zk.sessiontimeout
 

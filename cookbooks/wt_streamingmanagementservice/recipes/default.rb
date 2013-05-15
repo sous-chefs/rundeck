@@ -89,17 +89,6 @@ if ENV["deploy_build"] == "true" then
     command "rm -f #{Chef::Config[:file_cache_path]}/#{tarball}"
     action :run
   end
-
-  # create a runit service
-  runit_service "streamingmanagementservice" do
-    options({
-      :log_dir => log_dir,
-      :install_dir => install_dir,
-      :java_home => java_home,
-      :user => user
-    })
-  end
-
 end
 
 
@@ -149,6 +138,17 @@ template "#{install_dir}/conf/config.properties" do
   })
 end
 
+
+# create a runit service
+runit_service "streamingmanagementservice" do
+  options({
+    :log_dir => log_dir,
+    :install_dir => install_dir,
+    :java_home => java_home,
+    :user => user
+  })
+end
+
 #Create collectd plugin for streamingmanagementservice JMX objects if collectd has been applied.
 if node.attribute?("collectd")
   template "#{node['collectd']['plugin_conf_dir']}/collectd_streamingmanagementservice.conf" do
@@ -168,7 +168,7 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
   nagios_nrpecheck "wt_streaming_managementservice_healthcheck" do
     command "#{node['nagios']['plugin_dir']}/check_http"
-    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_streamingmanagementservice']['healthcheck_port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
+    parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_streamingmanagementservice']['port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
     action :add
   end
 

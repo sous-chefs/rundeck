@@ -12,6 +12,9 @@
     "recipe[wt_realtime_hadoop::schema]",
     "recipe[wt_xd::schema]"
   ],
-  "override_attributes": {
+ "override_attributes": {
+    "sysctl":{  
+      "vm":{"vm.swappiness":0}
+    }
   }
 }

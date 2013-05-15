@@ -1,0 +1,59 @@
+{ 
+    "android_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
+    "beyond_compare_v3": {
+        "license_key": [
+            "--- BEGIN LICENSE KEY ---", 
+            "E72PRdldttGI8NSbqeDsT6Vg0VRG82HYKNxaMYgFxu9Do7nhQ8Sie4kBs", 
+            "PRBH6IJ9paf-R7HgnVzOX9OcoP277JzJXE6YVapYW7f+tRRXRFI4yn4Nj", 
+            "jZ0RiiqGRCTVzwComUcXB-eiFWRBY6JpSsCNkmIxL5KsRCo442djHhTZE", 
+            "--- END LICENSE KEY -----"
+        ]
+    }, 
+    "facebook_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==",            
+    "fb_app":{
+        "client_id":"103645866351316",
+        "client_secret":"f856805656c4b27bef04dc49641dbd58"
+    },
+    "googleplay":{
+        "inverse_q":"cpnM6akIYjep44WgPmaV5luvr6ozH05Vs8zq/docj1ackA9bxTOkAc38OgYW19kRR8roboSV/q99HZJokMUfOC+KZvPtf1Ejhcopc61+ZlZz3pCPvsjx7mYqowMPq7arfnVXE/Djhh1HClJa8VSGBvKowS86pXPO36yJ3kzJqDo=",
+        "p":"yI1u6scneeSLo/zNgKXLkgL9/Kj8WEe/3zPwO/441SG3XVwQV8XEkTrTIuY2AWU3nwvdtZBuqBr4iPzBkzDnVIg2zEdmjehefAPgsx/o8EDKj62+0O4bUDLM9c/3vdv1EFzXuw/12J0Vuk/KngCWVwLg9ofiTmbleqvLb+5Wb4s=",
+        "q":"xJZ/rIaNRJD2kU2HVNBB9chsuRA+OBACDlem5eZa/gEi3dSFz6vaPWC7EoWXjqGRVwGJJ2RyQTZAbdPdgmjy5w2Ge3ADKLHz1QMQKpAJ2yB35H8ymImajrVvjwazkgKbWAJFoMgW3T4GdjjZMhKgcvfn7j0XRnB5dG/Va8OZy3k=",
+        "d":"WcLOhTEpFKbUFkGRmNtxB5IZOIWdVIvafHpBJX1s7jRcWY2aVr5h6qvDNyhv0NNRnpDhaD/zBw3vOVbfxV4piuuqYGhdIBsTy+mYIPGP9AJyMl4CzOFtzWBQjorB/GDwcSC0fK4pptWwzu6VhPlhme9Njg0/e/KHSYk4/ovYT6LimN6oFq1z7pEcCAjbsfSWdOicjiceMl6D+KWUCOI2T5l0UzOXU69Bm68y9bnn4lxWa8Iiq6Ta/i6WTuNv9T2KRIvGJagD8G+G0bscL5Ul9JTdXN9aSAwE9O8hqDvGj3q/17WjF30f628a5IciGnN4ddgPA895TkIsa687gTlCcQ==",
+        "modulus":"mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==",
+        "exponent":"AQAB",
+        "dp":"wZG5J8QXNxA/M4VyeCQOKxzWNsKH5VFDQVTpH46NHjGPwP12DLGmuyIS3ZFjOM+P8uPKF0+Tbo+xqM6Eq+O8s5tRgLO9qWRJpds8SseW1iVDHZBuJ0xacnrF1s/m54pgq21hD30lJfDgItaW0w/wC4WMyoZ3CINKJK+iCKP7K2c=",
+        "dq":"N8mVtboBQOH6dsWPkAwBi+QyplnrrjEsxDEvlbJHRCnCYT08M/DK3/whWmI63ikPe6dd6qXgnozsv74N8EIkHFmEPmdNHjFRxrM11T5G7b5LB7bo/syd5b2rSOVX9Cl1OAZ9B+GAS4ycfNQpHsKWccnUMZF4l263qMlLwWcir9E="
+    },
+    "id": "qa",
+    "reinvigorate_tracking_code": "fv6b7-9x820v8963", 
+    "twitter_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
+    "youtube_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==",    
+    "wt_actioncenter_ui": {
+        "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com",
+        "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
+    },
+    "wt_actioncenter_ds_streaming": {
+       "client_id": "e8ae471a23ef486986db824d41e3a4d7.app.webtrends.com",
+       "client_secret": "94ac26f39c4045299e6c300198cd7f54"
+    }, 
+    "wt_iis": {
+        "machine_decryption_key": "B0FCBEE38C05DCB5213655ACD722702DEACE441304FC02FE", 
+        "machine_validation_key": "7FAB532C7D9A7E3EBE4A891BFAEC6B554E0228E0167891F3C6382249455C3524ACE13309FB9F83E6522152E6C1CC1D645ACCDACFFF72ADCB9C9C56396905EAEA"
+    }, 
+    "wt_portfolio_admin": {
+        "client_id": "9663da37ba4b482daf265c8ac2d2c864.app.webtrends.com", 
+        "client_secret": "7025c2c662204f0bb9c5efcb655a8bdb"
+    }, 
+    "wt_streaming_barebones": {
+        "client_secret": "7025c2c662204f0bb9c5efcb655a8bdb",
+        "client_token": "9663da37ba4b482daf265c8ac2d2c864.app.webtrends.com"
+    }, 
+    "wt_streaming_viz": {
+        "client_id": "cbe204103ff842f8965a3d8dc4cc6359.app.webtrends.com", 
+        "client_secret": "0ed2b063c0074bae9f238361fd2aad40"
+    }, 
+    "wt_streamingauditor": {
+        "client_id": "8BFF54F85A85413C915AC5EF61C9B851", 
+        "client_secret": "C027E291A87E480D9069853823EFEB23"
+    }
+}
