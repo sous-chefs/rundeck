@@ -1,7 +1,0 @@
-{
-  "hostname": "ipaddress",
-  "username": "rundeck",
-  "id": "K",
-  "description": "K pod servers",
-  "pattern": "chef_environment:K"
-}

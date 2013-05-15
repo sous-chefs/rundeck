@@ -1,6 +1,0 @@
-{
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 120 -c wt_check_procs -a '-c 1: -C 'smoke''", 
-    "hostgroup_name": "smokeping_server", 
-    "id": "smokeping_daemon",
-    "contact_groups": "email_and_page"
-}

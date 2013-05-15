@@ -1,8 +1,0 @@
-.bundle
-.cache
-.kitchen
-bin
-.berks
-.berkshelf
-Berksfile.lock
-Gemfile.lock
