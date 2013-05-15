@@ -1,4 +1,7 @@
-** 1.0.8
+## 1.0.9
+* Setting default action as ssh -t
+
+## 1.0.8
 * support rdbms
 
 ## 1.0.7
