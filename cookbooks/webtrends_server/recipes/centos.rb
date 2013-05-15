@@ -165,7 +165,7 @@ if node.run_list.include?("role[ea_server]")
     owner "root"
     group "root"
     mode 00440
-    content "%netiqdmz\\\\devAccess  ALL=(ALL) ALL\n"
+    content "%netiqdmz\\\\devAccess  ALL=(ALL) ALL\n%devAccess  ALL=(ALL) ALL\n"
     action :create
   end
 else
@@ -221,9 +221,6 @@ if node['wt_common']['gem_repo']
     not_if "gem source | grep #{node['wt_common']['gem_repo']}"
   end
 end
-
-#Installs gem for reporting to chef jabber server
-chef_gem "chef-jabber-snitch"
 
 #Install tmux - a terminal multiplexer
 include_recipe "tmux"

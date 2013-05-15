@@ -6,8 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "runit"
-include_recipe "apache2::default"
 
 # Our artifact info
 rel_version = node[:wt_actioncenter_ui][:release]
@@ -58,8 +56,8 @@ artifact_deploy artifact_name do
   owner ui_user
   group ui_group
   environment({ 'RAILS_ENV' => 'production' })
-  shared_directories %w(log tmp pids)
-  symlinks({ 'log' => 'log', 'tmp' => 'tmp' })
+  shared_directories %w(tmp pids)
+  symlinks({ 'tmp' => 'tmp' })
 
   before_extract Proc.new {
     service artifact_name do
@@ -93,6 +91,13 @@ artifact_deploy artifact_name do
       user ui_user
       group ui_group
     end
+
+    # Set up release/log -> log_dir
+    link File.join(release_path, "log") do
+      to log_dir
+      owner ui_user
+      group ui_group
+    end
   }
 
   configure Proc.new {
@@ -104,6 +109,8 @@ artifact_deploy artifact_name do
       variables(
         :allow_http => node[:wt_actioncenter_ui][:allow_http],
         :help_url => node[:wt_actioncenter_ui][:help_url],
+
+        :actioncenter_url => node[:wt_actioncenter_management_api][:ac_management_url],
         # Auth
         :auth_url => "#{auth_base}/#{auth_version}",
         :client_id => user_data['wt_actioncenter_ui']['client_id'],

@@ -16,15 +16,18 @@
 # limitations under the License.
 #
 
-if domain.length > 0
-  default['openldap']['basedn'] = "dc=#{domain.split('.').join(",dc=")}"
-  default['openldap']['server'] = "ldap.#{domain}"
+default['openldap']['basedn'] = "dc=localdomain"
+default['openldap']['server'] = "ldap.localdomain"
+
+if node['domain'].length > 0
+  default['openldap']['basedn'] = "dc=#{node['domain'].split('.').join(",dc=")}"
+  default['openldap']['server'] = "ldap.#{node['domain']}"
 end
 
 openldap['rootpw'] = nil
 
 # File and directory locations for openldap.
-case platform
+case node['platform']
 when "redhat","centos","amazon","scientific"
   default['openldap']['dir']        = "/etc/openldap"
   default['openldap']['run_dir']    = "/var/run/openldap"
@@ -39,21 +42,18 @@ else
   default['openldap']['module_dir'] = "/usr/lib/ldap"
 end
 
-openldap['ssl_dir'] = "#{openldap['dir']}/ssl"
-openldap['cafile']  = "#{openldap['ssl_dir']}/ca.crt"
+default['openldap']['ssl_dir'] = "#{openldap['dir']}/ssl"
+default['openldap']['cafile']  = "#{openldap['ssl_dir']}/ca.crt"
+default['openldap']['slapd_type'] = nil
 
-# Server settings
-openldap['slapd_type'] = nil
-
-if openldap['slapd_type'] == "slave"
-  master = search(:nodes, 'openldap_slapd_type:master')
-  default['openldap']['slapd_master'] = master
+if node['openldap']['slapd_type'] == "slave"
+  default['openldap']['slapd_master'] = node['openldap']['server']
   default['openldap']['slapd_replpw'] = nil
   default['openldap']['slapd_rid']    = 102
 end
 
 # Auth settings for Apache
-if openldap['basedn'] && openldap['server']
+if node['openldap']['basedn'] && node['openldap']['server']
   default['openldap']['auth_type']   = "openldap"
   default['openldap']['auth_binddn'] = "ou=people,#{openldap['basedn']}"
   default['openldap']['auth_bindpw'] = nil

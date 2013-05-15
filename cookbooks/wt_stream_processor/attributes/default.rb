@@ -21,3 +21,4 @@ default['wt_stream_processor']['graphite_regex'] = ""
 default['wt_stream_processor']['log_dir']        = "/var/log/webtrends/streamprocessor"
 default['wt_stream_processor']['message_port']   = 2552
 default['wt_stream_processor']['conf_url']       = "conf/application.conf"
+default['wt_stream_processor']['zk_domains']     = "netiq.dmz"

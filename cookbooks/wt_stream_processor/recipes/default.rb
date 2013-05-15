@@ -144,11 +144,7 @@ if ENV["deploy_build"] == "true" then
     action :run
   end
 
-else
-  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
-end
-
- # create the runit service
+# create the runit service
   runit_service "streamprocessor" do
     options({
       :log_dir => log_dir,
@@ -159,12 +155,24 @@ end
     action [:enable, :start]
   end
 
+else
+  processTemplates(install_dir, conf_url, node, zookeeper_quorum, datacenter, pod)
+end
+
+ 
+
 
 if node.attribute?("nagios")
   #Create a nagios nrpe check for the healthcheck page
   nagios_nrpecheck "wt_stream_processor" do
     command "#{node['nagios']['plugin_dir']}/check_http"
     parameters "-H #{node['fqdn']} -u /healthcheck -p #{node['wt_stream_processor']['healthcheck_port']} -r \"\\\"all_services\\\":\\s*\\\"ok\\\"\""
+    action :add
+  end
+  #Create a nagios nrpe check for the healthcheck page
+  nagios_nrpecheck "wt_stream_processor_log" do
+    command "#{node['nagios']['plugin_dir']}/check_log"
+    parameters "-F /var/log/webtrends/streamprocessor/service.log -O /tmp/NRPE_check_log_streaming_Processor.log -q ' java.lang.NullPointerException|java.util.concurrent.TimeoutException|java.lang.Exception: There is no socket open fetching data'"
     action :add
   end
 end

@@ -1,3 +1,12 @@
+##1.1.0
+* Externalized stream.processor.zk.valid.domain
+
+##1.0.8
+* Removed staging reference 
+
+##1.0.7
+* Updating number of puller threads from 2 to 4
+
 ##1.0.6
 *Moved service to outside deploy block
 

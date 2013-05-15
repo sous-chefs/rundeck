@@ -1,0 +1,11 @@
+ddp {
+	kafka.topic = "<%= @kafka_topic %>"
+	kafka.consumer.group.id = "<%= @groupId %>"
+	kafka.auto.offset.reset = "largest"
+	kafka.auto.commit.enable = true
+
+	configData.host="<%=@config_host%>"
+	configData.authToken="<%=@authToken%>"
+	secureConfigData.host="<%= @secure_config_host %>"
+	secureConfigData.port="<%= @secure_config_port %>"
+}

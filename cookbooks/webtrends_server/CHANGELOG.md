@@ -1,3 +1,12 @@
+## 1.10.1
+* Fixed devAccess syntax for likewise
+
+## 1.10.0
+* Added java_cert recipe
+
+## 1.9.9
+* Removed invalid centos gem install
+
 ## 1.9.8
 * Removed backslash when removing rubygems on windows
 * Initial addition of platform based install directory attributes

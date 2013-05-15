@@ -38,7 +38,7 @@
         "glance": "= 1.0.0", 
         "graphite": "= 0.4.0", 
         "hadoop": "= 1.1.11", 
-        "hbase": "= 1.1.5", 
+        "hbase": "= 1.1.6", 
         "hive": "= 1.1.0", 
         "horizon": "= 1.0.0", 
         "hosts": "= 1.0.2", 
@@ -173,7 +173,7 @@
         "xml": "= 1.1.2", 
         "yum": "= 2.1.0", 
         "zlib": "= 2.0.0", 
-        "zookeeper": "= 1.2.3"
+        "zookeeper": "= 1.2.6"
     }, 
     "default_attributes": {
         "authorization": {
@@ -249,7 +249,7 @@
                     "replication": 3
                 }, 
                 "env": {
-                    "HADOOP_HEAPSIZE": 2000, 
+                    "HADOOP_HEAPSIZE": 4000, 
                     "HADOOP_OPTS": "", 
                     "java_net_preferIPv4Stack": "true"
                 }, 
@@ -273,7 +273,7 @@
         "hbase": {
             "default": {
                 "env": {
-                    "HBASE_HEAPSIZE": 4000, 
+                    "HBASE_HEAPSIZE": 8000, 
                     "HBASE_MANAGES_ZK": "false"
                 }
             }
@@ -388,7 +388,7 @@
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp os.staging.dmz"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -402,11 +402,6 @@
         "squid": {
             "network": "10.160.0.0/12", 
             "port": "3128"
-        }, 
-        "sysctl": {
-            "set swappiness": {
-                "vm.swappiness": "0"
-            }
         }, 
         "tmux": {
             "install_method": "package"
@@ -481,6 +476,18 @@
             "jmx_port": 9999, 
             "metric_prefix": "lab.common.servers", 
             "monitoring_enabled": "true"
+        }, 
+        "wt_openldap": {
+            "server_backup": {
+                "backup_nfs_mount": "sstore02.staging.dmz:/ifs/backups/Linux", 
+                "mount_path": "/srv/backups", 
+                "num_backups_retained": 14
+            }
+        }, 
+        "zookeeper": {
+            "default": {
+                "max_session_timeout": 120000
+            }
         }
     }, 
     "description": "Common (non-pod) systems in LAS", 

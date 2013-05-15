@@ -1,11 +1,18 @@
 {
   "name": "wt_actioncenter_management_api",
   "default_attributes": {
+    "wt_haproxy":
+    {
+      "endpoint":"/hapi.webtrends.com/actioncenter/",
+      "method": "roundrobin",
+      "healthcheck": "enabled"
+    }
   },
   "json_class": "Chef::Role",
   "env_run_lists": {
   },
   "run_list": [
+    "role[wt_portfolio_harness]",
     "recipe[wt_actioncenter_management_api]"
   ],
   "description": "Webtrends Portfolio Harness Plugin for Action Center API",

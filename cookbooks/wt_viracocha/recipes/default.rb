@@ -32,7 +32,12 @@ end
 begin
   auth_dbag = data_bag_item('authorization', node['authorization']['ad_likewise']['ad_network'])
 rescue
-  auth_dbag = data_bag_item('authorization', node['authorization']['ad_auth']['ad_network'])
+  begin
+    auth_dbag = data_bag_item('authorization', node['authorization']['ad_auth']['ad_network'])
+  rescue
+    auth_dbag = {}
+    log('No ad_network defined.') { level :warn }
+  end
 end
 
 if auth_dbag['ec2'].nil?

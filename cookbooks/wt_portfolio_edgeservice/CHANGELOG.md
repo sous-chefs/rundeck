@@ -1,3 +1,9 @@
+## 1.0.5
+* Updated the Nagios check to make sure it calls the health check on the main port (i.e. 8080)
+
+##1.0.4
+* Nagios configuration changes
+
 ##1.0.3
 * Removed usage connection information
 

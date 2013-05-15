@@ -21,7 +21,7 @@ include_recipe "openldap::client"
 case node['platform']
 when "ubuntu"
     package "db4.8-util" do
-      action :install
+      action :upgrade
     end
   cookbook_file "/var/cache/local/preseeding/slapd.seed" do
     source "slapd.seed"
@@ -31,14 +31,14 @@ when "ubuntu"
   end
   package "slapd" do
     response_file "slapd.seed"
-    action :install
+    action :upgrade
   end
 else
   package "db4.2-util" do
-    action :install
+    action :upgrade
   end
   package "slapd" do
-    action :install
+    action :upgrade
   end
 end
 

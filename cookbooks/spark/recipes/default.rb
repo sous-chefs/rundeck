@@ -64,7 +64,7 @@ end
 
 # download spark
 remote_file "#{Chef::Config[:file_cache_path]}/spark-#{node[:spark][:version]}-prebuilt.tgz" do
-  source "#{node['spark']['download_url']}/spark-#{node['spark']['version']}-prebuilt.tgz"
+  source "#{node['spark']['download_url']}/download-spark-#{node['spark']['version']}-prebuilt-tgz"
   owner  "spark"
   group  "spark"
   mode   00744
