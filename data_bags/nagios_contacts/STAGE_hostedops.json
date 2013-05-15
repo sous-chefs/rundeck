@@ -1,6 +1,0 @@
-{
-  "id": "hostedops",
-  "alias": "HostedOps",
-  "use": "default-contact",
-  "email": "devops@webtrends.com"
-}

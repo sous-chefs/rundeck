@@ -1,6 +1,0 @@
-{
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_megaraid", 
-    "hostgroup_name": "win_dell_c6100", 
-    "id": "dell_win_megaraid_health",
-    "contact_groups": "email_only"
-}
