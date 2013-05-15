@@ -1,8 +1,0 @@
-name                "wt_portfolio_harness"
-maintainer          "Webtrends, Inc."
-maintainer_email    "michael.parsons@webtrends.com"
-license             "All rights reserved"
-description         "Installs/Configures Webtrends Portfolio Harness Service"
-version             "3.0.1"
-depends             "java"
-depends             "runit"

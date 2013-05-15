@@ -1,6 +1,0 @@
-{
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_portfolio_healthcheck", 
-    "hostgroup_name": "wt_portfolio_harness", 
-    "id": "wt_portfolio_healthcheck",
-    "contact_groups": "email_and_dev_page-actioncenter"
-}

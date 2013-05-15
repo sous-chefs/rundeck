@@ -1,1 +1,0 @@
-Place all splunk apps that are to be installed by Chef in this directory.
