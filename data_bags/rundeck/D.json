@@ -1,7 +1,0 @@
-{
-  "hostname": "ipaddress",
-  "username": "rundeck",
-  "id": "D",
-  "description": "D pod servers",
-  "pattern": "environment:D"
-}

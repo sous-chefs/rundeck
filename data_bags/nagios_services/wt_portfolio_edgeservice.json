@@ -1,6 +1,0 @@
-{
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_portfolio_edgeservice", 
-    "hostgroup_name": "wt_portfolio_edgeservice", 
-    "id": "wt_portfolio_edgeservice",
-    "contact_groups": "email_and_page-streaming"
-}

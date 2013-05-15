@@ -1,6 +1,0 @@
-{
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_swap -a '-w '40%' -c '25%''", 
-    "hostgroup_name": "linux", 
-    "id": "linux_swap",
-    "contact_groups": "email_and_page"
-}

@@ -1,6 +1,0 @@
-{
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_check_ipmi", 
-    "hostgroup_name": "win_dell_c6100", 
-    "id": "dell_win_ipmp_health",
-    "contact_groups": "email_and_page"
-}
