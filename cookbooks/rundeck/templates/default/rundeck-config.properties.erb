@@ -7,10 +7,26 @@ rss.enabled=true
 #grails.serverURL=http://hostname:PORT
 reportservice.log4j.port=4435
 dataSource.dbCreate = update
+
+<% if node[:rundeck][:rdbms][:enable] == 'true' %>
+  <% if node[:rundeck][:rdbms][:type] == 'mysql' %>
+dataSource.url = jdbc:mysql://<%= node[:rundeck][:rdbms][:location] %>/<%= node[:rundeck][:rdbms][:dbname] %>?autoReconnect=true
+  <% else %>
+dataSource.url = jdbc:oracle:thin:@:<%= node[:rundeck][:rdbms][:location] %>:<%= node[:rundeck][:rdbms][:port] %>:XE
+dataSource.driverClassName = oracle.jdbc.driver.OracleDriver
+dataSource.dialect = org.hibernate.dialect.<%= node[:rundeck][:rdbms][:dialect] %>
+  <% end %>
+dataSource.username = <%= node[:rundeck][:rdbms][:dbuser] %>
+dataSource.password = <%= node[:rundeck][:rdbms][:dbpassword] %>
+dataSource.properties.validationQuery = SELECT 1
+<% end %>
+
+<% if node[:rundeck][:rdbms][:enable] == false %>
 dataSource.url = jdbc:hsqldb:file:/var/lib/rundeck/data/grailsdb;shutdown=true
+<% end %>
 
 #note, make sure this is set to "true" if you are using Oracle or Mysql
-rundeck.v14.rdbsupport=false
+rundeck.v14.rdbsupport=<%= node[:rundeck][:rdbms][:enable] %>
 
 grails.mail.default.from=rundeck@<%=node[:domain] %>
 grails.serverURL=http://rundeck.<%=node[:domain] %>
