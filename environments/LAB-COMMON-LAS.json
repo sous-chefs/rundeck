@@ -479,7 +479,7 @@
         }, 
         "wt_openldap": {
             "server_backup": {
-                "backup_nfs_mount": "sstore02.staging.dmz:/ifs/backups/OpenLDAP", 
+                "backup_nfs_mount": "sstore02.staging.dmz:/ifs/backups/Linux", 
                 "mount_path": "/srv/backups", 
                 "num_backups_retained": 14
             }

@@ -431,7 +431,7 @@
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
-            "host": "amasterdb01.staging.dmz"
+            "host": "cmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {
             "monitor_hostname": "TBD"
@@ -471,11 +471,11 @@
         }, 
         "wt_scheddb": {
             "dbname": "wt_Sched", 
-            "host": "amasterdb01.staging.dmz"
+            "host": "cmasterdb01.staging.dmz"
         }, 
         "wt_schedulerdb": {
             "dbname": "wtScheduler", 
-            "host": "ausagedb01.staging.dmz"
+            "host": "cusagedb01.staging.dmz"
         }, 
         "wt_search": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/Search.zip", 
@@ -497,7 +497,7 @@
         }, 
         "wt_usagedb": {
             "dbname": "wtUsage", 
-            "host": "ausagedb01.staging.dmz"
+            "host": "cusagedb01.staging.dmz"
         }, 
         "zookeeper": {
             "client_port": 2181
