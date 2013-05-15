@@ -381,11 +381,6 @@
             "twitter_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw==", 
             "youtube_public_key": "mgIv0BCAnKrojn9n58yKYNbmvnPPrdA7/9gX25Wq1zaGeGVqWDDnJiO1QEAsIpO3mmm3/KGYm1WRSjaFtV1wpj81n7xtI91Bc95UNXDBYSLb5riY08LQfoXhcbW7HCzUQYAl8XKIy+Zy/65RX7f7reRX/oR747sLL6zpNGHsYt6420NKtta4kyAeytmdLPmfDCjYQgQxK2oei57wLgi5WhbufRqT4P/sIv1857lOZr9DAaghiaKXxeqnRVtaGdiDgyzCwaXsFqzlpdjdfaoxudAtDRe+B9kF9AoVN7LG2MMceS6ursXbyWxnCGHNJnCBwNQXhgaA+y7wKnievGDxsw=="
         }, 
-        "wt_cam_db": {
-            "db_name": "CAM", 
-            "db_server": "hcamdb01.staging.dmz", 
-            "download_url": "http://teamcity.webtrends.corp/guestAuth/repository/download/bt268/56287:id/CamDB.zip"
-        }, 
         "wt_common": {
             "admin_email": "Eng-TestEnvironment@webtrends.corp", 
             "common_resource_environment": "LAB-COMMON-PDX", 
@@ -415,7 +410,7 @@
         }, 
         "wt_masterdb": {
             "dbname": "wtMaster", 
-            "host": "amasterdb01.staging.dmz"
+            "host": "cmasterdb01.staging.dmz"
         }, 
         "wt_messaging_monitoring": {
             "monitor_hostname": "TBD"
@@ -453,6 +448,14 @@
         "wt_roadrunner": {
             "url": "product/ondemand/10.31/rtm/roadrunner/"
         }, 
+        "wt_scheddb": {
+            "dbname": "wt_Sched", 
+            "host": "cmasterdb01.staging.dmz"
+        }, 
+        "wt_schedulerdb": {
+            "dbname": "wtScheduler", 
+            "host": "cusagedb01.staging.dmz"
+        }, 
         "wt_search": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/Search.zip", 
             "search_hostname": "TBD", 
@@ -470,6 +473,10 @@
         }, 
         "wt_sync": {
             "download_url": "http://repo.staging.dmz/repo/product/ondemand/10.6/rtm/SyncService.zip"
+        }, 
+        "wt_usagedb": {
+            "dbname": "wtUsage", 
+            "host": "cusagedb01.staging.dmz"
         }, 
         "zookeeper": {
             "client_port": 2181
