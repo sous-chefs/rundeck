@@ -1,4 +1,0 @@
-#if $getVar("proxy","") != ""
---proxy $proxy
-#end if
-

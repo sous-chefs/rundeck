@@ -1,8 +1,0 @@
-{
-	"id": "staging_phone5",
-	"groups": [ "staging" ],
-	"htpasswd": "lpDF2Rwb9m38o",
-	"nagios": {
-		"email": "6179090573@txt.att.net"
-	}
-}

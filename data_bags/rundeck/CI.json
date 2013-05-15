@@ -1,7 +1,0 @@
-{
-  "hostname": "ipaddress",
-  "username": "rundeck",
-  "id": "CI",
-  "description": "CI pod servers",
-  "pattern": "chef_environment:CI-LAS"
-}

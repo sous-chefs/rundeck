@@ -1,4 +1,0 @@
-*.swp
-.kitchen
-metadata.json
-Gemfile.lock

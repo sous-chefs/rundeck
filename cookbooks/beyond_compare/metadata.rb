@@ -1,8 +1,0 @@
-name             "beyond_compare"
-maintainer       "Webtrends Inc."
-maintainer_email "david.dvorak@webtrends.com"
-license          "All rights reserved"
-description      "Installs/Configures Beyond Compare"
-version          "0.0.2"
-supports         "windows", ">= 6.1"
-depends          "wt_base", ">= 0.10.51"

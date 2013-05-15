@@ -1,3 +1,0 @@
-<% @datanodes.each do |address| -%>
-<%= address %>
-<% end -%>

@@ -1,6 +1,0 @@
-{
-    "command_line": "$USER1$/check_nrpe -H $HOSTADDRESS$ -t 45 -c wt_acds_zk_timeout",
-    "hostgroup_name": "wt_actioncenter_ds_streaming",
-    "id": "acds_zk_timeout",
-    "contact_groups": "email_and_dev_page-actioncenter"
-}

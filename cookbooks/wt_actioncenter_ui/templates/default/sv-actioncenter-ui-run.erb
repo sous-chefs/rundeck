@@ -1,7 +1,0 @@
-#!/bin/sh
-cd <%=@options[:install_dir]%>
-exec 2>&1
-exec \
-  chpst -u <%= @options[:user] %>:<%= @options[:group] %> bundle exec unicorn_rails \
-  -E <%= @options[:environment] %> -c config/unicorn.rb
-
