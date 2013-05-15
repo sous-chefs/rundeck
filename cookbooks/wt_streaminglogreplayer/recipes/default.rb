@@ -139,6 +139,7 @@ def processTemplates (install_dir, node, user, group, datacenter, pod, configser
       variables({
         :wt_streaminglogreplayer => node['wt_streaminglogreplayer'],
         :zookeeper_pairs => zookeeper_pairs,
+        :producer_refresh_interval_sec => node['wt_streaminglogreplayer']['producer_refresh_interval_sec'],
         :wt_monitoring => node['wt_monitoring'],
         :configservice_url => configservice_url,
         :kafka_topic => kafka_topic,
@@ -199,6 +200,11 @@ if ENV["deploy_build"] == "true" then
         :user => user
     })
     end
+
+    runit_service "streaminglogreplayer" do
+      action [:start]
+      ignore_failure false
+    end
 else
     processTemplates(install_dir, node, user, group, datacenter, pod, configservice_url, kafka_topic, log_dir)
 end
@@ -218,8 +224,8 @@ if node.attribute?("nagios")
   #Create a nagios nrpe check for old files in the logshare
   nagios_nrpecheck "wt_streaming_logreplayer_old_files_count" do
     command "#{node['nagios']['plugin_dir']}/check_file_ages_in_dirs"
-    warning_condition "15"
-    critical_condition "20"
+    warning_condition node['wt_streaminglogreplayer']['old_log_warn']
+    critical_condition node['wt_streaminglogreplayer']['old_log_crit']
     parameters "-d #{node['wt_streaminglogreplayer']['share_mount_dir']} -t minutes"
     action :add
   end

@@ -1,8 +1,10 @@
 <%- if @allow_http %>
 allow_http: true
 <% end %>
+actioncenter_management:
+  endpoint: '<%= @actioncenter_url %>'
 portfolio:
-  application_key: streams
+  application_key: actioncenter
   help_url: '<%= @help_url %>'
 auth:
   endpoint: '<%= @auth_url %>'
@@ -17,5 +19,5 @@ auth:
 cam:
   endpoint: '<%= @cam_url %>'
 sms:
-  endpoint: `<%= @sms_url %>'
+  endpoint: '<%= @sms_url %>'
 

@@ -1,0 +1,8 @@
+name                "wt_log_producer"
+maintainer          "Webtrends, Inc."
+maintainer_email    "marek.dolgos@webtrends.com"
+license             "All rights reserved"
+description         "Installs/Configures Webtrends Portfolio Log Producer"
+version             "1.0.0"
+depends             "java"
+depends             "runit"

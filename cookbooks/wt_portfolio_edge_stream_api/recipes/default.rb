@@ -74,6 +74,10 @@ if ENV["deploy_build"] == "true" then
     action :run
   end
 
+  service "edgeservice" do
+     action [:restart]
+  end
+
 else
 end
 

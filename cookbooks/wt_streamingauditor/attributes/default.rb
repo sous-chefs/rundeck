@@ -23,3 +23,4 @@ default['wt_streamingauditor']['jmx_port'] = 9999
 default['wt_streamingauditor']['sauth_version'] = "v1"
 default['wt_streamingauditor']['log_dir'] = "/var/log/webtrends/streamingauditor"
 default['wt_streamingauditor']['log_level'] = "WARN"
+default['wt_streamingauditor']['healthcheck_port'] = 9000

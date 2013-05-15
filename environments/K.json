@@ -23,6 +23,12 @@
             "cassandra_report_column": "K_Report", 
             "cassandra_thrift_port": 9160
         }, 
+        "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
+            "server_url": "http://chef.staging.dmz:4000"
+        }, 
         "esx": {
             "repo": "http://repo.staging.dmz/repo/linux/vmware"
         }, 
@@ -92,7 +98,7 @@
                 "10.61.65.251", 
                 "10.61.65.252"
             ], 
-            "search": "englab.webtrends.corp webtrends.corp staging.dmz"
+            "search": "englab.webtrends.corp webtrends.corp staging.dmz os.staging.dmz"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -286,12 +292,6 @@
     "json_class": "Chef::Environment", 
     "name": "K", 
     "override_attributes": {
-        "chef_client": {
-            "daemon_options": [
-                "--fork"
-            ], 
-            "server_url": "http://chef.staging.dmz:4000"
-        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

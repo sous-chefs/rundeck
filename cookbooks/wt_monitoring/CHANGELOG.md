@@ -1,3 +1,9 @@
+## 1.0.2
+* Add IADLBB checks to loadbalancer_failover_checks.rb
+
+## 1.0.1
+* Add collectd plugin for unbound.
+
 ## 1.0.0
 * Add a chef_handler for graphite to send chef run data to graphite
 

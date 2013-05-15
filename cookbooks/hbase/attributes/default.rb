@@ -14,7 +14,7 @@ default[:hbase][:default][:download_url] = 'http://repo.staging.dmz/repo/linux/h
 default[:hbase][:default][:log_dir] = '/var/log/hbase'
 
 # hbase-env.sh
-default[:hbase][:default][:env][:HBASE_HEAPSIZE] = 1000
+default[:hbase][:default][:env][:HBASE_HEAPSIZE] = 8000
 default[:hbase][:default][:env][:HBASE_MANAGES_ZK] = 'true'
 
 # hbase-site.xml

@@ -198,6 +198,7 @@ Worker attributes are used for tuning the Apache HTTPD worker MPM
 configuration.
 
 * `node['apache']['worker']['startservers']` - Initial number of server processes to start. Default 4
+* `node['apache']['worker']['serverlimit']` - upper limit on configurable server processes. Default 16.
 * `node['apache']['worker']['maxclients']` - Maximum number of simultaneous connections. Default 1024.
 * `node['apache']['worker']['minsparethreads']` - Minimum number of spare worker threads. Default 64
 * `node['apache']['worker']['maxsparethreads']` - Maximum number of spare worker threads. Default 192.
@@ -537,7 +538,7 @@ create a basic role for web servers that provide both HTTP and HTTPS:
       "recipe[apache2::mod_ssl]"
     )
     default_attributes(
-      "apache2" => {
+      "apache" => {
         "listen_ports" => ["80", "443"]
       }
     )

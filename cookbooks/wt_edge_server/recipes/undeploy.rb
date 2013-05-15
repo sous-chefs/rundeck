@@ -12,7 +12,6 @@ install_dir  = File.join(node['wt_common']['install_dir_linux'], "edge_server")
 
 runit_service "edge_server" do
     action :disable
-    run_restart false
 end
 
 # try to stop the service, but allow a failure without printing the error

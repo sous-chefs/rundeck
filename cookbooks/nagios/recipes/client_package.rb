@@ -1,9 +1,10 @@
 #
 # Author:: Seth Chisamore <schisamo@opscode.com>
+# Author:: Tim Smith <tsmith84@gmail.com>
 # Cookbook Name:: nagios
 # Recipe:: client_package
 #
-# Copyright 2011, Opscode, Inc
+# Copyright 2013, Opscode, Inc
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

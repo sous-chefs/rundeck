@@ -126,7 +126,17 @@ template "#{install_dir}/conf/log4j.xml" do
    :log_dir => log_dir
  })
 end
- 
+
+auth_url =  node['wt_sauth']['auth_service_url']
+auth_uri = URI(auth_url)
+auth_host = auth_uri.host 
+
+proxy_host = ''
+unless node['wt_common']['http_proxy_url'].nil? || node['wt_common']['http_proxy_url'].empty?
+        proxy_uri = URI(node['wt_common']['http_proxy_url'])
+        proxy_host = "#{proxy_uri.host}:#{proxy_uri.port}"
+end
+
 template "#{install_dir}/conf/config.properties" do
  source "config.properties.erb"
  owner "webtrends"
@@ -137,9 +147,11 @@ template "#{install_dir}/conf/config.properties" do
    :jwt_audience => node['wt_streaming_barebones']['auth_jwt_audience'],
    :jwt_scope => node['wt_streaming_barebones']['auth_jwt_scope'],
    :cam_url => node['wt_cam']['cam_service_url'],
-   :auth_url => node['wt_sauth']['auth_service_url'],
+   :auth_url => auth_url,
    :client_token => client_token,
    :client_secret => client_secret,
-   :sapi_url => node['wt_streamingapi']['sapi_service_url']
+   :sapi_url => node['wt_streamingapi']['sapi_service_url'],
+   :auth_host => auth_host,
+   :proxy_host => proxy_host
  })
 end

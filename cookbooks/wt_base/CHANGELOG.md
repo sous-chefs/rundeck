@@ -1,3 +1,7 @@
+## 1.1.1
+* Fixed missing space in icacls remove perm
+* More cleanup
+
 ## 1.1.0
 * Cleaned unneeded error logging
 * Added support for icacls on links
