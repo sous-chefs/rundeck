@@ -33,6 +33,15 @@ template "#{plugin_install_dir}\\Webtrends.Cam.Plugins.Optimize.dll.config" do
   )
 end
 
+template "#{plugin_install_dir}\\Webtrends.Cam.Plugins.ActionCenter.dll.config" do
+  source "Webtrends.Cam.Plugins.ActionCenter.dll.config.erb"
+  variables(
+    :provisioning_storage_url => node['wt_streamingconfigservice']['config_service_url'] + "/appdata/v1/account/{account_id}/{type}",
+    :provisioning_storage_type   => node['wt_cam']['actioncenter_plugin']['provisioning_storage_type']
+  )
+end
+
+
 if ENV["deploy_build"] == "true" then
   # Lay the files down
   windows_zipfile plugin_install_dir do

@@ -185,7 +185,12 @@ module WtPublishver
 				when /\b(\d+):id\b/i
 					$1
 				when /(\.lastSuccessful)\b/i
-					@@tc.builds({ :locator => "buildType:#{@buildtype_id},status:SUCCESS" }).first.id
+					begin
+						@@tc.builds({ :locator => "buildType:#{@buildtype_id},status:SUCCESS" }).first.id
+					rescue OpenURI::HTTPError => e
+						Chef::Log.warn "Got #{e} while searching for .lastSuccessful in buildType:#{@buildtype_id}"
+						nil
+					end
 			end
 		end
 	

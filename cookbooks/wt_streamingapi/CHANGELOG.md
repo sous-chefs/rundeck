@@ -1,3 +1,6 @@
+## 1.2.9
+* Updated the Nagios check to make sure it calls the health check on the main port (i.e. 8080)
+
 ## 1.2.8
 * Added api and schema version info
 

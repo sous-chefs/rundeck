@@ -8,6 +8,7 @@
         "nagios": "= 3.0.0", 
         "nginx": "= 0.101.0", 
         "php5-cgi": "= 1.0.2", 
+        "sysctl": "= 0.1.8", 
         "webtrends_server": "= 1.8.9", 
         "wt_base": "= 1.0.3", 
         "wt_heatmaps": "= 0.10.45", 
@@ -148,7 +149,7 @@
                 "10.164.0.11", 
                 "10.164.0.12"
             ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp os.staging.dmz"
         }, 
         "snmp": {
             "community": "DevOps", 
@@ -220,7 +221,7 @@
             "smtp_server": "pdxengmta01.englab.webtrends.corp"
         }, 
         "wt_heatmaps": {
-            "config_distrib": "dcd01.staging.dmz:8097", 
+            "config_distrib": "hecd01.staging.dmz:8097", 
             "heatmap_reducers": -1
         }, 
         "wt_monitoring": {

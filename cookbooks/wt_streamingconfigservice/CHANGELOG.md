@@ -1,3 +1,18 @@
+## 2.0.0
+* Updates to clean deploy successfully
+
+## 1.1.7
+* Added support for an authentication token for the secure app data service
+
+## 1.1.6
+* Added conn string for actioncenter usage database
+
+## 1.1.5
+* Updated keyfile handling for ssl support
+
+## 1.1.4
+* Added support for secure endpoints - additional config params
+
 ## 1.1.3
 * Changed the nagios script to point to the main port, 8080, for health checks. Removed the healthcheck_port from this 
 * cookbook since it is not needed.

@@ -1,3 +1,16 @@
+## 3.0.2
+* Removed the start topo command from cookbook
+
+## 3.0.1
+* Corrected nimbus search logic 
+
+## 3.0.0
+* Added topology starts/stops
+* Changes to allow deploy on clean machine
+
+## 2.5.3
+* Added response_bolt tasks and executors
+
 ## 2.5.2
 * Adding antlr4 to topology
 

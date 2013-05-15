@@ -1,3 +1,6 @@
+## 1.0.19
+* Added the healthcheck port attribute locally in wt_streamingauditor->healthcheck_port.
+
 ## 1.0.18
 * Changed the nagios script to point to the main port, 8080, for health checks
 

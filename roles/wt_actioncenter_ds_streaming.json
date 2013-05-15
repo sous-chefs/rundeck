@@ -6,6 +6,7 @@
   "env_run_lists": {
   },
   "run_list": [
+    "role[wt_portfolio_harness]",
     "recipe[wt_actioncenter_ds_streaming]"
   ],
   "description": "Harness Plugin for action center streaming",

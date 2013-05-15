@@ -16,6 +16,12 @@ clientPort=<%= @client_port %>
 maxClientCnxns=<%= @max_client_cnxns %>
 
 
+<% if not @max_session_timeout.nil? %>
+# session timeout
+maxSessionTimeout=<%= @max_session_timeout %>
+<% end %>
+
+
 #
 # Be sure to read the maintenance section of the 
 # administrator guide before turning on autopurge.

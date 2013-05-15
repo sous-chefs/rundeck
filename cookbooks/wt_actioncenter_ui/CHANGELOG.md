@@ -1,3 +1,21 @@
+## 1.0.3
+* Move logs to /var/log/webtrends/actioncenter-ui
+
+## 1.0.2
+* Added the correct help_url to the attributes
+
+## 1.0.1
+* Changed template Application_key to actioncenter
+
+## 1.0.0
+* Changed management URL to pull from management block 
+
+## 0.9.5:
+* Fixes for consistency
+
+## 0.9.4:
+* Configure endpoints in the production.yml
+
 ## 0.9.3:
 
 * Configure sms.endpoint to wt_streamingmanagementservice.sms_service_url

@@ -1,3 +1,6 @@
+## 1.1.9
+* Add Webtrends.Cam.Plugins.ActionCenter.dll.config, templates, attributes
+
 ## 1.1.8
 * Add web.config setting for email.imagepath
 

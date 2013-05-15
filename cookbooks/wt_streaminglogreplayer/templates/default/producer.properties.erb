@@ -62,3 +62,6 @@ queue.enqueueTimeout.ms=-1
 # properties required to initialize the event handler 
 #event.handler.props=
 
+# Interval for closing Kafka producers and reconnecting; to help with P2P fail-back recovery.
+producer.refresh.interval.sec = <%= @producer_refresh_interval_sec %>
+

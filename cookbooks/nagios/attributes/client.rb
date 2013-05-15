@@ -3,6 +3,7 @@
 # Author:: Joshua Timberman <joshua@opscode.com>
 # Author:: Nathan Haneysmith <nathan@opscode.com>
 # Author:: Seth Chisamore <schisamo@opscode.com>
+# Author:: Tim Smith <tsmith84@gmail.com>
 # Cookbook Name:: nagios
 # Attributes:: client
 #
@@ -41,7 +42,7 @@ when 'debian'
 when 'rhel','fedora'
   default['nagios']['client']['install_method']  = 'source'
   default['nagios']['nrpe']['pidfile']           = '/var/run/nrpe.pid'
-  default['nagios']['nrpe']['packages']          = %w{ nrpe nagios-plugins nagios-plugins-disk nagios-plugins-swap nagios-plugins-ssh nagios-plugins-snmp nagios-plugins-smtp nagios-plugins-tcp nagios-plugins-time nagios-plugins-ups nagios-plugins-users nagios-plugins-wave nagios-plugins-sensors nagios-plugins-nagios nagios-plugins-ntp nagios-plugins-ping nagios-plugins-load nagios-plugins-log nagios-plugins-http nagios-plugins-breeze nagios-plugins-by_ssh nagios-plugins-game nagios-plugins-perl nagios-plugins-flexlm nagios-plugins-fping nagios-plugins-hpjd nagios-plugins-icmp nagios-plugins-ide_smart nagios-plugins-ifoperstatus nagios-plugins-ifstatus nagios-plugins-real nagios-plugins-rpc nagios-plugins-cluster nagios-plugins-dig nagios-plugins-dns nagios-plugins-ldap nagios-plugins-ircd nagios-plugins-file_age nagios-plugins-dummy nagios-plugins-mrtg nagios-plugins-mailq nagios-plugins-mrtgtraf nagios-plugins-mysql nagios-plugins-oracle nagios-plugins-pgsql nagios-plugins-procs nagios-plugins-nwstat nagios-plugins-nt nagios-plugins-radius nagios-plugins-overcr }
+  default['nagios']['nrpe']['packages']          = %w{ nrpe nagios-plugins-disk nagios-plugins-load nagios-plugins-procs nagios-plugins-users }
   if node['kernel']['machine'] == "i686"
     default['nagios']['nrpe']['home']            = '/usr/lib/nagios'
     default['nagios']['nrpe']['ssl_lib_dir']     = '/usr/lib'

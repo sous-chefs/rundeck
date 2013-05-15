@@ -19,13 +19,13 @@
     "build-essential": ">= 0.0.0",
     "yum": ">= 0.0.0",
     "apt": ">= 0.0.0",
+    "runit": ">= 0.0.0",
     "ohai": ">= 1.1.4"
   },
   "recommendations": {
-    "bluepill": ">= 0.0.0",
-    "runit": "<= 0.16.2"
   },
   "suggestions": {
+    "bluepill": ">= 0.0.0"
   },
   "conflicting": {
   },
@@ -311,5 +311,5 @@
     "nginx": "Installs nginx package and sets up configuration with Debian apache style with sites-enabled/sites-available",
     "nginx::source": "Installs nginx from source and sets up configuration with Debian apache style with sites-enabled/sites-available"
   },
-  "version": "1.4.0"
+  "version": "1.6.0"
 }

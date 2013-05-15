@@ -1,0 +1,31 @@
+{
+  "name": "sysctl",
+  "description": "Configures sysctl parameters",
+  "long_description": "= DESCRIPTION:\nSet sysctl values from Chef!\n\n= REQUIREMENTS:\n\n= ATTRIBUTES:\nnode[:sysctl] = A namespace for sysctl settings.\n\n= USAGE:\nThere are two ways of setting sysctl values:\n1. Set chef attributes in the _sysctl_ namespace, E.G.:\n<tt>default[:sysctl][:vm][:swappiness] = 20</tt>\n2. Set values in a cookbook_file - 69-chef-static.conf\n\n",
+  "maintainer": "Fewbytes Technologies",
+  "maintainer_email": "avishai@fewbytes.com",
+  "license": "Apache v2.0",
+  "platforms": {
+    "ubuntu": ">= 0.0.0",
+    "debian": ">= 0.0.0"
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.1.0"
+}

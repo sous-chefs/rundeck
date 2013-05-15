@@ -85,6 +85,7 @@ template "#{install_dir}\\wtlogpreproc.ini" do
     :geo_maxretries        => node['wt_logpreproc']['geo_maxretries'],
     :geo_timeoutlength     => node['wt_logpreproc']['geo_timeoutlength'],
     :geo_maxpending        => node['wt_logpreproc']['geo_maxpending'],
+    :geo_maxconnections    => node['wt_logpreproc']['geo_numconnections'],
     :geo_server            => node['wt_netacuity']['geo_url'],
 
     :dns_serverlist   => node['wt_logpreproc']['dns_serverlist'],
@@ -113,4 +114,5 @@ service 'wtlogpreproc' do
     :template => "#{install_dir}\\wtlogpreproc.ini"
   )
   action :nothing
+  ignore_failure true
 end

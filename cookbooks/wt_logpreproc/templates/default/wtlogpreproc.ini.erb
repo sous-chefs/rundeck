@@ -62,7 +62,7 @@ sourcepath<%= i %>=<%= item %>
 compresslogfile=<%= @wtlogpreproc1_compresslogfile %>
 compresslogfile_level=<%= @wtlogpreproc1_compresslogfile_level %>
 
-# Delete the orignal lfr logs when finished
+# Delete the original lfr logs when finished
 deleteoriginallogs=<%= @wtlogpreproc1_deleteoriginallogs %>
 
 # Web Logs default to IIS Logs
@@ -73,6 +73,9 @@ webserver=IIS
 ensurefield=dcs-dns
 ensurefield1=dcs-geo
 ensurefield2=origin-id
+
+# Number of files to work on concurrently
+numthreads=<%= @wtda_numthreads %>
 
 [geotrends]
 
@@ -90,6 +93,13 @@ maxpending=<%= @geo_maxpending %>
 
 # Maximum number of cached geo records
 maxcachedrecords=<%= @geo_maxcachedrecords %>
+
+# Number of connections to the Net Acuity server to use.
+# If using a load balancer, ideally this should be a multiple of the number of Net Acuity servers behind the load balancer.
+numconnections=<%= @geo_numconnections %>
+
+
+
 
 [dns]
 # List of DNS server IP addresses (semi-colon delimited)
@@ -119,9 +129,6 @@ maxreq=4096
 maxrep=4096
 
 [wtda]
-# Numthreads should be 1 for LPP
-numthreads=<%= @wtda_numthreads %>
-
 # compressed filename extensions (comma separated list)
 # Any "fileextension" values which are in this list are compressed files:
 compressedext=<%= @wtda_compressedext %>
@@ -155,3 +162,4 @@ auditmaxsize=<%= @auditlog_maxsize %>
 audittrimsize=<%= @auditlog_trimsize %>
 auditfilenameprefix=<%= @auditlog_filenameprefix %>
 auditfilenameext=<%= @auditlog_filenameext %>
+

@@ -1,3 +1,10 @@
+
+## 1.1.7
+* Updated the Nagios check to make sure it calls the health check on the main port (i.e. 8080)
+
+## 1.1.6
+* Cleanup runit service disabling in undeploy.rb
+
 ## 1.1.5
 * STR-943 - Added configservice.baseUrl to config.properties
 

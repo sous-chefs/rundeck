@@ -11,5 +11,8 @@
     "role[wt_heatmaps_import]"
   ],
   "override_attributes": {
+    "sysctl":{  
+      "vm":{"vm.swappiness":0}
+    }
   }
 }
