@@ -42,6 +42,6 @@ file "/etc/sudoers.d/rundeck" do
   owner "root"
   group "root"
   mode 00440
-  content "rundeck    ALL = NOPASSWD: ALL"
+  content "rundeck    ALL = (ALL)NOPASSWD: ALL"
   action :create
 end
