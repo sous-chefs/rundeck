@@ -26,6 +26,12 @@
                 ]
             }
         }, 
+        "chef_client": {
+            "daemon_options": [
+                "--fork"
+            ], 
+            "server_url": "http://chef.staging.dmz:4000"
+        }, 
         "cobbler": {
             "deploy_chef_version": "10.16.2", 
             "manage_dhcp": 1, 
@@ -100,7 +106,7 @@
                 "10.61.65.251", 
                 "10.61.65.252"
             ], 
-            "search": "englab.webtrends.corp webtrends.corp staging.dmz"
+            "search": "englab.webtrends.corp webtrends.corp staging.dmz os.staging.dmz"
         }, 
         "webpi": {
             "checksum": "fc763c31be35e50fea3381082ddbb078", 
@@ -150,12 +156,6 @@
     "json_class": "Chef::Environment", 
     "name": "support-webtrends", 
     "override_attributes": {
-        "chef_client": {
-            "daemon_options": [
-                "--fork"
-            ], 
-            "server_url": "http://chef.staging.dmz:4000"
-        }, 
         "ntp": {
             "servers": [
                 "time.webtrends.corp"

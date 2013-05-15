@@ -1,15 +1,7 @@
 {
     "chef_type": "environment", 
-    "cookbook_versions": {
-    }, 
+    "cookbook_versions": {}, 
     "default_attributes": {
-        "resolver": {
-            "nameservers": [
-                "10.164.0.11", 
-                "10.164.0.12"
-            ], 
-            "search": "staging.dmz webtrends.corp englab.webtrends.corp"
-        }, 
         "authorization": {
             "ad_auth": {
                 "ad_network": "OSSTAGINGDMZ"
@@ -44,6 +36,13 @@
         }, 
         "postfix": {
             "relayhost": "pdxengmta01.webtrends.corp"
+        }, 
+        "resolver": {
+            "nameservers": [
+                "10.164.0.11", 
+                "10.164.0.12"
+            ], 
+            "search": "staging.dmz webtrends.corp englab.webtrends.corp os.staging.dmz"
         }, 
         "snmp": {
             "community": "DevOps", 
