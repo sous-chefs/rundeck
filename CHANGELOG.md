@@ -1,3 +1,6 @@
+** 1.0.8
+* support rdbms
+
 ## 1.0.7
 * support omnibus install of chef server
 
