@@ -1,5 +1,5 @@
 activedirectory {
-    com.dtolabs.rundeck.jetty.jaas.JettyCachingLdapLoginModule required 
+    com.dtolabs.rundeck.jetty.jaas.JettyCachingLdapLoginModule sufficient 
     debug="true"
     contextFactory="com.sun.jndi.ldap.LdapCtxFactory"
     providerUrl="<%=@ldap[:provider]%>"
@@ -18,4 +18,8 @@ activedirectory {
     roleObjectClass="group"
     cacheDurationMillis="300000"
     reportStatistics="true";
-    };
+
+    org.mortbay.jetty.plus.jaas.spi.PropertyFileLoginModule required
+    debug="true"
+    file="<%=@configdir%>/realm.properties";
+};
