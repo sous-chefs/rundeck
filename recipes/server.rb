@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: rundeck
-# Recipe:: server
+# Recipe::server
 #
 # Copyright 2012, Peter Crossley
 #
@@ -26,21 +26,46 @@ include_recipe "apache2::mod_ssl"
 include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
 
-# install rundeck with a force-yes to avoid errors as the package is not signed
-package "rundeck" do
+
+
+cookbook_file "/tmp/#{node[:rundeck][:deb]}" do
+  source node[:rundeck][:deb]
+  owner node[:rundeck][:user]
+  group node[:rundeck][:user]
+  mode "0644"
+end
+
+package "#{node[:rundeck][:deb]}" do
   action :install
-  options "--force-yes"
+  source "/tmp/#{node[:rundeck][:deb]}"
+  provider Chef::Provider::Package::Dpkg
+end
+
+directory node['rundeck']['basedir'] do
+  owner node['rundeck']['user']
+  recursive true
 end
 
 
-directory "#{node['rundeck']['user_home']}/.ssh" do
+directory "#{node['rundeck']['basedir']}/.chef" do
   owner node['rundeck']['user']
   group node['rundeck']['user']
   recursive true
   mode "0700"
 end
 
-cookbook_file "#{node['rundeck']['user_home']}/.ssh/id_rsa" do
+template "#{node['rundeck']['basedir']}/.chef/knife.rb" do
+  owner node['rundeck']['user']
+  group node['rundeck']['user']
+  source "knife.rb.erb"
+  variables(
+    :user_home => node['rundeck']['basedir'],
+    :node_name => node['rundeck']['user'],
+    :chef_server_url => node['rundeck']['chef_url']
+  )
+end
+
+cookbook_file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
   owner node['rundeck']['user']
   group node['rundeck']['user']
   mode "0600"
@@ -48,13 +73,21 @@ cookbook_file "#{node['rundeck']['user_home']}/.ssh/id_rsa" do
   source "rundeck"
 end
 
+cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.0-beta.jar" do
+  owner node['rundeck']['user']
+  group node['rundeck']['user']
+  mode "0644"
+  backup false
+  source "rundeck-winrm-plugin-1.0-beta.jar"
+end
 
 template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
   owner node['rundeck']['user']
   group node['rundeck']['user']
   source "jaas-activedirectory.conf.erb"
   variables(
-    :ldap => node['rundeck']['ldap']
+    :ldap => node['rundeck']['ldap'],
+    :configdir => node['rundeck']['configdir']
   )
 end
 

@@ -7,7 +7,6 @@ rss.enabled=true
 #grails.serverURL=http://hostname:PORT
 reportservice.log4j.port=4435
 dataSource.dbCreate = update
-
 <% if node[:rundeck][:rdbms][:enable] == 'true' %>
   <% if node[:rundeck][:rdbms][:type] == 'mysql' %>
 dataSource.url = jdbc:mysql://<%= node[:rundeck][:rdbms][:location] %>/<%= node[:rundeck][:rdbms][:dbname] %>?autoReconnect=true
@@ -28,5 +27,5 @@ dataSource.url = jdbc:hsqldb:file:/var/lib/rundeck/data/grailsdb;shutdown=true
 #note, make sure this is set to "true" if you are using Oracle or Mysql
 rundeck.v14.rdbsupport=<%= node[:rundeck][:rdbms][:enable] %>
 
-grails.mail.default.from=rundeck@<%=node[:domain] %>
-grails.serverURL=http://rundeck.<%=node[:domain] %>
+grails.mail.default.from=<%=node[:rundeck][:email] %>
+grails.serverURL=http://<%=node[:rundeck][:hostname] %>

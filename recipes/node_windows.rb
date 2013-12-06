@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: rundeck
-# Recipe:i: default
+# Recipe:i: node_windows
 #
 # Copyright 2012, Peter Crossley
 #
@@ -16,9 +16,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-case node['platform_family']
-when "rhel", "fedora", "suse", "debian", "arch", "freebsd"
-  include_recipe 'rundeck::node_unix'   
-when "windows"
-  include_recipe 'rundeck::node_windows'  
+
+chef_gem "chef-vault"
+
+require 'chef-vault'
+
+item = ChefVault::Item.load("rundeck-pwds", node['rundeck']['windows']['user'])
+
+user node['rundeck']['windows']['user'] do
+  system true
+  comment "Rundeck User for access over winrm"
+  password item["password"]
+  not_if { (!item.nil? && item["password"].nil?) }
+  notifies :manage, "group[#{node['rundeck']['windows']['group']}]"
+end
+
+group node['rundeck']['windows']['group'] do
+  append true
+  members node['rundeck']['windows']['user']
 end
