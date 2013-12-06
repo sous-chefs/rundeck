@@ -1,4 +1,4 @@
-## 1.0.8
+## 1.0.10
 * Add support for windows via winrm
 
 ## 1.0.7
