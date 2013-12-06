@@ -1,14 +1,12 @@
-## 1.0.9
-* Setting default action as ssh -t
-
 ## 1.0.8
-* support rdbms
+* Add support for windows via winrm
 
 ## 1.0.7
-* support omnibus install of chef server
+* Add support for sudo cookbook version 2.0+
 
 ## 1.0.6
-* run_restart removed from runit_service in runit => 1.0.0
+* Add support for relational databases mysql and oracle
+* Fixed path issues and updated to latest deb
 
 ## 1.0.5
 * Address food critic warnings
@@ -21,4 +19,4 @@
 
 ## 1.0:
 
-* Initial release
+* Initial releas
