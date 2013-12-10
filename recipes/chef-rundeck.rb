@@ -73,7 +73,6 @@ remote_file "/etc/chef/rundeck.pem" do
 end
 
 runit_service "chef-rundeck" do
-  run_restart false
   options(
     :user => node['rundeck']['user'],
     :chef_config => node['rundeck']['chef_config'],
