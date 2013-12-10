@@ -116,7 +116,6 @@ file "/etc/init.d/rundeckd" do
 end
 
 runit_service "rundeck" do
-  run_restart false
   options(
     :rundeck => node['rundeck']
   )
