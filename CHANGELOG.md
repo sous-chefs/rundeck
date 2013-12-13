@@ -1,3 +1,6 @@
+## 1.0.11
+* Move chef-rundeck URL config into the project data bags for multiple chef-rundeck URLs
+
 ## 1.0.10
 * Add support for windows via winrm
 
