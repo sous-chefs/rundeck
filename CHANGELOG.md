@@ -1,3 +1,6 @@
+## 1.0.12
+* install sinatra/chef-rundeck with chef_gem to prevent duplicate chef-clients
+
 ## 1.0.11
 * Move chef-rundeck URL config into the project data bags for multiple chef-rundeck URLs
 
