@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: rundeck
-# Recipe:i: chef-rundeck
+# Recipe:: chef-rundeck
 #
 # Copyright 2012, Peter Crossley
 #
@@ -18,6 +18,7 @@
 #
 
 require 'json'
+require 'rubygems'
 
 include_recipe 'rundeck::default'
 
@@ -44,16 +45,17 @@ cookbook_file "/tmp/chef-rundeck-0.2.2.gem" do
   mode 00644
 end
 
-gem_package "chef-rundeck" do
+chef_gem "chef-rundeck" do
   action :install
   source "/tmp/chef-rundeck-0.2.2.gem"
 end
 
-gem_package "sinatra"
+chef_gem "sinatra"
 
 link "/usr/bin/chef-rundeck" do
   to "/var/lib/gems/1.8/bin/chef-rundeck"
   only_if do node[:platform_version] >= "10.04" end
+  only_if do ::File.exists? '/var/lib/gems/1.8/bin/chef-rundeck' end
 end
 
 template "/etc/chef/rundeck.rb" do
@@ -77,7 +79,8 @@ runit_service "chef-rundeck" do
     :user => node['rundeck']['user'],
     :chef_config => node['rundeck']['chef_config'],
     :chef_webui_url => node['rundeck']['chef_webui_url'],
-    :project_config => node['rundeck']['project_config']
+    :project_config => node['rundeck']['project_config'],
+    :gem_binfile => ::File.join(::Gem.default_bindir, 'chef-rundeck')
   )
   notifies :restart, "service[chef-rundeck]"
 end
