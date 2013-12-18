@@ -20,6 +20,7 @@
 require 'json'
 require 'rubygems'
 
+include_recipe 'runit'
 include_recipe 'rundeck::default'
 
 bags = data_bag('rundeck')
