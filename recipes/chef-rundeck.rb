@@ -43,14 +43,14 @@ end
 cookbook_file "/tmp/chef-rundeck-0.2.2.gem" do
   source "chef-rundeck-0.2.2.gem"
   mode 00644
-end
+end.run_action(:create)
+
+chef_gem "sinatra"
 
 chef_gem "chef-rundeck" do
   action :install
   source "/tmp/chef-rundeck-0.2.2.gem"
 end
-
-chef_gem "sinatra"
 
 link "/usr/bin/chef-rundeck" do
   to "/var/lib/gems/1.8/bin/chef-rundeck"
