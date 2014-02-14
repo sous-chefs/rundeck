@@ -1,0 +1,10 @@
+maintainer       "Webtrends, Inc."
+maintainer_email "Peter Crossley <peter.crossley@webtrends.com>"
+license          "All rights reserved"
+description      "Installs/Configures Rundeck 2.0"
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+version          "2.0.0"
+depends          "runit"
+depends          "sudo"
+depends          "java"
+depends          "apache2"
