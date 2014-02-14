@@ -35,7 +35,6 @@ Linux default attributes for all rundeck managed nodes and server
 * `node['rundeck']['user']` = Rundeck username (linux), default 'rundeck'
 * `node['rundeck']['user_home']` = Rundeck user home directory (linux), default '/home/rundeck'
 
-### default
 Windows default attributes for all rundeck managed nodes
 
 * `node['rundeck']['windows']['user']` - Windows user to create, default 'rundeck'
@@ -235,7 +234,8 @@ Create a `rundeck_projects` data bag that will contain the projects and search s
 Rundeck Role ACL Policy
 ------------------
 A default role acl policy is supported out of the box.  You can add new acl policy files in to the configuration directory (`node['rundeck']['configdir']`)
-[role acl policy definitions](http://rundeck.org/docs/administration/role-based-access-control.html).  
+
+[Rundeeck role acl policy definitions](http://rundeck.org/docs/administration/role-based-access-control.html).  
 
 
 
