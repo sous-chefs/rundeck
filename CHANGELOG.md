@@ -1,5 +1,5 @@
 ## 2.0.0
-* update rundeck 2.0
+* update rundeck 2.0.1
 * update to chef-rundeck 1.0.2
 * added a README.md file
 * added a CONTRIBUTING file
