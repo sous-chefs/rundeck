@@ -1,4 +1,4 @@
-rundeck Cookbook
+Rundeck Cookbook
 ================
 Installs and configures a Rundeck 2.0 server with Chef integration via the chef-rundeck.gem.  Projects in rundeck can be dynamiclly configured via data bag items using search.  Linux and Windows client nodes are supported.  The cookbook has optional support for Active Directory and LDAP.
 
@@ -32,8 +32,8 @@ Attributes
 ### default
 Linux default attributes for all rundeck managed nodes and server
 
-* `node['rundeck']['user']` = Rundeck username (linux), default 'rundeck'
-* `node['rundeck']['user_home']` = Rundeck user home directory (linux), default '/home/rundeck'
+* `node['rundeck']['user']` - Rundeck username (linux), default 'rundeck'
+* `node['rundeck']['user_home']` - Rundeck user home directory (linux), default '/home/rundeck'
 
 Windows default attributes for all rundeck managed nodes
 
@@ -45,8 +45,8 @@ Chef rundeck integration service attributes
 
 * `node['rundeck']['chef_config']` - Chef-Rundeck client configuration, default '/etc/chef/rundeck.rb'
 
-* `node['rundeck']['chef_rundeck_url']` = Chef-Rundeck URL, default 'http://chef.hostdomain:9980'
-* `node['rundeck']['chef_rundeck_port']` = Chef-Rundeck binds to port, default '9980'
+* `node['rundeck']['chef_rundeck_url']` - Chef-Rundeck URL, default 'http://chef.hostdomain:9980'
+* `node['rundeck']['chef_rundeck_port']` - Chef-Rundeck binds to port, default '9980'
 * `node['rundeck']['chef_rundeck_host']` - Chef-Rundeck binds to address, default '0.0.0.0' 
 
 * `node['rundeck']['chef_webui_url']` - Chef Server Web UI URL, default 'https://chef.hostdomain.com'
@@ -63,9 +63,9 @@ Attributes that configure and manage the installation of the Rundeck server
 * `node['rundeck']['deb']` - Package file name to install, used in the building of the URL
 * `node['rundeck']['url']` - URL for the deb file to download and install 
 * `node['rundeck']['checksum']` - Checksum for the deb
-* `node['rundeck']['jaas']` - Use built in internal realms.properties file, default 'internal'
+* `node['rundeck']['jaas']` - Use built in internal realms.properties file, (options 'activedirectory', default 'internal')
 * `node['rundeck']['default_role']` - Require users to be a memeber of this role for Rundeck access, default 'user' 
-* `node['rundeck']['hostname']` VIP or server address for the service, default 'rundeck.hostdomain.com'
+* `node['rundeck']['hostname']` - VIP or server address for the service, default 'rundeck.hostdomain.com'
 * `node['rundeck']['email']` - Email address, default 'rundeck@hostdomain.com'
 
 If you want to use encrypted databags for your windows password and/or public/private key pairs generate a secret using:
@@ -78,7 +78,7 @@ Distrubute to all sytems that will work with rundeck via a recipe and set the pa
 * `node['rundeck']['rdbms']['enable']` - enable RDBMS support, default 'false'
 * `node['rundeck']['rdbms']['type']` - database type, default 'mysql'
 
-RDBMS Configuration
+Common RDBMS Configuration
 * `node['rundeck']['rdbms']['location']` - RDBMS server name
 * `node['rundeck']['rdbms']['dbname']` - database name, default 'rundeckdb'
 * `node['rundeck']['rdbms']['dbuser']` - database username, default 'rundeckdb'
@@ -90,8 +90,8 @@ Oracle RDBMS Configuration
 
 Windows Attributes 
 * `node['rundeck']['windows']['winrm_auth_type']` - winrm authentication type (options 'basic' or 'kerberos', default: 'basic')
-* `node['rundeck']['windows']['winrm_cert_trust']` - winrm SSL security (options "all", "self-signed", "default" (trusted certs only), default: 'all')
-* `node['rundeck']['windows']['winrm_hostname_trust']` - winrm hostname security (options "all", "strict", "browser-compatible", default: 'all')
+* `node['rundeck']['windows']['winrm_cert_trust']` - winrm SSL security (options 'all', 'self-signed', 'default' (trusted certs only), default: 'all')
+* `node['rundeck']['windows']['winrm_hostname_trust']` - winrm hostname security (options 'all', 'strict', 'browser-compatible', default: 'all')
 
 Active Directory/LDAP Attributes
 * `node['rundeck']['ldap']['provider']` - LDAP server to connect 
@@ -235,7 +235,7 @@ Rundeck Role ACL Policy
 ------------------
 A default role acl policy is supported out of the box.  You can add new acl policy files in to the configuration directory (`node['rundeck']['configdir']`)
 
-[Rundeeck role acl policy definitions](http://rundeck.org/docs/administration/role-based-access-control.html).  
+[Rundeck role acl policy definitions](http://rundeck.org/docs/administration/role-based-access-control.html).  
 
 
 
