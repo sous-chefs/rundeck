@@ -28,22 +28,22 @@ include_recipe "apache2::mod_proxy_http"
 
 rundeck_secure = data_bag_item('rundeck', 'secure')
 
-if !node[:rundeck][:secret_file].nil? then
-  rundeck_secret = Chef::EncryptedDataBagItem.load_secret("#{node[:rundeck][:secret_file]}")
-  rundeck_secure = Chef::EncryptedDataBagItem.load("rundeck", "secure", rundeck_secret)
+if !node['rundeck']['secret_file'].nil? then
+  rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
+  rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
 end  
 
-remote_file "/tmp/#{node[:rundeck][:deb]}" do
-  source node[:rundeck][:url]
-  owner node[:rundeck][:user]
-  group node[:rundeck][:user]
-  checksum node[:rundeck][:checksum]
+remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}" do
+  source node['rundeck']['url']
+  owner node['rundeck']['user']
+  group node['rundeck']['user']
+  checksum node['rundeck']['checksum']
   mode "0644"
 end
 
-package "#{node[:rundeck][:url]}" do
+package node['rundeck']['url'] do
   action :install
-  source "/tmp/#{node[:rundeck][:deb]}"
+  source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}"
   provider Chef::Provider::Package::Dpkg
 end
 
@@ -156,7 +156,7 @@ end
 
 apache_site "000-default" do
   enable false
-  notifies :reload, resources(:service => "apache2")
+  notifies :reload, "service[apache2]"
 end
 
 
@@ -167,11 +167,11 @@ template "apache-config" do
   mode 00644
   owner "root"
   group "root"
-  notifies :reload, resources(:service => "apache2")
+  notifies :reload, "service[apache2]"
 end
 
 apache_site "rundeck.conf" do
-  notifies :reload, resources(:service => "apache2")
+  notifies :reload, "service[apache2]"
 end
 
 
