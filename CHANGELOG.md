@@ -3,6 +3,7 @@
 * update to chef-rundeck 1.0.2
 * added a README.md file
 * added a CONTRIBUTING file
+* adding Travis-CI integration and foodcritic support
 
 ## 1.1.0
 * update rundeck from 1.4 to 1.6
