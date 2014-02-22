@@ -1,3 +1,6 @@
+## 2.0.1
+* add support for multiple chef-rundeck URL
+
 ## 2.0.0
 * update rundeck 2.0.1
 * update to chef-rundeck 1.0.2

@@ -191,7 +191,7 @@ bags.each do |project|
     --resources.source.1.type=url \
     --resources.source.1.config.includeServerNode=true \
     --resources.source.1.config.generateFileAutomatically=true \
-    --resources.source.1.config.url=#{node['rundeck']['chef_rundeck_url']}/#{project} \
+    --resources.source.1.config.url=#{pdata['chef_rundeck_url'].nil? ? node['rundeck']['chef_rundeck_url'] : pdata['chef_rundeck_url']}/#{project} \
     --project.resources.file=#{node['rundeck']['datadir']}/projects/#{project}/etc/resources.xml
     EOH
     
