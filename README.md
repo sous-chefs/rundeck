@@ -225,12 +225,14 @@ Create a `rundeck_projects` data bag that will contain the projects and search s
   "hostname": "ipaddress",
   "username": "rundeck",
   "pattern": "chef_environment:dev1 OR chef_environment:dev2",
-  "description": "These instances are tied to the dev-systems project in Rundeck."
+  "description": "These instances are tied to the dev-systems project in Rundeck.",
+  "chef_rundeck_url" : "Optional: URL for the chef-rundeck integration endpoint"
 }
 ```
  * `hostname` - attribute in the data bag item json is used when rundeck try to connect to the node (`fqdn` is the default)
  * `username` - attribute is the user to authenticate to the node with when rundeck connects
  * `pattern` - attribute is a search query for nodes to include in to the project in rundeck. 
+ * `chef_rundeck_url` - optional attribute is a URL to locate the resource project, if not provided `node['chef_rundeck_url']` will be used. 
 
 
 Rundeck Role ACL Policy
