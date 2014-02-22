@@ -24,7 +24,7 @@ include_recipe 'rundeck::default'
 rundeck_secure = data_bag_item('rundeck', 'secure')
 
 if !node['rundeck']['secret_file'].nil? then
-  rundeck_secret = Chef::EncryptedDataBagItem.load_secret({node['rundeck']['secret_file'])
+  rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
   rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
 end  
 
