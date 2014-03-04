@@ -22,5 +22,11 @@ dataSource.password = <%= @rundeck[:rdbms][:dbpassword] %>
 dataSource.url = jdbc:hsqldb:file:/var/lib/rundeck/data/grailsdb;shutdown=true
 <% end %>
 
+<% if @rundeck[:mail][:enable] == true %>
+grails.mail.host=<%=@rundeck[:mail][:host] %>
+grails.mail.port=<%=@rundeck[:mail][:port] %>
+<% unless @rundeck[:mail][:username].nil? %>grails.mail.username=<%=@rundeck[:mail][:username] %><% end %>
+<% unless @rundeck[:mail][:password].nil? %>grails.mail.password=<%=@rundeck[:mail][:password] %><% end %>
+<% end %>
 grails.mail.default.from=<%=@rundeck[:email] %>
 grails.serverURL=http://<%=@rundeck[:hostname] %>
