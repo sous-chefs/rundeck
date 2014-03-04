@@ -70,6 +70,13 @@ Attributes that configure and manage the installation of the Rundeck server
 * `node['rundeck']['hostname']` - VIP or server address for the service, default 'rundeck.hostdomain.com'
 * `node['rundeck']['email']` - Email address, default 'rundeck@hostdomain.com'
 
+Attributes that configure SMTP settings for email notifications
+
+* `node['rundeck']['mail']['host']` - SMTP server hostname or IP address
+* `node['rundeck']['mail']['port']` - SMTP server port (default 25)
+* `node['rundeck']['mail']['username'] - SMTP User name (not required)
+* `node['rundeck']['mail']['password'] - SMTP User password (not required)
+
 If you want to use encrypted databags for your windows password and/or public/private key pairs generate a secret using:
 ```bash
 	$ openssl rand -base64 512 | tr -d '\r\n' > rundeck_secret

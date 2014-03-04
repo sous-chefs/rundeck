@@ -20,6 +20,13 @@ default['rundeck']['default_role'] = "user"
 default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
 default['rundeck']['email'] = "rundeck@#{node['domain']}"
 
+# SMTP settings for rundeck notification emails
+default['rundeck']['mail']['enable'] = false
+default['rundeck']['mail']['host'] = "localhost"
+default['rundeck']['mail']['port'] = "25"
+default['rundeck']['mail']['username'] = nil
+default['rundeck']['mail']['password'] = nil
+
 #   If you want to use encrypted databags for your windows password and/or public/private key pairs generate a secret using:
 #     'openssl rand -base64 512 | tr -d '\r\n' > rundeck_secret'
 #   Distrubute to all sytems that will work with rundeck via a recipe and set the path to that file in the following attribute
