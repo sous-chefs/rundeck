@@ -1,5 +1,6 @@
 ## 2.0.2
 * add smtp configuration to rundeck-config.properties
+* update for chef-rundeck partial searches with chef 11
 
 ## 2.0.1
 * add support for multiple chef-rundeck URL
