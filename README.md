@@ -50,6 +50,7 @@ Chef rundeck integration service attributes
 * `node['rundeck']['chef_rundeck_url']` - Chef-Rundeck URL, default 'http://chef.hostdomain:9980'
 * `node['rundeck']['chef_rundeck_port']` - Chef-Rundeck binds to port, default '9980'
 * `node['rundeck']['chef_rundeck_host']` - Chef-Rundeck binds to address, default '0.0.0.0' 
+* `node['rundeck']['chef_rundeck_partial_search']` - Chef-Rundeck enabled to use partial search (Chef 11 only), default 'false' 
 
 * `node['rundeck']['chef_webui_url']` - Chef Server Web UI URL, default 'https://chef.hostdomain.com'
 * `node['rundeck']['chef_url']` - Chef Server API URL, default 'https://chef.hostdomain.com'
@@ -74,8 +75,8 @@ Attributes that configure SMTP settings for email notifications
 
 * `node['rundeck']['mail']['host']` - SMTP server hostname or IP address
 * `node['rundeck']['mail']['port']` - SMTP server port (default 25)
-* `node['rundeck']['mail']['username'] - SMTP User name (not required)
-* `node['rundeck']['mail']['password'] - SMTP User password (not required)
+* `node['rundeck']['mail']['username']` - SMTP User name (not required)
+* `node['rundeck']['mail']['password']` - SMTP User password (not required)
 
 If you want to use encrypted databags for your windows password and/or public/private key pairs generate a secret using:
 ```bash
