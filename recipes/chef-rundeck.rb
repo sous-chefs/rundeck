@@ -32,7 +32,7 @@ end
 bags = data_bag('rundeck_projects')
 projects = {}
 bags.each do |project|
-  pdata = data_bag_item('rundeck', project)
+  pdata = data_bag_item('rundeck_projects', project)
   projects[project] = {
     "pattern" => pdata['pattern'],
     "username" => pdata['username'],
@@ -46,7 +46,19 @@ file node['rundeck']['project_config'] do
   notifies :restart, "service[chef-rundeck]"
 end
 
-gem_package "chef-rundeck" 
+unless node['rundeck']['chef_rundeck_gem'].nil?
+  gem_package "chef-rundeck" do
+    source node['rundeck']['chef_rundeck_gem']
+    action :upgrade
+  end
+end
+
+if node['rundeck']['chef_rundeck_gem'].nil?
+  gem_package "chef-rundeck" do
+    action :upgrade
+  end
+end
+
 gem_package "sinatra"
 
 template "/etc/chef/rundeck.rb" do
