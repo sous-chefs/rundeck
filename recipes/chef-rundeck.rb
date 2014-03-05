@@ -73,7 +73,8 @@ runit_service "chef-rundeck" do
     :chef_webui_url => node['rundeck']['chef_webui_url'],
     :project_config => node['rundeck']['project_config'],
     :chef_rundeck_host => node['rundeck']['chef_rundeck_host'],
-    :chef_rundeck_port => node['rundeck']['chef_rundeck_port']
+    :chef_rundeck_port => node['rundeck']['chef_rundeck_port'],
+    :chef_rundeck_partial_search => node['rundeck']['chef_rundeck_partial_search']
   )
   notifies :restart, "service[chef-rundeck]"
 end
