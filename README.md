@@ -102,6 +102,7 @@ Windows Attributes
 * `node['rundeck']['windows']['winrm_auth_type']` - winrm authentication type (options 'basic' or 'kerberos', default: 'basic')
 * `node['rundeck']['windows']['winrm_cert_trust']` - winrm SSL security (options 'all', 'self-signed', 'default' (trusted certs only), default: 'all')
 * `node['rundeck']['windows']['winrm_hostname_trust']` - winrm hostname security (options 'all', 'strict', 'browser-compatible', default: 'all')
+* `node['rundeck']['windows']['winrm_protocol']` - winrm protocol to use, either 'http' or 'https'. default: 'https' 
 
 Active Directory/LDAP Attributes
 * `node['rundeck']['ldap']['provider']` - LDAP server to connect 
@@ -241,6 +242,7 @@ Create a `rundeck_projects` data bag that will contain the projects and search s
  * `username` - attribute is the user to authenticate to the node with when rundeck connects
  * `pattern` - attribute is a search query for nodes to include in to the project in rundeck. 
  * `chef_rundeck_url` - optional attribute is a URL to locate the resource project, if not provided `node['chef_rundeck_url']` will be used. 
+ * `project_settings` - optional attribute is a map of properties that will be added to the rundeck project.properties. 
 
 
 Rundeck Role ACL Policy

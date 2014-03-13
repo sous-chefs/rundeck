@@ -182,19 +182,25 @@ bags = data_bag('rundeck_projects')
 projects = {}
 bags.each do |project|
   pdata = data_bag_item('rundeck_projects', project)
+  custom = ""
+  if !pdata['project_settings'].nil? then
+    pdata['project_settings'].map do |key, val|
+     custom = custom + " --#{key}=#{val}"
+    end
+  end
+  
+  cmd = <<-EOH.to_s
+  rd-project -p #{project} -a create \
+  --resources.source.1.type=url \
+  --resources.source.1.config.includeServerNode=true \
+  --resources.source.1.config.generateFileAutomatically=true \
+  --resources.source.1.config.url=#{pdata['chef_rundeck_url'].nil? ? node['rundeck']['chef_rundeck_url'] : pdata['chef_rundeck_url']}/#{project} \
+  --project.resources.file=#{node['rundeck']['datadir']}/projects/#{project}/etc/resources.xml #{custom}
+  EOH
 
   bash "check-project-#{project}" do
     user node['rundeck']['user']
-    
-    code <<-EOH
-    rd-project -p #{project} -a create \
-    --resources.source.1.type=url \
-    --resources.source.1.config.includeServerNode=true \
-    --resources.source.1.config.generateFileAutomatically=true \
-    --resources.source.1.config.url=#{pdata['chef_rundeck_url'].nil? ? node['rundeck']['chef_rundeck_url'] : pdata['chef_rundeck_url']}/#{project} \
-    --project.resources.file=#{node['rundeck']['datadir']}/projects/#{project}/etc/resources.xml
-    EOH
-    
+    code cmd
     not_if do
       File.exists?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties")
     end
