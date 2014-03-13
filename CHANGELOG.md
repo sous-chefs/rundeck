@@ -1,3 +1,7 @@
+## 2.0.3 (development)
+* added support to add custom project properties via the rundeck_project databag
+* bug fixes with email settings in framework.properties
+
 ## 2.0.2
 * add smtp configuration to rundeck-config.properties
 * update for chef-rundeck partial searches with chef 11
