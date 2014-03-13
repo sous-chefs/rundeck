@@ -25,8 +25,8 @@ default['rundeck']['email'] = "rundeck@#{node['domain']}"
 default['rundeck']['mail']['enable'] = false
 default['rundeck']['mail']['host'] = "localhost"
 default['rundeck']['mail']['port'] = "25"
-default['rundeck']['mail']['username'] = nil
-default['rundeck']['mail']['password'] = nil
+default['rundeck']['mail']['username'] = ""
+default['rundeck']['mail']['password'] = ""
 
 #   If you want to use encrypted databags for your windows password and/or public/private key pairs generate a secret using:
 #     'openssl rand -base64 512 | tr -d '\r\n' > rundeck_secret'
@@ -51,6 +51,7 @@ default['rundeck']['windows']['password'] = nil
 default['rundeck']['windows']['winrm_auth_type'] = 'basic'
 default['rundeck']['windows']['winrm_cert_trust'] = 'all'
 default['rundeck']['windows']['winrm_hostname_trust'] = 'all'
+default['rundeck']['windows']['winrm_protocol'] = 'https'
 
 # LDAP Properties
 default['rundeck']['ldap']['provider'] = "ldap://servername:389"
