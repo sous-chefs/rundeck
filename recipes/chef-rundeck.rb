@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: rundeck
-# Recipe:: chef-rundeck
+# Recipe:i: chef-rundeck
 #
 # Copyright 2012, Peter Crossley
 #
@@ -18,16 +18,21 @@
 #
 
 require 'json'
-require 'rubygems'
 
-include_recipe 'runit'
 include_recipe 'rundeck::default'
 
-bags = data_bag('rundeck')
+rundeck_secure = data_bag_item('rundeck', 'secure')
 
+if !node['rundeck']['secret_file'].nil? then
+  rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
+  rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
+end  
+
+
+bags = data_bag('rundeck_projects')
 projects = {}
 bags.each do |project|
-  pdata = data_bag_item('rundeck', project)
+  pdata = data_bag_item('rundeck_projects', project)
   projects[project] = {
     "pattern" => pdata['pattern'],
     "username" => pdata['username'],
@@ -41,23 +46,18 @@ file node['rundeck']['project_config'] do
   notifies :restart, "service[chef-rundeck]"
 end
 
-cookbook_file "/tmp/chef-rundeck-0.2.2.gem" do
-  source "chef-rundeck-0.2.2.gem"
-  mode 00644
-end.run_action(:create)
-
-chef_gem "sinatra"
-
-chef_gem "chef-rundeck" do
-  action :install
-  source "/tmp/chef-rundeck-0.2.2.gem"
+gem_package "chef-rundeck" do
+  source node['rundeck']['chef_rundeck_gem']
+  action :upgrade
+  not_if do node['rundeck']['chef_rundeck_gem'].nil? end
 end
 
-link "/usr/bin/chef-rundeck" do
-  to "/var/lib/gems/1.8/bin/chef-rundeck"
-  only_if do node[:platform_version] >= "10.04" end
-  only_if do ::File.exists? '/var/lib/gems/1.8/bin/chef-rundeck' end
+gem_package "chef-rundeck" do
+  action :upgrade
+  only_if do node['rundeck']['chef_rundeck_gem'].nil? end
 end
+
+gem_package "sinatra"
 
 template "/etc/chef/rundeck.rb" do
   owner node['rundeck']['user']
@@ -68,20 +68,23 @@ template "/etc/chef/rundeck.rb" do
   )
 end
 
-remote_file "/etc/chef/rundeck.pem" do
-  source node['rundeck']['chef_rundeck_cert']
+file "/etc/chef/rundeck.pem" do
+  content rundeck_secure['chef_rundeck_pem']
   owner node['rundeck']['user']
   group node['rundeck']['user']
   mode 0400
 end
 
 runit_service "chef-rundeck" do
+  run_restart false
   options(
     :user => node['rundeck']['user'],
     :chef_config => node['rundeck']['chef_config'],
     :chef_webui_url => node['rundeck']['chef_webui_url'],
     :project_config => node['rundeck']['project_config'],
-    :gem_binfile => ::File.join(::Gem.default_bindir, 'chef-rundeck')
+    :chef_rundeck_host => node['rundeck']['chef_rundeck_host'],
+    :chef_rundeck_port => node['rundeck']['chef_rundeck_port'],
+    :chef_rundeck_partial_search => node['rundeck']['chef_rundeck_partial_search']
   )
   notifies :restart, "service[chef-rundeck]"
 end
