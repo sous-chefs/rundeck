@@ -17,17 +17,19 @@
 # limitations under the License.
 #
 
-chef_gem "chef-vault"
+rundeck_secure = data_bag_item('rundeck', 'secure')
 
-require 'chef-vault'
+if !node['rundeck']['secret_file'].nil? then
+  rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
+  rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
+end  
 
-item = ChefVault::Item.load("rundeck-pwds", node['rundeck']['windows']['user'])
 
 user node['rundeck']['windows']['user'] do
   system true
   comment "Rundeck User for access over winrm"
-  password item["password"]
-  not_if { (!item.nil? && item["password"].nil?) }
+  password rundeck_secure['windows_password']
+  not_if { rundeck_secure['windows_password'].nil? }
   notifies :manage, "group[#{node['rundeck']['windows']['group']}]"
 end
 
