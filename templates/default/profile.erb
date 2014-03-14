@@ -1,7 +1,7 @@
-RDECK_HOME=<%=@rundeck[:configdir]%>
+RDECK_HOME=<%=@rundeck[:basedir]%>
 export RDECK_HOME
 
-RDECK_BASE=<%=@rundeck[:configdir]%>
+RDECK_BASE=<%=@rundeck[:basedir]%>
 export RDECK_BASE
 
 JAVA_CMD=java
@@ -25,17 +25,17 @@ export BOOTSTRAP_CP=$(find <%=@rundeck[:basedir]%>/bootstrap -name \*.jar -print
 export RDECK_JVM="-Djava.security.auth.login.config=<%=@rundeck[:configdir]%>/<%=authmodule ? "jaas-#{@rundeck[:jaas]}.conf" : "jaas-loginmodule.conf" %> \
 	-Dloginmodule.name=<%=authmodule ? @rundeck[:jaas] : "RDpropertyfilelogin" %> \
 	-Drdeck.config=<%=@rundeck[:configdir]%> \
-	-Drdeck.base=<%=@rundeck[:configdir]%> \
+	-Drdeck.base=<%=@rundeck[:basedir]%> \
 	-Drundeck.server.configDir=<%=@rundeck[:configdir]%> \
 	-Dserver.datastore.path=<%=@rundeck[:basedir]%>/data \
 	-Drundeck.server.serverDir=<%=@rundeck[:basedir]%> \
-	-Drdeck.projects=<%=@rundeck[:basedir]%>/projects \
+	-Drdeck.projects=<%=@rundeck[:datadir]%>/projects \
 	-Drdeck.runlogs=<%=@rundeck[:basedir]%>/logs \
-	-Drundeck.config.name=<%=@rundeck[:configdir]%>/rundeck-config.properties"
+	-Drundeck.config.location=<%=@rundeck[:configdir]%>/rundeck-config.properties"
 #
 # Set min/max heap size
 #
-RDECK_JVM="$RDECK_JVM -XX:MaxPermSize=256m -Xmx1024m -Xms256m"
+RDECK_JVM="$RDECK_JVM -XX:MaxPermSize=256m -Xmx1024m -Xms256m -server"
 #
 # SSL Configuration - Uncomment the following to enable.  Check SSL.properties for details.
 # 

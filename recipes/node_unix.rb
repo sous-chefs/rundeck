@@ -18,13 +18,20 @@
 #
 
 
+rundeck_secure = data_bag_item('rundeck', 'secure')
+
+if !node['rundeck']['secret_file'].nil? then
+  rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
+  rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
+end  
+
 user node['rundeck']['user'] do
   system true
   shell "/bin/bash"
   home node['rundeck']['basedir']
 end
 
-directory "#{node['rundeck']['basedir']}" do
+directory node['rundeck']['basedir'] do
   owner node['rundeck']['user']
   group node['rundeck']['user']
   recursive true
@@ -38,15 +45,15 @@ directory "#{node['rundeck']['basedir']}/.ssh" do
   mode 00700
 end
 
-cookbook_file "#{node['rundeck']['basedir']}/.ssh/authorized_keys" do
+file "#{node['rundeck']['basedir']}/.ssh/authorized_keys" do
   owner node['rundeck']['user']
   group node['rundeck']['user']
   mode 00600
   backup false
-  source "rundeck.pub"
+  content rundeck_secure['public_key']
 end
 
 sudo "rundeck-admin" do
- user node[:rundeck][:user]
+ user node['rundeck']['user']
  nopasswd true
 end
