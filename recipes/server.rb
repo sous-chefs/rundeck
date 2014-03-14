@@ -26,18 +26,24 @@ include_recipe "apache2::mod_ssl"
 include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
 
+rundeck_secure = data_bag_item('rundeck', 'secure')
 
+if !node['rundeck']['secret_file'].nil? then
+  rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
+  rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
+end  
 
-cookbook_file "/tmp/#{node[:rundeck][:deb]}" do
-  source node[:rundeck][:deb]
-  owner node[:rundeck][:user]
-  group node[:rundeck][:user]
+remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}" do
+  source node['rundeck']['url']
+  owner node['rundeck']['user']
+  group node['rundeck']['user']
+  checksum node['rundeck']['checksum']
   mode "0644"
 end
 
-package "#{node[:rundeck][:deb]}" do
+package node['rundeck']['url'] do
   action :install
-  source "/tmp/#{node[:rundeck][:deb]}"
+  source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}"
   provider Chef::Provider::Package::Dpkg
 end
 
@@ -46,6 +52,11 @@ directory node['rundeck']['basedir'] do
   recursive true
 end
 
+directory "#{node['rundeck']['basedir']}/projects" do
+  owner node['rundeck']['user']
+  group node['rundeck']['user']
+  recursive true
+end
 
 directory "#{node['rundeck']['basedir']}/.chef" do
   owner node['rundeck']['user']
@@ -65,20 +76,27 @@ template "#{node['rundeck']['basedir']}/.chef/knife.rb" do
   )
 end
 
-cookbook_file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
+file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
   owner node['rundeck']['user']
   group node['rundeck']['user']
   mode "0600"
   backup false
-  source "rundeck"
+  content rundeck_secure['private_key']
+  only_if do !rundeck_secure['private_key'].nil? end
 end
 
-cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.0-beta.jar" do
+cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.1.jar" do
   owner node['rundeck']['user']
   group node['rundeck']['user']
   mode "0644"
   backup false
-  source "rundeck-winrm-plugin-1.0-beta.jar"
+  source "rundeck-winrm-plugin-1.1.jar"
+end
+
+template "#{node['rundeck']['basedir']}/exp/webapp/WEB-INF/web.xml" do
+  owner node['rundeck']['user']
+  group node['rundeck']['user']
+  source "web.xml.erb"
 end
 
 template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
@@ -110,6 +128,21 @@ template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
   )
 end
 
+template "#{node['rundeck']['configdir']}/framework.properties" do
+  owner node['rundeck']['user']
+  group node['rundeck']['user']
+  source "framework.properties.erb"
+  variables(
+    :rundeck => node['rundeck']
+  )
+end
+
+bash "own rundeck" do
+  user "root"
+  code <<-EOH
+  chown -R #{node['rundeck']['user']}:#{node['rundeck']['user']} #{node['rundeck']['basedir']}
+  EOH
+end
 
 file "/etc/init.d/rundeckd" do
   action :delete
@@ -117,17 +150,13 @@ end
 
 runit_service "rundeck" do
   options(
-    :rundeck => node['rundeck']
+      :rundeck => node['rundeck']
   )
-end
-
-service "rundeck" do
-  action :start
 end
 
 apache_site "000-default" do
   enable false
-  notifies :reload, resources(:service => "apache2")
+  notifies :reload, "service[apache2]"
 end
 
 
@@ -138,41 +167,42 @@ template "apache-config" do
   mode 00644
   owner "root"
   group "root"
-  notifies :reload, resources(:service => "apache2")
+  notifies :reload, "service[apache2]"
 end
 
 apache_site "rundeck.conf" do
-  notifies :reload, resources(:service => "apache2")
+  notifies :reload, "service[apache2]"
 end
 
 
 
 #load projects
-bags = data_bag('rundeck')
+bags = data_bag('rundeck_projects')
 
 projects = {}
 bags.each do |project|
-  pdata = data_bag_item('rundeck', project)
-
-  execute "check-project-#{project}" do
-    user node['rundeck']['user']
-    command "/usr/bin/rd-project -p #{project} -a create"
-    not_if do
-      File.exists?("#{node['rundeck']['basedir']}/projects/#{project}/etc/project.properties")
+  pdata = data_bag_item('rundeck_projects', project)
+  custom = ""
+  if !pdata['project_settings'].nil? then
+    pdata['project_settings'].map do |key, val|
+     custom = custom + " --#{key}=#{val}"
     end
   end
+  
+  cmd = <<-EOH.to_s
+  rd-project -p #{project} -a create \
+  --resources.source.1.type=url \
+  --resources.source.1.config.includeServerNode=true \
+  --resources.source.1.config.generateFileAutomatically=true \
+  --resources.source.1.config.url=#{pdata['chef_rundeck_url'].nil? ? node['rundeck']['chef_rundeck_url'] : pdata['chef_rundeck_url']}/#{project} \
+  --project.resources.file=#{node['rundeck']['datadir']}/projects/#{project}/etc/resources.xml #{custom}
+  EOH
 
-  template "#{node['rundeck']['basedir']}/projects/#{project}/etc/project.properties" do
-    source "project.properties.erb"
-    owner node['rundeck']['user']
-    group node['rundeck']['user']
-    variables(
-      :project => project,
-      :data => pdata,
-      :rundeck => node['rundeck']
-    )
-    only_if do
-      File.exists?("#{node['rundeck']['basedir']}/projects/#{project}/etc")
+  bash "check-project-#{project}" do
+    user node['rundeck']['user']
+    code cmd
+    not_if do
+      File.exists?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties")
     end
   end
 end
