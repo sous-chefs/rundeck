@@ -1,5 +1,23 @@
-## 1.0.12
-* install sinatra/chef-rundeck with chef_gem to prevent duplicate chef-clients
+## 2.0.3 (development)
+* added support to add custom project properties via the rundeck_project databag
+* bug fixes with email settings in framework.properties
+
+## 2.0.2
+* add smtp configuration to rundeck-config.properties
+* update for chef-rundeck partial searches with chef 11
+
+## 2.0.1
+* add support for multiple chef-rundeck URL
+
+## 2.0.0
+* update rundeck 2.0.1
+* update to chef-rundeck 1.0.2
+* added a README.md file
+* added a CONTRIBUTING file
+* adding Travis-CI integration and foodcritic support
+
+## 1.1.0
+* update rundeck from 1.4 to 1.6
 
 ## 1.0.11
 * Move chef-rundeck URL config into the project data bags for multiple chef-rundeck URLs
