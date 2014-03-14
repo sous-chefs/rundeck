@@ -1,4 +1,4 @@
 #!/bin/sh
 exec 2>&1
 exec \
-chpst -u <%=@options[:user]%> chef-rundeck -c <%=@options[:chef_config]%> -f <%=@options[:project_config]%> -w <%=@options[:chef_webui_url]%> -o <%=@options[:chef_rundeck_host]%> -p <%=@options[:chef_rundeck_port]%> <% if @options[:chef_rundeck_partial_search] == "true"%>--partial-search true<% end %>
+chpst -u <%=@options[:user]%> chef-rundeck -c <%=@options[:chef_config]%> -f <%=@options[:project_config]%> -w <%=@options[:chef_webui_url]%> -o <%=@options[:chef_rundeck_host]%> -p <%=@options[:chef_rundeck_port]%> <% if @options[:chef_rundeck_partial_search] %>--partial-search true<% end %>
