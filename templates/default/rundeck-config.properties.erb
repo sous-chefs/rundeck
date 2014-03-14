@@ -6,26 +6,27 @@ rss.enabled=true
 # 
 #grails.serverURL=http://hostname:PORT
 reportservice.log4j.port=4435
-dataSource.dbCreate = update
-<% if node[:rundeck][:rdbms][:enable] == 'true' %>
-  <% if node[:rundeck][:rdbms][:type] == 'mysql' %>
-dataSource.url = jdbc:mysql://<%= node[:rundeck][:rdbms][:location] %>/<%= node[:rundeck][:rdbms][:dbname] %>?autoReconnect=true
+<% if @rundeck[:rdbms][:enable] == 'true' %>
+  <% if @rundeck[:rdbms][:type] == 'mysql' %>
+dataSource.url = jdbc:mysql://<%= @rundeck[:rdbms][:location] %>:<%= @rundeck[:rdbms][:port] %>/<%= @rundeck[:rdbms][:dbname] %>?autoReconnect=true
   <% else %>
-dataSource.url = jdbc:oracle:thin:@:<%= node[:rundeck][:rdbms][:location] %>:<%= node[:rundeck][:rdbms][:port] %>:XE
+dataSource.url = jdbc:oracle:thin:@:<%= @rundeck[:rdbms][:location] %>:<%= @rundeck[:rdbms][:port] %>:XE
 dataSource.driverClassName = oracle.jdbc.driver.OracleDriver
-dataSource.dialect = org.hibernate.dialect.<%= node[:rundeck][:rdbms][:dialect] %>
+dataSource.dialect = org.hibernate.dialect.<%= @rundeck[:rdbms][:dialect] %>
   <% end %>
-dataSource.username = <%= node[:rundeck][:rdbms][:dbuser] %>
-dataSource.password = <%= node[:rundeck][:rdbms][:dbpassword] %>
-dataSource.properties.validationQuery = SELECT 1
+dataSource.username = <%= @rundeck[:rdbms][:dbuser] %>
+dataSource.password = <%= @rundeck[:rdbms][:dbpassword] %>
 <% end %>
 
-<% if node[:rundeck][:rdbms][:enable] == false %>
+<% if @rundeck[:rdbms][:enable] == false %>
 dataSource.url = jdbc:hsqldb:file:/var/lib/rundeck/data/grailsdb;shutdown=true
 <% end %>
 
-#note, make sure this is set to "true" if you are using Oracle or Mysql
-rundeck.v14.rdbsupport=<%= node[:rundeck][:rdbms][:enable] %>
-
-grails.mail.default.from=<%=node[:rundeck][:email] %>
-grails.serverURL=http://<%=node[:rundeck][:hostname] %>
+<% if @rundeck[:mail][:enable] == true %>
+grails.mail.host=<%=@rundeck[:mail][:host] %>
+grails.mail.port=<%=@rundeck[:mail][:port] %>
+<% unless @rundeck[:mail][:username].nil? %>grails.mail.username=<%=@rundeck[:mail][:username] %><% end %>
+<% unless @rundeck[:mail][:password].nil? %>grails.mail.password=<%=@rundeck[:mail][:password] %><% end %>
+<% end %>
+grails.mail.default.from=<%=@rundeck[:email] %>
+grails.serverURL=http://<%=@rundeck[:hostname] %>
