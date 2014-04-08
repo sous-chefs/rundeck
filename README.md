@@ -16,6 +16,7 @@ This cookbook relies on multiple data bags. See __Data Bag__ below.
 ### Platform
 * Debian 6
 * Ubuntu 12.04
+* RHEL 6
 * Windows 7 Enterprise (managed node)
 * Windows 2008 R2 (managed node)
 
