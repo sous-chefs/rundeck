@@ -33,19 +33,35 @@ if !node['rundeck']['secret_file'].nil? then
   rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
 end  
 
-remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}" do
-  source node['rundeck']['url']
-  owner node['rundeck']['user']
-  group node['rundeck']['user']
-  checksum node['rundeck']['checksum']
-  mode "0644"
+case node['platform_family']
+  when "rhel"
+    repo = yum_repository "rundeck" do
+      description "Rundeck - Release"
+      url "http://dl.bintray.com/rundeck/rundeck-rpm"
+      action :add
+    end
+    
+    package "rundeck" do
+      #version ""
+      #options package_options
+      action :install
+    end 
+  else 
+    remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}" do
+      source node['rundeck']['url']
+      owner node['rundeck']['user']
+      group node['rundeck']['user']
+      checksum node['rundeck']['checksum']
+      mode "0644"
+    end
+    
+    package node['rundeck']['url'] do
+      action :install
+      source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}"
+      provider Chef::Provider::Package::Dpkg
+    end
 end
 
-package node['rundeck']['url'] do
-  action :install
-  source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}"
-  provider Chef::Provider::Package::Dpkg
-end
 
 directory node['rundeck']['basedir'] do
   owner node['rundeck']['user']
@@ -144,15 +160,21 @@ bash "own rundeck" do
   EOH
 end
 
-file "/etc/init.d/rundeckd" do
-  action :delete
+
+if !node['platform_family'] == 'rhel'
+  include_recipe "runit"
+  file "/etc/init.d/rundeckd" do
+    action :delete
+  end
+
+  runit_service "rundeck" do
+    options(
+        :rundeck => node['rundeck']
+    )
+  end  
 end
 
-runit_service "rundeck" do
-  options(
-      :rundeck => node['rundeck']
-  )
-end
+
 
 apache_site "000-default" do
   enable false
@@ -167,6 +189,10 @@ template "apache-config" do
   mode 00644
   owner "root"
   group "root"
+  variables(
+    :log_dir => node['platform_family'] == 'rhel' ? "/var/log/httpd" : "/var/log/apache2",
+    :doc_root => node['platform_family'] == 'rhel' ? "/var/www/html" : "/var/www"
+  )
   notifies :reload, "service[apache2]"
 end
 
