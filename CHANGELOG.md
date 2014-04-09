@@ -1,7 +1,8 @@
-## 2.0.3 (development)
+## 2.0.3
 * added support to add custom project properties via the rundeck_project databag
 * bug fixes with email settings in framework.properties
-* update rundeck 2.0.2
+* update rundeck 2.0.3
+* Added RHEL support (thanks scottymarshall)
 
 ## 2.0.2
 * add smtp configuration to rundeck-config.properties
