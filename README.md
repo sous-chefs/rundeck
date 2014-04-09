@@ -70,6 +70,7 @@ Attributes that configure and manage the installation of the Rundeck server
 * `node['rundeck']['jaas']` - Use built in internal realms.properties file, (options 'activedirectory', default 'internal')
 * `node['rundeck']['default_role']` - Require users to be a memeber of this role for Rundeck access, default 'user' 
 * `node['rundeck']['hostname']` - VIP or server address for the service, default 'rundeck.hostdomain.com'
+* `node['rundeck']['port']` - Internal server port for the service, default '4440'
 * `node['rundeck']['email']` - Email address, default 'rundeck@hostdomain.com'
 
 Attributes that configure SMTP settings for email notifications
