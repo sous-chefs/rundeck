@@ -1,3 +1,7 @@
+## 2.0.4 (development)
+* updating to rundeck 2.1.0
+* removing runit from rundeck::server recipe.  default init scripts work now!
+
 ## 2.0.3
 * added support to add custom project properties via the rundeck_project databag
 * bug fixes with email settings in framework.properties
