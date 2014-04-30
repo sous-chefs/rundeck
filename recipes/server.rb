@@ -63,6 +63,18 @@ case node['platform_family']
 end
 
 
+service "rundeck" do
+  case node['platform_family']
+    when "rhel"
+      service_name "rundeckd"
+    else
+      service_name "rundeck"
+    end
+  supports :status => true, :restart => true
+  action :nothing
+end
+
+
 directory node['rundeck']['basedir'] do
   owner node['rundeck']['user']
   recursive true
@@ -90,6 +102,7 @@ template "#{node['rundeck']['basedir']}/.chef/knife.rb" do
     :node_name => node['rundeck']['user'],
     :chef_server_url => node['rundeck']['chef_url']
   )
+  notifies :restart, "service[rundeck]", :delayed
 end
 
 file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
@@ -99,6 +112,7 @@ file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
   backup false
   content rundeck_secure['private_key']
   only_if do !rundeck_secure['private_key'].nil? end
+  notifies :restart, "service[rundeck]", :delayed
 end
 
 cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.1.jar" do
@@ -107,12 +121,14 @@ cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.1.jar
   mode "0644"
   backup false
   source "rundeck-winrm-plugin-1.1.jar"
+  notifies :restart, "service[rundeck]", :delayed
 end
 
 template "#{node['rundeck']['basedir']}/exp/webapp/WEB-INF/web.xml" do
   owner node['rundeck']['user']
   group node['rundeck']['user']
   source "web.xml.erb"
+  notifies :restart, "service[rundeck]", :delayed
 end
 
 template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
@@ -123,6 +139,7 @@ template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
     :ldap => node['rundeck']['ldap'],
     :configdir => node['rundeck']['configdir']
   )
+  notifies :restart, "service[rundeck]", :delayed
 end
 
 template "#{node['rundeck']['configdir']}/profile" do
@@ -132,6 +149,7 @@ template "#{node['rundeck']['configdir']}/profile" do
   variables(
     :rundeck => node['rundeck']
   )
+  notifies :restart, "service[rundeck]", :delayed
 end
 
 
@@ -142,6 +160,7 @@ template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
   variables(
     :rundeck => node['rundeck']
   )
+  notifies :restart, "service[rundeck]", :delayed
 end
 
 template "#{node['rundeck']['configdir']}/framework.properties" do
@@ -151,6 +170,7 @@ template "#{node['rundeck']['configdir']}/framework.properties" do
   variables(
     :rundeck => node['rundeck']
   )
+  notifies :restart, "service[rundeck]", :delayed
 end
 
 bash "own rundeck" do
@@ -219,5 +239,6 @@ bags.each do |project|
     not_if do
       File.exists?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties")
     end
+    notifies :restart, "service[rundeck]", :delayed
   end
 end
