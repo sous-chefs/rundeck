@@ -161,21 +161,6 @@ bash "own rundeck" do
 end
 
 
-if !node['platform_family'] == 'rhel'
-  include_recipe "runit"
-  file "/etc/init.d/rundeckd" do
-    action :delete
-  end
-
-  runit_service "rundeck" do
-    options(
-        :rundeck => node['rundeck']
-    )
-  end  
-end
-
-
-
 apache_site "000-default" do
   enable false
   notifies :reload, "service[apache2]"
@@ -200,6 +185,10 @@ apache_site "rundeck.conf" do
   notifies :reload, "service[apache2]"
 end
 
+# ensure rundeck is started
+service "rundeckd" do
+  action :start
+end
 
 
 #load projects
