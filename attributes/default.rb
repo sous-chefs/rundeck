@@ -21,6 +21,7 @@ default['rundeck']['jaas'] = "internal"
 default['rundeck']['default_role'] = "user"
 default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
 default['rundeck']['email'] = "rundeck@#{node['domain']}"
+default['rundeck']['restart_on_config_change'] = false
 
 # SMTP settings for rundeck notification emails
 default['rundeck']['mail']['enable'] = false
