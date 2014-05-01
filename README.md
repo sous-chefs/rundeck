@@ -72,6 +72,7 @@ Attributes that configure and manage the installation of the Rundeck server
 * `node['rundeck']['hostname']` - VIP or server address for the service, default 'rundeck.hostdomain.com'
 * `node['rundeck']['port']` - Internal server port for the service, default '4440'
 * `node['rundeck']['email']` - Email address, default 'rundeck@hostdomain.com'
+* `node['rundeck']['restart_on_config_change']` - When true, rundeck will restart on any configuration file change. (even if a job is running) default 'false'
 
 Attributes that configure SMTP settings for email notifications
 
