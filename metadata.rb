@@ -11,6 +11,10 @@ depends          "java"
 depends          "apache2"
 depends          "rundeck"
 
+%w{ debian ubuntu centos suse fedora redhat freebsd windows }.each do |os|
+  supports os
+end
+
 recipe "rundeck::server", "Use this recipe to install the rundeck server on a node"
 recipe "rundeck::chef-rundeck", "Use this recipe to install the chef rundeck integration component, by default it is recommened to install on the chef server."
 recipe "rundeck::default", "Use this recipe to manage the node as a target in rundeck, this recipe is included in rundeck::server"
