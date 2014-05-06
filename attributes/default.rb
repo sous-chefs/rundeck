@@ -2,9 +2,9 @@ default['rundeck'] = {}
 default['rundeck']['configdir'] = "/etc/rundeck"
 default['rundeck']['basedir'] = "/var/lib/rundeck"
 default['rundeck']['datadir'] = "/var/rundeck"
-default['rundeck']['deb'] = "rundeck-2.0.2-1-GA.deb"
+default['rundeck']['deb'] = "rundeck-2.1.0-1-GA.deb"
 default['rundeck']['url'] = "http://download.rundeck.org/deb/#{node['rundeck']['deb']}"
-default['rundeck']['checksum'] = "aaa183196c6d94d435ca4361b1eda5e8f40676bd6a2248072a90553aef147811"
+default['rundeck']['checksum'] = "a94173728158c0f6488d80a40f9b5b0ac16bada38c737c87c58e6c59f15015a7"
 default['rundeck']['port'] = 4440
 default['rundeck']['chef_rundeck_gem'] = nil
 default['rundeck']['chef_rundeck_port'] = 9980
@@ -21,6 +21,7 @@ default['rundeck']['jaas'] = "internal"
 default['rundeck']['default_role'] = "user"
 default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
 default['rundeck']['email'] = "rundeck@#{node['domain']}"
+default['rundeck']['restart_on_config_change'] = false
 
 # SMTP settings for rundeck notification emails
 default['rundeck']['mail']['enable'] = false
