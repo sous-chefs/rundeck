@@ -46,17 +46,15 @@ file node['rundeck']['project_config'] do
   notifies :restart, "service[chef-rundeck]"
 end
 
-unless node['rundeck']['chef_rundeck_gem'].nil?
-  gem_package "chef-rundeck" do
-    source node['rundeck']['chef_rundeck_gem']
-    action :upgrade
-  end
+gem_package "chef-rundeck" do
+  source node['rundeck']['chef_rundeck_gem']
+  action :upgrade
+  not_if do node['rundeck']['chef_rundeck_gem'].nil? end
 end
 
-if node['rundeck']['chef_rundeck_gem'].nil?
-  gem_package "chef-rundeck" do
-    action :upgrade
-  end
+gem_package "chef-rundeck" do
+  action :upgrade
+  only_if do node['rundeck']['chef_rundeck_gem'].nil? end
 end
 
 gem_package "sinatra"
