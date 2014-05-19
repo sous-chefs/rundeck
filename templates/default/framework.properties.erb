@@ -22,15 +22,15 @@ framework.application.properties =
 # recipient addresses to send email (comma separated)
 framework.email.tolist = root
 # email address appearing in message "from" field
-framework.email.from = root@localdomain
+framework.email.from = <%= @rundeck[:email] %>
 # email address replies should go
 framework.email.replyto = do-not-reply
 # The rdeck email relay host. must be a functioning smtp relay server
-framework.email.mailhost = localhost
-framework.email.mailport = 25
+framework.email.mailhost = <%= @rundeck[:mail][:host] %>
+framework.email.mailport = <%= @rundeck[:mail][:port] %>
 # User/pass info if the smtp server requires it
-framework.email.user =
-framework.email.password =
+framework.email.user = <%= @rundeck[:mail][:user] %>
+framework.email.password = <%= @rundeck[:mail][:password] %>
 framework.email.ssl = false
 framework.email.failonerror = true
 
@@ -206,3 +206,9 @@ framework.winrm-cert-trust = <%= @rundeck[:windows][:winrm_cert_trust] %>
 # winrm hostname security (options "all", "strict", "browser-compatible")
 #
 framework.winrm-hostname-trust = <%= @rundeck[:windows][:winrm_hostname_trust] %>
+
+# winrm HTTP(S) protocol to use, either "http" or "https". Default: "https"
+#
+framework.winrm-protocol = <%= @rundeck[:windows][:winrm_protocol] %>
+
+
