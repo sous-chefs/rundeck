@@ -16,6 +16,7 @@ This cookbook relies on multiple data bags. See __Data Bag__ below.
 ### Platform
 * Debian 6
 * Ubuntu 12.04
+* RHEL 6
 * Windows 7 Enterprise (managed node)
 * Windows 2008 R2 (managed node)
 
@@ -50,6 +51,7 @@ Chef rundeck integration service attributes
 * `node['rundeck']['chef_rundeck_url']` - Chef-Rundeck URL, default 'http://chef.hostdomain:9980'
 * `node['rundeck']['chef_rundeck_port']` - Chef-Rundeck binds to port, default '9980'
 * `node['rundeck']['chef_rundeck_host']` - Chef-Rundeck binds to address, default '0.0.0.0' 
+* `node['rundeck']['chef_rundeck_partial_search']` - Chef-Rundeck enabled to use partial search (Chef 11 only), default 'false' 
 
 * `node['rundeck']['chef_webui_url']` - Chef Server Web UI URL, default 'https://chef.hostdomain.com'
 * `node['rundeck']['chef_url']` - Chef Server API URL, default 'https://chef.hostdomain.com'
@@ -68,14 +70,16 @@ Attributes that configure and manage the installation of the Rundeck server
 * `node['rundeck']['jaas']` - Use built in internal realms.properties file, (options 'activedirectory', default 'internal')
 * `node['rundeck']['default_role']` - Require users to be a memeber of this role for Rundeck access, default 'user' 
 * `node['rundeck']['hostname']` - VIP or server address for the service, default 'rundeck.hostdomain.com'
+* `node['rundeck']['port']` - Internal server port for the service, default '4440'
 * `node['rundeck']['email']` - Email address, default 'rundeck@hostdomain.com'
+* `node['rundeck']['restart_on_config_change']` - When true, rundeck will restart on any configuration file change. (even if a job is running) default 'false'
 
 Attributes that configure SMTP settings for email notifications
 
 * `node['rundeck']['mail']['host']` - SMTP server hostname or IP address
 * `node['rundeck']['mail']['port']` - SMTP server port (default 25)
-* `node['rundeck']['mail']['username'] - SMTP User name (not required)
-* `node['rundeck']['mail']['password'] - SMTP User password (not required)
+* `node['rundeck']['mail']['username']` - SMTP User name (not required)
+* `node['rundeck']['mail']['password']` - SMTP User password (not required)
 
 If you want to use encrypted databags for your windows password and/or public/private key pairs generate a secret using:
 ```bash
@@ -101,6 +105,7 @@ Windows Attributes
 * `node['rundeck']['windows']['winrm_auth_type']` - winrm authentication type (options 'basic' or 'kerberos', default: 'basic')
 * `node['rundeck']['windows']['winrm_cert_trust']` - winrm SSL security (options 'all', 'self-signed', 'default' (trusted certs only), default: 'all')
 * `node['rundeck']['windows']['winrm_hostname_trust']` - winrm hostname security (options 'all', 'strict', 'browser-compatible', default: 'all')
+* `node['rundeck']['windows']['winrm_protocol']` - winrm protocol to use, either 'http' or 'https'. default: 'https' 
 
 Active Directory/LDAP Attributes
 * `node['rundeck']['ldap']['provider']` - LDAP server to connect 
@@ -240,6 +245,7 @@ Create a `rundeck_projects` data bag that will contain the projects and search s
  * `username` - attribute is the user to authenticate to the node with when rundeck connects
  * `pattern` - attribute is a search query for nodes to include in to the project in rundeck. 
  * `chef_rundeck_url` - optional attribute is a URL to locate the resource project, if not provided `node['chef_rundeck_url']` will be used. 
+ * `project_settings` - optional attribute is a map of properties that will be added to the rundeck project.properties. 
 
 
 Rundeck Role ACL Policy
