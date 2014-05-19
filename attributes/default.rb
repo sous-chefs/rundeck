@@ -2,13 +2,14 @@ default['rundeck'] = {}
 default['rundeck']['configdir'] = "/etc/rundeck"
 default['rundeck']['basedir'] = "/var/lib/rundeck"
 default['rundeck']['datadir'] = "/var/rundeck"
-default['rundeck']['deb'] = "rundeck-2.0.1-1-GA.deb"
+default['rundeck']['deb'] = "rundeck-2.1.0-1-GA.deb"
 default['rundeck']['url'] = "http://download.rundeck.org/deb/#{node['rundeck']['deb']}"
-default['rundeck']['checksum'] = "aaa183196c6d94d435ca4361b1eda5e8f40676bd6a2248072a90553aef147811"
+default['rundeck']['checksum'] = "a94173728158c0f6488d80a40f9b5b0ac16bada38c737c87c58e6c59f15015a7"
+default['rundeck']['port'] = 4440
 default['rundeck']['chef_rundeck_gem'] = nil
 default['rundeck']['chef_rundeck_port'] = 9980
 default['rundeck']['chef_rundeck_host'] = "0.0.0.0"
-default['rundeck']['chef_rundeck_partial_search'] = "false"
+default['rundeck']['chef_rundeck_partial_search'] = false
 default['rundeck']['user'] = "rundeck"
 default['rundeck']['user_home'] = "/home/rundeck"
 default['rundeck']['chef_config'] = "/etc/chef/rundeck.rb"
@@ -20,13 +21,14 @@ default['rundeck']['jaas'] = "internal"
 default['rundeck']['default_role'] = "user"
 default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
 default['rundeck']['email'] = "rundeck@#{node['domain']}"
+default['rundeck']['restart_on_config_change'] = false
 
 # SMTP settings for rundeck notification emails
 default['rundeck']['mail']['enable'] = false
 default['rundeck']['mail']['host'] = "localhost"
 default['rundeck']['mail']['port'] = "25"
-default['rundeck']['mail']['username'] = nil
-default['rundeck']['mail']['password'] = nil
+default['rundeck']['mail']['username'] = ""
+default['rundeck']['mail']['password'] = ""
 
 #   If you want to use encrypted databags for your windows password and/or public/private key pairs generate a secret using:
 #     'openssl rand -base64 512 | tr -d '\r\n' > rundeck_secret'
@@ -51,6 +53,7 @@ default['rundeck']['windows']['password'] = nil
 default['rundeck']['windows']['winrm_auth_type'] = 'basic'
 default['rundeck']['windows']['winrm_cert_trust'] = 'all'
 default['rundeck']['windows']['winrm_hostname_trust'] = 'all'
+default['rundeck']['windows']['winrm_protocol'] = 'https'
 
 # LDAP Properties
 default['rundeck']['ldap']['provider'] = "ldap://servername:389"
