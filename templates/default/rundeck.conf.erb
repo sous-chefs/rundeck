@@ -1,10 +1,10 @@
 <VirtualHost *:80>
         ServerName rundeck.<%=node[:domain] %>
         ServerAdmin ops@<%=node[:domain]%>
-        ErrorLog /var/log/apache2/rundeck_error.log
-        TransferLog /var/log/apache2/rundeck_access.log
+        ErrorLog <%= @log_dir %>/rundeck_error.log
+        TransferLog <%= @log_dir %>/rundeck_access.log
         
-        DocumentRoot /var/www
+        DocumentRoot <%= @doc_root %>
         ServerSignature On
         
         <Proxy *>
@@ -12,8 +12,8 @@
                 Allow from all
         </Proxy>
         
-        ProxyPass        / http://localhost:4440/
-        ProxyPassReverse / http://localhost:4440/
+        ProxyPass        / http://localhost:<%= node['rundeck']['port'] %>/
+        ProxyPassReverse / http://localhost:<%= node['rundeck']['port'] %>/
         
         <Directory />
                 Options FollowSymLinks
