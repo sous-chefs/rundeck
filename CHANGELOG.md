@@ -1,5 +1,5 @@
 ## 2.0.4 (development)
-* updating to rundeck 2.1.0
+* updating to rundeck 2.1.1
 * removing runit from rundeck::server recipe.  default init scripts work now!
 * bug fix issue #6
 
