@@ -46,18 +46,18 @@ file node['rundeck']['project_config'] do
   notifies :restart, "service[chef-rundeck]"
 end
 
-gem_package "chef-rundeck" do
+chef_gem "chef-rundeck" do
   source node['rundeck']['chef_rundeck_gem']
   action :upgrade
   not_if do node['rundeck']['chef_rundeck_gem'].nil? end
 end
 
-gem_package "chef-rundeck" do
+chef_gem "chef-rundeck" do
   action :upgrade
   only_if do node['rundeck']['chef_rundeck_gem'].nil? end
 end
 
-gem_package "sinatra"
+chef_gem "sinatra"
 
 template "/etc/chef/rundeck.rb" do
   owner node['rundeck']['user']
