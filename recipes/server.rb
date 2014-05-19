@@ -33,19 +33,42 @@ if !node['rundeck']['secret_file'].nil? then
   rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
 end  
 
-remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}" do
-  source node['rundeck']['url']
-  owner node['rundeck']['user']
-  group node['rundeck']['user']
-  checksum node['rundeck']['checksum']
-  mode "0644"
+case node['platform_family']
+  when "rhel"
+    repo = yum_repository "rundeck" do
+      description "Rundeck - Release"
+      url "http://dl.bintray.com/rundeck/rundeck-rpm"
+      action :add
+    end
+    
+    package "rundeck" do
+      #version ""
+      #options package_options
+      action :install
+    end 
+  else 
+    remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}" do
+      source node['rundeck']['url']
+      owner node['rundeck']['user']
+      group node['rundeck']['user']
+      checksum node['rundeck']['checksum']
+      mode "0644"
+    end
+    
+    package node['rundeck']['url'] do
+      action :install
+      source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}"
+      provider Chef::Provider::Package::Dpkg
+    end
 end
 
-package node['rundeck']['url'] do
-  action :install
-  source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}"
-  provider Chef::Provider::Package::Dpkg
+
+service "rundeck" do
+  service_name "rundeckd"
+  supports :status => true, :restart => true
+  action :nothing
 end
+
 
 directory node['rundeck']['basedir'] do
   owner node['rundeck']['user']
@@ -74,6 +97,7 @@ template "#{node['rundeck']['basedir']}/.chef/knife.rb" do
     :node_name => node['rundeck']['user'],
     :chef_server_url => node['rundeck']['chef_url']
   )
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
 end
 
 file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
@@ -83,6 +107,7 @@ file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
   backup false
   content rundeck_secure['private_key']
   only_if do !rundeck_secure['private_key'].nil? end
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
 end
 
 cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.1.jar" do
@@ -91,12 +116,14 @@ cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.1.jar
   mode "0644"
   backup false
   source "rundeck-winrm-plugin-1.1.jar"
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
 end
 
 template "#{node['rundeck']['basedir']}/exp/webapp/WEB-INF/web.xml" do
   owner node['rundeck']['user']
   group node['rundeck']['user']
   source "web.xml.erb"
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
 end
 
 template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
@@ -107,6 +134,7 @@ template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
     :ldap => node['rundeck']['ldap'],
     :configdir => node['rundeck']['configdir']
   )
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
 end
 
 template "#{node['rundeck']['configdir']}/profile" do
@@ -116,6 +144,7 @@ template "#{node['rundeck']['configdir']}/profile" do
   variables(
     :rundeck => node['rundeck']
   )
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
 end
 
 
@@ -126,6 +155,7 @@ template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
   variables(
     :rundeck => node['rundeck']
   )
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
 end
 
 template "#{node['rundeck']['configdir']}/framework.properties" do
@@ -135,6 +165,7 @@ template "#{node['rundeck']['configdir']}/framework.properties" do
   variables(
     :rundeck => node['rundeck']
   )
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
 end
 
 bash "own rundeck" do
@@ -144,15 +175,6 @@ bash "own rundeck" do
   EOH
 end
 
-file "/etc/init.d/rundeckd" do
-  action :delete
-end
-
-runit_service "rundeck" do
-  options(
-      :rundeck => node['rundeck']
-  )
-end
 
 apache_site "000-default" do
   enable false
@@ -167,6 +189,10 @@ template "apache-config" do
   mode 00644
   owner "root"
   group "root"
+  variables(
+    :log_dir => node['platform_family'] == 'rhel' ? "/var/log/httpd" : "/var/log/apache2",
+    :doc_root => node['platform_family'] == 'rhel' ? "/var/www/html" : "/var/www"
+  )
   notifies :reload, "service[apache2]"
 end
 
@@ -174,6 +200,10 @@ apache_site "rundeck.conf" do
   notifies :reload, "service[apache2]"
 end
 
+# ensure rundeck is started
+service "rundeckd" do
+  action :start
+end
 
 
 #load projects
@@ -182,19 +212,25 @@ bags = data_bag('rundeck_projects')
 projects = {}
 bags.each do |project|
   pdata = data_bag_item('rundeck_projects', project)
+  custom = ""
+  if !pdata['project_settings'].nil? then
+    pdata['project_settings'].map do |key, val|
+     custom = custom + " --#{key}=#{val}"
+    end
+  end
+  
+  cmd = <<-EOH.to_s
+  rd-project -p #{project} -a create \
+  --resources.source.1.type=url \
+  --resources.source.1.config.includeServerNode=true \
+  --resources.source.1.config.generateFileAutomatically=true \
+  --resources.source.1.config.url=#{pdata['chef_rundeck_url'].nil? ? node['rundeck']['chef_rundeck_url'] : pdata['chef_rundeck_url']}/#{project} \
+  --project.resources.file=#{node['rundeck']['datadir']}/projects/#{project}/etc/resources.xml #{custom}
+  EOH
 
   bash "check-project-#{project}" do
     user node['rundeck']['user']
-    
-    code <<-EOH
-    rd-project -p #{project} -a create \
-    --resources.source.1.type=url \
-    --resources.source.1.config.includeServerNode=true \
-    --resources.source.1.config.generateFileAutomatically=true \
-    --resources.source.1.config.url=#{pdata['chef_rundeck_url'].nil? ? node['rundeck']['chef_rundeck_url'] : pdata['chef_rundeck_url']}/#{project} \
-    --project.resources.file=#{node['rundeck']['datadir']}/projects/#{project}/etc/resources.xml
-    EOH
-    
+    code cmd
     not_if do
       File.exists?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties")
     end
