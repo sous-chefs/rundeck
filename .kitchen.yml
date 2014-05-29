@@ -1,0 +1,22 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: debian-7.4
+    run_list:
+    - "recipe[apt::default]"
+  - name: ubuntu-12.04
+    run_list:
+    - "recipe[apt::default]"
+
+suites:
+  - name: server
+    run_list:
+      - "recipe[rundeck::server]"
+    driver_config:
+      network:
+      - ["forwarded_port", {guest: 4440, host: 4440}]
