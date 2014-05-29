@@ -18,6 +18,9 @@ suites:
     run_list:
       - "recipe[rundeck::server]"
       - "recipe[create_chef_dir]"
+    attributes:
+      rundeck:
+        hostname: 'localhost:8080'
     driver_config:
       network:
-      - ["forwarded_port", {guest: 4440, host: 4440}]
+      - ["forwarded_port", {guest: 80, host: 8080}]
