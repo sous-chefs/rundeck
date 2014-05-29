@@ -1,5 +1,7 @@
 DEPENDENCIES
   apt
+  create_chef_dir
+    path: test/fixtures/cookbooks/create_chef_dir
   rundeck
     path: .
     metadata: true
@@ -11,6 +13,7 @@ GRAPH
     pacman (>= 0.0.0)
   apt (2.4.0)
   build-essential (2.0.2)
+  create_chef_dir (0.0.1)
   iptables (0.13.2)
   java (1.22.0)
   logrotate (1.5.0)
