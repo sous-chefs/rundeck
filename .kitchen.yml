@@ -17,6 +17,7 @@ suites:
   - name: server
     run_list:
       - "recipe[rundeck::server]"
+      - "recipe[create_chef_dir]"
     driver_config:
       network:
       - ["forwarded_port", {guest: 4440, host: 4440}]
