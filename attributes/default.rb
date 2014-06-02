@@ -23,6 +23,7 @@ default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
 default['rundeck']['email'] = "rundeck@#{node['domain']}"
 default['rundeck']['restart_on_config_change'] = false
 default['rundeck']['apache-template']['cookbook'] = "rundeck"
+default['rundeck']['log_dir'] = "/var/log/chef-rundeck"
 
 # SMTP settings for rundeck notification emails
 default['rundeck']['mail']['enable'] = false
