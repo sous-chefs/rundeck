@@ -79,6 +79,7 @@ template "/etc/init/chef-rundeck.conf" do
   source "chef-rundeck.conf.erb"
   variables(
     :user => node['rundeck']['user'],
+    :log_dir => node['rundeck']['log_dir'],
     :chef_config => node['rundeck']['chef_config'],
     :chef_webui_url => node['rundeck']['chef_webui_url'],
     :project_config => node['rundeck']['project_config'],
