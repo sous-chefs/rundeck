@@ -75,8 +75,9 @@ file "/etc/chef/rundeck.pem" do
   mode 0400
 end
 
-runit_service "chef-rundeck" do
-  options(
+template "/etc/init/chef-rundeck.conf" do
+  source "chef-rundeck.conf.erb"
+  variables(
     :user => node['rundeck']['user'],
     :chef_config => node['rundeck']['chef_config'],
     :chef_webui_url => node['rundeck']['chef_webui_url'],
@@ -85,9 +86,9 @@ runit_service "chef-rundeck" do
     :chef_rundeck_port => node['rundeck']['chef_rundeck_port'],
     :chef_rundeck_partial_search => node['rundeck']['chef_rundeck_partial_search']
   )
-  notifies :restart, "service[chef-rundeck]"
 end
 
 service "chef-rundeck" do
+  provider Chef::Provider::Service::Upstart
   action :start
 end
