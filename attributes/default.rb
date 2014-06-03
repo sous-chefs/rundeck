@@ -13,6 +13,7 @@ default['rundeck']['chef_rundeck_partial_search'] = false
 default['rundeck']['user'] = "rundeck"
 default['rundeck']['user_home'] = "/home/rundeck"
 default['rundeck']['chef_config'] = "/etc/chef/rundeck.rb"
+default['rundeck']['chef_client_name'] = "chef-rundeck"
 default['rundeck']['chef_rundeck_url'] = "http://chef.#{node['domain']}:#{node['rundeck']['chef_rundeck_port']}"
 default['rundeck']['chef_webui_url'] = "https://chef.#{node['domain']}"
 default['rundeck']['chef_url'] = "https://chef.#{node['domain']}"
