@@ -104,6 +104,8 @@ if node['rundeck']['chef_rundeck_use_upstart']
 else
   # Use runit, compatibility for non-Upstart systems and backwards-compatibility
   # for previous versions of this cookbook
+  include_recipe 'runit::default'
+
   runit_service "chef-rundeck" do
     options(
       :user => node['rundeck']['user'],
