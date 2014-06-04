@@ -18,6 +18,7 @@ suites:
     run_list:
       - "recipe[rundeck::server]"
       - "recipe[create_chef_dir]"
+      - "recipe[rundeck::chef-rundeck]"
     attributes:
       rundeck:
         hostname: 'localhost:8080'
