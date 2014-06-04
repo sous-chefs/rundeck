@@ -6,6 +6,20 @@ default['rundeck']['deb'] = "rundeck-2.1.1-1-GA.deb"
 default['rundeck']['url'] = "http://download.rundeck.org/deb/#{node['rundeck']['deb']}"
 default['rundeck']['checksum'] = "81520012ee9490ba7b4178834049c5e1d0b155b2a8a27a99a9899e7bc33e22d0"
 default['rundeck']['port'] = 4440
+default['rundeck']['jaas'] = "internal"
+default['rundeck']['default_role'] = "user"
+default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
+default['rundeck']['email'] = "rundeck@#{node['domain']}"
+default['rundeck']['restart_on_config_change'] = false
+default['rundeck']['apache-template']['cookbook'] = "rundeck"
+default['rundeck']['log_dir'] = "/var/log/chef-rundeck"
+
+# chef-rundeck
+if platform?("ubuntu") or platform_family?("rhel")
+  default['rundeck']['chef_rundeck_use_upstart'] = true
+else
+  default['rundeck']['chef_rundeck_use_upstart'] = false
+end
 default['rundeck']['chef_rundeck_gem'] = nil
 default['rundeck']['chef_rundeck_port'] = 9980
 default['rundeck']['chef_rundeck_host'] = "0.0.0.0"
@@ -18,13 +32,6 @@ default['rundeck']['chef_rundeck_url'] = "http://chef.#{node['domain']}:#{node['
 default['rundeck']['chef_webui_url'] = "https://chef.#{node['domain']}"
 default['rundeck']['chef_url'] = "https://chef.#{node['domain']}"
 default['rundeck']['project_config'] = "/etc/chef/chef-rundeck.json"
-default['rundeck']['jaas'] = "internal"
-default['rundeck']['default_role'] = "user"
-default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
-default['rundeck']['email'] = "rundeck@#{node['domain']}"
-default['rundeck']['restart_on_config_change'] = false
-default['rundeck']['apache-template']['cookbook'] = "rundeck"
-default['rundeck']['log_dir'] = "/var/log/chef-rundeck"
 
 # SMTP settings for rundeck notification emails
 default['rundeck']['mail']['enable'] = false
