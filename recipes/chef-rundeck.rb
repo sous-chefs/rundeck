@@ -75,6 +75,18 @@ file "/etc/chef/rundeck.pem" do
   mode 0400
 end
 
+directory node['rundeck']['log_dir'] do
+  owner node['rundeck']['user']
+  group node['rundeck']['user']
+  mode 00755
+end
+
+file "#{node['rundeck']['log_dir']}/server.log" do
+  owner node['rundeck']['user']
+  group node['rundeck']['user']
+  action :create_if_missing
+end
+
 if node['rundeck']['chef_rundeck_use_upstart']
   template "/etc/init/chef-rundeck.conf" do
     source "chef-rundeck.conf.erb"
