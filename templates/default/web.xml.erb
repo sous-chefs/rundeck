@@ -1,12 +1,12 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" metadata-complete="true" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<display-name>/rundeck-production-2.0.0</display-name>
+	<display-name>/rundeck-production-2.1.2</display-name>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>rundeck-production-2.0.0</param-value>
+		<param-value>rundeck-production-2.1.2</param-value>
 	</context-param>
 	<security-role>
 		<role-name><%=node['rundeck']['default_role']%></role-name>
@@ -21,6 +21,18 @@
 		<web-resource-collection>
 			<web-resource-name>LoginError</web-resource-name>
 			<url-pattern>/user/error</url-pattern>
+		</web-resource-collection>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Logout</web-resource-name>
+			<url-pattern>/user/logout</url-pattern>
+		</web-resource-collection>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Loggedout</web-resource-name>
+			<url-pattern>/user/loggedout</url-pattern>
 		</web-resource-collection>
 	</security-constraint>
 	<security-constraint>
@@ -208,6 +220,10 @@
 	</welcome-file-list>
 	<error-page>
 		<error-code>500</error-code>
+		<location>/grails-errorhandler</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
 		<location>/grails-errorhandler</location>
 	</error-page>
 </web-app>
