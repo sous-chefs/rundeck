@@ -27,10 +27,12 @@ include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
 
 rundeck_secure = data_bag_item('rundeck', 'secure')
+rundeck_users = data_bag_item('rundeck', 'users')
 
 if !node['rundeck']['secret_file'].nil? then
   rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
   rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
+  rundeck_users = Chef::EncryptedDataBagItem.load('rundeck', 'users', rundeck_secret)
 end  
 
 case node['platform_family']
@@ -163,9 +165,19 @@ template "#{node['rundeck']['configdir']}/framework.properties" do
   group node['rundeck']['user']
   source "framework.properties.erb"
   variables(
-    :rundeck => node['rundeck']
+    :rundeck => node['rundeck'],
+    :rundeck_users => rundeck_users['users']
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
+end
+
+template "#{node['rundeck']['configdir']}/realm.properties" do
+  owner node['rundeck']['user']
+  group node['rundeck']['user']
+  source "realm.properties.erb"
+  variables(
+    :rundeck_users => rundeck_users['users']
+  )
 end
 
 bash "own rundeck" do
