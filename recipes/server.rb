@@ -26,11 +26,11 @@ include_recipe "apache2::mod_ssl"
 include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
 
-rundeck_secure = data_bag_item('rundeck', 'secure')
+rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
 
 if !node['rundeck']['secret_file'].nil? then
   rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
-  rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
+  rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
 end  
 
 case node['platform_family']
@@ -208,11 +208,11 @@ end
 
 
 #load projects
-bags = data_bag('rundeck_projects')
+bags = data_bag(node['rundeck']['rundeck_projects_databag'])
 
 projects = {}
 bags.each do |project|
-  pdata = data_bag_item('rundeck_projects', project)
+  pdata = data_bag_item(node['rundeck']['rundeck_projects_databag'], project)
   custom = ""
   if !pdata['project_settings'].nil? then
     pdata['project_settings'].map do |key, val|
