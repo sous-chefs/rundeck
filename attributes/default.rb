@@ -14,12 +14,18 @@ default['rundeck']['restart_on_config_change'] = false
 default['rundeck']['apache-template']['cookbook'] = "rundeck"
 default['rundeck']['log_dir'] = "/var/log/chef-rundeck"
 
+#databag name configuration
+default['rundeck']['rundeck_databag_secure'] = "secure"
+default['rundeck']['rundeck_databag'] = "rundeck"
+default['rundeck']['rundeck_projects_databag'] = "rundeck_projects"
+
 # chef-rundeck
 if platform?("ubuntu") or platform_family?("rhel")
   default['rundeck']['chef_rundeck_use_upstart'] = true
 else
   default['rundeck']['chef_rundeck_use_upstart'] = false
 end
+
 default['rundeck']['chef_rundeck_gem'] = nil
 default['rundeck']['chef_rundeck_port'] = 9980
 default['rundeck']['chef_rundeck_host'] = "0.0.0.0"

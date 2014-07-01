@@ -1,3 +1,6 @@
+## 2.0.5 (development)
+* configurable databag names
+
 ## 2.0.4
 * updating to rundeck 2.1.2
 * removing runit from rundeck::server recipe.  default init scripts work now!
