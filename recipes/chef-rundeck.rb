@@ -21,18 +21,18 @@ require 'json'
 
 include_recipe 'rundeck::default'
 
-rundeck_secure = data_bag_item('rundeck', 'secure')
+rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
 
 if !node['rundeck']['secret_file'].nil? then
   rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
-  rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
-end
+  rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
+end  
 
 
-bags = data_bag('rundeck_projects')
+bags = data_bag(node['rundeck']['rundeck_projects_databag'])
 projects = {}
 bags.each do |project|
-  pdata = data_bag_item('rundeck_projects', project)
+  pdata = data_bag_item(node['rundeck']['rundeck_projects_databag'], project)
   projects[project] = {
     "pattern" => pdata['pattern'],
     "username" => pdata['username'],
