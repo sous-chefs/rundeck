@@ -1,7 +1,16 @@
 language: ruby
+
 gemfile:
    - test/support/Gemfile
+
 rvm:
   - 1.9.2
   - 1.9.3
+  - 2.0.0
+  - 2.1
+
+branches:
+  only:
+      - master
+
 script: bundle exec rake foodcritic
