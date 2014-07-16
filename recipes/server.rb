@@ -67,6 +67,7 @@ end
 
 service "rundeck" do
   service_name "rundeckd"
+  provider Chef::Provider::Service::Upstart
   supports :status => true, :restart => true
   action :nothing
 end
@@ -220,11 +221,11 @@ end
 
 
 #load projects
-bags = data_bag('rundeck_projects')
+bags = data_bag(node['rundeck']['rundeck_projects_databag'])
 
 projects = {}
 bags.each do |project|
-  pdata = data_bag_item('rundeck_projects', project)
+  pdata = data_bag_item(node['rundeck']['rundeck_projects_databag'], project)
   custom = ""
   if !pdata['project_settings'].nil? then
     pdata['project_settings'].map do |key, val|
