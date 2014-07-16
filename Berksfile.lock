@@ -18,7 +18,7 @@ GRAPH
   java (1.22.0)
   logrotate (1.5.0)
   pacman (1.1.1)
-  rundeck (2.0.4)
+  rundeck (2.0.5)
     apache2 (>= 0.0.0)
     java (>= 0.0.0)
     rundeck (>= 0.0.0)
