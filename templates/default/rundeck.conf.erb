@@ -1,6 +1,6 @@
 <VirtualHost *:80>
-        ServerName rundeck.<%=node[:domain] %>
-        ServerAdmin ops@<%=node[:domain]%>
+        ServerName rundeck.<%=node['domain'] %>
+        ServerAdmin ops@<%=node['domain']%>
         ErrorLog <%= @log_dir %>/rundeck_error.log
         TransferLog <%= @log_dir %>/rundeck_access.log
         

@@ -2,7 +2,7 @@ Rundeck Cookbook
 ================
 Installs and configures a Rundeck 2.0 server with Chef integration via the chef-rundeck.gem.  Projects in rundeck can be dynamiclly configured via data bag items using search.  Linux and Windows client nodes are supported.  The cookbook has optional support for Active Directory and LDAP.
 
-[![Build Status](https://travis-ci.org/Webtrends/rundeck.png?branch=master)](https://travis-ci.org/Webtrends/rundeck) [![Code Climate](https://codeclimate.com/github/Webtrends/rundeck.png)](https://codeclimate.com/github/Webtrends/rundeck)
+[![Build Status](https://travis-ci.org/Webtrends/rundeck.png?branch=master)](https://travis-ci.org/Webtrends/rundeck)
 
 Requirements
 ------------
@@ -37,6 +37,10 @@ Linux default attributes for all rundeck managed nodes and server
 
 * `node['rundeck']['user']` - Rundeck username (linux), default 'rundeck'
 * `node['rundeck']['user_home']` - Rundeck user home directory (linux), default '/home/rundeck'
+
+* `node['rundeck']['rundeck_databag_secure']` - Rundeck secure data bag item for all keys and passwords, default 'secure'
+* `node['rundeck']['rundeck_databag']` - Rundeck configuration data bag for secure data, default 'rundeck'
+* `node['rundeck']['rundeck_projects_databag']` - Rundeck project configuration data bag.  Used for project creationg and chef-rundeck.  default 'rundeck_projects'
 
 Windows default attributes for all rundeck managed nodes
 
