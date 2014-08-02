@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 case node['platform_family']
-when "rhel", "fedora", "suse", "debian", "arch", "freebsd"
+when "arch", "debian", "fedora", "freebsd", "mac_os_x", "rhel", "suse"
   include_recipe 'rundeck::node_unix'   
 when "windows"
   include_recipe 'rundeck::node_windows'  
