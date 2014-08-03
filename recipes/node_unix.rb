@@ -25,7 +25,13 @@ if !node['rundeck']['secret_file'].nil? then
   rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
 end  
 
+group node['rundeck']['group'] do
+  system true
+end
+
 user node['rundeck']['user'] do
+  comment 'Rundeck User'
+  gid node['rundeck']['group']
   system true
   shell "/bin/bash"
   home node['rundeck']['basedir']
