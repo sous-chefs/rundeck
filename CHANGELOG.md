@@ -1,3 +1,6 @@
+## 2.0.6
+* chef-client v10 treats `platform?` as attribute instead of method in attributes file
+
 ## 2.0.5 (development)
 * configurable databag names
 

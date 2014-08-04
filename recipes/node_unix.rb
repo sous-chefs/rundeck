@@ -33,28 +33,27 @@ user node['rundeck']['user'] do
   comment 'Rundeck User'
   gid node['rundeck']['group']
   system true
-  gid node['rundeck']['user']
   shell "/bin/bash"
   home node['rundeck']['basedir']
 end
 
 directory node['rundeck']['basedir'] do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   recursive true
   mode 00700
 end
 
 directory "#{node['rundeck']['basedir']}/.ssh" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   recursive true
   mode 00700
 end
 
 file "#{node['rundeck']['basedir']}/.ssh/authorized_keys" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   mode 00600
   backup false
   content rundeck_secure['public_key']
