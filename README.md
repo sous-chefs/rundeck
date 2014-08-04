@@ -19,6 +19,7 @@ This cookbook relies on multiple data bags. See __Data Bag__ below.
 * RHEL 6
 * Windows 7 Enterprise (managed node)
 * Windows 2008 R2 (managed node)
+* Mac OS X (managed node)
 
 **Notes**: This cookbook has been tested on the listed platforms. It may work on other platforms with or without modification.
 
