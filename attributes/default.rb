@@ -2,7 +2,7 @@ default['rundeck'] = {}
 default['rundeck']['configdir'] = "/etc/rundeck"
 default['rundeck']['basedir'] = "/var/lib/rundeck"
 default['rundeck']['datadir'] = "/var/rundeck"
-default['rundeck']['deb'] = "rundeck-2.1.2-1-GA.deb"
+default['rundeck']['deb'] = "rundeck-2.2.1-1-GA.deb"
 default['rundeck']['url'] = "http://download.rundeck.org/deb/#{node['rundeck']['deb']}"
 default['rundeck']['checksum'] = "73772ff8f59ce9ff944a7a0b9608de7e387803401a2f5019b2b07a3e4f2b5597"
 default['rundeck']['port'] = 4440
@@ -20,7 +20,7 @@ default['rundeck']['rundeck_databag'] = "rundeck"
 default['rundeck']['rundeck_projects_databag'] = "rundeck_projects"
 
 # chef-rundeck
-if platform?("ubuntu") or platform_family?("rhel")
+if node['platform'] == 'ubuntu' || node['platform_family'] == 'rhel'
   default['rundeck']['chef_rundeck_use_upstart'] = true
 else
   default['rundeck']['chef_rundeck_use_upstart'] = false
@@ -31,7 +31,7 @@ default['rundeck']['chef_rundeck_port'] = 9980
 default['rundeck']['chef_rundeck_host'] = "0.0.0.0"
 default['rundeck']['chef_rundeck_partial_search'] = false
 default['rundeck']['user'] = "rundeck"
-default['rundeck']['group'] = node['rundeck']['user']
+default['rundeck']['group'] = "rundeck"
 default['rundeck']['user_home'] = "/home/rundeck"
 default['rundeck']['chef_config'] = "/etc/chef/rundeck.rb"
 default['rundeck']['chef_client_name'] = "chef-rundeck"
