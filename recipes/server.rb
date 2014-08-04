@@ -52,7 +52,7 @@ case node['platform_family']
     remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}" do
       source node['rundeck']['url']
       owner node['rundeck']['user']
-      group node['rundeck']['user']
+      group node['rundeck']['group']
       checksum node['rundeck']['checksum']
       mode "0644"
     end
@@ -75,25 +75,26 @@ end
 
 directory node['rundeck']['basedir'] do
   owner node['rundeck']['user']
+  group node['rundeck']['group']
   recursive true
 end
 
 directory "#{node['rundeck']['basedir']}/projects" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   recursive true
 end
 
 directory "#{node['rundeck']['basedir']}/.chef" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   recursive true
   mode "0700"
 end
 
 template "#{node['rundeck']['basedir']}/.chef/knife.rb" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   source "knife.rb.erb"
   variables(
     :user_home => node['rundeck']['basedir'],
@@ -105,7 +106,7 @@ end
 
 file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   mode "0600"
   backup false
   content rundeck_secure['private_key']
@@ -115,7 +116,7 @@ end
 
 cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.1.jar" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   mode "0644"
   backup false
   source "rundeck-winrm-plugin-1.1.jar"
@@ -124,25 +125,26 @@ end
 
 template "#{node['rundeck']['basedir']}/exp/webapp/WEB-INF/web.xml" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   source "web.xml.erb"
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
 end
 
 template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   source "jaas-activedirectory.conf.erb"
   variables(
     :ldap => node['rundeck']['ldap'],
-    :configdir => node['rundeck']['configdir']
+    :configdir => node['rundeck']['configdir'],
+    :default_role => node['rundeck']['default_role']
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
 end
 
 template "#{node['rundeck']['configdir']}/profile" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   source "profile.erb"
   variables(
     :rundeck => node['rundeck']
@@ -153,7 +155,7 @@ end
 
 template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   source "rundeck-config.properties.erb"
   variables(
     :rundeck => node['rundeck']
@@ -163,7 +165,7 @@ end
 
 template "#{node['rundeck']['configdir']}/framework.properties" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   source "framework.properties.erb"
   variables(
     :rundeck => node['rundeck'],
@@ -174,7 +176,7 @@ end
 
 template "#{node['rundeck']['configdir']}/realm.properties" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   source "realm.properties.erb"
   variables(
     :rundeck_users => rundeck_users['users']
@@ -184,7 +186,7 @@ end
 bash "own rundeck" do
   user "root"
   code <<-EOH
-  chown -R #{node['rundeck']['user']}:#{node['rundeck']['user']} #{node['rundeck']['basedir']}
+  chown -R #{node['rundeck']['user']}:#{node['rundeck']['group']} #{node['rundeck']['basedir']}
   EOH
 end
 
