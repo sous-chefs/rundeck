@@ -31,6 +31,7 @@ default['rundeck']['chef_rundeck_port'] = 9980
 default['rundeck']['chef_rundeck_host'] = "0.0.0.0"
 default['rundeck']['chef_rundeck_partial_search'] = false
 default['rundeck']['user'] = "rundeck"
+default['rundeck']['group'] = node['rundeck']['user']
 default['rundeck']['user_home'] = "/home/rundeck"
 default['rundeck']['chef_config'] = "/etc/chef/rundeck.rb"
 default['rundeck']['chef_client_name'] = "chef-rundeck"
