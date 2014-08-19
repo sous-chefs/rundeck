@@ -34,24 +34,24 @@ user node['rundeck']['user'] do
   gid node['rundeck']['group']
   system true
   shell "/bin/bash"
-  home node['rundeck']['basedir']
+  home node['rundeck']['user_home']
 end
 
-directory node['rundeck']['basedir'] do
+directory node['rundeck']['user_home'] do
   owner node['rundeck']['user']
   group node['rundeck']['user']
   recursive true
   mode 00700
 end
 
-directory "#{node['rundeck']['basedir']}/.ssh" do
+directory "#{node['rundeck']['user_home']}/.ssh" do
   owner node['rundeck']['user']
   group node['rundeck']['user']
   recursive true
   mode 00700
 end
 
-file "#{node['rundeck']['basedir']}/.ssh/authorized_keys" do
+file "#{node['rundeck']['user_home']}/.ssh/authorized_keys" do
   owner node['rundeck']['user']
   group node['rundeck']['user']
   mode 00600
