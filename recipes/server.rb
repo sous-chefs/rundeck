@@ -100,6 +100,13 @@ template "#{node['rundeck']['basedir']}/.chef/knife.rb" do
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
 end
 
+directory "#{node['rundeck']['basedir']}/.ssh" do
+  owner node['rundeck']['user']
+  group node['rundeck']['user']
+  recursive true
+  mode "0700"
+end
+
 file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
   owner node['rundeck']['user']
   group node['rundeck']['user']
