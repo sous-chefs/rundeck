@@ -2,9 +2,9 @@ default['rundeck'] = {}
 default['rundeck']['configdir'] = "/etc/rundeck"
 default['rundeck']['basedir'] = "/var/lib/rundeck"
 default['rundeck']['datadir'] = "/var/rundeck"
-default['rundeck']['deb'] = "rundeck-2.1.2-1-GA.deb"
+default['rundeck']['deb'] = "rundeck-2.2.1-1-GA.deb"
 default['rundeck']['url'] = "http://download.rundeck.org/deb/#{node['rundeck']['deb']}"
-default['rundeck']['checksum'] = "73772ff8f59ce9ff944a7a0b9608de7e387803401a2f5019b2b07a3e4f2b5597"
+default['rundeck']['checksum'] = "816b96bf4545bd831c87d5ef1953770a0e705192d4c96bc4907f483c4558f269"
 default['rundeck']['port'] = 4440
 default['rundeck']['jaas'] = "internal"
 default['rundeck']['default_role'] = "user"
@@ -13,6 +13,9 @@ default['rundeck']['email'] = "rundeck@#{node['domain']}"
 default['rundeck']['restart_on_config_change'] = false
 default['rundeck']['apache-template']['cookbook'] = "rundeck"
 default['rundeck']['log_dir'] = "/var/log/chef-rundeck"
+default['rundeck']['server_url'] = node['rundeck']['hostname']
+default['rundeck']['log_level'] = "DEBUG" #ERR,WARN,INFO,VERBOSE,DEBUG
+default['rundeck']['rss_enabled'] = true
 
 #databag name configuration
 default['rundeck']['rundeck_databag_secure'] = "secure"
@@ -20,7 +23,7 @@ default['rundeck']['rundeck_databag'] = "rundeck"
 default['rundeck']['rundeck_projects_databag'] = "rundeck_projects"
 
 # chef-rundeck
-if platform?("ubuntu") or platform_family?("rhel")
+if node['platform'] == 'ubuntu' || node['platform_family'] == 'rhel'
   default['rundeck']['chef_rundeck_use_upstart'] = true
 else
   default['rundeck']['chef_rundeck_use_upstart'] = false
