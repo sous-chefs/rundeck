@@ -1,5 +1,10 @@
-## 2.0.5 (development)
+## 2.0.5 
 * configurable databag names
+* upgraded rundeck 2.2.1
+* configurable server url attributes added
+* fixed home dir creation
+* berkshelf and cookbook test updates
+* fixed platform detection for attributes on rhel and chef 10
 
 ## 2.0.4
 * updating to rundeck 2.1.2
