@@ -47,6 +47,9 @@ Windows default attributes for all rundeck managed nodes
 
 * `node['rundeck']['windows']['user']` - Windows user to create, default 'rundeck'
 * `node['rundeck']['windows']['group']` - Windows user group to add the 'rundeck' user to, default 'Administrators'
+* `node['rundeck']['server_url']` - Due to a bug in some cases on rundeck if this is filled out a bad login may occur. Some instances this may need to be set to other values or even nil. This will control the serverUrl in the config.
+* `node['rundeck']['log_level']` - Debug level for rundeck (ERR,WARN,INFO,VERBOSE,DEBUG) 
+* `node['rundeck']['rss_enabled']` - true/false for RSS support 
 
 ### chef-rundeck
 Chef rundeck integration service attributes
@@ -264,6 +267,7 @@ A default role acl policy is supported out of the box.  You can add new acl poli
 License & Authors
 -----------------
 - Author:: Peter Crossley <peter.crossley@webtrends.com>
+- Author:: Jonathan Mickle <jmickle@jonathanmickle.com>
 
 ```text
 Copyright 2014, Webtrends Inc.
