@@ -23,7 +23,7 @@ default['rundeck']['rundeck_databag'] = "rundeck"
 default['rundeck']['rundeck_projects_databag'] = "rundeck_projects"
 
 # chef-rundeck
-if platform?("ubuntu") or platform_family?("rhel")
+if node['platform'] == 'ubuntu' || node['platform_family'] == 'rhel'
   default['rundeck']['chef_rundeck_use_upstart'] = true
 else
   default['rundeck']['chef_rundeck_use_upstart'] = false
