@@ -267,6 +267,7 @@ A default role acl policy is supported out of the box.  You can add new acl poli
 License & Authors
 -----------------
 - Author:: Peter Crossley <peter.crossley@webtrends.com>
+- Author:: David Andrew <david.andrew@webtrends.com>
 - Author:: Jonathan Mickle <jmickle@jonathanmickle.com>
 
 ```text
