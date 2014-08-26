@@ -8,10 +8,7 @@ provisioner:
   chef_omnibus_url: https://www.getchef.com/chef/install.sh
 
 platforms:
-  - name: debian-7.4
-    run_list:
-    - "recipe[apt::default]"
-  - name: ubuntu-12.04
+  - name: ubuntu-14.04
     run_list:
     - "recipe[apt::default]"
 
@@ -24,6 +21,3 @@ suites:
     attributes:
       rundeck:
         hostname: 'localhost:8080'
-    driver_config:
-      network:
-      - ["forwarded_port", {guest: 80, host: 8080}]
