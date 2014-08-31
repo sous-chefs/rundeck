@@ -203,7 +203,7 @@ template "apache-config" do
   notifies :reload, "service[apache2]"
 end
 
-apache_site "rundeck.conf" do
+apache_site "rundeck" do
   enable true
   notifies :reload, "service[apache2]"
 end
