@@ -9,6 +9,7 @@ depends          "runit"
 depends          "sudo"
 depends          "java"
 depends          "apache2"
+depends          "selinux"
 
 %w{ debian ubuntu centos suse fedora redhat freebsd windows }.each do |os|
   supports os
