@@ -25,6 +25,7 @@ include_recipe "apache2::mod_headers"
 include_recipe "apache2::mod_ssl"
 include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
+include_recipe "selinux::disabled"
 
 rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
 
