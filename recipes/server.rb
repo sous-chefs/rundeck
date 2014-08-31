@@ -38,12 +38,11 @@ case node['platform_family']
     repo = yum_repository "rundeck" do
       description "Rundeck - Release"
       url "http://dl.bintray.com/rundeck/rundeck-rpm"
+      gpgcheck false
       action :add
     end
     
     package "rundeck" do
-      #version ""
-      #options package_options
       action :install
     end 
   else 
