@@ -181,14 +181,13 @@ bash "own rundeck" do
   EOH
 end
 
-
-apache_site "000-default" do
-  enable false
-  notifies :reload, "service[apache2]"
+%w(default 000-default).each do |site|
+  apache_site site do
+    enable false
+    notifies :reload, "service[apache2]"
+  end
 end
 
-
-# load up the apache conf
 template "apache-config" do
   path "#{node['apache']['dir']}/sites-available/rundeck.conf"
   source "rundeck.conf.erb"
@@ -204,16 +203,14 @@ template "apache-config" do
 end
 
 apache_site "rundeck.conf" do
+  enable true
   notifies :reload, "service[apache2]"
 end
 
-# ensure rundeck is started
 service "rundeckd" do
   action :start
 end
 
-
-#load projects
 bags = data_bag(node['rundeck']['rundeck_projects_databag'])
 
 projects = {}
