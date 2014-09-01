@@ -1,5 +1,6 @@
 ## 2.0.6
 * Added more options for LDAP configurations 
+* Fixed package upgrade process
 
 ## 2.0.5 
 * configurable databag names

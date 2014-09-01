@@ -59,6 +59,7 @@ case node['platform_family']
       action :install
       source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}"
       provider Chef::Provider::Package::Dpkg
+      options "--force-confdef --force-confold"
     end
 end
 
