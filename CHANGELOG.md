@@ -1,3 +1,7 @@
+## 2.1.0 (development version)
+* Added LWRP User
+* Added LWRP Plugin
+
 ## 2.0.5 
 * configurable databag names
 * upgraded rundeck 2.2.1
