@@ -1,4 +1,8 @@
 =======
+## 2.1.0 (development version)
+* Added LWRP User
+* Added LWRP Plugin
+
 ## 2.0.12
 * Update template file for 2.6.2
 * Update downloaded deb and rpm for 2.6.2
