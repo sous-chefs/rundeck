@@ -1,8 +1,6 @@
-## 2.0.6
-* Added more options for LDAP configurations 
-* Fixed package upgrade process
-
 ## 2.0.5 
+* added more options for LDAP configurations
+* fixed package upgrade process
 * configurable databag names
 * upgraded rundeck 2.2.1
 * configurable server url attributes added
