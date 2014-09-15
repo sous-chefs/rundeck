@@ -47,7 +47,7 @@ case node['platform_family']
       action :install
     end 
   else 
-    remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}" do
+    remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']['package']}" do
       source node['rundeck']['url']
       owner node['rundeck']['user']
       group node['rundeck']['user']
@@ -57,8 +57,9 @@ case node['platform_family']
     
     package node['rundeck']['url'] do
       action :install
-      source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}"
+      source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']['package']}"
       provider Chef::Provider::Package::Dpkg
+      options node['rundeck']['deb']['options'] if node['rundeck']['deb']['options'] 
     end
 end
 
