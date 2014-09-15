@@ -117,11 +117,23 @@ Windows Attributes
 
 Active Directory/LDAP Attributes
 * `node['rundeck']['ldap']['provider']` - LDAP server to connect 
-* `node['rundeck']['ldap']['binddn']` - LDAP bind DN
-* `node['rundeck']['ldap']['bindpwd']` - LDAP bind password
+* `node['rundeck']['ldap']['binddn']` - LDAP root bind DN. It will be ignored if `node['rundeck']['ldap']['forcebindinglogin']` is true
+* `node['rundeck']['ldap']['bindpwd']` - LDAP root bind password. It will be ignored if `node['rundeck']['ldap']['forcebindinglogin']` is true
+* `node['rundeck']['ldap']['authenticationmethod']`  - LDAP authentication method 
+* `node['rundeck']['ldap']['forcebindinglogin']` - If true, bind as the user is authenticating, if not it bind using the root DN and perform a search to verify the user password
 * `node['rundeck']['ldap']['userbasedn']` - LDAP base user DN search
+* `node['rundeck']['ldap']['userrdnattribute']` - LDAP attribute name for user name
+* `node['rundeck']['ldap']['useridattribute']` - LDAP attribute name to identify user
+* `node['rundeck']['ldap']['userpasswordattribute']` - LDAP attribute name for user password
+* `node['rundeck']['ldap']['userobjectclass']` - LDAP object class for user
 * `node['rundeck']['ldap']['rolebasedn']` - LDAP base role DN search
-
+* `node['rundeck']['ldap']['rolenameattribute']` - LDAP attribute name for role name
+* `node['rundeck']['ldap']['rolememberattribute']` - LDAP attribute name that would contain the users DN
+* `node['rundeck']['ldap']['['roleusernamememberattribute']` - LDAP attribute name that would contain the users user name. If it set, `node['rundeck']['ldap']['rolememberattribute']` will be not used
+* `node['rundeck']['ldap']['roleobjectclass']` - LDAP object class for group
+* `node['rundeck']['ldap']['roleprefix']` - Prefix string to remove from role names before returning to the application
+* `node['rundeck']['ldap']['cachedurationmillis']` - Duration in milliseconds of the cache of an authorization
+* `node['rundeck']['ldap']['reportstatistics']` - If true, output cache statistics to the log
 
 Recipes
 -------
