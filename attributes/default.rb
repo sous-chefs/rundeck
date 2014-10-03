@@ -2,9 +2,10 @@ default['rundeck'] = {}
 default['rundeck']['configdir'] = "/etc/rundeck"
 default['rundeck']['basedir'] = "/var/lib/rundeck"
 default['rundeck']['datadir'] = "/var/rundeck"
-default['rundeck']['deb'] = "rundeck-2.2.1-1-GA.deb"
-default['rundeck']['url'] = "http://download.rundeck.org/deb/#{node['rundeck']['deb']}"
-default['rundeck']['checksum'] = "73772ff8f59ce9ff944a7a0b9608de7e387803401a2f5019b2b07a3e4f2b5597"
+default['rundeck']['deb']['package'] = "rundeck-2.2.1-1-GA.deb"
+default['rundeck']['deb']['options'] = false #--force-confdef --force-confold
+default['rundeck']['url'] = "http://download.rundeck.org/deb/#{node['rundeck']['deb']['package']}"
+default['rundeck']['checksum'] = "816b96bf4545bd831c87d5ef1953770a0e705192d4c96bc4907f483c4558f269"
 default['rundeck']['port'] = 4440
 default['rundeck']['jaas'] = "internal"
 default['rundeck']['default_role'] = "user"
@@ -13,6 +14,9 @@ default['rundeck']['email'] = "rundeck@#{node['domain']}"
 default['rundeck']['restart_on_config_change'] = false
 default['rundeck']['apache-template']['cookbook'] = "rundeck"
 default['rundeck']['log_dir'] = "/var/log/chef-rundeck"
+default['rundeck']['server_url'] = node['rundeck']['hostname']
+default['rundeck']['log_level'] = "DEBUG" #ERR,WARN,INFO,VERBOSE,DEBUG
+default['rundeck']['rss_enabled'] = true
 
 #databag name configuration
 default['rundeck']['rundeck_databag_secure'] = "secure"
@@ -76,5 +80,18 @@ default['rundeck']['windows']['winrm_protocol'] = 'https'
 default['rundeck']['ldap']['provider'] = "ldap://servername:389"
 default['rundeck']['ldap']['binddn'] = "CN=binddn,dc=domain,dc=com"
 default['rundeck']['ldap']['bindpwd'] = "BINDPWD"
+default['rundeck']['ldap']['authenticationmethod'] = "simple"
+default['rundeck']['ldap']['forcebindinglogin'] = "true"
 default['rundeck']['ldap']['userbasedn'] = "ou=Users,dc=domain,dc=com"
+default['rundeck']['ldap']['userrdnattribute'] = "cn"
+default['rundeck']['ldap']['useridattribute'] = "uid"
+default['rundeck']['ldap']['userpasswordattribute'] = "userPassword"
+default['rundeck']['ldap']['userobjectclass'] = "inetOrgPerson"
 default['rundeck']['ldap']['rolebasedn'] = "ou=Groups,dc=domain,dc=com"
+default['rundeck']['ldap']['rolenameattribute'] = "cn"
+default['rundeck']['ldap']['rolememberattribute'] = "uniqueMember"
+default['rundeck']['ldap']['roleusernamememberattribute'] = nil # "memberUid"
+default['rundeck']['ldap']['roleobjectclass'] = "groupOfUniqueNames"
+default['rundeck']['ldap']['roleprefix'] = "rundeck-"
+default['rundeck']['ldap']['cachedurationmillis'] = "300000"
+default['rundeck']['ldap']['reportstatistics'] = "true"

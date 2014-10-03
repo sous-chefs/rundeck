@@ -47,6 +47,9 @@ Windows default attributes for all rundeck managed nodes
 
 * `node['rundeck']['windows']['user']` - Windows user to create, default 'rundeck'
 * `node['rundeck']['windows']['group']` - Windows user group to add the 'rundeck' user to, default 'Administrators'
+* `node['rundeck']['server_url']` - Due to a bug in some cases on rundeck if this is filled out a bad login may occur. Some instances this may need to be set to other values or even nil. This will control the serverUrl in the config.
+* `node['rundeck']['log_level']` - Debug level for rundeck (ERR,WARN,INFO,VERBOSE,DEBUG) 
+* `node['rundeck']['rss_enabled']` - true/false for RSS support 
 
 ### chef-rundeck
 Chef rundeck integration service attributes
@@ -114,11 +117,23 @@ Windows Attributes
 
 Active Directory/LDAP Attributes
 * `node['rundeck']['ldap']['provider']` - LDAP server to connect 
-* `node['rundeck']['ldap']['binddn']` - LDAP bind DN
-* `node['rundeck']['ldap']['bindpwd']` - LDAP bind password
+* `node['rundeck']['ldap']['binddn']` - LDAP root bind DN. It will be ignored if `node['rundeck']['ldap']['forcebindinglogin']` is true
+* `node['rundeck']['ldap']['bindpwd']` - LDAP root bind password. It will be ignored if `node['rundeck']['ldap']['forcebindinglogin']` is true
+* `node['rundeck']['ldap']['authenticationmethod']`  - LDAP authentication method 
+* `node['rundeck']['ldap']['forcebindinglogin']` - If true, bind as the user is authenticating, if not it bind using the root DN and perform a search to verify the user password
 * `node['rundeck']['ldap']['userbasedn']` - LDAP base user DN search
+* `node['rundeck']['ldap']['userrdnattribute']` - LDAP attribute name for user name
+* `node['rundeck']['ldap']['useridattribute']` - LDAP attribute name to identify user
+* `node['rundeck']['ldap']['userpasswordattribute']` - LDAP attribute name for user password
+* `node['rundeck']['ldap']['userobjectclass']` - LDAP object class for user
 * `node['rundeck']['ldap']['rolebasedn']` - LDAP base role DN search
-
+* `node['rundeck']['ldap']['rolenameattribute']` - LDAP attribute name for role name
+* `node['rundeck']['ldap']['rolememberattribute']` - LDAP attribute name that would contain the users DN
+* `node['rundeck']['ldap']['['roleusernamememberattribute']` - LDAP attribute name that would contain the users user name. If it set, `node['rundeck']['ldap']['rolememberattribute']` will be not used
+* `node['rundeck']['ldap']['roleobjectclass']` - LDAP object class for group
+* `node['rundeck']['ldap']['roleprefix']` - Prefix string to remove from role names before returning to the application
+* `node['rundeck']['ldap']['cachedurationmillis']` - Duration in milliseconds of the cache of an authorization
+* `node['rundeck']['ldap']['reportstatistics']` - If true, output cache statistics to the log
 
 Recipes
 -------
@@ -264,6 +279,8 @@ A default role acl policy is supported out of the box.  You can add new acl poli
 License & Authors
 -----------------
 - Author:: Peter Crossley <peter.crossley@webtrends.com>
+- Author:: David Andrew <david.andrew@webtrends.com>
+- Author:: Jonathan Mickle <jmickle@jonathanmickle.com>
 
 ```text
 Copyright 2014, Webtrends Inc.
