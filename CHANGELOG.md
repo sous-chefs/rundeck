@@ -1,8 +1,10 @@
-## 2.0.6
-* chef-client v10 treats `platform?` as attribute instead of method in attributes file
-
 ## 2.0.5 (development)
 * configurable databag names
+* add a users item to rundeck data bag to allow changing of default admin password.  This may be encrypted if needed.
+* remove the tie of rundeck username and group
+* chef-client v10 treats `platform?` as attribute instead of method in attributes file
+* Add supplemental groups to jaas-activedirectory (https://github.com/rundeck/rundeck/issues/590).  This affects default['rundeck']['default_role']
+* bump default rundeck version to 2.2.1-1
 
 ## 2.0.4
 * updating to rundeck 2.1.2
