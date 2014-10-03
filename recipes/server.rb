@@ -49,7 +49,7 @@ case node['platform_family']
       action :install
     end 
   else 
-    remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}" do
+    remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']['package']}" do
       source node['rundeck']['url']
       owner node['rundeck']['user']
       group node['rundeck']['group']
@@ -59,8 +59,9 @@ case node['platform_family']
     
     package node['rundeck']['url'] do
       action :install
-      source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}"
+      source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']['package']}"
       provider Chef::Provider::Package::Dpkg
+      options node['rundeck']['deb']['options'] if node['rundeck']['deb']['options'] 
     end
 end
 
@@ -102,6 +103,13 @@ template "#{node['rundeck']['basedir']}/.chef/knife.rb" do
     :chef_server_url => node['rundeck']['chef_url']
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
+end
+
+directory "#{node['rundeck']['basedir']}/.ssh" do
+  owner node['rundeck']['user']
+  group node['rundeck']['user']
+  recursive true
+  mode "0700"
 end
 
 file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
