@@ -22,7 +22,7 @@ This cookbook relies on multiple data bags. See __Data Bag__ below.
 * Mac OS X (managed node)
 
 **Notes**: This cookbook has been tested on the listed platforms. It may work on other platforms with or without modification.
-
+In RHEL / CentOS , SELinux is enabled by default, it blocks the apache mod_proxy , disable or add an exception selinux
 
 ### Cookbooks
 * Java
