@@ -22,8 +22,10 @@ activedirectory {
     roleObjectClass="<%=@ldap[:roleobjectclass]%>"
     rolePrefix="<%=@ldap[:roleprefix]%>"
     cacheDurationMillis="<%=@ldap[:cachedurationmillis]%>"
+<% if @ldap[:supplementalroles] -%>
+    supplementalRoles="<%=@ldap[:supplementalroles]%>"
+<% end -%>
     reportStatistics="<%=@ldap[:reportstatistics]%>";
-
     org.eclipse.jetty.plus.jaas.spi.PropertyFileLoginModule required
     debug="true"
     file="<%=@configdir%>/realm.properties";
