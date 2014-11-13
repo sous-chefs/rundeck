@@ -6,7 +6,7 @@
 * remove the tie of rundeck username and group
 * chef-client v10 treats `platform?` as attribute instead of method in attributes file
 * Add supplemental groups to jaas-activedirectory (https://github.com/rundeck/rundeck/issues/590).  This affects default['rundeck']['default_role']
-* bump default rundeck version to 2.3.0-1
+* bump default rundeck version to 2.3.2-1
 * configurable server url attributes added
 * fixed home dir creation
 * berkshelf and cookbook test updates
