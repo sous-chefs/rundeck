@@ -22,6 +22,8 @@ dataSource.password = <%= @rundeck[:rdbms][:dbpassword] %>
 dataSource.url = jdbc:hsqldb:file:/var/lib/rundeck/data/grailsdb;shutdown=true
 <% end %>
 
+rundeck.security.useHMacRequestTokens=false
+
 <% if @rundeck[:mail][:enable] == true %>
 grails.mail.host=<%=@rundeck[:mail][:host] %>
 grails.mail.port=<%=@rundeck[:mail][:port] %>
