@@ -75,6 +75,7 @@ default['rundeck']['windows']['winrm_auth_type'] = 'basic'
 default['rundeck']['windows']['winrm_cert_trust'] = 'all'
 default['rundeck']['windows']['winrm_hostname_trust'] = 'all'
 default['rundeck']['windows']['winrm_protocol'] = 'https'
+default['rundeck']['windows']['winrm_timeout'] = 'PT60.000S'
 
 # LDAP Properties
 default['rundeck']['ldap']['provider'] = "ldap://servername:389"
