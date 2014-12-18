@@ -236,6 +236,37 @@ Copy the line returned and place in the data bag item as the `public_key`.
 
 Set a windows password if managing windows systems, the password needs to be in plain text.  (see the encryption options for the rundeck data bag)
 
+### Rundeck Users
+Local Rundeck users are created via the Rundeck data bag item users.  Users are added into the "users" hash as in the example below:
+```
+{
+  "chef_type": "data_bag_item",
+  "data_bag": "rundeck",
+  "id": "users",
+  "description": "Local rundeck users",
+  "users": {
+    "admin": {
+      "groups": [
+        "user",
+        "admin",
+        "architect",
+        "deploy",
+        "build"
+      ],
+      "password": "secrete"
+    },
+    "apiuser": {
+      "groups": [
+        "user",
+        "admin",
+        "deploy"
+      ],
+      "password": "secrete"
+    }
+  }
+}
+```
+
 ### Encrypted Data bag - Rundeck
 When using `node['rundeck']['secret_file']` you will need to create a secret file for the encryption.  Make sure the 'rundeck_secret' file is available on all nodes managed by rundeck.
 
