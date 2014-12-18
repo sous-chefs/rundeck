@@ -143,8 +143,7 @@ template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
   source "jaas-activedirectory.conf.erb"
   variables(
     :ldap => node['rundeck']['ldap'],
-    :configdir => node['rundeck']['configdir'],
-    :default_role => node['rundeck']['default_role']
+    :configdir => node['rundeck']['configdir']
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
 end
