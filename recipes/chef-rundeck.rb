@@ -35,7 +35,8 @@ bags.each do |project|
   projects[project] = {
     'pattern' => pdata['pattern'],
     'username' => pdata['username'],
-    'hostname' => pdata['hostname']
+    'hostname' => pdata['hostname'],
+    'attributes' => pdata['attributes']
   }
 end
 
