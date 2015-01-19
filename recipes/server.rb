@@ -104,7 +104,7 @@ end
 
 directory "#{node['rundeck']['basedir']}/.ssh" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   recursive true
   mode '0700'
 end
