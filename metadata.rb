@@ -10,7 +10,7 @@ depends          'sudo'
 depends          'java'
 depends          'apache2'
 
-%w{ debian ubuntu centos suse fedora redhat freebsd windows }.each do |os|
+%w(debian ubuntu centos suse fedora redhat freebsd windows).each do |os|
   supports os
 end
 
