@@ -99,6 +99,7 @@ if node['rundeck']['chef_rundeck_use_upstart']
       chef_rundeck_port: node['rundeck']['chef_rundeck_port'],
       chef_rundeck_partial_search: node['rundeck']['chef_rundeck_partial_search']
     )
+    notifies :restart, 'service[chef-rundeck]'
   end
 else
   # Use runit, compatibility for non-Upstart systems and backwards-compatibility
