@@ -18,6 +18,9 @@ default['rundeck']['server_url'] = node['rundeck']['hostname']
 default['rundeck']['log_level'] = 'DEBUG' # ERR,WARN,INFO,VERBOSE,DEBUG
 default['rundeck']['rss_enabled'] = true
 
+# login session timeout
+default['rundeck']['session_timeout'] = 30
+
 # databag name configuration
 default['rundeck']['rundeck_databag_secure'] = 'secure'
 default['rundeck']['rundeck_databag'] = 'rundeck'
