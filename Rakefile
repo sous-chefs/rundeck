@@ -4,10 +4,10 @@ require 'bundler/setup'
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:unit)
 
-desc "Runs foodcritic linter"
+desc 'Runs foodcritic linter'
 task :foodcritic do
-  if Gem::Version.new("1.9.2") <= Gem::Version.new(RUBY_VERSION.dup)
-    sandbox = File.join(File.dirname(__FILE__), %w{tmp foodcritic cookbook})
+  if Gem::Version.new('1.9.2') <= Gem::Version.new(RUBY_VERSION.dup)
+    sandbox = File.join(File.dirname(__FILE__), %w(tmp foodcritic cookbook))
     prepare_foodcritic_sandbox(sandbox)
 
     sh "foodcritic --epic-fail any #{File.dirname(sandbox)}"
@@ -20,26 +20,26 @@ require 'kitchen'
 desc 'Run Test Kitchen integration tests'
 task :integration do
   Kitchen.logger = Kitchen.default_file_logger
-    Kitchen::Config.new.instances.each do |instance|
-        instance.test(:always)
-          end
-          end
+  Kitchen::Config.new.instances.each do |instance|
+    instance.test(:always)
+  end
+end
 
-task default:  ['foodcritic', 'integration']
+task default:  %w(foodcritic integration)
 
 task :clean do
-  sandbox = File.join(File.dirname(__FILE__), %w{tmp})
+  sandbox = File.join(File.dirname(__FILE__), %w(tmp))
   rm_rf sandbox
 end
 
 private
 
 def prepare_foodcritic_sandbox(sandbox)
-  files = %w{*.md *.rb attributes definitions files libraries providers
-recipes resources templates}
+  files = %w(*.md *.rb attributes definitions files libraries providers
+             recipes resources templates)
 
   rm_rf sandbox
   mkdir_p sandbox
   cp_r Dir.glob("{#{files.join(',')}}"), sandbox
-  puts "\n\n"
+  puts '\n\n'
 end
