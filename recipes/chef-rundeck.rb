@@ -98,6 +98,7 @@ if node['rundeck']['chef_rundeck_use_upstart']
       project_config: node['rundeck']['project_config'],
       chef_rundeck_host: node['rundeck']['chef_rundeck_host'],
       chef_rundeck_port: node['rundeck']['chef_rundeck_port'],
+      chef_rundeck_cachetime: node['rundeck']['chef_rundeck_cachetime'],
       chef_rundeck_partial_search: node['rundeck']['chef_rundeck_partial_search']
     )
     notifies :restart, 'service[chef-rundeck]'
@@ -116,6 +117,7 @@ else
       project_config: node['rundeck']['project_config'],
       chef_rundeck_host: node['rundeck']['chef_rundeck_host'],
       chef_rundeck_port: node['rundeck']['chef_rundeck_port'],
+      chef_rundeck_cachetime: node['rundeck']['chef_rundeck_cachetime'],
       chef_rundeck_partial_search: node['rundeck']['chef_rundeck_partial_search']
     )
     notifies :restart, 'service[chef-rundeck]'
