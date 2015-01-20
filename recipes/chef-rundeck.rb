@@ -23,7 +23,7 @@ include_recipe 'rundeck::default'
 
 rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
 
-if !node['rundeck']['secret_file'].nil? then
+unless node['rundeck']['secret_file'].nil?
   rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
   rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
 end
@@ -35,7 +35,8 @@ bags.each do |project|
   projects[project] = {
     'pattern' => pdata['pattern'],
     'username' => pdata['username'],
-    'hostname' => pdata['hostname']
+    'hostname' => pdata['hostname'],
+    'attributes' => pdata['attributes']
   }
 end
 
@@ -60,7 +61,7 @@ chef_gem 'sinatra'
 
 template '/etc/chef/rundeck.rb' do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   source 'rundeck.rb.erb'
   variables(
     rundeck: node['rundeck']
@@ -70,19 +71,19 @@ end
 file '/etc/chef/rundeck.pem' do
   content rundeck_secure['chef_rundeck_pem']
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   mode 0400
 end
 
 directory node['rundeck']['log_dir'] do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   mode 00755
 end
 
 file "#{node['rundeck']['log_dir']}/server.log" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   action :create_if_missing
 end
 
@@ -99,6 +100,7 @@ if node['rundeck']['chef_rundeck_use_upstart']
       chef_rundeck_port: node['rundeck']['chef_rundeck_port'],
       chef_rundeck_partial_search: node['rundeck']['chef_rundeck_partial_search']
     )
+    notifies :restart, 'service[chef-rundeck]'
   end
 else
   # Use runit, compatibility for non-Upstart systems and backwards-compatibility
