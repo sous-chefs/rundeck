@@ -1,9 +1,26 @@
 <VirtualHost *:80>
-        ServerName rundeck.<%=node['domain'] %>
-        ServerAdmin ops@<%=node['domain']%>
+        ServerName <%= node['rundeck']['hostname'] %>
+        ServerAdmin <%= node['rundeck']['email'] %>
+<% if node['rundeck']['use_ssl'] %>
+        Redirect permanent / https://<%= node['rundeck']['hostname'] %>/
+</VirtualHost>
+
+<VirtualHost *:443>
+        ServerName <%= node['rundeck']['hostname'] %>
+        ServerAdmin <%= node['rundeck']['email'] %>
+<% end %>
         ErrorLog <%= @log_dir %>/rundeck_error.log
         TransferLog <%= @log_dir %>/rundeck_access.log
-        
+<% if node['rundeck']['use_ssl'] %>
+
+        SSLEngine On
+        SSLCertificateFile <%= node['apache']['dir'] %>/ssl/<%= node['rundeck']['cert']['name'] %>.crt
+        SSLCertificateKeyFile <%= node['apache']['dir'] %>/ssl/<%= node['rundeck']['cert']['name'] %>.key
+<% unless node['rundeck']['cert']['ca_name'].nil? %>
+        SSLCertificateChainFile <%= node['apache']['dir'] %>/ssl/<%= node['rundeck']['cert']['ca_name'] %>.crt
+<% end %>
+<% end %>
+
         DocumentRoot <%= @doc_root %>
         ServerSignature On
         

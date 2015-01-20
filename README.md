@@ -43,6 +43,12 @@ Linux default attributes for all rundeck managed nodes and server
 * `node['rundeck']['rundeck_databag']` - Rundeck configuration data bag for secure data, default 'rundeck'
 * `node['rundeck']['rundeck_projects_databag']` - Rundeck project configuration data bag.  Used for project creationg and chef-rundeck.  default 'rundeck_projects'
 
+* `node['rundeck']['use_ssl']` - Whether or not to use SSL for the apache vhost, default false
+* `node['rundeck']['cert']['name']` - SSL certificate name. Certificate files should be named this .key and .crt, default node['rundeck']['hostname']
+* `node['rundeck']['cert']['ca_name']` - SSL CA certificate name. If this and use_ssl are set, a certificate authority file is used in the apache vhost. CA certificate files should be named this .crt, default 'nil'
+* `node['rundeck']['cert']['cookbook'] - The cookbook to copy the SSL certificates from, default 'rundeck'
+* `node['rundeck']['server_url'] = The URL of the rundeck server, default 'http://#{node['rundeck']['hostname']}', or 'https://#{node['rundeck']['hostname']}' if use_ssl is set.
+
 Windows default attributes for all rundeck managed nodes
 
 * `node['rundeck']['windows']['user']` - Windows user to create, default 'rundeck'
