@@ -32,6 +32,6 @@ grails.mail.port=<%=@rundeck[:mail][:port] %>
 <% end %>
 grails.mail.default.from=<%=@rundeck[:email] %>
 
-<% if node['rundeck']['serverURL'] %>
+<% if node['rundeck']['server_url'] %>
 grails.serverURL=<%= node['rundeck']['server_url'] %>
 <% end %>
