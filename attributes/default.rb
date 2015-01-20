@@ -33,6 +33,7 @@ end
 default['rundeck']['chef_rundeck_gem'] = nil
 default['rundeck']['chef_rundeck_port'] = 9980
 default['rundeck']['chef_rundeck_host'] = '0.0.0.0'
+default['rundeck']['chef_rundeck_cachetime'] = 30
 default['rundeck']['chef_rundeck_partial_search'] = false
 default['rundeck']['user'] = 'rundeck'
 default['rundeck']['group'] = 'rundeck'
