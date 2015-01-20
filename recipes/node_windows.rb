@@ -19,7 +19,7 @@
 
 rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
 
-if !node['rundeck']['secret_file'].nil? then
+unless node['rundeck']['secret_file'].nil?
   rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
   rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
 end
