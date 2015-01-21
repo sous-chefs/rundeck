@@ -18,6 +18,9 @@ default['rundeck']['server_url'] = node['rundeck']['hostname']
 default['rundeck']['log_level'] = 'DEBUG' # ERR,WARN,INFO,VERBOSE,DEBUG
 default['rundeck']['rss_enabled'] = true
 
+# login session timeout
+default['rundeck']['session_timeout'] = 30
+
 # databag name configuration
 default['rundeck']['rundeck_databag_secure'] = 'secure'
 default['rundeck']['rundeck_databag'] = 'rundeck'
@@ -33,6 +36,7 @@ end
 default['rundeck']['chef_rundeck_gem'] = nil
 default['rundeck']['chef_rundeck_port'] = 9980
 default['rundeck']['chef_rundeck_host'] = '0.0.0.0'
+default['rundeck']['chef_rundeck_cachetime'] = 30
 default['rundeck']['chef_rundeck_partial_search'] = false
 default['rundeck']['user'] = 'rundeck'
 default['rundeck']['group'] = 'rundeck'
