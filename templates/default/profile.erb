@@ -31,7 +31,8 @@ export RDECK_JVM="-Djava.security.auth.login.config=<%=@rundeck[:configdir]%>/<%
 	-Drundeck.server.serverDir=<%=@rundeck[:basedir]%> \
 	-Drdeck.projects=<%=@rundeck[:datadir]%>/projects \
 	-Drdeck.runlogs=<%=@rundeck[:basedir]%>/logs \
-	-Drundeck.config.location=<%=@rundeck[:configdir]%>/rundeck-config.properties"
+	-Drundeck.config.location=<%=@rundeck[:configdir]%>/rundeck-config.properties \
+	-Drundeck.jetty.connector.forwarded=true"
 #
 # Set min/max heap size
 #
