@@ -42,6 +42,7 @@ Linux default attributes for all rundeck managed nodes and server
 * `node['rundeck']['rundeck_databag_secure']` - Rundeck secure data bag item for all keys and passwords, default 'secure'
 * `node['rundeck']['rundeck_databag']` - Rundeck configuration data bag for secure data, default 'rundeck'
 * `node['rundeck']['rundeck_projects_databag']` - Rundeck project configuration data bag.  Used for project creationg and chef-rundeck.  default 'rundeck_projects'
+* `node['rundeck']['session_timeout']` - Number of minutes a rundeck session will last, before having to login again, default '30'
 
 Windows default attributes for all rundeck managed nodes
 
@@ -59,6 +60,7 @@ Chef rundeck integration service attributes
 * `node['rundeck']['chef_rundeck_url']` - Chef-Rundeck URL, default 'http://chef.hostdomain:9980'
 * `node['rundeck']['chef_rundeck_port']` - Chef-Rundeck binds to port, default '9980'
 * `node['rundeck']['chef_rundeck_host']` - Chef-Rundeck binds to address, default '0.0.0.0' 
+* `node['rundeck']['chef_rundeck_cachetime']` - Number of seconds for Chef-Rundeck to cache the answer from the Chef server, default '30' 
 * `node['rundeck']['chef_rundeck_partial_search']` - Chef-Rundeck enabled to use partial search (Chef 11 only), default 'false' 
 
 * `node['rundeck']['chef_webui_url']` - Chef Server Web UI URL, default 'https://chef.hostdomain.com'
