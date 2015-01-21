@@ -22,7 +22,7 @@ include_recipe 'java'
 include_recipe 'apache2'
 include_recipe 'apache2::mod_deflate'
 include_recipe 'apache2::mod_headers'
-include_recipe 'apache2::mod_ssl'
+include_recipe 'apache2::mod_ssl' if node['rundeck']['use_ssl']
 include_recipe 'apache2::mod_proxy'
 include_recipe 'apache2::mod_proxy_http'
 
@@ -197,6 +197,27 @@ end
   apache_site site do
     enable false
     notifies :reload, 'service[apache2]'
+  end
+end
+
+if node['rundeck']['use_ssl']
+  cookbook_file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.crt" do
+    cookbook node['rundeck']['cert']['cookbook']
+    source "certs/#{node['rundeck']['cert']['name']}.crt"
+    notifies :restart, 'service[apache2]'
+  end
+
+  cookbook_file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.key" do
+    cookbook node['rundeck']['cert']['cookbook']
+    source "certs/#{node['rundeck']['cert']['name']}.key"
+    notifies :restart, 'service[apache2]'
+  end
+
+  cookbook_file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['ca_name']}.crt" do
+    cookbook node['rundeck']['cert']['cookbook']
+    source "certs/#{node['rundeck']['cert']['ca_name']}.crt"
+    not_if { node['rundeck']['cert']['ca_name'].nil? }
+    notifies :restart, 'service[apache2]'
   end
 end
 
