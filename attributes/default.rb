@@ -12,9 +12,15 @@ default['rundeck']['default_role'] = 'user'
 default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
 default['rundeck']['email'] = "rundeck@#{node['domain']}"
 default['rundeck']['restart_on_config_change'] = false
-default['rundeck']['apache-template']['cookbook'] = 'rundeck'
 default['rundeck']['log_dir'] = '/var/log/chef-rundeck'
-default['rundeck']['server_url'] = node['rundeck']['hostname']
+
+# web server configuration
+default['rundeck']['apache-template']['cookbook'] = 'rundeck'
+default['rundeck']['use_ssl'] = false
+default['rundeck']['cert']['name'] = node['rundeck']['hostname']
+default['rundeck']['cert']['cookbook'] = 'rundeck'
+default['rundeck']['server_url'] = "#{node['rundeck']['use_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}"
+
 default['rundeck']['log_level'] = 'DEBUG' # ERR,WARN,INFO,VERBOSE,DEBUG
 default['rundeck']['rss_enabled'] = true
 
