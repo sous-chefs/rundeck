@@ -211,7 +211,7 @@
 		<url-pattern>*.dispatch</url-pattern>
 	</servlet-mapping>
 	<session-config>
-		<session-timeout>30</session-timeout>
+		<session-timeout><%= node['rundeck']['session_timeout'] %></session-timeout>
 	</session-config>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
