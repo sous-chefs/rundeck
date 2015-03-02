@@ -3,8 +3,10 @@ activedirectory {
     debug="true"
     contextFactory="com.sun.jndi.ldap.LdapCtxFactory"
     providerUrl="<%=@ldap[:provider]%>"
+<% unless @ldap[:forcebindinglogin] -%>
     bindDn="<%=@ldap[:binddn]%>"
     bindPassword="<%=@ldap[:bindpwd]%>"
+<% end -%>
     authenticationMethod="<%=@ldap[:authenticationmethod]%>"
     forceBindingLogin="<%=@ldap[:forcebindinglogin]%>"
     userBaseDn="<%=@ldap[:userbasedn]%>"
