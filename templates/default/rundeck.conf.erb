@@ -29,8 +29,8 @@
                 Allow from all
         </Proxy>
         
-        ProxyPass        / http://localhost:<%= node['rundeck']['port'] %>/
-        ProxyPassReverse / http://localhost:<%= node['rundeck']['port'] %>/
+        ProxyPass        <%= node['rundeck']['webcontext'] %> http://localhost:<%= node['rundeck']['port'] %><%= node['rundeck']['webcontext'] %>
+        ProxyPassReverse <%= node['rundeck']['webcontext'] %> http://localhost:<%= node['rundeck']['port'] %><%= node['rundeck']['webcontext'] %>
         
         <Directory />
                 Options FollowSymLinks
