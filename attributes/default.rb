@@ -20,7 +20,7 @@ default['rundeck']['use_ssl'] = false
 default['rundeck']['cert']['name'] = node['rundeck']['hostname']
 default['rundeck']['cert']['cookbook'] = 'rundeck'
 default['rundeck']['webcontext'] = '/'
-default['rundeck']['server_url'] = "#{node['rundeck']['use_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}/#{node['rundeck']['webcontext']}"
+default['rundeck']['server_url'] = "#{node['rundeck']['use_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}#{node['rundeck']['webcontext']}"
 
 default['rundeck']['log_level'] = 'DEBUG' # ERR,WARN,INFO,VERBOSE,DEBUG
 default['rundeck']['rss_enabled'] = true
