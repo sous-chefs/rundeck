@@ -13,6 +13,7 @@ default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
 default['rundeck']['email'] = "rundeck@#{node['domain']}"
 default['rundeck']['restart_on_config_change'] = false
 default['rundeck']['log_dir'] = '/var/log/chef-rundeck'
+default['rundeck']['tokens_file'] = nil # e.g. '/etc/rundeck/tokens.properties'
 
 # web server configuration
 default['rundeck']['apache-template']['cookbook'] = 'rundeck'
