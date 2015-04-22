@@ -1,6 +1,6 @@
 Rundeck Cookbook
 ================
-Installs and configures a Rundeck 2.0 server with Chef integration via the chef-rundeck.gem.  Projects in rundeck can be dynamiclly configured via data bag items using search.  Linux and Windows client nodes are supported.  The cookbook has optional support for Active Directory and LDAP.
+Installs and configures a Rundeck 2.0 server with Chef integration via the chef-rundeck.gem.  Projects in rundeck can be dynamically configured via data bag items using search.  Linux and Windows client nodes are supported.  The cookbook has optional support for Active Directory and LDAP.
 
 [![Build Status](https://travis-ci.org/Webtrends/rundeck.png?branch=master)](https://travis-ci.org/Webtrends/rundeck)
 
@@ -56,8 +56,8 @@ Windows default attributes for all rundeck managed nodes
 * `node['rundeck']['windows']['user']` - Windows user to create, default 'rundeck'
 * `node['rundeck']['windows']['group']` - Windows user group to add the 'rundeck' user to, default 'Administrators'
 * `node['rundeck']['server_url']` - Due to a bug in some cases on rundeck if this is filled out a bad login may occur. Some instances this may need to be set to other values or even nil. This will control the serverUrl in the config.
-* `node['rundeck']['log_level']` - Debug level for rundeck (ERR,WARN,INFO,VERBOSE,DEBUG) 
-* `node['rundeck']['rss_enabled']` - true/false for RSS support 
+* `node['rundeck']['log_level']` - Debug level for rundeck (ERR,WARN,INFO,VERBOSE,DEBUG)
+* `node['rundeck']['rss_enabled']` - true/false for RSS support
 
 ### chef-rundeck
 Chef rundeck integration service attributes
@@ -66,9 +66,9 @@ Chef rundeck integration service attributes
 
 * `node['rundeck']['chef_rundeck_url']` - Chef-Rundeck URL, default 'http://chef.hostdomain:9980'
 * `node['rundeck']['chef_rundeck_port']` - Chef-Rundeck binds to port, default '9980'
-* `node['rundeck']['chef_rundeck_host']` - Chef-Rundeck binds to address, default '0.0.0.0' 
-* `node['rundeck']['chef_rundeck_cachetime']` - Number of seconds for Chef-Rundeck to cache the answer from the Chef server, default '30' 
-* `node['rundeck']['chef_rundeck_partial_search']` - Chef-Rundeck enabled to use partial search (Chef 11 only), default 'false' 
+* `node['rundeck']['chef_rundeck_host']` - Chef-Rundeck binds to address, default '0.0.0.0'
+* `node['rundeck']['chef_rundeck_cachetime']` - Number of seconds for Chef-Rundeck to cache the answer from the Chef server, default '30'
+* `node['rundeck']['chef_rundeck_partial_search']` - Chef-Rundeck enabled to use partial search (Chef 11 only), default 'false'
 
 * `node['rundeck']['chef_webui_url']` - Chef Server Web UI URL, default 'https://chef.hostdomain.com'
 * `node['rundeck']['chef_url']` - Chef Server API URL, default 'https://chef.hostdomain.com'
@@ -81,11 +81,12 @@ Attributes that configure and manage the installation of the Rundeck server
 * `node['rundeck']['configdir']` - Configuration direcotry, default '/etc/rundeck'
 * `node['rundeck']['basedir']` - Rundeck installation directory, default '/var/lib/rundeck'
 * `node['rundeck']['datadir']` - Rundeck project directory, default '/var/rundeck'
+* `node['rundeck']['tokens_file']` - File containing user API tokens (e.g. '/etc/rundeck/tokens.properties'), default is nil (not set)
 * `node['rundeck']['deb']` - Package file name to install, used in the building of the URL
-* `node['rundeck']['url']` - URL for the deb file to download and install 
+* `node['rundeck']['url']` - URL for the deb file to download and install
 * `node['rundeck']['checksum']` - Checksum for the deb
 * `node['rundeck']['jaas']` - Use built in internal realms.properties file, (options 'activedirectory', default 'internal')
-* `node['rundeck']['default_role']` - Require users to be a memeber of this role for Rundeck access, default 'user' 
+* `node['rundeck']['default_role']` - Require users to be a member of this role for Rundeck access, default 'user'
 * `node['rundeck']['hostname']` - VIP or server address for the service, default 'rundeck.hostdomain.com'
 * `node['rundeck']['port']` - Internal server port for the service, default '4440'
 * `node['rundeck']['email']` - Email address, default 'rundeck@hostdomain.com'
@@ -102,8 +103,8 @@ If you want to use encrypted databags for your windows password and/or public/pr
 ```bash
 	$ openssl rand -base64 512 | tr -d '\r\n' > rundeck_secret
 ```
-Distrubute to all sytems that will work with rundeck via a recipe and set the path to that file in the following attribute
-* `node['rundeck']['secret_file']` - default 'nil' 
+Distribute to all systems that will work with rundeck via a recipe and set the path to that file in the following attribute
+* `node['rundeck']['secret_file']` - default 'nil'
 
 * `node['rundeck']['rdbms']['enable']` - enable RDBMS support, default 'false'
 * `node['rundeck']['rdbms']['type']` - database type, default 'mysql'
@@ -115,20 +116,20 @@ Common RDBMS Configuration
 * `node['rundeck']['rdbms']['dbpassword']` - database password
 * `node['rundeck']['rdbms']['port']` - database port number, default '3306'
 
-Oracle RDBMS Configuration 
+Oracle RDBMS Configuration
 * `node['rundeck']['rdbms']['dialect']` - hibernate database dialect, default 'Oracle10gDialect'
 
-Windows Attributes 
+Windows Attributes
 * `node['rundeck']['windows']['winrm_auth_type']` - winrm authentication type (options 'basic' or 'kerberos', default: 'basic')
 * `node['rundeck']['windows']['winrm_cert_trust']` - winrm SSL security (options 'all', 'self-signed', 'default' (trusted certs only), default: 'all')
 * `node['rundeck']['windows']['winrm_hostname_trust']` - winrm hostname security (options 'all', 'strict', 'browser-compatible', default: 'all')
-* `node['rundeck']['windows']['winrm_protocol']` - winrm protocol to use, either 'http' or 'https'. default: 'https' 
+* `node['rundeck']['windows']['winrm_protocol']` - winrm protocol to use, either 'http' or 'https'. default: 'https'
 
 Active Directory/LDAP Attributes
-* `node['rundeck']['ldap']['provider']` - LDAP server to connect 
+* `node['rundeck']['ldap']['provider']` - LDAP server to connect
 * `node['rundeck']['ldap']['binddn']` - LDAP root bind DN. It will be ignored if `node['rundeck']['ldap']['forcebindinglogin']` is true
 * `node['rundeck']['ldap']['bindpwd']` - LDAP root bind password. It will be ignored if `node['rundeck']['ldap']['forcebindinglogin']` is true
-* `node['rundeck']['ldap']['authenticationmethod']`  - LDAP authentication method 
+* `node['rundeck']['ldap']['authenticationmethod']`  - LDAP authentication method
 * `node['rundeck']['ldap']['forcebindinglogin']` - If true, bind as the user is authenticating, if not it bind using the root DN and perform a search to verify the user password
 * `node['rundeck']['ldap']['userbasedn']` - LDAP base user DN search
 * `node['rundeck']['ldap']['userrdnattribute']` - LDAP attribute name for user name
@@ -173,7 +174,7 @@ The recipe does the following:
 6. Ensure 'rundeck' user owns the project directory
 7. Configures and enables the Rundeck web UI via Apache
 8. Starts the Rundeck server service
-9. Configure and register Rundeck projects based on the data bag entries 
+9. Configure and register Rundeck projects based on the data bag entries
 
 
 Data Bags
@@ -240,7 +241,7 @@ Use knife to create a new client for Chef-Rundeck integration.
 	ETGcXdbR2\n4k3K4aia4o5QKGzA7/qobc2oZ1y3bL3CT331rs8SEpRpCXzP7TB5vYFqLBzdkvKa\np6r+KL3szL/MsTkWUuQ7NBS+J8HytwlKxDPBRQQkC02Bf
 	IuEn/g41QvjIHv6ogUp\n5w2I/wKBgG28Z5IAWXa3g5hPe4D2kfOVp+fIAsvMqosc74QLd61lRSX25YU1CgVG\nB+Jgt4trIHPnPqQ5rC8PuHI5khcRObLHr48
 	yCBfa+Xy7nF/HoPuULDzqIjJccHuJ\ncZC8J0MnQaZvJolodhcCYMK2B6UtRpwmn96oNKsbBBT5WU2f8dEI\n-----END RSA PRIVATE KEY-----\n
-```	
+```
 Copy the line returned and place in the data bag item as the `public_key`.
 
 Set a windows password if managing windows systems, the password needs to be in plain text.  (see the encryption options for the rundeck data bag)
@@ -303,9 +304,9 @@ Create a `rundeck_projects` data bag that will contain the projects and search s
 ```
  * `hostname` - attribute in the data bag item json is used when rundeck try to connect to the node (`fqdn` is the default)
  * `username` - attribute is the user to authenticate to the node with when rundeck connects
- * `pattern` - attribute is a search query for nodes to include in to the project in rundeck. 
- * `chef_rundeck_url` - optional attribute is a URL to locate the resource project, if not provided `node['chef_rundeck_url']` will be used. 
- * `project_settings` - optional attribute is a map of properties that will be added to the rundeck project.properties. 
+ * `pattern` - attribute is a search query for nodes to include in to the project in rundeck.
+ * `chef_rundeck_url` - optional attribute is a URL to locate the resource project, if not provided `node['chef_rundeck_url']` will be used.
+ * `project_settings` - optional attribute is a map of properties that will be added to the rundeck project.properties.
 
 
 Rundeck Role ACL Policy
