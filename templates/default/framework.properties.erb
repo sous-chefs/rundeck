@@ -18,7 +18,7 @@ framework.application.properties =
 
 # API Tokens File
 <% unless @rundeck[:tokens_file].nil? -%>
-rundeck.tokens.file = <%= @rundeck[:tokens_file].nil? %>
+rundeck.tokens.file = <%= @rundeck[:tokens_file] %>
 <% end -%>
 
 #
