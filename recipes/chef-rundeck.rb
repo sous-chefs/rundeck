@@ -40,6 +40,12 @@ bags.each do |project|
   }
 end
 
+directory node['rundeck']['chef_configdir'] do
+  #owner node[:user][:username]
+  #group node[:user][:username]
+  recursive true
+end
+
 file node['rundeck']['project_config'] do
   content JSON.pretty_generate(projects)
   mode 00644
