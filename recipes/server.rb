@@ -45,7 +45,7 @@ when 'rhel'
   end
 
   package 'rundeck' do
-    version node['rundeck']['rpm']['package']
+    version node['rundeck']['rpm']['version']
     action :install
   end
 else
