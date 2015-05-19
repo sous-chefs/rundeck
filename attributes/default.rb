@@ -55,7 +55,9 @@ default['rundeck']['chef_client_name'] = 'chef-rundeck'
 default['rundeck']['chef_rundeck_url'] = "http://chef.#{node['domain']}:#{node['rundeck']['chef_rundeck_port']}"
 default['rundeck']['chef_webui_url'] = "https://chef.#{node['domain']}"
 default['rundeck']['chef_url'] = "https://chef.#{node['domain']}"
-default['rundeck']['project_config'] = '/etc/chef/chef-rundeck.json'
+default['rundeck']['chef_configdir'] = "/etc/chef"
+default['rundeck']['project_config'] = "#{node['rundeck']['chef_configdir']}/chef-rundeck.json"
+#default['rundeck']['project_config'] = '/etc/chef/chef-rundeck.json'
 
 # SMTP settings for rundeck notification emails
 default['rundeck']['mail']['enable'] = false
