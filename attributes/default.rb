@@ -111,3 +111,7 @@ default['rundeck']['ldap']['roleprefix'] = 'rundeck-'
 default['rundeck']['ldap']['cachedurationmillis'] = '300000'
 default['rundeck']['ldap']['reportstatistics'] = 'true'
 default['rundeck']['ldap']['supplementalroles'] = node['rundeck']['default_role']
+
+# Plugins
+default['rundeck']['plugin']['slack'] = 'https://github.com/higanworks/rundeck-slack-incoming-webhook-plugin/releases/download/v0.3.dev/rundeck-slack-incoming-webhook-plugin-0.3.jar'
+
