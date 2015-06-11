@@ -31,8 +31,8 @@ rundeck_users = data_bag_item('rundeck', 'users')
 
 unless node['rundeck']['secret_file'].nil?
   rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
-  rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
-  rundeck_users = Chef::EncryptedDataBagItem.load('rundeck', 'users', rundeck_secret)
+  rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
+  rundeck_users = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_users'], rundeck_secret)
 end
 
 case node['platform_family']
