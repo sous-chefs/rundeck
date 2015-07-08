@@ -4,6 +4,7 @@ default['rundeck']['basedir'] = '/var/lib/rundeck'
 default['rundeck']['datadir'] = '/var/rundeck'
 default['rundeck']['deb']['package'] = 'rundeck-2.4.2-1-GA.deb'
 default['rundeck']['deb']['options'] = false #--force-confdef --force-confold
+default['rundeck']['rpm']['version'] = '2.5.1-1.7.GA' # rundeck package from http://dl.bintray.com/rundeck/rundeck-rpm
 default['rundeck']['url'] = "http://download.rundeck.org/deb/#{node['rundeck']['deb']['package']}"
 default['rundeck']['checksum'] = 'd2038440542b64921449e4ea0d7899f723bb29a58d713532fb8a0ab434ddac89'
 default['rundeck']['port'] = 4440
@@ -54,7 +55,8 @@ default['rundeck']['chef_client_name'] = 'chef-rundeck'
 default['rundeck']['chef_rundeck_url'] = "http://chef.#{node['domain']}:#{node['rundeck']['chef_rundeck_port']}"
 default['rundeck']['chef_webui_url'] = "https://chef.#{node['domain']}"
 default['rundeck']['chef_url'] = "https://chef.#{node['domain']}"
-default['rundeck']['project_config'] = '/etc/chef/chef-rundeck.json'
+default['rundeck']['chef_configdir'] = "/etc/chef"
+default['rundeck']['project_config'] = "#{node['rundeck']['chef_configdir']}/chef-rundeck.json"
 
 # SMTP settings for rundeck notification emails
 default['rundeck']['mail']['enable'] = false
@@ -109,3 +111,7 @@ default['rundeck']['ldap']['roleprefix'] = 'rundeck-'
 default['rundeck']['ldap']['cachedurationmillis'] = '300000'
 default['rundeck']['ldap']['reportstatistics'] = 'true'
 default['rundeck']['ldap']['supplementalroles'] = node['rundeck']['default_role']
+
+# Plugins
+default['rundeck']['plugin']['slack'] = 'https://github.com/higanworks/rundeck-slack-incoming-webhook-plugin/releases/download/v0.3.dev/rundeck-slack-incoming-webhook-plugin-0.3.jar'
+
