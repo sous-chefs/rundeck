@@ -45,6 +45,7 @@ when 'rhel'
   end
 
   package 'rundeck' do
+    version node['rundeck']['rpm']['version']
     action :install
   end
 else
@@ -129,11 +130,12 @@ cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.1.jar
 end
 
 template "#{node['rundeck']['basedir']}/exp/webapp/WEB-INF/web.xml" do
-  owner node['rundeck']['user']
-  group node['rundeck']['group']
-  source 'web.xml.erb'
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+      owner node['rundeck']['user']
+      group node['rundeck']['group']
+      source 'web.xml.erb'
+      notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
+
 
 template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
   owner node['rundeck']['user']
@@ -272,4 +274,12 @@ bags.each do |project|
       File.exist?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties")
     end
   end
+end
+
+# Plugins
+cookbook_file node['rundeck']['plugin']['slack'] do
+  path "/var/lib/rundeck/libext/rundeck-slack-incoming-webhook-plugin.jar"
+  owner node['rundeck']['user']
+  group node['rundeck']['group']
+  action :create
 end
