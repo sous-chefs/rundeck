@@ -34,6 +34,7 @@ default['rundeck']['session_timeout'] = 30
 default['rundeck']['rundeck_databag_secure'] = 'secure'
 default['rundeck']['rundeck_databag'] = 'rundeck'
 default['rundeck']['rundeck_projects_databag'] = 'rundeck_projects'
+default['rundeck']['rundeck_databag_users'] = 'users'
 
 # chef-rundeck
 if node['platform'] == 'ubuntu' || node['platform_family'] == 'rhel'
