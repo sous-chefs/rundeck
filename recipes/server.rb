@@ -26,10 +26,11 @@ include_recipe 'apache2::mod_ssl' if node['rundeck']['use_ssl']
 include_recipe 'apache2::mod_proxy'
 include_recipe 'apache2::mod_proxy_http'
 
-rundeck_secure = data_bag_item('rundeck', 'secure')
-rundeck_users = data_bag_item('rundeck', 'users')
 
-unless node['rundeck']['secret_file'].nil?
+if node['rundeck']['secret_file'].nil?
+  rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
+  rundeck_users = data_bag_item(node['rundeck']['rundeck_databag'],node['rundeck']['rundeck_databag_users'])
+else
   rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
   rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
   rundeck_users = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_users'], rundeck_secret)
