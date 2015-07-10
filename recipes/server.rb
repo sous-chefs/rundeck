@@ -278,8 +278,9 @@ bags.each do |project|
 end
 
 # Plugins
-cookbook_file node['rundeck']['plugin']['slack'] do
-  path "/var/lib/rundeck/libext/rundeck-slack-incoming-webhook-plugin.jar"
+remote_file  'rundeck-slack-incoming-webhook-plugin' do
+  source "#{node['rundeck']['plugin']['slack']}"
+  path "#{node['rundeck']['basedir']}/libext/rundeck-slack-incoming-webhook-plugin.jar"
   owner node['rundeck']['user']
   group node['rundeck']['group']
   action :create
