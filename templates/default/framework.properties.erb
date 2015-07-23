@@ -39,6 +39,15 @@ framework.email.password = <%= @rundeck[:mail][:password] %>
 framework.email.ssl = false
 framework.email.failonerror = true
 
+
+#
+# Custom config
+#
+#
+<% node.rundeck[:custom_framework_config].sort.each do |key, value| %>
+<%= key %>=<%= value %>
+<% end %>
+
 # ----------------------------------------------------------------
 # Do not make changes below this line
 # ----------------------------------------------------------------
