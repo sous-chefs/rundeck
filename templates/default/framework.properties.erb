@@ -44,7 +44,7 @@ framework.email.failonerror = true
 # Custom config
 #
 #
-<% node.rundeck[:custom_framework_config].sort.each do |key, value| %>
+<% node.rundeck['custom_framework_config'].sort.each do |key, value| %>
 <%= key %>=<%= value %>
 <% end %>
 
