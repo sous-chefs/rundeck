@@ -1,3 +1,7 @@
+## 2.0.7
+* Using attributes for databag items
+* Bug fixes
+
 ## 2.0.6 
 * updating to rundeck version 2.4.2-1 GA
 
