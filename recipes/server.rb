@@ -269,9 +269,7 @@ bags.each do |project|
   bash "check-project-#{project}" do
     user node['rundeck']['user']
     code cmd
-    not_if do
-      File.exist?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties")
-    end
+    not_if { ::File.exist?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties") }
   end
 end
 
