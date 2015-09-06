@@ -11,7 +11,7 @@ depends          'java'
 depends          'apache2'
 depends          'yum'
 
-%w(debian ubuntu centos suse fedora redhat freebsd windows).each do |os|
+%w(debian ubuntu centos suse fedora redhat freebsd windows scientific oracle amazon mac_os_x).each do |os|
   supports os
 end
 
