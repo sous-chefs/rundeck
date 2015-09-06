@@ -226,7 +226,7 @@ template 'apache-config' do
   path "#{node['apache']['dir']}/sites-available/rundeck.conf"
   source 'rundeck.conf.erb'
   cookbook node['rundeck']['apache-template']['cookbook']
-  mode 00644
+  mode '0644'
   owner 'root'
   group 'root'
   variables(
