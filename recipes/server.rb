@@ -26,10 +26,9 @@ include_recipe 'apache2::mod_ssl' if node['rundeck']['use_ssl']
 include_recipe 'apache2::mod_proxy'
 include_recipe 'apache2::mod_proxy_http'
 
-
 if node['rundeck']['secret_file'].nil?
   rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
-  rundeck_users = data_bag_item(node['rundeck']['rundeck_databag'],node['rundeck']['rundeck_databag_users'])
+  rundeck_users = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_users'])
 else
   rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
   rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
@@ -97,10 +96,10 @@ template "#{node['rundeck']['basedir']}/.chef/knife.rb" do
   group node['rundeck']['group']
   source 'knife.rb.erb'
   variables(
-            user_home: node['rundeck']['basedir'],
-            node_name: node['rundeck']['user'],
-            chef_server_url: node['rundeck']['chef_url']
-            )
+    user_home: node['rundeck']['basedir'],
+    node_name: node['rundeck']['user'],
+    chef_server_url: node['rundeck']['chef_url']
+  )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
@@ -131,21 +130,20 @@ cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.1.jar
 end
 
 template "#{node['rundeck']['basedir']}/exp/webapp/WEB-INF/web.xml" do
-      owner node['rundeck']['user']
-      group node['rundeck']['group']
-      source 'web.xml.erb'
-      notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+  owner node['rundeck']['user']
+  group node['rundeck']['group']
+  source 'web.xml.erb'
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
-
 
 template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
   owner node['rundeck']['user']
   group node['rundeck']['group']
   source 'jaas-activedirectory.conf.erb'
   variables(
-            ldap: node['rundeck']['ldap'],
-            configdir: node['rundeck']['configdir']
-            )
+    ldap: node['rundeck']['ldap'],
+    configdir: node['rundeck']['configdir']
+  )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
@@ -154,8 +152,8 @@ template "#{node['rundeck']['configdir']}/profile" do
   group node['rundeck']['group']
   source 'profile.erb'
   variables(
-            rundeck: node['rundeck']
-            )
+    rundeck: node['rundeck']
+  )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
@@ -164,8 +162,8 @@ template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
   group node['rundeck']['group']
   source 'rundeck-config.properties.erb'
   variables(
-            rundeck: node['rundeck']
-            )
+    rundeck: node['rundeck']
+  )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
@@ -174,9 +172,9 @@ template "#{node['rundeck']['configdir']}/framework.properties" do
   group node['rundeck']['group']
   source 'framework.properties.erb'
   variables(
-            rundeck: node['rundeck'],
-            rundeck_users: rundeck_users['users']
-            )
+    rundeck: node['rundeck'],
+    rundeck_users: rundeck_users['users']
+  )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
@@ -185,8 +183,8 @@ template "#{node['rundeck']['configdir']}/realm.properties" do
   group node['rundeck']['group']
   source 'realm.properties.erb'
   variables(
-            rundeck_users: rundeck_users['users']
-            )
+    rundeck_users: rundeck_users['users']
+  )
 end
 
 bash 'own rundeck' do
@@ -232,9 +230,9 @@ template 'apache-config' do
   owner 'root'
   group 'root'
   variables(
-            log_dir: node['platform_family'] == 'rhel' ? '/var/log/httpd' : '/var/log/apache2',
-            doc_root: node['platform_family'] == 'rhel' ? '/var/www/html' : '/var/www'
-            )
+    log_dir: node['platform_family'] == 'rhel' ? '/var/log/httpd' : '/var/log/apache2',
+    doc_root: node['platform_family'] == 'rhel' ? '/var/www/html' : '/var/www'
+  )
   notifies :reload, 'service[apache2]'
 end
 
