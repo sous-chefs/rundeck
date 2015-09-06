@@ -1,8 +1,11 @@
 Rundeck Cookbook
 ================
+
+[![Build Status](https://travis-ci.org/Webtrends/rundeck.svg?branch=master)](https://travis-ci.org/Webtrends/rundeck)
+[![Cookbook Version](https://img.shields.io/cookbook/v/rundeck.svg)](https://supermarket.chef.io/cookbooks/rundeck)
+
 Installs and configures a Rundeck 2.0 server with Chef integration via the chef-rundeck.gem.  Projects in rundeck can be dynamically configured via data bag items using search.  Linux and Windows client nodes are supported.  The cookbook has optional support for Active Directory and LDAP.
 
-[![Build Status](https://travis-ci.org/Webtrends/rundeck.png?branch=master)](https://travis-ci.org/Webtrends/rundeck)
 
 Requirements
 ------------
