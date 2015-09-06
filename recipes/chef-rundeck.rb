@@ -41,8 +41,8 @@ bags.each do |project|
 end
 
 directory node['rundeck']['chef_configdir'] do
-  #owner node[:user][:username]
-  #group node[:user][:username]
+  # owner node[:user][:username]
+  # group node[:user][:username]
   recursive true
 end
 
