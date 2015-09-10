@@ -42,7 +42,7 @@ case node['platform_family']
     end
     
     package "rundeck" do
-      #version ""
+      version node['rundeck']['version']
       #options package_options
       action :install
     end 
