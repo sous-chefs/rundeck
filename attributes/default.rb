@@ -3,6 +3,7 @@ default['rundeck']['configdir'] = "/etc/rundeck"
 default['rundeck']['basedir'] = "/var/lib/rundeck"
 default['rundeck']['datadir'] = "/var/rundeck"
 default['rundeck']['deb'] = "rundeck-2.1.0-1-GA.deb"
+default['rundeck']['version'] = '2.2.1-1.23.GA'
 default['rundeck']['url'] = "http://download.rundeck.org/deb/#{node['rundeck']['deb']}"
 default['rundeck']['checksum'] = "a94173728158c0f6488d80a40f9b5b0ac16bada38c737c87c58e6c59f15015a7"
 default['rundeck']['port'] = 4440
