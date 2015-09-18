@@ -3,22 +3,31 @@ activedirectory {
     debug="true"
     contextFactory="com.sun.jndi.ldap.LdapCtxFactory"
     providerUrl="<%=@ldap[:provider]%>"
+<% unless @ldap[:forcebindinglogin] -%>
     bindDn="<%=@ldap[:binddn]%>"
     bindPassword="<%=@ldap[:bindpwd]%>"
-    authenticationMethod="simple"
-    forceBindingLogin="true"
+<% end -%>
+    authenticationMethod="<%=@ldap[:authenticationmethod]%>"
+    forceBindingLogin="<%=@ldap[:forcebindinglogin]%>"
     userBaseDn="<%=@ldap[:userbasedn]%>"
-    userRdnAttribute="cn"
-    userIdAttribute="SAMAccountName"
-    userPasswordAttribute="unicodePwd"
-    userObjectClass="user"
+    userRdnAttribute="<%=@ldap[:userrdnattribute]%>"
+    userIdAttribute="<%=@ldap[:useridattribute]%>"
+    userPasswordAttribute="<%=@ldap[:userpasswordattribute]%>"
+    userObjectClass="<%=@ldap[:userobjectclass]%>"
     roleBaseDn="<%=@ldap[:rolebasedn]%>"
-    roleNameAttribute="cn"
-    roleMemberAttribute="member"
-    roleObjectClass="group"
-    cacheDurationMillis="300000"
-    reportStatistics="true";
-
+    roleNameAttribute="<%=@ldap[:rolenameattribute]%>"
+<% if @ldap[:roleusernamememberattribute] -%>
+    roleUsernameMemberAttribute="<%=@ldap[:roleusernamememberattribute]%>"
+<% else -%>
+    roleMemberAttribute="<%=@ldap[:rolememberattribute]%>"
+<% end -%>
+    roleObjectClass="<%=@ldap[:roleobjectclass]%>"
+    rolePrefix="<%=@ldap[:roleprefix]%>"
+    cacheDurationMillis="<%=@ldap[:cachedurationmillis]%>"
+<% if @ldap[:supplementalroles] -%>
+    supplementalRoles="<%=@ldap[:supplementalroles]%>"
+<% end -%>
+    reportStatistics="<%=@ldap[:reportstatistics]%>";
     org.eclipse.jetty.plus.jaas.spi.PropertyFileLoginModule required
     debug="true"
     file="<%=@configdir%>/realm.properties";
