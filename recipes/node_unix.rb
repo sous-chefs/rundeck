@@ -18,41 +18,48 @@
 #
 
 
-rundeck_secure = data_bag_item('rundeck', 'secure')
+if node['rundeck']['secret_file'].nil?
+  rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
+else
+  rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
+  rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
+end
 
-if !node['rundeck']['secret_file'].nil? then
-  rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure')
-end  
+group node['rundeck']['group'] do
+  system true
+end
 
 user node['rundeck']['user'] do
+  comment 'Rundeck User'
+  gid node['rundeck']['group']
   system true
-  shell "/bin/bash"
-  home node['rundeck']['basedir']
+  shell '/bin/bash'
+  home node['rundeck']['user_home']
 end
 
-directory node['rundeck']['basedir'] do
+directory node['rundeck']['user_home'] do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   recursive true
   mode 00700
 end
 
-directory "#{node['rundeck']['basedir']}/.ssh" do
+directory "#{node['rundeck']['user_home']}/.ssh" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   recursive true
   mode 00700
 end
 
-file "#{node['rundeck']['basedir']}/.ssh/authorized_keys" do
+file "#{node['rundeck']['user_home']}/.ssh/authorized_keys" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   mode 00600
   backup false
   content rundeck_secure['public_key']
 end
 
-sudo "rundeck-admin" do
- user node['rundeck']['user']
- nopasswd true
+sudo 'rundeck-admin' do
+  user node['rundeck']['user']
+  nopasswd true
 end
