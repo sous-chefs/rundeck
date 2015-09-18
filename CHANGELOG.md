@@ -1,6 +1,30 @@
-## 2.0.4 (development)
-* updating to rundeck 2.1.0
+## 2.0.7
+* Using attributes for databag items
+* Bug fixes
+
+## 2.0.6 
+* updating to rundeck version 2.4.2-1 GA
+
+## 2.0.5 
+* added more options for LDAP configurations
+* improved the install process for the package option
+* configurable databag names
+* add a users item to rundeck data bag to allow changing of default admin password.  This may be encrypted if needed.
+* remove the tie of rundeck username and group
+* chef-client v10 treats `platform?` as attribute instead of method in attributes file
+* Add supplemental groups to jaas-activedirectory (https://github.com/rundeck/rundeck/issues/590).  This affects default['rundeck']['default_role']
+* bump default rundeck version to 2.3.2-1
+* configurable server url attributes added
+* fixed home dir creation
+* berkshelf and cookbook test updates
+* fixed platform detection for attributes on rhel and chef 10
+
+## 2.0.4
+* updating to rundeck 2.1.2
 * removing runit from rundeck::server recipe.  default init scripts work now!
+* bug fix issue #6
+* removing runit from chef-rundeck recipe.  use upstart
+* Berkshelf support added
 
 ## 2.0.3
 * added support to add custom project properties via the rundeck_project databag
