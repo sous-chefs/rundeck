@@ -19,207 +19,246 @@
 
 include_recipe 'rundeck::default'
 include_recipe 'java'
-include_recipe "apache2"
-include_recipe "apache2::mod_deflate"
-include_recipe "apache2::mod_headers"
-include_recipe "apache2::mod_ssl"
-include_recipe "apache2::mod_proxy"
-include_recipe "apache2::mod_proxy_http"
+include_recipe 'apache2'
+include_recipe 'apache2::mod_deflate'
+include_recipe 'apache2::mod_headers'
+include_recipe 'apache2::mod_ssl' if node['rundeck']['use_ssl']
+include_recipe 'apache2::mod_proxy'
+include_recipe 'apache2::mod_proxy_http'
 
-rundeck_secure = data_bag_item('rundeck', 'secure')
 
-if !node['rundeck']['secret_file'].nil? then
-  rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure')
-end  
-
-case node['platform_family']
-  when "rhel"
-    repo = yum_repository "rundeck" do
-      description "Rundeck - Release"
-      url "http://dl.bintray.com/rundeck/rundeck-rpm"
-      gpgcheck false
-      action :add
-    end
-    
-    package "rundeck" do
-      version node['rundeck']['version']
-      #options package_options
-      action :install
-    end 
-  else 
-    remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}" do
-      source node['rundeck']['url']
-      owner node['rundeck']['user']
-      group node['rundeck']['user']
-      checksum node['rundeck']['checksum']
-      mode "0644"
-    end
-    
-    package node['rundeck']['url'] do
-      action :install
-      source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']}"
-      provider Chef::Provider::Package::Dpkg
-    end
+if node['rundeck']['secret_file'].nil?
+  rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
+  rundeck_users = data_bag_item(node['rundeck']['rundeck_databag'],node['rundeck']['rundeck_databag_users'])
+else
+  rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
+  rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
+  rundeck_users = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_users'], rundeck_secret)
 end
 
+case node['platform_family']
+when 'rhel'
+  yum_repository 'rundeck' do
+    description 'Rundeck - Release'
+    url 'http://dl.bintray.com/rundeck/rundeck-rpm'
+    gpgcheck false
+    action :add
+  end
 
-service "rundeck" do
-  service_name "rundeckd"
-  supports :status => true, :restart => true
+  package 'rundeck' do
+    version node['rundeck']['rpm']['version']
+    action :install
+  end
+else
+  remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']['package']}" do
+    source node['rundeck']['url']
+    owner node['rundeck']['user']
+    group node['rundeck']['group']
+    checksum node['rundeck']['checksum']
+    mode '0644'
+  end
+
+  package node['rundeck']['url'] do
+    action :install
+    source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']['package']}"
+    provider Chef::Provider::Package::Dpkg
+    options node['rundeck']['deb']['options'] if node['rundeck']['deb']['options']
+  end
+end
+
+service 'rundeck' do
+  service_name 'rundeckd'
+  provider Chef::Provider::Service::Upstart
+  supports status: true, restart: true
   action :nothing
 end
 
-
 directory node['rundeck']['basedir'] do
   owner node['rundeck']['user']
+  group node['rundeck']['group']
   recursive true
 end
 
 directory "#{node['rundeck']['basedir']}/projects" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   recursive true
 end
 
 directory "#{node['rundeck']['basedir']}/.chef" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
+  group node['rundeck']['group']
   recursive true
-  mode "0700"
+  mode '0700'
 end
 
 template "#{node['rundeck']['basedir']}/.chef/knife.rb" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
-  source "knife.rb.erb"
+  group node['rundeck']['group']
+  source 'knife.rb.erb'
   variables(
-    :user_home => node['rundeck']['basedir'],
-    :node_name => node['rundeck']['user'],
-    :chef_server_url => node['rundeck']['chef_url']
-  )
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
+            user_home: node['rundeck']['basedir'],
+            node_name: node['rundeck']['user'],
+            chef_server_url: node['rundeck']['chef_url']
+            )
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+end
+
+directory "#{node['rundeck']['basedir']}/.ssh" do
+  owner node['rundeck']['user']
+  group node['rundeck']['group']
+  recursive true
+  mode '0700'
 end
 
 file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
-  mode "0600"
+  group node['rundeck']['group']
+  mode '0600'
   backup false
   content rundeck_secure['private_key']
-  only_if do !rundeck_secure['private_key'].nil? end
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
+  only_if { !rundeck_secure['private_key'].nil? }
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
 cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.1.jar" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
-  mode "0644"
+  group node['rundeck']['group']
+  mode '0644'
   backup false
-  source "rundeck-winrm-plugin-1.1.jar"
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
+  source 'rundeck-winrm-plugin-1.1.jar'
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
 template "#{node['rundeck']['basedir']}/exp/webapp/WEB-INF/web.xml" do
-  owner node['rundeck']['user']
-  group node['rundeck']['user']
-  source "web.xml.erb"
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
+      owner node['rundeck']['user']
+      group node['rundeck']['group']
+      source 'web.xml.erb'
+      notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
+
 
 template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
-  source "jaas-activedirectory.conf.erb"
+  group node['rundeck']['group']
+  source 'jaas-activedirectory.conf.erb'
   variables(
-    :ldap => node['rundeck']['ldap'],
-    :configdir => node['rundeck']['configdir']
-  )
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
+            ldap: node['rundeck']['ldap'],
+            configdir: node['rundeck']['configdir']
+            )
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
 template "#{node['rundeck']['configdir']}/profile" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
-  source "profile.erb"
+  group node['rundeck']['group']
+  source 'profile.erb'
   variables(
-    :rundeck => node['rundeck']
-  )
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
+            rundeck: node['rundeck']
+            )
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
-
 
 template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
-  source "rundeck-config.properties.erb"
+  group node['rundeck']['group']
+  source 'rundeck-config.properties.erb'
   variables(
-    :rundeck => node['rundeck']
-  )
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
+            rundeck: node['rundeck']
+            )
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
 template "#{node['rundeck']['configdir']}/framework.properties" do
   owner node['rundeck']['user']
-  group node['rundeck']['user']
-  source "framework.properties.erb"
+  group node['rundeck']['group']
+  source 'framework.properties.erb'
   variables(
-    :rundeck => node['rundeck']
-  )
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), "service[rundeck]", :delayed
+            rundeck: node['rundeck'],
+            rundeck_users: rundeck_users['users']
+            )
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
-bash "own rundeck" do
-  user "root"
+template "#{node['rundeck']['configdir']}/realm.properties" do
+  owner node['rundeck']['user']
+  group node['rundeck']['group']
+  source 'realm.properties.erb'
+  variables(
+            rundeck_users: rundeck_users['users']
+            )
+end
+
+bash 'own rundeck' do
+  user 'root'
   code <<-EOH
-  chown -R #{node['rundeck']['user']}:#{node['rundeck']['user']} #{node['rundeck']['basedir']}
+  chown -R #{node['rundeck']['user']}:#{node['rundeck']['group']} #{node['rundeck']['basedir']}
   EOH
 end
 
-
-apache_site "000-default" do
-  enable false
-  notifies :reload, "service[apache2]"
+%w(default 000-default).each do |site|
+  apache_site site do
+    enable false
+    notifies :reload, 'service[apache2]'
+  end
 end
 
+if node['rundeck']['use_ssl']
+  cookbook_file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.crt" do
+    cookbook node['rundeck']['cert']['cookbook']
+    source "certs/#{node['rundeck']['cert']['name']}.crt"
+    notifies :restart, 'service[apache2]'
+  end
 
-# load up the apache conf
-template "apache-config" do
+  cookbook_file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.key" do
+    cookbook node['rundeck']['cert']['cookbook']
+    source "certs/#{node['rundeck']['cert']['name']}.key"
+    notifies :restart, 'service[apache2]'
+  end
+
+  cookbook_file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['ca_name']}.crt" do
+    cookbook node['rundeck']['cert']['cookbook']
+    source "certs/#{node['rundeck']['cert']['ca_name']}.crt"
+    not_if { node['rundeck']['cert']['ca_name'].nil? }
+    notifies :restart, 'service[apache2]'
+  end
+end
+
+template 'apache-config' do
   path "#{node['apache']['dir']}/sites-available/rundeck.conf"
-  source "rundeck.conf.erb"
+  source 'rundeck.conf.erb'
   cookbook node['rundeck']['apache-template']['cookbook']
   mode 00644
-  owner "root"
-  group "root"
+  owner 'root'
+  group 'root'
   variables(
-    :log_dir => node['platform_family'] == 'rhel' ? "/var/log/httpd" : "/var/log/apache2",
-    :doc_root => node['platform_family'] == 'rhel' ? "/var/www/html" : "/var/www"
-  )
-  notifies :reload, "service[apache2]"
+            log_dir: node['platform_family'] == 'rhel' ? '/var/log/httpd' : '/var/log/apache2',
+            doc_root: node['platform_family'] == 'rhel' ? '/var/www/html' : '/var/www'
+            )
+  notifies :reload, 'service[apache2]'
 end
 
-apache_site "rundeck" do
-  notifies :reload, "service[apache2]"
+apache_site 'rundeck' do
+  enable true
+  notifies :reload, 'service[apache2]'
 end
 
-# ensure rundeck is started
-service "rundeckd" do
+service 'rundeckd' do
   action :start
 end
 
+bags = data_bag(node['rundeck']['rundeck_projects_databag'])
 
-#load projects
-bags = data_bag('rundeck_projects')
-
-projects = {}
+# projects = {}
 bags.each do |project|
-  pdata = data_bag_item('rundeck_projects', project)
-  custom = ""
-  if !pdata['project_settings'].nil? then
+  pdata = data_bag_item(node['rundeck']['rundeck_projects_databag'], project)
+  custom = ''
+  unless pdata['project_settings'].nil?
     pdata['project_settings'].map do |key, val|
-     custom = custom + " --#{key}=#{val}"
+      custom += " --#{key}=#{val}"
     end
   end
-  
+
   cmd = <<-EOH.to_s
   rd-project -p #{project} -a create \
   --resources.source.1.type=url \
@@ -233,7 +272,16 @@ bags.each do |project|
     user node['rundeck']['user']
     code cmd
     not_if do
-      File.exists?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties")
+      File.exist?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties")
     end
   end
+end
+
+# Plugins
+remote_file  'rundeck-slack-incoming-webhook-plugin' do
+  source node['rundeck']['plugin']['slack']
+  path "#{node['rundeck']['basedir']}/libext/rundeck-slack-incoming-webhook-plugin.jar"
+  owner node['rundeck']['user']
+  group node['rundeck']['group']
+  action :create
 end

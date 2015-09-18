@@ -1,0 +1,30 @@
+DEPENDENCIES
+  apt
+  rundeck
+    path: .
+    metadata: true
+
+GRAPH
+  apache2 (2.0.0)
+    iptables (>= 0.0.0)
+    logrotate (>= 0.0.0)
+    pacman (>= 0.0.0)
+  apt (2.6.0)
+  build-essential (2.1.2)
+  iptables (0.14.0)
+  java (1.28.0)
+  logrotate (1.7.0)
+  pacman (1.1.1)
+  rundeck (2.0.5)
+    apache2 (>= 0.0.0)
+    java (>= 0.0.0)
+    runit (>= 0.0.0)
+    sudo (>= 0.0.0)
+  runit (1.5.10)
+    build-essential (>= 0.0.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+  sudo (2.7.1)
+  yum (3.4.0)
+  yum-epel (0.5.2)
+    yum (~> 3.0)
