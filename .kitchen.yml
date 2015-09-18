@@ -1,0 +1,23 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: latest
+  chef_omnibus_url: https://www.getchef.com/chef/install.sh
+
+platforms:
+  - name: ubuntu-14.04
+    run_list:
+    - "recipe[apt::default]"
+
+suites:
+  - name: server
+    run_list:
+      - "recipe[rundeck::server]"
+      - "recipe[create_chef_dir]"
+      - "recipe[rundeck::chef-rundeck]"
+    attributes:
+      rundeck:
+        hostname: 'localhost:8080'
