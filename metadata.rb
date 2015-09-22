@@ -4,7 +4,7 @@ maintainer_email 'Peter Crossley <peter.crossley@webtrends.com>'
 license          'All rights reserved'
 description      'Installs and configures Rundeck 2.0'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '2.0.7'
+version          '2.0.8'
 depends          'runit'
 depends          'sudo'
 depends          'java'
@@ -15,7 +15,10 @@ depends          'yum'
   supports os
 end
 
-recipe 'rundeck::server', 'Use this recipe to install the rundeck server on a node'
+recipe 'rundeck::apache', 'Install apache server foruse as a front end for rundeck'
+recipe 'rundeck::server', 'Use this recipe to install the rundeck server on a node with apache and dependencies'
+recipe 'rundeck::server_install', 'Use this recipe to install the rundeck server without the other externalities'
+recipe 'rundeck::server_dependencies', 'Use this recipe to install the rundeck server needed dependencies for installation'
 recipe 'rundeck::chef-rundeck', 'Use this recipe to install the chef rundeck integration component, by default it is recommened to install on the chef server.'
 recipe 'rundeck::default', 'Use this recipe to manage the node as a target in rundeck, this recipe is included in rundeck::server'
 recipe 'rundeck::node_unix', "Unix\Linux platform configuration, do not use on a node, the default recipe uses this implmentation"

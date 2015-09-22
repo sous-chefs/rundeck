@@ -1,3 +1,8 @@
+
+##  2.0.8
+* separated out apache, java, and rundeck server install, so you can install your own flavors
+* created grails variables so there more control over listening port
+
 ## 2.0.7
 * Using attributes for databag items
 * Bug fixes
