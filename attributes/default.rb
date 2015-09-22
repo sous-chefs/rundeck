@@ -4,13 +4,14 @@ default['rundeck']['basedir'] = '/var/lib/rundeck'
 default['rundeck']['datadir'] = '/var/rundeck'
 default['rundeck']['deb']['package'] = 'rundeck-2.4.2-1-GA.deb'
 default['rundeck']['deb']['options'] = false #--force-confdef --force-confold
-default['rundeck']['rpm']['version'] = '2.5.1-1.7.GA' # rundeck package from http://dl.bintray.com/rundeck/rundeck-rpm
+default['rundeck']['rpm']['version'] = '2.5.3-1.10.GA' # rundeck package from http://dl.bintray.com/rundeck/rundeck-rpm
 default['rundeck']['url'] = "http://download.rundeck.org/deb/#{node['rundeck']['deb']['package']}"
 default['rundeck']['checksum'] = 'd2038440542b64921449e4ea0d7899f723bb29a58d713532fb8a0ab434ddac89'
 default['rundeck']['port'] = 4440
 default['rundeck']['jaas'] = 'internal'
 default['rundeck']['default_role'] = 'user'
 default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
+
 default['rundeck']['email'] = "rundeck@#{node['domain']}"
 default['rundeck']['restart_on_config_change'] = false
 default['rundeck']['log_dir'] = '/var/log/chef-rundeck'
@@ -22,7 +23,8 @@ default['rundeck']['use_ssl'] = false
 default['rundeck']['cert']['name'] = node['rundeck']['hostname']
 default['rundeck']['cert']['cookbook'] = 'rundeck'
 default['rundeck']['webcontext'] = '/'
-default['rundeck']['server_url'] = "#{node['rundeck']['use_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}#{node['rundeck']['webcontext']}"
+default['rundeck']['grails_server_url'] = "#{node['rundeck']['use_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}}"
+default['rundeck']['grails_port'] = node['rundeck']['use_ssl'] ? 443 : 80 
 
 default['rundeck']['log_level'] = 'DEBUG' # ERR,WARN,INFO,VERBOSE,DEBUG
 default['rundeck']['rss_enabled'] = true
