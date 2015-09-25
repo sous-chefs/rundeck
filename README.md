@@ -49,7 +49,8 @@ Linux default attributes for all rundeck managed nodes and server
 * `node['rundeck']['cert']['ca_name']` - SSL CA certificate name. If this and use_ssl are set, a certificate authority file is used in the apache vhost. CA certificate files should be named this .crt, default 'nil'
 * `node['rundeck']['cert']['cookbook']` - The cookbook to copy the SSL certificates from, default 'rundeck'
 * `node['rundeck']['webcontext']` - The URI portion of the rundeck server, default '/', you can set it to '/rundeck' if your webserver is handling other tasks besides rundeck.
-* `node['rundeck']['server_url']` - The URL of the rundeck server, default 'http://#{node['rundeck']['hostname']}#{node['rundeck']['webcontext']}', or 'https://#{node['rundeck']['hostname']}#{node['rundeck']['webcontext']}' if use_ssl is set.
+* `node['rundeck']['grails_server_url']` - The URL of the rundeck server, default 'http://#{node['rundeck']['hostname']}#{node['rundeck']['webcontext']}', or 'https://#{node['rundeck']['hostname']}#{node['rundeck']['webcontext']}' if use_ssl is set.
+* `node['rundeck']['grails_port']` - The port to be used as part of the rundeck url in grails.
 
 Windows default attributes for all rundeck managed nodes
 
