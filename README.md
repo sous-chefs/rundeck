@@ -49,7 +49,8 @@ Linux default attributes for all rundeck managed nodes and server
 * `node['rundeck']['cert']['ca_name']` - SSL CA certificate name. If this and use_ssl are set, a certificate authority file is used in the apache vhost. CA certificate files should be named this .crt, default 'nil'
 * `node['rundeck']['cert']['cookbook']` - The cookbook to copy the SSL certificates from, default 'rundeck'
 * `node['rundeck']['webcontext']` - The URI portion of the rundeck server, default '/', you can set it to '/rundeck' if your webserver is handling other tasks besides rundeck.
-* `node['rundeck']['server_url']` - The URL of the rundeck server, default 'http://#{node['rundeck']['hostname']}#{node['rundeck']['webcontext']}', or 'https://#{node['rundeck']['hostname']}#{node['rundeck']['webcontext']}' if use_ssl is set.
+* `node['rundeck']['grails_server_url']` - The URL of the rundeck server, default 'http://#{node['rundeck']['hostname']}#{node['rundeck']['webcontext']}', or 'https://#{node['rundeck']['hostname']}#{node['rundeck']['webcontext']}' if use_ssl is set.
+* `node['rundeck']['grails_port']` - The port to be used as part of the rundeck url in grails.
 
 Windows default attributes for all rundeck managed nodes
 
@@ -104,12 +105,14 @@ If you want to use encrypted databags for your windows password and/or public/pr
 	$ openssl rand -base64 512 | tr -d '\r\n' > rundeck_secret
 ```
 Distribute to all systems that will work with rundeck via a recipe and set the path to that file in the following attribute
+
 * `node['rundeck']['secret_file']` - default 'nil'
 
 * `node['rundeck']['rdbms']['enable']` - enable RDBMS support, default 'false'
 * `node['rundeck']['rdbms']['type']` - database type, default 'mysql'
 
 Common RDBMS Configuration
+
 * `node['rundeck']['rdbms']['location']` - RDBMS server name
 * `node['rundeck']['rdbms']['dbname']` - database name, default 'rundeckdb'
 * `node['rundeck']['rdbms']['dbuser']` - database username, default 'rundeckdb'
@@ -117,15 +120,18 @@ Common RDBMS Configuration
 * `node['rundeck']['rdbms']['port']` - database port number, default '3306'
 
 Oracle RDBMS Configuration
+
 * `node['rundeck']['rdbms']['dialect']` - hibernate database dialect, default 'Oracle10gDialect'
 
 Windows Attributes
+
 * `node['rundeck']['windows']['winrm_auth_type']` - winrm authentication type (options 'basic' or 'kerberos', default: 'basic')
 * `node['rundeck']['windows']['winrm_cert_trust']` - winrm SSL security (options 'all', 'self-signed', 'default' (trusted certs only), default: 'all')
 * `node['rundeck']['windows']['winrm_hostname_trust']` - winrm hostname security (options 'all', 'strict', 'browser-compatible', default: 'all')
 * `node['rundeck']['windows']['winrm_protocol']` - winrm protocol to use, either 'http' or 'https'. default: 'https'
 
 Active Directory/LDAP Attributes
+
 * `node['rundeck']['ldap']['provider']` - LDAP server to connect
 * `node['rundeck']['ldap']['binddn']` - LDAP root bind DN. It will be ignored if `node['rundeck']['ldap']['forcebindinglogin']` is true
 * `node['rundeck']['ldap']['bindpwd']` - LDAP root bind password. It will be ignored if `node['rundeck']['ldap']['forcebindinglogin']` is true
