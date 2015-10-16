@@ -10,7 +10,7 @@ depends          'sudo'
 depends          'java'
 depends          'apache2'
 
-%w(debian ubuntu centos suse fedora redhat freebsd windows).each do |os|
+%w(debian ubuntu centos suse fedora redhat freebsd windows scientific oracle amazon mac_os_x).each do |os|
   supports os
 end
 
@@ -22,3 +22,6 @@ recipe 'rundeck::chef-rundeck', 'Use this recipe to install the chef rundeck int
 recipe 'rundeck::default', 'Use this recipe to manage the node as a target in rundeck, this recipe is included in rundeck::server'
 recipe 'rundeck::node_unix', 'Unix\Linux platform configuration, do not use on a node, the default recipe uses this implmentation'
 recipe 'rundeck::node_windows', 'Windows platform configuration, do not use on a node, the default recipe uses this implmentation'
+
+source_url 'https://github.com/webtrends/rundeck' if respond_to?(:source_url)
+issues_url 'https://github.com/webtrends/rundeck/issues' if respond_to?(:issues_url)
