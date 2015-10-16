@@ -59,7 +59,7 @@ default['rundeck']['chef_client_name'] = 'chef-rundeck'
 default['rundeck']['chef_rundeck_url'] = "http://chef.#{node['domain']}:#{node['rundeck']['chef_rundeck_port']}"
 default['rundeck']['chef_webui_url'] = "https://chef.#{node['domain']}"
 default['rundeck']['chef_url'] = "https://chef.#{node['domain']}"
-default['rundeck']['chef_configdir'] = "/etc/chef"
+default['rundeck']['chef_configdir'] = '/etc/chef'
 default['rundeck']['project_config'] = "#{node['rundeck']['chef_configdir']}/chef-rundeck.json"
 
 # SMTP settings for rundeck notification emails
@@ -118,4 +118,3 @@ default['rundeck']['ldap']['supplementalroles'] = node['rundeck']['default_role'
 
 # Plugins
 default['rundeck']['plugin']['slack'] = 'https://github.com/higanworks/rundeck-slack-incoming-webhook-plugin/releases/download/v0.3.dev/rundeck-slack-incoming-webhook-plugin-0.3.jar'
-
