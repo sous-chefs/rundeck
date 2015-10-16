@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-
 if node['rundeck']['secret_file'].nil?
   rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
 else
@@ -41,20 +40,20 @@ directory node['rundeck']['user_home'] do
   owner node['rundeck']['user']
   group node['rundeck']['group']
   recursive true
-  mode 00700
+  mode '0700'
 end
 
 directory "#{node['rundeck']['user_home']}/.ssh" do
   owner node['rundeck']['user']
   group node['rundeck']['group']
   recursive true
-  mode 00700
+  mode '0700'
 end
 
 file "#{node['rundeck']['user_home']}/.ssh/authorized_keys" do
   owner node['rundeck']['user']
   group node['rundeck']['group']
-  mode 00600
+  mode '0600'
   backup false
   content rundeck_secure['public_key']
 end
