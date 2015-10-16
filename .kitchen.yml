@@ -4,8 +4,6 @@ driver:
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: latest
-  chef_omnibus_url: https://www.getchef.com/chef/install.sh
 
 platforms:
   - name: ubuntu-14.04
