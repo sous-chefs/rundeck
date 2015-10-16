@@ -41,14 +41,14 @@ bags.each do |project|
 end
 
 directory node['rundeck']['chef_configdir'] do
-  #owner node[:user][:username]
-  #group node[:user][:username]
+  # owner node[:user][:username]
+  # group node[:user][:username]
   recursive true
 end
 
 file node['rundeck']['project_config'] do
   content JSON.pretty_generate(projects)
-  mode 00644
+  mode '0644'
   notifies :restart, 'service[chef-rundeck]'
 end
 
@@ -78,13 +78,13 @@ file '/etc/chef/rundeck.pem' do
   content rundeck_secure['chef_rundeck_pem']
   owner node['rundeck']['user']
   group node['rundeck']['group']
-  mode 0400
+  mode '0400'
 end
 
 directory node['rundeck']['log_dir'] do
   owner node['rundeck']['user']
   group node['rundeck']['group']
-  mode 00755
+  mode '0755'
 end
 
 file "#{node['rundeck']['log_dir']}/server.log" do
