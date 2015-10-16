@@ -25,7 +25,7 @@ default['rundeck']['cert']['cookbook'] = 'rundeck'
 default['rundeck']['webcontext'] = '/'
 
 default['rundeck']['grails_server_url'] = "#{node['rundeck']['use_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}"
-default['rundeck']['grails_port'] = node['rundeck']['use_ssl'] ? 443 : 80 
+default['rundeck']['grails_port'] = node['rundeck']['use_ssl'] ? 443 : 80
 
 default['rundeck']['log_level'] = 'DEBUG' # ERR,WARN,INFO,VERBOSE,DEBUG
 default['rundeck']['rss_enabled'] = true

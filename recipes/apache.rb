@@ -24,7 +24,6 @@ include_recipe 'apache2::mod_ssl' if node['rundeck']['use_ssl']
 include_recipe 'apache2::mod_proxy'
 include_recipe 'apache2::mod_proxy_http'
 
-
 if node['rundeck']['use_ssl']
   cookbook_file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.crt" do
     cookbook node['rundeck']['cert']['cookbook']
@@ -46,7 +45,6 @@ if node['rundeck']['use_ssl']
   end
 end
 
-
 %w(default 000-default).each do |site|
   apache_site site do
     enable false
@@ -62,9 +60,9 @@ template 'apache-config' do
   owner 'root'
   group 'root'
   variables(
-            log_dir: node['platform_family'] == 'rhel' ? '/var/log/httpd' : '/var/log/apache2',
-            doc_root: node['platform_family'] == 'rhel' ? '/var/www/html' : '/var/www'
-            )
+    log_dir: node['platform_family'] == 'rhel' ? '/var/log/httpd' : '/var/log/apache2',
+    doc_root: node['platform_family'] == 'rhel' ? '/var/www/html' : '/var/www'
+  )
   notifies :reload, 'service[apache2]'
 end
 

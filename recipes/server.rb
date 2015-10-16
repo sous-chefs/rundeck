@@ -17,6 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe "rundeck::server_dependencies"
-include_recipe "rundeck::server_install"
-include_recipe "rundeck::apache"
+include_recipe 'rundeck::server_dependencies'
+include_recipe 'rundeck::server_install'
+include_recipe 'rundeck::apache'
