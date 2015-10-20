@@ -1,4 +1,7 @@
 =======
+##  2.0.11
+* upgrading to 2.6.0
+* fixing AD auth issues with forcebinding not working correctly
 
 ##  2.0.10
 * separated out apache, java, and rundeck server install, so you can install your own flavors
