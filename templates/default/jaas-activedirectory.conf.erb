@@ -3,7 +3,7 @@ activedirectory {
     debug="true"
     contextFactory="com.sun.jndi.ldap.LdapCtxFactory"
     providerUrl="<%=@ldap[:provider]%>"
-<% unless @ldap[:forcebindinglogin] -%>
+<% if !@ldap[:binddn].nil? -%>
     bindDn="<%=@ldap[:binddn]%>"
     bindPassword="<%=@ldap[:bindpwd]%>"
 <% end -%>
@@ -28,6 +28,7 @@ activedirectory {
     supplementalRoles="<%=@ldap[:supplementalroles]%>"
 <% end -%>
     reportStatistics="<%=@ldap[:reportstatistics]%>";
+    
     org.eclipse.jetty.plus.jaas.spi.PropertyFileLoginModule required
     debug="true"
     file="<%=@configdir%>/realm.properties";
