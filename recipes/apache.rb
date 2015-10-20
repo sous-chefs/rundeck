@@ -29,12 +29,14 @@ if node['rundeck']['use_ssl']
     cookbook node['rundeck']['cert']['cookbook']
     source "certs/#{node['rundeck']['cert']['name']}.crt"
     notifies :restart, 'service[apache2]'
+    not_if do ::File.exists?("#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.crt") end
   end
 
   cookbook_file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.key" do
     cookbook node['rundeck']['cert']['cookbook']
     source "certs/#{node['rundeck']['cert']['name']}.key"
     notifies :restart, 'service[apache2]'
+    not_if do ::File.exists?("#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.key") end
   end
 
   cookbook_file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['ca_name']}.crt" do
