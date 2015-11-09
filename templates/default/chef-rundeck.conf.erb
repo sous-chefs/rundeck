@@ -3,6 +3,4 @@ stop on shutdown
 respawn
 respawn limit 3 30
 
-script
-exec su - <%=@user%> -c "/opt/chef/embedded/bin/chef-rundeck -c <%=@chef_config%> -f <%=@project_config%> -w <%=@chef_webui_url%> -o <%=@chef_rundeck_host%> -p <%=@chef_rundeck_port%> -u <%= node['rundeck']['user'] %> -t <%= @chef_rundeck_cachetime %> <% if @chef_rundeck_partial_search %>--partial-search true<% end %> 2>&1" > <%=@log_dir%>/server.log
-end script
+exec su - <%=@user%> -c 'exec "$0" "$@"' -- "/opt/chef/embedded/bin/chef-rundeck" -c <%=@chef_config%> -f <%=@project_config%> -w <%=@chef_webui_url%> -o <%=@chef_rundeck_host%> -p <%=@chef_rundeck_port%> -u <%= node['rundeck']['user'] %> -t <%= @chef_rundeck_cachetime %> <% if @chef_rundeck_partial_search %>--partial-search true<% end %> 2>&1 > <%=@log_dir%>/server.log
