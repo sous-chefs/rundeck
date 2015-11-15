@@ -9,17 +9,17 @@ Installs and configures a Rundeck 2.0 server with Chef integration via the chef-
 
 Requirements
 ------------
-### Chef
-Chef version 0.10.10+ and Ohai 0.6.12+ are required.
+#### Chef
+* Chef 11+
 
 Because of the heavy use of search, this recipe will not work with Chef Solo, as it cannot do any searches without a server.
 
 This cookbook relies on multiple data bags. See __Data Bag__ below.
 
-### Platform
-* Debian 6
-* Ubuntu 12.04
-* RHEL 6
+#### Platforms
+* Debian 7+
+* Ubuntu 12.04+
+* RHEL 5+
 * Windows 7 Enterprise (managed node)
 * Windows 2008 R2 (managed node)
 * Mac OS X (managed node)
@@ -27,7 +27,7 @@ This cookbook relies on multiple data bags. See __Data Bag__ below.
 **Notes**: This cookbook has been tested on the listed platforms. It may work on other platforms with or without modification.
 In RHEL / CentOS , SELinux is enabled by default, it blocks the apache mod_proxy , disable or add an exception selinux
 
-### Cookbooks
+#### Cookbooks
 * Java
 * Apache2
 * Sudo
@@ -333,7 +333,7 @@ License & Authors
 - Author:: Jonathan Mickle <jmickle@jonathanmickle.com>
 
 ```text
-Copyright 2014, Webtrends Inc.
+Copyright 2014-2015, Webtrends Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
