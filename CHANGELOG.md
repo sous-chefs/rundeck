@@ -1,4 +1,7 @@
 =======
+## 2.0.12
+* winrm plugin broken in 2.6.  Updating winrm plugin to version 1.3.1 from 1.1
+
 ##  2.0.11
 * upgrading to 2.6.0
 * fixing AD auth issues with forcebinding not working correctly
