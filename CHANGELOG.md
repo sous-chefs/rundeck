@@ -1,4 +1,9 @@
 =======
+## 2.0.13
+* Update template file for 2.6.2
+* Update downloaded deb and rpm for 2.6.2
+* Updated checksum for 2.6.2
+
 ## 2.0.12
 * winrm plugin broken in 2.6.  Updating winrm plugin to version 1.3.1 from 1.1
 
