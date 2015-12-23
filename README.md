@@ -86,9 +86,11 @@ Attributes that configure and manage the installation of the Rundeck server
 * `node['rundeck']['basedir']` - Rundeck installation directory, default '/var/lib/rundeck'
 * `node['rundeck']['datadir']` - Rundeck project directory, default '/var/rundeck'
 * `node['rundeck']['tokens_file']` - File containing user API tokens (e.g. '/etc/rundeck/tokens.properties'), default is nil (not set)
-* `node['rundeck']['deb']` - Package file name to install, used in the building of the URL
-* `node['rundeck']['url']` - URL for the deb file to download and install
+* `node['rundeck']['deb']['package']` - Package file name to install, used in the building of the URL
+* `node['rundeck']['deb']['options']` - dpkg install options, default false
+* `node['rundeck']['url']` - URL for the deb file to download and install, default "http://download.rundeck.org/deb/#{node['rundeck']['deb']['package']}"
 * `node['rundeck']['checksum']` - Checksum for the deb
+* `node['rundeck']['rpm']['version']` = RPM download name, from http://dl.bintray.com/rundeck/rundeck-rpm
 * `node['rundeck']['jaas']` - Use built in internal realms.properties file, or a different one (options 'activedirectory', default 'internal')
 * `node['rundeck']['default_role']` - Require users to be a member of this role for Rundeck access, default 'user'
 * `node['rundeck']['hostname']` - VIP or server address for the service, default 'rundeck.hostdomain.com'
