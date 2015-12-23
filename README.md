@@ -25,7 +25,7 @@ This cookbook relies on multiple data bags. See __Data Bag__ below.
 * Mac OS X (managed node)
 
 **Notes**: This cookbook has been tested on the listed platforms. It may work on other platforms with or without modification.
-In RHEL / CentOS , SELinux is enabled by default, it blocks the apache mod_proxy , disable or add an exception selinux
+In RHEL / CentOS, SELinux is enabled by default. Because it blocks apache mod_proxy , disable, or add an exception to, selinux.
 
 #### Cookbooks
 * Java
@@ -44,7 +44,7 @@ Linux default attributes for all rundeck managed nodes and server
 
 * `node['rundeck']['rundeck_databag_secure']` - Rundeck secure data bag item for all keys and passwords, default 'secure'
 * `node['rundeck']['rundeck_databag']` - Rundeck configuration data bag for secure data, default 'rundeck'
-* `node['rundeck']['rundeck_projects_databag']` - Rundeck project configuration data bag.  Used for project creationg and chef-rundeck.  default 'rundeck_projects'
+* `node['rundeck']['rundeck_projects_databag']` - Rundeck project configuration data bag.  Used for project creating and chef-rundeck.  default 'rundeck_projects'
 * `node['rundeck']['session_timeout']` - Number of minutes a rundeck session will last, before having to login again, default '30'
 
 * `node['rundeck']['use_ssl']` - Whether or not to use SSL for the apache vhost, default false
@@ -59,7 +59,7 @@ Windows default attributes for all rundeck managed nodes
 
 * `node['rundeck']['windows']['user']` - Windows user to create, default 'rundeck'
 * `node['rundeck']['windows']['group']` - Windows user group to add the 'rundeck' user to, default 'Administrators'
-* `node['rundeck']['server_url']` - Due to a bug in some cases on rundeck if this is filled out a bad login may occur. Some instances this may need to be set to other values or even nil. This will control the serverUrl in the config.
+* `node['rundeck']['server_url']` - Due to a bug in some cases on rundeck, if this is filled out a bad login may occur. Some instances this may need to be set to other values or even nil. This will control the serverUrl in the config.
 * `node['rundeck']['log_level']` - Debug level for rundeck (ERR,WARN,INFO,VERBOSE,DEBUG)
 * `node['rundeck']['rss_enabled']` - true/false for RSS support
 
@@ -82,14 +82,14 @@ Chef rundeck integration service attributes
 ### server
 Attributes that configure and manage the installation of the Rundeck server
 
-* `node['rundeck']['configdir']` - Configuration direcotry, default '/etc/rundeck'
+* `node['rundeck']['configdir']` - Configuration directory, default '/etc/rundeck'
 * `node['rundeck']['basedir']` - Rundeck installation directory, default '/var/lib/rundeck'
 * `node['rundeck']['datadir']` - Rundeck project directory, default '/var/rundeck'
 * `node['rundeck']['tokens_file']` - File containing user API tokens (e.g. '/etc/rundeck/tokens.properties'), default is nil (not set)
 * `node['rundeck']['deb']` - Package file name to install, used in the building of the URL
 * `node['rundeck']['url']` - URL for the deb file to download and install
 * `node['rundeck']['checksum']` - Checksum for the deb
-* `node['rundeck']['jaas']` - Use built in internal realms.properties file, (options 'activedirectory', default 'internal')
+* `node['rundeck']['jaas']` - Use built in internal realms.properties file, or a different one (options 'activedirectory', default 'internal')
 * `node['rundeck']['default_role']` - Require users to be a member of this role for Rundeck access, default 'user'
 * `node['rundeck']['hostname']` - VIP or server address for the service, default 'rundeck.hostdomain.com'
 * `node['rundeck']['port']` - Internal server port for the service, default '4440'
@@ -135,7 +135,7 @@ Windows Attributes
 
 Active Directory/LDAP Attributes
 
-* `node['rundeck']['ldap']['provider']` - LDAP server to connect
+* `node['rundeck']['ldap']['provider']` - LDAP server for connection
 * `node['rundeck']['ldap']['binddn']` - LDAP root bind DN. It will be ignored if `node['rundeck']['ldap']['forcebindinglogin']` is true
 * `node['rundeck']['ldap']['bindpwd']` - LDAP root bind password. It will be ignored if `node['rundeck']['ldap']['forcebindinglogin']` is true
 * `node['rundeck']['ldap']['authenticationmethod']`  - LDAP authentication method
@@ -148,7 +148,7 @@ Active Directory/LDAP Attributes
 * `node['rundeck']['ldap']['rolebasedn']` - LDAP base role DN search
 * `node['rundeck']['ldap']['rolenameattribute']` - LDAP attribute name for role name
 * `node['rundeck']['ldap']['rolememberattribute']` - LDAP attribute name that would contain the users DN
-* `node['rundeck']['ldap']['['roleusernamememberattribute']` - LDAP attribute name that would contain the users user name. If it set, `node['rundeck']['ldap']['rolememberattribute']` will be not used
+* `node['rundeck']['ldap']['['roleusernamememberattribute']` - LDAP attribute name that would contain the users' user name. If set, `node['rundeck']['ldap']['rolememberattribute']` will be not used
 * `node['rundeck']['ldap']['roleobjectclass']` - LDAP object class for group
 * `node['rundeck']['ldap']['roleprefix']` - Prefix string to remove from role names before returning to the application
 * `node['rundeck']['ldap']['cachedurationmillis']` - Duration in milliseconds of the cache of an authorization
@@ -157,7 +157,7 @@ Active Directory/LDAP Attributes
 Recipes
 -------
 ### default
-Includes the `rundeck::node_unix` or `rundeck::node_windows` (depedning on platform) recipe to configure rundeck access on the node.
+Includes the `rundeck::node_unix` or `rundeck::node_windows` (depending on platform) recipe to configure rundeck access on the node.
 
 ### node_unix
 Configures node the for rundeck access.  Creates the user specified in `node['rundeck']['user']` and manages all SSH keys (see __Data Bag__ below) in the home directory `node['rundeck']['user_home']`. Default for Debian / Ubuntu systems.
@@ -175,26 +175,26 @@ The server recipe sets up Apache as the web front end by default.
 
 The recipe does the following:
 
-1. Determine if encyrpted data bags are in use
-2. Install rundeck and dependent packages required for the server
+1. Determines if encrypted data bags are in use
+2. Installs rundeck, and dependent packages, required for the server
 3. Sets up configuration directories
-4. Create SSH keys from data bag
-5. Configure winRM if needed
-6. Ensure 'rundeck' user owns the project directory
+4. Creates SSH keys from data bag
+5. Configures winRM (if needed)
+6. Ensures 'rundeck' user owns the project directory
 7. Configures and enables the Rundeck web UI via Apache
 8. Starts the Rundeck server service
-9. Configure and register Rundeck projects based on the data bag entries
+9. Configures and registers Rundeck projects based on the data bag entries
 
 
 Data Bags
 ---------
 ### Rundeck
-Create a `rundeck` data bag that will contain the secrets that will be used to log into the rundeck managed nodes. The data bag can be encyrpted via a secret, if using a encrypted data bag the secret file must be avaiable on each of the managed nodes. Example rundeck data bag item:
+Create a `rundeck` data bag that will contain the secrets that will be used to log into the rundeck managed nodes. The data bag can be encyrpted via a secret. If using a encrypted data bag, the secret file must be avaiable on each of the managed nodes. Example rundeck data bag item:
 
 ```javascript
 {
   "id": "secure",
-  "description": "Rundeck requires credentals to execute on remote nodes",
+  "description": "Rundeck requires credentials to execute on remote nodes",
   "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEAt3iZzG ..... -----END RSA PRIVATE KEY-----",
   "public_key": "ssh-rsa AAAAB3NzaC1yc2EAAAA ......... f3OC9Jxe/VcFmtelcmQ== rundeck keys",
   "windows_password": "<plain text password>",
@@ -299,7 +299,7 @@ Generate the encrypted data bag:
 ```
 
 ### Rundeck Projects
-Create a `rundeck_projects` data bag that will contain the projects and search strings for the rundeck managed nodes to include by project. Example `rundeck_projects` data bag item:
+Create a `rundeck_projects` data bag that will contain the projects, and search strings, for the rundeck managed nodes to include by project. Example `rundeck_projects` data bag item:
 
 ```javascript
 {
