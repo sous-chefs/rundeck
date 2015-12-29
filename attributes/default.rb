@@ -30,6 +30,9 @@ default['rundeck']['grails_port'] = node['rundeck']['use_ssl'] ? 443 : 80
 default['rundeck']['log_level'] = 'INFO' # ERR,WARN,INFO,VERBOSE,DEBUG
 default['rundeck']['rss_enabled'] = true
 
+# java configuration
+default['rundeck']['jvm_mem'] = ' -XX:MaxPermSize=256m -Xmx1024m -Xms256m' 
+
 # login session timeout
 default['rundeck']['session_timeout'] = 30
 
