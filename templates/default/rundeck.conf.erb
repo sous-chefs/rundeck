@@ -33,9 +33,6 @@
         	Allow from all
         </IfModule>
         </Proxy>
-
-
-        </Proxy>
         
         ProxyPass        <%= node['rundeck']['webcontext'] %> http://localhost:<%= node['rundeck']['port'] %><%= node['rundeck']['webcontext'] %>
         ProxyPassReverse <%= node['rundeck']['webcontext'] %> http://localhost:<%= node['rundeck']['port'] %><%= node['rundeck']['webcontext'] %>
