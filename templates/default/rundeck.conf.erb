@@ -44,9 +44,15 @@
         <Location /server-status>
           SetHandler server-status
 
-          Order Deny,Allow
-          Deny from all
-          Allow from 127.0.0.1
+        <IfModule mod_authz_core.c>
+                Require host 127.0.0.1
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+                Order deny,allow
+                Deny from all
+		Allow from 127.0.0.1
+        </IfModule>
+
         </Location>
         
 </VirtualHost>
