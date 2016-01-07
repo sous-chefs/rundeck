@@ -37,7 +37,7 @@ export RDECK_JVM="-Djava.security.auth.login.config=<%=@rundeck[:configdir]%>/<%
 #
 # Set min/max heap size
 #
-RDECK_JVM="$RDECK_JVM -XX:MaxPermSize=256m -Xmx1024m -Xms256m -server"
+RDECK_JVM="$RDECK_JVM <%=@rundeck[:jvm_mem]%> -server"
 #
 # SSL Configuration - Uncomment the following to enable.  Check SSL.properties for details.
 # 

@@ -2,11 +2,11 @@ default['rundeck'] = {}
 default['rundeck']['configdir'] = '/etc/rundeck'
 default['rundeck']['basedir'] = '/var/lib/rundeck'
 default['rundeck']['datadir'] = '/var/rundeck'
-default['rundeck']['deb']['package'] = 'rundeck-2.6.0-1-GA.deb'
+default['rundeck']['deb']['package'] = 'rundeck-2.6.2-1-GA.deb'
 default['rundeck']['deb']['options'] = false #--force-confdef --force-confold
-default['rundeck']['rpm']['version'] = '2.6.0-1.11.GA' # rundeck package from http://dl.bintray.com/rundeck/rundeck-rpm
+default['rundeck']['rpm']['version'] = '2.6.2-1.13.GA' # rundeck package from http://dl.bintray.com/rundeck/rundeck-rpm
 default['rundeck']['url'] = "http://download.rundeck.org/deb/#{node['rundeck']['deb']['package']}"
-default['rundeck']['checksum'] = '46e591f945f053b22c2d508e063332dcfc8ff6b81662d6cb4c645b371ec328bb'
+default['rundeck']['checksum'] = '9eabcdd20382a7106c056f4fb77858ceab330b9f2b2983903ee2717212325d9f'
 default['rundeck']['port'] = 4440
 default['rundeck']['jaas'] = 'internal'
 default['rundeck']['default_role'] = 'user'
@@ -27,8 +27,11 @@ default['rundeck']['webcontext'] = '/'
 default['rundeck']['grails_server_url'] = "#{node['rundeck']['use_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}"
 default['rundeck']['grails_port'] = node['rundeck']['use_ssl'] ? 443 : 80
 
-default['rundeck']['log_level'] = 'DEBUG' # ERR,WARN,INFO,VERBOSE,DEBUG
+default['rundeck']['log_level'] = 'INFO' # ERR,WARN,INFO,VERBOSE,DEBUG
 default['rundeck']['rss_enabled'] = true
+
+# java configuration
+default['rundeck']['jvm_mem'] = ' -XX:MaxPermSize=256m -Xmx1024m -Xms256m'
 
 # login session timeout
 default['rundeck']['session_timeout'] = 30
