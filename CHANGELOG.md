@@ -5,6 +5,7 @@
 * Updated checksum for 2.6.2
 * Alter default loglevel
 * Change JVM memory settings to an attribute.
+* Change Apache template to work with different auth modules (commonly seen with apache 2.2->2.4)
 
 ## 2.0.12
 * winrm plugin broken in 2.6.  Updating winrm plugin to version 1.3.1 from 1.1
