@@ -25,8 +25,16 @@
         ServerSignature On
         
         <Proxy *>
-                Order deny,allow
-                Allow from all
+        <IfModule mod_authz_core.c>
+         	Require all granted
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+        	Order deny,allow
+        	Allow from all
+        </IfModule>
+        </Proxy>
+
+
         </Proxy>
         
         ProxyPass        <%= node['rundeck']['webcontext'] %> http://localhost:<%= node['rundeck']['port'] %><%= node['rundeck']['webcontext'] %>
