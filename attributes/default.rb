@@ -44,9 +44,9 @@ default['rundeck']['rundeck_databag_users'] = 'users'
 
 # chef-rundeck test what initsystem to use
 if node['init_package'] == 'systemd'
-        default['rundeck']['chef_rundeck_use_systemd'] = true
-elsif node['init_package'] == 'upstart' 
-        default['rundeck']['chef_rundeck_use_upstart'] = true
+  default['rundeck']['chef_rundeck_use_systemd'] = true
+elsif node['init_package'] == 'upstart'
+  default['rundeck']['chef_rundeck_use_upstart'] = true
 else
   default['rundeck']['chef_rundeck_use_runit'] = true
 end
