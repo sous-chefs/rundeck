@@ -42,11 +42,13 @@ default['rundeck']['rundeck_databag'] = 'rundeck'
 default['rundeck']['rundeck_projects_databag'] = 'rundeck_projects'
 default['rundeck']['rundeck_databag_users'] = 'users'
 
-# chef-rundeck
-if node['platform'] == 'ubuntu' || node['platform_family'] == 'rhel'
+# chef-rundeck test what initsystem to use
+if node['init_package'] == 'systemd'
+  default['rundeck']['chef_rundeck_use_systemd'] = true
+elsif node['init_package'] == 'upstart'
   default['rundeck']['chef_rundeck_use_upstart'] = true
 else
-  default['rundeck']['chef_rundeck_use_upstart'] = false
+  default['rundeck']['chef_rundeck_use_runit'] = true
 end
 
 default['rundeck']['chef_rundeck_gem'] = nil
