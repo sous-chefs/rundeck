@@ -150,11 +150,11 @@ if node['rundeck']['chef_rundeck_use_runit']
 end
 
 service 'chef-rundeck' do
-    if node['rundeck']['chef_rundeck_use_systemd']
-      provider Chef::Provider::Service::Systemd
-    end
-    if node['rundeck']['chef_rundeck_use_upstart']
-      provider Chef::Provider::Service::Upstart
-    end
+  if node['rundeck']['chef_rundeck_use_systemd']
+    provider Chef::Provider::Service::Systemd
+  end
+  if node['rundeck']['chef_rundeck_use_upstart']
+    provider Chef::Provider::Service::Upstart
+  end
   action [:start]
 end
