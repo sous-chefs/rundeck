@@ -45,7 +45,7 @@
           SetHandler server-status
 
         <IfModule mod_authz_core.c>
-                Require host 127.0.0.1
+                Require ip 127.0.0.1
         </IfModule>
         <IfModule !mod_authz_core.c>
                 Order deny,allow
