@@ -10,7 +10,7 @@ MethodLength:
   Max: 30
 FileName:
   Enabled: false
-SingleSpaceBeforeFirstArg:
+Style/SpaceBeforeFirstArg:
   Enabled: false
 ParenthesesAsGroupedExpression:
   Enabled: false
