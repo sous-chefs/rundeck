@@ -9,13 +9,68 @@ platforms:
   - name: ubuntu-14.04
     run_list:
     - "recipe[apt::default]"
+  - name: centos-7.1-vbox
+    driver:
+      box: bento/centos-7.1
+      box_url: bento/centos-7.1
+      provider: virtualbox
+  - name: centos-7.1-vmware
+    driver:
+      box: bento/centos-7.1
+      box_url: bento/centos-7.1
+      provider: vmware_fusion
+  - name: centos-6.7-vbox
+    driver:
+      box: bento/centos-6.7
+      box_url: bento/centos-6.7
+      provider: virtualbox
+  - name: centos-6.7-vmware
+    driver:
+      box: bento/centos-6.7
+      box_url: bento/centos-6.7
+      provider: vmware_fusion
+  - name: centos-6.6-vbox
+    driver:
+      box: chef/centos-6.6
+      box_url: chef/centos-6.6
+      provider: virtualbox
+  - name: centos-6.6-vmware
+    driver:
+      box: bento/centos-6.6
+      box_url: bento/centos-6.6
+      provider: vmware_fusion
 
 suites:
-  - name: server
+  - name: ubuntu-server
     run_list:
       - "recipe[rundeck::server]"
       - "recipe[create_chef_dir]"
       - "recipe[rundeck::chef-rundeck]"
+    excludes:
+      - centos-7.1-vbox
+      - centos-7.1-vmware
+      - centos-6.7-vbox
+      - centos-6.7-vmware
+      - centos-6.6-vbox
+      - centos-6.6-vmware
     attributes:
       rundeck:
         hostname: 'localhost:8080'
+    data_bags_path: './test/integration/default/data_bags/'
+    encrypted_data_bag_secret_key_path: './test/integration/default/encrypted_data_bag_secret'
+  - name: centos-server-nochef
+    run_list:
+      - "recipe[rundeck::server]"
+    excludes:
+      - ubuntu-14.04
+    data_bags_path: './test/integration/default/data_bags/'
+    encrypted_data_bag_secret_key_path: './test/integration/default/encrypted_data_bag_secret'
+  - name: centos-server-chef
+    run_list:
+      - "recipe[rundeck::server]"
+      - "recipe[create_chef_dir]"
+      - "recipe[rundeck::chef-rundeck]"
+    excludes:
+      - ubuntu-14.04
+    data_bags_path: './test/integration/default/data_bags/'
+    encrypted_data_bag_secret_key_path: './test/integration/default/encrypted_data_bag_secret'

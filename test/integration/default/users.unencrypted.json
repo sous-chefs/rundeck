@@ -1,0 +1,23 @@
+{
+	"id": "users",
+	"users": {
+		"admin": {
+			"groups": [
+				"user",
+				"admin",
+				"architect",
+				"deploy",
+				"build"
+			],
+			"password": "secret_admin"
+		},
+		"apiuser": {
+			"groups": [
+				"user",
+				"admin",
+				"deploy"
+			],
+			"password": "secret_apiuser"
+		}
+	}
+}
