@@ -101,6 +101,7 @@ default['rundeck']['windows']['winrm_protocol'] = 'https'
 default['rundeck']['windows']['winrm_timeout'] = 'PT60.000S'
 
 # LDAP Properties
+default['rundeck']['ldap']['debug'] = 'true'
 default['rundeck']['ldap']['provider'] = 'ldap://servername:389'
 default['rundeck']['ldap']['binddn'] = 'CN=binddn,dc=domain,dc=com'
 default['rundeck']['ldap']['bindpwd'] = 'BINDPWD'
@@ -120,6 +121,7 @@ default['rundeck']['ldap']['roleprefix'] = 'rundeck-'
 default['rundeck']['ldap']['cachedurationmillis'] = '300000'
 default['rundeck']['ldap']['reportstatistics'] = 'true'
 default['rundeck']['ldap']['supplementalroles'] = node['rundeck']['default_role']
+default['rundeck']['ldap']['debug'] = 'false'
 
 # Plugins
 default['rundeck']['plugin']['slack'] = 'https://github.com/higanworks/rundeck-slack-incoming-webhook-plugin/releases/download/v0.3.dev/rundeck-slack-incoming-webhook-plugin-0.3.jar'

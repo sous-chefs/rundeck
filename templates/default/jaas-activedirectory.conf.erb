@@ -1,6 +1,6 @@
 activedirectory {
-    com.dtolabs.rundeck.jetty.jaas.JettyCachingLdapLoginModule sufficient 
-    debug="true"
+    com.dtolabs.rundeck.jetty.jaas.JettyCachingLdapLoginModule sufficient
+    debug="<%=@ldap[:debug].to_s%>"
     contextFactory="com.sun.jndi.ldap.LdapCtxFactory"
     providerUrl="<%=@ldap[:provider]%>"
 <% if !@ldap[:binddn].nil? -%>
@@ -28,8 +28,8 @@ activedirectory {
     supplementalRoles="<%=@ldap[:supplementalroles]%>"
 <% end -%>
     reportStatistics="<%=@ldap[:reportstatistics]%>";
-    
+
     org.eclipse.jetty.plus.jaas.spi.PropertyFileLoginModule required
-    debug="true"
+    debug="<%=@ldap[:debug].to_s%>"
     file="<%=@configdir%>/realm.properties";
 };
