@@ -156,6 +156,7 @@ Active Directory/LDAP Attributes
 * `node['rundeck']['ldap']['roleprefix']` - Prefix string to remove from role names before returning to the application
 * `node['rundeck']['ldap']['cachedurationmillis']` - Duration in milliseconds of the cache of an authorization
 * `node['rundeck']['ldap']['reportstatistics']` - If true, output cache statistics to the log
+* `node['rundeck]['ldap]['debug']` - If true, output debug logs related to ldap to rundeck service.log. Default is true.
 
 Recipes
 -------
