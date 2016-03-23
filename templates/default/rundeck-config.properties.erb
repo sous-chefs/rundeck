@@ -33,3 +33,5 @@ grails.mail.port=<%=@rundeck[:mail][:port] %>
 grails.mail.default.from=<%=@rundeck[:email] %>
 
 grails.serverURL=<%= node['rundeck']['grails_server_url']%><% unless [80,443].include?(node['rundeck']['grails_port'])%>:<%=node['rundeck']['grails_port'].to_s%><% end %>
+
+quartz.props.threadPool.threadCount = <%= @rundeck[:quartz][:threadPoolCount].to_i %>

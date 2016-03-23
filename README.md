@@ -158,6 +158,10 @@ Active Directory/LDAP Attributes
 * `node['rundeck']['ldap']['reportstatistics']` - If true, output cache statistics to the log
 * `node['rundeck]['ldap]['debug']` - If true, output debug logs related to ldap to rundeck service.log. Default is true.
 
+Quartz Configuration
+
+* `node['rundeck']['quartz']['threadPoolCount']` - Quartz job threadCount. The maximum number of threads used by Rundeck for concurrent jobs by default is set to 10.
+
 Recipes
 -------
 ### default
