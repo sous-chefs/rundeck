@@ -33,6 +33,9 @@ default['rundeck']['rss_enabled'] = true
 # java configuration
 default['rundeck']['jvm_mem'] = ' -XX:MaxPermSize=256m -Xmx1024m -Xms256m'
 
+# Quartz configuration.
+default['rundeck']['quartz']['threadPoolCount'] = 10
+
 # login session timeout
 default['rundeck']['session_timeout'] = 30
 
