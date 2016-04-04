@@ -162,6 +162,11 @@ Quartz Configuration
 
 * `node['rundeck']['quartz']['threadPoolCount']` - Quartz job threadCount. The maximum number of threads used by Rundeck for concurrent jobs by default is set to 10.
 
+Custom Configuration
+
+* Custom framework configuration (**framework.properties**) can be specified using `node['rundeck']['custom_framework_config']['<custom _configuration>']`
+* Custom rundeck configuration (**rundeck-config.properties**) can be specified using `node['rundeck']['custom_rundeck_config']['<custom _configuration>']`
+
 Recipes
 -------
 ### default
