@@ -40,8 +40,8 @@ quartz.props.threadPool.threadCount = <%= @rundeck[:quartz][:threadPoolCount].to
 # Custom config
 #
 #
-<% if node.rundeck['custom_rundeck_config'] %>
-<% node.rundeck['custom_rundeck_config'].sort.each do |key, value| %>
+<% if @rundeck[:custom_rundeck_config] %>
+<% @rundeck[:custom_rundeck_config].sort.each do |key, value| %>
 <%= key %>=<%= value %>
 <% end %>
 <% end %>
