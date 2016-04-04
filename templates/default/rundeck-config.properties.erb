@@ -36,10 +36,7 @@ grails.serverURL=<%= node['rundeck']['grails_server_url']%><% unless [80,443].in
 
 quartz.props.threadPool.threadCount = <%= @rundeck[:quartz][:threadPoolCount].to_i %>
 
-#
 # Custom config
-#
-#
 <% if @rundeck[:custom_rundeck_config] %>
 <% @rundeck[:custom_rundeck_config].sort.each do |key, value| %>
 <%= key %>=<%= value %>
