@@ -84,6 +84,7 @@ Attributes that configure and manage the installation of the Rundeck server
 
 * `node['rundeck']['configdir']` - Configuration directory, default '/etc/rundeck'
 * `node['rundeck']['basedir']` - Rundeck installation directory, default '/var/lib/rundeck'
+* `node['rundeck']['exec_logdir']` - Directory where rundeck stores execution logs. Deafult is "#{node['rundeck']['basedir']}/logs"
 * `node['rundeck']['datadir']` - Rundeck project directory, default '/var/rundeck'
 * `node['rundeck']['tokens_file']` - File containing user API tokens (e.g. '/etc/rundeck/tokens.properties'), default is nil (not set)
 * `node['rundeck']['deb']['package']` - Package file name to install, used in the building of the URL
