@@ -131,7 +131,7 @@ framework.tmp.dir= ${framework.var.dir}/tmp
 #
 # Base directory where logs are kept
 #
-framework.logs.dir=<%= @rundeck[:basedir] %>/logs
+framework.logs.dir=<%= @rundeck[:exec_logdir] %>
 
 #
 # Date/time stamp format used in logs. See java.text.SimpleDateFormat
