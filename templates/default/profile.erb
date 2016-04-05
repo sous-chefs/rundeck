@@ -5,9 +5,13 @@ RDECK_BASE=<%=@rundeck[:basedir]%>
 export RDECK_BASE
 
 JAVA_CMD=java
+RUNDECK_TEMPDIR=<%=@rundeck[:tempdir]%>
+
+RDECK_HTTP_PORT=<%=@rundeck[:port]%>
+RDECK_HTTPS_PORT=<%=@rundeck[:ssl][:port]%>
 
 #
-# If JAVA_HOME is set, then add it to home and set JAVA_CMD to use the version specified in that 
+# If JAVA_HOME is set, then add it to home and set JAVA_CMD to use the version specified in that
 # path.  JAVA_HOME can be set in the rundeck profile.  Or set in this file.
 #JAVA_HOME=<path/to/JDK or JRE/install>
 
@@ -30,18 +34,28 @@ export RDECK_JVM="-Djava.security.auth.login.config=<%=@rundeck[:configdir]%>/<%
 	-Dserver.datastore.path=<%=@rundeck[:basedir]%>/data \
 	-Drundeck.server.serverDir=<%=@rundeck[:basedir]%> \
 	-Drdeck.projects=<%=@rundeck[:datadir]%>/projects \
-	-Drdeck.runlogs=<%=@rundeck[:basedir]%>/logs \
+	-Drdeck.runlogs=<%=@rundeck[:exec_logdir]%> \
 	-Drundeck.config.location=<%=@rundeck[:configdir]%>/rundeck-config.properties \
 	-Dserver.web.context=<%=@rundeck[:webcontext]%> \
-	-Drundeck.jetty.connector.forwarded=true"
+	-Drundeck.jetty.connector.forwarded=true\
+	-Djava.io.tmpdir=$RUNDECK_TEMPDIR"
 #
 # Set min/max heap size
 #
 RDECK_JVM="$RDECK_JVM <%=@rundeck[:jvm_mem]%> -server"
+
+#
+# Set custom JVM properties
+#
+<% if @rundeck[:custom_jvm_properties] %>
+RDECK_JVM="$RDECK_JVM <%= @rundeck[:custom_jvm_properties]%>"
+<% end %>
 #
 # SSL Configuration - Uncomment the following to enable.  Check SSL.properties for details.
-# 
-#export RDECK_JVM="$RDECK_JVM -Drundeck.ssl.config=<%=@rundeck[:configdir]%>/ssl/ssl.properties -Dserver.https.port=4443"
+#
+<% if @rundeck[:use_inbuilt_ssl] %>
+export RDECK_JVM="$RDECK_JVM -Drundeck.ssl.config=<%=@rundeck[:configdir]%>/ssl/ssl.properties -Dserver.https.port=${RDECK_HTTPS_PORT}"
+<% end %>
 
 export RDECK_SSL_OPTS="-Djavax.net.ssl.trustStore=<%= @rundeck[:configdir] %>/ssl/truststore -Djavax.net.ssl.trustStoreType=jks -Djava.protocol.handler.pkgs=com.sun.net.ssl.internal.www.protocol"
 
