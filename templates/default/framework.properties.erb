@@ -176,13 +176,18 @@ framework.server.username = admin
 framework.server.password = <%= (@rundeck_users['admin']['password'] rescue nil) || 'admin' %>
 framework.server.hostname = <%= @rundeck[:hostname] %>
 framework.server.name = <%= node.hostname %>
+
+<% if @rundeck[:use_inbuilt_ssl] %>
+framework.server.port = <%= @rundeck[:ssl][:port] %>
+framework.server.url = https://<%= @rundeck[:hostname] %>:<%= @rundeck[:ssl][:port] %>
+# URL to Rundeck
+framework.rundeck.url = https://<%= @rundeck[:hostname] %>:<%= @rundeck[:ssl][:port] %>
+<% else %>
 framework.server.port = <%= @rundeck[:port] %>
 framework.server.url = http://<%= @rundeck[:hostname] %>:<%= @rundeck[:port] %>
-
-#
 # URL to Rundeck
-#
 framework.rundeck.url = http://<%= @rundeck[:hostname] %>:<%= @rundeck[:port] %>
+<% end %>
 
 #
 # ssh keypath
