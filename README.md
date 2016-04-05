@@ -171,7 +171,6 @@ Custom Configuration
 * Custom framework configuration (**framework.properties**) can be specified using `node['rundeck']['custom_framework_config']['<custom _configuration>']`
 * Custom rundeck configuration (**rundeck-config.properties**) can be specified using `node['rundeck']['custom_rundeck_config']['<custom _configuration>']`
 * Custom JVM properties (**profile**) can be specfied using `node['rundeck']['custom_jvm_properties']` 
-  e.g `node['rundeck']['custom_jvm_properties'] = "-Djava.io.tmpdir=/var/lib/rundeck/tmp"`
 
 > Note: Using custom configuration is for advanced users.
 
