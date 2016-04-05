@@ -7,7 +7,7 @@ export RDECK_BASE
 JAVA_CMD=java
 
 #
-# If JAVA_HOME is set, then add it to home and set JAVA_CMD to use the version specified in that 
+# If JAVA_HOME is set, then add it to home and set JAVA_CMD to use the version specified in that
 # path.  JAVA_HOME can be set in the rundeck profile.  Or set in this file.
 #JAVA_HOME=<path/to/JDK or JRE/install>
 
@@ -38,9 +38,16 @@ export RDECK_JVM="-Djava.security.auth.login.config=<%=@rundeck[:configdir]%>/<%
 # Set min/max heap size
 #
 RDECK_JVM="$RDECK_JVM <%=@rundeck[:jvm_mem]%> -server"
+
+#
+# Set custom JVM properties
+#
+<% if @rundeck[:custom_jvm_properties] %>
+RDECK_JVM="$RDECK_JVM <%= @rundeck[:custom_jvm_properties]%>"
+<% end %>
 #
 # SSL Configuration - Uncomment the following to enable.  Check SSL.properties for details.
-# 
+#
 #export RDECK_JVM="$RDECK_JVM -Drundeck.ssl.config=<%=@rundeck[:configdir]%>/ssl/ssl.properties -Dserver.https.port=4443"
 
 export RDECK_SSL_OPTS="-Djavax.net.ssl.trustStore=<%= @rundeck[:configdir] %>/ssl/truststore -Djavax.net.ssl.trustStoreType=jks -Djava.protocol.handler.pkgs=com.sun.net.ssl.internal.www.protocol"
