@@ -2,6 +2,8 @@ default['rundeck'] = {}
 default['rundeck']['configdir'] = '/etc/rundeck'
 default['rundeck']['basedir'] = '/var/lib/rundeck'
 default['rundeck']['datadir'] = '/var/rundeck'
+default['rundeck']['tempdir'] = '/tmp/rundeck'
+default['rundeck']['exec_logdir'] = "#{node['rundeck']['basedir']}/logs"
 default['rundeck']['deb']['package'] = 'rundeck-2.6.4-1-GA.deb'
 default['rundeck']['deb']['options'] = false #--force-confdef --force-confold
 default['rundeck']['rpm']['version'] = '2.6.4-1.15.GA' # rundeck package from http://dl.bintray.com/rundeck/rundeck-rpm
@@ -16,6 +18,8 @@ default['rundeck']['email'] = "rundeck@#{node['domain']}"
 default['rundeck']['restart_on_config_change'] = false
 default['rundeck']['log_dir'] = '/var/log/chef-rundeck'
 default['rundeck']['tokens_file'] = nil # e.g. '/etc/rundeck/tokens.properties'
+default['rundeck']['use_inbuilt_ssl'] = false # Use inbuilt SSL for rundeck server.
+default['rundeck']['ssl']['port'] = 4443 # Use while using inbuilt SSL
 
 # web server configuration
 default['rundeck']['apache-template']['cookbook'] = 'rundeck'
