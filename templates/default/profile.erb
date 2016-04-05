@@ -30,7 +30,7 @@ export RDECK_JVM="-Djava.security.auth.login.config=<%=@rundeck[:configdir]%>/<%
 	-Dserver.datastore.path=<%=@rundeck[:basedir]%>/data \
 	-Drundeck.server.serverDir=<%=@rundeck[:basedir]%> \
 	-Drdeck.projects=<%=@rundeck[:datadir]%>/projects \
-	-Drdeck.runlogs=<%=@rundeck[:basedir]%>/logs \
+	-Drdeck.runlogs=<%=@rundeck[:exec_logdir]%> \
 	-Drundeck.config.location=<%=@rundeck[:configdir]%>/rundeck-config.properties \
 	-Dserver.web.context=<%=@rundeck[:webcontext]%> \
 	-Drundeck.jetty.connector.forwarded=true"
