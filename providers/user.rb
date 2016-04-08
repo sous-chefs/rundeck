@@ -19,7 +19,7 @@
 
 action :create do
 
-  # Check user existense in realm.properties
+  # Check user existence in realm.properties
   if ::File.read(::File.join(node['rundeck']['configdir'],'realm.properties')).match(/^#{new_resource.name}: /)
     new_resource.updated_by_last_action(false)
     Chef::Log.info("Rundeck user #{new_resource.name} already exists. Please use :update action instead")
@@ -41,7 +41,7 @@ end
 
 action :remove do
 
-  # Check user existense in realm.properties
+  # Check user existence in realm.properties
   unless ::File.read(::File.join(node['rundeck']['configdir'],'realm.properties')).match(/^#{new_resource.name}: /)
     new_resource.updated_by_last_action(false)
   else
