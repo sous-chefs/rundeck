@@ -28,6 +28,8 @@ else
   rundeck_users = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_users'], rundeck_secret)
 end
 
+aclpolicies = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_aclpolicies'])
+
 case node['platform_family']
 when 'rhel'
   yum_repository 'rundeck' do
@@ -178,6 +180,19 @@ template "#{node['rundeck']['configdir']}/realm.properties" do
   variables(
     rundeck_users: rundeck_users['users']
   )
+end
+
+unless aclpolicies.nil? 
+  aclpolicies['aclpolicies'].each do | aclpolicy_name, aclpolicy |
+    template "#{node['rundeck']['configdir']}/#{aclpolicy_name}.aclpolicy" do
+      owner node['rundeck']['user']
+      group node['rundeck']['group']
+      source 'user.aclpolicy.erb'
+      variables(
+        aclpolicy: aclpolicy
+      )
+    end
+  end
 end
 
 bash 'own rundeck' do

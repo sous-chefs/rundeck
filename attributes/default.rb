@@ -49,6 +49,7 @@ default['rundeck']['rundeck_databag_secure'] = 'secure'
 default['rundeck']['rundeck_databag'] = 'rundeck'
 default['rundeck']['rundeck_projects_databag'] = 'rundeck_projects'
 default['rundeck']['rundeck_databag_users'] = 'users'
+default['rundeck']['rundeck_databag_aclpolicies'] = 'aclpolicies'
 
 # chef-rundeck test what initsystem to use
 if node['init_package'] == 'systemd'
