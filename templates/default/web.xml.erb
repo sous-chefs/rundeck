@@ -1,13 +1,25 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" metadata-complete="true" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<display-name>/rundeck-production-2.1.2</display-name>
+	<display-name>/rundeck-production-2.6.4</display-name>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>rundeck-production-2.1.2</param-value>
+		<param-value>rundeck-production-2.6.4</param-value>
 	</context-param>
+	<context-param>
+		<param-name>sample</param-name>
+		<param-value>Sample Value</param-value>
+	</context-param>
+	<filter>
+		<filter-name>instrumentedFilter</filter-name>
+		<filter-class>com.codahale.metrics.servlet.InstrumentedFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>AssetPipelineFilter</filter-name>
+		<filter-class>asset.pipeline.AssetPipelineFilter</filter-class>
+	</filter>
 	<security-role>
 		<role-name><%=node['rundeck']['default_role']%></role-name>
 	</security-role>
@@ -107,14 +119,6 @@
 		</form-login-config>
 	</login-config>
 	<filter>
-		<filter-name>instrumentedFilter</filter-name>
-		<filter-class>com.codahale.metrics.servlet.InstrumentedFilter</filter-class>
-	</filter>
-	<filter>
-		<filter-name>sitemesh</filter-name>
-		<filter-class>org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter</filter-class>
-	</filter>
-	<filter>
 		<filter-name>charEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<init-param>
@@ -138,18 +142,31 @@
 		<filter-name>grailsWebRequest</filter-name>
 		<filter-class>org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequestFilter</filter-class>
 	</filter>
+	<filter>
+		<filter-name>grailsCacheFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
 	<filter-mapping>
-		<filter-name>instrumentedFilter</filter-name>
+		<filter-name>charEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
-		<filter-name>charEncodingFilter</filter-name>
+		<filter-name>instrumentedFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>hiddenHttpMethod</filter-name>
 		<url-pattern>/*</url-pattern>
 		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AssetPipelineFilter</filter-name>
+		<url-pattern>/assets/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
 	<filter-mapping>
@@ -160,16 +177,16 @@
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
 	<filter-mapping>
-		<filter-name>sitemesh</filter-name>
-		<url-pattern>/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>ERROR</dispatcher>
-	</filter-mapping>
-	<filter-mapping>
 		<filter-name>urlMapping</filter-name>
 		<url-pattern>/*</url-pattern>
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>grailsCacheFilter</filter-name>
+		<url-pattern>*.dispatch</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
 	<listener>
 		<listener-class>org.codehaus.groovy.grails.plugins.log4j.web.util.Log4jConfigListener</listener-class>
@@ -180,6 +197,10 @@
 	<servlet>
 		<servlet-name>grails</servlet-name>
 		<servlet-class>org.codehaus.groovy.grails.web.servlet.GrailsDispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>dispatchOptionsRequest</param-name>
+			<param-value>true</param-value>
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet>
@@ -188,7 +209,7 @@
 	</servlet>
 	<servlet>
 		<servlet-name>metrics-admin-servlet</servlet-name>
-		<servlet-class>com.codahale.metrics.servlets.AdminServlet</servlet-class>
+		<servlet-class>org.grails.plugins.metricsweb.DisablingAdminServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>grails-errorhandler</servlet-name>
@@ -211,7 +232,7 @@
 		<url-pattern>*.dispatch</url-pattern>
 	</servlet-mapping>
 	<session-config>
-		<session-timeout>30</session-timeout>
+		<session-timeout><%= node['rundeck']['session_timeout'] %></session-timeout>
 	</session-config>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

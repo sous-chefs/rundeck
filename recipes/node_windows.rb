@@ -17,17 +17,16 @@
 # limitations under the License.
 #
 
-rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
-
-if !node['rundeck']['secret_file'].nil? then
+if node['rundeck']['secret_file'].nil?
+  rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
+else
   rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
-  rundeck_secure = Chef::EncryptedDataBagItem.load('rundeck', 'secure', rundeck_secret)
-end  
-
+  rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
+end
 
 user node['rundeck']['windows']['user'] do
   system true
-  comment "Rundeck User for access over winrm"
+  comment 'Rundeck User for access over winrm'
   password rundeck_secure['windows_password']
   not_if { rundeck_secure['windows_password'].nil? }
   notifies :manage, "group[#{node['rundeck']['windows']['group']}]"
