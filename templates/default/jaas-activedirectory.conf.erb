@@ -4,8 +4,8 @@ activedirectory {
     contextFactory="com.sun.jndi.ldap.LdapCtxFactory"
     providerUrl="<%=@ldap[:provider]%>"
 <% if !@ldap[:binddn].nil? -%>
-    bindDn="<%=@ldap[:binddn]%>"
-    bindPassword="<%=@ldap[:bindpwd]%>"
+    bindDn="<%=@binddn%>"
+    bindPassword="<%=@bindpwd%>"
 <% end -%>
     authenticationMethod="<%=@ldap[:authenticationmethod]%>"
     forceBindingLogin="<%=@ldap[:forcebindinglogin]%>"
