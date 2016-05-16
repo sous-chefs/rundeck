@@ -7,7 +7,7 @@ DEPENDENCIES
     metadata: true
 
 GRAPH
-  apache2 (3.2.0)
+  apache2 (3.2.2)
   apt (3.0.0)
   create_chef_dir (0.0.1)
   java (1.39.0)
@@ -18,6 +18,6 @@ GRAPH
     java (>= 0.0.0)
     runit (>= 0.0.0)
     sudo (>= 0.0.0)
-  runit (1.7.6)
+  runit (1.7.8)
     packagecloud (>= 0.0.0)
   sudo (2.9.0)
