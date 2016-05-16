@@ -9,6 +9,7 @@ platforms:
   - name: ubuntu-14.04
     run_list:
     - "recipe[apt::default]"
+    - "recipe[rundeck::node_unix]"
 
 suites:
   - name: server
@@ -18,4 +19,6 @@ suites:
       - "recipe[rundeck::chef-rundeck]"
     attributes:
       rundeck:
-        hostname: 'localhost:8080'
+        hostname: 'localhost'
+        security_roles: ['superusers', 'run_only_users']
+      domain: 'kitchentest'
