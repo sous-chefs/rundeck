@@ -12,6 +12,7 @@ default['rundeck']['checksum'] = 'aecdf743807e7f8154a7f77a503bfd0873164b6b571102
 default['rundeck']['port'] = 4440
 default['rundeck']['jaas'] = 'internal'
 default['rundeck']['default_role'] = 'user'
+default['rundeck']['security_roles'] = []
 default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
 
 default['rundeck']['email'] = "rundeck@#{node['domain']}"
