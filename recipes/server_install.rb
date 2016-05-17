@@ -214,6 +214,19 @@ end
 
 bags = data_bag(node['rundeck']['rundeck_projects_databag'])
 
+puts "chef-rundeck url: #{node['rundeck']['chef_rundeck_url']}"
+
+# Assuming node['rundeck']['plugins'] is a hash containing name=>attributes
+unless node['rundeck']['plugins'].nil?
+  node['rundeck']['plugins'].each do | plugin_name, plugin_attrs | 
+    rundeck_plugin plugin_name do
+      url plugin_attrs['url']
+      checksum plugin_attrs['checksum']
+      action :create
+    end
+  end
+end
+
 # projects = {}
 bags.each do |project|
   pdata = data_bag_item(node['rundeck']['rundeck_projects_databag'], project)
@@ -226,7 +239,7 @@ bags.each do |project|
 
   cmd = <<-EOH.to_s
   rd-project -p #{project} -a create \
-  --resources.source.1.type=url \
+  --resources.source.1.type=directory \
   --resources.source.1.config.includeServerNode=true \
   --resources.source.1.config.generateFileAutomatically=true \
   --resources.source.1.config.url=#{pdata['chef_rundeck_url'].nil? ? node['rundeck']['chef_rundeck_url'] : pdata['chef_rundeck_url']}/#{project} \
@@ -240,13 +253,4 @@ bags.each do |project|
       File.exist?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties")
     end
   end
-end
-
-# Plugins
-remote_file 'rundeck-slack-incoming-webhook-plugin' do
-  source node['rundeck']['plugin']['slack']
-  path "#{node['rundeck']['basedir']}/libext/rundeck-slack-incoming-webhook-plugin.jar"
-  owner node['rundeck']['user']
-  group node['rundeck']['group']
-  action :create
 end

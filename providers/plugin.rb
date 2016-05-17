@@ -21,7 +21,7 @@ action :create do
   plugin_filename = ::File.basename(new_resource.url)
   Chef::Application.fatal!("Invalid filename extension for Rundeck plugin #{new_resource.name}") \
     if ! (::File.extname(plugin_filename).eql?('.zip') || ::File.extname(plugin_filename).eql?('.jar'))
-  a = remote_file "#{node['rundeck']['basedir']}/libext/#{new_resource.name}" do
+  a = remote_file "#{node['rundeck']['basedir']}/libext/#{plugin_filename}" do
     owner node['rundeck']['user']
     group node['rundeck']['group']
     mode 00644
