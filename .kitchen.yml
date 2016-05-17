@@ -21,4 +21,8 @@ suites:
       rundeck:
         hostname: 'localhost'
         security_roles: ['superusers', 'run_only_users']
+        plugins:
+          webdav-logstore:
+            url: 'https://raw.github.cerner.com/rundeck/rundeck/2.1_plugin_lwrp/test/integration/server/webdav-logstore-2.1.0.jar'
+            checksum: '5bc93e6dc52a86a9190110fc7f3ebc4d80ee0021ee6b39642b501b7cccd510a6'
       domain: 'kitchentest'
