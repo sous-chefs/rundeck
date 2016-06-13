@@ -1,0 +1,16 @@
+AllCops:
+  Exclude:
+    - vendor/**/*
+
+Style/Encoding:
+  Enabled: false
+LineLength:
+  Max: 160
+MethodLength:
+  Max: 30
+FileName:
+  Enabled: false
+Style/SpaceBeforeFirstArg:
+  Enabled: false
+ParenthesesAsGroupedExpression:
+  Enabled: false

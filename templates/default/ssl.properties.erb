@@ -1,0 +1,5 @@
+keystore=<%=node['rundeck']['configdir']%>/ssl/<%= @keystore %>
+keystore.password=<%=@keystorepass%>
+key.password=<%=@keystorepass%>
+truststore=<%=node['rundeck']['configdir']%>/ssl/<%= @truststore %>
+truststore.password=<%=@truststorepass%>

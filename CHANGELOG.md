@@ -2,9 +2,40 @@
 * Added LWRP User
 * Added LWRP Plugin
 
+=======
+## 2.0.12
+* Update template file for 2.6.2
+* Update downloaded deb and rpm for 2.6.2
+* Updated checksum for 2.6.2
+* Alter default loglevel
+* Change JVM memory settings to an attribute.
+* Change Apache template to work with different auth modules (commonly seen with apache 2.2->2.4)
+* winrm plugin broken in 2.6.  Updating winrm plugin to version 1.3.1 from 1.1
+
+##  2.0.11
+* upgrading to 2.6.0
+* fixing AD auth issues with forcebinding not working correctly
+
+##  2.0.10
+* separated out apache, java, and rundeck server install, so you can install your own flavors
+* created grails variables so there more control over listening port
+
+## 2.0.7
+* Using attributes for databag items
+* Bug fixes
+
+## 2.0.6 
+* updating to rundeck version 2.4.2-1 GA
+
 ## 2.0.5 
+* added more options for LDAP configurations
+* improved the install process for the package option
 * configurable databag names
-* upgraded rundeck 2.2.1
+* add a users item to rundeck data bag to allow changing of default admin password.  This may be encrypted if needed.
+* remove the tie of rundeck username and group
+* chef-client v10 treats `platform?` as attribute instead of method in attributes file
+* Add supplemental groups to jaas-activedirectory (https://github.com/rundeck/rundeck/issues/590).  This affects default['rundeck']['default_role']
+* bump default rundeck version to 2.3.2-1
 * configurable server url attributes added
 * fixed home dir creation
 * berkshelf and cookbook test updates

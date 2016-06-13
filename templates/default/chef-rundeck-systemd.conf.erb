@@ -1,0 +1,13 @@
+# Managed by Chef cookbook rundeck
+[Unit]
+Description=Chef Rundeck service
+After=network.target
+
+[Service]
+Type=simple
+User=<%=@user%>
+ExecStart=/opt/chef/embedded/bin/chef-rundeck -c <%=@chef_config%> -f <%=@project_config%> -w <%=@chef_webui_url%> -o <%=@chef_rundeck_host%> -p <%=@chef_rundeck_port%> -u <%= node['rundeck']['user'] %> -t <%= @chef_rundeck_cachetime %> <% if @chef_rundeck_partial_search %>--partial-search true<% end %> 2>&1 > <%=@log_dir%>/server.log
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
