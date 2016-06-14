@@ -42,7 +42,7 @@
             ]
           },
           "by": {
-            "group": "user"
+            "username": ["user1", "user2", "user9"]
           }
         },
         {
