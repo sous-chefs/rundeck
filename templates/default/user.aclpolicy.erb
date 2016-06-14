@@ -13,7 +13,7 @@ for:<%for @for_type in @context['for'].keys%>
       <%end%><%if @equals_item['deny'] %>deny: <%=@equals_item['deny']%><%end%><%end%><%end%>
 by:
 <%for @by_type in @context['by'].keys%>
-  <%=@by_type%>: <%=@context['by']["#{@by_type}"].kind_of?(Array) ? @context['by']["#{@by_type}"].join(",") : @context['by']["#{@by_type}"]%>
+  <%=@by_type%>: <%=@context['by']["#{@by_type}"].kind_of?(Array) ? "[#{@context['by'][@by_type].join(',')}]" : @context['by']["#{@by_type}"]%>
 <%end%>
 
 ---
