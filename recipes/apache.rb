@@ -25,28 +25,26 @@ include_recipe 'apache2::mod_proxy'
 include_recipe 'apache2::mod_proxy_http'
 
 if node['rundeck']['use_ssl']
-  rundeck_ssl_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['cert']['databag']['secret'])
-  rundeck_ssl_config = Chef::EncryptedDataBagItem.load(node['rundeck']['cert']['databag']['name'], node['rundeck']['cert']['databag']['item'], nexpose_secret).to_hash
-
-  file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.crt" do
-    content rundeck_ssl_config[:cert]
+  cookbook_file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.crt" do
+    cookbook node['rundeck']['cert']['cookbook']
+    source "certs/#{node['rundeck']['cert']['name']}.crt"
     notifies :restart, 'service[apache2]'
     not_if { ::File.exist?("#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.crt") }
   end
 
-  file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.key" do
-    content rundeck_ssl_config[:key]
+  cookbook_file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.key" do
+    cookbook node['rundeck']['cert']['cookbook']
+    source "certs/#{node['rundeck']['cert']['name']}.key"
     notifies :restart, 'service[apache2]'
     not_if { ::File.exist?("#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.key") }
   end
 
-  file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['ca_name']}.crt" do
-    content rundeck_ssl_config[:ca_cert]
-    notifies :restart, 'service[apache2]'
+  cookbook_file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['ca_name']}.crt" do
+    cookbook node['rundeck']['cert']['cookbook']
+    source "certs/#{node['rundeck']['cert']['ca_name']}.crt"
     not_if { node['rundeck']['cert']['ca_name'].nil? }
-    not_if { ::File.exist?("#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['ca_name']}.crt") }
+    notifies :restart, 'service[apache2]'
   end
-
 end
 
 %w(default 000-default).each do |site|
