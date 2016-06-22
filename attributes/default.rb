@@ -27,6 +27,9 @@ default['rundeck']['apache-template']['cookbook'] = 'rundeck'
 default['rundeck']['use_ssl'] = false
 default['rundeck']['cert']['name'] = node['rundeck']['hostname']
 default['rundeck']['cert']['cookbook'] = 'rundeck'
+default['rundeck']['cert']['databag']['secret'] = '/etc/chef/rundeck_cert-encrypted_data_bag_secret'
+default['rundeck']['cert']['databag']['name'] = 'rundeck_certs'
+default['rundeck']['cert']['databag']['item'] = 'certificates'
 default['rundeck']['webcontext'] = '/'
 
 default['rundeck']['grails_server_url'] = "#{node['rundeck']['use_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}"
