@@ -25,17 +25,17 @@ include_recipe 'apache2::mod_proxy'
 include_recipe 'apache2::mod_proxy_http'
 
 if node['rundeck']['use_ssl']
-  rundeck_ssl_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['cert']['databag']['secret'])
-  rundeck_ssl_config = Chef::EncryptedDataBagItem.load(node['rundeck']['cert']['databag']['name'], node['rundeck']['cert']['databag']['item'], nexpose_secret).to_hash
+  rundeck_ssl_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
+  rundeck_ssl_config = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_certs'], rundeck_ssl_secret).to_hash
 
   file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.crt" do
-    content rundeck_ssl_config[:cert]
+    content rundeck_ssl_config['cert']
     notifies :restart, 'service[apache2]'
     not_if { ::File.exist?("#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.crt") }
   end
 
   file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.key" do
-    content rundeck_ssl_config[:key]
+    content rundeck_ssl_config['key']
     notifies :restart, 'service[apache2]'
     not_if { ::File.exist?("#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.key") }
   end
