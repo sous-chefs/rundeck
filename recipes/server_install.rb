@@ -30,7 +30,7 @@ else
   rundeck_ldap_bind_dn = rundeck_ldap_databag['binddn']
   rundeck_ldap_bind_pwd = rundeck_ldap_databag['bindpwd']
 end
-  
+
 rundeck_ldap = node['rundeck']['ldap']
 aclpolicies = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_aclpolicies'])
 
@@ -168,13 +168,18 @@ template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
+if node.normal['rundeck']['server']['uuid'].empty?
+  node.normal['rundeck']['server']['uuid'] = RundeckHelper.generateuuid
+end
+
 template "#{node['rundeck']['configdir']}/framework.properties" do
   owner node['rundeck']['user']
   group node['rundeck']['group']
   source 'framework.properties.erb'
   variables(
     rundeck: node['rundeck'],
-    rundeck_users: rundeck_users['users']
+    rundeck_users: rundeck_users['users'],
+    rundeck_uuid: node.normal['rundeck']['server']['uuid']
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
@@ -188,7 +193,7 @@ template "#{node['rundeck']['configdir']}/realm.properties" do
   )
 end
 
-unless aclpolicies.nil? 
+unless aclpolicies.nil?
   aclpolicies['aclpolicies'].each do | aclpolicy_name, aclpolicy |
     template "#{node['rundeck']['configdir']}/#{aclpolicy_name}.aclpolicy" do
       owner node['rundeck']['user']
@@ -218,7 +223,7 @@ puts "chef-rundeck url: #{node['rundeck']['chef_rundeck_url']}"
 
 # Assuming node['rundeck']['plugins'] is a hash containing name=>attributes
 unless node['rundeck']['plugins'].nil?
-  node['rundeck']['plugins'].each do | plugin_name, plugin_attrs | 
+  node['rundeck']['plugins'].each do | plugin_name, plugin_attrs |
     rundeck_plugin plugin_name do
       url plugin_attrs['url']
       checksum plugin_attrs['checksum']
