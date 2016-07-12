@@ -246,7 +246,7 @@ bags.each do |project|
 
   cmd = <<-EOH.to_s
   rd-project -p #{project} -a create \
-  --resources.source.1.type=directory \
+  --resources.source.1.type=url \
   --resources.source.1.config.includeServerNode=true \
   --resources.source.1.config.generateFileAutomatically=true \
   --resources.source.1.config.url=#{pdata['chef_rundeck_url'].nil? ? node['rundeck']['chef_rundeck_url'] : pdata['chef_rundeck_url']}/#{project} \
