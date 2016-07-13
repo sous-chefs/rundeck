@@ -32,7 +32,7 @@ grails.mail.port=<%=@rundeck[:mail][:port] %>
 <% end %>
 grails.mail.default.from=<%=@rundeck[:email] %>
 
-grails.serverURL=<%= @rundeck['grails_server_url']%>:<%=@rundeck['port']%>
+grails.serverURL=<%= @rundeck['grails_server_url'] %>:<%= @rundeck['port'] %>
 
 quartz.props.threadPool.threadCount = <%= @rundeck[:quartz][:threadPoolCount].to_i %>
 
