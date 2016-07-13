@@ -250,8 +250,6 @@ bags.each do |project|
   --project.resources.file=#{node['rundeck']['datadir']}/projects/#{project}/etc/resources.xml #{custom}
   EOH
 
-
-
   bash "check-project-#{project}" do
     user node['rundeck']['user']
     code cmd.strip
