@@ -30,10 +30,10 @@ end
 
 user node['rundeck']['user'] do
   comment 'Rundeck User'
+  home node['rundeck']['user_home']
   gid node['rundeck']['group']
   system true
   shell '/bin/bash'
-  home node['rundeck']['user_home']
 end
 
 directory node['rundeck']['user_home'] do
