@@ -11,7 +11,7 @@ platforms:
     - "recipe[apt::default]"
     - "recipe[rundeck::node_unix]"
 suites:
-  - name: server
+  - name: default
     run_list:
       - "recipe[rundeck::server]"
       - "recipe[create_chef_dir]"
