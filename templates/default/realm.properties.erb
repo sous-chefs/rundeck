@@ -26,7 +26,7 @@
 admin:admin,user,admin,architect,deploy,build
 <% end %>
 <% @rundeck_users.each do |key,array| %>
-<%= key %>:<%= array['password'] %>,<%= array['groups'].join(",") %>
+<%= key %>:<%= array['password'] %>,<%= array['groups'].kind_of?(Array) ? array['groups'].join(",") : array['groups'] %>
 <% end %>
 
 #@jetty.user.deploy.name@:@jetty.user.deploy.password@,user,deploy
