@@ -53,6 +53,7 @@ default['rundeck']['rundeck_databag_users'] = 'users'
 default['rundeck']['rundeck_databag_aclpolicies'] = 'aclpolicies'
 default['rundeck']['rundeck_databag_ldap'] = 'ldap'
 default['rundeck']['rundeck_databag_certs'] = 'certs'
+default['rundeck']['rundeck_databag_rdbms'] = 'rdbms'
 
 # chef-rundeck test what initsystem to use
 if node['init_package'] == 'systemd'
@@ -97,8 +98,6 @@ default['rundeck']['rdbms']['enable'] = 'false'
 default['rundeck']['rdbms']['type'] = 'mysql'
 default['rundeck']['rdbms']['location'] = 'someIPorFQDN'
 default['rundeck']['rdbms']['dbname'] = 'rundeckdb'
-default['rundeck']['rdbms']['dbuser'] = 'rundeckdb'
-default['rundeck']['rdbms']['dbpassword'] = 'Chang3ME'
 default['rundeck']['rdbms']['dialect'] = 'Oracle10gDialect'
 default['rundeck']['rdbms']['port'] = '3306'
 
