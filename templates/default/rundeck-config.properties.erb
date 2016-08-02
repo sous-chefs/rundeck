@@ -14,8 +14,8 @@ dataSource.driverClassName = oracle.jdbc.driver.OracleDriver
 dataSource.dialect = org.hibernate.dialect.<%= @rundeck[:rdbms][:dialect] %>
   <% end %>
 dataSource.dbCreate=update
-dataSource.username = <%= @rundeck[:rdbms][:dbuser] %>
-dataSource.password = <%= @rundeck[:rdbms][:dbpassword] %>
+dataSource.username = <%= @rundeck_rdbms['dbuser'] %>
+dataSource.password = <%= @rundeck_rdbms['dbpassword'] %>
 <% end %>
 
 <% if @rundeck[:rdbms][:enable] == false %>

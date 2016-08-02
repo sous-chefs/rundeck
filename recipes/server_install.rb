@@ -22,10 +22,12 @@ include_recipe 'rundeck::default'
 if node['rundeck']['secret_file'].nil?
   rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
   rundeck_users = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_users'])
+  rundeck_rdbms = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_rdbms'])
 else
   rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
   rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
   rundeck_users = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_users'], rundeck_secret)
+  rundeck_rdbms = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_rdbms'], rundeck_secret)
   rundeck_ldap_databag = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_ldap'], rundeck_secret)
   rundeck_ldap_bind_dn = rundeck_ldap_databag['binddn']
   rundeck_ldap_bind_pwd = rundeck_ldap_databag['bindpwd']
@@ -163,7 +165,8 @@ template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
   group node['rundeck']['group']
   source 'rundeck-config.properties.erb'
   variables(
-    rundeck: node['rundeck']
+    rundeck: node['rundeck'],
+    rundeck_rdbms: rundeck_rdbms['rdbms']
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
@@ -253,10 +256,7 @@ bags.each do |project|
   bash "check-project-#{project}" do
     user node['rundeck']['user']
     code cmd.strip
-    not_if do
-      File.exist?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties")
-    end
-
+    not_if { File.exist?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties") }
     retries 5
     retry_delay 15
   end
