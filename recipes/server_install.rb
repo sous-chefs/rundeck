@@ -256,7 +256,10 @@ bags.each do |project|
   bash "check-project-#{project}" do
     user node['rundeck']['user']
     code cmd.strip
-    not_if { File.exist?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties") }
+    # will return 0 if grep matches
+    # only run if project does not exist
+    only_if "rd-jobs -p #{project} list 2>&1 | grep -q '^ERROR .*project does not exist'"
+
     retries 5
     retry_delay 15
   end
