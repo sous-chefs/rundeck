@@ -26,7 +26,13 @@ else
   rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
   rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
   rundeck_users = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_users'], rundeck_secret)
+  rundeck_ldap_databag = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_ldap'], rundeck_secret)
+  rundeck_ldap_bind_dn = rundeck_ldap_databag['binddn']
+  rundeck_ldap_bind_pwd = rundeck_ldap_databag['bindpwd']
 end
+
+rundeck_ldap = node['rundeck']['ldap']
+aclpolicies = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_aclpolicies'])
 
 case node['platform_family']
 when 'rhel'
@@ -134,7 +140,9 @@ template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
   group node['rundeck']['group']
   source 'jaas-activedirectory.conf.erb'
   variables(
-    ldap: node['rundeck']['ldap'],
+    ldap: rundeck_ldap,
+    binddn: rundeck_ldap_bind_dn || rundeck_ldap[:binddn],
+    bindpwd: rundeck_ldap_bind_pwd || rundeck_ldap[:bindpwd],
     configdir: node['rundeck']['configdir']
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
@@ -160,13 +168,18 @@ template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
+if node.normal['rundeck']['server']['uuid'].empty?
+  node.normal['rundeck']['server']['uuid'] = RundeckHelper.generateuuid
+end
+
 template "#{node['rundeck']['configdir']}/framework.properties" do
   owner node['rundeck']['user']
   group node['rundeck']['group']
   source 'framework.properties.erb'
   variables(
     rundeck: node['rundeck'],
-    rundeck_users: rundeck_users['users']
+    rundeck_users: rundeck_users['users'],
+    rundeck_uuid: node.normal['rundeck']['server']['uuid']
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
@@ -178,6 +191,19 @@ template "#{node['rundeck']['configdir']}/realm.properties" do
   variables(
     rundeck_users: rundeck_users['users']
   )
+end
+
+unless aclpolicies.nil?
+  aclpolicies['aclpolicies'].each do | aclpolicy_name, aclpolicy |
+    template "#{node['rundeck']['configdir']}/#{aclpolicy_name}.aclpolicy" do
+      owner node['rundeck']['user']
+      group node['rundeck']['group']
+      source 'user.aclpolicy.erb'
+      variables(
+        aclpolicy: aclpolicy
+      )
+    end
+  end
 end
 
 bash 'own rundeck' do
@@ -193,7 +219,19 @@ end
 
 bags = data_bag(node['rundeck']['rundeck_projects_databag'])
 
-# projects = {}
+puts "chef-rundeck url: #{node['rundeck']['chef_rundeck_url']}"
+
+# Assuming node['rundeck']['plugins'] is a hash containing name=>attributes
+unless node['rundeck']['plugins'].nil?
+  node['rundeck']['plugins'].each do | plugin_name, plugin_attrs |
+    rundeck_plugin plugin_name do
+      url plugin_attrs['url']
+      checksum plugin_attrs['checksum']
+      action :create
+    end
+  end
+end
+
 bags.each do |project|
   pdata = data_bag_item(node['rundeck']['rundeck_projects_databag'], project)
   custom = ''
@@ -205,7 +243,7 @@ bags.each do |project|
 
   cmd = <<-EOH.to_s
   rd-project -p #{project} -a create \
-  --resources.source.1.type=url \
+  --resources.source.1.type=directory \
   --resources.source.1.config.includeServerNode=true \
   --resources.source.1.config.generateFileAutomatically=true \
   --resources.source.1.config.url=#{pdata['chef_rundeck_url'].nil? ? node['rundeck']['chef_rundeck_url'] : pdata['chef_rundeck_url']}/#{project} \
@@ -214,18 +252,12 @@ bags.each do |project|
 
   bash "check-project-#{project}" do
     user node['rundeck']['user']
-    code cmd
+    code cmd.strip
     not_if do
       File.exist?("#{node['rundeck']['datadir']}/projects/#{project}/etc/project.properties")
     end
-  end
-end
 
-# Plugins
-remote_file 'rundeck-slack-incoming-webhook-plugin' do
-  source node['rundeck']['plugin']['slack']
-  path "#{node['rundeck']['basedir']}/libext/rundeck-slack-incoming-webhook-plugin.jar"
-  owner node['rundeck']['user']
-  group node['rundeck']['group']
-  action :create
+    retries 5
+    retry_delay 15
+  end
 end
