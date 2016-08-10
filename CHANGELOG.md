@@ -1,7 +1,10 @@
 =======
-## 2.1.0 (development version)
+## 3.0.0 (development version)
 * Added LWRP User
 * Added LWRP Plugin
+* Support ACL policy file data bag
+* Support SSL certs via data bag
+* Support LDAP bindDn and password via data bag to enable encryption
 
 ## 2.0.12
 * Update template file for 2.6.2
