@@ -36,6 +36,7 @@ default['rundeck']['rss_enabled'] = true
 
 # java configuration
 default['rundeck']['jvm_mem'] = ' -XX:MaxPermSize=256m -Xmx1024m -Xms256m'
+default['java']['jdk_version'] = '7'
 
 # Quartz configuration.
 default['rundeck']['quartz']['threadPoolCount'] = 10
