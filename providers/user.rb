@@ -18,9 +18,8 @@
 #
 
 action :create do
-
   # Check user existence in realm.properties
-  if ::File.read(::File.join(node['rundeck']['configdir'],'realm.properties')).match(/^#{new_resource.name}: /)
+  if ::File.read(::File.join(node['rundeck']['configdir'], 'realm.properties')) =~ /^#{new_resource.name}: /
     new_resource.updated_by_last_action(false)
     Chef::Log.info("Rundeck user #{new_resource.name} already exists. Please use :update action instead")
   else
@@ -28,65 +27,59 @@ action :create do
       block do
         new_resource.updated_by_last_action(true)
         # Append the line to realm.properties
-        ::File.open(::File.join(node['rundeck']['configdir'],'realm.properties'), 'a') do |fp|
+        ::File.open(::File.join(node['rundeck']['configdir'], 'realm.properties'), 'a') do |fp|
           fp.puts(create_auth_line(new_resource.name, new_resource.password, new_resource.encryption, new_resource.roles))
         end
         Chef::Log.info("Rundeck user #{new_resource.name} created")
       end
-      #notifies :restart, 'service[rundeckd]'
+      # notifies :restart, 'service[rundeckd]'
     end
   end
-
 end
 
 action :remove do
-
   # Check user existence in realm.properties
-  unless ::File.read(::File.join(node['rundeck']['configdir'],'realm.properties')).match(/^#{new_resource.name}: /)
-    new_resource.updated_by_last_action(false)
-  else
+  if ::File.read(::File.join(node['rundeck']['configdir'], 'realm.properties')) =~ /^#{new_resource.name}: /
     ruby_block "rundeck-remove-user-#{new_resource.name}" do
       block do
         new_resource.updated_by_last_action(true)
-        ::File.open(::File.join(node['rundeck']['configdir'],'realm.properties'), 'r') do |fp|
-          newcontent = String.new
-          while line = fp.readline do
-            newcontent << line unless fp.gets.match(/^#{new_resource.name}: /)
+        ::File.open(::File.join(node['rundeck']['configdir'], 'realm.properties'), 'r') do |fp|
+          newcontent = ''
+          while line = fp.readline
+            newcontent << line unless fp.gets =~ /^#{new_resource.name}: /
           end
         end
-        ::File.write(::File.join(node['rundeck']['configdir'],'realm.properties'), newcontent)
+        ::File.write(::File.join(node['rundeck']['configdir'], 'realm.properties'), newcontent)
         Chef::Log.info("Rundeck user #{new_resource.name} removed")
       end
-      #notifies :restart, 'service[rundeckd]'
+      # notifies :restart, 'service[rundeckd]'
     end
+  else
+    new_resource.updated_by_last_action(false)
   end
-
 end
 
 action :update do
-
   new_auth_line = create_auth_line(new_resource.name, new_resource.password, new_resource.encryption, new_resource.roles)
-
-  unless ::File.read(::File.join(node['rundeck']['configdir'],'realm.properties')).match(/^#{new_auth_line}: $/)
-    new_resource.updated_by_last_action(false)
-    Chef::Log.info("Rundeck user #{new_resource.name} already up to date")
-  else
+  if ::File.read(::File.join(node['rundeck']['configdir'], 'realm.properties')) =~ /^#{new_auth_line}: $/
     ruby_block "rundeck-update-user-#{new_resource.name}" do
       block do
         new_resource.updated_by_last_action(true)
-        ::File.open(::File.join(node['rundeck']['configdir'],'realm.properties'), 'r') do |fp|
-          newcontent = String.new
-          while line = fp.readline do
+        ::File.open(::File.join(node['rundeck']['configdir'], 'realm.properties'), 'r') do |fp|
+          newcontent = ''
+          while line = fp.readline
             newcontent << fp.gets.match(/^#{new_resource.name}: /) ? new_auth_line : line
           end
         end
-        ::File.write(::File.join(node['rundeck']['configdir'],'realm.properties'), newcontent)
+        ::File.write(::File.join(node['rundeck']['configdir'], 'realm.properties'), newcontent)
         Chef::Log.info("Rundeck user #{new_resource.name} updated")
       end
-      #notifies :restart, 'service[rundeckd]'
     end
+    # notifies :restart, 'service[rundeckd]'
+  else
+    new_resource.updated_by_last_action(false)
+    Chef::Log.info("Rundeck user #{new_resource.name} already up to date")
   end
-
 end
 
 def create_auth_line(username, password, encryption, roles)

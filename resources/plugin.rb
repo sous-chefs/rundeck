@@ -21,6 +21,6 @@ actions :create, :remove
 
 default_action :create
 
-attribute :name,        :kind_of => String,                       :name_attribute => true
-attribute :url,         :kind_of => String,                       :required => true
-attribute :checksum,    :kind_of => String,                       :required => true
+attribute :name,        kind_of: String,                       name_attribute: true
+attribute :url,         kind_of: String,                       required: true
+attribute :checksum,    kind_of: String,                       required: true

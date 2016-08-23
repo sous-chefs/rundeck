@@ -194,7 +194,7 @@ template "#{node['rundeck']['configdir']}/realm.properties" do
 end
 
 unless aclpolicies.nil?
-  aclpolicies['aclpolicies'].each do | aclpolicy_name, aclpolicy |
+  aclpolicies['aclpolicies'].each do |aclpolicy_name, aclpolicy|
     template "#{node['rundeck']['configdir']}/#{aclpolicy_name}.aclpolicy" do
       owner node['rundeck']['user']
       group node['rundeck']['group']
@@ -223,7 +223,7 @@ puts "chef-rundeck url: #{node['rundeck']['chef_rundeck_url']}"
 
 # Assuming node['rundeck']['plugins'] is a hash containing name=>attributes
 unless node['rundeck']['plugins'].nil?
-  node['rundeck']['plugins'].each do | plugin_name, plugin_attrs |
+  node['rundeck']['plugins'].each do |plugin_name, plugin_attrs|
     rundeck_plugin plugin_name do
       url plugin_attrs['url']
       checksum plugin_attrs['checksum']
