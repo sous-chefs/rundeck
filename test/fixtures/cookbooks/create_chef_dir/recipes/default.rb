@@ -1,1 +1,1 @@
-directory '/etc/chef/' 
+directory '/etc/chef/'

@@ -1,12 +1,9 @@
 #!/usr/bin/env ruby
 require 'securerandom'
 
+# Helper module for Rundeck.
 module RundeckHelper
-
   def self.generateuuid
-
-    return SecureRandom.uuid
-
+    SecureRandom.uuid
   end
-
 end

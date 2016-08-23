@@ -21,7 +21,7 @@ actions :create, :remove, :update
 
 default_action :create
 
-attribute :name,        :kind_of => String,                       :name_attribute => true
-attribute :password,    :kind_of => String,                       :required => true
-attribute :roles,       :kind_of => Array,                        :default => [ 'admin' ]
-attribute :encryption,  :equal_to => [ 'crypt', 'md5', 'plain' ], :default => 'md5'
+attribute :name,        kind_of: String,                       name_attribute: true
+attribute :password,    kind_of: String,                       required: true
+attribute :roles,       kind_of: Array,                        default: ['admin']
+attribute :encryption,  equal_to: %w(crypt md5 plain),         default: 'md5'
