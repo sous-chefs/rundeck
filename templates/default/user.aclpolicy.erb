@@ -1,0 +1,21 @@
+<%for @context in @aclpolicy['contexts']%>
+description: <%=@context['description']%>
+context:
+<%for @context_type in @context['context'].keys%>
+  <%=@context_type %>: <%=@context['context'][@context_type]%>
+<%end%>
+for:<%for @for_type in @context['for'].keys%>
+  <%=@for_type%>:<%for @equals_item in @context['for'][@for_type]%>
+    - <%unless @equals_item['equals'].nil? %>equals:
+        <%for @equals_matcher in @equals_item['equals'].keys%>
+        <%=@equals_matcher%>: <%=@equals_item['equals'][@equals_matcher]%><%end%>
+      <%end%><%if @equals_item['allow']%>allow: <%=@equals_item['allow']%>
+      <%end%><%if @equals_item['deny'] %>deny: <%=@equals_item['deny']%><%end%><%end%><%end%>
+by:
+<%for @by_type in @context['by'].keys%>
+  <%=@by_type%>: <%=@context['by'][@by_type].kind_of?(Array) ? "[#{@context['by'][@by_type].join(',')}]" : @context['by'][@by_type]%>
+<%end%>
+
+---
+
+<%end%>

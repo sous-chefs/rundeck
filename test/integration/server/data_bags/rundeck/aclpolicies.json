@@ -1,0 +1,90 @@
+{
+  "id": "aclpolicies",
+  "description": "Defines access controls by name.",
+  "aclpolicies": {
+    "user": {
+      "contexts": [
+        { 
+          "description": "All projects' settings.",
+          "context": {
+            "project": ".*"
+          },
+          "for": {
+            "resource": [
+              {
+                "equals": {
+                  "kind": "job"
+                },
+                "allow": ["create"]
+              },
+              {
+                "equals": {
+                  "kind": "event"
+                },
+                "allow": ["read"]
+              },
+              {
+                "equals": {
+                  "kind": "node"
+                },
+                "allow": ["read", "update", "refresh"]
+              }
+            ],
+            "adhoc": [
+              {
+                "allow": ["create", "read", "update", "delete", "run", "runAs", "kill", "killAs"]
+              }
+            ],
+            "node": [
+              {
+                "allow": ["read", "run"]
+              }
+            ]
+          },
+          "by": {
+            "group": "user"
+          }
+        },
+        {
+          "description": "Rundeck application settings.",
+          "context": {
+            "application": "rundeck"
+          },
+          "for": {
+            "resource": [
+              {
+                "equals": {
+                  "kind": "project"
+                },
+                "allow": ["create"]
+              },
+              {
+                "equals": {
+                  "kind": "system"
+                },
+                "allow": ["read"]
+              },
+              {
+                "equals": {
+                  "kind": "system_acl"
+                },
+                "allow": ["read"]
+              }
+            ],
+            "project": [
+              {
+                "match": {
+                  "name": ".*"
+                },
+                "allow": ["read", "import", "export", "configure", "delete", "admin"]
+              }
+            ]
+          },
+          "by": {
+            "group": "user"
+          }
+        }
+      ]
+    }
+  }
+}

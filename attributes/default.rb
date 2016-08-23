@@ -12,6 +12,7 @@ default['rundeck']['checksum'] = 'aecdf743807e7f8154a7f77a503bfd0873164b6b571102
 default['rundeck']['port'] = 4440
 default['rundeck']['jaas'] = 'internal'
 default['rundeck']['default_role'] = 'user'
+default['rundeck']['security_roles'] = []
 default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
 
 default['rundeck']['email'] = "rundeck@#{node['domain']}"
@@ -49,6 +50,9 @@ default['rundeck']['rundeck_databag_secure'] = 'secure'
 default['rundeck']['rundeck_databag'] = 'rundeck'
 default['rundeck']['rundeck_projects_databag'] = 'rundeck_projects'
 default['rundeck']['rundeck_databag_users'] = 'users'
+default['rundeck']['rundeck_databag_aclpolicies'] = 'aclpolicies'
+default['rundeck']['rundeck_databag_ldap'] = 'ldap'
+default['rundeck']['rundeck_databag_certs'] = 'certs'
 
 # chef-rundeck test what initsystem to use
 if node['init_package'] == 'systemd'
@@ -132,4 +136,5 @@ default['rundeck']['ldap']['supplementalroles'] = node['rundeck']['default_role'
 default['rundeck']['ldap']['debug'] = 'true'
 
 # Plugins
-default['rundeck']['plugin']['slack'] = 'https://github.com/higanworks/rundeck-slack-incoming-webhook-plugin/releases/download/v0.3.dev/rundeck-slack-incoming-webhook-plugin-0.3.jar'
+default['rundeck']['plugins']['slack']['url'] = 'https://github.com/higanworks/rundeck-slack-incoming-webhook-plugin/releases/download/v0.3.dev/rundeck-slack-incoming-webhook-plugin-0.3.jar'
+default['rundeck']['plugins']['slack']['checksum'] = '499b9d00278b775ac56cec0f717dcebfcac7aa1b3b68fc804e311d9818d695d1'
