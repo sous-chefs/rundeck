@@ -97,6 +97,7 @@ Attributes that configure and manage the installation of the Rundeck server
 * `node['rundeck']['rpm']['version']` = RPM download name, from http://dl.bintray.com/rundeck/rundeck-rpm
 * `node['rundeck']['jaas']` - Use built in internal realms.properties file, or a different one (options 'activedirectory', default 'internal')
 * `node['rundeck']['default_role']` - Require users to be a member of this role for Rundeck access, default 'user'
+* `node['rundeck']['security_roles']` - Array containing additional security roles for which Rundeck will attempt to validate membership. For an explanation of this, see [the Rundeck documentation](http://rundeck.org/docs/administration/authenticating-users.html#security-role).
 * `node['rundeck']['hostname']` - VIP or server address for the service, default 'rundeck.hostdomain.com'
 * `node['rundeck']['port']` - Internal server port for the service, default '4440'
 * `node['rundeck']['email']` - Email address, default 'rundeck@hostdomain.com'
