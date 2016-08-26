@@ -23,6 +23,7 @@ include_recipe 'apache2::mod_headers'
 include_recipe 'apache2::mod_ssl' if node['rundeck']['use_ssl']
 include_recipe 'apache2::mod_proxy'
 include_recipe 'apache2::mod_proxy_http'
+include_recipe 'apache2::mod_rewrite'
 
 if node['rundeck']['use_ssl']
   rundeck_ssl_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
