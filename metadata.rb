@@ -9,6 +9,7 @@ depends          'runit'
 depends          'sudo'
 depends          'java'
 depends          'apache2'
+depends          'java-libraries'
 
 %w(debian ubuntu centos suse fedora redhat freebsd windows scientific oracle amazon mac_os_x).each do |os|
   supports os
