@@ -6,8 +6,10 @@
         ServerAdmin <%= node['rundeck']['email'] %>
 <% if node['rundeck']['use_ssl'] && port == 80 %>
         RewriteEngine On
-        RewriteCond ${REMOTE_ADDR} !^127.0.0.1$
-        RewriteRule ^/?(.*) https://<%= node['rundeck']['hostname'] %>/$1 [R=302,L]
+<% unless node['rundeck']['allow_local_https'] %>
+        RewriteCond %{REMOTE_ADDR} !^<%= node['ipaddress'] %>$
+<% end %>
+        RewriteRule ^/?(.*) https://<%= node['rundeck']['hostname'] %>/$1 [R=301,L]
 <% end %>
 
         ErrorLog <%= @log_dir %>/rundeck_error.log
