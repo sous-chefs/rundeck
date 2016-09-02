@@ -6,5 +6,5 @@ set :backend, :exec
 set :path, '/sbin:/usr/local/sbin:/user/sbin:$PATH'
 
 def regex_exact_match(string)
-  Regexp.new("^" + Regexp.escape(string) + "$")
+  Regexp.new('^' + Regexp.escape(string) + '$')
 end

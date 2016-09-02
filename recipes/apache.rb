@@ -48,13 +48,13 @@ if node['rundeck']['use_ssl']
     not_if { ::File.exist?("#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['ca_name']}.crt") }
   end
 
-  java_certificate "Install rundeck certificate to java truststore" do
+  java_certificate 'Install rundeck certificate to java truststore' do
     cert_data rundeck_ssl_config['cert']
-    cert_alias "#{node['rundeck']['cert']['name']}"
+    cert_alias node['rundeck']['cert']['name'].to_s
     only_if { node['rundeck']['cert']['ca_name'].nil? }
   end
 
-  java_certificate "Install ca certificate to java truststore" do
+  java_certificate 'Install ca certificate to java truststore' do
     cert_data rundeck_ssl_config['ca_cert']
     cert_alias node['rundeck']['cert']['ca_name']
     not_if { node['rundeck']['cert']['ca_name'].nil? }
