@@ -4,7 +4,14 @@ describe service('rundeckd') do
   it { should be_running }
 end
 
-files = ['/etc/rundeck/jaas-activedirectory.conf', '/var/lib/rundeck/exp/webapp/WEB-INF/web.xml', '/etc/rundeck/jaas-activedirectory.conf', '/etc/rundeck/profile', '/etc/rundeck/framework.properties','/etc/rundeck/realm.properties']
+files = [
+  '/etc/rundeck/jaas-activedirectory.conf',
+  '/var/lib/rundeck/exp/webapp/WEB-INF/web.xml',
+  '/etc/rundeck/jaas-activedirectory.conf',
+  '/etc/rundeck/profile',
+  '/etc/rundeck/framework.properties',
+  '/etc/rundeck/realm.properties'
+]
 
 describe file('/var/lib/rundeck') do
   it { should be_directory }
@@ -33,8 +40,8 @@ describe file('/var/lib/rundeck/.chef/knife.rb') do
   it { should exist }
   it { should be_owned_by 'rundeck' }
   it { should be_grouped_into 'rundeck' }
-  it { should contain (/node_name\s*'rundeck'/) }
-  it { should contain ('chef_server_url') }
+  it { should contain(/node_name\s*'rundeck'/) }
+  it { should contain 'chef_server_url' }
 end
 
 describe file('/var/lib/rundeck/.ssh') do
@@ -51,7 +58,7 @@ describe file('/var/lib/rundeck/.ssh/id_rsa') do
   it { should be_owned_by 'rundeck' }
   it { should be_grouped_into 'rundeck' }
   it { should be_mode 600 }
-  it { should contain (/\W/) }
+  it { should contain(/\W/) }
 end
 
 describe file('/var/lib/rundeck/libext/rundeck-winrm-plugin-1.3.1.jar') do
@@ -67,7 +74,7 @@ describe file('/etc/rundeck/rundeck-config.properties') do
   it { should exist }
   it { should be_owned_by 'rundeck' }
   it { should be_grouped_into 'rundeck' }
-  it { should_not contain(/dataSource.url=jdbc:mysql:\/\/someIPorFQDN:3306\/rundeckdb?autoReconnect=true/) }
+  it { should_not contain(%r{dataSource.url=jdbc:mysql://someIPorFQDN:3306/rundeckdb?autoReconnect=true}) }
   it { should_not contain(/dataSource.username = \w/) }
   it { should_not contain(/dataSource.password = \w/) }
 end
