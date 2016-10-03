@@ -21,6 +21,7 @@ default['rundeck']['log_dir'] = '/var/log/chef-rundeck'
 default['rundeck']['tokens_file'] = nil # e.g. '/etc/rundeck/tokens.properties'
 default['rundeck']['use_inbuilt_ssl'] = false # Use inbuilt SSL for rundeck server.
 default['rundeck']['ssl']['port'] = 4443 # Use while using inbuilt SSL
+default['rundeck']['allow_local_https'] = true
 
 # web server configuration
 default['rundeck']['apache-template']['cookbook'] = 'rundeck'
@@ -29,7 +30,9 @@ default['rundeck']['cert']['name'] = node['rundeck']['hostname']
 default['rundeck']['cert']['cookbook'] = 'rundeck'
 default['rundeck']['webcontext'] = '/'
 
-default['rundeck']['grails_server_url'] = "#{node['rundeck']['use_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}"
+# Only set to https if we are using the inbuilt ssl.
+# SSL offloading should pass the X-Forwarded-Proto header as https and leave this a http
+default['rundeck']['grails_server_url'] = "#{node['rundeck']['use_inbuilt_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}"
 default['rundeck']['grails_port'] = node['rundeck']['use_ssl'] ? 443 : 80
 
 default['rundeck']['log_level'] = 'INFO' # ERR,WARN,INFO,VERBOSE,DEBUG
@@ -53,6 +56,7 @@ default['rundeck']['rundeck_databag_users'] = 'users'
 default['rundeck']['rundeck_databag_aclpolicies'] = 'aclpolicies'
 default['rundeck']['rundeck_databag_ldap'] = 'ldap'
 default['rundeck']['rundeck_databag_certs'] = 'certs'
+default['rundeck']['rundeck_databag_rdbms'] = 'rdbms'
 
 # chef-rundeck test what initsystem to use
 if node['init_package'] == 'systemd'
@@ -97,8 +101,6 @@ default['rundeck']['rdbms']['enable'] = 'false'
 default['rundeck']['rdbms']['type'] = 'mysql'
 default['rundeck']['rdbms']['location'] = 'someIPorFQDN'
 default['rundeck']['rdbms']['dbname'] = 'rundeckdb'
-default['rundeck']['rdbms']['dbuser'] = 'rundeckdb'
-default['rundeck']['rdbms']['dbpassword'] = 'Chang3ME'
 default['rundeck']['rdbms']['dialect'] = 'Oracle10gDialect'
 default['rundeck']['rdbms']['port'] = '3306'
 

@@ -5,6 +5,10 @@
 * Support ACL policy file data bag
 * Support SSL certs via data bag
 * Support LDAP bindDn and password via data bag to enable encryption
+* Support RDBMS config via data bag to enable encryption
+* Add CA certs to Java truststore
+* Fix SSL so that CLI works properly and configure SSL offloading to proxy
+* Fix issue with server presenting itself on 127.0.0.1
 
 ## 2.0.12
 * Update template file for 2.6.2
