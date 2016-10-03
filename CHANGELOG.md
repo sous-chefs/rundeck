@@ -1,5 +1,5 @@
 =======
-## 3.0.0 (development version)
+## 3.0.0 
 * Added LWRP User
 * Added LWRP Plugin
 * Support ACL policy file data bag
