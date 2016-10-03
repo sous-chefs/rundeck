@@ -14,8 +14,8 @@ dataSource.driverClassName = oracle.jdbc.driver.OracleDriver
 dataSource.dialect = org.hibernate.dialect.<%= @rundeck[:rdbms][:dialect] %>
   <% end %>
 dataSource.dbCreate=update
-dataSource.username = <%= @rundeck[:rdbms][:dbuser] %>
-dataSource.password = <%= @rundeck[:rdbms][:dbpassword] %>
+dataSource.username = <%= @rundeck_rdbms['dbuser'] %>
+dataSource.password = <%= @rundeck_rdbms['dbpassword'] %>
 <% end %>
 
 <% if @rundeck[:rdbms][:enable] == false %>
@@ -32,7 +32,7 @@ grails.mail.port=<%=@rundeck[:mail][:port] %>
 <% end %>
 grails.mail.default.from=<%=@rundeck[:email] %>
 
-grails.serverURL=<%= @rundeck['grails_server_url'] %>:<%= @rundeck['port'] %>
+grails.serverURL=<%= node['rundeck']['grails_server_url']%><% unless [80,443].include?(node['rundeck']['grails_port'])%>:<%=node['rundeck']['grails_port'].to_s%><% end %>
 
 quartz.props.threadPool.threadCount = <%= @rundeck[:quartz][:threadPoolCount].to_i %>
 

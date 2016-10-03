@@ -1,18 +1,22 @@
-<VirtualHost *:80>
+<% ports = [ 80 ] %>
+<% ports << 443 if node['rundeck']['use_ssl'] %>
+<% ports.each do |port| -%>
+<VirtualHost *:<%= port %>>
         ServerName <%= node['rundeck']['hostname'] %>
         ServerAdmin <%= node['rundeck']['email'] %>
-<% if node['rundeck']['use_ssl'] %>
-        Redirect permanent / https://<%= node['rundeck']['hostname'] %>/
-</VirtualHost>
-
-<VirtualHost *:443>
-        ServerName <%= node['rundeck']['hostname'] %>
-        ServerAdmin <%= node['rundeck']['email'] %>
+<% if node['rundeck']['use_ssl'] && port == 80 %>
+        RewriteEngine On
+<% unless node['rundeck']['allow_local_https'] %>
+        RewriteCond %{REMOTE_ADDR} !^<%= node['ipaddress'] %>$
 <% end %>
+        RewriteRule ^/?(.*) https://<%= node['rundeck']['hostname'] %>/$1 [R=301,L]
+<% end %>
+
         ErrorLog <%= @log_dir %>/rundeck_error.log
         TransferLog <%= @log_dir %>/rundeck_access.log
-<% if node['rundeck']['use_ssl'] %>
 
+<% if node['rundeck']['use_ssl'] && port == 443 %>
+        RequestHeader set X-Forwarded-Proto "https"
         SSLEngine On
         SSLCertificateFile <%= node['apache']['dir'] %>/ssl/<%= node['rundeck']['cert']['name'] %>.crt
         SSLCertificateKeyFile <%= node['apache']['dir'] %>/ssl/<%= node['rundeck']['cert']['name'] %>.key
@@ -20,7 +24,6 @@
         SSLCertificateChainFile <%= node['apache']['dir'] %>/ssl/<%= node['rundeck']['cert']['ca_name'] %>.crt
 <% end %>
 <% end %>
-
         DocumentRoot <%= @doc_root %>
         ServerSignature On
         
@@ -56,3 +59,5 @@
         </Location>
         
 </VirtualHost>
+
+<% end -%>

@@ -1,0 +1,7 @@
+{
+  "id" : "rdbms",
+  "rdbms" : {
+    "dbuser" : "rundeckdb",
+    "dbpassword" : "Chang3ME"
+  }
+}

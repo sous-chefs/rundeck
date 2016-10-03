@@ -57,7 +57,7 @@ RDECK_JVM="$RDECK_JVM <%= @rundeck[:custom_jvm_properties]%>"
 export RDECK_JVM="$RDECK_JVM -Drundeck.ssl.config=<%=@rundeck[:configdir]%>/ssl/ssl.properties -Dserver.https.port=${RDECK_HTTPS_PORT}"
 <% end %>
 
-export RDECK_SSL_OPTS="-Djavax.net.ssl.trustStore=<%= @rundeck[:configdir] %>/ssl/truststore -Djavax.net.ssl.trustStoreType=jks -Djava.protocol.handler.pkgs=com.sun.net.ssl.internal.www.protocol"
+#export RDECK_SSL_OPTS="-Djavax.net.ssl.trustStore=<%= @rundeck[:configdir] %>/ssl/truststore -Djavax.net.ssl.trustStoreType=jks -Djava.protocol.handler.pkgs=com.sun.net.ssl.internal.www.protocol"
 
 if test -t 0 -a -z "$RUNDECK_CLI_TERSE"
 then
