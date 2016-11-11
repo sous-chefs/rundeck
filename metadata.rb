@@ -4,12 +4,13 @@ maintainer_email 'Peter Crossley <peter.crossley@webtrends.com>'
 license          'All rights reserved'
 description      'Installs and configures Rundeck 2.x'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '3.0.0'
+version          '3.1.0'
 depends          'runit'
 depends          'sudo'
 depends          'java'
 depends          'apache2'
 depends          'java-libraries'
+depends          'simple_passenger', '~> 0.4'
 
 %w(debian ubuntu centos suse fedora redhat freebsd windows scientific oracle amazon mac_os_x).each do |os|
   supports os

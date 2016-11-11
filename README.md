@@ -66,6 +66,26 @@ Windows default attributes for all rundeck managed nodes
 * `node['rundeck']['log_level']` - Debug level for rundeck (ERR,WARN,INFO,VERBOSE,DEBUG), default INFO
 * `node['rundeck']['rss_enabled']` - true/false for RSS support
 
+### [better-chef-rundeck](https://github.com/atheiman/better-chef-rundeck)
+
+This integration allows you to use Chef nodes as the resource model source in a Rundeck project's `project.properties`. Find more information in [the better-chef-rundeck README](https://github.com/atheiman/better-chef-rundeck).
+
+The better-chef-rundeck app is run using the [`simple_passenger` cookbook](https://github.com/atheiman/simple-passenger-cookbook), you can find more information on that cookbook and its attributes in the README.
+
+By default, the app will search the Chef server the node is bootstrapped to using `/etc/chef/client.rb` for config. To specify a different Chef config file, set the `BCR_CHEF_CONFIG` environment variable in the Passengerfile using this Chef attribute:
+
+```json
+{
+  "passenger": {
+    "passengerfile": {
+      "envvars": {
+        "BCR_CHEF_CONFIG": "/path/to/knife.rb"
+      }
+    }
+  }
+}
+```
+
 ### chef-rundeck
 Chef rundeck integration service attributes
 
@@ -171,7 +191,7 @@ Custom Configuration
 
 * Custom framework configuration (**framework.properties**) can be specified using `node['rundeck']['custom_framework_config']['<custom _configuration>']`
 * Custom rundeck configuration (**rundeck-config.properties**) can be specified using `node['rundeck']['custom_rundeck_config']['<custom _configuration>']`
-* Custom JVM properties (**profile**) can be specfied using `node['rundeck']['custom_jvm_properties']` 
+* Custom JVM properties (**profile**) can be specfied using `node['rundeck']['custom_jvm_properties']`
 
 > Note: Using custom configuration is for advanced users.
 
@@ -343,7 +363,7 @@ Rundeck Role ACL Policy
 ------------------
 A default role acl policy is supported out of the box.  You can add new acl policy files in to the configuration directory (`node['rundeck']['configdir']`)
 
-[Rundeck role acl policy definitions](http://rundeck.org/docs/administration/role-based-access-control.html).  
+[Rundeck role acl policy definitions](http://rundeck.org/docs/administration/role-based-access-control.html).
 
 
 
