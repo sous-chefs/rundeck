@@ -34,7 +34,9 @@ else
 end
 
 rundeck_ldap = node['rundeck']['ldap']
-aclpolicies = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_aclpolicies'])
+if node['rundeck']['rundeck_databag_aclpolicies']
+  aclpolicies = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_aclpolicies'])
+end
 
 case node['platform_family']
 when 'rhel'
