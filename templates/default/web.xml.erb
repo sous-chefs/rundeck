@@ -139,10 +139,12 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
+	<% if @rundeck_version.split('.').last.to_i > 9%>
 	<filter>
 		<filter-name>AssetPipelineFilter</filter-name>
 		<filter-class>asset.pipeline.grails.AssetPipelineFilter</filter-class>
 	</filter>
+	<%end%>
 	<filter>
 		<filter-name>urlMapping</filter-name>
 		<filter-class>org.codehaus.groovy.grails.web.mapping.filter.UrlMappingsFilter</filter-class>
