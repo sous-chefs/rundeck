@@ -45,6 +45,7 @@ Linux default attributes for all rundeck managed nodes and server
 * `node['rundeck']['rundeck_databag_secure']` - Rundeck secure data bag item for all keys and passwords, default 'secure'
 * `node['rundeck']['rundeck_databag']` - Rundeck configuration data bag for secure data, default 'rundeck'
 * `node['rundeck']['rundeck_projects_databag']` - Rundeck project configuration data bag.  Used for project creating and chef-rundeck.  default 'rundeck_projects'
+* `node['rundeck']['rundeck_databag_aclpolicies']` - Aclpolicies databag. Default is 'nil'. Example aclpolicy databag can be found in `test/integration/default/data_bags/rundeck/aclpolicies.json`
 * `node['rundeck']['session_timeout']` - Number of minutes a rundeck session will last, before having to login again, default '30'
 
 * `node['rundeck']['use_ssl']` - Whether or not to use SSL for the apache vhost, default false

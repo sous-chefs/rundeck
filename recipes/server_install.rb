@@ -34,7 +34,9 @@ else
 end
 
 rundeck_ldap = node['rundeck']['ldap']
-aclpolicies = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_aclpolicies'])
+if node['rundeck']['rundeck_databag_aclpolicies']
+  aclpolicies = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_aclpolicies'])
+end
 
 case node['platform_family']
 when 'rhel'
@@ -44,6 +46,8 @@ when 'rhel'
     gpgcheck false
     action :add
   end
+
+  rundeck_version = node['rundeck']['rpm']['version'].split('-')[1]
 
   package 'rundeck' do
     version node['rundeck']['rpm']['version']
@@ -57,6 +61,8 @@ else
     checksum node['rundeck']['checksum']
     mode '0644'
   end
+
+  rundeck_version = node['rundeck']['deb']['package'].split('-')[1]
 
   package node['rundeck']['url'] do
     action :install
@@ -133,6 +139,9 @@ end
 template "#{node['rundeck']['basedir']}/exp/webapp/WEB-INF/web.xml" do
   owner node['rundeck']['user']
   group node['rundeck']['group']
+  variables(
+    rundeck_version: rundeck_version
+  )
   source 'web.xml.erb'
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
