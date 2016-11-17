@@ -47,7 +47,7 @@ when 'rhel'
     action :add
   end
 
-  rundeck_version = node['rundeck']['rpm']['version'].split("-")[1]
+  rundeck_version = node['rundeck']['rpm']['version'].split('-')[1]
 
   package 'rundeck' do
     version node['rundeck']['rpm']['version']
@@ -62,7 +62,7 @@ else
     mode '0644'
   end
 
-  rundeck_version = node['rundeck']['deb']['package'].split("-")[1]
+  rundeck_version = node['rundeck']['deb']['package'].split('-')[1]
 
   package node['rundeck']['url'] do
     action :install
@@ -140,7 +140,7 @@ template "#{node['rundeck']['basedir']}/exp/webapp/WEB-INF/web.xml" do
   owner node['rundeck']['user']
   group node['rundeck']['group']
   variables(
-     rundeck_version: rundeck_version
+    rundeck_version: rundeck_version
   )
   source 'web.xml.erb'
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
