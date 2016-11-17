@@ -83,6 +83,13 @@ default['rundeck']['chef_url'] = "https://chef.#{node['domain']}"
 default['rundeck']['chef_configdir'] = '/etc/chef'
 default['rundeck']['project_config'] = "#{node['rundeck']['chef_configdir']}/chef-rundeck.json"
 
+# better-chef-rundeck integration
+default['passenger']['git_repo'] = 'https://github.com/atheiman/better-chef-rundeck.git'
+default['passenger']['app_name'] = 'better-chef-rundeck'
+default['passenger']['user'] = 'rundeck'
+default['passenger']['group'] = 'rundeck'
+default['passenger']['passengerfile']['port'] = 8080
+
 # SMTP settings for rundeck notification emails
 default['rundeck']['mail']['enable'] = false
 default['rundeck']['mail']['host'] = 'localhost'
