@@ -1,5 +1,9 @@
 =======
-## 3.0.0 (development version)
+## 3.0.1
+* Fixed issue #104 (ACL databag not being handled)
+* Support for backward compatibility of Rundeck.
+
+## 3.0.0
 * Added LWRP User
 * Added LWRP Plugin
 * Support ACL policy file data bag
