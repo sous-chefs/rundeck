@@ -50,7 +50,13 @@ when 'rhel'
   rundeck_version = node['rundeck']['rpm']['version'].split('-')[1]
 
   package 'rundeck' do
-    version node['rundeck']['rpm']['version']
+    version node['rundeck']['rpm']['version'].split('-')[1, 2].join('-')
+    action :install
+  end
+
+  package 'rundeck-config' do
+    version node['rundeck']['rpm']['version'].split('-')[1, 2].join('-')
+    allow_downgrade true
     action :install
   end
 else
