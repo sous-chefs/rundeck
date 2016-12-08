@@ -18,3 +18,8 @@ services:
 
 script:
 - bundle exec ./.travis.sh
+
+matrix:
+  allow_failures:
+  - env: SUITE=lint
+  fast_finish: true
