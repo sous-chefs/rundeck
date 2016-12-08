@@ -1,28 +1,20 @@
-# Use Travis's cointainer based infrastructure
-sudo: false
-addons:
-  apt:
-    sources:
-      - chef-current-precise
-    packages:
-      - chefdk
+language: ruby
 
-# Don't `bundle install`
-install: echo "skip bundle install"
+sudo: required
 
-branches:
-  only:
-    - master
+dist: trusty
 
-# Ensure we make ChefDK's Ruby the default
-before_script:
-  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
-  # We have to install chef-sugar for ChefSpec
-  - /opt/chefdk/embedded/bin/chef gem install chef-sugar
+rvm:
+- 2.3.1
+
+env:
+- SUITE=chefspec
+- SUITE=lint
+- SUITE=centos
+- SUITE=ubuntu
+
+services:
+- docker
+
 script:
-  - /opt/chefdk/embedded/bin/chef --version
-  - /opt/chefdk/embedded/bin/rubocop --version
-  - /opt/chefdk/embedded/bin/rubocop
-  - /opt/chefdk/embedded/bin/foodcritic --version
-  - /opt/chefdk/embedded/bin/foodcritic . --exclude spec
-  - /opt/chefdk/embedded/bin/rspec spec
+- bundle exec ./.travis.sh
