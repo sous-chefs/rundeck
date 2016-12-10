@@ -1,24 +1,4 @@
 ---
 driver:
   name: docker
-
-platforms:
-  - name: centos-6.8
-  - name: ubuntu-14.04
-    run_list:
-      - recipe[apt]
-
-suites:
-  - name: default
-    run_list:
-      - recipe[rundeck]
-      - recipe[rundeck::server]
-      - recipe[create_chef_dir]
-      - recipe[rundeck::chef-rundeck]
-    attributes:
-      rundeck:
-        hostname: localhost
-        security_roles:
-          - superusers
-          - run_only_users
-      domain: kitchentest
+  privileged: true
