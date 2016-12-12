@@ -1,0 +1,6 @@
+{
+  "id": "certs",
+  "description": "ssl / tls certificate and private key",
+  "cert": "-----BEGIN CERTIFICATE-----\ncertificate-data\n-----END CERTIFICATE-----\n",
+  "key": "-----BEGIN RSA PRIVATE KEY-----\nprivate-key-data\n-----END RSA PRIVATE KEY-----\n"
+}
