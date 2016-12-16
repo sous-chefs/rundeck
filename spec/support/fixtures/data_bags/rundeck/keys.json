@@ -1,0 +1,20 @@
+{
+  "id": "keys",
+  "keys":{
+    "my_password_key.txt":{
+      "path": "rundeck",
+      "type": "password",
+      "content" : "my_password"
+    },
+    "my_private_key.pem":{
+      "path": "rundeck",
+      "type": "private",
+      "content" : "5c:a2:77:1b:6a:45:0c:af:e4:aa:c3:91:b2:7e:ab:"
+    },
+    "my_public_key.pgp":{
+      "path":"rundeck",
+      "type":"public",
+      "content": "mQINBEur2SoBEAC3dtJdKEh+fmH4Lc4U69bq8GcDzyYqbSD"
+    }
+  }
+}
