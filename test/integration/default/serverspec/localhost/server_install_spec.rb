@@ -20,6 +20,13 @@ describe file('/var/lib/rundeck') do
   it { should be_grouped_into 'rundeck' }
 end
 
+describe file('/var/lib/rundeck/logs') do
+  it { should be_directory }
+  it { should exist }
+  it { should be_owned_by 'rundeck' }
+  it { should be_grouped_into 'rundeck' }
+end
+
 describe file('/var/lib/rundeck/projects') do
   it { should be_directory }
   it { should exist }
