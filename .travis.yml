@@ -10,8 +10,10 @@ rvm:
 env:
   - SUITE=chefspec
   - SUITE=lint
-  - SUITE=centos
-  - SUITE=ubuntu
+  - SUITE=centos-6
+  - SUITE=centos-7
+  - SUITE=ubuntu-1404
+  - SUITE=ubuntu-1604
 
 services:
   - docker
@@ -22,6 +24,7 @@ script:
 matrix:
   allow_failures:
     - env: SUITE=lint
-      fast_finish: true
-    - env: SUITE=ubuntu
-      fast_finish: true
+    # We are allowing failure for Ubuntu 16. It keeps saying /sbin/status
+    # doesn't exist when trying to restart the service rundeckd
+    - env: SUITE=ubuntu-1604
+  fast_finish: true
