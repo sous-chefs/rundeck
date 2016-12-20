@@ -9,7 +9,6 @@ lint)
   rubocop --lint --display-style-guide --extra-details --display-cop-names
   ;;
 *)
-  echo unknown suite
-  exit 1
+  rake integration:docker[test,"$SUITE",2]
   ;;
 esac

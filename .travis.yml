@@ -5,16 +5,23 @@ sudo: required
 dist: trusty
 
 rvm:
-- 2.3.1
+  - 2.3.1
 
 env:
-- SUITE=chefspec
-- SUITE=lint
+  - SUITE=chefspec
+  - SUITE=lint
+  - SUITE=centos
+  - SUITE=ubuntu
+
+services:
+  - docker
 
 script:
-- bundle exec ./.travis.sh
+  - bundle exec ./.travis.sh
 
 matrix:
   allow_failures:
-  - env: SUITE=lint
-  fast_finish: true
+    - env: SUITE=lint
+      fast_finish: true
+    - env: SUITE=ubuntu
+      fast_finish: true
