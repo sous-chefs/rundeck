@@ -5,16 +5,26 @@ sudo: required
 dist: trusty
 
 rvm:
-- 2.3.1
+  - 2.3.1
 
 env:
-- SUITE=chefspec
-- SUITE=lint
+  - SUITE=chefspec
+  - SUITE=lint
+  - SUITE=centos-6
+  - SUITE=centos-7
+  - SUITE=ubuntu-1404
+  - SUITE=ubuntu-1604
+
+services:
+  - docker
 
 script:
-- bundle exec ./.travis.sh
+  - bundle exec ./.travis.sh
 
 matrix:
   allow_failures:
-  - env: SUITE=lint
+    - env: SUITE=lint
+    # We are allowing failure for Ubuntu 16. It keeps saying /sbin/status
+    # doesn't exist when trying to restart the service rundeckd
+    - env: SUITE=ubuntu-1604
   fast_finish: true
