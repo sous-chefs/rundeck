@@ -18,11 +18,30 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[rundeck_fixtures]
       - recipe[rundeck::server]
-      - recipe[create_chef_dir]
       - recipe[rundeck::chef-rundeck]
     attributes:
       rundeck:
+        user_home: '/var/lib/rundeck'
+        hostname: localhost
+        security_roles:
+          - superusers
+          - run_only_users
+      domain: kitchentest
+
+  - name: better_chef_rundeck
+    data_bags_path: "test/integration/default/data_bags"
+    run_list:
+      - recipe[rundeck_fixtures]
+      - recipe[rundeck::server]
+      - recipe[rundeck::chef-rundeck]
+      - recipe[rundeck_fixtures::chef_zero]
+    attributes:
+      rundeck:
+        better_chef_rundeck: true
+        chef_url: http://localhost:8089
+        user_home: '/var/lib/rundeck'
         hostname: localhost
         security_roles:
           - superusers

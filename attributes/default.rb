@@ -139,3 +139,15 @@ default['rundeck']['ldap']['supplementalroles'] = node['rundeck']['default_role'
 # Plugins
 default['rundeck']['plugins']['slack']['url'] = 'https://github.com/higanworks/rundeck-slack-incoming-webhook-plugin/releases/download/v0.6.dev/rundeck-slack-incoming-webhook-plugin-0.6.jar'
 default['rundeck']['plugins']['slack']['checksum'] = 'd23b31ec4791dff1a7051f1f012725f20a1e3e9f85f64a874115e46df77e00b5'
+
+default['rundeck']['better_chef_rundeck'] = false
+default['rundeck']['better_chef_rundeck_url'] = 'http://localhost:4000'
+
+# Attribute for passenger cookbook
+default['passenger']['git_repo'] = 'https://github.com/atheiman/better-chef-rundeck.git'
+default['passenger']['passengerfile']['port'] = 4000
+default['passenger']['app_name'] = 'better-chef-rundeck'
+default['passenger']['passengerfile']['log_file'] = '/var/log/better-chef-rundeck.log'
+default['passenger']['user'] = 'rundeck'
+default['passenger']['group'] = 'rundeck'
+default['passenger']['passengerfile']['envvars']['BCR_CHEF_CONFIG'] = '/etc/chef/rundeck.rb'
