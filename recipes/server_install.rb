@@ -92,6 +92,12 @@ directory node['rundeck']['basedir'] do
   recursive true
 end
 
+directory node['rundeck']['exec_logdir'] do
+  owner node['rundeck']['user']
+  group node['rundeck']['group']
+  recursive true
+end
+
 directory "#{node['rundeck']['basedir']}/projects" do
   owner node['rundeck']['user']
   group node['rundeck']['group']
