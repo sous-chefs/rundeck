@@ -202,7 +202,7 @@ framework.ssh.keypath = <%= @rundeck[:basedir] %>/.ssh/id_rsa
 #
 # ssh user
 #
-framework.ssh.user = <%= @rundeck[:user] %>
+framework.ssh.user = <%= @rundeck['framework.ssh.user'] || @rundeck[:user] %>
 
 
 #
