@@ -1,4 +1,5 @@
 require 'serverspec'
+load '/tmp/kitchen/cookbooks/rundeck/libraries/rundeck_api_client.rb'
 
 set :backend, :exec
 

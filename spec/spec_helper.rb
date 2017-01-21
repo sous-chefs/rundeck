@@ -1,5 +1,6 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
+require_relative '../libraries/rundeck_api_client'
 
 current_dir = File.dirname(File.expand_path(__FILE__))
 
