@@ -3,7 +3,7 @@
   "description": "Rundeck users",
   "users": {
     "admin" : {
-      "password": "admin",
+      "password": "adminpassword",
       "groups": [ "admin", "user", "architect", "deploy", "build" ]
     },
     "n00b": {
