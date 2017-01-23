@@ -97,7 +97,7 @@ default['rundeck']['mail']['password'] = ''
 default['rundeck']['secret_file'] = nil
 
 # External Database properties
-default['rundeck']['rdbms']['enable'] = 'false'
+default['rundeck']['rdbms']['enable'] = false
 default['rundeck']['rdbms']['type'] = 'mysql'
 default['rundeck']['rdbms']['location'] = 'someIPorFQDN'
 default['rundeck']['rdbms']['dbname'] = 'rundeckdb'
