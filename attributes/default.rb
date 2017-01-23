@@ -137,5 +137,5 @@ default['rundeck']['ldap']['reportstatistics'] = true
 default['rundeck']['ldap']['supplementalroles'] = node['rundeck']['default_role']
 
 # Plugins
-default['rundeck']['plugins']['slack']['url'] = 'https://github.com/higanworks/rundeck-slack-incoming-webhook-plugin/releases/download/v0.3.dev/rundeck-slack-incoming-webhook-plugin-0.3.jar'
-default['rundeck']['plugins']['slack']['checksum'] = '499b9d00278b775ac56cec0f717dcebfcac7aa1b3b68fc804e311d9818d695d1'
+default['rundeck']['plugins']['slack']['url'] = 'https://github.com/higanworks/rundeck-slack-incoming-webhook-plugin/releases/download/v0.6.dev/rundeck-slack-incoming-webhook-plugin-0.6.jar'
+default['rundeck']['plugins']['slack']['checksum'] = 'd23b31ec4791dff1a7051f1f012725f20a1e3e9f85f64a874115e46df77e00b5'
