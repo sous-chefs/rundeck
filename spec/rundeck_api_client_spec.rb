@@ -27,6 +27,16 @@ describe RundeckApiClient do
     end
   end
 
+  describe "#{described_class.name}#connect" do
+    it 'returns an authenticated api client' do
+      expect(described_class).to receive(:new).with(rundeck_server_url, 'user', a: 'A').and_call_original
+      expect_any_instance_of(described_class).to receive(:authenticate).with('pass')
+      expect(
+        described_class.connect(rundeck_server_url, 'user', 'pass', a: 'A')
+      ).to be_an_instance_of(described_class)
+    end
+  end
+
   describe '#prep_req' do
     let(:reqs) do
       [
@@ -102,7 +112,7 @@ describe RundeckApiClient do
     end
 
     context 'HTTP Server error (5xx)' do
-      include_examples 'RundeckApiClient#send_req HTTP Error', Net::HTTPClientError
+      include_examples 'RundeckApiClient#send_req HTTP Error', Net::HTTPServerError
     end
   end
 
@@ -131,16 +141,22 @@ describe RundeckApiClient do
   end
 
   describe '#http' do
-    it 'returns an HTTP connection object' do
-      http = client.http
-      expect(http.use_ssl?).to be false
-      expect(http.verify_mode).to eql(0)
-      expect(http).to be_an_instance_of(Net::HTTP)
+    context 'http server url' do
+      it 'returns an HTTP connection object without ssl' do
+        http = client.http
+        expect(http.use_ssl?).to be false
+        expect(http.verify_mode).to be_zero
+        expect(http).to be_an_instance_of(Net::HTTP)
+      end
+    end
 
-      https = described_class.new('https://secure.rundeck', 'user').http
-      expect(https.use_ssl?).to be true
-      expect(https.verify_mode).to eql(OpenSSL::SSL::VERIFY_PEER)
-      expect(https).to be_an_instance_of(Net::HTTP)
+    context 'https server url' do
+      it 'returns an HTTP connection object with ssl' do
+        http = described_class.new('https://server.com', 'user').http
+        expect(http.use_ssl?).to be true
+        expect(http.verify_mode).to eql(OpenSSL::SSL::VERIFY_PEER)
+        expect(http).to be_an_instance_of(Net::HTTP)
+      end
     end
   end
 
