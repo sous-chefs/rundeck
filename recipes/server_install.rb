@@ -50,13 +50,12 @@ when 'rhel'
 
   rundeck_version = node['rundeck']['rpm']['version'].split('-')[1]
 
-  package 'rundeck' do
-    version node['rundeck']['rpm']['version']
+  yum_package 'rundeck' do
     version node['rundeck']['rpm']['version'].split('-')[1, 2].join('-')
     action :install
   end
 
-  package 'rundeck-config' do
+  yum_package 'rundeck-config' do
     version node['rundeck']['rpm']['version'].split('-')[1, 2].join('-')
     allow_downgrade true
     action :install
@@ -141,12 +140,13 @@ file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
-cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.3.1.jar" do
+cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.3.3.jar" do
   owner node['rundeck']['user']
   group node['rundeck']['group']
   mode '0644'
   backup false
-  source 'rundeck-winrm-plugin-1.3.1.jar'
+  source 'rundeck-winrm-plugin-1.3.3.jar'
+  checksum 'dac57210e7a782d574621d5df27517bed4f58ebb54a40b9adab435333a5a5133'
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
