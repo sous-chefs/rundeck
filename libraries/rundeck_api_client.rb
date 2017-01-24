@@ -20,6 +20,15 @@ class RundeckApiClient
     send_req(req)
   end
 
+  # wrapper around constructor and authentication
+  # nothing can be done via the api without authenticating, so this method is
+  # the preferred way to initialize a client
+  def self.connect(rundeck_server_url, user, pass, opts={})
+    client = new(rundeck_server_url, user, opts)
+    client.authenticate(pass)
+    client
+  end
+
   def prep_req(req)
     req['User-Agent'] = 'RundeckApiClient'
     req['Content-Type'] = 'application/json'
