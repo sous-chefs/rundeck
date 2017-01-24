@@ -68,7 +68,7 @@ describe file('/var/lib/rundeck/.ssh/id_rsa') do
   it { should contain(/\W/) }
 end
 
-describe file('/var/lib/rundeck/libext/rundeck-winrm-plugin-1.3.1.jar') do
+describe file('/var/lib/rundeck/libext/rundeck-winrm-plugin-1.3.3.jar') do
   it { should be_file }
   it { should exist }
   it { should be_owned_by 'rundeck' }

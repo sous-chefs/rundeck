@@ -120,7 +120,7 @@ Distribute to all systems that will work with rundeck via a recipe and set the p
 
 * `node['rundeck']['secret_file']` - default 'nil'
 
-* `node['rundeck']['rdbms']['enable']` - enable RDBMS support, default 'false'
+* `node['rundeck']['rdbms']['enable']` - enable RDBMS support, default false
 * `node['rundeck']['rdbms']['type']` - database type, default 'mysql'
 
 Common RDBMS Configuration
