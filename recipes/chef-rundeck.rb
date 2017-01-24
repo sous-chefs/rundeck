@@ -71,40 +71,38 @@ file "#{node['rundeck']['log_dir']}/server.log" do
   action :create_if_missing
 end
 
-if node['rundeck']['chef_rundeck_use_systemd']
-  template '/etc/systemd/system/chef-rundeck.service' do
-    source 'chef-rundeck-systemd.conf.erb'
-    variables(
-      user: node['rundeck']['user'],
-      log_dir: node['rundeck']['log_dir'],
-      chef_config: node['rundeck']['chef_config'],
-      chef_webui_url: node['rundeck']['chef_webui_url'],
-      project_config: node['rundeck']['project_config'],
-      chef_rundeck_host: node['rundeck']['chef_rundeck_host'],
-      chef_rundeck_port: node['rundeck']['chef_rundeck_port'],
-      chef_rundeck_cachetime: node['rundeck']['chef_rundeck_cachetime'],
-      chef_rundeck_partial_search: node['rundeck']['chef_rundeck_partial_search']
-    )
-    notifies :restart, 'service[chef-rundeck]'
-  end
+template '/etc/systemd/system/chef-rundeck.service' do
+  source 'chef-rundeck-systemd.conf.erb'
+  variables(
+    user: node['rundeck']['user'],
+    log_dir: node['rundeck']['log_dir'],
+    chef_config: node['rundeck']['chef_config'],
+    chef_webui_url: node['rundeck']['chef_webui_url'],
+    project_config: node['rundeck']['project_config'],
+    chef_rundeck_host: node['rundeck']['chef_rundeck_host'],
+    chef_rundeck_port: node['rundeck']['chef_rundeck_port'],
+    chef_rundeck_cachetime: node['rundeck']['chef_rundeck_cachetime'],
+    chef_rundeck_partial_search: node['rundeck']['chef_rundeck_partial_search']
+  )
+  only_if { node['rundeck']['chef_rundeck_use_systemd'] }
+  notifies :restart, 'service[chef-rundeck]'
 end
 
-if node['rundeck']['chef_rundeck_use_upstart']
-  template '/etc/init/chef-rundeck.conf' do
-    source 'chef-rundeck.conf.erb'
-    variables(
-      user: node['rundeck']['user'],
-      log_dir: node['rundeck']['log_dir'],
-      chef_config: node['rundeck']['chef_config'],
-      chef_webui_url: node['rundeck']['chef_webui_url'],
-      project_config: node['rundeck']['project_config'],
-      chef_rundeck_host: node['rundeck']['chef_rundeck_host'],
-      chef_rundeck_port: node['rundeck']['chef_rundeck_port'],
-      chef_rundeck_cachetime: node['rundeck']['chef_rundeck_cachetime'],
-      chef_rundeck_partial_search: node['rundeck']['chef_rundeck_partial_search']
-    )
-    notifies :restart, 'service[chef-rundeck]'
-  end
+template '/etc/init/chef-rundeck.conf' do
+  source 'chef-rundeck.conf.erb'
+  variables(
+    user: node['rundeck']['user'],
+    log_dir: node['rundeck']['log_dir'],
+    chef_config: node['rundeck']['chef_config'],
+    chef_webui_url: node['rundeck']['chef_webui_url'],
+    project_config: node['rundeck']['project_config'],
+    chef_rundeck_host: node['rundeck']['chef_rundeck_host'],
+    chef_rundeck_port: node['rundeck']['chef_rundeck_port'],
+    chef_rundeck_cachetime: node['rundeck']['chef_rundeck_cachetime'],
+    chef_rundeck_partial_search: node['rundeck']['chef_rundeck_partial_search']
+  )
+  only_if { node['rundeck']['chef_rundeck_use_upstart'] }
+  notifies :restart, 'service[chef-rundeck]'
 end
 
 if node['rundeck']['chef_rundeck_use_runit']

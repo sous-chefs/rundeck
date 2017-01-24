@@ -1,3 +1,4 @@
+use_inline_resources
 #
 # Cookbook Name:: rundeck
 # Provider:: user
@@ -45,7 +46,7 @@ action :remove do
         new_resource.updated_by_last_action(true)
         ::File.open(::File.join(node['rundeck']['configdir'], 'realm.properties'), 'r') do |fp|
           newcontent = ''
-          while line = fp.readline
+          while line = fp.readline # rubocop:disable Lint/AssignmentInCondition
             newcontent << line unless fp.gets =~ /^#{new_resource.name}: /
           end
         end
@@ -67,7 +68,7 @@ action :update do
         new_resource.updated_by_last_action(true)
         ::File.open(::File.join(node['rundeck']['configdir'], 'realm.properties'), 'r') do |fp|
           newcontent = ''
-          while line = fp.readline
+          while line = fp.readline # rubocop:disable Lint/AssignmentInCondition
             newcontent << fp.gets.match(/^#{new_resource.name}: /) ? new_auth_line : line
           end
         end

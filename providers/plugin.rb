@@ -1,3 +1,4 @@
+use_inline_resources
 #
 # Cookbook Name:: rundeck
 # Provider:: plugin
