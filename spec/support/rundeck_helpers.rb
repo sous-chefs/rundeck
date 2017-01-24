@@ -1,6 +1,6 @@
 require 'json'
 
-def rundeck_stubs(node, server)
+def rundeck_stubs(_node, server)
   allow(Chef::EncryptedDataBagItem).to receive(:load_secret).with(/rundeck/).and_return('1234')
   # stub all possible data bag calls based on fixtures/data_bags
   # https://github.com/sethvargo/chefspec#data-bag--data-bag-item
