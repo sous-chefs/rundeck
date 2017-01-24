@@ -1,13 +1,24 @@
 require 'spec_helper'
 
 describe RundeckApiClient do
-  let(:rundeck_server_url) { 'http://rundeck.url' }
+  let(:http_dbl) { instance_double(Net::HTTP) }
   let(:client) do
-    described_class.new(rundeck_server_url, 'username', 'verify_mode' => 0)
+    described_class.new('http://rundeck.url', 'username', 'S3cur3_P@55w0rd', 'verify_mode' => 0)
+  end
+
+  before do
+    # authenticate is called from constructor, so stub it
+    allow_any_instance_of(described_class).to receive(:authenticate)
+
+    # dont send actual http requests
+    allow(http_dbl).to receive(:request).and_return(instance_double(Net::HTTPSuccess))
+    allow_any_instance_of(described_class).to receive(:http).and_return(http_dbl)
   end
 
   describe '#initialize' do
-    it 'returns an api client' do
+    it 'returns an authenticated api client' do
+      expect_any_instance_of(described_class).to receive(:authenticate)
+
       expect(client).to be_an_instance_of(described_class)
       expect(client.instance_variable_get('@rundeck_server_url')).to eq('http://rundeck.url')
       expect(client.instance_variable_get('@user')).to eq('username')
@@ -23,6 +34,10 @@ describe RundeckApiClient do
           '/j_security_check?j_username=username&j_password=S3cur3_P%4055w0rd'
         )
       end
+
+      # unstub authenticate
+      allow_any_instance_of(described_class).to receive(:authenticate).and_call_original
+
       client.authenticate('S3cur3_P@55w0rd')
     end
   end
@@ -102,7 +117,7 @@ describe RundeckApiClient do
     end
 
     context 'HTTP Server error (5xx)' do
-      include_examples 'RundeckApiClient#send_req HTTP Error', Net::HTTPClientError
+      include_examples 'RundeckApiClient#send_req HTTP Error', Net::HTTPServerError
     end
   end
 
@@ -131,16 +146,27 @@ describe RundeckApiClient do
   end
 
   describe '#http' do
-    it 'returns an HTTP connection object' do
-      http = client.http
-      expect(http.use_ssl?).to be false
-      expect(http.verify_mode).to eql(0)
-      expect(http).to be_an_instance_of(Net::HTTP)
+    before do
+      # unstub http
+      allow_any_instance_of(described_class).to receive(:http).and_call_original
+    end
 
-      https = described_class.new('https://secure.rundeck', 'user').http
-      expect(https.use_ssl?).to be true
-      expect(https.verify_mode).to eql(OpenSSL::SSL::VERIFY_PEER)
-      expect(https).to be_an_instance_of(Net::HTTP)
+    context 'http server url' do
+      it 'returns an HTTP connection object without ssl' do
+        http = client.http
+        expect(http.use_ssl?).to be false
+        expect(http.verify_mode).to be_zero
+        expect(http).to be_an_instance_of(Net::HTTP)
+      end
+    end
+
+    context 'https server url' do
+      it 'returns an HTTP connection object with ssl' do
+        http = described_class.new('https://server.com', 'user', 'pass').http
+        expect(http.use_ssl?).to be true
+        expect(http.verify_mode).to eql(OpenSSL::SSL::VERIFY_PEER)
+        expect(http).to be_an_instance_of(Net::HTTP)
+      end
     end
   end
 

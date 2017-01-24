@@ -3,10 +3,14 @@ require 'net/http'
 require 'openssl'
 
 class RundeckApiClient
-  def initialize(rundeck_server_url, user, opts={})
+  def initialize(rundeck_server_url, user, pass, opts={})
     @rundeck_server_url, @user, = rundeck_server_url, user
+
     # convert all opts keys to symbols
     @opts = opts.each_with_object({}) { |(k,v), h| h[k.to_sym] = v }
+
+    # the api only responds to authenticated clients, so call it from the constructor
+    authenticate(pass)
   end
 
   # POST auth GET params to auth endpoint
