@@ -22,15 +22,13 @@ require 'json'
 include_recipe 'rundeck::default'
 include_recipe 'rundeck::chef_server_config'
 
-bags = data_bag(node['rundeck']['rundeck_projects_databag'])
 projects = {}
-bags.each do |project|
-  pdata = data_bag_item(node['rundeck']['rundeck_projects_databag'], project)
-  projects[project] = {
-    'pattern' => pdata['pattern'],
-    'username' => pdata['username'],
-    'hostname' => pdata['hostname'],
-    'attributes' => pdata['attributes']
+node.run_state['rundeck']['projects'].each do |project_name,data_bag_item_contents|
+  projects[project_name] = {
+    'pattern' => data_bag_item_contents['pattern'],
+    'username' => data_bag_item_contents['username'],
+    'hostname' => data_bag_item_contents['hostname'],
+    'attributes' => data_bag_item_contents['attributes']
   }
 end
 

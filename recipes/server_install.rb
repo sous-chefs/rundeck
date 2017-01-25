@@ -19,24 +19,11 @@
 
 include_recipe 'rundeck::default'
 
-if node['rundeck']['secret_file'].nil?
-  rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
-  rundeck_users = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_users'])
-  rundeck_rdbms = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_rdbms'])
-else
-  rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
-  rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
-  rundeck_users = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_users'], rundeck_secret)
-  rundeck_rdbms = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_rdbms'], rundeck_secret)
-  rundeck_ldap_databag = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_ldap'], rundeck_secret)
-  rundeck_ldap_bind_dn = rundeck_ldap_databag['binddn']
-  rundeck_ldap_bind_pwd = rundeck_ldap_databag['bindpwd']
+if node.run_state['rundeck']['data_bag']['ldap']
+  rundeck_ldap_bind_dn = node.run_state['rundeck']['data_bag']['ldap']['binddn']
+  rundeck_ldap_bind_pwd = node.run_state['rundeck']['data_bag']['ldap']['bindpwd']
 end
-
 rundeck_ldap = node['rundeck']['ldap']
-if node['rundeck']['rundeck_databag_aclpolicies']
-  aclpolicies = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_aclpolicies'])
-end
 
 case node['platform_family']
 when 'rhel'
@@ -135,8 +122,8 @@ file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
   group node['rundeck']['group']
   mode '0600'
   backup false
-  content rundeck_secure['private_key']
-  only_if { !rundeck_secure['private_key'].nil? }
+  content node.run_state['rundeck']['data_bag']['secure']['private_key']
+  only_if { node.run_state['rundeck']['data_bag']['secure']['private_key'] }
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
 
@@ -189,7 +176,7 @@ template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
   source 'rundeck-config.properties.erb'
   variables(
     rundeck: node['rundeck'],
-    rundeck_rdbms: rundeck_rdbms['rdbms']
+    rundeck_rdbms: node.run_state['rundeck']['data_bag']['rdbms']['rdbms']
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
@@ -204,7 +191,7 @@ template "#{node['rundeck']['configdir']}/framework.properties" do
   source 'framework.properties.erb'
   variables(
     rundeck: node['rundeck'],
-    rundeck_users: rundeck_users['users'],
+    rundeck_users: node.run_state['rundeck']['data_bag']['users']['users'],
     rundeck_uuid: node.normal['rundeck']['server']['uuid']
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
@@ -215,18 +202,18 @@ template "#{node['rundeck']['configdir']}/realm.properties" do
   group node['rundeck']['group']
   source 'realm.properties.erb'
   variables(
-    rundeck_users: rundeck_users['users']
+    rundeck_users: node.run_state['rundeck']['data_bag']['users']['users']
   )
 end
 
-unless aclpolicies.nil?
-  aclpolicies['aclpolicies'].each do |aclpolicy_name, aclpolicy|
-    template "#{node['rundeck']['configdir']}/#{aclpolicy_name}.aclpolicy" do
+if node.run_state['rundeck']['data_bag']['aclpolicies']
+  node.run_state['rundeck']['data_bag']['aclpolicies']['aclpolicies'].each do |name, policy|
+    template "#{node['rundeck']['configdir']}/#{name}.aclpolicy" do
       owner node['rundeck']['user']
       group node['rundeck']['group']
       source 'user.aclpolicy.erb'
       variables(
-        aclpolicy: aclpolicy
+        aclpolicy: policy
       )
     end
   end
@@ -243,8 +230,6 @@ service 'rundeckd' do
   action :start
 end
 
-bags = data_bag(node['rundeck']['rundeck_projects_databag'])
-
 puts "chef-rundeck url: #{node['rundeck']['chef_rundeck_url']}"
 
 # Assuming node['rundeck']['plugins'] is a hash containing name=>attributes
@@ -258,32 +243,4 @@ unless node['rundeck']['plugins'].nil?
   end
 end
 
-bags.each do |project|
-  pdata = data_bag_item(node['rundeck']['rundeck_projects_databag'], project)
-  custom = ''
-  unless pdata['project_settings'].nil?
-    pdata['project_settings'].map do |key, val|
-      custom += " --#{key}=#{val}"
-    end
-  end
-
-  cmd = <<-EOH.to_s
-  rd-project -p #{project} -a create \
-  --resources.source.1.type=url \
-  --resources.source.1.config.includeServerNode=true \
-  --resources.source.1.config.generateFileAutomatically=true \
-  --resources.source.1.config.url=#{pdata['chef_rundeck_url'].nil? ? node['rundeck']['chef_rundeck_url'] : pdata['chef_rundeck_url']}/#{project} \
-  --project.resources.file=#{node['rundeck']['datadir']}/projects/#{project}/etc/resources.xml #{custom}
-  EOH
-
-  bash "check-project-#{project}" do
-    user node['rundeck']['user']
-    code cmd.strip
-    # will return 0 if grep matches
-    # only run if project does not exist
-    only_if "rd-jobs -p #{project} list 2>&1 | grep -q '^ERROR .*project does not exist'"
-
-    retries 5
-    retry_delay 15
-  end
-end
+include_recipe 'rundeck::_projects'

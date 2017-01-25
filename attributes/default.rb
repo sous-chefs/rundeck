@@ -28,6 +28,10 @@ default['rundeck']['use_inbuilt_ssl'] = false # Use inbuilt SSL for rundeck serv
 default['rundeck']['ssl']['port'] = 4443 # Use while using inbuilt SSL
 default['rundeck']['allow_local_https'] = true
 
+# Used for connecting to the api to manage resources (projects, etc). This user
+# also needs to be explicitly listed in the users data bag.
+default['rundeck']['admin_user'] = 'admin'
+
 # web server configuration
 default['rundeck']['apache-template']['cookbook'] = 'rundeck'
 default['rundeck']['use_ssl'] = false
