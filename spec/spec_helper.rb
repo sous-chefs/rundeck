@@ -1,6 +1,10 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
+require 'json'
+require 'securerandom'
+require_relative '../libraries/java_properties'
 require_relative '../libraries/rundeck_api_client'
+require_relative '../libraries/rundeck_helper'
 
 current_dir = File.dirname(File.expand_path(__FILE__))
 
