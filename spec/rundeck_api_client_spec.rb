@@ -116,27 +116,206 @@ describe RundeckApiClient do
     end
   end
 
-  describe '#get' do
-    let(:res) { double }
+  describe '#request' do
+    before do
+      allow(client).to receive(:api_path).and_return('/path')
+    end
+    let(:res) { double(body: '{"a": ["b", "c"]}') }
 
-    it 'returns an object from the parsed HTTP response' do
-      expect(Net::HTTP::Get).to receive(:new).with('/path').and_call_original
-      expect(client).to receive(:send_req) do |redirect_req|
-        expect(redirect_req).to be_an_instance_of(Net::HTTP::Get)
-        expect(redirect_req.path).to eql(
-          '/path'
+    context 'no query provided' do
+      context 'no payload provided' do
+        it 'sends a request and returns the parsed response' do
+          expect(client).to receive(:send_req) do |req|
+            expect(req).to be_an_instance_of(Net::HTTP::Post)
+            expect(req.body).to be nil
+            expect(req.path).to eql('/path')
+          end.and_return(res)
+          expect(client).to receive(:parse_res).and_call_original
+
+          expect(client.request(Net::HTTP::Post, '/path')).to eql(
+            { 'a' => ['b', 'c'] }
+          )
+        end
+      end
+
+      context 'payload provided' do
+        let(:payload) { { x: 'X', y: 'Y' } }
+
+        it 'sends a request and returns the parsed response' do
+          expect(client).to receive(:send_req) do |req|
+            expect(req).to be_an_instance_of(Net::HTTP::Post)
+            expect(req.body).to eql('{"x":"X","y":"Y"}')
+            expect(req.path).to eql('/path')
+          end.and_return(res)
+          expect(client).to receive(:parse_res).and_call_original
+
+          expect(client.request(Net::HTTP::Post, '/path', payload: payload)).to eql(
+            { 'a' => ['b', 'c'] }
+          )
+        end
+      end
+    end
+
+    context 'query provided' do
+      let(:query) { { a: 'A', b: 'B' } }
+
+      context 'no payload provided' do
+        it 'sends a request and returns the parsed response' do
+          expect(client).to receive(:send_req) do |req|
+            expect(req).to be_an_instance_of(Net::HTTP::Post)
+            expect(req.body).to be nil
+            expect(req.path).to eql('/path?a=A&b=B')
+          end.and_return(res)
+          expect(client).to receive(:parse_res).and_call_original
+
+          expect(client.request(Net::HTTP::Post, '/path', query: query)).to eql(
+            { 'a' => ['b', 'c'] }
+          )
+        end
+      end
+
+      context 'payload provided' do
+        let(:payload) { { x: 'X', y: 'Y' } }
+        it 'sends a request and returns the parsed response' do
+          expect(client).to receive(:send_req) do |req|
+            expect(req).to be_an_instance_of(Net::HTTP::Post)
+            expect(req.body).to eql('{"x":"X","y":"Y"}')
+            expect(req.path).to eql('/path?a=A&b=B')
+          end.and_return(res)
+          expect(client).to receive(:parse_res).and_call_original
+
+          expect(client.request(
+            Net::HTTP::Post,
+            '/path',
+            query: query,
+            payload: payload
+          )).to eql(
+            { 'a' => ['b', 'c'] }
+          )
+        end
+      end
+    end
+  end
+
+  describe '#get' do
+    it 'sends a GET with a query' do
+      expect(client).to receive(:request).with(
+        Net::HTTP::Get,
+        '/path',
+        query: { a: 'A', b: 'B' }
+      )
+      client.get('/path', a: 'A', b: 'B')
+    end
+  end
+
+  describe '#post' do
+    it 'sends a POST with a payload' do
+      expect(client).to receive(:request).with(
+        Net::HTTP::Post,
+        '/path',
+        payload: { a: 'A', b: 'B' }
+      )
+      client.post('/path', a: 'A', b: 'B')
+    end
+  end
+
+  describe '#put' do
+    it 'sends a PUT with a payload' do
+      expect(client).to receive(:request).with(
+        Net::HTTP::Put,
+        '/path',
+        payload: { a: 'A', b: 'B' }
+      )
+      client.put('/path', a: 'A', b: 'B')
+    end
+  end
+
+  describe '#delete' do
+    it 'sends a DELETE' do
+      expect(client).to receive(:request).with(Net::HTTP::Delete, '/path')
+      client.delete('/path')
+    end
+  end
+
+  describe '#post_or_put' do
+    before do
+      allow(client).to receive(:set_cookie)
+    end
+
+    let(:payload) { { a: 'A', b: 'B' } }
+
+    context 'resource does not exist' do
+      it 'sends a POST with a payload' do
+        expect(client).to receive(:post).with(
+          '/path',
+          payload
         )
-      end.and_return(res)
-      expect(client).to receive(:parse_res).with(res)
-      client.get '/path'
+        expect(client).to_not receive(:put)
+        client.post_or_put('/path', payload)
+      end
+    end
+
+    context 'resource exists' do
+      context 'POST response is 409 Conflict' do
+        it 'sends a PUT with a payload' do
+          skip 'figuring out how to raise Net::HTTPServerException'
+          # skipping is acceptable here because I validate this functionality
+          # in kitchen tests
+
+          expect(client).to receive(:post).with(
+            '/path',
+            payload
+          ).and_raise(Net::HTTPServerException)
+
+          expect(client).to receive(:put).with(
+            '/path',
+            payload
+          )
+          client.post_or_put('/path', payload)
+        end
+      end
+
+      context 'POST response is some other error' do
+        it 'raises the error' do
+          skip 'figuring out how to raise Net::HTTPServerException'
+          # skipping is acceptable here because I validate this functionality in kitchen tests
+
+          expect(client).to receive(:post).with(
+            '/path',
+            payload
+          ).and_raise(Net::HTTPServerException)
+
+          expect { client.post_or_put('/path', payload) }.to raise_error(Net::HTTPServerException)
+        end
+      end
     end
   end
 
   describe '#parse_res' do
-    let(:res) { double(body: '{"a": ["b", "c"]}') }
+    let(:res) { double(body: body) }
 
-    it 'returns an object from the parse HTTP response' do
-      expect(client.parse_res(res)).to eql('a' => ['b', 'c'])
+    context 'response body is empty' do
+      let(:body) { '' }
+
+      it 'returns the body' do
+        expect(client.parse_res(res)).to eql(body)
+      end
+    end
+
+    context 'response body is html' do
+      let(:body) { '<!DOCTYPE html><html><body></body></html>' }
+
+      it 'returns the body' do
+        expect(client.parse_res(res)).to eql(body)
+      end
+    end
+
+    context 'response body is json' do
+      let(:body) { '{"a": ["b", "c"]}' }
+
+      it 'returns the parsed json' do
+        expect(client.parse_res(res)).to eql({ 'a' => ['b', 'c'] })
+      end
     end
   end
 
@@ -201,6 +380,25 @@ describe RundeckApiClient do
         'system' => { 'rundeck' => { 'apiversion' => 18 } }
       )
       expect(client.version).to eql(18)
+    end
+  end
+
+  describe '#api_path' do
+    it 'prepends the api root with current version unless its provided already' do
+      allow(client).to receive(:version).and_return(14)
+      expect(client.api_path('http://rundeck.url/project/test-proj')).to eq(
+        '/api/14/project/test-proj'
+      )
+      expect(client.api_path('http://rundeck.url/api/14/project/test-proj')).to eq(
+        '/api/14/project/test-proj'
+      )
+      expect(client.api_path('http://rundeck.url/users')).to eq('/api/14/users')
+      expect(client.api_path('http://rundeck.url/api/14/users')).to eq('/api/14/users')
+
+      expect(client.api_path('project/test-proj')).to eq('/api/14/project/test-proj')
+      expect(client.api_path('api/14/project/test-proj')).to eq('api/14/project/test-proj')
+      expect(client.api_path('/users')).to eq('/api/14/users')
+      expect(client.api_path('/api/14/users')).to eq('/api/14/users')
     end
   end
 end
