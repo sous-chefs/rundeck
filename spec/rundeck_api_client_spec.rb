@@ -66,10 +66,11 @@ describe RundeckApiClient do
       allow(client).to receive(:http).and_return(double(request: res))
       allow(client).to receive(:prep_req)
       allow(client).to receive(:set_cookie)
+      allow(client).to receive(:path_from_req).and_return('/path')
     end
 
     context 'HTTP Success (2xx)' do
-      let(:res) { instance_double(Net::HTTPSuccess) }
+      let(:res) { instance_double(Net::HTTPSuccess, code: 200) }
 
       it 'returns response object' do
         # case statement comparison uses === internally
@@ -86,7 +87,7 @@ describe RundeckApiClient do
     context 'HTTP Redirect (3xx)' do
       let(:initial_req) { double }
       let(:res) do
-        dbl = instance_double(Net::HTTPRedirection)
+        dbl = instance_double(Net::HTTPRedirection, code: 302)
         allow(dbl).to receive(:'[]').with('location').and_return('/redirect/path')
         dbl
       end
@@ -107,36 +108,239 @@ describe RundeckApiClient do
       end
     end
 
+
     context 'HTTP Client error (4xx)' do
-      include_examples 'RundeckApiClient#send_req HTTP Error', Net::HTTPClientError
+      let(:res) { instance_double(Net::HTTPClientError, code: 403) }
+
+      it 'raises correct HTTP error' do
+        allow(Net::HTTPClientError).to receive(:'===').and_return(true)
+        expect { client.send_req(double) }.to raise_error(Net::HTTPClientError)
+      end
     end
 
     context 'HTTP Server error (5xx)' do
-      include_examples 'RundeckApiClient#send_req HTTP Error', Net::HTTPServerError
+      let(:res) { instance_double(Net::HTTPServerError, code: 500) }
+
+      it 'raises correct HTTP error' do
+        allow(Net::HTTPServerError).to receive(:'===').and_return(true)
+        expect { client.send_req(double) }.to raise_error(Net::HTTPServerError)
+      end
+    end
+  end
+
+  describe '#request' do
+    before do
+      allow(client).to receive(:api_path).and_return('/path')
+    end
+    let(:res) do
+      res = double(body: '{"a": ["b", "c"]}')
+      allow(res).to receive(:[]).with('content-type').and_return('application/JSON;charset=UTF-8')
+      res
+    end
+
+    context 'no query provided' do
+      context 'no payload provided' do
+        it 'sends a request and returns the parsed response' do
+          expect(client).to receive(:send_req) do |req|
+            expect(req).to be_an_instance_of(Net::HTTP::Post)
+            expect(req.body).to be nil
+            expect(req.path).to eql('/path')
+          end.and_return(res)
+          expect(client).to receive(:parse_res).and_call_original
+
+          expect(client.request(Net::HTTP::Post, '/path')).to eql(
+            { 'a' => ['b', 'c'] }
+          )
+        end
+      end
+
+      context 'payload provided' do
+        let(:payload) { { x: 'X', y: 'Y' } }
+
+        it 'sends a request and returns the parsed response' do
+          expect(client).to receive(:send_req) do |req|
+            expect(req).to be_an_instance_of(Net::HTTP::Post)
+            expect(req.body).to eql('{"x":"X","y":"Y"}')
+            expect(req.path).to eql('/path')
+          end.and_return(res)
+          expect(client).to receive(:parse_res).and_call_original
+
+          expect(client.request(Net::HTTP::Post, '/path', payload: payload)).to eql(
+            { 'a' => ['b', 'c'] }
+          )
+        end
+      end
+    end
+
+    context 'query provided' do
+      let(:query) { { a: 'A', b: 'B' } }
+
+      context 'no payload provided' do
+        it 'sends a request and returns the parsed response' do
+          expect(client).to receive(:send_req) do |req|
+            expect(req).to be_an_instance_of(Net::HTTP::Post)
+            expect(req.body).to be nil
+            expect(req.path).to eql('/path?a=A&b=B')
+          end.and_return(res)
+          expect(client).to receive(:parse_res).and_call_original
+
+          expect(client.request(Net::HTTP::Post, '/path', query: query)).to eql(
+            { 'a' => ['b', 'c'] }
+          )
+        end
+      end
+
+      context 'payload provided' do
+        let(:payload) { { x: 'X', y: 'Y' } }
+        it 'sends a request and returns the parsed response' do
+          expect(client).to receive(:send_req) do |req|
+            expect(req).to be_an_instance_of(Net::HTTP::Post)
+            expect(req.body).to eql('{"x":"X","y":"Y"}')
+            expect(req.path).to eql('/path?a=A&b=B')
+          end.and_return(res)
+          expect(client).to receive(:parse_res).and_call_original
+
+          expect(client.request(
+            Net::HTTP::Post,
+            '/path',
+            query: query,
+            payload: payload
+          )).to eql(
+            { 'a' => ['b', 'c'] }
+          )
+        end
+      end
     end
   end
 
   describe '#get' do
-    let(:res) { double }
+    it 'sends a GET with a query' do
+      expect(client).to receive(:request).with(
+        Net::HTTP::Get,
+        '/path',
+        query: { a: 'A', b: 'B' }
+      )
+      client.get('/path', a: 'A', b: 'B')
+    end
+  end
 
-    it 'returns an object from the parsed HTTP response' do
-      expect(Net::HTTP::Get).to receive(:new).with('/path').and_call_original
-      expect(client).to receive(:send_req) do |redirect_req|
-        expect(redirect_req).to be_an_instance_of(Net::HTTP::Get)
-        expect(redirect_req.path).to eql(
-          '/path'
+  describe '#post' do
+    it 'sends a POST with a payload' do
+      expect(client).to receive(:request).with(
+        Net::HTTP::Post,
+        '/path',
+        payload: { a: 'A', b: 'B' }
+      )
+      client.post('/path', a: 'A', b: 'B')
+    end
+  end
+
+  describe '#put' do
+    it 'sends a PUT with a payload' do
+      expect(client).to receive(:request).with(
+        Net::HTTP::Put,
+        '/path',
+        payload: { a: 'A', b: 'B' }
+      )
+      client.put('/path', a: 'A', b: 'B')
+    end
+  end
+
+  describe '#delete' do
+    it 'sends a DELETE' do
+      expect(client).to receive(:request).with(Net::HTTP::Delete, '/path')
+      client.delete('/path')
+    end
+  end
+
+  describe '#post_or_put' do
+    before do
+      allow(client).to receive(:set_cookie)
+    end
+
+    let(:payload) { { a: 'A', b: 'B' } }
+
+    context 'resource does not exist' do
+      it 'sends a POST with a payload' do
+        expect(client).to receive(:post).with(
+          '/path',
+          payload
         )
-      end.and_return(res)
-      expect(client).to receive(:parse_res).with(res)
-      client.get '/path'
+        expect(client).to_not receive(:put)
+        client.post_or_put('/path', payload)
+      end
+    end
+
+    context 'resource exists' do
+      context 'POST response is 409 Conflict' do
+        it 'sends a PUT with a payload' do
+          skip 'figuring out how to raise Net::HTTPServerException'
+          # skipping is acceptable here because I validate this functionality
+          # in kitchen tests
+
+          expect(client).to receive(:post).with(
+            '/path',
+            payload
+          ).and_raise(Net::HTTPServerException)
+
+          expect(client).to receive(:put).with(
+            '/path',
+            payload
+          )
+          client.post_or_put('/path', payload)
+        end
+      end
+
+      context 'POST response is some other error' do
+        it 'raises the error' do
+          skip 'figuring out how to raise Net::HTTPServerException'
+          # skipping is acceptable here because I validate this functionality in kitchen tests
+
+          expect(client).to receive(:post).with(
+            '/path',
+            payload
+          ).and_raise(Net::HTTPServerException)
+
+          expect { client.post_or_put('/path', payload) }.to raise_error(Net::HTTPServerException)
+        end
+      end
     end
   end
 
   describe '#parse_res' do
-    let(:res) { double(body: '{"a": ["b", "c"]}') }
+    let(:res) do
+      res = double(body: body)
+      allow(res).to receive(:[]).with('content-type').and_return(content_type)
+      res
+    end
 
-    it 'returns an object from the parse HTTP response' do
-      expect(client.parse_res(res)).to eql('a' => ['b', 'c'])
+    context 'content type is application/json' do
+      let(:content_type) { 'application/json' }
+
+      context 'response body is empty' do
+        let(:body) { '' }
+
+        it 'returns nil' do
+          expect(client.parse_res(res)).to be nil
+        end
+      end
+
+      context 'response body is json' do
+        let(:body) { '{"a": ["b", "c"]}' }
+
+        it 'returns the parsed json' do
+          expect(client.parse_res(res)).to eql({ 'a' => ['b', 'c'] })
+        end
+      end
+    end
+
+    context 'response body is not json' do
+      let(:content_type) { 'text/html' }
+      let(:body) { '<!DOCTYPE html><html><body></body></html>' }
+
+      it 'returns nil' do
+        expect(client.parse_res(res)).to be nil
+      end
     end
   end
 
@@ -201,6 +405,49 @@ describe RundeckApiClient do
         'system' => { 'rundeck' => { 'apiversion' => 18 } }
       )
       expect(client.version).to eql(18)
+    end
+  end
+
+  describe '#api_path' do
+    it 'prepends the api root with current version unless its provided already' do
+      allow(client).to receive(:version).and_return(14)
+      expect(client.api_path('http://rundeck.url/project/test-proj')).to eq(
+        '/api/14/project/test-proj'
+      )
+      expect(client.api_path('http://rundeck.url/api/14/project/test-proj')).to eq(
+        '/api/14/project/test-proj'
+      )
+      expect(client.api_path('http://rundeck.url/users')).to eq('/api/14/users')
+      expect(client.api_path('http://rundeck.url/api/14/users')).to eq('/api/14/users')
+
+      expect(client.api_path('project/test-proj')).to eq('/api/14/project/test-proj')
+      expect(client.api_path('api/14/project/test-proj')).to eq('api/14/project/test-proj')
+      expect(client.api_path('/users')).to eq('/api/14/users')
+      expect(client.api_path('/api/14/users')).to eq('/api/14/users')
+    end
+  end
+
+  describe '#logger' do
+    context 'log level not specified' do
+      it 'returns the configured logger' do
+        logger = client.logger
+        expect(logger).to be_an_instance_of(Logger)
+        expect(logger.level).to eql(Logger::INFO)
+        expect(logger.progname).to eql(described_class.name)
+      end
+    end
+
+    context 'log level specified' do
+      let(:client) do
+        described_class.new(rundeck_server_url, 'username', 'log_level' => 3)
+      end
+
+      it 'returns the configured logger' do
+        logger = client.logger
+        expect(logger).to be_an_instance_of(Logger)
+        expect(logger.level).to eql(Logger::ERROR)
+        expect(logger.progname).to eql(described_class.name)
+      end
     end
   end
 end

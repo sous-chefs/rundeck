@@ -1,4 +1,5 @@
 require 'json'
+require 'logger'
 require 'net/http'
 require 'openssl'
 
@@ -11,13 +12,14 @@ class RundeckApiClient
 
   # POST auth GET params to auth endpoint
   def authenticate(pass)
-    req = Net::HTTP::Post.new(
-      [
-        '/j_security_check',
-        URI('').query = URI.encode_www_form(j_username: @user, j_password: pass)
-      ].join('?')
+    send_req(
+      Net::HTTP::Post.new(
+        [
+          '/j_security_check',
+          URI.encode_www_form(j_username: @user, j_password: pass)
+        ].join('?')
+      )
     )
-    send_req(req)
   end
 
   # wrapper around constructor and authentication
@@ -30,7 +32,7 @@ class RundeckApiClient
   end
 
   def prep_req(req)
-    req['User-Agent'] = 'RundeckApiClient'
+    req['User-Agent'] = self.class.name
     req['Content-Type'] = 'application/json'
     req['Accept'] = 'application/json'
     req['Cookie'] = @cookie
@@ -43,30 +45,88 @@ class RundeckApiClient
     # set cookie based on Set-Cookie header from server
     set_cookie(res)
 
+    log = "Response received: CODE: #{res.code} PATH: #{path_from_req(req)}"
+
     case res
     when Net::HTTPSuccess
+      logger.info log
       res
     when Net::HTTPRedirection
+      logger.info log
       # TODO: protect against redirect loops
       send_req(Net::HTTP::Get.new(res['location']))
     when Net::HTTPClientError, Net::HTTPServerError
-      # Chef::Log.fatal "CODE: #{res.code} PATH: #{path_from_req(req)} BODY: #{res.body[0..250]}"
+      logger.warn(log + " BODY: #{res.body[0..250]}")
       raise res.error!
     end
   end
 
-  def get(path)
-    parse_res(send_req(Net::HTTP::Get.new(path)))
+  def request(klass, path, query: {}, payload: {})
+    path = api_path(path)
+
+    unless query.empty?
+      path = [path, URI.encode_www_form(query)].join('?')
+    end
+
+    req = klass.new(path)
+
+    unless payload.empty?
+      req.body = payload.to_json
+    end
+
+    parse_res(send_req(req))
   end
 
-  # def post(path, payload: {})
-  #   req = Net::HTTP::Post.new(path)
-  #   req.set_form_data(payload)
-  #   parse_res(send_req(req))
-  # end
+  def logger
+    return @_logger if defined? @_logger
+    @_logger = Logger.new(STDOUT)
+    @_logger.level = @opts[:log_level] || Logger::INFO
+    @_logger.progname = self.class.name
+    @_logger
+  end
+
+  def get(path, query={})
+    request(Net::HTTP::Get, path, query: query)
+  end
+
+  def post(path, payload)
+    request(Net::HTTP::Post, path, payload: payload)
+  end
+
+  def put(path, payload)
+    request(Net::HTTP::Put, path, payload: payload)
+  end
+
+  def post_or_put(path, payload)
+    begin
+      post(path, payload)
+    rescue Net::HTTPServerException => e
+      if e.message == '409 "Conflict"'
+        put(path, payload)
+      else
+        raise e
+      end
+    end
+  end
+
+  def delete(path)
+    request(Net::HTTP::Delete, path)
+  end
 
   def parse_res(res)
-    JSON.parse(res.body)
+    if res['content-type'] =~ /application\/json/i
+      if res.body.to_s.empty?
+        logger.warn 'empty response body received'
+        nil
+      else
+        JSON.parse(res.body.to_s)
+      end
+    else
+      logger.warn(
+        "received response content-type '#{res['content-type']}' (expected 'application/json')"
+      )
+      nil
+    end
   end
 
   def http
@@ -96,5 +156,16 @@ class RundeckApiClient
 
   def version
     @_version ||= get('/api/14/system/info')['system']['rundeck']['apiversion']
+  end
+
+  # prepend /api/<version> to path unless its provided already
+  def api_path(path)
+    path = URI(path).path
+    case path
+    when /^\/?api\/\d+/
+      path
+    else
+      File.join '/api', version.to_s, path
+    end
   end
 end
