@@ -29,7 +29,11 @@ activedirectory {
 <% end -%>
     reportStatistics="<%=@ldap[:reportstatistics]%>";
 
-    org.eclipse.jetty.plus.jaas.spi.PropertyFileLoginModule required
+    <% if Gem::Requirement.new('< 2.7.0').satisfied_by?(Gem::Version.new(@rundeck_version)) %>
+    org.eclipse.jetty.plus.jaas.spi.PropertyFileLoginModule sufficient
+    <% else %>
+    org.eclipse.jetty.jaas.spi.PropertyFileLoginModule sufficient
+    <% end %>
     debug="<%=@ldap[:debug].to_s%>"
     file="<%=@configdir%>/realm.properties";
 };
