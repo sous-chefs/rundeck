@@ -29,7 +29,7 @@ activedirectory {
 <% end -%>
     reportStatistics="<%=@ldap[:reportstatistics]%>";
 
-    <% if @rundeck[:major][:version].to_i < 2.7 %>
+    <% if node['rundeck']['major']['version'].to_i < 2.7 %>
     org.eclipse.jetty.plus.jaas.spi.PropertyFileLoginModule required
     <% else %>
     org.eclipse.jetty.jaas.spi.PropertyFileLoginModule required
