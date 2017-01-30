@@ -66,10 +66,11 @@ describe RundeckApiClient do
       allow(client).to receive(:http).and_return(double(request: res))
       allow(client).to receive(:prep_req)
       allow(client).to receive(:set_cookie)
+      allow(client).to receive(:path_from_req).and_return('/path')
     end
 
     context 'HTTP Success (2xx)' do
-      let(:res) { instance_double(Net::HTTPSuccess) }
+      let(:res) { instance_double(Net::HTTPSuccess, code: 200) }
 
       it 'returns response object' do
         # case statement comparison uses === internally
@@ -86,7 +87,7 @@ describe RundeckApiClient do
     context 'HTTP Redirect (3xx)' do
       let(:initial_req) { double }
       let(:res) do
-        dbl = instance_double(Net::HTTPRedirection)
+        dbl = instance_double(Net::HTTPRedirection, code: 302)
         allow(dbl).to receive(:'[]').with('location').and_return('/redirect/path')
         dbl
       end
@@ -107,12 +108,23 @@ describe RundeckApiClient do
       end
     end
 
+
     context 'HTTP Client error (4xx)' do
-      include_examples 'RundeckApiClient#send_req HTTP Error', Net::HTTPClientError
+      let(:res) { instance_double(Net::HTTPClientError, code: 403) }
+
+      it 'raises correct HTTP error' do
+        allow(Net::HTTPClientError).to receive(:'===').and_return(true)
+        expect { client.send_req(double) }.to raise_error(Net::HTTPClientError)
+      end
     end
 
     context 'HTTP Server error (5xx)' do
-      include_examples 'RundeckApiClient#send_req HTTP Error', Net::HTTPServerError
+      let(:res) { instance_double(Net::HTTPServerError, code: 500) }
+
+      it 'raises correct HTTP error' do
+        allow(Net::HTTPServerError).to receive(:'===').and_return(true)
+        expect { client.send_req(double) }.to raise_error(Net::HTTPServerError)
+      end
     end
   end
 
@@ -120,7 +132,11 @@ describe RundeckApiClient do
     before do
       allow(client).to receive(:api_path).and_return('/path')
     end
-    let(:res) { double(body: '{"a": ["b", "c"]}') }
+    let(:res) do
+      res = double(body: '{"a": ["b", "c"]}')
+      allow(res).to receive(:[]).with('content-type').and_return('application/JSON;charset=UTF-8')
+      res
+    end
 
     context 'no query provided' do
       context 'no payload provided' do
@@ -292,29 +308,38 @@ describe RundeckApiClient do
   end
 
   describe '#parse_res' do
-    let(:res) { double(body: body) }
+    let(:res) do
+      res = double(body: body)
+      allow(res).to receive(:[]).with('content-type').and_return(content_type)
+      res
+    end
 
-    context 'response body is empty' do
-      let(:body) { '' }
+    context 'content type is application/json' do
+      let(:content_type) { 'application/json' }
 
-      it 'returns the body' do
-        expect(client.parse_res(res)).to eql(body)
+      context 'response body is empty' do
+        let(:body) { '' }
+
+        it 'returns nil' do
+          expect(client.parse_res(res)).to be nil
+        end
+      end
+
+      context 'response body is json' do
+        let(:body) { '{"a": ["b", "c"]}' }
+
+        it 'returns the parsed json' do
+          expect(client.parse_res(res)).to eql({ 'a' => ['b', 'c'] })
+        end
       end
     end
 
-    context 'response body is html' do
+    context 'response body is not json' do
+      let(:content_type) { 'text/html' }
       let(:body) { '<!DOCTYPE html><html><body></body></html>' }
 
-      it 'returns the body' do
-        expect(client.parse_res(res)).to eql(body)
-      end
-    end
-
-    context 'response body is json' do
-      let(:body) { '{"a": ["b", "c"]}' }
-
-      it 'returns the parsed json' do
-        expect(client.parse_res(res)).to eql({ 'a' => ['b', 'c'] })
+      it 'returns nil' do
+        expect(client.parse_res(res)).to be nil
       end
     end
   end
@@ -399,6 +424,30 @@ describe RundeckApiClient do
       expect(client.api_path('api/14/project/test-proj')).to eq('api/14/project/test-proj')
       expect(client.api_path('/users')).to eq('/api/14/users')
       expect(client.api_path('/api/14/users')).to eq('/api/14/users')
+    end
+  end
+
+  describe '#logger' do
+    context 'log level not specified' do
+      it 'returns the configured logger' do
+        logger = client.logger
+        expect(logger).to be_an_instance_of(Logger)
+        expect(logger.level).to eql(Logger::INFO)
+        expect(logger.progname).to eql(described_class.name)
+      end
+    end
+
+    context 'log level specified' do
+      let(:client) do
+        described_class.new(rundeck_server_url, 'username', 'log_level' => 3)
+      end
+
+      it 'returns the configured logger' do
+        logger = client.logger
+        expect(logger).to be_an_instance_of(Logger)
+        expect(logger.level).to eql(Logger::ERROR)
+        expect(logger.progname).to eql(described_class.name)
+      end
     end
   end
 end
