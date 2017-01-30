@@ -1,4 +1,5 @@
 require 'json'
+require 'logger'
 require 'net/http'
 require 'openssl'
 
@@ -31,7 +32,7 @@ class RundeckApiClient
   end
 
   def prep_req(req)
-    req['User-Agent'] = 'RundeckApiClient'
+    req['User-Agent'] = self.class.name
     req['Content-Type'] = 'application/json'
     req['Accept'] = 'application/json'
     req['Cookie'] = @cookie
@@ -44,13 +45,18 @@ class RundeckApiClient
     # set cookie based on Set-Cookie header from server
     set_cookie(res)
 
+    log = "Response received: CODE: #{res.code} PATH: #{path_from_req(req)}"
+
     case res
     when Net::HTTPSuccess
+      logger.info log
       res
     when Net::HTTPRedirection
+      logger.info log
       # TODO: protect against redirect loops
       send_req(Net::HTTP::Get.new(res['location']))
     when Net::HTTPClientError, Net::HTTPServerError
+      logger.warn(log + " BODY: #{res.body[0..250]}")
       raise res.error!
     end
   end
@@ -69,6 +75,14 @@ class RundeckApiClient
     end
 
     parse_res(send_req(req))
+  end
+
+  def logger
+    return @_logger if defined? @_logger
+    @_logger = Logger.new(STDOUT)
+    @_logger.level = @opts[:log_level] || Logger::INFO
+    @_logger.progname = self.class.name
+    @_logger
   end
 
   def get(path, query={})
@@ -100,11 +114,18 @@ class RundeckApiClient
   end
 
   def parse_res(res)
-    # TODO: make this decision based on Content-Type of response
-    if res.body.to_s.empty? || res.body.to_s.start_with?('<!DOCTYPE html>')
-      res.body
+    if res['content-type'] =~ /application\/json/i
+      if res.body.to_s.empty?
+        logger.warn 'empty response body received'
+        nil
+      else
+        JSON.parse(res.body.to_s)
+      end
     else
-      JSON.parse(res.body)
+      logger.warn(
+        "received response content-type '#{res['content-type']}' (expected 'application/json')"
+      )
+      nil
     end
   end
 
