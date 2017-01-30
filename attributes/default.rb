@@ -4,6 +4,7 @@ default['rundeck']['basedir'] = '/var/lib/rundeck'
 default['rundeck']['datadir'] = '/var/rundeck'
 default['rundeck']['tempdir'] = '/tmp/rundeck'
 default['rundeck']['exec_logdir'] = "#{node['rundeck']['basedir']}/logs"
+default['rundeck']['major']['version'] = '2.6'
 default['rundeck']['deb']['package'] = 'rundeck-2.6.11-1-GA.deb'
 default['rundeck']['deb']['options'] = false #--force-confdef --force-confold
 default['rundeck']['rpm']['version'] = 'rundeck-2.6.11-1.23.GA' # rundeck package from http://dl.bintray.com/rundeck/rundeck-rpm
@@ -34,13 +35,14 @@ default['rundeck']['webcontext'] = '/'
 # SSL offloading should pass the X-Forwarded-Proto header as https and leave this a http
 default['rundeck']['grails_server_url'] = "#{node['rundeck']['use_inbuilt_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}"
 default['rundeck']['grails_port'] = node['rundeck']['use_ssl'] ? 443 : 80
+default['rundeck']['truststore_type'] = 'jks'
 
 default['rundeck']['log_level'] = 'INFO' # ERR,WARN,INFO,VERBOSE,DEBUG
 default['rundeck']['rss_enabled'] = true
 
 # java configuration
 default['rundeck']['jvm_mem'] = ' -XX:MaxPermSize=256m -Xmx1024m -Xms256m'
-default['java']['jdk_version'] = '7'
+default['java']['jdk_version'] = '8'
 
 # Quartz configuration.
 default['rundeck']['quartz']['threadPoolCount'] = 10
