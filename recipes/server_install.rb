@@ -156,7 +156,8 @@ template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
     ldap: rundeck_ldap,
     binddn: rundeck_ldap_bind_dn || rundeck_ldap[:binddn],
     bindpwd: rundeck_ldap_bind_pwd || rundeck_ldap[:bindpwd],
-    configdir: node['rundeck']['configdir']
+    configdir: node['rundeck']['configdir'],
+    rundeck_version: rundeck_version
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
@@ -166,7 +167,8 @@ template "#{node['rundeck']['configdir']}/profile" do
   group node['rundeck']['group']
   source 'profile.erb'
   variables(
-    rundeck: node['rundeck']
+    rundeck: node['rundeck'],
+    rundeck_version: rundeck_version
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
 end
@@ -180,6 +182,17 @@ template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
     rundeck_rdbms: node.run_state['rundeck']['data_bag']['rdbms']['rdbms']
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+end
+
+template "/etc/init/rundeckd.conf" do
+  owner 'root'
+  group 'root'
+  source 'rundeck-upstart.conf.erb'
+  variables(
+    config_dir: node['rundeck']['configdir']
+  )
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+  only_if { node['platform_family'] == 'debian'}
 end
 
 if node.normal['rundeck']['server']['uuid'].empty?
