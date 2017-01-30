@@ -11,7 +11,6 @@ RUNDECK_LOGDIR="<%=@rundeck[:exec_logdir]%>"
 RDECK_JVM_SETTINGS="<%=@rundeck[:jvm_mem]%> -server"
 RDECK_TRUSTSTORE_FILE="<%= @rundeck[:configdir] %>/ssl/truststore"
 RDECK_TRUSTSTORE_TYPE="<%= @rundeck[:truststore_type] %>"
-LOGIN_MODULE="${LOGIN_MODULE:-RDpropertyfilelogin}"
 RDECK_HTTP_PORT=<%=@rundeck[:port]%>
 RDECK_HTTPS_PORT=<%=@rundeck[:ssl][:port]%>
 
@@ -69,8 +68,6 @@ RDECK_JVM="$RDECK_JVM <%= @rundeck[:custom_jvm_properties]%>"
   RDECK_JVM="$RDECK_JVM -Drundeck.ssl.config=$RDECK_SERVER_CONFIG/ssl/ssl.properties -Dserver.https.port=${RDECK_HTTPS_PORT}"
   RDECK_SSL_OPTS="${RDECK_SSL_OPTS:- -Djavax.net.ssl.trustStore=$RDECK_TRUSTSTORE_FILE -Djavax.net.ssl.trustStoreType=$RDECK_TRUSTSTORE_TYPE -Djava.protocol.handler.pkgs=com.sun.net.ssl.internal.www.protocol}"
 <% end %>
-
-#export RDECK_SSL_OPTS="-Djavax.net.ssl.trustStore=<%= @rundeck[:configdir] %>/ssl/truststore -Djavax.net.ssl.trustStoreType=jks -Djava.protocol.handler.pkgs=com.sun.net.ssl.internal.www.protocol"
 
 <% if @rundeck[:major][:version].to_i < 2.7 %>
 if test -t 0 -a -z "$RUNDECK_CLI_TERSE"
