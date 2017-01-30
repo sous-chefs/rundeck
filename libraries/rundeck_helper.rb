@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 require 'securerandom'
 
 # Helper module for Rundeck.
