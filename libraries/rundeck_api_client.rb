@@ -1,171 +1,174 @@
 require 'json'
 require 'logger'
-require 'net/http'
-require 'openssl'
+
+class Hash
+  def deep_merge(second)
+    merger = proc do |key, v1, v2|
+      Hash === v1 && Hash === v2 ? v1.merge(v2, &merger) : v2
+    end
+    self.merge(second, &merger)
+  end
+end
 
 class RundeckApiClient
-  def initialize(rundeck_server_url, user, opts={})
-    @rundeck_server_url, @user, = rundeck_server_url, user
-    # convert all opts keys to symbols
-    @opts = opts.each_with_object({}) { |(k,v), h| h[k.to_sym] = v }
+  def initialize(server_url, username, config={})
+    # Lazily require dependencies so that the cookbook can install them first
+    # via chef_gem
+    require 'rest-client'
+
+    @server_url, @username = server_url, username
+
+    # convert all config keys to symbols
+    @config = config.each_with_object({}) { |(k,v), h| h[k.to_sym] = v }
   end
 
-  # POST auth GET params to auth endpoint
-  def authenticate(pass)
-    send_req(
-      Net::HTTP::Post.new(
-        [
-          '/j_security_check',
-          URI.encode_www_form(j_username: @user, j_password: pass)
-        ].join('?')
-      )
-    )
-  end
-
-  # wrapper around constructor and authentication
-  # nothing can be done via the api without authenticating, so this method is
-  # the preferred way to initialize a client
-  def self.connect(rundeck_server_url, user, pass, opts={})
-    client = new(rundeck_server_url, user, opts)
-    client.authenticate(pass)
+  # @return [RundeckApiClient] an authenticated client
+  def self.connect(server_url, username, password, opts={})
+    client = new(server_url, username, opts)
+    client.authenticate(password)
+    client.logger.info { "Connected new client: #{client.to_s}" }
     client
   end
 
-  def prep_req(req)
-    req['User-Agent'] = self.class.name
-    req['Content-Type'] = 'application/json'
-    req['Accept'] = 'application/json'
-    req['Cookie'] = @cookie
-    req
+  def authenticate(password)
+    request(
+      {
+        method: :post,
+        url: File.join(@server_url, 'j_security_check'),
+        headers: {
+          params: { j_username: @username, j_password: password }
+        }
+      }
+    )
   end
 
-  def send_req(req)
-    res = http.request(prep_req(req))
-
-    # set cookie based on Set-Cookie header from server
-    set_cookie(res)
-
-    log = "Response received: CODE: #{res.code} PATH: #{path_from_req(req)}"
-
-    case res
-    when Net::HTTPSuccess
-      logger.info log
-      res
-    when Net::HTTPRedirection
-      logger.info log
-      # TODO: protect against redirect loops
-      send_req(Net::HTTP::Get.new(res['location']))
-    when Net::HTTPClientError, Net::HTTPServerError
-      logger.warn(log + " BODY: #{res.body[0..250]}")
-      raise res.error!
-    end
+  def get(path, params={})
+    request_wrapper(:get, path, params: params)
   end
 
-  def request(klass, path, query: {}, payload: {})
-    path = api_path(path)
+  def delete(path, params={})
+    request_wrapper(:delete, path, params: params)
+  end
 
-    unless query.empty?
-      path = [path, URI.encode_www_form(query)].join('?')
-    end
+  def post(path, payload)
+    request_wrapper(:post, path, payload: payload)
+  end
 
-    req = klass.new(path)
+  def put(path, payload)
+    request_wrapper(:put, path, payload: payload)
+  end
 
+  def request_wrapper(http_method, path, params:{}, payload:{})
+    opts = {}
+    opts[:method] = http_method
+    opts[:url] = api_url(path)
+    opts[:headers] = { params: params }
     unless payload.empty?
-      req.body = payload.to_json
+      opts[:payload] = payload.to_json
     end
 
-    parse_res(send_req(req))
+    res = request(opts)
+
+    if res.headers[:content_type] =~ /application\/json/i
+      if res.body.to_s.empty?
+        logger.warn { 'empty response body received' }
+        res
+      else
+        JSON.parse(res.body)
+      end
+    else
+      logger.warn do
+        "received response content-type '#{res['content-type']}' (expected 'application/json')"
+        res
+      end
+    end
+  end
+
+  # @see https://github.com/rest-client/rest-client
+  # @see http://www.rubydoc.info/github/rest-client/rest-client/RestClient/Request
+  def request(opts)
+    opts = request_defaults.deep_merge(opts)
+
+    begin
+      RestClient::Request.execute(opts) { |res, req| response_handler(res, req) }
+    rescue RestClient::MovedPermanently,
+           RestClient::Found,
+           RestClient::TemporaryRedirect => e
+      e.response.follow_redirection { |res, req| response_handler(res, req) }
+    end
+  end
+
+  def response_handler(res, req)
+    @cookies = res.cookie_jar
+
+    # Simple logging format for all requests. Strip GET params (query) from
+    # request url because login request puts password in GET param.
+    uri = URI(req.url)
+    uri.query = nil
+    log = "#{res.code}\t#{req.method.upcase}\t#{uri}"
+
+    case res.code
+    when 200..299
+      logger.info { log }
+    when 301, 302, 307
+      logger.info { log }
+      res.follow_redirection { |redir_res, redir_req| response_handler(redir_res, redir_req) }
+    when 400..599
+      logger.warn { [log, 'BODY:', res.body].join(' ') }
+    end
+
+    # http://www.rubydoc.info/github/rest-client/rest-client/RestClient/AbstractResponse#return!-instance_method
+    res.return!
+  end
+
+  def request_defaults
+    {
+      cookies: @cookies,
+      headers: {
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
+        'User-Agent' => self.class.name
+      }
+    }.deep_merge(@config['request_defaults'].to_h)
   end
 
   def logger
     return @_logger if defined? @_logger
     @_logger = Logger.new(STDOUT)
-    @_logger.level = @opts[:log_level] || Logger::INFO
+    @_logger.level = @config[:log_level] || Logger::INFO
     @_logger.progname = self.class.name
+    @_logger.datetime_format = '%Y-%m-%d %H:%M:%S'
+    @_logger.formatter = proc do |severity, datetime, progname, msg|
+       "[#{progname} #{severity} #{datetime}] #{msg}\n"
+    end
     @_logger
   end
 
-  def get(path, query={})
-    request(Net::HTTP::Get, path, query: query)
+  def server_uri
+    @_server_uri ||= URI(@server_url)
   end
 
-  def post(path, payload)
-    request(Net::HTTP::Post, path, payload: payload)
-  end
+  # Handles various URIs to build a url. Defaults missing URI components using
+  # server URI.
+  # @return [String]
+  def api_url(url)
+    uri = URI(url.to_s)
 
-  def put(path, payload)
-    request(Net::HTTP::Put, path, payload: payload)
-  end
+    uri.scheme = server_uri.scheme if uri.scheme.nil?
+    uri.host = server_uri.host if uri.host.nil?
 
-  def post_or_put(path, payload)
-    begin
-      post(path, payload)
-    rescue Net::HTTPServerException => e
-      if e.message == '409 "Conflict"'
-        put(path, payload)
-      else
-        raise e
-      end
+    # prepend '/api/<version>/' to path if not provided
+    unless uri.path =~ /^\/api\/\d+\//
+      uri.path = File.join('/api', version.to_s, uri.path)
     end
+
+    uri.to_s
   end
 
-  def delete(path)
-    request(Net::HTTP::Delete, path)
-  end
-
-  def parse_res(res)
-    if res['content-type'] =~ /application\/json/i
-      if res.body.to_s.empty?
-        logger.warn 'empty response body received'
-        nil
-      else
-        JSON.parse(res.body.to_s)
-      end
-    else
-      logger.warn(
-        "received response content-type '#{res['content-type']}' (expected 'application/json')"
-      )
-      nil
-    end
-  end
-
-  def http
-    return @_http if defined? @_http
-    uri = URI(@rundeck_server_url)
-    @_http = Net::HTTP.new(uri.host, uri.port)
-    @_http.use_ssl = (uri.scheme == "https")
-    @_http.verify_mode = @opts[:verify_mode] || OpenSSL::SSL::VERIFY_PEER
-    @_http
-  end
-
-  def set_cookie(res)
-    # simple implementation to parse cookie string
-    if res.to_hash.key?('set-cookie')
-      @cookie = res.to_hash['set-cookie'].map{ |c| c.split(';').first }.join('; ')
-    end
-  end
-
-  # Common interface to get a path from a request that Net::HTTPRequest does not provide:
-  #     Net::HTTP::Get.new('/path').path
-  #     #=> "/path"
-  #     Net::HTTP::Get.new('https://host.com/path').path
-  #     #=> "https://host.com/path"
-  def path_from_req(req)
-    URI(req.path).path
-  end
-
+  # @return [Integer] server api version
   def version
-    @_version ||= get('/api/14/system/info')['system']['rundeck']['apiversion']
-  end
-
-  # prepend /api/<version> to path unless its provided already
-  def api_path(path)
-    path = URI(path).path
-    case path
-    when /^\/?api\/\d+/
-      path
-    else
-      File.join '/api', version.to_s, path
-    end
+    return @_version if defined? @_version
+    res = get('/api/14/system/info')
+    @_version = res['system']['rundeck']['apiversion']
   end
 end
