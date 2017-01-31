@@ -29,7 +29,11 @@ activedirectory {
 <% end -%>
     reportStatistics="<%=@ldap[:reportstatistics]%>";
 
+    <% if node['rundeck']['major']['version'].to_i < 2.7 %>
     org.eclipse.jetty.plus.jaas.spi.PropertyFileLoginModule required
+    <% else %>
+    org.eclipse.jetty.jaas.spi.PropertyFileLoginModule required
+    <% end %>
     debug="<%=@ldap[:debug].to_s%>"
     file="<%=@configdir%>/realm.properties";
 };
