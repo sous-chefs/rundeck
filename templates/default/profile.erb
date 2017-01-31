@@ -20,7 +20,7 @@ if [ -z "$JAVA_CMD" ] && [ -n "$JAVA_HOME" ] && [ -x "$JAVA_HOME/bin/java" ] ; t
   PATH=$PATH:$JAVA_HOME/bin
   export JAVA_HOME
 elif [ -z "$JAVA_CMD" ] ; then
-  JAVA_CMD=java
+  JAVA_CMD=$(which java)
 fi
 
 # build classpath without lone : that includes .
