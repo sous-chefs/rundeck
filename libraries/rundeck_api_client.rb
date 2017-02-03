@@ -99,7 +99,7 @@ class RundeckApiClient
   end
 
   def response_handler(res, req)
-    @cookies = res.cookie_jar
+    @cookie_jar = res.cookie_jar
 
     # Simple logging format for all requests. Strip GET params (query) from
     # request url because login request puts password in GET param.
@@ -123,7 +123,7 @@ class RundeckApiClient
 
   def request_defaults
     {
-      cookies: @cookies,
+      cookies: @cookie_jar,
       headers: {
         'Accept' => 'application/json',
         'Content-Type' => 'application/json',

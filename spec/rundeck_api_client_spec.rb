@@ -88,7 +88,7 @@ describe RundeckApiClient do
 
     context 'cookies already set' do
       it "returns the client's default request options" do
-        client.instance_variable_set('@cookies', { 'cookie' => 'hash' })
+        client.instance_variable_set('@cookie_jar', { 'cookie' => 'hash' })
         expect(client.request_defaults).to eq({
           cookies: { 'cookie' => 'hash' },
           headers: {
