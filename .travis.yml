@@ -21,6 +21,7 @@ services:
   - docker
 
 script:
+  - bundle update
   - bundle exec ./.travis.sh
 
 matrix:
