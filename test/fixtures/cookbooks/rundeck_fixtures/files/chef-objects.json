@@ -1,0 +1,54 @@
+{
+  "environments": [
+    {
+      "name": "bcr_env"
+    },
+    {
+      "name": "env_one"
+    },
+    {
+      "name": "env_two"
+    }
+  ],
+  "nodes": [
+    {
+      "name": "bcr-node",
+      "chef_environment": "bcr_env",
+      "run_list": ["recipe[global_cookbook]", "role[bcr_role]"],
+      "tags": ["bcr-tag", "global-tag"],
+      "default": {
+        "deep": {
+          "nested": {
+            "attribute": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "node-1",
+      "chef_environment": "env_one",
+      "run_list": ["recipe[global_cookbook]", "role[node_one_role]"],
+      "tags": ["node-1-tag", "global-tag"],
+      "default": {
+        "deep": {
+          "nested": {
+            "attribute": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "node-2",
+      "chef_environment": "env_two",
+      "run_list": ["recipe[global_cookbook]", "role[node_two_role]"],
+      "tags": ["node-2-tag", "global-tag"],
+      "default": {
+        "deep": {
+          "nested": {
+            "attribute": 0
+          }
+        }
+      }
+    }
+  ]
+}

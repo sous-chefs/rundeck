@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'chef_zero/server'
 
 # Helper module for Rundeck.
 module RundeckHelper

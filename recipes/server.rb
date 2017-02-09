@@ -20,3 +20,9 @@
 include_recipe 'rundeck::server_dependencies'
 include_recipe 'rundeck::server_install'
 include_recipe 'rundeck::apache'
+
+if node['rundeck']['better_chef_rundeck']
+  include_recipe 'simple_passenger' 
+else 
+  include_recipe 'rundeck::chef-rundeck'
+end

@@ -3,7 +3,7 @@ source 'https://supermarket.chef.io'
 metadata
 
 cookbook 'apt'
-
+cookbook 'simple_passenger'
 group :integration do
-  cookbook 'create_chef_dir', path: 'test/fixtures/cookbooks/create_chef_dir'
+  cookbook 'rundeck_fixtures', path: 'test/fixtures/cookbooks/rundeck_fixtures'
 end

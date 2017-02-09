@@ -83,6 +83,12 @@ Chef rundeck integration service attributes
 * `node['rundeck']['project_config']` - Generated project configuration from data bags, default '/etc/chef/chef-rundeck.json'
 * `node['rundeck']['chef_rundeck_gem']` - Use a custom version of the chef-rundeck gem (eg. local version), default 'nil' uses the gem repo by default
 
+### better-chef-rundeck
+Better chef rundeck integration service attributes
+
+* `default['rundeck']['better_chef_rundeck']` - Boolean value to use better_chef_rundeck or chef-rundeck. Default: false.
+* `default['rundeck']['better_chef_rundeck_url']` - Url where better_chef_runrdeck server is running
+
 ### server
 Attributes that configure and manage the installation of the Rundeck server
 
