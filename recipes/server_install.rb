@@ -42,9 +42,9 @@ case node['platform_family']
 when 'rhel'
   yum_repository 'rundeck' do
     description 'Rundeck - Release'
-    url 'http://dl.bintray.com/rundeck/rundeck-rpm'
-    gpgkey 'http://rundeck.org/keys/BUILD-GPG-KEY-Rundeck.org.key'
-    gpgcheck true
+    url node['rundeck']['rpm']['repo']['url']
+    gpgkey node['rundeck']['rpm']['repo']['gpgkey']
+    gpgcheck node['rundeck']['rpm']['repo']['gpgcheck']
     action :add
   end
 
