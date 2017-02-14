@@ -16,6 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+include_recipe 'build-essential'
+chef_gem 'rest-client' do
+  compile_time true
+  version '~> 2.0'
+end
+
 case node['platform_family']
 when 'arch', 'debian', 'fedora', 'freebsd', 'mac_os_x', 'rhel', 'suse'
   include_recipe 'rundeck::node_unix'
