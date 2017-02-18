@@ -20,6 +20,7 @@
 require 'json'
 
 include_recipe 'rundeck::default'
+include_recipe 'rundeck::_data_bags'
 include_recipe 'rundeck::chef_server_config'
 
 projects = {}

@@ -87,3 +87,7 @@ apache_site 'rundeck' do
   enable true
   notifies :reload, 'service[apache2]'
 end
+
+service 'apache2' do
+  subscribes :restart, 'service[rundeckd]', :immediately
+end

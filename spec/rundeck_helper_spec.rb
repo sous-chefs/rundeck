@@ -9,4 +9,51 @@ describe RundeckHelper do
       expect(described_class.generateuuid).to eql(uuid)
     end
   end
+
+  describe '#build_project_config' do
+    let(:data_bag_contents) do
+      {'id'=>'test-project',
+       'description'=>'Test project.',
+       'project_settings'=>
+        {'project.ssh-keypath'=>'/var/lib/rundeck/.ssh/id_rsa',
+         'project.ssh-authentication'=>'password',
+         'project.ssh.user'=>'svcacct',
+         'project.ssh-password-storage-path'=>'keys/svcacct.password',
+         'project.sudo-command-enabled'=>'true',
+         'project.sudo-password-storage-path'=>'keys/svcacct.password'}}
+    end
+    let(:project_name) { 'test-project' }
+    let(:node) do
+      {
+        'rundeck' => {
+          'chef_rundeck_url' => 'http://chef.rundeck:1234/url',
+          'datadir' => '/rundeck/datadir/'
+        }
+      }
+    end
+
+    it 'builds a project config hash from data bag contents' do
+      expect(
+        described_class.build_project_config(data_bag_contents, project_name, node)
+      ).to eql(
+        'project' => {
+          'resources' => {
+            'file' => '/rundeck/datadir/projects/test-project/etc/resources.xml'
+          }
+        },
+        'resources' => {
+          'source' => {
+            1 => {
+              'type' => 'url',
+              'config' => {
+                'includeServerNode' => true,
+                'generateFileAutomatically' => true,
+                'url' => 'http://chef.rundeck:1234/url/test-project'
+              }
+            }
+          }
+        }
+      )
+    end
+  end
 end

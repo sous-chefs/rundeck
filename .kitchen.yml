@@ -4,6 +4,7 @@ driver:
 
 provisioner:
   name: chef_zero
+  log_level: info
 
 platforms:
   - name: centos-6.8
@@ -27,4 +28,7 @@ suites:
         security_roles:
           - superusers
           - run_only_users
+        api_client_config:
+          # Logger::DEBUG
+          log_level: 0
       domain: kitchentest
