@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe 'rundeck::default' do
+  before do
+    allow_any_instance_of(Chef::Recipe).to receive(:include_recipe).and_call_original
+    allow_any_instance_of(Chef::Recipe).to receive(:include_recipe).with('rundeck::node_unix')
+  end
+
   cached(:chef_run) do
     ChefSpec::ServerRunner.new do |node, server|
       rundeck_stubs(node, server)
@@ -8,36 +13,7 @@ describe 'rundeck::default' do
   end
 
   it 'includes rundeck::node_unix' do
-    expect(chef_run).to include_recipe('rundeck::node_unix')
-  end
-end
-
-describe 'rundeck::server_install' do
-  cached(:chef_run) do
-    ChefSpec::ServerRunner.new do |node, server|
-      rundeck_stubs(node, server)
-    end.converge(described_recipe)
-  end
-
-  it 'renders framework.properties with correct user' do
-    expect(chef_run).to create_template('/etc/rundeck/framework.properties')
-    expect(chef_run).to render_file('/etc/rundeck/framework.properties').with_content(
-      'framework.ssh.user = rundeck'
-    )
-  end
-
-  context 'framework.ssh.user specified' do
-    cached(:chef_run) do
-      ChefSpec::ServerRunner.new do |node, server|
-        rundeck_stubs(node, server)
-        node.set['rundeck']['framework.ssh.user'] = 'serviceaccount'
-      end.converge(described_recipe)
-    end
-
-    it 'renders framework.properties with correct user' do
-      expect(chef_run).to render_file('/etc/rundeck/framework.properties').with_content(
-        'framework.ssh.user = serviceaccount'
-      )
-    end
+    expect_any_instance_of(Chef::Recipe).to receive(:include_recipe).with('rundeck::node_unix')
+    chef_run
   end
 end

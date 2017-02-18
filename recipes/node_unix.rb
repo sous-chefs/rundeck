@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe 'rundeck::_data_bags'
+
 group node['rundeck']['group'] do
   system true
 end

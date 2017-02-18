@@ -26,18 +26,16 @@ class RundeckApiClient
   def self.connect(server_url, username, password, opts={})
     client = new(server_url, username, opts)
     client.authenticate(password)
-    client.logger.info { "Connected new client: #{client.to_s}" }
+    client.logger.info { "Connected new client: #{client}" }
     client
   end
 
   def authenticate(password)
     request(
-      {
-        method: :post,
-        url: File.join(@server_url, 'j_security_check'),
-        headers: {
-          params: { j_username: @username, j_password: password }
-        }
+      method: :post,
+      url: File.join(@server_url, 'j_security_check'),
+      headers: {
+        params: { j_username: @username, j_password: password }
       }
     )
   end
@@ -63,9 +61,9 @@ class RundeckApiClient
     opts[:method] = http_method
     opts[:url] = api_url(path)
     opts[:headers] = { params: params }
-    unless payload.empty?
-      opts[:payload] = payload.to_json
-    end
+    opts[:payload] = payload.to_json unless payload.empty?
+
+    logger.debug { "request_wrapper called with opts: #{opts}" }
 
     res = request(opts)
 
@@ -79,8 +77,8 @@ class RundeckApiClient
     else
       logger.warn do
         "received response content-type '#{res['content-type']}' (expected 'application/json')"
-        res
       end
+      res
     end
   end
 
@@ -139,7 +137,7 @@ class RundeckApiClient
     @_logger.progname = self.class.name
     @_logger.datetime_format = '%Y-%m-%d %H:%M:%S'
     @_logger.formatter = proc do |severity, datetime, progname, msg|
-       "[#{progname} #{severity} #{datetime}] #{msg}\n"
+      "[#{progname} #{severity} #{datetime}] #{msg}\n"
     end
     @_logger
   end

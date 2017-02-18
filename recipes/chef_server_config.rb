@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include_recipe 'rundeck::_data_bags'
+
 template '/etc/chef/rundeck.rb' do
   owner node['rundeck']['user']
   group node['rundeck']['group']

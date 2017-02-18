@@ -18,6 +18,7 @@
 #
 
 include_recipe 'rundeck::default'
+include_recipe 'rundeck::_data_bags'
 
 if node.run_state['rundeck']['data_bag']['ldap']
   rundeck_ldap_bind_dn = node.run_state['rundeck']['data_bag']['ldap']['binddn']
@@ -227,10 +228,30 @@ bash 'own rundeck' do
 end
 
 service 'rundeckd' do
-  action :start
+  action [:start, :enable]
 end
 
-puts "chef-rundeck url: #{node['rundeck']['chef_rundeck_url']}"
+ruby_block 'wait for rundeckd startup' do
+  action :nothing
+  block do
+    # test connection to the authentication endpoint
+    require 'uri'
+    require 'net/http'
+    uri = URI(node['rundeck']['grails_server_url'])
+    uri.path = ::File.join(node['rundeck']['webcontext'], '/j_security_check')
+    res = Net::HTTP.get_response(uri)
+    unless (200..399).include?(res.code.to_i)
+      Chef::Log.warn { "#{res.uri} not responding healthy. #{res.code}" }
+      Chef::Log.debug { res.body }
+      raise
+    end
+  end
+  retries node['rundeck']['service']['retries']
+  retry_delay node['rundeck']['service']['retry_delay']
+  subscribes :run, 'service[rundeckd]', :immediately
+end
+
+Chef::Log.info { "chef-rundeck url: #{node['rundeck']['chef_rundeck_url']}" }
 
 # Assuming node['rundeck']['plugins'] is a hash containing name=>attributes
 unless node['rundeck']['plugins'].nil?

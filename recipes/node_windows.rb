@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe 'rundeck::_data_bags'
+
 user node['rundeck']['windows']['user'] do
   system true
   comment 'Rundeck User for access over winrm'
