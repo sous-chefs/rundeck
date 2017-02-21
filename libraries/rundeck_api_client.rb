@@ -23,6 +23,14 @@ class RundeckApiClient
   end
 
   # @return [RundeckApiClient] an authenticated client
+  #
+  # @example Connect an api client with max logging (Logger::DEBUG)
+  #   RundeckApiClient.connect(
+  #     'http://localhost:80',
+  #     'admin',
+  #     'adminpassword',
+  #     log_level: 0
+  #   )
   def self.connect(server_url, username, password, opts={})
     client = new(server_url, username, opts)
     client.authenticate(password)
