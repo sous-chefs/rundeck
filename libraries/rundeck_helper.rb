@@ -36,7 +36,7 @@ module RundeckHelper
       }
 
       if data_bag_contents['project_settings']
-        config.deep_merge(data_bag_contents['project_settings'])
+        config = config.deep_merge(data_bag_contents['project_settings'])
       end
 
       config
