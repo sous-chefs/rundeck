@@ -15,12 +15,13 @@ describe RundeckHelper do
       {'id'=>'test-project',
        'description'=>'Test project.',
        'project_settings'=>
-        {'project.ssh-keypath'=>'/var/lib/rundeck/.ssh/id_rsa',
-         'project.ssh-authentication'=>'password',
-         'project.ssh.user'=>'svcacct',
-         'project.ssh-password-storage-path'=>'keys/svcacct.password',
-         'project.sudo-command-enabled'=>'true',
-         'project.sudo-password-storage-path'=>'keys/svcacct.password'}}
+        {'project'=>
+          {'ssh-keypath'=>'/var/lib/rundeck/.ssh/id_rsa',
+           'ssh-authentication'=>'password',
+           'ssh.user'=>'svcacct',
+           'ssh-password-storage-path'=>'keys/svcacct.password',
+           'sudo-command-enabled'=>'true',
+           'sudo-password-storage-path'=>'keys/svcacct.password'}}}
     end
     let(:project_name) { 'test-project' }
     let(:node) do
@@ -39,7 +40,13 @@ describe RundeckHelper do
         'project' => {
           'resources' => {
             'file' => '/rundeck/datadir/projects/test-project/etc/resources.xml'
-          }
+          },
+          'ssh-authentication' => 'password',
+          'ssh-keypath' => '/var/lib/rundeck/.ssh/id_rsa',
+          'ssh-password-storage-path' => 'keys/svcacct.password',
+          'ssh.user' => 'svcacct',
+          'sudo-command-enabled' => 'true',
+          'sudo-password-storage-path' => 'keys/svcacct.password'
         },
         'resources' => {
           'source' => {
