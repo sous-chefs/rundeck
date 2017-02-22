@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'rundeck::server_install' do
+  # ordered list of included recipes
   let(:included_recipes) { %w(rundeck::default rundeck::_data_bags rundeck::_projects) }
 
   before do
-    ## uncomment to allow recipes to be included
+    ## uncomment to load resources from included recipes
     # allow_any_instance_of(Chef::Recipe).to receive(:include_recipe).and_call_original
     included_recipes.each do |recipe|
       allow_any_instance_of(Chef::Recipe).to receive(:include_recipe).with(recipe)
