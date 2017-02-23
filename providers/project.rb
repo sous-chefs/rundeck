@@ -1,10 +1,7 @@
-use_inline_resources
-
 action :create do
   ruby_block "create / update Rundeck project #{new_resource.name}" do
-    notifies :run, 'ruby_block[connect rundeck api client]', :before
     block do
-      node.run_state['rundeck']['api_client'].tap do |client|
+      new_resource.api_client.tap do |client|
         # Check if project is already on server
         if client.get('projects').select { |p| p['name'] == new_resource.name }.empty?
           # Create the project (with no config, config will be set below)

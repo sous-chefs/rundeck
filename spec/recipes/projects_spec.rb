@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'rundeck::_projects' do
   cached(:chef_run) do
-    ChefSpec::ServerRunner.new do |node, server|
+    ChefSpec::ServerRunner.new(step_into: ['rundeck_project']) do |node, server|
       rundeck_stubs(node, server)
     end.converge(described_recipe)
   end
@@ -14,7 +14,10 @@ describe 'rundeck::_projects' do
   end
 
   it 'creates projects using the lwrp' do
-    expect(chef_run).to create_rundeck_project('localhost')
-    expect(chef_run).to create_rundeck_project('test-project')
+    expect(chef_run).to run_ruby_block('connect rundeck api client')
+    %w(localhost test-project).each do |project_name|
+      expect(chef_run).to create_rundeck_project(project_name)
+      expect(chef_run).to run_ruby_block("create / update Rundeck project #{project_name}")
+    end
   end
 end
