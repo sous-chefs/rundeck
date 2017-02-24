@@ -33,6 +33,7 @@ default['rundeck']['api_client_config'] = {}
 default['rundeck']['service']['retries'] = 60
 # seconds between tcp check of rundeck server startup
 default['rundeck']['service']['retry_delay'] = 5
+default['rundeck']['service']['extra_wait'] = 120
 
 # Used for connecting to the api to manage resources (projects, etc). This user
 # also needs to be explicitly listed in the users data bag.

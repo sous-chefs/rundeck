@@ -245,6 +245,8 @@ ruby_block 'wait for rundeckd startup' do
       Chef::Log.debug { res.body }
       raise
     end
+    Chef::Log.info { 'wait a little longer for Rundeck startup' }
+    sleep node['rundeck']['service']['extra_wait']
   end
   retries node['rundeck']['service']['retries']
   retry_delay node['rundeck']['service']['retry_delay']
