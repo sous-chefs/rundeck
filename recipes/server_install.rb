@@ -229,6 +229,7 @@ end
 
 service 'rundeckd' do
   action [:start, :enable]
+  notifies :run, 'ruby_block[wait for rundeckd startup]', :immediately
 end
 
 ruby_block 'wait for rundeckd startup' do
@@ -250,7 +251,6 @@ ruby_block 'wait for rundeckd startup' do
   end
   retries node['rundeck']['service']['retries']
   retry_delay node['rundeck']['service']['retry_delay']
-  subscribes :run, 'service[rundeckd]', :immediately
 end
 
 Chef::Log.info { "chef-rundeck url: #{node['rundeck']['chef_rundeck_url']}" }
