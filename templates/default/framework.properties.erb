@@ -239,3 +239,9 @@ framework.winrm-protocol = <%= @rundeck[:windows][:winrm_protocol] %>
 
 # winrm connection timeout.  Default: PT60.000S
 framework.winrm-timeout = <%= @rundeck[:windows][:winrm_timeout] %>
+
+
+# Extra properties from Chef attribute ['rundeck']['framework']['properties']
+<% @rundeck['framework']['properties'].to_java_properties_hash.each do |key, value| %>
+<%= key %> = <%= value %>
+<% end %>
