@@ -41,12 +41,7 @@ describe RundeckApiClient do
     expect(client.get('project/test-project/config')).to eq(
       'a.b' => 'B',
       'a.c.d' => 'true',
-      'project.name' => 'test-project',
-      'project.resources.file' => '/var/rundeck/projects/test-project/etc/resources.xml',
-      'resources.source.1.config.generateFileAutomatically' => 'true',
-      'resources.source.1.config.includeServerNode' => 'true',
-      'resources.source.1.config.url' => 'http://chef.kitchentest:9980/test-project',
-      'resources.source.1.type' => 'url'
+      'project.name' => 'test-project'
     )
   end
 

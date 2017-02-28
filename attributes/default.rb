@@ -1,4 +1,3 @@
-default['rundeck'] = {}
 default['rundeck']['configdir'] = '/etc/rundeck'
 default['rundeck']['basedir'] = '/var/lib/rundeck'
 default['rundeck']['datadir'] = '/var/rundeck'
@@ -17,6 +16,9 @@ default['rundeck']['jaas'] = 'internal'
 default['rundeck']['default_role'] = 'user'
 default['rundeck']['security_roles'] = []
 default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
+
+# framework properties to add to the framework.properties config
+default['rundeck']['framework']['properties'] = {}
 
 default['rundeck']['email'] = "rundeck@#{node['domain']}"
 default['rundeck']['restart_on_config_change'] = false

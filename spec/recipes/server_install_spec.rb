@@ -49,4 +49,21 @@ describe 'rundeck::server_install' do
       )
     end
   end
+
+  context 'extra framework properties specified' do
+    cached(:chef_run) do
+      ChefSpec::ServerRunner.new do |node, server|
+        rundeck_stubs(node, server)
+        node.set['rundeck']['framework']['properties'] = {
+          'test' => { 'property' => 'value' }
+        }
+      end.converge(described_recipe)
+    end
+
+    it 'renders framework.properties with correct user' do
+      expect(chef_run).to render_file('/etc/rundeck/framework.properties').with_content(
+        'test.property = value'
+      )
+    end
+  end
 end
