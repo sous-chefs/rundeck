@@ -1,0 +1,12 @@
+{
+  "id": "test-project",
+  "description": "test-kitchen test project",
+  "project_settings": {
+    "a": {
+      "b": "B",
+      "c": {
+        "d": true
+      }
+    }
+  }
+}

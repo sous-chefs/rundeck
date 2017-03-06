@@ -1,4 +1,14 @@
-=======
+Changelog
+=========
+
+## 4.0.0
+* Project changes
+  * Projects are now created _and_ updated according to the data bag definition
+  * Create projects with api rather than CLI
+  * Project data bag change: projects will now be created / updated with config _exactly_ matching what is in the `"project_settings"` key in the data bag item. If you want to set extra config for all projects, consider adding attributes into `['rundeck']['framework']['properties']`
+  * [The functionality to set `resources.source.1` and `project.resources.file` for all projects](https://github.com/Webtrends/rundeck/blob/3865dc95cc3da033a9346680991a5cc29376c2be/recipes/server_install.rb#L270-L277) has been removed because it makes too many assumptions about projects. You can re-enable this functionality on a per-project basis by setting the `"old_style"` key to `true` in the project data bag item. See the lwrp for more information on this.
+* Use `['rundeck']['framework']['properties']` to set additional config in the `framework.properties` template
+
 ## 3.0.1
 * Fixed issue #104 (ACL databag not being handled)
 * Support for backward compatibility of Rundeck.
@@ -35,10 +45,10 @@
 * Using attributes for databag items
 * Bug fixes
 
-## 2.0.6 
+## 2.0.6
 * updating to rundeck version 2.4.2-1 GA
 
-## 2.0.5 
+## 2.0.5
 * added more options for LDAP configurations
 * improved the install process for the package option
 * configurable databag names

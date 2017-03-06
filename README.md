@@ -42,6 +42,8 @@ Linux default attributes for all rundeck managed nodes and server
 * `node['rundeck']['user']` - Rundeck username (linux), default 'rundeck'
 * `node['rundeck']['user_home']` - Rundeck user home directory (linux), default '/home/rundeck'
 
+* `node['rundeck']['framework']['properties']` - Use to set additional config in the `framework.properties` template
+
 * `node['rundeck']['rundeck_databag_secure']` - Rundeck secure data bag item for all keys and passwords, default 'secure'
 * `node['rundeck']['rundeck_databag']` - Rundeck configuration data bag for secure data, default 'rundeck'
 * `node['rundeck']['rundeck_projects_databag']` - Rundeck project configuration data bag.  Used for project creating and chef-rundeck.  default 'rundeck_projects'
@@ -175,7 +177,7 @@ Custom Configuration
 
 * Custom framework configuration (**framework.properties**) can be specified using `node['rundeck']['custom_framework_config']['<custom _configuration>']`
 * Custom rundeck configuration (**rundeck-config.properties**) can be specified using `node['rundeck']['custom_rundeck_config']['<custom _configuration>']`
-* Custom JVM properties (**profile**) can be specfied using `node['rundeck']['custom_jvm_properties']` 
+* Custom JVM properties (**profile**) can be specfied using `node['rundeck']['custom_jvm_properties']`
 
 > Note: Using custom configuration is for advanced users.
 
@@ -324,11 +326,65 @@ Generate the encrypted data bag:
 ```
 
 ### Rundeck Projects
-Create a `rundeck_projects` data bag that will contain the projects, and search strings, for the rundeck managed nodes to include by project. Example `rundeck_projects` data bag item:
+Create a `rundeck_projects` data bag that will contain the projects, and search strings, for the rundeck managed nodes to include by project.
 
-```javascript
+Example `rundeck_projects` data bag items can be found in [`/test/default/data_bags/rundeck_projects/`](/test/default/data_bags/rundeck_projects/). **In version 4.0.0 of this cookbook, the data bag item format has changed.** As of version 4.0.0 of this cookbook, project config will be set to _exactly_ the config described in the `"project_settings"` key of the data bag item. Here is an example project data bag item:
+
+```json
+{
+  "id": "the-project-name",
+  "project_settings": {
+    "project": {
+      "description": "The project description",
+      "nodeCache": {
+        "delay": 30,
+        "enabled": true
+      },
+      "ssh-authentication": "password",
+      "ssh-password-storage-path": "keys/service-account.password",
+      "ssh.user": "service-account",
+      "sudo-command-enabled": true,
+      "sudo-password-storage-path": "keys/service-account.password",
+      "sudo-prompt-max-timeout": 30000,
+      "sudo-response-max-timeout": 30000
+    },
+    "extra-config": {
+      "some-key": "some-value",
+      "nested-further": {
+        "a": "A",
+        "b": false
+      }
+    }
+  }
+}
+```
+
+The data bag item above would create a project named `the-project-name` with the following properties:
+
+```properties
+project.description = The project description
+project.nodeCache.delay = 30
+project.nodeCache.enabled = true
+project.ssh-authentication = password
+project.ssh-password-storage-path = keys/service-account.password
+project.ssh.user = service-account
+project.sudo-command-enabled = true
+project.sudo-password-storage-path = keys/service-account.password
+project.sudo-prompt-max-timeout = 30000
+project.sudo-response-max-timeout = 30000
+extra-config.some-key = some-value
+extra-config.nested-further.a = A
+extra-config.nested-further.b = false
+```
+
+#### Pre-4.x backwards compatible project data bag item format
+
+Previously, several config keys in the data bag item were used to generate the project config. This made too many assumptions, and greatly complicated the project creation and update functionality. If you want to maintain this data bag item format, backwards compatibility is supported if you set `"old_style": true` in the data bag item:
+
+```json
 {
   "id": "dev-systems",
+  "old_style": true,
   "hostname": "ipaddress",
   "username": "rundeck",
   "pattern": "chef_environment:dev1 OR chef_environment:dev2",
@@ -347,7 +403,7 @@ Rundeck Role ACL Policy
 ------------------
 A default role acl policy is supported out of the box.  You can add new acl policy files in to the configuration directory (`node['rundeck']['configdir']`)
 
-[Rundeck role acl policy definitions](http://rundeck.org/docs/administration/role-based-access-control.html).  
+[Rundeck role acl policy definitions](http://rundeck.org/docs/administration/role-based-access-control.html).
 
 
 

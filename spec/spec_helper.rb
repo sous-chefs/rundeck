@@ -2,12 +2,10 @@ require 'chefspec'
 require 'chefspec/berkshelf'
 require 'json'
 require 'securerandom'
-require_relative '../libraries/java_properties'
-require_relative '../libraries/rundeck_api_client'
-require_relative '../libraries/rundeck_helper'
 
 current_dir = File.dirname(File.expand_path(__FILE__))
 
+Dir[File.join(File.dirname(current_dir), 'libraries/**/*.rb')].sort.each { |f| require f }
 Dir[File.join(current_dir, 'support/**/*.rb')].sort.each { |f| require f }
 
 RSpec.configure do |config|
