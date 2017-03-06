@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 set -ev
 
 case $SUITE in

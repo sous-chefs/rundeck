@@ -5,7 +5,7 @@ describe Hash do
     {
       'a' => 'b',
       'c.4' => {
-        :blue => 'green',
+        :blue => false,
         'purple' => {
           11 => '14'
         },
@@ -21,9 +21,15 @@ describe Hash do
         "_" => "!@\#$%^&*()",
         "a" => "b",
         "c.4.11.12" => "http://rundeck.url/A=B&C=D",
-        "c.4.blue" => "green",
+        "c.4.blue" => "false",
         "c.4.purple.11" => "14"
       })
+    end
+
+    it 'can be called multiple times and return the same result' do
+      expect(properties.to_java_properties_hash).to eql(
+        properties.to_java_properties_hash.to_java_properties_hash
+      )
     end
 
     it 'returns a hash sorted by key' do
@@ -38,7 +44,7 @@ describe Hash do
         "_=!@\#$%^&*()",
         "a=b",
         "c.4.11.12=http\\://rundeck.url/A\\=B&C\\=D",
-        "c.4.blue=green",
+        "c.4.blue=false",
         "c.4.purple.11=14"
       ])
     end
@@ -50,7 +56,7 @@ describe Hash do
 '_=!@#$%^&*()
 a=b
 c.4.11.12=http\://rundeck.url/A\=B&C\=D
-c.4.blue=green
+c.4.blue=false
 c.4.purple.11=14'
       )
     end

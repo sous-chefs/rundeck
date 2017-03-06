@@ -1,6 +1,3 @@
-default['build-essential']['compile_time'] = true
-
-default['rundeck'] = {}
 default['rundeck']['configdir'] = '/etc/rundeck'
 default['rundeck']['basedir'] = '/var/lib/rundeck'
 default['rundeck']['datadir'] = '/var/rundeck'
@@ -20,6 +17,9 @@ default['rundeck']['default_role'] = 'user'
 default['rundeck']['security_roles'] = []
 default['rundeck']['hostname'] = "rundeck.#{node['domain']}"
 
+# framework properties to add to the framework.properties config
+default['rundeck']['framework']['properties'] = {}
+
 default['rundeck']['email'] = "rundeck@#{node['domain']}"
 default['rundeck']['restart_on_config_change'] = false
 default['rundeck']['log_dir'] = '/var/log/chef-rundeck'
@@ -27,6 +27,19 @@ default['rundeck']['tokens_file'] = nil # e.g. '/etc/rundeck/tokens.properties'
 default['rundeck']['use_inbuilt_ssl'] = false # Use inbuilt SSL for rundeck server.
 default['rundeck']['ssl']['port'] = 4443 # Use while using inbuilt SSL
 default['rundeck']['allow_local_https'] = true
+
+# see library for config available
+default['rundeck']['api_client_config'] = {}
+
+# configure how long to wait for rundeck service startup
+default['rundeck']['service']['retries'] = 60
+# seconds between tcp check of rundeck server startup
+default['rundeck']['service']['retry_delay'] = 5
+default['rundeck']['service']['extra_wait'] = 120
+
+# Used for connecting to the api to manage resources (projects, etc). This user
+# also needs to be explicitly listed in the users data bag.
+default['rundeck']['admin_user'] = 'admin'
 
 # web server configuration
 default['rundeck']['apache-template']['cookbook'] = 'rundeck'

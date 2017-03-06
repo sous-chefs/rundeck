@@ -17,12 +17,7 @@
 # limitations under the License.
 #
 
-if node['rundeck']['secret_file'].nil?
-  rundeck_secure = data_bag_item(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'])
-else
-  rundeck_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
-  rundeck_secure = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_secure'], rundeck_secret)
-end
+include_recipe 'rundeck::_data_bags'
 
 group node['rundeck']['group'] do
   system true
@@ -55,7 +50,7 @@ file "#{node['rundeck']['user_home']}/.ssh/authorized_keys" do
   group node['rundeck']['group']
   mode '0600'
   backup false
-  content rundeck_secure['public_key']
+  content node.run_state['rundeck']['data_bag']['secure']['public_key']
 end
 
 sudo 'rundeck-admin' do
