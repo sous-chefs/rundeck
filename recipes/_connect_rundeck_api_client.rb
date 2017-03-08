@@ -1,8 +1,6 @@
 # rest-client gem is needed for api client library
 # install at compile time so library can be used as soon as needed
-build_essential 'install packages' do
-  compile_time true
-end
+include_recipe 'build-essential'
 chef_gem 'rest-client' do
   compile_time true
   version '~> 2.0'

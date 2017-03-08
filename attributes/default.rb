@@ -1,3 +1,5 @@
+default['build-essential']['compile_time'] = true
+
 default['rundeck']['configdir'] = '/etc/rundeck'
 default['rundeck']['basedir'] = '/var/lib/rundeck'
 default['rundeck']['datadir'] = '/var/rundeck'
