@@ -6,7 +6,8 @@ describe 'rundeck::_connect_rundeck_api_client' do
   end
 
   it 'installs dependencies' do
-    expect(chef_run).to install_build_essential('install packages').with(
+    expect(chef_run).to include_recipe 'build-essential'
+    expect(chef_run).to install_build_essential('install_packages').with(
       compile_time: true
     )
     expect(chef_run).to install_chef_gem('rest-client').with(
