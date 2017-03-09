@@ -1,14 +1,28 @@
 require 'spec_helper'
 
+describe Hash do
+  describe '#deep_merge' do
+    let(:hsh) { { a: 'A', b: { 'c' => 'C', 'd' => 'D' } } }
+    it 'merges deeply' do
+      expect(hsh.deep_merge(
+        b: { 'd' => 'd', 'e' => 'e' },
+        f: 'f'
+      )).to eq(
+        a: 'A',
+        b: { 'c' => 'C', 'd' => 'd', 'e' => 'e' },
+        f: 'f'
+      )
+    end
+  end
+end
+
 describe RundeckApiClient do
   let(:server_url) { 'https://rundeck.domain.com' }
   let(:client) do
     described_class.new(
       server_url,
       'username',
-      {
-        'request_defaults' => { 'verify_mode' => 0 }
-      }
+      'request_defaults' => { verify_ssl: false }
     )
   end
 
@@ -17,7 +31,7 @@ describe RundeckApiClient do
       expect_any_instance_of(described_class).to receive(:require).with('rest-client')
       expect(client.instance_variable_get('@server_url')).to eq(server_url)
       expect(client.instance_variable_get('@config')).to eq(
-        { request_defaults: { 'verify_mode' => 0 } }
+        request_defaults: { verify_ssl: false }
       )
       expect(client).to be_an_instance_of(described_class)
     end
@@ -62,14 +76,14 @@ describe RundeckApiClient do
       let(:client) { described_class.new(server_url, 'username') }
 
       it "returns the client's default request options" do
-        expect(client.request_defaults).to eq({
+        expect(client.request_defaults).to eq(
           cookies: nil,
           headers: {
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
             'User-Agent' => described_class.name
           }
-        })
+        )
       end
     end
 
@@ -81,7 +95,8 @@ describe RundeckApiClient do
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
             'User-Agent' => described_class.name
-          }
+          },
+          verify_ssl: false
         })
       end
     end
@@ -95,7 +110,8 @@ describe RundeckApiClient do
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
             'User-Agent' => described_class.name
-          }
+          },
+          verify_ssl: false
         })
       end
     end
