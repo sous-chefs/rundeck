@@ -7,7 +7,7 @@ chefspec)
   rspec
   ;;
 lint)
-  foodcritic --context --progress .
+  foodcritic --context .
   rubocop --lint --display-style-guide --extra-details --display-cop-names
   ;;
 *)
