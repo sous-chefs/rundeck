@@ -8,6 +8,16 @@ class Hash
     end
     self.merge(second, &merger)
   end
+
+  def symbolize_all_keys
+    symbolized_hash = {}
+    self.each do |k, v|
+      key = k.respond_to?(:to_sym) ? k.to_sym : k
+      value = v.is_a?(Hash) ? v.symbolize_all_keys : v
+      symbolized_hash[key] = value
+    end
+    symbolized_hash
+  end
 end
 
 class RundeckApiClient
@@ -19,7 +29,7 @@ class RundeckApiClient
     @server_url, @username = server_url, username
 
     # convert all config keys to symbols
-    @config = config.each_with_object({}) { |(k,v), h| h[k.to_sym] = v }
+    @config = config.symbolize_all_keys
   end
 
   # @return [RundeckApiClient] an authenticated client
