@@ -14,6 +14,36 @@ describe Hash do
       )
     end
   end
+
+  describe '#symbolize_all_keys' do
+    let(:hsh) do
+      {
+        'a' => true,
+        'b' => {},
+        'c' => {
+          false => 4,
+          d: 'D',
+          'e' => { 'a' => 'b' }
+        },
+        d: 'blue',
+        'e' => 'green'
+      }
+    end
+
+    it 'symbolizes all keys recursively' do
+      expect(hsh.symbolize_all_keys).to eq(
+        a: true,
+        b: {},
+        c: {
+          false => 4,
+          d: 'D',
+          e: { a: 'b' }
+        },
+        d: 'blue',
+        e: 'green'
+      )
+    end
+  end
 end
 
 describe RundeckApiClient do
