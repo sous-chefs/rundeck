@@ -62,14 +62,26 @@ describe RundeckApiClient do
       let(:client) { described_class.new(server_url, 'username') }
 
       it "returns the client's default request options" do
-        expect(client.request_defaults).to eq({
+        expect(client.request_defaults).to eq(
           cookies: nil,
           headers: {
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
             'User-Agent' => described_class.name
           }
-        })
+        )
+      end
+
+      it 'merges with options provided' do
+        expect(client.request_defaults(verify_ssl: false)).to eq(
+          cookies: nil,
+          headers: {
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'User-Agent' => described_class.name
+          },
+          verify_ssl: false
+        )
       end
     end
 
