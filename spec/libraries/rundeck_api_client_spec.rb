@@ -1,20 +1,6 @@
 require 'spec_helper'
 
 describe Hash do
-  describe '#deep_merge' do
-    let(:hsh) { { a: 'A', b: { 'c' => 'C', 'd' => 'D' } } }
-    it 'merges deeply' do
-      expect(hsh.deep_merge(
-        b: { 'd' => 'd', 'e' => 'e' },
-        f: 'f'
-      )).to eq(
-        a: 'A',
-        b: { 'c' => 'C', 'd' => 'd', 'e' => 'e' },
-        f: 'f'
-      )
-    end
-  end
-
   describe '#symbolize_all_keys' do
     let(:hsh) do
       {

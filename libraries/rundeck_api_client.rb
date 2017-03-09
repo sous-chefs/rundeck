@@ -1,14 +1,7 @@
+require 'chef'
 require 'json'
-require 'logger'
 
 class Hash
-  def deep_merge(second)
-    merger = proc do |key, v1, v2|
-      Hash === v1 && Hash === v2 ? v1.merge(v2, &merger) : v2
-    end
-    self.merge(second, &merger)
-  end
-
   def symbolize_all_keys
     symbolized_hash = {}
     self.each do |k, v|
@@ -104,7 +97,10 @@ class RundeckApiClient
   # @see https://github.com/rest-client/rest-client
   # @see http://www.rubydoc.info/github/rest-client/rest-client/RestClient/Request
   def request(opts)
-    opts = request_defaults.deep_merge(opts)
+    opts = Chef::Mixin::DeepMerge.deep_merge(
+      opts,
+      request_defaults
+    )
 
     begin
       RestClient::Request.execute(opts) { |res, req| response_handler(res, req) }
@@ -138,15 +134,18 @@ class RundeckApiClient
     res.return!
   end
 
+  # Merge generic api client defaults with the defaults the client was
+  # initialized with, and return the merged hash.
   def request_defaults
-    {
+    Chef::Mixin::DeepMerge.deep_merge(
+      @config[:request_defaults].to_h,
       cookies: @cookie_jar,
       headers: {
         'Accept' => 'application/json',
         'Content-Type' => 'application/json',
         'User-Agent' => self.class.name
       }
-    }.deep_merge(@config[:request_defaults].to_h)
+    )
   end
 
   def logger
