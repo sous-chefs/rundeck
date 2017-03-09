@@ -29,7 +29,8 @@ class RundeckApiClient
   #     'http://localhost:80',
   #     'admin',
   #     'adminpassword',
-  #     log_level: 0
+  #     log_level: 0,
+  #     request_defaults: { verify_ssl: false }
   #   )
   def self.connect(server_url, username, password, opts={})
     client = new(server_url, username, opts)
@@ -135,7 +136,7 @@ class RundeckApiClient
         'Content-Type' => 'application/json',
         'User-Agent' => self.class.name
       }
-    }.deep_merge(@config['request_defaults'].to_h)
+    }.deep_merge(@config[:request_defaults].to_h)
   end
 
   def logger
