@@ -1,20 +1,6 @@
 require 'spec_helper'
 
 describe Hash do
-  describe '#deep_merge' do
-    let(:hsh) { { a: 'A', b: { 'c' => 'C', 'd' => 'D' } } }
-    it 'merges deeply' do
-      expect(hsh.deep_merge(
-        b: { 'd' => 'd', 'e' => 'e' },
-        f: 'f'
-      )).to eq(
-        a: 'A',
-        b: { 'c' => 'C', 'd' => 'd', 'e' => 'e' },
-        f: 'f'
-      )
-    end
-  end
-
   describe '#symbolize_all_keys' do
     let(:hsh) do
       {
@@ -68,11 +54,10 @@ describe RundeckApiClient do
   end
 
   describe '#connect' do
-    let(:logger) { instance_double('Logger', info: double) }
     let(:client) do
       double(
         described_class.name,
-        authenticate: double, logger: logger
+        authenticate: double
       )
     end
 
@@ -83,7 +68,6 @@ describe RundeckApiClient do
         { a: 'A' }
       ).and_return(client)
       expect(client).to receive(:authenticate).with('password')
-      expect(client).to receive(:logger)
       described_class.connect(server_url, 'username', 'password', a: 'A')
     end
   end
@@ -155,17 +139,11 @@ describe RundeckApiClient do
     let(:http_method) { :get }
     let(:req) { double(url: url, method: http_method) }
 
-    let(:logger) { instance_double(Logger, info: double, warn: double) }
-
-    before do
-      allow(client).to receive(:logger).and_return(logger)
-    end
-
     context '2xx' do
       let(:code) { 200 }
 
       it 'returns the response' do
-        expect(logger).to receive(:info)
+        expect(Chef::Log).to receive(:info)
         expect(res).to receive(:return!)
         client.response_handler(res, req)
       end
@@ -224,26 +202,6 @@ describe RundeckApiClient do
         expect(
           client.request(url: url, method: :get)
         ).to eq(return_obj)
-      end
-    end
-  end
-
-  describe '#logger' do
-    context 'log level not specified' do
-      it 'returns the configured logger' do
-        logger = client.logger
-        expect(logger).to be_an_instance_of(Logger)
-        expect(logger.level).to eql(Logger::INFO)
-      end
-    end
-
-    context 'log level specified' do
-      let(:client) do
-        described_class.new(server_url, 'username', 'log_level' => 3)
-      end
-
-      it 'returns the configured logger' do
-        expect(client.logger.level).to eql(Logger::ERROR)
       end
     end
   end

@@ -1,3 +1,4 @@
+require 'chef'
 require 'securerandom'
 
 # Helper module for Rundeck.
@@ -36,7 +37,10 @@ module RundeckHelper
       }
 
       if data_bag_contents['project_settings']
-        config = config.deep_merge(data_bag_contents['project_settings'])
+        config = Chef::Mixin::DeepMerge.deep_merge(
+          data_bag_contents['project_settings'],
+          config
+        )
       end
 
       config
