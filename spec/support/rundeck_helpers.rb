@@ -1,4 +1,4 @@
-def rundeck_stubs(_node, server)
+def rundeck_stubs(node, server)
   # store all data bag items in run_state just like in the recipes
   run_state = Hash.recursive
 
@@ -26,4 +26,10 @@ def rundeck_stubs(_node, server)
   stub_command(/rd-jobs/).and_return('')
   stub_command(/\/usr\/sbin\/httpd/).and_return('')
   stub_command(/bundle check/).and_return('')
+
+  node.set['rundeck']['server']['uuid'] = '1234-random-uuid-1234'
+end
+
+def spec_root_dir
+  @spec_root_dir ||= File.dirname(File.dirname(__FILE__))
 end
