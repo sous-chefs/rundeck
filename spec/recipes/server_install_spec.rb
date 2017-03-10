@@ -28,10 +28,15 @@ describe 'rundeck::server_install' do
     chef_run
   end
 
-  it 'renders framework.properties with correct user' do
+  it 'renders framework.properties' do
     expect(chef_run).to create_template('/etc/rundeck/framework.properties')
     expect(chef_run).to render_file('/etc/rundeck/framework.properties').with_content(
-      'framework.ssh.user = rundeck'
+      ::File.read(
+        File.join(
+          spec_root_dir,
+          'support/fixtures/files/framework.properties'
+        )
+      )
     )
   end
 
