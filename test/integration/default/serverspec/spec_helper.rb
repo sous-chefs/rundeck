@@ -1,6 +1,7 @@
 require 'busser/rubygems'
 require 'serverspec'
 
+Busser::RubyGems.install_gem('chef', '~> 12.12')
 Busser::RubyGems.install_gem('rest-client', '~> 2.0')
 
 # loading cookbook libraries in test-kitchen is a bit messy
