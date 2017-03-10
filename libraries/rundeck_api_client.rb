@@ -38,7 +38,7 @@ class RundeckApiClient
   def self.connect(server_url, username, password, opts={})
     client = new(server_url, username, opts)
     client.authenticate(password)
-    client.logger.info { "Connected new client: #{client}" }
+    Chef::Log.info { "Connected new client: #{client}" }
     client
   end
 
@@ -75,19 +75,19 @@ class RundeckApiClient
     opts[:headers] = { params: params }
     opts[:payload] = payload.to_json unless payload.empty?
 
-    logger.debug { "request_wrapper called with opts: #{opts}" }
+    Chef::Log.debug { "request_wrapper called with opts: #{opts}" }
 
     res = request(opts)
 
     if res.headers[:content_type] =~ /application\/json/i
       if res.body.to_s.empty?
-        logger.warn { 'empty response body received' }
+        Chef::Log.warn { 'empty response body received' }
         res
       else
         JSON.parse(res.body)
       end
     else
-      logger.warn do
+      Chef::Log.warn do
         "received response content-type '#{res['content-type']}' (expected 'application/json')"
       end
       res
@@ -122,12 +122,12 @@ class RundeckApiClient
 
     case res.code
     when 200..299
-      logger.info { log }
+      Chef::Log.info { log }
     when 301, 302, 307
-      logger.info { log }
+      Chef::Log.info { log }
       res.follow_redirection { |redir_res, redir_req| response_handler(redir_res, redir_req) }
     when 400..599
-      logger.warn { [log, 'BODY:', res.body].join(' ') }
+      Chef::Log.warn { [log, 'BODY:', res.body].join(' ') }
     end
 
     # http://www.rubydoc.info/github/rest-client/rest-client/RestClient/AbstractResponse#return!-instance_method
@@ -146,18 +146,6 @@ class RundeckApiClient
         'User-Agent' => self.class.name
       }
     )
-  end
-
-  def logger
-    return @_logger if defined? @_logger
-    @_logger = Logger.new(STDOUT)
-    @_logger.level = @config[:log_level] || Logger::INFO
-    @_logger.progname = self.class.name
-    @_logger.datetime_format = '%Y-%m-%d %H:%M:%S'
-    @_logger.formatter = proc do |severity, datetime, progname, msg|
-      "[#{progname} #{severity} #{datetime}] #{msg}\n"
-    end
-    @_logger
   end
 
   def server_uri
