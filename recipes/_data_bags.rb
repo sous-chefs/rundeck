@@ -47,6 +47,13 @@ else
   # )
 end
 
+if node['rundeck']['rundeck_databag_aclpolicies']
+  node.run_state['rundeck']['data_bag']['aclpolicies'] = data_bag_item(
+    bag_name,
+    node['rundeck']['rundeck_databag_aclpolicies']
+  )
+end
+
 bag_name = node['rundeck']['rundeck_projects_databag']
 data_bag(bag_name).each do |project_name|
   Chef::Log.debug "Loading data bag item '#{bag_name} / #{project_name}'"
