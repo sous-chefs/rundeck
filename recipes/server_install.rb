@@ -253,7 +253,7 @@ ruby_block 'wait for rundeckd startup' do
     # test connection to the authentication endpoint
     require 'uri'
     require 'net/http'
-    uri = URI("#{node['rundeck']['grails_server_url']}:#{node['rundeck']['use_inbuilt_ssl']? node['rundeck']['ssl']['port'] : node['rundeck']['port']}")
+    uri = URI("#{node['rundeck']['grails_server_url']}:#{node['rundeck']['grails_port']}")
     uri.path = ::File.join(node['rundeck']['webcontext'], '/j_security_check')
     res = Net::HTTP.get_response(uri)
     unless (200..399).include?(res.code.to_i)
