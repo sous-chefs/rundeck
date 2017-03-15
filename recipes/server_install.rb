@@ -59,13 +59,14 @@ else
 
   rundeck_version = node['rundeck']['deb']['package'].split('-')[1]
 
+  package 'uuidgen'
+  
   package node['rundeck']['url'] do
     action :install
     source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']['package']}"
     provider Chef::Provider::Package::Dpkg
     options node['rundeck']['deb']['options'] if node['rundeck']['deb']['options']
   end
-  package 'uuidgen'
 end
 
 service 'rundeck' do
