@@ -59,8 +59,8 @@ else
 
   rundeck_version = node['rundeck']['deb']['package'].split('-')[1]
 
-  package 'uuidgen'
-  
+  package 'uuid-runtime'
+
   package node['rundeck']['url'] do
     action :install
     source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']['package']}"
