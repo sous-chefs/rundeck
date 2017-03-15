@@ -40,6 +40,25 @@ describe 'rundeck::server_install' do
     )
   end
 
+  it 'renders aclpolicy files' do
+    expect(chef_run).to create_template('/etc/rundeck/user.aclpolicy')
+    expect(chef_run).to render_file('/etc/rundeck/user.aclpolicy').with_content { |content|
+      policies = content.split('---')
+      expect(YAML.safe_load(policies[0])).to eq(
+        'by' => { 'group' => 'user' },
+        'context' => { 'project' => '.*' },
+        'description' => "All projects' settings.",
+        'for' => { 'resource' => [{ 'equals' => { 'kind' => 'job' }, 'allow' => ['create'] }, { 'equals' => { 'kind' => 'event' }, 'allow' => ['read'] }, { 'equals' => { 'kind' => 'node' }, 'allow' => %w(read update refresh) }], 'adhoc' => [{ 'allow' => %w(create read update delete run runAs kill killAs) }], 'node' => [{ 'allow' => %w(read run) }] }
+      )
+      expect(YAML.safe_load(policies[1])).to eq(
+        'by' => { 'group' => 'user' },
+        'context' => { 'application' => 'rundeck' },
+        'description' => 'Rundeck application settings.',
+        'for' => { 'resource' => [{ 'equals' => { 'kind' => 'project' }, 'allow' => ['create'] }, { 'equals' => { 'kind' => 'system' }, 'allow' => ['read'] }, { 'equals' => { 'kind' => 'system_acl' }, 'allow' => ['read'] }], 'project' => [{ 'allow' => %w(read import export configure delete admin) }] }
+      )
+    }
+  end
+
   context 'framework.ssh.user specified' do
     cached(:chef_run) do
       ChefSpec::ServerRunner.new do |node, server|
