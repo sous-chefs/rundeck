@@ -65,6 +65,7 @@ else
     provider Chef::Provider::Package::Dpkg
     options node['rundeck']['deb']['options'] if node['rundeck']['deb']['options']
   end
+  package uuidgen
 end
 
 service 'rundeck' do
