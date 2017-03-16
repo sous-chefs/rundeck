@@ -2,7 +2,7 @@ Changelog
 =========
 
 ## 4.1.0
-* Added support for rundeck version 2.7.x. backward compatibility for 2.6.x is still there
+* Added support for rundeck version 2.7.x. Backward compatibility for 2.6.x is still there
 
 ## 4.0.0
 * Project changes
