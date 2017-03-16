@@ -28,6 +28,8 @@ rundeck_ldap = node['rundeck']['ldap']
 
 case node['platform_family']
 when 'rhel'
+  yum_package 'which'
+
   yum_repository 'rundeck' do
     description 'Rundeck - Release'
     url node['rundeck']['rpm']['repo']['url']
