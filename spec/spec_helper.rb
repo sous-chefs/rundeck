@@ -2,6 +2,7 @@ require 'chefspec'
 require 'chefspec/berkshelf'
 require 'json'
 require 'securerandom'
+require 'yaml'
 
 current_dir = File.dirname(File.expand_path(__FILE__))
 
