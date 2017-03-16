@@ -3,8 +3,7 @@ require 'spec_helper'
 describe 'rundeck::server_install' do
   # ordered list of included recipes
   let(:included_recipes) do
-    %w(rundeck::default rundeck::_data_bags rundeck::_connect_rundeck_api_client
-       rundeck::_projects)
+    %w(rundeck::default rundeck::_data_bags)
   end
 
   before do
