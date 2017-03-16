@@ -282,6 +282,3 @@ unless node['rundeck']['plugins'].nil?
     end
   end
 end
-
-include_recipe 'rundeck::_connect_rundeck_api_client'
-include_recipe 'rundeck::_projects'
