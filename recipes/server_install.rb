@@ -266,7 +266,6 @@ ruby_block 'wait for rundeckd startup' do
   end
   retries node['rundeck']['service']['retries']
   retry_delay node['rundeck']['service']['retry_delay']
-  ignore_failure true
 end
 
 Chef::Log.info { "chef-rundeck url: #{node['rundeck']['chef_rundeck_url']}" }
