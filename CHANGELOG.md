@@ -1,6 +1,9 @@
 Changelog
 =========
 
+## 4.1.0
+* Added support for rundeck version 2.7.x. backward compatibility for 2.6.x is still there
+
 ## 4.0.0
 * Project changes
   * Projects are now created _and_ updated according to the data bag definition
