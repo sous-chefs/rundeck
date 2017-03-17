@@ -55,9 +55,6 @@ default['rundeck']['webcontext'] = '/'
 default['rundeck']['grails_server_url'] = "#{node['rundeck']['use_inbuilt_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}"
 default['rundeck']['grails_port'] = node['rundeck']['use_ssl'] ? 443 : 80
 default['rundeck']['truststore_type'] = 'jks'
-# This attribute is helpful if you are using a SSL reverse proxy by yourslef in front of rundeck
-# In such case you can set it to http://localhost:4440 if you are not running inbuilt SSL
-default['rundeck']['startup_test_url'] = nil
 
 default['rundeck']['log_level'] = 'INFO' # ERR,WARN,INFO,VERBOSE,DEBUG
 default['rundeck']['rss_enabled'] = true
