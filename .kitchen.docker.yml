@@ -20,9 +20,9 @@ platforms:
       pid_one_command: /sbin/init
       intermediate_instructions:
         - RUN /usr/bin/yum install -y sudo
-  - name: centos-7.3
+  - name: centos-7.2
     driver:
-      image: centos:7.3.1611
+      image: centos:7.2.1511
       privileged: true
       pid_one_command: /usr/lib/systemd/systemd
       intermediate_instructions:
