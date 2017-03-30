@@ -88,6 +88,6 @@ apache_site 'rundeck' do
   notifies :reload, 'service[apache2]'
 end
 
-service node['apache2']['service_name'] do
-  subscribes :restart, 'service[rundeckd]', :immediately
+service 'apache2' do
+  subscribes :restart, 'service[rundeckd]', :delayed
 end
