@@ -85,9 +85,9 @@ end
 
 apache_site 'rundeck' do
   enable true
-  notifies :restart, 'service[apache2]', :immediately
+  notifies :restart, 'service[apache2]'
 end
 
 service 'apache2' do
-  subscribes :restart, 'service[rundeckd]', :delayed
+  subscribes :restart, 'service[rundeckd]', :immediately
 end
