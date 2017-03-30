@@ -85,7 +85,7 @@ end
 
 apache_site 'rundeck' do
   enable true
-  notifies :reload, 'service[apache2]'
+  notifies :restart, 'service[apache2]', :immediately
 end
 
 service 'apache2' do
