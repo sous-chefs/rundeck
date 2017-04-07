@@ -80,12 +80,12 @@ template 'apache-config' do
     log_dir: node['platform_family'] == 'rhel' ? '/var/log/httpd' : '/var/log/apache2',
     doc_root: node['platform_family'] == 'rhel' ? '/var/www/html' : '/var/www'
   )
-  notifies :reload, 'service[apache2]'
+  notifies :restart, 'service[apache2]', :immediately
 end
 
 apache_site 'rundeck' do
   enable true
-  notifies :reload, 'service[apache2]'
+  notifies :restart, 'service[apache2]', :immediately
 end
 
 service 'apache2' do
