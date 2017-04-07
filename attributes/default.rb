@@ -5,14 +5,14 @@ default['rundeck']['basedir'] = '/var/lib/rundeck'
 default['rundeck']['datadir'] = '/var/rundeck'
 default['rundeck']['tempdir'] = '/tmp/rundeck'
 default['rundeck']['exec_logdir'] = "#{node['rundeck']['basedir']}/logs"
-default['rundeck']['deb']['package'] = 'rundeck-2.6.11-1-GA.deb'
+default['rundeck']['deb']['package'] = 'rundeck-2.7.3-1-GA.deb'
 default['rundeck']['deb']['options'] = false #--force-confdef --force-confold
+default['rundeck']['rpm']['version'] = 'rundeck-2.7.3-1.27.GA' # rundeck package from http://dl.bintray.com/rundeck/rundeck-rpm
 default['rundeck']['rpm']['repo']['url'] = 'http://dl.bintray.com/rundeck/rundeck-rpm'
 default['rundeck']['rpm']['repo']['gpgkey'] = 'http://rundeck.org/keys/BUILD-GPG-KEY-Rundeck.org.key'
 default['rundeck']['rpm']['repo']['gpgcheck'] = true
-default['rundeck']['rpm']['version'] = 'rundeck-2.6.11-1.23.GA' # rundeck package from http://dl.bintray.com/rundeck/rundeck-rpm
 default['rundeck']['url'] = "http://download.rundeck.org/deb/#{node['rundeck']['deb']['package']}"
-default['rundeck']['checksum'] = '93e98ae0ef850756643e7f1dfb9f83432820485cac3a51c67fa5ef8039182d0b'
+default['rundeck']['checksum'] = 'ee70fb57187d1fec136d20835bf64c11b4be4735480d48fab93a8ab5ed90013f'
 default['rundeck']['port'] = 4440
 default['rundeck']['jaas'] = 'internal'
 default['rundeck']['default_role'] = 'user'
@@ -54,13 +54,14 @@ default['rundeck']['webcontext'] = '/'
 # SSL offloading should pass the X-Forwarded-Proto header as https and leave this a http
 default['rundeck']['grails_server_url'] = "#{node['rundeck']['use_inbuilt_ssl'] ? 'https' : 'http'}://#{node['rundeck']['hostname']}"
 default['rundeck']['grails_port'] = node['rundeck']['use_ssl'] ? 443 : 80
+default['rundeck']['truststore_type'] = 'jks'
 
 default['rundeck']['log_level'] = 'INFO' # ERR,WARN,INFO,VERBOSE,DEBUG
 default['rundeck']['rss_enabled'] = true
 
 # java configuration
 default['rundeck']['jvm_mem'] = ' -XX:MaxPermSize=256m -Xmx1024m -Xms256m'
-default['java']['jdk_version'] = '7'
+default['java']['jdk_version'] = '8'
 
 # Quartz configuration.
 default['rundeck']['quartz']['threadPoolCount'] = 10
