@@ -89,6 +89,11 @@ apache_site 'rundeck' do
 end
 
 service 'apache2' do
-  provider Chef::Provider::Service::Init
+  case node['platform']
+  when 'centos', 'redhat', 'fedora'
+    provider Chef::Provider::Service::Systemd
+  else
+    provider Chef::Provider::Service::Upstart
+  end
   subscribes :restart, 'service[rundeckd]', :immediately
 end
