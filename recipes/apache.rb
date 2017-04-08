@@ -91,9 +91,7 @@ end
 service 'apache2' do
   case node['platform']
   when 'centos', 'redhat', 'fedora'
-    provider Chef::Provider::Service::Systemd
-  else
-    provider Chef::Provider::Service::Upstart
+    provider Chef::Provider::Service::Init::Redhat
   end
   subscribes :restart, 'service[rundeckd]', :immediately
 end
