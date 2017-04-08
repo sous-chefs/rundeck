@@ -89,5 +89,6 @@ apache_site 'rundeck' do
 end
 
 service 'apache2' do
+  provider Chef::Provider::Service::Init
   subscribes :restart, 'service[rundeckd]', :immediately
 end
