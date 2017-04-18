@@ -1,6 +1,7 @@
 ---
 driver:
   name: dokken
+  chef_version: 12.19.36
 
 transport:
   name: dokken
