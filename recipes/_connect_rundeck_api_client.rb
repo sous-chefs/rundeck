@@ -10,9 +10,10 @@ end
 # responding and api user is created.
 ruby_block 'connect rundeck api client' do
   block do
+    url = node['rundeck']['api_client_url'] || ::File.join(node['rundeck']['grails_server_url'], node['rundeck']['webcontext'])
     admin_user = node['rundeck']['admin_user']
     node.run_state['rundeck']['api_client'] = RundeckApiClient.connect(
-      ::File.join(node['rundeck']['grails_server_url'], node['rundeck']['webcontext']),
+      url,
       admin_user,
       node.run_state['rundeck']['data_bag']['users']['users'][admin_user]['password'],
       node['rundeck']['api_client_config'] || {}
