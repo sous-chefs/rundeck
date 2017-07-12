@@ -1,0 +1,8 @@
+{
+  "id": "localhost",
+  "hostname": "ipaddress",
+  "username": "rundeck",
+  "pattern": "*:*",
+  "description": "These instances are tied to the dev-systems project in Rundeck.",
+  "old_style": true
+}
