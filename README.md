@@ -1,7 +1,7 @@
 Rundeck Cookbook
 ================
 
-[![Build Status](https://travis-ci.org/Webtrends/rundeck.svg?branch=master)](https://travis-ci.org/Webtrends/rundeck)
+[![Build Status](https://travis-ci.org/sous-chefs/rundeck.svg?branch=master)](https://travis-ci.org/sous-chefs/rundeck)
 [![Cookbook Version](https://img.shields.io/cookbook/v/rundeck.svg)](https://supermarket.chef.io/cookbooks/rundeck)
 
 Installs and configures a Rundeck 2.0 server with Chef integration via the chef-rundeck.gem.  Projects in rundeck can be dynamically configured via data bag items using search.  Linux and Windows client nodes are supported.  The cookbook has optional support for Active Directory and LDAP.
@@ -9,7 +9,9 @@ Installs and configures a Rundeck 2.0 server with Chef integration via the chef-
 
 Requirements
 ------------
+
 #### Chef
+
 * Chef 11+
 
 Because of the heavy use of search, this recipe will not work with Chef Solo, as it cannot do any searches without a server.
@@ -17,6 +19,7 @@ Because of the heavy use of search, this recipe will not work with Chef Solo, as
 This cookbook relies on multiple data bags. See __Data Bag__ below.
 
 #### Platforms
+
 * Debian 7+
 * Ubuntu 12.04+
 * RHEL 5+
@@ -70,6 +73,7 @@ Windows default attributes for all rundeck managed nodes
 * `node['rundeck']['rss_enabled']` - true/false for RSS support
 
 ### chef-rundeck
+
 Chef rundeck integration service attributes
 
 * `node['rundeck']['chef_config']` - Chef-Rundeck client configuration, default '/etc/chef/rundeck.rb'
@@ -86,6 +90,7 @@ Chef rundeck integration service attributes
 * `node['rundeck']['chef_rundeck_gem']` - Use a custom version of the chef-rundeck gem (eg. local version), default 'nil' uses the gem repo by default
 
 ### server
+
 Attributes that configure and manage the installation of the Rundeck server
 
 * `node['rundeck']['configdir']` - Configuration directory, default '/etc/rundeck'
