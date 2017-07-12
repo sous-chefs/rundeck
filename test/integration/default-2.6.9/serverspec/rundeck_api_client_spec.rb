@@ -9,7 +9,7 @@ describe RundeckApiClient do
     {
       name: 'kitchen-api-proj',
       description: 'Created via api by test-kitchen',
-      config: { a: 'A', b: 'B' },
+      config: { a: 'A', b: 'B' }
     }
   end
 
@@ -18,15 +18,15 @@ describe RundeckApiClient do
   end
 
   it 'retrieves the api version' do
-    expect(client.version).to eql(20)
+    expect(client.version).to eql(17)
   end
 
   it 'creates and configures projects from data bag definitions' do
     expect(client.get('projects')).to eq(
-      [{ 'url' => 'http://localhost/api/20/project/localhost',
+      [{ 'url' => 'http://localhost/api/17/project/localhost',
          'name' => 'localhost',
          'description' => '' },
-       { 'url' => 'http://localhost/api/20/project/test-project',
+       { 'url' => 'http://localhost/api/17/project/test-project',
          'name' => 'test-project',
          'description' => '' }]
     )
