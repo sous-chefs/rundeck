@@ -10,7 +10,7 @@ files = [
   '/etc/rundeck/jaas-activedirectory.conf',
   '/etc/rundeck/profile',
   '/etc/rundeck/framework.properties',
-  '/etc/rundeck/realm.properties'
+  '/etc/rundeck/realm.properties',
 ]
 
 describe file('/var/lib/rundeck') do

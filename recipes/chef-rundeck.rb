@@ -24,12 +24,12 @@ include_recipe 'rundeck::_data_bags'
 include_recipe 'rundeck::chef_server_config'
 
 projects = {}
-node.run_state['rundeck']['projects'].each do |project_name,data_bag_item_contents|
+node.run_state['rundeck']['projects'].each do |project_name, data_bag_item_contents|
   projects[project_name] = {
     'pattern' => data_bag_item_contents['pattern'],
     'username' => data_bag_item_contents['username'],
     'hostname' => data_bag_item_contents['hostname'],
-    'attributes' => data_bag_item_contents['attributes']
+    'attributes' => data_bag_item_contents['attributes'],
   }
 end
 
