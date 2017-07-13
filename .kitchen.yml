@@ -1,14 +1,14 @@
----
 driver:
   name: vagrant
 
 provisioner:
   name: chef_zero
+  deprecations_as_errors: true
   log_level: info
 
 platforms:
-  - name: centos-6.8
-  - name: centos-7.2
+  - name: centos-6.9
+  - name: centos-7.3
   - name: ubuntu-14.04
     run_list:
       - recipe[apt]

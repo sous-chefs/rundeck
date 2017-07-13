@@ -1,7 +1,7 @@
 name             'rundeck'
-maintainer       'Webtrends, Inc.'
-maintainer_email 'Peter Crossley <peter.crossley@webtrends.com>'
-license          'All rights reserved'
+maintainer       'Sous Chefs'
+maintainer_email 'help@sous-chefs.org'
+license          'Apache-2.0'
 description      'Installs and configures Rundeck 2.x'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '4.1.0'
@@ -25,5 +25,6 @@ recipe 'rundeck::default', 'Use this recipe to manage the node as a target in ru
 recipe 'rundeck::node_unix', 'Unix\Linux platform configuration, do not use on a node, the default recipe uses this implmentation'
 recipe 'rundeck::node_windows', 'Windows platform configuration, do not use on a node, the default recipe uses this implmentation'
 
-source_url 'https://github.com/webtrends/rundeck' if respond_to?(:source_url)
-issues_url 'https://github.com/webtrends/rundeck/issues' if respond_to?(:issues_url)
+source_url "https://github.com/sous-chefs/#{name}"
+issues_url "https://github.com/sous-chefs/#{name}/issues"
+chef_version '>= 12.1' if respond_to?(:chef_version)
