@@ -18,11 +18,13 @@ use_inline_resources
 # limitations under the License.
 #
 
+use_inline_resources
+
 action :create do
   plugin_filename = ::File.basename(new_resource.url)
   Chef::Application.fatal!("Invalid filename extension for Rundeck plugin #{new_resource.name}") \
     unless ::File.extname(plugin_filename).eql?('.zip') || ::File.extname(plugin_filename).eql?('.jar')
-  a = remote_file "#{node['rundeck']['basedir']}/libext/#{plugin_filename}" do
+  remote_file "#{node['rundeck']['basedir']}/libext/#{plugin_filename}" do
     owner node['rundeck']['user']
     group node['rundeck']['group']
     mode 00644
@@ -30,12 +32,10 @@ action :create do
     source new_resource.url
     checksum(new_resource.checksum) if new_resource.checksum
   end
-  new_resource.updated_by_last_action(a.updated_by_last_action?)
 end
 
 action :remove do
-  a = file "#{node['rundeck']['basedir']}/libext/#{new_resource.name}" do
+  file "#{node['rundeck']['basedir']}/libext/#{new_resource.name}" do
     action :delete
   end
-  new_resource.updated_by_last_action(a.updated_by_last_action?)
 end
