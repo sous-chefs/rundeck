@@ -1,7 +1,7 @@
 name             'rundeck'
-maintainer       'Webtrends, Inc.'
-maintainer_email 'Peter Crossley <peter.crossley@webtrends.com>'
-license          'All rights reserved'
+maintainer       'Sous Chefs'
+maintainer_email 'help@sous-chefs.org'
+license          'Apache-2.0'
 description      'Installs and configures Rundeck 2.x'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '4.1.0'
