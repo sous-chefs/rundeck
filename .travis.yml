@@ -18,12 +18,10 @@ branches:
 services: docker
 
 env:
-  - SUITE=chefspec
-  - SUITE=lint
-  - SUITE=centos-6
-  - SUITE=centos-7
-  - SUITE=ubuntu-1404
-  - SUITE=ubuntu-1604
+  matrix:
+  - INSTANCE=default-centos-7
+  - INSTANCE=default-ubuntu-1404
+  - INSTANCE=default-ubuntu-1604
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
@@ -32,13 +30,10 @@ before_script:
   - cookstyle --version
   - foodcritic --version
 
-script:
-  - ./.travis.sh
+script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
 
 matrix:
-  allow_failures:
-    - env: SUITE=lint
-    # We are allowing failure for Ubuntu 16. It keeps saying /sbin/status
-    # doesn't exist when trying to restart the service rundeckd
-    - env: SUITE=ubuntu-1604
-  fast_finish: true
+  include:
+    - script:
+      - /opt/chefdk/bin/chef exec delivery local all
+      env: UNIT_AND_LINT=1
