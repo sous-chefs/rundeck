@@ -1,8 +1,8 @@
 class Hash
-  def to_java_properties_hash(prefix='')
+  def to_java_properties_hash(prefix = '')
     properties = {}
 
-    self.each do |property, value|
+    each do |property, value|
       new_prefix = prefix.empty? ? property.to_s : prefix + '.' + property.to_s
       if value.respond_to? :to_java_properties_hash
         properties.merge!(value.to_java_properties_hash(new_prefix))
@@ -12,13 +12,13 @@ class Hash
     end
 
     # return the sorted hash
-    Hash[ properties.sort_by { |k,v| k.to_s } ]
+    Hash[properties.sort_by { |k, _v| k.to_s }]
   end
 
   def to_java_properties_lines
     lines = []
 
-    self.to_java_properties_hash.each do |k,v|
+    to_java_properties_hash.each do |k, v|
       # escape '=', ':', and "\n" with a backslash
       lines << "#{k.gsub(/([=:\n])/, '\\\\\1')}=#{v.gsub(/([=:\n])/, '\\\\\1')}"
     end
@@ -27,6 +27,6 @@ class Hash
   end
 
   def to_java_properties_string
-    self.to_java_properties_lines.join("\n")
+    to_java_properties_lines.join("\n")
   end
 end

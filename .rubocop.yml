@@ -1,0 +1,5 @@
+# SupportedStyles: slashes, percent_r, mixed
+Style/RegexpLiteral:
+  Exclude:
+    - 'libraries/rundeck_api_client.rb'
+    - 'spec/support/rundeck_helpers.rb'
