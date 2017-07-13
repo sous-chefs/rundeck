@@ -18,15 +18,15 @@ use_inline_resources
 # limitations under the License.
 #
 
+use_inline_resources
+
 action :create do
   # Check user existence in realm.properties
   if ::File.read(::File.join(node['rundeck']['configdir'], 'realm.properties')) =~ /^#{new_resource.name}: /
-    new_resource.updated_by_last_action(false)
     Chef::Log.info("Rundeck user #{new_resource.name} already exists. Please use :update action instead")
   else
     ruby_block "rundeck-create-user-#{new_resource.name}" do
       block do
-        new_resource.updated_by_last_action(true)
         # Append the line to realm.properties
         ::File.open(::File.join(node['rundeck']['configdir'], 'realm.properties'), 'a') do |fp|
           fp.puts(create_auth_line(new_resource.name, new_resource.password, new_resource.encryption, new_resource.roles))
@@ -43,7 +43,6 @@ action :remove do
   if ::File.read(::File.join(node['rundeck']['configdir'], 'realm.properties')) =~ /^#{new_resource.name}: /
     ruby_block "rundeck-remove-user-#{new_resource.name}" do
       block do
-        new_resource.updated_by_last_action(true)
         ::File.open(::File.join(node['rundeck']['configdir'], 'realm.properties'), 'r') do |fp|
           newcontent = ''
           while line = fp.readline # rubocop:disable Lint/AssignmentInCondition
@@ -55,8 +54,6 @@ action :remove do
       end
       # notifies :restart, 'service[rundeckd]'
     end
-  else
-    new_resource.updated_by_last_action(false)
   end
 end
 
@@ -65,7 +62,6 @@ action :update do
   if ::File.read(::File.join(node['rundeck']['configdir'], 'realm.properties')) =~ /^#{new_auth_line}: $/
     ruby_block "rundeck-update-user-#{new_resource.name}" do
       block do
-        new_resource.updated_by_last_action(true)
         ::File.open(::File.join(node['rundeck']['configdir'], 'realm.properties'), 'r') do |fp|
           newcontent = ''
           while line = fp.readline # rubocop:disable Lint/AssignmentInCondition
@@ -78,7 +74,6 @@ action :update do
     end
     # notifies :restart, 'service[rundeckd]'
   else
-    new_resource.updated_by_last_action(false)
     Chef::Log.info("Rundeck user #{new_resource.name} already up to date")
   end
 end
