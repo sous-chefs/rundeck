@@ -1,13 +1,21 @@
-language: ruby
-
-cache: bundler
-
 sudo: required
-
 dist: trusty
 
-rvm:
-  - 2.3.1
+addons:
+  apt:
+    sources:
+      - chef-current-trusty
+    packages:
+      - chefdk
+
+# Don't `bundle install` which takes about 1.5 mins
+install: echo "skip bundle install"
+
+branches:
+  only:
+    - master
+
+services: docker
 
 env:
   - SUITE=chefspec
@@ -17,12 +25,15 @@ env:
   - SUITE=ubuntu-1404
   - SUITE=ubuntu-1604
 
-services:
-  - docker
+before_script:
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+  - chef --version
+  - cookstyle --version
+  - foodcritic --version
 
 script:
-  - bundle update
-  - bundle exec ./.travis.sh
+  - ./.travis.sh
 
 matrix:
   allow_failures:
