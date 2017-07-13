@@ -25,5 +25,6 @@ recipe 'rundeck::default', 'Use this recipe to manage the node as a target in ru
 recipe 'rundeck::node_unix', 'Unix\Linux platform configuration, do not use on a node, the default recipe uses this implmentation'
 recipe 'rundeck::node_windows', 'Windows platform configuration, do not use on a node, the default recipe uses this implmentation'
 
-source_url 'https://github.com/webtrends/rundeck' if respond_to?(:source_url)
-issues_url 'https://github.com/webtrends/rundeck/issues' if respond_to?(:issues_url)
+source_url 'https://github.com/webtrends/rundeck'
+issues_url 'https://github.com/webtrends/rundeck/issues'
+chef_version '>= 12.1' if respond_to?(:chef_version)
