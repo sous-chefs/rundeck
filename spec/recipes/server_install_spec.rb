@@ -90,7 +90,6 @@ describe 'rundeck::server_install' do
         }
       end
     end
-
   end
 
   context 'jaas-activedirectory.conf with correct property file login module in rundeck 2.7.x' do
@@ -261,7 +260,7 @@ describe 'rundeck::server_install' do
       ChefSpec::ServerRunner.new do |node, server|
         rundeck_stubs(node, server)
         node.set['rundeck']['framework']['properties'] = {
-          'test' => { 'property' => 'value' }
+          'test' => { 'property' => 'value' },
         }
       end.converge(described_recipe)
     end

@@ -1,33 +1,39 @@
-language: ruby
-
-cache: bundler
-
 sudo: required
-
 dist: trusty
 
-rvm:
-  - 2.3.1
+addons:
+  apt:
+    sources:
+      - chef-current-trusty
+    packages:
+      - chefdk
+
+# Don't `bundle install` which takes about 1.5 mins
+install: echo "skip bundle install"
+
+branches:
+  only:
+    - master
+
+services: docker
 
 env:
-  - SUITE=chefspec
-  - SUITE=lint
-  - SUITE=centos-6
-  - SUITE=centos-7
-  - SUITE=ubuntu-1404
-  - SUITE=ubuntu-1604
+  matrix:
+  - INSTANCE=default-centos-7
+  - INSTANCE=default-ubuntu-1404
+  - INSTANCE=default-ubuntu-1604
 
-services:
-  - docker
+before_script:
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+  - chef --version
+  - cookstyle --version
+  - foodcritic --version
 
-script:
-  - bundle update
-  - bundle exec ./.travis.sh
+script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
 
 matrix:
-  allow_failures:
-    - env: SUITE=lint
-    # We are allowing failure for Ubuntu 16. It keeps saying /sbin/status
-    # doesn't exist when trying to restart the service rundeckd
-    - env: SUITE=ubuntu-1604
-  fast_finish: true
+  include:
+    - script:
+      - /opt/chefdk/bin/chef exec delivery local all
+      env: UNIT_AND_LINT=1

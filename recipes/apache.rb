@@ -26,8 +26,8 @@ include_recipe 'apache2::mod_proxy_http'
 include_recipe 'apache2::mod_rewrite'
 
 if node['rundeck']['use_ssl']
-  rundeck_ssl_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
-  rundeck_ssl_config = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_certs'], rundeck_ssl_secret).to_hash
+  rundeck_ssl_secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file']) # ~FC086
+  rundeck_ssl_config = Chef::EncryptedDataBagItem.load(node['rundeck']['rundeck_databag'], node['rundeck']['rundeck_databag_certs'], rundeck_ssl_secret).to_hash # ~FC086
 
   file "#{node['apache']['dir']}/ssl/#{node['rundeck']['cert']['name']}.crt" do
     content rundeck_ssl_config['cert']

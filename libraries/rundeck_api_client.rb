@@ -4,7 +4,7 @@ require 'json'
 class Hash
   def symbolize_all_keys
     symbolized_hash = {}
-    self.each do |k, v|
+    each do |k, v|
       key = k.respond_to?(:to_sym) ? k.to_sym : k
       value = v.is_a?(Hash) ? v.symbolize_all_keys : v
       symbolized_hash[key] = value
@@ -14,12 +14,13 @@ class Hash
 end
 
 class RundeckApiClient
-  def initialize(server_url, username, config={})
+  def initialize(server_url, username, config = {})
     # Lazily require dependencies so that the cookbook can install them first
     # via chef_gem
     require 'rest-client'
 
-    @server_url, @username = server_url, username
+    @server_url = server_url
+    @username = username
 
     # convert all config keys to symbols
     @config = config.symbolize_all_keys
@@ -35,7 +36,7 @@ class RundeckApiClient
   #     log_level: 0,
   #     request_defaults: { verify_ssl: false }
   #   )
-  def self.connect(server_url, username, password, opts={})
+  def self.connect(server_url, username, password, opts = {})
     client = new(server_url, username, opts)
     client.authenticate(password)
     Chef::Log.info { "Connected new client: #{client}" }
@@ -47,16 +48,16 @@ class RundeckApiClient
       method: :post,
       url: File.join(@server_url, 'j_security_check'),
       headers: {
-        params: { j_username: @username, j_password: password }
+        params: { j_username: @username, j_password: password },
       }
     )
   end
 
-  def get(path, params={})
+  def get(path, params = {})
     request_wrapper(:get, path, params: params)
   end
 
-  def delete(path, params={})
+  def delete(path, params = {})
     request_wrapper(:delete, path, params: params)
   end
 
@@ -68,7 +69,7 @@ class RundeckApiClient
     request_wrapper(:put, path, payload: payload)
   end
 
-  def request_wrapper(http_method, path, params:{}, payload:{})
+  def request_wrapper(http_method, path, params: {}, payload: {})
     opts = {}
     opts[:method] = http_method
     opts[:url] = api_url(path)
@@ -143,7 +144,7 @@ class RundeckApiClient
       headers: {
         'Accept' => 'application/json',
         'Content-Type' => 'application/json',
-        'User-Agent' => self.class.name
+        'User-Agent' => self.class.name,
       }
     )
   end
