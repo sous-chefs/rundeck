@@ -9,10 +9,10 @@ describe Hash do
         'c' => {
           false => 4,
           d: 'D',
-          'e' => { 'a' => 'b' }
+          'e' => { 'a' => 'b' },
         },
         d: 'blue',
-        'e' => 'green'
+        'e' => 'green',
       }
     end
 
@@ -23,7 +23,7 @@ describe Hash do
         c: {
           false => 4,
           d: 'D',
-          e: { a: 'b' }
+          e: { a: 'b' },
         },
         d: 'blue',
         e: 'green'
@@ -65,7 +65,7 @@ describe RundeckApiClient do
       expect(described_class).to receive(:new).with(
         server_url,
         'username',
-        { a: 'A' }
+        a: 'A'
       ).and_return(client)
       expect(client).to receive(:authenticate).with('password')
       described_class.connect(server_url, 'username', 'password', a: 'A')
@@ -74,13 +74,11 @@ describe RundeckApiClient do
 
   describe '#authenticate' do
     it 'sends the POST auth request' do
-      expect(client).to receive(:request).with({
-        method: :post,
-        url: "#{server_url}/j_security_check",
-        headers: {
-          params: { j_username: 'username', j_password: 'password' }
-        }
-      })
+      expect(client).to receive(:request).with(method: :post,
+                                               url: "#{server_url}/j_security_check",
+                                               headers: {
+                                                 params: { j_username: 'username', j_password: 'password' },
+                                               })
       client.authenticate('password')
     end
   end
@@ -95,7 +93,7 @@ describe RundeckApiClient do
           headers: {
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
-            'User-Agent' => described_class.name
+            'User-Agent' => described_class.name,
           }
         )
       end
@@ -103,30 +101,26 @@ describe RundeckApiClient do
 
     context 'request defaults provided in client initialization' do
       it "returns the client's default request options" do
-        expect(client.request_defaults).to eq({
-          cookies: nil,
-          headers: {
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'User-Agent' => described_class.name
-          },
-          verify_ssl: false
-        })
+        expect(client.request_defaults).to eq(cookies: nil,
+                                              headers: {
+                                                'Accept' => 'application/json',
+                                                'Content-Type' => 'application/json',
+                                                'User-Agent' => described_class.name,
+                                              },
+                                              verify_ssl: false)
       end
     end
 
     context 'cookies already set' do
       it "returns the client's default request options" do
-        client.instance_variable_set('@cookie_jar', { 'cookie' => 'hash' })
-        expect(client.request_defaults).to eq({
-          cookies: { 'cookie' => 'hash' },
-          headers: {
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'User-Agent' => described_class.name
-          },
-          verify_ssl: false
-        })
+        client.instance_variable_set('@cookie_jar', 'cookie' => 'hash')
+        expect(client.request_defaults).to eq(cookies: { 'cookie' => 'hash' },
+                                              headers: {
+                                                'Accept' => 'application/json',
+                                                'Content-Type' => 'application/json',
+                                                'User-Agent' => described_class.name,
+                                              },
+                                              verify_ssl: false)
       end
     end
   end
@@ -158,12 +152,11 @@ describe RundeckApiClient do
     let(:result) { double('result') }
 
     context 'http success' do
-
       it 'default block is passed to RestClient::Request' do
         expect(client).to receive(:request_defaults).and_return({}).at_least(:once)
 
         expect(RestClient::Request).to receive(:execute).with(
-          {url: url, method: :get}
+          url: url, method: :get
         ).and_yield(res, req)
 
         # the default request handler is called
@@ -245,7 +238,7 @@ describe RundeckApiClient do
   describe '#version' do
     it 'retrieve the api version from the api' do
       expect(client).to receive(:get).and_return(
-        { 'system' => { 'rundeck' => { 'apiversion' => 16 } } }
+        'system' => { 'rundeck' => { 'apiversion' => 16 } }
       )
       expect(client.version).to eq(16)
     end

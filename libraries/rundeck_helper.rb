@@ -19,10 +19,10 @@ module RundeckHelper
               'config' => {
                 'includeServerNode' => true,
                 'generateFileAutomatically' => true,
-                'url' => default_url
-              }
-            }
-          }
+                'url' => default_url,
+              },
+            },
+          },
         },
         'project' => {
           'resources' => {
@@ -31,9 +31,9 @@ module RundeckHelper
               'projects',
               project_name,
               'etc/resources.xml'
-            )
-          }
-        }
+            ),
+          },
+        },
       }
 
       if data_bag_contents['project_settings']

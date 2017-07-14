@@ -7,7 +7,7 @@ node.run_state['rundeck'] = Hash.recursive unless node.run_state.key('rundeck')
 
 bag_name = node['rundeck']['rundeck_databag']
 if node['rundeck']['secret_file']
-  secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file'])
+  secret = Chef::EncryptedDataBagItem.load_secret(node['rundeck']['secret_file']) # ~FC086
   node.run_state['rundeck']['data_bag']['secure'] = data_bag_item(
     bag_name,
     node['rundeck']['rundeck_databag_secure'],

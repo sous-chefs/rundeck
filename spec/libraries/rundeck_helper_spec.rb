@@ -12,24 +12,24 @@ describe RundeckHelper do
 
   describe '#build_project_config' do
     let(:data_bag_contents) do
-      {'id'=>'test-project',
-       'description'=>'Test project.',
-       'project_settings'=>
-        {'project'=>
-          {'ssh-keypath'=>'/var/lib/rundeck/.ssh/id_rsa',
-           'ssh-authentication'=>'password',
-           'ssh.user'=>'svcacct',
-           'ssh-password-storage-path'=>'keys/svcacct.password',
-           'sudo-command-enabled'=>'true',
-           'sudo-password-storage-path'=>'keys/svcacct.password'}}}
+      { 'id' => 'test-project',
+        'description' => 'Test project.',
+        'project_settings' =>
+        { 'project' =>
+          { 'ssh-keypath' => '/var/lib/rundeck/.ssh/id_rsa',
+            'ssh-authentication' => 'password',
+            'ssh.user' => 'svcacct',
+            'ssh-password-storage-path' => 'keys/svcacct.password',
+            'sudo-command-enabled' => 'true',
+            'sudo-password-storage-path' => 'keys/svcacct.password' } } }
     end
     let(:project_name) { 'test-project' }
     let(:node) do
       {
         'rundeck' => {
           'chef_rundeck_url' => 'http://chef.rundeck:1234/url',
-          'datadir' => '/rundeck/datadir/'
-        }
+          'datadir' => '/rundeck/datadir/',
+        },
       }
     end
 
@@ -39,14 +39,14 @@ describe RundeckHelper do
       ).to eql(
         'project' => {
           'resources' => {
-            'file' => '/rundeck/datadir/projects/test-project/etc/resources.xml'
+            'file' => '/rundeck/datadir/projects/test-project/etc/resources.xml',
           },
           'ssh-authentication' => 'password',
           'ssh-keypath' => '/var/lib/rundeck/.ssh/id_rsa',
           'ssh-password-storage-path' => 'keys/svcacct.password',
           'ssh.user' => 'svcacct',
           'sudo-command-enabled' => 'true',
-          'sudo-password-storage-path' => 'keys/svcacct.password'
+          'sudo-password-storage-path' => 'keys/svcacct.password',
         },
         'resources' => {
           'source' => {
@@ -55,10 +55,10 @@ describe RundeckHelper do
               'config' => {
                 'includeServerNode' => true,
                 'generateFileAutomatically' => true,
-                'url' => 'http://chef.rundeck:1234/url/test-project'
-              }
-            }
-          }
+                'url' => 'http://chef.rundeck:1234/url/test-project',
+              },
+            },
+          },
         }
       )
     end

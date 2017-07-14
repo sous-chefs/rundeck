@@ -9,7 +9,7 @@ describe RundeckApiClient do
     {
       name: 'kitchen-api-proj',
       description: 'Created via api by test-kitchen',
-      config: { a: 'A', b: 'B' }
+      config: { a: 'A', b: 'B' },
     }
   end
 
