@@ -62,6 +62,7 @@ else
   rundeck_version = node['rundeck']['deb']['package'].split('-')[1]
 
   package 'uuid-runtime'
+  package 'openssh-client'
 
   package node['rundeck']['url'] do
     action :install
@@ -69,13 +70,6 @@ else
     provider Chef::Provider::Package::Dpkg
     options node['rundeck']['deb']['options'] if node['rundeck']['deb']['options']
   end
-end
-
-service 'rundeck' do
-  service_name 'rundeckd'
-  provider Chef::Provider::Service::Upstart
-  supports status: true, restart: true
-  action :nothing
 end
 
 directory node['rundeck']['basedir'] do
@@ -112,7 +106,7 @@ template "#{node['rundeck']['basedir']}/.chef/knife.rb" do
     node_name: node['rundeck']['user'],
     chef_server_url: node['rundeck']['chef_url']
   )
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
 end
 
 directory "#{node['rundeck']['basedir']}/.ssh" do
@@ -129,7 +123,7 @@ file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
   backup false
   content node.run_state['rundeck']['data_bag']['secure']['private_key']
   only_if { node.run_state['rundeck']['data_bag']['secure']['private_key'] }
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
 end
 
 cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.3.3.jar" do
@@ -139,7 +133,7 @@ cookbook_file "#{node['rundeck']['basedir']}/libext/rundeck-winrm-plugin-1.3.3.j
   backup false
   source 'rundeck-winrm-plugin-1.3.3.jar'
   checksum 'dac57210e7a782d574621d5df27517bed4f58ebb54a40b9adab435333a5a5133'
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
 end
 
 template "#{node['rundeck']['basedir']}/exp/webapp/WEB-INF/web.xml" do
@@ -149,7 +143,7 @@ template "#{node['rundeck']['basedir']}/exp/webapp/WEB-INF/web.xml" do
     rundeck_version: rundeck_version
   )
   source 'web.xml.erb'
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
 end
 
 template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
@@ -163,7 +157,7 @@ template "#{node['rundeck']['configdir']}/jaas-activedirectory.conf" do
     configdir: node['rundeck']['configdir'],
     rundeck_version: rundeck_version
   )
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
 end
 
 template "#{node['rundeck']['configdir']}/profile" do
@@ -174,7 +168,7 @@ template "#{node['rundeck']['configdir']}/profile" do
     rundeck: node['rundeck'],
     rundeck_version: rundeck_version
   )
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
 end
 
 template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
@@ -185,7 +179,7 @@ template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
     rundeck: node['rundeck'],
     rundeck_rdbms: node.run_state['rundeck']['data_bag']['rdbms']['rdbms']
   )
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
 end
 
 template '/etc/init/rundeckd.conf' do
@@ -195,7 +189,7 @@ template '/etc/init/rundeckd.conf' do
   variables(
     config_dir: node['rundeck']['configdir']
   )
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
   only_if { node['platform_family'] == 'debian' }
 end
 
@@ -212,7 +206,7 @@ template "#{node['rundeck']['configdir']}/framework.properties" do
     rundeck_users: node.run_state['rundeck']['data_bag']['users']['users'],
     rundeck_uuid: node.normal['rundeck']['server']['uuid']
   )
-  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeck]', :delayed
+  notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
 end
 
 template "#{node['rundeck']['configdir']}/realm.properties" do
@@ -245,6 +239,14 @@ bash 'own rundeck' do
 end
 
 service 'rundeckd' do
+  case node['platform']
+  when 'ubuntu'
+    if node['platform_version'].to_f >= 16.04
+      provider Chef::Provider::Service::Systemd
+    else
+      provider Chef::Provider::Service::Upstart
+    end
+  end
   action [:start, :enable]
   notifies :run, 'ruby_block[wait for rundeckd startup]', :immediately
 end
