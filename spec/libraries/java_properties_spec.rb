@@ -52,10 +52,10 @@ describe Hash do
     it 'returns java properties file content' do
       expect(properties.to_java_properties_string).to eql(
         '_=!@#$%^&*()
-        a=b
-        c.4.11.12=http\://rundeck.url/A\=B&C\=D
-        c.4.blue=false
-        c.4.purple.11=14'
+a=b
+c.4.11.12=http\://rundeck.url/A\=B&C\=D
+c.4.blue=false
+c.4.purple.11=14'
       )
     end
   end
