@@ -87,10 +87,10 @@ describe file('/etc/rundeck/rundeck-config.properties') do
 end
 
 describe file('/var/lib/rundeck/exp/webapp/WEB-INF/web.xml') do
-  its(:content) { should match  %r{http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd} }
-  its(:content) { should match  %r{<filter-class>asset.pipeline.grails.AssetPipelineFilter</filter-class>} }
-  its(:content) { should match  %r{<async-supported>true</async-supported>} }
-  its(:content) { should_not match %r{<filter-class>asset.pipeline.AssetPipelineFilter</filter-class>} }
+  its(:content) { should match %r{http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd} }
+  its(:content) { should match %r{<filter-class>asset.pipeline.AssetPipelineFilter</filter-class>} }
+  its(:content) { should_not match %r{<async-supported>true</async-supported>} }
+  its(:content) { should_not match %r{<filter-class>asset.pipeline.grails.AssetPipelineFilter</filter-class>} }
 end
 
 files.each do |file|

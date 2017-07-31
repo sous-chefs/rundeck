@@ -1,0 +1,14 @@
+{
+  "id": "users",
+  "description": "Rundeck users",
+  "users": {
+    "admin" : {
+      "password": "adminpassword",
+      "groups": [ "admin", "user", "architect", "deploy", "build" ]
+    },
+    "n00b": {
+      "password": "TheBestPassw0rd",
+      "groups": "user"
+    }
+  }
+}

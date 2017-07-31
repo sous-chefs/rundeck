@@ -143,7 +143,7 @@ describe 'rundeck::server_install' do
           match_index = content_hash['filter'].index(match)
           expect(content_hash['filter'][match_index]).to eq(
             'filter-name'  => ['AssetPipelineFilter'],
-            'filter-class' => ['asset.pipeline.AssetPipelineFilter']
+            'filter-class' => ['asset.pipeline.grails.AssetPipelineFilter']
           )
         }
       end
@@ -165,7 +165,8 @@ describe 'rundeck::server_install' do
           match_index = content_hash['filter'].index(match)
           expect(content_hash['filter'][match_index]).to eq(
             'filter-name'  => ['AssetPipelineFilter'],
-            'filter-class' => ['asset.pipeline.AssetPipelineFilter']
+            'filter-class' => ['asset.pipeline.grails.AssetPipelineFilter'],
+            'async-supported' => ['true']
           )
         }
       end
