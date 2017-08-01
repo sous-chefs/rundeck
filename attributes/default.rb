@@ -160,3 +160,5 @@ default['rundeck']['ldap']['supplementalroles'] = node['rundeck']['default_role'
 # Plugins
 default['rundeck']['plugins']['slack']['url'] = 'https://github.com/higanworks/rundeck-slack-incoming-webhook-plugin/releases/download/v0.6.dev/rundeck-slack-incoming-webhook-plugin-0.6.jar'
 default['rundeck']['plugins']['slack']['checksum'] = 'd23b31ec4791dff1a7051f1f012725f20a1e3e9f85f64a874115e46df77e00b5'
+default['rundeck']['plugins']['winrm']['url'] = 'https://github.com/rundeck-plugins/rundeck-winrm-plugin/releases/download/v1.3.3/rundeck-winrm-plugin-1.3.3.jar'
+default['rundeck']['plugins']['winrm']['checksum'] = 'dac57210e7a782d574621d5df27517bed4f58ebb54a40b9adab435333a5a5133'
