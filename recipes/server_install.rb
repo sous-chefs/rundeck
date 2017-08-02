@@ -126,7 +126,7 @@ file "#{node['rundeck']['basedir']}/.ssh/id_rsa" do
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
 end
 
-remote_file "#{node['rundeck']['basedir']}/libext/#{node['rundeck']['plugins']['winrm']['url'].match(/[^\/]+$/)}" do
+remote_file "#{node['rundeck']['basedir']}/libext/#{node['rundeck']['plugins']['winrm']['url'].match(%r{[^/]+$})}" do
   source node['rundeck']['plugins']['winrm']['url']
   owner node['rundeck']['user']
   group node['rundeck']['group']
