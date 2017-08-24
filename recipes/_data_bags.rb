@@ -41,10 +41,10 @@ else
     bag_name,
     node['rundeck']['rundeck_databag_rdbms']
   )
-  # node.run_state['rundeck']['data_bag']['ldap'] = data_bag_item(
-  #   bag_name,
-  #   node['rundeck']['rundeck_databag_ldap']
-  # )
+  node.run_state['rundeck']['data_bag']['ldap'] = data_bag_item(
+    bag_name,
+    node['rundeck']['rundeck_databag_ldap']
+  )
 end
 
 if node['rundeck']['rundeck_databag_aclpolicies']
