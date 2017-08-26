@@ -23,11 +23,15 @@ if node['rundeck']['secret_file']
     node['rundeck']['rundeck_databag_rdbms'],
     secret
   )
-  node.run_state['rundeck']['data_bag']['ldap'] = data_bag_item(
-    bag_name,
-    node['rundeck']['rundeck_databag_ldap'],
-    secret
-  )
+  node.run_state['rundeck']['data_bag']['ldap'] = begin
+                                                    data_bag_item(
+                                                      bag_name,
+                                                      node['rundeck']['rundeck_databag_ldap'],
+                                                      secret
+                                                    )
+                                                  rescue Net::HTTPServerException, Chef::Exceptions::InvalidDataBagPath
+                                                    nil
+                                                  end
 else
   node.run_state['rundeck']['data_bag']['secure'] = data_bag_item(
     bag_name,
@@ -41,10 +45,14 @@ else
     bag_name,
     node['rundeck']['rundeck_databag_rdbms']
   )
-  node.run_state['rundeck']['data_bag']['ldap'] = data_bag_item(
-    bag_name,
-    node['rundeck']['rundeck_databag_ldap']
-  )
+  node.run_state['rundeck']['data_bag']['ldap'] = begin
+                                                    data_bag_item(
+                                                      bag_name,
+                                                      node['rundeck']['rundeck_databag_ldap']
+                                                    )
+                                                  rescue Net::HTTPServerException, Chef::Exceptions::InvalidDataBagPath
+                                                    nil
+                                                  end
 end
 
 if node['rundeck']['rundeck_databag_aclpolicies']
