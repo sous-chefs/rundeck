@@ -51,23 +51,35 @@ when 'rhel'
     action :install
   end
 else
-  remote_file "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']['package']}" do
-    source node['rundeck']['url']
-    owner node['rundeck']['user']
-    group node['rundeck']['group']
-    checksum node['rundeck']['checksum']
-    mode '0644'
+  # bintray apt repo signed by bintray key and rundeck build key
+  # https://github.com/rundeck/rundeck/issues/93
+  # https://github.com/New-Edge-Engineering/ansible-rundeck/pull/17
+
+  apt_repository 'rundeck' do
+    uri node['rundeck']['deb']['repo']['url']
+    distribution '/'
+    key node['rundeck']['deb']['repo']['key']
+    action :add
   end
 
-  rundeck_version = node['rundeck']['deb']['package'].split('-')[1]
+  # Hack to get multiple keys installed without borrowing apt_repository internals
+  # Abuse name property so we only write out one file in sources.list.d/
+  apt_repository 'rundeck-build' do
+    name 'rundeck'
+    uri node['rundeck']['deb']['repo']['url']
+    distribution '/'
+    key node['rundeck']['deb']['repo']['gpgkey']
+    action :add
+  end
+
+  rundeck_version = node['rundeck']['deb']['version'].split('-')[1]
 
   package 'uuid-runtime'
   package 'openssh-client'
 
-  package node['rundeck']['url'] do
+  apt_package 'rundeck' do
     action :install
-    source "#{Chef::Config[:file_cache_path]}/#{node['rundeck']['deb']['package']}"
-    provider Chef::Provider::Package::Dpkg
+    version rundeck_version
     options node['rundeck']['deb']['options'] if node['rundeck']['deb']['options']
   end
 end

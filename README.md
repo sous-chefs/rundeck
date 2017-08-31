@@ -98,14 +98,15 @@ Attributes that configure and manage the installation of the Rundeck server
 * `node['rundeck']['exec_logdir']` - Directory where rundeck stores execution logs. Deafult is "#{node['rundeck']['basedir']}/logs"
 * `node['rundeck']['datadir']` - Rundeck project directory, default '/var/rundeck'
 * `node['rundeck']['tokens_file']` - File containing user API tokens (e.g. '/etc/rundeck/tokens.properties'), default is nil (not set)
-* `node['rundeck']['deb']['package']` - Package file name to install, used in the building of the URL
+* `node['rundeck']['deb']['version']` - deb download name, from https://dl.bintray.com/rundeck/rundeck-deb
 * `node['rundeck']['deb']['options']` - dpkg install options, default false
-* `node['rundeck']['url']` - URL for the deb file to download and install, default "http://download.rundeck.org/deb/#{node['rundeck']['deb']['package']}"
-* `node['rundeck']['checksum']` - Checksum for the deb
+* `node['rundeck']['deb']['url']` - URL for the apt repo location, default "https://dl.bintray.com/rundeck/rundeck-deb"
+* `node['rundeck']['deb']['repo']['key']` - bintray signing key for apt repo authentication, default '379CE192D401AB61'
+* `node['rundeck']['deb']['repo']['gpgkey']` = URL for gpg key for apt repo authentication, default 'http://rundeck.org/keys/BUILD-GPG-KEY-Rundeck.org.key'
 * `node['rundeck']['rpm']['repo']['url']` - URL for the yum repo location, default "http://dl.bintray.com/rundeck/rundeck-rpm"
 * `node['rundeck']['rpm']['repo']['gpgkey']` - URL for gpg key for yum repo authentication, default "http://rundeck.org/keys/BUILD-GPG-KEY-Rundeck.org.key"
 * `node['rundeck']['rpm']['repo']['gpgcheck']` - Whether to perform gpg check on package, default True
-* `node['rundeck']['rpm']['version']` = RPM download name, from http://dl.bintray.com/rundeck/rundeck-rpm
+* `node['rundeck']['rpm']['version']` = RPM download name, from https://dl.bintray.com/rundeck/rundeck-rpm
 * `node['rundeck']['jaas']` - Use built in internal realms.properties file, or a different one (options 'activedirectory', default 'internal')
 * `node['rundeck']['default_role']` - Require users to be a member of this role for Rundeck access, default 'user'
 * `node['rundeck']['security_roles']` - Array containing additional security roles for which Rundeck will attempt to validate membership. For an explanation of this, see [the Rundeck documentation](http://rundeck.org/docs/administration/authenticating-users.html#security-role).
