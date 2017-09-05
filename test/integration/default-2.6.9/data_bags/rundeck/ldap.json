@@ -1,0 +1,6 @@
+{
+  "id": "ldap",
+  "description": "Contains LDAP configuration",
+  "binddn": "CN=svcAcctName,OU=ServiceAccounts,DC=NOTAREALDOMAIN",
+  "bindpwd": "abc123"
+}
