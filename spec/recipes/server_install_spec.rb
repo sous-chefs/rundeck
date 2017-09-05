@@ -79,7 +79,7 @@ describe 'rundeck::server_install' do
       cached(:chef_run) do
         ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '14.04') do |node, server|
           rundeck_stubs(node, server)
-          node.set['rundeck']['deb']['package'] = 'rundeck-2.6.11-1-GA.deb'
+          node.set['rundeck']['deb']['version'] = 'rundeck-2.6.11-1-GA'
           node.set['rundeck']['configdir'] = '/etc/rundeck'
         end.converge(described_recipe)
       end
@@ -113,7 +113,7 @@ describe 'rundeck::server_install' do
       cached(:chef_run) do
         ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '14.04') do |node, server|
           rundeck_stubs(node, server)
-          node.set['rundeck']['deb']['package'] = 'rundeck-2.7.3-1-GA.deb'
+          node.set['rundeck']['deb']['version'] = 'rundeck-2.7.3-1-GA'
           node.set['rundeck']['configdir'] = '/etc/rundeck'
         end.converge(described_recipe)
       end
@@ -153,7 +153,7 @@ describe 'rundeck::server_install' do
       cached(:chef_run) do
         ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '14.04') do |node, server|
           rundeck_stubs(node, server)
-          node.set['rundeck']['deb']['package'] = 'rundeck-2.7.3-1-GA.deb'
+          node.set['rundeck']['deb']['version'] = 'rundeck-2.7.3-1-GA'
           node.set['rundeck']['basedir'] = '/var/lib/rundeck'
         end.converge(described_recipe)
       end
@@ -194,7 +194,7 @@ describe 'rundeck::server_install' do
       cached(:chef_run) do
         ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '14.04') do |node, server|
           rundeck_stubs(node, server)
-          node.set['rundeck']['deb']['package'] = 'rundeck-2.6.11-1-GA.deb'
+          node.set['rundeck']['deb']['version'] = 'rundeck-2.6.11-1-GA'
           node.set['rundeck']['configdir'] = '/etc/rundeck'
         end.converge(described_recipe)
       end
@@ -228,7 +228,7 @@ describe 'rundeck::server_install' do
       cached(:chef_run) do
         ChefSpec::ServerRunner.new(platform: 'ubuntu', version: '14.04') do |node, server|
           rundeck_stubs(node, server)
-          node.set['rundeck']['deb']['package'] = 'rundeck-2.7.3-1-GA.deb'
+          node.set['rundeck']['deb']['version'] = 'rundeck-2.7.3-1-GA'
           node.set['rundeck']['configdir'] = '/etc/rundeck'
         end.converge(described_recipe)
       end
