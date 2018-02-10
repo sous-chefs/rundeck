@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## 4.2.0
+* Add optional LDAP data bag support
+* Support Rundeck 2.9.x
+* Repoint download location to bintray and enable HTTPS
+
 ## 4.1.1
 * Fixes symbolic link error when wrapping cookboook #162 
 
