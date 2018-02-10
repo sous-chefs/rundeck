@@ -272,4 +272,39 @@ describe 'rundeck::server_install' do
       )
     end
   end
+
+  context 'rdbms optional databag' do
+    context 'with data bag' do
+      cached(:chef_run) do
+        ChefSpec::ServerRunner.new do |node, server|
+          rundeck_stubs(node, server)
+          node.set['rundeck']['rdbms']['enable'] = true
+        end.converge(described_recipe)
+      end
+
+      it 'renders rundeck-config.properties with db username and password from data bag' do
+        expect(chef_run).to create_template('/etc/rundeck/rundeck-config.properties')
+        expect(chef_run).to render_file('/etc/rundeck/rundeck-config.properties').with_content('dataSource.username = rundeckdbuser')
+        expect(chef_run).to render_file('/etc/rundeck/rundeck-config.properties').with_content('dataSource.password = Chang3ME!')
+      end
+    end
+
+    context 'without data bag' do
+      cached(:chef_run) do
+        ChefSpec::ServerRunner.new do |node, server|
+          # don't stub rdbms databag for these specs
+          rundeck_stubs(node, server, exclude_databags: %w(rdbms))
+          node.set['rundeck']['rdbms']['enable'] = true
+          node.set['rundeck']['rdbms']['dbuser'] = 'someuserfromattributes'
+          node.set['rundeck']['rdbms']['dbpassword'] = 'somepasswordfromattributes'
+        end.converge(described_recipe)
+      end
+
+      it 'renders rundeck-config.properties with db username and password from attributes' do
+        expect(chef_run).to create_template('/etc/rundeck/rundeck-config.properties')
+        expect(chef_run).to render_file('/etc/rundeck/rundeck-config.properties').with_content('dataSource.username = someuserfromattributes')
+        expect(chef_run).to render_file('/etc/rundeck/rundeck-config.properties').with_content('dataSource.password = somepasswordfromattributes')
+      end
+    end
+  end
 end

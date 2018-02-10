@@ -14,8 +14,8 @@ dataSource.driverClassName = oracle.jdbc.driver.OracleDriver
 dataSource.dialect = org.hibernate.dialect.<%= @rundeck[:rdbms][:dialect] %>
   <% end %>
 dataSource.dbCreate=update
-dataSource.username = <%= @rundeck_rdbms['dbuser'] %>
-dataSource.password = <%= @rundeck_rdbms['dbpassword'] %>
+dataSource.username = <%= @dbuser  %>
+dataSource.password = <%= @dbpassword %>
 <% else %>
 dataSource.url = jdbc:h2:file:/var/lib/rundeck/data/rundeckdb;MVCC=true
 <% end %>

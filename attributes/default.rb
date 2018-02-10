@@ -123,6 +123,8 @@ default['rundeck']['rdbms']['enable'] = false
 default['rundeck']['rdbms']['type'] = 'mysql'
 default['rundeck']['rdbms']['location'] = 'someIPorFQDN'
 default['rundeck']['rdbms']['dbname'] = 'rundeckdb'
+default['rundeck']['rdbms']['dbuser'] = 'rundeckdb'
+default['rundeck']['rdbms']['dbpassword'] = 'Chang3ME'
 default['rundeck']['rdbms']['dialect'] = 'Oracle10gDialect'
 default['rundeck']['rdbms']['port'] = '3306'
 

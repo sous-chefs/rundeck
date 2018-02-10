@@ -26,6 +26,12 @@ if node.run_state['rundeck']['data_bag']['ldap']
 end
 rundeck_ldap = node['rundeck']['ldap']
 
+if node.run_state['rundeck']['data_bag']['rdbms']
+  rundeck_rdbms_dbuser = node.run_state['rundeck']['data_bag']['rdbms']['rdbms']['dbuser']
+  rundeck_rdbms_dbpassword = node.run_state['rundeck']['data_bag']['rdbms']['rdbms']['dbpassword']
+end
+rundeck_rdbms = node['rundeck']['rdbms']
+
 case node['platform_family']
 when 'rhel'
   yum_package 'which'
@@ -189,7 +195,8 @@ template "#{node['rundeck']['configdir']}/rundeck-config.properties" do
   source 'rundeck-config.properties.erb'
   variables(
     rundeck: node['rundeck'],
-    rundeck_rdbms: node.run_state['rundeck']['data_bag']['rdbms']['rdbms']
+    dbuser: rundeck_rdbms_dbuser || rundeck_rdbms[:dbuser],
+    dbpassword: rundeck_rdbms_dbpassword || rundeck_rdbms[:dbpassword]
   )
   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
 end

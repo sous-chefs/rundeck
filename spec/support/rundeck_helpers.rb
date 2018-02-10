@@ -1,4 +1,4 @@
-def rundeck_stubs(node, server)
+def rundeck_stubs(node, server, exclude_databags: [])
   # store all data bag items in run_state just like in the recipes
   run_state = Hash.recursive
 
@@ -12,10 +12,17 @@ def rundeck_stubs(node, server)
     stub_data_bag(bag_name).and_return(item_files.map { |f| File.basename(f, '.json') })
     item_files.each do |item_file|
       item_name = File.basename(item_file, '.json')
-      item_data = JSON.parse(File.read(item_file))
-      bag_data[item_name] = item_data
-      stub_data_bag_item(bag_name, item_name).and_return(item_data)
-      allow(Chef::EncryptedDataBagItem).to receive(:load).with(bag_name, item_name, '1234').and_return(item_data)
+      # if data bag item name included in exclude_databags array, don't stub it
+      # and set run_state for that bag to nil, same behaviour as _data_bags recipe
+      # used for testing cookbook logic for optional data bags such as rdbms
+      if exclude_databags.include? item_name
+        item_data = nil
+      else
+        item_data = JSON.parse(File.read(item_file))
+        bag_data[item_name] = item_data
+        stub_data_bag_item(bag_name, item_name).and_return(item_data)
+        allow(Chef::EncryptedDataBagItem).to receive(:load).with(bag_name, item_name, '1234').and_return(item_data)
+      end
       run_state['rundeck']['data_bag'][item_name] = item_data
     end
     server.create_data_bag(bag_name, bag_data)

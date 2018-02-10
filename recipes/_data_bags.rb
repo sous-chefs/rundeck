@@ -18,11 +18,15 @@ if node['rundeck']['secret_file']
     node['rundeck']['rundeck_databag_users'],
     secret
   )
-  node.run_state['rundeck']['data_bag']['rdbms'] = data_bag_item(
-    bag_name,
-    node['rundeck']['rundeck_databag_rdbms'],
-    secret
-  )
+  node.run_state['rundeck']['data_bag']['rdbms'] = begin
+                                                    data_bag_item(
+                                                      bag_name,
+                                                      node['rundeck']['rundeck_databag_rdbms'],
+                                                      secret
+                                                    )
+                                                  rescue Net::HTTPServerException, Chef::Exceptions::InvalidDataBagPath
+                                                    nil
+                                                  end
   node.run_state['rundeck']['data_bag']['ldap'] = begin
                                                     data_bag_item(
                                                       bag_name,
@@ -41,10 +45,14 @@ else
     bag_name,
     node['rundeck']['rundeck_databag_users']
   )
-  node.run_state['rundeck']['data_bag']['rdbms'] = data_bag_item(
-    bag_name,
-    node['rundeck']['rundeck_databag_rdbms']
-  )
+  node.run_state['rundeck']['data_bag']['rdbms'] = begin
+                                                    data_bag_item(
+                                                      bag_name,
+                                                      node['rundeck']['rundeck_databag_rdbms']
+                                                    )
+                                                  rescue Net::HTTPServerException, Chef::Exceptions::InvalidDataBagPath
+                                                    nil
+                                                  end
   node.run_state['rundeck']['data_bag']['ldap'] = begin
                                                     data_bag_item(
                                                       bag_name,
