@@ -13,6 +13,7 @@ RDECK_TRUSTSTORE_FILE="<%= @rundeck[:configdir] %>/ssl/truststore"
 RDECK_TRUSTSTORE_TYPE="<%= @rundeck[:truststore_type] %>"
 RDECK_HTTP_PORT=<%=@rundeck[:port]%>
 RDECK_HTTPS_PORT=<%=@rundeck[:ssl][:port]%>
+RDECK_SSL_OPTS=""
 
 # If no JAVA_CMD, try to find it in $JAVA_HOME
 if [ -z "$JAVA_CMD" ] && [ -n "$JAVA_HOME" ] && [ -x "$JAVA_HOME/bin/java" ] ; then
@@ -82,4 +83,4 @@ then
 fi
 
 umask 002
-rundeckd="$JAVA_CMD $RDECK_JVM $RDECK_JVM_OPTS -cp $BOOTSTRAP_CP com.dtolabs.rundeck.RunServer $RDECK_BASE"
+rundeckd="$JAVA_CMD $RDECK_JVM $RDECK_SSL_OPTS $RDECK_JVM_OPTS -cp $BOOTSTRAP_CP com.dtolabs.rundeck.RunServer $RDECK_BASE"
