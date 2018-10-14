@@ -6,11 +6,11 @@ Busser::RubyGems.install_gem('rest-client', '~> 2.0')
 
 # loading cookbook libraries in test-kitchen is a bit messy
 begin
+  # kitchen-dokken maps libraries here
+  load '/tmp/libraries/rundeck_api_client.rb'
+rescue LoadError
   # kitchen-vagrant lands cookbooks here
   load '/tmp/kitchen/cookbooks/rundeck/libraries/rundeck_api_client.rb'
-rescue LoadError
-  # kitchen-dokken lands cookbook here
-  load '/opt/kitchen/cookbooks/rundeck/libraries/rundeck_api_client.rb'
 end
 
 set :backend, :exec
