@@ -65,7 +65,7 @@ else
   # Hack to get multiple keys installed without borrowing apt_repository internals
   # Abuse name property so we only write out one file in sources.list.d/
   apt_repository 'rundeck-build' do
-    name 'rundeck'
+    repo_name 'rundeck'
     uri node['rundeck']['deb']['repo']['url']
     distribution '/'
     key node['rundeck']['deb']['repo']['gpgkey']

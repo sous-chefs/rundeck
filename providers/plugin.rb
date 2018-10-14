@@ -1,4 +1,3 @@
-use_inline_resources
 #
 # Cookbook Name:: rundeck
 # Provider:: plugin
@@ -17,8 +16,6 @@ use_inline_resources
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-use_inline_resources
 
 action :create do
   plugin_filename = ::File.basename(new_resource.url)
