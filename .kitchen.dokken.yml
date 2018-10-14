@@ -4,7 +4,7 @@ driver:
   privileged: true # because Docker and SystemD/Upstart
   chef_version: current
   volumes:
-    - "libraries:/opt/kitchen/cookbooks/rundeck/libraries"
+    - "libraries:/tmp/kitchen/cookbooks/rundeck/libraries"
 
 transport:
   name: dokken
