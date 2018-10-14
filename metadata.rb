@@ -5,10 +5,11 @@ license          'Apache-2.0'
 description      'Installs and configures Rundeck 2.x'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '4.2.0'
+depends          'apache2'
+depends          'build-essential'
+depends          'java'
 depends          'runit'
 depends          'sudo'
-depends          'java'
-depends          'apache2'
 
 %w(debian ubuntu centos suse fedora redhat freebsd windows scientific oracle amazon mac_os_x).each do |os|
   supports os
