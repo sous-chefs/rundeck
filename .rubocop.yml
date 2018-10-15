@@ -1,5 +1,3 @@
-# SupportedStyles: slashes, percent_r, mixed
-Style/RegexpLiteral:
+AllCops:
   Exclude:
-    - 'libraries/rundeck_api_client.rb'
-    - 'spec/support/rundeck_helpers.rb'
+    - 'Dangerfile'
