@@ -80,7 +80,7 @@ class RundeckApiClient
 
     res = request(opts)
 
-    if res.headers[:content_type] =~ /application\/json/i
+    if res.headers[:content_type] =~ %r{application/json}i
       if res.body.to_s.empty?
         Chef::Log.warn { 'empty response body received' }
         res
@@ -163,7 +163,7 @@ class RundeckApiClient
     uri.host = server_uri.host if uri.host.nil?
 
     # prepend '/api/<version>/' to path if not provided
-    unless uri.path =~ /^\/api\/\d+\//
+    unless uri.path =~ %r{/^/api/\d+\/}
       uri.path = File.join('/api', version.to_s, uri.path)
     end
 

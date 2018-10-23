@@ -24,7 +24,7 @@ def rundeck_stubs(node, server)
   allow_any_instance_of(Chef::Node).to receive(:run_state).and_return(run_state)
 
   stub_command(/rd-jobs/).and_return('')
-  stub_command(/\/usr\/sbin\/httpd/).and_return('')
+  stub_command(%r{/usr/sbin/httpd}).and_return('')
   stub_command(/bundle check/).and_return('')
 
   node.set['rundeck']['server']['uuid'] = '1234-random-uuid-1234'
