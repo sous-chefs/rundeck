@@ -17,14 +17,12 @@
 #
 
 include RundeckCookbook::Helpers
-# include Hash
 
 property :acl_policies, Hash, default: {}
 property :admin_password, String, default: 'admin', sensitive: true
 property :basedir, String, default: '/var/lib/rundeck'
 property :chef_url, String, default: "https://chef.#{node['domain']}"
 property :configdir, String, default: '/etc/rundeck'
-property :cookbook, String, default: 'rundeck'
 property :custom_framework_config, Hash, default: {}
 property :custom_jvm_properties, String
 property :custom_rundeck_config, Hash, default: {}
@@ -142,7 +140,7 @@ action :install do
   end
 
   template "#{new_resource.basedir}/.chef/knife.rb" do
-    cookbook new_resource.cookbook
+    cookbook 'rundeck'
     owner new_resource.rundeckuser
     group new_resource.rundeckgroup
     source 'knife.rb.erb'
@@ -175,7 +173,7 @@ action :install do
   # end
 
   template "#{new_resource.basedir}/exp/webapp/WEB-INF/web.xml" do
-    cookbook new_resource.cookbook
+    cookbook 'rundeck'
     owner new_resource.rundeckuser
     group new_resource.rundeckgroup
     variables(
@@ -189,7 +187,7 @@ action :install do
   end
 
   template "#{new_resource.configdir}/profile" do
-    cookbook new_resource.cookbook
+    cookbook 'rundeck'
     owner new_resource.rundeckuser
     group new_resource.rundeckgroup
     source 'profile.erb'
@@ -211,7 +209,7 @@ action :install do
   end
 
   template "#{new_resource.configdir}/rundeck-config.properties" do
-    cookbook new_resource.cookbook
+    cookbook 'rundeck'
     owner new_resource.rundeckuser
     group new_resource.rundeckgroup
     source 'rundeck-config.properties.erb'
@@ -240,7 +238,7 @@ action :install do
   end
 
   template '/etc/init/rundeckd.conf' do
-      cookbook new_resource.cookbook
+      cookbook 'rundeck'
       owner 'root'
       group 'root'
       source 'rundeck-upstart.conf.erb'
@@ -253,7 +251,7 @@ action :install do
 
 
   template "#{new_resource.configdir}/framework.properties" do
-    cookbook new_resource.cookbook
+    cookbook 'rundeck'
     owner new_resource.rundeckuser
     group new_resource.rundeckgroup
     source 'framework.properties.erb'
@@ -287,7 +285,7 @@ action :install do
   end
 
   template "#{new_resource.configdir}/realm.properties" do
-    cookbook new_resource.cookbook
+    cookbook 'rundeck'
     owner new_resource.rundeckuser
     group new_resource.rundeckgroup
     source 'realm.properties.erb'
@@ -299,7 +297,7 @@ action :install do
   if new_resource.acl_policies
     new_resource.acl_policies.each do |name, policy|
       template "#{new_resource.configdir}/#{name}.aclpolicy" do
-        cookbook new_resource.cookbook
+        cookbook 'rundeck'
         owner new_resource.rundeckuser
         group new_resource.rundeckgroup
         source 'user.aclpolicy.erb'
