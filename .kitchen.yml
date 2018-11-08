@@ -1,53 +1,25 @@
+---
 driver:
   name: vagrant
 
 provisioner:
   name: chef_zero
-  deprecations_as_errors: true
-  log_level: info
+  product_name: chef
+  product_version: 14.2
+  solo_rb:
+    treat_deprecation_warnings_as_errors: true
+
+verifier:
+  name: inspec
 
 platforms:
-  - name: centos-7.3
-  - name: ubuntu-14.04
-    run_list:
-      - recipe[apt]
-  - name: ubuntu-16.04
-    run_list:
-      - recipe[apt]
+  - name: centos-7
+  - name: ubuntu-18.04
 
 suites:
-  - name: default
-    run_list:
-      - recipe[rundeck::server]
-      - recipe[create_chef_dir]
-      - recipe[rundeck::chef-rundeck]
-    attributes:
-      rundeck:
-        hostname: localhost
-        security_roles:
-          - superusers
-          - run_only_users
-        api_client_config:
-          # Logger::DEBUG
-          log_level: 0
-      domain: kitchentest
-  - name: default-2.6.9
-    run_list:
-      - recipe[rundeck::server]
-      - recipe[create_chef_dir]
-      - recipe[rundeck::chef-rundeck]
-    attributes:
-      rundeck:
-        rpm:
-          version: rundeck-2.6.9-1.21.GA
-        deb:
-          version: rundeck-2.6.9-1-GA
-        checksum: 363c64a7643ae2e52db6b9d019c8593835123327959ae35c95050708d122066f
-        hostname: localhost
-        security_roles:
-          - superusers
-          - run_only_users
-        api_client_config:
-          # Logger::DEBUG
-          log_level: 0
-      domain: kitchentest
+- name: repo
+  run_list:
+    - recipe[test::repository]
+- name: server_install
+  run_list:
+    - recipe[test::server_install]

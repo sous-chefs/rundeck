@@ -1,42 +1,42 @@
 #loglevel.default is the default log level for jobs: ERR,WARN,INFO,VERBOSE,DEBUG
-loglevel.default=<%= node['rundeck']['log_level'] %>
+loglevel.default=<%= @log_level %>
 
 #rss.enabled if set to true enables RSS feeds that are public (non-authenticated)
-rss.enabled=<%= node['rundeck']['rss_enabled'] %>
+rss.enabled=<%= @rss_enabled %>
 #
-<% if @rundeck[:rdbms][:enable] == true %>
-  <% if @rundeck[:rdbms][:type] == 'mysql' %>
-dataSource.url = jdbc:mysql://<%= @rundeck[:rdbms][:location] %>:<%= @rundeck[:rdbms][:port] %>/<%= @rundeck[:rdbms][:dbname] %>?autoReconnect=true
+<% if @rdbms_enable == true %>
+  <% if @rdbms_type == 'mysql' %>
+dataSource.url = jdbc:mysql://<%= @rdbms_location %>:<%= @rdbms_port %>/<%= @rdbms_dbname %>?autoReconnect=true
 dataSource.driverClassName=com.mysql.jdbc.Driver
-  <% elsif @rundeck[:rdbms][:type] == 'oracle' %>
-dataSource.url = jdbc:oracle:thin:@:<%= @rundeck[:rdbms][:location] %>:<%= @rundeck[:rdbms][:port] %>:XE
+  <% elsif @rdbms_type == 'oracle' %>
+dataSource.url = jdbc:oracle:thin:@:<%= @rdbms_location %>:<%= @rdbms_port %>:XE
 dataSource.driverClassName = oracle.jdbc.driver.OracleDriver
-dataSource.dialect = org.hibernate.dialect.<%= @rundeck[:rdbms][:dialect] %>
+dataSource.dialect = org.hibernate.dialect.<%= @rdbms_dialect %>
   <% end %>
 dataSource.dbCreate=update
-dataSource.username = <%= @rundeck_rdbms['dbuser'] %>
-dataSource.password = <%= @rundeck_rdbms['dbpassword'] %>
+dataSource.username = <%= @rdbms_user %>
+dataSource.password = <%= @rdbms_password %>
 <% else %>
 dataSource.url = jdbc:h2:file:/var/lib/rundeck/data/rundeckdb;MVCC=true
 <% end %>
 
 rundeck.security.useHMacRequestTokens=false
 
-<% if @rundeck[:mail][:enable] == true %>
-grails.mail.host=<%=@rundeck[:mail][:host] %>
-grails.mail.port=<%=@rundeck[:mail][:port] %>
-<% unless @rundeck[:mail][:username].nil? %>grails.mail.username=<%=@rundeck[:mail][:username] %><% end %>
-<% unless @rundeck[:mail][:password].nil? %>grails.mail.password=<%=@rundeck[:mail][:password] %><% end %>
+<% if @mail_enable == true %>
+grails.mail.host=<%=@mail_host %>
+grails.mail.port=<%=@mail_port %>
+<% unless @mail_user.nil? %>grails.mail.username=<%=@mail_user %><% end %>
+<% unless @mail_password.nil? %>grails.mail.password=<%=@mail_password %><% end %>
 <% end %>
-grails.mail.default.from=<%=@rundeck[:email] %>
+grails.mail.default.from=<%=@mail_email %>
 
-grails.serverURL=<%= node['rundeck']['grails_server_url']%><% unless [80,443].include?(node['rundeck']['grails_port'])%>:<%=node['rundeck']['grails_port'].to_s%><% end %>
+grails.serverURL=<%= @grails_server_url%><% unless [80,443].include?(@grails_port)%>:<%=@grails_port.to_s%><% end %>
 
-quartz.props.threadPool.threadCount = <%= @rundeck[:quartz][:threadPoolCount].to_i %>
+quartz.props.threadPool.threadCount = <%= @quartz_threadPoolCount.to_i %>
 
 # Custom config
-<% if @rundeck[:custom_rundeck_config] %>
-<% @rundeck[:custom_rundeck_config].sort.each do |key, value| %>
+<% if @custom_rundeck_config %>
+<% @custom_rundeck_config.sort.each do |key, value| %>
 <%= key %>=<%= value %>
 <% end %>
 <% end %>

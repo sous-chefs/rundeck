@@ -15,14 +15,7 @@ depends          'build-essential'
   supports os
 end
 
-recipe 'rundeck::apache', 'Use this recipe to install the rundeck apache webserver'
-recipe 'rundeck::server', 'Use this recipe to install the rundeck server on a node'
-recipe 'rundeck::server_install', 'Use this recipe to install the rundeck server on a node, without the dependencies or webserver'
-recipe 'rundeck::server_dependencies', 'Use this recipe to install the dependencies for the rundeck server install'
-recipe 'rundeck::chef-rundeck', 'Use this recipe to install the chef rundeck integration component, by default it is recommened to install on the chef server.'
-recipe 'rundeck::default', 'Use this recipe to manage the node as a target in rundeck, this recipe is included in rundeck::server'
-recipe 'rundeck::node_unix', 'Unix\Linux platform configuration, do not use on a node, the default recipe uses this implmentation'
-recipe 'rundeck::node_windows', 'Windows platform configuration, do not use on a node, the default recipe uses this implmentation'
+depends 'java', '~> 3.1.0'
 
 source_url "https://github.com/sous-chefs/#{name}"
 issues_url "https://github.com/sous-chefs/#{name}/issues"
