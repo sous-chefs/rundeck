@@ -72,7 +72,7 @@ property :truststore_type, String, default: 'jks'
 property :use_inbuilt_ssl, [true, false], default: false
 property :use_ssl, [true, false], default: false
 property :uuid, String, default: lazy { generateuuid }
-property :version, String, default: '2.9.3'
+property :version, String, default: '3.0.8.20181029'
 property :webcontext, String, default: '/'
 property :windows_winrm_auth_type, String, default: 'basic'
 property :windows_winrm_cert_trust, String, default: 'all'
@@ -172,19 +172,20 @@ action :install do
   #   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
   # end
 
-  template "#{new_resource.basedir}/exp/webapp/WEB-INF/web.xml" do
-    cookbook 'rundeck'
-    owner new_resource.rundeckuser
-    group new_resource.rundeckgroup
-    variables(
-      rundeck_version: new_resource.version,
-      default_role: new_resource.default_role,
-      security_roles: new_resource.security_roles,
-      session_timeout: new_resource.session_timeout
-    )
-    source 'web.xml.erb'
-    # notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
-  end
+  # ==== Removed for v3
+  # template "#{new_resource.basedir}/exp/webapp/WEB-INF/web.xml" do
+  #   cookbook 'rundeck'
+  #   owner new_resource.rundeckuser
+  #   group new_resource.rundeckgroup
+  #   variables(
+  #     rundeck_version: new_resource.version,
+  #     default_role: new_resource.default_role,
+  #     security_roles: new_resource.security_roles,
+  #     session_timeout: new_resource.session_timeout
+  #   )
+  #   source 'web.xml.erb'
+  #   # notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
+  # end
 
   template "#{new_resource.configdir}/profile" do
     cookbook 'rundeck'

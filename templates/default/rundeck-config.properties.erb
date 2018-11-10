@@ -34,6 +34,8 @@ grails.serverURL=<%= @grails_server_url%><% unless [80,443].include?(@grails_por
 
 quartz.props.threadPool.threadCount = <%= @quartz_threadPoolCount.to_i %>
 
+rundeck.log4j.config.file = <%= @configdir %>/log4j.properties
+
 # Custom config
 <% if @custom_rundeck_config %>
 <% @custom_rundeck_config.sort.each do |key, value| %>
