@@ -19,7 +19,7 @@ framework.server.url = http://localhost:<%= @port %>
 framework.rundeck.url = http://<%= @hostname %>:<%= @port %>
 <% end %>
 framework.server.username = admin
-framework.server.password = <%= (@admin_password rescue nil) || 'admin' %>
+framework.server.password = <%= @admin_password  %>
 
 
 # ----------------------------------------------------------------
@@ -76,7 +76,7 @@ framework.ssh.timeout = 0
 # ----------------------------------------------------------------
 # server UUID
 # ----------------------------------------------------------------
-rundeck.server.uuid = <%= @rundeck_uuid %>
+rundeck.server.uuid = <%= @uuid %>
 
 
 # winrm authentication type (options "basic" or "kerberos", default: "basic")
