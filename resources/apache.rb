@@ -40,11 +40,9 @@ action :install do
   include_recipe 'apache2::mod_proxy_http'
   include_recipe 'apache2::mod_rewrite'
 
-  rundeck_server_install 'default'
-
   if new_resource.use_ssl
     
-    file "#{node['apache']['dir']}/ssl/#{new_resource.cert_name}" do
+    file "#{node['apache']['dir']}/ssl/#{new_resource.cert_name}.crt" do
       content new_resource.cert_contents
       notifies :restart, 'service[apache2]'
       not_if { ::File.exist?("#{node['apache']['dir']}/ssl/#{new_resource.cert_name}") }

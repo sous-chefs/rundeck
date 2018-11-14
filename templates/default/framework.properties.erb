@@ -14,7 +14,7 @@ framework.server.url = https://<%= @hostname %>:<%= @ssl_port %>
 framework.rundeck.url = https://<%= @hostname %>:<%= @ssl_port %>
 <% else %>
 framework.server.port = <%= @port %>
-framework.server.url = http://localhost:<%= @port %>
+framework.server.url = http://<%= @hostname %>:<%= @port %>
 # URL to Rundeck
 framework.rundeck.url = http://<%= @hostname %>:<%= @port %>
 <% end %>
