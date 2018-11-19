@@ -1,3 +1,3 @@
-rundeck_apache 'package' do 
+rundeck_apache 'package' do
   action [:install]
 end

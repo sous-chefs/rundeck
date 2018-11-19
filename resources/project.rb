@@ -21,7 +21,6 @@ include RundeckCookbook::Helpers
 property :projects, Hash, default: {}
 
 action :create do
-
   new_resource.projects.each do |project_name, data_bag_item_contents|
     rundeck_project project_name do
       api_client lazy { node.run_state['rundeck']['api_client'] }
@@ -33,6 +32,4 @@ action :create do
       end
     end
   end
-
 end
-

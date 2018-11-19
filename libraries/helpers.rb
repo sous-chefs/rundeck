@@ -25,5 +25,3 @@ module RundeckCookbook
     end
   end
 end
-
-

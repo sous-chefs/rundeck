@@ -1,5 +1,4 @@
 
-rundeck_server_install 'package' do 
+rundeck_server_install 'package' do
   action [:install]
-  
 end

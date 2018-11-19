@@ -19,7 +19,7 @@
 include RundeckCookbook::Helpers
 
 property :use_ssl, [true, false], default: false
-property :cert_name, String, default: "#{node['hostname']}"
+property :cert_name, String, default: node['hostname']
 property :cert_contents, String
 property :key_contents, String, sensitive: true
 property :ca_cert_name, String
@@ -30,8 +30,7 @@ property :allow_local_https,  [true, false], default: true
 property :webcontext, String, default: '/'
 property :port, Integer, default: 4440
 
-action :install do 
-  
+action :install do
   include_recipe 'apache2'
   include_recipe 'apache2::mod_deflate'
   include_recipe 'apache2::mod_headers'
@@ -41,7 +40,7 @@ action :install do
   include_recipe 'apache2::mod_rewrite'
 
   if new_resource.use_ssl
-    
+
     file "#{node['apache']['dir']}/ssl/#{new_resource.cert_name}.crt" do
       content new_resource.cert_contents
       notifies :restart, 'service[apache2]'
@@ -116,5 +115,4 @@ action :install do
     end
     subscribes :restart, 'service[rundeckd]', :immediately
   end
-
 end

@@ -36,10 +36,10 @@ property :grails_server_url, String, default: lazy { "#{use_inbuilt_ssl ? 'https
 property :hostname, String, default: "rundeck.#{node['domain']}"
 property :jaas, String, default: 'internal'
 property :jvm_mem, String, default: ' -XX:MaxPermSize=256m -Xmx1024m -Xms256m'
-property :rundeckgroup, String, 
+property :rundeckgroup, String,
          default: 'rundeck',
          description: 'The user account that rundeck will operate as'
-property :rundeckuser, String, 
+property :rundeckuser, String,
          default: 'rundeck',
          description: 'The group that rundeck will operate as'
 property :ldap_debug
@@ -60,9 +60,9 @@ property :ldap_roleobjectclass, String
 property :ldap_roleprefix, String
 property :ldap_cachedurationmillis, String
 property :ldap_reportstatistics, String
-property :log_level, ['ERR', 'WARN', 'INFO', 'VERBOSE', 'DEBUG'], default: 'INFO'
+property :log_level, %w(ERR WARN INFO VERBOSE DEBUG), default: 'INFO'
 property :mail_email, String
-property :mail_enable,  [true, false], default: false
+property :mail_enable, [true, false], default: false
 property :mail_host, String
 property :mail_password, String, sensitive: true
 property :mail_port, String
@@ -78,7 +78,7 @@ property :rdbms_enable, [true, false], default: false
 property :rdbms_location, String
 property :rdbms_password, String, sensitive: true
 property :rdbms_port, Integer
-property :rdbms_type, ['mysql', 'oracle']
+property :rdbms_type, %w(mysql oracle)
 property :rdbms_user, String
 property :restart_on_config_change, [true, false], default: false
 property :rss_enabled, [true, false], default: false
@@ -90,7 +90,7 @@ property :service_retries, Integer, default: 60
 property :service_retry_delay, Integer, default: 5
 property :session_timeout, Integer, default: 30
 property :ssl_port, Integer, default: 4443
-property :setup_repo,  [true, false], default: true
+property :setup_repo, [true, false], default: true
 property :tempdir, String, default: '/tmp/rundeck'
 property :tokens_file, String
 property :truststore_type, String, default: 'jks'
@@ -109,8 +109,8 @@ action :install do
   node.default['java']['jdk_version'] = '8'
   include_recipe 'java'
 
-  if new_resource.setup_repo
-    rundeck_repository 'public'
+  rundeck_repository 'public' do
+    only_if new_resource.setup_repo
   end
 
   package 'rundeck' do
@@ -185,9 +185,8 @@ action :install do
     backup false
     content new_resource.private_key
     only_if { new_resource.private_key }
-   notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
+    notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
   end
-
 
   template "#{new_resource.configdir}/profile" do
     cookbook 'rundeck'
@@ -218,7 +217,7 @@ action :install do
     source 'rundeck-config.properties.erb'
     sensitive true
     variables(
-      configdir: new_resource.configdir, 
+      configdir: new_resource.configdir,
       custom_rundeck_config: new_resource.custom_rundeck_config,
       grails_port: new_resource.grails_port,
       grails_server_url:  new_resource.grails_server_url,
@@ -243,17 +242,16 @@ action :install do
   end
 
   template '/etc/init/rundeckd.conf' do
-      cookbook 'rundeck'
-      owner 'root'
-      group 'root'
-      source 'rundeck-upstart.conf.erb'
-      variables(
-        configdir: new_resource.configdir
-      )
+    cookbook 'rundeck'
+    owner 'root'
+    group 'root'
+    source 'rundeck-upstart.conf.erb'
+    variables(
+      configdir: new_resource.configdir
+    )
     notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
-      only_if { node['platform_family'] == 'debian' }
+    only_if { node['platform_family'] == 'debian' }
   end
-
 
   template "#{new_resource.configdir}/framework.properties" do
     cookbook 'rundeck'
@@ -289,7 +287,6 @@ action :install do
     )
     notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
   end
-
 
   template "#{new_resource.configdir}/realm.properties" do
     cookbook 'rundeck'
@@ -345,16 +342,7 @@ action :install do
     end
   end
 
-    # bash 'own rundeck' do
-  #   user 'root'
-  #   code <<-EOH
-  #   chown -R #{node['rundeck']['user']}:#{node['rundeck']['group']} #{node['rundeck']['basedir']}
-  #   EOH
-  # end
   Chef::Log.info { "chef-rundeck url: #{new_resource.chef_url}" }
-
-
-
 
   service 'rundeckd' do
     case node['platform']
@@ -368,30 +356,7 @@ action :install do
     action [:start, :enable]
     # notifies :run, 'ruby_block[wait for rundeckd startup]', :immediately
   end
-
-#   ruby_block 'wait for rundeckd startup' do
-#     action :nothing
-#     block do
-#       # test connection to the authentication endpoint
-#       require 'uri'
-#       require 'net/http'
-#       uri = URI("#{new_resource.grails_server_url}:#{new_resource.grails_port}")
-#       uri.path = ::File.join(new_resource.webcontext, '/j_security_check')
-#       res = Net::HTTP.get_response(uri)
-#       unless (200..399).cover?(res.code.to_i)
-#         Chef::Log.warn { "#{res.uri} not responding healthy. #{res.code}" }
-#         Chef::Log.debug { res.body }
-#         raise
-#       end
-#       Chef::Log.info { 'wait a little longer for Rundeck startup' }
-#       sleep new_resource.extra_wait
-#     end
-#     retries new_resource.service_retries
-#     retry_delay new_resource.service_retry_delay
-#   end
 end
-
-
 
 action_class do
   include RundeckCookbook::Helpers
