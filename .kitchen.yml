@@ -5,27 +5,31 @@ driver:
 provisioner:
   name: chef_zero
   product_name: chef
-  product_version: 14.2
-  solo_rb:
+  product_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
+  install_strategy: once
+
+client_rb:
     treat_deprecation_warnings_as_errors: true
 
 verifier:
   name: inspec
 
 platforms:
-  - name: centos-7
-  # - name: ubuntu-18.04
+- name: amazon-linux
+  driver_config:
+    box: mvbcoding/awslinux
+- name: centos-6
+- name: centos-7
+- name: debian-8
+- name: debian-9
+- name: fedora-latest
+- name: freebsd-10
+- name: freebsd-11
+- name: opensuse-leap-42
+- name: ubuntu-16.04
+- name: ubuntu-18.04
 
 suites:
-# - name: apache
-#   run_list:
-#     - recipe[test::apache]
-# - name: repo
-#   run_list:
-#     - recipe[test::repository]
 - name: server_install
   run_list:
     - recipe[test::server_install]
-# - name: better_chef
-#   run_list:
-#     - recipe[test::better_chef]  
