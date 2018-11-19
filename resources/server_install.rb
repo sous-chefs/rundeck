@@ -36,8 +36,12 @@ property :grails_server_url, String, default: lazy { "#{use_inbuilt_ssl ? 'https
 property :hostname, String, default: "rundeck.#{node['domain']}"
 property :jaas, String, default: 'internal'
 property :jvm_mem, String, default: ' -XX:MaxPermSize=256m -Xmx1024m -Xms256m'
-property :rundeckgroup, String, default: 'rundeck'
-property :rundeckuser, String, default: 'rundeck'
+property :rundeckgroup, String, 
+         default: 'rundeck',
+         description: 'The user account that rundeck will operate as'
+property :rundeckuser, String, 
+         default: 'rundeck',
+         description: 'The group that rundeck will operate as'
 property :ldap_debug
 property :ldap_provider, String
 property :ldap_binddn, String
@@ -100,7 +104,6 @@ property :windows_winrm_cert_trust, String, default: 'all'
 property :windows_winrm_hostname_trust, String, default: 'all'
 property :windows_winrm_protocol, String, default: 'https'
 property :windows_winrm_timeout, String, default: 'PT60.000S'
-
 
 action :install do
   node.default['java']['jdk_version'] = '8'
@@ -185,30 +188,6 @@ action :install do
    notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
   end
 
-  # remote_file "#{new_resource.basedir}/libext/#{node['rundeck']['plugins']['winrm']['url'].match(%r{[^/]+$})}" do
-  #   source node['rundeck']['plugins']['winrm']['url']
-  #   owner node['rundeck']['user']
-  #   group node['rundeck']['group']
-  #   mode '0644'
-  #   backup false
-  #   checksum node['rundeck']['plugins']['winrm']['checksum']
-  #   notifies (node['rundeck']['restart_on_config_change'] ? :restart : :nothing), 'service[rundeckd]', :delayed
-  # end
-
-  # ==== Removed for v3
-  # template "#{new_resource.basedir}/exp/webapp/WEB-INF/web.xml" do
-  #   cookbook 'rundeck'
-  #   owner new_resource.rundeckuser
-  #   group new_resource.rundeckgroup
-  #   variables(
-  #     rundeck_version: new_resource.version,
-  #     default_role: new_resource.default_role,
-  #     security_roles: new_resource.security_roles,
-  #     session_timeout: new_resource.session_timeout
-  #   )
-  #   source 'web.xml.erb'
-  #   # notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
-  # end
 
   template "#{new_resource.configdir}/profile" do
     cookbook 'rundeck'
@@ -375,16 +354,7 @@ action :install do
   Chef::Log.info { "chef-rundeck url: #{new_resource.chef_url}" }
 
 
-  # Assuming node['rundeck']['plugins'] is a hash containing name=>attributes
-  # unless new_resource.plugins.nil?
-  #   new_resource.plugins.each do |plugin_name, plugin_attrs|
-  #     rundeck_plugin plugin_name do
-  #       url plugin_attrs['url']
-  #       checksum plugin_attrs['checksum']
-  #       action :create
-  #     end
-  #   end
-  # end
+
 
   service 'rundeckd' do
     case node['platform']

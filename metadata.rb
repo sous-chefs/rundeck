@@ -9,7 +9,6 @@ version          '5.0.0'
 # depends          'sudo'
 depends          'java', '~> 3.1.0'
 depends          'apache2'
-# depends          'simple_passenger'
 # depends          'build-essential'
 
 %w(debian ubuntu centos suse fedora redhat freebsd windows scientific oracle amazon mac_os_x).each do |os|
