@@ -11,5 +11,4 @@ describe 'rundeck_install' do
 
     # it { is_expected.to install_package('rundeck') }
   end
-
 end
