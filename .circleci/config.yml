@@ -13,6 +13,6 @@ workflows:
           name: lint
       - kitchen/dokken:
           name: server_install
-          suite: server_install
+          suite: server-install
           requires: [  danger, lint ]
    
