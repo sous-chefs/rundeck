@@ -1,6 +1,9 @@
 Changelog
 =========
 
+# Unreleased
+* Complete rewrite of cookbook using custom resources
+
 ## 4.2.0
 * Add optional LDAP data bag support
 * Support Rundeck 2.9.x
