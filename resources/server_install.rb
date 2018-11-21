@@ -110,7 +110,7 @@ action :install do
   include_recipe 'java'
 
   rundeck_repository 'public' do
-    only_if new_resource.setup_repo
+    only_if { new_resource.setup_repo }
   end
 
   package 'rundeck' do
