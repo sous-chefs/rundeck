@@ -11,8 +11,23 @@ workflows:
           context: Danger
       - kitchen/lint:
           name: lint
-      - kitchen/dokken:
-          name: server_install
+      - kitchen/dokken-single:
+          name: centos-6
+          platform: centos-6
           suite: server-install
           requires: [  danger, lint ]
-   
+      - kitchen/dokken-single:
+          name: centos-7
+          platform: centos-7
+          suite: server-install
+          requires: [  danger, lint ]
+      - kitchen/dokken-single:
+          name: ubuntu-16.04
+          platform: ubuntu-16.04
+          suite: server-install
+          requires: [  danger, lint ]
+      - kitchen/dokken-single:
+          name: ubuntu-18.04
+          platform: centos-6
+          suite: ubuntu-18.04
+          requires: [  danger, lint ]
