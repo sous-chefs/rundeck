@@ -21,8 +21,6 @@ include RundeckCookbook::Helpers
 property :package_uri, String, default: lazy {
   case node['platform_family']
   when 'amazon', 'rhel'
-  'https://dl.bintray.com/rundeck/rundeck-rpm'
-  when 'rhel'
     'https://dl.bintray.com/rundeck/rundeck-rpm'
   else # 'debian'
     'https://dl.bintray.com/rundeck/rundeck-deb'
