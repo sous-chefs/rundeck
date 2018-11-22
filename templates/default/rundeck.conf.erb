@@ -1,27 +1,27 @@
 <% ports = [ 80 ] %>
-<% ports << 443 if node['rundeck']['use_ssl'] %>
+<% ports << 443 if @use_ssl %>
 <% ports.each do |port| -%>
 <VirtualHost *:<%= port %>>
-        ServerName <%= node['rundeck']['hostname'] %>
-        ServerAdmin <%= node['rundeck']['email'] %>
-<% if node['rundeck']['use_ssl'] && port == 80 %>
+        ServerName <%= @hostname %>
+        ServerAdmin <%= @email %>
+<% if @use_ssl && port == 80 %>
         RewriteEngine On
-<% unless node['rundeck']['allow_local_https'] %>
+<% unless @allow_local_https %>
         RewriteCond %{REMOTE_ADDR} !^<%= node['ipaddress'] %>$
 <% end %>
-        RewriteRule ^/?(.*) https://<%= node['rundeck']['hostname'] %>/$1 [R=301,L]
+        RewriteRule ^/?(.*) https://<%= @hostname %>/$1 [R=301,L]
 <% end %>
 
         ErrorLog <%= @log_dir %>/rundeck_error.log
         TransferLog <%= @log_dir %>/rundeck_access.log
 
-<% if node['rundeck']['use_ssl'] && port == 443 %>
+<% if @use_ssl && port == 443 %>
         RequestHeader set X-Forwarded-Proto "https"
         SSLEngine On
-        SSLCertificateFile <%= node['apache']['dir'] %>/ssl/<%= node['rundeck']['cert']['name'] %>.crt
-        SSLCertificateKeyFile <%= node['apache']['dir'] %>/ssl/<%= node['rundeck']['cert']['name'] %>.key
-<% unless node['rundeck']['cert']['ca_name'].nil? %>
-        SSLCertificateChainFile <%= node['apache']['dir'] %>/ssl/<%= node['rundeck']['cert']['ca_name'] %>.crt
+        SSLCertificateFile <%= node['apache']['dir'] %>/ssl/<%= @cert_name %>.crt
+        SSLCertificateKeyFile <%= node['apache']['dir'] %>/ssl/<%= @cert_name %>.key
+<% unless @ca_cert_name.nil? %>
+        SSLCertificateChainFile <%= node['apache']['dir'] %>/ssl/<%= @ca_cert_name %>.crt
 <% end %>
 <% end %>
         DocumentRoot <%= @doc_root %>
@@ -32,13 +32,13 @@
          	Require all granted
         </IfModule>
         <IfModule !mod_authz_core.c>
-        	Order deny,allow
-        	Allow from all
+        	Order allow,deny
+          Allow from all
         </IfModule>
         </Proxy>
         
-        ProxyPass        <%= node['rundeck']['webcontext'] %> http://localhost:<%= node['rundeck']['port'] %><%= node['rundeck']['webcontext'] %>
-        ProxyPassReverse <%= node['rundeck']['webcontext'] %> http://localhost:<%= node['rundeck']['port'] %><%= node['rundeck']['webcontext'] %>
+        ProxyPass        <%= @webcontext %> http://localhost:<%= @port %><%= @webcontext %>
+        ProxyPassReverse <%= @webcontext %> http://localhost:<%= @port %><%= @webcontext %>
         
         <Directory />
                 Options FollowSymLinks
@@ -47,14 +47,14 @@
         <Location /server-status>
           SetHandler server-status
 
-        <IfModule mod_authz_core.c>
-                Require ip 127.0.0.1
-        </IfModule>
-        <IfModule !mod_authz_core.c>
-                Order deny,allow
-                Deny from all
-		Allow from 127.0.0.1
-        </IfModule>
+          <IfModule mod_authz_core.c>
+          Require ip 127.0.0.1
+          </IfModule>
+          <IfModule !mod_authz_core.c>
+          Order deny,allow
+          Deny from all
+          Allow from 127.0.0.1
+          </IfModule>
 
         </Location>
         

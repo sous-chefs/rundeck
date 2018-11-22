@@ -1,36 +1,56 @@
-# ----------------------------------------------------------------
-# Installation specific settings
-# ----------------------------------------------------------------
-
-# TODO - DUMP java.home = /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
-file.separator = /
-rdeck.base = <%= @rundeck[:configdir] %>
-rdeck.home = <%= @rundeck[:configdir] %>
-# TODO - DUMP user.home = /home/rundeck
-
-framework.application.libpath =
-framework.application.properties =
-
-# API Tokens File
-<% unless @rundeck[:tokens_file].nil? -%>
-rundeck.tokens.file = <%= @rundeck[:tokens_file] %>
-<% end -%>
-
+# framework.properties -
 #
-# Email settings
-#
+
+# ----------------------------------------------------------------
+# Rundeck server connection information
+# ----------------------------------------------------------------
+
+framework.server.name = <%= node.name %>
+framework.server.hostname = <%= @hostname %>
+<% if @use_inbuilt_ssl %>
+framework.server.port = <%= @ssl_port %>
+framework.server.url = https://<%= @hostname %>:<%= @ssl_port %>
+# URL to Rundeck
+framework.rundeck.url = https://<%= @hostname %>:<%= @ssl_port %>
+<% else %>
+framework.server.port = <%= @port %>
+framework.server.url = http://<%= @hostname %>:<%= @port %>
+# URL to Rundeck
+framework.rundeck.url = http://<%= @hostname %>:<%= @port %>
+<% end %>
+framework.server.username = admin
+framework.server.password = <%= @admin_password  %>
+
+
+# ----------------------------------------------------------------
+# Installation locations
+# ----------------------------------------------------------------
+
+rdeck.base = <%= @configdir %>
+framework.projects.dir= <%= @datadir %>/projects
+framework.depots.dir= <%= @datadir %>/projects
+framework.etc.dir= <%= @configdir %>
+framework.var.dir= <%= @basedir %>/var
+framework.tmp.dir= ${framework.var.dir}/tmp
+framework.logs.dir=<%= @exec_logdir %>
+framework.libext.dir=<%= @basedir %>/libext
+
+# ----------------------------------------------------------------
+# Email Settings
+# ----------------------------------------------------------------
+
 # recipient addresses to send email (comma separated)
 framework.email.tolist = root
 # email address appearing in message "from" field
-framework.email.from = <%= @rundeck[:email] %>
+framework.email.from = <%= @mail_email %>
 # email address replies should go
 framework.email.replyto = do-not-reply
 # The rdeck email relay host. must be a functioning smtp relay server
-framework.email.mailhost = <%= @rundeck[:mail][:host] %>
-framework.email.mailport = <%= @rundeck[:mail][:port] %>
+framework.email.mailhost = <%= @mail_host %>
+framework.email.mailport = <%= @mail_port %>
 # User/pass info if the smtp server requires it
-framework.email.user = <%= @rundeck[:mail][:user] %>
-framework.email.password = <%= @rundeck[:mail][:password] %>
+framework.email.user = <%= @mail_user %>
+framework.email.password = <%= @mail_password %>
 framework.email.ssl = false
 framework.email.failonerror = true
 
@@ -39,204 +59,54 @@ framework.email.failonerror = true
 # Custom config
 #
 #
-<% if node['rundeck']['custom_framework_config'] %>
-<% node['rundeck']['custom_framework_config'].sort.each do |key, value| %>
+<% if @custom_framework_config %>
+<% @custom_framework_config.sort.each do |key, value| %>
 <%= key %>=<%= value %>
 <% end %>
 <% end %>
 
 # ----------------------------------------------------------------
-# Do not make changes below this line
+# SSH defaults for node executor and file copier
 # ----------------------------------------------------------------
 
-
-#
-# framework.crypto.keystore.filename is the path to the JKS keystore containing a certchain for
-# verifying signed jars
-#
-framework.crypto.keystore.filename =
-
-#
-# framework.crypto.keystore.password is any password for verifying the keystore integrity
-#
-framework.crypto.keystore.password =
-
-#
-# framework.crypto.jarSigning.aliasName  is the name of the cert alias to use for verification
-#
-framework.crypto.jarSigning.aliasName =
-
-
-
-#the hostname of this rdeck node (likely matches hostname)
-framework.node.hostname = localhost
-
-#the logical name of this rdeck node (used during Node registration)
-framework.node.name = localhost
-
-# for backwards compatability
-framework.node = localhost
-
-# the node type
-framework.node.type = @framework.node.type@
-
-#
-#
-# Version of this RUNDECK implementation
-#
-# framework.rdeck.version = 1.1
-
-#
-# Root directory of the framework pkg
-#
-framework.rdeck.dir = ${rdeck.home}
-
-#
-# Root directory of the framework instance
-#
-framework.rdeck.base = <%= @rundeck[:configdir] %>
-
-#
-# Base directory of the installed functional modules
-#
-# TODO Dump ### framework.modules.dir = /private/tmp/rdl/modules
-
-
-#
-# project spaces containing resources
-#
-framework.projects.dir= <%= @rundeck[:datadir] %>/projects
-framework.depots.dir= <%= @rundeck[:datadir] %>/projects
-
-#
-# directory containing instance based property files
-#
-framework.etc.dir= <%= @rundeck[:configdir] %>
-
-#
-# Base directory where instance of framework var dir is kept
-#
-framework.var.dir= <%= @rundeck[:basedir] %>/var
-
-#
-# Framework tmp dir
-#
-framework.tmp.dir= ${framework.var.dir}/tmp
-
-#
-# Base directory where logs are kept
-#
-framework.logs.dir=<%= @rundeck[:exec_logdir] %>
-
-#
-# Date/time stamp format used in logs. See java.text.SimpleDateFormat
-#
-framework.log.format=[yyyy-MM-dd hh:mm:ss-Z]
-
-#
-# Directory where plugins are kept. cache will be libext/cache.
-#
-framework.libext.dir=<%= @rundeck[:basedir] %>/libext
-
-#
-# Base directory where module source code is kept
-#
-# TODO - DUMP framework.src.dir= /private/tmp/rdl/src
-
-#
-# Name of nodes metadata file for each project (e.g. nodes.xml/nodes.properties)
-#
-framework.nodes.file.name= resources.xml
-
-#
-# Local Authentication/Authorization Security
-#
-framework.authorization.class = com.dtolabs.rundeck.core.authorization.NoAuthorization
-framework.authentication.class = com.dtolabs.rundeck.core.authentication.NoAuthentication
-#
-# Remote Client connection authentication
-#
-framework.nodeauthentication.classname = com.dtolabs.rundeck.core.authentication.DefaultNodeAuthResolutionStrategy
-
-#
-# Remote Central Dispatcher service class
-#
-framework.centraldispatcher.classname = com.dtolabs.client.services.RundeckAPICentralDispatcher
-
-#
-# Rundeck Server UUID
-#
-rundeck.server.uuid = <%= @rundeck_uuid %>
-
-#
-#
-# rdeck server connection.
-#
-framework.server.username = admin
-framework.server.password = <%= (@rundeck_users['admin']['password'] rescue nil) || 'admin' %>
-framework.server.hostname = <%= @rundeck[:hostname] %>
-framework.server.name = <%= node.name %>
-
-<% if @rundeck[:use_inbuilt_ssl] %>
-framework.server.port = <%= @rundeck[:ssl][:port] %>
-framework.server.url = https://<%= @rundeck[:hostname] %>:<%= @rundeck[:ssl][:port] %>
-# URL to Rundeck
-framework.rundeck.url = https://<%= @rundeck[:hostname] %>:<%= @rundeck[:ssl][:port] %>
-<% else %>
-framework.server.port = <%= @rundeck[:port] %>
-framework.server.url = http://localhost:<%= @rundeck[:port] %>
-# URL to Rundeck
-framework.rundeck.url = http://<%= @rundeck[:hostname] %>:<%= @rundeck[:port] %>
-<% end %>
-
-#
-# ssh keypath
-#
-framework.ssh.keypath = <%= @rundeck[:basedir] %>/.ssh/id_rsa
-
-#
-# ssh user
-#
-framework.ssh.user = <%= @rundeck['framework.ssh.user'] || @rundeck[:user] %>
-
-
-#
-# ssh timeout. The connection can be dropped after a specified number of milliseconds.
-# A "0" value means wait forever.
-#
+framework.ssh.keypath = <%= @basedir %>/.ssh/id_rsa
+framework.ssh.user = <%= @user %>
 framework.ssh.timeout = 0
 
-#
-# Set the formatting for run-exec console output
-#
-# Examples:
-# 1) Format specification to work with Rundeck. %command will be "run-exec"
-#
-# framework.log.run-exec.console.format =[%user@%node %command][%level] %message
-#
-framework.log.run-exec.console.format =[%user@%node %command][%level] %message
+# ----------------------------------------------------------------
+# server UUID
+# ----------------------------------------------------------------
+rundeck.server.uuid = <%= @uuid %>
+
 
 # winrm authentication type (options "basic" or "kerberos", default: "basic")
 #
-framework.winrm-auth-type = <%= @rundeck[:windows][:winrm_auth_type] %>
+framework.winrm-auth-type = <%= @windows_winrm_auth_type %>
 
 # winrm SSL security (options "all", "self-signed", "default" (trusted certs only))
 #
-framework.winrm-cert-trust = <%= @rundeck[:windows][:winrm_cert_trust] %>
+framework.winrm-cert-trust = <%= @windows_winrm_cert_trust %>
 
 # winrm hostname security (options "all", "strict", "browser-compatible")
 #
-framework.winrm-hostname-trust = <%= @rundeck[:windows][:winrm_hostname_trust] %>
+framework.winrm-hostname-trust = <%= @windows_winrm_hostname_trust %>
 
 # winrm HTTP(S) protocol to use, either "http" or "https". Default: "https"
 #
-framework.winrm-protocol = <%= @rundeck[:windows][:winrm_protocol] %>
+framework.winrm-protocol = <%= @windows_winrm_protocol %>
 
 # winrm connection timeout.  Default: PT60.000S
-framework.winrm-timeout = <%= @rundeck[:windows][:winrm_timeout] %>
+framework.winrm-timeout = <%= @windows_winrm_timeout %>
 
-
-# Extra properties from Chef attribute ['rundeck']['framework']['properties']
-<% @rundeck['framework']['properties'].to_java_properties_hash.each do |key, value| %>
+# ----------------------------------------------------------------
+# Extra properties from Chef
+# ----------------------------------------------------------------
+<% @framework_properties.each do |key, value| %>
 <%= key %> = <%= value %>
 <% end %>
+
+
+# API Tokens File
+<% unless @tokensfile.nil? -%>
+rundeck.tokens.file = <%= @tokensfile %>
+<% end -%>
