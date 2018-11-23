@@ -18,7 +18,6 @@ require 'securerandom'
 
 module RundeckCookbook
   module Helpers
-
     def generateuuid
       SecureRandom.uuid
     end
