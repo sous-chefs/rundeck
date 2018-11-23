@@ -18,7 +18,6 @@ require 'securerandom'
 
 module RundeckCookbook
   module Helpers
-    include Chef::Mixin::ShellOut
 
     def generateuuid
       SecureRandom.uuid

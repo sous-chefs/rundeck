@@ -20,25 +20,18 @@
 include RundeckCookbook::Helpers
 
 property :name, String,
-         name_attribute: true,
-         description: 'Name of the plugin to install'
+         name_property: true # 'Name of the plugin to install'
 property :url, String,
-         required: true,
-         description: 'URL to the plugin to install.'
-property :checksum, String,
-         description: 'The SHA-256 checksum of the plugin.'
+         required: true # 'URL to the plugin to install.'
+property :checksum, String # 'The SHA-256 checksum of the plugin.'
 property :basedir, String,
-         default: '/var/lib/rundeck',
-         description: 'Location to Rundecks base installation directory.'
+         default: '/var/lib/rundeck' # 'Location to Rundecks base installation directory.'
 property :rundeckgroup, String,
-         default: 'rundeck',
-         description: 'The user account that rundeck will operate as'
+         default: 'rundeck' # 'The user account that rundeck will operate as'
 property :rundeckuser, String,
-         default: 'rundeck',
-         description: 'The group that rundeck will operate as'
+         default: 'rundeck' # 'The group that rundeck will operate as'
 property :restart_on_config_change, [true, false],
-         default: false,
-         description: 'Whether to restart rundeck service when a configuration has changed.'
+         default: false # 'Whether to restart rundeck service when a configuration has changed.'
 
 action :create do
   remote_file "#{new_resource.basedir}/libext/#{new_resource.name}" do
@@ -53,14 +46,6 @@ action :create do
   end
 
   service 'rundeckd' do
-    case node['platform']
-    when 'ubuntu'
-      if node['platform_version'].to_f >= 16.04
-        provider Chef::Provider::Service::Systemd
-      else
-        provider Chef::Provider::Service::Upstart
-      end
-    end
     action :nothing
   end
 end

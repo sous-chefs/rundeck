@@ -37,11 +37,9 @@ property :hostname, String, default: "rundeck.#{node['domain']}"
 property :jaas, String, default: 'internal'
 property :jvm_mem, String, default: ' -XX:MaxPermSize=256m -Xmx1024m -Xms256m'
 property :rundeckgroup, String,
-         default: 'rundeck',
-         description: 'The user account that rundeck will operate as'
+         default: 'rundeck' # 'The user account that rundeck will operate as'
 property :rundeckuser, String,
-         default: 'rundeck',
-         description: 'The group that rundeck will operate as'
+         default: 'rundeck' # 'The group that rundeck will operate as'
 property :ldap_debug
 property :ldap_provider, String
 property :ldap_binddn, String

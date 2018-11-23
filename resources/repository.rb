@@ -20,7 +20,7 @@ include RundeckCookbook::Helpers
 
 property :package_uri, String, default: lazy {
   case node['platform_family']
-  when 'amazon', 'rhel'
+  when 'rhel'
     'https://dl.bintray.com/rundeck/rundeck-rpm'
   else # 'debian'
     'https://dl.bintray.com/rundeck/rundeck-deb'
@@ -28,7 +28,7 @@ property :package_uri, String, default: lazy {
 }
 property :gpgkey, String, default: lazy {
   case node['platform_family']
-  when 'amazon', 'rhel'
+  when 'rhel'
     'http://rundeck.org/keys/BUILD-GPG-KEY-Rundeck.org.key'
   else # 'debian'
     'https://bintray.com/user/downloadSubjectPublicKey?username=bintray'

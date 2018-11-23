@@ -19,13 +19,13 @@
 include RundeckCookbook::Helpers
 
 property :use_ssl, [true, false], default: false
-property :cert_name, String, default: node['hostname']
+property :cert_name, String, default: lazy { node['hostname'] }
 property :cert_contents, String
 property :key_contents, String, sensitive: true
 property :ca_cert_name, String
 property :ca_cert_contents, String
-property :hostname, String, default: "rundeck.#{node['domain']}"
-property :email, String, default: "rundeck@#{node['domain']}"
+property :hostname, String, default: lazy { "rundeck.#{node['domain']}" }
+property :email, String, default: lazy { "rundeck@#{node['domain']}" }
 property :allow_local_https,  [true, false], default: true
 property :webcontext, String, default: '/'
 property :port, Integer, default: 4440
