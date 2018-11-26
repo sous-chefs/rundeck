@@ -42,9 +42,9 @@
 <% end %>
   </filter>
   <security-role>
-    <role-name><%= node['rundeck']['default_role'] %></role-name>
+    <role-name><%= @default_role %></role-name>
   </security-role>
-<% for @role in node['rundeck']['security_roles'] %>
+<% for @role in @security_roles %>
   <security-role>
     <role-name><%= @role %></role-name>
   </security-role>
@@ -286,7 +286,7 @@
     <url-pattern>*.dispatch</url-pattern>
   </servlet-mapping>
   <session-config>
-    <session-timeout><%= node['rundeck']['session_timeout'] %></session-timeout>
+    <session-timeout><%= @session_timeout %></session-timeout>
   </session-config>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

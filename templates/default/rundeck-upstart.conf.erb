@@ -23,7 +23,7 @@ script
 
     [ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
 
-    . <%= @config_dir %>/profile
+    . <%= @configdir %>/profile
 
     exec $rundeckd >> /var/log/rundeck/service.log 2>&1
 end script

@@ -1,18 +1,30 @@
-RDECK_BASE="<%=@rundeck[:basedir]%>"
+
+prog="rundeckd"
+[ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
+[ -e /etc/default/$prog ] && . /etc/default/$prog
+
+<% authmodule = @jaas != "internal" %>
+
+RDECK_BASE="<%=@basedir %>"
 RDECK_INSTALL=$RDECK_BASE
-RDECK_CONFIG="<%=@rundeck[:configdir]%>"
+RDECK_CONFIG="<%=@configdir %>"
+RDECK_CONFIG_FILE="${RDECK_CONFIG_FILE:-$RDECK_CONFIG/rundeck-config.properties}"
 RDECK_SERVER_BASE="${RDECK_SERVER_BASE:-$RDECK_BASE}"
 RDECK_SERVER_CONFIG="${RDECK_SERVER_CONFIG:-$RDECK_CONFIG}"
 RDECK_SERVER_DATA="${RDECK_SERVER_DATA:-$RDECK_BASE/data}"
 RDECK_PROJECTS="${RDECK_PROJECTS:-$RDECK_BASE/projects}"
-RUNDECK_TEMPDIR="<%=@rundeck[:tempdir]%>"
+RUNDECK_TEMPDIR="<%=@tempdir %>"
 RUNDECK_WORKDIR="$RDECK_BASE/work"
-RUNDECK_LOGDIR="<%=@rundeck[:exec_logdir]%>"
-RDECK_JVM_SETTINGS="<%=@rundeck[:jvm_mem]%> -server"
-RDECK_TRUSTSTORE_FILE="<%= @rundeck[:configdir] %>/ssl/truststore"
-RDECK_TRUSTSTORE_TYPE="<%= @rundeck[:truststore_type] %>"
-RDECK_HTTP_PORT=<%=@rundeck[:port]%>
-RDECK_HTTPS_PORT=<%=@rundeck[:ssl][:port]%>
+RUNDECK_LOGDIR="<%=@exec_logdir %>"
+RDECK_JVM_SETTINGS="<%=@jvm_mem %> -server"
+RDECK_TRUSTSTORE_FILE="<%= @configdir %>/ssl/truststore"
+RDECK_TRUSTSTORE_TYPE="<%= @truststore_type %>"
+JAAS_LOGIN="${JAAS_LOGIN:-true}"
+JAAS_CONF="<%=@configdir %>/<%=authmodule ? "jaas-#{@jaas}.conf" : "jaas-loginmodule.conf" %>"
+LOGIN_MODULE="<%=authmodule ? @jaas : "RDpropertyfilelogin" %>"
+RDECK_HTTP_PORT=<%=@port %>
+RDECK_HTTPS_PORT=<%=@ssl_port %>
+
 
 # If no JAVA_CMD, try to find it in $JAVA_HOME
 if [ -z "$JAVA_CMD" ] && [ -n "$JAVA_HOME" ] && [ -x "$JAVA_HOME/bin/java" ] ; then
@@ -20,66 +32,51 @@ if [ -z "$JAVA_CMD" ] && [ -n "$JAVA_HOME" ] && [ -x "$JAVA_HOME/bin/java" ] ; t
   PATH=$PATH:$JAVA_HOME/bin
   export JAVA_HOME
 elif [ -z "$JAVA_CMD" ] ; then
-  JAVA_CMD=$(which java)
+  JAVA_CMD=java
 fi
 
 # build classpath without lone : that includes .
 for jar in $(find $RDECK_INSTALL/cli -name '*.jar') ; do
   CLI_CP=${CLI_CP:+$CLI_CP:}$jar
 done
-for jar in $(find $RDECK_INSTALL/bootstrap -name '*.jar') ; do
-  BOOTSTRAP_CP=${BOOTSTRAP_CP:+$BOOTSTRAP_CP:}$jar
+for war in $(find $RDECK_INSTALL/bootstrap -name '*.war') ; do
+  EXECUTABLE_WAR=$war
 done
 
-<% authmodule = @rundeck[:jaas] != "internal" %>
-export RDECK_JVM="-Djava.security.auth.login.config=<%=@rundeck[:configdir]%>/<%=authmodule ? "jaas-#{@rundeck[:jaas]}.conf" : "jaas-loginmodule.conf" %> \
-    -Dloginmodule.name=<%=authmodule ? @rundeck[:jaas] : "RDpropertyfilelogin" %> \
-    -Drdeck.config=$RDECK_CONFIG \
-    <% if Gem::Requirement.new("< 2.7.0").satisfied_by?(Gem::Version.new(@rundeck_version)) %>
-    -Drdeck.base=$RDECK_BASE \
-    <% end %>
-    -Drundeck.server.configDir=$RDECK_SERVER_CONFIG \
-    -Dserver.datastore.path=$RDECK_SERVER_DATA \
-    -Drundeck.server.serverDir=$RDECK_INSTALL \
-    -Drdeck.projects=$RDECK_PROJECTS \
-    -Drdeck.runlogs=$RUNDECK_LOGDIR \
-    -Drundeck.config.location=$RDECK_CONFIG/rundeck-config.properties \
-    -Dserver.web.context=<%=@rundeck[:webcontext]%> \
-    -Drundeck.jetty.connector.forwarded=true \
-    <% if Gem::Requirement.new(">= 2.7.0").satisfied_by?(Gem::Version.new(@rundeck_version)) %>
-    -Drundeck.server.workDir=$RUNDECK_WORKDIR \
-    <% end %>
-    -Djava.io.tmpdir=$RUNDECK_TEMPDIR"
+RDECK_JVM="-Drundeck.jaaslogin=$JAAS_LOGIN \
+           -Djava.security.auth.login.config=$JAAS_CONF \
+           -Dloginmodule.name=$LOGIN_MODULE \
+           -Drdeck.config=$RDECK_CONFIG \
+           -Drundeck.server.configDir=$RDECK_SERVER_CONFIG \
+           -Dserver.datastore.path=$RDECK_SERVER_DATA/rundeck \
+           -Drundeck.server.serverDir=$RDECK_INSTALL \
+           -Drdeck.projects=$RDECK_PROJECTS \
+           -Drdeck.runlogs=$RUNDECK_LOGDIR \
+           -Drundeck.config.location=$RDECK_CONFIG_FILE \
+           -Djava.io.tmpdir=$RUNDECK_TEMPDIR \
+           -Drundeck.server.workDir=$RUNDECK_WORKDIR \
+           -Dserver.http.port=$RDECK_HTTP_PORT \
+           -Drdeck.base=$RDECK_BASE"
 #
 # Set min/max heap size
 #
 RDECK_JVM="$RDECK_JVM $RDECK_JVM_SETTINGS"
-
 #
 # Set custom JVM properties
 #
-<% if @rundeck[:custom_jvm_properties] %>
-RDECK_JVM="$RDECK_JVM <%= @rundeck[:custom_jvm_properties]%>"
+<% if @custom_jvm_properties %>
+RDECK_JVM="$RDECK_JVM <%= @custom_jvm_properties %>"
 <% end %>
 #
 # SSL Configuration - Uncomment the following to enable.  Check SSL.properties for details.
 #
-<% if @rundeck[:use_inbuilt_ssl] %>
-  RDECK_JVM="$RDECK_JVM -Drundeck.ssl.config=$RDECK_SERVER_CONFIG/ssl/ssl.properties -Dserver.https.port=${RDECK_HTTPS_PORT}"
+<% if @use_inbuilt_ssl %>
   RDECK_SSL_OPTS="${RDECK_SSL_OPTS:- -Djavax.net.ssl.trustStore=$RDECK_TRUSTSTORE_FILE -Djavax.net.ssl.trustStoreType=$RDECK_TRUSTSTORE_TYPE -Djava.protocol.handler.pkgs=com.sun.net.ssl.internal.www.protocol}"
+  RDECK_JVM="$RDECK_JVM -Drundeck.ssl.config=$RDECK_SERVER_CONFIG/ssl/ssl.properties -Dserver.https.port=${RDECK_HTTPS_PORT} ${RDECK_SSL_OPTS}"
 <% end %>
 
-<% if Gem::Requirement.new("< 2.7.0").satisfied_by?(Gem::Version.new(@rundeck_version)) %>
-if test -t 0 -a -z "$RUNDECK_CLI_TERSE"
-then
-  RUNDECK_CLI_TERSE=true
-  export RUNDECK_CLI_TERSE
-fi
-<% end %>
-if test -n "$JRE_HOME"
-then
-   unset JRE_HOME
-fi
+unset JRE_HOME
 
 umask 002
-rundeckd="$JAVA_CMD $RDECK_JVM $RDECK_JVM_OPTS -cp $BOOTSTRAP_CP com.dtolabs.rundeck.RunServer $RDECK_BASE"
+
+rundeckd="$JAVA_CMD $RDECK_JVM $RDECK_JVM_OPTS -jar $EXECUTABLE_WAR --skipinstall"

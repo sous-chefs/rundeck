@@ -17,10 +17,39 @@
 # limitations under the License.
 #
 
-actions :create, :remove
+include RundeckCookbook::Helpers
 
-default_action :create
+property :name, String,
+         name_property: true # 'Name of the plugin to install'
+property :url, String,
+         required: true # 'URL to the plugin to install.'
+property :checksum, String # 'The SHA-256 checksum of the plugin.'
+property :basedir, String,
+         default: '/var/lib/rundeck' # 'Location to Rundecks base installation directory.'
+property :rundeckgroup, String,
+         default: 'rundeck' # 'The user account that rundeck will operate as'
+property :rundeckuser, String,
+         default: 'rundeck' # 'The group that rundeck will operate as'
+property :restart_on_config_change, [true, false],
+         default: false # 'Whether to restart rundeck service when a configuration has changed.'
 
-attribute :name,        kind_of: String,                       name_attribute: true
-attribute :url,         kind_of: String,                       required: true
-attribute :checksum,    kind_of: String,                       required: true
+action :create do
+  remote_file "#{new_resource.basedir}/libext/#{new_resource.name}" do
+    source new_resource.url
+    checksum new_resource.checksum
+    owner new_resource.rundeckuser
+    group new_resource.rundeckgroup
+    mode '0644'
+    backup false
+    action :create
+    notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
+  end
+
+  service 'rundeckd' do
+    action :nothing
+  end
+end
+
+action_class do
+  include Apache2::Cookbook::Helpers
+end

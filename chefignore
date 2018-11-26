@@ -61,6 +61,8 @@ Rakefile
 .travis.yml
 .foodcritic
 .codeclimate.yml
+.circleci
+Dangerfile
 
 # SCM #
 #######
@@ -92,7 +94,6 @@ Policyfile.lock.json
 CONTRIBUTING*
 CHANGELOG*
 TESTING*
-MAINTAINERS.toml
 
 # Strainer #
 ############
