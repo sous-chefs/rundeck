@@ -107,7 +107,7 @@ action :install do
   case node['platform_family']
   when 'debian'
     apt_update ''
-  end
+apt_update '' if node['platform_family'] == 'debian'
 
   node.default['java']['jdk_version'] = '8'
   include_recipe 'java'
