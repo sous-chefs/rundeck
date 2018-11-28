@@ -23,7 +23,7 @@ workflows:
           requires: [  danger, lint ]
       - kitchen/dokken-single:
           name: debian-9
-          platform: debian
+          platform: debian-9
           suite: server-install
           requires: [  danger, lint ]
       - kitchen/dokken-single:

@@ -104,6 +104,11 @@ property :windows_winrm_protocol, String, default: 'https'
 property :windows_winrm_timeout, String, default: 'PT60.000S'
 
 action :install do
+  case node['platform_family']
+  when 'debian'
+    apt_update ''
+  end
+
   node.default['java']['jdk_version'] = '8'
   include_recipe 'java'
 
