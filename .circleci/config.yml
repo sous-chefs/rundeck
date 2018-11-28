@@ -22,6 +22,11 @@ workflows:
           suite: server-install
           requires: [  danger, lint ]
       - kitchen/dokken-single:
+          name: debian-9
+          platform: debian-stretch64
+          suite: server-install
+          requires: [  danger, lint ]
+      - kitchen/dokken-single:
           name: ubuntu-16.04
           platform: ubuntu-1604
           suite: server-install
