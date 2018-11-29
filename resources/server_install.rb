@@ -63,7 +63,7 @@ property :mail_email, String
 property :mail_enable, [true, false], default: false
 property :mail_host, String
 property :mail_password, String, sensitive: true
-property :mail_port, String
+property :mail_port, Integer, default: 25
 property :mail_user, String
 property :plugins, Hash
 property :port, Integer, default: 4440
@@ -220,6 +220,7 @@ action :install do
       grails_port: new_resource.grails_port,
       grails_server_url:  new_resource.grails_server_url,
       log_level: new_resource.log_level,
+      mail_enable: new_resource.mail_enable,
       mail_email: new_resource.mail_email,
       mail_host: new_resource.mail_host,
       mail_password: new_resource.mail_password,
