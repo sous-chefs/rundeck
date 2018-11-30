@@ -17,8 +17,6 @@
 #
 
 action :install do
-  include_recipe 'build-essential'
-
   node.default['java']['jdk_version'] = '8'
   include_recipe 'java'
 end

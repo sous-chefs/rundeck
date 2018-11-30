@@ -21,7 +21,6 @@ include RundeckCookbook::Helpers
 property :acl_policies, Hash, default: {}
 property :admin_password, String, default: 'admin', sensitive: true
 property :basedir, String, default: '/var/lib/rundeck'
-property :chef_url, String, default: "https://chef.#{node['domain']}"
 property :configdir, String, default: '/etc/rundeck'
 property :custom_framework_config, Hash, default: {}
 property :custom_jvm_properties, String
@@ -326,8 +325,6 @@ action :install do
       end
     end
   end
-
-  Chef::Log.info { "chef-rundeck url: #{new_resource.chef_url}" }
 
   service 'rundeckd' do
     case node['platform']
