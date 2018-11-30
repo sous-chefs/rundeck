@@ -163,19 +163,6 @@ action :install do
     mode '0700'
   end
 
-  template "#{new_resource.basedir}/.chef/knife.rb" do
-    cookbook 'rundeck'
-    owner new_resource.rundeckuser
-    group new_resource.rundeckgroup
-    source 'knife.rb.erb'
-    variables(
-      user_home: new_resource.basedir,
-      node_name: new_resource.rundeckuser,
-      chef_server_url: new_resource.chef_url
-    )
-    notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
-  end
-
   file "#{new_resource.basedir}/.ssh/id_rsa" do
     owner new_resource.rundeckuser
     group new_resource.rundeckgroup

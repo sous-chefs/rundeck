@@ -15,7 +15,5 @@ describe 'rundeck_repository - Ubuntu' do
     it 'installs rest-client' do
       is_expected.to install_chef_gem('rest-client')
     end
-
-
   end
 end
