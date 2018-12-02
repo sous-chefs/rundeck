@@ -40,7 +40,6 @@ property :rundeckgroup, String,
          default: 'rundeck' # 'The user account that rundeck will operate as'
 property :rundeckuser, String,
          default: 'rundeck' # 'The group that rundeck will operate as'
-property :ldap_debug
 property :ldap_provider, String
 property :ldap_binddn, String
 property :ldap_bindpwd, String
@@ -65,12 +64,10 @@ property :mail_host, String
 property :mail_password, String, sensitive: true
 property :mail_port, String
 property :mail_user, String
-property :plugins, Hash
 property :port, Integer, default: 4440
 property :private_key, String, sensitive: true
 property :quartz_threadPoolCount, Integer, default: 10
 property :rdbms_dbname, String
-property :rdbms_dialect, String
 property :rdbms_dialect, String
 property :rdbms_enable, [true, false], default: false
 property :rdbms_location, String
@@ -84,8 +81,6 @@ property :rundeckgroup, String, default: 'rundeck'
 property :rundeckuser, String, default: 'rundeck'
 property :rundeck_users, Hash, default: {}, sensitive: true
 property :security_roles, Hash, default: {}
-property :service_retries, Integer, default: 60
-property :service_retry_delay, Integer, default: 5
 property :session_timeout, Integer, default: 30
 property :ssl_port, Integer, default: 4443
 property :setup_repo, [true, false], default: true
@@ -97,11 +92,6 @@ property :use_ssl, [true, false], default: false
 property :uuid, String, default: lazy { generateuuid }
 property :version, String, default: '3.0.8.20181029-1.201810292220'
 property :webcontext, String, default: '/'
-property :windows_winrm_auth_type, String, default: 'basic'
-property :windows_winrm_cert_trust, String, default: 'all'
-property :windows_winrm_hostname_trust, String, default: 'all'
-property :windows_winrm_protocol, String, default: 'https'
-property :windows_winrm_timeout, String, default: 'PT60.000S'
 
 action :install do
   apt_update '' if node['platform_family'] == 'debian'
@@ -278,12 +268,7 @@ action :install do
       tokens_file: new_resource.tokens_file,
       use_inbuilt_ssl: new_resource.use_inbuilt_ssl,
       user: new_resource.rundeckuser,
-      uuid: new_resource.uuid,
-      windows_winrm_auth_type: new_resource.windows_winrm_auth_type,
-      windows_winrm_cert_trust: new_resource.windows_winrm_cert_trust,
-      windows_winrm_hostname_trust: new_resource.windows_winrm_hostname_trust,
-      windows_winrm_protocol: new_resource.windows_winrm_protocol,
-      windows_winrm_timeout: new_resource.windows_winrm_timeout
+      uuid: new_resource.uuid
     )
     notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
   end
