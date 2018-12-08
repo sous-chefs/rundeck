@@ -314,14 +314,11 @@ action :install do
 
   if new_resource.acl_policies
     new_resource.acl_policies.each do |name, policy|
-      template "#{new_resource.configdir}/#{name}.aclpolicy" do
-        cookbook 'rundeck'
+      file "#{new_resource.configdir}/#{name}.aclpolicy" do
+        content policy
         owner new_resource.rundeckuser
         group new_resource.rundeckgroup
-        source 'user.aclpolicy.erb'
-        variables(
-          aclpolicy: policy
-        )
+        action :create
       end
     end
   end
