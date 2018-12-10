@@ -12,11 +12,6 @@ workflows:
       - kitchen/lint:
           name: lint
       - kitchen/dokken-single:
-          name: centos-6
-          platform: centos-6
-          suite: server-install
-          requires: [  danger, lint ]
-      - kitchen/dokken-single:
           name: centos-7
           platform: centos-7
           suite: server-install
