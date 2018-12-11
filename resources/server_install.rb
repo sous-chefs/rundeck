@@ -94,6 +94,8 @@ property :version, String, default: '3.0.8.20181029-1.201810292220'
 property :webcontext, String, default: '/'
 
 action :install do
+  apt_update '' if node['platform_family'] == 'debian'
+
   node.default['java']['jdk_version'] = '8'
   include_recipe 'java'
 

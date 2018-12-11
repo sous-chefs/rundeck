@@ -5,9 +5,10 @@ Rundeck Cookbook
 
 Installs and configures Rundeck with an optional Apache reverse proxy. The cookbook has optional support for Active Directory and LDAP.
 
-- [Chef Requirements](#chef-requirements)
-- [Supported OS Versions](#supported-os-versions)
-- [Resources](#resources)
+- [Rundeck Cookbook](#rundeck-cookbook)
+  - [Supported Chef Versions](#supported-chef-versions)
+  - [Supported OS Versions](#supported-os-versions)
+  - [Resources](#resources)
 
 Supported Chef Versions
 -----------------------
@@ -22,7 +23,7 @@ The following platforms and versions are tested and supported using [test-kitche
 
 - Ubuntu 16.04 / 18.04
 - Debian 9
-- CentOS 6 / 7
+- CentOS 7
 
 Resources
 ---------
