@@ -1,7 +1,7 @@
 Rundeck Cookbook
 ================
 
-[![Build Status](https://travis-ci.org/sous-chefs/rundeck.svg?branch=master)](https://travis-ci.org/sous-chefs/rundeck)[![Cookbook Version](https://img.shields.io/cookbook/v/rundeck.svg)](https://supermarket.chef.io/cookbooks/rundeck)
+[![CircleCI](https://circleci.com/gh/sous-chefs/rundeck.svg?style=svg)](https://circleci.com/gh/sous-chefs/rundeck)[![Cookbook Version](https://img.shields.io/cookbook/v/rundeck.svg)](https://supermarket.chef.io/cookbooks/rundeck)
 
 Installs and configures Rundeck with an optional Apache reverse proxy. The cookbook has optional support for Active Directory and LDAP.
 
