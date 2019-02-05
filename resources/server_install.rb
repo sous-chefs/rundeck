@@ -35,7 +35,7 @@ property :grails_port, Integer, default: lazy { use_ssl ? 443 : 80 }
 property :grails_server_url, String, default: lazy { "#{use_inbuilt_ssl ? 'https' : 'http'}://#{hostname}" }
 property :hostname, String, default: "rundeck.#{node['domain']}"
 property :jaas, String, default: 'internal'
-property :jvm_mem, String, default: ' -XX:MaxPermSize=256m -Xmx1024m -Xms256m'
+property :jvm_mem, String, default: ' -Xmx1024m -Xms256m'
 property :rundeckgroup, String,
          default: 'rundeck' # 'The user account that rundeck will operate as'
 property :rundeckuser, String,
