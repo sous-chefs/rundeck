@@ -65,7 +65,7 @@ property :mail_password, String, sensitive: true
 property :mail_port, String
 property :mail_user, String
 property :port, Integer, default: 4440
-property :private_key, [nil, String], default: nil,  sensitive: true
+property :private_key, [nil, String], default: nil, sensitive: true
 property :quartz_threadPoolCount, Integer, default: 10
 property :rdbms_dbname, String
 property :rdbms_dialect, String
