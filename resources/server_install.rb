@@ -211,7 +211,7 @@ action :install do
       configdir: new_resource.configdir,
       custom_rundeck_config: new_resource.custom_rundeck_config,
       grails_port: new_resource.grails_port,
-      grails_server_url:  new_resource.grails_server_url,
+      grails_server_url: new_resource.grails_server_url,
       log_level: new_resource.log_level,
       mail_email: new_resource.mail_email,
       mail_host: new_resource.mail_host,
