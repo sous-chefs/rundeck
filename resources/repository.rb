@@ -47,6 +47,8 @@ action :install do
       action :add
     end
   when 'debian'
+    package 'apt-transport-https'
+
     apt_repository 'rundeck' do
       uri new_resource.package_uri
       distribution '/'

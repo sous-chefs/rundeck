@@ -34,12 +34,11 @@ property :grails_port, Integer, default: lazy { use_ssl ? 443 : 80 }
 property :grails_server_url, String, default: lazy { "#{use_inbuilt_ssl ? 'https' : 'http'}://#{hostname}" }
 property :hostname, String, default: "rundeck.#{node['domain']}"
 property :jaas, String, default: 'internal'
-property :jvm_mem, String, default: ' -XX:MaxPermSize=256m -Xmx1024m -Xms256m'
+property :jvm_mem, String, default: ' -Xmx1024m -Xms256m'
 property :rundeckgroup, String,
          default: 'rundeck' # 'The user account that rundeck will operate as'
 property :rundeckuser, String,
          default: 'rundeck' # 'The group that rundeck will operate as'
-property :ldap_debug
 property :ldap_provider, String
 property :ldap_binddn, String
 property :ldap_bindpwd, String
@@ -64,12 +63,10 @@ property :mail_host, String
 property :mail_password, String, sensitive: true
 property :mail_port, Integer, default: 25
 property :mail_user, String
-property :plugins, Hash
 property :port, Integer, default: 4440
-property :private_key, String, sensitive: true
+property :private_key, [nil, String], default: nil, sensitive: true
 property :quartz_threadPoolCount, Integer, default: 10
 property :rdbms_dbname, String
-property :rdbms_dialect, String
 property :rdbms_dialect, String
 property :rdbms_enable, [true, false], default: false
 property :rdbms_location, String
@@ -83,8 +80,6 @@ property :rundeckgroup, String, default: 'rundeck'
 property :rundeckuser, String, default: 'rundeck'
 property :rundeck_users, Hash, default: {}, sensitive: true
 property :security_roles, Hash, default: {}
-property :service_retries, Integer, default: 60
-property :service_retry_delay, Integer, default: 5
 property :session_timeout, Integer, default: 30
 property :ssl_port, Integer, default: 4443
 property :setup_repo, [true, false], default: true
@@ -96,15 +91,10 @@ property :use_ssl, [true, false], default: false
 property :uuid, String, default: lazy { generateuuid }
 property :version, String, default: '3.0.8.20181029-1.201810292220'
 property :webcontext, String, default: '/'
-property :windows_winrm_auth_type, String, default: 'basic'
-property :windows_winrm_cert_trust, String, default: 'all'
-property :windows_winrm_hostname_trust, String, default: 'all'
-property :windows_winrm_protocol, String, default: 'https'
-property :windows_winrm_timeout, String, default: 'PT60.000S'
 
 action :install do
   rundeck_dependencies 'default'
-
+  
   rundeck_repository 'public' do
     only_if { new_resource.setup_repo }
   end
@@ -167,7 +157,8 @@ action :install do
     mode '0600'
     backup false
     content new_resource.private_key
-    only_if { new_resource.private_key }
+    sensitive true
+    not_if { new_resource.private_key.nil? }
     notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
   end
 
@@ -203,7 +194,7 @@ action :install do
       configdir: new_resource.configdir,
       custom_rundeck_config: new_resource.custom_rundeck_config,
       grails_port: new_resource.grails_port,
-      grails_server_url:  new_resource.grails_server_url,
+      grails_server_url: new_resource.grails_server_url,
       log_level: new_resource.log_level,
       mail_enable: new_resource.mail_enable,
       mail_email: new_resource.mail_email,
@@ -262,12 +253,7 @@ action :install do
       tokens_file: new_resource.tokens_file,
       use_inbuilt_ssl: new_resource.use_inbuilt_ssl,
       user: new_resource.rundeckuser,
-      uuid: new_resource.uuid,
-      windows_winrm_auth_type: new_resource.windows_winrm_auth_type,
-      windows_winrm_cert_trust: new_resource.windows_winrm_cert_trust,
-      windows_winrm_hostname_trust: new_resource.windows_winrm_hostname_trust,
-      windows_winrm_protocol: new_resource.windows_winrm_protocol,
-      windows_winrm_timeout: new_resource.windows_winrm_timeout
+      uuid: new_resource.uuid
     )
     notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
   end

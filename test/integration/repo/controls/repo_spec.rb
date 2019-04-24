@@ -15,4 +15,5 @@ when 'debian'
     it { should exist }
     it { should be_enabled }
   end
+
 end
