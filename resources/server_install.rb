@@ -21,7 +21,6 @@ include RundeckCookbook::Helpers
 property :acl_policies, Hash, default: {}
 property :admin_password, String, default: 'admin', sensitive: true
 property :basedir, String, default: '/var/lib/rundeck'
-property :chef_url, String, default: "https://chef.#{node['domain']}"
 property :configdir, String, default: '/etc/rundeck'
 property :custom_framework_config, Hash, default: {}
 property :custom_jvm_properties, String
@@ -62,7 +61,7 @@ property :mail_email, String
 property :mail_enable, [true, false], default: false
 property :mail_host, String
 property :mail_password, String, sensitive: true
-property :mail_port, String
+property :mail_port, Integer, default: 25
 property :mail_user, String
 property :port, Integer, default: 4440
 property :private_key, [nil, String], default: nil, sensitive: true
@@ -94,10 +93,7 @@ property :version, String, default: '3.0.8.20181029-1.201810292220'
 property :webcontext, String, default: '/'
 
 action :install do
-  apt_update '' if node['platform_family'] == 'debian'
-
-  node.default['java']['jdk_version'] = '8'
-  include_recipe 'java'
+  rundeck_dependencies 'default'
 
   rundeck_repository 'public' do
     only_if { new_resource.setup_repo }
@@ -155,19 +151,6 @@ action :install do
     mode '0700'
   end
 
-  template "#{new_resource.basedir}/.chef/knife.rb" do
-    cookbook 'rundeck'
-    owner new_resource.rundeckuser
-    group new_resource.rundeckgroup
-    source 'knife.rb.erb'
-    variables(
-      user_home: new_resource.basedir,
-      node_name: new_resource.rundeckuser,
-      chef_server_url: new_resource.chef_url
-    )
-    notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
-  end
-
   file "#{new_resource.basedir}/.ssh/id_rsa" do
     owner new_resource.rundeckuser
     group new_resource.rundeckgroup
@@ -213,6 +196,7 @@ action :install do
       grails_port: new_resource.grails_port,
       grails_server_url: new_resource.grails_server_url,
       log_level: new_resource.log_level,
+      mail_enable: new_resource.mail_enable,
       mail_email: new_resource.mail_email,
       mail_host: new_resource.mail_host,
       mail_password: new_resource.mail_password,
@@ -316,19 +300,20 @@ action :install do
 
   if new_resource.acl_policies
     new_resource.acl_policies.each do |name, policy|
-      template "#{new_resource.configdir}/#{name}.aclpolicy" do
-        cookbook 'rundeck'
+      policy_content = ''
+
+      policy.each do |policysection|
+        policy_content += "\n" + YAML.dump(policysection.to_hash)
+      end
+
+      file "#{new_resource.configdir}/#{name}.aclpolicy" do
+        content policy_content
         owner new_resource.rundeckuser
         group new_resource.rundeckgroup
-        source 'user.aclpolicy.erb'
-        variables(
-          aclpolicy: policy
-        )
+        action :create
       end
     end
   end
-
-  Chef::Log.info { "chef-rundeck url: #{new_resource.chef_url}" }
 
   service 'rundeckd' do
     case node['platform']
