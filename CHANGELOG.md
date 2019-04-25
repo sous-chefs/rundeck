@@ -4,7 +4,7 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
-- Adds Rundeck ACL Policy configuration
+- Adds Rundeck ACL Policy configuration (and fixes)
 - Complete rewrite of cookbook using custom resources
 - Adds circleci testing
 - Adds support for Debian 9
