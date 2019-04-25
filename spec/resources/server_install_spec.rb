@@ -10,9 +10,9 @@ describe 'rundeck_server_install - RedHat' do
     end
 
     it 'creates install directory' do
-      is_expected.to  create_directory('/var/lib/rundeck').with(
-        user:   'rundeck',
-        group:  'rundeck'
+      is_expected.to create_directory('/var/lib/rundeck').with(
+        user: 'rundeck',
+        group: 'rundeck'
       )
     end
 
