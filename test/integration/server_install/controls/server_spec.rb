@@ -29,7 +29,7 @@ admin_policy = %q(
 ---
 description: Administrators, all access.
 context:
-  project: ".*"
+  project: '.*'
 for:
   resource:
   - equals:
@@ -76,7 +76,7 @@ by:
 ---
 description: Administrators, all access.
 context:
-  project: rundeck
+  application: rundeck
 for:
   resource:
   - equals:
@@ -100,7 +100,7 @@ for:
     - admin
   project:
   - match:
-      name: ".*"
+      name: '.*'
     allow:
     - read
     - import
@@ -110,7 +110,7 @@ for:
     - admin
   project_acl:
   - match:
-      name: ".*"
+      name: '.*'
     allow:
     - read
     - create

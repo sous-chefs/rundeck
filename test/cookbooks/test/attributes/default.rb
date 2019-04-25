@@ -39,7 +39,7 @@ default['rundeck']['acl_policies'] = {
     {
       description: 'Administrators, all access.',
       context: {
-        project: 'rundeck',
+        application: 'rundeck',
       },
       for: {
         resource: [
