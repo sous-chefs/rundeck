@@ -1,10 +1,13 @@
-Changelog
-=========
+# Rundeck Cookbook CHANGELOG
 
-# Unreleased
-* Complete rewrite of cookbook using custom resources
-* Adds circleci testing
-* Adds support for Debian 9
+This file is used to list changes made in each version of the Rundeck cookbook.
+
+## Unreleased
+
+- Adds Rundeck ACL Policy configuration
+- Complete rewrite of cookbook using custom resources
+- Adds circleci testing
+- Adds support for Debian 9
 
 ## 4.2.0
 * Add optional LDAP data bag support
@@ -12,7 +15,7 @@ Changelog
 * Repoint download location to bintray and enable HTTPS
 
 ## 4.1.1
-* Fixes symbolic link error when wrapping cookboook #162 
+* Fixes symbolic link error when wrapping cookboook #162
 
 ## 4.1.0
 * Added support for rundeck version 2.7.x. Backward compatibility for 2.6.x is still there
