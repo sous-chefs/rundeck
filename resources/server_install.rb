@@ -303,7 +303,7 @@ action :install do
       policy_content = ''
 
       policy.each do |policysection|
-        policy_content += "\n" + YAML.dump(policysection.to_hash).gsub('"',"'")
+        policy_content += "\n" + YAML.dump(policysection.to_hash).tr('"', "'")
       end
 
       file "#{new_resource.configdir}/#{name}.aclpolicy" do
