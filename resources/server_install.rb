@@ -94,7 +94,7 @@ property :webcontext, String, default: '/'
 
 action :install do
   rundeck_dependencies 'default'
-  
+
   rundeck_repository 'public' do
     only_if { new_resource.setup_repo }
   end
@@ -300,8 +300,14 @@ action :install do
 
   if new_resource.acl_policies
     new_resource.acl_policies.each do |name, policy|
+      policy_content = ''
+
+      policy.each do |policysection|
+        policy_content += "\n" + YAML.dump(policysection.to_hash)
+      end
+
       file "#{new_resource.configdir}/#{name}.aclpolicy" do
-        content policy
+        content policy_content
         owner new_resource.rundeckuser
         group new_resource.rundeckgroup
         action :create
