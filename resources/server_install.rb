@@ -32,7 +32,7 @@ property :extra_wait, Integer, default: 120
 property :framework_properties, Hash, default: {}
 property :grails_port, Integer, default: lazy { use_ssl ? 443 : 80 }
 property :grails_server_url, String, default: lazy { "#{use_inbuilt_ssl ? 'https' : 'http'}://#{hostname}" }
-property :hostname, String, default: "rundeck.#{node['domain']}"
+property :hostname, String, default: "#{node['hostname']}.#{node['domain']}"
 property :jaas, String, default: 'internal'
 property :jvm_mem, String, default: ' -Xmx1024m -Xms256m'
 property :rundeckgroup, String,
@@ -325,7 +325,16 @@ action :install do
       end
     end
     action [:start, :enable]
+    # TODO: Add in service start delay
     # notifies :run, 'ruby_block[wait for rundeckd startup]', :immediately
+  end
+
+  rundeck_cli 'cli' do
+    basedir new_resource.basedir
+    url "#{new_resource.grails_server_url}:#{new_resource.port}"
+    rundeckuser new_resource.rundeckuser
+    rundeckgroup new_resource.rundeckgroup
+    admin_password new_resource.admin_password
   end
 end
 
