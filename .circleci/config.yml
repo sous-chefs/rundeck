@@ -33,12 +33,15 @@ workflows:
       - kitchen/dokken-single:
           name: debian-9
           suite: server-install
-          requires: [centos-7]
+          requires:
+            *lint_and_unit
       - kitchen/dokken-single:
           name: ubuntu-16.04
           suite: server-install
-          requires: [debian-9]
+          requires:
+            *lint_and_unit
       - kitchen/dokken-single:
           name: ubuntu-18.04
           suite: server-install
-          requires: [ubuntu-16.04]
+          requires:
+            *lint_and_unit
