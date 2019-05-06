@@ -1,5 +1,4 @@
-Rundeck Cookbook
-================
+# Rundeck Cookbook #
 
 [![CircleCI](https://circleci.com/gh/sous-chefs/rundeck.svg?style=svg)](https://circleci.com/gh/sous-chefs/rundeck)[![Cookbook Version](https://img.shields.io/cookbook/v/rundeck.svg)](https://supermarket.chef.io/cookbooks/rundeck)
 
@@ -9,15 +8,16 @@ Installs and configures Rundeck with an optional Apache reverse proxy. The cookb
   - [Supported Chef Versions](#supported-chef-versions)
   - [Supported OS Versions](#supported-os-versions)
   - [Resources](#resources)
+  - [Contributors](#contributors)
+    - [Backers](#backers)
+    - [Sponsors](#sponsors)
 
-Supported Chef Versions
------------------------
+## Supported Chef Versions ##
 
 - Chef 13
 - Chef 14
 
-Supported OS Versions
----------------------
+## Supported OS Versions ##
 
 The following platforms and versions are tested and supported using [test-kitchen](http://kitchen.ci/)
 
@@ -25,25 +25,23 @@ The following platforms and versions are tested and supported using [test-kitche
 - Debian 9
 - CentOS 7
 
-Resources
----------
-  
+## Resources ##
+
 - [Apache (reverse-proxy)](https://github.com/sous-chefs/rundeck/blob/master/documentation/resource_apache.md)
 - [Repository](https://github.com/sous-chefs/rundeck/blob/master/documentation/resource_repository.md)
 - [Server_Install](https://github.com/sous-chefs/rundeck/blob/master/documentation/resource_server_install.md)
 
-## Contributors
+## Contributors ##
 
 This project exists thanks to all the people who contribute.
 <img src="https://opencollective.com/sous-chefs/contributors.svg?width=890&button=false" /></a>
 
-
-### Backers
+### Backers ###
 
 Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/sous-chefs#backer)]
 <a href="https://opencollective.com/sous-chefs#backers" target="_blank"><img src="https://opencollective.com/sous-chefs/backers.svg?width=890"></a>
 
-### Sponsors
+### Sponsors ###
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/sous-chefs#sponsor)]
 <a href="https://opencollective.com/sous-chefs/sponsor/0/website" target="_blank"><img src="https://opencollective.com/sous-chefs/sponsor/0/avatar.svg"></a>
