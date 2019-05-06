@@ -19,7 +19,6 @@
 include RundeckCookbook::Helpers
 require 'json'
 
-# TODO: Add more properties
 property :name, String, name_property: true
 property :label, String
 property :description, String
@@ -88,6 +87,14 @@ action :create do
       execute_rd("projects configure update #{options}")
     end
     action :nothing
+  end
+end
+
+action :delete do
+  if current_resource.nil?
+    converge_by "Deleting project '#{new_resource.name}'" do
+      execute_rd("projects delete --project #{new_resource.name}")
+    end
   end
 end
 

@@ -27,8 +27,8 @@ module RundeckCookbook
       cmd_string = "rd #{command}"
       cmd_options = {
         user: 'rundeck',
+        login: true,
         environment: {
-          RD_CONF: '/var/lib/rundeck/.rd/rd.conf', # FIXME: Requires absolute path
           RD_FORMAT: 'json',
           RD_COLOR: '0',
         },

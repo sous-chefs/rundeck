@@ -19,3 +19,11 @@ rundeck_project 'test' do
   project_properties project_properties
   action [:create]
 end
+
+rundeck_project 'shouldnotexist' do
+  action [:create]
+end
+
+rundeck_project 'shouldnotexist' do
+  action [:delete]
+end

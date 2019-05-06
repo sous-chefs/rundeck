@@ -75,6 +75,8 @@ property :rdbms_port, Integer
 property :rdbms_type, %w(mysql oracle)
 property :rdbms_user, String
 property :restart_on_config_change, [true, false], default: false
+property :retry_delay, Integer, default: 5
+property :retries, Integer, default: 60
 property :rss_enabled, [true, false], default: false
 property :rundeckgroup, String, default: 'rundeck'
 property :rundeckuser, String, default: 'rundeck'
@@ -325,8 +327,28 @@ action :install do
       end
     end
     action [:start, :enable]
-    # TODO: Add in service start delay
-    # notifies :run, 'ruby_block[wait for rundeckd startup]', :immediately
+    notifies :run, 'ruby_block[wait for rundeckd startup]', :immediately
+  end
+
+  ruby_block 'wait for rundeckd startup' do
+    action :nothing
+    block do
+      # test connection to the authentication endpoint
+      require 'uri'
+      require 'net/http'
+      uri = URI("#{new_resource.grails_server_url}:#{new_resource.grails_port}")
+      uri.path = ::File.join(new_resource.webcontext, '/j_security_check')
+      res = Net::HTTP.get_response(uri)
+      unless (200..399).cover?(res.code.to_i)
+        Chef::Log.warn { "#{res.uri} not responding healthy. #{res.code}" }
+        Chef::Log.debug { res.body }
+        raise
+      end
+      Chef::Log.info { 'wait a little longer for Rundeck startup' }
+      sleep new_resource.extra_wait
+    end
+    retries new_resource.retries
+    retry_delay new_resource.retry_delay
   end
 
   rundeck_cli 'cli' do
