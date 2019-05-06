@@ -1,3 +1,10 @@
+---
+lint_and_unit: &lint_and_unit
+  - delivery
+  - danger
+  - lint-yaml
+  - lint-markdown
+
 version: 2.1
 
 orbs:
@@ -6,28 +13,36 @@ orbs:
 workflows:
   kitchen:
     jobs:
+      # Lint and Unit Test
+      - kitchen/yamllint:
+          name: lint-yaml
+      - kitchen/mdlint:
+          name: lint-markdown
       - kitchen/danger:
           name: danger
           context: Danger
-      - kitchen/lint:
-          name: lint
+      - kitchen/delivery:
+          name: delivery
+
+      # Server Installs
       - kitchen/dokken-single:
           name: centos-7
           platform: centos-7
           suite: server-install
-          requires: [  danger, lint ]
+          requires:
+            *lint_and_unit
       - kitchen/dokken-single:
           name: debian-9
           platform: debian-9
           suite: server-install
-          requires: [  danger, lint ]
+          requires: [centos-7]
       - kitchen/dokken-single:
           name: ubuntu-16.04
           platform: ubuntu-1604
           suite: server-install
-          requires: [  danger, lint ]
+          requires: [debian-9]
       - kitchen/dokken-single:
           name: ubuntu-18.04
           platform: ubuntu-1804
           suite: server-install
-          requires: [  danger, lint ]
+          requires: [ubuntu-16.04]
