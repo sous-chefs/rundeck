@@ -1,4 +1,3 @@
-
 #
 # Cookbook:: rundeck
 # Resource:: project

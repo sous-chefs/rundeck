@@ -8,6 +8,7 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 - Complete rewrite of cookbook using custom resources
 - Adds circleci testing
 - Adds support for Debian 9
+- Provides support for adding/deleting Rundeck projects
 
 ## 4.2.0
 * Add optional LDAP data bag support
