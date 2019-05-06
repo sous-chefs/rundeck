@@ -23,9 +23,6 @@ property :label, String
 property :description, String
 property :executions_disable, [true, false], default: false
 property :schedule_disable, [true, false], default: false
-property :node_cache_delay, Integer
-property :node_cache_enable, [true, false]
-property :node_cache_firstLoadSynch, [true, false]
 property :job_group_expansion_level, Integer
 property :display_motd, %w(none projectList projectHome both)
 property :display_readme, %w(none projectList projectHome both)
@@ -90,10 +87,9 @@ action :create do
 end
 
 action :delete do
-  if current_resource.nil?
-    converge_by "Deleting project '#{new_resource.name}'" do
-      execute_rd("projects delete --project #{new_resource.name}")
-    end
+  return if current_resource.nil?
+  converge_by "Deleting project '#{new_resource.name}'" do
+    execute_rd("projects delete --project #{new_resource.name} --confirm")
   end
 end
 

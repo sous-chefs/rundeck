@@ -21,9 +21,5 @@ rundeck_project 'test' do
 end
 
 rundeck_project 'shouldnotexist' do
-  action [:create]
-end
-
-rundeck_project 'shouldnotexist' do
   action [:delete]
 end
