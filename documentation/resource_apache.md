@@ -1,14 +1,12 @@
-apache
-===
+# apache #
 
 Use the **apache** resource to install and configure the Apache reverse proxy.
 
-Syntax
-------
+## Syntax ##
 
 The full syntax for all of the properties available to the **apache** resource is:
 
-****
+----
 
 ```ruby
 apache 'apache' do
@@ -21,22 +19,19 @@ apache 'apache' do
   email                 String # Email address for Apache site.
   allow_local_https     [true, false]
   webcontext            String # The URI portion of the rundeck server, default '/', you can set it to '/rundeck' if your webserver is handling other tasks besides rundeck.
-  port
+  port # Port
 end
 ```
 
-Actions
--------
+## Actions ##
 
 `:install`
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Install the Apache service. This is the only, and default, action.
 
-Examples
---------
+## Examples ##
 
-Install the Rundeck service with defaults
----------
+### Install the Rundeck service with defaults ###
 
 ```ruby
 apache 'Apache' do

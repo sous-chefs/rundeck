@@ -1,21 +1,18 @@
-server_install
-===
+# server_install #
 
 Use the **server_install** resource to install and configure the Rundeck service.
 
-Syntax
-------
+## Syntax ##
 
 The full syntax for all of the properties available to the **server_install** resource is:
 
-****
+----
 
 ```ruby
 server_install 'rundeck' do
   acl_policies                  Hash # Hash of ACL policies
-  admin_password                String
+  admin_password                String # Password for the administrator account
   basedir                       String # Rundeck installation directory, default '/var/lib/rundeck'
-  chef_url                      String # Chef Server API URL, default 'https://chef.hostdomain.com'
   configdir                     String # Configuration directory, default '/etc/rundeck'
   custom_framework_config       Hash # Custom framework.properties options
   custom_jvm_properties         String # Custom jvm properties.
@@ -68,6 +65,8 @@ server_install 'rundeck' do
   rdbms_user                    String # database username, default 'rundeckdb'
   restart_on_config_change      [true, false] # When true, rundeck will restart on any configuration file change. (even if a job is running) default 'false'
   rss_enabled                   [true, false] #  true/false for RSS support
+  rundeckgroup                  String # Group to run Rundeck, default 'rundeck'
+  rundeckuser                   String # User to run Rundeck, default 'rundeck'
   rundeck_users                 Hash # Local Rundeck users
   security_roles                Hash # Array containing additional security roles for which Rundeck will attempt to validate membership. For an explanation of this, see the Rundeck documentation.
   session_timeout               Integer # Number of minutes a rundeck session will last, before having to login again, default '30'
@@ -84,18 +83,15 @@ server_install 'rundeck' do
 end
 ```
 
-Actions
--------
+## Actions ##
 
 `:install`
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Install the Rundeck service. This is the only, and default, action.
 
-Examples
---------
+## Examples ##
 
-Install the Rundeck service with defaults
----------
+### Install the Rundeck service with defaults ###
 
 ```ruby
 server_install 'Rundeck' do
