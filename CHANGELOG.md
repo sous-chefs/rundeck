@@ -9,7 +9,7 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 * Adds circleci testing
 * Adds support for Debian 9
 * Provides support for adding/deleting Rundeck projects
-* Upgrades to version Apache cookbook version 7
+* Upgrades Apache cookbook version to 7
 
 ## 4.2.0
 
