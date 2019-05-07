@@ -9,6 +9,7 @@ Syntax
 The full syntax for all of the properties available to the **apache** resource is:
 
 ****
+
 ```ruby
 apache 'apache' do
   use_ssl               [true, false] # Whether to use SSL
@@ -34,7 +35,8 @@ Actions
 Examples
 --------
 
-**Install the Rundeck service with defaults**
+Install the Rundeck service with defaults
+---------
 
 ```ruby
 apache 'Apache' do

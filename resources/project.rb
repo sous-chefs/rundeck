@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 #
 # Cookbook:: rundeck
 # Resource:: project
@@ -17,19 +16,84 @@
 #
 
 include RundeckCookbook::Helpers
+require 'json'
 
-property :projects, Hash, default: {}
+property :name, String, name_property: true
+property :label, String
+property :description, String
+property :executions_disable, [true, false], default: false
+property :schedule_disable, [true, false], default: false
+property :job_group_expansion_level, Integer
+property :display_motd, %w(none projectList projectHome both)
+property :display_readme, %w(none projectList projectHome both)
+property :project_properties, Hash, default: {}
 
 action :create do
-  new_resource.projects.each do |project_name, data_bag_item_contents|
-    rundeck_project project_name do
-      api_client lazy { node.run_state['rundeck']['api_client'] }
-      if data_bag_item_contents['old_style']
-        # Create projects with config that was previously applied to all projects
-        config RundeckHelper.build_project_config(data_bag_item_contents, project_name, node)
-      else
-        config data_bag_item_contents['project_settings'] || {}
-      end
+  if current_resource.nil?
+    converge_by "Creating project '#{new_resource.name}'" do
+      execute_rd("projects create --project #{new_resource.name}")
     end
   end
+
+  config_file = "#{Chef::Config['file_cache_path']}/#{new_resource.name}_projectconfig.json"
+  config_contents = new_resource.project_properties.dup
+
+  # Add project details
+  config_contents['project.description'] = new_resource.description                                  unless new_resource.description.nil?
+  config_contents['project.label'] = new_resource.label                                              unless new_resource.label.nil?
+  config_contents['project.disable.executions'] = new_resource.executions_disable ? 'true' : 'false' unless new_resource.executions_disable.nil?
+  config_contents['project.disable.schedule'] = new_resource.schedule_disable ? 'true' : 'false'     unless new_resource.schedule_disable.nil?
+  # # User Interface
+  config_contents['project.jobs.gui.groupExpandLevel'] = new_resource.job_group_expansion_level      unless new_resource.job_group_expansion_level.nil?
+
+  unless new_resource.display_motd.nil?
+    if new_resource.display_motd == 'none'
+      execute_rd("projects configure delete --project #{new_resource.name} -- project.gui.motd.display")
+    else
+      config_contents['project.gui.motd.display'] = case new_resource.display_motd
+                                                    when 'projectList' then 'projectList'
+                                                    when 'projectHome' then 'projectHome'
+                                                    when 'both'        then 'projectList,projectHome'
+                                                    end
+    end
+  end
+
+  unless new_resource.display_readme.nil?
+    if new_resource.display_readme == 'none'
+      execute_rd("projects configure delete --project #{new_resource.name} -- project.gui.readme.display")
+    else
+      config_contents['project.gui.readme.display'] = case new_resource.display_readme
+                                                      when 'projectList' then 'projectList'
+                                                      when 'projectHome' then 'projectHome'
+                                                      when 'both'        then 'projectList,projectHome'
+                                                      end
+    end
+  end
+
+  file config_file do
+    content config_contents.to_json
+    action :create
+    notifies :run, 'ruby_block[set project settings]', :immediately
+  end
+
+  ruby_block 'set project settings' do
+    block do
+      options =  "--project #{new_resource.name}"
+      options << " --file #{config_file}"
+      execute_rd("projects configure update #{options}")
+    end
+    action :nothing
+  end
+end
+
+action :delete do
+  return if current_resource.nil?
+  converge_by "Deleting project '#{new_resource.name}'" do
+    execute_rd("projects delete --project #{new_resource.name} --confirm")
+  end
+end
+
+load_current_value do
+  projects = JSON.parse(execute_rd('projects list'))
+  current_value_does_not_exist! unless projects.include? name
 end

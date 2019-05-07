@@ -1,3 +1,4 @@
+---
 name: server
 title: Rundeck Server
 maintainer: Sous Chefs
@@ -7,4 +8,3 @@ summary: Check that repostories are enabled and we can download a package
 version: 0.0.1
 supports:
   - os-family: unix
-inspec_version: '~> 3.0'

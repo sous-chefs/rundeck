@@ -18,8 +18,30 @@ require 'securerandom'
 
 module RundeckCookbook
   module Helpers
+    include Chef::Mixin::ShellOut
     def generateuuid
       SecureRandom.uuid
+    end
+
+    def execute_rd(command)
+      cmd_string = "rd #{command}"
+      cmd_options = {
+        user: 'rundeck',
+        login: true,
+        environment: {
+          RD_FORMAT: 'json',
+          RD_COLOR: '0',
+        },
+      }
+
+      cmd = shell_out(cmd_string, cmd_options)
+
+      if cmd.exitstatus != 0
+        Chef::Log.fatal("rd failed executing this statement:\n#{cmd_string}")
+        Chef::Log.fatal(cmd.stderr)
+        raise 'RD CLI ERROR'
+      end
+      cmd.stdout
     end
   end
 end

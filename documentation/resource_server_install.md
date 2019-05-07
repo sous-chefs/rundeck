@@ -9,10 +9,11 @@ Syntax
 The full syntax for all of the properties available to the **server_install** resource is:
 
 ****
+
 ```ruby
 server_install 'rundeck' do
   acl_policies                  Hash # Hash of ACL policies
-  admin_password                String 
+  admin_password                String
   basedir                       String # Rundeck installation directory, default '/var/lib/rundeck'
   chef_url                      String # Chef Server API URL, default 'https://chef.hostdomain.com'
   configdir                     String # Configuration directory, default '/etc/rundeck'
@@ -58,7 +59,7 @@ server_install 'rundeck' do
   private_key                   String # Private key to use for ssh.
   quartz_threadPoolCount        Integer #  Quartz job threadCount. The maximum number of threads used by Rundeck for concurrent jobs by default is set to 10.
   rdbms_dbname                  String # database name, default 'rundeckdb'
-  rdbms_dialect                 String # hibernate database dialect, default 'Oracle10gDialect' 
+  rdbms_dialect                 String # hibernate database dialect, default 'Oracle10gDialect'
   rdbms_enable                  [true, false] # enable RDBMS support, default false
   rdbms_location                String # RDBMS server name
   rdbms_password                String # database password
@@ -93,7 +94,8 @@ Actions
 Examples
 --------
 
-**Install the Rundeck service with defaults**
+Install the Rundeck service with defaults
+---------
 
 ```ruby
 server_install 'Rundeck' do
