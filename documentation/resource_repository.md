@@ -9,6 +9,7 @@ Syntax
 The full syntax for all of the properties available to the **repository** resource is:
 
 ****
+
 ```ruby
 repository 'rundeck repo' do
   package_uri                   String # URI to the package repository.
@@ -27,7 +28,8 @@ Actions
 Examples
 --------
 
-**Install the default Rundeck public repository**
+Install the default Rundeck public repository
+---------
 
 ```ruby
 repository 'Rundeck Public' do
