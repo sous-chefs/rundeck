@@ -6,7 +6,7 @@ description      'Installs and configures Rundeck 2.x'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '5.0.0'
 depends          'java'
-depends          'apache2', '< 6.0.0'
+depends          'apache2', '~> 7.0.0'
 
 %w(ubuntu centos fedora redhat scientific oracle).each do |os|
   supports os
