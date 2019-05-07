@@ -109,7 +109,6 @@ action :install do
       webcontext: new_resource.webcontext,
       port: new_resource.port
     )
-    # notifies :reload, 'service[apache2]'
   end
 
   apache2_site 'rundeck' do
