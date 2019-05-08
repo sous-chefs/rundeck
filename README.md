@@ -1,11 +1,11 @@
-# Rundeck Cookbook #
+# Rundeck Cookbook
 
 [![Cookbook Version](https://img.shields.io/cookbook/v/rundeck.svg)](https://supermarket.chef.io/cookbooks/rundeck)
-
 [![Build Status](https://img.shields.io/circleci/project/github/sous-chefs/rundeck/master.svg)](https://circleci.com/gh/sous-chefs/rundeck)
 [![OpenCollective](https://opencollective.com/sous-chefs/backers/badge.svg)](#backers)
 [![OpenCollective](https://opencollective.com/sous-chefs/sponsors/badge.svg)](#sponsors)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
+
 
 Installs and configures Rundeck with an optional Apache reverse proxy. The cookbook has optional support for Active Directory and LDAP.
 
@@ -17,12 +17,12 @@ Installs and configures Rundeck with an optional Apache reverse proxy. The cookb
     - [Backers](#backers)
     - [Sponsors](#sponsors)
 
-## Supported Chef Versions ##
+## Supported Chef Versions
 
 - Chef 13
 - Chef 14
 
-## Supported OS Versions ##
+## Supported OS Versions
 
 The following platforms and versions are tested and supported using [test-kitchen](http://kitchen.ci/)
 
@@ -30,24 +30,24 @@ The following platforms and versions are tested and supported using [test-kitche
 - Debian 9
 - CentOS 7
 
-## Resources ##
+## Resources
 
 - [Apache (reverse-proxy)](https://github.com/sous-chefs/rundeck/blob/master/documentation/resource_apache.md)
 - [Project](https://github.com/sous-chefs/rundeck/blob/master/documentation/resource_project.md)
 - [Repository](https://github.com/sous-chefs/rundeck/blob/master/documentation/resource_repository.md)
 - [Server_Install](https://github.com/sous-chefs/rundeck/blob/master/documentation/resource_server_install.md)
 
-## Contributors ##
+## Contributors
 
 This project exists thanks to all the people who [contribute.](https://opencollective.com/sous-chefs/contributors.svg?width=890&button=false)
 
-### Backers ###
+### Backers
 
 Thank you to all our backers!
 
 ![https://opencollective.com/sous-chefs#backers](https://opencollective.com/sous-chefs/backers.svg?width=600&avatarHeight=40)
 
-### Sponsors ###
+### Sponsors
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website.
 
