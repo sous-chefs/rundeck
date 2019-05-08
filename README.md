@@ -6,7 +6,6 @@
 [![OpenCollective](https://opencollective.com/sous-chefs/sponsors/badge.svg)](#sponsors)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
-
 Installs and configures Rundeck with an optional Apache reverse proxy. The cookbook has optional support for Active Directory and LDAP.
 
 - [Rundeck Cookbook](#rundeck-cookbook)
