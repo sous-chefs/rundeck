@@ -18,15 +18,15 @@
 <% if @use_ssl && port == 443 %>
         RequestHeader set X-Forwarded-Proto "https"
         SSLEngine On
-        SSLCertificateFile <%= node['apache']['dir'] %>/ssl/<%= @cert_name %>.crt
-        SSLCertificateKeyFile <%= node['apache']['dir'] %>/ssl/<%= @cert_name %>.key
+        SSLCertificateFile <%= @cert_location %>/<%= @cert_name %>.crt
+        SSLCertificateKeyFile <%= @cert_location %>/<%= @cert_name %>.key
 <% unless @ca_cert_name.nil? %>
-        SSLCertificateChainFile <%= node['apache']['dir'] %>/ssl/<%= @ca_cert_name %>.crt
+        SSLCertificateChainFile <%= @cert_location %>/<%= @ca_cert_name %>.crt
 <% end %>
 <% end %>
         DocumentRoot <%= @doc_root %>
         ServerSignature On
-        
+
         <Proxy *>
         <IfModule mod_authz_core.c>
          	Require all granted
@@ -36,10 +36,10 @@
           Allow from all
         </IfModule>
         </Proxy>
-        
+
         ProxyPass        <%= @webcontext %> http://localhost:<%= @port %><%= @webcontext %>
         ProxyPassReverse <%= @webcontext %> http://localhost:<%= @port %><%= @webcontext %>
-        
+
         <Directory />
                 Options FollowSymLinks
                 AllowOverride None
@@ -57,7 +57,7 @@
           </IfModule>
 
         </Location>
-        
+
 </VirtualHost>
 
 <% end -%>
