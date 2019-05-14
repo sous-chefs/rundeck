@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the Rundeck cookbook.
 
+## UNRELEASED
+
+* Misc Fixes
+
 ## 5.0.1
 
 * Adds Rundeck ACL Policy configuration (and fixes)
