@@ -22,7 +22,7 @@ server_install 'rundeck' do
   extra_wait                    Integer # Additional wait time after starting service before finishing.
   framework_properties          Hash # Use to set additional config in the framework.properties template
   grails_port                   Integer # The port to be used as part of the rundeck url in grails.
-  grails_server_url             String # The URL of the rundeck server, default 'http://#{node['rundeck']['hostname']}#{node['rundeck']['webcontext']}', or 'https://#{node['rundeck']['hostname']}#{node['rundeck']['webcontext']}' if use_ssl is set.
+  grails_server_url             String # The URL of the rundeck server, default 'http://#{node['hostname']}.#{node['domain']}#{node['rundeck']['webcontext']}', or 'https://#{node['hostname']}.#{node['domain']}#{node['rundeck']['webcontext']}' if use_ssl is set.
   hostname                      String # VIP or server address for the service, default 'rundeck.hostdomain.com'
   jaas                          String #  Use built in internal realms.properties file, or a different one (options 'activedirectory', default 'internal')
   jvm_mem                       String # JVM memory arguments, default '-XX:MaxPermSize=256m -Xmx1024m -Xms256m'

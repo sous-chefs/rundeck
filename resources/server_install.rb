@@ -31,7 +31,7 @@ property :exec_logdir, String, default: lazy { "#{basedir}/logs" }
 property :extra_wait, Integer, default: 120
 property :framework_properties, Hash, default: {}
 property :grails_port, Integer, default: lazy { use_ssl ? 443 : 80 }
-property :grails_server_url, String, default: lazy { "#{use_inbuilt_ssl ? 'https' : 'http'}://#{hostname}" }
+property :grails_server_url, String, default: lazy { "#{use_inbuilt_ssl ? 'https' : 'http'}://#{node['hostname']}.#{node['domain']}" }
 property :hostname, String, default: "#{node['hostname']}.#{node['domain']}"
 property :jaas, String, default: 'internal'
 property :jvm_mem, String, default: ' -Xmx1024m -Xms256m'
@@ -43,6 +43,7 @@ property :ldap_provider, String
 property :ldap_binddn, String
 property :ldap_bindpwd, String
 property :ldap_authenticationmethod, String
+property :ldap_debug, [true, false], default: false
 property :ldap_forcebindinglogin, String
 property :ldap_userbasedn, String
 property :ldap_userrdnattribute, String
@@ -267,6 +268,7 @@ action :install do
     sensitive true
     source 'realm.properties.erb'
     variables(
+      admin_password: new_resource.admin_password,
       rundeck_users: new_resource.rundeck_users
     )
   end
@@ -278,6 +280,7 @@ action :install do
     source 'jaas-activedirectory.conf.erb'
     variables(
       configdir: new_resource.configdir,
+      ldap_debug: new_resource.ldap_debug,
       ldap_provider: new_resource.ldap_provider,
       ldap_binddn: new_resource.ldap_binddn,
       ldap_bindpwd: new_resource.ldap_bindpwd,
@@ -353,7 +356,6 @@ action :install do
 
   rundeck_cli 'cli' do
     basedir new_resource.basedir
-    url "#{new_resource.grails_server_url}:#{new_resource.port}"
     rundeckuser new_resource.rundeckuser
     rundeckgroup new_resource.rundeckgroup
     admin_password new_resource.admin_password

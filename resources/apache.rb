@@ -17,8 +17,10 @@
 #
 
 include RundeckCookbook::Helpers
+include Apache2::Cookbook::Helpers
 
 property :use_ssl, [true, false], default: false
+property :cert_location, String, default: lazy { "#{apache_dir}/ssl" }
 property :cert_name, String, default: lazy { node['hostname'] }
 property :cert_contents, String
 property :key_contents, String, sensitive: true
@@ -42,30 +44,40 @@ action :install do
 
   apache2_module 'deflate'
   apache2_module 'headers'
-  apache2_module 'ssl' if new_resource.use_ssl
   apache2_module 'proxy'
   apache2_module 'proxy_http'
   apache2_module 'rewrite'
 
   if new_resource.use_ssl
+    # until added to Apache2
+    package 'mod_ssl' do
+      action :install
+      only_if { node['platform_family'] == 'rhel' }
+    end
 
-    file "#{node['apache']['dir']}/ssl/#{new_resource.cert_name}.crt" do
+    apache2_module 'ssl'
+
+    directory new_resource.cert_location do
+      recursive true
+    end
+
+    file "#{new_resource.cert_location}/#{new_resource.cert_name}.crt" do
       content new_resource.cert_contents
       notifies :restart, 'service[apache2]'
-      not_if { ::File.exist?("#{node['apache']['dir']}/ssl/#{new_resource.cert_name}") }
+      not_if { ::File.exist?("#{new_resource.cert_location}/#{new_resource.cert_name}") }
     end
 
-    file "#{node['apache']['dir']}/ssl/#{new_resource.cert_name}.key" do
+    file "#{new_resource.cert_location}/#{new_resource.cert_name}.key" do
       content new_resource.key_contents
       notifies :restart, 'service[apache2]'
-      not_if { ::File.exist?("#{node['apache']['dir']}/ssl/#{new_resource.cert_name}.key") }
+      not_if { ::File.exist?("#{new_resource.cert_location}/#{new_resource.cert_name}.key") }
     end
 
-    file "#{node['apache']['dir']}/ssl/#{new_resource.ca_cert_name}.crt" do
+    file "#{new_resource.cert_location}/#{new_resource.ca_cert_name}.crt" do
       content new_resource.ca_cert_contents
       notifies :restart, 'service[apache2]'
       not_if { new_resource.ca_cert_name.nil? }
-      not_if { ::File.exist?("#{node['apache']['dir']}/ssl/#{new_resource.ca_cert_name}.crt") }
+      not_if { ::File.exist?("#{new_resource.cert_location}/#{new_resource.ca_cert_name}.crt") }
     end
 
     java_certificate 'Install rundeck certificate to java truststore' do
@@ -104,6 +116,7 @@ action :install do
       hostname: new_resource.hostname,
       email: new_resource.email,
       allow_local_https: new_resource.allow_local_https,
+      cert_location: new_resource.cert_location,
       cert_name: new_resource.cert_name,
       ca_cert_name: new_resource.ca_cert_name,
       webcontext: new_resource.webcontext,
