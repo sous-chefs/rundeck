@@ -18,7 +18,6 @@
 include RundeckCookbook::Helpers
 require 'json'
 
-property :name, String, name_property: true
 property :label, String
 property :description, String
 property :executions_disable, [true, false], default: false
