@@ -4,6 +4,7 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## UNRELEASED
 
+* Fixes password quotation in rd config
 * Fixes Supermarket foodcritic errors
 
 ## 5.0.2
