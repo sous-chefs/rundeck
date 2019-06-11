@@ -57,6 +57,7 @@ property :ldap_roleobjectclass, String
 property :ldap_roleprefix, String
 property :ldap_cachedurationmillis, String
 property :ldap_reportstatistics, String
+property :ldap_supplementalroles, String
 property :log_level, %w(ERR WARN INFO VERBOSE DEBUG), default: 'INFO'
 property :mail_email, String
 property :mail_enable, [true, false], default: false
@@ -298,6 +299,7 @@ action :install do
       ldap_roleprefix: new_resource.ldap_roleprefix,
       ldap_cachedurationmillis: new_resource.ldap_cachedurationmillis,
       ldap_reportstatistics: new_resource.ldap_reportstatistics,
+      ldap_supplementalroles: new_resource.ldap_supplementalroles,
       rundeck_version: new_resource.version
     )
     notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
