@@ -6,6 +6,7 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 * Fixes password quotation in rd config
 * Fixes Supermarket foodcritic errors
+* Added missing ldap_supplimentalroles
 
 ## 5.0.2
 
