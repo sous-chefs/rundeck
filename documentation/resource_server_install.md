@@ -43,6 +43,7 @@ server_install 'rundeck' do
   ldap_rolememberattribute      String # LDAP attribute name that would contain the users DN
   ldap_roleobjectclass          String # LDAP object class for group
   ldap_roleprefix               String # Prefix string to remove from role names before returning to the application
+  ldap_supplementalroles        String # Comma separated list of roles that the ldap user will assume by default "role1,role2,...". Default: nil
   ldap_cachedurationmillis      String # Duration in milliseconds of the cache of an authorization
   ldap_reportstatistics         String # If true, output cache statistics to the log
   log_level                     %w(ERR WARN INFO VERBOSE DEBUG) # Debug level for rundeck (ERR,WARN,INFO,VERBOSE,DEBUG), default INFO
