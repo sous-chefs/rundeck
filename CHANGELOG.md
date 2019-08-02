@@ -2,6 +2,16 @@
 
 This file is used to list changes made in each version of the Rundeck cookbook.
 
+## UNRELEASED
+
+* Fixes password quotation in rd config
+* Fixes Supermarket foodcritic errors
+* Added missing ldap_supplimentalroles
+
+## 5.0.2
+
+* Misc Fixes
+
 ## 5.0.1
 
 * Adds Rundeck ACL Policy configuration (and fixes)

@@ -27,7 +27,7 @@ activedirectory {
 <% end -%>
     reportStatistics="<%=@ldap_reportstatistics%>";
 
-    org.rundeck.jaas.jetty.JettyRolePropertyFileLoginModule required
+    org.eclipse.jetty.jaas.spi.PropertyFileLoginModule required
     useFirstPass="true"
     debug="<%=@ldap_debug.to_s%>"
     file="<%=@configdir%>/realm.properties";

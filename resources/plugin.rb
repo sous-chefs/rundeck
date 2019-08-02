@@ -19,8 +19,6 @@
 
 include RundeckCookbook::Helpers
 
-property :name, String,
-         name_property: true # 'Name of the plugin to install'
 property :url, String,
          required: true # 'URL to the plugin to install.'
 property :checksum, String # 'The SHA-256 checksum of the plugin.'

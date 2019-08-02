@@ -1,5 +1,5 @@
 default['rundeck']['acl_policies'] = {
-  'rundeck_administrator' => [
+  'admin' => [
     {
       description: 'Administrators, all access.',
       context: {
@@ -33,7 +33,7 @@ default['rundeck']['acl_policies'] = {
         ],
       },
       by: {
-        group: 'rundeck_administrators',
+        group: 'admin',
       },
     },
     {
@@ -73,7 +73,7 @@ default['rundeck']['acl_policies'] = {
         ],
       },
       by: {
-        group: 'rundeck_administrators',
+        group: 'admin',
       },
     },
   ],

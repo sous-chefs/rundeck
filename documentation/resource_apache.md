@@ -11,6 +11,7 @@ The full syntax for all of the properties available to the **apache** resource i
 ```ruby
 apache 'apache' do
   use_ssl               [true, false] # Whether to use SSL
+  cert_location         String # Folder to store ssl files and keys
   cert_name             String # Name of the cert file without extension.
   cert_contents         String # Certificate
   key_contents          String # Private key

@@ -18,7 +18,6 @@
 include RundeckCookbook::Helpers
 require 'json'
 
-property :name, String, name_property: true
 property :label, String
 property :description, String
 property :executions_disable, [true, false], default: false
@@ -44,7 +43,7 @@ action :create do
   config_contents['project.disable.executions'] = new_resource.executions_disable ? 'true' : 'false' unless new_resource.executions_disable.nil?
   config_contents['project.disable.schedule'] = new_resource.schedule_disable ? 'true' : 'false'     unless new_resource.schedule_disable.nil?
   # # User Interface
-  config_contents['project.jobs.gui.groupExpandLevel'] = new_resource.job_group_expansion_level      unless new_resource.job_group_expansion_level.nil?
+  config_contents['project.jobs.gui.groupExpandLevel'] = new_resource.job_group_expansion_level.to_s unless new_resource.job_group_expansion_level.nil?
 
   unless new_resource.display_motd.nil?
     if new_resource.display_motd == 'none'

@@ -71,7 +71,7 @@ for:
     - read
     - run
 by:
-  group: rundeck_administrators
+  group: admin
 
 ---
 description: Administrators, all access.
@@ -124,9 +124,9 @@ for:
     - update
     - delete
 by:
-  group: rundeck_administrators
+  group: admin
 )
 
-describe file('/etc/rundeck/rundeck_administrator.aclpolicy') do
+describe file('/etc/rundeck/admin.aclpolicy') do
   its('content') { should match admin_policy }
 end
