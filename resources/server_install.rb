@@ -21,7 +21,6 @@ include RundeckCookbook::Helpers
 property :acl_policies, Hash, default: {}
 property :admin_password, String, default: 'admin', sensitive: true
 property :basedir, String, default: '/var/lib/rundeck'
-property :chef_url, String, default: "https://chef.#{node['domain']}"
 property :configdir, String, default: '/etc/rundeck'
 property :custom_framework_config, Hash, default: {}
 property :custom_jvm_properties, String
@@ -32,19 +31,19 @@ property :exec_logdir, String, default: lazy { "#{basedir}/logs" }
 property :extra_wait, Integer, default: 120
 property :framework_properties, Hash, default: {}
 property :grails_port, Integer, default: lazy { use_ssl ? 443 : 80 }
-property :grails_server_url, String, default: lazy { "#{use_inbuilt_ssl ? 'https' : 'http'}://#{hostname}" }
-property :hostname, String, default: "rundeck.#{node['domain']}"
+property :grails_server_url, String, default: lazy { "#{use_inbuilt_ssl ? 'https' : 'http'}://#{node['hostname']}.#{node['domain']}" }
+property :hostname, String, default: "#{node['hostname']}.#{node['domain']}"
 property :jaas, String, default: 'internal'
-property :jvm_mem, String, default: ' -XX:MaxPermSize=256m -Xmx1024m -Xms256m'
+property :jvm_mem, String, default: ' -Xmx1024m -Xms256m'
 property :rundeckgroup, String,
          default: 'rundeck' # 'The user account that rundeck will operate as'
 property :rundeckuser, String,
          default: 'rundeck' # 'The group that rundeck will operate as'
-property :ldap_debug
 property :ldap_provider, String
 property :ldap_binddn, String
 property :ldap_bindpwd, String
 property :ldap_authenticationmethod, String
+property :ldap_debug, [true, false], default: false
 property :ldap_forcebindinglogin, String
 property :ldap_userbasedn, String
 property :ldap_userrdnattribute, String
@@ -58,19 +57,18 @@ property :ldap_roleobjectclass, String
 property :ldap_roleprefix, String
 property :ldap_cachedurationmillis, String
 property :ldap_reportstatistics, String
+property :ldap_supplementalroles, String
 property :log_level, %w(ERR WARN INFO VERBOSE DEBUG), default: 'INFO'
 property :mail_email, String
 property :mail_enable, [true, false], default: false
 property :mail_host, String
 property :mail_password, String, sensitive: true
-property :mail_port, String
+property :mail_port, Integer, default: 25
 property :mail_user, String
-property :plugins, Hash
 property :port, Integer, default: 4440
-property :private_key, String, sensitive: true
+property :private_key, [nil, String], default: nil, sensitive: true
 property :quartz_threadPoolCount, Integer, default: 10
 property :rdbms_dbname, String
-property :rdbms_dialect, String
 property :rdbms_dialect, String
 property :rdbms_enable, [true, false], default: false
 property :rdbms_location, String
@@ -79,13 +77,13 @@ property :rdbms_port, Integer
 property :rdbms_type, %w(mysql oracle)
 property :rdbms_user, String
 property :restart_on_config_change, [true, false], default: false
+property :retry_delay, Integer, default: 5
+property :retries, Integer, default: 60
 property :rss_enabled, [true, false], default: false
 property :rundeckgroup, String, default: 'rundeck'
 property :rundeckuser, String, default: 'rundeck'
 property :rundeck_users, Hash, default: {}, sensitive: true
 property :security_roles, Hash, default: {}
-property :service_retries, Integer, default: 60
-property :service_retry_delay, Integer, default: 5
 property :session_timeout, Integer, default: 30
 property :ssl_port, Integer, default: 4443
 property :setup_repo, [true, false], default: true
@@ -97,15 +95,9 @@ property :use_ssl, [true, false], default: false
 property :uuid, String, default: lazy { generateuuid }
 property :version, String, default: '3.0.8.20181029-1.201810292220'
 property :webcontext, String, default: '/'
-property :windows_winrm_auth_type, String, default: 'basic'
-property :windows_winrm_cert_trust, String, default: 'all'
-property :windows_winrm_hostname_trust, String, default: 'all'
-property :windows_winrm_protocol, String, default: 'https'
-property :windows_winrm_timeout, String, default: 'PT60.000S'
 
 action :install do
-  node.default['java']['jdk_version'] = '8'
-  include_recipe 'java'
+  rundeck_dependencies 'default'
 
   rundeck_repository 'public' do
     only_if { new_resource.setup_repo }
@@ -163,26 +155,14 @@ action :install do
     mode '0700'
   end
 
-  template "#{new_resource.basedir}/.chef/knife.rb" do
-    cookbook 'rundeck'
-    owner new_resource.rundeckuser
-    group new_resource.rundeckgroup
-    source 'knife.rb.erb'
-    variables(
-      user_home: new_resource.basedir,
-      node_name: new_resource.rundeckuser,
-      chef_server_url: new_resource.chef_url
-    )
-    notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
-  end
-
   file "#{new_resource.basedir}/.ssh/id_rsa" do
     owner new_resource.rundeckuser
     group new_resource.rundeckgroup
     mode '0600'
     backup false
     content new_resource.private_key
-    only_if { new_resource.private_key }
+    sensitive true
+    not_if { new_resource.private_key.nil? }
     notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
   end
 
@@ -220,6 +200,7 @@ action :install do
       grails_port: new_resource.grails_port,
       grails_server_url: new_resource.grails_server_url,
       log_level: new_resource.log_level,
+      mail_enable: new_resource.mail_enable,
       mail_email: new_resource.mail_email,
       mail_host: new_resource.mail_host,
       mail_password: new_resource.mail_password,
@@ -276,12 +257,7 @@ action :install do
       tokens_file: new_resource.tokens_file,
       use_inbuilt_ssl: new_resource.use_inbuilt_ssl,
       user: new_resource.rundeckuser,
-      uuid: new_resource.uuid,
-      windows_winrm_auth_type: new_resource.windows_winrm_auth_type,
-      windows_winrm_cert_trust: new_resource.windows_winrm_cert_trust,
-      windows_winrm_hostname_trust: new_resource.windows_winrm_hostname_trust,
-      windows_winrm_protocol: new_resource.windows_winrm_protocol,
-      windows_winrm_timeout: new_resource.windows_winrm_timeout
+      uuid: new_resource.uuid
     )
     notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
   end
@@ -293,6 +269,7 @@ action :install do
     sensitive true
     source 'realm.properties.erb'
     variables(
+      admin_password: new_resource.admin_password,
       rundeck_users: new_resource.rundeck_users
     )
   end
@@ -304,6 +281,7 @@ action :install do
     source 'jaas-activedirectory.conf.erb'
     variables(
       configdir: new_resource.configdir,
+      ldap_debug: new_resource.ldap_debug,
       ldap_provider: new_resource.ldap_provider,
       ldap_binddn: new_resource.ldap_binddn,
       ldap_bindpwd: new_resource.ldap_bindpwd,
@@ -321,6 +299,7 @@ action :install do
       ldap_roleprefix: new_resource.ldap_roleprefix,
       ldap_cachedurationmillis: new_resource.ldap_cachedurationmillis,
       ldap_reportstatistics: new_resource.ldap_reportstatistics,
+      ldap_supplementalroles: new_resource.ldap_supplementalroles,
       rundeck_version: new_resource.version
     )
     notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
@@ -328,19 +307,20 @@ action :install do
 
   if new_resource.acl_policies
     new_resource.acl_policies.each do |name, policy|
-      template "#{new_resource.configdir}/#{name}.aclpolicy" do
-        cookbook 'rundeck'
+      policy_content = ''
+
+      policy.each do |policysection|
+        policy_content += "\n" + YAML.dump(policysection.to_hash).tr('"', "'")
+      end
+
+      file "#{new_resource.configdir}/#{name}.aclpolicy" do
+        content policy_content
         owner new_resource.rundeckuser
         group new_resource.rundeckgroup
-        source 'user.aclpolicy.erb'
-        variables(
-          aclpolicy: policy
-        )
+        action :create
       end
     end
   end
-
-  Chef::Log.info { "chef-rundeck url: #{new_resource.chef_url}" }
 
   service 'rundeckd' do
     case node['platform']
@@ -352,7 +332,35 @@ action :install do
       end
     end
     action [:start, :enable]
-    # notifies :run, 'ruby_block[wait for rundeckd startup]', :immediately
+    notifies :run, 'ruby_block[wait for rundeckd startup]', :immediately
+  end
+
+  ruby_block 'wait for rundeckd startup' do
+    action :nothing
+    block do
+      # test connection to the authentication endpoint
+      require 'uri'
+      require 'net/http'
+      uri = URI("#{new_resource.grails_server_url}:#{new_resource.grails_port}")
+      uri.path = ::File.join(new_resource.webcontext, '/j_security_check')
+      res = Net::HTTP.get_response(uri)
+      unless (200..399).cover?(res.code.to_i)
+        Chef::Log.warn { "#{res.uri} not responding healthy. #{res.code}" }
+        Chef::Log.debug { res.body }
+        raise
+      end
+      Chef::Log.info { 'wait a little longer for Rundeck startup' }
+      sleep new_resource.extra_wait
+    end
+    retries new_resource.retries
+    retry_delay new_resource.retry_delay
+  end
+
+  rundeck_cli 'cli' do
+    basedir new_resource.basedir
+    rundeckuser new_resource.rundeckuser
+    rundeckgroup new_resource.rundeckgroup
+    admin_password new_resource.admin_password
   end
 end
 
