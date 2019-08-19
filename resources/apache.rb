@@ -85,7 +85,7 @@ action :install do
     path "#{node['apache']['dir']}/sites-available/rundeck.conf"
     source 'rundeck.conf.erb'
     cookbook 'rundeck'
-    mode 00644
+    mode '644'
     owner 'root'
     group 'root'
     variables(
