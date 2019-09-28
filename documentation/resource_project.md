@@ -9,7 +9,7 @@ The full syntax for all of the properties available to the **project** resource 
 ----
 
 ```ruby
-project 'project' do
+rundeck_project 'project' do
     label                        String # You may wish to use a more user friendly display name for the project. The project label can contain spaces and other characters.
     description                  String # A brief explanation about the project. Normally, this is just one phrase or sentence explaining the project purpose. If you have large amounts of text, consider creating a project README.
     executions_disable           [true, false] # Turn off the ability to execute jobs and ad-hoc commands.
@@ -36,7 +36,7 @@ end
 ### Create project with default settings ###
 
 ```ruby
-rundeck_project 'myproject' do
+rundeck_rundeck_project 'myproject' do
 end
 ```
 
