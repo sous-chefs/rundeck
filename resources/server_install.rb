@@ -25,7 +25,7 @@ property :configdir, String, default: '/etc/rundeck'
 property :custom_framework_config, Hash, default: {}
 property :custom_jvm_properties, String
 property :custom_rundeck_config, Hash, default: {}
-property :datadir, String, default: '/var/rundeck'
+property :datadir, String, default: '/var/lib/rundeck'
 property :default_role, String, default: 'user'
 property :exec_logdir, String, default: lazy { "#{basedir}/logs" }
 property :extra_wait, Integer, default: 120
@@ -78,7 +78,7 @@ property :rdbms_type, %w(mysql oracle)
 property :rdbms_user, String
 property :restart_on_config_change, [true, false], default: false
 property :retry_delay, Integer, default: 5
-property :retries, Integer, default: 60
+property :retries, Integer, default: 10
 property :rss_enabled, [true, false], default: false
 property :rundeckgroup, String, default: 'rundeck'
 property :rundeckuser, String, default: 'rundeck'
