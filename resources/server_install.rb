@@ -103,11 +103,6 @@ action :install do
     only_if { new_resource.setup_repo }
   end
 
-  package 'rundeck' do
-    version new_resource.version
-    action :install
-  end
-
   case node['platform_family']
   when 'rhel'
     yum_package 'which'
@@ -115,6 +110,14 @@ action :install do
     yum_package 'rundeck-config' do
       version new_resource.version
       allow_downgrade true
+      options '--setopt=obsoletes=0'
+      action :install
+      only_if { Gem::Version.new(version) < Gem::Version.new('3.1.0') }
+    end
+
+    package 'rundeck' do
+      version new_resource.version
+      options '--setopt=obsoletes=0'
       action :install
     end
 
