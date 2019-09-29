@@ -4,6 +4,7 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## UNRELEASED
 
+* Supports deprecation of `rundeck-config` on RedHat platforms > 3.1.0
 * Fixes password quotation in rd config
 * Fixes Supermarket foodcritic errors
 * Added missing ldap_supplimentalroles
