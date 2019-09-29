@@ -1,4 +1,4 @@
-# repository #
+# rundeck_repository #
 
 Use the **repository** resource to install a package repository that contains the Rundeck packages.
 

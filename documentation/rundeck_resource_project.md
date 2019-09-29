@@ -1,4 +1,4 @@
-# project #
+# rundeck_project #
 
 Use the **project** resource to add or remove a Rundeck project.
 

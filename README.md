@@ -9,6 +9,7 @@
 Installs and configures Rundeck with an optional Apache reverse proxy. The cookbook has optional support for Active Directory and LDAP.
 
 - [Rundeck Cookbook](#rundeck-cookbook)
+  - [Maintainers](#maintainers)
   - [Supported Chef Versions](#supported-chef-versions)
   - [Supported OS Versions](#supported-os-versions)
   - [Resources](#resources)
@@ -35,10 +36,10 @@ The following platforms and versions are tested and supported using [test-kitche
 
 ## Resources
 
-- [Apache (reverse-proxy)](https://github.com/sous-chefs/rundeck/blob/master/documentation/resource_apache.md)
-- [Project](https://github.com/sous-chefs/rundeck/blob/master/documentation/resource_project.md)
-- [Repository](https://github.com/sous-chefs/rundeck/blob/master/documentation/resource_repository.md)
-- [Server_Install](https://github.com/sous-chefs/rundeck/blob/master/documentation/resource_server_install.md)
+- [Apache (reverse-proxy)](https://github.com/sous-chefs/rundeck/blob/master/documentation/rundeck_resource_apache.md)
+- [Project](https://github.com/sous-chefs/rundeck/blob/master/documentation/rundeck_resource_project.md)
+- [Repository](https://github.com/sous-chefs/rundeck/blob/master/documentation/rundeck_resource_repository.md)
+- [Server_Install](https://github.com/sous-chefs/rundeck/blob/master/documentation/rundeck_resource_server_install.md)
 
 ## Contributors
 

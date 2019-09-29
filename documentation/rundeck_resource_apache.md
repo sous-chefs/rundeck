@@ -1,4 +1,4 @@
-# apache #
+# rundeck_apache #
 
 Use the **apache** resource to install and configure the Apache reverse proxy.
 

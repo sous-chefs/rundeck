@@ -1,4 +1,4 @@
-# server_install #
+# rundeck_server_install #
 
 Use the **server_install** resource to install and configure the Rundeck service.
 
