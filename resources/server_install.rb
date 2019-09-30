@@ -120,10 +120,14 @@ action :install do
       options '--setopt=obsoletes=0'
       action :install
     end
-
   else
     package 'uuid-runtime'
     package 'openssh-client'
+
+    package 'rundeck' do
+      version new_resource.version
+      action :install
+    end
   end
 
   directory new_resource.basedir do
