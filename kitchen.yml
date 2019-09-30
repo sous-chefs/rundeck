@@ -19,8 +19,17 @@ verifier:
 platforms:
   - name: centos-7
   - name: debian-9
+    lifecycle:
+      post_create:
+        - remote: sudo apt update
   - name: ubuntu-16.04
+    lifecycle:
+      post_create:
+        - remote: sudo apt update
   - name: ubuntu-18.04
+    lifecycle:
+      post_create:
+        - remote: sudo apt update
 
 suites:
   - name: server_install
