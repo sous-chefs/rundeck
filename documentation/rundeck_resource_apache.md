@@ -1,4 +1,4 @@
-# apache #
+# rundeck_apache #
 
 Use the **apache** resource to install and configure the Apache reverse proxy.
 
@@ -9,7 +9,7 @@ The full syntax for all of the properties available to the **apache** resource i
 ----
 
 ```ruby
-apache 'apache' do
+rundeck_apache 'apache' do
   use_ssl               [true, false] # Whether to use SSL
   cert_location         String # Folder to store ssl files and keys
   cert_name             String # Name of the cert file without extension.
@@ -35,7 +35,7 @@ end
 ### Install the Rundeck service with defaults ###
 
 ```ruby
-apache 'Apache' do
+rundeck_apache 'Apache' do
   action :install
 end
 ```

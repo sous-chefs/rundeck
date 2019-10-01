@@ -1,4 +1,4 @@
-# server_install #
+# rundeck_server_install #
 
 Use the **server_install** resource to install and configure the Rundeck service.
 
@@ -9,7 +9,7 @@ The full syntax for all of the properties available to the **server_install** re
 ----
 
 ```ruby
-server_install 'rundeck' do
+rundeck_server_install 'rundeck' do
   acl_policies                  Hash # Hash of ACL policies
   admin_password                String # Password for the administrator account
   basedir                       String # Rundeck installation directory, default '/var/lib/rundeck'
@@ -95,7 +95,7 @@ end
 ### Install the Rundeck service with defaults ###
 
 ```ruby
-server_install 'Rundeck' do
+rundeck_server_install 'Rundeck' do
   action :install
 end
 ```

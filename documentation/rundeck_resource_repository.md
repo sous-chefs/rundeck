@@ -1,4 +1,4 @@
-# repository #
+# rundeck_repository #
 
 Use the **repository** resource to install a package repository that contains the Rundeck packages.
 
@@ -9,7 +9,7 @@ The full syntax for all of the properties available to the **repository** resour
 ----
 
 ```ruby
-repository 'rundeck repo' do
+rundeck_repository 'rundeck repo' do
   package_uri                   String # URI to the package repository.
   gpgkey                        String # GPG Key used to sign packages.
   gpgcheck                      [true, false] # Whether to perform GPG verification on packages.
@@ -27,6 +27,6 @@ end
 ### Install the default Rundeck public repository ###
 
 ```ruby
-repository 'Rundeck Public' do
+rundeck_repository 'Rundeck Public' do
 end
 ```

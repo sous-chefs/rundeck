@@ -6,7 +6,6 @@ lint_and_unit: &lint_and_unit
   - lint-markdown
 
 version: 2.1
-
 orbs:
   kitchen: sous-chefs/kitchen@2
 
@@ -26,22 +25,19 @@ workflows:
 
       # Server Installs
       - kitchen/dokken-single:
-          name: centos-7
-          suite: server-install
+          name: server-install-centos-7
+          suite: server-install-centos-7
           requires:
             *lint_and_unit
       - kitchen/dokken-single:
-          name: debian-9
-          suite: server-install
-          requires:
-            *lint_and_unit
+          name: server-install-ubuntu-1604
+          suite: server-install-ubuntu-1604
+          requires: [server-install-centos-7]
       - kitchen/dokken-single:
-          name: ubuntu-16.04
-          suite: server-install
-          requires:
-            *lint_and_unit
+          name: server-install-ubuntu-1804
+          suite: server-install-ubuntu-1804
+          requires: [server-install-ubuntu-1604]
       - kitchen/dokken-single:
-          name: ubuntu-18.04
-          suite: server-install
-          requires:
-            *lint_and_unit
+          name: server-install-debian-9
+          suite: server-install-debian-9
+          requires: [server-install-ubuntu-1804]
