@@ -5,11 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [UNRELEASED](https://github.com/sous-chefs/rundeck/compare/v5.0.2...HEAD)
+## [UNRELEASED](https://github.com/sous-chefs/rundeck/compare/v5.0.3...HEAD)
+
+## [5.0.3](https://github.com/sous-chefs/rundeck/compare/v5.0.2...v5.0.3) - 2019-10-15
 
 ### Changed
 
 * Supports deprecation of `rundeck-config` on RedHat platforms > 3.1.0
+* Fixes default datadir value
 * Fixes password quotation in rd config
 * Fixes Supermarket foodcritic errors
 * Added missing ldap_supplimentalroles
