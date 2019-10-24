@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [UNRELEASED](https://github.com/sous-chefs/rundeck/compare/v5.0.3...HEAD)
 
+* Fix the `yum_repository` resource to use the `baseurl` and not the legacy `url` property.
+
 ## [5.0.3](https://github.com/sous-chefs/rundeck/compare/v5.0.2...v5.0.3) - 2019-10-15
 
 ### Changed
@@ -182,4 +184,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 1.0
 
 * Initial releas
-

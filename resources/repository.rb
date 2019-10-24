@@ -41,7 +41,7 @@ action :install do
   when 'rhel'
     yum_repository 'rundeck' do
       description 'Rundeck - Release'
-      url new_resource.package_uri
+      baseurl new_resource.package_uri
       gpgkey new_resource.gpgkey
       gpgcheck new_resource.gpgcheck
       action :add
