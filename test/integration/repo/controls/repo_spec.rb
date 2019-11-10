@@ -9,7 +9,7 @@ when 'redhat'
     it { should be_enabled }
   end
 
-when 'debian'
+  # when 'debian'
 
   # Disable repo check due to CircleCI issues.
   # describe apt('https://dl.bintray.com/rundeck/rundeck-deb') do
