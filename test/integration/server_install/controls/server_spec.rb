@@ -15,12 +15,12 @@ when 'redhat'
     it { should be_enabled }
   end
 
-when 'debian'
+  # when 'debian'
 
-  describe apt('https://dl.bintray.com/rundeck/rundeck-deb') do
-    it { should exist }
-    it { should be_enabled }
-  end
+  #   describe apt('https://dl.bintray.com/rundeck/rundeck-deb') do
+  #     it { should exist }
+  #     it { should be_enabled }
+  #   end
 
 end
 
