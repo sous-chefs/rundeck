@@ -236,7 +236,7 @@ action :install do
       configdir: new_resource.configdir
     )
     notifies (new_resource.restart_on_config_change ? :restart : :nothing), 'service[rundeckd]', :delayed
-    only_if { platform_family?('debian') }
+    only_if { node['platform_family'] == 'debian' }
   end
 
   template "#{new_resource.configdir}/framework.properties" do
