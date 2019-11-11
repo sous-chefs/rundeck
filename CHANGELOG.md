@@ -1,29 +1,28 @@
-# Changelog
+# Rundeck Cookbook CHANGELOG
 
-All notable changes to this project will be documented in this file.
+This file is used to list changes made in each version of the Rundeck cookbook.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [UNRELEASED](https://github.com/sous-chefs/rundeck/compare/v5.0.3...HEAD)
+## [UNRELEASED]
 
 * Fix the `yum_repository` resource to use the `baseurl` and not the legacy `url` property.
 
-## [5.0.3](https://github.com/sous-chefs/rundeck/compare/v5.0.2...v5.0.3) - 2019-10-15
+## [5.0.3]
 
 ### Changed
 
 * Supports deprecation of `rundeck-config` on RedHat platforms > 3.1.0
-* Fixes default datadir value
 * Fixes password quotation in rd config
 * Fixes Supermarket foodcritic errors
 * Added missing ldap_supplimentalroles
 
-## [5.0.2](https://github.com/sous-chefs/rundeck/compare/v5.0.1...v5.0.2) - 2019-05-15
+## 5.0.2
 
 * Misc Fixes
 
-## [5.0.1](https://github.com/sous-chefs/rundeck/compare/v4.2.0...v5.0.1) - 2019-05-08
+## 5.0.1
 
 * Adds Rundeck ACL Policy configuration (and fixes)
 * Complete rewrite of cookbook using custom resources
