@@ -2,7 +2,16 @@
 
 This file is used to list changes made in each version of the Rundeck cookbook.
 
-## UNRELEASED
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [UNRELEASED]
+
+* Fix the `yum_repository` resource to use the `baseurl` and not the legacy `url` property.
+
+## [5.0.3]
+
+### Changed
 
 * Supports deprecation of `rundeck-config` on RedHat platforms > 3.1.0
 * Fixes password quotation in rd config
