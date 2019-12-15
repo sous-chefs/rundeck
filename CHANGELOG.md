@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [UNRELEASED]
 
 * Fix the `yum_repository` resource to use the `baseurl` and not the legacy `url` property.
+* Simplify platform check logic
+* Use TrueClass and FalseClass in resources
 
 ## [5.0.3]
 

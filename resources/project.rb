@@ -20,8 +20,8 @@ require 'json'
 
 property :label, String
 property :description, String
-property :executions_disable, [true, false], default: false
-property :schedule_disable, [true, false], default: false
+property :executions_disable, [TrueClass, FalseClass], default: false
+property :schedule_disable, [TrueClass, FalseClass], default: false
 property :job_group_expansion_level, Integer
 property :display_motd, %w(none projectList projectHome both)
 property :display_readme, %w(none projectList projectHome both)
