@@ -19,22 +19,20 @@
 include RundeckCookbook::Helpers
 
 property :package_uri, String, default: lazy {
-  case node['platform_family']
-  when 'rhel'
+  if platform_family?('rhel')
     'https://dl.bintray.com/rundeck/rundeck-rpm'
   else # 'debian'
     'https://dl.bintray.com/rundeck/rundeck-deb'
   end
 }
 property :gpgkey, String, default: lazy {
-  case node['platform_family']
-  when 'rhel'
+  if platform_family?('rhel')
     'http://rundeck.org/keys/BUILD-GPG-KEY-Rundeck.org.key'
   else # 'debian'
     'https://bintray.com/user/downloadSubjectPublicKey?username=bintray'
   end
 }
-property :gpgcheck, [true, false], default: true
+property :gpgcheck, [TrueClass, FalseClass], default: true
 
 action :install do
   case node['platform_family']
