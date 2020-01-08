@@ -45,7 +45,7 @@ jobs:
           - "ubuntu-1604"
           - "ubuntu-1804"
         suite:
-          - "server_install"
+          - "server-install"
       fail-fast: false
 
     steps:
