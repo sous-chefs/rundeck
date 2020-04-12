@@ -32,7 +32,7 @@ property :gpgkey, String, default: lazy {
     'https://bintray.com/user/downloadSubjectPublicKey?username=bintray'
   end
 }
-property :gpgcheck, [TrueClass, FalseClass], default: true
+property :gpgcheck, [true, false], default: true
 
 action :install do
   case node['platform_family']
