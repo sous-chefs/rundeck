@@ -43,7 +43,7 @@ property :ldap_provider, String
 property :ldap_binddn, String
 property :ldap_bindpwd, String
 property :ldap_authenticationmethod, String
-property :ldap_debug, [TrueClass, FalseClass], default: false
+property :ldap_debug, [true, false], default: false
 property :ldap_forcebindinglogin, String
 property :ldap_userbasedn, String
 property :ldap_userrdnattribute, String
@@ -60,38 +60,38 @@ property :ldap_reportstatistics, String
 property :ldap_supplementalroles, String
 property :log_level, %w(ERR WARN INFO VERBOSE DEBUG), default: 'INFO'
 property :mail_email, String
-property :mail_enable, [TrueClass, FalseClass], default: false
+property :mail_enable, [true, false], default: false
 property :mail_host, String
 property :mail_password, String, sensitive: true
 property :mail_port, Integer, default: 25
 property :mail_user, String
 property :port, Integer, default: 4440
-property :private_key, [nil, String], default: nil, sensitive: true
+property :private_key, [nil, String], sensitive: true
 property :quartz_threadPoolCount, Integer, default: 10
 property :rdbms_dbname, String
 property :rdbms_dialect, String
-property :rdbms_enable, [TrueClass, FalseClass], default: false
+property :rdbms_enable, [true, false], default: false
 property :rdbms_location, String
 property :rdbms_password, String, sensitive: true
 property :rdbms_port, Integer
 property :rdbms_type, %w(mysql oracle)
 property :rdbms_user, String
-property :restart_on_config_change, [TrueClass, FalseClass], default: false
+property :restart_on_config_change, [true, false], default: false
 property :retry_delay, Integer, default: 5
 property :retries, Integer, default: 10
-property :rss_enabled, [TrueClass, FalseClass], default: false
+property :rss_enabled, [true, false], default: false
 property :rundeckgroup, String, default: 'rundeck'
 property :rundeckuser, String, default: 'rundeck'
 property :rundeck_users, Hash, default: {}, sensitive: true
 property :security_roles, Hash, default: {}
 property :session_timeout, Integer, default: 30
 property :ssl_port, Integer, default: 4443
-property :setup_repo, [TrueClass, FalseClass], default: true
+property :setup_repo, [true, false], default: true
 property :tempdir, String, default: '/tmp/rundeck'
 property :tokens_file, String
 property :truststore_type, String, default: 'jks'
-property :use_inbuilt_ssl, [TrueClass, FalseClass], default: false
-property :use_ssl, [TrueClass, FalseClass], default: false
+property :use_inbuilt_ssl, [true, false], default: false
+property :use_ssl, [true, false], default: false
 property :uuid, String, default: lazy { generateuuid }
 property :version, String, default: '3.0.8.20181029-1.201810292220'
 property :webcontext, String, default: '/'
