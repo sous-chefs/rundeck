@@ -19,7 +19,7 @@
 include RundeckCookbook::Helpers
 include Apache2::Cookbook::Helpers
 
-property :use_ssl, [TrueClass, FalseClass], default: false
+property :use_ssl, [true, false], default: false
 property :cert_location, String, default: lazy { "#{apache_dir}/ssl" }
 property :cert_name, String, default: lazy { node['hostname'] }
 property :cert_contents, String
@@ -28,7 +28,7 @@ property :ca_cert_name, String
 property :ca_cert_contents, String
 property :hostname, String, default: lazy { "rundeck.#{node['domain']}" }
 property :email, String, default: lazy { "rundeck@#{node['domain']}" }
-property :allow_local_https,  [TrueClass, FalseClass], default: true
+property :allow_local_https,  [true, false], default: true
 property :webcontext, String, default: '/'
 property :port, Integer, default: 4440
 

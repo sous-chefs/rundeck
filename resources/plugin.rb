@@ -28,7 +28,7 @@ property :rundeckgroup, String,
          default: 'rundeck' # 'The user account that rundeck will operate as'
 property :rundeckuser, String,
          default: 'rundeck' # 'The group that rundeck will operate as'
-property :restart_on_config_change, [TrueClass, FalseClass],
+property :restart_on_config_change, [true, false],
          default: false # 'Whether to restart rundeck service when a configuration has changed.'
 
 action :create do

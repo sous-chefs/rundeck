@@ -5,6 +5,24 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+- resolved cookstyle error: resources/apache.rb:22:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/apache.rb:31:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/plugin.rb:31:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/project.rb:23:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/project.rb:24:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/repository.rb:35:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/server_install.rb:46:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/server_install.rb:63:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/server_install.rb:69:39 refactor: `ChefRedundantCode/StringPropertyWithNilDefault`
+- resolved cookstyle error: resources/server_install.rb:73:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/server_install.rb:79:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/server_install.rb:82:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/server_install.rb:89:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/server_install.rb:93:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+- resolved cookstyle error: resources/server_install.rb:94:1 refactor: `ChefStyle/TrueClassFalseClassResourceProperties`
+
 ## [UNRELEASED]
 
 * Fix the `yum_repository` resource to use the `baseurl` and not the legacy `url` property.
