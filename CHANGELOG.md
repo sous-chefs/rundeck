@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the Rundeck cookbook.
 
+## Unreleased
+
+- resolved cookstyle error: metadata.rb:14:12 convention: `Style/StringLiterals`
+- resolved cookstyle error: metadata.rb:15:12 convention: `Style/StringLiterals`
+
 ## 5.1.0 - 2020-05-05
 
 - Fix the `yum_repository` resource to use the `baseurl` and not the legacy `url` property.
