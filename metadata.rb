@@ -11,6 +11,6 @@ depends          'apache2', '~> 7.0.0'
   supports os
 end
 
-source_url "https://github.com/sous-chefs/rundeck"
-issues_url "https://github.com/sous-chefs/rundeck/issues"
+source_url 'https://github.com/sous-chefs/rundeck'
+issues_url 'https://github.com/sous-chefs/rundeck/issues'
 chef_version '>= 13.0'
