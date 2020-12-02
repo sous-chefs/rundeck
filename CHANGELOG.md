@@ -4,6 +4,7 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
+- resolved cookstyle error: resources/repository.rb:45:7 warning: `Chef/Deprecations/DeprecatedYumRepositoryActions`
 - resolved cookstyle error: metadata.rb:14:12 convention: `Style/StringLiterals`
 - resolved cookstyle error: metadata.rb:15:12 convention: `Style/StringLiterals`
 
