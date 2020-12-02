@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the Rundeck cookbook.
 
+## Unreleased
+
 ## 5.1.1 - *2020-12-02*
 
 - resolved cookstyle error: resources/repository.rb:45:7 warning: `Chef/Deprecations/DeprecatedYumRepositoryActions`
