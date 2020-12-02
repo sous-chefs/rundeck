@@ -25,7 +25,7 @@ describe 'rundeck_repository - RedHat' do
     end
 
     it 'creates repository' do
-      is_expected.to add_yum_repository('rundeck')
+      is_expected.to create_yum_repository('rundeck')
     end
   end
 end

@@ -42,7 +42,7 @@ action :install do
       baseurl new_resource.package_uri
       gpgkey new_resource.gpgkey
       gpgcheck new_resource.gpgcheck
-      action :add
+      action :create
     end
   when 'debian'
     package 'apt-transport-https'
