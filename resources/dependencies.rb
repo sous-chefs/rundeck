@@ -17,6 +17,7 @@
 #
 
 action :install do
-  node.default['java']['jdk_version'] = '8'
-  include_recipe 'java'
+  openjdk_install '8' do
+    action :install
+  end
 end
