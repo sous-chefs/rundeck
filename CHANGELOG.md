@@ -5,6 +5,7 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 ## Unreleased
 
 - Fix rundeck_dependencies to use java openjdk resource instead of recipe that causes errors
+- put a limit on the java cookbook version to 8 or greater
 
 ## 5.1.1 - *2020-12-02*
 

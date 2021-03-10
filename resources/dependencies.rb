@@ -17,7 +17,5 @@
 #
 
 action :install do
-  openjdk_install '8' do
-    action :install
-  end
+  openjdk_install '8'
 end
