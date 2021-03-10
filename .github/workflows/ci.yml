@@ -42,8 +42,8 @@ jobs:
         os:
           - "centos-7"
           - "debian-9"
-          - "ubuntu-1604"
           - "ubuntu-1804"
+          - "ubuntu-2004"
         suite:
           - "server-install"
       fail-fast: false
