@@ -17,5 +17,5 @@
 #
 
 action :install do
-  openjdk_install '8'
+  adoptopenjdk_install '8'
 end
