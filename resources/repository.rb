@@ -32,7 +32,7 @@ property :gpgkey, String, default: lazy {
     'https://packages.rundeck.com/pagerduty/rundeck/gpgkey'
   end
 }
-property :gpgcheck, [true, false], default: true
+property :gpgcheck, [true, false], default: false
 
 action :install do
   case node['platform_family']
