@@ -4,6 +4,10 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
+## 5.2.2 - *2021-08-10*
+
+- Pointing to a valid repository, as Bintray has been depricated.
+
 ## 5.2.1 - *2021-06-01*
 
 ## 5.2.0 - *2021-03-10*

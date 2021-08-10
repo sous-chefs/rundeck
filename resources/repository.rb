@@ -20,16 +20,16 @@ include RundeckCookbook::Helpers
 
 property :package_uri, String, default: lazy {
   if platform_family?('rhel')
-    'https://dl.bintray.com/rundeck/rundeck-rpm'
+    'https://packages.rundeck.com/pagerduty/rundeck/rpm_any/rpm_any/$basearch'
   else # 'debian'
-    'https://dl.bintray.com/rundeck/rundeck-deb'
+    'https://packages.rundeck.com/pagerduty/rundeck/any/'
   end
 }
 property :gpgkey, String, default: lazy {
   if platform_family?('rhel')
-    'http://rundeck.org/keys/BUILD-GPG-KEY-Rundeck.org.key'
+    'https://packages.rundeck.com/pagerduty/rundeck/gpgkey'
   else # 'debian'
-    'https://bintray.com/user/downloadSubjectPublicKey?username=bintray'
+    'https://packages.rundeck.com/pagerduty/rundeck/gpgkey'
   end
 }
 property :gpgcheck, [true, false], default: true
