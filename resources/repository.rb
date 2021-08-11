@@ -25,13 +25,8 @@ property :package_uri, String, default: lazy {
     'https://packages.rundeck.com/pagerduty/rundeck/any/'
   end
 }
-property :gpgkey, String, default: lazy {
-  if platform_family?('rhel')
-    'https://packages.rundeck.com/pagerduty/rundeck/gpgkey'
-  else # 'debian'
-    'https://packages.rundeck.com/pagerduty/rundeck/gpgkey'
-  end
-}
+property :gpgkey, String, default: 'https://packages.rundeck.com/pagerduty/rundeck/gpgkey'
+
 property :gpgcheck, [true, false], default: false
 
 action :install do
@@ -49,6 +44,7 @@ action :install do
 
     apt_repository 'rundeck' do
       uri new_resource.package_uri
+      components ['any']
       distribution '/'
       key new_resource.gpgkey
       action :add
