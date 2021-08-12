@@ -341,7 +341,7 @@ action :install do
   end
 
   execute 'enable rundeckd' do
-    command '/usr/bin/systemctl enable rundeckd'
+    command 'systemctl enable rundeckd'
     action :run
     only_if { node['init_package'] == 'systemd' }
   end
