@@ -27,6 +27,8 @@ property :package_uri, String, default: lazy {
 }
 property :gpgkey, String, default: 'https://packages.rundeck.com/pagerduty/rundeck/gpgkey'
 
+property :debsrc, [true, false], default: true
+
 property :gpgcheck, [true, false], default: false
 
 action :install do
@@ -44,8 +46,9 @@ action :install do
 
     apt_repository 'rundeck' do
       uri new_resource.package_uri
-      components ['any']
-      distribution '/'
+      deb_src new_resource.debsrc
+      components ['any', 'main']
+      distribution ''
       key new_resource.gpgkey
       action :add
     end

@@ -30,7 +30,7 @@ property :default_role, String, default: 'user'
 property :exec_logdir, String, default: lazy { "#{basedir}/logs" }
 property :extra_wait, Integer, default: 120
 property :framework_properties, Hash, default: {}
-property :grails_port, Integer, default: lazy { use_ssl ? 443 : 80 }
+property :grails_port, Integer, default: lazy { use_ssl ? 443 : 4440 }
 property :grails_server_url, String, default: lazy { "#{use_inbuilt_ssl ? 'https' : 'http'}://#{node['hostname']}.#{node['domain']}" }
 property :hostname, String, default: "#{node['hostname']}.#{node['domain']}"
 property :jaas, String, default: 'internal'
@@ -93,7 +93,7 @@ property :truststore_type, String, default: 'jks'
 property :use_inbuilt_ssl, [true, false], default: false
 property :use_ssl, [true, false], default: false
 property :uuid, String, default: lazy { generateuuid }
-property :version, String, default: '3.0.8.20181029-1.201810292220'
+property :version, String, default: '3.4.2.20210803-1'
 property :webcontext, String, default: '/'
 
 action :install do
@@ -338,6 +338,12 @@ action :install do
     end
     action [:start, :enable]
     notifies :run, 'ruby_block[wait for rundeckd startup]', :immediately
+  end
+
+  execute 'enable rundeckd' do
+    command '/usr/bin/systemctl enable rundeckd'
+    action :run
+    only_if { node['init_package'] == 'systemd' }
   end
 
   ruby_block 'wait for rundeckd startup' do
