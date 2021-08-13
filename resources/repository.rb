@@ -47,7 +47,7 @@ action :install do
     apt_repository 'rundeck' do
       uri new_resource.package_uri
       deb_src new_resource.debsrc
-      components ['any', 'main']
+      components %w(any main)
       distribution ''
       key new_resource.gpgkey
       action :add
