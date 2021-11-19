@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+unified_mode true
+
 action :install do
   adoptopenjdk_install '8'
 end

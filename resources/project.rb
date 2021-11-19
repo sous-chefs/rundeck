@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 
+unified_mode true
+
 include RundeckCookbook::Helpers
 require 'json'
 
