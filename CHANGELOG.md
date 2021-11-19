@@ -4,6 +4,9 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
+- Enabled unified mode on all resources.
+- Dropped support for Chef versions lower than 15.3.
+
 ## 5.2.2 - *2021-08-30*
 
 - Standardise files with files in sous-chefs/repo-management
