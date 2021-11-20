@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the Rundeck cookbook.
 
+## Unreleased
+
 ## 6.0.0 - *2021-11-20*
 
 - Pointing to a valid repository, as Bintray has been depricated.
