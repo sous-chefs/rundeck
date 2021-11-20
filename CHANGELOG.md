@@ -6,6 +6,7 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 - Enabled unified mode on all resources.
 - Dropped support for Chef versions lower than 15.3.
+- Remove CircleCI and Danger
 
 ## 6.0.0 - *2021-11-20*
 
