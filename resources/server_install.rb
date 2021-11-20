@@ -343,7 +343,7 @@ action :install do
   execute 'enable rundeckd' do
     command 'systemctl enable rundeckd'
     action :run
-    only_if { node['init_package'] == 'systemd' }
+    only_if { systemd? }
   end
 
   ruby_block 'wait for rundeckd startup' do

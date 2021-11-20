@@ -4,6 +4,7 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
+- resolved cookstyle error: resources/server_install.rb:346:15 refactor: `Chef/Modernize/UseChefLanguageSystemdHelper`
 ## 6.0.0 - *2021-11-20*
 
 - Pointing to a valid repository, as Bintray has been depricated.
