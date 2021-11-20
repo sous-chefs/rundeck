@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the Rundeck cookbook.
 
-## Unreleased
+## 7.0.0 - *2021-11-20*
 
 - Enabled unified mode on all resources.
 - Dropped support for Chef versions lower than 15.3.
