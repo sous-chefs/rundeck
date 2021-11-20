@@ -4,9 +4,13 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
+- Enabled unified mode on all resources.
+- Dropped support for Chef versions lower than 15.3.
+- Remove CircleCI and Danger
+
 ## 6.0.0 - *2021-11-20*
 
-- Pointing to a valid repository, as Bintray has been depricated.
+- Pointing to a valid repository, as Bintray has been deprecated.
 
 ## 5.2.2 - *2021-08-30*
 

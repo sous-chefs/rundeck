@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+unified_mode true
+
 include RundeckCookbook::Helpers
 
 property :basedir, String, default: '/var/lib/rundeck'

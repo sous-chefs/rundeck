@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+unified_mode true
+
 include RundeckCookbook::Helpers
 
 property :url, String,
