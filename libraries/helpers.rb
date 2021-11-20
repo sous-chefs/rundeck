@@ -34,7 +34,7 @@ module RundeckCookbook
         },
       }
 
-      cmd = shell_out(cmd_string, cmd_options)
+      cmd = shell_out(cmd_string, **cmd_options)
 
       if cmd.exitstatus != 0
         Chef::Log.fatal("rd failed executing this statement:\n#{cmd_string}")

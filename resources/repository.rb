@@ -20,19 +20,16 @@ include RundeckCookbook::Helpers
 
 property :package_uri, String, default: lazy {
   if platform_family?('rhel')
-    'https://dl.bintray.com/rundeck/rundeck-rpm'
+    'https://packages.rundeck.com/pagerduty/rundeck/rpm_any/rpm_any/$basearch'
   else # 'debian'
-    'https://dl.bintray.com/rundeck/rundeck-deb'
+    'https://packages.rundeck.com/pagerduty/rundeck/any/'
   end
 }
-property :gpgkey, String, default: lazy {
-  if platform_family?('rhel')
-    'http://rundeck.org/keys/BUILD-GPG-KEY-Rundeck.org.key'
-  else # 'debian'
-    'https://bintray.com/user/downloadSubjectPublicKey?username=bintray'
-  end
-}
-property :gpgcheck, [true, false], default: true
+property :gpgkey, String, default: 'https://packages.rundeck.com/pagerduty/rundeck/gpgkey'
+
+property :debsrc, [true, false], default: true
+
+property :gpgcheck, [true, false], default: false
 
 action :install do
   case node['platform_family']
@@ -49,7 +46,9 @@ action :install do
 
     apt_repository 'rundeck' do
       uri new_resource.package_uri
-      distribution '/'
+      deb_src new_resource.debsrc
+      components %w(any main)
+      distribution ''
       key new_resource.gpgkey
       action :add
     end
