@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the Rundeck cookbook.
 
+## Unreleased
+
 ## 7.1.0 - *2021-11-22*
 
 - resolved cookstyle error: resources/server_install.rb:346:15 refactor: `Chef/Modernize/UseChefLanguageSystemdHelper`
