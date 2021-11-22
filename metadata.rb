@@ -3,7 +3,7 @@ maintainer       'Sous Chefs'
 maintainer_email 'help@sous-chefs.org'
 license          'Apache-2.0'
 description      'Installs and configures Rundeck 2.x'
-version          '6.0.0'
+version          '7.0.0'
 depends          'java', '>= 8.0.0'
 depends          'apache2', '~> 7.0.0'
 
@@ -13,4 +13,4 @@ end
 
 source_url 'https://github.com/sous-chefs/rundeck'
 issues_url 'https://github.com/sous-chefs/rundeck/issues'
-chef_version '>= 13.0'
+chef_version '>= 15.3'

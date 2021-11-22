@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+unified_mode true
+
 include RundeckCookbook::Helpers
 include Apache2::Cookbook::Helpers
 
