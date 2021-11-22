@@ -4,6 +4,9 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
+- resolved cookstyle error: resources/server_install.rb:346:15 refactor: `Chef/Modernize/UseChefLanguageSystemdHelper`
+- Require Chef 15.5 for systemd helper
+
 ## 7.0.0 - *2021-11-20*
 
 - Enabled unified mode on all resources.
