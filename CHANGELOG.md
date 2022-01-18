@@ -4,6 +4,9 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
+- resolved cookstyle error: resources/apache.rb:75:7 refactor: `Chef/RedundantCode/UseCreateIfMissing`
+- resolved cookstyle error: resources/apache.rb:82:7 refactor: `Chef/RedundantCode/UseCreateIfMissing`
+
 ## 7.1.0 - *2021-11-22*
 
 - resolved cookstyle error: resources/server_install.rb:346:15 refactor: `Chef/Modernize/UseChefLanguageSystemdHelper`

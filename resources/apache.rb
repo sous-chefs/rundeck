@@ -72,14 +72,14 @@ action :install do
     file "#{new_resource.cert_location}/#{new_resource.cert_name}.key" do
       content new_resource.key_contents
       notifies :restart, 'service[apache2]'
-      not_if { ::File.exist?("#{new_resource.cert_location}/#{new_resource.cert_name}.key") }
+      action :create_if_missing
     end
 
     file "#{new_resource.cert_location}/#{new_resource.ca_cert_name}.crt" do
       content new_resource.ca_cert_contents
       notifies :restart, 'service[apache2]'
       not_if { new_resource.ca_cert_name.nil? }
-      not_if { ::File.exist?("#{new_resource.cert_location}/#{new_resource.ca_cert_name}.crt") }
+      action :create_if_missing
     end
 
     java_certificate 'Install rundeck certificate to java truststore' do
