@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
+Standardise files with files in sous-chefs/repo-management
+
 ## 7.2.0 - *2022-01-18*
 
 - resolved cookstyle error: resources/apache.rb:75:7 refactor: `Chef/RedundantCode/UseCreateIfMissing`
