@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
+- Update tested platforms and use reusable workflow
+
 ## 7.2.1 - *2022-02-08*
 
 - Remove delivery folder

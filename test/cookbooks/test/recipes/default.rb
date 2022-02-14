@@ -1,10 +1,10 @@
 rundeck_server_install 'package' do
   acl_policies node['rundeck']['acl_policies']
-  action [:install]
+  action :install
 end
 
 rundeck_apache 'package' do
-  action [:install]
+  action :install
 end
 
 project_properties = {
@@ -17,9 +17,9 @@ rundeck_project 'test' do
   display_motd 'none'
   executions_disable false
   project_properties project_properties
-  action [:create]
+  action :create
 end
 
 rundeck_project 'shouldnotexist' do
-  action [:delete]
+  action :delete
 end

@@ -3,35 +3,31 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_zero
-  product_name: chef
+  name: chef_infra
+  product_name: <%= ENV['CHEF_PRODUCT_NAME'] || 'chef' %>
   product_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
-  install_strategy: once
-  client_rb:
-    chef_license: accept
-
-client_rb:
-  treat_deprecation_warnings_as_errors: true
+  chef_license: accept-no-persist
+  enforce_idempotency: true
+  multiple_converge: 2
+  deprecations_as_errors: true
+  log_level: <%= ENV['CHEF_LOG_LEVEL'] || 'auto' %>
 
 verifier:
   name: inspec
 
 platforms:
+  - name: almalinux-8
+  - name: amazonlinux-2
+  - name: debian-10
+  - name: debian-11
   - name: centos-7
-  - name: debian-9
-    lifecycle:
-      post_create:
-        - remote: sudo apt update
+  - name: centos-stream-8
+  - name: fedora-latest
   - name: ubuntu-18.04
-    lifecycle:
-      post_create:
-        - remote: sudo apt update
   - name: ubuntu-20.04
-    lifecycle:
-      post_create:
-        - remote: sudo apt update
+  - name: rockylinux-8
 
 suites:
-  - name: server_install
+  - name: default
     run_list:
-      - recipe[test::server_install]
+      - recipe[test::default]
