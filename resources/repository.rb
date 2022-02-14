@@ -21,7 +21,7 @@ unified_mode true
 include RundeckCookbook::Helpers
 
 property :package_uri, String, default: lazy {
-  if platform_family?('rhel')
+  if platform_family?('rhel', 'fedora', 'amazon')
     'https://packages.rundeck.com/pagerduty/rundeck/rpm_any/rpm_any/$basearch'
   else # 'debian'
     'https://packages.rundeck.com/pagerduty/rundeck/any/'
@@ -35,7 +35,7 @@ property :gpgcheck, [true, false], default: false
 
 action :install do
   case node['platform_family']
-  when 'rhel'
+  when 'rhel', 'amazon', 'fedora'
     yum_repository 'rundeck' do
       description 'Rundeck - Release'
       baseurl new_resource.package_uri
