@@ -5,6 +5,7 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 ## Unreleased
 
 - Update tested platforms and use reusable workflow
+- Stopping pinning the Apache2 cookbook on an old version
 
 ## 7.2.1 - *2022-02-08*
 
