@@ -106,7 +106,7 @@ action :install do
   end
 
   if platform_family?('rhel')
-    yum_package 'which'
+    package 'which'
 
     yum_package 'rundeck-config' do
       version new_resource.version
@@ -122,8 +122,7 @@ action :install do
       action :install
     end
   else
-    package 'uuid-runtime'
-    package 'openssh-client'
+    package %w(uuid-runtime openssh-client)
 
     package 'rundeck' do
       version new_resource.version
