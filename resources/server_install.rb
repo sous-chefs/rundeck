@@ -105,10 +105,10 @@ action :install do
     only_if { new_resource.setup_repo }
   end
 
-  if platform_family?('rhel', 'amazon','fedora')
+  if platform_family?('rhel', 'amazon', 'fedora')
     package 'which'
 
-    yum_package 'rundeck-config' do
+    package 'rundeck-config' do
       version new_resource.version
       allow_downgrade true
       options '--setopt=obsoletes=0'
