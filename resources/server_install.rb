@@ -105,7 +105,7 @@ action :install do
     only_if { new_resource.setup_repo }
   end
 
-  if platform_family?('rhel')
+  if platform_family?('rhel', 'amazon','fedora')
     package 'which'
 
     yum_package 'rundeck-config' do
