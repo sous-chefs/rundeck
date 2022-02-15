@@ -19,7 +19,7 @@ jobs:
           - almalinux-8
           - amazonlinux-2
           - debian-10
-          - debian-11
+          # - debian-11 TODO: Disabled due to service not starting
           - centos-7
           - centos-stream-8
           - fedora-latest

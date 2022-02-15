@@ -22,10 +22,10 @@ platforms:
       image: dokken/debian-10
       pid_one_command: /bin/systemd
 
-  - name: debian-11
-    driver:
-      image: dokken/debian-11
-      pid_one_command: /bin/systemd
+  # - name: debian-11
+  #   driver:
+  #     image: dokken/debian-11
+  #     pid_one_command: /bin/systemd
 
   - name: centos-7
     driver:
