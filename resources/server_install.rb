@@ -334,7 +334,6 @@ action :install do
     notifies :run, 'ruby_block[wait for rundeckd startup]', :immediately
   end
 
-
   ruby_block 'wait for rundeckd startup' do
     action :nothing
     block do
