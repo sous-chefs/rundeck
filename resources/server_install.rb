@@ -95,7 +95,7 @@ property :truststore_type, String, default: 'jks'
 property :use_inbuilt_ssl, [true, false], default: false
 property :use_ssl, [true, false], default: false
 property :uuid, String
-property :version, String, default: '3.4.2.20210803-1'
+property :version, String, default: '3.4.10.20220118-1'
 property :webcontext, String, default: '/'
 
 action :install do
