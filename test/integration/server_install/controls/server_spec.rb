@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 describe service('rundeckd') do
   it { should be_installed }
   it { should be_enabled }
@@ -7,21 +5,17 @@ describe service('rundeckd') do
 end
 
 case os[:family]
+  when 'redhat'
+    describe yum.repo('rundeck') do
+      it { should exist }
+      it { should be_enabled }
+    end
 
-when 'redhat'
-
-  describe yum.repo('rundeck') do
-    it { should exist }
-    it { should be_enabled }
-  end
-
-when 'debian'
-
-  describe apt('https://packages.rundeck.com/pagerduty/rundeck/any/') do
-    it { should exist }
-    it { should be_enabled }
-  end
-
+  when 'debian'
+    describe apt('https://packages.rundeck.com/pagerduty/rundeck/any/') do
+      it { should exist }
+      it { should be_enabled }
+    end
 end
 
 # rubocop:disable Style/UnneededPercentQ
