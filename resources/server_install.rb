@@ -94,7 +94,7 @@ property :tokens_file, String
 property :truststore_type, String, default: 'jks'
 property :use_inbuilt_ssl, [true, false], default: false
 property :use_ssl, [true, false], default: false
-property :uuid, String, default: lazy { generateuuid }
+property :uuid, String
 property :version, String, default: '3.4.2.20210803-1'
 property :webcontext, String, default: '/'
 
@@ -244,7 +244,7 @@ action :install do
     owner new_resource.rundeckuser
     group new_resource.rundeckgroup
     source 'framework.properties.erb'
-    sensitive true
+    sensitive false
     variables(
       admin_password: new_resource.admin_password,
       basedir: new_resource.basedir,
@@ -330,22 +330,10 @@ action :install do
   end
 
   service 'rundeckd' do
-    if platform?('ubuntu')
-      if node['platform_version'].to_f >= 16.04
-        provider Chef::Provider::Service::Systemd
-      else
-        provider Chef::Provider::Service::Upstart
-      end
-    end
     action [:start, :enable]
     notifies :run, 'ruby_block[wait for rundeckd startup]', :immediately
   end
 
-  execute 'enable rundeckd' do
-    command 'systemctl enable rundeckd'
-    action :run
-    only_if { systemd? }
-  end
 
   ruby_block 'wait for rundeckd startup' do
     action :nothing
