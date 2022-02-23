@@ -12,6 +12,10 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 - Remove execute block to nable systmd services.
   - This is alrady taken care of by the service resource and was not idempotent
 
+## 7.2.2 - *2022-02-17*
+
+- Standardise files with files in sous-chefs/repo-management
+
 ## 7.2.1 - *2022-02-08*
 
 - Remove delivery folder
