@@ -4,6 +4,9 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
+- resolved cookstyle error: .foodcritic:1:1 convention: `Layout/IndentationStyle`
+- resolved cookstyle error: .foodcritic:1:2 convention: `Layout/InitialIndentation`
+- resolved cookstyle error: .foodcritic:1:3 convention: `Layout/InitialIndentation`
 ## 7.2.2 - *2022-02-17*
 
 Standardise files with files in sous-chefs/repo-management
