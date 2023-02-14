@@ -54,7 +54,7 @@ action :install do
     # until added to Apache2
     package 'mod_ssl' do
       action :install
-      only_if { platform_family?('rhel') }
+      only_if { platform_family?('rhel', 'fedora', 'amazon') }
     end
 
     apache2_module 'ssl'
@@ -112,8 +112,8 @@ action :install do
     owner 'root'
     group 'root'
     variables(
-      log_dir: platform_family?('rhel') ? '/var/log/httpd' : '/var/log/apache2',
-      doc_root: platform_family?('rhel') ? '/var/www/html' : '/var/www',
+      log_dir: platform_family?('rhel', 'fedora', 'amazon') ? '/var/log/httpd' : '/var/log/apache2',
+      doc_root: platform_family?('rhel', 'fedora', 'amazon') ? '/var/www/html' : '/var/www',
       use_ssl: new_resource.use_ssl,
       hostname: new_resource.hostname,
       email: new_resource.email,

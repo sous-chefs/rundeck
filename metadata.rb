@@ -4,8 +4,8 @@ maintainer_email 'help@sous-chefs.org'
 license          'Apache-2.0'
 description      'Installs and configures Rundeck 2.x'
 version          '7.2.5'
-depends          'java', '>= 8.0.0'
-depends          'apache2', '~> 7.0.0'
+depends          'java'
+depends          'apache2'
 
 %w(ubuntu centos fedora redhat scientific oracle).each do |os|
   supports os
