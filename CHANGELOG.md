@@ -4,6 +4,13 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
+## 7.2.4 - *2023-02-14*
+
+Standardise files with files in sous-chefs/repo-management
+
+## 7.2.3 - *2023-02-14*
+
+
 ## 7.2.2 - *2022-02-17*
 
 Standardise files with files in sous-chefs/repo-management
