@@ -4,9 +4,30 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
-## 7.2.2 - *2022-02-17*
+## 8.0.1 - *2023-02-14*
+
+## 8.0.0 - *2023-02-14*
+
+- BREAKING CHANGE: Do not genereate a UUID by default
+  - A UUID was generated on every new run
+  - You are now required to provide a UUID to the server install resource
+- Update tested platforms and use reusable workflow
+- Stopping pinning the Apache2 cookbook on an old version
+- Remove execute block to nable systmd services.
+  - This is alrady taken care of by the service resource and was not idempotent
+
+## 7.2.5 - *2023-02-14*
+
+## 7.2.4 - *2023-02-14*
 
 Standardise files with files in sous-chefs/repo-management
+
+## 7.2.3 - *2023-02-14*
+
+
+## 7.2.2 - *2022-02-17*
+
+- Standardise files with files in sous-chefs/repo-management
 
 ## 7.2.1 - *2022-02-08*
 
