@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the Rundeck cookbook.
 
+## Unreleased
+
 ## 8.0.0 - *2023-02-14*
 
 - BREAKING CHANGE: Do not genereate a UUID by default
