@@ -4,29 +4,36 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 
 ## Unreleased
 
+- Update to support apache2_service resource
+- Rename folder so integration tests actually run
+
 ## 8.0.10 - *2023-04-17*
+
+- Update sous-chefs/.github action to v2
 
 ## 8.0.9 - *2023-04-07*
 
-Standardise files with files in sous-chefs/repo-management
+- Standardise files with files in sous-chefs/repo-management
 
 ## 8.0.8 - *2023-04-01*
 
+- Update gaurav-nelson/github-action-markdown-link-check action to v1.0.15
+
 ## 8.0.7 - *2023-04-01*
+
+- Update actions/stale action to v8
 
 ## 8.0.6 - *2023-04-01*
 
-Standardise files with files in sous-chefs/repo-management
+- Standardise files with files in sous-chefs/repo-management
 
 ## 8.0.5 - *2023-03-20*
 
-Standardise files with files in sous-chefs/repo-management
-
-Standardise files with files in sous-chefs/repo-management
+- Standardise files with files in sous-chefs/repo-management
 
 ## 8.0.4 - *2023-02-23*
 
-Standardise files with files in sous-chefs/repo-management
+- Standardise files with files in sous-chefs/repo-management
 
 ## 8.0.3 - *2023-02-15*
 
@@ -37,7 +44,12 @@ Standardise files with files in sous-chefs/repo-management
 
 ## 8.0.2 - *2023-02-14*
 
+- Pin workflows
+
 ## 8.0.1 - *2023-02-14*
+
+- Update actions/checkout action to v3
+- Update actions/stale action to v7
 
 ## 8.0.0 - *2023-02-14*
 
@@ -51,12 +63,16 @@ Standardise files with files in sous-chefs/repo-management
 
 ## 7.2.5 - *2023-02-14*
 
+- Add renovate.json
+
 ## 7.2.4 - *2023-02-14*
 
-Standardise files with files in sous-chefs/repo-management
+- Standardise files with files in sous-chefs/repo-management
 
 ## 7.2.3 - *2023-02-14*
 
+- Remove Delivery
+- Remove Gemfile
 
 ## 7.2.2 - *2022-02-17*
 
@@ -163,9 +179,9 @@ Standardise files with files in sous-chefs/repo-management
 ## 4.0.0
 
 - Project changes
-  - Projects are now created _and_ updated according to the data bag definition
+  - Projects are now created *and* updated according to the data bag definition
   - Create projects with api rather than CLI
-  - Project data bag change: projects will now be created / updated with config _exactly_ matching what is in the `"project_settings"` key in the data bag item. If you want to set extra config for all projects, consider adding attributes into `['rundeck']['framework']['properties']`
+  - Project data bag change: projects will now be created / updated with config *exactly* matching what is in the `"project_settings"` key in the data bag item. If you want to set extra config for all projects, consider adding attributes into `['rundeck']['framework']['properties']`
   - [The functionality to set `resources.source.1` and `project.resources.file` for all projects](https://github.com/Webtrends/rundeck/blob/3865dc95cc3da033a9346680991a5cc29376c2be/recipes/server_install.rb#L270-L277) has been removed because it makes too many assumptions about projects. You can re-enable this functionality on a per-project basis by setting the `"old_style"` key to `true` in the project data bag item. See the lwrp for more information on this.
 - Use `['rundeck']['framework']['properties']` to set additional config in the `framework.properties` template
 

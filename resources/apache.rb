@@ -37,13 +37,6 @@ property :port, Integer, default: 4440
 action :install do
   apache2_install 'default_install'
 
-  service 'apache2' do
-    extend Apache2::Cookbook::Helpers
-    service_name lazy { apache_platform_service_name }
-    supports restart: true, status: true, reload: true
-    action [:start, :enable]
-  end
-
   apache2_module 'deflate'
   apache2_module 'headers'
   apache2_module 'proxy'
@@ -57,7 +50,9 @@ action :install do
       only_if { platform_family?('rhel', 'fedora', 'amazon') }
     end
 
-    apache2_module 'ssl'
+    apache2_module 'ssl' do
+      notifies :reload, 'apache2_service[rundeck]'
+    end
 
     directory new_resource.cert_location do
       recursive true
@@ -65,19 +60,19 @@ action :install do
 
     file "#{new_resource.cert_location}/#{new_resource.cert_name}.crt" do
       content new_resource.cert_contents
-      notifies :restart, 'service[apache2]'
+      notifies :restart, 'apache2_service[rundeck]'
       not_if { ::File.exist?("#{new_resource.cert_location}/#{new_resource.cert_name}") }
     end
 
     file "#{new_resource.cert_location}/#{new_resource.cert_name}.key" do
       content new_resource.key_contents
-      notifies :restart, 'service[apache2]'
+      notifies :restart, 'apache2_service[rundeck]'
       action :create_if_missing
     end
 
     file "#{new_resource.cert_location}/#{new_resource.ca_cert_name}.crt" do
       content new_resource.ca_cert_contents
-      notifies :restart, 'service[apache2]'
+      notifies :restart, 'apache2_service[rundeck]'
       not_if { new_resource.ca_cert_name.nil? }
       action :create_if_missing
     end
@@ -99,7 +94,7 @@ action :install do
   %w(default 000-default).each do |site|
     apache2_site site do
       action :disable
-      notifies :reload, 'service[apache2]'
+      notifies :reload, 'apache2_service[rundeck]'
     end
   end
 
@@ -127,11 +122,17 @@ action :install do
   end
 
   apache2_site 'rundeck' do
-    notifies :reload, 'service[apache2]'
+    notifies :reload, 'apache2_service[rundeck]'
   end
 
-  service 'apache2' do
-    service_name 'httpd' if platform_family?('rhel', 'fedora')
+  apache2_service 'rundeck' do
+    action [:enable, :start]
+    subscribes :restart, 'apache2_install[nagios]'
+    subscribes :reload, 'apache2_module[deflate]'
+    subscribes :reload, 'apache2_module[headers]'
+    subscribes :reload, 'apache2_module[proxy]'
+    subscribes :reload, 'apache2_module[proxy_http]'
+    subscribes :reload, 'apache2_module[rewrite]'
     subscribes :restart, 'service[rundeckd]', :immediately
   end
 end
