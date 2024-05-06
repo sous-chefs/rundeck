@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the Rundeck cookbook.
 
-## Unreleased
+## 8.1.5 - *2024-05-06*
 
 ## 8.1.4 - *2023-10-03*
 
