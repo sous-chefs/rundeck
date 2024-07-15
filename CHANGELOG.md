@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the Rundeck cookbook.
 
-## Unreleased
+## 8.1.7 - *2024-07-15*
 
 Standardise files with files in sous-chefs/repo-management
 
