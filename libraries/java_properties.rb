@@ -16,14 +16,10 @@ class Hash
   end
 
   def to_java_properties_lines
-    lines = []
-
-    to_java_properties_hash.each do |k, v|
+    to_java_properties_hash.map do |k, v|
       # escape '=', ':', and "\n" with a backslash
-      lines << "#{k.gsub(/([=:\n])/, '\\\\\1')}=#{v.gsub(/([=:\n])/, '\\\\\1')}"
+      "#{k.gsub(/([=:\n])/, '\\\\\1')}=#{v.gsub(/([=:\n])/, '\\\\\1')}"
     end
-
-    lines
   end
 
   def to_java_properties_string

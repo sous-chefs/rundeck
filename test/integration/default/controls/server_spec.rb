@@ -18,8 +18,7 @@ when 'debian'
   end
 end
 
-# rubocop:disable Style/UnneededPercentQ
-admin_policy = %q(
+admin_policy = "
 ---
 description: Administrators, all access.
 context:
@@ -119,7 +118,7 @@ for:
     - delete
 by:
   group: admin
-)
+"
 
 describe file('/etc/rundeck/admin.aclpolicy') do
   its('content') { should match admin_policy }
