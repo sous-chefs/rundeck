@@ -5,6 +5,13 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 Standardise files with files in sous-chefs/repo-management
 Standardise files with files in sous-chefs/repo-management
 
+## [8.1.11](https://github.com/sous-chefs/rundeck/compare/8.1.10...v8.1.11) (2025-10-16)
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#334](https://github.com/sous-chefs/rundeck/issues/334)) ([423497a](https://github.com/sous-chefs/rundeck/commit/423497af384725dd2d199662893285863bbfc5e1))
+
 ## 8.1.9 - *2025-06-08*
 
 Standardise files with files in sous-chefs/repo-management
