@@ -5,6 +5,18 @@ This file is used to list changes made in each version of the Rundeck cookbook.
 Standardise files with files in sous-chefs/repo-management
 Standardise files with files in sous-chefs/repo-management
 
+## [8.2.0](https://github.com/sous-chefs/rundeck/compare/v8.1.11...v8.2.0) (2026-08-16)
+
+
+### Features
+
+* install Java via temurin_package_install ([#348](https://github.com/sous-chefs/rundeck/issues/348)) ([04737c1](https://github.com/sous-chefs/rundeck/commit/04737c1016e7234dbe2635f41c424cc820079575))
+
+
+### Bug Fixes
+
+* migrate dependency resolution to Policyfile ([#347](https://github.com/sous-chefs/rundeck/issues/347)) ([ee2b768](https://github.com/sous-chefs/rundeck/commit/ee2b768ad74c22b5492eee55041472a05377dff3))
+
 ## [8.1.11](https://github.com/sous-chefs/rundeck/compare/8.1.10...v8.1.11) (2025-10-16)
 
 
