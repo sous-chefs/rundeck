@@ -19,5 +19,5 @@
 unified_mode true
 
 action :install do
-  adoptopenjdk_install '8'
+  temurin_package_install '8'
 end
