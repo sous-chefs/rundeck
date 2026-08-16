@@ -29,15 +29,15 @@ jobs:
       matrix:
         os:
           - almalinux-8
-          - amazonlinux-2
-          - debian-10
-          # - debian-11 TODO: Disabled due to service not starting
-          - centos-7
-          - centos-stream-8
+          - almalinux-9
+          - centos-stream-9
           - fedora-latest
-          - ubuntu-1804
-          - ubuntu-2004
+          - oraclelinux-8
+          - oraclelinux-9
           - rockylinux-8
+          - rockylinux-9
+          - ubuntu-2204
+          - ubuntu-2404
         suite: [default]
       fail-fast: false
 
